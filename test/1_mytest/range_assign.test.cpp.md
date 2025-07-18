@@ -22,13 +22,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -238,57 +238,60 @@ data:
     \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
     \    n = m;\n    seg.build(m, f), cut.build(n, [&](int i) -> int { return 1; });\n\
     \    dat = seg.get_all();\n  }\n\n  X prod(int l, int r) {\n    int a = cut.prev(l),\
-    \ b = cut.next(l), c = cut.prev(r);\n    if (a == c) { return monoid_pow<MX>(dat[a],\
-    \ r - l); };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b - l);\n\
+    \ b = cut.next(l), c = cut.prev(r);\n    if (a == c) {\n      return monoid_pow<MX>(dat[a],\
+    \ r - l);\n    };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b - l);\n\
     \    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n    return\
     \ MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all(); }\n\
     \n  void assign(int l, int r, X x) {\n    int a = cut.prev(l), b = cut.next(r);\n\
     \    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));\n    if (r < b) {\n\
     \      X y = dat[cut.prev(r)];\n      dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y,\
-    \ b - r));\n    }\n    cut.enumerate(l + 1, r, [&](int i) -> void { seg.set(i,\
-    \ MX::unit()), cut.erase(i); });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x,\
-    \ r - l));\n  }\n};\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
-    \ ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX =\
-    \ typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
-    \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
-    \  vc<X> dat;\n  vc<A> laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int n) { build(n);\
-    \ }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n    build(n, f);\n\
-    \  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
-    \    laz.assign(size, MA::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i,\
-    \ 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k],\
-    \ dat[2 * k + 1]); }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
-    \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n  void multiply(int\
-    \ p, const X& x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
-    \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for\
-    \ (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0\
-    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
-    \ i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k);\
-    \ }\n    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
-    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
-    \ MX::unit();\n    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n\
-    \      if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r)\
-    \ push((r - 1) >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while\
-    \ (l < r) {\n      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr\
-    \ = MX::op(dat[--r], xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl,\
-    \ xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r,\
-    \ A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n \
-    \   l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
+    \ b - r));\n    }\n    cut.enumerate(l + 1, r,\n                  [&](int i) ->\
+    \ void { seg.set(i, MX::unit()), cut.erase(i); });\n    dat[l] = x, cut.insert(l),\
+    \ seg.set(l, monoid_pow<MX>(x, r - l));\n  }\n\n  vc<X> get_all() {\n    vc<X>\
+    \ ANS(n);\n    int p = 0;\n    while (p < n) {\n      int q = cut.next(p + 1);\n\
+    \      FOR(i, p, q) ANS[i] = dat[p];\n      p = q;\n    }\n    return ANS;\n \
+    \ }\n};\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
+    struct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
+    \  using MA = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n \
+    \ using A = typename MA::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A>\
+    \ laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int n) { build(n); }\n  template\
+    \ <typename F>\n  Lazy_SegTree(int n, F f) {\n    build(n, f);\n  }\n  Lazy_SegTree(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
+    \ X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size\
+    \ = 1 << log;\n    dat.assign(size << 1, MX::unit());\n    laz.assign(size, MA::unit());\n\
+    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
+    \  void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void\
+    \ set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
+    \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i\
+    \ <= log; i++) update(p >> i);\n  }\n  void multiply(int p, const X& x) {\n  \
+    \  assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for (int i = 1; i <= log;\
+    \ i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
+    \ dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k); }\n    return\
+    \ {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r)\
+    \ {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return MX::unit();\n\
+    \    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
     \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
-    \ >> i);\n    }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1)\
-    \ apply_at(l++, a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>=\
-    \ 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n     \
-    \ if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r\
-    \ - 1) >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F\
-    \ check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n\
-    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
-    \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
-    \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
+    \ >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while (l < r) {\n\
+    \      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r],\
+    \ xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X\
+    \ prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0\
+    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
+    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
+    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int\
+    \ l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n \
+    \     if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2,\
+    \ r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) !=\
+    \ l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n\
+    \    }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l)\
+    \ {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n    if (l\
+    \ == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >>\
+    \ i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n \
+    \     if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n        \
+    \  push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
     \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
     \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
     \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
@@ -377,7 +380,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_assign.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 18:22:07+09:00'
+  timestamp: '2025-07-18 14:23:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_assign.test.cpp

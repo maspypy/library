@@ -13,19 +13,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -416,16 +416,19 @@ data:
     \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
     \    n = m;\n    seg.build(m, f), cut.build(n, [&](int i) -> int { return 1; });\n\
     \    dat = seg.get_all();\n  }\n\n  X prod(int l, int r) {\n    int a = cut.prev(l),\
-    \ b = cut.next(l), c = cut.prev(r);\n    if (a == c) { return monoid_pow<MX>(dat[a],\
-    \ r - l); };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b - l);\n\
+    \ b = cut.next(l), c = cut.prev(r);\n    if (a == c) {\n      return monoid_pow<MX>(dat[a],\
+    \ r - l);\n    };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b - l);\n\
     \    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n    return\
     \ MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all(); }\n\
     \n  void assign(int l, int r, X x) {\n    int a = cut.prev(l), b = cut.next(r);\n\
     \    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));\n    if (r < b) {\n\
     \      X y = dat[cut.prev(r)];\n      dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y,\
-    \ b - r));\n    }\n    cut.enumerate(l + 1, r, [&](int i) -> void { seg.set(i,\
-    \ MX::unit()), cut.erase(i); });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x,\
-    \ r - l));\n  }\n};\n#line 9 \"test/2_library_checker/data_structure/range_set_range_composite.test.cpp\"\
+    \ b - r));\n    }\n    cut.enumerate(l + 1, r,\n                  [&](int i) ->\
+    \ void { seg.set(i, MX::unit()), cut.erase(i); });\n    dat[l] = x, cut.insert(l),\
+    \ seg.set(l, monoid_pow<MX>(x, r - l));\n  }\n\n  vc<X> get_all() {\n    vc<X>\
+    \ ANS(n);\n    int p = 0;\n    while (p < n) {\n      int q = cut.next(p + 1);\n\
+    \      FOR(i, p, q) ANS[i] = dat[p];\n      p = q;\n    }\n    return ANS;\n \
+    \ }\n};\n#line 9 \"test/2_library_checker/data_structure/range_set_range_composite.test.cpp\"\
     \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\nusing AFF = typename\
     \ Mono::value_type;\n\nvoid solve() {\n  INT(N, Q);\n\n  Range_Assignment_SegTree<Mono>\
     \ seg(N, [&](int i) -> AFF {\n    INT(a, b);\n    return {mint(a), mint(b)};\n\
@@ -458,7 +461,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2025-07-05 14:54:01+09:00'
+  timestamp: '2025-07-18 14:23:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_set_range_composite.test.cpp

@@ -74,9 +74,9 @@ data:
   timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/assignment.test.cpp
-  - test/3_yukicoder/2573.test.cpp
   - test/3_yukicoder/1789.test.cpp
+  - test/3_yukicoder/2573.test.cpp
+  - test/2_library_checker/graph/assignment.test.cpp
 documentation_of: flow/hungarian.hpp
 layout: document
 redirect_from:

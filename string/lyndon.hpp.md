@@ -48,13 +48,13 @@ data:
   isVerificationFile: false
   path: string/lyndon.hpp
   requiredBy:
-  - string/non_dominated_suffix.hpp
   - string/lex_min_suffix_for_all_prefix.hpp
+  - string/non_dominated_suffix.hpp
   timestamp: '2025-05-18 18:12:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/2_library_checker/string/lyndon.test.cpp
+  - test/1_mytest/lex_minmax_suffix.test.cpp
 documentation_of: string/lyndon.hpp
 layout: document
 redirect_from:

@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -461,10 +461,10 @@ data:
   timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1242.test.cpp
+  - test/3_yukicoder/1211.test.cpp
   - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/1211.test.cpp
-  - test/3_yukicoder/1242.test.cpp
 documentation_of: graph/functional.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -58,7 +58,7 @@ data:
     \ \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename\
     \ T>\nstruct Range_Add_Range_Min {\n  struct Mono {\n    using value_type = pair<T,\
     \ T>;\n    using X = value_type;\n    static X op(X L, X R) { return {L.fi + R.fi,\
-    \ min(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return {0, infty<ll>};\
+    \ min(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return {0, 2 * infty<T>};\
     \ }\n    static constexpr bool commute = false;\n  };\n  int n;\n  T lazy;\n \
     \ SegTree<Mono> seg;\n\n  Range_Add_Range_Min() {}\n  Range_Add_Range_Min(int\
     \ n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Min(int n, F f)\
@@ -78,13 +78,16 @@ data:
     \ R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }\n\n  // [0,i)\n  void apply_prefix(int\
     \ i, T x) {\n    lazy += x;\n    apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void\
     \ apply_suffix(int i, T x) {\n    if (i == n) return;\n    T t = seg.get(i).fi\
-    \ + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n"
+    \ + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\n\
+    \  void set(int i, T x) {\n    T now = prod(i, i + 1);\n    apply(i, i + 1, x\
+    \ - now);\n  }\n\n  void multiply(int i, T x) {\n    T now = prod(i, i + 1);\n\
+    \    if (now > x) apply(i, i + 1, x - now);\n  }\n};\n"
   code: "#include \"ds/segtree/segtree.hpp\"\n\n// INF+x==INF \u307F\u305F\u3044\u306A\
     \u51E6\u7406\u306F\u5165\u308C\u3066\u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree\
     \ \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Min\
     \ {\n  struct Mono {\n    using value_type = pair<T, T>;\n    using X = value_type;\n\
     \    static X op(X L, X R) { return {L.fi + R.fi, min(L.se, L.fi + R.se)}; }\n\
-    \    static constexpr X unit() { return {0, infty<ll>}; }\n    static constexpr\
+    \    static constexpr X unit() { return {0, 2 * infty<T>}; }\n    static constexpr\
     \ bool commute = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n \
     \ Range_Add_Range_Min() {}\n  Range_Add_Range_Min(int n) { build(n); }\n  template\
     \ <typename F>\n  Range_Add_Range_Min(int n, F f) {\n    build(n, f);\n  }\n \
@@ -104,13 +107,16 @@ data:
     \ apply_suffix(R, -x); }\n\n  // [0,i)\n  void apply_prefix(int i, T x) {\n  \
     \  lazy += x;\n    apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int\
     \ i, T x) {\n    if (i == n) return;\n    T t = seg.get(i).fi + x;\n    seg.set(i,\
-    \ {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};"
+    \ {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\n  void set(int i, T x)\
+    \ {\n    T now = prod(i, i + 1);\n    apply(i, i + 1, x - now);\n  }\n\n  void\
+    \ multiply(int i, T x) {\n    T now = prod(i, i + 1);\n    if (now > x) apply(i,\
+    \ i + 1, x - now);\n  }\n};"
   dependsOn:
   - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: ds/segtree/range_add_range_min.hpp
   requiredBy: []
-  timestamp: '2025-03-22 20:18:36+09:00'
+  timestamp: '2025-07-18 14:23:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_min.test.cpp

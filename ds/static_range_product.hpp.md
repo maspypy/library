@@ -147,8 +147,8 @@ data:
   timestamp: '2025-01-16 21:29:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/staticrmq.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
+  - test/2_library_checker/data_structure/staticrmq.test.cpp
 documentation_of: ds/static_range_product.hpp
 layout: document
 redirect_from:

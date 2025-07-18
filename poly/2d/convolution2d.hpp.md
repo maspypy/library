@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/conv2d.test.cpp
-    title: test/1_mytest/conv2d.test.cpp
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: poly/2d/fps_log_2d.hpp
+    title: poly/2d/fps_log_2d.hpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/convolution2d.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
+  bundledCode: "#line 2 \"poly/2d/convolution2d.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
     \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
@@ -282,24 +282,28 @@ data:
     \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
     \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
     \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 4 \"poly/convolution2d.hpp\"\n\r\ntemplate <typename T>\r\nvc<vc<T>>\
-    \ convolution2d(vc<vc<T>>& f, vc<vc<T>>& g) {\r\n  auto shape = [&](vc<vc<T>>&\
-    \ f) -> pi {\r\n    ll H = len(f);\r\n    ll W = (H == 0 ? 0 : len(f[0]));\r\n\
-    \    return {H, W};\r\n  };\r\n  auto [H1, W1] = shape(f);\r\n  auto [H2, W2]\
-    \ = shape(g);\r\n  ll H = H1 + H2 - 1;\r\n  ll W = W1 + W2 - 1;\r\n\r\n  vc<T>\
-    \ ff(H1 * W);\r\n  vc<T> gg(H2 * W);\r\n  FOR(x, H1) FOR(y, W1) ff[W * x + y]\
-    \ = f[x][y];\r\n  FOR(x, H2) FOR(y, W2) gg[W * x + y] = g[x][y];\r\n  auto hh\
-    \ = convolution(ff, gg);\r\n  vc<vc<T>> h(H, vc<T>(W));\r\n  FOR(x, H) FOR(y,\
-    \ W) h[x][y] = hh[W * x + y];\r\n  return h;\r\n}\r\n"
-  code: "#pragma once\r\n\r\n#include \"poly/convolution.hpp\"\r\n\r\ntemplate <typename\
-    \ T>\r\nvc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>& g) {\r\n  auto shape\
-    \ = [&](vc<vc<T>>& f) -> pi {\r\n    ll H = len(f);\r\n    ll W = (H == 0 ? 0\
-    \ : len(f[0]));\r\n    return {H, W};\r\n  };\r\n  auto [H1, W1] = shape(f);\r\
+    }\r\n#line 4 \"poly/2d/convolution2d.hpp\"\n\r\ntemplate <typename T>\r\nvc<vc<T>>\
+    \ convolution2d(vc<vc<T>>& f, vc<vc<T>>& g, bool truncate = false) {\r\n  auto\
+    \ shape = [&](vc<vc<T>>& f) -> pi {\r\n    ll H = len(f);\r\n    ll W = (H ==\
+    \ 0 ? 0 : len(f[0]));\r\n    return {H, W};\r\n  };\r\n  auto [H1, W1] = shape(f);\r\
     \n  auto [H2, W2] = shape(g);\r\n  ll H = H1 + H2 - 1;\r\n  ll W = W1 + W2 - 1;\r\
     \n\r\n  vc<T> ff(H1 * W);\r\n  vc<T> gg(H2 * W);\r\n  FOR(x, H1) FOR(y, W1) ff[W\
     \ * x + y] = f[x][y];\r\n  FOR(x, H2) FOR(y, W2) gg[W * x + y] = g[x][y];\r\n\
-    \  auto hh = convolution(ff, gg);\r\n  vc<vc<T>> h(H, vc<T>(W));\r\n  FOR(x, H)\
-    \ FOR(y, W) h[x][y] = hh[W * x + y];\r\n  return h;\r\n}\r\n"
+    \  auto hh = convolution(ff, gg);\r\n  int N = H, M = W;\r\n  if (truncate) {\r\
+    \n    assert(H1 == H2 && W1 == W2);\r\n    N = H1, M = W1;\r\n  }\r\n  vc<vc<T>>\
+    \ h(N, vc<T>(M));\r\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W * x + y];\r\n  return\
+    \ h;\r\n}\r\n"
+  code: "#pragma once\r\n\r\n#include \"poly/convolution.hpp\"\r\n\r\ntemplate <typename\
+    \ T>\r\nvc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>& g, bool truncate = false)\
+    \ {\r\n  auto shape = [&](vc<vc<T>>& f) -> pi {\r\n    ll H = len(f);\r\n    ll\
+    \ W = (H == 0 ? 0 : len(f[0]));\r\n    return {H, W};\r\n  };\r\n  auto [H1, W1]\
+    \ = shape(f);\r\n  auto [H2, W2] = shape(g);\r\n  ll H = H1 + H2 - 1;\r\n  ll\
+    \ W = W1 + W2 - 1;\r\n\r\n  vc<T> ff(H1 * W);\r\n  vc<T> gg(H2 * W);\r\n  FOR(x,\
+    \ H1) FOR(y, W1) ff[W * x + y] = f[x][y];\r\n  FOR(x, H2) FOR(y, W2) gg[W * x\
+    \ + y] = g[x][y];\r\n  auto hh = convolution(ff, gg);\r\n  int N = H, M = W;\r\
+    \n  if (truncate) {\r\n    assert(H1 == H2 && W1 == W2);\r\n    N = H1, M = W1;\r\
+    \n  }\r\n  vc<vc<T>> h(N, vc<T>(M));\r\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W *\
+    \ x + y];\r\n  return h;\r\n}\r\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -310,16 +314,16 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   isVerificationFile: false
-  path: poly/convolution2d.hpp
-  requiredBy: []
-  timestamp: '2025-07-05 14:54:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/conv2d.test.cpp
-documentation_of: poly/convolution2d.hpp
+  path: poly/2d/convolution2d.hpp
+  requiredBy:
+  - poly/2d/fps_log_2d.hpp
+  timestamp: '2025-07-18 14:23:18+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: poly/2d/convolution2d.hpp
 layout: document
 redirect_from:
-- /library/poly/convolution2d.hpp
-- /library/poly/convolution2d.hpp.html
-title: poly/convolution2d.hpp
+- /library/poly/2d/convolution2d.hpp
+- /library/poly/2d/convolution2d.hpp.html
+title: poly/2d/convolution2d.hpp
 ---

@@ -19,13 +19,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_add_range_max.hpp
     title: ds/segtree/range_add_range_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -328,21 +328,21 @@ data:
     \  }\n};\n#line 3 \"ds/segtree/range_add_range_max.hpp\"\n\n// INF+x==INF \u307F\
     \u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\u3044\u306A\u3044\n// N=Q=10^6\
     \ \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename\
-    \ T> struct Range_Add_Range_Max {\n  struct Mono {\n    using value_type = pair<T,\
+    \ T>\nstruct Range_Add_Range_Max {\n  struct Mono {\n    using value_type = pair<T,\
     \ T>;\n    using X = value_type;\n    static X op(X L, X R) { return {L.fi + R.fi,\
-    \ max(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return {0, -infty<ll>};\
-    \ }\n    static constexpr bool commute = false;\n  };\n  int n;\n  T lazy;\n \
-    \ SegTree<Mono> seg;\n\n  Range_Add_Range_Max() {}\n  // (n) \u3060\u3051\u3060\
-    \u3068 0 \u57CB\u3081\u3067\u521D\u671F\u5316\u3057\u307E\u3059\n  Range_Add_Range_Max(int\
-    \ n) { build(n); }\n  template <typename F> Range_Add_Range_Max(int n, F f) {\
-    \ build(n, f); }\n  Range_Add_Range_Max(const vc<T> &v) { build(v); }\n\n  void\
-    \ build(int m) {\n    build(m, [](int i) -> T { return 0; });\n  }\n  void build(const\
-    \ vc<T> &v) {\n    build(len(v), [&](int i) -> T { return v[i]; });\n  }\n  template\
-    \ <typename F> void build(int m, F f) {\n    lazy = 0;\n    n = m;\n    T pre\
-    \ = 0;\n    seg.build(n, [&](int i) -> pair<T, T> {\n      T t = f(i) - pre;\n\
-    \      pre += t;\n      return {t, t};\n    });\n  }\n\n  T prod(int L, int R)\
-    \ {\n    if (L == R)\n      return -infty<T>;\n    ll ans = seg.prod(L, R).se;\n\
-    \    L += seg.size;\n    for (; L > 0; L /= 2) {\n      if (L & 1)\n        ans\
+    \ max(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return {0, -2 *\
+    \ infty<T>}; }\n    static constexpr bool commute = false;\n  };\n  int n;\n \
+    \ T lazy;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_Max() {}\n  // (n) \u3060\
+    \u3051\u3060\u3068 0 \u57CB\u3081\u3067\u521D\u671F\u5316\u3057\u307E\u3059\n\
+    \  Range_Add_Range_Max(int n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Max(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Range_Add_Range_Max(const vc<T> &v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> T { return 0; });\n  }\n\
+    \  void build(const vc<T> &v) {\n    build(len(v), [&](int i) -> T { return v[i];\
+    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    lazy = 0;\n\
+    \    n = m;\n    T pre = 0;\n    seg.build(n, [&](int i) -> pair<T, T> {\n   \
+    \   T t = f(i) - pre;\n      pre += t;\n      return {t, t};\n    });\n  }\n\n\
+    \  T prod(int L, int R) {\n    if (L == R) return -infty<T>;\n    ll ans = seg.prod(L,\
+    \ R).se;\n    L += seg.size;\n    for (; L > 0; L /= 2) {\n      if (L & 1) ans\
     \ += seg.dat[--L].fi;\n    }\n    return ans + lazy;\n  }\n\n  T prod_all() {\
     \ return prod(0, n); }\n\n  // \u57FA\u672C\u30C7\u30D0\u30C3\u30B0\u7528\u3068\
     \u3044\u3046\u3064\u3082\u308A\u3067\u3055\u307C\u308A O(NlogN) \u306B\u306A\u3063\
@@ -350,24 +350,27 @@ data:
     \ = prod(i, i + 1);\n    return ANS;\n  }\n\n  void apply(int L, int R, T x) {\
     \ apply_suffix(L, x), apply_suffix(R, -x); }\n\n  // [0,i)\n  void apply_prefix(int\
     \ i, T x) {\n    lazy += x;\n    apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void\
-    \ apply_suffix(int i, T x) {\n    if (i == n)\n      return;\n    T t = seg.get(i).fi\
-    \ + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n\
-    \n// \u5EA7\u6A19\u306F long long. \u307B\u307C verify \u3055\u308C\u3066\u3044\
-    \u306A\u3044\n// https://codeforces.com/contest/542/problem/B\ntemplate <typename\
-    \ T> struct Dynamic_Range_Add_Range_Max {\n  struct Mono {\n    using value_type\
-    \ = pair<T, T>;\n    using X = value_type;\n    static X op(X L, X R) { return\
-    \ {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return\
-    \ {0, 0}; }\n    static constexpr bool commute = false;\n  };\n  int n;\n  Dynamic_SegTree_Sparse<Mono,\
-    \ false> seg;\n  T lazy;\n  using np = typename decltype(seg)::np;\n  np root;\n\
-    \n  // range apply * 2 \u304F\u3089\u3044\u306E\u30CE\u30FC\u30C9\u6570\n  Dynamic_Range_Add_Range_Max(int\
-    \ NODES, ll L, ll R)\n      : seg(NODES, L, R), lazy(0) {\n    root = seg.new_root();\n\
-    \  }\n\n  T prod(ll L, ll R) {\n    if (L == R)\n      return -infty<T>;\n   \
-    \ ll ans = seg.prod(root, L, R).se;\n    ans += seg.prod(root, seg.L0, L).fi;\n\
-    \    return ans + lazy;\n  }\n\n  void apply(ll L, ll R, T x) { apply_suffix(L,\
-    \ x), apply_suffix(R, -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n\
-    \    if (i == seg.R0)\n      return;\n    T t = seg.get(root, i).fi + x;\n   \
-    \ root = seg.set(root, i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\
-    };\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ apply_suffix(int i, T x) {\n    if (i == n) return;\n    T t = seg.get(i).fi\
+    \ + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\n\
+    \  void set(int i, T x) {\n    T now = prod(i, i + 1);\n    apply(i, i + 1, x\
+    \ - now);\n  }\n\n  void multiply(int i, T x) {\n    T now = prod(i, i + 1);\n\
+    \    if (now < x) apply(i, i + 1, x - now);\n  }\n};\n\n// \u5EA7\u6A19\u306F\
+    \ long long. \u307B\u307C verify \u3055\u308C\u3066\u3044\u306A\u3044\n// https://codeforces.com/contest/542/problem/B\n\
+    template <typename T>\nstruct Dynamic_Range_Add_Range_Max {\n  struct Mono {\n\
+    \    using value_type = pair<T, T>;\n    using X = value_type;\n    static X op(X\
+    \ L, X R) { return {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr\
+    \ X unit() { return {0, 0}; }\n    static constexpr bool commute = false;\n  };\n\
+    \  int n;\n  Dynamic_SegTree_Sparse<Mono, false> seg;\n  T lazy;\n  using np =\
+    \ typename decltype(seg)::np;\n  np root;\n\n  // range apply * 2 \u304F\u3089\
+    \u3044\u306E\u30CE\u30FC\u30C9\u6570\n  Dynamic_Range_Add_Range_Max(int NODES,\
+    \ ll L, ll R)\n      : seg(NODES, L, R), lazy(0) {\n    root = seg.new_root();\n\
+    \  }\n\n  T prod(ll L, ll R) {\n    if (L == R) return -infty<T>;\n    ll ans\
+    \ = seg.prod(root, L, R).se;\n    ans += seg.prod(root, seg.L0, L).fi;\n    return\
+    \ ans + lazy;\n  }\n\n  void apply(ll L, ll R, T x) { apply_suffix(L, x), apply_suffix(R,\
+    \ -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n    if (i == seg.R0)\
+    \ return;\n    T t = seg.get(root, i).fi + x;\n    root = seg.set(root, i, {t,\
+    \ t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 8 \"test/1_mytest/range_add_range_max.test.cpp\"\
@@ -439,7 +442,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_max.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 18:22:07+09:00'
+  timestamp: '2025-07-18 14:23:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_max.test.cpp

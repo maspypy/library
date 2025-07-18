@@ -16,13 +16,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_add_range_min.hpp
     title: ds/segtree/range_add_range_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -253,7 +253,7 @@ data:
     \ \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename\
     \ T>\nstruct Range_Add_Range_Min {\n  struct Mono {\n    using value_type = pair<T,\
     \ T>;\n    using X = value_type;\n    static X op(X L, X R) { return {L.fi + R.fi,\
-    \ min(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return {0, infty<ll>};\
+    \ min(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return {0, 2 * infty<T>};\
     \ }\n    static constexpr bool commute = false;\n  };\n  int n;\n  T lazy;\n \
     \ SegTree<Mono> seg;\n\n  Range_Add_Range_Min() {}\n  Range_Add_Range_Min(int\
     \ n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Min(int n, F f)\
@@ -273,9 +273,11 @@ data:
     \ R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }\n\n  // [0,i)\n  void apply_prefix(int\
     \ i, T x) {\n    lazy += x;\n    apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void\
     \ apply_suffix(int i, T x) {\n    if (i == n) return;\n    T t = seg.get(i).fi\
-    \ + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n\
-    #line 8 \"test/1_mytest/range_add_range_min.test.cpp\"\n\nvi sol_0(int N, int\
-    \ Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Lazy_SegTree<ActedMonoid_Min_Add<ll>>\
+    \ + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\n\
+    \  void set(int i, T x) {\n    T now = prod(i, i + 1);\n    apply(i, i + 1, x\
+    \ - now);\n  }\n\n  void multiply(int i, T x) {\n    T now = prod(i, i + 1);\n\
+    \    if (now > x) apply(i, i + 1, x - now);\n  }\n};\n#line 8 \"test/1_mytest/range_add_range_min.test.cpp\"\
+    \n\nvi sol_0(int N, int Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Lazy_SegTree<ActedMonoid_Min_Add<ll>>\
     \ seg(A);\n  vi ANS;\n  for (auto [t, l, r, x]: query) {\n    if (t == 0) { ANS.eb(seg.prod(l,\
     \ r)); }\n    if (t == 1) { seg.apply(l, r, x); }\n  }\n  return ANS;\n}\n\nvi\
     \ sol_1(int N, int Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Range_Add_Range_Min<ll>\
@@ -340,7 +342,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_min.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 18:22:07+09:00'
+  timestamp: '2025-07-18 14:23:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_min.test.cpp

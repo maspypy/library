@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -102,7 +102,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,9 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -430,39 +430,39 @@ data:
   isVerificationFile: false
   path: poly/poly_divmod.hpp
   requiredBy:
-  - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
-  - poly/poly_mod_pow.hpp
-  - poly/slice_rational_fps.hpp
+  - seq/interpolate_linear_rec.hpp
   - poly/coef_of_rational_fps.hpp
+  - poly/poly_mod_pow.hpp
   - poly/poly_gcd.hpp
   - poly/finding_root_of_polynomial.hpp
+  - poly/slice_rational_fps.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/poly_root_finding.test.cpp
-  - test/1_mytest/bell.test.cpp
-  - test/1_mytest/coef_of_rational.test.cpp
-  - test/1_mytest/slice_rational_fps.test.cpp
-  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/2_library_checker/polynomial/slice_rational.test.cpp
-  - test/2_library_checker/polynomial/polynomial_division.test.cpp
-  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/1561.test.cpp
-  - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/1844.test.cpp
-  - test/3_yukicoder/2877.test.cpp
-  - test/3_yukicoder/1516.test.cpp
-  - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1500.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/2305.test.cpp
+  - test/3_yukicoder/2877.test.cpp
+  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/2_library_checker/polynomial/polynomial_division.test.cpp
+  - test/2_library_checker/polynomial/slice_rational.test.cpp
+  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/1_mytest/slice_rational_fps.test.cpp
+  - test/1_mytest/coef_of_rational.test.cpp
+  - test/1_mytest/bell.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
 documentation_of: poly/poly_divmod.hpp
 layout: document
 redirect_from:

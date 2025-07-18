@@ -94,8 +94,8 @@ data:
   timestamp: '2024-02-02 05:06:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/DPL_1_B.test.cpp
   - test/4_aoj/DPL_1_H.test.cpp
+  - test/4_aoj/DPL_1_B.test.cpp
   - test/4_aoj/DPL_1_F.test.cpp
 documentation_of: knapsack/knapsack01.hpp
 layout: document

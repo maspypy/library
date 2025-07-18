@@ -1,52 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -58,7 +58,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -528,7 +528,7 @@ data:
     \ vc<mint>& f, mint K) {\r\n  int N = len(f);\r\n  assert(N == 0 || f[0] == mint(1));\r\
     \n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i,\
     \ f[i]);\r\n  vc<mint> g(N);\r\n  g[0] = 1;\r\n  FOR(n, N - 1) {\r\n    mint&\
-    \ x = g[n + 1];\r\n    for (auto&& [d, cf]: dat) {\r\n      if (d > n + 1) break;\r\
+    \ x = g[n + 1];\r\n    for (auto&& [d, cf] : dat) {\r\n      if (d > n + 1) break;\r\
     \n      mint t = cf * g[n - d + 1];\r\n      x += t * (K * mint(d) - mint(n -\
     \ d + 1));\r\n    }\r\n    x *= inv<mint>(n + 1);\r\n  }\r\n  return g;\r\n}\r\
     \n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_dense(const vc<mint>& f,\
@@ -536,56 +536,46 @@ data:
     \ len(f)) log_f[i] *= K;\r\n  return fps_exp_dense(log_f);\r\n}\r\n\r\ntemplate\
     \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint K) {\r\n  int\
     \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 100 : 1300);\r\n  return\
-    \ (n <= t ? fps_pow_1_sparse(f, K) : fps_pow_1_dense(f, K));\r\n}\r\n\r\n// f^e,\
-    \ sparse, O(NMK)\r\ntemplate <typename mint>\r\nvvc<mint> fps_pow_1_sparse_2d(vvc<mint>\
-    \ f, mint n) {\r\n  assert(f[0][0] == mint(1));\r\n  int N = len(f), M = len(f[0]);\r\
-    \n  vv(mint, dp, N, M);\r\n  dp[0] = fps_pow_1_sparse<mint>(f[0], n);\r\n\r\n\
-    \  vc<tuple<int, int, mint>> dat;\r\n  FOR(i, N) FOR(j, M) {\r\n    if ((i > 0\
-    \ || j > 0) && f[i][j] != mint(0)) dat.eb(i, j, f[i][j]);\r\n  }\r\n  FOR(i, 1,\
-    \ N) {\r\n    FOR(j, M) {\r\n      // F = f^n, f dF = n df F\r\n      // [x^{i-1}y^j]\r\
-    \n      mint lhs = 0, rhs = 0;\r\n      for (auto&& [a, b, c]: dat) {\r\n    \
-    \    if (a < i && b <= j) lhs += dp[i - a][j - b] * mint(i - a);\r\n        if\
-    \ (a <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\r\n      }\r\n   \
-    \   dp[i][j] = (n * rhs - lhs) * inv<mint>(i);\r\n    }\r\n  }\r\n  return dp;\r\
-    \n}\r\n#line 4 \"poly/online/online_convolution.hpp\"\n\n/*\nquery(i)\uFF1Aa[i],\
-    \ b[i] \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A127ms\n\
-    2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A1220ms\n*/\ntemplate <class\
-    \ mint>\nstruct Online_Convolution {\n  vc<mint> f, g, h, b0, b1;\n  vvc<mint>\
-    \ fm, gm;\n  int p;\n\n  Online_Convolution() : p(0) { assert(mint::can_ntt());\
-    \ }\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == p);\n    f.eb(f_i),\
-    \ g.eb(g_i);\n    int z = __builtin_ctz(p + 2), w = 1 << z, s;\n    if (p + 2\
-    \ == w) {\n      b0 = f, b0.resize(2 * w);\n      ntt(b0, false);\n      fm.eb(b0.begin(),\
-    \ b0.begin() + w);\n      b1 = g, b1.resize(2 * w);\n      ntt(b1, false);\n \
-    \     gm.eb(b1.begin(), b1.begin() + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n\
-    \      s = w - 2;\n      h.resize(2 * s + 2);\n    } else {\n      b0.assign(f.end()\
-    \ - w, f.end()), b0.resize(2 * w);\n      ntt(b0, false);\n      FOR(i, 2 * w)\
-    \ b0[i] *= gm[z][i];\n      b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n\
-    \      ntt(b1, false);\n      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n     \
-    \ s = w - 1;\n    }\n    ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s +\
-    \ i];\n    return h[p++];\n  }\n};\n#line 3 \"poly/online/online_division.hpp\"\
-    \n\n// query(i)\uFF1Aa[i], b[i] \u3092\u4E0E\u3048\u3066 (f/g)[i] \u3092\u5F97\
-    \u308B\u3002\n// g[0] == 1 \u3092\u4EEE\u5B9A\u3059\u308B\ntemplate <typename\
-    \ mint>\nstruct Online_Division {\n  vc<mint> f, g, F;\n  Online_Convolution<mint>\
-    \ X;\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == len(f));\n\
-    \    f.eb(f_i);\n    g.eb(g_i);\n    if (i == 0) {\n      assert(g_i == mint(1));\n\
-    \      F.eb(f_i);\n      return F[0];\n    }\n    F.eb(f[i] - X.query(i - 1, F[i\
-    \ - 1], g[i]));\n    return F[i];\n  }\n};\n#line 2 \"poly/online/online_pow.hpp\"\
-    \n\n// query(i)\uFF1Af[i] \u3092\u4E0E\u3048\u3066 (f^K)[i] \u3092\u5F97\u308B\
-    \u3002\n// f[0] == 1 \u3092\u4EEE\u5B9A\u3059\u308B\u3002\ntemplate <typename\
-    \ mint>\nstruct Online_Pow {\n  vc<mint> f, F;\n  vc<mint> g; // f'/f\n  const\
-    \ mint K;\n  Online_Division<mint> X;\n  Online_Convolution<mint> Y;\n\n  Online_Pow(mint\
-    \ K) : K(K) {}\n\n  mint query(int i, mint f_i) {\n    assert(i == len(f));\n\
-    \    f.eb(f_i);\n    if (i == 0) {\n      assert(f_i == mint(1));\n      F.eb(f_i);\n\
-    \      return F[0];\n    }\n    g.eb(X.query(i - 1, f[i] * mint(i), f[i - 1]));\n\
-    \    F.eb(Y.query(i - 1, g[i - 1], F[i - 1]) * K * inv<mint>(i));\n    return\
-    \ F[i];\n  }\n};\n#line 7 \"test/1_mytest/online_pow.test.cpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid test() {\n  auto gen = [&](int n) -> vc<mint> {\n    vc<mint>\
-    \ f(n + 1);\n    FOR(i, n + 1) f[i] = RNG(mint::get_mod());\n    return f;\n \
-    \ };\n  FOR(n, 1000) {\n    vc<mint> f = gen(n);\n    f[0] = mint(1);\n    mint\
-    \ K = RNG(mint::get_mod());\n    vc<mint> g = fps_pow_1<mint>(f, K);\n    Online_Pow<mint>\
-    \ X(K);\n    FOR(i, n + 1) { assert(g[i] == X.query(i, f[i])); }\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ (n <= t ? fps_pow_1_sparse(f, K) : fps_pow_1_dense(f, K));\r\n}\r\n#line 4 \"\
+    poly/online/online_convolution.hpp\"\n\n/*\nquery(i)\uFF1Aa[i], b[i] \u3092\u4E0E\
+    \u3048\u3066 ab[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A127ms\n2^{18}\uFF1A277ms\n\
+    2^{19}\uFF1A570ms\n2^{20}\uFF1A1220ms\n*/\ntemplate <class mint>\nstruct Online_Convolution\
+    \ {\n  vc<mint> f, g, h, b0, b1;\n  vvc<mint> fm, gm;\n  int p;\n\n  Online_Convolution()\
+    \ : p(0) { assert(mint::can_ntt()); }\n\n  mint query(int i, mint f_i, mint g_i)\
+    \ {\n    assert(i == p);\n    f.eb(f_i), g.eb(g_i);\n    int z = __builtin_ctz(p\
+    \ + 2), w = 1 << z, s;\n    if (p + 2 == w) {\n      b0 = f, b0.resize(2 * w);\n\
+    \      ntt(b0, false);\n      fm.eb(b0.begin(), b0.begin() + w);\n      b1 = g,\
+    \ b1.resize(2 * w);\n      ntt(b1, false);\n      gm.eb(b1.begin(), b1.begin()\
+    \ + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n      s = w - 2;\n      h.resize(2\
+    \ * s + 2);\n    } else {\n      b0.assign(f.end() - w, f.end()), b0.resize(2\
+    \ * w);\n      ntt(b0, false);\n      FOR(i, 2 * w) b0[i] *= gm[z][i];\n     \
+    \ b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n      ntt(b1, false);\n\
+    \      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n      s = w - 1;\n    }\n   \
+    \ ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s + i];\n    return h[p++];\n\
+    \  }\n};\n#line 3 \"poly/online/online_division.hpp\"\n\n// query(i)\uFF1Aa[i],\
+    \ b[i] \u3092\u4E0E\u3048\u3066 (f/g)[i] \u3092\u5F97\u308B\u3002\n// g[0] ==\
+    \ 1 \u3092\u4EEE\u5B9A\u3059\u308B\ntemplate <typename mint>\nstruct Online_Division\
+    \ {\n  vc<mint> f, g, F;\n  Online_Convolution<mint> X;\n\n  mint query(int i,\
+    \ mint f_i, mint g_i) {\n    assert(i == len(f));\n    f.eb(f_i);\n    g.eb(g_i);\n\
+    \    if (i == 0) {\n      assert(g_i == mint(1));\n      F.eb(f_i);\n      return\
+    \ F[0];\n    }\n    F.eb(f[i] - X.query(i - 1, F[i - 1], g[i]));\n    return F[i];\n\
+    \  }\n};\n#line 2 \"poly/online/online_pow.hpp\"\n\n// query(i)\uFF1Af[i] \u3092\
+    \u4E0E\u3048\u3066 (f^K)[i] \u3092\u5F97\u308B\u3002\n// f[0] == 1 \u3092\u4EEE\
+    \u5B9A\u3059\u308B\u3002\ntemplate <typename mint>\nstruct Online_Pow {\n  vc<mint>\
+    \ f, F;\n  vc<mint> g; // f'/f\n  const mint K;\n  Online_Division<mint> X;\n\
+    \  Online_Convolution<mint> Y;\n\n  Online_Pow(mint K) : K(K) {}\n\n  mint query(int\
+    \ i, mint f_i) {\n    assert(i == len(f));\n    f.eb(f_i);\n    if (i == 0) {\n\
+    \      assert(f_i == mint(1));\n      F.eb(f_i);\n      return F[0];\n    }\n\
+    \    g.eb(X.query(i - 1, f[i] * mint(i), f[i - 1]));\n    F.eb(Y.query(i - 1,\
+    \ g[i - 1], F[i - 1]) * K * inv<mint>(i));\n    return F[i];\n  }\n};\n#line 7\
+    \ \"test/1_mytest/online_pow.test.cpp\"\n\nusing mint = modint998;\n\nvoid test()\
+    \ {\n  auto gen = [&](int n) -> vc<mint> {\n    vc<mint> f(n + 1);\n    FOR(i,\
+    \ n + 1) f[i] = RNG(mint::get_mod());\n    return f;\n  };\n  FOR(n, 1000) {\n\
+    \    vc<mint> f = gen(n);\n    f[0] = mint(1);\n    mint K = RNG(mint::get_mod());\n\
+    \    vc<mint> g = fps_pow_1<mint>(f, K);\n    Online_Pow<mint> X(K);\n    FOR(i,\
+    \ n + 1) { assert(g[i] == X.query(i, f[i])); }\n  }\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\n#include \"poly/fps_pow.hpp\"\
     \n#include \"poly/online/online_pow.hpp\"\n\nusing mint = modint998;\n\nvoid test()\
@@ -620,7 +610,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/online_pow.test.cpp
   requiredBy: []
-  timestamp: '2025-07-05 14:54:01+09:00'
+  timestamp: '2025-07-18 14:23:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/online_pow.test.cpp

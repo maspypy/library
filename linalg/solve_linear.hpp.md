@@ -71,15 +71,15 @@ data:
   path: linalg/solve_linear.hpp
   requiredBy:
   - seq/p_recursive.hpp
-  - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
+  - poly/sparse_exp_of_div.hpp
   timestamp: '2023-11-16 18:26:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/linear_algebra/solve_linear.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
-  - test/3_yukicoder/502_2.test.cpp
+  - test/2_library_checker/linear_algebra/solve_linear.test.cpp
 documentation_of: linalg/solve_linear.hpp
 layout: document
 redirect_from:

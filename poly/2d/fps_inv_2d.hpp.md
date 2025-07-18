@@ -1,37 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: poly/2d/fps_log_2d.hpp
+    title: poly/2d/fps_log_2d.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -309,44 +312,70 @@ data:
     \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0]\
     \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
     \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 2 \"poly/fps_inv_2d.hpp\"\n\ntemplate <typename mint>\nvvc<mint>\
-    \ fps_inv_2d(vvc<mint>& F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0]\
-    \ != mint(0));\n\n  auto ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n \
-    \   // FOR(i, len(F)) ntt(F[i], inverse);\n    FOR(j, len(F[0])) {\n      vc<mint>\
-    \ f(len(F));\n      FOR(i, len(F)) f[i] = F[i][j];\n      ntt(f, inverse);\n \
-    \     FOR(i, len(F)) F[i][j] = f[i];\n    }\n    return;\n  };\n\n  int W = 1;\n\
-    \  while (W < 2 * len(F[0])) W *= 2;\n\n  FOR(i, n) F[i].resize(W);\n  vv(mint,\
-    \ G, n, W);\n  G[0] = fps_inv(F[0]);\n\n  FOR(i, n) ntt(F[i], false);\n  ntt(G[0],\
-    \ false);\n\n  int H = 1;\n  while (H < n) {\n    vv(mint, f, 2 * H, W);\n   \
-    \ vv(mint, g, 2 * H, W);\n    FOR(i, min(n, 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n\
-    \    FOR(i, H) FOR(j, W) g[i][j] = G[i][j];\n    ntt_x(f, false), ntt_x(g, false);\n\
-    \    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n    FOR(i,\
-    \ H, 2 * H) ntt(f[i], true);\n    FOR(i, H) FOR(j, W) f[i][j] = 0;\n    FOR(i,\
-    \ H, 2 * H) FOR(j, m, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i], false);\n\
-    \    ntt_x(f, false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f,\
-    \ true);\n    FOR(i, H, min(n, 2 * H)) {\n      ntt(f[i], true);\n      FOR(j,\
-    \ m, W) f[i][j] = 0;\n      ntt(f[i], false);\n      FOR(j, W) { G[i][j] -= f[i][j];\
-    \ }\n    }\n    H *= 2;\n  }\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n\
-    \  return G;\n}\n"
-  code: "#include \"poly/fps_inv.hpp\"\n\ntemplate <typename mint>\nvvc<mint> fps_inv_2d(vvc<mint>&\
-    \ F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0] != mint(0));\n\n  auto\
-    \ ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n    // FOR(i, len(F)) ntt(F[i],\
-    \ inverse);\n    FOR(j, len(F[0])) {\n      vc<mint> f(len(F));\n      FOR(i,\
-    \ len(F)) f[i] = F[i][j];\n      ntt(f, inverse);\n      FOR(i, len(F)) F[i][j]\
-    \ = f[i];\n    }\n    return;\n  };\n\n  int W = 1;\n  while (W < 2 * len(F[0]))\
-    \ W *= 2;\n\n  FOR(i, n) F[i].resize(W);\n  vv(mint, G, n, W);\n  G[0] = fps_inv(F[0]);\n\
-    \n  FOR(i, n) ntt(F[i], false);\n  ntt(G[0], false);\n\n  int H = 1;\n  while\
-    \ (H < n) {\n    vv(mint, f, 2 * H, W);\n    vv(mint, g, 2 * H, W);\n    FOR(i,\
-    \ min(n, 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n    FOR(i, H) FOR(j, W) g[i][j]\
-    \ = G[i][j];\n    ntt_x(f, false), ntt_x(g, false);\n    FOR(i, 2 * H) FOR(j,\
-    \ W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n    FOR(i, H, 2 * H) ntt(f[i],\
-    \ true);\n    FOR(i, H) FOR(j, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) FOR(j, m,\
-    \ W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i], false);\n    ntt_x(f, false);\n\
-    \    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n    FOR(i,\
-    \ H, min(n, 2 * H)) {\n      ntt(f[i], true);\n      FOR(j, m, W) f[i][j] = 0;\n\
-    \      ntt(f[i], false);\n      FOR(j, W) { G[i][j] -= f[i][j]; }\n    }\n   \
-    \ H *= 2;\n  }\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n  return\
-    \ G;\n}"
+    \n}\r\n#line 2 \"poly/2d/fps_inv_2d.hpp\"\n\n// \u6CE8\u610F (H+W)^2log(H+W) \u6642\
+    \u9593\u306B\u306A\u3063\u3066\u3044\u308B\u306E\u3067\u6B63\u65B9\u5F62\u3058\
+    \u3083\u306A\u3044\u3068\u30C0\u30E1\u306A\u3055\u307C\u308A\u5B9F\u88C5\ntemplate\
+    \ <typename mint>\nvvc<mint> fps_inv_2d(vvc<mint> F) {\n  int N = len(F) - 1,\
+    \ M = len(F[0]) - 1;\n  int L = 1;\n  while (L < N + M + 1) L *= 2;\n\n  vv(mint,\
+    \ F1, L, N + M + 1);\n  FOR(i, N + 1) FOR(j, M + 1) F1[i][i + j] = F[i][j];\n\n\
+    \  FOR(j, N + M + 1) {\n    vc<mint> f(L);\n    FOR(i, L) f[i] = F1[i][j];\n \
+    \   ntt(f, false);\n    FOR(i, L) F1[i][j] = f[i];\n  }\n  FOR(i, L) F1[i] = fps_inv<mint>(F1[i]);\n\
+    \  FOR(j, N + M + 1) {\n    vc<mint> f(L);\n    FOR(i, L) f[i] = F1[i][j];\n \
+    \   ntt(f, true);\n    FOR(i, L) F1[i][j] = f[i];\n  }\n  FOR(i, N + 1) FOR(j,\
+    \ M + 1) F[i][j] = F1[i][i + j];\n  return F;\n}\n\n// template <typename mint>\n\
+    // vvc<mint> fps_inv_2d(vvc<mint> F) {\n//   // \u3068\u308A\u3042\u3048\u305A\
+    \u3053\u308C\u306F\u30D0\u30B0\u3063\u3066\u308B\u3063\u307D\u3044\uFF57\uFF57\
+    \uFF57\n//   int n = len(F), m = len(F[0]);\n//   assert(F[0][0] != mint(0));\n\
+    \n//   auto ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n//     // FOR(i,\
+    \ len(F)) ntt(F[i], inverse);\n//     FOR(j, len(F[0])) {\n//       vc<mint> f(len(F));\n\
+    //       FOR(i, len(F)) f[i] = F[i][j];\n//       ntt(f, inverse);\n//       FOR(i,\
+    \ len(F)) F[i][j] = f[i];\n//     }\n//     return;\n//   };\n\n//   int W = 1;\n\
+    //   while (W < 2 * len(F[0])) W *= 2;\n\n//   FOR(i, n) F[i].resize(W);\n// \
+    \  vv(mint, G, n, W);\n//   G[0] = fps_inv(F[0]);\n\n//   FOR(i, n) ntt(F[i],\
+    \ false);\n//   ntt(G[0], false);\n\n//   int H = 1;\n//   while (H < n) {\n//\
+    \     vv(mint, f, 2 * H, W);\n//     vv(mint, g, 2 * H, W);\n//     FOR(i, min(n,\
+    \ 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n//     FOR(i, H) FOR(j, W) g[i][j] = G[i][j];\n\
+    //     ntt_x(f, false), ntt_x(g, false);\n//     FOR(i, 2 * H) FOR(j, W) f[i][j]\
+    \ *= g[i][j];\n//     ntt_x(f, true);\n//     FOR(i, H, 2 * H) ntt(f[i], true);\n\
+    //     FOR(i, H) FOR(j, W) f[i][j] = 0;\n//     FOR(i, H, 2 * H) FOR(j, m, W)\
+    \ f[i][j] = 0;\n//     FOR(i, H, 2 * H) ntt(f[i], false);\n//     ntt_x(f, false);\n\
+    //     FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n//     ntt_x(f, true);\n//\
+    \     FOR(i, H, min(n, 2 * H)) {\n//       ntt(f[i], true);\n//       FOR(j, m,\
+    \ W) f[i][j] = 0;\n//       ntt(f[i], false);\n//       FOR(j, W) { G[i][j] -=\
+    \ f[i][j]; }\n//     }\n//     H *= 2;\n//   }\n//   FOR(i, n) ntt(G[i], true);\n\
+    //   FOR(i, n) G[i].resize(m);\n//   return G;\n// }\n"
+  code: "#include \"poly/fps_inv.hpp\"\n\n// \u6CE8\u610F (H+W)^2log(H+W) \u6642\u9593\
+    \u306B\u306A\u3063\u3066\u3044\u308B\u306E\u3067\u6B63\u65B9\u5F62\u3058\u3083\
+    \u306A\u3044\u3068\u30C0\u30E1\u306A\u3055\u307C\u308A\u5B9F\u88C5\ntemplate <typename\
+    \ mint>\nvvc<mint> fps_inv_2d(vvc<mint> F) {\n  int N = len(F) - 1, M = len(F[0])\
+    \ - 1;\n  int L = 1;\n  while (L < N + M + 1) L *= 2;\n\n  vv(mint, F1, L, N +\
+    \ M + 1);\n  FOR(i, N + 1) FOR(j, M + 1) F1[i][i + j] = F[i][j];\n\n  FOR(j, N\
+    \ + M + 1) {\n    vc<mint> f(L);\n    FOR(i, L) f[i] = F1[i][j];\n    ntt(f, false);\n\
+    \    FOR(i, L) F1[i][j] = f[i];\n  }\n  FOR(i, L) F1[i] = fps_inv<mint>(F1[i]);\n\
+    \  FOR(j, N + M + 1) {\n    vc<mint> f(L);\n    FOR(i, L) f[i] = F1[i][j];\n \
+    \   ntt(f, true);\n    FOR(i, L) F1[i][j] = f[i];\n  }\n  FOR(i, N + 1) FOR(j,\
+    \ M + 1) F[i][j] = F1[i][i + j];\n  return F;\n}\n\n// template <typename mint>\n\
+    // vvc<mint> fps_inv_2d(vvc<mint> F) {\n//   // \u3068\u308A\u3042\u3048\u305A\
+    \u3053\u308C\u306F\u30D0\u30B0\u3063\u3066\u308B\u3063\u307D\u3044\uFF57\uFF57\
+    \uFF57\n//   int n = len(F), m = len(F[0]);\n//   assert(F[0][0] != mint(0));\n\
+    \n//   auto ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n//     // FOR(i,\
+    \ len(F)) ntt(F[i], inverse);\n//     FOR(j, len(F[0])) {\n//       vc<mint> f(len(F));\n\
+    //       FOR(i, len(F)) f[i] = F[i][j];\n//       ntt(f, inverse);\n//       FOR(i,\
+    \ len(F)) F[i][j] = f[i];\n//     }\n//     return;\n//   };\n\n//   int W = 1;\n\
+    //   while (W < 2 * len(F[0])) W *= 2;\n\n//   FOR(i, n) F[i].resize(W);\n// \
+    \  vv(mint, G, n, W);\n//   G[0] = fps_inv(F[0]);\n\n//   FOR(i, n) ntt(F[i],\
+    \ false);\n//   ntt(G[0], false);\n\n//   int H = 1;\n//   while (H < n) {\n//\
+    \     vv(mint, f, 2 * H, W);\n//     vv(mint, g, 2 * H, W);\n//     FOR(i, min(n,\
+    \ 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n//     FOR(i, H) FOR(j, W) g[i][j] = G[i][j];\n\
+    //     ntt_x(f, false), ntt_x(g, false);\n//     FOR(i, 2 * H) FOR(j, W) f[i][j]\
+    \ *= g[i][j];\n//     ntt_x(f, true);\n//     FOR(i, H, 2 * H) ntt(f[i], true);\n\
+    //     FOR(i, H) FOR(j, W) f[i][j] = 0;\n//     FOR(i, H, 2 * H) FOR(j, m, W)\
+    \ f[i][j] = 0;\n//     FOR(i, H, 2 * H) ntt(f[i], false);\n//     ntt_x(f, false);\n\
+    //     FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n//     ntt_x(f, true);\n//\
+    \     FOR(i, H, min(n, 2 * H)) {\n//       ntt(f[i], true);\n//       FOR(j, m,\
+    \ W) f[i][j] = 0;\n//       ntt(f[i], false);\n//       FOR(j, W) { G[i][j] -=\
+    \ f[i][j]; }\n//     }\n//     H *= 2;\n//   }\n//   FOR(i, n) ntt(G[i], true);\n\
+    //   FOR(i, n) G[i].resize(m);\n//   return G;\n// }"
   dependsOn:
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
@@ -359,15 +388,16 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   isVerificationFile: false
-  path: poly/fps_inv_2d.hpp
-  requiredBy: []
-  timestamp: '2025-07-05 14:54:01+09:00'
+  path: poly/2d/fps_inv_2d.hpp
+  requiredBy:
+  - poly/2d/fps_log_2d.hpp
+  timestamp: '2025-07-18 14:23:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: poly/fps_inv_2d.hpp
+documentation_of: poly/2d/fps_inv_2d.hpp
 layout: document
 redirect_from:
-- /library/poly/fps_inv_2d.hpp
-- /library/poly/fps_inv_2d.hpp.html
-title: poly/fps_inv_2d.hpp
+- /library/poly/2d/fps_inv_2d.hpp
+- /library/poly/2d/fps_inv_2d.hpp.html
+title: poly/2d/fps_inv_2d.hpp
 ---

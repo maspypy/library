@@ -103,8 +103,8 @@ data:
   isVerificationFile: false
   path: game/dyadic_rational.hpp
   requiredBy:
-  - game/number_and_star.hpp
   - game/solve_partizan_game.hpp
+  - game/number_and_star.hpp
   timestamp: '2024-11-11 22:49:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

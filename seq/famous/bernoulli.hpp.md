@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -434,20 +434,20 @@ data:
   isVerificationFile: false
   path: seq/famous/bernoulli.hpp
   requiredBy:
-  - seq/famous/faulhaber.hpp
   - seq/famous/riemann_zeta_even.hpp
-  - poly/prefix_sum_of_polynomial.hpp
-  - convex/lattice_point_sum_polynomial_pq.hpp
+  - seq/famous/faulhaber.hpp
   - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  - poly/prefix_sum_of_polynomial.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1357.test.cpp
+  - test/3_yukicoder/2580.test.cpp
+  - test/2_library_checker/number_theory/bernoulli.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - test/2_library_checker/number_theory/bernoulli.test.cpp
-  - test/3_yukicoder/1357.test.cpp
-  - test/3_yukicoder/2580.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document
 redirect_from:

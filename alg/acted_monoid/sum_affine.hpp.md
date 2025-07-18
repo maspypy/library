@@ -64,11 +64,11 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2342.test.cpp
+  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/3_yukicoder/2342.test.cpp
 documentation_of: alg/acted_monoid/sum_affine.hpp
 layout: document
 redirect_from:

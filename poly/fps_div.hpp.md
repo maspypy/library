@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -41,15 +41,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
+  - icon: ':warning:'
+    path: poly/2d/compositional_inverse_2d.hpp
+    title: poly/2d/compositional_inverse_2d.hpp
   - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
@@ -65,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
@@ -123,13 +126,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
@@ -216,7 +219,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1533.test.cpp
     title: test/3_yukicoder/1533.test.cpp
   - icon: ':heavy_check_mark:'
@@ -252,7 +255,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -276,9 +279,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -590,90 +593,91 @@ data:
   isVerificationFile: false
   path: poly/fps_div.hpp
   requiredBy:
-  - linalg/blackbox/vandermonde.hpp
-  - seq/interpolate_linear_rec.hpp
   - seq/sum_of_powers.hpp
-  - seq/famous/faulhaber.hpp
-  - seq/famous/bernoulli.hpp
-  - seq/famous/stirling_number_1.hpp
   - seq/famous/bell_number_large.hpp
   - seq/famous/riemann_zeta_even.hpp
-  - poly/composed_product.hpp
-  - poly/prefix_sum_of_polynomial.hpp
-  - poly/coef_of_rational_fps_2d.hpp
-  - poly/slice_rational_fps.hpp
-  - poly/multipoint_evaluation_for_prefix_product.hpp
-  - poly/coef_of_rational_fps.hpp
-  - poly/composed_sum.hpp
-  - poly/sum_of_power_of_roots.hpp
-  - poly/partial_frac_decomposition_1.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - poly/multipoint.hpp
-  - poly/compositional_inverse.hpp
+  - seq/famous/stirling_number_1.hpp
+  - seq/famous/bernoulli.hpp
+  - seq/famous/faulhaber.hpp
+  - seq/interpolate_linear_rec.hpp
   - graph/chromatic.hpp
-  - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
-  - convex/lattice_point_sum_polynomial_pq.hpp
+  - graph/count/count_labeled_biconnected.hpp
   - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  - poly/coef_of_rational_fps.hpp
+  - poly/composed_product.hpp
+  - poly/compositional_inverse.hpp
+  - poly/sum_of_power_of_roots.hpp
+  - poly/coef_of_rational_fps_2d.hpp
+  - poly/partial_frac_decomposition_1.hpp
+  - poly/slice_rational_fps.hpp
+  - poly/multipoint.hpp
+  - poly/2d/compositional_inverse_2d.hpp
+  - poly/prefix_sum_of_polynomial.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/multipoint_evaluation_for_prefix_product.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/composed_sum.hpp
+  - linalg/blackbox/vandermonde.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - test/1_mytest/vandermonde.test.cpp
-  - test/1_mytest/chirp_z.test.cpp
-  - test/1_mytest/stirling_1_suffix.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
-  - test/1_mytest/bell.test.cpp
-  - test/1_mytest/partial_frac.test.cpp
-  - test/1_mytest/multipoint_prefix.test.cpp
-  - test/1_mytest/count_labeled_bridgeless.test.cpp
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/faulhaber.test.cpp
-  - test/1_mytest/coef_of_rational.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/1_mytest/slice_rational_fps.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/2459.test.cpp
+  - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/1500.test.cpp
+  - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/1357.test.cpp
+  - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/1145.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/2305.test.cpp
+  - test/3_yukicoder/1533.test.cpp
+  - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/2877.test.cpp
+  - test/3_yukicoder/2243.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/2166.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - test/2_library_checker/number_theory/bernoulli.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
+  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - test/2_library_checker/number_theory/bernoulli.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/3_yukicoder/1962.test.cpp
-  - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1561.test.cpp
-  - test/3_yukicoder/1575.test.cpp
-  - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/1844.test.cpp
-  - test/3_yukicoder/2877.test.cpp
-  - test/3_yukicoder/1145.test.cpp
-  - test/3_yukicoder/1516.test.cpp
-  - test/3_yukicoder/2459.test.cpp
-  - test/3_yukicoder/578.test.cpp
-  - test/3_yukicoder/1500.test.cpp
-  - test/3_yukicoder/1533.test.cpp
-  - test/3_yukicoder/2166.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2583.test.cpp
-  - test/3_yukicoder/2243.test.cpp
-  - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/541.test.cpp
-  - test/3_yukicoder/2747.test.cpp
-  - test/3_yukicoder/1357.test.cpp
-  - test/3_yukicoder/2580.test.cpp
-  - test/3_yukicoder/2305.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/slice_rational_fps.test.cpp
+  - test/1_mytest/vandermonde.test.cpp
+  - test/1_mytest/chirp_z.test.cpp
+  - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/coef_of_rational.test.cpp
+  - test/1_mytest/bell.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/stirling_1_suffix.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
 redirect_from:

@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -513,7 +513,7 @@ data:
     \ vc<mint>& f, mint K) {\r\n  int N = len(f);\r\n  assert(N == 0 || f[0] == mint(1));\r\
     \n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i,\
     \ f[i]);\r\n  vc<mint> g(N);\r\n  g[0] = 1;\r\n  FOR(n, N - 1) {\r\n    mint&\
-    \ x = g[n + 1];\r\n    for (auto&& [d, cf]: dat) {\r\n      if (d > n + 1) break;\r\
+    \ x = g[n + 1];\r\n    for (auto&& [d, cf] : dat) {\r\n      if (d > n + 1) break;\r\
     \n      mint t = cf * g[n - d + 1];\r\n      x += t * (K * mint(d) - mint(n -\
     \ d + 1));\r\n    }\r\n    x *= inv<mint>(n + 1);\r\n  }\r\n  return g;\r\n}\r\
     \n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_dense(const vc<mint>& f,\
@@ -521,30 +521,19 @@ data:
     \ len(f)) log_f[i] *= K;\r\n  return fps_exp_dense(log_f);\r\n}\r\n\r\ntemplate\
     \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint K) {\r\n  int\
     \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 100 : 1300);\r\n  return\
-    \ (n <= t ? fps_pow_1_sparse(f, K) : fps_pow_1_dense(f, K));\r\n}\r\n\r\n// f^e,\
-    \ sparse, O(NMK)\r\ntemplate <typename mint>\r\nvvc<mint> fps_pow_1_sparse_2d(vvc<mint>\
-    \ f, mint n) {\r\n  assert(f[0][0] == mint(1));\r\n  int N = len(f), M = len(f[0]);\r\
-    \n  vv(mint, dp, N, M);\r\n  dp[0] = fps_pow_1_sparse<mint>(f[0], n);\r\n\r\n\
-    \  vc<tuple<int, int, mint>> dat;\r\n  FOR(i, N) FOR(j, M) {\r\n    if ((i > 0\
-    \ || j > 0) && f[i][j] != mint(0)) dat.eb(i, j, f[i][j]);\r\n  }\r\n  FOR(i, 1,\
-    \ N) {\r\n    FOR(j, M) {\r\n      // F = f^n, f dF = n df F\r\n      // [x^{i-1}y^j]\r\
-    \n      mint lhs = 0, rhs = 0;\r\n      for (auto&& [a, b, c]: dat) {\r\n    \
-    \    if (a < i && b <= j) lhs += dp[i - a][j - b] * mint(i - a);\r\n        if\
-    \ (a <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\r\n      }\r\n   \
-    \   dp[i][j] = (n * rhs - lhs) * inv<mint>(i);\r\n    }\r\n  }\r\n  return dp;\r\
-    \n}\r\n#line 5 \"test/1_mytest/sparse_pow_2d.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  vv(mint, f, 9, 9);\n  f[0][0] = f[0][1] = f[1][0] = mint(1);\n\
-    \  f[1][2] = f[2][1] = f[2][2] = mint(1);\n  f = fps_pow_1_sparse_2d<mint>(f,\
-    \ 4);\n  assert(f[0] == vc<mint>({1, 4, 6, 4, 1, 0, 0, 0, 0}));\n  assert(f[1]\
-    \ == vc<mint>({4, 12, 16, 16, 12, 4, 0, 0, 0}));\n  assert(f[2] == vc<mint>({6,\
-    \ 16, 34, 48, 34, 16, 6, 0, 0}));\n  assert(f[3] == vc<mint>({4, 16, 48, 60, 60,\
-    \ 48, 16, 4, 0}));\n  assert(f[4] == vc<mint>({1, 12, 34, 60, 90, 60, 34, 12,\
-    \ 1}));\n  assert(f[5] == vc<mint>({0, 4, 16, 48, 60, 60, 48, 16, 4}));\n  assert(f[6]\
-    \ == vc<mint>({0, 0, 6, 16, 34, 48, 34, 16, 6}));\n  assert(f[7] == vc<mint>({0,\
-    \ 0, 0, 4, 12, 16, 16, 12, 4}));\n  assert(f[8] == vc<mint>({0, 0, 0, 0, 1, 4,\
-    \ 6, 4, 1}));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
-    \ + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
-    }\n"
+    \ (n <= t ? fps_pow_1_sparse(f, K) : fps_pow_1_dense(f, K));\r\n}\r\n#line 5 \"\
+    test/1_mytest/sparse_pow_2d.test.cpp\"\n\nusing mint = modint998;\n\nvoid test()\
+    \ {\n  vv(mint, f, 9, 9);\n  f[0][0] = f[0][1] = f[1][0] = mint(1);\n  f[1][2]\
+    \ = f[2][1] = f[2][2] = mint(1);\n  f = fps_pow_1_sparse_2d<mint>(f, 4);\n  assert(f[0]\
+    \ == vc<mint>({1, 4, 6, 4, 1, 0, 0, 0, 0}));\n  assert(f[1] == vc<mint>({4, 12,\
+    \ 16, 16, 12, 4, 0, 0, 0}));\n  assert(f[2] == vc<mint>({6, 16, 34, 48, 34, 16,\
+    \ 6, 0, 0}));\n  assert(f[3] == vc<mint>({4, 16, 48, 60, 60, 48, 16, 4, 0}));\n\
+    \  assert(f[4] == vc<mint>({1, 12, 34, 60, 90, 60, 34, 12, 1}));\n  assert(f[5]\
+    \ == vc<mint>({0, 4, 16, 48, 60, 60, 48, 16, 4}));\n  assert(f[6] == vc<mint>({0,\
+    \ 0, 6, 16, 34, 48, 34, 16, 6}));\n  assert(f[7] == vc<mint>({0, 0, 0, 4, 12,\
+    \ 16, 16, 12, 4}));\n  assert(f[8] == vc<mint>({0, 0, 0, 0, 1, 4, 6, 4, 1}));\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"poly/fps_pow.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n\
     \  vv(mint, f, 9, 9);\n  f[0][0] = f[0][1] = f[1][0] = mint(1);\n  f[1][2] = f[2][1]\
@@ -578,8 +567,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sparse_pow_2d.test.cpp
   requiredBy: []
-  timestamp: '2025-07-05 14:54:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-07-18 14:23:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/sparse_pow_2d.test.cpp
 layout: document
