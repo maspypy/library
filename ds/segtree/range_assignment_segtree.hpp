@@ -34,7 +34,9 @@ struct Range_Assignment_SegTree {
 
   X prod(int l, int r) {
     int a = cut.prev(l), b = cut.next(l), c = cut.prev(r);
-    if (a == c) { return monoid_pow<MX>(dat[a], r - l); };
+    if (a == c) {
+      return monoid_pow<MX>(dat[a], r - l);
+    };
     assert(b <= c);
     X x = monoid_pow<MX>(dat[a], b - l);
     X y = seg.prod(b, c);
@@ -51,7 +53,19 @@ struct Range_Assignment_SegTree {
       X y = dat[cut.prev(r)];
       dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y, b - r));
     }
-    cut.enumerate(l + 1, r, [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i); });
+    cut.enumerate(l + 1, r,
+                  [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i); });
     dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));
+  }
+
+  vc<X> get_all() {
+    vc<X> ANS(n);
+    int p = 0;
+    while (p < n) {
+      int q = cut.next(p + 1);
+      FOR(i, p, q) ANS[i] = dat[p];
+      p = q;
+    }
+    return ANS;
   }
 };

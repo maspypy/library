@@ -8,7 +8,7 @@ struct Range_Add_Range_Min {
     using value_type = pair<T, T>;
     using X = value_type;
     static X op(X L, X R) { return {L.fi + R.fi, min(L.se, L.fi + R.se)}; }
-    static constexpr X unit() { return {0, infty<ll>}; }
+    static constexpr X unit() { return {0, 2 * infty<T>}; }
     static constexpr bool commute = false;
   };
   int n;
@@ -75,4 +75,14 @@ struct Range_Add_Range_Min {
     seg.set(i, {t, t});
   }
   void apply_all(T x) { lazy += x; }
+
+  void set(int i, T x) {
+    T now = prod(i, i + 1);
+    apply(i, i + 1, x - now);
+  }
+
+  void multiply(int i, T x) {
+    T now = prod(i, i + 1);
+    if (now > x) apply(i, i + 1, x - now);
+  }
 };

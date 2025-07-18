@@ -3,7 +3,7 @@
 #include "poly/convolution.hpp"
 
 template <typename T>
-vc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>& g) {
+vc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>& g, bool truncate = false) {
   auto shape = [&](vc<vc<T>>& f) -> pi {
     ll H = len(f);
     ll W = (H == 0 ? 0 : len(f[0]));
@@ -19,7 +19,12 @@ vc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>& g) {
   FOR(x, H1) FOR(y, W1) ff[W * x + y] = f[x][y];
   FOR(x, H2) FOR(y, W2) gg[W * x + y] = g[x][y];
   auto hh = convolution(ff, gg);
-  vc<vc<T>> h(H, vc<T>(W));
-  FOR(x, H) FOR(y, W) h[x][y] = hh[W * x + y];
+  int N = H, M = W;
+  if (truncate) {
+    assert(H1 == H2 && W1 == W2);
+    N = H1, M = W1;
+  }
+  vc<vc<T>> h(N, vc<T>(M));
+  FOR(x, N) FOR(y, M) h[x][y] = hh[W * x + y];
   return h;
 }
