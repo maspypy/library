@@ -1,5 +1,6 @@
 #include "graph/count/count_labeled_connected.hpp"
 #include "poly/compositional_inverse.hpp"
+#include "poly/composition.hpp"
 #include "poly/fps_exp.hpp"
 #include "poly/fps_pow.hpp"
 
