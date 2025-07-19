@@ -2,6 +2,8 @@
 #include "my_template.hpp"
 
 #include "poly/compositional_inverse.hpp"
+#include "poly/compositional_inverse_old.hpp"
+#include "poly/composition.hpp"
 #include "random/base.hpp"
 
 using mint = modint998;

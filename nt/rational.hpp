@@ -80,13 +80,33 @@ struct Rational {
   Rational operator-(const Rational &p) const { return Rational(*this) -= p; }
   Rational operator*(const Rational &p) const { return Rational(*this) *= p; }
   Rational operator/(const Rational &p) const { return Rational(*this) /= p; }
-  bool operator==(const Rational &p) const { return num * p.den == p.num * den; }
-  bool operator!=(const Rational &p) const { return num * p.den != p.num * den; }
+  bool operator==(const Rational &p) const {
+    return num * p.den == p.num * den;
+  }
+  bool operator!=(const Rational &p) const {
+    return num * p.den != p.num * den;
+  }
   bool operator<(const Rational &p) const { return num * p.den < p.num * den; }
   bool operator>(const Rational &p) const { return num * p.den > p.num * den; }
-  bool operator<=(const Rational &p) const { return num * p.den <= p.num * den; }
-  bool operator>=(const Rational &p) const { return num * p.den >= p.num * den; }
+  bool operator<=(const Rational &p) const {
+    return num * p.den <= p.num * den;
+  }
+  bool operator>=(const Rational &p) const {
+    return num * p.den >= p.num * den;
+  }
 
-  string to_string() { return std::to_string(num) + "/" + std::to_string(den); }
+  string to_string() {
+    auto f = [&](T x) -> string {
+      // i128
+      bool neg = 0;
+      string ans;
+      if (x < 0) neg = 1, x = -x;
+      while (x) ans += '0' + (x % 10), x /= 10;
+      reverse(all(ans));
+      if (ans.empty()) ans = "0";
+      return (neg ? "-" + ans : ans);
+    };
+    return f(num) + "/" + f(den);
+  }
   double to_double() { return double(num) / double(den); }
 };

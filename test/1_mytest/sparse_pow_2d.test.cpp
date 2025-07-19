@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 
-#include "poly/fps_pow.hpp"
+#include "poly/2d/fps_pow_1_2d.hpp"
 
 using mint = modint998;
 
