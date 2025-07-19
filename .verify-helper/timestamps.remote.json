@@ -36,6 +36,7 @@
 "test/1_mytest/count_by_factor_type.test.cpp": "2025-07-03 18:22:07 +0900",
 "test/1_mytest/count_clique.test.cpp": "2025-07-05 14:54:01 +0900",
 "test/1_mytest/count_indep_set.test.cpp": "2025-07-05 14:54:01 +0900",
+"test/1_mytest/count_labeled_bridgeless.test.cpp": "2025-07-19 23:03:02 +0900",
 "test/1_mytest/count_labeled_connected.test.cpp": "2025-07-05 14:54:01 +0900",
 "test/1_mytest/count_labeled_dag.test.cpp": "2025-07-05 14:54:01 +0900",
 "test/1_mytest/count_labeled_eulerian.test.cpp": "2025-07-05 14:54:01 +0900",
