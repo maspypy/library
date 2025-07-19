@@ -1790,7 +1790,7 @@ data:
     - icon: ':warning:'
       path: poly/2d/compositional_inverse_2d.hpp
       title: poly/2d/compositional_inverse_2d.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/2d/convolution2d.hpp
       title: poly/2d/convolution2d.hpp
     - icon: ':warning:'
@@ -1802,7 +1802,7 @@ data:
     - icon: ':warning:'
       path: poly/2d/fps_log_2d.hpp
       title: poly/2d/fps_log_2d.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/2d/fps_pow_1_2d.hpp
       title: poly/2d/fps_pow_1_2d.hpp
     - icon: ':warning:'
@@ -1849,6 +1849,9 @@ data:
     - icon: ':question:'
       path: poly/compositional_inverse.hpp
       title: poly/compositional_inverse.hpp
+    - icon: ':heavy_check_mark:'
+      path: poly/compositional_inverse_old.hpp
+      title: poly/compositional_inverse_old.hpp
     - icon: ':question:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
@@ -2030,7 +2033,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2458,10 +2461,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/composition_log_1_minus_x.test.cpp
       title: test/1_mytest/composition_log_1_minus_x.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/compositional_inverset.test.cpp
       title: test/1_mytest/compositional_inverset.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/conv2d.test.cpp
       title: test/1_mytest/conv2d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2944,7 +2947,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/sortable_array.test.cpp
       title: test/1_mytest/sortable_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/sparse_pow_2d.test.cpp
       title: test/1_mytest/sparse_pow_2d.test.cpp
     - icon: ':heavy_check_mark:'

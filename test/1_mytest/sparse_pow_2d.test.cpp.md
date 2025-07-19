@@ -16,6 +16,9 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/2d/fps_pow_1_2d.hpp
+    title: poly/2d/fps_pow_1_2d.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -51,9 +54,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -521,8 +524,31 @@ data:
     \ len(f)) log_f[i] *= K;\r\n  return fps_exp_dense(log_f);\r\n}\r\n\r\ntemplate\
     \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint K) {\r\n  int\
     \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 100 : 1300);\r\n  return\
-    \ (n <= t ? fps_pow_1_sparse(f, K) : fps_pow_1_dense(f, K));\r\n}\r\n#line 5 \"\
-    test/1_mytest/sparse_pow_2d.test.cpp\"\n\nusing mint = modint998;\n\nvoid test()\
+    \ (n <= t ? fps_pow_1_sparse(f, K) : fps_pow_1_dense(f, K));\r\n}\r\n#line 2 \"\
+    poly/2d/fps_pow_1_2d.hpp\"\n\n// f^e, sparse, O(NMK)\ntemplate <typename mint>\n\
+    vvc<mint> fps_pow_1_sparse_2d(vvc<mint> f, mint n) {\n  assert(f[0][0] == mint(1));\n\
+    \  int N = len(f), M = len(f[0]);\n  vv(mint, dp, N, M);\n  dp[0] = fps_pow_1_sparse<mint>(f[0],\
+    \ n);\n\n  vc<tuple<int, int, mint>> dat;\n  FOR(i, N) FOR(j, M) {\n    if ((i\
+    \ > 0 || j > 0) && f[i][j] != mint(0)) dat.eb(i, j, f[i][j]);\n  }\n  FOR(i, 1,\
+    \ N) {\n    FOR(j, M) {\n      // F = f^n, f dF = n df F\n      // [x^{i-1}y^j]\n\
+    \      mint lhs = 0, rhs = 0;\n      for (auto&& [a, b, c] : dat) {\n        if\
+    \ (a < i && b <= j) lhs += dp[i - a][j - b] * c * mint(i - a);\n        if (a\
+    \ <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\n      }\n      dp[i][j]\
+    \ = (n * rhs - lhs) * inv<mint>(i);\n    }\n  }\n  return dp;\n}\n#line 5 \"test/1_mytest/sparse_pow_2d.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  vv(mint, f, 9, 9);\n  f[0][0]\
+    \ = f[0][1] = f[1][0] = mint(1);\n  f[1][2] = f[2][1] = f[2][2] = mint(1);\n \
+    \ f = fps_pow_1_sparse_2d<mint>(f, 4);\n  assert(f[0] == vc<mint>({1, 4, 6, 4,\
+    \ 1, 0, 0, 0, 0}));\n  assert(f[1] == vc<mint>({4, 12, 16, 16, 12, 4, 0, 0, 0}));\n\
+    \  assert(f[2] == vc<mint>({6, 16, 34, 48, 34, 16, 6, 0, 0}));\n  assert(f[3]\
+    \ == vc<mint>({4, 16, 48, 60, 60, 48, 16, 4, 0}));\n  assert(f[4] == vc<mint>({1,\
+    \ 12, 34, 60, 90, 60, 34, 12, 1}));\n  assert(f[5] == vc<mint>({0, 4, 16, 48,\
+    \ 60, 60, 48, 16, 4}));\n  assert(f[6] == vc<mint>({0, 0, 6, 16, 34, 48, 34, 16,\
+    \ 6}));\n  assert(f[7] == vc<mint>({0, 0, 0, 4, 12, 16, 16, 12, 4}));\n  assert(f[8]\
+    \ == vc<mint>({0, 0, 0, 0, 1, 4, 6, 4, 1}));\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"poly/2d/fps_pow_1_2d.hpp\"\n\nusing mint = modint998;\n\nvoid test()\
     \ {\n  vv(mint, f, 9, 9);\n  f[0][0] = f[0][1] = f[1][0] = mint(1);\n  f[1][2]\
     \ = f[2][1] = f[2][2] = mint(1);\n  f = fps_pow_1_sparse_2d<mint>(f, 4);\n  assert(f[0]\
     \ == vc<mint>({1, 4, 6, 4, 1, 0, 0, 0, 0}));\n  assert(f[1] == vc<mint>({4, 12,\
@@ -534,21 +560,9 @@ data:
     \ 16, 16, 12, 4}));\n  assert(f[8] == vc<mint>({0, 0, 0, 0, 1, 4, 6, 4, 1}));\n\
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
     ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"poly/fps_pow.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n\
-    \  vv(mint, f, 9, 9);\n  f[0][0] = f[0][1] = f[1][0] = mint(1);\n  f[1][2] = f[2][1]\
-    \ = f[2][2] = mint(1);\n  f = fps_pow_1_sparse_2d<mint>(f, 4);\n  assert(f[0]\
-    \ == vc<mint>({1, 4, 6, 4, 1, 0, 0, 0, 0}));\n  assert(f[1] == vc<mint>({4, 12,\
-    \ 16, 16, 12, 4, 0, 0, 0}));\n  assert(f[2] == vc<mint>({6, 16, 34, 48, 34, 16,\
-    \ 6, 0, 0}));\n  assert(f[3] == vc<mint>({4, 16, 48, 60, 60, 48, 16, 4, 0}));\n\
-    \  assert(f[4] == vc<mint>({1, 12, 34, 60, 90, 60, 34, 12, 1}));\n  assert(f[5]\
-    \ == vc<mint>({0, 4, 16, 48, 60, 60, 48, 16, 4}));\n  assert(f[6] == vc<mint>({0,\
-    \ 0, 6, 16, 34, 48, 34, 16, 6}));\n  assert(f[7] == vc<mint>({0, 0, 0, 4, 12,\
-    \ 16, 16, 12, 4}));\n  assert(f[8] == vc<mint>({0, 0, 0, 0, 1, 4, 6, 4, 1}));\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
+  - poly/2d/fps_pow_1_2d.hpp
   - poly/fps_pow.hpp
   - poly/count_terms.hpp
   - poly/fps_exp.hpp
@@ -567,8 +581,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sparse_pow_2d.test.cpp
   requiredBy: []
-  timestamp: '2025-07-18 14:23:18+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-07-19 22:38:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sparse_pow_2d.test.cpp
 layout: document

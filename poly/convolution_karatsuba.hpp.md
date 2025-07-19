@@ -98,7 +98,7 @@ data:
   - icon: ':warning:'
     path: poly/2d/compositional_inverse_2d.hpp
     title: poly/2d/compositional_inverse_2d.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/2d/convolution2d.hpp
     title: poly/2d/convolution2d.hpp
   - icon: ':warning:'
@@ -107,7 +107,7 @@ data:
   - icon: ':warning:'
     path: poly/2d/fps_log_2d.hpp
     title: poly/2d/fps_log_2d.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/2d/fps_pow_1_2d.hpp
     title: poly/2d/fps_pow_1_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -149,6 +149,9 @@ data:
   - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/compositional_inverse_old.hpp
+    title: poly/compositional_inverse_old.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -351,9 +354,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/conv2d.test.cpp
+    title: test/1_mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/conv_leq.test.cpp
     title: test/1_mytest/conv_leq.test.cpp
@@ -462,7 +468,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/slice_rational_fps.test.cpp
     title: test/1_mytest/slice_rational_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sparse_pow_2d.test.cpp
     title: test/1_mytest/sparse_pow_2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -972,6 +978,7 @@ data:
   - poly/coef_of_rational_fps_2d.hpp
   - poly/multivar_convolution.hpp
   - poly/typical_divide_conquer.hpp
+  - poly/compositional_inverse_old.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/poly_divmod.hpp
   - poly/composition_f_ex_minus_1.hpp
@@ -1172,6 +1179,7 @@ data:
   - test/1_mytest/bigint.test.cpp
   - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/count_labeled_eulerian.test.cpp
   - test/1_mytest/count_labeled_dag.test.cpp

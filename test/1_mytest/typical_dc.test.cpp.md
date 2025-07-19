@@ -37,7 +37,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

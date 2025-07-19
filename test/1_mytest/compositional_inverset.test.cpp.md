@@ -13,12 +13,24 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/powertable.hpp
+    title: mod/powertable.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/primetable.hpp
+    title: nt/primetable.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/composition.hpp
+    title: poly/composition.hpp
   - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/compositional_inverse_old.hpp
+    title: poly/compositional_inverse_old.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -55,17 +67,23 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/poly_taylor_shift.hpp
+    title: poly/poly_taylor_shift.hpp
   - icon: ':question:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: poly/transposed_ntt.hpp
+    title: poly/transposed_ntt.hpp
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -661,11 +679,199 @@ data:
     \ (len(G) < N) {\n    int n = len(G);\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n\
     \    vc<mint> G2 = comp_DF(G);\n    G.resize(2 * n);\n    vc<mint> G1 = comp_F(G);\n\
     \    G1 = {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    FOR(i, n)\
-    \ G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}\n#line 2 \"random/base.hpp\"\
+    \ G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}\n#line 3 \"poly/compositional_inverse_old.hpp\"\
+    \n\n// O(N ^ 2)\ntemplate <typename mint>\nvc<mint> compositional_inverse_old(const\
+    \ vc<mint>& F) {\n  const int N = len(F);\n  if (N == 0) return {};\n  assert(F[0]\
+    \ == mint(0));\n  if (N == 1) return F;\n  assert(F[0] == mint(0) && F[1] != mint(0));\n\
+    \  vc<mint> DF = differentiate(F);\n\n  vc<mint> G(2);\n  G[1] = mint(1) / F[1];\n\
+    \  while (len(G) < N) {\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n    int n = len(G);\n\
+    \    vc<mint> G1, G2;\n    {\n      vc<mint> FF(2 * n), GG(2 * n), DFF(n);\n \
+    \     FOR(i, min<int>(len(F), 2 * n)) FF[i] = F[i];\n      FOR(i, min<int>(len(DF),\
+    \ n)) DFF[i] = DF[i];\n      FOR(i, n) GG[i] = G[i];\n      G1 = composition(FF,\
+    \ GG);\n      G2 = composition(DFF, G);\n    }\n    G1 = {G1.begin() + n, G1.end()};\n\
+    \    G1 = fps_div(G1, G2);\n    G.resize(2 * n);\n    FOR(i, n) G[n + i] -= G1[i];\n\
+    \  }\n  G.resize(N);\n  return G;\n}\n#line 2 \"poly/composition.hpp\"\n\r\n#line\
+    \ 2 \"poly/poly_taylor_shift.hpp\"\n\r\n#line 2 \"nt/primetable.hpp\"\n\ntemplate\
+    \ <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n\
+    \  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done\
+    \ < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n   \
+    \ const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n   \
+    \ vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
+    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
+    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
+    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
+    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
+    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
+    \n\r\n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
+    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
+    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> powertable_2(ll e, ll N) {\r\n  auto primes = primetable(N);\r\
+    \n  vc<mint> f(N + 1, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes)\
+    \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
+    \n    while (pp <= N) {\r\n      ll i = pp;\r\n      while (i <= N) {\r\n    \
+    \    f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n\
+    \  }\r\n  return f;\r\n}\r\n#line 5 \"poly/poly_taylor_shift.hpp\"\n\r\n// f(x)\
+    \ -> f(x+c)\r\ntemplate <typename mint>\r\nvc<mint> poly_taylor_shift(vc<mint>\
+    \ f, mint c) {\r\n  if (c == mint(0)) return f;\r\n  ll N = len(f);\r\n  FOR(i,\
+    \ N) f[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\n  FOR(i,\
+    \ N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(f));\r\n  f = convolution(f,\
+    \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
+    \n  return f;\r\n}\r\n#line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\n\
+    void transposed_ntt(vector<mint>& a, bool inverse) {\n  assert(mint::can_ntt());\n\
+    \  const int rank2 = mint::ntt_info().fi;\n  const int mod = mint::get_mod();\n\
+    \  static array<mint, 30> root, iroot;\n  static array<mint, 30> rate2, irate2;\n\
+    \  static array<mint, 30> rate3, irate3;\n\n  assert(rank2 != -1 && len(a) <=\
+    \ (1 << max(0, rank2)));\n\n  static bool prepared = 0;\n  if (!prepared) {\n\
+    \    prepared = 1;\n    root[rank2] = mint::ntt_info().se;\n    iroot[rank2] =\
+    \ mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i] = root[i + 1] *\
+    \ root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n    }\n    mint\
+    \ prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++) {\n      rate2[i]\
+    \ = root[i + 2] * prod;\n      irate2[i] = iroot[i + 2] * iprod;\n      prod *=\
+    \ iroot[i + 2];\n      iprod *= root[i + 2];\n    }\n    prod = 1, iprod = 1;\n\
+    \    for (int i = 0; i <= rank2 - 3; i++) {\n      rate3[i] = root[i + 3] * prod;\n\
+    \      irate3[i] = iroot[i + 3] * iprod;\n      prod *= iroot[i + 3];\n      iprod\
+    \ *= root[i + 3];\n    }\n  }\n\n  int n = int(a.size());\n  int h = topbit(n);\n\
+    \  assert(n == 1 << h);\n  if (!inverse) {\n    int len = h;\n    while (len >\
+    \ 0) {\n      if (len == 1) {\n        int p = 1 << (h - len);\n        mint rot\
+    \ = 1;\n        FOR(s, 1 << (len - 1)) {\n          int offset = s << (h - len\
+    \ + 1);\n          FOR(i, p) {\n            u64 l = a[i + offset].val;\n     \
+    \       u64 r = a[i + offset + p].val;\n            a[i + offset] = l + r;\n \
+    \           a[i + offset + p] = (mod + l - r) * rot.val;\n          }\n      \
+    \    rot *= rate2[topbit(~s & -~s)];\n        }\n        len--;\n      } else\
+    \ {\n        int p = 1 << (h - len);\n        mint rot = 1, imag = root[2];\n\
+    \        FOR(s, (1 << (len - 2))) {\n          int offset = s << (h - len + 2);\n\
+    \          mint rot2 = rot * rot;\n          mint rot3 = rot2 * rot;\n       \
+    \   for (int i = 0; i < p; i++) {\n            u64 a0 = a[i + offset + 0 * p].val;\n\
+    \            u64 a1 = a[i + offset + 1 * p].val;\n            u64 a2 = a[i + offset\
+    \ + 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n           \
+    \ u64 x = (mod + a2 - a3) * imag.val % mod;\n            a[i + offset] = a0 +\
+    \ a1 + a2 + a3;\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x) * rot.val;\n\
+    \            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3) * rot2.val;\n\
+    \            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) * rot3.val;\n   \
+    \       }\n          rot *= rate3[topbit(~s & -~s)];\n        }\n        len -=\
+    \ 2;\n      }\n    }\n  } else {\n    mint coef = mint(1) / mint(len(a));\n  \
+    \  FOR(i, len(a)) a[i] *= coef;\n    int len = 0;\n    while (len < h) {\n   \
+    \   if (len == h - 1) {\n        int p = 1 << (h - len - 1);\n        mint irot\
+    \ = 1;\n        FOR(s, 1 << len) {\n          int offset = s << (h - len);\n \
+    \         FOR(i, p) {\n            auto l = a[i + offset];\n            auto r\
+    \ = a[i + offset + p] * irot;\n            a[i + offset] = l + r;\n          \
+    \  a[i + offset + p] = l - r;\n          }\n          irot *= irate2[topbit(~s\
+    \ & -~s)];\n        }\n        len++;\n      } else {\n        int p = 1 << (h\
+    \ - len - 2);\n        mint irot = 1, iimag = iroot[2];\n        for (int s =\
+    \ 0; s < (1 << len); s++) {\n          mint irot2 = irot * irot;\n          mint\
+    \ irot3 = irot2 * irot;\n          int offset = s << (h - len);\n          for\
+    \ (int i = 0; i < p; i++) {\n            u64 mod2 = u64(mod) * mod;\n        \
+    \    u64 a0 = a[i + offset].val;\n            u64 a1 = u64(a[i + offset + p].val)\
+    \ * irot.val;\n            u64 a2 = u64(a[i + offset + 2 * p].val) * irot2.val;\n\
+    \            u64 a3 = u64(a[i + offset + 3 * p].val) * irot3.val;\n          \
+    \  u64 a1na3imag = (a1 + mod2 - a3) % mod * iimag.val;\n            u64 na2 =\
+    \ mod2 - a2;\n            a[i + offset] = a0 + a2 + a1 + a3;\n            a[i\
+    \ + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\n            a[i + offset\
+    \ + 2 * p] = a0 + na2 + a1na3imag;\n            a[i + offset + 3 * p] = a0 + na2\
+    \ + (mod2 - a1na3imag);\n          }\n          irot *= irate3[topbit(~s & -~s)];\n\
+    \        }\n        len += 2;\n      }\n    }\n  }\n}\n#line 6 \"poly/composition.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> composition_old(vc<mint>& Q, vc<mint>&\
+    \ P) {\r\n  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n\
+    \  while (k * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k +\
+    \ 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i]\
+    \ = convolution(pow1[i - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint,\
+    \ pow2, k + 1);\r\n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k\
+    \ + 1) {\r\n    pow2[i] = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\
+    \n  }\r\n  vc<mint> ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n   \
+    \ FOR(j, k) {\r\n      if (k * i + j < len(Q)) {\r\n        mint coef = Q[k *\
+    \ i + j];\r\n        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n     \
+    \ }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d,\
+    \ n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n}\r\n\r\n// f(g(x)), O(Nlog^2N)\r\
+    \ntemplate <typename mint>\r\nvc<mint> composition_0_ntt(vc<mint> f, vc<mint>\
+    \ g) {\r\n  assert(len(f) == len(g));\r\n  if (f.empty()) return {};\r\n\r\n \
+    \ int n0 = len(f);\r\n  int n = 1;\r\n  while (n < len(f)) n *= 2;\r\n  f.resize(n),\
+    \ g.resize(n);\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    // bit reverse order\r\n\
+    \    vc<int> btr(n);\r\n    int log = topbit(n);\r\n    FOR(i, n) { btr[i] = (btr[i\
+    \ >> 1] >> 1) + ((i & 1) << (log - 1)); }\r\n    int t = mint::ntt_info().fi;\r\
+    \n    mint r = mint::ntt_info().se;\r\n    mint dw = r.inverse().pow((1 << t)\
+    \ / (2 * n));\r\n    mint w = 1;\r\n    for (auto& i: btr) { W[i] = w, w *= dw;\
+    \ }\r\n  }\r\n\r\n  auto rec = [&](auto& rec, int n, int k, vc<mint>& Q) -> vc<mint>\
+    \ {\r\n    if (n == 1) {\r\n      reverse(all(f));\r\n      transposed_ntt(f,\
+    \ 1);\r\n      mint c = mint(1) / mint(k);\r\n      for (auto& x: f) x *= c;\r\
+    \n      vc<mint> p(4 * k);\r\n      FOR(i, k) p[2 * i] = f[i];\r\n      return\
+    \ p;\r\n    }\r\n    auto doubling_y = [&](vc<mint>& A, int l, int r, bool t)\
+    \ -> void {\r\n      mint z = W[k / 2].inverse();\r\n      vc<mint> f(k);\r\n\
+    \      if (!t) {\r\n        FOR(i, l, r) {\r\n          FOR(j, k) f[j] = A[2 *\
+    \ n * j + i];\r\n          ntt(f, 1);\r\n          mint r = 1;\r\n          FOR(j,\
+    \ 1, k) r *= z, f[j] *= r;\r\n          ntt(f, 0);\r\n          FOR(j, k) A[2\
+    \ * n * (k + j) + i] = f[j];\r\n        }\r\n      } else {\r\n        FOR(i,\
+    \ l, r) {\r\n          FOR(j, k) f[j] = A[2 * n * (k + j) + i];\r\n          transposed_ntt(f,\
+    \ 0);\r\n          mint r = 1;\r\n          FOR(j, 1, k) r *= z, f[j] *= r;\r\n\
+    \          transposed_ntt(f, 1);\r\n          FOR(j, k) A[2 * n * j + i] += f[j];\r\
+    \n        }\r\n      }\r\n    };\r\n\r\n    auto FFT_x = [&](vc<mint>& A, int\
+    \ l, int r, bool t) -> void {\r\n      vc<mint> f(2 * n);\r\n      if (!t) {\r\
+    \n        FOR(j, l, r) {\r\n          move(A.begin() + 2 * n * j, A.begin() +\
+    \ 2 * n * (j + 1), f.begin());\r\n          ntt(f, 0);\r\n          move(all(f),\
+    \ A.begin() + 2 * n * j);\r\n        }\r\n      } else {\r\n        FOR(j, l,\
+    \ r) {\r\n          move(A.begin() + 2 * n * j, A.begin() + 2 * n * (j + 1), f.begin());\r\
+    \n          transposed_ntt(f, 0);\r\n          move(all(f), A.begin() + 2 * n\
+    \ * j);\r\n        }\r\n      }\r\n    };\r\n\r\n    if (n <= k) doubling_y(Q,\
+    \ 1, n, 0), FFT_x(Q, 0, 2 * k, 0);\r\n    if (n > k) FFT_x(Q, 0, k, 0), doubling_y(Q,\
+    \ 0, 2 * n, 0);\r\n\r\n    FOR(i, 2 * n * k) Q[i] += 1;\r\n    FOR(i, 2 * n *\
+    \ k, 4 * n * k) Q[i] -= 1;\r\n\r\n    vc<mint> nxt_Q(4 * n * k);\r\n    vc<mint>\
+    \ F(2 * n), G(2 * n), f(n), g(n);\r\n    FOR(j, 2 * k) {\r\n      move(Q.begin()\
+    \ + 2 * n * j, Q.begin() + 2 * n * j + 2 * n, G.begin());\r\n      FOR(i, n) {\
+    \ g[i] = G[2 * i] * G[2 * i + 1]; }\r\n      ntt(g, 1);\r\n      move(g.begin(),\
+    \ g.begin() + n / 2, nxt_Q.begin() + n * j);\r\n    }\r\n    FOR(j, 4 * k) nxt_Q[n\
+    \ * j] = 0;\r\n\r\n    vc<mint> p = rec(rec, n / 2, k * 2, nxt_Q);\r\n    FOR_R(j,\
+    \ 2 * k) {\r\n      move(p.begin() + n * j, p.begin() + n * j + n / 2, f.begin());\r\
+    \n      move(Q.begin() + 2 * n * j, Q.begin() + 2 * n * j + 2 * n, G.begin());\r\
+    \n      fill(f.begin() + n / 2, f.end(), mint(0));\r\n      transposed_ntt(f,\
+    \ 1);\r\n      FOR(i, n) {\r\n        f[i] *= W[i];\r\n        F[2 * i] = G[2\
+    \ * i + 1] * f[i], F[2 * i + 1] = -G[2 * i] * f[i];\r\n      }\r\n      move(F.begin(),\
+    \ F.end(), p.begin() + 2 * n * j);\r\n    }\r\n    if (n <= k) FFT_x(p, 0, 2 *\
+    \ k, 1), doubling_y(p, 0, n, 1);\r\n    if (n > k) doubling_y(p, 0, 2 * n, 1),\
+    \ FFT_x(p, 0, k, 1);\r\n    return p;\r\n  };\r\n\r\n  vc<mint> Q(4 * n);\r\n\
+    \  FOR(i, n) Q[i] = -g[i];\r\n\r\n  vc<mint> p = rec(rec, n, 1, Q);\r\n  p.resize(n);\r\
+    \n  reverse(all(p));\r\n  p.resize(n0);\r\n  return p;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> composition_0_garner(vc<mint> f, vc<mint> g) {\r\n  constexpr\
+    \ u32 ps[] = {167772161, 469762049, 754974721};\r\n  using mint0 = modint<ps[0]>;\r\
+    \n  using mint1 = modint<ps[1]>;\r\n  using mint2 = modint<ps[2]>;\r\n\r\n  auto\
+    \ rec = [&](auto& rec, int n, int k, vc<mint> Q) -> vc<mint> {\r\n    if (n ==\
+    \ 1) {\r\n      vc<mint> p(2 * k);\r\n      reverse(all(f));\r\n      FOR(i, k)\
+    \ p[2 * i] = f[i];\r\n      return p;\r\n    }\r\n    vc<mint0> Q0(4 * n * k),\
+    \ R0(4 * n * k), p0(4 * n * k);\r\n    vc<mint1> Q1(4 * n * k), R1(4 * n * k),\
+    \ p1(4 * n * k);\r\n    vc<mint2> Q2(4 * n * k), R2(4 * n * k), p2(4 * n * k);\r\
+    \n    FOR(i, 2 * n * k) {\r\n      Q0[i] = Q[i].val, R0[i] = (i % 2 == 0 ? Q[i].val\
+    \ : (-Q[i]).val);\r\n      Q1[i] = Q[i].val, R1[i] = (i % 2 == 0 ? Q[i].val :\
+    \ (-Q[i]).val);\r\n      Q2[i] = Q[i].val, R2[i] = (i % 2 == 0 ? Q[i].val : (-Q[i]).val);\r\
+    \n    }\r\n    ntt(Q0, 0), ntt(Q1, 0), ntt(Q2, 0), ntt(R0, 0), ntt(R1, 0), ntt(R2,\
+    \ 0);\r\n    FOR(i, 4 * n * k) Q0[i] *= R0[i], Q1[i] *= R1[i], Q2[i] *= R2[i];\r\
+    \n    ntt(Q0, 1), ntt(Q1, 1), ntt(Q2, 1);\r\n    vc<mint> QQ(4 * n * k);\r\n \
+    \   FOR(i, 4 * n * k) {\r\n      QQ[i] = CRT3<mint, ps[0], ps[1], ps[2]>(Q0[i].val,\
+    \ Q1[i].val, Q2[i].val);\r\n    }\r\n    FOR(i, 0, 2 * n * k, 2) { QQ[2 * n *\
+    \ k + i] += Q[i] + Q[i]; }\r\n    vc<mint> nxt_Q(2 * n * k);\r\n    FOR(j, 2 *\
+    \ k) FOR(i, n / 2) {\r\n      nxt_Q[n * j + i] = QQ[(2 * n) * j + (2 * i + 0)];\r\
+    \n    }\r\n\r\n    vc<mint> nxt_p = rec(rec, n / 2, k * 2, nxt_Q);\r\n    vc<mint>\
+    \ pq(4 * n * k);\r\n    FOR(j, 2 * k) FOR(i, n / 2) {\r\n      pq[(2 * n) * j\
+    \ + (2 * i + 1)] += nxt_p[n * j + i];\r\n    }\r\n\r\n    vc<mint> p(2 * n * k);\r\
+    \n    FOR(i, 2 * n * k) { p[i] += pq[2 * n * k + i]; }\r\n    FOR(i, 4 * n * k)\
+    \ {\r\n      p0[i] += pq[i].val, p1[i] += pq[i].val, p2[i] += pq[i].val;\r\n \
+    \   }\r\n    transposed_ntt(p0, 1), transposed_ntt(p1, 1), transposed_ntt(p2,\
+    \ 1);\r\n    FOR(i, 4 * n * k) p0[i] *= R0[i], p1[i] *= R1[i], p2[i] *= R2[i];\r\
+    \n    transposed_ntt(p0, 0), transposed_ntt(p1, 0), transposed_ntt(p2, 0);\r\n\
+    \    FOR(i, 2 * n * k) {\r\n      p[i] += CRT3<mint, ps[0], ps[1], ps[2]>(p0[i].val,\
+    \ p1[i].val, p2[i].val);\r\n    }\r\n    return p;\r\n  };\r\n  assert(len(f)\
+    \ == len(g));\r\n  int n = 1;\r\n  while (n < len(f)) n *= 2;\r\n  int out_len\
+    \ = len(f);\r\n  f.resize(n), g.resize(n);\r\n  int k = 1;\r\n  vc<mint> Q(2 *\
+    \ n);\r\n  FOR(i, n) Q[i] = -g[i];\r\n  vc<mint> p = rec(rec, n, k, Q);\r\n\r\n\
+    \  vc<mint> output(n);\r\n  FOR(i, n) output[i] = p[i];\r\n  reverse(all(output));\r\
+    \n  output.resize(out_len);\r\n  return output;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> composition(vc<mint> f, vc<mint> g) {\r\n  assert(len(f) ==\
+    \ len(g));\r\n  if (f.empty()) return {};\r\n  // [x^0]g=0 \u306B\u5E30\u7740\u3057\
+    \u3066\u304A\u304F\r\n  if (g[0] != mint(0)) {\r\n    f = poly_taylor_shift<mint>(f,\
+    \ g[0]);\r\n    g[0] = 0;\r\n  }\r\n  if (mint::can_ntt()) { return composition_0_ntt(f,\
+    \ g); }\r\n  return composition_0_garner(f, g);\r\n}\r\n#line 2 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/compositional_inverset.test.cpp\"\
+    \ RNG_64() % (r - l); }\n#line 8 \"test/1_mytest/compositional_inverset.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(N, 100) {\n    vc<mint> f(N);\n\
     \    FOR(i, 1, N) f[i] = RNG(1, 10);\n    vc<mint> A = compositional_inverse<mint>(f);\n\
     \    vc<mint> B = compositional_inverse_old<mint>(f);\n    assert(A == B);\n \
@@ -676,9 +882,10 @@ data:
     \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
     \ {\n  test();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"poly/compositional_inverse.hpp\"\n#include \"random/base.hpp\"\n\
-    \nusing mint = modint998;\n\nvoid test() {\n  FOR(N, 100) {\n    vc<mint> f(N);\n\
-    \    FOR(i, 1, N) f[i] = RNG(1, 10);\n    vc<mint> A = compositional_inverse<mint>(f);\n\
+    \n\n#include \"poly/compositional_inverse.hpp\"\n#include \"poly/compositional_inverse_old.hpp\"\
+    \n#include \"poly/composition.hpp\"\n#include \"random/base.hpp\"\n\nusing mint\
+    \ = modint998;\n\nvoid test() {\n  FOR(N, 100) {\n    vc<mint> f(N);\n    FOR(i,\
+    \ 1, N) f[i] = RNG(1, 10);\n    vc<mint> A = compositional_inverse<mint>(f);\n\
     \    vc<mint> B = compositional_inverse_old<mint>(f);\n    assert(A == B);\n \
     \   vc<mint> F = composition<mint>(f, A);\n    vc<mint> G = composition<mint>(A,\
     \ f);\n    FOR(i, N) {\n      if (i == 1) {\n        assert(F[i] == mint(1));\n\
@@ -706,12 +913,18 @@ data:
   - poly/integrate.hpp
   - poly/fps_log.hpp
   - poly/power_projection.hpp
+  - poly/compositional_inverse_old.hpp
+  - poly/composition.hpp
+  - poly/poly_taylor_shift.hpp
+  - mod/powertable.hpp
+  - nt/primetable.hpp
+  - poly/transposed_ntt.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/1_mytest/compositional_inverset.test.cpp
   requiredBy: []
-  timestamp: '2025-07-18 14:23:18+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-07-19 22:38:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/compositional_inverset.test.cpp
 layout: document

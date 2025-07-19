@@ -133,6 +133,9 @@ data:
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/compositional_inverset.test.cpp
+    title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_by_factor_type.test.cpp
     title: test/1_mytest/count_by_factor_type.test.cpp
   - icon: ':heavy_check_mark:'
@@ -407,6 +410,7 @@ data:
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/prime_sum.test.cpp
   - test/1_mytest/primesum_mod6.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
 documentation_of: nt/primetable.hpp
 layout: document
 redirect_from:

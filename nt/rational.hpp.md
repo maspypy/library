@@ -41,14 +41,18 @@ data:
     \ Rational &p) const { return Rational(*this) -= p; }\n  Rational operator*(const\
     \ Rational &p) const { return Rational(*this) *= p; }\n  Rational operator/(const\
     \ Rational &p) const { return Rational(*this) /= p; }\n  bool operator==(const\
-    \ Rational &p) const { return num * p.den == p.num * den; }\n  bool operator!=(const\
-    \ Rational &p) const { return num * p.den != p.num * den; }\n  bool operator<(const\
+    \ Rational &p) const {\n    return num * p.den == p.num * den;\n  }\n  bool operator!=(const\
+    \ Rational &p) const {\n    return num * p.den != p.num * den;\n  }\n  bool operator<(const\
     \ Rational &p) const { return num * p.den < p.num * den; }\n  bool operator>(const\
     \ Rational &p) const { return num * p.den > p.num * den; }\n  bool operator<=(const\
-    \ Rational &p) const { return num * p.den <= p.num * den; }\n  bool operator>=(const\
-    \ Rational &p) const { return num * p.den >= p.num * den; }\n\n  string to_string()\
-    \ { return std::to_string(num) + \"/\" + std::to_string(den); }\n  double to_double()\
-    \ { return double(num) / double(den); }\n};\n"
+    \ Rational &p) const {\n    return num * p.den <= p.num * den;\n  }\n  bool operator>=(const\
+    \ Rational &p) const {\n    return num * p.den >= p.num * den;\n  }\n\n  string\
+    \ to_string() {\n    auto f = [&](T x) -> string {\n      // i128\n      bool\
+    \ neg = 0;\n      string ans;\n      if (x < 0) neg = 1, x = -x;\n      while\
+    \ (x) ans += '0' + (x % 10), x /= 10;\n      reverse(all(ans));\n      if (ans.empty())\
+    \ ans = \"0\";\n      return (neg ? \"-\" + ans : ans);\n    };\n    return f(num)\
+    \ + \"/\" + f(den);\n  }\n  double to_double() { return double(num) / double(den);\
+    \ }\n};\n"
   code: "template <typename T = long long, bool REDUCE = true>\nstruct Rational {\n\
     \  T num, den;\n\n  Rational() : num(0), den(1) {}\n  Rational(T x) : num(x),\
     \ den(1) {}\n  Rational(T a, T b, bool coprime = false) : num(a), den(b) {\n \
@@ -78,20 +82,24 @@ data:
     \ }\n  Rational operator-(const Rational &p) const { return Rational(*this) -=\
     \ p; }\n  Rational operator*(const Rational &p) const { return Rational(*this)\
     \ *= p; }\n  Rational operator/(const Rational &p) const { return Rational(*this)\
-    \ /= p; }\n  bool operator==(const Rational &p) const { return num * p.den ==\
-    \ p.num * den; }\n  bool operator!=(const Rational &p) const { return num * p.den\
-    \ != p.num * den; }\n  bool operator<(const Rational &p) const { return num *\
-    \ p.den < p.num * den; }\n  bool operator>(const Rational &p) const { return num\
-    \ * p.den > p.num * den; }\n  bool operator<=(const Rational &p) const { return\
-    \ num * p.den <= p.num * den; }\n  bool operator>=(const Rational &p) const {\
-    \ return num * p.den >= p.num * den; }\n\n  string to_string() { return std::to_string(num)\
-    \ + \"/\" + std::to_string(den); }\n  double to_double() { return double(num)\
-    \ / double(den); }\n};\n"
+    \ /= p; }\n  bool operator==(const Rational &p) const {\n    return num * p.den\
+    \ == p.num * den;\n  }\n  bool operator!=(const Rational &p) const {\n    return\
+    \ num * p.den != p.num * den;\n  }\n  bool operator<(const Rational &p) const\
+    \ { return num * p.den < p.num * den; }\n  bool operator>(const Rational &p) const\
+    \ { return num * p.den > p.num * den; }\n  bool operator<=(const Rational &p)\
+    \ const {\n    return num * p.den <= p.num * den;\n  }\n  bool operator>=(const\
+    \ Rational &p) const {\n    return num * p.den >= p.num * den;\n  }\n\n  string\
+    \ to_string() {\n    auto f = [&](T x) -> string {\n      // i128\n      bool\
+    \ neg = 0;\n      string ans;\n      if (x < 0) neg = 1, x = -x;\n      while\
+    \ (x) ans += '0' + (x % 10), x /= 10;\n      reverse(all(ans));\n      if (ans.empty())\
+    \ ans = \"0\";\n      return (neg ? \"-\" + ans : ans);\n    };\n    return f(num)\
+    \ + \"/\" + f(den);\n  }\n  double to_double() { return double(num) / double(den);\
+    \ }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: nt/rational.hpp
   requiredBy: []
-  timestamp: '2024-09-24 18:06:42+09:00'
+  timestamp: '2025-07-19 22:38:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/0350.test.cpp

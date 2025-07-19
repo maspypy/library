@@ -72,6 +72,9 @@ data:
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/compositional_inverse_old.hpp
+    title: poly/compositional_inverse_old.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -126,7 +129,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
   - icon: ':x:'
@@ -610,6 +613,7 @@ data:
   - poly/compositional_inverse.hpp
   - poly/sum_of_power_of_roots.hpp
   - poly/coef_of_rational_fps_2d.hpp
+  - poly/compositional_inverse_old.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/slice_rational_fps.hpp
   - poly/multipoint.hpp

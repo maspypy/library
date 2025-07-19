@@ -87,9 +87,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/conv2d.test.cpp
+    title: test/1_mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/conv_leq.test.cpp
     title: test/1_mytest/conv_leq.test.cpp
@@ -570,7 +573,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sparse_pow_2d.test.cpp
     title: test/1_mytest/sparse_pow_2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3496,6 +3499,7 @@ data:
   - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/summax_assign.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/summax_add.test.cpp
   - test/1_mytest/rbst_test.test.cpp

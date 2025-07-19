@@ -14,12 +14,6 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
-    path: my_template.hpp
-    title: my_template.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/coef_of_rational_fps.hpp
-    title: poly/coef_of_rational_fps.hpp
-  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':question:'
@@ -32,6 +26,9 @@ data:
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
+    path: poly/differentiate.hpp
+    title: poly/differentiate.hpp
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':question:'
@@ -40,125 +37,20 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/ntt_doubling.hpp
-    title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/poly_divmod.hpp
-    title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
-    path: random/base.hpp
-    title: random/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/compositional_inverset.test.cpp
+    title: test/1_mytest/compositional_inverset.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
-    links:
-    - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/coef_of_rational.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
-    // https://codeforces.com/blog/entry/126772?#comment-1154880\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\"\
-    )\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 =\
-    \ uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
-    \ = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
-    \ int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
-    \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
-    \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
-    \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
-    \ a, b, c) for (ll i = a; i < ll(b); i += (c))\n#define FOR1_R(a) for (ll i =\
-    \ (a) - 1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = (a) - 1; i >= ll(0);\
-    \ --i)\n#define FOR3_R(i, a, b) for (ll i = (b) - 1; i >= ll(a); --i)\n#define\
-    \ overload4(a, b, c, d, e, ...) e\n#define overload3(a, b, c, d, ...) d\n#define\
-    \ FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)\n#define\
-    \ FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\n#define\
-    \ all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define elif else if\n\
-    \n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n#define\
-    \ fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  struct iter {\n    UINT s;\n    iter(UINT s) : s(s) {}\n    int operator*()\
-    \ const { return lowbit(s); }\n    iter &operator++() {\n      s &= s - 1;\n \
-    \     return *this;\n    }\n    bool operator!=(const iter) const { return s !=\
-    \ 0; }\n  };\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  iter begin() const { return\
-    \ iter(s); }\n  iter end() const { return iter(0); }\n};\n\ntemplate <typename\
-    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  struct\
-    \ iter {\n    UINT s, t;\n    bool ed;\n    iter(UINT s) : s(s), t(s), ed(0) {}\n\
-    \    int operator*() const { return s ^ t; }\n    iter &operator++() {\n     \
-    \ (t == 0 ? ed = 1 : t = (t - 1) & s);\n      return *this;\n    }\n    bool operator!=(const\
-    \ iter) const { return !ed; }\n  };\n  UINT s;\n  all_subset(UINT s) : s(s) {}\n\
-    \  iter begin() const { return iter(s); }\n  iter end() const { return iter(0);\
-    \ }\n};\n\ntemplate <typename T>\nT floor(T a, T b) {\n  return a / b - (a % b\
-    \ && (a ^ b) < 0);\n}\ntemplate <typename T>\nT ceil(T x, T y) {\n  return floor(x\
-    \ + y - 1, y);\n}\ntemplate <typename T>\nT bmod(T x, T y) {\n  return x - y *\
-    \ floor(x, y);\n}\ntemplate <typename T>\npair<T, T> divmod(T x, T y) {\n  T q\
-    \ = floor(x, y);\n  return {q, x - q * y};\n}\n\ntemplate <typename T, typename\
-    \ U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n\
-    }\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
-    #define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c,\
-    \ x) distance((c).begin(), upper_bound(all(c), (x)))\n#define UNIQUE(x) \\\n \
-    \ sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\ntemplate\
-    \ <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
-    \  return a;\n}\ntemplate <typename T>\nT POP(pq_min<T> &que) {\n  T a = que.top();\n\
-    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(pq_max<T> &que) {\n\
-    \  T a = que.top();\n  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T>\
-    \ &que) {\n  T a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate\
-    \ <typename F>\nll binary_search(F check, ll ok, ll ng, bool check_ok = true)\
-    \ {\n  if (check_ok) assert(check(ok));\n  while (abs(ok - ng) > 1) {\n    auto\
-    \ x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate\
-    \ <typename F>\ndouble binary_search_real(F check, double ok, double ng, int iter\
-    \ = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x) ? ok :\
-    \ ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline\
-    \ bool chmax(T &a, const S &b) {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate\
-    \ <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  return (a > b ?\
-    \ a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char)\
-    \ {\n  vc<int> A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] -\
-    \ first_char : -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvector<T>\
-    \ cumsum(vector<U> &A, int off = 1) {\n  int N = A.size();\n  vector<T> B(N +\
-    \ 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n\
-    \  return B;\n}\n\n// stable sort\ntemplate <typename T>\nvector<int> argsort(const\
-    \ vector<T> &A) {\n  vector<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n\
-    \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
-    \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
-    \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
-    \ &first, const Vectors &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(),\
-    \ others.begin(), others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/coef_of_rational.test.cpp\"\
-    \n\n#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
+    links: []
+  bundledCode: "#line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
+    \ differentiate(const vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint>\
+    \ g(len(f) - 1);\n  FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n\
+    }\n#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
     \ mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f))\
     \ if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
@@ -440,100 +332,32 @@ data:
     \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
     \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
     \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
-    \ - j];\n    }\n  }\n  return f;\n}\n#line 2 \"poly/ntt_doubling.hpp\"\n\n#line\
-    \ 4 \"poly/ntt_doubling.hpp\"\n\n// 2^k \u6B21\u591A\u9805\u5F0F\u306E\u9577\u3055\
-    \ 2^k \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\u3067 2^k+1 \u306B\u3059\u308B\
-    \ntemplate <typename mint, bool transposed = false>\nvoid ntt_doubling(vector<mint>&\
-    \ a) {\n  static array<mint, 30> root;\n  static bool prepared = 0;\n  if (!prepared)\
-    \ {\n    prepared = 1;\n    const int rank2 = mint::ntt_info().fi;\n    root[rank2]\
-    \ = mint::ntt_info().se;\n    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i\
-    \ + 1]; }\n  }\n\n  if constexpr (!transposed) {\n    const int M = (int)a.size();\n\
-    \    auto b = a;\n    ntt(b, 1);\n    mint r = 1, zeta = root[topbit(2 * M)];\n\
-    \    FOR(i, M) b[i] *= r, r *= zeta;\n    ntt(b, 0);\n    copy(begin(b), end(b),\
-    \ back_inserter(a));\n  } else {\n    const int M = len(a) / 2;\n    vc<mint>\
-    \ tmp = {a.begin(), a.begin() + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a,\
-    \ 0);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r\
-    \ *= zeta;\n    transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n\
-    #line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 4 \"poly/poly_divmod.hpp\"\ntemplate\
-    \ <typename mint>\r\npair<vc<mint>, vc<mint>> poly_divmod(vc<mint> f, vc<mint>\
-    \ g) {\r\n  assert(g.back() != 0);\r\n  if (len(f) < len(g)) { return {{}, f};\
-    \ }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)), reverse(all(rg));\r\n  ll\
-    \ deg = len(rf) - len(rg) + 1;\r\n  rf.resize(deg), rg.resize(deg);\r\n  rg =\
-    \ fps_inv(rg);\r\n  auto q = convolution(rf, rg);\r\n  q.resize(deg);\r\n  reverse(all(q));\r\
-    \n  auto h = convolution(q, g);\r\n  FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f)\
-    \ > 0 && f.back() == 0) f.pop_back();\r\n  return {q, f};\r\n}\r\n#line 4 \"poly/coef_of_rational_fps.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_small(vector<mint>\
-    \ P, vector<mint> Q, ll N) {\r\n  assert(0 <= len(P) && len(P) + 1 == len(Q) &&\
-    \ len(Q) <= 16 && Q[0] == mint(1));\r\n  if (P.empty()) return 0;\r\n  int m =\
-    \ len(Q) - 1;\r\n  vc<u32> Q32(m + 1);\r\n  FOR(i, m + 1) Q32[i] = (-Q[i]).val;\r\
-    \n\r\n  using poly = vc<u64>;\r\n  auto dfs = [&](auto& dfs, const ll N) -> poly\
-    \ {\r\n    // x^N mod G\r\n    if (N == 0) {\r\n      poly f(m);\r\n      f[0]\
-    \ = 1;\r\n      return f;\r\n    }\r\n    poly f = dfs(dfs, N / 2);\r\n    poly\
-    \ g(len(f) * 2 - 1 + (N & 1));\r\n    FOR(i, len(f)) FOR(j, len(f)) { g[i + j\
-    \ + (N & 1)] += f[i] * f[j]; }\r\n    FOR(i, len(g)) g[i] = mint(g[i]).val;\r\n\
-    \    FOR_R(i, len(g)) {\r\n      g[i] = mint(g[i]).val;\r\n      if (i >= m) FOR(j,\
-    \ 1, len(Q)) g[i - j] += Q32[j] * g[i];\r\n    }\r\n    g.resize(m);\r\n    return\
-    \ g;\r\n  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i, m) FOR(j, 1, i + 1) { P[i]\
-    \ -= Q[j] * P[i - j]; }\r\n  u64 res = 0;\r\n  FOR(i, m) res += f[i] * P[i].val;\r\
-    \n  return res;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_ntt(vector<mint>\
-    \ P, vector<mint> Q, ll N) {\r\n  assert(0 <= len(P) && len(P) + 1 == len(Q) &&\
-    \ Q[0] == mint(1));\r\n  if (P.empty()) return 0;\r\n\r\n  int n = 1;\r\n  while\
-    \ (n < len(Q)) n += n;\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    vc<int> btr(n);\r\
-    \n    int log = topbit(n);\r\n    FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i\
-    \ & 1) << (log - 1)); }\r\n    int t = mint::ntt_info().fi;\r\n    mint r = mint::ntt_info().se;\r\
-    \n    mint dw = r.inverse().pow((1 << t) / (2 * n));\r\n    mint w = inv<mint>(2);\r\
-    \n    for (auto& i: btr) { W[i] = w, w *= dw; }\r\n  }\r\n\r\n  P.resize(2 * n),\
-    \ Q.resize(2 * n);\r\n  ntt(P, 0), ntt(Q, 0);\r\n\r\n  while (N >= n) {\r\n  \
-    \  if (N % 2 == 0) {\r\n      FOR(i, n) { P[i] = (P[2 * i] * Q[2 * i + 1] + P[2\
-    \ * i + 1] * Q[2 * i]) * inv<mint>(2); }\r\n    } else {\r\n      FOR(i, n) {\
-    \ P[i] = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * W[i]; }\r\n   \
-    \ }\r\n    FOR(i, n) Q[i] = Q[2 * i] * Q[2 * i + 1];\r\n    P.resize(n), Q.resize(n);\r\
-    \n    N /= 2;\r\n    if (N < n) break;\r\n    ntt_doubling(P), ntt_doubling(Q);\r\
-    \n  }\r\n  ntt(P, 1), ntt(Q, 1);\r\n  Q = fps_inv<mint>(Q);\r\n  mint ans = 0;\r\
-    \n  FOR(i, N + 1) ans += P[i] * Q[N - i];\r\n  return ans;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nmint coef_of_rational_fps_convolution(vector<mint> P, vector<mint>\
-    \ Q, ll N) {\r\n  assert(0 <= len(P) && len(P) + 1 == len(Q) && Q[0] == mint(1));\r\
-    \n  if (P.empty()) return 0;\r\n  while (N >= len(P)) {\r\n    vc<mint> Q1 = Q;\r\
-    \n    FOR(i, len(Q1)) if (i & 1) Q1[i] = -Q1[i];\r\n    P = convolution(P, Q1);\r\
-    \n    Q = convolution(Q, Q1);\r\n    FOR(i, len(Q1)) Q[i] = Q[2 * i];\r\n    FOR(i,\
-    \ len(Q1) - 1) P[i] = P[2 * i | (N & 1)];\r\n    P.resize(len(Q1) - 1);\r\n  \
-    \  Q.resize(len(Q1));\r\n    N /= 2;\r\n  }\r\n  return fps_div(P, Q)[N];\r\n\
-    }\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps(vector<mint> P,\
-    \ vector<mint> Q, ll N) {\r\n  if (P.empty()) return 0;\r\n  assert(len(Q) > 0\
-    \ && Q[0] != mint(0));\r\n  while (Q.back() == mint(0)) POP(Q);\r\n  mint c =\
-    \ mint(1) / Q[0];\r\n  for (auto& x: P) x *= c;\r\n  for (auto& x: Q) x *= c;\r\
-    \n  mint base = 0;\r\n  if (len(P) >= len(Q)) {\r\n    auto [f, g] = poly_divmod<mint>(P,\
-    \ Q);\r\n    base = (N < len(f) ? f[N] : mint(0));\r\n    P = g;\r\n  }\r\n  P.resize(len(Q)\
-    \ - 1);\r\n  int n = len(Q);\r\n  if (mint::ntt_info().fi != -1) {\r\n    if (n\
-    \ <= 10) return base + coef_of_rational_fps_small(P, Q, N);\r\n    if (n > 10)\
-    \ return base + coef_of_rational_fps_ntt(P, Q, N);\r\n  }\r\n  mint x = (n <=\
-    \ 16 ? coef_of_rational_fps_small(P, Q, N) : coef_of_rational_fps_convolution(P,\
-    \ Q, N));\r\n  return base + x;\r\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/coef_of_rational.test.cpp\"\n\
-    \ntemplate <typename mint>\nvoid test() {\n  FOR(N, 20) {\n    FOR(M, 20) {\n\
-    \      FOR(10) {\n        vc<mint> f(N), g(M);\n        FOR(i, N) f[i] = RNG(0,\
-    \ 3);\n        FOR(i, M) g[i] = RNG(0, 3);\n        vc<mint> F = f, G = g;\n \
-    \       F.resize(20);\n        G.resize(20);\n        if (G[0] == mint(0)) continue;\n\
-    \        F = fps_div(F, G);\n        FOR(k, 20) {\n          mint x = coef_of_rational_fps<mint>(f,\
-    \ g, k);\n          assert(x == F[k]);\n        }\n      }\n    }\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test<modint998>();\n  test<modint107>();\n  solve();\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"poly/coef_of_rational_fps.hpp\"\n#include \"random/base.hpp\"\n\
-    \ntemplate <typename mint>\nvoid test() {\n  FOR(N, 20) {\n    FOR(M, 20) {\n\
-    \      FOR(10) {\n        vc<mint> f(N), g(M);\n        FOR(i, N) f[i] = RNG(0,\
-    \ 3);\n        FOR(i, M) g[i] = RNG(0, 3);\n        vc<mint> F = f, G = g;\n \
-    \       F.resize(20);\n        G.resize(20);\n        if (G[0] == mint(0)) continue;\n\
-    \        F = fps_div(F, G);\n        FOR(k, 20) {\n          mint x = coef_of_rational_fps<mint>(f,\
-    \ g, k);\n          assert(x == F[k]);\n        }\n      }\n    }\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test<modint998>();\n  test<modint107>();\n  solve();\n}"
+    \ - j];\n    }\n  }\n  return f;\n}\n#line 3 \"poly/compositional_inverse_old.hpp\"\
+    \n\n// O(N ^ 2)\ntemplate <typename mint>\nvc<mint> compositional_inverse_old(const\
+    \ vc<mint>& F) {\n  const int N = len(F);\n  if (N == 0) return {};\n  assert(F[0]\
+    \ == mint(0));\n  if (N == 1) return F;\n  assert(F[0] == mint(0) && F[1] != mint(0));\n\
+    \  vc<mint> DF = differentiate(F);\n\n  vc<mint> G(2);\n  G[1] = mint(1) / F[1];\n\
+    \  while (len(G) < N) {\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n    int n = len(G);\n\
+    \    vc<mint> G1, G2;\n    {\n      vc<mint> FF(2 * n), GG(2 * n), DFF(n);\n \
+    \     FOR(i, min<int>(len(F), 2 * n)) FF[i] = F[i];\n      FOR(i, min<int>(len(DF),\
+    \ n)) DFF[i] = DF[i];\n      FOR(i, n) GG[i] = G[i];\n      G1 = composition(FF,\
+    \ GG);\n      G2 = composition(DFF, G);\n    }\n    G1 = {G1.begin() + n, G1.end()};\n\
+    \    G1 = fps_div(G1, G2);\n    G.resize(2 * n);\n    FOR(i, n) G[n + i] -= G1[i];\n\
+    \  }\n  G.resize(N);\n  return G;\n}\n"
+  code: "#include \"poly/differentiate.hpp\"\n#include \"poly/fps_div.hpp\"\n\n//\
+    \ O(N ^ 2)\ntemplate <typename mint>\nvc<mint> compositional_inverse_old(const\
+    \ vc<mint>& F) {\n  const int N = len(F);\n  if (N == 0) return {};\n  assert(F[0]\
+    \ == mint(0));\n  if (N == 1) return F;\n  assert(F[0] == mint(0) && F[1] != mint(0));\n\
+    \  vc<mint> DF = differentiate(F);\n\n  vc<mint> G(2);\n  G[1] = mint(1) / F[1];\n\
+    \  while (len(G) < N) {\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n    int n = len(G);\n\
+    \    vc<mint> G1, G2;\n    {\n      vc<mint> FF(2 * n), GG(2 * n), DFF(n);\n \
+    \     FOR(i, min<int>(len(F), 2 * n)) FF[i] = F[i];\n      FOR(i, min<int>(len(DF),\
+    \ n)) DFF[i] = DF[i];\n      FOR(i, n) GG[i] = G[i];\n      G1 = composition(FF,\
+    \ GG);\n      G2 = composition(DFF, G);\n    }\n    G1 = {G1.begin() + n, G1.end()};\n\
+    \    G1 = fps_div(G1, G2);\n    G.resize(2 * n);\n    FOR(i, n) G[n + i] -= G1[i];\n\
+    \  }\n  G.resize(N);\n  return G;\n}"
   dependsOn:
-  - my_template.hpp
-  - poly/coef_of_rational_fps.hpp
+  - poly/differentiate.hpp
   - poly/fps_div.hpp
   - poly/count_terms.hpp
   - poly/fps_inv.hpp
@@ -545,19 +369,17 @@ data:
   - poly/convolution_naive.hpp
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
-  - poly/ntt_doubling.hpp
-  - poly/poly_divmod.hpp
-  - random/base.hpp
-  isVerificationFile: true
-  path: test/1_mytest/coef_of_rational.test.cpp
+  isVerificationFile: false
+  path: poly/compositional_inverse_old.hpp
   requiredBy: []
-  timestamp: '2025-07-05 14:54:01+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/1_mytest/coef_of_rational.test.cpp
+  timestamp: '2025-07-19 22:38:03+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/compositional_inverset.test.cpp
+documentation_of: poly/compositional_inverse_old.hpp
 layout: document
 redirect_from:
-- /verify/test/1_mytest/coef_of_rational.test.cpp
-- /verify/test/1_mytest/coef_of_rational.test.cpp.html
-title: test/1_mytest/coef_of_rational.test.cpp
+- /library/poly/compositional_inverse_old.hpp
+- /library/poly/compositional_inverse_old.hpp.html
+title: poly/compositional_inverse_old.hpp
 ---

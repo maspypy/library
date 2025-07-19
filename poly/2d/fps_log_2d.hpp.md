@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/2d/convolution2d.hpp
     title: poly/2d/convolution2d.hpp
   - icon: ':warning:'

@@ -222,9 +222,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/conv2d.test.cpp
+    title: test/1_mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/conv_leq.test.cpp
     title: test/1_mytest/conv_leq.test.cpp
@@ -906,9 +909,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
@@ -982,7 +985,7 @@ data:
   - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/minimum_enclosing_circle.hpp
   timestamp: '2024-10-18 02:58:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1080.test.cpp
   - test/3_yukicoder/1575.test.cpp
@@ -1176,6 +1179,7 @@ data:
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/summax_assign.test.cpp
+  - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/summax_add.test.cpp
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/nimber_log.test.cpp
