@@ -126,10 +126,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/count_labeled_biconnected.test.cpp
-    title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2520,9 +2517,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/126772?#comment-1154880
@@ -2732,7 +2729,7 @@ data:
   - other/mhc_template_directory/para.cpp
   - other/mhc_template_directory/main.cpp
   timestamp: '2025-07-03 18:22:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1451.test.cpp
@@ -3498,7 +3495,6 @@ data:
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/summax_assign.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/summax_add.test.cpp

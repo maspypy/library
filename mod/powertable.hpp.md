@@ -12,6 +12,9 @@ data:
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
@@ -81,6 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_bridgeless.test.cpp
+    title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/eulerian_number.test.cpp
     title: test/1_mytest/eulerian_number.test.cpp
@@ -214,6 +220,7 @@ data:
   - seq/famous/faulhaber.hpp
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_2.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
   - poly/composition_f_a_plus_bx.hpp
@@ -264,6 +271,7 @@ data:
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
 documentation_of: mod/powertable.hpp
 layout: document
 redirect_from:

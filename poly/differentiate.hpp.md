@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
-    path: graph/count/count_labeled_biconnected.hpp
-    title: graph/count/count_labeled_biconnected.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':heavy_check_mark:'
@@ -32,16 +29,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -87,10 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/count_labeled_biconnected.test.cpp
-    title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,9 +192,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
@@ -221,7 +215,6 @@ data:
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_forest.hpp
-  - graph/count/count_labeled_biconnected.hpp
   - poly/fps_sqrt.hpp
   - poly/composed_product.hpp
   - poly/fps_pow.hpp
@@ -238,7 +231,7 @@ data:
   - poly/product_of_f_rk_x.hpp
   - poly/composed_sum.hpp
   timestamp: '2022-05-02 13:06:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1939.test.cpp
   - test/3_yukicoder/1080.test.cpp
@@ -278,7 +271,6 @@ data:
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/bell_number.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
