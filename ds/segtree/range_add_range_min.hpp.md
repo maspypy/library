@@ -55,14 +55,14 @@ data:
     \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
     \  }\n};\n#line 2 \"ds/segtree/range_add_range_min.hpp\"\n\n// INF+x==INF \u307F\
     \u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\u3044\u306A\u3044\n// N=Q=10^6\
-    \ \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename\
-    \ T>\nstruct Range_Add_Range_Min {\n  struct Mono {\n    using value_type = pair<T,\
-    \ T>;\n    using X = value_type;\n    static X op(X L, X R) { return {L.fi + R.fi,\
-    \ min(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return {0, 2 * infty<T>};\
-    \ }\n    static constexpr bool commute = false;\n  };\n  int n;\n  T lazy;\n \
-    \ SegTree<Mono> seg;\n\n  Range_Add_Range_Min() {}\n  Range_Add_Range_Min(int\
-    \ n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Min(int n, F f)\
-    \ {\n    build(n, f);\n  }\n  Range_Add_Range_Min(const vc<T>& v) { build(v);\
+    \ \u3067 lazysegtree \u3088\u308A 20,30% \u7A0B\u5EA6\u9AD8\u901F\u306A\u5834\u5408\
+    \u304C\u3042\u308B\ntemplate <typename T>\nstruct Range_Add_Range_Min {\n  struct\
+    \ Mono {\n    using value_type = pair<T, T>;\n    using X = value_type;\n    static\
+    \ X op(X L, X R) { return {L.fi + R.fi, min(L.se, L.fi + R.se)}; }\n    static\
+    \ constexpr X unit() { return {0, 2 * infty<T>}; }\n    static constexpr bool\
+    \ commute = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_Min()\
+    \ {}\n  Range_Add_Range_Min(int n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Min(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Range_Add_Range_Min(const vc<T>& v) { build(v);\
     \ }\n\n  void build(int m) {\n    build(m, [](int i) -> T { return infty<T>; });\n\
     \  }\n  void build(const vc<T>& v) {\n    build(len(v), [&](int i) -> T { return\
     \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    lazy\
@@ -84,39 +84,39 @@ data:
     \    if (now > x) apply(i, i + 1, x - now);\n  }\n};\n"
   code: "#include \"ds/segtree/segtree.hpp\"\n\n// INF+x==INF \u307F\u305F\u3044\u306A\
     \u51E6\u7406\u306F\u5165\u308C\u3066\u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree\
-    \ \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Min\
-    \ {\n  struct Mono {\n    using value_type = pair<T, T>;\n    using X = value_type;\n\
-    \    static X op(X L, X R) { return {L.fi + R.fi, min(L.se, L.fi + R.se)}; }\n\
-    \    static constexpr X unit() { return {0, 2 * infty<T>}; }\n    static constexpr\
-    \ bool commute = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n \
-    \ Range_Add_Range_Min() {}\n  Range_Add_Range_Min(int n) { build(n); }\n  template\
-    \ <typename F>\n  Range_Add_Range_Min(int n, F f) {\n    build(n, f);\n  }\n \
-    \ Range_Add_Range_Min(const vc<T>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> T { return infty<T>; });\n  }\n  void build(const vc<T>&\
-    \ v) {\n    build(len(v), [&](int i) -> T { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    lazy = 0;\n    n = m;\n    T pre\
-    \ = 0;\n    seg.build(n, [&](int i) -> pair<T, T> {\n      T t = f(i) - pre;\n\
-    \      pre += t;\n      return {t, t};\n    });\n  }\n\n  T prod(int L, int R)\
-    \ {\n    if (L == R) return infty<T>;\n    ll ans = seg.prod(L, R).se;\n    L\
-    \ += seg.size;\n    for (; L > 0; L /= 2) {\n      if (L & 1) ans += seg.dat[--L].fi;\n\
-    \    }\n    return ans + lazy;\n  }\n\n  T prod_all() { return prod(0, n); }\n\
-    \n  // \u57FA\u672C\u30C7\u30D0\u30C3\u30B0\u7528\u3068\u3044\u3046\u3064\u3082\
-    \u308A\u3067\u3055\u307C\u308A O(NlogN) \u306B\u306A\u3063\u3066\u3044\u308B\n\
-    \  vc<T> get_all() {\n    vc<T> ANS(n);\n    FOR(i, n) ANS[i] = prod(i, i + 1);\n\
-    \    return ANS;\n  }\n\n  void apply(int L, int R, T x) { apply_suffix(L, x),\
-    \ apply_suffix(R, -x); }\n\n  // [0,i)\n  void apply_prefix(int i, T x) {\n  \
-    \  lazy += x;\n    apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int\
-    \ i, T x) {\n    if (i == n) return;\n    T t = seg.get(i).fi + x;\n    seg.set(i,\
-    \ {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\n  void set(int i, T x)\
-    \ {\n    T now = prod(i, i + 1);\n    apply(i, i + 1, x - now);\n  }\n\n  void\
-    \ multiply(int i, T x) {\n    T now = prod(i, i + 1);\n    if (now > x) apply(i,\
-    \ i + 1, x - now);\n  }\n};"
+    \ \u3088\u308A 20,30% \u7A0B\u5EA6\u9AD8\u901F\u306A\u5834\u5408\u304C\u3042\u308B\
+    \ntemplate <typename T>\nstruct Range_Add_Range_Min {\n  struct Mono {\n    using\
+    \ value_type = pair<T, T>;\n    using X = value_type;\n    static X op(X L, X\
+    \ R) { return {L.fi + R.fi, min(L.se, L.fi + R.se)}; }\n    static constexpr X\
+    \ unit() { return {0, 2 * infty<T>}; }\n    static constexpr bool commute = false;\n\
+    \  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_Min() {}\n\
+    \  Range_Add_Range_Min(int n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Min(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Range_Add_Range_Min(const vc<T>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> T { return infty<T>; });\n\
+    \  }\n  void build(const vc<T>& v) {\n    build(len(v), [&](int i) -> T { return\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    lazy\
+    \ = 0;\n    n = m;\n    T pre = 0;\n    seg.build(n, [&](int i) -> pair<T, T>\
+    \ {\n      T t = f(i) - pre;\n      pre += t;\n      return {t, t};\n    });\n\
+    \  }\n\n  T prod(int L, int R) {\n    if (L == R) return infty<T>;\n    ll ans\
+    \ = seg.prod(L, R).se;\n    L += seg.size;\n    for (; L > 0; L /= 2) {\n    \
+    \  if (L & 1) ans += seg.dat[--L].fi;\n    }\n    return ans + lazy;\n  }\n\n\
+    \  T prod_all() { return prod(0, n); }\n\n  // \u57FA\u672C\u30C7\u30D0\u30C3\u30B0\
+    \u7528\u3068\u3044\u3046\u3064\u3082\u308A\u3067\u3055\u307C\u308A O(NlogN) \u306B\
+    \u306A\u3063\u3066\u3044\u308B\n  vc<T> get_all() {\n    vc<T> ANS(n);\n    FOR(i,\
+    \ n) ANS[i] = prod(i, i + 1);\n    return ANS;\n  }\n\n  void apply(int L, int\
+    \ R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }\n\n  // [0,i)\n  void apply_prefix(int\
+    \ i, T x) {\n    lazy += x;\n    apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void\
+    \ apply_suffix(int i, T x) {\n    if (i == n) return;\n    T t = seg.get(i).fi\
+    \ + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\n\
+    \  void set(int i, T x) {\n    T now = prod(i, i + 1);\n    apply(i, i + 1, x\
+    \ - now);\n  }\n\n  void multiply(int i, T x) {\n    T now = prod(i, i + 1);\n\
+    \    if (now > x) apply(i, i + 1, x - now);\n  }\n};"
   dependsOn:
   - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: ds/segtree/range_add_range_min.hpp
   requiredBy: []
-  timestamp: '2025-07-18 14:23:18+09:00'
+  timestamp: '2025-07-25 21:12:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_min.test.cpp

@@ -113,7 +113,7 @@ data:
     \ F f) {\r\n  assert(d <= N);\r\n  auto calc_L = [&](T lambda) -> T {\r\n    auto\
     \ cost = [&](int frm, int to) -> T { return f(frm, to) + lambda; };\r\n    vc<T>\
     \ dp = monge_shortest_path<T>(N, cost);\r\n    return dp[N] - lambda * d;\r\n\
-    \  };\r\n\r\n  auto [x, fx] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3\
+    \  };\r\n\r\n  auto [fx, x] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3\
     \ * f_lim + 1);\r\n  return fx;\r\n}\r\n\r\n// https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html\r\
     \n// Prop 1\r\n// \u4E0A\u4E09\u89D2 monge A, B\r\n// C[i][j] = min_k (A[i][k]\
     \ + B[k][j])\r\ntemplate <typename T, typename F1, typename F2>\r\nvvc<T> monge_matrix_product(int\
@@ -153,7 +153,7 @@ data:
     \ F f) {\r\n  assert(d <= N);\r\n  auto calc_L = [&](T lambda) -> T {\r\n    auto\
     \ cost = [&](int frm, int to) -> T { return f(frm, to) + lambda; };\r\n    vc<T>\
     \ dp = monge_shortest_path<T>(N, cost);\r\n    return dp[N] - lambda * d;\r\n\
-    \  };\r\n\r\n  auto [x, fx] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3\
+    \  };\r\n\r\n  auto [fx, x] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3\
     \ * f_lim + 1);\r\n  return fx;\r\n}\r\n\r\n// https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html\r\
     \n// Prop 1\r\n// \u4E0A\u4E09\u89D2 monge A, B\r\n// C[i][j] = min_k (A[i][k]\
     \ + B[k][j])\r\ntemplate <typename T, typename F1, typename F2>\r\nvvc<T> monge_matrix_product(int\
@@ -170,7 +170,7 @@ data:
   isVerificationFile: false
   path: convex/monge.hpp
   requiredBy: []
-  timestamp: '2024-01-01 07:01:30+09:00'
+  timestamp: '2025-07-25 21:12:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/705.test.cpp

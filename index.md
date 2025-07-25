@@ -1213,6 +1213,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/dynamic_tree_dp.hpp
       title: graph/ds/dynamic_tree_dp.hpp
+    - icon: ':warning:'
+      path: graph/ds/fundamental_cut.hpp
+      title: graph/ds/fundamental_cut.hpp
     - icon: ':heavy_check_mark:'
       path: graph/ds/incremental_centroid.hpp
       title: graph/ds/incremental_centroid.hpp

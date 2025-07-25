@@ -29,14 +29,14 @@ data:
     \ if m:\n                header = m.group(1)\n                resolved = resolve_include(header)\n\
     \                if resolved:\n                    if resolved not in visited:\n\
     \                        expand_file(resolved, header, display_name, i + 1)\n\
-    \                        print(f'#line {i + 1} \"{display_name}\"')  # \u2190\
-    \ \u547C\u3073\u51FA\u3057\u5143\u306B\u623B\u308B\u4F4D\u7F6E\n             \
-    \   else:\n                    print(f'// [warning] include not found: {header}')\n\
-    \            elif re.match(r'#\\s*include\\s*<[^>]+>', line):\n              \
-    \  print(line, end='')\n            else:\n                print(line, end='')\n\
-    \n    print(f'// END: {display_name}')\n\nif __name__ == '__main__':\n    if len(sys.argv)\
-    \ != 2:\n        print(\"Usage: python3 expander.py main.cpp > singlefile.cpp\"\
-    )\n        sys.exit(1)\n\n    expand_file(sys.argv[1])\n"
+    \                    print(f'#line {i + 1} \"{display_name}\"')  # \u2190 \u547C\
+    \u3073\u51FA\u3057\u5143\u306B\u623B\u308B\u4F4D\u7F6E\n                else:\n\
+    \                    print(f'// [warning] include not found: {header}')\n    \
+    \        elif re.match(r'#\\s*include\\s*<[^>]+>', line):\n                print(line,\
+    \ end='')\n            else:\n                print(line, end='')\n\n    print(f'//\
+    \ END: {display_name}')\n\nif __name__ == '__main__':\n    if len(sys.argv) !=\
+    \ 2:\n        print(\"Usage: python3 expander.py main.cpp > singlefile.cpp\")\n\
+    \        sys.exit(1)\n\n    expand_file(sys.argv[1])\n"
   dependsOn: []
   isVerificationFile: false
   path: expander.py
