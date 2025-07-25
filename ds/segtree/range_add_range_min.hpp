@@ -1,7 +1,7 @@
 #include "ds/segtree/segtree.hpp"
 
 // INF+x==INF みたいな処理は入れていない
-// N=Q=10^6 で lazysegtree より 40% 程度高速
+// N=Q=10^6 で lazysegtree より 20,30% 程度高速な場合がある
 template <typename T>
 struct Range_Add_Range_Min {
   struct Mono {

@@ -36,7 +36,7 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
                 if resolved:
                     if resolved not in visited:
                         expand_file(resolved, header, display_name, i + 1)
-                        print(f'#line {i + 1} "{display_name}"')  # ← 呼び出し元に戻る位置
+                    print(f'#line {i + 1} "{display_name}"')  # ← 呼び出し元に戻る位置
                 else:
                     print(f'// [warning] include not found: {header}')
             elif re.match(r'#\s*include\s*<[^>]+>', line):
