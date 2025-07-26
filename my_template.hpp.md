@@ -127,6 +127,9 @@ data:
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_biconnected.test.cpp
+    title: test/1_mytest/count_labeled_biconnected.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3495,6 +3498,7 @@ data:
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/summax_assign.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/summax_add.test.cpp

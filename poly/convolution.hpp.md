@@ -48,6 +48,9 @@ data:
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -387,6 +390,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_biconnected.test.cpp
+    title: test/1_mytest/count_labeled_biconnected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
@@ -1207,6 +1213,7 @@ data:
   - graph/count/count_labeled_forest.hpp
   - graph/count/count_labeled_connected.hpp
   - graph/count/count_labeled_dag.hpp
+  - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_unicyclic.hpp
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
@@ -1440,6 +1447,7 @@ data:
   - test/1_mytest/catalan_convolution.test.cpp
   - test/1_mytest/bigint.test.cpp
   - test/1_mytest/multipoint_prefix.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/count_labeled_eulerian.test.cpp
