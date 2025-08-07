@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: linalg/ecottea_matrix_dp.hpp
+    title: linalg/ecottea_matrix_dp.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
@@ -30,7 +33,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/split.hpp
-  requiredBy: []
+  requiredBy:
+  - linalg/ecottea_matrix_dp.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

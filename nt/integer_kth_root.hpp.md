@@ -1,8 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: nt/dirichlet.hpp
+    title: nt/dirichlet.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/dirichlet.test.cpp
+    title: test/1_mytest/dirichlet.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/kth_root_integer.test.cpp
     title: test/2_library_checker/number_theory/kth_root_integer.test.cpp
@@ -38,13 +44,15 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: nt/integer_kth_root.hpp
-  requiredBy: []
+  requiredBy:
+  - nt/dirichlet.hpp
   timestamp: '2023-11-07 17:48:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1260.test.cpp
   - test/3_yukicoder/1666.test.cpp
   - test/2_library_checker/number_theory/kth_root_integer.test.cpp
+  - test/1_mytest/dirichlet.test.cpp
 documentation_of: nt/integer_kth_root.hpp
 layout: document
 redirect_from:

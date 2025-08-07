@@ -89,6 +89,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
+  - icon: ':warning:'
+    path: linalg/ecottea_matrix_dp.hpp
+    title: linalg/ecottea_matrix_dp.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
@@ -501,6 +504,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_unlabeled_tree.test.cpp
     title: test/1_mytest/count_unlabeled_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/dirichlet.test.cpp
+    title: test/1_mytest/dirichlet.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enum_partitions.test.cpp
     title: test/1_mytest/enum_partitions.test.cpp
@@ -1584,6 +1590,7 @@ data:
   - linalg/blackbox/vandermonde.hpp
   - linalg/adjugate_matrix.hpp
   - linalg/frobenius.hpp
+  - linalg/ecottea_matrix_dp.hpp
   - linalg/matrix_mul.hpp
   - linalg/matrix_pow.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
@@ -1901,6 +1908,7 @@ data:
   - test/1_mytest/prime_sum.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/online_log.test.cpp
+  - test/1_mytest/dirichlet.test.cpp
   - test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   - test/1_mytest/narayana.test.cpp
   - test/1_mytest/count_labeled_undirected.test.cpp

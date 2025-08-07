@@ -271,6 +271,9 @@ data:
     path: test/1_mytest/digit_sum.test.cpp
     title: test/1_mytest/digit_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/dirichlet.test.cpp
+    title: test/1_mytest/dirichlet.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dual_fenwick.test.cpp
     title: test/1_mytest/dual_fenwick.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1209,6 +1212,7 @@ data:
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/online_log.test.cpp
+  - test/1_mytest/dirichlet.test.cpp
   - test/1_mytest/digit_sum.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
   - test/1_mytest/wavelet_matrix.test.cpp

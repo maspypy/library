@@ -172,6 +172,9 @@ data:
     path: test/1_mytest/digit_sum.test.cpp
     title: test/1_mytest/digit_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/dirichlet.test.cpp
+    title: test/1_mytest/dirichlet.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dual_fenwick.test.cpp
     title: test/1_mytest/dual_fenwick.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3538,6 +3541,7 @@ data:
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/online_log.test.cpp
+  - test/1_mytest/dirichlet.test.cpp
   - test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   - test/1_mytest/cf940f.test.cpp
   - test/1_mytest/digit_sum.test.cpp

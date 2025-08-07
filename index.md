@@ -1353,6 +1353,9 @@ data:
     - icon: ':warning:'
       path: linalg/diagonalize_triangular_matrix.hpp
       title: linalg/diagonalize_triangular_matrix.hpp
+    - icon: ':warning:'
+      path: linalg/ecottea_matrix_dp.hpp
+      title: linalg/ecottea_matrix_dp.hpp
     - icon: ':heavy_check_mark:'
       path: linalg/frobenius.hpp
       title: linalg/frobenius.hpp
@@ -1596,6 +1599,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/digit_sum.hpp
       title: nt/digit_sum.hpp
+    - icon: ':heavy_check_mark:'
+      path: nt/dirichlet.hpp
+      title: nt/dirichlet.hpp
     - icon: ':heavy_check_mark:'
       path: nt/discrete_log.hpp
       title: nt/discrete_log.hpp
@@ -2548,6 +2554,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/digit_sum.test.cpp
       title: test/1_mytest/digit_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/dirichlet.test.cpp
+      title: test/1_mytest/dirichlet.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/dual_fenwick.test.cpp
       title: test/1_mytest/dual_fenwick.test.cpp
