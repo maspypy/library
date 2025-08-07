@@ -51,6 +51,7 @@
 "test/1_mytest/count_unlabeled_tree.test.cpp": "2025-07-05 14:54:01 +0900",
 "test/1_mytest/datetime.test.cpp": "2025-07-03 18:22:07 +0900",
 "test/1_mytest/digit_sum.test.cpp": "2025-07-03 18:22:07 +0900",
+"test/1_mytest/dirichlet.test.cpp": "2025-08-07 22:56:45 +0900",
 "test/1_mytest/dual_fenwick.test.cpp": "2025-07-03 18:22:07 +0900",
 "test/1_mytest/dyadic_rational.test.cpp": "2025-07-03 18:22:07 +0900",
 "test/1_mytest/dynamic_lazy_segtree.test.cpp": "2025-07-03 18:22:07 +0900",
