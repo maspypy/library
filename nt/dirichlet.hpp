@@ -68,4 +68,46 @@ struct Dirichlet {
     }
     return H;
   }
+
+  // G=H/F
+  template <typename T>
+  vc<T> div(vc<T> &H, vc<T> &F) {
+    assert(len(F) == n && len(H) == n && F[1] != 0);
+    if (N == 1) return {T(0), H[1] / F[1]};
+    T c = F[1].inverse();
+    for (auto &x : F) x *= c;
+
+    vc<T> f(n), g(n), h(n);
+    FOR(i, 1, n) f[i] = F[i] - F[i - 1];
+    FOR(i, 1, n) h[i] = H[i] - H[i - 1];
+
+    u64 K = integer_kth_root(3, N);
+    u64 S = max<u64>(sq, K * K);
+    g[1] = H[1];
+
+    for (u64 i = 2; i < n; ++i) {
+      u64 a = get_floor(i);
+      if (a > S) break;
+      g[i] = h[i] - g[1] * f[i];
+      if (a * a <= S) h[get_index(a * a)] -= f[i] * g[i];
+      u64 ub = min(i - 1, S / a);
+      FOR(b, 2, ub + 1) { h[get_index(a * b)] -= f[i] * g[b] + f[b] * g[i]; }
+    }
+    vc<mint> G = cumsum<mint>(g, 0);
+    for (u64 z = N / (S + 1); z >= 1; --z) {
+      G[n - z] = H[n - z] - g[1] * F[n - z];
+      u64 M = N / z;
+      u64 ub = sqrtl(M);
+      G[n - z] += F[ub] * G[ub];
+      for (u64 a = 2; a <= ub; ++a) {
+        int idx = get_index(M / a);
+        G[n - z] -= f[a] * G[idx] + g[a] * F[idx];
+      }
+    }
+    for (auto &x : G) x *= c;
+    c = c.inverse();
+    for (auto &x : F) x *= c;
+    for (auto &x : H) x *= c;
+    return G;
+  }
 };

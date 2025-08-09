@@ -12,8 +12,9 @@ void test(ll n) {
   FOR(i, 1, n + 1) FLOOR.eb(n / i);
   UNIQUE(FLOOR);
   vc<mint> f(n + 1), g(n + 1), h(n + 1);
-  FOR(i, 1, n + 1) f[i] = RNG(mint::get_mod());
-  FOR(i, 1, n + 1) g[i] = RNG(mint::get_mod());
+  FOR(i, 1, n + 1) f[i] = RNG(1, mint::get_mod());
+  FOR(i, 1, n + 1) g[i] = RNG(1, mint::get_mod());
+
   FOR(a, 1, n + 1) FOR(b, 1, n / a + 1) h[a * b] += f[a] * g[b];
   vc<mint> F = cumsum<mint>(f, 0), G = cumsum<mint>(g, 0),
            H = cumsum<mint>(h, 0);
@@ -23,6 +24,8 @@ void test(ll n) {
   Dirichlet DIR(n);
   vc<mint> D = DIR.convolution(A, B);
   assert(C == D);
+  vc<mint> E = DIR.div(C, A);
+  assert(B == E);
 }
 
 void solve() {

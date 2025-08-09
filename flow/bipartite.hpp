@@ -40,7 +40,7 @@ struct BipartiteMatching {
     while (!que.empty()) {
       int v = que.front();
       que.pop();
-      for (auto&& e: G[v]) {
+      for (auto&& e : G[v]) {
         dist[e.to] = 0;
         int w = match[e.to];
         if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);
@@ -50,7 +50,7 @@ struct BipartiteMatching {
 
   bool dfs(int v) {
     vis[v] = 1;
-    for (auto&& e: G[v]) {
+    for (auto&& e : G[v]) {
       int w = match[e.to];
       if (w == -1 || (!vis[w] && dist[w] == dist[v] + 1 && dfs(w))) {
         match[e.to] = v, match[v] = e.to;
@@ -81,14 +81,14 @@ struct BipartiteMatching {
   vc<int> edge_cover() {
     vc<bool> done(N);
     vc<int> res;
-    for (auto&& e: G.edges) {
+    for (auto&& e : G.edges) {
       if (done[e.frm] || done[e.to]) continue;
       if (match[e.frm] == e.to) {
         res.eb(e.id);
         done[e.frm] = done[e.to] = 1;
       }
     }
-    for (auto&& e: G.edges) {
+    for (auto&& e : G.edges) {
       if (!done[e.frm]) {
         res.eb(e.id);
         done[e.frm] = 1;
@@ -108,6 +108,7 @@ struct BipartiteMatching {
   https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html
   - 最大マッチングとしてありうる iff 同じ W を持つ
   - 辺 uv が必ず使われる：同じ W を持つ辺が唯一
+  - 辺 uv は使われることはない：W[l] ! =W[r]
   - color=0 から 1 への辺：W[l] <= W[r]
   - color=0 の点が必ず使われる：W=1,2,...,K
   - color=1 の点が必ず使われる：W=0,1,...,K-1
@@ -128,10 +129,14 @@ struct BipartiteMatching {
       auto v = POP(que);
       if (match[v] != -1) add(match[v], W[v]);
       if (color[v] == 0 && W[v] == 0) {
-        for (auto&& e: G[v]) { add(e.to, W[v]); }
+        for (auto&& e : G[v]) {
+          add(e.to, W[v]);
+        }
       }
       if (color[v] == 1 && W[v] == infty<int>) {
-        for (auto&& e: G[v]) { add(e.to, W[v]); }
+        for (auto&& e : G[v]) {
+          add(e.to, W[v]);
+        }
       }
     }
     // 残った点からなるグラフを作って強連結成分分解
@@ -146,7 +151,7 @@ struct BipartiteMatching {
         DG.add(i, j);
       }
       if (color[v] == 0) {
-        for (auto&& e: G[v]) {
+        for (auto&& e : G[v]) {
           if (W[e.to] != -1 || e.to == match[v]) continue;
           int j = LB(V, e.to);
           DG.add(i, j);
