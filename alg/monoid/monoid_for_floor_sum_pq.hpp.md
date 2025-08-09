@@ -76,8 +76,8 @@ data:
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
 documentation_of: alg/monoid/monoid_for_floor_sum_pq.hpp
 layout: document
 redirect_from:

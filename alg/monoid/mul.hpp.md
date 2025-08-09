@@ -100,25 +100,28 @@ data:
   isVerificationFile: false
   path: alg/monoid/mul.hpp
   requiredBy:
-  - seq/p_recursive.hpp
-  - seq/interpolate_poly_exp_sum.hpp
-  - ds/power_query.hpp
-  - nt/discrete_log.hpp
   - graph/count/count_labeled_bipartite.hpp
-  - mod/mod_log.hpp
+  - seq/interpolate_poly_exp_sum.hpp
+  - seq/p_recursive.hpp
+  - nt/discrete_log.hpp
   - alg/acted_monoid/sum_mul.hpp
+  - mod/mod_log.hpp
+  - ds/power_query.hpp
   - poly/prefix_product_of_poly.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/from_log_differentiation.hpp
-  - poly/sum_of_C_negative.hpp
   - poly/sparse_exp_of_div.hpp
+  - poly/from_log_differentiation.hpp
+  - poly/lagrange_interpolate_iota.hpp
+  - poly/sum_of_C_negative.hpp
   timestamp: '2022-11-27 14:10:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/factorial_998.test.cpp
+  - test/1_mytest/powerquery.test.cpp
+  - test/1_mytest/count_bipartite.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/1339.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/899.test.cpp
-  - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/2005.test.cpp
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/2166.test.cpp
@@ -126,9 +129,6 @@ data:
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  - test/1_mytest/count_bipartite.test.cpp
-  - test/1_mytest/powerquery.test.cpp
-  - test/1_mytest/factorial_998.test.cpp
 documentation_of: alg/monoid/mul.hpp
 layout: document
 redirect_from:

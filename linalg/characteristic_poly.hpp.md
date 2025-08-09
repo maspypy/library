@@ -85,10 +85,10 @@ data:
   timestamp: '2022-10-12 08:04:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1907.test.cpp
-  - test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
+  - test/3_yukicoder/1303.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
+  - test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
 documentation_of: linalg/characteristic_poly.hpp
 layout: document
 redirect_from:

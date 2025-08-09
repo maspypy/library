@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -355,8 +355,8 @@ data:
   isVerificationFile: false
   path: poly/sum_of_power_of_roots.hpp
   requiredBy:
-  - poly/composed_product.hpp
   - poly/composed_sum.hpp
+  - poly/composed_product.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -379,27 +379,27 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix.hpp
   requiredBy:
-  - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   - string/prefix_substring_LCS.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2065.test.cpp
+  - test/1_mytest/wavelet_matrix.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
   - test/3_yukicoder/2859.test.cpp
   - test/3_yukicoder/919.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/2065.test.cpp
   - test/3_yukicoder/1332.test.cpp
   - test/3_yukicoder/924.test.cpp
   - test/3_yukicoder/1919_2.test.cpp
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/1_mytest/wavelet_matrix.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix.hpp
 layout: document
 redirect_from:

@@ -100,10 +100,10 @@ data:
   isVerificationFile: false
   path: setfunc/subset_convolution.hpp
   requiredBy:
-  - graph/tutte_polynomial.hpp
-  - graph/chromatic.hpp
   - graph/count/count_tree_subgraph.hpp
   - graph/count/count_bridgeless_subgraph.hpp
+  - graph/tutte_polynomial.hpp
+  - graph/chromatic.hpp
   - setfunc/sps_exp.hpp
   - setfunc/power_projection_of_sps.hpp
   - linalg/hafnian.hpp
@@ -111,13 +111,13 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
   - test/2_library_checker/set_power_series/powproj_sps.test.cpp
-  - test/2_library_checker/set_power_series/sps_exp.test.cpp
   - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
+  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
+  - test/2_library_checker/set_power_series/sps_exp.test.cpp
 documentation_of: setfunc/subset_convolution.hpp
 layout: document
 redirect_from:

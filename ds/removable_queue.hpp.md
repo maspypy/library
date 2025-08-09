@@ -52,9 +52,9 @@ data:
   timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/902.test.cpp
   - test/3_yukicoder/772.test.cpp
   - test/3_yukicoder/2654.test.cpp
+  - test/3_yukicoder/902.test.cpp
   - test/2_library_checker/data_structure/double_ended_pq.test.cpp
 documentation_of: ds/removable_queue.hpp
 layout: document

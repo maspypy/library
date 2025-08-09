@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -381,54 +381,56 @@ data:
     \  }\r\n\r\n  void bfs() {\r\n    dist.assign(N, -1);\r\n    queue<int> que;\r\
     \n    FOR(v, N) if (!color[v] && match[v] == -1) que.emplace(v), dist[v] = 0;\r\
     \n    while (!que.empty()) {\r\n      int v = que.front();\r\n      que.pop();\r\
-    \n      for (auto&& e: G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\
-    \n        if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\
-    \n      }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n  \
-    \  for (auto&& e: G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 ||\
-    \ (!vis[w] && dist[w] == dist[v] + 1 && dfs(w))) {\r\n        match[e.to] = v,\
-    \ match[v] = e.to;\r\n        return true;\r\n      }\r\n    }\r\n    return false;\r\
-    \n  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
-    \n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\n    return res;\r\n\
-    \  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\n    FOR(v, N) if\
-    \ (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n\
-    \  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v]\
-    \ ^ (dist[v] == -1))) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n  vc<int>\
-    \ edge_cover() {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&&\
-    \ e: G.edges) {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if\
-    \ (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to]\
-    \ = 1;\r\n      }\r\n    }\r\n    for (auto&& e: G.edges) {\r\n      if (!done[e.frm])\
-    \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
-    \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
-    \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  /* Dulmage\u2013\
-    Mendelsohn decomposition\r\n  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition\r\
+    \n      for (auto&& e : G[v]) {\r\n        dist[e.to] = 0;\r\n        int w =\
+    \ match[e.to];\r\n        if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1,\
+    \ que.emplace(w);\r\n      }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n  \
+    \  vis[v] = 1;\r\n    for (auto&& e : G[v]) {\r\n      int w = match[e.to];\r\n\
+    \      if (w == -1 || (!vis[w] && dist[w] == dist[v] + 1 && dfs(w))) {\r\n   \
+    \     match[e.to] = v, match[v] = e.to;\r\n        return true;\r\n      }\r\n\
+    \    }\r\n    return false;\r\n  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n\
+    \    vc<pair<int, int>> res;\r\n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\
+    \n    return res;\r\n  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\
+    \n    FOR(v, N) if (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\
+    \n  }\r\n\r\n  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N)\
+    \ if (!(color[v] ^ (dist[v] == -1))) { res.eb(v); }\r\n    return res;\r\n  }\r\
+    \n\r\n  vc<int> edge_cover() {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n\
+    \    for (auto&& e : G.edges) {\r\n      if (done[e.frm] || done[e.to]) continue;\r\
+    \n      if (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm]\
+    \ = done[e.to] = 1;\r\n      }\r\n    }\r\n    for (auto&& e : G.edges) {\r\n\
+    \      if (!done[e.frm]) {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\
+    \n      }\r\n      if (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to]\
+    \ = 1;\r\n      }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\
+    \r\n  /* Dulmage\u2013Mendelsohn decomposition\r\n  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition\r\
     \n  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf\r\
     \n  https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html\r\
     \n  - \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3068\u3057\u3066\u3042\u308A\
     \u3046\u308B iff \u540C\u3058 W \u3092\u6301\u3064\r\n  - \u8FBA uv \u304C\u5FC5\
     \u305A\u4F7F\u308F\u308C\u308B\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u8FBA\u304C\
-    \u552F\u4E00\r\n  - color=0 \u304B\u3089 1 \u3078\u306E\u8FBA\uFF1AW[l] <= W[r]\r\
-    \n  - color=0 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\uFF1AW=1,2,...,K\r\
-    \n  - color=1 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\uFF1AW=0,1,...,K-1\r\
-    \n  */\r\n  pair<int, vc<int>> DM_decomposition() {\r\n    // \u975E\u98FD\u548C\
-    \u70B9\u304B\u3089\u306E\u63A2\u7D22\r\n    vc<int> W(N, -1);\r\n    vc<int> que;\r\
-    \n    auto add = [&](int v, int x) -> void {\r\n      if (W[v] == -1) {\r\n  \
-    \      W[v] = x;\r\n        que.eb(v);\r\n      }\r\n    };\r\n    FOR(v, N) if\
-    \ (match[v] == -1 && color[v] == 0) add(v, 0);\r\n    FOR(v, N) if (match[v] ==\
-    \ -1 && color[v] == 1) add(v, infty<int>);\r\n    while (len(que)) {\r\n     \
-    \ auto v = POP(que);\r\n      if (match[v] != -1) add(match[v], W[v]);\r\n   \
-    \   if (color[v] == 0 && W[v] == 0) {\r\n        for (auto&& e: G[v]) { add(e.to,\
-    \ W[v]); }\r\n      }\r\n      if (color[v] == 1 && W[v] == infty<int>) {\r\n\
-    \        for (auto&& e: G[v]) { add(e.to, W[v]); }\r\n      }\r\n    }\r\n   \
-    \ // \u6B8B\u3063\u305F\u70B9\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\u3092\u4F5C\
-    \u3063\u3066\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\r\n    vc<int> V;\r\n \
-    \   FOR(v, N) if (W[v] == -1) V.eb(v);\r\n    int n = len(V);\r\n    Graph<bool,\
-    \ 1> DG(n);\r\n    FOR(i, n) {\r\n      int v = V[i];\r\n      if (match[v] !=\
-    \ -1) {\r\n        int j = LB(V, match[v]);\r\n        DG.add(i, j);\r\n     \
-    \ }\r\n      if (color[v] == 0) {\r\n        for (auto&& e: G[v]) {\r\n      \
-    \    if (W[e.to] != -1 || e.to == match[v]) continue;\r\n          int j = LB(V,\
-    \ e.to);\r\n          DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\
-    \n    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n  \
-    \  // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
+    \u552F\u4E00\r\n  - \u8FBA uv \u306F\u4F7F\u308F\u308C\u308B\u3053\u3068\u306F\
+    \u306A\u3044\uFF1AW[l] ! =W[r]\r\n  - color=0 \u304B\u3089 1 \u3078\u306E\u8FBA\
+    \uFF1AW[l] <= W[r]\r\n  - color=0 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\
+    \u308B\uFF1AW=1,2,...,K\r\n  - color=1 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\
+    \u308C\u308B\uFF1AW=0,1,...,K-1\r\n  */\r\n  pair<int, vc<int>> DM_decomposition()\
+    \ {\r\n    // \u975E\u98FD\u548C\u70B9\u304B\u3089\u306E\u63A2\u7D22\r\n    vc<int>\
+    \ W(N, -1);\r\n    vc<int> que;\r\n    auto add = [&](int v, int x) -> void {\r\
+    \n      if (W[v] == -1) {\r\n        W[v] = x;\r\n        que.eb(v);\r\n     \
+    \ }\r\n    };\r\n    FOR(v, N) if (match[v] == -1 && color[v] == 0) add(v, 0);\r\
+    \n    FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, infty<int>);\r\n \
+    \   while (len(que)) {\r\n      auto v = POP(que);\r\n      if (match[v] != -1)\
+    \ add(match[v], W[v]);\r\n      if (color[v] == 0 && W[v] == 0) {\r\n        for\
+    \ (auto&& e : G[v]) {\r\n          add(e.to, W[v]);\r\n        }\r\n      }\r\n\
+    \      if (color[v] == 1 && W[v] == infty<int>) {\r\n        for (auto&& e : G[v])\
+    \ {\r\n          add(e.to, W[v]);\r\n        }\r\n      }\r\n    }\r\n    // \u6B8B\
+    \u3063\u305F\u70B9\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\u3092\u4F5C\u3063\
+    \u3066\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\r\n    vc<int> V;\r\n    FOR(v,\
+    \ N) if (W[v] == -1) V.eb(v);\r\n    int n = len(V);\r\n    Graph<bool, 1> DG(n);\r\
+    \n    FOR(i, n) {\r\n      int v = V[i];\r\n      if (match[v] != -1) {\r\n  \
+    \      int j = LB(V, match[v]);\r\n        DG.add(i, j);\r\n      }\r\n      if\
+    \ (color[v] == 0) {\r\n        for (auto&& e : G[v]) {\r\n          if (W[e.to]\
+    \ != -1 || e.to == match[v]) continue;\r\n          int j = LB(V, e.to);\r\n \
+    \         DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\n\
+    \    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n   \
+    \ // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
     \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n#ifdef FASTIO\r\
     \n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\"\
     , vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\n   \
@@ -511,7 +513,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
   requiredBy: []
-  timestamp: '2025-07-04 07:32:29+09:00'
+  timestamp: '2025-08-10 00:04:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp

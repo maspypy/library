@@ -103,13 +103,13 @@ data:
   isVerificationFile: false
   path: game/dyadic_rational.hpp
   requiredBy:
-  - game/solve_partizan_game.hpp
   - game/number_and_star.hpp
+  - game/solve_partizan_game.hpp
   timestamp: '2024-11-11 22:49:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/dyadic_rational.test.cpp
   - test/1_mytest/partizan.test.cpp
+  - test/1_mytest/dyadic_rational.test.cpp
 documentation_of: game/dyadic_rational.hpp
 layout: document
 redirect_from:

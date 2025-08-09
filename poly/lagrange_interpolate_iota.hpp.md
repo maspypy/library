@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -446,22 +446,22 @@ data:
   isVerificationFile: false
   path: poly/lagrange_interpolate_iota.hpp
   requiredBy:
-  - seq/p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/p_recursive.hpp
   - poly/prefix_product_of_poly.hpp
-  - poly/from_log_differentiation.hpp
   - poly/sparse_exp_of_div.hpp
+  - poly/from_log_differentiation.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/502_2.test.cpp
+  - test/1_mytest/factorial_998.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  - test/1_mytest/factorial_998.test.cpp
 documentation_of: poly/lagrange_interpolate_iota.hpp
 layout: document
 redirect_from:

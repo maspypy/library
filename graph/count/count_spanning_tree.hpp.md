@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -251,9 +251,9 @@ data:
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
 documentation_of: graph/count/count_spanning_tree.hpp
 layout: document

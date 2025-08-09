@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/dirichlet.hpp
     title: nt/dirichlet.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -245,29 +245,46 @@ data:
     \     u64 M = N / z;\n      u64 ub = sqrtl(M);\n      H[n - z] = 0;\n      for\
     \ (u64 a = 1; a <= ub; ++a) {\n        int idx = get_index(M / a);\n        H[n\
     \ - z] += f[a] * G[idx] + g[a] * F[idx];\n      }\n      H[n - z] -= F[ub] * G[ub];\n\
-    \    }\n    return H;\n  }\n};\n#line 7 \"test/1_mytest/dirichlet.test.cpp\"\n\
-    \nusing mint = modint998;\n\nvoid test(ll n) {\n  vi FLOOR;\n  FOR(i, 1, n + 1)\
-    \ FLOOR.eb(n / i);\n  UNIQUE(FLOOR);\n  vc<mint> f(n + 1), g(n + 1), h(n + 1);\n\
-    \  FOR(i, 1, n + 1) f[i] = RNG(mint::get_mod());\n  FOR(i, 1, n + 1) g[i] = RNG(mint::get_mod());\n\
-    \  FOR(a, 1, n + 1) FOR(b, 1, n / a + 1) h[a * b] += f[a] * g[b];\n  vc<mint>\
-    \ F = cumsum<mint>(f, 0), G = cumsum<mint>(g, 0),\n           H = cumsum<mint>(h,\
-    \ 0);\n  vc<mint> A = {0}, B = {0}, C = {0};\n  for (auto &v : FLOOR) A.eb(F[v]),\
-    \ B.eb(G[v]), C.eb(H[v]);\n\n  Dirichlet DIR(n);\n  vc<mint> D = DIR.convolution(A,\
-    \ B);\n  assert(C == D);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 1, 10000) { test(N);\
-    \ }\n  solve();\n}\n"
+    \    }\n    return H;\n  }\n\n  // G=H/F\n  template <typename T>\n  vc<T> div(vc<T>\
+    \ &H, vc<T> &F) {\n    assert(len(F) == n && len(H) == n && F[1] != 0);\n    if\
+    \ (N == 1) return {T(0), H[1] / F[1]};\n    T c = F[1].inverse();\n    for (auto\
+    \ &x : F) x *= c;\n\n    vc<T> f(n), g(n), h(n);\n    FOR(i, 1, n) f[i] = F[i]\
+    \ - F[i - 1];\n    FOR(i, 1, n) h[i] = H[i] - H[i - 1];\n\n    u64 K = integer_kth_root(3,\
+    \ N);\n    u64 S = max<u64>(sq, K * K);\n    g[1] = H[1];\n\n    for (u64 i =\
+    \ 2; i < n; ++i) {\n      u64 a = get_floor(i);\n      if (a > S) break;\n   \
+    \   g[i] = h[i] - g[1] * f[i];\n      if (a * a <= S) h[get_index(a * a)] -= f[i]\
+    \ * g[i];\n      u64 ub = min(i - 1, S / a);\n      FOR(b, 2, ub + 1) { h[get_index(a\
+    \ * b)] -= f[i] * g[b] + f[b] * g[i]; }\n    }\n    vc<mint> G = cumsum<mint>(g,\
+    \ 0);\n    for (u64 z = N / (S + 1); z >= 1; --z) {\n      G[n - z] = H[n - z]\
+    \ - g[1] * F[n - z];\n      u64 M = N / z;\n      u64 ub = sqrtl(M);\n      G[n\
+    \ - z] += F[ub] * G[ub];\n      for (u64 a = 2; a <= ub; ++a) {\n        int idx\
+    \ = get_index(M / a);\n        G[n - z] -= f[a] * G[idx] + g[a] * F[idx];\n  \
+    \    }\n    }\n    for (auto &x : G) x *= c;\n    c = c.inverse();\n    for (auto\
+    \ &x : F) x *= c;\n    for (auto &x : H) x *= c;\n    return G;\n  }\n};\n#line\
+    \ 7 \"test/1_mytest/dirichlet.test.cpp\"\n\nusing mint = modint998;\n\nvoid test(ll\
+    \ n) {\n  vi FLOOR;\n  FOR(i, 1, n + 1) FLOOR.eb(n / i);\n  UNIQUE(FLOOR);\n \
+    \ vc<mint> f(n + 1), g(n + 1), h(n + 1);\n  FOR(i, 1, n + 1) f[i] = RNG(1, mint::get_mod());\n\
+    \  FOR(i, 1, n + 1) g[i] = RNG(1, mint::get_mod());\n\n  FOR(a, 1, n + 1) FOR(b,\
+    \ 1, n / a + 1) h[a * b] += f[a] * g[b];\n  vc<mint> F = cumsum<mint>(f, 0), G\
+    \ = cumsum<mint>(g, 0),\n           H = cumsum<mint>(h, 0);\n  vc<mint> A = {0},\
+    \ B = {0}, C = {0};\n  for (auto &v : FLOOR) A.eb(F[v]), B.eb(G[v]), C.eb(H[v]);\n\
+    \n  Dirichlet DIR(n);\n  vc<mint> D = DIR.convolution(A, B);\n  assert(C == D);\n\
+    \  vc<mint> E = DIR.div(C, A);\n  assert(B == E);\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  FOR(N, 1, 10000) { test(N); }\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\n#include \"nt/dirichlet.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test(ll n) {\n  vi FLOOR;\n  FOR(i, 1, n +\
     \ 1) FLOOR.eb(n / i);\n  UNIQUE(FLOOR);\n  vc<mint> f(n + 1), g(n + 1), h(n +\
-    \ 1);\n  FOR(i, 1, n + 1) f[i] = RNG(mint::get_mod());\n  FOR(i, 1, n + 1) g[i]\
-    \ = RNG(mint::get_mod());\n  FOR(a, 1, n + 1) FOR(b, 1, n / a + 1) h[a * b] +=\
-    \ f[a] * g[b];\n  vc<mint> F = cumsum<mint>(f, 0), G = cumsum<mint>(g, 0),\n \
-    \          H = cumsum<mint>(h, 0);\n  vc<mint> A = {0}, B = {0}, C = {0};\n  for\
-    \ (auto &v : FLOOR) A.eb(F[v]), B.eb(G[v]), C.eb(H[v]);\n\n  Dirichlet DIR(n);\n\
-    \  vc<mint> D = DIR.convolution(A, B);\n  assert(C == D);\n}\n\nvoid solve() {\n\
-    \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(N, 1, 10000) { test(N); }\n  solve();\n}"
+    \ 1);\n  FOR(i, 1, n + 1) f[i] = RNG(1, mint::get_mod());\n  FOR(i, 1, n + 1)\
+    \ g[i] = RNG(1, mint::get_mod());\n\n  FOR(a, 1, n + 1) FOR(b, 1, n / a + 1) h[a\
+    \ * b] += f[a] * g[b];\n  vc<mint> F = cumsum<mint>(f, 0), G = cumsum<mint>(g,\
+    \ 0),\n           H = cumsum<mint>(h, 0);\n  vc<mint> A = {0}, B = {0}, C = {0};\n\
+    \  for (auto &v : FLOOR) A.eb(F[v]), B.eb(G[v]), C.eb(H[v]);\n\n  Dirichlet DIR(n);\n\
+    \  vc<mint> D = DIR.convolution(A, B);\n  assert(C == D);\n  vc<mint> E = DIR.div(C,\
+    \ A);\n  assert(B == E);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 1, 10000) { test(N);\
+    \ }\n  solve();\n}"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -278,8 +295,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dirichlet.test.cpp
   requiredBy: []
-  timestamp: '2025-08-07 22:56:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-08-10 00:04:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/dirichlet.test.cpp
 layout: document

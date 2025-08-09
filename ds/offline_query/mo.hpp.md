@@ -75,10 +75,10 @@ data:
   timestamp: '2023-10-29 16:22:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1270.test.cpp
-  - test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
-  - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
+  - test/3_yukicoder/1270.test.cpp
+  - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
+  - test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
 documentation_of: ds/offline_query/mo.hpp
 layout: document
 redirect_from:

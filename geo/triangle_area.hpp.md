@@ -41,17 +41,17 @@ data:
   isVerificationFile: false
   path: geo/triangle_area.hpp
   requiredBy:
-  - geo/outcircle.hpp
-  - geo/incircle.hpp
   - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/minimum_enclosing_circle.hpp
+  - geo/outcircle.hpp
+  - geo/incircle.hpp
   timestamp: '2022-08-20 20:06:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/3005.test.cpp
   - test/3_yukicoder/2602.test.cpp
-  - test/4_aoj/CGL_7_C.test.cpp
+  - test/3_yukicoder/3005.test.cpp
   - test/4_aoj/CGL_7_B.test.cpp
+  - test/4_aoj/CGL_7_C.test.cpp
 documentation_of: geo/triangle_area.hpp
 layout: document
 redirect_from:

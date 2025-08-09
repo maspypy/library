@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -454,25 +454,25 @@ data:
   path: poly/sum_of_rationals.hpp
   requiredBy:
   - seq/sum_of_powers.hpp
-  - poly/sum_of_exp_bx.hpp
-  - poly/product_of_pow_of_linear.hpp
-  - poly/composition_f_ex_minus_1.hpp
-  - poly/composition_f_ex.hpp
-  - poly/composition_f_1_minus_ex.hpp
   - linalg/blackbox/vandermonde.hpp
+  - poly/sum_of_exp_bx.hpp
+  - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/composition_f_ex.hpp
+  - poly/product_of_pow_of_linear.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1575.test.cpp
-  - test/3_yukicoder/1962.test.cpp
-  - test/3_yukicoder/2459.test.cpp
-  - test/3_yukicoder/1145.test.cpp
-  - test/3_yukicoder/1875.test.cpp
-  - test/3_yukicoder/2747.test.cpp
-  - test/1_mytest/vandermonde.test.cpp
-  - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/vandermonde.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/1145.test.cpp
+  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/1875.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/2459.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document
 redirect_from:

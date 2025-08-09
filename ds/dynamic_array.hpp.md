@@ -62,13 +62,13 @@ data:
   isVerificationFile: false
   path: ds/dynamic_array.hpp
   requiredBy:
-  - ds/unionfind/dynamic_unionfind.hpp
   - string/aho_corasick_for_general_trie.hpp
+  - ds/unionfind/dynamic_unionfind.hpp
   timestamp: '2024-09-09 03:53:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/persistent_queue.test.cpp
   - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
+  - test/2_library_checker/data_structure/persistent_queue.test.cpp
 documentation_of: ds/dynamic_array.hpp
 layout: document
 redirect_from:
