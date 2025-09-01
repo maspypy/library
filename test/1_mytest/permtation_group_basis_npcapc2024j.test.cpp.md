@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/permutation_group_basis.hpp
     title: seq/permutation_group_basis.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -337,7 +337,7 @@ data:
   path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   requiredBy: []
   timestamp: '2025-09-01 23:33:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
 layout: document

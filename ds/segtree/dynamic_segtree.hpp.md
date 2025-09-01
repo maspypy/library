@@ -47,10 +47,10 @@ data:
     \ DefaultProd default_prod;\r\n  vc<Node> node;\r\n  static constexpr int NIL\
     \ = 0;\r\n\r\n  Dynamic_SegTree(ll L0_, ll R0_, DefaultProd func = DefaultProd{})\r\
     \n      : L0(L0_), R0(L0_ == R0_ ? R0_ + 1 : R0_), default_prod(std::move(func))\
-    \ {\r\n    reset();\r\n  }\r\n\r\n  void reserve(int n) { node.reserve(n); }\r\
-    \n  void reset() { node.clear(), node.eb(Node{NIL, NIL, MX::unit()}); }\r\n\r\n\
-    \  inline X get_prod(int i, ll l, ll r) {\r\n    if constexpr (kUnitOnly) {\r\n\
-    \      return node[i].x;\r\n    } else {\r\n      return (i == NIL ? default_prod(l,\
+    \ {\r\n    reset();\r\n  }\r\n\r\n  void reserve(int n) { node.reserve(n + 1);\
+    \ }\r\n  void reset() { node.clear(), node.eb(Node{NIL, NIL, MX::unit()}); }\r\
+    \n\r\n  inline X get_prod(int i, ll l, ll r) {\r\n    if constexpr (kUnitOnly)\
+    \ {\r\n      return node[i].x;\r\n    } else {\r\n      return (i == NIL ? default_prod(l,\
     \ r) : node[i].x);\r\n    }\r\n  }\r\n  void update(int i, ll l, ll r) {\r\n \
     \   assert(l + 1 < r);\r\n    ll m = (l + r) / 2;\r\n    int L = node[i].ch[0],\
     \ R = node[i].ch[1];\r\n    node[i].x = MX::op(get_prod(L, l, m), get_prod(R,\
@@ -135,7 +135,7 @@ data:
     \  vc<Node> node;\r\n  static constexpr int NIL = 0;\r\n\r\n  Dynamic_SegTree(ll\
     \ L0_, ll R0_, DefaultProd func = DefaultProd{})\r\n      : L0(L0_), R0(L0_ ==\
     \ R0_ ? R0_ + 1 : R0_), default_prod(std::move(func)) {\r\n    reset();\r\n  }\r\
-    \n\r\n  void reserve(int n) { node.reserve(n); }\r\n  void reset() { node.clear(),\
+    \n\r\n  void reserve(int n) { node.reserve(n + 1); }\r\n  void reset() { node.clear(),\
     \ node.eb(Node{NIL, NIL, MX::unit()}); }\r\n\r\n  inline X get_prod(int i, ll\
     \ l, ll r) {\r\n    if constexpr (kUnitOnly) {\r\n      return node[i].x;\r\n\
     \    } else {\r\n      return (i == NIL ? default_prod(l, r) : node[i].x);\r\n\
@@ -215,7 +215,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_segtree.hpp
   requiredBy: []
-  timestamp: '2025-09-01 19:47:27+09:00'
+  timestamp: '2025-09-02 00:55:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1649.test.cpp
