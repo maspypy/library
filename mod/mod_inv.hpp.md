@@ -331,6 +331,9 @@ data:
     title: test/2_library_checker/convolution/convolution_huge.test___.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/31bit_modint.test.cpp
+    title: test/1_mytest/31bit_modint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
     title: test/1_mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1171,6 +1174,7 @@ data:
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/geometric_sequence_sum_formula.test.cpp
   - test/1_mytest/count_bipartite.test.cpp
+  - test/1_mytest/31bit_modint.test.cpp
   - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/1_mytest/count_labeled_eulerian.test.cpp
