@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: setfunc/online/online_subset_mobius.hpp
+    title: setfunc/online/online_subset_mobius.hpp
+  - icon: ':warning:'
+    path: setfunc/online/online_subset_zeta.hpp
+    title: setfunc/online/online_subset_zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -8,31 +14,51 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n    ~~~~~~~~~~~~~~^^^^^^\n  File\
-    \ \"/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: setfunc/online/oniline_subset_zeta.hpp:\
-    \ line -1: no such header\n"
-  code: "#include \"setfunc/online/oniline_subset_zeta.hpp\"\n#include \"setfunc/online/oniline_subset_mobius.hpp\"\
+  bundledCode: "#line 1 \"setfunc/online/online_subset_zeta.hpp\"\n/*\nsegtree \u3092\
+    \u8003\u3048\u308B\n\u73FE\u5728\u306E\u30DD\u30A4\u30F3\u30BF\u306E\u4F4D\u7F6E\
+    \u304C\u3042\u308B\n\u3082\u3046\u5168\u90E8\u306E\u5024\u304C\u8AAD\u307E\u308C\
+    \u305F subtree \u3067\u306F\u30BC\u30FC\u30BF\u3055\u308C\u305F\u72B6\u614B\u306B\
+    \u3057\u3066\u304A\u304F\n*/\ntemplate <typename T>\nstruct Online_Subset_Zeta\
+    \ {\n  int n;\n  int p = 0;\n  vc<T> A;\n  Online_Subset_Zeta(int LOG) : n(LOG),\
+    \ A(1 << n) {}\n\n  // set a[i], return zeta(a)[i]\n  T set(int i, T a) {\n  \
+    \  assert(p == i);\n    T ans = assume(i, 0) + a;\n    A[p++] = a;\n    int K\
+    \ = lowbit(p);\n    for (int k = 0; k < K; ++k)\n      for (int j = p - (1 <<\
+    \ k); j < p; ++j) A[j] += A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume\
+    \ a[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int i, T ai)\
+    \ {\n    assert(p == i);\n    T ans = ai;\n    // \u306A\u3093\u3068\u3053\u308C\
+    \u3060\u3051\uFF1F\n    for (int j: all_bit<u32>(i)) ans += A[i - (1 << j)];\n\
+    \    return ans;\n  }\n};\n#line 1 \"setfunc/online/online_subset_mobius.hpp\"\
+    \n\ntemplate <typename T>\nstruct Online_Subset_Mobius {\n  int n;\n  int p =\
+    \ 0;\n  vc<T> A;\n  Online_Subset_Mobius(int LOG) : n(LOG), A(1 << n) {}\n\n \
+    \ // set a[i], return zeta(a)[i]\n  T set(int i, T a) {\n    assert(p == i);\n\
+    \    T ans = assume(i, 0) + a;\n    A[p++] = a;\n    int K = lowbit(p);\n    for\
+    \ (int k = 0; k < K; ++k)\n      for (int j = p - (1 << k); j < p; ++j) A[j] -=\
+    \ A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume a[i], return zeta(a)[i].\
+    \ not increment the pointer.\n  T assume(int i, T ai) {\n    assert(p == i);\n\
+    \    T ans = ai;\n    for (int j: all_bit<u32>(i)) ans -= A[i - (1 << j)];\n \
+    \   return ans;\n  }\n};\n#line 3 \"setfunc/online/online_or_convolution.hpp\"\
     \n\ntemplate <typename T>\nstruct Online_Or_Convolution {\n  Online_Subset_Zeta<T>\
     \ X1, X2;\n  Online_Subset_Mobius<T> Y;\n  Online_Or_Convolution(int LOG) : X1(LOG),\
     \ X2(LOG), Y(LOG) {}\n  // set a[i] and b[i], return conv(a,b)[i]\n  T set(int\
     \ i, T ai, T bi) { return Y.set(i, X1.set(i, ai) * X2.set(i, bi)); }\n  // assume\
     \ a[i],b[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int i,\
-    \ T ai, T bi) { return Y.assume(i, X1.assume(i, ai) * X2.assume(i, bi)); }\n};\n"
-  dependsOn: []
+    \ T ai, T bi) {\n    return Y.assume(i, X1.assume(i, ai) * X2.assume(i, bi));\n\
+    \  }\n};\n"
+  code: "#include \"setfunc/online/online_subset_zeta.hpp\"\n#include \"setfunc/online/online_subset_mobius.hpp\"\
+    \n\ntemplate <typename T>\nstruct Online_Or_Convolution {\n  Online_Subset_Zeta<T>\
+    \ X1, X2;\n  Online_Subset_Mobius<T> Y;\n  Online_Or_Convolution(int LOG) : X1(LOG),\
+    \ X2(LOG), Y(LOG) {}\n  // set a[i] and b[i], return conv(a,b)[i]\n  T set(int\
+    \ i, T ai, T bi) { return Y.set(i, X1.set(i, ai) * X2.set(i, bi)); }\n  // assume\
+    \ a[i],b[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int i,\
+    \ T ai, T bi) {\n    return Y.assume(i, X1.assume(i, ai) * X2.assume(i, bi));\n\
+    \  }\n};\n"
+  dependsOn:
+  - setfunc/online/online_subset_zeta.hpp
+  - setfunc/online/online_subset_mobius.hpp
   isVerificationFile: false
   path: setfunc/online/online_or_convolution.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2025-09-02 08:16:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/online/online_or_convolution.hpp

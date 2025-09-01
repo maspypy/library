@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: setfunc/online/online_or_convolution.hpp
+    title: setfunc/online/online_or_convolution.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -29,7 +32,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: setfunc/online/online_subset_mobius.hpp
-  requiredBy: []
+  requiredBy:
+  - setfunc/online/online_or_convolution.hpp
   timestamp: '2025-05-25 23:45:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

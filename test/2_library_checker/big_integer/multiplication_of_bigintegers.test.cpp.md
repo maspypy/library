@@ -39,9 +39,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multiplication_of_big_integers
@@ -608,12 +608,12 @@ data:
     \ : dat) ans += ::digit_sum(x);  // global \u306B\u3042\u308B digit_sum\n    return\
     \ ans;\n  }\n};\n#line 6 \"test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  auto get = [&]() -> B {\n    STR(S);\n\
-    \    return B(S);\n  };\n  B ANS = get() + get();\n  print(ANS.to_string());\n\
+    \    return B(S);\n  };\n  B ANS = get() * get();\n  print(ANS.to_string());\n\
     }\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multiplication_of_big_integers\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  auto get = [&]() -> B {\n    STR(S);\n\
-    \    return B(S);\n  };\n  B ANS = get() + get();\n  print(ANS.to_string());\n\
+    \    return B(S);\n  };\n  B ANS = get() * get();\n  print(ANS.to_string());\n\
     }\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -631,8 +631,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 07:30:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-02 08:16:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
 layout: document
