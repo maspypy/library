@@ -33,7 +33,7 @@ void read(pair<T, S> &p) {
 }
 template <class T>
 void read(vector<T> &a) {
-  for (auto &i: a) read(i);
+  for (auto &i : a) read(i);
 }
 template <class T>
 void read(T &a) {
@@ -41,7 +41,7 @@ void read(T &a) {
 }
 void IN() {}
 template <class Head, class... Tail>
-void IN(Head &head, Tail &... tail) {
+void IN(Head &head, Tail &...tail) {
   read(head);
   IN(tail...);
 }
@@ -63,8 +63,8 @@ ostream &operator<<(ostream &os, const vector<T> &A) {
 
 // chatgpt helped me
 class CoutInitializer {
-public:
-  CoutInitializer() { std::cout << std::fixed << std::setprecision(15); }
+ public:
+  CoutInitializer() { std::cout << std::defaultfloat << std::setprecision(15); }
 };
 static CoutInitializer cout_initializer;
 
@@ -74,21 +74,44 @@ void print() {
 }
 
 template <class Head, class... Tail>
-void print(Head &&head, Tail &&... tail) {
+void print(Head &&head, Tail &&...tail) {
   cout << head;
   if (sizeof...(Tail)) cout << " ";
   print(forward<Tail>(tail)...);
 }
 
 #if defined(LOCAL)
-#define SHOW(...) SHOW_IMPL(__VA_ARGS__, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)
-#define SHOW_IMPL(_1, _2, _3, _4, _5, _6, NAME, ...) NAME
-#define SHOW1(x) print(#x, "=", (x))
-#define SHOW2(x, y) print(#x, "=", (x), #y, "=", (y))
-#define SHOW3(x, y, z) print(#x, "=", (x), #y, "=", (y), #z, "=", (z))
-#define SHOW4(x, y, z, w) print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w))
-#define SHOW5(x, y, z, w, v) print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", (v))
-#define SHOW6(x, y, z, w, v, u) print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", (v), #u, "=", (u))
+template <class... Ts>
+inline void _show_pack(const char *func, int line, const char *names,
+                       Ts &&...args) {
+  // [DEBUG] solve:123 のように先頭に出す
+  cout << "[DEBUG " << func << ':' << line << "] ";
+
+  const char *p = names;
+  bool first = true;
+
+  auto next_token = [&]() -> std::pair<const char *, const char *> {
+    while (*p == ' ' || *p == ',') ++p;
+    const char *l = p;
+    while (*p && *p != ',') ++p;
+    const char *r = p;
+    return {l, r};
+  };
+
+  (
+      [&] {
+        auto [l, r] = next_token();
+        while (r > l && r[-1] == ' ') --r;
+        if (!first) cout << ' ';
+        first = false;
+        std::string name(l, r);
+        cout << name << " = " << args;
+      }(),
+      ...);
+  print();
+}
+
+#define SHOW(...) _show_pack(__func__, __LINE__, #__VA_ARGS__, __VA_ARGS__)
 #else
 #define SHOW(...)
 #endif

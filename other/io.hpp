@@ -247,6 +247,7 @@ void __attribute__((destructor)) _d() { flush(); }
 using fastio::flush;
 using fastio::print;
 using fastio::read;
+
 #if defined(LOCAL)
 template <class... Ts>
 inline void _show_pack(const char *func, int line, const char *names,
@@ -284,8 +285,7 @@ inline void _show_pack(const char *func, int line, const char *names,
         wt(args);
       }(),
       ...);
-
-  print();  // 改行
+  print();
 }
 
 #define SHOW(...) _show_pack(__func__, __LINE__, #__VA_ARGS__, __VA_ARGS__)
