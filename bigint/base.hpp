@@ -1,13 +1,11 @@
 #include "poly/convolution.hpp"
 #include "nt/digit_sum.hpp"
 
-// 10^9 ずつ区切って
+// 15桁の4素数畳み込みにしたけど高速にならなかった.
+// https://judge.yosupo.jp/submission/311757
 struct BigInteger {
-  inline static constexpr int TEN[] = {1,         10,        100,     1000,
-                                       10000,     100000,    1000000, 10000000,
-                                       100000000, 1000000000};
   static constexpr int LOG = 9;
-  static constexpr int MOD = TEN[LOG];
+  static constexpr int MOD = TEN_v<LOG>;
   using bint = BigInteger;
   int sgn;
   vc<int> dat;
@@ -42,7 +40,7 @@ struct BigInteger {
     int n = len(s);
     int m = ceil(n, LOG);
     dat.assign(m, 0);
-    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }
+    FOR(i, n) { dat[i / LOG] += TEN(i % LOG) * (s[i] - '0'); }
   }
   bint &operator=(const bint &p) {
     sgn = p.sgn, dat = p.dat;
@@ -302,12 +300,3 @@ struct BigInteger {
     return ans;
   }
 };
-
-#ifdef FASTIO
-void wt(BigInteger x) { fastio::wt(x.to_string()); }
-void rd(BigInteger &x) {
-  string s;
-  fastio::rd(s);
-  x = BigInteger(s);
-}
-#endif

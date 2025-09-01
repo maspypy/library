@@ -24,7 +24,7 @@ struct Dynamic_SegTree {
     reset();
   }
 
-  void reserve(int n) { node.reserve(n); }
+  void reserve(int n) { node.reserve(n + 1); }
   void reset() { node.clear(), node.eb(Node{NIL, NIL, MX::unit()}); }
 
   inline X get_prod(int i, ll l, ll r) {

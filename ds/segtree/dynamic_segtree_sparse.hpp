@@ -1,4 +1,3 @@
-#pragma once
 
 // 常にほとんどの要素が unit であることが保証されるような動的セグ木
 // したがって、default_prod の類は持たせられず、acted monoid も一般には扱えない
@@ -9,219 +8,207 @@ struct Dynamic_SegTree_Sparse {
   using X = typename MX::value_type;
 
   struct Node {
+    int ch[2];
     ll idx;
-    Node *l, *r;
     X prod, x;
   };
-  const int NODES;
   const ll L0, R0;
-  Node *pool;
-  int pid;
-  using np = Node *;
-  vc<np> FREE;
+  static constexpr int NIL = 0;
+  vc<Node> node;
+  vc<int> FREE;
 
-  Dynamic_SegTree_Sparse(int NODES, ll L0, ll R0) : NODES(NODES), L0(L0), R0(R0), pid(0) { pool = new Node[NODES]; }
-  ~Dynamic_SegTree_Sparse() { delete[] pool; }
+  Dynamic_SegTree_Sparse(ll L0, ll R0) : L0(L0), R0(R0) { reset(); }
+  void reserve(int n) { node.reserve(n + 1); }
+  void reset() {
+    node.clear(), FREE.clear();
+    node.eb(Node{{NIL, NIL}, 0, MX::unit(), MX::unit()});  // NIL
+  }
 
   // 木 dp のマージのときなどに使用すると MLE 回避できることがある
   // https://codeforces.com/problemset/problem/671/D
-  void free_subtree(np c) {
-    auto dfs = [&](auto &dfs, np c) -> void {
-      if (c->l) dfs(dfs, c->l);
-      if (c->r) dfs(dfs, c->r);
+  void free_subtree(int c) {
+    assert(c != NIL);
+    auto dfs = [&](auto &dfs, int c) -> void {
+      if (c == NIL) return;
+      dfs(dfs, node[c].ch[0]), dfs(dfs, node[c].ch[1]);
       FREE.eb(c);
     };
     dfs(dfs, c);
   }
 
-  np new_root() { return nullptr; }
+  inline int new_root() { return NIL; }
 
-  np new_node(ll idx, const X x) {
+  inline int new_node(ll idx, const X x) {
     if (!FREE.empty()) {
-      np c = POP(FREE);
-      c->idx = idx, c->l = c->r = nullptr;
-      c->prod = c->x = x;
-      return c;
+      int id = POP(FREE);
+      node[id].ch[0] = node[id].ch[1] = NIL;
+      node[id].idx = idx, node[id].x = x, node[id].prod = x;
+      return id;
     }
-    assert(pid < NODES);
-    pool[pid].idx = idx;
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].x = pool[pid].prod = x;
-    return &(pool[pid++]);
+    node.eb(Node{{NIL, NIL}, idx, x, x});
+    return int(node.size()) - 1;
   }
+  inline Node operator[](int i) const { return node[i]; }
 
-  X prod(np root, ll l, ll r) {
+  X prod(int root, ll l, ll r) {
     assert(L0 <= l && l <= r && r <= R0);
-    if (l == r) return MX::unit();
+    if (root == NIL || l == r) return MX::unit();
     X x = MX::unit();
     prod_rec(root, L0, R0, l, r, x);
     return x;
   }
 
-  X prod_all(np root) { return prod(root, L0, R0); }
+  X prod_all(int root) { return (root == NIL ? MX::unit() : node[root].prod); }
 
-  np set(np root, ll i, const X &x) {
+  int set(int root, ll i, const X &x) {
     assert(L0 <= i && i < R0);
     return set_rec(root, L0, R0, i, x);
   }
 
-  np multiply(np root, ll i, const X &x) {
+  int multiply(int root, ll i, const X &x) {
     assert(L0 <= i && i < R0);
     return multiply_rec(root, L0, R0, i, x);
   }
 
   template <typename F>
-  ll max_right(np root, F check, ll L) {
+  ll max_right(int root, F check, ll L) {
     assert(L0 <= L && L <= R0 && check(MX::unit()));
     X x = MX::unit();
     return max_right_rec(root, check, L0, R0, L, x);
   }
 
   template <typename F>
-  ll min_left(np root, F check, ll R) {
+  ll min_left(int root, F check, ll R) {
     assert(L0 <= R && R <= R0 && check(MX::unit()));
     X x = MX::unit();
     return min_left_rec(root, check, L0, R0, R, x);
   }
 
-  void reset() {
-    pid = 0;
-    FREE.clear();
-  }
-
-  vc<pair<ll, X>> get_all(np root) {
+  vc<pair<ll, X>> get_all(int root) {
     vc<pair<ll, X>> res;
-    auto dfs = [&](auto &dfs, np c) -> void {
-      if (!c) return;
-      dfs(dfs, c->l);
-      res.eb(c->idx, c->x);
-      dfs(dfs, c->r);
+    auto dfs = [&](auto &dfs, int c) -> void {
+      if (c == NIL) return;
+      dfs(dfs, node[c].ch[0]);
+      res.eb(node[c].idx, node[c].x);
+      dfs(dfs, node[c].ch[1]);
     };
     dfs(dfs, root);
     return res;
   }
 
-  X get(np root, ll idx) {
-    auto dfs = [&](auto &dfs, np c) -> X {
-      if (!c) return Monoid::unit();
-      if (idx == c->idx) return c->x;
-      if (idx < (c->idx)) return dfs(dfs, c->l);
-      return dfs(dfs, c->r);
+  X get(int root, ll idx) {
+    auto dfs = [&](auto &dfs, int c) -> X {
+      if (c == NIL) return MX::unit();
+      if (idx == node[c].idx) return node[c].x;
+      return dfs(dfs, node[c].ch[idx > node[c].idx]);
     };
     return dfs(dfs, root);
   }
 
-private:
-  void update(np c) {
-    c->prod = c->x;
-    if (c->l) c->prod = MX::op(c->l->prod, c->prod);
-    if (c->r) c->prod = MX::op(c->prod, c->r->prod);
+ private:
+  inline void update(int c) {
+    node[c].prod = node[c].x;
+    node[c].prod = MX::op(node[node[c].ch[0]].prod, node[c].prod);
+    node[c].prod = MX::op(node[c].prod, node[node[c].ch[1]].prod);
   }
 
-  np copy_node(np c) {
-    if (!c || !PERSISTENT) return c;
-    assert(pid < NODES);
-    pool[pid].idx = c->idx;
-    pool[pid].l = c->l;
-    pool[pid].r = c->r;
-    pool[pid].x = c->x;
-    pool[pid].prod = c->prod;
-    return &(pool[pid++]);
-  }
-
-  np set_rec(np c, ll l, ll r, ll i, X x) {
-    if (!c) {
-      c = new_node(i, x);
+  inline int copy_node(int c) {
+    if constexpr (!PERSISTENT)
       return c;
+    else {
+      if (c == NIL) return c;
+      node.eb(node[c]);
+      return int(node.size()) - 1;
     }
+  }
+
+  int set_rec(int c, ll l, ll r, ll i, X x) {
+    if (c == NIL) return new_node(i, x);
     c = copy_node(c);
-    if (c->idx == i) {
-      c->x = x;
+    if (node[c].idx == i) {
+      node[c].x = x;
       update(c);
       return c;
     }
     ll m = (l + r) / 2;
     if (i < m) {
-      if (c->idx < i) swap(c->idx, i), swap(c->x, x);
-      c->l = set_rec(c->l, l, m, i, x);
+      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x, x);
+      node[c].ch[0] = set_rec(node[c].ch[0], l, m, i, x);
     }
     if (m <= i) {
-      if (i < c->idx) swap(c->idx, i), swap(c->x, x);
-      c->r = set_rec(c->r, m, r, i, x);
+      if (i < node[c].idx) swap(node[c].idx, i), swap(node[c].x, x);
+      node[c].ch[1] = set_rec(node[c].ch[1], m, r, i, x);
     }
     update(c);
     return c;
   }
 
-  np multiply_rec(np c, ll l, ll r, ll i, X x) {
-    if (!c) {
-      c = new_node(i, x);
-      return c;
-    }
+  int multiply_rec(int c, ll l, ll r, ll i, X x) {
+    if (c == NIL) return new_node(i, x);
     c = copy_node(c);
-    if (c->idx == i) {
-      c->x = MX::op(c->x, x);
+    if (node[c].idx == i) {
+      node[c].x = MX::op(node[c].x, x);
       update(c);
       return c;
     }
     ll m = (l + r) / 2;
     if (i < m) {
-      if (c->idx < i) swap(c->idx, i), swap(c->x, x);
-      c->l = multiply_rec(c->l, l, m, i, x);
+      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x, x);
+      node[c].ch[0] = multiply_rec(node[c].ch[0], l, m, i, x);
     }
     if (m <= i) {
-      if (i < c->idx) swap(c->idx, i), swap(c->x, x);
-      c->r = multiply_rec(c->r, m, r, i, x);
+      if (i < node[c].idx) swap(node[c].idx, i), swap(node[c].x, x);
+      node[c].ch[1] = multiply_rec(node[c].ch[1], m, r, i, x);
     }
     update(c);
     return c;
   }
 
-  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x) {
+  void prod_rec(int c, ll l, ll r, ll ql, ll qr, X &x) {
     chmax(ql, l);
     chmin(qr, r);
-    if (ql >= qr || !c) return;
+    if (ql >= qr || c == NIL) return;
     if (l == ql && r == qr) {
-      x = MX::op(x, c->prod);
+      x = MX::op(x, node[c].prod);
       return;
     }
     ll m = (l + r) / 2;
-    prod_rec(c->l, l, m, ql, qr, x);
-    if (ql <= (c->idx) && (c->idx) < qr) x = MX::op(x, c->x);
-    prod_rec(c->r, m, r, ql, qr, x);
+    prod_rec(node[c].ch[0], l, m, ql, qr, x);
+    if (ql <= (node[c].idx) && (node[c].idx) < qr) x = MX::op(x, node[c].x);
+    prod_rec(node[c].ch[1], m, r, ql, qr, x);
   }
 
   template <typename F>
-  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {
-    if (!c || r <= ql) return R0;
-    if (check(MX::op(x, c->prod))) {
-      x = MX::op(x, c->prod);
+  ll max_right_rec(int c, const F &check, ll l, ll r, ll ql, X &x) {
+    if (c == NIL || r <= ql) return R0;
+    if (check(MX::op(x, node[c].prod))) {
+      x = MX::op(x, node[c].prod);
       return R0;
     }
     ll m = (l + r) / 2;
-    ll k = max_right_rec(c->l, check, l, m, ql, x);
+    ll k = max_right_rec(node[c].ch[0], check, l, m, ql, x);
     if (k != R0) return k;
-    if (ql <= (c->idx)) {
-      x = MX::op(x, c->x);
-      if (!check(x)) return c->idx;
+    if (ql <= node[c].idx) {
+      x = MX::op(x, node[c].x);
+      if (!check(x)) return node[c].idx;
     }
-    return max_right_rec(c->r, check, m, r, ql, x);
+    return max_right_rec(node[c].ch[1], check, m, r, ql, x);
   }
 
   template <typename F>
-  ll min_left_rec(np c, const F &check, ll l, ll r, ll qr, X &x) {
-    if (!c || qr <= l) return L0;
-    if (check(MX::op(c->prod, x))) {
-      x = MX::op(c->prod, x);
+  ll min_left_rec(int c, const F &check, ll l, ll r, ll qr, X &x) {
+    if (c == NIL || qr <= l) return L0;
+    if (check(MX::op(node[c].prod, x))) {
+      x = MX::op(node[c].prod, x);
       return L0;
     }
     ll m = (l + r) / 2;
-    ll k = min_left_rec(c->r, check, m, r, qr, x);
+    ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);
     if (k != L0) return k;
-    if (c->idx < qr) {
-      x = MX::op(c->x, x);
-      if (!check(x)) return c->idx + 1;
+    if (node[c].idx < qr) {
+      x = MX::op(node[c].x, x);
+      if (!check(x)) return node[c].idx + 1;
     }
-    return min_left_rec(c->l, check, l, m, qr, x);
+    return min_left_rec(node[c].ch[0], check, l, m, qr, x);
   }
 };
