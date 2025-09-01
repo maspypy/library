@@ -1,5 +1,4 @@
 #define FASTIO
-#include <unistd.h>
 
 // https://judge.yosupo.jp/submission/21623
 namespace fastio {
@@ -24,7 +23,7 @@ struct Pre {
 } constexpr pre;
 
 inline void load() {
-  memcpy(ibuf, ibuf + pil, pir - pil);
+  memmove(ibuf, ibuf + pil, pir - pil);
   pir = pir - pil + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);
   pil = 0;
   if (pir < SZ) ibuf[pir++] = '\n';
@@ -67,38 +66,42 @@ template <typename T>
 void rd_integer(T &x) {
   if (pil + 100 > pir) load();
   char c;
-  do
-    c = ibuf[pil++];
+  do c = ibuf[pil++];
   while (c < '-');
   bool minus = 0;
   if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
-    if (c == '-') { minus = 1, c = ibuf[pil++]; }
+    if (c == '-') {
+      minus = 1, c = ibuf[pil++];
+    }
   }
   x = 0;
-  while ('0' <= c) { x = x * 10 + (c & 15), c = ibuf[pil++]; }
+  while ('0' <= c) {
+    x = x * 10 + (c & 15), c = ibuf[pil++];
+  }
   if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
     if (minus) x = -x;
   }
 }
 
-void rd(int &x) { rd_integer(x); }
-void rd(ll &x) { rd_integer(x); }
-void rd(i128 &x) { rd_integer(x); }
-void rd(u32 &x) { rd_integer(x); }
-void rd(u64 &x) { rd_integer(x); }
-void rd(u128 &x) { rd_integer(x); }
-void rd(double &x) { rd_real(x); }
-void rd(long double &x) { rd_real(x); }
-void rd(f128 &x) { rd_real(x); }
+template <class T>
+enable_if_t<is_integral_v<T> || is_same_v<T, i128> || is_same_v<T, u128>> rd(
+    T &x) {
+  rd_integer(x);
+}
+
+template <class T>
+enable_if_t<is_floating_point_v<T> || is_same_v<T, f128>> rd(T &x) {
+  rd_real(x);
+}
 
 template <class T, class U>
 void rd(pair<T, U> &p) {
-  return rd(p.first), rd(p.second);
+  rd(p.first), rd(p.second);
 }
 template <size_t N = 0, typename T>
 void rd_tuple(T &t) {
-  if constexpr (N < std::tuple_size<T>::value) {
-    auto &x = std::get<N>(t);
+  if constexpr (N < tuple_size<T>::value) {
+    auto &x = get<N>(t);
     rd(x);
     rd_tuple<N + 1>(t);
   }
@@ -110,35 +113,44 @@ void rd(tuple<T...> &tpl) {
 
 template <size_t N = 0, typename T>
 void rd(array<T, N> &x) {
-  for (auto &d: x) rd(d);
+  for (auto &d : x) rd(d);
 }
 template <class T>
 void rd(vc<T> &x) {
-  for (auto &d: x) rd(d);
+  for (auto &d : x) rd(d);
 }
 
 void read() {}
 template <class H, class... T>
-void read(H &h, T &... t) {
+void read(H &h, T &...t) {
   rd(h), read(t...);
+}
+
+// 先に用意（既出なら不要）
+inline void wt_range(const char *s, size_t n) {
+  size_t i = 0;
+  while (i < n) {
+    if (por == SZ) flush();
+    size_t chunk = min(n - i, (size_t)(SZ - por));
+    memcpy(obuf + por, s + i, chunk);
+    por += chunk;
+    i += chunk;
+  }
 }
 
 void wt(const char c) {
   if (por == SZ) flush();
   obuf[por++] = c;
 }
-void wt(const string s) {
-  for (char c: s) wt(c);
-}
-void wt(const char *s) {
-  size_t len = strlen(s);
-  for (size_t i = 0; i < len; i++) wt(s[i]);
-}
+void wt(const char *s) { wt_range(s, strlen(s)); }
+void wt(const string &s) { wt_range(s.data(), s.size()); }
 
 template <typename T>
 void wt_integer(T x) {
   if (por > SZ - 100) flush();
-  if (x < 0) { obuf[por++] = '-', x = -x; }
+  if (x < 0) {
+    obuf[por++] = '-', x = -x;
+  }
   int outi;
   for (outi = 96; x >= 10000; outi -= 4) {
     memcpy(out + outi, pre.num[x % 10000], 4);
@@ -162,44 +174,50 @@ void wt_integer(T x) {
 }
 
 template <typename T>
-void wt_real(T x) {
-  ostringstream oss;
-  oss << fixed << setprecision(15) << double(x);
-  string s = oss.str();
-  wt(s);
+inline void wt_real(T x) {
+  char buf[64];
+  // 有効数字 15 桁、通常/指数を自動選択（printf("%.15g") 相当）
+  int n = std::snprintf(buf, sizeof(buf), "%.15g", (double)x);
+
+  // （任意）-0 を 0 に正規化
+  if (n == 2 && buf[0] == '-' && buf[1] == '0') {
+    buf[0] = '0';
+    n = 1;
+  }
+  wt_range(buf, (size_t)n);
 }
 
-void wt(int x) { wt_integer(x); }
-void wt(ll x) { wt_integer(x); }
-void wt(i128 x) { wt_integer(x); }
-void wt(u32 x) { wt_integer(x); }
-void wt(u64 x) { wt_integer(x); }
-void wt(u128 x) { wt_integer(x); }
-void wt(double x) { wt_real(x); }
-void wt(long double x) { wt_real(x); }
-void wt(f128 x) { wt_real(x); }
+template <class T>
+enable_if_t<is_integral_v<T> || is_same_v<T, i128> || is_same_v<T, u128>> wt(
+    T x) {
+  wt_integer(x);
+}
+
+template <class T>
+enable_if_t<is_floating_point_v<T> || is_same_v<T, f128>> wt(T x) {
+  wt_real(x);
+}
 
 template <class T, class U>
-void wt(const pair<T, U> val) {
+void wt(const pair<T, U> &val) {
   wt(val.first);
   wt(' ');
   wt(val.second);
 }
 template <size_t N = 0, typename T>
-void wt_tuple(const T t) {
-  if constexpr (N < std::tuple_size<T>::value) {
-    if constexpr (N > 0) { wt(' '); }
-    const auto x = std::get<N>(t);
-    wt(x);
+void wt_tuple(const T &t) {
+  if constexpr (N < tuple_size<T>::value) {
+    if constexpr (N > 0) wt(' ');
+    wt(get<N>(t));
     wt_tuple<N + 1>(t);
   }
 }
 template <class... T>
-void wt(tuple<T...> tpl) {
+void wt(const tuple<T...> &tpl) {
   wt_tuple(tpl);
 }
 template <class T, size_t S>
-void wt(const array<T, S> val) {
+void wt(const array<T, S> &val) {
   auto n = val.size();
   for (size_t i = 0; i < n; i++) {
     if (i) wt(' ');
@@ -207,7 +225,7 @@ void wt(const array<T, S> val) {
   }
 }
 template <class T>
-void wt(const vector<T> val) {
+void wt(const vector<T> &val) {
   auto n = val.size();
   for (size_t i = 0; i < n; i++) {
     if (i) wt(' ');
@@ -217,7 +235,7 @@ void wt(const vector<T> val) {
 
 void print() { wt('\n'); }
 template <class Head, class... Tail>
-void print(Head &&head, Tail &&... tail) {
+void print(Head &&head, Tail &&...tail) {
   wt(head);
   if (sizeof...(Tail)) wt(' ');
   print(forward<Tail>(tail)...);
@@ -225,20 +243,27 @@ void print(Head &&head, Tail &&... tail) {
 
 // gcc expansion. called automaticall after main.
 void __attribute__((destructor)) _d() { flush(); }
-} // namespace fastio
-using fastio::read;
-using fastio::print;
+}  // namespace fastio
 using fastio::flush;
+using fastio::print;
+using fastio::read;
 
 #if defined(LOCAL)
-#define SHOW(...) SHOW_IMPL(__VA_ARGS__, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)
+#define SHOW(...) \
+  SHOW_IMPL(__VA_ARGS__, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)
 #define SHOW_IMPL(_1, _2, _3, _4, _5, _6, NAME, ...) NAME
 #define SHOW1(x) print(#x, "=", (x)), flush()
 #define SHOW2(x, y) print(#x, "=", (x), #y, "=", (y)), flush()
 #define SHOW3(x, y, z) print(#x, "=", (x), #y, "=", (y), #z, "=", (z)), flush()
-#define SHOW4(x, y, z, w) print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w)), flush()
-#define SHOW5(x, y, z, w, v) print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", (v)), flush()
-#define SHOW6(x, y, z, w, v, u) print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", (v), #u, "=", (u)), flush()
+#define SHOW4(x, y, z, w) \
+  print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w)), flush()
+#define SHOW5(x, y, z, w, v)                                                   \
+  print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", (v)), \
+      flush()
+#define SHOW6(x, y, z, w, v, u)                                               \
+  print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", (v), \
+        #u, "=", (u)),                                                        \
+      flush()
 #else
 #define SHOW(...)
 #endif
