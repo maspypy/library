@@ -306,23 +306,25 @@ data:
     \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
     \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
-    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"string/count_subseq.hpp\"\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
-    // \u884C\u5217\u306B\u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\
-    \u3092\u6301\u3064\u3068\u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\
-    \u3068\u304C\u3042\u308B.\n// https://yukicoder.me/problems/no/2762\ntemplate\
-    \ <typename mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int,\
-    \ mint> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n    auto it = dp.find(x);\n\
-    \    if (it == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n\
-    \      mint d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n\
-    \  }\n  return sm;\n}\n#line 6 \"test/2_library_checker/string/number_of_subsequences.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
-    \ mint ANS = count_subseq<mint>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}\n"
+    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
+    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 1 \"string/count_subseq.hpp\"\n//\
+    \ https://noshi91.hatenablog.com/entry/2023/02/26/135340\n// \u884C\u5217\u306B\
+    \u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\u3092\u6301\u3064\u3068\
+    \u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\u3068\u304C\u3042\u308B\
+    .\n// https://yukicoder.me/problems/no/2762\ntemplate <typename mint, typename\
+    \ STRING>\nmint count_subseq(STRING& S) {\n  map<int, mint> dp;\n  mint sm = 1;\n\
+    \  for (auto&& x: S) {\n    auto it = dp.find(x);\n    if (it == dp.end()) {\n\
+    \      dp[x] = sm;\n      sm += sm;\n    } else {\n      mint d = (*it).se;\n\
+    \      (*it).se = sm;\n      sm += sm - d;\n    }\n  }\n  return sm;\n}\n#line\
+    \ 6 \"test/2_library_checker/string/number_of_subsequences.test.cpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  mint ANS\
+    \ = count_subseq<mint>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"string/count_subseq.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
@@ -337,7 +339,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2025-09-01 21:30:48+09:00'
+  timestamp: '2025-09-01 23:33:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/number_of_subsequences.test.cpp

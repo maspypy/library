@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':question:'
@@ -335,26 +335,28 @@ data:
     \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
     \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
-    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"ds/randomized_bst/rbst_acted_monoid.hpp\"\ntemplate <typename ActedMonoid,\
-    \ bool PERSISTENT>\nstruct RBST_ActedMonoid {\n  using Monoid_X = typename ActedMonoid::Monoid_X;\n\
-    \  using Monoid_A = typename ActedMonoid::Monoid_A;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
-    \    X x, prod; // lazy, rev \u53CD\u6620\u6E08\n    A lazy;\n    u32 size;\n\
-    \    bool rev;\n  };\n\n  Node *pool;\n  const int NODES;\n  int pid;\n  using\
-    \ np = Node *;\n\n  RBST_ActedMonoid(int NODES) : NODES(NODES), pid(0) { pool\
-    \ = new Node[NODES]; }\n  ~RBST_ActedMonoid() { delete[] pool; }\n\n  void reset()\
-    \ { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r =\
-    \ nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].lazy\
-    \ = Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return\
-    \ &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto\
-    \ &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r\
-    \ == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root\
-    \ = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
+    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
+    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 1 \"ds/randomized_bst/rbst_acted_monoid.hpp\"\
+    \ntemplate <typename ActedMonoid, bool PERSISTENT>\nstruct RBST_ActedMonoid {\n\
+    \  using Monoid_X = typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename\
+    \ ActedMonoid::Monoid_A;\n  using X = typename Monoid_X::value_type;\n  using\
+    \ A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n  \
+    \  X x, prod; // lazy, rev \u53CD\u6620\u6E08\n    A lazy;\n    u32 size;\n  \
+    \  bool rev;\n  };\n\n  Node *pool;\n  const int NODES;\n  int pid;\n  using np\
+    \ = Node *;\n\n  RBST_ActedMonoid(int NODES) : NODES(NODES), pid(0) { pool = new\
+    \ Node[NODES]; }\n  ~RBST_ActedMonoid() { delete[] pool; }\n\n  void reset() {\
+    \ pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].lazy = Monoid_A::unit();\n\
+    \    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
+    \  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
+    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
+    \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
+    \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
     \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
     \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
     \ {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l = n->l, pool[pid].r\
@@ -508,7 +510,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   requiredBy: []
-  timestamp: '2025-09-01 21:30:48+09:00'
+  timestamp: '2025-09-01 23:33:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp

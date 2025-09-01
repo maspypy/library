@@ -201,40 +201,41 @@ data:
     \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
     \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
-    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\nvc<mint> all_inverse(vc<mint>&\
-    \ X) {\n  for (auto&& x: X) assert(x != mint(0));\n  int N = len(X);\n  vc<mint>\
-    \ res(N + 1);\n  res[0] = mint(1);\n  FOR(i, N) res[i + 1] = res[i] * X[i];\n\
-    \  mint t = res.back().inverse();\n  res.pop_back();\n  FOR_R(i, N) {\n    res[i]\
-    \ *= t;\n    t *= X[i];\n  }\n  return res;\n}\n#line 3 \"mod/q_analogue.hpp\"\
-    \n\ntemplate <typename mint>\nstruct q_Analogue {\n  const mint q;\n  const int\
-    \ LIM;\n  int D;\n  vc<mint> factorial, ifactorial;\n\n  q_Analogue(mint q, int\
-    \ LIM) : q(q), LIM(LIM) {\n    assert(LIM < mint::get_mod());\n    build();\n\
-    \  }\n\n  void build() {\n    factorial.reserve(LIM + 1);\n    factorial.eb(1);\n\
-    \    mint x = 1;\n    FOR(i, 1, LIM + 1) {\n      if (x == mint(0)) break;\n \
-    \     factorial.eb(factorial.back() * x);\n      x = q * x + mint(1);\n    }\n\
-    \    ifactorial = all_inverse(factorial);\n    D = len(factorial);\n  }\n\n  mint\
-    \ fact(int N) {\n    assert(0 <= N && N <= LIM);\n    return (N < D ? factorial[N]\
-    \ : mint(0));\n  }\n  mint fact_inv(int N) {\n    assert(0 <= N && N < D);\n \
-    \   return (N < D ? ifactorial[N] : mint(0));\n  }\n  mint binom(int N, int K)\
-    \ {\n    assert(0 <= N && N <= LIM);\n    if (K < 0 || K > N) return mint(0);\n\
-    \    if (N < D) return factorial[N] * ifactorial[K] * ifactorial[N - K];\n   \
-    \ auto [n1, n2] = divmod(N, D);\n    auto [k1, k2] = divmod(K, D);\n    return\
-    \ C<mint>(n1, k1) * binom(n2, k2);\n  }\n};\n#line 5 \"test/1_mytest/qbinom.test.cpp\"\
-    \n\ntemplate <typename mint>\nvoid test(i128 q) {\n  vc<i128> fact(11);\n  fact[0]\
-    \ = 1;\n  i128 x = 1;\n  FOR(i, 1, 11) {\n    fact[i] = fact[i - 1] * x;\n   \
-    \ x = x * q + 1;\n  }\n\n  q_Analogue<mint> X(mint(q), 10);\n  vv(mint, binom,\
-    \ 11, 11);\n  FOR(n, 11) FOR(k, n + 1) {\n    i128 num = fact[n];\n    i128 den\
-    \ = fact[k] * fact[n - k];\n    assert(num % den == 0);\n    i128 x = num / den;\n\
-    \    binom[n][k] = x % mint::get_mod();\n    assert(binom[n][k] == X.binom(n,\
-    \ k));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
-    \ b << \"\\n\";\n}\n\nsigned main() {\n  FOR(q, 3) {\n    test<modint<11>>(q);\n\
-    \    test<modint<13>>(q);\n    test<modint<17>>(q);\n    test<modint<19>>(q);\n\
-    \  }\n  solve();\n  return 0;\n}\n"
+    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
+    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 2 \"mod/all_inverse.hpp\"\ntemplate\
+    \ <typename mint>\nvc<mint> all_inverse(vc<mint>& X) {\n  for (auto&& x: X) assert(x\
+    \ != mint(0));\n  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0] = mint(1);\n\
+    \  FOR(i, N) res[i + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n \
+    \ res.pop_back();\n  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n  return\
+    \ res;\n}\n#line 3 \"mod/q_analogue.hpp\"\n\ntemplate <typename mint>\nstruct\
+    \ q_Analogue {\n  const mint q;\n  const int LIM;\n  int D;\n  vc<mint> factorial,\
+    \ ifactorial;\n\n  q_Analogue(mint q, int LIM) : q(q), LIM(LIM) {\n    assert(LIM\
+    \ < mint::get_mod());\n    build();\n  }\n\n  void build() {\n    factorial.reserve(LIM\
+    \ + 1);\n    factorial.eb(1);\n    mint x = 1;\n    FOR(i, 1, LIM + 1) {\n   \
+    \   if (x == mint(0)) break;\n      factorial.eb(factorial.back() * x);\n    \
+    \  x = q * x + mint(1);\n    }\n    ifactorial = all_inverse(factorial);\n   \
+    \ D = len(factorial);\n  }\n\n  mint fact(int N) {\n    assert(0 <= N && N <=\
+    \ LIM);\n    return (N < D ? factorial[N] : mint(0));\n  }\n  mint fact_inv(int\
+    \ N) {\n    assert(0 <= N && N < D);\n    return (N < D ? ifactorial[N] : mint(0));\n\
+    \  }\n  mint binom(int N, int K) {\n    assert(0 <= N && N <= LIM);\n    if (K\
+    \ < 0 || K > N) return mint(0);\n    if (N < D) return factorial[N] * ifactorial[K]\
+    \ * ifactorial[N - K];\n    auto [n1, n2] = divmod(N, D);\n    auto [k1, k2] =\
+    \ divmod(K, D);\n    return C<mint>(n1, k1) * binom(n2, k2);\n  }\n};\n#line 5\
+    \ \"test/1_mytest/qbinom.test.cpp\"\n\ntemplate <typename mint>\nvoid test(i128\
+    \ q) {\n  vc<i128> fact(11);\n  fact[0] = 1;\n  i128 x = 1;\n  FOR(i, 1, 11) {\n\
+    \    fact[i] = fact[i - 1] * x;\n    x = x * q + 1;\n  }\n\n  q_Analogue<mint>\
+    \ X(mint(q), 10);\n  vv(mint, binom, 11, 11);\n  FOR(n, 11) FOR(k, n + 1) {\n\
+    \    i128 num = fact[n];\n    i128 den = fact[k] * fact[n - k];\n    assert(num\
+    \ % den == 0);\n    i128 x = num / den;\n    binom[n][k] = x % mint::get_mod();\n\
+    \    assert(binom[n][k] == X.binom(n, k));\n  }\n}\n\nvoid solve() {\n  int a,\
+    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(q,\
+    \ 3) {\n    test<modint<11>>(q);\n    test<modint<13>>(q);\n    test<modint<17>>(q);\n\
+    \    test<modint<19>>(q);\n  }\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/q_analogue.hpp\"\n\ntemplate <typename mint>\nvoid test(i128\
     \ q) {\n  vc<i128> fact(11);\n  fact[0] = 1;\n  i128 x = 1;\n  FOR(i, 1, 11) {\n\
@@ -255,7 +256,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/qbinom.test.cpp
   requiredBy: []
-  timestamp: '2025-09-01 21:30:48+09:00'
+  timestamp: '2025-09-01 23:33:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/qbinom.test.cpp

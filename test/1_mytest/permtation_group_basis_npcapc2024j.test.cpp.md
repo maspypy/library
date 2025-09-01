@@ -243,19 +243,20 @@ data:
     \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
     \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
-    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"string/split.hpp\"\nvc<string> split(string S, char sep = ',') {\r\n\
-    \  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if (s == sep)\r\n\
-    \      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n  return\
-    \ res;\r\n}\r\n\r\nvc<string> split(string S, string seps = \" ,\") {\r\n  vc<string>\
-    \ res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if (count(all(seps), s))\r\n \
-    \     res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n  return res;\r\
-    \n}\r\n#line 7 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\n\
-    \nusing mint = modint998;\n\nmint mysolve(vvc<int> A) {\n  int N = len(A[0]),\
+    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
+    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 1 \"string/split.hpp\"\nvc<string>\
+    \ split(string S, char sep = ',') {\r\n  vc<string> res = {\"\"};\r\n  for (auto&&\
+    \ s: S) {\r\n    if (s == sep)\r\n      res.eb(\"\");\r\n    else\r\n      res.back()\
+    \ += s;\r\n  }\r\n  return res;\r\n}\r\n\r\nvc<string> split(string S, string\
+    \ seps = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n\
+    \    if (count(all(seps), s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back()\
+    \ += s;\r\n  }\r\n  return res;\r\n}\r\n#line 7 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\
+    \n\nusing mint = modint998;\n\nmint mysolve(vvc<int> A) {\n  int N = len(A[0]),\
     \ M = len(A);\n  FOR(i, M) FOR(j, N)-- A[i][j];\n  Permutation_Group_Basis<30>\
     \ P(N, A);\n\n  mint ANS = 0;\n  // FOR(i, N) {\n  //   for (auto& X: P.Basis[i])\
     \ { SHOW(i, X); }\n  // }\n\n  FOR(a, N) {\n    // (a, a \u3088\u308A\u5927\u304D\
@@ -335,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   requiredBy: []
-  timestamp: '2025-09-01 21:30:48+09:00'
+  timestamp: '2025-09-01 23:33:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp

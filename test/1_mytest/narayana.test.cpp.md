@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/narayana.hpp
     title: seq/famous/narayana.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -198,28 +198,30 @@ data:
     \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
     \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
-    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"seq/famous/narayana.hpp\"\n\n// https://atcoder.jp/contests/agc070/tasks/agc070_c\n\
-    // a>=b \u306E\u3068\u304D, (0,0) \u304B\u3089 (a,b) \u3078\u306E\u30D1\u30B9\u3067\
-    \u3061\u3087\u3046\u3069 k \u56DE\u66F2\u304C\u308B.\n// \u666E\u901A\u306E narayana\
-    \ number \u306F (n,n,2k-1)\ntemplate <typename mint>\nmint narayana_number(int\
-    \ a, int b, int k) {\n  assert(0 <= a && 0 <= b && 0 <= k);\n  if (a < b) return\
-    \ 0;\n  if (b == 0) return (k == 0 ? 1 : 0);\n\n  if (k % 2 == 1) {\n    k = (k\
-    \ - 1) / 2;\n    return C<mint>(a - 1, k) * C<mint>(b - 1, k) - C<mint>(a - 1,\
-    \ k - 1) * C<mint>(b - 1, k + 1);\n  }\n  k /= 2;\n  return C<mint>(a - 1, k)\
-    \ * C<mint>(b - 1, k - 1) - C<mint>(a - 1, k - 1) * C<mint>(b - 1, k);\n}\n#line\
-    \ 6 \"test/1_mytest/narayana.test.cpp\"\n\nusing mint = modint107;\n\nvoid test(int\
-    \ a, int b) {\n  int n = a + b;\n  vc<mint> ANS(n + 1);\n  FOR(s, 1 << n) {\n\
-    \    if (popcnt(s) != a) continue;\n    vc<int> A(n);\n    FOR(i, n) A[i] = (s\
-    \ >> i & 1 ? 1 : -1);\n    auto Ac = cumsum<int>(A);\n    if (MIN(Ac) < 0) continue;\n\
-    \    int k = 0;\n    FOR(i, n - 1) k += (A[i] != A[i + 1]);\n    ANS[k] += 1;\n\
-    \  }\n  FOR(k, n + 1) { assert(ANS[k] == narayana_number<mint>(a, b, k)); }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  FOR(a, 10) FOR(b, 10) test(a, b);\n  solve();\n}\n"
+    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
+    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 1 \"seq/famous/narayana.hpp\"\n\n\
+    // https://atcoder.jp/contests/agc070/tasks/agc070_c\n// a>=b \u306E\u3068\u304D\
+    , (0,0) \u304B\u3089 (a,b) \u3078\u306E\u30D1\u30B9\u3067\u3061\u3087\u3046\u3069\
+    \ k \u56DE\u66F2\u304C\u308B.\n// \u666E\u901A\u306E narayana number \u306F (n,n,2k-1)\n\
+    template <typename mint>\nmint narayana_number(int a, int b, int k) {\n  assert(0\
+    \ <= a && 0 <= b && 0 <= k);\n  if (a < b) return 0;\n  if (b == 0) return (k\
+    \ == 0 ? 1 : 0);\n\n  if (k % 2 == 1) {\n    k = (k - 1) / 2;\n    return C<mint>(a\
+    \ - 1, k) * C<mint>(b - 1, k) - C<mint>(a - 1, k - 1) * C<mint>(b - 1, k + 1);\n\
+    \  }\n  k /= 2;\n  return C<mint>(a - 1, k) * C<mint>(b - 1, k - 1) - C<mint>(a\
+    \ - 1, k - 1) * C<mint>(b - 1, k);\n}\n#line 6 \"test/1_mytest/narayana.test.cpp\"\
+    \n\nusing mint = modint107;\n\nvoid test(int a, int b) {\n  int n = a + b;\n \
+    \ vc<mint> ANS(n + 1);\n  FOR(s, 1 << n) {\n    if (popcnt(s) != a) continue;\n\
+    \    vc<int> A(n);\n    FOR(i, n) A[i] = (s >> i & 1 ? 1 : -1);\n    auto Ac =\
+    \ cumsum<int>(A);\n    if (MIN(Ac) < 0) continue;\n    int k = 0;\n    FOR(i,\
+    \ n - 1) k += (A[i] != A[i + 1]);\n    ANS[k] += 1;\n  }\n  FOR(k, n + 1) { assert(ANS[k]\
+    \ == narayana_number<mint>(a, b, k)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(a, 10)\
+    \ FOR(b, 10) test(a, b);\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"seq/famous/narayana.hpp\"\n\nusing\
     \ mint = modint107;\n\nvoid test(int a, int b) {\n  int n = a + b;\n  vc<mint>\
@@ -238,8 +240,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/narayana.test.cpp
   requiredBy: []
-  timestamp: '2025-09-01 21:30:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-09-01 23:33:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/narayana.test.cpp
 layout: document

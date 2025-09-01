@@ -335,13 +335,14 @@ data:
     \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
     \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
-    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 8 \"test/2_library_checker/unionfind_with_potential.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n  Potentialized_UnionFind<Monoid_Add<mint>>\
+    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
+    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 8 \"test/2_library_checker/unionfind_with_potential.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n  Potentialized_UnionFind<Monoid_Add<mint>>\
     \ uf(N);\n\n  FOR(Q) {\n    INT(t, u, v);\n    if (t == 0) {\n      mint x;\n\
     \      read(x);\n      auto [is_same, path] = uf.get_path(v, u);\n      bool valid\
     \ = (!is_same) || (path == x);\n      print(valid);\n      if (!is_same) uf.merge(v,\
@@ -368,7 +369,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/unionfind_with_potential.test.cpp
   requiredBy: []
-  timestamp: '2025-09-01 21:30:48+09:00'
+  timestamp: '2025-09-01 23:33:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/unionfind_with_potential.test.cpp

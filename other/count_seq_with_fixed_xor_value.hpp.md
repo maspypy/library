@@ -85,26 +85,28 @@ data:
     \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
     \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
-    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"other/count_seq_with_fixed_xor_value.hpp\"\n\n// [0, LIM)^N \u306E\u3046\
-    \u3061\u3067\u3001xor = X \u3068\u306A\u308B\u3082\u306E\u306E\u500B\u6570\ntemplate\
-    \ <typename mint>\nmint count_seq_with_fixed_xor(ll N, ll LIM, ll X) {\n  assert(LIM\
-    \ >= 1);\n  --LIM; // closed\n  if (LIM == 0) return (X == 0 ? 1 : 0);\n  int\
-    \ LOG = topbit(LIM) + 1;\n  if (X >> LOG) return 0;\n  mint res = 0;\n  bool ok\
-    \ = 1;\n  FOR_R(k, LOG) {\n    int LIM1 = LIM >> k & 1;\n    int X1 = X >> k &\
-    \ 1;\n    if (LIM1) {\n      ll mk = LIM - (LIM >> k << k);\n      mint a = mint(2).pow(k),\
-    \ b = mk + 1;\n      tie(a, b) = mp(a + b, a - b);\n      a = a.pow(N), b = b.pow(N);\n\
-    \      tie(a, b) = mp(a + b, a - b);\n      a *= inv<mint>(2), b *= inv<mint>(2);\n\
-    \      mint now = (X1 ? b : a);\n      if ((N & 1) == X1) now -= mint(mk + 1).pow(N);\n\
-    \      now /= mint(2).pow(k);\n      res += now;\n    }\n    if (LIM1 * (N & 1)\
-    \ != X1) {\n      ok = 0;\n      break;\n    }\n  }\n  if (ok) res += mint(1);\n\
-    \  return res;\n}\n\n// [0, LIM)^N \u306E\u3046\u3061\u3067\u3001xor = X \u3068\
-    \u306A\u308B\u3082\u306E\u306E\u500B\u6570\u3002N = 0,1,...,nmax\ntemplate <typename\
-    \ mint>\nvc<mint> count_seq_with_fixed_xor_iota(ll nmax, ll LIM, ll X) {\n  assert(LIM\
+    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
+    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 2 \"other/count_seq_with_fixed_xor_value.hpp\"\
+    \n\n// [0, LIM)^N \u306E\u3046\u3061\u3067\u3001xor = X \u3068\u306A\u308B\u3082\
+    \u306E\u306E\u500B\u6570\ntemplate <typename mint>\nmint count_seq_with_fixed_xor(ll\
+    \ N, ll LIM, ll X) {\n  assert(LIM >= 1);\n  --LIM; // closed\n  if (LIM == 0)\
+    \ return (X == 0 ? 1 : 0);\n  int LOG = topbit(LIM) + 1;\n  if (X >> LOG) return\
+    \ 0;\n  mint res = 0;\n  bool ok = 1;\n  FOR_R(k, LOG) {\n    int LIM1 = LIM >>\
+    \ k & 1;\n    int X1 = X >> k & 1;\n    if (LIM1) {\n      ll mk = LIM - (LIM\
+    \ >> k << k);\n      mint a = mint(2).pow(k), b = mk + 1;\n      tie(a, b) = mp(a\
+    \ + b, a - b);\n      a = a.pow(N), b = b.pow(N);\n      tie(a, b) = mp(a + b,\
+    \ a - b);\n      a *= inv<mint>(2), b *= inv<mint>(2);\n      mint now = (X1 ?\
+    \ b : a);\n      if ((N & 1) == X1) now -= mint(mk + 1).pow(N);\n      now /=\
+    \ mint(2).pow(k);\n      res += now;\n    }\n    if (LIM1 * (N & 1) != X1) {\n\
+    \      ok = 0;\n      break;\n    }\n  }\n  if (ok) res += mint(1);\n  return\
+    \ res;\n}\n\n// [0, LIM)^N \u306E\u3046\u3061\u3067\u3001xor = X \u3068\u306A\u308B\
+    \u3082\u306E\u306E\u500B\u6570\u3002N = 0,1,...,nmax\ntemplate <typename mint>\n\
+    vc<mint> count_seq_with_fixed_xor_iota(ll nmax, ll LIM, ll X) {\n  assert(LIM\
     \ >= 1);\n  --LIM; // closed\n  vc<mint> res(nmax + 1);\n  if (LIM == 0) {\n \
     \   if (X == 0) fill(all(res), mint(1));\n    return res;\n  }\n  int LOG = topbit(LIM)\
     \ + 1;\n  if (X >> LOG) return res;\n  vc<bool> ok(nmax + 1, 1);\n  mint x2 =\
@@ -152,7 +154,7 @@ data:
   isVerificationFile: false
   path: other/count_seq_with_fixed_xor_value.hpp
   requiredBy: []
-  timestamp: '2025-07-05 14:54:01+09:00'
+  timestamp: '2025-09-01 23:33:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/count_seq_with_fixed_xor_value.hpp

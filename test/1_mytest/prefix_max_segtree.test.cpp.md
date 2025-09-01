@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':x:'
@@ -254,32 +254,34 @@ data:
     \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
     \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
-    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 9 \"test/1_mytest/prefix_max_segtree.test.cpp\"\n\nusing mint = modint998;\n\
-    using F = pair<mint, mint>;\n\nvoid test(ll N) {\n  vc<int> key(N);\n  vc<F> X(N);\n\
-    \  auto get = [&]() -> pair<int, F> {\n    int k = RNG(0, 100);\n    mint a =\
-    \ RNG(0, mint::get_mod());\n    mint b = RNG(0, mint::get_mod());\n    return\
-    \ {k, {a, b}};\n  };\n\n  FOR(i, N) tie(key[i], X[i]) = get();\n\n  auto segf\
-    \ = [&](int i) -> pair<int, F> { return {key[i], X[i]}; };\n\n  using Mono = Monoid_Affine<mint>;\n\
-    \  Prefix_Max_SegTree<int, Mono> seg(N, segf);\n\n  auto naive = [&](int L, int\
-    \ R) -> F {\n    int mx = -infty<int>;\n    F prod = Mono::unit();\n    FOR(i,\
-    \ L, R) {\n      if (mx <= key[i]) {\n        mx = key[i];\n        prod = Mono::op(prod,\
-    \ X[i]);\n      }\n    }\n    return prod;\n  };\n\n  /*\n  set\n  get\n  get_all\n\
-    \  prod\n  prod_all\n  */\n  int Q = 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n\
-    \    int i = RNG(0, N);\n    int L = RNG(0, N), R = RNG(0, N);\n    auto [k, x]\
-    \ = get();\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 0) {\n      key[i]\
-    \ = k, X[i] = x;\n      seg.set(i, {k, x});\n    }\n    if (t == 1) {\n      auto\
-    \ [k, x] = seg.get(i);\n      assert(key[i] == k);\n      assert(X[i] == x);\n\
-    \    }\n    if (t == 2) {\n      auto [k, x] = seg.get_all();\n      assert(key\
-    \ == k);\n      assert(X == x);\n    }\n    if (t == 3) { assert(naive(L, R) ==\
-    \ seg.prod(L, R)); }\n    if (t == 4) { assert(naive(0, N) == seg.prod_all());\
-    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
-    \ << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) FOR(N, 1, 100) { test(N); }\n\
-    \  solve();\n  return 0;\n}\n"
+    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
+    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 9 \"test/1_mytest/prefix_max_segtree.test.cpp\"\
+    \n\nusing mint = modint998;\nusing F = pair<mint, mint>;\n\nvoid test(ll N) {\n\
+    \  vc<int> key(N);\n  vc<F> X(N);\n  auto get = [&]() -> pair<int, F> {\n    int\
+    \ k = RNG(0, 100);\n    mint a = RNG(0, mint::get_mod());\n    mint b = RNG(0,\
+    \ mint::get_mod());\n    return {k, {a, b}};\n  };\n\n  FOR(i, N) tie(key[i],\
+    \ X[i]) = get();\n\n  auto segf = [&](int i) -> pair<int, F> { return {key[i],\
+    \ X[i]}; };\n\n  using Mono = Monoid_Affine<mint>;\n  Prefix_Max_SegTree<int,\
+    \ Mono> seg(N, segf);\n\n  auto naive = [&](int L, int R) -> F {\n    int mx =\
+    \ -infty<int>;\n    F prod = Mono::unit();\n    FOR(i, L, R) {\n      if (mx <=\
+    \ key[i]) {\n        mx = key[i];\n        prod = Mono::op(prod, X[i]);\n    \
+    \  }\n    }\n    return prod;\n  };\n\n  /*\n  set\n  get\n  get_all\n  prod\n\
+    \  prod_all\n  */\n  int Q = 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n    int\
+    \ i = RNG(0, N);\n    int L = RNG(0, N), R = RNG(0, N);\n    auto [k, x] = get();\n\
+    \    if (L > R) swap(L, R);\n    ++R;\n    if (t == 0) {\n      key[i] = k, X[i]\
+    \ = x;\n      seg.set(i, {k, x});\n    }\n    if (t == 1) {\n      auto [k, x]\
+    \ = seg.get(i);\n      assert(key[i] == k);\n      assert(X[i] == x);\n    }\n\
+    \    if (t == 2) {\n      auto [k, x] = seg.get_all();\n      assert(key == k);\n\
+    \      assert(X == x);\n    }\n    if (t == 3) { assert(naive(L, R) == seg.prod(L,\
+    \ R)); }\n    if (t == 4) { assert(naive(0, N) == seg.prod_all()); }\n  }\n}\n\
+    \nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n\
+    }\n\nsigned main() {\n  FOR(100) FOR(N, 1, 100) { test(N); }\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"ds/segtree/prefix_max_segtree.hpp\"\n#include\
     \ \"random/base.hpp\"\n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\
@@ -314,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_max_segtree.test.cpp
   requiredBy: []
-  timestamp: '2025-09-01 21:30:48+09:00'
+  timestamp: '2025-09-01 23:33:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_max_segtree.test.cpp
