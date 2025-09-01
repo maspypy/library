@@ -56,7 +56,7 @@ data:
   - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
   - icon: ':x:'
@@ -90,10 +90,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/segtree_xor_prod.test.cpp
     title: test/1_mytest/segtree_xor_prod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/wavelet_matrix.test.cpp
     title: test/1_mytest/wavelet_matrix.test.cpp
   - icon: ':x:'

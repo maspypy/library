@@ -489,10 +489,10 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
     title: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod.test.cpp
     title: test/2_library_checker/convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107.test.cpp
   - icon: ':x:'

@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/substring_abundant_string.hpp
     title: string/substring_abundant_string.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/run_length.test.cpp
     title: test/1_mytest/run_length.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/substring_abundant.test.cpp
     title: test/1_mytest/substring_abundant.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string>\n\
@@ -32,7 +32,7 @@ data:
   requiredBy:
   - string/substring_abundant_string.hpp
   timestamp: '2024-09-01 00:45:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/run_length.test.cpp
   - test/1_mytest/substring_abundant.test.cpp

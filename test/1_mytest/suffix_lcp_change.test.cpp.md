@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -344,7 +344,7 @@ data:
   path: test/1_mytest/suffix_lcp_change.test.cpp
   requiredBy: []
   timestamp: '2025-09-01 21:30:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/suffix_lcp_change.test.cpp
 layout: document
