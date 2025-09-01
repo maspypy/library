@@ -74,6 +74,8 @@ struct modint {
     if (mod == 998244353) return {23, 31};
     if (mod == 1004535809) return {21, 582313106};
     if (mod == 1012924417) return {21, 368093570};
+    if (mod == 1224736769) return {24, 1191450770};
+    if (mod == 2013265921) return {27, 244035102};
     return {-1, -1};
   }
   static constexpr bool can_ntt() { return ntt_info().fi != -1; }

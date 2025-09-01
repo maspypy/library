@@ -1,4 +1,3 @@
-#pragma once
 #include "mod/modint.hpp"
 #include "mod/mod_inv.hpp"
 #include "mod/crt3.hpp"
@@ -8,6 +7,7 @@
 
 template <class mint>
 vector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {
+  assert(mint::can_ntt());
   if (a.empty() || b.empty()) return {};
   int n = int(a.size()), m = int(b.size());
   int sz = 1;
@@ -58,7 +58,9 @@ vector<mint> convolution_garner(const vector<mint>& a, const vector<mint>& b) {
   auto c1 = convolution_ntt<mint1>(a1, b1);
   auto c2 = convolution_ntt<mint2>(a2, b2);
   vc<mint> c(len(c0));
-  FOR(i, n + m - 1) { c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val); }
+  FOR(i, n + m - 1) {
+    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);
+  }
   return c;
 }
 
@@ -68,8 +70,8 @@ vector<ll> convolution(vector<ll> a, vector<ll> b) {
   if (min(n, m) <= 2500) return convolution_naive(a, b);
 
   ll mi_a = MIN(a), mi_b = MIN(b);
-  for (auto& x: a) x -= mi_a;
-  for (auto& x: b) x -= mi_b;
+  for (auto& x : a) x -= mi_a;
+  for (auto& x : b) x -= mi_b;
   assert(MAX(a) * MAX(b) <= 1e18);
 
   auto Ac = cumsum<ll>(a), Bc = cumsum<ll>(b);
