@@ -247,23 +247,48 @@ void __attribute__((destructor)) _d() { flush(); }
 using fastio::flush;
 using fastio::print;
 using fastio::read;
-
 #if defined(LOCAL)
-#define SHOW(...) \
-  SHOW_IMPL(__VA_ARGS__, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)
-#define SHOW_IMPL(_1, _2, _3, _4, _5, _6, NAME, ...) NAME
-#define SHOW1(x) print(#x, "=", (x)), flush()
-#define SHOW2(x, y) print(#x, "=", (x), #y, "=", (y)), flush()
-#define SHOW3(x, y, z) print(#x, "=", (x), #y, "=", (y), #z, "=", (z)), flush()
-#define SHOW4(x, y, z, w) \
-  print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w)), flush()
-#define SHOW5(x, y, z, w, v)                                                   \
-  print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", (v)), \
-      flush()
-#define SHOW6(x, y, z, w, v, u)                                               \
-  print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", (v), \
-        #u, "=", (u)),                                                        \
-      flush()
+template <class... Ts>
+inline void _show_pack(const char *func, int line, const char *names,
+                       Ts &&...args) {
+  using fastio::print;
+  using fastio::wt;
+
+  // [DEBUG] solve:123 のように先頭に出す
+  wt("[DEBUG ");
+  wt(func);
+  wt(':');
+  wt(line);
+  wt("] ");
+
+  const char *p = names;
+  bool first = true;
+
+  auto next_token = [&]() -> std::pair<const char *, const char *> {
+    while (*p == ' ' || *p == ',') ++p;
+    const char *l = p;
+    while (*p && *p != ',') ++p;
+    const char *r = p;
+    return {l, r};
+  };
+
+  (
+      [&] {
+        auto [l, r] = next_token();
+        while (r > l && r[-1] == ' ') --r;
+        if (!first) wt(' ');
+        first = false;
+        std::string name(l, r);
+        wt(name);
+        wt(" = ");
+        wt(args);
+      }(),
+      ...);
+
+  print();  // 改行
+}
+
+#define SHOW(...) _show_pack(__func__, __LINE__, #__VA_ARGS__, __VA_ARGS__)
 #else
 #define SHOW(...)
 #endif
