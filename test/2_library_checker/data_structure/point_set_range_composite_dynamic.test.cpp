@@ -14,13 +14,17 @@ void solve() {
   LL(N, Q);
   VEC(X, dat, N);
 
-  Dynamic_SegTree<Mono, false> seg(2 * N, 0, N);
-  auto root = seg.new_node(dat);
+  Dynamic_SegTree<Mono, false> seg(0, N);
+  int root = seg.new_node_from_vector(dat);
 
   FOR(Q) {
     LL(t, a, b, c);
-    if (t == 0) { seg.set(root, a, {b, c}); }
-    if (t == 1) { print(Mono::eval(seg.prod(root, a, b), c)); }
+    if (t == 0) {
+      seg.set(root, a, {b, c});
+    }
+    if (t == 1) {
+      print(Mono::eval(seg.prod(root, a, b), c));
+    }
   }
 }
 

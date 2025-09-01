@@ -7,9 +7,12 @@
 using B = BigInteger;
 
 void solve() {
-  B a, b;
-  read(a, b);
-  print(a * b);
+  auto get = [&]() -> B {
+    STR(S);
+    return B(S);
+  };
+  B ANS = get() + get();
+  print(ANS.to_string());
 }
 
 signed main() {

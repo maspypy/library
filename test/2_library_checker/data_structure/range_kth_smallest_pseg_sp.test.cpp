@@ -7,12 +7,11 @@
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  Dynamic_SegTree_Sparse<Monoid_Add<int>, true> seg(5'000'000, 0, N);
-  using np = decltype(seg)::np;
+  Dynamic_SegTree_Sparse<Monoid_Add<int>, true> seg(0, N);
   auto I = argsort(A);
 
-  vc<np> roots;
-  roots.eb(np(nullptr));
+  vc<int> roots;
+  roots.eb(0);
   FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }
   FOR(Q) {
     LL(L, R, k);

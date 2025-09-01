@@ -7,11 +7,10 @@
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  Dynamic_SegTree<Monoid_Add<int>, true> seg(20 * (N + Q), 0, N);
-  using np = decltype(seg)::np;
+  Dynamic_SegTree<Monoid_Add<int>, true> seg(0, N);
   auto I = argsort(A);
 
-  vc<np> roots;
+  vc<int> roots;
   roots.eb(seg.new_node(0, N));
   FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }
   FOR(Q) {
