@@ -13,15 +13,19 @@ struct Dirichlet {
     // [0,1,...,t,N/sq,...,N/1] (t<sq の場合の sq も両対応)
   };
 
-  inline u32 get_index(u64 d) {
-    assert(d > 0);
-    return (d <= t ? d : n - u32(double(N) / d));
-  }
+  inline u32 get_index(u64 d) { return (d <= t ? d : n - u32(double(N) / d)); }
 
   inline u64 get_floor(u32 i) { return (i <= t ? i : double(N) / (n - i)); }
 
+  template <typename T, typename F>
+  vc<T> gen_sum_table(F f) {
+    vc<T> S(n);
+    FOR(i, 1, n) S[i] = f(get_floor(i));
+    return S;
+  }
+
   template <typename T>
-  vc<T> convolution(vc<T> &F, vc<T> &G) {
+  vc<T> convolution(vc<T> F, vc<T> G) {
     assert(len(F) == n && len(G) == n);
     if (N == 1) return {T(0), F[1] * G[1]};
     vc<T> f(n), g(n);
@@ -69,12 +73,12 @@ struct Dirichlet {
     return H;
   }
 
-  // G=H/F
+  // G=H/F. T は 1/F[1] が正しく計算できてほしい.
   template <typename T>
-  vc<T> div(vc<T> &H, vc<T> &F) {
+  vc<T> div(vc<T> H, vc<T> F) {
     assert(len(F) == n && len(H) == n && F[1] != 0);
     if (N == 1) return {T(0), H[1] / F[1]};
-    T c = F[1].inverse();
+    T c = T(1) / F[1];
     for (auto &x : F) x *= c;
 
     vc<T> f(n), g(n), h(n);
@@ -93,7 +97,7 @@ struct Dirichlet {
       u64 ub = min(i - 1, S / a);
       FOR(b, 2, ub + 1) { h[get_index(a * b)] -= f[i] * g[b] + f[b] * g[i]; }
     }
-    vc<mint> G = cumsum<mint>(g, 0);
+    vc<T> G = cumsum<T>(g, 0);
     for (u64 z = N / (S + 1); z >= 1; --z) {
       G[n - z] = H[n - z] - g[1] * F[n - z];
       u64 M = N / z;
@@ -105,9 +109,22 @@ struct Dirichlet {
       }
     }
     for (auto &x : G) x *= c;
-    c = c.inverse();
-    for (auto &x : F) x *= c;
-    for (auto &x : H) x *= c;
+    c = T(1) / c;
     return G;
+  }
+
+  template <typename T>
+  vc<T> Zeta() {
+    return gen_sum_table<T>([&](u64 n) -> T { return n; });
+  }
+
+  template <typename T>
+  vc<T> Unit() {
+    return gen_sum_table<T>([&](u64 n) -> T { return 1; });
+  }
+
+  template <typename T>
+  vc<T> Mobius() {
+    return div<T>(Unit<T>(), Zeta<T>());
   }
 };

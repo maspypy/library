@@ -62,7 +62,13 @@ struct ModFast {
     return INV[K + t] * u64(b) % p;
   }
 
-private:
+  template <typename T>
+  vc<T> get_log_table(int n) {
+    assert(n <= K);
+    return {LOG.begin() + K, LOG.begin() + K + n + 1};
+  }
+
+ private:
   void build_pow() {
     POW[0][0] = POW[1][0] = 1;
     FOR(i, (1 << 15)) POW[0][i + 1] = POW[0][i] * u64(root) % p;
@@ -77,13 +83,17 @@ private:
     const int S = 1 << 17;
     HashMap<u32> MP(S);
     u32 pw = 1;
-    for (int k = 0; k < S; ++k, pw = u64(root) * pw % p) { MP[pw] = k; }
+    for (int k = 0; k < S; ++k, pw = u64(root) * pw % p) {
+      MP[pw] = k;
+    }
     u32 q = pow_r_32(p - 1 - S);
     auto BSGS = [&](u32 s) -> u32 {
       u32 ans = 0;
       while (1) {
         u32 v = MP.get(s, -1);
-        if (v != u32(-1)) { return ans + v; }
+        if (v != u32(-1)) {
+          return ans + v;
+        }
         ans += S, s = u64(s) * q % p;
       }
       return 0;
@@ -102,7 +112,8 @@ private:
       if (i * i > p) {
         auto [j, k] = divmod<int>(p, i);
         // i = (-k)/j
-        LOG[K + i] = (LOG[K + k] + (p - 1) / 2 + (p - 1) - LOG[K + j]) % (p - 1);
+        LOG[K + i] =
+            (LOG[K + k] + (p - 1) / 2 + (p - 1) - LOG[K + j]) % (p - 1);
         continue;
       }
       while (1) {
@@ -110,7 +121,7 @@ private:
         u64 ans = p - 1 - k;
         u32 x = u64(i) * pow_r_32(k) % p;
         auto div = [&](u32 q) -> void { x /= q, ans += LOG[K + q]; };
-        for (u32 q: {2, 3, 5, 7, 11, 13, 17, 19}) {
+        for (u32 q : {2, 3, 5, 7, 11, 13, 17, 19}) {
           while (x % q == 0) div(q);
         }
         if (x >= LIM) continue;
@@ -122,7 +133,9 @@ private:
         }
       }
     }
-    FOR(i, 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }
+    FOR(i, 1, 1 + (1 << 21)) {
+      LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1);
+    }
   }
 
   void build_frac() {

@@ -3,9 +3,9 @@
 
 // 10^9 ずつ区切って
 struct BigInteger {
-  static constexpr int TEN[]
-      = {1,      10,      100,      1000,      10000,
-         100000, 1000000, 10000000, 100000000, 1000000000};
+  static constexpr int TEN[] = {1,         10,        100,     1000,
+                                10000,     100000,    1000000, 10000000,
+                                100000000, 1000000000};
   static constexpr int LOG = 9;
   static constexpr int MOD = TEN[LOG];
   using bint = BigInteger;
@@ -21,7 +21,9 @@ struct BigInteger {
     sgn = 1;
     if (val != 0) {
       if (val < 0) sgn = -1, val = -val;
-      while (val > 0) { dat.eb(val % MOD), val /= MOD; }
+      while (val > 0) {
+        dat.eb(val % MOD), val /= MOD;
+      }
     }
   }
   BigInteger(string s) {
@@ -47,7 +49,9 @@ struct BigInteger {
     return *this;
   }
   bool operator<(const bint &p) const {
-    if (sgn != p.sgn) { return sgn < p.sgn; }
+    if (sgn != p.sgn) {
+      return sgn < p.sgn;
+    }
     if (sgn == 0) return false;
     if (len(dat) != len(p.dat)) {
       if (sgn == 1) return len(dat) < len(p.dat);
@@ -64,7 +68,9 @@ struct BigInteger {
   bool operator<=(const bint &p) const { return !(*this > p); }
   bool operator>=(const bint &p) const { return !(*this < p); }
   bint &operator+=(const bint p) {
-    if (sgn == 0) { return *this = p; }
+    if (sgn == 0) {
+      return *this = p;
+    }
     if (p.sgn == 0) return *this;
     if (sgn != p.sgn) {
       *this -= (-p);
@@ -96,7 +102,9 @@ struct BigInteger {
     FOR(i, len(dat) - 1) {
       if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -= 1;
     }
-    while (len(dat) && dat.back() == 0) { dat.pop_back(); }
+    while (len(dat) && dat.back() == 0) {
+      dat.pop_back();
+    }
     if (dat.empty()) sgn = 0;
     return *this;
   }
@@ -135,7 +143,9 @@ struct BigInteger {
         FOR(i, s, t + 1) { x += u64(a[i]) * b[k - i]; }
         c[k] = x % MOD, x = x / MOD;
       }
-      while (x > 0) { c.eb(x % MOD), x = x / MOD; }
+      while (x > 0) {
+        c.eb(x % MOD), x = x / MOD;
+      }
       return c;
     }
     static constexpr int p0 = 167772161;
@@ -156,14 +166,16 @@ struct BigInteger {
       x += CRT3<u128, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);
       c[i] = x % MOD, x = x / MOD;
     }
-    while (x) { c.eb(x % MOD), x = x / MOD; }
+    while (x) {
+      c.eb(x % MOD), x = x / MOD;
+    }
     return c;
   }
 
   string to_string() {
     if (dat.empty()) return "0";
     string s;
-    for (int x: dat) {
+    for (int x : dat) {
       FOR(LOG) {
         s += '0' + (x % 10);
         x = x / 10;
@@ -217,6 +229,16 @@ struct BigInteger {
       q -= 1;
     }
     return {q, rm};
+  }
+
+  int bmod(int p) {
+    ll rm = 0;
+    FOR_R(i, len(dat)) { rm = (rm * MOD + dat[i]) % p; }
+    rm *= sgn;
+    if (rm < 0) {
+      rm += p;
+    }
+    return rm;
   }
 
   // https://codeforces.com/problemset/problem/582/D
@@ -276,7 +298,7 @@ struct BigInteger {
 
   int digit_sum() {
     int ans = 0;
-    for (auto &x: dat) ans += ::digit_sum(x); // global にある digit_sum
+    for (auto &x : dat) ans += ::digit_sum(x);  // global にある digit_sum
     return ans;
   }
 };
