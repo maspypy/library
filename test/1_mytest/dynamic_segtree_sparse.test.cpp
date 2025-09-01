@@ -12,9 +12,8 @@ void test() {
     int N = RNG(1, 100);
 
     vc<int> A(N, unit);
-    Dynamic_SegTree_Sparse<Mono, false> X(2 * N, 0, N);
-    using np = typename decltype(X)::np;
-    np root = nullptr;
+    Dynamic_SegTree_Sparse<Mono, false> X(0, N);
+    int root = 0;
 
     int Q = RNG(1, 1000);
 

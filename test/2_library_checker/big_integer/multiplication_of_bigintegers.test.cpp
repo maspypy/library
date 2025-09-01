@@ -11,7 +11,7 @@ void solve() {
     STR(S);
     return B(S);
   };
-  B ANS = get() + get();
+  B ANS = get() * get();
   print(ANS.to_string());
 }
 
