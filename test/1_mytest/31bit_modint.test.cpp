@@ -4,6 +4,7 @@
 #include "random/base.hpp"
 #include "mod/modint.hpp"
 #include "mod/dynamic_modint.hpp"
+#include "poly/convolution.hpp"
 
 template <typename mint>
 void test() {
@@ -25,6 +26,19 @@ void test() {
   FOR(i, 1, 100) FOR(j, 1, 100) { check(mod - i, mod - j); }
 }
 
+template <typename mint>
+void test_conv() {
+  int N = RNG(1000, 10000);
+  int M = RNG(1000, 10000);
+  vc<mint> A(N), B(M);
+  FOR(i, N) A[i] = RNG(0, u32(-1));
+  FOR(i, M) B[i] = RNG(0, u32(-1));
+  vc<mint> S(N + M - 1);
+  FOR(i, N) FOR(j, M) { S[i + j] += A[i] * B[j]; }
+  auto f = convolution_ntt(A, B);
+  assert(S == f);
+}
+
 void solve() {
   int a, b;
   cin >> a >> b;
@@ -32,10 +46,18 @@ void solve() {
 }
 
 signed main() {
-  constexpr u32 mod = (u32(1) << 31) - 19;
+  {
+    constexpr u32 mod = (u32(1) << 31) - 19;
+    dmint::set_mod(mod);
+    test<modint<mod>>();
+    test<dmint>();
+  }
+
+  const u32 mod = 2013265921;
   dmint::set_mod(mod);
-  test<modint<mod>>();
-  test<dmint>();
+  dmint::set_ntt_info();
+  FOR(10) test_conv<modint<2013265921>>();
+  FOR(10) test_conv<dmint>();
 
   solve();
   return 0;
