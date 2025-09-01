@@ -331,35 +331,35 @@ data:
     \  static vc<int> dp(K);\n  if (dp[1] == 0) { FOR(x, 1, K) dp[x] = dp[x / 10]\
     \ + (x % 10); }\n  int res = 0;\n  while (x) {\n    res += dp[x % K];\n    x /=\
     \ K;\n  }\n  return res;\n}\n#line 3 \"bigint/base.hpp\"\n\n// 10^9 \u305A\u3064\
-    \u533A\u5207\u3063\u3066\nstruct BigInteger {\n  static constexpr int TEN[] =\
-    \ {1,         10,        100,     1000,\n                                10000,\
-    \     100000,    1000000, 10000000,\n                                100000000,\
-    \ 1000000000};\n  static constexpr int LOG = 9;\n  static constexpr int MOD =\
-    \ TEN[LOG];\n  using bint = BigInteger;\n  int sgn;\n  vc<int> dat;\n\n  BigInteger()\
-    \ : sgn(0) {}\n  BigInteger(i128 val) {\n    if (val == 0) {\n      sgn = 0;\n\
-    \      return;\n    }\n    sgn = 1;\n    if (val != 0) {\n      if (val < 0) sgn\
-    \ = -1, val = -val;\n      while (val > 0) {\n        dat.eb(val % MOD), val /=\
-    \ MOD;\n      }\n    }\n  }\n  BigInteger(string s) {\n    assert(!s.empty());\n\
-    \    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n\
-    \      assert(!s.empty());\n    }\n    if (s[0] == '0') {\n      sgn = 0;\n  \
-    \    return;\n    }\n    reverse(all(s));\n    int n = len(s);\n    int m = ceil(n,\
-    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] *\
-    \ (s[i] - '0'); }\n  }\n  bint &operator=(const bint &p) {\n    sgn = p.sgn, dat\
-    \ = p.dat;\n    return *this;\n  }\n  bool operator<(const bint &p) const {\n\
-    \    if (sgn != p.sgn) {\n      return sgn < p.sgn;\n    }\n    if (sgn == 0)\
-    \ return false;\n    if (len(dat) != len(p.dat)) {\n      if (sgn == 1) return\
-    \ len(dat) < len(p.dat);\n      if (sgn == -1) return len(dat) > len(p.dat);\n\
-    \    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] == p.dat[i]) continue;\n  \
-    \    if (sgn == 1) return dat[i] < p.dat[i];\n      if (sgn == -1) return dat[i]\
-    \ > p.dat[i];\n    }\n    return false;\n  }\n  bool operator>(const bint &p)\
-    \ const { return p < *this; }\n  bool operator<=(const bint &p) const { return\
-    \ !(*this > p); }\n  bool operator>=(const bint &p) const { return !(*this < p);\
-    \ }\n  bint &operator+=(const bint p) {\n    if (sgn == 0) {\n      return *this\
-    \ = p;\n    }\n    if (p.sgn == 0) return *this;\n    if (sgn != p.sgn) {\n  \
-    \    *this -= (-p);\n      return *this;\n    }\n    int n = max(len(dat), len(p.dat));\n\
-    \    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat)) dat[i] +=\
-    \ p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n    }\n\
-    \    while (len(dat) && dat.back() == 0) dat.pop_back();\n    if (dat.empty())\
+    \u533A\u5207\u3063\u3066\nstruct BigInteger {\n  inline static constexpr int TEN[]\
+    \ = {1,         10,        100,     1000,\n                                  \
+    \     10000,     100000,    1000000, 10000000,\n                             \
+    \          100000000, 1000000000};\n  static constexpr int LOG = 9;\n  static\
+    \ constexpr int MOD = TEN[LOG];\n  using bint = BigInteger;\n  int sgn;\n  vc<int>\
+    \ dat;\n\n  BigInteger() : sgn(0) {}\n  BigInteger(i128 val) {\n    if (val ==\
+    \ 0) {\n      sgn = 0;\n      return;\n    }\n    sgn = 1;\n    if (val != 0)\
+    \ {\n      if (val < 0) sgn = -1, val = -val;\n      while (val > 0) {\n     \
+    \   dat.eb(val % MOD), val /= MOD;\n      }\n    }\n  }\n  BigInteger(string s)\
+    \ {\n    assert(!s.empty());\n    sgn = 1;\n    if (s[0] == '-') {\n      sgn\
+    \ = -1;\n      s.erase(s.begin());\n      assert(!s.empty());\n    }\n    if (s[0]\
+    \ == '0') {\n      sgn = 0;\n      return;\n    }\n    reverse(all(s));\n    int\
+    \ n = len(s);\n    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i, n)\
+    \ { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }\n  }\n  bint &operator=(const\
+    \ bint &p) {\n    sgn = p.sgn, dat = p.dat;\n    return *this;\n  }\n  bool operator<(const\
+    \ bint &p) const {\n    if (sgn != p.sgn) {\n      return sgn < p.sgn;\n    }\n\
+    \    if (sgn == 0) return false;\n    if (len(dat) != len(p.dat)) {\n      if\
+    \ (sgn == 1) return len(dat) < len(p.dat);\n      if (sgn == -1) return len(dat)\
+    \ > len(p.dat);\n    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] == p.dat[i])\
+    \ continue;\n      if (sgn == 1) return dat[i] < p.dat[i];\n      if (sgn == -1)\
+    \ return dat[i] > p.dat[i];\n    }\n    return false;\n  }\n  bool operator>(const\
+    \ bint &p) const { return p < *this; }\n  bool operator<=(const bint &p) const\
+    \ { return !(*this > p); }\n  bool operator>=(const bint &p) const { return !(*this\
+    \ < p); }\n  bint &operator+=(const bint p) {\n    if (sgn == 0) {\n      return\
+    \ *this = p;\n    }\n    if (p.sgn == 0) return *this;\n    if (sgn != p.sgn)\
+    \ {\n      *this -= (-p);\n      return *this;\n    }\n    int n = max(len(dat),\
+    \ len(p.dat));\n    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat))\
+    \ dat[i] += p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n\
+    \    }\n    while (len(dat) && dat.back() == 0) dat.pop_back();\n    if (dat.empty())\
     \ sgn = 0;\n    return *this;\n  }\n  bint &operator-=(const bint p) {\n    if\
     \ (p.sgn == 0) return *this;\n    if (sgn == 0) return *this = (-p);\n    if (sgn\
     \ != p.sgn) {\n      *this += (-p);\n      return *this;\n    }\n    if ((sgn\
@@ -434,35 +434,35 @@ data:
     \ }\nvoid rd(BigInteger &x) {\n  string s;\n  fastio::rd(s);\n  x = BigInteger(s);\n\
     }\n#endif\n"
   code: "#include \"poly/convolution.hpp\"\n#include \"nt/digit_sum.hpp\"\n\n// 10^9\
-    \ \u305A\u3064\u533A\u5207\u3063\u3066\nstruct BigInteger {\n  static constexpr\
+    \ \u305A\u3064\u533A\u5207\u3063\u3066\nstruct BigInteger {\n  inline static constexpr\
     \ int TEN[] = {1,         10,        100,     1000,\n                        \
-    \        10000,     100000,    1000000, 10000000,\n                          \
-    \      100000000, 1000000000};\n  static constexpr int LOG = 9;\n  static constexpr\
-    \ int MOD = TEN[LOG];\n  using bint = BigInteger;\n  int sgn;\n  vc<int> dat;\n\
-    \n  BigInteger() : sgn(0) {}\n  BigInteger(i128 val) {\n    if (val == 0) {\n\
-    \      sgn = 0;\n      return;\n    }\n    sgn = 1;\n    if (val != 0) {\n   \
-    \   if (val < 0) sgn = -1, val = -val;\n      while (val > 0) {\n        dat.eb(val\
-    \ % MOD), val /= MOD;\n      }\n    }\n  }\n  BigInteger(string s) {\n    assert(!s.empty());\n\
-    \    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n\
-    \      assert(!s.empty());\n    }\n    if (s[0] == '0') {\n      sgn = 0;\n  \
-    \    return;\n    }\n    reverse(all(s));\n    int n = len(s);\n    int m = ceil(n,\
-    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] *\
-    \ (s[i] - '0'); }\n  }\n  bint &operator=(const bint &p) {\n    sgn = p.sgn, dat\
-    \ = p.dat;\n    return *this;\n  }\n  bool operator<(const bint &p) const {\n\
-    \    if (sgn != p.sgn) {\n      return sgn < p.sgn;\n    }\n    if (sgn == 0)\
-    \ return false;\n    if (len(dat) != len(p.dat)) {\n      if (sgn == 1) return\
-    \ len(dat) < len(p.dat);\n      if (sgn == -1) return len(dat) > len(p.dat);\n\
-    \    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] == p.dat[i]) continue;\n  \
-    \    if (sgn == 1) return dat[i] < p.dat[i];\n      if (sgn == -1) return dat[i]\
-    \ > p.dat[i];\n    }\n    return false;\n  }\n  bool operator>(const bint &p)\
-    \ const { return p < *this; }\n  bool operator<=(const bint &p) const { return\
-    \ !(*this > p); }\n  bool operator>=(const bint &p) const { return !(*this < p);\
-    \ }\n  bint &operator+=(const bint p) {\n    if (sgn == 0) {\n      return *this\
-    \ = p;\n    }\n    if (p.sgn == 0) return *this;\n    if (sgn != p.sgn) {\n  \
-    \    *this -= (-p);\n      return *this;\n    }\n    int n = max(len(dat), len(p.dat));\n\
-    \    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat)) dat[i] +=\
-    \ p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n    }\n\
-    \    while (len(dat) && dat.back() == 0) dat.pop_back();\n    if (dat.empty())\
+    \               10000,     100000,    1000000, 10000000,\n                   \
+    \                    100000000, 1000000000};\n  static constexpr int LOG = 9;\n\
+    \  static constexpr int MOD = TEN[LOG];\n  using bint = BigInteger;\n  int sgn;\n\
+    \  vc<int> dat;\n\n  BigInteger() : sgn(0) {}\n  BigInteger(i128 val) {\n    if\
+    \ (val == 0) {\n      sgn = 0;\n      return;\n    }\n    sgn = 1;\n    if (val\
+    \ != 0) {\n      if (val < 0) sgn = -1, val = -val;\n      while (val > 0) {\n\
+    \        dat.eb(val % MOD), val /= MOD;\n      }\n    }\n  }\n  BigInteger(string\
+    \ s) {\n    assert(!s.empty());\n    sgn = 1;\n    if (s[0] == '-') {\n      sgn\
+    \ = -1;\n      s.erase(s.begin());\n      assert(!s.empty());\n    }\n    if (s[0]\
+    \ == '0') {\n      sgn = 0;\n      return;\n    }\n    reverse(all(s));\n    int\
+    \ n = len(s);\n    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i, n)\
+    \ { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }\n  }\n  bint &operator=(const\
+    \ bint &p) {\n    sgn = p.sgn, dat = p.dat;\n    return *this;\n  }\n  bool operator<(const\
+    \ bint &p) const {\n    if (sgn != p.sgn) {\n      return sgn < p.sgn;\n    }\n\
+    \    if (sgn == 0) return false;\n    if (len(dat) != len(p.dat)) {\n      if\
+    \ (sgn == 1) return len(dat) < len(p.dat);\n      if (sgn == -1) return len(dat)\
+    \ > len(p.dat);\n    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] == p.dat[i])\
+    \ continue;\n      if (sgn == 1) return dat[i] < p.dat[i];\n      if (sgn == -1)\
+    \ return dat[i] > p.dat[i];\n    }\n    return false;\n  }\n  bool operator>(const\
+    \ bint &p) const { return p < *this; }\n  bool operator<=(const bint &p) const\
+    \ { return !(*this > p); }\n  bool operator>=(const bint &p) const { return !(*this\
+    \ < p); }\n  bint &operator+=(const bint p) {\n    if (sgn == 0) {\n      return\
+    \ *this = p;\n    }\n    if (p.sgn == 0) return *this;\n    if (sgn != p.sgn)\
+    \ {\n      *this -= (-p);\n      return *this;\n    }\n    int n = max(len(dat),\
+    \ len(p.dat));\n    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat))\
+    \ dat[i] += p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n\
+    \    }\n    while (len(dat) && dat.back() == 0) dat.pop_back();\n    if (dat.empty())\
     \ sgn = 0;\n    return *this;\n  }\n  bint &operator-=(const bint p) {\n    if\
     \ (p.sgn == 0) return *this;\n    if (sgn == 0) return *this = (-p);\n    if (sgn\
     \ != p.sgn) {\n      *this += (-p);\n      return *this;\n    }\n    if ((sgn\
@@ -549,7 +549,7 @@ data:
   isVerificationFile: false
   path: bigint/base.hpp
   requiredBy: []
-  timestamp: '2025-09-01 16:03:58+09:00'
+  timestamp: '2025-09-01 21:30:48+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2595.test.cpp
