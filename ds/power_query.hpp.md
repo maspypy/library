@@ -5,19 +5,19 @@ data:
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/powerquery.test.cpp
     title: test/1_mytest/powerquery.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -63,7 +63,7 @@ data:
   requiredBy:
   - graph/count/count_labeled_bipartite.hpp
   timestamp: '2025-05-05 02:10:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/powerquery.test.cpp
   - test/1_mytest/count_bipartite.test.cpp

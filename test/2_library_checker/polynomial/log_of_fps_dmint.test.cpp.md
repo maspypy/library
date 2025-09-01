@@ -463,46 +463,46 @@ data:
     template <int id>\nBarrett Dynamic_Modint<id>::bt;\n#line 2 \"poly/fps_log.hpp\"\
     \n\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
     \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod < u32(1) <<\
-    \ 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n    x.val =\
-    \ v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32\
-    \ x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
-    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
-    \ : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0 ? x + mod : x){};\n\
-    \  bool operator<(const modint &other) const { return val < other.val; }\n  modint\
-    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n\
-    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
-    \ += umod - p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const\
-    \ modint &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint::raw(val ? mod - val\
-    \ : u32(0)); }\n  modint operator+(const modint &p) const { return modint(*this)\
-    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
-    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
-    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
-    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
-    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
-    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
-    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
-    \  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n \
-    \   assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n     \
-    \ if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
-    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
-    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
-    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
-    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
-    \ (mod == 1012924417) return {21, 368093570};\n    if (mod == 1224736769) return\
-    \ {24, 1191450770};\n    if (mod == 2013265921) return {27, 244035102};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    \n  return t;\r\n}\n#line 2 \"poly/convolution.hpp\"\n\r\n#line 3 \"mod/modint.hpp\"\
+    \n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
+    \  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32\
+    \ v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr modint()\
+    \ : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64\
+    \ x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr\
+    \ modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x\
+    \ %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other) const {\
+    \ return val < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const\
+    \ modint &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return\
+    \ *this;\n  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val\
+    \ % umod;\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
+    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
+    \ { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
+    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    if (mod\
+    \ == 1224736769) return {24, 1191450770};\n    if (mod == 2013265921) return {27,\
+    \ 244035102};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
+    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n//\
     \ (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\
     \u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\
@@ -629,7 +629,7 @@ data:
     \ (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\n            a[i + offset + 3 *\
     \ p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n          }\r\n          irot *=\
     \ irate3[topbit(~s & -~s)];\r\n        }\r\n        len -= 2;\r\n      }\r\n \
-    \   }\r\n  }\r\n}\r\n#line 7 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\
+    \   }\r\n  }\r\n}\r\n#line 9 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\
     \nvector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {\r\n  assert(mint::can_ntt());\r\
     \n  if (a.empty() || b.empty()) return {};\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  int sz = 1;\r\n  while (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\
@@ -745,7 +745,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 02:05:25+09:00'
+  timestamp: '2025-09-02 05:19:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp

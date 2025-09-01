@@ -23,10 +23,10 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: bigint/binary.hpp
     title: bigint/binary.hpp
   - icon: ':heavy_check_mark:'
@@ -47,16 +47,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
   - icon: ':heavy_check_mark:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_eulerian.hpp
     title: graph/count/count_labeled_eulerian.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_strong_tournament.hpp
     title: graph/count/count_labeled_strong_tournament.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -140,10 +140,10 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   - icon: ':x:'
@@ -152,10 +152,10 @@ data:
   - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':x:'
@@ -164,10 +164,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
   - icon: ':question:'
@@ -200,10 +200,10 @@ data:
   - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':x:'
@@ -239,7 +239,7 @@ data:
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
   - icon: ':question:'
@@ -266,7 +266,7 @@ data:
   - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':warning:'
@@ -275,7 +275,7 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':x:'
@@ -287,7 +287,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number.hpp
     title: seq/famous/bell_number.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
   - icon: ':question:'
@@ -311,7 +311,7 @@ data:
   - icon: ':x:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':x:'
@@ -339,13 +339,13 @@ data:
     path: test/2_library_checker/convolution/convolution_huge.test___.cpp
     title: test/2_library_checker/convolution/convolution_huge.test___.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
     title: test/1_mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell_number.test.cpp
     title: test/1_mytest/bell_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bigint.test.cpp
     title: test/1_mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -357,10 +357,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/coef_of_rational.test.cpp
     title: test/1_mytest/coef_of_rational.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_1_minus_ex.test.cpp
     title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -369,7 +369,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
   - icon: ':heavy_check_mark:'
@@ -381,7 +381,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convolution_all_1.test.cpp
     title: test/1_mytest/convolution_all_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -390,10 +390,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
@@ -432,7 +432,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
     title: test/1_mytest/geometric_sequence_sum_formula.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
@@ -872,24 +872,25 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
-    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static\
-    \ vector<mint> dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1]\
-    \ * mint(len(dat)));\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int\
-    \ n) {\n  static vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while\
-    \ (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n\
-    }\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return\
-    \ (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head,\
-    \ class... Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
+  bundledCode: "#line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0 /\
+    \ n;\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
     \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
     mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
     \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
@@ -1075,7 +1076,7 @@ data:
     \ (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\n            a[i + offset + 3 *\
     \ p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n          }\r\n          irot *=\
     \ irate3[topbit(~s & -~s)];\r\n        }\r\n        len -= 2;\r\n      }\r\n \
-    \   }\r\n  }\r\n}\r\n#line 7 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\
+    \   }\r\n  }\r\n}\r\n#line 9 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\
     \nvector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {\r\n  assert(mint::can_ntt());\r\
     \n  if (a.empty() || b.empty()) return {};\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  int sz = 1;\r\n  while (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\
@@ -1120,28 +1121,29 @@ data:
     \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
     \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
     }\r\n"
-  code: "#include \"mod/modint.hpp\"\r\n#include \"mod/mod_inv.hpp\"\r\n#include \"\
-    mod/crt3.hpp\"\r\n#include \"poly/convolution_naive.hpp\"\r\n#include \"poly/convolution_karatsuba.hpp\"\
-    \r\n#include \"poly/ntt.hpp\"\r\n\r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint>\
-    \ a, vector<mint> b) {\r\n  assert(mint::can_ntt());\r\n  if (a.empty() || b.empty())\
-    \ return {};\r\n  int n = int(a.size()), m = int(b.size());\r\n  int sz = 1;\r\
-    \n  while (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\u3068\u304D\u306E\
-    \u9AD8\u901F\u5316\u3002\u5206\u5272\u7D71\u6CBB\u7684\u306A\u3084\u3064\u3067\
-    \u640D\u3057\u307E\u304F\u308B\u306E\u3067\u3002\r\n  if ((n + m - 3) <= sz /\
-    \ 2) {\r\n    auto a_last = a.back(), b_last = b.back();\r\n    a.pop_back(),\
-    \ b.pop_back();\r\n    auto c = convolution(a, b);\r\n    c.resize(n + m - 1);\r\
-    \n    c[n + m - 2] = a_last * b_last;\r\n    FOR(i, len(a)) c[i + len(b)] += a[i]\
-    \ * b_last;\r\n    FOR(i, len(b)) c[i + len(a)] += b[i] * a_last;\r\n    return\
-    \ c;\r\n  }\r\n\r\n  a.resize(sz), b.resize(sz);\r\n  bool same = a == b;\r\n\
-    \  ntt(a, 0);\r\n  if (same) {\r\n    b = a;\r\n  } else {\r\n    ntt(b, 0);\r\
-    \n  }\r\n  FOR(i, sz) a[i] *= b[i];\r\n  ntt(a, 1);\r\n  a.resize(n + m - 1);\r\
-    \n  return a;\r\n}\r\n\r\ntemplate <typename mint>\r\nvector<mint> convolution_garner(const\
-    \ vector<mint>& a, const vector<mint>& b) {\r\n  int n = len(a), m = len(b);\r\
-    \n  if (!n || !m) return {};\r\n  static constexpr int p0 = 167772161;\r\n  static\
-    \ constexpr int p1 = 469762049;\r\n  static constexpr int p2 = 754974721;\r\n\
-    \  using mint0 = modint<p0>;\r\n  using mint1 = modint<p1>;\r\n  using mint2 =\
-    \ modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2>\
-    \ a2(n), b2(m);\r\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i] = a[i].val;\r\
+  code: "#pragma once\r\n\r\n#include \"mod/modint.hpp\"\r\n#include \"mod/mod_inv.hpp\"\
+    \r\n#include \"mod/crt3.hpp\"\r\n#include \"poly/convolution_naive.hpp\"\r\n#include\
+    \ \"poly/convolution_karatsuba.hpp\"\r\n#include \"poly/ntt.hpp\"\r\n\r\ntemplate\
+    \ <class mint>\r\nvector<mint> convolution_ntt(vector<mint> a, vector<mint> b)\
+    \ {\r\n  assert(mint::can_ntt());\r\n  if (a.empty() || b.empty()) return {};\r\
+    \n  int n = int(a.size()), m = int(b.size());\r\n  int sz = 1;\r\n  while (sz\
+    \ < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\u3068\u304D\u306E\u9AD8\u901F\
+    \u5316\u3002\u5206\u5272\u7D71\u6CBB\u7684\u306A\u3084\u3064\u3067\u640D\u3057\
+    \u307E\u304F\u308B\u306E\u3067\u3002\r\n  if ((n + m - 3) <= sz / 2) {\r\n   \
+    \ auto a_last = a.back(), b_last = b.back();\r\n    a.pop_back(), b.pop_back();\r\
+    \n    auto c = convolution(a, b);\r\n    c.resize(n + m - 1);\r\n    c[n + m -\
+    \ 2] = a_last * b_last;\r\n    FOR(i, len(a)) c[i + len(b)] += a[i] * b_last;\r\
+    \n    FOR(i, len(b)) c[i + len(a)] += b[i] * a_last;\r\n    return c;\r\n  }\r\
+    \n\r\n  a.resize(sz), b.resize(sz);\r\n  bool same = a == b;\r\n  ntt(a, 0);\r\
+    \n  if (same) {\r\n    b = a;\r\n  } else {\r\n    ntt(b, 0);\r\n  }\r\n  FOR(i,\
+    \ sz) a[i] *= b[i];\r\n  ntt(a, 1);\r\n  a.resize(n + m - 1);\r\n  return a;\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nvector<mint> convolution_garner(const vector<mint>&\
+    \ a, const vector<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n ||\
+    \ !m) return {};\r\n  static constexpr int p0 = 167772161;\r\n  static constexpr\
+    \ int p1 = 469762049;\r\n  static constexpr int p2 = 754974721;\r\n  using mint0\
+    \ = modint<p0>;\r\n  using mint1 = modint<p1>;\r\n  using mint2 = modint<p2>;\r\
+    \n  vc<mint0> a0(n), b0(m);\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n),\
+    \ b2(m);\r\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i] = a[i].val;\r\
     \n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\r\n  auto\
     \ c0 = convolution_ntt<mint0>(a0, b0);\r\n  auto c1 = convolution_ntt<mint1>(a1,\
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n  vc<mint> c(len(c0));\r\
@@ -1283,7 +1285,7 @@ data:
   - setfunc/power_projection_of_sps.hpp
   - bigint/binary.hpp
   - bigint/base.hpp
-  timestamp: '2025-09-02 02:05:25+09:00'
+  timestamp: '2025-09-02 05:19:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/578.test.cpp

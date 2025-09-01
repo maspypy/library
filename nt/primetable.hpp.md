@@ -8,10 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':x:'
@@ -74,10 +74,10 @@ data:
   - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   - icon: ':x:'
@@ -86,7 +86,7 @@ data:
   - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':x:'
@@ -116,20 +116,20 @@ data:
   - icon: ':x:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
     title: test/1_mytest/bell.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_1_minus_ex.test.cpp
     title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -138,16 +138,16 @@ data:
   - icon: ':x:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_by_factor_type.test.cpp
     title: test/1_mytest/count_by_factor_type.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'

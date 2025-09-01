@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -80,7 +80,7 @@ data:
   - icon: ':warning:'
     path: poly/egf_convolution.hpp
     title: poly/egf_convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':x:'
@@ -96,7 +96,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'

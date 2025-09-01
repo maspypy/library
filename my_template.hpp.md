@@ -39,13 +39,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_inverse.test.cpp
     title: test/1_mytest/all_inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
     title: test/1_mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell_number.test.cpp
     title: test/1_mytest/bell_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bigint.test.cpp
     title: test/1_mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,10 +75,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/coef_of_rational.test.cpp
     title: test/1_mytest/coef_of_rational.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_1_minus_ex.test.cpp
     title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,10 +126,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
@@ -270,7 +270,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
     title: test/1_mytest/geometric_sequence_sum_formula.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'

@@ -32,19 +32,19 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
   - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':x:'
@@ -66,10 +66,10 @@ data:
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_1_minus_ex.test.cpp
     title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,13 +78,13 @@ data:
   - icon: ':x:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':x:'
@@ -152,10 +152,10 @@ data:
     \    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
     \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
     \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
-    #line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    #line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -355,7 +355,7 @@ data:
     \ (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\n            a[i + offset + 3 *\
     \ p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n          }\r\n          irot *=\
     \ irate3[topbit(~s & -~s)];\r\n        }\r\n        len -= 2;\r\n      }\r\n \
-    \   }\r\n  }\r\n}\r\n#line 7 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\
+    \   }\r\n  }\r\n}\r\n#line 9 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\
     \nvector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {\r\n  assert(mint::can_ntt());\r\
     \n  if (a.empty() || b.empty()) return {};\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  int sz = 1;\r\n  while (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\
@@ -437,7 +437,7 @@ data:
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
   - linalg/det_A_plus_xB.hpp
-  timestamp: '2025-09-02 02:05:25+09:00'
+  timestamp: '2025-09-02 05:19:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2583.test.cpp

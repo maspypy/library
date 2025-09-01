@@ -2,23 +2,23 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_eulerian.hpp
     title: graph/count/count_labeled_eulerian.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,9 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_undirected.test.cpp
     title: test/1_mytest/count_labeled_undirected.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A006125
@@ -52,7 +52,7 @@ data:
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_eulerian.hpp
   timestamp: '2024-01-29 21:47:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp

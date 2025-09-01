@@ -634,19 +634,20 @@ data:
     \ return res;\n}\n#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\
     \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
     \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
-    \ \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val *\
-    \ x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\n\
-    ll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
-    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
-    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
-    #line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
-    \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
-    \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
-    \ a);\r\n  if (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n)\
-    \ FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class\
-    \ T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
+    \ \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\
+    \u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\
+    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089\
+    \ x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod ==\
+    \ 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val +=\
+    \ mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n   \
+    \ t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u\
+    \ < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"poly/convolution_naive.hpp\"\
+    \n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
+    \nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()),\
+    \ m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b, a);\r\n  if\
+    \ (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n) FOR(j, m)\
+    \ ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class T, typename\
+    \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
     \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
     \n  vc<T> ans(n + m - 1);\r\n  if (n <= 16 && (T::get_mod() < (1 << 30))) {\r\n\
@@ -670,7 +671,7 @@ data:
     \ c = convolution_karatsuba(f1, g1);\n  vc<T> F(len(f) + len(g) - 1);\n  assert(2\
     \ * m + len(b) <= len(F));\n  FOR(i, len(a)) F[i] += a[i], c[i] -= a[i];\n  FOR(i,\
     \ len(b)) F[2 * m + i] += b[i], c[i] -= b[i];\n  if (c.back() == T(0)) c.pop_back();\n\
-    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 7\
+    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 9\
     \ \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint>\
     \ a, vector<mint> b) {\r\n  assert(mint::can_ntt());\r\n  if (a.empty() || b.empty())\
     \ return {};\r\n  int n = int(a.size()), m = int(b.size());\r\n  int sz = 1;\r\
@@ -918,68 +919,10 @@ data:
     \n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], &g = RB[s];\r\n    FOR_R(d, n +\
     \ 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x += f[i] * g[d - i];\r\n    \
     \  f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\r\n#line\
-    \ 2 \"poly/convolution_karatsuba.hpp\"\n\n// \u4EFB\u610F\u306E\u74B0\u3067\u3067\
-    \u304D\u308B\ntemplate <typename T>\nvc<T> convolution_karatsuba(const vc<T>&\
-    \ f, const vc<T>& g) {\n  const int thresh = 30;\n  if (min(len(f), len(g)) <=\
-    \ thresh) return convolution_naive(f, g);\n  int n = max(len(f), len(g));\n  int\
-    \ m = ceil(n, 2);\n  vc<T> f1, f2, g1, g2;\n  if (len(f) < m) f1 = f;\n  if (len(f)\
-    \ >= m) f1 = {f.begin(), f.begin() + m};\n  if (len(f) >= m) f2 = {f.begin() +\
-    \ m, f.end()};\n  if (len(g) < m) g1 = g;\n  if (len(g) >= m) g1 = {g.begin(),\
-    \ g.begin() + m};\n  if (len(g) >= m) g2 = {g.begin() + m, g.end()};\n  vc<T>\
-    \ a = convolution_karatsuba(f1, g1);\n  vc<T> b = convolution_karatsuba(f2, g2);\n\
-    \  FOR(i, len(f2)) f1[i] += f2[i];\n  FOR(i, len(g2)) g1[i] += g2[i];\n  vc<T>\
-    \ c = convolution_karatsuba(f1, g1);\n  vc<T> F(len(f) + len(g) - 1);\n  assert(2\
-    \ * m + len(b) <= len(F));\n  FOR(i, len(a)) F[i] += a[i], c[i] -= a[i];\n  FOR(i,\
-    \ len(b)) F[2 * m + i] += b[i], c[i] -= b[i];\n  if (c.back() == T(0)) c.pop_back();\n\
-    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 7\
-    \ \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint>\
-    \ a, vector<mint> b) {\r\n  assert(mint::can_ntt());\r\n  if (a.empty() || b.empty())\
-    \ return {};\r\n  int n = int(a.size()), m = int(b.size());\r\n  int sz = 1;\r\
-    \n  while (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\u3068\u304D\u306E\
-    \u9AD8\u901F\u5316\u3002\u5206\u5272\u7D71\u6CBB\u7684\u306A\u3084\u3064\u3067\
-    \u640D\u3057\u307E\u304F\u308B\u306E\u3067\u3002\r\n  if ((n + m - 3) <= sz /\
-    \ 2) {\r\n    auto a_last = a.back(), b_last = b.back();\r\n    a.pop_back(),\
-    \ b.pop_back();\r\n    auto c = convolution(a, b);\r\n    c.resize(n + m - 1);\r\
-    \n    c[n + m - 2] = a_last * b_last;\r\n    FOR(i, len(a)) c[i + len(b)] += a[i]\
-    \ * b_last;\r\n    FOR(i, len(b)) c[i + len(a)] += b[i] * a_last;\r\n    return\
-    \ c;\r\n  }\r\n\r\n  a.resize(sz), b.resize(sz);\r\n  bool same = a == b;\r\n\
-    \  ntt(a, 0);\r\n  if (same) {\r\n    b = a;\r\n  } else {\r\n    ntt(b, 0);\r\
-    \n  }\r\n  FOR(i, sz) a[i] *= b[i];\r\n  ntt(a, 1);\r\n  a.resize(n + m - 1);\r\
-    \n  return a;\r\n}\r\n\r\ntemplate <typename mint>\r\nvector<mint> convolution_garner(const\
-    \ vector<mint>& a, const vector<mint>& b) {\r\n  int n = len(a), m = len(b);\r\
-    \n  if (!n || !m) return {};\r\n  static constexpr int p0 = 167772161;\r\n  static\
-    \ constexpr int p1 = 469762049;\r\n  static constexpr int p2 = 754974721;\r\n\
-    \  using mint0 = modint<p0>;\r\n  using mint1 = modint<p1>;\r\n  using mint2 =\
-    \ modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2>\
-    \ a2(n), b2(m);\r\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i] = a[i].val;\r\
-    \n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\r\n  auto\
-    \ c0 = convolution_ntt<mint0>(a0, b0);\r\n  auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n  vc<mint> c(len(c0));\r\
-    \n  FOR(i, n + m - 1) {\r\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
-    \ c2[i].val);\r\n  }\r\n  return c;\r\n}\r\n\r\nvector<ll> convolution(vector<ll>\
-    \ a, vector<ll> b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (min(n, m) <= 2500) return convolution_naive(a, b);\r\n\r\n  ll\
-    \ mi_a = MIN(a), mi_b = MIN(b);\r\n  for (auto& x : a) x -= mi_a;\r\n  for (auto&\
-    \ x : b) x -= mi_b;\r\n  assert(MAX(a) * MAX(b) <= 1e18);\r\n\r\n  auto Ac = cumsum<ll>(a),\
-    \ Bc = cumsum<ll>(b);\r\n  vi res(n + m - 1);\r\n  for (int k = 0; k < n + m -\
-    \ 1; ++k) {\r\n    int s = max(0, k - m + 1);\r\n    int t = min(n, k + 1);\r\n\
-    \    res[k] += (t - s) * mi_a * mi_b;\r\n    res[k] += mi_a * (Bc[k - s + 1] -\
-    \ Bc[k - t + 1]);\r\n    res[k] += mi_b * (Ac[t] - Ac[s]);\r\n  }\r\n\r\n  static\
-    \ constexpr u32 MOD1 = 1004535809;\r\n  static constexpr u32 MOD2 = 1012924417;\r\
-    \n  using mint1 = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\n\r\n  vc<mint1>\
-    \ a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a1[i] = a[i], a2[i]\
-    \ = a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\r\n\r\n  auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
-    \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
-    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 3 \"setfunc/power_projection_of_sps.hpp\"\n\n// for fixed sps s, consider\
-    \ linear map F:a->b = subset-conv(a,s)\n// given x, calculate transpose(F)(x)\n\
-    template <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
-    \ s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.\n\
+    \ 3 \"setfunc/power_projection_of_sps.hpp\"\n\n// for fixed sps s, consider linear\
+    \ map F:a->b = subset-conv(a,s)\n// given x, calculate transpose(F)(x)\ntemplate\
+    \ <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint> s,\
+    \ vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.\n\
     \  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset i}(rev x)_js_{i-j}\n\
     \  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x = subset_convolution<mint,\
     \ LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\n// assume s[0]==0\n// calculate\
@@ -1062,7 +1005,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 02:05:25+09:00'
+  timestamp: '2025-09-02 05:19:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/chromatic_polynomial.test.cpp

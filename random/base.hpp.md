@@ -23,7 +23,7 @@ data:
   - icon: ':x:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   - icon: ':x:'
@@ -71,7 +71,7 @@ data:
   - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -134,7 +134,7 @@ data:
   - icon: ':x:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':x:'
@@ -192,7 +192,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_inverse.test.cpp
     title: test/1_mytest/all_inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bigint.test.cpp
     title: test/1_mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,10 +210,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/coef_of_rational.test.cpp
     title: test/1_mytest/coef_of_rational.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_1_minus_ex.test.cpp
     title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -222,7 +222,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
   - icon: ':heavy_check_mark:'
@@ -249,7 +249,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'

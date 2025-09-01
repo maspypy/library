@@ -46,7 +46,7 @@ data:
   - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':question:'
@@ -89,10 +89,10 @@ data:
     \    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
     \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
     \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
-    #line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    #line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -292,7 +292,7 @@ data:
     \ (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\n            a[i + offset + 3 *\
     \ p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n          }\r\n          irot *=\
     \ irate3[topbit(~s & -~s)];\r\n        }\r\n        len -= 2;\r\n      }\r\n \
-    \   }\r\n  }\r\n}\r\n#line 7 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\
+    \   }\r\n  }\r\n}\r\n#line 9 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\
     \nvector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {\r\n  assert(mint::can_ntt());\r\
     \n  if (a.empty() || b.empty()) return {};\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  int sz = 1;\r\n  while (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\
@@ -347,100 +347,42 @@ data:
     \ pow_b = 1;\n  FOR(i, len(f)) f[i] *= pow_b, pow_b *= b;\n  return f;\n}\n#line\
     \ 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
     \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 2 \"poly/convolution_karatsuba.hpp\"\n\n// \u4EFB\u610F\
-    \u306E\u74B0\u3067\u3067\u304D\u308B\ntemplate <typename T>\nvc<T> convolution_karatsuba(const\
-    \ vc<T>& f, const vc<T>& g) {\n  const int thresh = 30;\n  if (min(len(f), len(g))\
-    \ <= thresh) return convolution_naive(f, g);\n  int n = max(len(f), len(g));\n\
-    \  int m = ceil(n, 2);\n  vc<T> f1, f2, g1, g2;\n  if (len(f) < m) f1 = f;\n \
-    \ if (len(f) >= m) f1 = {f.begin(), f.begin() + m};\n  if (len(f) >= m) f2 = {f.begin()\
-    \ + m, f.end()};\n  if (len(g) < m) g1 = g;\n  if (len(g) >= m) g1 = {g.begin(),\
-    \ g.begin() + m};\n  if (len(g) >= m) g2 = {g.begin() + m, g.end()};\n  vc<T>\
-    \ a = convolution_karatsuba(f1, g1);\n  vc<T> b = convolution_karatsuba(f2, g2);\n\
-    \  FOR(i, len(f2)) f1[i] += f2[i];\n  FOR(i, len(g2)) g1[i] += g2[i];\n  vc<T>\
-    \ c = convolution_karatsuba(f1, g1);\n  vc<T> F(len(f) + len(g) - 1);\n  assert(2\
-    \ * m + len(b) <= len(F));\n  FOR(i, len(a)) F[i] += a[i], c[i] -= a[i];\n  FOR(i,\
-    \ len(b)) F[2 * m + i] += b[i], c[i] -= b[i];\n  if (c.back() == T(0)) c.pop_back();\n\
-    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 7\
-    \ \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint>\
-    \ a, vector<mint> b) {\r\n  assert(mint::can_ntt());\r\n  if (a.empty() || b.empty())\
-    \ return {};\r\n  int n = int(a.size()), m = int(b.size());\r\n  int sz = 1;\r\
-    \n  while (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\u3068\u304D\u306E\
-    \u9AD8\u901F\u5316\u3002\u5206\u5272\u7D71\u6CBB\u7684\u306A\u3084\u3064\u3067\
-    \u640D\u3057\u307E\u304F\u308B\u306E\u3067\u3002\r\n  if ((n + m - 3) <= sz /\
-    \ 2) {\r\n    auto a_last = a.back(), b_last = b.back();\r\n    a.pop_back(),\
-    \ b.pop_back();\r\n    auto c = convolution(a, b);\r\n    c.resize(n + m - 1);\r\
-    \n    c[n + m - 2] = a_last * b_last;\r\n    FOR(i, len(a)) c[i + len(b)] += a[i]\
-    \ * b_last;\r\n    FOR(i, len(b)) c[i + len(a)] += b[i] * a_last;\r\n    return\
-    \ c;\r\n  }\r\n\r\n  a.resize(sz), b.resize(sz);\r\n  bool same = a == b;\r\n\
-    \  ntt(a, 0);\r\n  if (same) {\r\n    b = a;\r\n  } else {\r\n    ntt(b, 0);\r\
-    \n  }\r\n  FOR(i, sz) a[i] *= b[i];\r\n  ntt(a, 1);\r\n  a.resize(n + m - 1);\r\
-    \n  return a;\r\n}\r\n\r\ntemplate <typename mint>\r\nvector<mint> convolution_garner(const\
-    \ vector<mint>& a, const vector<mint>& b) {\r\n  int n = len(a), m = len(b);\r\
-    \n  if (!n || !m) return {};\r\n  static constexpr int p0 = 167772161;\r\n  static\
-    \ constexpr int p1 = 469762049;\r\n  static constexpr int p2 = 754974721;\r\n\
-    \  using mint0 = modint<p0>;\r\n  using mint1 = modint<p1>;\r\n  using mint2 =\
-    \ modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2>\
-    \ a2(n), b2(m);\r\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i] = a[i].val;\r\
-    \n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\r\n  auto\
-    \ c0 = convolution_ntt<mint0>(a0, b0);\r\n  auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n  vc<mint> c(len(c0));\r\
-    \n  FOR(i, n + m - 1) {\r\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
-    \ c2[i].val);\r\n  }\r\n  return c;\r\n}\r\n\r\nvector<ll> convolution(vector<ll>\
-    \ a, vector<ll> b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (min(n, m) <= 2500) return convolution_naive(a, b);\r\n\r\n  ll\
-    \ mi_a = MIN(a), mi_b = MIN(b);\r\n  for (auto& x : a) x -= mi_a;\r\n  for (auto&\
-    \ x : b) x -= mi_b;\r\n  assert(MAX(a) * MAX(b) <= 1e18);\r\n\r\n  auto Ac = cumsum<ll>(a),\
-    \ Bc = cumsum<ll>(b);\r\n  vi res(n + m - 1);\r\n  for (int k = 0; k < n + m -\
-    \ 1; ++k) {\r\n    int s = max(0, k - m + 1);\r\n    int t = min(n, k + 1);\r\n\
-    \    res[k] += (t - s) * mi_a * mi_b;\r\n    res[k] += mi_a * (Bc[k - s + 1] -\
-    \ Bc[k - t + 1]);\r\n    res[k] += mi_b * (Ac[t] - Ac[s]);\r\n  }\r\n\r\n  static\
-    \ constexpr u32 MOD1 = 1004535809;\r\n  static constexpr u32 MOD2 = 1012924417;\r\
-    \n  using mint1 = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\n\r\n  vc<mint1>\
-    \ a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a1[i] = a[i], a2[i]\
-    \ = a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\r\n\r\n  auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
-    \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
-    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"poly/integrate.hpp\"\n\n// \u4E0D\u5B9A\u7A4D\u5206\uFF1Aintegrate(f)\n\
-    // \u5B9A\u7A4D\u5206\uFF1Aintegrate(f, L, R)\ntemplate <typename mint>\nvc<mint>\
-    \ integrate(const vc<mint>& f) {\n  vc<mint> g(len(f) + 1);\n  FOR3(i, 1, len(g))\
-    \ g[i] = f[i - 1] * inv<mint>(i);\n  return g;\n}\n\n// \u4E0D\u5B9A\u7A4D\u5206\
+    \n  return t;\r\n}\n#line 2 \"poly/integrate.hpp\"\n\n// \u4E0D\u5B9A\u7A4D\u5206\
     \uFF1Aintegrate(f)\n// \u5B9A\u7A4D\u5206\uFF1Aintegrate(f, L, R)\ntemplate <typename\
-    \ mint>\nmint integrate(const vc<mint>& f, mint L, mint R) {\n  mint I = 0;\n\
-    \  mint pow_L = 1, pow_R = 1;\n  FOR(i, len(f)) {\n    pow_L *= L, pow_R *= R;\n\
-    \    I += inv<mint>(i + 1) * f[i] * (pow_R - pow_L);\n  }\n  return I;\n}\n#line\
-    \ 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint> differentiate(const\
-    \ vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n \
-    \ FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 6 \"poly/fps_exp.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_exp_sparse(vc<mint>& f) {\r\n \
-    \ if (len(f) == 0) return {mint(1)};\r\n  assert(f[0] == 0);\r\n  int N = len(f);\r\
-    \n  // df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
-    \ 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\n  vc<mint> F(N);\r\
-    \n  F[0] = 1;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
-    \ fk]: dat) {\r\n      if (k > n - 1) break;\r\n      rhs += fk * F[n - 1 - k];\r\
-    \n    }\r\n    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_exp_dense(vc<mint>& h) {\r\n  const int n =\
-    \ len(h);\r\n  assert(n > 0 && h[0] == mint(0));\r\n  if (mint::can_ntt()) {\r\
-    \n    vc<mint>& f = h;\r\n    vc<mint> b = {1, (1 < n ? f[1] : 0)};\r\n    vc<mint>\
-    \ c = {1}, z1, z2 = {1, 1};\r\n    while (len(b) < n) {\r\n      int m = len(b);\r\
-    \n      auto y = b;\r\n      y.resize(2 * m);\r\n      ntt(y, 0);\r\n      z1\
-    \ = z2;\r\n      vc<mint> z(m);\r\n      FOR(i, m) z[i] = y[i] * z1[i];\r\n  \
-    \    ntt(z, 1);\r\n      FOR(i, m / 2) z[i] = 0;\r\n      ntt(z, 0);\r\n     \
-    \ FOR(i, m) z[i] *= -z1[i];\r\n      ntt(z, 1);\r\n      c.insert(c.end(), z.begin()\
-    \ + m / 2, z.end());\r\n      z2 = c;\r\n      z2.resize(2 * m);\r\n      ntt(z2,\
-    \ 0);\r\n\r\n      vc<mint> x(f.begin(), f.begin() + m);\r\n      FOR(i, len(x)\
-    \ - 1) x[i] = x[i + 1] * mint(i + 1);\r\n      x.back() = 0;\r\n      ntt(x, 0);\r\
-    \n      FOR(i, m) x[i] *= y[i];\r\n      ntt(x, 1);\r\n\r\n      FOR(i, m - 1)\
-    \ x[i] -= b[i + 1] * mint(i + 1);\r\n\r\n      x.resize(m + m);\r\n      FOR(i,\
-    \ m - 1) x[m + i] = x[i], x[i] = 0;\r\n      ntt(x, 0);\r\n      FOR(i, m + m)\
-    \ x[i] *= z2[i];\r\n      ntt(x, 1);\r\n      FOR_R(i, len(x) - 1) x[i + 1] =\
-    \ x[i] * inv<mint>(i + 1);\r\n      x[0] = 0;\r\n\r\n      FOR3(i, m, min(n, m\
-    \ + m)) x[i] += f[i];\r\n      FOR(i, m) x[i] = 0;\r\n      ntt(x, 0);\r\n   \
-    \   FOR(i, m + m) x[i] *= y[i];\r\n      ntt(x, 1);\r\n      b.insert(b.end(),\
+    \ mint>\nvc<mint> integrate(const vc<mint>& f) {\n  vc<mint> g(len(f) + 1);\n\
+    \  FOR3(i, 1, len(g)) g[i] = f[i - 1] * inv<mint>(i);\n  return g;\n}\n\n// \u4E0D\
+    \u5B9A\u7A4D\u5206\uFF1Aintegrate(f)\n// \u5B9A\u7A4D\u5206\uFF1Aintegrate(f,\
+    \ L, R)\ntemplate <typename mint>\nmint integrate(const vc<mint>& f, mint L, mint\
+    \ R) {\n  mint I = 0;\n  mint pow_L = 1, pow_R = 1;\n  FOR(i, len(f)) {\n    pow_L\
+    \ *= L, pow_R *= R;\n    I += inv<mint>(i + 1) * f[i] * (pow_R - pow_L);\n  }\n\
+    \  return I;\n}\n#line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\n\
+    vc<mint> differentiate(const vc<mint>& f) {\n  if (len(f) <= 1) return {};\n \
+    \ vc<mint> g(len(f) - 1);\n  FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n \
+    \ return g;\n}\n#line 6 \"poly/fps_exp.hpp\"\n\r\ntemplate <typename mint>\r\n\
+    vc<mint> fps_exp_sparse(vc<mint>& f) {\r\n  if (len(f) == 0) return {mint(1)};\r\
+    \n  assert(f[0] == 0);\r\n  int N = len(f);\r\n  // df \u3092\u6301\u305F\u305B\
+    \u308B\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i\
+    \ - 1, mint(i) * f[i]);\r\n  vc<mint> F(N);\r\n  F[0] = 1;\r\n  FOR(n, 1, N) {\r\
+    \n    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n - 1)\
+    \ break;\r\n      rhs += fk * F[n - 1 - k];\r\n    }\r\n    F[n] = rhs * inv<mint>(n);\r\
+    \n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_exp_dense(vc<mint>&\
+    \ h) {\r\n  const int n = len(h);\r\n  assert(n > 0 && h[0] == mint(0));\r\n \
+    \ if (mint::can_ntt()) {\r\n    vc<mint>& f = h;\r\n    vc<mint> b = {1, (1 <\
+    \ n ? f[1] : 0)};\r\n    vc<mint> c = {1}, z1, z2 = {1, 1};\r\n    while (len(b)\
+    \ < n) {\r\n      int m = len(b);\r\n      auto y = b;\r\n      y.resize(2 * m);\r\
+    \n      ntt(y, 0);\r\n      z1 = z2;\r\n      vc<mint> z(m);\r\n      FOR(i, m)\
+    \ z[i] = y[i] * z1[i];\r\n      ntt(z, 1);\r\n      FOR(i, m / 2) z[i] = 0;\r\n\
+    \      ntt(z, 0);\r\n      FOR(i, m) z[i] *= -z1[i];\r\n      ntt(z, 1);\r\n \
+    \     c.insert(c.end(), z.begin() + m / 2, z.end());\r\n      z2 = c;\r\n    \
+    \  z2.resize(2 * m);\r\n      ntt(z2, 0);\r\n\r\n      vc<mint> x(f.begin(), f.begin()\
+    \ + m);\r\n      FOR(i, len(x) - 1) x[i] = x[i + 1] * mint(i + 1);\r\n      x.back()\
+    \ = 0;\r\n      ntt(x, 0);\r\n      FOR(i, m) x[i] *= y[i];\r\n      ntt(x, 1);\r\
+    \n\r\n      FOR(i, m - 1) x[i] -= b[i + 1] * mint(i + 1);\r\n\r\n      x.resize(m\
+    \ + m);\r\n      FOR(i, m - 1) x[m + i] = x[i], x[i] = 0;\r\n      ntt(x, 0);\r\
+    \n      FOR(i, m + m) x[i] *= z2[i];\r\n      ntt(x, 1);\r\n      FOR_R(i, len(x)\
+    \ - 1) x[i + 1] = x[i] * inv<mint>(i + 1);\r\n      x[0] = 0;\r\n\r\n      FOR3(i,\
+    \ m, min(n, m + m)) x[i] += f[i];\r\n      FOR(i, m) x[i] = 0;\r\n      ntt(x,\
+    \ 0);\r\n      FOR(i, m + m) x[i] *= y[i];\r\n      ntt(x, 1);\r\n      b.insert(b.end(),\
     \ x.begin() + m, x.end());\r\n    }\r\n    b.resize(n);\r\n    return b;\r\n \
     \ }\r\n\r\n  const int L = len(h);\r\n  assert(L > 0 && h[0] == mint(0));\r\n\
     \  int LOG = 0;\r\n  while (1 << LOG < L) ++LOG;\r\n  h.resize(1 << LOG);\r\n\
@@ -456,66 +398,8 @@ data:
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
     \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
-    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2\
-    \ \"poly/convolution_karatsuba.hpp\"\n\n// \u4EFB\u610F\u306E\u74B0\u3067\u3067\
-    \u304D\u308B\ntemplate <typename T>\nvc<T> convolution_karatsuba(const vc<T>&\
-    \ f, const vc<T>& g) {\n  const int thresh = 30;\n  if (min(len(f), len(g)) <=\
-    \ thresh) return convolution_naive(f, g);\n  int n = max(len(f), len(g));\n  int\
-    \ m = ceil(n, 2);\n  vc<T> f1, f2, g1, g2;\n  if (len(f) < m) f1 = f;\n  if (len(f)\
-    \ >= m) f1 = {f.begin(), f.begin() + m};\n  if (len(f) >= m) f2 = {f.begin() +\
-    \ m, f.end()};\n  if (len(g) < m) g1 = g;\n  if (len(g) >= m) g1 = {g.begin(),\
-    \ g.begin() + m};\n  if (len(g) >= m) g2 = {g.begin() + m, g.end()};\n  vc<T>\
-    \ a = convolution_karatsuba(f1, g1);\n  vc<T> b = convolution_karatsuba(f2, g2);\n\
-    \  FOR(i, len(f2)) f1[i] += f2[i];\n  FOR(i, len(g2)) g1[i] += g2[i];\n  vc<T>\
-    \ c = convolution_karatsuba(f1, g1);\n  vc<T> F(len(f) + len(g) - 1);\n  assert(2\
-    \ * m + len(b) <= len(F));\n  FOR(i, len(a)) F[i] += a[i], c[i] -= a[i];\n  FOR(i,\
-    \ len(b)) F[2 * m + i] += b[i], c[i] -= b[i];\n  if (c.back() == T(0)) c.pop_back();\n\
-    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 7\
-    \ \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint>\
-    \ a, vector<mint> b) {\r\n  assert(mint::can_ntt());\r\n  if (a.empty() || b.empty())\
-    \ return {};\r\n  int n = int(a.size()), m = int(b.size());\r\n  int sz = 1;\r\
-    \n  while (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\u3068\u304D\u306E\
-    \u9AD8\u901F\u5316\u3002\u5206\u5272\u7D71\u6CBB\u7684\u306A\u3084\u3064\u3067\
-    \u640D\u3057\u307E\u304F\u308B\u306E\u3067\u3002\r\n  if ((n + m - 3) <= sz /\
-    \ 2) {\r\n    auto a_last = a.back(), b_last = b.back();\r\n    a.pop_back(),\
-    \ b.pop_back();\r\n    auto c = convolution(a, b);\r\n    c.resize(n + m - 1);\r\
-    \n    c[n + m - 2] = a_last * b_last;\r\n    FOR(i, len(a)) c[i + len(b)] += a[i]\
-    \ * b_last;\r\n    FOR(i, len(b)) c[i + len(a)] += b[i] * a_last;\r\n    return\
-    \ c;\r\n  }\r\n\r\n  a.resize(sz), b.resize(sz);\r\n  bool same = a == b;\r\n\
-    \  ntt(a, 0);\r\n  if (same) {\r\n    b = a;\r\n  } else {\r\n    ntt(b, 0);\r\
-    \n  }\r\n  FOR(i, sz) a[i] *= b[i];\r\n  ntt(a, 1);\r\n  a.resize(n + m - 1);\r\
-    \n  return a;\r\n}\r\n\r\ntemplate <typename mint>\r\nvector<mint> convolution_garner(const\
-    \ vector<mint>& a, const vector<mint>& b) {\r\n  int n = len(a), m = len(b);\r\
-    \n  if (!n || !m) return {};\r\n  static constexpr int p0 = 167772161;\r\n  static\
-    \ constexpr int p1 = 469762049;\r\n  static constexpr int p2 = 754974721;\r\n\
-    \  using mint0 = modint<p0>;\r\n  using mint1 = modint<p1>;\r\n  using mint2 =\
-    \ modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2>\
-    \ a2(n), b2(m);\r\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i] = a[i].val;\r\
-    \n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\r\n  auto\
-    \ c0 = convolution_ntt<mint0>(a0, b0);\r\n  auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n  vc<mint> c(len(c0));\r\
-    \n  FOR(i, n + m - 1) {\r\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
-    \ c2[i].val);\r\n  }\r\n  return c;\r\n}\r\n\r\nvector<ll> convolution(vector<ll>\
-    \ a, vector<ll> b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (min(n, m) <= 2500) return convolution_naive(a, b);\r\n\r\n  ll\
-    \ mi_a = MIN(a), mi_b = MIN(b);\r\n  for (auto& x : a) x -= mi_a;\r\n  for (auto&\
-    \ x : b) x -= mi_b;\r\n  assert(MAX(a) * MAX(b) <= 1e18);\r\n\r\n  auto Ac = cumsum<ll>(a),\
-    \ Bc = cumsum<ll>(b);\r\n  vi res(n + m - 1);\r\n  for (int k = 0; k < n + m -\
-    \ 1; ++k) {\r\n    int s = max(0, k - m + 1);\r\n    int t = min(n, k + 1);\r\n\
-    \    res[k] += (t - s) * mi_a * mi_b;\r\n    res[k] += mi_a * (Bc[k - s + 1] -\
-    \ Bc[k - t + 1]);\r\n    res[k] += mi_b * (Ac[t] - Ac[s]);\r\n  }\r\n\r\n  static\
-    \ constexpr u32 MOD1 = 1004535809;\r\n  static constexpr u32 MOD2 = 1012924417;\r\
-    \n  using mint1 = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\n\r\n  vc<mint1>\
-    \ a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a1[i] = a[i], a2[i]\
-    \ = a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\r\n\r\n  auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
-    \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
-    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 4\
+    \ \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const\
     \ vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
     \ 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0\
     \ = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\
@@ -629,7 +513,7 @@ data:
   isVerificationFile: false
   path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   requiredBy: []
-  timestamp: '2025-09-02 02:05:25+09:00'
+  timestamp: '2025-09-02 05:19:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2583.test.cpp
