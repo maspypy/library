@@ -17,7 +17,7 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"poly/ntt.hpp\"\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
+  bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
     \ a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\
     \n  const u32 mod = mint::get_mod();\r\n  static array<mint, 30> root, iroot;\r\
     \n  static array<mint, 30> rate2, irate2;\r\n  static array<mint, 30> rate3, irate3;\r\
@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: poly/online/online_square.hpp
   requiredBy: []
-  timestamp: '2025-09-01 23:33:15+09:00'
+  timestamp: '2025-09-02 02:05:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2801.test.cpp
