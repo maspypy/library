@@ -3,9 +3,9 @@
 
 // 10^9 ずつ区切って
 struct BigInteger {
-  static constexpr int TEN[] = {1,         10,        100,     1000,
-                                10000,     100000,    1000000, 10000000,
-                                100000000, 1000000000};
+  inline static constexpr int TEN[] = {1,         10,        100,     1000,
+                                       10000,     100000,    1000000, 10000000,
+                                       100000000, 1000000000};
   static constexpr int LOG = 9;
   static constexpr int MOD = TEN[LOG];
   using bint = BigInteger;
