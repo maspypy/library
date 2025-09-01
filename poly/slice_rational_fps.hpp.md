@@ -326,9 +326,9 @@ data:
     \ FOR(i, n - m + 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
     \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
     \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
-    \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 1 \"poly/transposed_ntt.hpp\"\
-    \ntemplate <class mint>\nvoid transposed_ntt(vector<mint>& a, bool inverse) {\n\
-    \  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n  const\
+    \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 2 \"poly/transposed_ntt.hpp\"\
+    \n\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>& a, bool inverse)\
+    \ {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n  const\
     \ u32 mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n  static\
     \ array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\n\
     \  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\n\n  static bool prepared\
@@ -558,7 +558,7 @@ data:
   isVerificationFile: false
   path: poly/slice_rational_fps.hpp
   requiredBy: []
-  timestamp: '2025-09-02 05:19:45+09:00'
+  timestamp: '2025-09-02 06:24:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/polynomial/slice_rational.test.cpp

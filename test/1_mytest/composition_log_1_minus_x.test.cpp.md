@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':question:'
@@ -76,7 +76,7 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':question:'
@@ -93,9 +93,9 @@ data:
     title: seq/famous/stirling_number_1.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -561,7 +561,7 @@ data:
     \ tmp = {a.begin(), a.begin() + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a,\
     \ 0);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r\
     \ *= zeta;\n    transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n\
-    #line 1 \"poly/transposed_ntt.hpp\"\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
+    #line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
     \ a, bool inverse) {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n\
     \  const u32 mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n \
     \ static array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\
@@ -836,77 +836,24 @@ data:
     \ S);\n  f.resize(N + 1);\n  vc<mint> A(N + 1);\n  FOR(i, N + 1) A[i] = mint::raw(i);\n\
     \  f = partial_frac_decomposition_1(f, A);\n  FOR(i, len(f)) if (i & 1) f[i] =\
     \ -f[i];\n  f = poly_taylor_shift<mint>(f, -1);\n  return f;\n}\n#line 2 \"poly/composition.hpp\"\
-    \n\r\n#line 1 \"poly/transposed_ntt.hpp\"\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
-    \ a, bool inverse) {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n\
-    \  const u32 mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n \
-    \ static array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\
-    \n  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\n\n  static bool prepared\
-    \ = 0;\n  if (!prepared) {\n    prepared = 1;\n    root[rank2] = mint::ntt_info().se;\n\
-    \    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i]\
-    \ = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n\
-    \    }\n    mint prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++)\
-    \ {\n      rate2[i] = root[i + 2] * prod;\n      irate2[i] = iroot[i + 2] * iprod;\n\
-    \      prod *= iroot[i + 2];\n      iprod *= root[i + 2];\n    }\n    prod = 1,\
-    \ iprod = 1;\n    for (int i = 0; i <= rank2 - 3; i++) {\n      rate3[i] = root[i\
-    \ + 3] * prod;\n      irate3[i] = iroot[i + 3] * iprod;\n      prod *= iroot[i\
-    \ + 3];\n      iprod *= root[i + 3];\n    }\n  }\n\n  int n = int(a.size());\n\
-    \  int h = topbit(n);\n  assert(n == 1 << h);\n  if (!inverse) {\n    int len\
-    \ = h;\n    while (len > 0) {\n      if (len == 1) {\n        int p = 1 << (h\
-    \ - len);\n        mint rot = 1;\n        FOR(s, 1 << (len - 1)) {\n         \
-    \ int offset = s << (h - len + 1);\n          FOR(i, p) {\n            u64 l =\
-    \ a[i + offset].val;\n            u64 r = a[i + offset + p].val;\n           \
-    \ a[i + offset] = l + r;\n            a[i + offset + p] = (mod + l - r) * rot.val;\n\
-    \          }\n          rot *= rate2[topbit(~s & -~s)];\n        }\n        len--;\n\
-    \      } else {\n        int p = 1 << (h - len);\n        mint rot = 1, imag =\
-    \ root[2];\n        FOR(s, (1 << (len - 2))) {\n          int offset = s << (h\
-    \ - len + 2);\n          mint rot2 = rot * rot;\n          mint rot3 = rot2 *\
-    \ rot;\n          for (int i = 0; i < p; i++) {\n            u64 a0 = a[i + offset\
-    \ + 0 * p].val;\n            u64 a1 = a[i + offset + 1 * p].val;\n           \
-    \ u64 a2 = a[i + offset + 2 * p].val;\n            u64 a3 = a[i + offset + 3 *\
-    \ p].val;\n            u64 x = (mod + a2 - a3) * imag.val % mod;\n           \
-    \ a[i + offset] = a0 + a1 + a2 + a3;\n            a[i + offset + 1 * p] = (a0\
-    \ + mod - a1 + x) * rot.val;\n            a[i + offset + 2 * p] = (a0 + a1 + 2\
-    \ * mod - a2 - a3) * rot2.val;\n            a[i + offset + 3 * p] = (a0 + 2 *\
-    \ mod - a1 - x) * rot3.val;\n          }\n          rot *= rate3[topbit(~s & -~s)];\n\
-    \        }\n        len -= 2;\n      }\n    }\n  } else {\n    mint coef = mint(1)\
-    \ / mint(len(a));\n    FOR(i, len(a)) a[i] *= coef;\n    int len = 0;\n    while\
-    \ (len < h) {\n      if (len == h - 1) {\n        int p = 1 << (h - len - 1);\n\
-    \        mint irot = 1;\n        FOR(s, 1 << len) {\n          int offset = s\
-    \ << (h - len);\n          FOR(i, p) {\n            auto l = a[i + offset];\n\
-    \            auto r = a[i + offset + p] * irot;\n            a[i + offset] = l\
-    \ + r;\n            a[i + offset + p] = l - r;\n          }\n          irot *=\
-    \ irate2[topbit(~s & -~s)];\n        }\n        len++;\n      } else {\n     \
-    \   int p = 1 << (h - len - 2);\n        mint irot = 1, iimag = iroot[2];\n  \
-    \      for (int s = 0; s < (1 << len); s++) {\n          mint irot2 = irot * irot;\n\
-    \          mint irot3 = irot2 * irot;\n          int offset = s << (h - len);\n\
-    \          for (int i = 0; i < p; i++) {\n            u64 mod2 = u64(mod) * mod;\n\
-    \            u64 a0 = a[i + offset].val;\n            u64 a1 = u64(a[i + offset\
-    \ + p].val) * irot.val;\n            u64 a2 = u64(a[i + offset + 2 * p].val) *\
-    \ irot2.val;\n            u64 a3 = u64(a[i + offset + 3 * p].val) * irot3.val;\n\
-    \            u64 a1na3imag = (a1 + mod2 - a3) % mod * iimag.val;\n           \
-    \ u64 na2 = mod2 - a2;\n            a[i + offset] = a0 + a2 + a1 + a3;\n     \
-    \       a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\n          \
-    \  a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\n            a[i + offset + 3\
-    \ * p] = a0 + na2 + (mod2 - a1na3imag);\n          }\n          irot *= irate3[topbit(~s\
-    \ & -~s)];\n        }\n        len += 2;\n      }\n    }\n  }\n}\n#line 6 \"poly/composition.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> composition_old(vc<mint>& Q, vc<mint>&\
-    \ P) {\r\n  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n\
-    \  while (k * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k +\
-    \ 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i]\
-    \ = convolution(pow1[i - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint,\
-    \ pow2, k + 1);\r\n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k\
-    \ + 1) {\r\n    pow2[i] = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\
-    \n  }\r\n  vc<mint> ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n   \
-    \ FOR(j, k) {\r\n      if (k * i + j < len(Q)) {\r\n        mint coef = Q[k *\
-    \ i + j];\r\n        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n     \
-    \ }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d,\
-    \ n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n}\r\n\r\n// f(g(x)), O(Nlog^2N)\r\
-    \ntemplate <typename mint>\r\nvc<mint> composition_0_ntt(vc<mint> f, vc<mint>\
-    \ g) {\r\n  assert(len(f) == len(g));\r\n  if (f.empty()) return {};\r\n\r\n \
-    \ int n0 = len(f);\r\n  int n = 1;\r\n  while (n < len(f)) n *= 2;\r\n  f.resize(n),\
-    \ g.resize(n);\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    // bit reverse order\r\n\
-    \    vc<int> btr(n);\r\n    int log = topbit(n);\r\n    FOR(i, n) { btr[i] = (btr[i\
-    \ >> 1] >> 1) + ((i & 1) << (log - 1)); }\r\n    int t = mint::ntt_info().fi;\r\
+    \n\r\n#line 6 \"poly/composition.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ composition_old(vc<mint>& Q, vc<mint>& P) {\r\n  int n = len(P);\r\n  assert(len(P)\
+    \ == len(Q));\r\n  int k = 1;\r\n  while (k * k < n) ++k;\r\n  // compute powers\
+    \ of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n \
+    \ FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i - 1], pow1[1]);\r\n\
+    \    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\n  pow2[0] = {1};\r\
+    \n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i] = convolution(pow2[i\
+    \ - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint> ANS(n);\r\n \
+    \ FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n      if (k * i\
+    \ + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n        FOR(d, len(pow1[j]))\
+    \ f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\
+    \n    f.resize(n);\r\n    FOR(d, n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n\
+    }\r\n\r\n// f(g(x)), O(Nlog^2N)\r\ntemplate <typename mint>\r\nvc<mint> composition_0_ntt(vc<mint>\
+    \ f, vc<mint> g) {\r\n  assert(len(f) == len(g));\r\n  if (f.empty()) return {};\r\
+    \n\r\n  int n0 = len(f);\r\n  int n = 1;\r\n  while (n < len(f)) n *= 2;\r\n \
+    \ f.resize(n), g.resize(n);\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    // bit reverse\
+    \ order\r\n    vc<int> btr(n);\r\n    int log = topbit(n);\r\n    FOR(i, n) {\
+    \ btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\r\n    int t = mint::ntt_info().fi;\r\
     \n    mint r = mint::ntt_info().se;\r\n    mint dw = r.inverse().pow((1 << t)\
     \ / (2 * n));\r\n    mint w = 1;\r\n    for (auto& i: btr) { W[i] = w, w *= dw;\
     \ }\r\n  }\r\n\r\n  auto rec = [&](auto& rec, int n, int k, vc<mint>& Q) -> vc<mint>\
@@ -1037,8 +984,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/composition_log_1_minus_x.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 05:19:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-02 06:24:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/composition_log_1_minus_x.test.cpp
 layout: document

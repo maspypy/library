@@ -49,7 +49,7 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':question:'
@@ -550,7 +550,7 @@ data:
     \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
     \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
     \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
-    \ - j];\n    }\n  }\n  return f;\n}\n#line 1 \"poly/transposed_ntt.hpp\"\ntemplate\
+    \ - j];\n    }\n  }\n  return f;\n}\n#line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate\
     \ <class mint>\nvoid transposed_ntt(vector<mint>& a, bool inverse) {\n  assert(mint::can_ntt());\n\
     \  const int rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n\
     \  static array<mint, 30> root, iroot;\n  static array<mint, 30> rate2, irate2;\n\
@@ -740,7 +740,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/partial_frac.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 05:19:45+09:00'
+  timestamp: '2025-09-02 06:24:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/partial_frac.test.cpp

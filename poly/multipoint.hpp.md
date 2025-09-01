@@ -53,20 +53,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/chirp_z.test.cpp
     title: test/1_mytest/chirp_z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
@@ -441,7 +441,7 @@ data:
     \ tmp = {a.begin(), a.begin() + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a,\
     \ 0);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r\
     \ *= zeta;\n    transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n\
-    #line 1 \"poly/transposed_ntt.hpp\"\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
+    #line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
     \ a, bool inverse) {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n\
     \  const u32 mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n \
     \ static array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\
@@ -674,7 +674,7 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - graph/chromatic.hpp
   - linalg/blackbox/vandermonde.hpp
-  timestamp: '2025-09-02 05:19:45+09:00'
+  timestamp: '2025-09-02 06:24:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2243.test.cpp

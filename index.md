@@ -367,19 +367,19 @@ data:
     - icon: ':question:'
       path: ds/sortable_array.hpp
       title: ds/sortable_array.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/sqrt_tree.hpp
       title: ds/sqrt_tree.hpp
     - icon: ':heavy_check_mark:'
       path: ds/static_range_frequency.hpp
       title: ds/static_range_frequency.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/static_range_product.hpp
       title: ds/static_range_product.hpp
     - icon: ':question:'
       path: ds/static_range_product_group.hpp
       title: ds/static_range_product_group.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/static_rmq.hpp
       title: ds/static_rmq.hpp
     - icon: ':heavy_check_mark:'
@@ -465,7 +465,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/rollback_mo.hpp
       title: ds/offline_query/rollback_mo.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/static_monoid_products.hpp
       title: ds/offline_query/static_monoid_products.hpp
     - icon: ':warning:'
@@ -570,7 +570,7 @@ data:
       title: ds/segtree/xor_segtree.hpp
   - name: ds/sparse_table
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/sparse_table/disjoint_sparse_table.hpp
       title: ds/sparse_table/disjoint_sparse_table.hpp
     - icon: ':question:'
@@ -610,7 +610,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/parallel_unionfind.hpp
       title: ds/unionfind/parallel_unionfind.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/unionfind/potentialized_unionfind.hpp
       title: ds/unionfind/potentialized_unionfind.hpp
     - icon: ':x:'
@@ -1463,7 +1463,7 @@ data:
     - icon: ':question:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
     - icon: ':question:'
@@ -1855,7 +1855,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_ex_minus_1.hpp
       title: poly/composition_f_ex_minus_1.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/composition_f_log_1_minus_x.hpp
       title: poly/composition_f_log_1_minus_x.hpp
     - icon: ':heavy_check_mark:'
@@ -1954,7 +1954,7 @@ data:
     - icon: ':question:'
       path: poly/ntt_doubling.hpp
       title: poly/ntt_doubling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/partial_frac_decomposition_1.hpp
       title: poly/partial_frac_decomposition_1.hpp
     - icon: ':question:'
@@ -2196,7 +2196,7 @@ data:
     - icon: ':question:'
       path: seq/famous/stirling_number_2.hpp
       title: seq/famous/stirling_number_2.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/famous/stirling_number_query.hpp
       title: seq/famous/stirling_number_query.hpp
     - icon: ':x:'
@@ -2473,7 +2473,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/composition_f_x_plus_1x.test.cpp
       title: test/1_mytest/composition_f_x_plus_1x.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/composition_log_1_minus_x.test.cpp
       title: test/1_mytest/composition_log_1_minus_x.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3292,54 +3292,54 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
       title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq.test.cpp
       title: test/2_library_checker/data_structure/staticrmq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/unionfind.test.cpp
       title: test/2_library_checker/data_structure/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
       title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - name: test/2_library_checker/enumerative_combinatorics
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/enumerative_combinatorics/factorial_mongomery.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/factorial_mongomery.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
     - icon: ':x:'

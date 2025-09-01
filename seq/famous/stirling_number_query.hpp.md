@@ -9,7 +9,7 @@ data:
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\
@@ -126,7 +126,7 @@ data:
   path: seq/famous/stirling_number_query.hpp
   requiredBy: []
   timestamp: '2023-11-02 05:00:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp

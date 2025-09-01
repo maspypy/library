@@ -725,7 +725,7 @@ data:
     \ N) f[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\n  FOR(i,\
     \ N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(f));\r\n  f = convolution(f,\
     \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
-    \n  return f;\r\n}\r\n#line 1 \"poly/transposed_ntt.hpp\"\ntemplate <class mint>\n\
+    \n  return f;\r\n}\r\n#line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\n\
     void transposed_ntt(vector<mint>& a, bool inverse) {\n  assert(mint::can_ntt());\n\
     \  const int rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n\
     \  static array<mint, 30> root, iroot;\n  static array<mint, 30> rate2, irate2;\n\
@@ -931,7 +931,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/compositional_inverset.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 05:19:45+09:00'
+  timestamp: '2025-09-02 06:24:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/compositional_inverset.test.cpp

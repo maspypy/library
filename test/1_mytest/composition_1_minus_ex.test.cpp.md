@@ -559,7 +559,7 @@ data:
     \n\n// f(1-e^x)\ntemplate <typename mint>\nvc<mint> composition_1_minus_ex(vc<mint>\
     \ f) {\n  f = poly_taylor_shift<mint>(f, 1);\n  FOR(i, len(f)) if (i & 1) f[i]\
     \ = -f[i];\n  return composition_f_ex<mint>(f);\n}\n#line 2 \"poly/composition.hpp\"\
-    \n\r\n#line 1 \"poly/transposed_ntt.hpp\"\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
+    \n\r\n#line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
     \ a, bool inverse) {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n\
     \  const u32 mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n \
     \ static array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\
@@ -753,7 +753,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/composition_1_minus_ex.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 05:19:45+09:00'
+  timestamp: '2025-09-02 06:24:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/composition_1_minus_ex.test.cpp

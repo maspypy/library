@@ -50,19 +50,19 @@ data:
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/middle_product.hpp\"\
@@ -390,7 +390,7 @@ data:
     \ tmp = {a.begin(), a.begin() + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a,\
     \ 0);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r\
     \ *= zeta;\n    transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n\
-    #line 1 \"poly/transposed_ntt.hpp\"\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
+    #line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
     \ a, bool inverse) {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n\
     \  const u32 mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n \
     \ static array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\
@@ -555,8 +555,8 @@ data:
   path: poly/partial_frac_decomposition_1.hpp
   requiredBy:
   - poly/composition_f_log_1_minus_x.hpp
-  timestamp: '2025-09-02 05:19:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2025-09-02 06:24:30+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
