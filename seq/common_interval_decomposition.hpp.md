@@ -15,7 +15,7 @@ data:
     title: ds/segtree/lazy_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/3_yukicoder/1720.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -179,7 +179,7 @@ data:
   path: seq/common_interval_decomposition.hpp
   requiredBy: []
   timestamp: '2024-09-09 04:11:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1720.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp

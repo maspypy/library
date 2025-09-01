@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -322,22 +322,20 @@ data:
     \ + 1;\n    }\n    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n \
     \ }\n};\n#line 6 \"test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Dynamic_SegTree_Sparse<Monoid_Add<int>,\
-    \ true> seg(5'000'000, 0, N);\n  using np = decltype(seg)::np;\n  auto I = argsort(A);\n\
-    \n  vc<np> roots;\n  roots.eb(np(nullptr));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
-    \ I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n    auto check = [&](ll t) -> bool\
-    \ { return seg.prod(roots[t], L, R) <= k; };\n    ll t = binary_search(check,\
-    \ 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \ true> seg(0, N);\n  auto I = argsort(A);\n\n  vc<int> roots;\n  roots.eb(0);\n\
+    \  FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L,\
+    \ R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(roots[t], L, R)\
+    \ <= k; };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
     \n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\nvoid solve() {\n  LL(N,\
-    \ Q);\n  VEC(int, A, N);\n  Dynamic_SegTree_Sparse<Monoid_Add<int>, true> seg(5'000'000,\
-    \ 0, N);\n  using np = decltype(seg)::np;\n  auto I = argsort(A);\n\n  vc<np>\
-    \ roots;\n  roots.eb(np(nullptr));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
-    \ I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n    auto check = [&](ll t) -> bool\
-    \ { return seg.prod(roots[t], L, R) <= k; };\n    ll t = binary_search(check,\
-    \ 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \ Q);\n  VEC(int, A, N);\n  Dynamic_SegTree_Sparse<Monoid_Add<int>, true> seg(0,\
+    \ N);\n  auto I = argsort(A);\n\n  vc<int> roots;\n  roots.eb(0);\n  FOR(k, N)\
+    \ { roots.eb(seg.set(roots.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n\
+    \    auto check = [&](ll t) -> bool { return seg.prod(roots[t], L, R) <= k; };\n\
+    \    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -346,8 +344,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 00:55:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-02 07:30:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
 layout: document

@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -321,27 +321,27 @@ data:
     \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/2_library_checker/data_structure/double_ended_pq_2.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  const int LIM = 1'000'000'000;\n\
-    \n  Dynamic_SegTree_Sparse<Monoid_Add<int>, false> seg(N + Q, -LIM, LIM + 1);\n\
-    \  using np = typename decltype(seg)::np;\n  np root = nullptr;\n  for (auto&&\
-    \ a: A) root = seg.multiply(root, a, 1);\n\n  FOR(Q) {\n    LL(t);\n    if (t\
+    \n  Dynamic_SegTree_Sparse<Monoid_Add<int>, false> seg(-LIM, LIM + 1);\n  int\
+    \ root = decltype(seg)::NIL;\n  for (auto&& a : A) root = seg.multiply(root, a,\
+    \ 1);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(x);\n      root =\
+    \ seg.multiply(root, x, 1);\n    }\n    if (t == 1) {\n      auto check = [&](auto\
+    \ e) -> bool { return e == 0; };\n      int ANS = seg.max_right(root, check, -LIM);\n\
+    \      print(ANS);\n      root = seg.multiply(root, ANS, -1);\n    }\n    if (t\
+    \ == 2) {\n      auto check = [&](auto e) -> bool { return e == 0; };\n      int\
+    \ ANS = seg.min_left(root, check, LIM + 1) - 1;\n      print(ANS);\n      root\
+    \ = seg.multiply(root, ANS, -1);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\
+    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A,\
+    \ N);\n  const int LIM = 1'000'000'000;\n\n  Dynamic_SegTree_Sparse<Monoid_Add<int>,\
+    \ false> seg(-LIM, LIM + 1);\n  int root = decltype(seg)::NIL;\n  for (auto&&\
+    \ a : A) root = seg.multiply(root, a, 1);\n\n  FOR(Q) {\n    LL(t);\n    if (t\
     \ == 0) {\n      LL(x);\n      root = seg.multiply(root, x, 1);\n    }\n    if\
     \ (t == 1) {\n      auto check = [&](auto e) -> bool { return e == 0; };\n   \
     \   int ANS = seg.max_right(root, check, -LIM);\n      print(ANS);\n      root\
     \ = seg.multiply(root, ANS, -1);\n    }\n    if (t == 2) {\n      auto check =\
     \ [&](auto e) -> bool { return e == 0; };\n      int ANS = seg.min_left(root,\
-    \ check, LIM + 1) - 1;\n      print(ANS);\n      root = seg.multiply(root, ANS,\
-    \ -1);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\
-    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A,\
-    \ N);\n  const int LIM = 1'000'000'000;\n\n  Dynamic_SegTree_Sparse<Monoid_Add<int>,\
-    \ false> seg(N + Q, -LIM, LIM + 1);\n  using np = typename decltype(seg)::np;\n\
-    \  np root = nullptr;\n  for (auto&& a: A) root = seg.multiply(root, a, 1);\n\n\
-    \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(x);\n      root = seg.multiply(root,\
-    \ x, 1);\n    }\n    if (t == 1) {\n      auto check = [&](auto e) -> bool { return\
-    \ e == 0; };\n      int ANS = seg.max_right(root, check, -LIM);\n      print(ANS);\n\
-    \      root = seg.multiply(root, ANS, -1);\n    }\n    if (t == 2) {\n      auto\
-    \ check = [&](auto e) -> bool { return e == 0; };\n      int ANS = seg.min_left(root,\
     \ check, LIM + 1) - 1;\n      print(ANS);\n      root = seg.multiply(root, ANS,\
     \ -1);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -352,8 +352,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 00:55:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-02 07:30:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
 layout: document
