@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: datetime/datetime.hpp
     title: datetime/datetime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -20,21 +20,21 @@ data:
   bundledCode: "#line 1 \"test/1_mytest/datetime.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n// https://codeforces.com/blog/entry/126772?#comment-1154880\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32\
-    \ = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned\
-    \ __int128;\nusing f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty\
-    \ = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate <>\n\
-    constexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr u32\
-    \ infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    #if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    )\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing\
+    \ namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
     template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
-    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
+    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
+    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
+    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
     template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
     \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
     #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
@@ -76,70 +76,69 @@ data:
     \ iter(s); }\n  iter end() const { return iter(0); }\n};\n\ntemplate <typename\
     \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  struct\
     \ iter {\n    UINT s, t;\n    bool ed;\n    iter(UINT s) : s(s), t(s), ed(0) {}\n\
-    \    int operator*() const { return s ^ t; }\n    iter &operator++() {\n     \
-    \ (t == 0 ? ed = 1 : t = (t - 1) & s);\n      return *this;\n    }\n    bool operator!=(const\
-    \ iter) const { return !ed; }\n  };\n  UINT s;\n  all_subset(UINT s) : s(s) {}\n\
-    \  iter begin() const { return iter(s); }\n  iter end() const { return iter(0);\
-    \ }\n};\n\ntemplate <typename T>\nT floor(T a, T b) {\n  return a / b - (a % b\
-    \ && (a ^ b) < 0);\n}\ntemplate <typename T>\nT ceil(T x, T y) {\n  return floor(x\
-    \ + y - 1, y);\n}\ntemplate <typename T>\nT bmod(T x, T y) {\n  return x - y *\
-    \ floor(x, y);\n}\ntemplate <typename T>\npair<T, T> divmod(T x, T y) {\n  T q\
-    \ = floor(x, y);\n  return {q, x - q * y};\n}\n\ntemplate <typename T, typename\
-    \ U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n\
-    }\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
+    \    UINT operator*() const { return s ^ t; }\n    iter &operator++() {\n    \
+    \  (t == 0 ? ed = 1 : t = (t - 1) & s);\n      return *this;\n    }\n    bool\
+    \ operator!=(const iter) const { return !ed; }\n  };\n  UINT s;\n  all_subset(UINT\
+    \ s) : s(s) {}\n  iter begin() const { return iter(s); }\n  iter end() const {\
+    \ return iter(0); }\n};\n\ntemplate <typename T>\nT floor(T a, T b) {\n  return\
+    \ a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename T>\nT ceil(T x, T y)\
+    \ {\n  return floor(x + y - 1, y);\n}\ntemplate <typename T>\nT bmod(T x, T y)\
+    \ {\n  return x - y * floor(x, y);\n}\ntemplate <typename T>\npair<T, T> divmod(T\
+    \ x, T y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\ntemplate <typename\
+    \ T, typename U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(), A.end(),\
+    \ T{});\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
     #define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c,\
     \ x) distance((c).begin(), upper_bound(all(c), (x)))\n#define UNIQUE(x) \\\n \
     \ sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\ntemplate\
     \ <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
-    \  return a;\n}\ntemplate <typename T>\nT POP(pq_min<T> &que) {\n  T a = que.top();\n\
-    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(pq_max<T> &que) {\n\
-    \  T a = que.top();\n  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T>\
-    \ &que) {\n  T a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate\
-    \ <typename F>\nll binary_search(F check, ll ok, ll ng, bool check_ok = true)\
-    \ {\n  if (check_ok) assert(check(ok));\n  while (abs(ok - ng) > 1) {\n    auto\
-    \ x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate\
-    \ <typename F>\ndouble binary_search_real(F check, double ok, double ng, int iter\
-    \ = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x) ? ok :\
-    \ ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline\
-    \ bool chmax(T &a, const S &b) {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate\
-    \ <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  return (a > b ?\
-    \ a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char)\
-    \ {\n  vc<int> A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] -\
-    \ first_char : -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvector<T>\
-    \ cumsum(vector<U> &A, int off = 1) {\n  int N = A.size();\n  vector<T> B(N +\
-    \ 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n\
-    \  return B;\n}\n\n// stable sort\ntemplate <typename T>\nvector<int> argsort(const\
-    \ vector<T> &A) {\n  vector<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n\
-    \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
-    \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
-    \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
-    \ &first, const Vectors &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(),\
-    \ others.begin(), others.end()), ...);\n}\n#endif\n#line 1 \"datetime/datetime.hpp\"\
-    \n// https://codeforces.com/problemset/problem/698/E\nstruct DateTime {\n  static\
-    \ constexpr int month_days[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30,\
-    \ 31};\n  ll year;\n  int month, day;\n  DateTime(ll y, int m, int d) : year(y),\
-    \ month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\u304C 0 \u3068\u306A\u308B\
-    \u3088\u3046\u306B\u5909\u63DB (return: long long)\n  ll to_int() {\n    ll y\
-    \ = (month <= 2 ? year - 1 : year);\n    int m = (month <= 2 ? month + 12 : month);\n\
-    \    int d = day;\n    return 365 * y + y / 4 - y / 100 + y / 400 + 306 * (m +\
-    \ 1) / 10 + d - 429;\n  }\n\n  // to_int() \u306E\u9006\u95A2\u6570\n  static\
-    \ DateTime from_int(ll x) {\n    ll y = x * 400 / 146097 + 1;\n    int d = x -\
-    \ DateTime(y, 1, 1).to_int();\n    int m = 1;\n    while (d >= 28) {\n      int\
-    \ k = month_days[m] + (m == 2 && is_leap_year(y) ? 1 : 0);\n      if (d < k) break;\n\
-    \      ++m;\n      d -= k;\n    }\n    if (m == 13) {\n      ++y;\n      m = 1;\n\
-    \    }\n    ++d;\n    return DateTime(y, m, d);\n  }\n\n  // \u65E5\u66DC\u65E5\
-    \u304C 0 \u3068\u3057\u3066\u3001\u66DC\u65E5\u3092 [0, 7) \u3067\u8FD4\u3059\n\
-    \  int weekday() { return (to_int() + 1) % 7; }\n\n  DateTime& operator++() {\n\
-    \    ++day;\n    int lim = month_days[month];\n    if (is_leap_year(year) && month\
-    \ == 2) lim = 29;\n    if (day <= lim) return (*this);\n    day = 1;\n    ++month;\n\
-    \    if (month == 13) {\n      ++year;\n      month = 1;\n    }\n    return (*this);\n\
-    \  }\n  DateTime operator++(int) {\n    DateTime tmp = *this;\n    ++*this;\n\
-    \    return tmp;\n  }\n\n  bool operator==(DateTime const& rhs) const { return\
-    \ to_tuple() == rhs.to_tuple(); }\n  bool operator!=(DateTime const& rhs) const\
-    \ { return to_tuple() != rhs.to_tuple(); }\n  bool operator<(DateTime const& rhs)\
-    \ const { return to_tuple() < rhs.to_tuple(); }\n  bool operator<=(DateTime const&\
-    \ rhs) const { return to_tuple() <= rhs.to_tuple(); }\n  bool operator>(DateTime\
+    \  return a;\n}\ntemplate <class T, class Container, class Compare>\nT POP(priority_queue<T,\
+    \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
+    }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
+    \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
+    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok\
+    \ - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n \
+    \ }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check,\
+    \ double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok +\
+    \ ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\n\
+    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  return (a\
+    \ < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T &a,\
+    \ const S &b) {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int>\
+    \ s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i,\
+    \ S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n\
+    }\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off =\
+    \ 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i]\
+    \ + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
+    \ others.end()), ...);\n}\n#endif\n#line 1 \"datetime/datetime.hpp\"\n// https://codeforces.com/problemset/problem/698/E\n\
+    struct DateTime {\n  static constexpr int month_days[13] = {0, 31, 28, 31, 30,\
+    \ 31, 30, 31, 31, 30, 31, 30, 31};\n  ll year;\n  int month, day;\n  DateTime(ll\
+    \ y, int m, int d) : year(y), month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\
+    \u304C 0 \u3068\u306A\u308B\u3088\u3046\u306B\u5909\u63DB (return: long long)\n\
+    \  ll to_int() {\n    ll y = (month <= 2 ? year - 1 : year);\n    int m = (month\
+    \ <= 2 ? month + 12 : month);\n    int d = day;\n    return 365 * y + y / 4 -\
+    \ y / 100 + y / 400 + 306 * (m + 1) / 10 + d - 429;\n  }\n\n  // to_int() \u306E\
+    \u9006\u95A2\u6570\n  static DateTime from_int(ll x) {\n    ll y = x * 400 / 146097\
+    \ + 1;\n    int d = x - DateTime(y, 1, 1).to_int();\n    int m = 1;\n    while\
+    \ (d >= 28) {\n      int k = month_days[m] + (m == 2 && is_leap_year(y) ? 1 :\
+    \ 0);\n      if (d < k) break;\n      ++m;\n      d -= k;\n    }\n    if (m ==\
+    \ 13) {\n      ++y;\n      m = 1;\n    }\n    ++d;\n    return DateTime(y, m,\
+    \ d);\n  }\n\n  // \u65E5\u66DC\u65E5\u304C 0 \u3068\u3057\u3066\u3001\u66DC\u65E5\
+    \u3092 [0, 7) \u3067\u8FD4\u3059\n  int weekday() { return (to_int() + 1) % 7;\
+    \ }\n\n  DateTime& operator++() {\n    ++day;\n    int lim = month_days[month];\n\
+    \    if (is_leap_year(year) && month == 2) lim = 29;\n    if (day <= lim) return\
+    \ (*this);\n    day = 1;\n    ++month;\n    if (month == 13) {\n      ++year;\n\
+    \      month = 1;\n    }\n    return (*this);\n  }\n  DateTime operator++(int)\
+    \ {\n    DateTime tmp = *this;\n    ++*this;\n    return tmp;\n  }\n\n  bool operator==(DateTime\
+    \ const& rhs) const { return to_tuple() == rhs.to_tuple(); }\n  bool operator!=(DateTime\
+    \ const& rhs) const { return to_tuple() != rhs.to_tuple(); }\n  bool operator<(DateTime\
+    \ const& rhs) const { return to_tuple() < rhs.to_tuple(); }\n  bool operator<=(DateTime\
+    \ const& rhs) const { return to_tuple() <= rhs.to_tuple(); }\n  bool operator>(DateTime\
     \ const& rhs) const { return to_tuple() > rhs.to_tuple(); }\n  bool operator>=(DateTime\
     \ const& rhs) const { return to_tuple() >= rhs.to_tuple(); }\n\n  // yyyy[sep]mm[sep]dd\n\
     \  string to_string(string sep = \"-\") {\n    string y = std::to_string(year);\n\
@@ -174,8 +173,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/datetime.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 18:22:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-09-01 19:47:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/datetime.test.cpp
 layout: document
