@@ -61,7 +61,6 @@ ostream &operator<<(ostream &os, const vector<T> &A) {
   return os;
 }
 
-// chatgpt helped me
 class CoutInitializer {
  public:
   CoutInitializer() { std::cout << std::defaultfloat << std::setprecision(15); }
