@@ -1,3 +1,5 @@
+#pragma once
+
 template <class mint>
 void ntt(vector<mint>& a, bool inverse) {
   assert(mint::can_ntt());
