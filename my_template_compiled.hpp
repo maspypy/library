@@ -1,8 +1,10 @@
 // https://codeforces.com/blog/entry/96344
 // https://codeforces.com/blog/entry/126772?#comment-1154880
+#if defined(__GNUC__)
 #include <bits/allocator.h>
 #pragma GCC optimize("Ofast,unroll-loops")
 #pragma GCC target("avx2,popcnt")
+#endif
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -29,9 +31,10 @@ constexpr u64 infty<u64> = infty<ll>;
 template <>
 constexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;
 template <>
-constexpr double infty<double> = infty<ll>;
+constexpr double infty<double> = numeric_limits<double>::infinity();
 template <>
-constexpr long double infty<long double> = infty<ll>;
+constexpr long double infty<long double> =
+    numeric_limits<long double>::infinity();
 
 using pi = pair<ll, ll>;
 using vi = vector<ll>;
@@ -43,8 +46,6 @@ template <class T>
 using vvvc = vector<vvc<T>>;
 template <class T>
 using vvvvc = vector<vvvc<T>>;
-template <class T>
-using vvvvvc = vector<vvvvc<T>>;
 template <class T>
 using pq_max = priority_queue<T>;
 template <class T>
@@ -138,7 +139,7 @@ struct all_subset {
     UINT s, t;
     bool ed;
     iter(UINT s) : s(s), t(s), ed(0) {}
-    int operator*() const { return s ^ t; }
+    UINT operator*() const { return s ^ t; }
     iter &operator++() {
       (t == 0 ? ed = 1 : t = (t - 1) & s);
       return *this;
@@ -187,14 +188,8 @@ T POP(deque<T> &que) {
   que.pop_front();
   return a;
 }
-template <typename T>
-T POP(pq_max<T> &que) {
-  T a = que.top();
-  que.pop();
-  return a;
-}
-template <typename T>
-T POP(pq_min<T> &que) {
+template <class T, class Container, class Compare>
+T POP(priority_queue<T, Container, Compare> &que) {
   T a = que.top();
   que.pop();
   return a;
@@ -209,7 +204,7 @@ T POP(vc<T> &que) {
 template <typename F>
 ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {
   if (check_ok) assert(check(ok));
-  while (abs(ok - ng) > 1) {
+  while (llabs(ok - ng) > 1) {
     auto x = (ng + ok) / 2;
     (check(x) ? ok : ng) = x;
   }
@@ -241,9 +236,9 @@ vc<int> s_to_vi(const string &S, char first_char) {
 }
 
 template <typename T, typename U>
-vector<T> cumsum(vector<U> &A, int off = 1) {
+vc<T> cumsum(const vc<U> &A, int off = 1) {
   int N = A.size();
-  vector<T> B(N + 1);
+  vc<T> B(N + 1);
   FOR(i, N) { B[i + 1] = B[i] + A[i]; }
   if (off == 0) B.erase(B.begin());
   return B;
@@ -251,8 +246,8 @@ vector<T> cumsum(vector<U> &A, int off = 1) {
 
 // stable sort
 template <typename T>
-vector<int> argsort(const vector<T> &A) {
-  vector<int> ids(len(A));
+vc<int> argsort(const vc<T> &A) {
+  vc<int> ids(len(A));
   iota(all(ids), 0);
   sort(all(ids),
        [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });
