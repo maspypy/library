@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

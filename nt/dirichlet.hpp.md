@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dirichlet.test.cpp
     title: test/1_mytest/dirichlet.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/integer_kth_root.hpp\"\nu64 integer_kth_root(u64 k, u64\
@@ -30,44 +30,50 @@ data:
     \ t, sq, n;\n  Dirichlet(u64 N) : N(N) {\n    assert(N <= u64(1) << 50);\n   \
     \ sq = sqrtl(N);\n    t = (u64(sq) * sq + sq <= N ? sq : sq - 1);\n    n = t +\
     \ sq + 1;\n    // [0,1,...,t,N/sq,...,N/1] (t<sq \u306E\u5834\u5408\u306E sq \u3082\
-    \u4E21\u5BFE\u5FDC)\n  };\n\n  inline u32 get_index(u64 d) {\n    assert(d > 0);\n\
-    \    return (d <= t ? d : n - u32(double(N) / d));\n  }\n\n  inline u64 get_floor(u32\
-    \ i) { return (i <= t ? i : double(N) / (n - i)); }\n\n  template <typename T>\n\
-    \  vc<T> convolution(vc<T> &F, vc<T> &G) {\n    assert(len(F) == n && len(G) ==\
-    \ n);\n    if (N == 1) return {T(0), F[1] * G[1]};\n    vc<T> f(n), g(n);\n  \
-    \  FOR(i, 1, n) f[i] = F[i] - F[i - 1];\n    FOR(i, 1, n) g[i] = G[i] - G[i -\
-    \ 1];\n\n    vc<T> H(n);\n    u64 K = integer_kth_root(3, N);\n    u64 S = K *\
-    \ K;\n    // S \u4EE5\u4E0B\u3067\u3042\u308B\u3088\u3046\u306A\u5546\u306B\u3064\
-    \u3044\u3066\n    for (u64 a = 1; a <= K; ++a) {\n      H[(a * a <= sq ? a * a\
-    \ : n - N / (a * a))] += f[a] * g[a];\n      if (a * (a + 1) <= t) {  // a * small\
-    \ = small\n        u64 ub = t / a;\n        for (u64 b = a + 1; b <= ub; ++b)\
-    \ {\n          H[a * b] += f[a] * g[b] + f[b] * g[a];\n        }\n      }\n  \
-    \    // a * small = large\n      {\n        u64 q = min<u64>(S / a, t);\n    \
-    \    for (u64 b = max(a, t / a) + 1; b <= q; ++b) {\n          H[n - N / (a *\
-    \ b)] += f[a] * g[b] + f[b] * g[a];\n        }\n      }\n      // a * large =\
-    \ large\n      if (N / sq <= S / a) {\n        u64 p = N / (S / a + 1) + 1;\n\
-    \        for (u64 b = p; b <= sq; ++b) {\n          H[n - N / (a * (N / b))] +=\
-    \ f[a] * g[n - b] + g[a] * f[n - b];\n        }\n      }\n    }\n    FOR(i, 1,\
-    \ n) H[i] += H[i - 1];\n    for (u64 z = 1; N / z > S; ++z) {\n      u64 M = N\
-    \ / z;\n      u64 ub = sqrtl(M);\n      H[n - z] = 0;\n      for (u64 a = 1; a\
-    \ <= ub; ++a) {\n        int idx = get_index(M / a);\n        H[n - z] += f[a]\
-    \ * G[idx] + g[a] * F[idx];\n      }\n      H[n - z] -= F[ub] * G[ub];\n    }\n\
-    \    return H;\n  }\n\n  // G=H/F\n  template <typename T>\n  vc<T> div(vc<T>\
-    \ &H, vc<T> &F) {\n    assert(len(F) == n && len(H) == n && F[1] != 0);\n    if\
-    \ (N == 1) return {T(0), H[1] / F[1]};\n    T c = F[1].inverse();\n    for (auto\
-    \ &x : F) x *= c;\n\n    vc<T> f(n), g(n), h(n);\n    FOR(i, 1, n) f[i] = F[i]\
-    \ - F[i - 1];\n    FOR(i, 1, n) h[i] = H[i] - H[i - 1];\n\n    u64 K = integer_kth_root(3,\
-    \ N);\n    u64 S = max<u64>(sq, K * K);\n    g[1] = H[1];\n\n    for (u64 i =\
-    \ 2; i < n; ++i) {\n      u64 a = get_floor(i);\n      if (a > S) break;\n   \
-    \   g[i] = h[i] - g[1] * f[i];\n      if (a * a <= S) h[get_index(a * a)] -= f[i]\
-    \ * g[i];\n      u64 ub = min(i - 1, S / a);\n      FOR(b, 2, ub + 1) { h[get_index(a\
-    \ * b)] -= f[i] * g[b] + f[b] * g[i]; }\n    }\n    vc<mint> G = cumsum<mint>(g,\
-    \ 0);\n    for (u64 z = N / (S + 1); z >= 1; --z) {\n      G[n - z] = H[n - z]\
-    \ - g[1] * F[n - z];\n      u64 M = N / z;\n      u64 ub = sqrtl(M);\n      G[n\
-    \ - z] += F[ub] * G[ub];\n      for (u64 a = 2; a <= ub; ++a) {\n        int idx\
-    \ = get_index(M / a);\n        G[n - z] -= f[a] * G[idx] + g[a] * F[idx];\n  \
-    \    }\n    }\n    for (auto &x : G) x *= c;\n    c = c.inverse();\n    for (auto\
-    \ &x : F) x *= c;\n    for (auto &x : H) x *= c;\n    return G;\n  }\n};\n"
+    \u4E21\u5BFE\u5FDC)\n  };\n\n  inline u32 get_index(u64 d) { return (d <= t ?\
+    \ d : n - u32(double(N) / d)); }\n\n  inline u64 get_floor(u32 i) { return (i\
+    \ <= t ? i : double(N) / (n - i)); }\n\n  template <typename T, typename F>\n\
+    \  vc<T> gen_sum_table(F f) {\n    vc<T> S(n);\n    FOR(i, 1, n) S[i] = f(get_floor(i));\n\
+    \    return S;\n  }\n\n  template <typename T>\n  vc<T> convolution(vc<T> F, vc<T>\
+    \ G) {\n    assert(len(F) == n && len(G) == n);\n    if (N == 1) return {T(0),\
+    \ F[1] * G[1]};\n    vc<T> f(n), g(n);\n    FOR(i, 1, n) f[i] = F[i] - F[i - 1];\n\
+    \    FOR(i, 1, n) g[i] = G[i] - G[i - 1];\n\n    vc<T> H(n);\n    u64 K = integer_kth_root(3,\
+    \ N);\n    u64 S = K * K;\n    // S \u4EE5\u4E0B\u3067\u3042\u308B\u3088\u3046\
+    \u306A\u5546\u306B\u3064\u3044\u3066\n    for (u64 a = 1; a <= K; ++a) {\n   \
+    \   H[(a * a <= sq ? a * a : n - N / (a * a))] += f[a] * g[a];\n      if (a *\
+    \ (a + 1) <= t) {  // a * small = small\n        u64 ub = t / a;\n        for\
+    \ (u64 b = a + 1; b <= ub; ++b) {\n          H[a * b] += f[a] * g[b] + f[b] *\
+    \ g[a];\n        }\n      }\n      // a * small = large\n      {\n        u64\
+    \ q = min<u64>(S / a, t);\n        for (u64 b = max(a, t / a) + 1; b <= q; ++b)\
+    \ {\n          H[n - N / (a * b)] += f[a] * g[b] + f[b] * g[a];\n        }\n \
+    \     }\n      // a * large = large\n      if (N / sq <= S / a) {\n        u64\
+    \ p = N / (S / a + 1) + 1;\n        for (u64 b = p; b <= sq; ++b) {\n        \
+    \  H[n - N / (a * (N / b))] += f[a] * g[n - b] + g[a] * f[n - b];\n        }\n\
+    \      }\n    }\n    FOR(i, 1, n) H[i] += H[i - 1];\n    for (u64 z = 1; N / z\
+    \ > S; ++z) {\n      u64 M = N / z;\n      u64 ub = sqrtl(M);\n      H[n - z]\
+    \ = 0;\n      for (u64 a = 1; a <= ub; ++a) {\n        int idx = get_index(M /\
+    \ a);\n        H[n - z] += f[a] * G[idx] + g[a] * F[idx];\n      }\n      H[n\
+    \ - z] -= F[ub] * G[ub];\n    }\n    return H;\n  }\n\n  // G=H/F. T \u306F 1/F[1]\
+    \ \u304C\u6B63\u3057\u304F\u8A08\u7B97\u3067\u304D\u3066\u307B\u3057\u3044.\n\
+    \  template <typename T>\n  vc<T> div(vc<T> H, vc<T> F) {\n    assert(len(F) ==\
+    \ n && len(H) == n && F[1] != 0);\n    if (N == 1) return {T(0), H[1] / F[1]};\n\
+    \    T c = T(1) / F[1];\n    for (auto &x : F) x *= c;\n\n    vc<T> f(n), g(n),\
+    \ h(n);\n    FOR(i, 1, n) f[i] = F[i] - F[i - 1];\n    FOR(i, 1, n) h[i] = H[i]\
+    \ - H[i - 1];\n\n    u64 K = integer_kth_root(3, N);\n    u64 S = max<u64>(sq,\
+    \ K * K);\n    g[1] = H[1];\n\n    for (u64 i = 2; i < n; ++i) {\n      u64 a\
+    \ = get_floor(i);\n      if (a > S) break;\n      g[i] = h[i] - g[1] * f[i];\n\
+    \      if (a * a <= S) h[get_index(a * a)] -= f[i] * g[i];\n      u64 ub = min(i\
+    \ - 1, S / a);\n      FOR(b, 2, ub + 1) { h[get_index(a * b)] -= f[i] * g[b] +\
+    \ f[b] * g[i]; }\n    }\n    vc<T> G = cumsum<T>(g, 0);\n    for (u64 z = N /\
+    \ (S + 1); z >= 1; --z) {\n      G[n - z] = H[n - z] - g[1] * F[n - z];\n    \
+    \  u64 M = N / z;\n      u64 ub = sqrtl(M);\n      G[n - z] += F[ub] * G[ub];\n\
+    \      for (u64 a = 2; a <= ub; ++a) {\n        int idx = get_index(M / a);\n\
+    \        G[n - z] -= f[a] * G[idx] + g[a] * F[idx];\n      }\n    }\n    for (auto\
+    \ &x : G) x *= c;\n    c = T(1) / c;\n    return G;\n  }\n\n  template <typename\
+    \ T>\n  vc<T> Zeta() {\n    return gen_sum_table<T>([&](u64 n) -> T { return n;\
+    \ });\n  }\n\n  template <typename T>\n  vc<T> Unit() {\n    return gen_sum_table<T>([&](u64\
+    \ n) -> T { return 1; });\n  }\n\n  template <typename T>\n  vc<T> Mobius() {\n\
+    \    return div<T>(Unit<T>(), Zeta<T>());\n  }\n};\n"
   code: "#include \"nt/integer_kth_root.hpp\"\n\n// Dirichlet \u7D1A\u6570\u81EA\u4F53\
     \u306F vc<T> \u3067\u6301\u3064\u3053\u3068\u306B\u3059\u308B.\n// \u3053\u306E\
     \u69CB\u9020\u4F53\u304C\u305D\u308C\u306B\u5BFE\u3059\u308B\u64CD\u4F5C\u3092\
@@ -75,51 +81,57 @@ data:
     \ {\n  u64 N;\n  u32 t, sq, n;\n  Dirichlet(u64 N) : N(N) {\n    assert(N <= u64(1)\
     \ << 50);\n    sq = sqrtl(N);\n    t = (u64(sq) * sq + sq <= N ? sq : sq - 1);\n\
     \    n = t + sq + 1;\n    // [0,1,...,t,N/sq,...,N/1] (t<sq \u306E\u5834\u5408\
-    \u306E sq \u3082\u4E21\u5BFE\u5FDC)\n  };\n\n  inline u32 get_index(u64 d) {\n\
-    \    assert(d > 0);\n    return (d <= t ? d : n - u32(double(N) / d));\n  }\n\n\
-    \  inline u64 get_floor(u32 i) { return (i <= t ? i : double(N) / (n - i)); }\n\
-    \n  template <typename T>\n  vc<T> convolution(vc<T> &F, vc<T> &G) {\n    assert(len(F)\
-    \ == n && len(G) == n);\n    if (N == 1) return {T(0), F[1] * G[1]};\n    vc<T>\
-    \ f(n), g(n);\n    FOR(i, 1, n) f[i] = F[i] - F[i - 1];\n    FOR(i, 1, n) g[i]\
-    \ = G[i] - G[i - 1];\n\n    vc<T> H(n);\n    u64 K = integer_kth_root(3, N);\n\
-    \    u64 S = K * K;\n    // S \u4EE5\u4E0B\u3067\u3042\u308B\u3088\u3046\u306A\
-    \u5546\u306B\u3064\u3044\u3066\n    for (u64 a = 1; a <= K; ++a) {\n      H[(a\
-    \ * a <= sq ? a * a : n - N / (a * a))] += f[a] * g[a];\n      if (a * (a + 1)\
-    \ <= t) {  // a * small = small\n        u64 ub = t / a;\n        for (u64 b =\
-    \ a + 1; b <= ub; ++b) {\n          H[a * b] += f[a] * g[b] + f[b] * g[a];\n \
-    \       }\n      }\n      // a * small = large\n      {\n        u64 q = min<u64>(S\
-    \ / a, t);\n        for (u64 b = max(a, t / a) + 1; b <= q; ++b) {\n         \
-    \ H[n - N / (a * b)] += f[a] * g[b] + f[b] * g[a];\n        }\n      }\n     \
-    \ // a * large = large\n      if (N / sq <= S / a) {\n        u64 p = N / (S /\
-    \ a + 1) + 1;\n        for (u64 b = p; b <= sq; ++b) {\n          H[n - N / (a\
-    \ * (N / b))] += f[a] * g[n - b] + g[a] * f[n - b];\n        }\n      }\n    }\n\
-    \    FOR(i, 1, n) H[i] += H[i - 1];\n    for (u64 z = 1; N / z > S; ++z) {\n \
-    \     u64 M = N / z;\n      u64 ub = sqrtl(M);\n      H[n - z] = 0;\n      for\
-    \ (u64 a = 1; a <= ub; ++a) {\n        int idx = get_index(M / a);\n        H[n\
-    \ - z] += f[a] * G[idx] + g[a] * F[idx];\n      }\n      H[n - z] -= F[ub] * G[ub];\n\
-    \    }\n    return H;\n  }\n\n  // G=H/F\n  template <typename T>\n  vc<T> div(vc<T>\
-    \ &H, vc<T> &F) {\n    assert(len(F) == n && len(H) == n && F[1] != 0);\n    if\
-    \ (N == 1) return {T(0), H[1] / F[1]};\n    T c = F[1].inverse();\n    for (auto\
-    \ &x : F) x *= c;\n\n    vc<T> f(n), g(n), h(n);\n    FOR(i, 1, n) f[i] = F[i]\
-    \ - F[i - 1];\n    FOR(i, 1, n) h[i] = H[i] - H[i - 1];\n\n    u64 K = integer_kth_root(3,\
-    \ N);\n    u64 S = max<u64>(sq, K * K);\n    g[1] = H[1];\n\n    for (u64 i =\
-    \ 2; i < n; ++i) {\n      u64 a = get_floor(i);\n      if (a > S) break;\n   \
-    \   g[i] = h[i] - g[1] * f[i];\n      if (a * a <= S) h[get_index(a * a)] -= f[i]\
-    \ * g[i];\n      u64 ub = min(i - 1, S / a);\n      FOR(b, 2, ub + 1) { h[get_index(a\
-    \ * b)] -= f[i] * g[b] + f[b] * g[i]; }\n    }\n    vc<mint> G = cumsum<mint>(g,\
-    \ 0);\n    for (u64 z = N / (S + 1); z >= 1; --z) {\n      G[n - z] = H[n - z]\
-    \ - g[1] * F[n - z];\n      u64 M = N / z;\n      u64 ub = sqrtl(M);\n      G[n\
-    \ - z] += F[ub] * G[ub];\n      for (u64 a = 2; a <= ub; ++a) {\n        int idx\
-    \ = get_index(M / a);\n        G[n - z] -= f[a] * G[idx] + g[a] * F[idx];\n  \
-    \    }\n    }\n    for (auto &x : G) x *= c;\n    c = c.inverse();\n    for (auto\
-    \ &x : F) x *= c;\n    for (auto &x : H) x *= c;\n    return G;\n  }\n};\n"
+    \u306E sq \u3082\u4E21\u5BFE\u5FDC)\n  };\n\n  inline u32 get_index(u64 d) { return\
+    \ (d <= t ? d : n - u32(double(N) / d)); }\n\n  inline u64 get_floor(u32 i) {\
+    \ return (i <= t ? i : double(N) / (n - i)); }\n\n  template <typename T, typename\
+    \ F>\n  vc<T> gen_sum_table(F f) {\n    vc<T> S(n);\n    FOR(i, 1, n) S[i] = f(get_floor(i));\n\
+    \    return S;\n  }\n\n  template <typename T>\n  vc<T> convolution(vc<T> F, vc<T>\
+    \ G) {\n    assert(len(F) == n && len(G) == n);\n    if (N == 1) return {T(0),\
+    \ F[1] * G[1]};\n    vc<T> f(n), g(n);\n    FOR(i, 1, n) f[i] = F[i] - F[i - 1];\n\
+    \    FOR(i, 1, n) g[i] = G[i] - G[i - 1];\n\n    vc<T> H(n);\n    u64 K = integer_kth_root(3,\
+    \ N);\n    u64 S = K * K;\n    // S \u4EE5\u4E0B\u3067\u3042\u308B\u3088\u3046\
+    \u306A\u5546\u306B\u3064\u3044\u3066\n    for (u64 a = 1; a <= K; ++a) {\n   \
+    \   H[(a * a <= sq ? a * a : n - N / (a * a))] += f[a] * g[a];\n      if (a *\
+    \ (a + 1) <= t) {  // a * small = small\n        u64 ub = t / a;\n        for\
+    \ (u64 b = a + 1; b <= ub; ++b) {\n          H[a * b] += f[a] * g[b] + f[b] *\
+    \ g[a];\n        }\n      }\n      // a * small = large\n      {\n        u64\
+    \ q = min<u64>(S / a, t);\n        for (u64 b = max(a, t / a) + 1; b <= q; ++b)\
+    \ {\n          H[n - N / (a * b)] += f[a] * g[b] + f[b] * g[a];\n        }\n \
+    \     }\n      // a * large = large\n      if (N / sq <= S / a) {\n        u64\
+    \ p = N / (S / a + 1) + 1;\n        for (u64 b = p; b <= sq; ++b) {\n        \
+    \  H[n - N / (a * (N / b))] += f[a] * g[n - b] + g[a] * f[n - b];\n        }\n\
+    \      }\n    }\n    FOR(i, 1, n) H[i] += H[i - 1];\n    for (u64 z = 1; N / z\
+    \ > S; ++z) {\n      u64 M = N / z;\n      u64 ub = sqrtl(M);\n      H[n - z]\
+    \ = 0;\n      for (u64 a = 1; a <= ub; ++a) {\n        int idx = get_index(M /\
+    \ a);\n        H[n - z] += f[a] * G[idx] + g[a] * F[idx];\n      }\n      H[n\
+    \ - z] -= F[ub] * G[ub];\n    }\n    return H;\n  }\n\n  // G=H/F. T \u306F 1/F[1]\
+    \ \u304C\u6B63\u3057\u304F\u8A08\u7B97\u3067\u304D\u3066\u307B\u3057\u3044.\n\
+    \  template <typename T>\n  vc<T> div(vc<T> H, vc<T> F) {\n    assert(len(F) ==\
+    \ n && len(H) == n && F[1] != 0);\n    if (N == 1) return {T(0), H[1] / F[1]};\n\
+    \    T c = T(1) / F[1];\n    for (auto &x : F) x *= c;\n\n    vc<T> f(n), g(n),\
+    \ h(n);\n    FOR(i, 1, n) f[i] = F[i] - F[i - 1];\n    FOR(i, 1, n) h[i] = H[i]\
+    \ - H[i - 1];\n\n    u64 K = integer_kth_root(3, N);\n    u64 S = max<u64>(sq,\
+    \ K * K);\n    g[1] = H[1];\n\n    for (u64 i = 2; i < n; ++i) {\n      u64 a\
+    \ = get_floor(i);\n      if (a > S) break;\n      g[i] = h[i] - g[1] * f[i];\n\
+    \      if (a * a <= S) h[get_index(a * a)] -= f[i] * g[i];\n      u64 ub = min(i\
+    \ - 1, S / a);\n      FOR(b, 2, ub + 1) { h[get_index(a * b)] -= f[i] * g[b] +\
+    \ f[b] * g[i]; }\n    }\n    vc<T> G = cumsum<T>(g, 0);\n    for (u64 z = N /\
+    \ (S + 1); z >= 1; --z) {\n      G[n - z] = H[n - z] - g[1] * F[n - z];\n    \
+    \  u64 M = N / z;\n      u64 ub = sqrtl(M);\n      G[n - z] += F[ub] * G[ub];\n\
+    \      for (u64 a = 2; a <= ub; ++a) {\n        int idx = get_index(M / a);\n\
+    \        G[n - z] -= f[a] * G[idx] + g[a] * F[idx];\n      }\n    }\n    for (auto\
+    \ &x : G) x *= c;\n    c = T(1) / c;\n    return G;\n  }\n\n  template <typename\
+    \ T>\n  vc<T> Zeta() {\n    return gen_sum_table<T>([&](u64 n) -> T { return n;\
+    \ });\n  }\n\n  template <typename T>\n  vc<T> Unit() {\n    return gen_sum_table<T>([&](u64\
+    \ n) -> T { return 1; });\n  }\n\n  template <typename T>\n  vc<T> Mobius() {\n\
+    \    return div<T>(Unit<T>(), Zeta<T>());\n  }\n};\n"
   dependsOn:
   - nt/integer_kth_root.hpp
   isVerificationFile: false
   path: nt/dirichlet.hpp
   requiredBy: []
-  timestamp: '2025-08-10 00:04:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-09-01 16:03:58+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/dirichlet.test.cpp
 documentation_of: nt/dirichlet.hpp

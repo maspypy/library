@@ -161,8 +161,8 @@ data:
   isVerificationFile: false
   path: graph/path_cycle.hpp
   requiredBy:
-  - graph/count/count_independent_set.hpp
   - graph/count/count_clique.hpp
+  - graph/count/count_independent_set.hpp
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

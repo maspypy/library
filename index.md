@@ -676,7 +676,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1523,7 +1523,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modfast.hpp
       title: mod/modfast.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1532,7 +1532,7 @@ data:
     - icon: ':warning:'
       path: mod/modint_64bit.hpp
       title: mod/modint_64bit.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint_common.hpp
       title: mod/modint_common.hpp
     - icon: ':heavy_check_mark:'
@@ -1597,9 +1597,12 @@ data:
       path: nt/crt.hpp
       title: nt/crt.hpp
     - icon: ':heavy_check_mark:'
+      path: nt/digit_frequency.hpp
+      title: nt/digit_frequency.hpp
+    - icon: ':heavy_check_mark:'
       path: nt/digit_sum.hpp
       title: nt/digit_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/dirichlet.hpp
       title: nt/dirichlet.hpp
     - icon: ':heavy_check_mark:'
@@ -1632,7 +1635,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/gcd_convolution.hpp
       title: nt/gcd_convolution.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/integer_kth_root.hpp
       title: nt/integer_kth_root.hpp
     - icon: ':heavy_check_mark:'
@@ -2042,7 +2045,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2552,9 +2555,12 @@ data:
       path: test/1_mytest/datetime.test.cpp
       title: test/1_mytest/datetime.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/1_mytest/digit_freq.test.cpp
+      title: test/1_mytest/digit_freq.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/digit_sum.test.cpp
       title: test/1_mytest/digit_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/dirichlet.test.cpp
       title: test/1_mytest/dirichlet.test.cpp
     - icon: ':heavy_check_mark:'

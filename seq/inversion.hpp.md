@@ -186,8 +186,8 @@ data:
   verifiedWith:
   - test/3_yukicoder/694.test.cpp
   - test/3_yukicoder/1838.test.cpp
-  - test/4_aoj/ALDS1_2_A.test.cpp
   - test/4_aoj/ALDS1_5.test.cpp
+  - test/4_aoj/ALDS1_2_A.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:

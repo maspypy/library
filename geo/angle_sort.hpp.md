@@ -140,23 +140,23 @@ data:
   isVerificationFile: false
   path: geo/angle_sort.hpp
   requiredBy:
-  - geo/rotating_swaps.hpp
+  - random/random_polygon.hpp
+  - geo/count_points_in_triangles.hpp
   - geo/polygon_triangulation.hpp
   - geo/max_norm_sum.hpp
-  - geo/count_points_in_triangles.hpp
+  - geo/rotating_swaps.hpp
   - geo/minkowski_sum.hpp
   - graph/planar_graph.hpp
-  - random/random_polygon.hpp
   timestamp: '2025-05-18 17:51:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/qoj5443.test.cpp
-  - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
   - test/3_yukicoder/1777.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/1_mytest/count_points_in_triangles.test.cpp
+  - test/1_mytest/qoj5443.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

@@ -158,8 +158,8 @@ data:
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/3148.test.cpp
   - test/3_yukicoder/1778.test.cpp
+  - test/3_yukicoder/3148.test.cpp
 documentation_of: graph/bracket_graph.hpp
 layout: document
 redirect_from:

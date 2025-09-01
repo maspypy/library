@@ -76,8 +76,8 @@ data:
   timestamp: '2023-12-03 14:24:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2296.test.cpp
   - test/3_yukicoder/2295.test.cpp
+  - test/3_yukicoder/2296.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
 documentation_of: graph/ds/lct_node_commutative_monoid.hpp

@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -612,19 +612,19 @@ data:
   isVerificationFile: false
   path: poly/composition.hpp
   requiredBy:
-  - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/composition_1_minus_ex.test.cpp
-  - test/1_mytest/composition_ex_minus_1.test.cpp
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
-  - test/1_mytest/count_labeled_bridgeless.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
   - test/2_library_checker/polynomial/composition_dmint.test.cpp
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/composition_1_minus_ex.test.cpp
 documentation_of: poly/composition.hpp
 layout: document
 redirect_from:

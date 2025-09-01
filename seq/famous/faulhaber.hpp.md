@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -419,14 +419,14 @@ data:
   isVerificationFile: false
   path: seq/famous/faulhaber.hpp
   requiredBy:
-  - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/lattice_point_sum_polynomial.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
 documentation_of: seq/famous/faulhaber.hpp
 layout: document
 redirect_from:

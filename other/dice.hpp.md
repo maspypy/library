@@ -195,9 +195,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/ITP1_11_C.test.cpp
+  - test/4_aoj/ITP1_11_B.test.cpp
   - test/4_aoj/ITP1_11_D.test.cpp
   - test/4_aoj/ITP1_11_A.test.cpp
-  - test/4_aoj/ITP1_11_B.test.cpp
 documentation_of: other/dice.hpp
 layout: document
 redirect_from:

@@ -380,8 +380,8 @@ data:
   timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1216.test.cpp
   - test/3_yukicoder/1216_2.test.cpp
+  - test/3_yukicoder/1216.test.cpp
 documentation_of: graph/ds/static_tree_monoid.hpp
 layout: document
 redirect_from:

@@ -71,8 +71,8 @@ data:
   timestamp: '2023-12-29 11:33:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/2_library_checker/data_structure/add_remove_query.test.cpp
+  - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: ds/offline_query/add_remove_query.hpp
 layout: document
 redirect_from:

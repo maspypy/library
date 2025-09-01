@@ -50,10 +50,10 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/manhattan_nns.test.cpp
-  - test/1_mytest/minidx_add.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2897.test.cpp
+  - test/1_mytest/minidx_add.test.cpp
+  - test/1_mytest/manhattan_nns.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

@@ -64,8 +64,8 @@ data:
   timestamp: '2024-09-21 20:54:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/nimber.test.cpp
   - test/3_yukicoder/2895.test.cpp
+  - test/1_mytest/nimber.test.cpp
 documentation_of: linalg/xor/basis.hpp
 layout: document
 redirect_from:

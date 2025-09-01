@@ -463,8 +463,8 @@ data:
   verifiedWith:
   - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/1211.test.cpp
+  - test/3_yukicoder/1242.test.cpp
 documentation_of: graph/functional.hpp
 layout: document
 redirect_from:

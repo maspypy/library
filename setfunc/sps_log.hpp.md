@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -170,8 +170,8 @@ data:
   path: setfunc/sps_log.hpp
   requiredBy:
   - graph/count/count_bridgeless_subgraph.hpp
-  - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_connected_subgraph.hpp
+  - graph/count/count_biconnected_subgraph.hpp
   timestamp: '2025-07-05 14:54:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

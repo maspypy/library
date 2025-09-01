@@ -200,12 +200,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1649.test.cpp
-  - test/3_yukicoder/1826.test.cpp
   - test/3_yukicoder/1036.test.cpp
-  - test/3_yukicoder/2935.test.cpp
   - test/3_yukicoder/789.test.cpp
-  - test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
+  - test/3_yukicoder/2935.test.cpp
+  - test/3_yukicoder/1826.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
+  - test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
 documentation_of: ds/segtree/dynamic_segtree.hpp
 layout: document
 redirect_from:

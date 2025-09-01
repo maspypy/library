@@ -125,8 +125,8 @@ data:
   isVerificationFile: false
   path: geo/outcircle.hpp
   requiredBy:
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/minimum_enclosing_circle.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   timestamp: '2025-05-18 17:51:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

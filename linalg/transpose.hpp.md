@@ -39,9 +39,9 @@ data:
   path: linalg/transpose.hpp
   requiredBy:
   - other/sliding_puzzle_solver.hpp
-  - linalg/diagonalize_triangular_matrix.hpp
-  - test/1_mytest/equal_4square_sum_grid.cpp
   - poly/coef_of_rational_fps_2d.hpp
+  - test/1_mytest/equal_4square_sum_grid.cpp
+  - linalg/diagonalize_triangular_matrix.hpp
   timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
