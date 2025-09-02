@@ -198,6 +198,8 @@ enable_if_t<is_floating_point_v<T> || is_same_v<T, f128>> wt(T x) {
   wt_real(x);
 }
 
+inline void wt(bool b) { wt(static_cast<char>('0' + (b ? 1 : 0))); }
+
 template <class T, class U>
 void wt(const pair<T, U> &val) {
   wt(val.first);
@@ -249,46 +251,26 @@ using fastio::print;
 using fastio::read;
 
 #if defined(LOCAL)
-template <class... Ts>
-inline void _show_pack(const char *func, int line, const char *names,
-                       Ts &&...args) {
-  using fastio::print;
-  using fastio::wt;
+#define P1(x) print("[DEBUG", __func__, ":", __LINE__, "]", #x, "=", (x))
+#define P_(x) print(",", #x, "=", (x))
 
-  // [DEBUG] solve:123 のように先頭に出す
-  wt("[DEBUG ");
-  wt(func);
-  wt(':');
-  wt(line);
-  wt("] ");
+#define SHOW1(a) P1(a), flush()
+#define SHOW2(a, b) P1(a), P_(b), flush()
+#define SHOW3(a, b, c) P1(a), P_(b), P_(c), flush()
+#define SHOW4(a, b, c, d) P1(a), P_(b), P_(c), P_(d), flush()
+#define SHOW5(a, b, c, d, e) P1(a), P_(b), P_(c), P_(d), P_(e), flush()
+#define SHOW6(a, b, c, d, e, f) \
+  P1(a), P_(b), P_(c), P_(d), P_(e), P_(f), flush()
+#define SHOW7(a, b, c, d, e, f, g) \
+  P1(a), P_(b), P_(c), P_(d), P_(e), P_(f), P_(g), flush()
+#define SHOW8(a, b, c, d, e, f, g, h) \
+  P1(a), P_(b), P_(c), P_(d), P_(e), P_(f), P_(g), P_(h), flush()
 
-  const char *p = names;
-  bool first = true;
-
-  auto next_token = [&]() -> std::pair<const char *, const char *> {
-    while (*p == ' ' || *p == ',') ++p;
-    const char *l = p;
-    while (*p && *p != ',') ++p;
-    const char *r = p;
-    return {l, r};
-  };
-
-  (
-      [&] {
-        auto [l, r] = next_token();
-        while (r > l && r[-1] == ' ') --r;
-        if (!first) wt(' ');
-        first = false;
-        std::string name(l, r);
-        wt(name);
-        wt(" = ");
-        wt(args);
-      }(),
-      ...);
-  print();
-}
-
-#define SHOW(...) _show_pack(__func__, __LINE__, #__VA_ARGS__, __VA_ARGS__)
+#define SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME
+#define SHOW(...)                                                         \
+  SHOW_IMPL(__VA_ARGS__, SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, \
+            SHOW1)                                                        \
+  (__VA_ARGS__)
 #else
 #define SHOW(...)
 #endif
