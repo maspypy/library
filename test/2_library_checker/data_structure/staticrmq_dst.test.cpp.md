@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':x:'
@@ -57,10 +57,10 @@ data:
     \ overload4(a, b, c, d, e, ...) e\n#define overload3(a, b, c, d, ...) d\n#define\
     \ FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)\n#define\
     \ FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\n#define\
-    \ all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define elif else if\n\
-    \n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n#define\
-    \ fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ all(x) (x).begin(), (x).end()\n#define len(x) ll(x.size())\n#define elif else\
+    \ if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
+    #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
+    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
@@ -99,8 +99,8 @@ data:
     \    1000000000000000000LL,\n};\n\ntemplate <typename T, typename U>\nT SUM(const\
     \ U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n}\n\n#define MIN(v)\
     \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n#define LB(c, x)\
-    \ distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c, x) distance((c).begin(),\
-    \ upper_bound(all(c), (x)))\n#define UNIQUE(x) \\\n  sort(all(x)), x.erase(unique(all(x)),\
+    \ ll(distance((c).begin(), lower_bound(all(c), (x))))\n#define UB(c, x) ll(distance((c).begin(),\
+    \ upper_bound(all(c), (x))))\n#define UNIQUE(x) \\\n  sort(all(x)), x.erase(unique(all(x)),\
     \ x.end()), x.shrink_to_fit()\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n\
     \  T a = que.front();\n  que.pop_front();\n  return a;\n}\ntemplate <class T,\
     \ class Container, class Compare>\nT POP(priority_queue<T, Container, Compare>\
@@ -283,7 +283,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 04:40:12+09:00'
+  timestamp: '2025-09-03 05:45:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
