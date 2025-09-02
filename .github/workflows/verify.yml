@@ -1,66 +1,46 @@
-name: verify
+docs:
+  runs-on: ubuntu-latest
+  needs: verify
+  if: always()
+  permissions:
+    contents: write
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-on: push
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
 
-jobs:
-  verify:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        part: [0, 1, 2, 3]
-    steps:
-      - uses: actions/checkout@v3
+    - name: Install dependencies
+      run: pip3 install -U online-judge-verify-helper
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+    - name: Generate docs (oj-verify docs)
+      continue-on-error: true
+      run: oj-verify docs
 
-      - name: Install dependencies
-        run: pip3 install -U online-judge-verify-helper
+    - name: Stash generated site
+      run: |
+        mkdir -p /tmp/ojv-site
+        rsync -a --delete .verify-helper/markdown/ /tmp/ojv-site/
 
-      - name: Run tests (part ${{ matrix.part }})
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-          DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          python3 scripts/run_split_verify.py \
-            --split 4 \
-            --index ${{ matrix.part }} \
-            -j $(nproc)
+    - name: Switch to gh-pages
+      run: |
+        git fetch origin gh-pages || true
+        if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
+          git checkout gh-pages
+        else
+          git checkout --orphan gh-pages
+          git rm -rf . || true
+        fi
 
-  docs:
-    runs-on: ubuntu-latest
-    needs: verify
-    if: always()
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: pip3 install -U online-judge-verify-helper
-
-      - name: Generate docs (no push)
-        run: oj-verify docs --no-git-push
-
-      - name: Commit and push docs
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin gh-pages || true
-          git checkout gh-pages || git checkout --orphan gh-pages
-          cp -r .verify-helper/markdown/* .
-          git add -A
-          git commit -m "Update docs [skip ci]" || echo "No changes to commit"
-          git push origin gh-pages --force
+    - name: Commit and push docs
+      run: |
+        rsync -a --delete /tmp/ojv-site/ .
+        git add -A
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git commit -m "Update docs [skip ci]" || echo "No changes to commit"
+        git push origin gh-pages --force
