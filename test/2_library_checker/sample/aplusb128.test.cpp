@@ -7,9 +7,9 @@
 using bint = BigInteger;
 
 void solve() {
-  bint a, b;
-  read(a), read(b);
-  print(a + b);
+  STR(A, B);
+  bint a(A), b(B);
+  print((a + b).to_string());
 }
 
 signed main() {
