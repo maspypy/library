@@ -74,7 +74,7 @@ using pq_min = priority_queue<T, vector<T>, greater<T>>;
 #define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)
 #define FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)
 
-#define all(x) x.begin(), x.end()
+#define all(x) (x).begin(), (x).end()
 #define len(x) ll(x.size())
 #define elif else if
 
@@ -199,8 +199,8 @@ T SUM(const U &A) {
 
 #define MIN(v) *min_element(all(v))
 #define MAX(v) *max_element(all(v))
-#define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))
-#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))
+#define LB(c, x) ll(distance((c).begin(), lower_bound(all(c), (x))))
+#define UB(c, x) ll(distance((c).begin(), upper_bound(all(c), (x))))
 #define UNIQUE(x) \
   sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()
 
