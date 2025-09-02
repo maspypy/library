@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import argparse
 import subprocess
 import sys
@@ -5,14 +6,13 @@ import glob
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--split", type=int, required=True)
-    parser.add_argument("--index", type=int, required=True)
-    parser.add_argument("-j", "--jobs", type=int, default=1)
-    args = parser.parse_args()
+    p = argparse.ArgumentParser()
+    p.add_argument("--split", type=int, required=True)
+    p.add_argument("--index", type=int, required=True)
+    p.add_argument("-j", "--jobs", type=int, default=1)
+    args = p.parse_args()
 
-    # verify 対象の test ファイル一覧を取得
-    files = sorted(glob.glob("verify/**/*.test.cpp", recursive=True))
+    files = sorted(glob.glob("test/**/*.test.cpp", recursive=True))
 
     selected = [f for i, f in enumerate(files) if i % args.split == args.index]
 
