@@ -5,20 +5,28 @@ on: push
 jobs:
   verify:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        part: [0, 1, 2, 3]   # 並列数は必要に応じて調整
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v1
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: Install dependencies
-      run: pip3 install -U online-judge-verify-helper
+      - name: Install dependencies
+        run: pip3 install -U online-judge-verify-helper
 
-    - name: Run tests
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
-        GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all
+      - name: Run split verify (part ${{ matrix.part }})
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+          DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          python3 scripts/run_split_verify.py \
+            --split 4 \
+            --index ${{ matrix.part }} \
+            -j $(nproc)
