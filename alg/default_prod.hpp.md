@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/3_yukicoder/789.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/default_prod.hpp\"\ntemplate <class Monoid>\nstruct\
@@ -45,7 +45,7 @@ data:
   requiredBy:
   - ds/segtree/dynamic_segtree.hpp
   timestamp: '2025-09-01 19:47:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1649.test.cpp
   - test/3_yukicoder/1036.test.cpp

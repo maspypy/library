@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
     title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   - icon: ':x:'

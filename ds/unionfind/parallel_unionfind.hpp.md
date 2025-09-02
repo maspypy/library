@@ -6,12 +6,12 @@ data:
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
     title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -77,7 +77,7 @@ data:
   path: ds/unionfind/parallel_unionfind.hpp
   requiredBy: []
   timestamp: '2024-09-10 04:34:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/range_parallel_uf.test.cpp
 documentation_of: ds/unionfind/parallel_unionfind.hpp
