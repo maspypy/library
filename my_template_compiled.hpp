@@ -170,25 +170,27 @@ pair<T, T> divmod(T x, T y) {
   return {q, x - q * y};
 }
 
-inline constexpr std::array<u64, 20> TEN_TAB = [] {
-  std::array<u64, 20> a{};
-  u64 x = 1;
-  for (int i = 0; i <= 19; ++i) {
-    a[i] = x, x *= 10;
-  }
-  return a;
-}();
-
-inline constexpr u64 TEN(int n) {
-  assert(0 <= n && n <= 19);
-  return TEN_TAB[n];
-}
-
-template <int N>
-inline constexpr u64 TEN_v = [] {
-  static_assert(0 <= N && N <= 19);
-  return TEN_TAB[N];
-}();
+constexpr ll TEN[] = {
+    1LL,
+    10LL,
+    100LL,
+    1000LL,
+    10000LL,
+    100000LL,
+    1000000LL,
+    10000000LL,
+    100000000LL,
+    1000000000LL,
+    10000000000LL,
+    100000000000LL,
+    1000000000000LL,
+    10000000000000LL,
+    100000000000000LL,
+    1000000000000000LL,
+    10000000000000000LL,
+    100000000000000000LL,
+    1000000000000000000LL,
+};
 
 template <typename T, typename U>
 T SUM(const U &A) {

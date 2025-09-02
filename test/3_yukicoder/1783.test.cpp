@@ -84,8 +84,8 @@ void solve() {
   fft(true);
 
   mint c = mint(1) / mint(TEN[K - T]);
-  for (auto& x: A) x *= c;
-  for (auto& x: A) print(x);
+  for (auto& x : A) x *= c;
+  for (auto& x : A) print(x);
 }
 
 signed main() {
