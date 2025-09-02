@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_am.test.cpp
     title: test/1_mytest/kdtree_am.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   - icon: ':x:'

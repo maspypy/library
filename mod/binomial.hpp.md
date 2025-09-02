@@ -27,7 +27,7 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test/3_yukicoder/2613.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\
@@ -251,7 +251,7 @@ data:
   path: mod/binomial.hpp
   requiredBy: []
   timestamp: '2025-01-20 22:41:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/2120.test.cpp

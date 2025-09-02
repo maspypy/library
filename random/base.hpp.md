@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':warning:'
@@ -17,16 +17,16 @@ data:
   - icon: ':warning:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -35,16 +35,16 @@ data:
   - icon: ':x:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
   - icon: ':question:'
@@ -56,22 +56,22 @@ data:
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
   - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -80,13 +80,13 @@ data:
   - icon: ':x:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':warning:'
@@ -101,7 +101,7 @@ data:
   - icon: ':x:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':question:'
@@ -122,7 +122,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/two_square.hpp
     title: nt/two_square.hpp
   - icon: ':question:'
@@ -134,13 +134,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
   - icon: ':question:'
@@ -164,7 +164,7 @@ data:
   - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':x:'
@@ -651,130 +651,130 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
     title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
     title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/general_matching.test.cpp
     title: test/2_library_checker/graph/general_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
     title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/factorize.test.cpp
     title: test/2_library_checker/number_theory/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/gaussian_integers.test.cpp
     title: test/2_library_checker/number_theory/gaussian_integers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
     title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/primitive_root.test.cpp
     title: test/2_library_checker/number_theory/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/sqrt_mod.test.cpp
     title: test/2_library_checker/number_theory/sqrt_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/tetration.test.cpp
     title: test/2_library_checker/number_theory/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/two_square.test.cpp
     title: test/2_library_checker/number_theory/two_square.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/composition_dmint.test.cpp
     title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':x:'

@@ -49,7 +49,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
   - icon: ':question:'

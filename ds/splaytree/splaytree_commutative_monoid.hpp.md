@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_cm.test.cpp
     title: test/1_mytest/splay_cm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n\n/*\nupdate \u3067\u3061\u3083\
@@ -207,7 +207,7 @@ data:
   path: ds/splaytree/splaytree_commutative_monoid.hpp
   requiredBy: []
   timestamp: '2025-06-20 14:02:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   - test/1_mytest/splay_cm.test.cpp

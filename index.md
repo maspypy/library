@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minmax_add.hpp
       title: alg/acted_monoid/minmax_add.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/acted_monoid/minmincnt_add.hpp
       title: alg/acted_monoid/minmincnt_add.hpp
     - icon: ':x:'
@@ -51,7 +51,7 @@ data:
     - icon: ':question:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/acted_monoid/sum_affine.hpp
       title: alg/acted_monoid/sum_affine.hpp
     - icon: ':question:'
@@ -77,12 +77,12 @@ data:
     - icon: ':warning:'
       path: alg/acted_set/affine.hpp
       title: alg/acted_set/affine.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/acted_set/from_monoid.hpp
       title: alg/acted_set/from_monoid.hpp
   - name: alg
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/default_prod.hpp
       title: alg/default_prod.hpp
     - icon: ':question:'
@@ -162,7 +162,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
     - icon: ':question:'
@@ -180,7 +180,7 @@ data:
     - icon: ':x:'
       path: alg/monoid/or.hpp
       title: alg/monoid/or.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/monoid/rollinghash.hpp
       title: alg/monoid/rollinghash.hpp
     - icon: ':heavy_check_mark:'
@@ -205,7 +205,7 @@ data:
       title: bigint/redundant_binary_number.hpp
   - name: convex
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: convex/cht.hpp
       title: convex/cht.hpp
     - icon: ':x:'
@@ -214,7 +214,7 @@ data:
     - icon: ':warning:'
       path: convex/cht_monotone_F.hpp
       title: convex/cht_monotone_F.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
     - icon: ':heavy_check_mark:'
@@ -238,7 +238,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/lattice_point_sum_polynomial_pq.hpp
       title: convex/lattice_point_sum_polynomial_pq.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
     - icon: ':heavy_check_mark:'
@@ -292,7 +292,7 @@ data:
       title: datetime/datetime.hpp
   - name: ds
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
     - icon: ':question:'
@@ -301,7 +301,7 @@ data:
     - icon: ':x:'
       path: ds/cumsum_2d.hpp
       title: ds/cumsum_2d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/double_end_queue.hpp
       title: ds/double_end_queue.hpp
     - icon: ':x:'
@@ -310,7 +310,7 @@ data:
     - icon: ':x:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
     - icon: ':question:'
@@ -328,7 +328,7 @@ data:
     - icon: ':warning:'
       path: ds/intervals.hpp
       title: ds/intervals.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/meldable_heap.hpp
       title: ds/meldable_heap.hpp
     - icon: ':question:'
@@ -349,13 +349,13 @@ data:
     - icon: ':warning:'
       path: ds/range_min_change.hpp
       title: ds/range_min_change.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/rectangle_union.hpp
       title: ds/rectangle_union.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/removable_queue.hpp
       title: ds/removable_queue.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
     - icon: ':x:'
@@ -367,25 +367,25 @@ data:
     - icon: ':question:'
       path: ds/sortable_array.hpp
       title: ds/sortable_array.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/sqrt_tree.hpp
       title: ds/sqrt_tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/static_range_frequency.hpp
       title: ds/static_range_frequency.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/static_range_product.hpp
       title: ds/static_range_product.hpp
     - icon: ':question:'
       path: ds/static_range_product_group.hpp
       title: ds/static_range_product_group.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/static_rmq.hpp
       title: ds/static_rmq.hpp
     - icon: ':heavy_check_mark:'
       path: ds/sum_over_bit_positions.hpp
       title: ds/sum_over_bit_positions.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/to_small_key.hpp
       title: ds/to_small_key.hpp
   - name: ds/fenwicktree
@@ -393,7 +393,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree.hpp
       title: ds/fenwicktree/dual_fenwicktree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/fenwicktree/dual_fenwicktree_2d.hpp
       title: ds/fenwicktree/dual_fenwicktree_2d.hpp
     - icon: ':question:'
@@ -402,7 +402,7 @@ data:
     - icon: ':question:'
       path: ds/fenwicktree/fenwicktree_01.hpp
       title: ds/fenwicktree/fenwicktree_01.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/fenwicktree/fenwicktree_2d.hpp
       title: ds/fenwicktree/fenwicktree_2d.hpp
     - icon: ':x:'
@@ -432,10 +432,10 @@ data:
       title: ds/monotone/prefix_add_append_get_max.hpp
   - name: ds/offline_query
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/offline_query/add_remove_query.hpp
       title: ds/offline_query/add_remove_query.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/offline_query/coeffient_query_2d.hpp
       title: ds/offline_query/coeffient_query_2d.hpp
     - icon: ':question:'
@@ -444,10 +444,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/mo_3d.hpp
       title: ds/offline_query/mo_3d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/offline_query/parallel_binary_search.hpp
       title: ds/offline_query/parallel_binary_search.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/offline_query/point_add_rectangle_sum.hpp
       title: ds/offline_query/point_add_rectangle_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -459,13 +459,13 @@ data:
     - icon: ':question:'
       path: ds/offline_query/rectangle_add_point_sum.hpp
       title: ds/offline_query/rectangle_add_point_sum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/offline_query/rectangle_add_rectangle_sum.hpp
       title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/offline_query/rollback_mo.hpp
       title: ds/offline_query/rollback_mo.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/offline_query/static_monoid_products.hpp
       title: ds/offline_query/static_monoid_products.hpp
     - icon: ':warning:'
@@ -502,7 +502,7 @@ data:
     - icon: ':x:'
       path: ds/segtree/beats_summin_chmax.hpp
       title: ds/segtree/beats_summin_chmax.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/segtree/beats_summinmax_chminchmax.hpp
       title: ds/segtree/beats_summinmax_chminchmax.hpp
     - icon: ':question:'
@@ -517,7 +517,7 @@ data:
     - icon: ':question:'
       path: ds/segtree/dynamic_lazy_segtree.hpp
       title: ds/segtree/dynamic_lazy_segtree.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/segtree/dynamic_segtree.hpp
       title: ds/segtree/dynamic_segtree.hpp
     - icon: ':question:'
@@ -544,7 +544,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/range_add_range_min.hpp
       title: ds/segtree/range_add_range_min.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/range_assignment_segtree.hpp
       title: ds/segtree/range_assignment_segtree.hpp
     - icon: ':warning:'
@@ -562,7 +562,7 @@ data:
     - icon: ':question:'
       path: ds/segtree/segtree_beats.hpp
       title: ds/segtree/segtree_beats.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/segtree/sortable_segtree.hpp
       title: ds/segtree/sortable_segtree.hpp
     - icon: ':x:'
@@ -570,7 +570,7 @@ data:
       title: ds/segtree/xor_segtree.hpp
   - name: ds/sparse_table
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/sparse_table/disjoint_sparse_table.hpp
       title: ds/sparse_table/disjoint_sparse_table.hpp
     - icon: ':question:'
@@ -587,7 +587,7 @@ data:
     - icon: ':question:'
       path: ds/splaytree/splaytree.hpp
       title: ds/splaytree/splaytree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splaytree/splaytree_acted_monoid.hpp
       title: ds/splaytree/splaytree_acted_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -596,7 +596,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree_basic.hpp
       title: ds/splaytree/splaytree_basic.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splaytree/splaytree_commutative_monoid.hpp
       title: ds/splaytree/splaytree_commutative_monoid.hpp
     - icon: ':question:'
@@ -604,19 +604,19 @@ data:
       title: ds/splaytree/splaytree_monoid.hpp
   - name: ds/unionfind
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/unionfind/dynamic_unionfind.hpp
       title: ds/unionfind/dynamic_unionfind.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/unionfind/parallel_unionfind.hpp
       title: ds/unionfind/parallel_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/unionfind/potentialized_unionfind.hpp
       title: ds/unionfind/potentialized_unionfind.hpp
     - icon: ':x:'
       path: ds/unionfind/rollback_potentialized_unionfind.hpp
       title: ds/unionfind/rollback_potentialized_unionfind.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
     - icon: ':question:'
@@ -627,7 +627,7 @@ data:
     - icon: ':question:'
       path: ds/wavelet_matrix/wavelet_matrix.hpp
       title: ds/wavelet_matrix/wavelet_matrix.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
       title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     - icon: ':warning:'
@@ -644,7 +644,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/ceil_range.hpp
       title: enumerate/ceil_range.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: enumerate/clique.hpp
       title: enumerate/clique.hpp
     - icon: ':question:'
@@ -665,7 +665,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/product.hpp
       title: enumerate/product.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: enumerate/triangle.hpp
       title: enumerate/triangle.hpp
     - icon: ':heavy_check_mark:'
@@ -687,7 +687,7 @@ data:
       title: my_template_compiled.hpp
   - name: flow
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: flow/bflow.hpp
       title: flow/bflow.hpp
     - icon: ':x:'
@@ -705,7 +705,7 @@ data:
     - icon: ':warning:'
       path: flow/dual_mcf.hpp
       title: flow/dual_mcf.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: flow/hungarian.hpp
       title: flow/hungarian.hpp
     - icon: ':warning:'
@@ -723,7 +723,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: flow/mincostflow.hpp
       title: flow/mincostflow.hpp
     - icon: ':x:'
@@ -760,19 +760,19 @@ data:
     - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: geo/closest_pair.hpp
       title: geo/closest_pair.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/convex_hull.hpp
       title: geo/convex_hull.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geo/convex_layers.hpp
       title: geo/convex_layers.hpp
     - icon: ':heavy_check_mark:'
       path: geo/convex_polygon.hpp
       title: geo/convex_polygon.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':question:'
@@ -790,10 +790,10 @@ data:
     - icon: ':x:'
       path: geo/distance.hpp
       title: geo/distance.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geo/dynamicupperhull.hpp
       title: geo/dynamicupperhull.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geo/furthest_pair.hpp
       title: geo/furthest_pair.hpp
     - icon: ':x:'
@@ -808,7 +808,7 @@ data:
     - icon: ':warning:'
       path: geo/lower_convexhull_segtree.hpp
       title: geo/lower_convexhull_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geo/manhattan_mst.hpp
       title: geo/manhattan_mst.hpp
     - icon: ':question:'
@@ -872,7 +872,7 @@ data:
     - icon: ':warning:'
       path: graph/bipartite_balanced_edge_coloring.hpp
       title: graph/bipartite_balanced_edge_coloring.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/bipartite_edge_coloring.hpp
       title: graph/bipartite_edge_coloring.hpp
     - icon: ':question:'
@@ -887,7 +887,7 @@ data:
     - icon: ':x:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/centroid_decomposition.hpp
       title: graph/centroid_decomposition.hpp
     - icon: ':x:'
@@ -896,7 +896,7 @@ data:
     - icon: ':question:'
       path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
       title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/chromatic.hpp
       title: graph/chromatic.hpp
     - icon: ':warning:'
@@ -914,19 +914,19 @@ data:
     - icon: ':warning:'
       path: graph/degree_sequence.hpp
       title: graph/degree_sequence.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/directed_mst.hpp
       title: graph/directed_mst.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/dominator_tree.hpp
       title: graph/dominator_tree.hpp
     - icon: ':x:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/eulerwalk.hpp
       title: graph/eulerwalk.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/fast_lca.hpp
       title: graph/fast_lca.hpp
     - icon: ':heavy_check_mark:'
@@ -935,7 +935,7 @@ data:
     - icon: ':x:'
       path: graph/find_centroid.hpp
       title: graph/find_centroid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/find_cycle.hpp
       title: graph/find_cycle.hpp
     - icon: ':heavy_check_mark:'
@@ -959,19 +959,19 @@ data:
     - icon: ':warning:'
       path: graph/grid_hamiltonian_path.hpp
       title: graph/grid_hamiltonian_path.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/incremental_scc.hpp
       title: graph/incremental_scc.hpp
     - icon: ':x:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/maximum_independent_set.hpp
       title: graph/maximum_independent_set.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/maximum_independent_set_weighted.hpp
       title: graph/maximum_independent_set_weighted.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/maximum_matching.hpp
       title: graph/maximum_matching.hpp
     - icon: ':heavy_check_mark:'
@@ -980,7 +980,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_matching_of_line_graph.hpp
       title: graph/maximum_matching_of_line_graph.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/maximum_matching_size.hpp
       title: graph/maximum_matching_size.hpp
     - icon: ':warning:'
@@ -992,7 +992,7 @@ data:
     - icon: ':x:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
     - icon: ':x:'
@@ -1013,13 +1013,13 @@ data:
     - icon: ':x:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/scc_tounament_by_indegrees.hpp
       title: graph/scc_tounament_by_indegrees.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/st_numbering.hpp
       title: graph/st_numbering.hpp
     - icon: ':x:'
@@ -1043,7 +1043,7 @@ data:
     - icon: ':question:'
       path: graph/tree.hpp
       title: graph/tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/tree_all_distances.hpp
       title: graph/tree_all_distances.hpp
     - icon: ':warning:'
@@ -1061,16 +1061,16 @@ data:
     - icon: ':warning:'
       path: graph/tutte_polynomial.hpp
       title: graph/tutte_polynomial.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/two_edge_component.hpp
       title: graph/two_edge_component.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
     - icon: ':x:'
       path: graph/unicyclic.hpp
       title: graph/unicyclic.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/vs_to_es.hpp
       title: graph/vs_to_es.hpp
   - name: graph/bitset
@@ -1095,7 +1095,7 @@ data:
     - icon: ':warning:'
       path: graph/blackbox/complement_graph_distance.hpp
       title: graph/blackbox/complement_graph_distance.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/blackbox/complement_graph_unionfind.hpp
       title: graph/blackbox/complement_graph_unionfind.hpp
     - icon: ':warning:'
@@ -1115,7 +1115,7 @@ data:
       title: graph/blackbox/unionfind.hpp
   - name: graph/count
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/count/BEST.hpp
       title: graph/count/BEST.hpp
     - icon: ':heavy_check_mark:'
@@ -1184,7 +1184,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/count/count_labeled_unicyclic.hpp
       title: graph/count/count_labeled_unicyclic.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/count/count_spanning_tree.hpp
       title: graph/count/count_spanning_tree.hpp
     - icon: ':warning:'
@@ -1207,13 +1207,13 @@ data:
     - icon: ':warning:'
       path: graph/ds/distance_sum.hpp
       title: graph/ds/distance_sum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/ds/dual_tree_monoid.hpp
       title: graph/ds/dual_tree_monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/ds/dynamic_rerooting_tree_dp.hpp
       title: graph/ds/dynamic_rerooting_tree_dp.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/ds/dynamic_tree_dp.hpp
       title: graph/ds/dynamic_tree_dp.hpp
     - icon: ':warning:'
@@ -1228,13 +1228,13 @@ data:
     - icon: ':warning:'
       path: graph/ds/lct_node_base.hpp
       title: graph/ds/lct_node_base.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/ds/lct_node_commutative_monoid.hpp
       title: graph/ds/lct_node_commutative_monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/ds/lct_node_monoid.hpp
       title: graph/ds/lct_node_monoid.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/ds/link_cut_tree.hpp
       title: graph/ds/link_cut_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1272,7 +1272,7 @@ data:
     - icon: ':x:'
       path: graph/shortest_path/K_shortest_path.hpp
       title: graph/shortest_path/K_shortest_path.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/shortest_path/K_shortest_walk.hpp
       title: graph/shortest_path/K_shortest_walk.hpp
     - icon: ':x:'
@@ -1284,7 +1284,7 @@ data:
     - icon: ':x:'
       path: graph/shortest_path/dial.hpp
       title: graph/shortest_path/dial.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
     - icon: ':x:'
@@ -1316,7 +1316,7 @@ data:
     - icon: ':warning:'
       path: graph/tree_dp/subtree_diameter.hpp
       title: graph/tree_dp/subtree_diameter.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree_dp/subtree_hash.hpp
       title: graph/tree_dp/subtree_hash.hpp
     - icon: ':warning:'
@@ -1338,13 +1338,13 @@ data:
       title: knapsack/subset_sum_count.hpp
   - name: linalg
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/adjugate_matrix.hpp
       title: linalg/adjugate_matrix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/basis.hpp
       title: linalg/basis.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: linalg/characteristic_poly.hpp
       title: linalg/characteristic_poly.hpp
     - icon: ':question:'
@@ -1359,13 +1359,13 @@ data:
     - icon: ':warning:'
       path: linalg/ecottea_matrix_dp.hpp
       title: linalg/ecottea_matrix_dp.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/frobenius.hpp
       title: linalg/frobenius.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/hafnian.hpp
       title: linalg/hafnian.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: linalg/matrix_inv.hpp
       title: linalg/matrix_inv.hpp
     - icon: ':x:'
@@ -1374,7 +1374,7 @@ data:
     - icon: ':question:'
       path: linalg/matrix_mul.hpp
       title: linalg/matrix_mul.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: linalg/matrix_pow.hpp
       title: linalg/matrix_pow.hpp
     - icon: ':question:'
@@ -1386,7 +1386,7 @@ data:
     - icon: ':warning:'
       path: linalg/rot90.hpp
       title: linalg/rot90.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
     - icon: ':warning:'
@@ -1403,13 +1403,13 @@ data:
     - icon: ':warning:'
       path: linalg/bitset/det.hpp
       title: linalg/bitset/det.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/bitset/mat_inv.hpp
       title: linalg/bitset/mat_inv.hpp
     - icon: ':x:'
       path: linalg/bitset/matrix_mul_and_or.hpp
       title: linalg/bitset/matrix_mul_and_or.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/bitset/matrix_mul_mod_2.hpp
       title: linalg/bitset/matrix_mul_mod_2.hpp
     - icon: ':warning:'
@@ -1420,7 +1420,7 @@ data:
       title: linalg/bitset/solve_linear.hpp
   - name: linalg/blackbox
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: linalg/blackbox/det.hpp
       title: linalg/blackbox/det.hpp
     - icon: ':question:'
@@ -1463,7 +1463,7 @@ data:
     - icon: ':question:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
     - icon: ':question:'
@@ -1499,7 +1499,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/max_of_linear_segments.hpp
       title: mod/max_of_linear_segments.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/min_of_linear.hpp
       title: mod/min_of_linear.hpp
     - icon: ':question:'
@@ -1508,16 +1508,16 @@ data:
     - icon: ':question:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: mod/mod_kth_root.hpp
       title: mod/mod_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
     - icon: ':question:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
     - icon: ':heavy_check_mark:'
@@ -1547,7 +1547,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/multiplicative_convolution_mod_2n.hpp
       title: mod/multiplicative_convolution_mod_2n.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/multiplicative_convolution_mod_p.hpp
       title: mod/multiplicative_convolution_mod_p.hpp
     - icon: ':question:'
@@ -1565,7 +1565,7 @@ data:
     - icon: ':question:'
       path: mod/range_freq_of_linear.hpp
       title: mod/range_freq_of_linear.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: mod/tetration.hpp
       title: mod/tetration.hpp
   - name: new_poly
@@ -1584,7 +1584,7 @@ data:
     - icon: ':x:'
       path: nt/array_on_divisors.hpp
       title: nt/array_on_divisors.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/array_on_floor.hpp
       title: nt/array_on_floor.hpp
     - icon: ':heavy_check_mark:'
@@ -1608,13 +1608,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/dirichlet.hpp
       title: nt/dirichlet.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/discrete_log.hpp
       title: nt/discrete_log.hpp
     - icon: ':x:'
       path: nt/divisors.hpp
       title: nt/divisors.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/euler_phi.hpp
       title: nt/euler_phi.hpp
     - icon: ':x:'
@@ -1653,7 +1653,7 @@ data:
     - icon: ':x:'
       path: nt/mobius_table.hpp
       title: nt/mobius_table.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/multiplicative_sum.hpp
       title: nt/multiplicative_sum.hpp
     - icon: ':warning:'
@@ -1683,13 +1683,13 @@ data:
     - icon: ':x:'
       path: nt/rational.hpp
       title: nt/rational.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: nt/rational_binary_search.hpp
       title: nt/rational_binary_search.hpp
     - icon: ':heavy_check_mark:'
       path: nt/sigma_0_sum.hpp
       title: nt/sigma_0_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/stern_brocot_tree.hpp
       title: nt/stern_brocot_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1698,7 +1698,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/three_triangular.hpp
       title: nt/three_triangular.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: nt/two_square.hpp
       title: nt/two_square.hpp
     - icon: ':question:'
@@ -1837,7 +1837,7 @@ data:
     - icon: ':warning:'
       path: poly/composed_sum.hpp
       title: poly/composed_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/composition.hpp
       title: poly/composition.hpp
     - icon: ':heavy_check_mark:'
@@ -1861,7 +1861,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_x_plus_1x.hpp
       title: poly/composition_f_x_plus_1x.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/compositional_inverse.hpp
       title: poly/compositional_inverse.hpp
     - icon: ':heavy_check_mark:'
@@ -1921,7 +1921,7 @@ data:
     - icon: ':question:'
       path: poly/fps_pow.hpp
       title: poly/fps_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/fps_sqrt.hpp
       title: poly/fps_sqrt.hpp
     - icon: ':x:'
@@ -1942,10 +1942,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/multipoint_evaluation_for_prefix_product.hpp
       title: poly/multipoint_evaluation_for_prefix_product.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
     - icon: ':question:'
@@ -1960,7 +1960,7 @@ data:
     - icon: ':question:'
       path: poly/poly_divmod.hpp
       title: poly/poly_divmod.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/poly_gcd.hpp
       title: poly/poly_gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -1969,7 +1969,7 @@ data:
     - icon: ':question:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/power_projection.hpp
       title: poly/power_projection.hpp
     - icon: ':question:'
@@ -1990,7 +1990,7 @@ data:
     - icon: ':x:'
       path: poly/product_of_pow_of_linear.hpp
       title: poly/product_of_pow_of_linear.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/slice_rational_fps.hpp
       title: poly/slice_rational_fps.hpp
     - icon: ':x:'
@@ -2019,7 +2019,7 @@ data:
       title: poly/typical_divide_conquer.hpp
   - name: poly/online
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/online/online_convolution.hpp
       title: poly/online/online_convolution.hpp
     - icon: ':warning:'
@@ -2051,7 +2051,7 @@ data:
     - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: random/hash_pair.hpp
       title: random/hash_pair.hpp
     - icon: ':question:'
@@ -2074,10 +2074,10 @@ data:
       title: random/shuffle.hpp
   - name: seq
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: seq/cartesian_tree.hpp
       title: seq/cartesian_tree.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: seq/common_interval_decomposition.hpp
       title: seq/common_interval_decomposition.hpp
     - icon: ':warning:'
@@ -2110,10 +2110,10 @@ data:
     - icon: ':x:'
       path: seq/interpolate_periodic_sequence.hpp
       title: seq/interpolate_periodic_sequence.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/interpolate_poly_exp.hpp
       title: seq/interpolate_poly_exp.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
     - icon: ':x:'
@@ -2125,10 +2125,10 @@ data:
     - icon: ':warning:'
       path: seq/kth_root_permutation.hpp
       title: seq/kth_root_permutation.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/limit_poly_exp_sum.hpp
       title: seq/limit_poly_exp_sum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: seq/longest_increasing_subsequence.hpp
       title: seq/longest_increasing_subsequence.hpp
     - icon: ':x:'
@@ -2190,13 +2190,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/simple_permutations.hpp
       title: seq/famous/simple_permutations.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: seq/famous/stirling_number_1.hpp
       title: seq/famous/stirling_number_1.hpp
     - icon: ':question:'
       path: seq/famous/stirling_number_2.hpp
       title: seq/famous/stirling_number_2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/famous/stirling_number_query.hpp
       title: seq/famous/stirling_number_query.hpp
     - icon: ':x:'
@@ -2219,16 +2219,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: setfunc/power_projection_of_sps.hpp
       title: setfunc/power_projection_of_sps.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: setfunc/sps_composition.hpp
       title: setfunc/sps_composition.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: setfunc/sps_exp.hpp
       title: setfunc/sps_exp.hpp
     - icon: ':warning:'
@@ -2237,7 +2237,7 @@ data:
     - icon: ':warning:'
       path: setfunc/sps_log.hpp
       title: setfunc/sps_log.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
     - icon: ':question:'
@@ -2268,7 +2268,7 @@ data:
     - icon: ':warning:'
       path: string/basic_substring_structure.hpp
       title: string/basic_substring_structure.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: string/count_subseq.hpp
       title: string/count_subseq.hpp
     - icon: ':heavy_check_mark:'
@@ -2277,7 +2277,7 @@ data:
     - icon: ':warning:'
       path: string/deque_rolling_hash.hpp
       title: string/deque_rolling_hash.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/double_ended_palindromic_tree.hpp
       title: string/double_ended_palindromic_tree.hpp
     - icon: ':x:'
@@ -2307,13 +2307,13 @@ data:
     - icon: ':x:'
       path: string/longest_common_subsequence.hpp
       title: string/longest_common_subsequence.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/longest_common_substring.hpp
       title: string/longest_common_substring.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/lyndon.hpp
       title: string/lyndon.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: string/manacher.hpp
       title: string/manacher.hpp
     - icon: ':warning:'
@@ -2325,7 +2325,7 @@ data:
     - icon: ':warning:'
       path: string/non_dominated_suffix.hpp
       title: string/non_dominated_suffix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/online_z_algorithm.hpp
       title: string/online_z_algorithm.hpp
     - icon: ':question:'
@@ -2334,10 +2334,10 @@ data:
     - icon: ':question:'
       path: string/palindromic_tree.hpp
       title: string/palindromic_tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/prefix_substring_LCS.hpp
       title: string/prefix_substring_LCS.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: string/rollinghash.hpp
       title: string/rollinghash.hpp
     - icon: ':x:'
@@ -2346,7 +2346,7 @@ data:
     - icon: ':warning:'
       path: string/rollinghash_field.hpp
       title: string/rollinghash_field.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/run_enumerate.hpp
       title: string/run_enumerate.hpp
     - icon: ':heavy_check_mark:'
@@ -2370,7 +2370,7 @@ data:
     - icon: ':question:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/suffix_automaton.hpp
       title: string/suffix_automaton.hpp
     - icon: ':heavy_check_mark:'
@@ -3098,632 +3098,632 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
       title: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
       title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/convolution/multivariate_convolution.test.cpp
       title: test/2_library_checker/convolution/multivariate_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
       title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/convolution/online_convolution.test.cpp
       title: test/2_library_checker/convolution/online_convolution.test.cpp
   - name: test/2_library_checker/data_structure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/add_remove_query.test.cpp
       title: test/2_library_checker/data_structure/add_remove_query.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
       title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/associative_array.test.cpp
       title: test/2_library_checker/data_structure/associative_array.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
       title: test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
       title: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/double_ended_pq.test.cpp
       title: test/2_library_checker/data_structure/double_ended_pq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
       title: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/double_ended_q.test.cpp
       title: test/2_library_checker/data_structure/double_ended_q.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
       title: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/line_add_get_min.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/persistent_queue.test.cpp
       title: test/2_library_checker/data_structure/persistent_queue.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
       title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
       title: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/point_add_range_sum.test.cpp
       title: test/2_library_checker/data_structure/point_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/point_add_rectangle_sum_bit2d.test.cpp
       title: test/2_library_checker/data_structure/point_add_rectangle_sum_bit2d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp
       title: test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
       title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
       title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
       title: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
       title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
       title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/predecessor_problem.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
       title: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
       title: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
       title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
       title: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
       title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
       title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
       title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
       title: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
       title: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
       title: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
       title: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
       title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
       title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
       title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
       title: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/set_xor_min.test.cpp
       title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/sort_segtree.test.cpp
       title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
       title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/static_range_freq.test.cpp
       title: test/2_library_checker/data_structure/static_range_freq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
       title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
       title: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
       title: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
       title: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
       title: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/static_range_sum.test.cpp
       title: test/2_library_checker/data_structure/static_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
       title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/staticrmq.test.cpp
       title: test/2_library_checker/data_structure/staticrmq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/unionfind.test.cpp
       title: test/2_library_checker/data_structure/unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
       title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - name: test/2_library_checker/enumerative_combinatorics
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/factorial_mongomery.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/factorial_mongomery.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - name: test/2_library_checker/geometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/geometry/closest_pair.test.cpp
       title: test/2_library_checker/geometry/closest_pair.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
       title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/geometry/convex_layers.test.cpp
       title: test/2_library_checker/geometry/convex_layers.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
       title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/geometry/furthest_pair.test.cpp
       title: test/2_library_checker/geometry/furthest_pair.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/geometry/manhattan_mst.test.cpp
       title: test/2_library_checker/geometry/manhattan_mst.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
       title: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
       title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/geometry/static_convex_hull.test.cpp
       title: test/2_library_checker/geometry/static_convex_hull.test.cpp
   - name: test/2_library_checker/graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/K_shortest_walk.test.cpp
       title: test/2_library_checker/graph/K_shortest_walk.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/assignment.test.cpp
       title: test/2_library_checker/graph/assignment.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/assignment_mcf.test.cpp
       title: test/2_library_checker/graph/assignment_mcf.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/biconnected_component.test.cpp
       title: test/2_library_checker/graph/biconnected_component.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
       title: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/bipartitematching.test.cpp
       title: test/2_library_checker/graph/bipartitematching.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/chromatic_number.test.cpp
       title: test/2_library_checker/graph/chromatic_number.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
       title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/classify_tree.test.cpp
       title: test/2_library_checker/graph/classify_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
       title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/complement_graph_unionfind.test.cpp
       title: test/2_library_checker/graph/complement_graph_unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
       title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
       title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
       title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
       title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
       title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
       title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/cycle_detection.test.cpp
       title: test/2_library_checker/graph/cycle_detection.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/cycle_detection_undirected.test.cpp
       title: test/2_library_checker/graph/cycle_detection_undirected.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/directed_mst.test.cpp
       title: test/2_library_checker/graph/directed_mst.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/domninator_tree.test.cpp
       title: test/2_library_checker/graph/domninator_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/enumerate_cliques.test.cpp
       title: test/2_library_checker/graph/enumerate_cliques.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/enumerate_triangles.test.cpp
       title: test/2_library_checker/graph/enumerate_triangles.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/eulerwalk_d.test.cpp
       title: test/2_library_checker/graph/eulerwalk_d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/eulerwalk_ud.test.cpp
       title: test/2_library_checker/graph/eulerwalk_ud.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/general_matching.test.cpp
       title: test/2_library_checker/graph/general_matching.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/incremental_scc.test.cpp
       title: test/2_library_checker/graph/incremental_scc.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/maximum_independent_set.test.cpp
       title: test/2_library_checker/graph/maximum_independent_set.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/maximum_independent_set2.test.cpp
       title: test/2_library_checker/graph/maximum_independent_set2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/min_cost_b-flow.test.cpp
       title: test/2_library_checker/graph/min_cost_b-flow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/scc.test.cpp
       title: test/2_library_checker/graph/scc.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/shortest_path.test.cpp
       title: test/2_library_checker/graph/shortest_path.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/st_numbering.test.cpp
       title: test/2_library_checker/graph/st_numbering.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/graph/two_edge_component.test.cpp
       title: test/2_library_checker/graph/two_edge_component.test.cpp
   - name: test/2_library_checker/linear_algebra
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
       title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
       title: test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/det_mod.test.cpp
       title: test/2_library_checker/linear_algebra/det_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
       title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
       title: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
       title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/matrix_det.test.cpp
       title: test/2_library_checker/linear_algebra/matrix_det.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/matrix_product.test.cpp
       title: test/2_library_checker/linear_algebra/matrix_product.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
       title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
       title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
       title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/solve_linear.test.cpp
       title: test/2_library_checker/linear_algebra/solve_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
       title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
       title: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
   - name: test/2_library_checker/number_theory
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/bernoulli.test.cpp
       title: test/2_library_checker/number_theory/bernoulli.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/counting_primes.test.cpp
       title: test/2_library_checker/number_theory/counting_primes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
       title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/enumerate_primes.test.cpp
       title: test/2_library_checker/number_theory/enumerate_primes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
       title: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
       title: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/factorize.test.cpp
       title: test/2_library_checker/number_theory/factorize.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/gaussian_integers.test.cpp
       title: test/2_library_checker/number_theory/gaussian_integers.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/kth_root_integer.test.cpp
       title: test/2_library_checker/number_theory/kth_root_integer.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
       title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
       title: test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
       title: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/nim_product.test.cpp
       title: test/2_library_checker/number_theory/nim_product.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/primality_test.test.cpp
       title: test/2_library_checker/number_theory/primality_test.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/primitive_root.test.cpp
       title: test/2_library_checker/number_theory/primitive_root.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/rational_approximation.test.cpp
       title: test/2_library_checker/number_theory/rational_approximation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/sqrt_mod.test.cpp
       title: test/2_library_checker/number_theory/sqrt_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/stern-brocot.test.cpp
       title: test/2_library_checker/number_theory/stern-brocot.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/sum_of_floor_of_linear.test.cpp
       title: test/2_library_checker/number_theory/sum_of_floor_of_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
       title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/tetration.test.cpp
       title: test/2_library_checker/number_theory/tetration.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/totient_sum.test.cpp
       title: test/2_library_checker/number_theory/totient_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/two_square.test.cpp
       title: test/2_library_checker/number_theory/two_square.test.cpp
   - name: test/2_library_checker/other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/other/find_linear_recurrence.test.cpp
       title: test/2_library_checker/other/find_linear_recurrence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
       title: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
       title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
       title: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/other/twosat.test.cpp
       title: test/2_library_checker/other/twosat.test.cpp
   - name: test/2_library_checker/polynomial
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/composition_dmint.test.cpp
       title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
       title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
       title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
       title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/exp_of_fps.test.cpp
       title: test/2_library_checker/polynomial/exp_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
       title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
       title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
       title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
       title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
       title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
       title: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/log_of_fps.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
       title: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
       title: test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
       title: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/polynomial_division.test.cpp
       title: test/2_library_checker/polynomial/polynomial_division.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
       title: test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
       title: test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
       title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/pow_of_fps.test.cpp
       title: test/2_library_checker/polynomial/pow_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
       title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
       title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
       title: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
       title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/slice_rational.test.cpp
       title: test/2_library_checker/polynomial/slice_rational.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
       title: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - name: test/2_library_checker/sample
@@ -3731,127 +3731,127 @@ data:
     - icon: ':x:'
       path: test/2_library_checker/sample/aplusb128.test.cpp
       title: test/2_library_checker/sample/aplusb128.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/sample/many_aplusb.test.cpp
       title: test/2_library_checker/sample/many_aplusb.test.cpp
   - name: test/2_library_checker/set_power_series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/set_power_series/composition_sps.test.cpp
       title: test/2_library_checker/set_power_series/composition_sps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
       title: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/set_power_series/powproj_sps.test.cpp
       title: test/2_library_checker/set_power_series/powproj_sps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/set_power_series/sps_exp.test.cpp
       title: test/2_library_checker/set_power_series/sps_exp.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/set_power_series/subset_convolution.test.cpp
       title: test/2_library_checker/set_power_series/subset_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
       title: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
   - name: test/2_library_checker/string
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/eertree.test.cpp
       title: test/2_library_checker/string/eertree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/enumerate_palindromes.test.cpp
       title: test/2_library_checker/string/enumerate_palindromes.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/longest_common_substring.test.cpp
       title: test/2_library_checker/string/longest_common_substring.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/lyndon.test.cpp
       title: test/2_library_checker/string/lyndon.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/number_of_subsequences.test.cpp
       title: test/2_library_checker/string/number_of_subsequences.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/number_of_substrings.test.cpp
       title: test/2_library_checker/string/number_of_substrings.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/number_of_substrings2.test.cpp
       title: test/2_library_checker/string/number_of_substrings2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/online_z.test.cpp
       title: test/2_library_checker/string/online_z.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/palindromes_in_deque.test.cpp
       title: test/2_library_checker/string/palindromes_in_deque.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
       title: test/2_library_checker/string/prefix_substring_lcs.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/run_enumerate.test.cpp
       title: test/2_library_checker/string/run_enumerate.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/run_enumerate_vec.test.cpp
       title: test/2_library_checker/string/run_enumerate_vec.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/suffix_array.test.cpp
       title: test/2_library_checker/string/suffix_array.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/suffix_array_vec.test.cpp
       title: test/2_library_checker/string/suffix_array_vec.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/zalgorithm.test.cpp
       title: test/2_library_checker/string/zalgorithm.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
       title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
       title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - name: test/2_library_checker/tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/cartesian_tree.test.cpp
       title: test/2_library_checker/tree/cartesian_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp
       title: test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
       title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
       title: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
       title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/lca.test.cpp
       title: test/2_library_checker/tree/lca.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/lca_directed.test.cpp
       title: test/2_library_checker/tree/lca_directed.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/lca_fast.test.cpp
       title: test/2_library_checker/tree/lca_fast.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/mst.test.cpp
       title: test/2_library_checker/tree/mst.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
       title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
       title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/tree/rerooting_dp.test.cpp
       title: test/2_library_checker/tree/rerooting_dp.test.cpp
     - icon: ':x:'

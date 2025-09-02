@@ -4,18 +4,18 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
     title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/4_aoj/DSL_4_A.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\u5024\u3001\
@@ -61,7 +61,7 @@ data:
   - ds/rectangle_union.hpp
   - graph/count/count_connected_intervals.hpp
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   - test/4_aoj/DSL_4_A.test.cpp

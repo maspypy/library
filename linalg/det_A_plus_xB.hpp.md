@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
   - icon: ':question:'

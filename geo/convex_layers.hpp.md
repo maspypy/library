@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/convex_layers.test.cpp
     title: test/2_library_checker/geometry/convex_layers.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1599/problem/D
@@ -155,7 +155,7 @@ data:
   path: geo/convex_layers.hpp
   requiredBy: []
   timestamp: '2025-05-18 17:51:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/geometry/convex_layers.test.cpp
 documentation_of: geo/convex_layers.hpp

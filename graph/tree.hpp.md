@@ -20,13 +20,13 @@ data:
   - icon: ':warning:'
     path: graph/ds/distance_sum.hpp
     title: graph/ds/distance_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':x:'
@@ -59,13 +59,13 @@ data:
   - icon: ':x:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':x:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -80,7 +80,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':warning:'
@@ -108,28 +108,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca.test.cpp
     title: test/2_library_checker/tree/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_directed.test.cpp
     title: test/2_library_checker/tree/lca_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
   - icon: ':x:'

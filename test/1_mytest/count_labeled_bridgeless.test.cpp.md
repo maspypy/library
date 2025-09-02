@@ -31,10 +31,10 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':question:'
@@ -76,7 +76,7 @@ data:
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
   - icon: ':question:'

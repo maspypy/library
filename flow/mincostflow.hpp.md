@@ -6,7 +6,7 @@ data:
     path: flow/longest_shortest_path.hpp
     title: flow/longest_shortest_path.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/assignment_mcf.test.cpp
     title: test/2_library_checker/graph/assignment_mcf.test.cpp
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
     title: test/4_aoj/GRL_6_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
@@ -258,7 +258,7 @@ data:
   requiredBy:
   - flow/longest_shortest_path.hpp
   timestamp: '2024-11-07 04:20:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1288.test.cpp
   - test/3_yukicoder/1676.test.cpp

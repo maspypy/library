@@ -11,20 +11,20 @@ data:
   - icon: ':warning:'
     path: string/non_dominated_suffix.hpp
     title: string/non_dominated_suffix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/is_substring.test.cpp
     title: test/1_mytest/is_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/run_enumerate.test.cpp
     title: test/2_library_checker/string/run_enumerate.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/run_enumerate_vec.test.cpp
     title: test/2_library_checker/string/run_enumerate_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm.test.cpp
     title: test/2_library_checker/string/zalgorithm.test.cpp
   - icon: ':x:'

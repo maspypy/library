@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':question:'

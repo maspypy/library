@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\
@@ -194,7 +194,7 @@ data:
   path: string/longest_common_substring.hpp
   requiredBy: []
   timestamp: '2025-02-14 21:17:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp

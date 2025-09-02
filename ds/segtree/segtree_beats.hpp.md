@@ -11,14 +11,14 @@ data:
   - icon: ':x:'
     path: ds/segtree/beats_summin_chmax.hpp
     title: ds/segtree/beats_summin_chmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/beats_summinmax_chminchmax.hpp
     title: ds/segtree/beats_summinmax_chminchmax.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/kinetic.test.cpp
     title: test/1_mytest/kinetic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
   - icon: ':x:'

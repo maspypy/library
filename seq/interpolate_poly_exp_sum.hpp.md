@@ -34,17 +34,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_poly_exp.hpp
     title: seq/interpolate_poly_exp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -414,7 +414,7 @@ data:
   path: seq/interpolate_poly_exp_sum.hpp
   requiredBy: []
   timestamp: '2025-09-02 05:19:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
 documentation_of: seq/interpolate_poly_exp_sum.hpp

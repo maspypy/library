@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/lyndon.test.cpp
     title: test/2_library_checker/string/lyndon.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct\
@@ -51,7 +51,7 @@ data:
   - string/lex_min_suffix_for_all_prefix.hpp
   - string/non_dominated_suffix.hpp
   timestamp: '2025-05-18 18:12:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/string/lyndon.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp

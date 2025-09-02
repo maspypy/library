@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
   - icon: ':question:'

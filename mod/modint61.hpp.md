@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: string/deque_rolling_hash.hpp
     title: string/deque_rolling_hash.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':x:'
@@ -57,16 +57,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/general_matching.test.cpp
     title: test/2_library_checker/graph/general_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':x:'

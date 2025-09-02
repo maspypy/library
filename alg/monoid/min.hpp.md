@@ -26,13 +26,13 @@ data:
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':warning:'
@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':warning:'
@@ -111,46 +111,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/wavelet_matrix.test.cpp
     title: test/1_mytest/wavelet_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/number_of_substrings.test.cpp
     title: test/2_library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/suffix_array.test.cpp
     title: test/2_library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':x:'

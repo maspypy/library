@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
   - icon: ':x:'

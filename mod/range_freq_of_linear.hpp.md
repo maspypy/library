@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_freq_of_linear.test.cpp
     title: test/1_mytest/range_freq_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
   - icon: ':x:'

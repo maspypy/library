@@ -32,10 +32,10 @@ data:
   - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
   - icon: ':heavy_check_mark:'
@@ -57,13 +57,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - icon: ':x:'

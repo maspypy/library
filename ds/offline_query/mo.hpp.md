@@ -9,10 +9,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - icon: ':x:'

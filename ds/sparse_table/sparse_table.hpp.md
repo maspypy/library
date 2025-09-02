@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/static_rmq.hpp
     title: ds/static_rmq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':warning:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':warning:'
@@ -51,28 +51,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/number_of_substrings.test.cpp
     title: test/2_library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/suffix_array.test.cpp
     title: test/2_library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
   - icon: ':x:'

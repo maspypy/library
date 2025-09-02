@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_C_negative.hpp
     title: poly/sum_of_C_negative.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':x:'
@@ -48,16 +48,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/powerquery.test.cpp
     title: test/1_mytest/powerquery.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':x:'
