@@ -4,13 +4,13 @@ data:
   - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   _extendedRequiredBy: []

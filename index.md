@@ -48,7 +48,7 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/powersums_assign.hpp
       title: alg/acted_monoid/powersums_assign.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
     - icon: ':x:'
@@ -90,7 +90,7 @@ data:
       title: alg/monoid_pow.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':x:'
@@ -99,10 +99,10 @@ data:
     - icon: ':x:'
       path: alg/monoid/add_chmax.hpp
       title: alg/monoid/add_chmax.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/monoid/add_chmin.hpp
       title: alg/monoid/add_chmin.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
     - icon: ':x:'
@@ -111,7 +111,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/add_divide.hpp
       title: alg/monoid/add_divide.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
     - icon: ':x:'
@@ -174,7 +174,7 @@ data:
     - icon: ':x:'
       path: alg/monoid/monoid_reverse.hpp
       title: alg/monoid/monoid_reverse.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/mul.hpp
       title: alg/monoid/mul.hpp
     - icon: ':x:'
@@ -292,7 +292,7 @@ data:
       title: datetime/datetime.hpp
   - name: ds
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
     - icon: ':x:'
@@ -316,7 +316,7 @@ data:
     - icon: ':x:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -340,7 +340,7 @@ data:
     - icon: ':x:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/power_query.hpp
       title: ds/power_query.hpp
     - icon: ':x:'
@@ -441,7 +441,7 @@ data:
     - icon: ':x:'
       path: ds/offline_query/mo.hpp
       title: ds/offline_query/mo.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/offline_query/mo_3d.hpp
       title: ds/offline_query/mo_3d.hpp
     - icon: ':x:'
@@ -476,10 +476,10 @@ data:
     - icon: ':x:'
       path: ds/randomized_bst/rbst.hpp
       title: ds/randomized_bst/rbst.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/randomized_bst/rbst_acted_monoid.hpp
       title: ds/randomized_bst/rbst_acted_monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/randomized_bst/rbst_acted_set.hpp
       title: ds/randomized_bst/rbst_acted_set.hpp
     - icon: ':x:'
@@ -584,13 +584,13 @@ data:
       title: ds/sparse_table/xor_disjoint_sparse_table.hpp
   - name: ds/splaytree
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/splaytree/splaytree.hpp
       title: ds/splaytree/splaytree.hpp
     - icon: ':x:'
       path: ds/splaytree/splaytree_acted_monoid.hpp
       title: ds/splaytree/splaytree_acted_monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/splaytree/splaytree_acted_set.hpp
       title: ds/splaytree/splaytree_acted_set.hpp
     - icon: ':x:'
@@ -619,7 +619,7 @@ data:
     - icon: ':x:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
@@ -679,7 +679,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':question:'
+    - icon: ':x:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -757,19 +757,19 @@ data:
     - icon: ':warning:'
       path: geo/apollonian_circle.hpp
       title: geo/apollonian_circle.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':x:'
       path: geo/closest_pair.hpp
       title: geo/closest_pair.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: geo/convex_hull.hpp
       title: geo/convex_hull.hpp
     - icon: ':x:'
       path: geo/convex_layers.hpp
       title: geo/convex_layers.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: geo/convex_polygon.hpp
       title: geo/convex_polygon.hpp
     - icon: ':x:'
@@ -799,7 +799,7 @@ data:
     - icon: ':x:'
       path: geo/incircle.hpp
       title: geo/incircle.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
     - icon: ':x:'
@@ -866,7 +866,7 @@ data:
       title: geo3d/cross_point.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':warning:'
@@ -1040,7 +1040,7 @@ data:
     - icon: ':x:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':x:'
@@ -1118,13 +1118,13 @@ data:
     - icon: ':x:'
       path: graph/count/BEST.hpp
       title: graph/count/BEST.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/count/count_C3_C4.hpp
       title: graph/count/count_C3_C4.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/count/count_K4.hpp
       title: graph/count/count_K4.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/count/count_P3_P4_P5.hpp
       title: graph/count/count_P3_P4_P5.hpp
     - icon: ':warning:'
@@ -1151,7 +1151,7 @@ data:
     - icon: ':x:'
       path: graph/count/count_labeled_biconnected.hpp
       title: graph/count/count_labeled_biconnected.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/count/count_labeled_bipartite.hpp
       title: graph/count/count_labeled_bipartite.hpp
     - icon: ':x:'
@@ -1304,7 +1304,7 @@ data:
       title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree_dp
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/tree_dp/rerooting_dp.hpp
       title: graph/tree_dp/rerooting_dp.hpp
     - icon: ':warning:'
@@ -1347,7 +1347,7 @@ data:
     - icon: ':x:'
       path: linalg/characteristic_poly.hpp
       title: linalg/characteristic_poly.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: linalg/det.hpp
       title: linalg/det.hpp
     - icon: ':x:'
@@ -1371,7 +1371,7 @@ data:
     - icon: ':x:'
       path: linalg/matrix_lowrank_update.hpp
       title: linalg/matrix_lowrank_update.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: linalg/matrix_mul.hpp
       title: linalg/matrix_mul.hpp
     - icon: ':x:'
@@ -1429,7 +1429,7 @@ data:
     - icon: ':x:'
       path: linalg/blackbox/pascal.hpp
       title: linalg/blackbox/pascal.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/blackbox/solve_linear.hpp
       title: linalg/blackbox/solve_linear.hpp
     - icon: ':x:'
@@ -1440,36 +1440,36 @@ data:
     - icon: ':x:'
       path: linalg/xor/basis.hpp
       title: linalg/xor/basis.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/xor/mat_inv.hpp
       title: linalg/xor/mat_inv.hpp
     - icon: ':warning:'
       path: linalg/xor/maximum_weighted_basis.hpp
       title: linalg/xor/maximum_weighted_basis.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: linalg/xor/transpose.hpp
       title: linalg/xor/transpose.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: linalg/xor/vector_space.hpp
       title: linalg/xor/vector_space.hpp
   - name: mod
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: mod/O1_inverse.hpp
       title: mod/O1_inverse.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
     - icon: ':x:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/crt3.hpp
       title: mod/crt3.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/dynamic_modint.hpp
       title: mod/dynamic_modint.hpp
     - icon: ':warning:'
@@ -1505,7 +1505,7 @@ data:
     - icon: ':x:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':x:'
@@ -1514,10 +1514,10 @@ data:
     - icon: ':x:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
     - icon: ':x:'
@@ -1526,7 +1526,7 @@ data:
     - icon: ':x:'
       path: mod/modfast.hpp
       title: mod/modfast.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':x:'
@@ -1535,13 +1535,13 @@ data:
     - icon: ':warning:'
       path: mod/modint_64bit.hpp
       title: mod/modint_64bit.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/modint_common.hpp
       title: mod/modint_common.hpp
     - icon: ':x:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/mongomery_modint.hpp
       title: mod/mongomery_modint.hpp
     - icon: ':x:'
@@ -1550,13 +1550,13 @@ data:
     - icon: ':x:'
       path: mod/multiplicative_convolution_mod_p.hpp
       title: mod/multiplicative_convolution_mod_p.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/powertable.hpp
       title: mod/powertable.hpp
     - icon: ':x:'
       path: mod/prefix_sum_of_binom.hpp
       title: mod/prefix_sum_of_binom.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/primitive_root.hpp
       title: mod/primitive_root.hpp
     - icon: ':x:'
@@ -1590,10 +1590,10 @@ data:
     - icon: ':x:'
       path: nt/convex_floor_sum.hpp
       title: nt/convex_floor_sum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/coprime_factorization.hpp
       title: nt/coprime_factorization.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: nt/count_by_factor_type.hpp
       title: nt/count_by_factor_type.hpp
     - icon: ':x:'
@@ -1620,7 +1620,7 @@ data:
     - icon: ':x:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':warning:'
@@ -1659,7 +1659,7 @@ data:
     - icon: ':warning:'
       path: nt/pell_equation.hpp
       title: nt/pell_equation.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/primesum.hpp
       title: nt/primesum.hpp
     - icon: ':x:'
@@ -1668,10 +1668,10 @@ data:
     - icon: ':x:'
       path: nt/primesum_mod6.hpp
       title: nt/primesum_mod6.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':x:'
@@ -1720,7 +1720,7 @@ data:
       title: nt/nimber/solve_quadratic.hpp
   - name: other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: other/all_but_one_products.hpp
       title: other/all_but_one_products.hpp
     - icon: ':warning:'
@@ -1750,7 +1750,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':x:'
@@ -1805,7 +1805,7 @@ data:
     - icon: ':warning:'
       path: poly/2d/compositional_inverse_2d.hpp
       title: poly/2d/compositional_inverse_2d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: poly/2d/convolution2d.hpp
       title: poly/2d/convolution2d.hpp
     - icon: ':warning:'
@@ -1825,7 +1825,7 @@ data:
       title: poly/2d/fps_pow_2d.hpp
   - name: poly
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/coef_of_rational_fps.hpp
       title: poly/coef_of_rational_fps.hpp
     - icon: ':warning:'
@@ -1837,10 +1837,10 @@ data:
     - icon: ':warning:'
       path: poly/composed_sum.hpp
       title: poly/composed_sum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/composition.hpp
       title: poly/composition.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: poly/composition_f_1_minus_ex.hpp
       title: poly/composition_f_1_minus_ex.hpp
     - icon: ':x:'
@@ -1849,28 +1849,28 @@ data:
     - icon: ':x:'
       path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
       title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/composition_f_ex.hpp
       title: poly/composition_f_ex.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: poly/composition_f_ex_minus_1.hpp
       title: poly/composition_f_ex_minus_1.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: poly/composition_f_log_1_minus_x.hpp
       title: poly/composition_f_log_1_minus_x.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: poly/composition_f_x_plus_1x.hpp
       title: poly/composition_f_x_plus_1x.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/compositional_inverse.hpp
       title: poly/compositional_inverse.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: poly/compositional_inverse_old.hpp
       title: poly/compositional_inverse_old.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
     - icon: ':warning:'
@@ -1879,22 +1879,22 @@ data:
     - icon: ':warning:'
       path: poly/convolution_huge.hpp
       title: poly/convolution_huge.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/convolution_karatsuba.hpp
       title: poly/convolution_karatsuba.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: poly/convolution_leq.hpp
       title: poly/convolution_leq.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
     - icon: ':x:'
       path: poly/convolution_u64.hpp
       title: poly/convolution_u64.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/count_terms.hpp
       title: poly/count_terms.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/differentiate.hpp
       title: poly/differentiate.hpp
     - icon: ':warning:'
@@ -1906,37 +1906,37 @@ data:
     - icon: ':x:'
       path: poly/finding_root_of_polynomial.hpp
       title: poly/finding_root_of_polynomial.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/fps_div.hpp
       title: poly/fps_div.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/fps_exp.hpp
       title: poly/fps_exp.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/fps_inv.hpp
       title: poly/fps_inv.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/fps_log.hpp
       title: poly/fps_log.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/fps_pow.hpp
       title: poly/fps_pow.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/fps_sqrt.hpp
       title: poly/fps_sqrt.hpp
     - icon: ':x:'
       path: poly/from_log_differentiation.hpp
       title: poly/from_log_differentiation.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/integrate.hpp
       title: poly/integrate.hpp
     - icon: ':x:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/middle_product.hpp
       title: poly/middle_product.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
     - icon: ':x:'
@@ -1948,16 +1948,16 @@ data:
     - icon: ':x:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/ntt_doubling.hpp
       title: poly/ntt_doubling.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/partial_frac_decomposition_1.hpp
       title: poly/partial_frac_decomposition_1.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/poly_divmod.hpp
       title: poly/poly_divmod.hpp
     - icon: ':x:'
@@ -1966,10 +1966,10 @@ data:
     - icon: ':x:'
       path: poly/poly_mod_pow.hpp
       title: poly/poly_mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/power_projection.hpp
       title: poly/power_projection.hpp
     - icon: ':x:'
@@ -1999,7 +1999,7 @@ data:
     - icon: ':warning:'
       path: poly/sum_of_C_negative.hpp
       title: poly/sum_of_C_negative.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/sum_of_exp_bx.hpp
       title: poly/sum_of_exp_bx.hpp
     - icon: ':warning:'
@@ -2008,10 +2008,10 @@ data:
     - icon: ':warning:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: poly/transposed_ntt.hpp
       title: poly/transposed_ntt.hpp
     - icon: ':x:'
@@ -2048,7 +2048,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':x:'
@@ -2057,10 +2057,10 @@ data:
     - icon: ':x:'
       path: random/hash_vector.hpp
       title: random/hash_vector.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: random/random_graph.hpp
       title: random/random_graph.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: random/random_matrix.hpp
       title: random/random_matrix.hpp
     - icon: ':x:'
@@ -2069,7 +2069,7 @@ data:
     - icon: ':warning:'
       path: random/random_real.hpp
       title: random/random_real.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
   - name: seq
@@ -2145,16 +2145,16 @@ data:
       title: seq/sum_of_powers.hpp
   - name: seq/famous
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/famous/bell_number.hpp
       title: seq/famous/bell_number.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/famous/bell_number_large.hpp
       title: seq/famous/bell_number_large.hpp
     - icon: ':x:'
       path: seq/famous/bernoulli.hpp
       title: seq/famous/bernoulli.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/famous/catalan_convolution.hpp
       title: seq/famous/catalan_convolution.hpp
     - icon: ':warning:'
@@ -2190,10 +2190,10 @@ data:
     - icon: ':x:'
       path: seq/famous/simple_permutations.hpp
       title: seq/famous/simple_permutations.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: seq/famous/stirling_number_1.hpp
       title: seq/famous/stirling_number_1.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: seq/famous/stirling_number_2.hpp
       title: seq/famous/stirling_number_2.hpp
     - icon: ':x:'
@@ -2404,109 +2404,109 @@ data:
   verificationCategories:
   - name: test/1_mytest
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/31bit_modint.test.cpp
       title: test/1_mytest/31bit_modint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/ARC30D.test.cpp
       title: test/1_mytest/ARC30D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/O1_inv.test.cpp
       title: test/1_mytest/O1_inv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/QOJ5445.test.cpp
       title: test/1_mytest/QOJ5445.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/add_chmin.test.cpp
       title: test/1_mytest/add_chmin.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/add_chmin_chmax.test.cpp
       title: test/1_mytest/add_chmin_chmax.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/all_but_one_products.test.cpp
       title: test/1_mytest/all_but_one_products.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/all_inverse.test.cpp
       title: test/1_mytest/all_inverse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/bell.test.cpp
       title: test/1_mytest/bell.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/bell_number.test.cpp
       title: test/1_mytest/bell_number.test.cpp
     - icon: ':x:'
       path: test/1_mytest/bigint.test.cpp
       title: test/1_mytest/bigint.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/binary_trie.test.cpp
       title: test/1_mytest/binary_trie.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/binom.test.cpp
       title: test/1_mytest/binom.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/blackbox_solve_linear.test.cpp
       title: test/1_mytest/blackbox_solve_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/catalan_convolution.test.cpp
       title: test/1_mytest/catalan_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/cf702_F.test.cpp
       title: test/1_mytest/cf702_F.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/cf702_F_splay.test.cpp
       title: test/1_mytest/cf702_F_splay.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/cf940f.test.cpp
       title: test/1_mytest/cf940f.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/chirp_z.test.cpp
       title: test/1_mytest/chirp_z.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/coef_of_rational.test.cpp
       title: test/1_mytest/coef_of_rational.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/composition_1_minus_ex.test.cpp
       title: test/1_mytest/composition_1_minus_ex.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/composition_ex_minus_1.test.cpp
       title: test/1_mytest/composition_ex_minus_1.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/composition_f_x_plus_1x.test.cpp
       title: test/1_mytest/composition_f_x_plus_1x.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/composition_log_1_minus_x.test.cpp
       title: test/1_mytest/composition_log_1_minus_x.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/compositional_inverset.test.cpp
       title: test/1_mytest/compositional_inverset.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/conv2d.test.cpp
       title: test/1_mytest/conv2d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/conv_leq.test.cpp
       title: test/1_mytest/conv_leq.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/convex_polygon_side.test.cpp
       title: test/1_mytest/convex_polygon_side.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/convex_polygon_visible_range.test.cpp
       title: test/1_mytest/convex_polygon_visible_range.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/convolution_all_1.test.cpp
       title: test/1_mytest/convolution_all_1.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/coprime_factorization.test.cpp
       title: test/1_mytest/coprime_factorization.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/count_K4.test.cpp
       title: test/1_mytest/count_K4.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/count_P3P4P5.test.cpp
       title: test/1_mytest/count_P3P4P5.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/count_bipartite.test.cpp
       title: test/1_mytest/count_bipartite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/count_by_factor_type.test.cpp
       title: test/1_mytest/count_by_factor_type.test.cpp
     - icon: ':x:'

@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
   - icon: ':x:'
@@ -27,7 +27,7 @@ data:
     path: seq/cycle_decomposition.hpp
     title: seq/cycle_decomposition.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/cf702_F_splay.test.cpp
     title: test/1_mytest/cf702_F_splay.test.cpp
   - icon: ':x:'
@@ -62,7 +62,7 @@ data:
     title: test/4_aoj/1508.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n\n/*\nupdate \u3067\u3061\u3083\
@@ -360,7 +360,7 @@ data:
   - convex/slope_trick/slope_super.hpp
   - geo/polygon_triangulation.hpp
   timestamp: '2025-06-20 14:02:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1441.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp

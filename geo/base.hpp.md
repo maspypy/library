@@ -29,13 +29,13 @@ data:
   - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':x:'
     path: geo/convex_layers.hpp
     title: geo/convex_layers.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':x:'
@@ -62,7 +62,7 @@ data:
   - icon: ':x:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
   - icon: ':warning:'
@@ -105,10 +105,10 @@ data:
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/convex_polygon_side.test.cpp
     title: test/1_mytest/convex_polygon_side.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
   - icon: ':x:'
@@ -197,7 +197,7 @@ data:
     title: test/4_aoj/CGL_7_C.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -341,7 +341,7 @@ data:
   - geo/furthest_pair.hpp
   - graph/planar_graph.hpp
   timestamp: '2025-05-18 17:51:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2602.test.cpp
   - test/3_yukicoder/1777.test.cpp

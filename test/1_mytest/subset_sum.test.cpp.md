@@ -10,10 +10,10 @@ data:
   - icon: ':x:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -28,29 +28,28 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/subset_sum.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
-    // https://codeforces.com/blog/entry/126772?#comment-1154880\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
-    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
-    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
-    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
-    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
-    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
-    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
-    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
-    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
-    template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
-    \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#pragma GCC\
+    \ optimize(\"Ofast,unroll-loops\")\n#if defined(__MINGW32__) || defined(__MINGW64__)\n\
+    #include <bits/allocator.h>\n#endif\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n\
+    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
+    \ u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
+    using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ numeric_limits<double>::infinity();\ntemplate <>\nconstexpr long double infty<long\
+    \ double> =\n    numeric_limits<long double>::infinity();\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -101,87 +100,89 @@ data:
     \    1000000000000000LL,\n    10000000000000000LL,\n    100000000000000000LL,\n\
     \    1000000000000000000LL,\n};\n\ntemplate <typename T, typename U>\nT SUM(const\
     \ U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n}\n\n#define MIN(v)\
-    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n#define LB(c, x)\
-    \ ll(distance((c).begin(), lower_bound(all(c), (x))))\n#define UB(c, x) ll(distance((c).begin(),\
-    \ upper_bound(all(c), (x))))\n#define UNIQUE(x) \\\n  sort(all(x)), x.erase(unique(all(x)),\
-    \ x.end()), x.shrink_to_fit()\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n\
-    \  T a = que.front();\n  que.pop_front();\n  return a;\n}\ntemplate <class T,\
-    \ class Container, class Compare>\nT POP(priority_queue<T, Container, Compare>\
-    \ &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n}\ntemplate <typename\
-    \ T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n  return a;\n\
-    }\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll ng, bool check_ok\
-    \ = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok - ng) > 1)\
-    \ {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return\
-    \ ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check, double ok,\
-    \ double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n\
-    \    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class\
-    \ T, class S>\ninline bool chmax(T &a, const S &b) {\n  return (a < b ? a = b,\
-    \ 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b)\
-    \ {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
-    \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
-    \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
-    \ <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int\
-    \ N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n\
-    \  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable sort\ntemplate\
-    \ <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids),\
-    \ 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i] == A[j] ? i <\
-    \ j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
-    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n\
-    \  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\ntemplate <typename T, typename...\
-    \ Vectors>\nvoid concat(vc<T> &first, const Vectors &...others) {\n  vc<T> &res\
-    \ = first;\n  (res.insert(res.end(), others.begin(), others.end()), ...);\n}\n\
-    #endif\n#line 3 \"test/1_mytest/subset_sum.test.cpp\"\n\n#line 2 \"ds/my_bitset.hpp\"\
-    \n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
-    // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
-    \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
-    \u3057\u305F\u304F\u306A\u3044\u3068\u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\
-    \u8981\u306A\u3068\u304D\u306B\u4F7F\u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n\
-    \  int N;\n  vc<u64> dat;\n\n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int\
-    \ N = 0, int x = 0) : N(N) {\n    assert(x == 0 || x == 1);\n    u64 v = (x ==\
-    \ 0 ? 0 : -1);\n    dat.assign((N + 63) >> 6, v);\n    if (N) dat.back() >>= (64\
-    \ * len(dat) - N);\n  }\n\n  int size() { return N; }\n\n  void resize(int size)\
-    \ {\n    dat.resize((size + 63) >> 6);\n    int remainingBits = size & 63;\n \
-    \   if (remainingBits != 0) {\n      u64 mask = (u64(1) << remainingBits) - 1;\n\
-    \      dat.back() &= mask;\n    }\n    N = size;\n  }\n\n  void append(int idx,\
-    \ bool b) {\n    assert(N == idx);\n    resize(idx + 1), (*this)[idx] = b;\n \
-    \ }\n\n  static T from_string(string &S) {\n    int N = len(S);\n    T ANS(N);\n\
-    \    FOR(i, N) ANS[i] = (S[i] == '1');\n    return ANS;\n  }\n\n  // thanks to\
-    \ chatgpt!\n  class Proxy {\n  public:\n    Proxy(vc<u64> &d, int i) : dat(d),\
-    \ index(i) {}\n    operator bool() const { return (dat[index >> 6] >> (index &\
-    \ 63)) & 1; }\n\n    Proxy &operator=(u64 value) {\n      dat[index >> 6] &= ~(u64(1)\
-    \ << (index & 63));\n      dat[index >> 6] |= (value & 1) << (index & 63);\n \
-    \     return *this;\n    }\n    void flip() {\n      dat[index >> 6] ^= (u64(1)\
-    \ << (index & 63)); // XOR to flip the bit\n    }\n\n  private:\n    vc<u64> &dat;\n\
-    \    int index;\n  };\n\n  Proxy operator[](int i) { return Proxy(dat, i); }\n\
-    \n  bool operator==(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat))\
-    \ if (dat[i] != p.dat[i]) return false;\n    return true;\n  }\n\n  T &operator&=(const\
-    \ T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n \
-    \   return *this;\n  }\n  T &operator|=(const T &p) {\n    assert(N == p.N);\n\
-    \    FOR(i, len(dat)) dat[i] |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const\
-    \ T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n \
-    \   return *this;\n  }\n  T operator&(const T &p) const { return T(*this) &= p;\
-    \ }\n  T operator|(const T &p) const { return T(*this) |= p; }\n  T operator^(const\
-    \ T &p) const { return T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n\
-    \    p.flip_range(0, N);\n    return p;\n  }\n\n  void set_minus_inplace(T &other)\
-    \ {\n    assert(N == other.N);\n    FOR(i, len(dat)) dat[i] = dat[i] & (~other.dat[i]);\n\
-    \  }\n\n  T set_minus(T other) {\n    assert(N == other.N);\n    FOR(i, len(dat))\
-    \ other.dat[i] = dat[i] & (~other.dat[i]);\n    return other;\n  }\n\n  int count()\
-    \ {\n    int ans = 0;\n    for (u64 val: dat) ans += popcnt(val);\n    return\
-    \ ans;\n  }\n\n  int dot(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n  \
-    \  FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n    return ans;\n  }\n\n\
-    \  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n    int k =\
-    \ i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n      x = (x >>\
-    \ s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx, k +\
-    \ 1, len(dat)) {\n      if (dat[idx] == 0) continue;\n      return (idx << 6)\
-    \ | lowbit(dat[idx]);\n    }\n    return N;\n  }\n\n  int prev(int i) {\n    chmin(i,\
-    \ N - 1);\n    if (i <= -1) return -1;\n    int k = i >> 6;\n    if ((i & 63)\
-    \ < 63) {\n      u64 x = dat[k];\n      x &= (u64(1) << ((i & 63) + 1)) - 1;\n\
-    \      if (x) return (k << 6) | topbit(x);\n      --k;\n    }\n    FOR_R(idx,\
-    \ k + 1) {\n      if (dat[idx] == 0) continue;\n      return (idx << 6) | topbit(dat[idx]);\n\
-    \    }\n    return -1;\n  }\n\n  My_Bitset range(int L, int R) {\n    assert(L\
-    \ <= R);\n    My_Bitset p(R - L);\n    int rm = (R - L) & 63;\n    FOR(rm) {\n\
-    \      p[R - L - 1] = bool((*this)[R - 1]);\n      --R;\n    }\n    int n = (R\
-    \ - L) >> 6;\n    int hi = L & 63;\n    int lo = 64 - hi;\n    int s = L >> 6;\n\
+    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\ntemplate <class C,\
+    \ class T>\ninline long long LB(const C &c, const T &x) {\n  return lower_bound(c.begin(),\
+    \ c.end(), x) - c.begin();\n}\ntemplate <class C, class T>\ninline long long UB(const\
+    \ C &c, const T &x) {\n  return upper_bound(c.begin(), c.end(), x) - c.begin();\n\
+    }\n#define UNIQUE(x) \\\n  sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\
+    \ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
+    \  return a;\n}\ntemplate <class T, class Container, class Compare>\nT POP(priority_queue<T,\
+    \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
+    }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
+    \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
+    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok\
+    \ - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n \
+    \ }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check,\
+    \ double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok +\
+    \ ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\n\
+    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  return (a\
+    \ < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T &a,\
+    \ const S &b) {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int>\
+    \ s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i,\
+    \ S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n\
+    }\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off =\
+    \ 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i]\
+    \ + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/subset_sum.test.cpp\"\
+    \n\n#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
+    // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
+    \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
+    \u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\u3057\u305F\u304F\u306A\u3044\u3068\
+    \u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\u8981\u306A\u3068\u304D\u306B\u4F7F\
+    \u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n  int N;\n  vc<u64> dat;\n\
+    \n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int N = 0, int x = 0) : N(N) {\n\
+    \    assert(x == 0 || x == 1);\n    u64 v = (x == 0 ? 0 : -1);\n    dat.assign((N\
+    \ + 63) >> 6, v);\n    if (N) dat.back() >>= (64 * len(dat) - N);\n  }\n\n  int\
+    \ size() { return N; }\n\n  void resize(int size) {\n    dat.resize((size + 63)\
+    \ >> 6);\n    int remainingBits = size & 63;\n    if (remainingBits != 0) {\n\
+    \      u64 mask = (u64(1) << remainingBits) - 1;\n      dat.back() &= mask;\n\
+    \    }\n    N = size;\n  }\n\n  void append(int idx, bool b) {\n    assert(N ==\
+    \ idx);\n    resize(idx + 1), (*this)[idx] = b;\n  }\n\n  static T from_string(string\
+    \ &S) {\n    int N = len(S);\n    T ANS(N);\n    FOR(i, N) ANS[i] = (S[i] == '1');\n\
+    \    return ANS;\n  }\n\n  // thanks to chatgpt!\n  class Proxy {\n  public:\n\
+    \    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}\n    operator bool() const\
+    \ { return (dat[index >> 6] >> (index & 63)) & 1; }\n\n    Proxy &operator=(u64\
+    \ value) {\n      dat[index >> 6] &= ~(u64(1) << (index & 63));\n      dat[index\
+    \ >> 6] |= (value & 1) << (index & 63);\n      return *this;\n    }\n    void\
+    \ flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip\
+    \ the bit\n    }\n\n  private:\n    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy\
+    \ operator[](int i) { return Proxy(dat, i); }\n\n  bool operator==(const T &p)\
+    \ {\n    assert(N == p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return\
+    \ false;\n    return true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n\
+    \  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i]\
+    \ |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
+    \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
+    \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
+    \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
+    \ N);\n    return p;\n  }\n\n  void set_minus_inplace(T &other) {\n    assert(N\
+    \ == other.N);\n    FOR(i, len(dat)) dat[i] = dat[i] & (~other.dat[i]);\n  }\n\
+    \n  T set_minus(T other) {\n    assert(N == other.N);\n    FOR(i, len(dat)) other.dat[i]\
+    \ = dat[i] & (~other.dat[i]);\n    return other;\n  }\n\n  int count() {\n   \
+    \ int ans = 0;\n    for (u64 val: dat) ans += popcnt(val);\n    return ans;\n\
+    \  }\n\n  int dot(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n    FOR(i,\
+    \ len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n    return ans;\n  }\n\n  int next(int\
+    \ i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n   \
+    \ {\n      u64 x = dat[k];\n      int s = i & 63;\n      x = (x >> s) << s;\n\
+    \      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat))\
+    \ {\n      if (dat[idx] == 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n\
+    \    }\n    return N;\n  }\n\n  int prev(int i) {\n    chmin(i, N - 1);\n    if\
+    \ (i <= -1) return -1;\n    int k = i >> 6;\n    if ((i & 63) < 63) {\n      u64\
+    \ x = dat[k];\n      x &= (u64(1) << ((i & 63) + 1)) - 1;\n      if (x) return\
+    \ (k << 6) | topbit(x);\n      --k;\n    }\n    FOR_R(idx, k + 1) {\n      if\
+    \ (dat[idx] == 0) continue;\n      return (idx << 6) | topbit(dat[idx]);\n   \
+    \ }\n    return -1;\n  }\n\n  My_Bitset range(int L, int R) {\n    assert(L <=\
+    \ R);\n    My_Bitset p(R - L);\n    int rm = (R - L) & 63;\n    FOR(rm) {\n  \
+    \    p[R - L - 1] = bool((*this)[R - 1]);\n      --R;\n    }\n    int n = (R -\
+    \ L) >> 6;\n    int hi = L & 63;\n    int lo = 64 - hi;\n    int s = L >> 6;\n\
     \    if (hi == 0) {\n      FOR(i, n) { p.dat[i] ^= dat[s + i]; }\n    } else {\n\
     \      FOR(i, n) { p.dat[i] ^= (dat[s + i] >> hi) ^ (dat[s + i + 1] << lo); }\n\
     \    }\n    return p;\n  }\n\n  My_Bitset slice(int L, int R) { return range(L,\
@@ -370,7 +371,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 05:45:26+09:00'
+  timestamp: '2025-09-03 06:34:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/subset_sum.test.cpp
