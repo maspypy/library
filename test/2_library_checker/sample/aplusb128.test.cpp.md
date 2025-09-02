@@ -39,9 +39,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_aplusb_128bit
@@ -610,14 +610,14 @@ data:
     \    return x;\n  }\n\n  int digit_sum() {\n    int ans = 0;\n    for (auto &x\
     \ : dat) ans += ::digit_sum(x);  // global \u306B\u3042\u308B digit_sum\n    return\
     \ ans;\n  }\n};\n#line 6 \"test/2_library_checker/sample/aplusb128.test.cpp\"\n\
-    \nusing bint = BigInteger;\n\nvoid solve() {\n  bint a, b;\n  read(a), read(b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}\n"
+    \nusing bint = BigInteger;\n\nvoid solve() {\n  STR(A, B);\n  bint a(A), b(B);\n\
+    \  print((a + b).to_string());\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb_128bit\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
-    \n\nusing bint = BigInteger;\n\nvoid solve() {\n  bint a, b;\n  read(a), read(b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}\n"
+    \n\nusing bint = BigInteger;\n\nvoid solve() {\n  STR(A, B);\n  bint a(A), b(B);\n\
+    \  print((a + b).to_string());\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -634,8 +634,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/sample/aplusb128.test.cpp
   requiredBy: []
-  timestamp: '2025-09-02 10:49:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-02 21:13:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/sample/aplusb128.test.cpp
 layout: document

@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
@@ -388,7 +388,7 @@ data:
   path: test/2_library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
   timestamp: '2025-09-02 10:49:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/number_of_substrings2.test.cpp
 layout: document

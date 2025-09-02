@@ -350,7 +350,7 @@ data:
   - icon: ':warning:'
     path: string/aho_corasick_for_general_trie.hpp
     title: string/aho_corasick_for_general_trie.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   - icon: ':x:'
@@ -528,7 +528,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/twosat.test.cpp
     title: test/2_library_checker/other/twosat.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/number_of_substrings2.test.cpp
     title: test/2_library_checker/string/number_of_substrings2.test.cpp
   - icon: ':x:'
