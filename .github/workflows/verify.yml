@@ -5,9 +5,12 @@ on: push
 jobs:
   verify:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # gh-pages に push するには必要
     strategy:
+      fail-fast: false
       matrix:
-        part: [0, 1, 2, 3]   # 並列数は必要に応じて調整
+        part: [0, 1, 2, 3]
     steps:
       - uses: actions/checkout@v3
 
@@ -19,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: pip3 install -U online-judge-verify-helper
 
-      - name: Run split verify (part ${{ matrix.part }})
+      - name: Run tests (part ${{ matrix.part }})
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
@@ -30,3 +33,26 @@ jobs:
             --split 4 \
             --index ${{ matrix.part }} \
             -j $(nproc)
+
+  docs:
+    runs-on: ubuntu-latest
+    needs: verify
+    if: always()   # ← verify が失敗しても必ず実行する
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip3 install -U online-judge-verify-helper
+
+      - name: Generate and push docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: oj-verify docs
