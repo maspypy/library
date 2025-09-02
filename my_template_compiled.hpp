@@ -1,8 +1,6 @@
 #if defined(__GNUC__)
-#pragma GCC optimize("Ofast,unroll-loops")
-#if defined(__MINGW32__) || defined(__MINGW64__)
 #include <bits/allocator.h>
-#endif
+#pragma GCC optimize("Ofast,unroll-loops")
 #pragma GCC target("avx2,popcnt")
 #endif
 #include <bits/stdc++.h>
