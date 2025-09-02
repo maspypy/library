@@ -1,12 +1,11 @@
 #if defined(LOCAL)
 #include <my_template_compiled.hpp>
 #else
-
-// https://codeforces.com/blog/entry/96344
-// https://codeforces.com/blog/entry/126772?#comment-1154880
 #if defined(__GNUC__)
-#include <bits/allocator.h>
 #pragma GCC optimize("Ofast,unroll-loops")
+#if defined(__MINGW32__) || defined(__MINGW64__)
+#include <bits/allocator.h>
+#endif
 #pragma GCC target("avx2,popcnt")
 #endif
 #include <bits/stdc++.h>
@@ -203,8 +202,14 @@ T SUM(const U &A) {
 
 #define MIN(v) *min_element(all(v))
 #define MAX(v) *max_element(all(v))
-#define LB(c, x) ll(distance((c).begin(), lower_bound(all(c), (x))))
-#define UB(c, x) ll(distance((c).begin(), upper_bound(all(c), (x))))
+template <class C, class T>
+inline long long LB(const C &c, const T &x) {
+  return lower_bound(c.begin(), c.end(), x) - c.begin();
+}
+template <class C, class T>
+inline long long UB(const C &c, const T &x) {
+  return upper_bound(c.begin(), c.end(), x) - c.begin();
+}
 #define UNIQUE(x) \
   sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()
 
