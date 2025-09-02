@@ -33,7 +33,6 @@ jobs:
             -j $(nproc)
 
   docs:
-    # verify の成否に関係なく実行
     needs: verify
     if: always()
     runs-on: ubuntu-latest
@@ -59,7 +58,8 @@ jobs:
       - name: Stash generated site
         run: |
           mkdir -p /tmp/ojv-site
-          rsync -a --delete .verify-helper/markdown/ /tmp/ojv-site/
+          rsync -a --delete --exclude ".git" .verify-helper/markdown/ /tmp/ojv-site/
+          rm -rf /tmp/ojv-site/.git || true
 
       - name: Switch to gh-pages
         run: |
@@ -73,7 +73,7 @@ jobs:
 
       - name: Commit and push docs
         run: |
-          rsync -a --delete /tmp/ojv-site/ .
+          rsync -a --delete --exclude ".git" /tmp/ojv-site/ .
           git add -A
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
