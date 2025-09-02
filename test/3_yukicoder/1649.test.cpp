@@ -23,16 +23,15 @@ void solve() {
   VEC(pi, XY, N);
   ll LIM = 1 << 30;
 
-  Dynamic_SegTree<Mono, false> seg(31 * N, -LIM, LIM);
-  using np = decltype(seg)::np;
+  Dynamic_SegTree<Mono, false> seg(-LIM, LIM);
 
   mint ANS = 0;
   FOR(4) {
-    for (auto &&[x, y]: XY) tie(x, y) = mp(-y, x);
+    for (auto &&[x, y] : XY) tie(x, y) = mp(-y, x);
     seg.reset();
-    np root = seg.new_node(-LIM, LIM);
+    int root = seg.new_node(-LIM, LIM);
     sort(all(XY));
-    for (auto &&[x, y]: XY) {
+    for (auto &&[x, y] : XY) {
       mint x2 = (x + y) * (x + y);
       mint x1 = x + y;
       mint x0 = 1;

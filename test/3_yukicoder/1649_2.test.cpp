@@ -23,16 +23,15 @@ void solve() {
   VEC(pi, XY, N);
   ll LIM = 1 << 30;
 
-  Dynamic_SegTree_Sparse<Mono, false> seg(N, -LIM, LIM);
-  using np = decltype(seg)::np;
+  Dynamic_SegTree_Sparse<Mono, false> seg(-LIM, LIM);
 
   mint ANS = 0;
   FOR(4) {
-    for (auto&& [x, y]: XY) tie(x, y) = mp(-y, x);
+    for (auto&& [x, y] : XY) tie(x, y) = mp(-y, x);
     seg.reset();
-    np root = nullptr;
+    int root = 0;
     sort(all(XY));
-    for (auto&& [x, y]: XY) {
+    for (auto&& [x, y] : XY) {
       mint x2 = (x + y) * (x + y);
       mint x1 = x + y;
       mint x0 = 1;
@@ -46,13 +45,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
