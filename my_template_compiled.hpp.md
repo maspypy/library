@@ -9,28 +9,28 @@ data:
   attributes:
     links:
     - https://trap.jp/post/1224/
-  bundledCode: "#line 1 \"my_template_compiled.hpp\"\n#if defined(__GNUC__)\n#pragma\
-    \ GCC optimize(\"Ofast,unroll-loops\")\n#if defined(__MINGW32__) || defined(__MINGW64__)\n\
-    #include <bits/allocator.h>\n#endif\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n\
-    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
-    \ u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
-    using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
-    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
-    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ numeric_limits<double>::infinity();\ntemplate <>\nconstexpr long double infty<long\
-    \ double> =\n    numeric_limits<long double>::infinity();\n\nusing pi = pair<ll,\
-    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+  bundledCode: "#line 1 \"my_template_compiled.hpp\"\n#if defined(__GNUC__)\n#include\
+    \ <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#pragma GCC\
+    \ target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
+    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
+    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
+    template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
+    \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -112,9 +112,8 @@ data:
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
     \ others.end()), ...);\n}\n"
-  code: "#if defined(__GNUC__)\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ defined(__MINGW32__) || defined(__MINGW64__)\n#include <bits/allocator.h>\n\
-    #endif\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
+  code: "#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
     \ = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\n\
     using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
@@ -219,7 +218,7 @@ data:
   isVerificationFile: false
   path: my_template_compiled.hpp
   requiredBy: []
-  timestamp: '2025-09-03 06:34:35+09:00'
+  timestamp: '2025-09-03 07:11:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: my_template_compiled.hpp

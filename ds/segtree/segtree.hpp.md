@@ -14,7 +14,7 @@ data:
   - icon: ':x:'
     path: ds/segtree/range_add_range_min.hpp
     title: ds/segtree/range_add_range_min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
   - icon: ':x:'
@@ -81,7 +81,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':x:'
@@ -191,7 +191,7 @@ data:
     title: test/4_aoj/ITP2_3_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -299,7 +299,7 @@ data:
   - string/substring_shortest_border.hpp
   - string/substring_count_in_substring.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1625_2.test.cpp
   - test/3_yukicoder/426.test.cpp

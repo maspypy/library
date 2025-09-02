@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy:
@@ -44,7 +44,7 @@ data:
   - icon: ':x:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
   - icon: ':x:'
@@ -54,7 +54,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/count_points_in_triangles.test.cpp
     title: test/1_mytest/count_points_in_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/factorial_digit.test.cpp
     title: test/1_mytest/factorial_digit.test.cpp
   - icon: ':x:'
@@ -176,7 +176,7 @@ data:
     title: test/4_aoj/DSL_2_G.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -320,7 +320,7 @@ data:
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abelgroup.hpp
   timestamp: '2024-11-18 00:58:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1270.test.cpp
   - test/3_yukicoder/1641.test.cpp

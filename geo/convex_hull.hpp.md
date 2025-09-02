@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -11,19 +11,19 @@ data:
   - icon: ':x:'
     path: convex/lattice_point_count.hpp
     title: convex/lattice_point_count.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/lattice_point_sum_polynomial.hpp
     title: convex/lattice_point_sum_polynomial.hpp
   - icon: ':x:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':warning:'
     path: convex/lower_integer_hull.hpp
     title: convex/lower_integer_hull.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':x:'
@@ -39,13 +39,13 @@ data:
   - icon: ':x:'
     path: test/1_mytest/convex_polygon_side.test.cpp
     title: test/1_mytest/convex_polygon_side.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
   - icon: ':x:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -176,7 +176,7 @@ data:
   - geo/minkowski_sum.hpp
   - geo/furthest_pair.hpp
   timestamp: '2025-05-18 17:51:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
   - test/2_library_checker/geometry/furthest_pair.test.cpp

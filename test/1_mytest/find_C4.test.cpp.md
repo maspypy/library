@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_C3_C4.hpp
     title: graph/count/count_C3_C4.hpp
   - icon: ':x:'
     path: graph/find_C4.hpp
     title: graph/find_C4.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -40,9 +40,8 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/find_C4.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ defined(__MINGW32__) || defined(__MINGW64__)\n#include <bits/allocator.h>\n\
-    #endif\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
     \ = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\n\
     using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
@@ -379,7 +378,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/find_C4.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 06:34:35+09:00'
+  timestamp: '2025-09-03 07:11:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/find_C4.test.cpp

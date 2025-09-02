@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_labeled_tree.test.cpp
     title: test/1_mytest/enumerate_labeled_tree.test.cpp
   - icon: ':x:'
     path: test/1_mytest/enumerate_products.test.cpp
     title: test/1_mytest/enumerate_products.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/fibonacci_search.test.cpp
     title: test/1_mytest/fibonacci_search.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/1_mytest/prufer.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\n\
@@ -39,7 +39,7 @@ data:
   requiredBy:
   - enumerate/labeled_tree.hpp
   timestamp: '2025-02-09 09:51:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/fibonacci_search.test.cpp
   - test/1_mytest/enumerate_labeled_tree.test.cpp

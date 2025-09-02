@@ -21,7 +21,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/count_labeled_strong.test.cpp
     title: test/1_mytest/count_labeled_strong.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_tournament.test.cpp
     title: test/1_mytest/count_labeled_tournament.test.cpp
   - icon: ':x:'
@@ -1907,7 +1907,7 @@ data:
     title: test/4_aoj/NTL_2_C.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/21623
@@ -2135,7 +2135,7 @@ data:
   - other/mhc_template_directory/main.cpp
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
   timestamp: '2025-09-02 10:49:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/789_3.test.cpp

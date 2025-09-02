@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':x:'
@@ -23,9 +23,8 @@ data:
   bundledCode: "#line 1 \"test/4_aoj/ITP1_9_A.test.cpp\"\n#define PROBLEM \\\n  \"\
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A\"\n#line 1\
     \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ defined(__MINGW32__) || defined(__MINGW64__)\n#include <bits/allocator.h>\n\
-    #endif\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
     \ = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\n\
     using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
@@ -195,7 +194,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP1_9_A.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 06:34:35+09:00'
+  timestamp: '2025-09-03 07:11:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP1_9_A.test.cpp
