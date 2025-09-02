@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
   _extendedRequiredBy: []

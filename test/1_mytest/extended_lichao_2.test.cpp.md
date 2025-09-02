@@ -91,97 +91,97 @@ data:
     \ a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename T>\nT ceil(T x, T y)\
     \ {\n  return floor(x + y - 1, y);\n}\ntemplate <typename T>\nT bmod(T x, T y)\
     \ {\n  return x - y * floor(x, y);\n}\ntemplate <typename T>\npair<T, T> divmod(T\
-    \ x, T y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\ninline constexpr\
-    \ std::array<u64, 20> TEN_TAB = [] {\n  std::array<u64, 20> a{};\n  u64 x = 1;\n\
-    \  for (int i = 0; i <= 19; ++i) {\n    a[i] = x, x *= 10;\n  }\n  return a;\n\
-    }();\n\ninline constexpr u64 TEN(int n) {\n  assert(0 <= n && n <= 19);\n  return\
-    \ TEN_TAB[n];\n}\n\ntemplate <int N>\ninline constexpr u64 TEN_v = [] {\n  static_assert(0\
-    \ <= N && N <= 19);\n  return TEN_TAB[N];\n}();\n\ntemplate <typename T, typename\
-    \ U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n\
-    }\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
-    #define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c,\
-    \ x) distance((c).begin(), upper_bound(all(c), (x)))\n#define UNIQUE(x) \\\n \
-    \ sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\ntemplate\
-    \ <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
-    \  return a;\n}\ntemplate <class T, class Container, class Compare>\nT POP(priority_queue<T,\
-    \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
-    }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
-    \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
-    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok\
-    \ - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n \
-    \ }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check,\
-    \ double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok +\
-    \ ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\n\
-    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  return (a\
-    \ < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T &a,\
-    \ const S &b) {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int>\
-    \ s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i,\
-    \ S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n\
-    }\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off =\
-    \ 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i]\
-    \ + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
-    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
-    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
-    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
-    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
-    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
-    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
-    \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/extended_lichao_2.test.cpp\"\
-    \n\n#line 1 \"convex/extended_lichao_2.hpp\"\n// https://codeforces.com/blog/entry/86731)\n\
-    // chmin(A[x],ax+b), A[x]+=b, get range min\ntemplate <bool MINIMIZE>\nstruct\
-    \ Extended_LiChao_Tree_2 {\n  // \u5165\u51FA\u529B\u4EE5\u5916\u3067\u306F minimize\
-    \ \u3057\u3066\u3044\u308B\n  struct F {\n    ll a, b;\n    F(ll a = 0, ll b =\
-    \ 0) : a(a), b(b) {}\n    ll operator()(ll x) { return a * x + b; }\n    void\
-    \ add(ll c) {\n      if (b != infty<ll>) b += c;\n    }\n  };\n\n  vi X, lazy;\n\
-    \  vc<F> dat;\n  vi val;\n  int n, log, size;\n\n  Extended_LiChao_Tree_2(vi X_)\
-    \ : X(X_) {\n    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log) <\
-    \ n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, F(0, infty<ll>));\n\
-    \    lazy.assign(size << 1, 0);\n    val.assign(size << 1, infty<ll>);\n  }\n\n\
-    \  // O(logN). f(x) := min(f(x), ax+b).\n  void chmin_line(ll a, ll b) {\n   \
-    \ static_assert(MINIMIZE);\n    chmin_line_rec(1, F(a, b), 0, n);\n  }\n\n  //\
-    \ O(logN). f(x) := max(f(x), ax+b).\n  void chmax_line(ll a, ll b) {\n    static_assert(!MINIMIZE);\n\
-    \    chmin_line_rec(1, F(-a, -b), 0, n);\n  }\n\n  // O(log^2N). f(x) := min(f(x),\
+    \ x, T y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\nconstexpr ll\
+    \ TEN[] = {\n    1LL,\n    10LL,\n    100LL,\n    1000LL,\n    10000LL,\n    100000LL,\n\
+    \    1000000LL,\n    10000000LL,\n    100000000LL,\n    1000000000LL,\n    10000000000LL,\n\
+    \    100000000000LL,\n    1000000000000LL,\n    10000000000000LL,\n    100000000000000LL,\n\
+    \    1000000000000000LL,\n    10000000000000000LL,\n    100000000000000000LL,\n\
+    \    1000000000000000000LL,\n};\n\ntemplate <typename T, typename U>\nT SUM(const\
+    \ U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n}\n\n#define MIN(v)\
+    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n#define LB(c, x)\
+    \ distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c, x) distance((c).begin(),\
+    \ upper_bound(all(c), (x)))\n#define UNIQUE(x) \\\n  sort(all(x)), x.erase(unique(all(x)),\
+    \ x.end()), x.shrink_to_fit()\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n\
+    \  T a = que.front();\n  que.pop_front();\n  return a;\n}\ntemplate <class T,\
+    \ class Container, class Compare>\nT POP(priority_queue<T, Container, Compare>\
+    \ &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n}\ntemplate <typename\
+    \ T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n  return a;\n\
+    }\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll ng, bool check_ok\
+    \ = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok - ng) > 1)\
+    \ {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return\
+    \ ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check, double ok,\
+    \ double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n\
+    \    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class\
+    \ T, class S>\ninline bool chmax(T &a, const S &b) {\n  return (a < b ? a = b,\
+    \ 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b)\
+    \ {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
+    \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
+    \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
+    \ <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int\
+    \ N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n\
+    \  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable sort\ntemplate\
+    \ <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids),\
+    \ 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i] == A[j] ? i <\
+    \ j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
+    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n\
+    \  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\ntemplate <typename T, typename...\
+    \ Vectors>\nvoid concat(vc<T> &first, const Vectors &...others) {\n  vc<T> &res\
+    \ = first;\n  (res.insert(res.end(), others.begin(), others.end()), ...);\n}\n\
+    #endif\n#line 3 \"test/1_mytest/extended_lichao_2.test.cpp\"\n\n#line 1 \"convex/extended_lichao_2.hpp\"\
+    \n// https://codeforces.com/blog/entry/86731)\n// chmin(A[x],ax+b), A[x]+=b, get\
+    \ range min\ntemplate <bool MINIMIZE>\nstruct Extended_LiChao_Tree_2 {\n  // \u5165\
+    \u51FA\u529B\u4EE5\u5916\u3067\u306F minimize \u3057\u3066\u3044\u308B\n  struct\
+    \ F {\n    ll a, b;\n    F(ll a = 0, ll b = 0) : a(a), b(b) {}\n    ll operator()(ll\
+    \ x) { return a * x + b; }\n    void add(ll c) {\n      if (b != infty<ll>) b\
+    \ += c;\n    }\n  };\n\n  vi X, lazy;\n  vc<F> dat;\n  vi val;\n  int n, log,\
+    \ size;\n\n  Extended_LiChao_Tree_2(vi X_) : X(X_) {\n    UNIQUE(X);\n    n =\
+    \ len(X), log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
+    \    dat.assign(size << 1, F(0, infty<ll>));\n    lazy.assign(size << 1, 0);\n\
+    \    val.assign(size << 1, infty<ll>);\n  }\n\n  // O(logN). f(x) := min(f(x),\
+    \ ax+b).\n  void chmin_line(ll a, ll b) {\n    static_assert(MINIMIZE);\n    chmin_line_rec(1,\
+    \ F(a, b), 0, n);\n  }\n\n  // O(logN). f(x) := max(f(x), ax+b).\n  void chmax_line(ll\
+    \ a, ll b) {\n    static_assert(!MINIMIZE);\n    chmin_line_rec(1, F(-a, -b),\
+    \ 0, n);\n  }\n\n  // O(log^2N). f(x) := min(f(x), ax+b) for L<=x<R.\n  // index\
+    \ \u3067\u306F\u306A\u304F\u3066 X[] \u306E\u7BC4\u56F2.\n  void chmin_segment(ll\
+    \ L, ll R, ll a, ll b) {\n    static_assert(MINIMIZE);\n    chmin_segment_rec(1,\
+    \ LB(X, L), LB(X, R), F(a, b), 0, n);\n  }\n\n  // O(log^2N). f(x) := max(f(x),\
     \ ax+b) for L<=x<R.\n  // index \u3067\u306F\u306A\u304F\u3066 X[] \u306E\u7BC4\
-    \u56F2.\n  void chmin_segment(ll L, ll R, ll a, ll b) {\n    static_assert(MINIMIZE);\n\
-    \    chmin_segment_rec(1, LB(X, L), LB(X, R), F(a, b), 0, n);\n  }\n\n  // O(log^2N).\
-    \ f(x) := max(f(x), ax+b) for L<=x<R.\n  // index \u3067\u306F\u306A\u304F\u3066\
-    \ X[] \u306E\u7BC4\u56F2.\n  void chmax_segment(ll L, ll R, ll a, ll b) {\n  \
-    \  static_assert(!MINIMIZE);\n    chmin_segment_rec(1, LB(X, L), LB(X, R), F(-a,\
-    \ -b), 0, n);\n  }\n\n  // O(1). f(x) := f(x)+b.\n  void add_line(ll b) {\n  \
-    \  if (!MINIMIZE) b = -b;\n    add_segment_rec(1, 0, n, b, 0, n);\n  }\n\n  //\
-    \ O(log^2N). f(x) := f(x)+b for L<=x<R.\n  // index \u3067\u306F\u306A\u304F\u3066\
-    \ X[] \u306E\u7BC4\u56F2.\n  void add_segment(ll L, ll R, ll b) {\n    if (!MINIMIZE)\
-    \ b = -b;\n    add_segment_rec(1, LB(X, L), LB(X, R), b, 0, n);\n  }\n\n  ll query(ll\
-    \ L, ll R) {\n    ll ans = query_rec(1, LB(X, L), LB(X, R), 0, n, 0);\n    return\
-    \ (MINIMIZE ? ans : -ans);\n  }\n\nprivate:\n  void push(int i) {\n    dat[2 *\
-    \ i + 0].add(lazy[i]), lazy[2 * i + 0] += lazy[i];\n    dat[2 * i + 1].add(lazy[i]),\
-    \ lazy[2 * i + 1] += lazy[i];\n    if (val[2 * i + 0] < infty<ll>) val[2 * i +\
-    \ 0] += lazy[i];\n    if (val[2 * i + 1] < infty<ll>) val[2 * i + 1] += lazy[i];\n\
-    \    lazy[i] = 0;\n  }\n\n  void chmin_segment_rec(int i, ll xl, ll xr, F f, ll\
-    \ node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr, node_r);\n    if (xl\
-    \ >= xr) return;\n    if (node_l < xl || xr < node_r) {\n      ll node_m = (node_l\
-    \ + node_r) / 2;\n      push(i);\n      chmin_segment_rec(2 * i + 0, xl, xr, f,\
-    \ node_l, node_m);\n      chmin_segment_rec(2 * i + 1, xl, xr, f, node_m, node_r);\n\
-    \      chmin(val[i], min(val[2 * i + 0], val[2 * i + 1]));\n      return;\n  \
-    \  }\n    chmin_line_rec(i, f, node_l, node_r);\n  }\n\n  void chmin_line_rec(int\
-    \ i, F f, ll node_l, ll node_r) {\n    F g = dat[i];\n    ll fl = f(X[node_l]),\
-    \ fr = f(X[node_r - 1]);\n    ll gl = g(X[node_l]), gr = g(X[node_r - 1]);\n \
-    \   chmin(val[i], min(fl, fr));\n    if (fl <= gl && fr <= gr) {\n      dat[i]\
-    \ = f;\n      return;\n    }\n    if (fl >= gl && fr >= gr) { return; }\n    ll\
-    \ node_m = (node_l + node_r) / 2;\n    ll fm = f(X[node_m]), gm = g(X[node_m]);\n\
-    \    push(i);\n    if (fm < gm && fl < gl) dat[i] = f, chmin_line_rec(2 * i +\
-    \ 1, g, node_m, node_r);\n    elif (fm < gm && fl >= gl) dat[i] = f, chmin_line_rec(2\
-    \ * i + 0, g, node_l, node_m);\n    elif (fm >= gm && gl < fl) chmin_line_rec(2\
-    \ * i + 1, f, node_m, node_r);\n    elif (fm >= gm && gl >= fl) chmin_line_rec(2\
-    \ * i + 0, f, node_l, node_m);\n  }\n\n  void add_segment_rec(int i, ll xl, ll\
-    \ xr, ll b, ll node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr, node_r);\n\
-    \    if (xl >= xr) return;\n    if (node_l < xl || xr < node_r) {\n      ll node_m\
-    \ = (node_l + node_r) / 2;\n      push(i);\n      chmin_line_rec(2 * i + 0, dat[i],\
-    \ node_l, node_m);\n      chmin_line_rec(2 * i + 1, dat[i], node_m, node_r);\n\
-    \      dat[i] = F(0, infty<ll>);\n      add_segment_rec(2 * i + 0, xl, xr, b,\
-    \ node_l, node_m);\n      add_segment_rec(2 * i + 1, xl, xr, b, node_m, node_r);\n\
-    \      val[i] = min(val[2 * i + 0], val[2 * i + 1]);\n      chmin(val[i], dat[i](X[node_l]));\n\
+    \u56F2.\n  void chmax_segment(ll L, ll R, ll a, ll b) {\n    static_assert(!MINIMIZE);\n\
+    \    chmin_segment_rec(1, LB(X, L), LB(X, R), F(-a, -b), 0, n);\n  }\n\n  // O(1).\
+    \ f(x) := f(x)+b.\n  void add_line(ll b) {\n    if (!MINIMIZE) b = -b;\n    add_segment_rec(1,\
+    \ 0, n, b, 0, n);\n  }\n\n  // O(log^2N). f(x) := f(x)+b for L<=x<R.\n  // index\
+    \ \u3067\u306F\u306A\u304F\u3066 X[] \u306E\u7BC4\u56F2.\n  void add_segment(ll\
+    \ L, ll R, ll b) {\n    if (!MINIMIZE) b = -b;\n    add_segment_rec(1, LB(X, L),\
+    \ LB(X, R), b, 0, n);\n  }\n\n  ll query(ll L, ll R) {\n    ll ans = query_rec(1,\
+    \ LB(X, L), LB(X, R), 0, n, 0);\n    return (MINIMIZE ? ans : -ans);\n  }\n\n\
+    private:\n  void push(int i) {\n    dat[2 * i + 0].add(lazy[i]), lazy[2 * i +\
+    \ 0] += lazy[i];\n    dat[2 * i + 1].add(lazy[i]), lazy[2 * i + 1] += lazy[i];\n\
+    \    if (val[2 * i + 0] < infty<ll>) val[2 * i + 0] += lazy[i];\n    if (val[2\
+    \ * i + 1] < infty<ll>) val[2 * i + 1] += lazy[i];\n    lazy[i] = 0;\n  }\n\n\
+    \  void chmin_segment_rec(int i, ll xl, ll xr, F f, ll node_l, ll node_r) {\n\
+    \    chmax(xl, node_l), chmin(xr, node_r);\n    if (xl >= xr) return;\n    if\
+    \ (node_l < xl || xr < node_r) {\n      ll node_m = (node_l + node_r) / 2;\n \
+    \     push(i);\n      chmin_segment_rec(2 * i + 0, xl, xr, f, node_l, node_m);\n\
+    \      chmin_segment_rec(2 * i + 1, xl, xr, f, node_m, node_r);\n      chmin(val[i],\
+    \ min(val[2 * i + 0], val[2 * i + 1]));\n      return;\n    }\n    chmin_line_rec(i,\
+    \ f, node_l, node_r);\n  }\n\n  void chmin_line_rec(int i, F f, ll node_l, ll\
+    \ node_r) {\n    F g = dat[i];\n    ll fl = f(X[node_l]), fr = f(X[node_r - 1]);\n\
+    \    ll gl = g(X[node_l]), gr = g(X[node_r - 1]);\n    chmin(val[i], min(fl, fr));\n\
+    \    if (fl <= gl && fr <= gr) {\n      dat[i] = f;\n      return;\n    }\n  \
+    \  if (fl >= gl && fr >= gr) { return; }\n    ll node_m = (node_l + node_r) /\
+    \ 2;\n    ll fm = f(X[node_m]), gm = g(X[node_m]);\n    push(i);\n    if (fm <\
+    \ gm && fl < gl) dat[i] = f, chmin_line_rec(2 * i + 1, g, node_m, node_r);\n \
+    \   elif (fm < gm && fl >= gl) dat[i] = f, chmin_line_rec(2 * i + 0, g, node_l,\
+    \ node_m);\n    elif (fm >= gm && gl < fl) chmin_line_rec(2 * i + 1, f, node_m,\
+    \ node_r);\n    elif (fm >= gm && gl >= fl) chmin_line_rec(2 * i + 0, f, node_l,\
+    \ node_m);\n  }\n\n  void add_segment_rec(int i, ll xl, ll xr, ll b, ll node_l,\
+    \ ll node_r) {\n    chmax(xl, node_l), chmin(xr, node_r);\n    if (xl >= xr) return;\n\
+    \    if (node_l < xl || xr < node_r) {\n      ll node_m = (node_l + node_r) /\
+    \ 2;\n      push(i);\n      chmin_line_rec(2 * i + 0, dat[i], node_l, node_m);\n\
+    \      chmin_line_rec(2 * i + 1, dat[i], node_m, node_r);\n      dat[i] = F(0,\
+    \ infty<ll>);\n      add_segment_rec(2 * i + 0, xl, xr, b, node_l, node_m);\n\
+    \      add_segment_rec(2 * i + 1, xl, xr, b, node_m, node_r);\n      val[i] =\
+    \ min(val[2 * i + 0], val[2 * i + 1]);\n      chmin(val[i], dat[i](X[node_l]));\n\
     \      chmin(val[i], dat[i](X[node_r - 1]));\n      return;\n    }\n    dat[i].add(b),\
     \ lazy[i] += b;\n    if (val[i] < infty<ll>) val[i] += b;\n  }\n\n  ll query_rec(int\
     \ i, ll L, ll R, ll node_l, ll node_r, ll laz) {\n    chmax(L, node_l), chmin(R,\
@@ -266,7 +266,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/extended_lichao_2.test.cpp
   requiredBy: []
-  timestamp: '2025-09-01 21:30:48+09:00'
+  timestamp: '2025-09-03 04:40:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/extended_lichao_2.test.cpp

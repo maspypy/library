@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   _extendedRequiredBy:
@@ -15,7 +15,7 @@ data:
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2602.test.cpp
     title: test/3_yukicoder/2602.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/4_aoj/CGL_7_C.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -128,7 +128,7 @@ data:
   - geo/minimum_enclosing_circle.hpp
   - geo/delaunay_triangulation_of_convex_polygon.hpp
   timestamp: '2025-05-18 17:51:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2602.test.cpp
   - test/3_yukicoder/3005.test.cpp

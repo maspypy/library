@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   _extendedRequiredBy: []
