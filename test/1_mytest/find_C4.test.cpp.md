@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_C3_C4.hpp
     title: graph/count/count_C3_C4.hpp
   - icon: ':x:'

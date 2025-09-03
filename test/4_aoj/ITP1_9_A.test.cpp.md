@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: other/io2.hpp
     title: other/io2.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []
