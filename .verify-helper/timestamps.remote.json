@@ -53,6 +53,7 @@
 "test/1_mytest/digit_sum.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/1_mytest/dynamic_lazy_segtree.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/1_mytest/enumerate_labeled_tree.test.cpp": "2025-09-03 07:11:11 +0900",
+"test/1_mytest/enumerate_multisets.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/1_mytest/eulerian_number.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/1_mytest/factorial_digit.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/1_mytest/fibonacci_search.test.cpp": "2025-09-03 07:11:11 +0900",
