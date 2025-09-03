@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/add_chmin_chmax_with_cost.hpp
     title: alg/monoid/add_chmin_chmax_with_cost.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
