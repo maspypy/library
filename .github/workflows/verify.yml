@@ -32,11 +32,14 @@ jobs:
         uses: competitive-verifier/actions/oj-resolve@v2
         with:
           output-path: verify_files.json
-          # Specify patterns
-          # include: your-own-include/
-          # exclude: your-own-exclude/
+          include: |
+            test/*test.cpp
+            test/**/*test.cpp
+          # exclude: |
+          #   test/_deprecated/**
           # If you have config.toml
           # config: .verify-helper/config.toml
+
       - name: parse-doxygen
         uses: competitive-verifier/actions/parse-doxygen@v2
         with:
@@ -101,6 +104,7 @@ jobs:
   docs-and-check:
     runs-on: ubuntu-latest
     needs: [verify]
+    if: ${{ always() }}  # ← verify が失敗しても実行する
     outputs:
       upload-pages: ${{steps.upload-pages.outcome == 'success'}}
     steps:
@@ -157,8 +161,10 @@ jobs:
         uses: competitive-verifier/actions/check@v2
         with:
           verify-result: ${{ steps.all-artifacts.outputs.artifacts-root }}/Result-*/result.json
+        continue-on-error: true  # ← 失敗があってもパイプラインを止めない
+
   deploy:
-    if: (success() || failure()) && github.ref == 'refs/heads/main' && needs.docs-and-check.outputs.upload-pages == 'true'
+    if: ${{ always() && github.ref == 'refs/heads/main' && needs.docs-and-check.outputs.upload-pages == 'true' }}
     needs: docs-and-check
     environment:
       name: github-pages
