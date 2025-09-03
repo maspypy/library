@@ -20,7 +20,8 @@ def main():
         print("No tests for this partition.")
         return 0
 
-    cmd = ["oj-verify", "run", "-j", str(args.jobs)] + selected
+    cmd = ["oj-verify", "run", "--no-git-push",
+           "-j", str(args.jobs)] + selected
     print("Running:", " ".join(cmd))
     return subprocess.call(cmd)
 
