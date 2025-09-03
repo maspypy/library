@@ -121,19 +121,26 @@ jobs:
           ls -la .verify-helper
           head -c 2000 .verify-helper/timestamps.json || true
 
-      # ❺ 合流結果で docs 生成（内部 push が失敗しても続行）
+      # ❺ マージ結果の件数確認
+      - name: Sanity check merged timestamps
+        run: echo "entries=$(jq 'keys|length' .verify-helper/timestamps.json)"
+
+      # ❻ 古い docs を消してから生成
+      - name: Clean old docs
+        run: rm -rf .verify-helper/docs/*
+
       - name: Generate docs (oj-verify docs)
         continue-on-error: true
         run: oj-verify docs
 
-      # ❻ 生成物を退避（.git を除外）
+      # ❼ 生成物を退避（.git を除外）
       - name: Stash generated site
         run: |
           mkdir -p /tmp/ojv-site
           rsync -a --delete --exclude ".git" .verify-helper/markdown/ /tmp/ojv-site/
           rm -rf /tmp/ojv-site/.git || true
 
-      # ❼ gh-pages に上書きデプロイ
+      # ❽ gh-pages に上書きデプロイ
       - name: Switch to gh-pages
         run: |
           git fetch origin gh-pages || true
