@@ -32,14 +32,20 @@ jobs:
             --index ${{ matrix.part }} \
             -j $(nproc)
 
-      # ← 各パーティションの .verify-helper を保存（後で集約）
+      # 空でもアーティファクトを残すようにする
+      - name: Ensure .verify-helper exists
+        if: always()
+        run: |
+          mkdir -p .verify-helper
+          test -f .verify-helper/timestamps.json || echo '{}' > .verify-helper/timestamps.json
+
       - name: Upload verify artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: verify-helper-${{ matrix.part }}
           path: .verify-helper
-          if-no-files-found: ignore
+          if-no-files-found: error
 
   docs:
     needs: verify
@@ -69,18 +75,24 @@ jobs:
           path: /tmp/verify-artifacts
           merge-multiple: false
 
+      - name: Show downloaded artifacts
+        run: |
+          echo "::group::/tmp/verify-artifacts tree"
+          ls -R /tmp/verify-artifacts || true
+          echo "::endgroup::"
+
       # 各パーティションの結果をマージして .verify-helper/ に集約
       - name: Merge verify-helper results
         run: |
           mkdir -p .verify-helper
           python3 scripts/merge_verify_results.py
 
-      # 合流済みの結果で docs を生成（内部 push は失敗しても続行）
+      # 合流済みの結果で docs を生成（内部 push が失敗しても続行）
       - name: Generate docs (oj-verify docs)
         continue-on-error: true
         run: oj-verify docs
 
-      # 生成物を退避（.git は除外）
+      # 生成物を退避（.git を除外）
       - name: Stash generated site
         run: |
           mkdir -p /tmp/ojv-site
