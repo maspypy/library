@@ -44,6 +44,8 @@ jobs:
         uses: competitive-verifier/actions/parse-doxygen@v2
         with:
           verify-files: verify_files.json
+          include: |
+            library/**/*.hpp
 
       - name: Upload verify_files.json
         uses: competitive-verifier/actions/upload-verify-artifact@v2
