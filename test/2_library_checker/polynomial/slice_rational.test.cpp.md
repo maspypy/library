@@ -46,7 +46,7 @@ data:
   - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':question:'
@@ -730,7 +730,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/slice_rational.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 07:11:11+09:00'
+  timestamp: '2025-09-04 02:56:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/slice_rational.test.cpp

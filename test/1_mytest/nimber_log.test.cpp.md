@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/nimber/base.hpp
     title: nt/nimber/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
   - icon: ':x:'
@@ -332,7 +332,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nimber_log.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 07:11:11+09:00'
+  timestamp: '2025-09-04 02:56:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/nimber_log.test.cpp

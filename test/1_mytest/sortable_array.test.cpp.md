@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':x:'
@@ -269,7 +269,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sortable_array.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 07:11:11+09:00'
+  timestamp: '2025-09-04 02:56:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/sortable_array.test.cpp

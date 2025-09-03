@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -58,7 +58,7 @@ data:
   - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':question:'
@@ -791,7 +791,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 07:11:11+09:00'
+  timestamp: '2025-09-04 02:56:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp

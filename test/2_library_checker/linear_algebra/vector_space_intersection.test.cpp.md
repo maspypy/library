@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   - icon: ':question:'
@@ -296,7 +296,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 07:11:11+09:00'
+  timestamp: '2025-09-04 02:56:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp

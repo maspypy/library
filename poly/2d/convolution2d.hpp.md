@@ -30,12 +30,12 @@ data:
     path: poly/2d/fps_log_2d.hpp
     title: poly/2d/fps_log_2d.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/conv2d.test.cpp
     title: test/1_mytest/conv2d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/2d/convolution2d.hpp\"\n\r\n#line 2 \"poly/convolution.hpp\"\
@@ -322,7 +322,7 @@ data:
   requiredBy:
   - poly/2d/fps_log_2d.hpp
   timestamp: '2025-09-02 05:19:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/conv2d.test.cpp
 documentation_of: poly/2d/convolution2d.hpp

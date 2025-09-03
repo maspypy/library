@@ -331,7 +331,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 07:11:11+09:00'
+  timestamp: '2025-09-04 02:56:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_6_A.test.cpp

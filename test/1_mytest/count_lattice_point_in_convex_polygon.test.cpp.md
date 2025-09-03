@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: convex/lattice_point_count.hpp
     title: convex/lattice_point_count.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':question:'
@@ -369,7 +369,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   requiredBy: []
-  timestamp: '2025-09-03 07:11:11+09:00'
+  timestamp: '2025-09-04 02:56:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
