@@ -35,7 +35,7 @@ data:
   - icon: ':question:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':x:'
@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/slice_rational_fps.test.cpp
     title: test/1_mytest/slice_rational_fps.test.cpp
   - icon: ':x:'

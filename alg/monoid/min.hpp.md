@@ -102,7 +102,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_test.test.cpp
     title: test/1_mytest/rbst_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/seg2d.test.cpp
     title: test/1_mytest/seg2d.test.cpp
   - icon: ':x:'
