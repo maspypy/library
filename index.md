@@ -2075,6 +2075,9 @@ data:
   - name: scripts
     pages:
     - icon: ':warning:'
+      path: scripts/merge_verify_results.py
+      title: scripts/merge_verify_results.py
+    - icon: ':warning:'
       path: scripts/run_split_verify.py
       title: scripts/run_split_verify.py
   - name: seq
