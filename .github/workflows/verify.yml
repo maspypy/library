@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part: [0, 1, 2, 3]   # 並列数は適宜調整
+        part: [0, 1, 2, 3]
     steps:
       - uses: actions/checkout@v3
 
@@ -32,7 +32,7 @@ jobs:
             --index ${{ matrix.part }} \
             -j $(nproc)
 
-      # 空でもアーティファクトを残すようにする
+      # 空でも必ず何か置いて artifact を作る
       - name: Ensure .verify-helper exists
         if: always()
         run: |
@@ -53,6 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: read   # ← これが重要（artifact を読む権限）
 
     steps:
       - uses: actions/checkout@v3
@@ -65,15 +66,50 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip3 install -U online-judge-verify-helper
+        run: |
+          pip3 install -U online-judge-verify-helper
+          sudo apt-get update && sudo apt-get install -y jq
 
-      # すべての verify アーティファクトを取得
-      - name: Download verify artifacts
+      # まずは gh CLI で artifact 一覧を確認（見える化）
+      - name: List artifacts via gh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run artifacts --limit 100 || true
+
+      # パターンで一括ダウンロード
+      - name: Download verify artifacts (pattern)
         uses: actions/download-artifact@v4
         with:
           pattern: verify-helper-*
           path: /tmp/verify-artifacts
           merge-multiple: false
+
+      # 念のため個別名でも試行（存在する分だけ取れる）
+      - name: Download verify artifacts (fallback by name)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: verify-helper-0
+          path: /tmp/verify-artifacts/verify-helper-0
+      - name: Download verify artifacts (fallback by name 1)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: verify-helper-1
+          path: /tmp/verify-artifacts/verify-helper-1
+      - name: Download verify artifacts (fallback by name 2)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: verify-helper-2
+          path: /tmp/verify-artifacts/verify-helper-2
+      - name: Download verify artifacts (fallback by name 3)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: verify-helper-3
+          path: /tmp/verify-artifacts/verify-helper-3
 
       - name: Show downloaded artifacts
         run: |
@@ -81,25 +117,21 @@ jobs:
           ls -R /tmp/verify-artifacts || true
           echo "::endgroup::"
 
-      # 各パーティションの結果をマージして .verify-helper/ に集約
       - name: Merge verify-helper results
         run: |
           mkdir -p .verify-helper
           python3 scripts/merge_verify_results.py
 
-      # 合流済みの結果で docs を生成（内部 push が失敗しても続行）
       - name: Generate docs (oj-verify docs)
         continue-on-error: true
         run: oj-verify docs
 
-      # 生成物を退避（.git を除外）
       - name: Stash generated site
         run: |
           mkdir -p /tmp/ojv-site
           rsync -a --delete --exclude ".git" .verify-helper/markdown/ /tmp/ojv-site/
           rm -rf /tmp/ojv-site/.git || true
 
-      # gh-pages に上書きデプロイ
       - name: Switch to gh-pages
         run: |
           git fetch origin gh-pages || true
