@@ -32,7 +32,12 @@ jobs:
             --index ${{ matrix.part }} \
             -j $(nproc)
 
-      # 空でも必ず何か置いて artifact を作る
+      # upload 前に中身を確認
+      - name: Debug .verify-helper contents
+        if: always()
+        run: ls -R .verify-helper || true
+
+      # 空でも必ずファイルを置く
       - name: Ensure .verify-helper exists
         if: always()
         run: |
@@ -53,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      actions: read   # ← これが重要（artifact を読む権限）
+      actions: read
 
     steps:
       - uses: actions/checkout@v3
@@ -66,50 +71,22 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: |
-          pip3 install -U online-judge-verify-helper
-          sudo apt-get update && sudo apt-get install -y jq
+        run: pip3 install -U online-judge-verify-helper
 
-      # まずは gh CLI で artifact 一覧を確認（見える化）
+      # この run に登録された artifact 一覧を表示
       - name: List artifacts via gh
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh run artifacts --limit 100 || true
+          gh run view ${{ github.run_id }} --json artifacts --jq '.artifacts'
 
-      # パターンで一括ダウンロード
-      - name: Download verify artifacts (pattern)
+      # まとめてダウンロード
+      - name: Download verify artifacts
         uses: actions/download-artifact@v4
         with:
           pattern: verify-helper-*
           path: /tmp/verify-artifacts
           merge-multiple: false
-
-      # 念のため個別名でも試行（存在する分だけ取れる）
-      - name: Download verify artifacts (fallback by name)
-        continue-on-error: true
-        uses: actions/download-artifact@v4
-        with:
-          name: verify-helper-0
-          path: /tmp/verify-artifacts/verify-helper-0
-      - name: Download verify artifacts (fallback by name 1)
-        continue-on-error: true
-        uses: actions/download-artifact@v4
-        with:
-          name: verify-helper-1
-          path: /tmp/verify-artifacts/verify-helper-1
-      - name: Download verify artifacts (fallback by name 2)
-        continue-on-error: true
-        uses: actions/download-artifact@v4
-        with:
-          name: verify-helper-2
-          path: /tmp/verify-artifacts/verify-helper-2
-      - name: Download verify artifacts (fallback by name 3)
-        continue-on-error: true
-        uses: actions/download-artifact@v4
-        with:
-          name: verify-helper-3
-          path: /tmp/verify-artifacts/verify-helper-3
 
       - name: Show downloaded artifacts
         run: |
