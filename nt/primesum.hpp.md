@@ -8,23 +8,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/count_by_factor_type.hpp
     title: nt/count_by_factor_type.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum_mod4.hpp
     title: nt/primesum_mod4.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum_mod6.hpp
     title: nt/primesum_mod6.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_by_factor_type.test.cpp
     title: test/1_mytest/count_by_factor_type.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prime_sum.test.cpp
     title: test/1_mytest/prime_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod4.test.cpp
     title: test/1_mytest/primesum_mod4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod6.test.cpp
     title: test/1_mytest/primesum_mod6.test.cpp
   - icon: ':x:'

@@ -14,11 +14,11 @@ data:
   - icon: ':warning:'
     path: geo/polygon.hpp
     title: geo/polygon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
     title: test/4_aoj/CGL_7_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/2/problem/C
@@ -189,7 +189,7 @@ data:
   - geo/minimum_three_distance_sum.hpp
   - geo/polygon.hpp
   timestamp: '2025-05-18 17:51:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/4_aoj/CGL_7_B.test.cpp

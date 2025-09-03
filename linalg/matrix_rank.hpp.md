@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching_line_graph.test.cpp
     title: test/1_mytest/matching_line_graph.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
   - icon: ':x:'

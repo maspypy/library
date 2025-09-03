@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':question:'
