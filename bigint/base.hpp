@@ -5,7 +5,7 @@
 // https://judge.yosupo.jp/submission/311757
 struct BigInteger {
   static constexpr int LOG = 9;
-  static constexpr int MOD = TEN_v<LOG>;
+  static constexpr int MOD = TEN[LOG];
   using bint = BigInteger;
   int sgn;
   vc<int> dat;
