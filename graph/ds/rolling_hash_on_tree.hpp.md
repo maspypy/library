@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'

@@ -30,10 +30,10 @@ data:
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/31bit_modint.test.cpp
     title: test/1_mytest/31bit_modint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
   - icon: ':x:'

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'

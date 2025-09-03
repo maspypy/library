@@ -5,7 +5,7 @@ data:
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
   - icon: ':x:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
   - icon: ':x:'
@@ -54,10 +54,10 @@ data:
   - icon: ':x:'
     path: test/1_mytest/count_points_in_triangles.test.cpp
     title: test/1_mytest/count_points_in_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/factorial_digit.test.cpp
     title: test/1_mytest/factorial_digit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/fenwick01.test.cpp
     title: test/1_mytest/fenwick01.test.cpp
   - icon: ':x:'

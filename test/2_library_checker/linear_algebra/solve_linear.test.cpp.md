@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':x:'

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/max_max.hpp
     title: alg/acted_monoid/max_max.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
   - icon: ':x:'
@@ -27,13 +27,13 @@ data:
   - icon: ':x:'
     path: test/1_mytest/max_max.test.cpp
     title: test/1_mytest/max_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/max_min.test.cpp
     title: test/1_mytest/max_min.test.cpp
   - icon: ':x:'
     path: test/1_mytest/min_max.test.cpp
     title: test/1_mytest/min_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
   - icon: ':x:'

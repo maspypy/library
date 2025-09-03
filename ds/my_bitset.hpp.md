@@ -39,7 +39,7 @@ data:
     path: nt/find_coprime_pair.hpp
     title: nt/find_coprime_pair.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
   - icon: ':x:'
@@ -86,7 +86,7 @@ data:
     title: test/3_yukicoder/4_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -373,7 +373,7 @@ data:
   - linalg/bitset/solve_linear.hpp
   - linalg/bitset/matrix_mul_mod_2.hpp
   timestamp: '2025-05-05 02:10:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1421.test.cpp
   - test/3_yukicoder/4_2.test.cpp

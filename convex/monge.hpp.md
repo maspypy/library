@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: convex/larsch.hpp
     title: convex/larsch.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/fibonacci_search.hpp
     title: other/fibonacci_search.hpp
   _extendedRequiredBy: []

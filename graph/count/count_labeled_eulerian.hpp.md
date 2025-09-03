@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/count/count_labeled_undirected.hpp
     title: graph/count/count_labeled_undirected.hpp
   - icon: ':question:'

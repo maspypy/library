@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: alg/monoid/monoid_for_floor_sum_pq.hpp
     title: alg/monoid/monoid_for_floor_sum_pq.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
   _extendedRequiredBy:

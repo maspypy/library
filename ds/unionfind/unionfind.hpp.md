@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: ds/unionfind/parallel_unionfind.hpp
     title: ds/unionfind/parallel_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
   - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':x:'
@@ -90,16 +90,16 @@ data:
   - icon: ':x:'
     path: test/1_mytest/count_K4.test.cpp
     title: test/1_mytest/count_K4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
   - icon: ':x:'
     path: test/1_mytest/count_clique.test.cpp
     title: test/1_mytest/count_clique.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_labeled_tree.test.cpp
     title: test/1_mytest/enumerate_labeled_tree.test.cpp
   - icon: ':x:'
@@ -108,25 +108,25 @@ data:
   - icon: ':x:'
     path: test/1_mytest/find_C4.test.cpp
     title: test/1_mytest/find_C4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/find_cycle_minimum.test.cpp
     title: test/1_mytest/find_cycle_minimum.test.cpp
   - icon: ':x:'
     path: test/1_mytest/find_even_cycle.test.cpp
     title: test/1_mytest/find_even_cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_odd_cycle.test.cpp
     title: test/1_mytest/find_odd_cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_scc.test.cpp
     title: test/1_mytest/incremental_scc.test.cpp
   - icon: ':x:'
     path: test/1_mytest/matching_line_graph.test.cpp
     title: test/1_mytest/matching_line_graph.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching_ve.test.cpp
     title: test/1_mytest/matching_ve.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/prufer.test.cpp
     title: test/1_mytest/prufer.test.cpp
   - icon: ':x:'

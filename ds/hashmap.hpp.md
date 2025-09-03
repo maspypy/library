@@ -8,13 +8,13 @@ data:
   - icon: ':x:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
   - icon: ':x:'
     path: enumerate/triangle.hpp
     title: enumerate/triangle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':warning:'
@@ -50,7 +50,7 @@ data:
   - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':warning:'
@@ -86,10 +86,10 @@ data:
   - icon: ':x:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_C3_C4.hpp
     title: graph/count/count_C3_C4.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_P3_P4_P5.hpp
     title: graph/count/count_P3_P4_P5.hpp
   - icon: ':warning:'
@@ -110,7 +110,7 @@ data:
   - icon: ':x:'
     path: graph/count/count_cycle.hpp
     title: graph/count/count_cycle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
   - icon: ':x:'
@@ -200,7 +200,7 @@ data:
   - icon: ':x:'
     path: graph/find_centroid.hpp
     title: graph/find_centroid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
   - icon: ':x:'
@@ -209,7 +209,7 @@ data:
   - icon: ':warning:'
     path: graph/find_nontransitive_triple.hpp
     title: graph/find_nontransitive_triple.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
   - icon: ':x:'
@@ -218,7 +218,7 @@ data:
   - icon: ':x:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
   - icon: ':x:'
@@ -230,7 +230,7 @@ data:
   - icon: ':x:'
     path: graph/maximum_independent_set_weighted.hpp
     title: graph/maximum_independent_set_weighted.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/maximum_matching.hpp
     title: graph/maximum_matching.hpp
   - icon: ':x:'
@@ -251,7 +251,7 @@ data:
   - icon: ':x:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
   - icon: ':x:'
@@ -302,7 +302,7 @@ data:
   - icon: ':x:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':warning:'
@@ -405,16 +405,16 @@ data:
   - icon: ':x:'
     path: test/1_mytest/count_K4.test.cpp
     title: test/1_mytest/count_K4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
   - icon: ':x:'
     path: test/1_mytest/count_clique.test.cpp
     title: test/1_mytest/count_clique.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_labeled_tree.test.cpp
     title: test/1_mytest/enumerate_labeled_tree.test.cpp
   - icon: ':x:'
@@ -423,25 +423,25 @@ data:
   - icon: ':x:'
     path: test/1_mytest/find_C4.test.cpp
     title: test/1_mytest/find_C4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/find_cycle_minimum.test.cpp
     title: test/1_mytest/find_cycle_minimum.test.cpp
   - icon: ':x:'
     path: test/1_mytest/find_even_cycle.test.cpp
     title: test/1_mytest/find_even_cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_odd_cycle.test.cpp
     title: test/1_mytest/find_odd_cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_scc.test.cpp
     title: test/1_mytest/incremental_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/matching.test.cpp
     title: test/1_mytest/matching.test.cpp
   - icon: ':x:'
     path: test/1_mytest/matching_line_graph.test.cpp
     title: test/1_mytest/matching_line_graph.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching_ve.test.cpp
     title: test/1_mytest/matching_ve.test.cpp
   - icon: ':x:'
@@ -456,7 +456,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/prufer.test.cpp
     title: test/1_mytest/prufer.test.cpp
   - icon: ':x:'

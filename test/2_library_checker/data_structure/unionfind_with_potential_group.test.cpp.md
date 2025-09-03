@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: ds/unionfind/potentialized_unionfind.hpp
     title: ds/unionfind/potentialized_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
