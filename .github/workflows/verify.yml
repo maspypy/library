@@ -93,7 +93,7 @@ jobs:
           N_SHARDS=${{ strategy.job-total }}
           awk -v n="$N_SHARDS" -v s="$SHARD" 'NR % n == s' .verify-helper/targets.txt > shard.txt
           if [ -s shard.txt ]; then
-            xargs -r -a shard.txt -n1 -P "$(nproc)" -I{} bash -ce 'oj-verify run "{}"'
+            xargs -r -a shard.txt -n1 -P "$(nproc)" -I{} bash -ce 'oj-verify check "{}"'            
           else
             echo "No tests in this shard."
           fi
