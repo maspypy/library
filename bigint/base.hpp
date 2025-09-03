@@ -40,7 +40,7 @@ struct BigInteger {
     int n = len(s);
     int m = ceil(n, LOG);
     dat.assign(m, 0);
-    FOR(i, n) { dat[i / LOG] += TEN(i % LOG) * (s[i] - '0'); }
+    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }
   }
   bint &operator=(const bint &p) {
     sgn = p.sgn, dat = p.dat;
