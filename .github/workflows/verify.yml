@@ -96,7 +96,7 @@ jobs:
           gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts \
             --paginate | jq -r '.artifacts[] | [.id, .name, .size_in_bytes] | @tsv' || true
 
-      # ❷ この run の全アーティファクトを一括ダウンロード（name/pattern 指定なし）
+      # ❷ この run の全アーティファクトを一括ダウンロード
       - name: Download ALL artifacts (no pattern)
         uses: actions/download-artifact@v4
         with:
@@ -115,19 +115,25 @@ jobs:
           mkdir -p .verify-helper
           python3 scripts/merge_verify_results.py
 
-      # ❹ 合流結果で docs 生成（内部 push が失敗しても続行）
+      # ❹ マージ後のスナップショット（確認用）
+      - name: Show merged .verify-helper snapshot
+        run: |
+          ls -la .verify-helper
+          head -c 2000 .verify-helper/timestamps.json || true
+
+      # ❺ 合流結果で docs 生成（内部 push が失敗しても続行）
       - name: Generate docs (oj-verify docs)
         continue-on-error: true
         run: oj-verify docs
 
-      # ❺ 生成物を退避（.git を除外）
+      # ❻ 生成物を退避（.git を除外）
       - name: Stash generated site
         run: |
           mkdir -p /tmp/ojv-site
           rsync -a --delete --exclude ".git" .verify-helper/markdown/ /tmp/ojv-site/
           rm -rf /tmp/ojv-site/.git || true
 
-      # ❻ gh-pages に上書きデプロイ
+      # ❼ gh-pages に上書きデプロイ
       - name: Switch to gh-pages
         run: |
           git fetch origin gh-pages || true

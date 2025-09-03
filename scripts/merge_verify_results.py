@@ -25,6 +25,8 @@ def load_json(p):
             return json.load(f)
     except FileNotFoundError:
         return None
+    except json.JSONDecodeError:
+        return None
 
 
 def dump_json(p, obj):
@@ -36,7 +38,9 @@ def dump_json(p, obj):
 merged = {}
 
 for d in parts:
-    jdir = os.path.join(d, ".verify-helper")
+    # ✅ アップロードしたのは .verify-helper の「中身」なので、jdir は d でOK
+    jdir = d
+
     for name in CANDIDATE_JSONS:
         src = os.path.join(jdir, name)
         data = load_json(src)
@@ -47,6 +51,7 @@ for d in parts:
             if k not in cur:
                 cur[k] = v
             else:
+                # できるだけ新しい記録を残す（なければ上書き）
                 def ts(x):
                     if isinstance(x, dict):
                         for key in ("time", "timestamp", "updated_at"):
@@ -57,15 +62,15 @@ for d in parts:
                     cur[k] = v
         merged[name] = cur
 
+# 集約 JSON を配置
 for name, obj in merged.items():
     dump_json(OUT / name, obj)
 
-# cache ディレクトリの中身もコピーしておく
+# cache もあれば寄せ集め（必須ではないが一応）
 for d in parts:
-    cdir = pathlib.Path(d) / ".verify-helper" / "cache"
+    cdir = pathlib.Path(d) / "cache"  # ✅ ここも直下
     if cdir.exists():
         dst = OUT / "cache"
-        dst.mkdir(parents=True, exist_ok=True)
         for p in cdir.rglob("*"):
             if p.is_file():
                 rel = p.relative_to(cdir)
