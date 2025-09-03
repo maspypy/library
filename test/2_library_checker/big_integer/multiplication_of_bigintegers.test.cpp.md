@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
   - icon: ':question:'
@@ -514,7 +514,7 @@ data:
     4\u7D20\u6570\u7573\u307F\u8FBC\u307F\u306B\u3057\u305F\u3051\u3069\u9AD8\u901F\
     \u306B\u306A\u3089\u306A\u304B\u3063\u305F.\n// https://judge.yosupo.jp/submission/311757\n\
     struct BigInteger {\n  static constexpr int LOG = 9;\n  static constexpr int MOD\
-    \ = TEN_v<LOG>;\n  using bint = BigInteger;\n  int sgn;\n  vc<int> dat;\n\n  BigInteger()\
+    \ = TEN[LOG];\n  using bint = BigInteger;\n  int sgn;\n  vc<int> dat;\n\n  BigInteger()\
     \ : sgn(0) {}\n  BigInteger(i128 val) {\n    if (val == 0) {\n      sgn = 0;\n\
     \      return;\n    }\n    sgn = 1;\n    if (val != 0) {\n      if (val < 0) sgn\
     \ = -1, val = -val;\n      while (val > 0) {\n        dat.eb(val % MOD), val /=\
@@ -634,7 +634,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 02:56:17+09:00'
+  timestamp: '2025-09-04 03:32:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp

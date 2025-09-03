@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   - icon: ':question:'

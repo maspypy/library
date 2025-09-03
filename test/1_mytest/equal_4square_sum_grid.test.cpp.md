@@ -1,26 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: other/equal_4square_sum_grid.hpp
     title: other/equal_4square_sum_grid.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/equal_4square_sum_grid.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
+  bundledCode: "#line 1 \"test/1_mytest/equal_4square_sum_grid.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
     #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
@@ -122,7 +124,7 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/equal_4square_sum_grid.cpp\"\
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/equal_4square_sum_grid.test.cpp\"\
     \n\n#line 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const\
     \ vc<VC>& A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A)\
     \ == 0 ? 0 : len(A[0])); }\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
@@ -155,7 +157,7 @@ data:
     \    if (i % 2 == 1) tmp.eb(H * W - 2 * i - 1);\n  }\n  FOR(i, 3 * n * W, 4 *\
     \ n * W) { tmp.eb(H * W - tmp[i - n * W]); }\n  int p = 0;\n  vv(int, A, H, W);\n\
     \  FOR(x, H) FOR(y, W) A[x][y] = tmp[p++];\n  if (n % 2 == 0) { FOR(x, 3 * n,\
-    \ 4 * n) reverse(all(A[x])); }\n  return A;\n}\n#line 6 \"test/1_mytest/equal_4square_sum_grid.cpp\"\
+    \ 4 * n) reverse(all(A[x])); }\n  return A;\n}\n#line 6 \"test/1_mytest/equal_4square_sum_grid.test.cpp\"\
     \n\nvoid test() {\n  FOR(H, 2, 20) {\n    FOR(W, 2, 20) {\n      if (H % 2 ==\
     \ 1 && W % 2 == 0) continue;\n      int S0 = 2 * (H * W - 1);\n      int L = S0,\
     \ R = S0;\n      if (H % 2 == 0 && W % 2 == 0) { L = S0, R = S0; }\n      if (H\
@@ -184,16 +186,16 @@ data:
   - my_template.hpp
   - linalg/transpose.hpp
   - other/equal_4square_sum_grid.hpp
-  isVerificationFile: false
-  path: test/1_mytest/equal_4square_sum_grid.cpp
+  isVerificationFile: true
+  path: test/1_mytest/equal_4square_sum_grid.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 02:56:17+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2025-09-04 03:32:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/1_mytest/equal_4square_sum_grid.cpp
+documentation_of: test/1_mytest/equal_4square_sum_grid.test.cpp
 layout: document
 redirect_from:
-- /library/test/1_mytest/equal_4square_sum_grid.cpp
-- /library/test/1_mytest/equal_4square_sum_grid.cpp.html
-title: test/1_mytest/equal_4square_sum_grid.cpp
+- /verify/test/1_mytest/equal_4square_sum_grid.test.cpp
+- /verify/test/1_mytest/equal_4square_sum_grid.test.cpp.html
+title: test/1_mytest/equal_4square_sum_grid.test.cpp
 ---

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/1_mytest/equal_4square_sum_grid.cpp
-    title: test/1_mytest/equal_4square_sum_grid.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/equal_4square_sum_grid.test.cpp
+    title: test/1_mytest/equal_4square_sum_grid.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/tupc2023/tasks/tupc2023_k
@@ -74,11 +74,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: other/equal_4square_sum_grid.hpp
-  requiredBy:
-  - test/1_mytest/equal_4square_sum_grid.cpp
+  requiredBy: []
   timestamp: '2024-10-22 00:27:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/equal_4square_sum_grid.test.cpp
 documentation_of: other/equal_4square_sum_grid.hpp
 layout: document
 redirect_from:
