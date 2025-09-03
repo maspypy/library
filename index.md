@@ -1817,7 +1817,7 @@ data:
     - icon: ':warning:'
       path: poly/2d/fps_log_2d.hpp
       title: poly/2d/fps_log_2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/2d/fps_pow_1_2d.hpp
       title: poly/2d/fps_pow_1_2d.hpp
     - icon: ':warning:'
@@ -2976,7 +2976,7 @@ data:
     - icon: ':x:'
       path: test/1_mytest/sortable_array.test.cpp
       title: test/1_mytest/sortable_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/sparse_pow_2d.test.cpp
       title: test/1_mytest/sparse_pow_2d.test.cpp
     - icon: ':x:'

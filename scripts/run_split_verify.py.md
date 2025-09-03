@@ -21,9 +21,10 @@ data:
     \    args = p.parse_args()\n\n    files = sorted(glob.glob(\"test/**/*.test.cpp\"\
     , recursive=True))\n\n    selected = [f for i, f in enumerate(files) if i % args.split\
     \ == args.index]\n\n    if not selected:\n        print(\"No tests for this partition.\"\
-    )\n        return 0\n\n    cmd = [\"oj-verify\", \"run\", \"-j\", str(args.jobs)]\
-    \ + selected\n    print(\"Running:\", \" \".join(cmd))\n    return subprocess.call(cmd)\n\
-    \n\nif __name__ == \"__main__\":\n    sys.exit(main())\n"
+    )\n        return 0\n\n    cmd = [\"oj-verify\", \"run\", \"--no-git-push\",\n\
+    \           \"-j\", str(args.jobs)] + selected\n    print(\"Running:\", \" \"\
+    .join(cmd))\n    return subprocess.call(cmd)\n\n\nif __name__ == \"__main__\"\
+    :\n    sys.exit(main())\n"
   dependsOn: []
   isVerificationFile: false
   path: scripts/run_split_verify.py
