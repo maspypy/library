@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part: [0, 1, 2, 3]   # 並列数は必要に応じて調整
+        part: [0, 1, 2, 3]   # 並列数は適宜調整
     steps:
       - uses: actions/checkout@v3
 
@@ -32,12 +32,22 @@ jobs:
             --index ${{ matrix.part }} \
             -j $(nproc)
 
+      # ← 各パーティションの .verify-helper を保存（後で集約）
+      - name: Upload verify artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-helper-${{ matrix.part }}
+          path: .verify-helper
+          if-no-files-found: ignore
+
   docs:
     needs: verify
     if: always()
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -51,16 +61,33 @@ jobs:
       - name: Install dependencies
         run: pip3 install -U online-judge-verify-helper
 
+      # すべての verify アーティファクトを取得
+      - name: Download verify artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: verify-helper-*
+          path: /tmp/verify-artifacts
+          merge-multiple: false
+
+      # 各パーティションの結果をマージして .verify-helper/ に集約
+      - name: Merge verify-helper results
+        run: |
+          mkdir -p .verify-helper
+          python3 scripts/merge_verify_results.py
+
+      # 合流済みの結果で docs を生成（内部 push は失敗しても続行）
       - name: Generate docs (oj-verify docs)
         continue-on-error: true
         run: oj-verify docs
 
+      # 生成物を退避（.git は除外）
       - name: Stash generated site
         run: |
           mkdir -p /tmp/ojv-site
           rsync -a --delete --exclude ".git" .verify-helper/markdown/ /tmp/ojv-site/
           rm -rf /tmp/ojv-site/.git || true
 
+      # gh-pages に上書きデプロイ
       - name: Switch to gh-pages
         run: |
           git fetch origin gh-pages || true
