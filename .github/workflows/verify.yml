@@ -1,24 +1,131 @@
 name: verify
 
-on: push
+on:
+  push
+  # pull_request:  # PRでも検証したい場合はコメント解除
+
+env:
+  YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+  DROPBOX_TOKEN:   ${{ secrets.DROPBOX_TOKEN }}
+  GH_PAT:          ${{ secrets.GH_PAT }}
+  GITHUB_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  verify:
+  prepare:
     runs-on: ubuntu-latest
-
+    outputs:
+      shards: ${{ steps.split.outputs.shards }}
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-    - name: Set up Python
-      uses: actions/setup-python@v1
+      - id: list
+        name: List C++ tests
+        shell: bash
+        run: |
+          set -eux
+          mkdir -p .verify-helper
+          mapfile -t FILES < <(git ls-files 'library/test/*test.cpp' || true)
+          printf '%s\n' "${FILES[@]}" > .verify-helper/targets.txt
+          echo "count=${#FILES[@]}" >> "$GITHUB_OUTPUT"
 
-    - name: Install dependencies
-      run: pip3 install -U online-judge-verify-helper
+      - id: split
+        name: Decide shards
+        shell: bash
+        run: |
+          COUNT="${{ steps.list.outputs.count || 0 }}"
+          MAX=8
+          if [ -z "$COUNT" ] || [ "$COUNT" -lt 1 ]; then COUNT=1; fi
+          SHARDS=$(( COUNT < MAX ? COUNT : MAX ))
+          printf '[' > shards.json
+          for i in $(seq 0 $((SHARDS-1))); do
+            printf '"%s"' "$i"
+            if [ "$i" -lt $((SHARDS-1)) ]; then printf ','; fi
+          done >> shards.json
+          printf ']\n' >> shards.json
+          echo "shards=$(cat shards.json)" >> "$GITHUB_OUTPUT"
 
-    - name: Run tests
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
-        GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all
+      - name: Upload target list
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-targets
+          path: .verify-helper/targets.txt
+
+  verify-shard:
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJson(needs.prepare.outputs.shards) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: verify-targets
+          path: .verify-helper
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install oj-verify
+        run: pip3 install -U online-judge-verify-helper
+
+      - name: Cache judge data & verify cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/online-judge-tools/library-checker-problems/
+            .verify-helper/cache/
+          key: verify-${{ hashFiles('.verify-helper/targets.txt') }}-${{ runner.os }}
+
+      - name: Run shard ${{ matrix.shard }}
+        shell: bash
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: |
+          set -eux
+          N_SHARDS=${{ strategy.job-total }}
+          awk -v n="$N_SHARDS" -v s="$SHARD" 'NR % n == s' .verify-helper/targets.txt > shard.txt
+          if [ -s shard.txt ]; then
+            xargs -r -a shard.txt -n1 -P "$(nproc)" -I{} bash -ce 'oj-verify run "{}"'
+          else
+            echo "No tests in this shard."
+          fi
+
+  publish:
+    needs: [prepare, verify-shard]
+    # default branch で push 時のみ最終整合 & docs 更新
+    if: ${{ github.event_name == 'push' && github.ref_name == github.event.repository.default_branch }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install oj-verify
+        run: pip3 install -U online-judge-verify-helper
+      - name: Cache judge data & verify cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/online-judge-tools/library-checker-problems/
+            .verify-helper/cache/
+          key: verify-${{ hashFiles('.verify-helper/targets.txt') }}-${{ runner.os }}
+      - name: Finalize & publish docs
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+          DROPBOX_TOKEN:   ${{ secrets.DROPBOX_TOKEN }}
+          GITHUB_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -eux
+          oj-verify all
+          oj-verify docs
