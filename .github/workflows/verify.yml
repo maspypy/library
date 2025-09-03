@@ -32,7 +32,7 @@ jobs:
             --index ${{ matrix.part }} \
             -j $(nproc)
 
-      # ❶ 中身を確認して必ず何か置く（空パーティション対策）
+      # 空分割対策＋中身ログ
       - name: Ensure .verify-helper exists
         if: always()
         run: |
@@ -40,10 +40,10 @@ jobs:
           test -f .verify-helper/timestamps.json || echo '{}' > .verify-helper/timestamps.json
           echo "::group::.verify-helper snapshot (before upload)"
           ls -la .verify-helper || true
-          find .verify-helper -maxdepth 2 -type f -print || true
+          find .verify-helper -maxdepth 2 -type f | sort | head -n 100 || true
           echo "::endgroup::"
 
-      # ❷ アップロード（隠しディレクトリを含める）
+      # 隠しファイルを含めてアップロード
       - name: Upload verify artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -54,7 +54,7 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
-      # ❸ アップロード直後に、この run の artifact 一覧を確認（デバッグ）
+      # 直後に一覧
       - name: List artifacts right after upload (REST)
         if: always()
         env:
@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      actions: read   # ← artifacts を読むのに必要
+      actions: read
 
     steps:
       - uses: actions/checkout@v3
@@ -87,7 +87,6 @@ jobs:
           pip3 install -U online-judge-verify-helper
           sudo apt-get update && sudo apt-get install -y jq gh
 
-      # ❶ この run の artifact 一覧を表示（デバッグ）
       - name: List artifacts via REST
         env:
           GH_TOKEN: ${{ github.token }}
@@ -96,7 +95,7 @@ jobs:
           gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts \
             --paginate | jq -r '.artifacts[] | [.id, .name, .size_in_bytes] | @tsv' || true
 
-      # ❷ この run の全アーティファクトを一括ダウンロード
+      # 全アーティファクト取得
       - name: Download ALL artifacts (no pattern)
         uses: actions/download-artifact@v4
         with:
@@ -109,38 +108,54 @@ jobs:
           ls -R /tmp/verify-artifacts || true
           echo "::endgroup::"
 
-      # ❸ パーティションの結果をマージして .verify-helper/ に集約
+      # マージ
       - name: Merge verify-helper results
         run: |
           mkdir -p .verify-helper
           python3 scripts/merge_verify_results.py
 
-      # ❹ マージ後のスナップショット（確認用）
+      # マージ結果の確認
       - name: Show merged .verify-helper snapshot
         run: |
           ls -la .verify-helper
+          echo "entries=$(jq 'keys|length' .verify-helper/timestamps.json)"
           head -c 2000 .verify-helper/timestamps.json || true
 
-      # ❺ マージ結果の件数確認
-      - name: Sanity check merged timestamps
-        run: echo "entries=$(jq 'keys|length' .verify-helper/timestamps.json)"
-
-      # ❻ 古い docs を消してから生成
+      # docs 再生成の前に旧生成物をクリアしてから
       - name: Clean old docs
         run: rm -rf .verify-helper/docs/*
 
+      # 生成
       - name: Generate docs (oj-verify docs)
-        continue-on-error: true
         run: oj-verify docs
 
-      # ❼ 生成物を退避（.git を除外）
+      # 生成物の中身チェック（ここで多いはず）
+      - name: Inspect built markdown
+        run: |
+          echo "built_count=$(find .verify-helper/markdown -type f | wc -l)"
+          find .verify-helper/markdown -maxdepth 2 -type f | sort | head -n 50
+
+      # 退避（末尾スラッシュで“中身”を確実にコピー）
       - name: Stash generated site
         run: |
           mkdir -p /tmp/ojv-site
           rsync -a --delete --exclude ".git" .verify-helper/markdown/ /tmp/ojv-site/
-          rm -rf /tmp/ojv-site/.git || true
 
-      # ❽ gh-pages に上書きデプロイ
+      # 退避先の中身確認
+      - name: Inspect /tmp/ojv-site
+        run: |
+          echo "site_count=$(find /tmp/ojv-site -type f | wc -l)"
+          find /tmp/ojv-site -maxdepth 2 -type f | sort | head -n 50
+
+      # （必要なら持ち帰りデバッグ）
+      - name: Upload site preview artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: /tmp/ojv-site
+
+      # gh-pages へ上書きデプロイ
       - name: Switch to gh-pages
         run: |
           git fetch origin gh-pages || true
@@ -151,9 +166,19 @@ jobs:
             git rm -rf . || true
           fi
 
-      - name: Commit and push docs
+      # コミット前に差分を確認
+      - name: Diff before commit
         run: |
           rsync -a --delete --exclude ".git" /tmp/ojv-site/ .
+          echo "::group::git status"
+          git status --porcelain
+          echo "::endgroup::"
+          echo "::group::git diff --stat"
+          git --no-pager diff --stat || true
+          echo "::endgroup::"
+
+      - name: Commit and push docs
+        run: |
           git add -A
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
