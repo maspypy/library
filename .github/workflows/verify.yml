@@ -5,6 +5,7 @@ on:
   # pull_request:  # PRでも検証したい場合はコメント解除
 
 env:
+  # 必要に応じて使うトークン（従来通り）
   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
   DROPBOX_TOKEN:   ${{ secrets.DROPBOX_TOKEN }}
   GH_PAT:          ${{ secrets.GH_PAT }}
@@ -29,6 +30,7 @@ jobs:
         run: |
           set -eux
           mkdir -p .verify-helper
+          # ← あなたの構成：test/*test.cpp
           mapfile -t FILES < <(git ls-files 'test/*test.cpp' || true)
           printf '%s\n' "${FILES[@]}" > .verify-helper/targets.txt
           echo "count=${#FILES[@]}" >> "$GITHUB_OUTPUT"
@@ -66,13 +68,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: actions/download-artifact@v4
         with:
           name: verify-targets
-          path: .verify-helper
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Install oj-verify
         run: pip3 install -U online-judge-verify-helper
 
@@ -82,7 +86,7 @@ jobs:
           path: |
             ~/.cache/online-judge-tools/library-checker-problems/
             .verify-helper/cache/
-          key: verify-${{ hashFiles('.verify-helper/targets.txt') }}-${{ runner.os }}
+          key: verify-${{ hashFiles('verify-targets/targets.txt') }}-${{ runner.os }}
 
       - name: Run shard ${{ matrix.shard }}
         shell: bash
@@ -90,36 +94,51 @@ jobs:
           SHARD: ${{ matrix.shard }}
         run: |
           set -eux
+          mkdir -p .verify-helper
+          cp verify-targets/targets.txt .verify-helper/targets.txt
+
           N_SHARDS=${{ strategy.job-total }}
           awk -v n="$N_SHARDS" -v s="$SHARD" 'NR % n == s' .verify-helper/targets.txt > shard.txt
+          cat shard.txt || true
+
           if [ -s shard.txt ]; then
-            xargs -r -a shard.txt -n1 -P "$(nproc)" -I{} bash -ce 'oj-verify check "{}"'            
+            # 各ファイルを並列に検証
+            xargs -r -a shard.txt -P "$(nproc)" -I{} oj-verify run "{}"
           else
             echo "No tests in this shard."
           fi
 
   publish:
     needs: [prepare, verify-shard]
-    # default branch で push 時のみ最終整合 & docs 更新
+    # 既定ブランチへの push のときだけ、最終整合 & gh-pages へ push
     if: ${{ github.event_name == 'push' && github.ref_name == github.event.repository.default_branch }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Install oj-verify
         run: pip3 install -U online-judge-verify-helper
+
       - name: Cache judge data & verify cache
         uses: actions/cache@v4
         with:
           path: |
             ~/.cache/online-judge-tools/library-checker-problems/
             .verify-helper/cache/
-          key: verify-${{ hashFiles('.verify-helper/targets.txt') }}-${{ runner.os }}
-      - name: Finalize & publish docs
+          key: verify-${{ hashFiles('verify-targets/targets.txt') }}-${{ runner.os }}
+
+      - name: Git identity (for commits/push)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Finalize & publish docs (gh-pages branch)
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
@@ -127,5 +146,7 @@ jobs:
           GITHUB_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -eux
+          # タイムスタンプ・依存関係の整合をまとめて取る
           oj-verify all
+          # ドキュメント生成 & gh-pages へ push（従来運用と同じ方式）
           oj-verify docs
