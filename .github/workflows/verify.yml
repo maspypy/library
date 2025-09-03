@@ -5,10 +5,10 @@ on:
   # pull_request:  # PRでも検証したい場合はコメント解除
 
 env:
-  # 必要に応じて使うトークン（従来通り）
+  # 従来通りに必要なら設定
   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
   DROPBOX_TOKEN:   ${{ secrets.DROPBOX_TOKEN }}
-  GH_PAT:          ${{ secrets.GH_PAT }}
+  GH_PAT:          ${{ secrets.GH_PAT }}        # gh-pages への push に使用
   GITHUB_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0            # oj-verify が履歴参照するため
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -30,7 +30,7 @@ jobs:
         run: |
           set -eux
           mkdir -p .verify-helper
-          # ← あなたの構成：test/*test.cpp
+          # あなたの構成：test/*test.cpp
           mapfile -t FILES < <(git ls-files 'test/*test.cpp' || true)
           printf '%s\n' "${FILES[@]}" > .verify-helper/targets.txt
           echo "count=${#FILES[@]}" >> "$GITHUB_OUTPUT"
@@ -72,6 +72,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: verify-targets
+          path: .            # リポジトリ直下に展開（.verify-helper/targets.txt が復元される）
 
       - uses: actions/setup-python@v5
         with:
@@ -86,7 +87,7 @@ jobs:
           path: |
             ~/.cache/online-judge-tools/library-checker-problems/
             .verify-helper/cache/
-          key: verify-${{ hashFiles('verify-targets/targets.txt') }}-${{ runner.os }}
+          key: verify-${{ hashFiles('.verify-helper/targets.txt') }}-${{ runner.os }}
 
       - name: Run shard ${{ matrix.shard }}
         shell: bash
@@ -94,15 +95,12 @@ jobs:
           SHARD: ${{ matrix.shard }}
         run: |
           set -eux
-          mkdir -p .verify-helper
-          cp verify-targets/targets.txt .verify-helper/targets.txt
-
           N_SHARDS=${{ strategy.job-total }}
           awk -v n="$N_SHARDS" -v s="$SHARD" 'NR % n == s' .verify-helper/targets.txt > shard.txt
           cat shard.txt || true
 
           if [ -s shard.txt ]; then
-            # 各ファイルを並列に検証
+            # 各ファイルを並列に検証（oj-verify run <file>）
             xargs -r -a shard.txt -P "$(nproc)" -I{} oj-verify run "{}"
           else
             echo "No tests in this shard."
@@ -131,7 +129,7 @@ jobs:
           path: |
             ~/.cache/online-judge-tools/library-checker-problems/
             .verify-helper/cache/
-          key: verify-${{ hashFiles('verify-targets/targets.txt') }}-${{ runner.os }}
+          key: verify-${{ hashFiles('.verify-helper/targets.txt') }}-${{ runner.os }}
 
       - name: Git identity (for commits/push)
         run: |
@@ -146,7 +144,7 @@ jobs:
           GITHUB_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -eux
-          # タイムスタンプ・依存関係の整合をまとめて取る
+          # 並列シャード後に一回だけ全体整合（タイムスタンプ等）
           oj-verify all
-          # ドキュメント生成 & gh-pages へ push（従来運用と同じ方式）
+          # ドキュメント生成 & gh-pages へ push（従来運用と同じ）
           oj-verify docs
