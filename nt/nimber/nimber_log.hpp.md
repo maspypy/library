@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/nimber/base.hpp
     title: nt/nimber/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
   _extendedRequiredBy: []

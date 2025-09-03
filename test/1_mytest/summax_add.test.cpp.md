@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
   - icon: ':question:'

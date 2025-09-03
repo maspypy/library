@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   _extendedRequiredBy: []
