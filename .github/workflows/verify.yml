@@ -29,7 +29,7 @@ jobs:
         run: |
           set -eux
           mkdir -p .verify-helper
-          mapfile -t FILES < <(git ls-files 'library/test/*test.cpp' || true)
+          mapfile -t FILES < <(git ls-files 'test/*test.cpp' || true)
           printf '%s\n' "${FILES[@]}" > .verify-helper/targets.txt
           echo "count=${#FILES[@]}" >> "$GITHUB_OUTPUT"
 
