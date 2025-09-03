@@ -1,136 +1,24 @@
 name: verify
 
-on:
-  push
-  # pull_request:  # PRでも検証したい場合はコメント解除
-
-env:
-  # 従来通り使うなら設定
-  YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-  DROPBOX_TOKEN:   ${{ secrets.DROPBOX_TOKEN }}
-  GH_PAT:          ${{ secrets.GH_PAT }}
-  GITHUB_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
+on: push
 
 jobs:
-  prepare:
+  verify:
     runs-on: ubuntu-latest
-    outputs:
-      shards: ${{ steps.split.outputs.shards }}
+
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+    - uses: actions/checkout@v1
 
-      # ここでは「テスト数を数えて、シャード数（最大8）を決める」だけ
-      - id: split
-        name: Decide shards
-        shell: bash
-        run: |
-          set -eux
-          COUNT=$(git ls-files 'test/*test.cpp' | wc -l || true)
-          if [ -z "$COUNT" ] || [ "$COUNT" -lt 1 ]; then COUNT=1; fi
-          MAX=8
-          SHARDS=$(( COUNT < MAX ? COUNT : MAX ))
-          # ["0","1",...,"SHARDS-1"] をJSONで出力
-          printf '[' > shards.json
-          for i in $(seq 0 $((SHARDS-1))); do
-            printf '"%s"' "$i"
-            if [ "$i" -lt $((SHARDS-1)) ]; then printf ','; fi
-          done >> shards.json
-          printf ']\n' >> shards.json
-          echo "shards=$(cat shards.json)" >> "$GITHUB_OUTPUT"
-          echo "Tests=$COUNT, Shards=$SHARDS"
+    - name: Set up Python
+      uses: actions/setup-python@v1
 
-  verify-shard:
-    needs: prepare
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: ${{ fromJson(needs.prepare.outputs.shards) }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    - name: Install dependencies
+      run: pip3 install -U online-judge-verify-helper
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install oj-verify
-        run: pip3 install -U online-judge-verify-helper
-
-      # ライブラリチェッカーのテストデータや verify-helper のキャッシュ
-      - name: Cache judge data & verify cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/online-judge-tools/library-checker-problems/
-            .verify-helper/cache/
-          # ソースツリーのハッシュをキーに（artifact 不要）
-          key: verify-${{ hashFiles('test/*test.cpp') }}-${{ runner.os }}
-
-      - name: Run shard ${{ matrix.shard }}
-        shell: bash
-        env:
-          SHARD: ${{ matrix.shard }}
-        run: |
-          set -euxo pipefail
-          # 各シャードが自分でテスト一覧を作る
-          mkdir -p .verify-helper
-          git ls-files 'test/*test.cpp' > .verify-helper/targets.txt || true
-          N_SHARDS=${{ strategy.job-total }}
-          awk -v n="$N_SHARDS" -v s="$SHARD" 'NR % n == s' .verify-helper/targets.txt > shard.txt
-          echo "Shard $SHARD of $N_SHARDS:"
-          sed -n '1,20p' shard.txt || true
-
-          if [ -s shard.txt ]; then
-            # CPUコア数まで並列実行。どれか失敗すれば非ゼロで終了。
-            xargs -r -a shard.txt -P "$(nproc)" -I{} oj-verify run "{}"
-          else
-            echo "No tests in this shard."
-          fi
-
-  publish:
-    needs: [prepare, verify-shard]
-    # 既定ブランチへの push のときだけ、最終整合 & gh-pages へ push
-    if: ${{ github.event_name == 'push' && github.ref_name == github.event.repository.default_branch }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install oj-verify
-        run: pip3 install -U online-judge-verify-helper
-
-      - name: Cache judge data & verify cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/online-judge-tools/library-checker-problems/
-            .verify-helper/cache/
-          key: verify-${{ hashFiles('test/*test.cpp') }}-${{ runner.os }}
-
-      - name: Git identity (for commits/push)
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Finalize & publish docs (gh-pages branch)
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-          DROPBOX_TOKEN:   ${{ secrets.DROPBOX_TOKEN }}
-          GITHUB_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -eux
-          oj-verify all
-          oj-verify docs
+    - name: Run tests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: oj-verify all
