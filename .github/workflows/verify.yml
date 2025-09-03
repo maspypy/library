@@ -43,13 +43,14 @@ jobs:
           find .verify-helper -maxdepth 2 -type f -print || true
           echo "::endgroup::"
 
-      # ❷ アップロード
+      # ❷ アップロード（隠しディレクトリを含める）
       - name: Upload verify artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: verify-helper-${{ matrix.part }}
-          path: .verify-helper
+          path: .verify-helper/**
+          include-hidden-files: true
           if-no-files-found: error
           retention-days: 7
 
