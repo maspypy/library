@@ -1,24 +1,72 @@
 name: verify
 
-on: push
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  verify:
+  setup:
     runs-on: ubuntu-latest
-
+    outputs:
+      matrix: ${{ steps.mk.outputs.matrix }}
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
 
-    - name: Set up Python
-      uses: actions/setup-python@v1
+      - name: Generate verify matrix (parallel=8)
+        id: mk
+        run: |
+          pipx install competitive-verifier
+          competitive-verifier matrix \
+            --parallel 8 \
+            --format github \
+            --output matrix.json
+          echo "matrix=$(cat matrix.json)" >> "$GITHUB_OUTPUT"
 
-    - name: Install dependencies
-      run: pip3 install -U online-judge-verify-helper
+  verify:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
 
-    - name: Run tests
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
-        GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all
+      - name: Run verifier (shard)
+        run: |
+          pipx install competitive-verifier
+          competitive-verifier run --shard '${{ matrix.shard }}'
+
+  pages:
+    needs: verify
+    if: ${{ github.event_name != 'pull_request' }}  # PRでは公開しない
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Build docs
+        run: |
+          pipx install competitive-verifier
+          competitive-verifier docs
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .competitive-verifier/docs
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
