@@ -98,5 +98,6 @@
 "test/2_library_checker/number_theory/counting_primes.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/2_library_checker/polynomial/inv_of_polynomials.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/2_library_checker/string/lyndon.test.cpp": "2025-09-03 07:11:11 +0900",
-"test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp": "2025-09-03 07:11:11 +0900"
+"test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp": "2025-09-03 07:11:11 +0900",
+"test/3_yukicoder/1154.test.cpp": "2025-09-03 07:11:11 +0900"
 }
