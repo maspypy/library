@@ -16,13 +16,13 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/lex_min_suffix_for_all_prefix.hpp
     title: string/lex_min_suffix_for_all_prefix.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/lyndon.hpp
     title: string/lyndon.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -353,7 +353,7 @@ data:
   path: test/1_mytest/lex_minmax_suffix.test.cpp
   requiredBy: []
   timestamp: '2025-09-03 07:11:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/lex_minmax_suffix.test.cpp
 layout: document

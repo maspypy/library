@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/default_prod.hpp
     title: alg/default_prod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':x:'

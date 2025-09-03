@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
   - icon: ':question:'

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
   - icon: ':question:'

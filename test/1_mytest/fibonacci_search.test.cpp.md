@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'

@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []

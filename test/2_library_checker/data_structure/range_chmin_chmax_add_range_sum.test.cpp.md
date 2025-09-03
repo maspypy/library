@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: ds/segtree/beats_summinmax_chminchmax.hpp
     title: ds/segtree/beats_summinmax_chminchmax.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   - icon: ':question:'

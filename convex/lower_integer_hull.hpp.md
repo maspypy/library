@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':question:'

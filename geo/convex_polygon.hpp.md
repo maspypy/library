@@ -12,13 +12,13 @@ data:
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_side.test.cpp
     title: test/1_mytest/convex_polygon_side.test.cpp
   - icon: ':x:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
   _isVerificationFailed: true
