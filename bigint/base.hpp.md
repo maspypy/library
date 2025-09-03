@@ -30,7 +30,7 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bigint.test.cpp
     title: test/1_mytest/bigint.test.cpp
   - icon: ':x:'
@@ -74,7 +74,7 @@ data:
     title: test/4_aoj/NTL_2_C.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/504/problem/D
@@ -345,7 +345,7 @@ data:
     \    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n\
     \      assert(!s.empty());\n    }\n    if (s[0] == '0') {\n      sgn = 0;\n  \
     \    return;\n    }\n    reverse(all(s));\n    int n = len(s);\n    int m = ceil(n,\
-    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN(i % LOG) *\
+    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] *\
     \ (s[i] - '0'); }\n  }\n  bint &operator=(const bint &p) {\n    sgn = p.sgn, dat\
     \ = p.dat;\n    return *this;\n  }\n  bool operator<(const bint &p) const {\n\
     \    if (sgn != p.sgn) {\n      return sgn < p.sgn;\n    }\n    if (sgn == 0)\
@@ -445,7 +445,7 @@ data:
     \    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n\
     \      assert(!s.empty());\n    }\n    if (s[0] == '0') {\n      sgn = 0;\n  \
     \    return;\n    }\n    reverse(all(s));\n    int n = len(s);\n    int m = ceil(n,\
-    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN(i % LOG) *\
+    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] *\
     \ (s[i] - '0'); }\n  }\n  bint &operator=(const bint &p) {\n    sgn = p.sgn, dat\
     \ = p.dat;\n    return *this;\n  }\n  bool operator<(const bint &p) const {\n\
     \    if (sgn != p.sgn) {\n      return sgn < p.sgn;\n    }\n    if (sgn == 0)\
@@ -546,8 +546,8 @@ data:
   isVerificationFile: false
   path: bigint/base.hpp
   requiredBy: []
-  timestamp: '2025-09-04 03:32:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-09-04 07:45:16+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/2440.test.cpp

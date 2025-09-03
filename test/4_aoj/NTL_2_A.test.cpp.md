@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':question:'
@@ -522,7 +522,7 @@ data:
     \    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n\
     \      assert(!s.empty());\n    }\n    if (s[0] == '0') {\n      sgn = 0;\n  \
     \    return;\n    }\n    reverse(all(s));\n    int n = len(s);\n    int m = ceil(n,\
-    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN(i % LOG) *\
+    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] *\
     \ (s[i] - '0'); }\n  }\n  bint &operator=(const bint &p) {\n    sgn = p.sgn, dat\
     \ = p.dat;\n    return *this;\n  }\n  bool operator<(const bint &p) const {\n\
     \    if (sgn != p.sgn) {\n      return sgn < p.sgn;\n    }\n    if (sgn == 0)\
@@ -632,7 +632,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/NTL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 03:32:10+09:00'
+  timestamp: '2025-09-04 07:45:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/NTL_2_A.test.cpp
