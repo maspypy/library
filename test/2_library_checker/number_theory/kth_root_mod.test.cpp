@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/kth_root_mod"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/kth_root_mod
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/mod_kth_root.hpp"

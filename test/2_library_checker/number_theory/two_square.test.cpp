@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/two_square_sum"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/two_square_sum
 #include "my_template.hpp"
 #include "other/io.hpp"
 

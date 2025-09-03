@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_point_set_rectangle_affine_rectangle_sum"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_point_set_rectangle_affine_rectangle_sum
 #include "my_template.hpp"
 #include "other/io.hpp"
 

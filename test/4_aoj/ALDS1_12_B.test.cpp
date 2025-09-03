@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B"
+// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/shortest_path/dial.hpp"

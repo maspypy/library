@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/matrix_product_mod_2"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/matrix_product_mod_2
 #include "my_template.hpp"
 #include "other/io.hpp"
 

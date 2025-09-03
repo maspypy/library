@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/2293"
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/2293
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/unionfind/rollback_potentialized_unionfind.hpp"

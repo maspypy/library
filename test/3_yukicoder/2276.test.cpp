@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/2276"
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/2276
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "other/fibonacci_search.hpp"

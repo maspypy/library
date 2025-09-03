@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/suffixarray
 #include "my_template.hpp"
 #include "other/io.hpp"
 

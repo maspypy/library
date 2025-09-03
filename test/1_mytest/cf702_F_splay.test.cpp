@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb
 #include "my_template.hpp"
 #include "alg/monoid/add_pair.hpp"
 #include "ds/splaytree/splaytree_acted_set.hpp"

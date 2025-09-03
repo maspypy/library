@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/sort_points_by_argument"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sort_points_by_argument
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "geo/angle_sort.hpp"

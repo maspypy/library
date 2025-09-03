@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb
 #include "my_template.hpp"
 
 #include "poly/coef_of_rational_fps.hpp"

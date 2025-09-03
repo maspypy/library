@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/palindromes_in_deque"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/palindromes_in_deque
 #include "my_template.hpp"
 #include "other/io.hpp"
 

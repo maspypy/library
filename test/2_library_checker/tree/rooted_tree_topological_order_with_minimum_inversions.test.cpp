@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/rooted_tree_topological_order_with_minimum_inversions"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/rooted_tree_topological_order_with_minimum_inversions
 
 #include "my_template.hpp"
 #include "other/io.hpp"

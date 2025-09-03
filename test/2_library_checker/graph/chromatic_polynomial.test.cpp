@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/chromatic_polynomial"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/chromatic_polynomial
 
 #include "my_template.hpp"
 #include "other/io.hpp"

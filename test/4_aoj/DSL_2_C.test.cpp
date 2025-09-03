@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C"
+// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/kdtree/kdtree.hpp"

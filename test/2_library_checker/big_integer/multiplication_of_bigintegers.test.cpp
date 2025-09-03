@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/multiplication_of_big_integers"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/multiplication_of_big_integers
 #include "my_template.hpp"
 #include "other/io.hpp"
 

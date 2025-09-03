@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/runenumerate"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/runenumerate
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "string/run_enumerate.hpp"

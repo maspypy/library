@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/184"
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/184
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/merge_vector_space.hpp"

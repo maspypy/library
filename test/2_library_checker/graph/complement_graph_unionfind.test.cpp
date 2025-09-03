@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://judge.yosupo.jp/problem/connected_components_of_complement_graph"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/connected_components_of_complement_graph
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/blackbox/complement_graph_unionfind.hpp"

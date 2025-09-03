@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/product_of_polynomial_sequence"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/product_of_polynomial_sequence
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"

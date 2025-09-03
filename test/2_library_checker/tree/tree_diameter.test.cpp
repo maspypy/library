@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/tree_diameter
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/tree_diameter.hpp"

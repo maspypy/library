@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1421"
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1421
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "linalg/bitset/solve_linear.hpp"

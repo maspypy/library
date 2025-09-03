@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_polynomials"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/inv_of_polynomials
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "poly/poly_gcd.hpp"

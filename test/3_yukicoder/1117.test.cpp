@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1117"
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1117
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/sliding_window_aggregation.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/binomial_coefficient
 #include "my_template.hpp"
 #include "other/io.hpp"
 

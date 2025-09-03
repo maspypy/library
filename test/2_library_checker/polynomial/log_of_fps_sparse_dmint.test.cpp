@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse
 #include "my_template.hpp"
 #include "other/io.hpp"
 

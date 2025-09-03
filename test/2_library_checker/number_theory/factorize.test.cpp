@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/factorize"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/factorize
 #include "my_template.hpp"
 #include "other/io.hpp"
 

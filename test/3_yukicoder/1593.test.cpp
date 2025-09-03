@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1593"
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1593
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "nt/gaussian_integers.hpp"

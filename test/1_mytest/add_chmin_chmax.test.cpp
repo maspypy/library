@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb
 #include "my_template.hpp"
 #include "random/base.hpp"
 #include "alg/monoid/add_chmin_chmax.hpp"

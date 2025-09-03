@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/polynomial_taylor_shift"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/polynomial_taylor_shift
 #include "my_template.hpp"
 #include "other/io.hpp"
 

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb
 #include "my_template.hpp"
 #include "mod/modint.hpp"
 #include "seq/famous/indecomposable_permutations.hpp"

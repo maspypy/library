@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/rational_approximation"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/rational_approximation
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "nt/rational_binary_search.hpp"

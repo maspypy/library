@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/polynomial_interpolation"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/polynomial_interpolation
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "poly/multipoint.hpp"

@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B"
+// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "knapsack/subset_sum_count.hpp"

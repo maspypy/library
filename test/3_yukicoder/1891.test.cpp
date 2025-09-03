@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1891"
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1891
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/sparse_table/xor_disjoint_sparse_table.hpp"

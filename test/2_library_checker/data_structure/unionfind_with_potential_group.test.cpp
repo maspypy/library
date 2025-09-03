@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
 #include "my_template.hpp"
 #include "other/io.hpp"
 

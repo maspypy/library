@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/tetration_mod"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/tetration_mod
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/tetration.hpp"

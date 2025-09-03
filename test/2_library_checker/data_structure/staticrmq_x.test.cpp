@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/staticrmq
 #include "my_template.hpp"
 #include "other/io.hpp"
 

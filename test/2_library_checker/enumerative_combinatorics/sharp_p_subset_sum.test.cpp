@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/sharp_p_subset_sum"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sharp_p_subset_sum
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "poly/product_of_one_plus_xn.hpp"

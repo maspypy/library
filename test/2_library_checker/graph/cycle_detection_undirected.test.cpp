@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection_undirected"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/cycle_detection_undirected
 #include "my_template.hpp"
 #include "other/io.hpp"
 

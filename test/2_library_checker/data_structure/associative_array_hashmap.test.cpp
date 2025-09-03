@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/associative_array"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/associative_array
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/hashmap.hpp"

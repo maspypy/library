@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/number_of_subsequences"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/number_of_subsequences
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/counting_eulerian_circuits"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/counting_eulerian_circuits
 
 #include "my_template.hpp"
 #include "other/io.hpp"

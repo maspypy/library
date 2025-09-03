@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/2066"
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/2066
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/floor_sum_of_linear.hpp"

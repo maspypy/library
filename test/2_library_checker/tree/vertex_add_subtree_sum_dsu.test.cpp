@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_subtree_sum
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/dsu_on_tree.hpp"

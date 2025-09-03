@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/range_parallel_unionfind"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_parallel_unionfind
 #include "my_template.hpp"
 #include "other/io.hpp"
 

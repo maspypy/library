@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/static_range_mode_query"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_mode_query
 
 #include "my_template.hpp"
 #include "other/io.hpp"

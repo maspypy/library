@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/2292"
+// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/2292
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/segtree/dynamic_lazy_segtree.hpp"

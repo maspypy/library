@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces
 #include "my_template.hpp"
 #include "other/io.hpp"
 

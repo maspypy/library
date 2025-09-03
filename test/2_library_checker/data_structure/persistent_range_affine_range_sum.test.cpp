@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/persistent_range_affine_range_sum"
+// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/persistent_range_affine_range_sum
 
 #include "my_template.hpp"
 #include "other/io.hpp"
