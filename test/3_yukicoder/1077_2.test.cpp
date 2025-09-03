@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1077
+#define PROBLEM "https://yukicoder.me/problems/no/1077"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "convex/slope_trick/slope_trick_1.hpp"

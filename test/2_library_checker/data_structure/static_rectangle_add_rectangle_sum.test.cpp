@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

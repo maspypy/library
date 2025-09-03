@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/prefix_substring_lcs
+#define PROBLEM "https://judge.yosupo.jp/problem/prefix_substring_lcs"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

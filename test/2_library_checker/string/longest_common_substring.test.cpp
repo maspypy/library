@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/longest_common_substring
+#define PROBLEM "https://judge.yosupo.jp/problem/longest_common_substring"
 
 #include "my_template.hpp"
 #include "other/io.hpp"

@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bipartite_edge_coloring
+#define PROBLEM "https://judge.yosupo.jp/problem/bipartite_edge_coloring"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/bipartite_edge_coloring.hpp"

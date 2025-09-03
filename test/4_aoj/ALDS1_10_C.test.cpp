@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja
+#define PROBLEM \
+  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "string/longest_common_subsequence.hpp"

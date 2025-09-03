@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/626
+#define PROBLEM "https://yukicoder.me/problems/no/626"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "knapsack/knapsack_branch_bound.hpp"

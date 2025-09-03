@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/adjugate_matrix
+#define PROBLEM "https://judge.yosupo.jp/problem/adjugate_matrix"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "linalg/adjugate_matrix.hpp"

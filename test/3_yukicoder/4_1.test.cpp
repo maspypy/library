@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/4
+#define PROBLEM "https://yukicoder.me/problems/no/4"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modular_subset_sum.hpp"

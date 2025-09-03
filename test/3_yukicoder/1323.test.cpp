@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1323
+#define PROBLEM "https://yukicoder.me/problems/no/1323"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/shortest_path/grid_bfs.hpp"

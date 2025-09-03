@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

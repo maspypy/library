@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/two_sat
+#define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/twosat.hpp"

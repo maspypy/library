@@ -1,5 +1,5 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1069
-// competitive-verifier: ERROR 0.001
+#define PROBLEM "https://yukicoder.me/problems/no/1069"
+#define ERROR 0.001
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"

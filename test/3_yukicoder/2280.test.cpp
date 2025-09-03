@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/2280
+#define PROBLEM "https://yukicoder.me/problems/no/2280"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/range_freq_of_linear.hpp"

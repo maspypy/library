@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "seq/famous/stirling_number_2.hpp"

@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "setfunc/all_k_subset.hpp"

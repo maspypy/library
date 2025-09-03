@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

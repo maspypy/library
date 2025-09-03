@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A
+#define PROBLEM \
+  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/rectangle_union.hpp"

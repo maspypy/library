@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1167
+#define PROBLEM "https://yukicoder.me/problems/no/1167"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/offline_query/range_xor_basis_query.hpp"

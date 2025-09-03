@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_triangles
+#define PROBLEM "https://judge.yosupo.jp/problem/enumerate_triangles"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "enumerate/triangle.hpp"

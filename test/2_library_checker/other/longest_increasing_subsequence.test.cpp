@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/longest_increasing_subsequence
+#define PROBLEM "https://judge.yosupo.jp/problem/longest_increasing_subsequence"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

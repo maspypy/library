@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/2161
+#define PROBLEM "https://yukicoder.me/problems/no/2161"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/offline_query/point_add_rectangle_sum.hpp"

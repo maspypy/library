@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/counting_primes
+#define PROBLEM "https://judge.yosupo.jp/problem/counting_primes"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "nt/primesum.hpp"

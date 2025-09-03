@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/lyndon_factorization
+#define PROBLEM "https://judge.yosupo.jp/problem/lyndon_factorization"
 
 #include "my_template.hpp"
 #include "other/io.hpp"

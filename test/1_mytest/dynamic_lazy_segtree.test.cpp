@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb
+#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "alg/acted_monoid/summax_assign.hpp"
 #include "ds/segtree/dynamic_lazy_segtree.hpp"

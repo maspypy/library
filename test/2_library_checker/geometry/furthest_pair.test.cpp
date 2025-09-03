@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/furthest_pair
+#define PROBLEM "https://judge.yosupo.jp/problem/furthest_pair"
 
 #include "my_template.hpp"
 #include "other/io.hpp"

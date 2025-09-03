@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/area_of_union_of_rectangles
+#define PROBLEM "https://judge.yosupo.jp/problem/area_of_union_of_rectangles"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

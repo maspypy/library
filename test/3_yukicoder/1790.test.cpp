@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1790
+#define PROBLEM "https://yukicoder.me/problems/no/1790"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/xor.hpp"

@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum
+#define PROBLEM "https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

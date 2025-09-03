@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/partition_function
+#define PROBLEM "https://judge.yosupo.jp/problem/partition_function"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "poly/fps_inv.hpp"

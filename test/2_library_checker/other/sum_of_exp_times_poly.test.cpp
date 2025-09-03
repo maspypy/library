@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "seq/interpolate_poly_exp_sum.hpp"

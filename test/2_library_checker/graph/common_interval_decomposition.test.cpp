@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/common_interval_decomposition_tree
+#define PROBLEM "https://judge.yosupo.jp/problem/common_interval_decomposition_tree"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "seq/common_interval_decomposition.hpp"

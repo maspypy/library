@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sparse_matrix_det
+#define PROBLEM "https://judge.yosupo.jp/problem/sparse_matrix_det"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "linalg/blackbox/det.hpp"

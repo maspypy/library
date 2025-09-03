@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/inverse_matrix_mod_2
+#define PROBLEM "https://judge.yosupo.jp/problem/inverse_matrix_mod_2"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

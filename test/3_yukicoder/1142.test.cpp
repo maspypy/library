@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1142
+#define PROBLEM "https://yukicoder.me/problems/no/1142"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "setfunc/xor_convolution.hpp"

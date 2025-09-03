@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1728
+#define PROBLEM "https://yukicoder.me/problems/no/1728"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "nt/array_on_divisors.hpp"

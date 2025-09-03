@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/eulerian_trail_undirected
+#define PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_undirected"
 
 #include "my_template.hpp"
 #include "other/io.hpp"

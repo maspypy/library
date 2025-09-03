@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

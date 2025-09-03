@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1451
+#define PROBLEM "https://yukicoder.me/problems/no/1451"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/tree_of_unionfind.hpp"

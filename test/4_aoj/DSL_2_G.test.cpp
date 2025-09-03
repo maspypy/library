@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G
+#define PROBLEM \
+  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/range_add_range_sum.hpp"

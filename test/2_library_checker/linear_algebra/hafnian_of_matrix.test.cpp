@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/hafnian_of_matrix
+#define PROBLEM "https://judge.yosupo.jp/problem/hafnian_of_matrix"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"

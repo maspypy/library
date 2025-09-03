@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/k_shortest_walk
+#define PROBLEM "https://judge.yosupo.jp/problem/k_shortest_walk"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"

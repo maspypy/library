@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

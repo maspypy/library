@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
+#define PROBLEM \
+  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/segtree/lazy_segtree.hpp"

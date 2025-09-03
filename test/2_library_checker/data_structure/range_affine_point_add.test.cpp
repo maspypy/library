@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_affine_point_get
+#define PROBLEM "https://judge.yosupo.jp/problem/range_affine_point_get"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

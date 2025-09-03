@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_totient_function
+#define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

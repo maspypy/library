@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D
+#define PROBLEM \
+  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "nt/divisors.hpp"

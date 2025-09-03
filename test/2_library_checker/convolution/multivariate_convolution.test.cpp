@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/multivariate_convolution
+#define PROBLEM "https://judge.yosupo.jp/problem/multivariate_convolution"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

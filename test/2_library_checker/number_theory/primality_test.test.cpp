@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/primality_test
+#define PROBLEM "https://judge.yosupo.jp/problem/primality_test"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "nt/primetest.hpp"

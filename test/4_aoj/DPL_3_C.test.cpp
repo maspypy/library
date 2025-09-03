@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C
+#define PROBLEM \
+  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_C"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "seq/cartesian_tree.hpp"

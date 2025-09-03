@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/matrix_det
+#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"

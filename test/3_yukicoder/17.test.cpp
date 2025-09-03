@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/17
+#define PROBLEM "https://yukicoder.me/problems/no/17"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/shortest_path/warshall_floyd.hpp"

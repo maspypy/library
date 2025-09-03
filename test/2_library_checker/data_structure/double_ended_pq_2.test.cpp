@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/double_ended_priority_queue
+#define PROBLEM "https://judge.yosupo.jp/problem/double_ended_priority_queue"
 
 #include "my_template.hpp"
 #include "other/io.hpp"

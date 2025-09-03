@@ -1,5 +1,6 @@
-// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A
-// competitive-verifier: ERROR 0.000001
+#define PROBLEM \
+  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A"
+#define ERROR 0.000001
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "geo/closest_pair.hpp"

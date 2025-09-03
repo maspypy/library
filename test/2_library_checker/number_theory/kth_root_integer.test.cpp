@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/kth_root_integer
+#define PROBLEM "https://judge.yosupo.jp/problem/kth_root_integer"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "nt/integer_kth_root.hpp"

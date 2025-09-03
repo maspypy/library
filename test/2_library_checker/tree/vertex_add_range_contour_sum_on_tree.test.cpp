@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree"
 
 #include "my_template.hpp"
 #include "other/io.hpp"

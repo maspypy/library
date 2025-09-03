@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/directedmst
+#define PROBLEM "https://judge.yosupo.jp/problem/directedmst"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

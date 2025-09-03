@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/899
+#define PROBLEM "https://yukicoder.me/problems/no/899"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/ds/bfs_numbering.hpp"

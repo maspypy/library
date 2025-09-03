@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/counting_spanning_tree_undirected"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

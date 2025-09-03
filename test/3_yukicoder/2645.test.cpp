@@ -1,5 +1,5 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/2645
-// competitive-verifier: ERROR 1e-6
+#define PROBLEM "https://yukicoder.me/problems/no/2645"
+#define ERROR 1e-6
 
 #include "my_template.hpp"
 #include "other/io.hpp"

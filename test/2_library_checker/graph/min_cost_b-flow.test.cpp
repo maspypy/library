@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/min_cost_b_flow
+#define PROBLEM "https://judge.yosupo.jp/problem/min_cost_b_flow"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "flow/bflow.hpp"

@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_cliques
+#define PROBLEM "https://judge.yosupo.jp/problem/enumerate_cliques"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

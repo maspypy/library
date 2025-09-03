@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/min_of_mod_of_linear
+#define PROBLEM "https://judge.yosupo.jp/problem/min_of_mod_of_linear"
 
 #include "my_template.hpp"
 #include "other/io.hpp"

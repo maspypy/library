@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1666
+#define PROBLEM "https://yukicoder.me/problems/no/1666"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "nt/integer_kth_root.hpp"

@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/discrete_logarithm_mod
+#define PROBLEM "https://judge.yosupo.jp/problem/discrete_logarithm_mod"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/mod_log.hpp"

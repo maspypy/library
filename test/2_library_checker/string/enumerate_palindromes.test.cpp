@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_palindromes
+#define PROBLEM "https://judge.yosupo.jp/problem/enumerate_palindromes"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "string/manacher.hpp"

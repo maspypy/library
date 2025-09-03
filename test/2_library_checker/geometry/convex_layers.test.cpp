@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/convex_layers
+#define PROBLEM "https://judge.yosupo.jp/problem/convex_layers"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

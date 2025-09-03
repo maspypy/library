@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/unionfind/rollback_unionfind.hpp"

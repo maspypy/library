@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/2108
+#define PROBLEM "https://yukicoder.me/problems/no/2108"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"

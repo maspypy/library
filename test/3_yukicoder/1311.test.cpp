@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1311
+#define PROBLEM "https://yukicoder.me/problems/no/1311"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "seq/kth_next_permutation.hpp"

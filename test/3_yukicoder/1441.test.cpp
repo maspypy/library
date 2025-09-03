@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1441
+#define PROBLEM "https://yukicoder.me/problems/no/1441"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/splaytree/splaytree_monoid.hpp"

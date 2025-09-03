@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bipartitematching
+#define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "flow/bipartite.hpp"

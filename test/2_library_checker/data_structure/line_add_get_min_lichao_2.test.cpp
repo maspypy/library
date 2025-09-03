@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/line_add_get_min
+#define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "convex/lichao.hpp"

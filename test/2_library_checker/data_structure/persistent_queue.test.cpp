@@ -1,4 +1,4 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/persistent_queue
+#define PROBLEM "https://judge.yosupo.jp/problem/persistent_queue"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

@@ -1,6 +1,6 @@
 // BEGIN: main.cpp
 #line 1 "main.cpp"
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1036
+#define PROBLEM "https://yukicoder.me/problems/no/1036"
 // BEGIN: my_template.hpp
 #line 1 "my_template.hpp"
 #if defined(LOCAL)

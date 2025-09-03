@@ -1,4 +1,5 @@
-// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/polynomial_composite_set_power_series
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/polynomial_composite_set_power_series"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

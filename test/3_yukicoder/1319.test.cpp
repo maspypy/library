@@ -1,5 +1,5 @@
-// competitive-verifier: PROBLEM https://yukicoder.me/problems/no/1319
-// competitive-verifier: ERROR 0.01
+#define PROBLEM "https://yukicoder.me/problems/no/1319"
+#define ERROR 0.01
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "geo/definite_integral.hpp"
