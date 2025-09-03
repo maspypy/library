@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: graph/scc_tounament_by_indegrees.hpp
     title: graph/scc_tounament_by_indegrees.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
