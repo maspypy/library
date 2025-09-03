@@ -5,10 +5,9 @@ on:
   # pull_request:  # PRでも検証したい場合はコメント解除
 
 env:
-  # 従来通りに必要なら設定
   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
   DROPBOX_TOKEN:   ${{ secrets.DROPBOX_TOKEN }}
-  GH_PAT:          ${{ secrets.GH_PAT }}        # gh-pages への push に使用
+  GH_PAT:          ${{ secrets.GH_PAT }}
   GITHUB_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -19,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0            # oj-verify が履歴参照するため
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -30,10 +29,11 @@ jobs:
         run: |
           set -eux
           mkdir -p .verify-helper
-          # あなたの構成：test/*test.cpp
           mapfile -t FILES < <(git ls-files 'test/*test.cpp' || true)
           printf '%s\n' "${FILES[@]}" > .verify-helper/targets.txt
           echo "count=${#FILES[@]}" >> "$GITHUB_OUTPUT"
+          echo "Prepared .verify-helper/targets.txt:"
+          sed -n '1,50p' .verify-helper/targets.txt || true
 
       - id: split
         name: Decide shards
@@ -50,12 +50,14 @@ jobs:
           done >> shards.json
           printf ']\n' >> shards.json
           echo "shards=$(cat shards.json)" >> "$GITHUB_OUTPUT"
+          echo "Using SHARDS=$(cat shards.json)"
 
-      - name: Upload target list
+      # ★ ファイル単体ではなく「ディレクトリごと」アップロード
+      - name: Upload verify-helper dir
         uses: actions/upload-artifact@v4
         with:
-          name: verify-targets
-          path: .verify-helper/targets.txt
+          name: verify-helper
+          path: .verify-helper
 
   verify-shard:
     needs: prepare
@@ -69,10 +71,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      # ★ ワークスペース直下に展開 → .verify-helper/targets.txt がそのまま復元される
       - uses: actions/download-artifact@v4
         with:
-          name: verify-targets
-          path: .            # リポジトリ直下に展開（.verify-helper/targets.txt が復元される）
+          name: verify-helper
+          path: .
 
       - uses: actions/setup-python@v5
         with:
@@ -95,12 +98,23 @@ jobs:
           SHARD: ${{ matrix.shard }}
         run: |
           set -eux
+          # フォールバック: もし artifact 名のディレクトリに入ってしまっていたら拾い直す
+          if [ ! -f .verify-helper/targets.txt ] && [ -f verify-helper/targets.txt ]; then
+            mkdir -p .verify-helper
+            mv verify-helper/targets.txt .verify-helper/targets.txt
+          fi
+
+          test -f .verify-helper/targets.txt
+          echo "Targets present at .verify-helper/targets.txt"
+          sed -n '1,10p' .verify-helper/targets.txt || true
+
           N_SHARDS=${{ strategy.job-total }}
           awk -v n="$N_SHARDS" -v s="$SHARD" 'NR % n == s' .verify-helper/targets.txt > shard.txt
+          echo "Shard $SHARD of $N_SHARDS:"
           cat shard.txt || true
 
           if [ -s shard.txt ]; then
-            # 各ファイルを並列に検証（oj-verify run <file>）
+            # 各ファイルをCPUコア数まで並列に実行（どれか落ちたら非ゼロで終了）
             xargs -r -a shard.txt -P "$(nproc)" -I{} oj-verify run "{}"
           else
             echo "No tests in this shard."
@@ -108,7 +122,6 @@ jobs:
 
   publish:
     needs: [prepare, verify-shard]
-    # 既定ブランチへの push のときだけ、最終整合 & gh-pages へ push
     if: ${{ github.event_name == 'push' && github.ref_name == github.event.repository.default_branch }}
     runs-on: ubuntu-latest
     steps:
@@ -144,7 +157,5 @@ jobs:
           GITHUB_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -eux
-          # 並列シャード後に一回だけ全体整合（タイムスタンプ等）
           oj-verify all
-          # ドキュメント生成 & gh-pages へ push（従来運用と同じ）
           oj-verify docs
