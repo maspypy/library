@@ -86,7 +86,7 @@
 "test/1_mytest/rbst_test.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/1_mytest/remove_one_vertex.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/1_mytest/seg2d.test.cpp": "2025-09-03 07:11:11 +0900",
-"test/1_mytest/segtree_xor_prod.test.cpp": "2025-09-03 07:11:11 +0900",
 "test/1_mytest/slice_rational_fps.test.cpp": "2025-09-03 07:11:11 +0900",
-"test/1_mytest/sparse_pow_2d.test.cpp": "2025-09-03 07:11:11 +0900"
+"test/1_mytest/sparse_pow_2d.test.cpp": "2025-09-03 07:11:11 +0900",
+"test/1_mytest/splay.test.cpp": "2025-09-03 07:11:11 +0900"
 }
