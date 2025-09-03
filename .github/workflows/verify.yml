@@ -5,157 +5,20 @@ on: push
 jobs:
   verify:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        part: [0, 1, 2, 3]   # 並列数は適宜調整
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: pip3 install -U online-judge-verify-helper
-
-      - name: Run tests (part ${{ matrix.part }})
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-          DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          python3 scripts/run_split_verify.py \
-            --split 4 \
-            --index ${{ matrix.part }} \
-            -j $(nproc)
-
-      # ❶ 中身を確認して必ず何か置く（空パーティション対策）
-      - name: Ensure .verify-helper exists
-        if: always()
-        run: |
-          mkdir -p .verify-helper
-          test -f .verify-helper/timestamps.json || echo '{}' > .verify-helper/timestamps.json
-          echo "::group::.verify-helper snapshot (before upload)"
-          ls -la .verify-helper || true
-          find .verify-helper -maxdepth 2 -type f -print || true
-          echo "::endgroup::"
-
-      # ❷ アップロード（隠しディレクトリを含める）
-      - name: Upload verify artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: verify-helper-${{ matrix.part }}
-          path: .verify-helper/**
-          include-hidden-files: true
-          if-no-files-found: error
-          retention-days: 7
-
-      # ❸ アップロード直後に、この run の artifact 一覧を確認（デバッグ）
-      - name: List artifacts right after upload (REST)
-        if: always()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          echo "matrix.part=${{ matrix.part }} run_id=${{ github.run_id }}"
-          gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts \
-            --paginate | jq -r '.artifacts[] | [.id, .name, .size_in_bytes] | @tsv' || true
-
-  docs:
-    needs: verify
-    if: always()
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      actions: read   # ← artifacts を読むのに必要
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+    - uses: actions/checkout@v1
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v1
 
-      - name: Install dependencies
-        run: |
-          pip3 install -U online-judge-verify-helper
-          sudo apt-get update && sudo apt-get install -y jq gh
+    - name: Install dependencies
+      run: pip3 install -U online-judge-verify-helper
 
-      # ❶ この run の artifact 一覧を表示（デバッグ）
-      - name: List artifacts via REST
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          echo "run_id=${{ github.run_id }} repo=${{ github.repository }}"
-          gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts \
-            --paginate | jq -r '.artifacts[] | [.id, .name, .size_in_bytes] | @tsv' || true
-
-      # ❷ この run の全アーティファクトを一括ダウンロード
-      - name: Download ALL artifacts (no pattern)
-        uses: actions/download-artifact@v4
-        with:
-          path: /tmp/verify-artifacts
-          merge-multiple: false
-
-      - name: Show downloaded artifacts
-        run: |
-          echo "::group::/tmp/verify-artifacts tree"
-          ls -R /tmp/verify-artifacts || true
-          echo "::endgroup::"
-
-      # ❸ パーティションの結果をマージして .verify-helper/ に集約
-      - name: Merge verify-helper results
-        run: |
-          mkdir -p .verify-helper
-          python3 scripts/merge_verify_results.py
-
-      # ❹ マージ後のスナップショット（確認用）
-      - name: Show merged .verify-helper snapshot
-        run: |
-          ls -la .verify-helper
-          head -c 2000 .verify-helper/timestamps.json || true
-
-      # ❺ マージ結果の件数確認
-      - name: Sanity check merged timestamps
-        run: echo "entries=$(jq 'keys|length' .verify-helper/timestamps.json)"
-
-      # ❻ 古い docs を消してから生成
-      - name: Clean old docs
-        run: rm -rf .verify-helper/docs/*
-
-      - name: Generate docs (oj-verify docs)
-        continue-on-error: true
-        run: oj-verify docs
-
-      # ❼ 生成物を退避（.git を除外）
-      - name: Stash generated site
-        run: |
-          mkdir -p /tmp/ojv-site
-          rsync -a --delete --exclude ".git" .verify-helper/markdown/ /tmp/ojv-site/
-          rm -rf /tmp/ojv-site/.git || true
-
-      # ❽ gh-pages に上書きデプロイ
-      - name: Switch to gh-pages
-        run: |
-          git fetch origin gh-pages || true
-          if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
-            git checkout gh-pages
-          else
-            git checkout --orphan gh-pages
-            git rm -rf . || true
-          fi
-
-      - name: Commit and push docs
-        run: |
-          rsync -a --delete --exclude ".git" /tmp/ojv-site/ .
-          git add -A
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Update docs [skip ci]" || echo "No changes to commit"
-          git push origin gh-pages --force
+    - name: Run tests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: oj-verify all
