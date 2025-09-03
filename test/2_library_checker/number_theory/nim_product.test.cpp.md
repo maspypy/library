@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/nimber/base.hpp
     title: nt/nimber/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
   - icon: ':question:'
