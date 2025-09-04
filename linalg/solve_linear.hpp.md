@@ -12,7 +12,7 @@ data:
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/solve_linear.test.cpp
     title: test/2_library_checker/linear_algebra/solve_linear.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/3_yukicoder/502_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/solve_linear.hpp\"\n/*\r\n0 \u884C\u76EE\u306B\u89E3\
@@ -74,7 +74,7 @@ data:
   - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
   timestamp: '2023-11-16 18:26:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
