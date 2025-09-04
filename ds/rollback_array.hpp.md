@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: ds/segtree/rollback_lazy_segtree.hpp
     title: ds/segtree/rollback_lazy_segtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/rollback_potentialized_unionfind.hpp
     title: ds/unionfind/rollback_potentialized_unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2293.test.cpp
     title: test/3_yukicoder/2293.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
@@ -56,7 +56,7 @@ data:
   - ds/unionfind/rollback_unionfind.hpp
   - ds/segtree/rollback_lazy_segtree.hpp
   timestamp: '2023-06-23 23:19:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2293.test.cpp
   - test/2_library_checker/data_structure/add_remove_query.test.cpp
