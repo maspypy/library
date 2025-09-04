@@ -251,29 +251,34 @@ using fastio::print;
 using fastio::read;
 
 #if defined(LOCAL)
-using fastio::wt;
-#define P1(x)                                                                \
-  wt("[DEBUG "), wt(__func__), wt(":"), wt((int)__LINE__), wt("] "), wt(#x), \
-      wt(" = "), wt(x)
-#define P_(x) wt(", "), wt(#x), wt(" = "), wt(x)
-
-#define SHOW1(a) P1(a), wt("\n")
-#define SHOW2(a, b) P1(a), P_(b), wt("\n")
-#define SHOW3(a, b, c) P1(a), P_(b), P_(c), wt("\n")
-#define SHOW4(a, b, c, d) P1(a), P_(b), P_(c), P_(d), wt("\n")
-#define SHOW5(a, b, c, d, e) P1(a), P_(b), P_(c), P_(d), P_(e), wt("\n")
-#define SHOW6(a, b, c, d, e, f) \
-  P1(a), P_(b), P_(c), P_(d), P_(e), P_(f), wt("\n")
-#define SHOW7(a, b, c, d, e, f, g) \
-  P1(a), P_(b), P_(c), P_(d), P_(e), P_(f), P_(g), wt("\n")
-#define SHOW8(a, b, c, d, e, f, g, h) \
-  P1(a), P_(b), P_(c), P_(d), P_(e), P_(f), P_(g), P_(h), wt("\n")
-
-#define SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME
+#define HDR "[DEBUG:", __func__, __LINE__, "]"
 #define SHOW(...)                                                         \
   SHOW_IMPL(__VA_ARGS__, SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, \
             SHOW1)                                                        \
   (__VA_ARGS__)
+#define SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME
+#define SHOW1(x) print(HDR, #x, "=", (x)), flush()
+#define SHOW2(x, y) print(HDR, #x, "=", (x), #y, "=", (y)), flush()
+#define SHOW3(x, y, z) \
+  print(HDR, #x, "=", (x), #y, "=", (y), #z, "=", (z)), flush()
+#define SHOW4(x, y, z, w) \
+  print(HDR, #x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w)), flush()
+#define SHOW5(x, y, z, w, v)                                                  \
+  print(HDR, #x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", \
+        (v)),                                                                 \
+      flush()
+#define SHOW6(x, y, z, w, v, u)                                               \
+  print(HDR, #x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", \
+        (v), #u, "=", (u)),                                                   \
+      flush()
+#define SHOW7(x, y, z, w, v, u, t)                                            \
+  print(HDR, #x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", \
+        (v), #u, "=", (u), #t, "=", (t)),                                     \
+      flush()
+#define SHOW8(x, y, z, w, v, u, t, s)                                         \
+  print(HDR, #x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w), #v, "=", \
+        (v), #u, "=", (u), #t, "=", (t), #s, "=", (s)),                       \
+      flush()
 #else
 #define SHOW(...)
 #endif
