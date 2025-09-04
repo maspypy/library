@@ -9,7 +9,7 @@ data:
     path: string/aho_corasick_for_general_trie.hpp
     title: string/aho_corasick_for_general_trie.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_queue.test.cpp
     title: test/2_library_checker/data_structure/persistent_queue.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT>\r\
@@ -65,7 +65,7 @@ data:
   - ds/unionfind/dynamic_unionfind.hpp
   - string/aho_corasick_for_general_trie.hpp
   timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
   - test/2_library_checker/data_structure/persistent_queue.test.cpp
