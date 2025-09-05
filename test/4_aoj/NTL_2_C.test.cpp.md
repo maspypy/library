@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
   - icon: ':question:'
@@ -39,16 +39,16 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_A
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_C
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_A
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_C
   bundledCode: "#line 1 \"test/4_aoj/NTL_2_C.test.cpp\"\n#define PROBLEM \\\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_A\"\n#line 1 \"\
+    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_C\"\n#line 1 \"\
     my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
     #if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing\
@@ -620,7 +620,7 @@ data:
     \ ans;\n  }\n};\n#line 7 \"test/4_aoj/NTL_2_C.test.cpp\"\n\nusing B = BigInteger;\n\
     \nvoid solve() {\n  STR(X, Y);\n  B x(X), y(Y);\n  x *= y;\n  print(x.to_string());\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_A\"\
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  STR(X, Y);\n  B x(X), y(Y);\n \
     \ x *= y;\n  print(x.to_string());\n}\n\nsigned main() {\n  solve();\n  return\
@@ -641,8 +641,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/NTL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2025-09-05 13:01:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-05 13:42:28+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/NTL_2_C.test.cpp
 layout: document
