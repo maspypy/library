@@ -39,9 +39,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_A
@@ -618,12 +618,13 @@ data:
     \    return x;\n  }\n\n  int digit_sum() {\n    int ans = 0;\n    for (auto &x\
     \ : dat) ans += ::digit_sum(x);  // global \u306B\u3042\u308B digit_sum\n    return\
     \ ans;\n  }\n};\n#line 7 \"test/4_aoj/NTL_2_A.test.cpp\"\n\nusing B = BigInteger;\n\
-    \nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n  x += y;\n  print(x);\n\
+    \nvoid solve() {\n  STR(X, Y);\n  B x(X), y(Y);\n  x += y;\n  print(x.to_string());\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
-    \n\nusing B = BigInteger;\n\nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n\
-    \  x += y;\n  print(x);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \n\nusing B = BigInteger;\n\nvoid solve() {\n  STR(X, Y);\n  B x(X), y(Y);\n \
+    \ x += y;\n  print(x.to_string());\n}\n\nsigned main() {\n  solve();\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -640,8 +641,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/NTL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 22:16:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-05 13:01:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/NTL_2_A.test.cpp
 layout: document

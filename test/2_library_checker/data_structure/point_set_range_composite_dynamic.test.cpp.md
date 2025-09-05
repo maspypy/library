@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/default_prod.hpp
     title: alg/default_prod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -280,34 +280,33 @@ data:
     \ x});\r\n    return int(node.size()) - 1;\r\n  }\r\n\r\n  inline int new_node(ll\
     \ l, ll r) { return new_node(default_prod(l, r)); }\r\n  inline int new_node()\
     \ { return new_node(L0, R0); }\r\n  inline Node operator[](int i) const { return\
-    \ node[i]; }\r\n\r\n  int new_node_from_vector(const vc<X> &dat) {\r\n    assert(L0\
-    \ == 0 && R0 == len(dat));\r\n    auto dfs = [&](auto &dfs, ll l, ll r) -> int\
-    \ {\r\n      if (r == l + 1) return new_node(dat[l]);\r\n      ll m = (l + r)\
-    \ / 2;\r\n      int l_root = dfs(dfs, l, m), r_root = dfs(dfs, m, r);\r\n    \
-    \  X x = MX::op(node[l_root].x, node[r_root].x);\r\n      node.eb(Node{l_root,\
-    \ r_root, x});\r\n      return int(node.size()) - 1;\r\n    };\r\n    return dfs(dfs,\
-    \ 0, len(dat));\r\n  }\r\n\r\n  X prod(int root, ll l, ll r) {\r\n    assert(root\
-    \ != NIL && L0 <= l && l <= r && r <= R0);\r\n    if (l == r) return MX::unit();\r\
-    \n    X x = MX::unit();\r\n    prod_rec(root, L0, R0, l, r, x);\r\n    return\
-    \ x;\r\n  }\r\n\r\n  X prod_all(int root) { return node[root].x; }\r\n\r\n  int\
-    \ set(int root, ll i, const X &x) {\r\n    assert(root != NIL && L0 <= i && i\
-    \ < R0);\r\n    root = copy_node(root);\r\n    set_rec(root, L0, R0, i, x);\r\n\
-    \    return root;\r\n  }\r\n\r\n  int multiply(int root, ll i, const X &x) {\r\
-    \n    assert(root != NIL && L0 <= i && i < R0);\r\n    root = copy_node(root);\r\
-    \n    multiply_rec(root, L0, R0, i, x);\r\n    return root;\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  ll max_right(int root, F check, ll L) {\r\n    assert(root\
-    \ != NIL && L0 <= L && L <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\
-    \n    return max_right_rec(root, check, L0, R0, L, x);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  ll min_left(int root, F check, ll R) {\r\n    assert(root\
-    \ != NIL && L0 <= R && R <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\
-    \n    return min_left_rec(root, check, L0, R0, R, x);\r\n  }\r\n\r\n  // (idx,\
-    \ val)\r\n  template <typename F>\r\n  void enumerate(int root, F f) {\r\n   \
-    \ assert(root != NIL);\r\n    auto dfs = [&](auto &dfs, int c, ll l, ll r) ->\
-    \ void {\r\n      if (c == NIL) return;\r\n      if (r - l == 1) {\r\n       \
-    \ f(l, node[c].x);\r\n        return;\r\n      }\r\n      ll m = (l + r) / 2;\r\
-    \n      dfs(dfs, node[c].ch[0], l, m), dfs(dfs, node[c].ch[1], m, r);\r\n    };\r\
-    \n    dfs(dfs, root, L0, R0);\r\n  }\r\n\r\n private:\r\n  static constexpr bool\
-    \ kUnitOnly =\r\n      std::is_same_v<DefaultProd, DefaultUnitProd<Monoid>>;\r\
+    \ node[i]; }\r\n\r\n  int new_node(const vc<X> &dat) {\r\n    assert(L0 == 0 &&\
+    \ R0 == len(dat));\r\n    auto dfs = [&](auto &dfs, ll l, ll r) -> int {\r\n \
+    \     if (r == l + 1) return new_node(dat[l]);\r\n      ll m = (l + r) / 2;\r\n\
+    \      int l_root = dfs(dfs, l, m), r_root = dfs(dfs, m, r);\r\n      X x = MX::op(node[l_root].x,\
+    \ node[r_root].x);\r\n      node.eb(Node{l_root, r_root, x});\r\n      return\
+    \ int(node.size()) - 1;\r\n    };\r\n    return dfs(dfs, 0, len(dat));\r\n  }\r\
+    \n\r\n  X prod(int root, ll l, ll r) {\r\n    assert(root != NIL && L0 <= l &&\
+    \ l <= r && r <= R0);\r\n    if (l == r) return MX::unit();\r\n    X x = MX::unit();\r\
+    \n    prod_rec(root, L0, R0, l, r, x);\r\n    return x;\r\n  }\r\n\r\n  X prod_all(int\
+    \ root) { return node[root].x; }\r\n\r\n  int set(int root, ll i, const X &x)\
+    \ {\r\n    assert(root != NIL && L0 <= i && i < R0);\r\n    root = copy_node(root);\r\
+    \n    set_rec(root, L0, R0, i, x);\r\n    return root;\r\n  }\r\n\r\n  int multiply(int\
+    \ root, ll i, const X &x) {\r\n    assert(root != NIL && L0 <= i && i < R0);\r\
+    \n    root = copy_node(root);\r\n    multiply_rec(root, L0, R0, i, x);\r\n   \
+    \ return root;\r\n  }\r\n\r\n  template <typename F>\r\n  ll max_right(int root,\
+    \ F check, ll L) {\r\n    assert(root != NIL && L0 <= L && L <= R0 && check(MX::unit()));\r\
+    \n    X x = MX::unit();\r\n    return max_right_rec(root, check, L0, R0, L, x);\r\
+    \n  }\r\n\r\n  template <typename F>\r\n  ll min_left(int root, F check, ll R)\
+    \ {\r\n    assert(root != NIL && L0 <= R && R <= R0 && check(MX::unit()));\r\n\
+    \    X x = MX::unit();\r\n    return min_left_rec(root, check, L0, R0, R, x);\r\
+    \n  }\r\n\r\n  // (idx, val)\r\n  template <typename F>\r\n  void enumerate(int\
+    \ root, F f) {\r\n    assert(root != NIL);\r\n    auto dfs = [&](auto &dfs, int\
+    \ c, ll l, ll r) -> void {\r\n      if (c == NIL) return;\r\n      if (r - l ==\
+    \ 1) {\r\n        f(l, node[c].x);\r\n        return;\r\n      }\r\n      ll m\
+    \ = (l + r) / 2;\r\n      dfs(dfs, node[c].ch[0], l, m), dfs(dfs, node[c].ch[1],\
+    \ m, r);\r\n    };\r\n    dfs(dfs, root, L0, R0);\r\n  }\r\n\r\n private:\r\n\
+    \  static constexpr bool kUnitOnly =\r\n      std::is_same_v<DefaultProd, DefaultUnitProd<Monoid>>;\r\
     \n  int copy_node(int c) {\r\n    if constexpr (!PERSISTENT) return c;\r\n   \
     \ if (c == NIL) return c;\r\n    node.eb(node[c]);\r\n    return int(node.size())\
     \ - 1;\r\n  }\r\n\r\n  int touch_child(int c, ll l, ll r) {\r\n    if constexpr\
@@ -456,8 +455,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 22:16:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-09-05 13:01:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
 layout: document
