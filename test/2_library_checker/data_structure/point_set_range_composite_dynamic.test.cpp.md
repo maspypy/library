@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/default_prod.hpp
     title: alg/default_prod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -431,19 +431,19 @@ data:
     using modint998 = modint<998244353>;\n#line 8 \"test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  using Mono = Monoid_Affine<mint>;\n\
     \  using X = Mono::value_type;\n  LL(N, Q);\n  VEC(X, dat, N);\n\n  Dynamic_SegTree<Mono,\
-    \ false> seg(0, N);\n  int root = seg.new_node_from_vector(dat);\n\n  FOR(Q) {\n\
-    \    LL(t, a, b, c);\n    if (t == 0) {\n      seg.set(root, a, {b, c});\n   \
-    \ }\n    if (t == 1) {\n      print(Mono::eval(seg.prod(root, a, b), c));\n  \
-    \  }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ false> seg(0, N);\n  int root = seg.new_node(dat);\n\n  FOR(Q) {\n    LL(t,\
+    \ a, b, c);\n    if (t == 0) {\n      seg.set(root, a, {b, c});\n    }\n    if\
+    \ (t == 1) {\n      print(Mono::eval(seg.prod(root, a, b), c));\n    }\n  }\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/segtree/dynamic_segtree.hpp\"\
     \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
     \ = modint998;\n\nvoid solve() {\n  using Mono = Monoid_Affine<mint>;\n  using\
     \ X = Mono::value_type;\n  LL(N, Q);\n  VEC(X, dat, N);\n\n  Dynamic_SegTree<Mono,\
-    \ false> seg(0, N);\n  int root = seg.new_node_from_vector(dat);\n\n  FOR(Q) {\n\
-    \    LL(t, a, b, c);\n    if (t == 0) {\n      seg.set(root, a, {b, c});\n   \
-    \ }\n    if (t == 1) {\n      print(Mono::eval(seg.prod(root, a, b), c));\n  \
-    \  }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}"
+    \ false> seg(0, N);\n  int root = seg.new_node(dat);\n\n  FOR(Q) {\n    LL(t,\
+    \ a, b, c);\n    if (t == 0) {\n      seg.set(root, a, {b, c});\n    }\n    if\
+    \ (t == 1) {\n      print(Mono::eval(seg.prod(root, a, b), c));\n    }\n  }\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -455,8 +455,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2025-09-05 13:01:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-05 19:35:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
 layout: document
