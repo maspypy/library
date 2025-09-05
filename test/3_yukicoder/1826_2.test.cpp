@@ -16,9 +16,8 @@ void solve() {
   X = rearrange(X, I), Y = rearrange(Y, I), V = rearrange(V, I);
 
   ll LIM = 1LL << 32;
-  Dynamic_SegTree_Sparse<Monoid_Max<ll>, false> seg(N + 1, -LIM, LIM);
-  using np = typename decltype(seg)::np;
-  np root = nullptr;
+  Dynamic_SegTree_Sparse<Monoid_Max<ll>, false> seg(-LIM, LIM);
+  int root = 0;
   root = seg.set(root, 0, 0);
 
   FOR(i, N) {
@@ -27,7 +26,7 @@ void solve() {
     ll t = seg.prod(root, -LIM, y + 1) + v;
     root = seg.multiply(root, y, t);
   }
-  print(root->prod);
+  print(seg[root].prod);
 }
 
 signed main() {

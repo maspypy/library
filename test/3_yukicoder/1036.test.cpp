@@ -11,7 +11,7 @@ void solve() {
   auto f = [&](ll L, ll R) -> ll { return 0; };
   Dynamic_SegTree<Monoid_Gcd<ll>, false, decltype(f)> seg(0, N, f);
   seg.reserve(2 * N);
-  int root = seg.new_node_from_vector(A);
+  int root = seg.new_node(A);
 
   ll ANS1 = 0;
   FOR(L, N) {

@@ -6,7 +6,7 @@
 #include "mod/primitive_root.hpp"
 #include "poly/multivar_convolution.hpp"
 
-constexpr int TEN[] = {1, 10, 100, 1000, 10000, 100000, 1000000};
+// constexpr int TEN[] = {1, 10, 100, 1000, 10000, 100000, 1000000};
 
 constexpr int MOD = 120586241;
 using mint = modint<MOD>;
