@@ -7,14 +7,18 @@
 void solve() {
   LL(Q);
   using MX = Monoid_Add<ll>;
-  Dynamic_SegTree_Sparse<MX, false> seg(Q, 0, 1LL << 30);
-  using np = typename decltype(seg)::np;
-  np root = nullptr;
+  Dynamic_SegTree_Sparse<MX, false> seg(0, 1LL << 30);
+  seg.reserve(Q);
+  int root = 0;
   ll ANS = 0;
   FOR(Q) {
     LL(t, a, b);
-    if (t == 0) { root = seg.multiply(root, a, b); }
-    if (t == 1) { ANS += seg.prod(root, a, b + 1); }
+    if (t == 0) {
+      root = seg.multiply(root, a, b);
+    }
+    if (t == 1) {
+      ANS += seg.prod(root, a, b + 1);
+    }
   }
   print(ANS);
 }

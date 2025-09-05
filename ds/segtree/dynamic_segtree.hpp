@@ -52,7 +52,7 @@ struct Dynamic_SegTree {
   inline int new_node() { return new_node(L0, R0); }
   inline Node operator[](int i) const { return node[i]; }
 
-  int new_node_from_vector(const vc<X> &dat) {
+  int new_node(const vc<X> &dat) {
     assert(L0 == 0 && R0 == len(dat));
     auto dfs = [&](auto &dfs, ll l, ll r) -> int {
       if (r == l + 1) return new_node(dat[l]);

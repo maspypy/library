@@ -12,13 +12,12 @@ const int LIM = 100'100;
 void solve() {
   LL(N);
   VEC(int, A, N);
-  Dynamic_SegTree<Monoid_Min<int>, true> seg(10000000, 0, LIM);
+  Dynamic_SegTree<Monoid_Min<int>, true> seg(0, LIM);
 
-  using np = decltype(seg)::np;
-  vvc<np> root(4);
+  vvc<int> root(4);
   FOR(i, 4) root[i].resize(N + 1);
   vc<int> S(LIM, -1);
-  FOR(i, 1, 4) root[i][0] = seg.new_node(S);
+  FOR(i, 1, 4) root[i][0] = seg.new_node_from_vector(S);
   vvc<int> I(LIM);
 
   FOR(i, N) {
@@ -41,15 +40,14 @@ void solve() {
   auto solve = [&](ll L, ll R) -> ll {
     vi ANS;
     FOR(k, 1, 4) {
-      ll x = seg.max_right(
-          root[k][R], [&](auto e) -> bool { return e >= L; }, 0);
+      ll x =
+          seg.max_right(root[k][R], [&](auto e) -> bool { return e >= L; }, 0);
       ANS.eb(x);
     }
     // non-empty とかいう条件に対処する必要がある！
     ll ans = SUM<ll>(ANS);
     SHOW(L, R, ANS);
-    if (ANS[2] > 0)
-      return ans;
+    if (ANS[2] > 0) return ans;
     if (ANS[1] > 0) {
       if (ANS[0] + ANS[1] < R - L) {
         return ans;

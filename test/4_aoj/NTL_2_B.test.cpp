@@ -1,5 +1,5 @@
 #define PROBLEM \
-  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_B"
+  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_A"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -8,11 +8,10 @@
 using B = BigInteger;
 
 void solve() {
-  B x, y;
-  read(x);
-  read(y);
+  STR(X, Y);
+  B x(X), y(Y);
   x -= y;
-  print(x);
+  print(x.to_string());
 }
 
 signed main() {

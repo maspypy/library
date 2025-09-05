@@ -20,7 +20,7 @@ void solve() {
     x -= y * y;
   }
   print(N);
-  print(x);
+  print(x.to_string());
 }
 
 signed main() {

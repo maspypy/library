@@ -8,11 +8,10 @@
 using B = BigInteger;
 
 void solve() {
-  B x, y;
-  read(x);
-  read(y);
+  STR(X, Y);
+  B x(X), y(Y);
   x += y;
-  print(x);
+  print(x.to_string());
 }
 
 signed main() {
