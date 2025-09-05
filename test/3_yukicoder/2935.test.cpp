@@ -17,7 +17,7 @@ void solve() {
   vvc<int> root(4);
   FOR(i, 4) root[i].resize(N + 1);
   vc<int> S(LIM, -1);
-  FOR(i, 1, 4) root[i][0] = seg.new_node_from_vector(S);
+  FOR(i, 1, 4) root[i][0] = seg.new_node(S);
   vvc<int> I(LIM);
 
   FOR(i, N) {

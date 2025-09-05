@@ -16,7 +16,7 @@ void solve() {
   X = rearrange(X, I), Y = rearrange(Y, I), V = rearrange(V, I);
 
   ll LIM = 1LL << 31;
-  Dynamic_SegTree<Monoid_Max<ll>, false> seg(35 * (N + 1), -LIM, LIM);
+  Dynamic_SegTree<Monoid_Max<ll>, false> seg(-LIM, LIM);
   auto root = seg.new_node(-LIM, LIM);
   root = seg.set(root, 0, 0);
 
@@ -26,7 +26,7 @@ void solve() {
     ll t = seg.prod(root, -LIM, y + 1) + v;
     root = seg.multiply(root, y, t);
   }
-  print(root->x);
+  print(seg[root].x);
 }
 
 signed main() {

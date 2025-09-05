@@ -28,7 +28,7 @@ void solve() {
   LL(N, K, L, U);
   VEC(ll, A, N);
 
-  for (auto& x: A) x += K;
+  for (auto& x : A) x += K;
 
   vvc<ll> dat(K + K);
   FOR(i, N) {
@@ -41,16 +41,19 @@ void solve() {
   ll q, r;
   tie(q, r) = divmod(U - L + 1, K);
   ll LIM = ceil<ll>(1LL << 40, K);
-  Dynamic_SegTree_Sparse<Monoid_Add_Pair<ll>, false> seg(10 * N, 0, LIM);
-  using np = decltype(seg)::np;
+  Dynamic_SegTree_Sparse<Monoid_Add_Pair<ll>, false> seg(0, LIM);
 
-  np X = seg.new_root();
-  np Y = seg.new_root();
+  int X = seg.new_root();
+  int Y = seg.new_root();
   FOR(k, K) {
     if (k < r)
-      for (auto& x: dat[k]) { X = seg.multiply(X, x, {1, x}); }
+      for (auto& x : dat[k]) {
+        X = seg.multiply(X, x, {1, x});
+      }
     if (k >= r)
-      for (auto& x: dat[k]) { Y = seg.multiply(Y, x, {1, x}); }
+      for (auto& x : dat[k]) {
+        Y = seg.multiply(Y, x, {1, x});
+      }
   }
 
   auto eval = [&](i128 c) -> i128 {
@@ -70,7 +73,9 @@ void solve() {
     return ans;
   };
 
-  auto best = [&]() -> ll { return fibonacci_search<i128, true>(eval, 0, LIM).fi; };
+  auto best = [&]() -> ll {
+    return fibonacci_search<i128, true>(eval, 0, LIM).fi;
+  };
 
   ll ANS = infty<ll>;
   FOR(L, K) {
@@ -78,12 +83,16 @@ void solve() {
     // L 削除
     // L+r Y->X
     // L+K Y
-    for (auto& x: dat[L]) { X = seg.multiply(X, x, {-1, -x}); }
-    for (auto& x: dat[L + r]) {
+    for (auto& x : dat[L]) {
+      X = seg.multiply(X, x, {-1, -x});
+    }
+    for (auto& x : dat[L + r]) {
       X = seg.multiply(X, x, {1, x});
       Y = seg.multiply(Y, x, {-1, -x});
     }
-    for (auto& x: dat[L + K]) { Y = seg.multiply(Y, x, {1, x}); }
+    for (auto& x : dat[L + K]) {
+      Y = seg.multiply(Y, x, {1, x});
+    }
   }
   print(ANS);
 }

@@ -7,8 +7,8 @@
 using B = BigInteger;
 
 void solve() {
-  B x;
-  read(x);
+  STR(X);
+  B x(X);
   x = x * x + x;
   x = x.divmod(2).fi;
   INT(mod);

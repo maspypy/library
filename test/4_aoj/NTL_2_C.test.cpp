@@ -1,5 +1,5 @@
 #define PROBLEM \
-  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_A"
+  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_C"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
