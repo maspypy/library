@@ -6,8 +6,8 @@
 
 using B = BigInteger;
 void solve() {
-  B a, p, q;
-  read(a, p, q);
+  STR(A, P, Q);
+  B a(A), p(P), q(Q);
   B b = a * (p + q);
   B c = a * p * q;
   Yes(b * b > B(4) * a * c);

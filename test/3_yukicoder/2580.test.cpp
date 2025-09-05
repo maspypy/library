@@ -12,8 +12,8 @@ using mint = modint998;
 void solve() {
   LL(N);
   VEC(ll, A, N - 1);
-  BigInteger M;
-  read(M);
+  STR(S);
+  BigInteger M(S);
 
   // 累積和の多項式
   vc<mint> F = {1};

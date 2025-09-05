@@ -14,7 +14,8 @@ void solve() {
   LL(N);
   VEC(int, H, N);
   VEC(int, T, N);
-  Dynamic_SegTree_Sparse<Monoid_Max<int>, 0> seg(N, 0, infty<int>);
+  Dynamic_SegTree_Sparse<Monoid_Max<int>, 0> seg(0, infty<int>);
+  seg.reserve(N);
   auto root = seg.new_root();
   FOR(i, N) { root = seg.multiply(root, H[i], T[i]); }
 
@@ -38,7 +39,9 @@ void solve() {
     // T >= h となる最小
     int s = LB(X, T[a]);
     int t = LB(X, H[b]);
-    if (s >= t) { return 1; }
+    if (s >= t) {
+      return 1;
+    }
     auto check = [&](int i, auto e) -> bool { return e < t - s; };
     ll step = D.max_step(check, s);
     ll ANS = step + 2;

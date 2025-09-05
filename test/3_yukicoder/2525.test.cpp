@@ -5,8 +5,8 @@
 #include "bigint/base.hpp"
 
 void solve() {
-  BigInteger A, B;
-  read(A, B);
+  STR(AA, BB);
+  BigInteger A(AA), B(BB);
   bool ok = A.divmod(2).se == B.divmod(2).se;
   print(ok ? "Possible" : "Impossible");
 }
