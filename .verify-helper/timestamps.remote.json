@@ -256,6 +256,7 @@
 "test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp": "2025-09-04 22:16:37 +0900",
 "test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp": "2025-09-04 22:16:37 +0900",
 "test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp": "2025-09-04 22:16:37 +0900",
+"test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp": "2025-09-05 19:35:52 +0900",
 "test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp": "2025-09-04 22:16:37 +0900",
 "test/2_library_checker/data_structure/point_set_range_freq.test.cpp": "2025-09-04 22:16:37 +0900",
 "test/2_library_checker/data_structure/predecessor_problem.test.cpp": "2025-09-04 22:16:37 +0900",
