@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/k_shortest_walk
@@ -456,15 +456,15 @@ data:
     \u305F\u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename\
     \ GT>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T,\
-    \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>);\
-    \ }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X(20 * G.M);\n\
-    \  using np = typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool>\
-    \ vis(N);\n  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v\
-    \ = POP(st);\n    bool done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to]\
-    \ == infty<T>) continue;\n      if (!done && par[v] == e.to && dist[v] == dist[e.to]\
-    \ + e.cost) {\n        done = 1;\n        continue;\n      }\n      T cost = -dist[v]\
-    \ + e.cost + dist[e.to];\n      nodes[v] = X.push(nodes[v], {cost, e.to});\n \
-    \   }\n    for (auto &&e: RG[v]) {\n      if (vis[e.to]) continue;\n      if (par[e.to]\
+    \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) {\n    return vc<T>(K, infty<T>);\n\
+    \  }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X;\n  using\
+    \ np = typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n\
+    \  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = POP(st);\n\
+    \    bool done = 0;\n    for (auto &&e : G[v]) {\n      if (dist[e.to] == infty<T>)\
+    \ continue;\n      if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost)\
+    \ {\n        done = 1;\n        continue;\n      }\n      T cost = -dist[v] +\
+    \ e.cost + dist[e.to];\n      nodes[v] = X.push(nodes[v], {cost, e.to});\n   \
+    \ }\n    for (auto &&e : RG[v]) {\n      if (vis[e.to]) continue;\n      if (par[e.to]\
     \ == v) {\n        nodes[e.to] = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to]\
     \ = 1;\n        st.eb(e.to);\n      }\n    }\n  }\n\n  T base = dist[s];\n  vc<T>\
     \ ANS = {base};\n  if (nodes[s]) {\n    using PAIR = pair<T, np>;\n    auto comp\
@@ -473,13 +473,13 @@ data:
     \    while (len(ANS) < K && len(que)) {\n      auto [d, n] = que.top();\n    \
     \  que.pop();\n      ANS.eb(d);\n      if (n->l) que.emplace(d + (n->l->x.fi)\
     \ - (n->x.fi), n->l);\n      if (n->r) que.emplace(d + (n->r->x.fi) - (n->x.fi),\
-    \ n->r);\n      np m = nodes[n->x.se];\n      if (m) { que.emplace(d + m->x.fi,\
-    \ m); }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(infty<T>);\n  return ANS;\n\
-    }\n#line 6 \"test/2_library_checker/graph/K_shortest_walk.test.cpp\"\n\nvoid solve()\
-    \ {\n  INT(N, M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M, 1, 0);\n\
-    \  auto ANS = K_shortest_walk<ll, decltype(G1)>(G1, s, t, K);\n  for (auto &&x:\
-    \ ANS) {\n    if (x == infty<ll>) x = -1;\n    print(x);\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ n->r);\n      np m = nodes[n->x.se];\n      if (m) {\n        que.emplace(d\
+    \ + m->x.fi, m);\n      }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(infty<T>);\n\
+    \  return ANS;\n}\n#line 6 \"test/2_library_checker/graph/K_shortest_walk.test.cpp\"\
+    \n\nvoid solve() {\n  INT(N, M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M,\
+    \ 1, 0);\n  auto ANS = K_shortest_walk<ll, decltype(G1)>(G1, s, t, K);\n  for\
+    \ (auto &&x: ANS) {\n    if (x == infty<ll>) x = -1;\n    print(x);\n  }\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/k_shortest_walk\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\n\
     #include \"graph/shortest_path/K_shortest_walk.hpp\"\n\nvoid solve() {\n  INT(N,\
@@ -500,8 +500,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 14:50:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-16 15:27:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/K_shortest_walk.test.cpp
 layout: document
