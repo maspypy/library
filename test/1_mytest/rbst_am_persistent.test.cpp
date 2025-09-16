@@ -8,7 +8,7 @@ void test() {
   using AM = ActedMonoid_Min_Assign<int, -1>;
   using MonoX = typename AM::Monoid_X;
 
-  RBST_ActedMonoid<AM, true> X(100000);
+  RBST_ActedMonoid<AM, true> X;
   using np = decltype(X)::np;
 
   FOR(1000) {

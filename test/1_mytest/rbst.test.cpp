@@ -4,7 +4,7 @@
 #include "random/base.hpp"
 
 void test() {
-  RBST<int, true> X(10000);
+  RBST<int, true> X;
   using np = decltype(X)::np;
 
   FOR(1000) {

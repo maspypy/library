@@ -9,7 +9,7 @@ using mint = modint998;
 
 void test() {
   using Mono = Monoid_Assign<int, -1>;
-  RBST_Monoid<Mono, false> X(100);
+  RBST_Monoid<Mono, false> X;
 
   FOR(1000) {
     X.reset();

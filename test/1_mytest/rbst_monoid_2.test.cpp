@@ -9,7 +9,7 @@ using mint = modint998;
 
 void test() {
   using Mono = Monoid_Affine<mint>;
-  RBST_Monoid<Mono, false> X(100);
+  RBST_Monoid<Mono, false> X;
   auto rnd_affine = [&]() -> pair<mint, mint> {
     int a = RNG(0, 3);
     int b = RNG(0, 3);
@@ -52,7 +52,7 @@ void test() {
         ++R;
         vc<T> B = {A.begin() + L, A.begin() + R};
         T t = Mono::unit();
-        for (auto&& b: B) t = Mono::op(t, b);
+        for (auto&& b : B) t = Mono::op(t, b);
         assert(X.prod(root, L, R) == t);
       }
       if (t == 4) {
