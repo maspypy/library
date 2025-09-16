@@ -83,11 +83,9 @@ struct Dynamic_LiChao_Tree {
   }
 
  private:
-  np copy_node(np c) {
+  np clone(np c) {
     if (!c || !PERSISTENT) return c;
-    np d = pool.create();
-    d->fid = c->fid, d->l = c->l, d->r = c->r;
-    return d;
+    return pool.lone(c);
   }
 
   inline T evaluate_inner(int fid, ll x) {
@@ -101,7 +99,7 @@ struct Dynamic_LiChao_Tree {
     chmax(xl, node_l), chmin(xr, node_r);
     if (xl >= xr) return c;
     if (node_l < xl || xr < node_r) {
-      c = copy_node(c);
+      c = clone(c);
       ll node_m = (node_l + node_r) / 2;
       if (!c->l) c->l = new_node();
       if (!c->r) c->r = new_node();
@@ -119,7 +117,7 @@ struct Dynamic_LiChao_Tree {
     bool bl = (MINIMIZE ? fl < gl : fl > gl);
     bool br = (MINIMIZE ? fr < gr : fr > gr);
     if (bl && br) {
-      c = copy_node(c);
+      c = clone(c);
       c->fid = fid;
       return c;
     }
@@ -127,7 +125,7 @@ struct Dynamic_LiChao_Tree {
       return c;
     }
 
-    c = copy_node(c);
+    c = clone(c);
     ll node_m = (node_l + node_r) / 2;
     auto fm = evaluate_inner(fid, node_m), gm = evaluate_inner(gid, node_m);
     bool bm = (MINIMIZE ? fm < gm : fm > gm);

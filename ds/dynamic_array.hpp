@@ -34,7 +34,7 @@ struct Dynamic_Array {
   }
 
   np set(np c, int idx, T x, bool make_copy = true) {
-    c = (c ? copy_node(c, make_copy) : new_root());
+    c = (c ? clone(c, make_copy) : new_root());
     if (idx == 0) {
       c->x = x;
       return c;
@@ -44,11 +44,8 @@ struct Dynamic_Array {
   }
 
  private:
-  np copy_node(np c, bool make_copy) {
+  np clone(np c, bool make_copy) {
     if (!make_copy || !PERSISTENT) return c;
-    np d = pool.create();
-    d->x = c->x;
-    FOR(k, (1 << LOG)) d->ch[k] = c->ch[k];
-    return d;
+    return pool.clone(c);
   }
 };

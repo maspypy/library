@@ -118,28 +118,25 @@ struct Dynamic_Lazy_SegTree {
   // root[l:r) を apply(other[l:r),a) で上書きしたものを返す
   np copy_interval(np root, np other, ll l, ll r, A a) {
     if (root == other) return root;
-    root = copy_node(root);
+    root = clone(root);
     copy_interval_rec(root, other, L0, R0, l, r, a);
     return root;
   }
 
  private:
-  np copy_node(np c) {
+  np clone(np c) {
     if (!c || !PERSISTENT) return c;
-    np a = pool.create();
-    a->l = c->l, a->r = c->r;
-    a->x = c->x, a->lazy = c->lazy;
-    return a;
+    return pool.clone(c);
   }
 
   void prop(np c, ll l, ll r) {
     assert(r - l >= 2);
     ll m = (l + r) / 2;
     if (c->lazy == MA::unit()) return;
-    c->l = (c->l ? copy_node(c->l) : new_node(l, m));
+    c->l = (c->l ? clone(c->l) : new_node(l, m));
     c->l->x = AM::act(c->l->x, c->lazy, m - l);
     c->l->lazy = MA::op(c->l->lazy, c->lazy);
-    c->r = (c->r ? copy_node(c->r) : new_node(m, r));
+    c->r = (c->r ? clone(c->r) : new_node(m, r));
     c->r->x = AM::act(c->r->x, c->lazy, r - m);
     c->r->lazy = MA::op(c->r->lazy, c->lazy);
     c->lazy = MA::unit();
@@ -163,8 +160,8 @@ struct Dynamic_Lazy_SegTree {
     }
     // push
     ll m = (l + r) / 2;
-    c->l = (c->l ? copy_node(c->l) : new_node());
-    c->r = (c->r ? copy_node(c->r) : new_node());
+    c->l = (c->l ? clone(c->l) : new_node());
+    c->r = (c->r ? clone(c->r) : new_node());
     c->l->x = AM::act(c->l->x, c->lazy, m - l);
     c->l->lazy = MA::op(c->l->lazy, c->lazy);
     c->r->x = AM::act(c->r->x, c->lazy, r - m);
@@ -179,7 +176,7 @@ struct Dynamic_Lazy_SegTree {
 
   np set_rec(np c, ll l, ll r, ll i, const X &x) {
     if (r == l + 1) {
-      c = copy_node(c);
+      c = clone(c);
       c->x = x;
       c->lazy = MA::unit();
       return c;
@@ -189,7 +186,7 @@ struct Dynamic_Lazy_SegTree {
     if (!c->l) c->l = new_node(l, m);
     if (!c->r) c->r = new_node(m, r);
 
-    c = copy_node(c);
+    c = clone(c);
     if (i < m) {
       c->l = set_rec(c->l, l, m, i, x);
     } else {
@@ -201,7 +198,7 @@ struct Dynamic_Lazy_SegTree {
 
   np multiply_rec(np c, ll l, ll r, ll i, const X &x) {
     if (r == l + 1) {
-      c = copy_node(c);
+      c = clone(c);
       c->x = MX::op(c->x, x);
       c->lazy = MA::unit();
       return c;
@@ -211,7 +208,7 @@ struct Dynamic_Lazy_SegTree {
     if (!c->l) c->l = new_node(l, m);
     if (!c->r) c->r = new_node(m, r);
 
-    c = copy_node(c);
+    c = clone(c);
     if (i < m) {
       c->l = multiply_rec(c->l, l, m, i, x);
     } else {
@@ -245,14 +242,14 @@ struct Dynamic_Lazy_SegTree {
     chmin(qr, r);
     if (ql >= qr) return c;
     if (l == ql && r == qr) {
-      c = copy_node(c);
+      c = clone(c);
       c->x = AM::act(c->x, a, r - l);
       c->lazy = MA::op(c->lazy, a);
       return c;
     }
     prop(c, l, r);
     ll m = (l + r) / 2;
-    c = copy_node(c);
+    c = clone(c);
     c->l = apply_rec(c->l, l, m, ql, qr, a);
     c->r = apply_rec(c->r, m, r, ql, qr, a);
     c->x = MX::op(c->l->x, c->r->x);

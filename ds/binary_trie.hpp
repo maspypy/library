@@ -87,16 +87,13 @@ struct Binary_Trie {
     return c;
   }
 
-  np copy_node(np c) {
+  np clone(np c) {
     if (!c || !PERSISTENT) return c;
-    np res = pool.create();
-    res->width = c->width, res->val = c->val;
-    res->cnt = c->cnt, res->l = c->l, res->r = c->r;
-    return res;
+    return pool.clone(c);
   }
 
   np add_rec(np root, int ht, UINT val, T cnt) {
-    root = copy_node(root);
+    root = clone(root);
     root->cnt += cnt;
     if (ht == 0) return root;
 
@@ -119,7 +116,7 @@ struct Binary_Trie {
     int same = w - 1 - topbit((val >> (ht - w)) ^ (c->val));
     np n = new_node(same, (c->val) >> (w - same));
     n->cnt = c->cnt + cnt;
-    c = copy_node(c);
+    c = clone(c);
     c->width = w - same;
     c->val = c->val & mask(w - same);
     if ((val >> (ht - same - 1)) & 1) {

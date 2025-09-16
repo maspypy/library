@@ -112,7 +112,7 @@ struct Dynamic_SegTree_Sparse {
     node[c].prod = MX::op(node[c].prod, node[node[c].ch[1]].prod);
   }
 
-  inline int copy_node(int c) {
+  inline int clone(int c) {
     if constexpr (!PERSISTENT)
       return c;
     else {
@@ -124,7 +124,7 @@ struct Dynamic_SegTree_Sparse {
 
   int set_rec(int c, ll l, ll r, ll i, X x) {
     if (c == NIL) return new_node(i, x);
-    c = copy_node(c);
+    c = clone(c);
     if (node[c].idx == i) {
       node[c].x = x;
       update(c);
@@ -145,7 +145,7 @@ struct Dynamic_SegTree_Sparse {
 
   int multiply_rec(int c, ll l, ll r, ll i, X x) {
     if (c == NIL) return new_node(i, x);
-    c = copy_node(c);
+    c = clone(c);
     if (node[c].idx == i) {
       node[c].x = MX::op(node[c].x, x);
       update(c);

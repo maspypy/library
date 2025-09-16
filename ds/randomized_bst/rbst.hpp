@@ -37,12 +37,9 @@ struct RBST {
     return dfs(dfs, 0, len(dat));
   }
 
-  np copy_node(np &n) {
+  np clone(np n) {
     if (!n || !PERSISTENT) return n;
-    np c = pool.create();
-    c->l = n->l, c->r = n->r;
-    c->s = n->s, c->size = n->size, c->rev = n->rev;
-    return c;
+    return pool.clone(n);
   }
 
   np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }
@@ -117,12 +114,12 @@ struct RBST {
     // 子をコピーする必要がある。複数の親を持つ可能性があるため。
     if (c->rev) {
       if (c->l) {
-        c->l = copy_node(c->l);
+        c->l = clone(c->l);
         c->l->rev ^= 1;
         swap(c->l->l, c->l->r);
       }
       if (c->r) {
-        c->r = copy_node(c->r);
+        c->r = clone(c->r);
         c->r->rev ^= 1;
         swap(c->r->l, c->r->r);
       }
@@ -147,13 +144,13 @@ struct RBST {
     u32 sl = l_root->size, sr = r_root->size;
     if (xor128() % (sl + sr) < sl) {
       prop(l_root);
-      l_root = copy_node(l_root);
+      l_root = clone(l_root);
       l_root->r = merge_rec(l_root->r, r_root);
       update(l_root);
       return l_root;
     }
     prop(r_root);
-    r_root = copy_node(r_root);
+    r_root = clone(r_root);
     r_root->l = merge_rec(l_root, r_root->l);
     update(r_root);
     return r_root;
@@ -165,13 +162,13 @@ struct RBST {
     u32 sl = (root->l ? root->l->size : 0);
     if (k <= sl) {
       auto [nl, nr] = split_rec(root->l, k);
-      root = copy_node(root);
+      root = clone(root);
       root->l = nr;
       update(root);
       return {nl, root};
     }
     auto [nl, nr] = split_rec(root->r, k - (1 + sl));
-    root = copy_node(root);
+    root = clone(root);
     root->r = nl;
     update(root);
     return {root, nr};
@@ -182,18 +179,18 @@ struct RBST {
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
-      root = copy_node(root);
+      root = clone(root);
       root->l = set_rec(root->l, k, s);
       update(root);
       return root;
     }
     if (k == sl) {
-      root = copy_node(root);
+      root = clone(root);
       root->s = s;
       update(root);
       return root;
     }
-    root = copy_node(root);
+    root = clone(root);
     root->r = set_rec(root->r, k - (1 + sl), s);
     update(root);
     return root;
@@ -213,7 +210,7 @@ struct RBST {
   pair<np, np> split_max_right_rec(np root, const F &check) {
     if (!root) return {nullptr, nullptr};
     prop(root);
-    root = copy_node(root);
+    root = clone(root);
     if (check(root->s)) {
       auto [n1, n2] = split_max_right_rec(root->r, check);
       root->r = n1;

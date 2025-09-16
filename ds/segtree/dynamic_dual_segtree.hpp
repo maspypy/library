@@ -51,7 +51,7 @@ struct Dynamic_Dual_SegTree {
   np apply(np root, ll l, ll r, const X &x) {
     if (l == r) return root;
     assert(root && L0 <= l && l < r && r <= R0);
-    root = copy_node(root);
+    root = clone(root);
     apply_rec(root, L0, R0, l, r, x);
     return root;
   }
@@ -59,7 +59,7 @@ struct Dynamic_Dual_SegTree {
   // root[l:r) を other[l:r)*x で上書きしたものを返す
   np copy_interval(np root, np other, ll l, ll r, X x) {
     if (root == other) return root;
-    root = copy_node(root);
+    root = clone(root);
     copy_interval_rec(root, other, L0, R0, l, r, x);
     return root;
   }
@@ -87,11 +87,9 @@ struct Dynamic_Dual_SegTree {
   }
 
  private:
-  np copy_node(np c) {
+  np clone(np c) {
     if (!c || !PERSISTENT) return c;
-    np d = pool.create();
-    d->l = c->l, d->r = c->r, d->x = c->x;
-    return d;
+    return pool.clone(c);
   }
 
   void apply_rec(np c, ll l, ll r, ll ql, ll qr, const X &a) {
@@ -104,8 +102,8 @@ struct Dynamic_Dual_SegTree {
       return;
     }
     // push
-    c->l = (c->l ? copy_node(c->l) : new_node());
-    c->r = (c->r ? copy_node(c->r) : new_node());
+    c->l = (c->l ? clone(c->l) : new_node());
+    c->r = (c->r ? clone(c->r) : new_node());
     c->l->x = MX::op(c->l->x, c->x);
     c->r->x = MX::op(c->r->x, c->x);
     c->x = MX::unit();
@@ -128,8 +126,8 @@ struct Dynamic_Dual_SegTree {
       return;
     }
     // push
-    c->l = (c->l ? copy_node(c->l) : new_node());
-    c->r = (c->r ? copy_node(c->r) : new_node());
+    c->l = (c->l ? clone(c->l) : new_node());
+    c->r = (c->r ? clone(c->r) : new_node());
     c->l->x = MX::op(c->l->x, c->x);
     c->r->x = MX::op(c->r->x, c->x);
     c->x = MX::unit();

@@ -21,18 +21,15 @@ struct Meldable_Heap {
     c->x = x, c->size = 1, c->dist = 1;
     return c;
   }
-  np copy_node(np a) {
+  np clone(np a) {
     if (!a || !PERSISTENT) return a;
-    np b = new_node(a->x);
-    b->l = a->l, b->r = a->r;
-    b->size = a->size, b->dist = a->dist;
-    return b;
+    return pool.clone(a);
   }
   np meld(np a, np b) {
     if (!a) return b;
     if (!b) return a;
-    a = copy_node(a);
-    b = copy_node(b);
+    a = clone(a);
+    b = clone(b);
     if constexpr (TOP_IS_MIN) {
       if ((a->x) > (b->x)) swap(a, b);
     } else {
@@ -82,7 +79,7 @@ struct Lazy_Meldable_Heap {
     c->x = x, c->size = 1, c->dist = 1;
     return c;
   }
-  np copy_node(np a) {
+  np clone(np a) {
     if (!a || !PERSISTENT) return a;
     np b = new_node(a->x);
     b->l = a->l, b->r = a->r;
@@ -91,7 +88,7 @@ struct Lazy_Meldable_Heap {
   }
   np apply(np a, VAL x) {
     if (!a) return a;
-    a = copy_node(a);
+    a = clone(a);
     a->x += x;
     return a;
   }
@@ -107,7 +104,7 @@ struct Lazy_Meldable_Heap {
     } else {
       if ((a->x + add_a) < (b->x + add_b)) swap(a, b), swap(add_a, add_b);
     }
-    a = copy_node(a);
+    a = clone(a);
     a->x += add_a;
     a->r = meld(a->r, b, 0, -a->x + add_b);
     if (!(a->l) || (a->l->dist < a->r->dist)) swap(a->l, a->r);

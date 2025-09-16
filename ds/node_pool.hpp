@@ -23,6 +23,12 @@ struct Node_Pool {
     return ::new (s) Node(forward<Args>(args)...);
   }
 
+  np clone(const np x) {
+    assert(x);
+    Slot* s = new_slot();
+    return ::new (s) Node(*x);  // コピーコンストラクタ呼び出し
+  }
+
   void destroy(np x) {
     if (!x) return;
     x->~Node();

@@ -77,14 +77,14 @@ struct Dynamic_SegTree {
 
   int set(int root, ll i, const X &x) {
     assert(root != NIL && L0 <= i && i < R0);
-    root = copy_node(root);
+    root = clone(root);
     set_rec(root, L0, R0, i, x);
     return root;
   }
 
   int multiply(int root, ll i, const X &x) {
     assert(root != NIL && L0 <= i && i < R0);
-    root = copy_node(root);
+    root = clone(root);
     multiply_rec(root, L0, R0, i, x);
     return root;
   }
@@ -122,7 +122,7 @@ struct Dynamic_SegTree {
  private:
   static constexpr bool kUnitOnly =
       std::is_same_v<DefaultProd, DefaultUnitProd<Monoid>>;
-  int copy_node(int c) {
+  int clone(int c) {
     if constexpr (!PERSISTENT) return c;
     if (c == NIL) return c;
     node.eb(node[c]);
@@ -133,7 +133,7 @@ struct Dynamic_SegTree {
     if constexpr (!PERSISTENT) {
       return (c == NIL ? new_node(l, r) : c);
     } else {
-      return (c == NIL ? new_node(l, r) : copy_node(c));
+      return (c == NIL ? new_node(l, r) : clone(c));
     }
   }
 

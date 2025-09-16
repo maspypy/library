@@ -43,13 +43,9 @@ struct RBST_ActedMonoid {
     return dfs(dfs, 0, len(dat));
   }
 
-  np copy_node(np &n) {
+  np clone(np n) {
     if (!n || !PERSISTENT) return n;
-    np c = pool.create();
-    c->l = n->l, c->r = n->r;
-    c->x = n->x, c->prod = n->prod, c->lazy = n->lazy;
-    c->size = n->size, c->rev = n->rev;
-    return c;
+    return pool.clone(n);
   }
 
   np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }
@@ -145,8 +141,8 @@ struct RBST_ActedMonoid {
     bool bl_lazy = (c->lazy != Monoid_A::unit());
     bool bl_rev = c->rev;
     if (bl_lazy || bl_rev) {
-      c->l = copy_node(c->l);
-      c->r = copy_node(c->r);
+      c->l = clone(c->l);
+      c->r = clone(c->r);
     }
     if (c->lazy != Monoid_A::unit()) {
       if (c->l) {
@@ -194,13 +190,13 @@ struct RBST_ActedMonoid {
     u32 sl = l_root->size, sr = r_root->size;
     if (xor128() % (sl + sr) < sl) {
       prop(l_root);
-      l_root = copy_node(l_root);
+      l_root = clone(l_root);
       l_root->r = merge_rec(l_root->r, r_root);
       update(l_root);
       return l_root;
     }
     prop(r_root);
-    r_root = copy_node(r_root);
+    r_root = clone(r_root);
     r_root->l = merge_rec(l_root, r_root->l);
     update(r_root);
     return r_root;
@@ -212,13 +208,13 @@ struct RBST_ActedMonoid {
     u32 sl = (root->l ? root->l->size : 0);
     if (k <= sl) {
       auto [nl, nr] = split_rec(root->l, k);
-      root = copy_node(root);
+      root = clone(root);
       root->l = nr;
       update(root);
       return {nl, root};
     }
     auto [nl, nr] = split_rec(root->r, k - (1 + sl));
-    root = copy_node(root);
+    root = clone(root);
     root->r = nl;
     update(root);
     return {root, nr};
@@ -229,18 +225,18 @@ struct RBST_ActedMonoid {
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
-      root = copy_node(root);
+      root = clone(root);
       root->l = set_rec(root->l, k, x);
       update(root);
       return root;
     }
     if (k == sl) {
-      root = copy_node(root);
+      root = clone(root);
       root->x = x;
       update(root);
       return root;
     }
-    root = copy_node(root);
+    root = clone(root);
     root->r = set_rec(root->r, k - (1 + sl), x);
     update(root);
     return root;
@@ -251,18 +247,18 @@ struct RBST_ActedMonoid {
     prop(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
-      root = copy_node(root);
+      root = clone(root);
       root->l = multiply_rec(root->l, k, x);
       update(root);
       return root;
     }
     if (k == sl) {
-      root = copy_node(root);
+      root = clone(root);
       root->x = Monoid_X::op(root->x, x);
       update(root);
       return root;
     }
-    root = copy_node(root);
+    root = clone(root);
     root->r = multiply_rec(root->r, k - (1 + sl), x);
     update(root);
     return root;
@@ -302,7 +298,7 @@ struct RBST_ActedMonoid {
 
   np apply_rec(np root, u32 l, u32 r, const A &a) {
     prop(root);
-    root = copy_node(root);
+    root = clone(root);
     if (l == 0 && r == root->size) {
       root->x = ActedMonoid::act(root->x, a, 1);
       root->prod = ActedMonoid::act(root->prod, a, root->size);
@@ -322,7 +318,7 @@ struct RBST_ActedMonoid {
   pair<np, np> split_max_right_rec(np root, F check, X &x) {
     if (!root) return {nullptr, nullptr};
     prop(root);
-    root = copy_node(root);
+    root = clone(root);
     X y = Monoid_X::op(x, root->prod);
     if (check(y)) {
       x = y;
