@@ -5,7 +5,7 @@
 #include "convex/slope_trick/slope_super.hpp"
 
 void test(int N, bool from_zero, int add_prob) {
-  Slope_Trick_Super<ll> ST(N);
+  Slope_Trick_Super<ll> ST;
   using F = typename decltype(ST)::FUNC;
 
   vc<int> L(2 * N - 1), R(2 * N - 1), A(N), B(N);
@@ -54,7 +54,9 @@ void test(int N, bool from_zero, int add_prob) {
       R[i] = R[a] + R[b];
       dp[i].assign(R[i] + 1, infty<ll>);
       FOR(x1, L[a], R[a] + 1) {
-        FOR(x2, L[b], R[b] + 1) { chmin(dp[i][x1 + x2], dp[a][x1] + dp[b][x2]); }
+        FOR(x2, L[b], R[b] + 1) {
+          chmin(dp[i][x1 + x2], dp[a][x1] + dp[b][x2]);
+        }
       }
       func[i] = ST.convolve(func[a], func[b]);
     }
@@ -96,8 +98,8 @@ void solve() {
 signed main() {
   vc<int> ns = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1000};
   vc<int> ps = {50, 100, 0, 95, 5};
-  for (auto& n: ns) {
-    for (auto& p: ps) {
+  for (auto& n : ns) {
+    for (auto& p : ps) {
       FOR(20) {
         test(n, false, p);
         test(n, true, p);

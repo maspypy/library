@@ -14,17 +14,19 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_tree();
 
-  Meldable_Heap<ll, false, false> X(N);
+  Meldable_Heap<ll, false, false> X;
   using np = decltype(X)::np;
 
   auto dfs = [&](auto& dfs, int v, int p) -> np {
     np que = X.new_root();
-    for (auto& e: G[v]) {
+    for (auto& e : G[v]) {
       if (e.to == p) continue;
       que = X.meld(que, dfs(dfs, e.to, v));
     }
     ll sz = (que ? que->size : 0);
-    if (sz == 0) { que = X.push(que, 1); }
+    if (sz == 0) {
+      que = X.push(que, 1);
+    }
     elif (sz == 1) { que->x += 1; }
     else {
       ll a = que->x;

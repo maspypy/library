@@ -9,10 +9,12 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
   int N = G.N;
   auto RG = reverse_graph(G);
   auto [dist, par] = dijkstra<T, decltype(RG)>(RG, t);
-  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>); }
+  if (dist[s] == infty<T>) {
+    return vc<T>(K, infty<T>);
+  }
 
   using P = pair<T, int>;
-  Meldable_Heap<P, true, true> X(20 * G.M);
+  Meldable_Heap<P, true, true> X;
   using np = typename decltype(X)::np;
   vc<np> nodes(N, nullptr);
 
@@ -22,7 +24,7 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
   while (len(st)) {
     int v = POP(st);
     bool done = 0;
-    for (auto &&e: G[v]) {
+    for (auto &&e : G[v]) {
       if (dist[e.to] == infty<T>) continue;
       if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost) {
         done = 1;
@@ -31,7 +33,7 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
       T cost = -dist[v] + e.cost + dist[e.to];
       nodes[v] = X.push(nodes[v], {cost, e.to});
     }
-    for (auto &&e: RG[v]) {
+    for (auto &&e : RG[v]) {
       if (vis[e.to]) continue;
       if (par[e.to] == v) {
         nodes[e.to] = X.meld(nodes[e.to], nodes[v]);
@@ -55,7 +57,9 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
       if (n->l) que.emplace(d + (n->l->x.fi) - (n->x.fi), n->l);
       if (n->r) que.emplace(d + (n->r->x.fi) - (n->x.fi), n->r);
       np m = nodes[n->x.se];
-      if (m) { que.emplace(d + m->x.fi, m); }
+      if (m) {
+        que.emplace(d + m->x.fi, m);
+      }
     }
   }
   while (len(ANS) < K) ANS.eb(infty<T>);

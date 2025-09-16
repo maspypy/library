@@ -14,12 +14,12 @@ void solve() {
 
   ll ANS = 0;
 
-  Meldable_Heap<ll, false, false> X(N);
+  Meldable_Heap<ll, false, false> X;
   using np = decltype(X)::np;
 
   auto dfs = [&](auto& dfs, int v, int p) -> np {
     np que = X.new_root();
-    for (auto& e: G[v]) {
+    for (auto& e : G[v]) {
       if (e.to == p) continue;
       np que1 = dfs(dfs, e.to, v);
       que = X.meld(que, que1);
