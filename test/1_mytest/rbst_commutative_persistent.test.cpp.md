@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst_commutative_monoid.hpp
     title: ds/randomized_bst/rbst_commutative_monoid.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -249,7 +249,7 @@ data:
     \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
     \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
     \ {\n    if (!n || !PERSISTENT) return n;\n    np c = pool.create();\n    c->l\
-    \ = l, c->r = n->r;\n    c->x = n->x, c->prod = n->prod;\n    c->size = n->size,\
+    \ = n->l, c->r = n->r;\n    c->x = n->x, c->prod = n->prod;\n    c->size = n->size,\
     \ c->rev = n->rev;\n    return c;\n  }\n\n  np merge(np l_root, np r_root) { return\
     \ merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a,\
     \ b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
@@ -401,8 +401,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_commutative_persistent.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:39:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-16 16:21:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_commutative_persistent.test.cpp
 layout: document

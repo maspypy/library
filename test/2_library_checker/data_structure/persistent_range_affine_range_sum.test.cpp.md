@@ -39,7 +39,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/persistent_range_affine_range_sum
   bundledCode: "#line 1 \"test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_range_affine_range_sum\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/persistent_range_affine_range_sum\"\
     \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
@@ -258,7 +258,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 6 \"test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp\"\
     \n\n#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool {\n\
     \  struct Slot {\n    union alignas(Node) {\n      Slot* next;\n      unsigned\
     \ char storage[sizeof(Node)];\n    };\n  };\n  using np = Node*;\n\n  static constexpr\
@@ -282,15 +282,15 @@ data:
     \ = typename AM::X;\n  using A = typename AM::A;\n  using F = function<X(ll, ll)>;\n\
     \  F default_prod;\n\n  struct Node {\n    Node *l, *r;\n    X x;\n    A lazy;\n\
     \  };\n\n  Node_Pool<Node> pool;\n  const ll L0, R0;\n  using np = Node *;\n\n\
-    \  Dynamic_Lazy_SegTree(\n      int NODES, ll L0, ll R0,\n      F default_prod\
-    \ = [](ll, ll) -> X { return MX::unit(); })\n      : default_prod(default_prod),\
-    \ L0(L0), R0(R0) {}\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const\
-    \ X x) {\n    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x = x,\
-    \ c->lazy = MA::unit();\n    return c;\n  }\n\n  np new_node(ll l, ll r) {\n \
-    \   assert(l < r);\n    return new_node(default_prod(l, r));\n  }\n  np new_node()\
-    \ { return new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0\
-    \ == 0 && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node\
-    \ * {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
+    \  Dynamic_Lazy_SegTree(\n      ll L0, ll R0, F default_prod = [](ll, ll) -> X\
+    \ { return MX::unit(); })\n      : default_prod(default_prod), L0(L0), R0(R0)\
+    \ {}\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const X\
+    \ x) {\n    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x = x, c->lazy\
+    \ = MA::unit();\n    return c;\n  }\n\n  np new_node(ll l, ll r) {\n    assert(l\
+    \ < r);\n    return new_node(default_prod(l, r));\n  }\n  np new_node() { return\
+    \ new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0 == 0\
+    \ && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {\n\
+    \      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
     \      ll m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
     \ m, r);\n      X x = MX::op(l_root->x, r_root->x);\n      np root = new_node(x);\n\
     \      root->l = l_root, root->r = r_root;\n      return root;\n    };\n    return\
@@ -476,30 +476,30 @@ data:
     template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
     \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 9 \"test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp\"\
+    using modint998 = modint<998244353>;\n#line 10 \"test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
     \  using AM = ActedMonoid_Sum_Affine<mint>;\n  Dynamic_Lazy_SegTree<AM, true>\
-    \ seg(10000000, 0, N);\n  using np = decltype(seg)::np;\n  vc<np> root(Q + 1);\n\
-    \  root[0] = seg.new_node(A);\n\n  FOR(q, 1, Q + 1) {\n    INT(t);\n    if (t\
-    \ == 0) {\n      INT(k, L, R, b, c);\n      ++k;\n      root[q] = seg.apply(root[k],\
-    \ L, R, {mint(b), mint(c)});\n    }\n    if (t == 1) {\n      INT(k, s, l, r);\n\
+    \ seg(0, N);\n  using np = decltype(seg)::np;\n  vc<np> root(Q + 1);\n  root[0]\
+    \ = seg.new_node(A);\n\n  FOR(q, 1, Q + 1) {\n    INT(t);\n    if (t == 0) {\n\
+    \      INT(k, L, R, b, c);\n      ++k;\n      root[q] = seg.apply(root[k], L,\
+    \ R, {mint(b), mint(c)});\n    }\n    if (t == 1) {\n      INT(k, s, l, r);\n\
     \      ++k, ++s;\n      root[q] = seg.copy_interval(root[k], root[s], l, r, {mint(1),\
     \ mint(0)});\n    }\n    if (t == 2) {\n      INT(k, l, r);\n      ++k;\n    \
     \  root[q] = root[k];\n      mint ANS = seg.prod(root[q], l, r);\n      print(ANS);\n\
     \    }\n  }\n}\n\nsigned main() { solve(); }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_range_affine_range_sum\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/persistent_range_affine_range_sum\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/segtree/dynamic_lazy_segtree.hpp\"\
     \n#include \"alg/acted_monoid/sum_affine.hpp\"\n#include \"mod/modint.hpp\"\n\n\
     using mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n \
-    \ using AM = ActedMonoid_Sum_Affine<mint>;\n  Dynamic_Lazy_SegTree<AM, true> seg(10000000,\
-    \ 0, N);\n  using np = decltype(seg)::np;\n  vc<np> root(Q + 1);\n  root[0] =\
-    \ seg.new_node(A);\n\n  FOR(q, 1, Q + 1) {\n    INT(t);\n    if (t == 0) {\n \
-    \     INT(k, L, R, b, c);\n      ++k;\n      root[q] = seg.apply(root[k], L, R,\
-    \ {mint(b), mint(c)});\n    }\n    if (t == 1) {\n      INT(k, s, l, r);\n   \
-    \   ++k, ++s;\n      root[q] = seg.copy_interval(root[k], root[s], l, r, {mint(1),\
-    \ mint(0)});\n    }\n    if (t == 2) {\n      INT(k, l, r);\n      ++k;\n    \
-    \  root[q] = root[k];\n      mint ANS = seg.prod(root[q], l, r);\n      print(ANS);\n\
-    \    }\n  }\n}\n\nsigned main() { solve(); }"
+    \ using AM = ActedMonoid_Sum_Affine<mint>;\n  Dynamic_Lazy_SegTree<AM, true> seg(0,\
+    \ N);\n  using np = decltype(seg)::np;\n  vc<np> root(Q + 1);\n  root[0] = seg.new_node(A);\n\
+    \n  FOR(q, 1, Q + 1) {\n    INT(t);\n    if (t == 0) {\n      INT(k, L, R, b,\
+    \ c);\n      ++k;\n      root[q] = seg.apply(root[k], L, R, {mint(b), mint(c)});\n\
+    \    }\n    if (t == 1) {\n      INT(k, s, l, r);\n      ++k, ++s;\n      root[q]\
+    \ = seg.copy_interval(root[k], root[s], l, r, {mint(1), mint(0)});\n    }\n  \
+    \  if (t == 2) {\n      INT(k, l, r);\n      ++k;\n      root[q] = root[k];\n\
+    \      mint ANS = seg.prod(root[q], l, r);\n      print(ANS);\n    }\n  }\n}\n\
+    \nsigned main() { solve(); }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -513,7 +513,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:56:22+09:00'
+  timestamp: '2025-09-16 16:21:18+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp

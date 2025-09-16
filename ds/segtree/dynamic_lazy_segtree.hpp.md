@@ -49,15 +49,15 @@ data:
     \ = typename AM::X;\n  using A = typename AM::A;\n  using F = function<X(ll, ll)>;\n\
     \  F default_prod;\n\n  struct Node {\n    Node *l, *r;\n    X x;\n    A lazy;\n\
     \  };\n\n  Node_Pool<Node> pool;\n  const ll L0, R0;\n  using np = Node *;\n\n\
-    \  Dynamic_Lazy_SegTree(\n      int NODES, ll L0, ll R0,\n      F default_prod\
-    \ = [](ll, ll) -> X { return MX::unit(); })\n      : default_prod(default_prod),\
-    \ L0(L0), R0(R0) {}\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const\
-    \ X x) {\n    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x = x,\
-    \ c->lazy = MA::unit();\n    return c;\n  }\n\n  np new_node(ll l, ll r) {\n \
-    \   assert(l < r);\n    return new_node(default_prod(l, r));\n  }\n  np new_node()\
-    \ { return new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0\
-    \ == 0 && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node\
-    \ * {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
+    \  Dynamic_Lazy_SegTree(\n      ll L0, ll R0, F default_prod = [](ll, ll) -> X\
+    \ { return MX::unit(); })\n      : default_prod(default_prod), L0(L0), R0(R0)\
+    \ {}\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const X\
+    \ x) {\n    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x = x, c->lazy\
+    \ = MA::unit();\n    return c;\n  }\n\n  np new_node(ll l, ll r) {\n    assert(l\
+    \ < r);\n    return new_node(default_prod(l, r));\n  }\n  np new_node() { return\
+    \ new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0 == 0\
+    \ && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {\n\
+    \      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
     \      ll m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
     \ m, r);\n      X x = MX::op(l_root->x, r_root->x);\n      np root = new_node(x);\n\
     \      root->l = l_root, root->r = r_root;\n      return root;\n    };\n    return\
@@ -155,12 +155,12 @@ data:
     \ = typename AM::Monoid_A;\n  using X = typename AM::X;\n  using A = typename\
     \ AM::A;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\n  struct Node\
     \ {\n    Node *l, *r;\n    X x;\n    A lazy;\n  };\n\n  Node_Pool<Node> pool;\n\
-    \  const ll L0, R0;\n  using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n      int\
-    \ NODES, ll L0, ll R0,\n      F default_prod = [](ll, ll) -> X { return MX::unit();\
-    \ })\n      : default_prod(default_prod), L0(L0), R0(R0) {}\n\n  np new_root()\
-    \ { return new_node(L0, R0); }\n\n  np new_node(const X x) {\n    np c = pool.create();\n\
-    \    c->l = c->r = nullptr;\n    c->x = x, c->lazy = MA::unit();\n    return c;\n\
-    \  }\n\n  np new_node(ll l, ll r) {\n    assert(l < r);\n    return new_node(default_prod(l,\
+    \  const ll L0, R0;\n  using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n      ll\
+    \ L0, ll R0, F default_prod = [](ll, ll) -> X { return MX::unit(); })\n      :\
+    \ default_prod(default_prod), L0(L0), R0(R0) {}\n\n  np new_root() { return new_node(L0,\
+    \ R0); }\n\n  np new_node(const X x) {\n    np c = pool.create();\n    c->l =\
+    \ c->r = nullptr;\n    c->x = x, c->lazy = MA::unit();\n    return c;\n  }\n\n\
+    \  np new_node(ll l, ll r) {\n    assert(l < r);\n    return new_node(default_prod(l,\
     \ r));\n  }\n  np new_node() { return new_node(L0, R0); }\n\n  np new_node(const\
     \ vc<X> &dat) {\n    assert(L0 == 0 && R0 == len(dat));\n    auto dfs = [&](auto\
     \ &dfs, ll l, ll r) -> Node * {\n      if (l == r) return nullptr;\n      if (r\
@@ -259,7 +259,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2025-09-16 15:56:22+09:00'
+  timestamp: '2025-09-16 16:21:18+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/789_2.test.cpp

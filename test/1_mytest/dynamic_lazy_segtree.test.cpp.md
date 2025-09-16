@@ -173,15 +173,15 @@ data:
     \ = typename AM::X;\n  using A = typename AM::A;\n  using F = function<X(ll, ll)>;\n\
     \  F default_prod;\n\n  struct Node {\n    Node *l, *r;\n    X x;\n    A lazy;\n\
     \  };\n\n  Node_Pool<Node> pool;\n  const ll L0, R0;\n  using np = Node *;\n\n\
-    \  Dynamic_Lazy_SegTree(\n      int NODES, ll L0, ll R0,\n      F default_prod\
-    \ = [](ll, ll) -> X { return MX::unit(); })\n      : default_prod(default_prod),\
-    \ L0(L0), R0(R0) {}\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const\
-    \ X x) {\n    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x = x,\
-    \ c->lazy = MA::unit();\n    return c;\n  }\n\n  np new_node(ll l, ll r) {\n \
-    \   assert(l < r);\n    return new_node(default_prod(l, r));\n  }\n  np new_node()\
-    \ { return new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0\
-    \ == 0 && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node\
-    \ * {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
+    \  Dynamic_Lazy_SegTree(\n      ll L0, ll R0, F default_prod = [](ll, ll) -> X\
+    \ { return MX::unit(); })\n      : default_prod(default_prod), L0(L0), R0(R0)\
+    \ {}\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const X\
+    \ x) {\n    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x = x, c->lazy\
+    \ = MA::unit();\n    return c;\n  }\n\n  np new_node(ll l, ll r) {\n    assert(l\
+    \ < r);\n    return new_node(default_prod(l, r));\n  }\n  np new_node() { return\
+    \ new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0 == 0\
+    \ && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {\n\
+    \      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
     \      ll m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
     \ m, r);\n      X x = MX::op(l_root->x, r_root->x);\n      np root = new_node(x);\n\
     \      root->l = l_root, root->r = r_root;\n      return root;\n    };\n    return\
@@ -277,32 +277,32 @@ data:
     \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/dynamic_lazy_segtree.test.cpp\"\
     \n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int, -1>;\n  using P\
     \ = typename AM::X;\n\n  FOR(1000) {\n    int N = RNG(1, 1000);\n    int Q = RNG(1,\
-    \ 1000);\n    vc<int> A(N, 10);\n    Dynamic_Lazy_SegTree<AM, false> X(1 + 40\
-    \ * Q, 0, N, [](ll l, ll r) -> P { return {10 * (r - l), 10}; });\n\n    auto\
-    \ root = X.new_node(0, N);\n\n    FOR(Q) {\n      int t = RNG(0, 4);\n      int\
-    \ L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L, R);\n   \
-    \   ++R;\n      if (t == 0) {\n        int i = RNG(0, N);\n        int x = RNG(1,\
-    \ 100);\n        root = X.set(root, i, {x, x});\n        A[i] = x;\n      }\n\
-    \      if (t == 1) {\n        vc<int> B = {A.begin() + L, A.begin() + R};\n  \
-    \      assert(X.prod(root, L, R).fi == SUM<int>(B));\n        assert(X.prod(root,\
-    \ L, R).se == MAX(B));\n      }\n      if (t == 2) {\n        int x = RNG(1, 100);\n\
-    \        FOR(i, L, R) A[i] = x;\n        root = X.apply(root, L, R, x);\n    \
-    \  }\n      if (t == 3) {\n        // max_right\n        int LIM = R;\n      \
-    \  auto check = [&](auto e) -> bool { return e.se <= LIM; };\n        int naive\
-    \ = [&]() -> int {\n          ll mx = 0;\n          FOR(i, L, N) {\n         \
-    \   chmax(mx, A[i]);\n            if (mx > LIM) return i;\n          }\n     \
-    \     return N;\n        }();\n\n        assert(naive == X.max_right(root, check,\
-    \ L));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \ 1000);\n    vc<int> A(N, 10);\n    Dynamic_Lazy_SegTree<AM, false> X(\n    \
+    \    0, N, [](ll l, ll r) -> P { return {10 * (r - l), 10}; });\n\n    auto root\
+    \ = X.new_node(0, N);\n\n    FOR(Q) {\n      int t = RNG(0, 4);\n      int L =\
+    \ RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L, R);\n      ++R;\n\
+    \      if (t == 0) {\n        int i = RNG(0, N);\n        int x = RNG(1, 100);\n\
+    \        root = X.set(root, i, {x, x});\n        A[i] = x;\n      }\n      if\
+    \ (t == 1) {\n        vc<int> B = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root,\
+    \ L, R).fi == SUM<int>(B));\n        assert(X.prod(root, L, R).se == MAX(B));\n\
+    \      }\n      if (t == 2) {\n        int x = RNG(1, 100);\n        FOR(i, L,\
+    \ R) A[i] = x;\n        root = X.apply(root, L, R, x);\n      }\n      if (t ==\
+    \ 3) {\n        // max_right\n        int LIM = R;\n        auto check = [&](auto\
+    \ e) -> bool { return e.se <= LIM; };\n        int naive = [&]() -> int {\n  \
+    \        ll mx = 0;\n          FOR(i, L, N) {\n            chmax(mx, A[i]);\n\
+    \            if (mx > LIM) return i;\n          }\n          return N;\n     \
+    \   }();\n\n        assert(naive == X.max_right(root, check, L));\n      }\n \
+    \   }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/acted_monoid/summax_assign.hpp\"\n#include \"ds/segtree/dynamic_lazy_segtree.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int,\
     \ -1>;\n  using P = typename AM::X;\n\n  FOR(1000) {\n    int N = RNG(1, 1000);\n\
     \    int Q = RNG(1, 1000);\n    vc<int> A(N, 10);\n    Dynamic_Lazy_SegTree<AM,\
-    \ false> X(1 + 40 * Q, 0, N, [](ll l, ll r) -> P { return {10 * (r - l), 10};\
-    \ });\n\n    auto root = X.new_node(0, N);\n\n    FOR(Q) {\n      int t = RNG(0,\
-    \ 4);\n      int L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L,\
+    \ false> X(\n        0, N, [](ll l, ll r) -> P { return {10 * (r - l), 10}; });\n\
+    \n    auto root = X.new_node(0, N);\n\n    FOR(Q) {\n      int t = RNG(0, 4);\n\
+    \      int L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L,\
     \ R);\n      ++R;\n      if (t == 0) {\n        int i = RNG(0, N);\n        int\
     \ x = RNG(1, 100);\n        root = X.set(root, i, {x, x});\n        A[i] = x;\n\
     \      }\n      if (t == 1) {\n        vc<int> B = {A.begin() + L, A.begin() +\
@@ -328,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_lazy_segtree.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:56:22+09:00'
+  timestamp: '2025-09-16 16:21:18+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_lazy_segtree.test.cpp

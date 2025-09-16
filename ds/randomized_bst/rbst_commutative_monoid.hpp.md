@@ -6,12 +6,12 @@ data:
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_commutative_persistent.test.cpp
     title: test/1_mytest/rbst_commutative_persistent.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool\
@@ -44,7 +44,7 @@ data:
     \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
     \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
     \ {\n    if (!n || !PERSISTENT) return n;\n    np c = pool.create();\n    c->l\
-    \ = l, c->r = n->r;\n    c->x = n->x, c->prod = n->prod;\n    c->size = n->size,\
+    \ = n->l, c->r = n->r;\n    c->x = n->x, c->prod = n->prod;\n    c->size = n->size,\
     \ c->rev = n->rev;\n    return c;\n  }\n\n  np merge(np l_root, np r_root) { return\
     \ merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a,\
     \ b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
@@ -150,7 +150,7 @@ data:
     \ m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r\
     \ = r_root;\n      update(root);\n      return root;\n    };\n    return dfs(dfs,\
     \ 0, len(dat));\n  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return\
-    \ n;\n    np c = pool.create();\n    c->l = l, c->r = n->r;\n    c->x = n->x,\
+    \ n;\n    np c = pool.create();\n    c->l = n->l, c->r = n->r;\n    c->x = n->x,\
     \ c->prod = n->prod;\n    c->size = n->size, c->rev = n->rev;\n    return c;\n\
     \  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n\
     \  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np\
@@ -247,8 +247,8 @@ data:
   isVerificationFile: false
   path: ds/randomized_bst/rbst_commutative_monoid.hpp
   requiredBy: []
-  timestamp: '2025-09-16 15:18:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-09-16 16:21:18+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/rbst_commutative_persistent.test.cpp
 documentation_of: ds/randomized_bst/rbst_commutative_monoid.hpp

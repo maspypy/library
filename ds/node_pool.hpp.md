@@ -24,9 +24,12 @@ data:
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
   - icon: ':x:'
+    path: ds/randomized_bst/rbst_acted_set.hpp
+    title: ds/randomized_bst/rbst_acted_set.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst_commutative_monoid.hpp
     title: ds/randomized_bst/rbst_commutative_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
   - icon: ':warning:'
@@ -81,6 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/binary_trie.test.cpp
     title: test/1_mytest/binary_trie.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/cf702_F.test.cpp
+    title: test/1_mytest/cf702_F.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/cf702_F_splay.test.cpp
     title: test/1_mytest/cf702_F_splay.test.cpp
@@ -105,16 +111,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_am_persistent.test.cpp
     title: test/1_mytest/rbst_am_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_commutative_persistent.test.cpp
     title: test/1_mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid.test.cpp
     title: test/1_mytest/rbst_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_2.test.cpp
     title: test/1_mytest/rbst_monoid_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_persistent.test.cpp
     title: test/1_mytest/rbst_monoid_persistent.test.cpp
   - icon: ':x:'
@@ -248,6 +254,7 @@ data:
   - ds/segtree/sortable_segtree.hpp
   - ds/binary_trie.hpp
   - ds/meldable_heap.hpp
+  - ds/randomized_bst/rbst_acted_set.hpp
   - ds/randomized_bst/rbst_commutative_monoid.hpp
   - ds/randomized_bst/rbst.hpp
   - ds/randomized_bst/rbst_acted_monoid.hpp
@@ -305,6 +312,7 @@ data:
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/sortable_array.test.cpp
+  - test/1_mytest/cf702_F.test.cpp
   - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
