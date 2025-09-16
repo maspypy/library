@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -322,7 +322,7 @@ data:
     \ == other) return root;\n    root = clone(root);\n    copy_interval_rec(root,\
     \ other, L0, R0, l, r, a);\n    return root;\n  }\n\n private:\n  np clone(np\
     \ c) {\n    if (!c || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
-    \n  void prop(np c, ll l, ll r) {\n    assert(r - l >= 2);\n    ll m = (l + r)\
+    \n  void push(np c, ll l, ll r) {\n    assert(r - l >= 2);\n    ll m = (l + r)\
     \ / 2;\n    if (c->lazy == MA::unit()) return;\n    c->l = (c->l ? clone(c->l)\
     \ : new_node(l, m));\n    c->l->x = AM::act(c->l->x, c->lazy, m - l);\n    c->l->lazy\
     \ = MA::op(c->l->lazy, c->lazy);\n    c->r = (c->r ? clone(c->r) : new_node(m,\
@@ -344,14 +344,14 @@ data:
     \ (d && d->r ? d->r : nullptr), m, r, ql, qr, a);\n    c->x = MX::op(c->l->x,\
     \ c->r->x);\n    return;\n  }\n\n  np set_rec(np c, ll l, ll r, ll i, const X\
     \ &x) {\n    if (r == l + 1) {\n      c = clone(c);\n      c->x = x;\n      c->lazy\
-    \ = MA::unit();\n      return c;\n    }\n    prop(c, l, r);\n    ll m = (l + r)\
+    \ = MA::unit();\n      return c;\n    }\n    push(c, l, r);\n    ll m = (l + r)\
     \ / 2;\n    if (!c->l) c->l = new_node(l, m);\n    if (!c->r) c->r = new_node(m,\
     \ r);\n\n    c = clone(c);\n    if (i < m) {\n      c->l = set_rec(c->l, l, m,\
     \ i, x);\n    } else {\n      c->r = set_rec(c->r, m, r, i, x);\n    }\n    c->x\
     \ = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\n  np multiply_rec(np c, ll\
     \ l, ll r, ll i, const X &x) {\n    if (r == l + 1) {\n      c = clone(c);\n \
     \     c->x = MX::op(c->x, x);\n      c->lazy = MA::unit();\n      return c;\n\
-    \    }\n    prop(c, l, r);\n    ll m = (l + r) / 2;\n    if (!c->l) c->l = new_node(l,\
+    \    }\n    push(c, l, r);\n    ll m = (l + r) / 2;\n    if (!c->l) c->l = new_node(l,\
     \ m);\n    if (!c->r) c->r = new_node(m, r);\n\n    c = clone(c);\n    if (i <\
     \ m) {\n      c->l = multiply_rec(c->l, l, m, i, x);\n    } else {\n      c->r\
     \ = multiply_rec(c->r, m, r, i, x);\n    }\n    c->x = MX::op(c->l->x, c->r->x);\n\
@@ -365,20 +365,20 @@ data:
     \ A &a) {\n    if (!c) c = new_node(l, r);\n    chmax(ql, l);\n    chmin(qr, r);\n\
     \    if (ql >= qr) return c;\n    if (l == ql && r == qr) {\n      c = clone(c);\n\
     \      c->x = AM::act(c->x, a, r - l);\n      c->lazy = MA::op(c->lazy, a);\n\
-    \      return c;\n    }\n    prop(c, l, r);\n    ll m = (l + r) / 2;\n    c =\
+    \      return c;\n    }\n    push(c, l, r);\n    ll m = (l + r) / 2;\n    c =\
     \ clone(c);\n    c->l = apply_rec(c->l, l, m, ql, qr, a);\n    c->r = apply_rec(c->r,\
     \ m, r, ql, qr, a);\n    c->x = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\
     \n  template <typename F>\n  ll max_right_rec(np c, const F &check, ll l, ll r,\
     \ ll ql, X &x) {\n    if (r <= ql) return r;\n    if (!c) c = new_node(l, r);\n\
     \    chmax(ql, l);\n    if (l == ql && check(MX::op(x, c->x))) {\n      x = MX::op(x,\
-    \ c->x);\n      return r;\n    }\n    if (r == l + 1) return l;\n    prop(c, l,\
+    \ c->x);\n      return r;\n    }\n    if (r == l + 1) return l;\n    push(c, l,\
     \ r);\n    ll m = (l + r) / 2;\n    ll k = max_right_rec(c->l, check, l, m, ql,\
     \ x);\n    if (k < m) return k;\n    return max_right_rec(c->r, check, m, r, ql,\
     \ x);\n  }\n\n  template <typename F>\n  ll min_left_rec(np c, const F &check,\
     \ ll l, ll r, ll qr, X &x) {\n    if (qr <= l) return l;\n    if (!c) c = new_node(l,\
     \ r);\n    chmin(qr, r);\n    if (r == qr && check(MX::op(c->x, x))) {\n     \
     \ x = MX::op(c->x, x);\n      return l;\n    }\n    if (r == l + 1) return r;\n\
-    \    prop(c, l, r);\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check,\
+    \    push(c, l, r);\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check,\
     \ m, r, qr, x);\n    if (m < k) return k;\n    return min_left_rec(c->l, check,\
     \ l, m, qr, x);\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
     \ E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n \
@@ -513,7 +513,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 20:23:00+09:00'
+  timestamp: '2025-09-16 20:49:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp

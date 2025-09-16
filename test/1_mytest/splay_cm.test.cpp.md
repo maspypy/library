@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -256,7 +256,7 @@ data:
     \ 0, len(dat));\n  }\n\n  u32 get_size(np root) { return (root ? root->size :\
     \ 0); }\n\n  np merge(np l_root, np r_root) {\n    if (!l_root) return r_root;\n\
     \    if (!r_root) return l_root;\n    assert((!l_root->p) && (!r_root->p));\n\
-    \    splay_kth(r_root, 0);  // splay \u3057\u305F\u306E\u3067 prop \u6E08\n  \
+    \    splay_kth(r_root, 0);  // splay \u3057\u305F\u306E\u3067 push \u6E08\n  \
     \  r_root->l = l_root;\n    l_root->p = r_root;\n    r_root->update();\n    return\
     \ r_root;\n  }\n  np merge3(np a, np b, np c) { return merge(merge(a, b), c);\
     \ }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c),\
@@ -283,7 +283,7 @@ data:
     \ rp = root;\n    root = rp->l;\n    root->p = nullptr;\n    splay_kth(root, l\
     \ - 1);\n    root->p = rp;\n    rp->l = root;\n    rp->update();\n    root = root->r;\n\
     \  }\n\n  vc<X> get_all(const np &root) {\n    vc<X> res;\n    auto dfs = [&](auto\
-    \ &dfs, np root) -> void {\n      if (!root) return;\n      root->prop();\n  \
+    \ &dfs, np root) -> void {\n      if (!root) return;\n      root->push();\n  \
     \    dfs(dfs, root->l);\n      res.eb(root->get());\n      dfs(dfs, root->r);\n\
     \    };\n    dfs(dfs, root);\n    return res;\n  }\n\n  X get(np &root, u32 k)\
     \ {\n    assert(root == nullptr || !root->p);\n    splay_kth(root, k);\n    return\
@@ -305,26 +305,26 @@ data:
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
     \    splay(root, true);\n  }\n  void reverse(np root) {\n    if (!root) return;\n\
     \    root->reverse();\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
-    \u8FD1\u3065\u3051\u308B\u3002prop, update \u306F rotate \u306E\u5916\u3067\u884C\
+    \u8FD1\u3065\u3051\u308B\u3002push, update \u306F rotate \u306E\u5916\u3067\u884C\
     \u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l\
     \ == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else {\n \
     \     c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n    if (pp && pp->l\
     \ == p) pp->l = n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n   \
-    \ p->p = n;\n    if (c) c->p = p;\n  }\n\n  void prop_from_root(np c) {\n    if\
-    \ (!c->p) {\n      c->prop();\n      return;\n    }\n    prop_from_root(c->p);\n\
-    \    c->prop();\n  }\n\n  void splay(Node *me, bool prop_from_root_done) {\n \
+    \ p->p = n;\n    if (c) c->p = p;\n  }\n\n  void push_from_root(np c) {\n    if\
+    \ (!c->p) {\n      c->push();\n      return;\n    }\n    push_from_root(c->p);\n\
+    \    c->push();\n  }\n\n  void splay(Node *me, bool push_from_root_done) {\n \
     \   // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\u3067\u3001me \u306E\u7956\u5148\
-    \uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B prop \u6E08\u3067\u3042\u308B\
+    \uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B push \u6E08\u3067\u3042\u308B\
     \u3053\u3068\u3092\u4EEE\u5B9A\n    // \u7279\u306B\u3001splay \u7D42\u4E86\u6642\
-    \u70B9\u3067 me \u306F upd / prop \u6E08\u3067\u3042\u308B\n    if (!prop_from_root_done)\
-    \ prop_from_root(me);\n    me->prop();\n    while (me->p) {\n      np p = me->p;\n\
+    \u70B9\u3067 me \u306F upd / push \u6E08\u3067\u3042\u308B\n    if (!push_from_root_done)\
+    \ push_from_root(me);\n    me->push();\n    while (me->p) {\n      np p = me->p;\n\
     \      np pp = p->p;\n      if (!pp) {\n        rotate(me);\n        p->update();\n\
     \        break;\n      }\n      bool same = (p->l == me && pp->l == p) || (p->r\
     \ == me && pp->r == p);\n      if (same) rotate(p), rotate(me);\n      if (!same)\
     \ rotate(me), rotate(me);\n      pp->update(), p->update();\n    }\n    // me\
     \ \u306E update \u306F\u6700\u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n\
     \  }\n\n  void splay_kth(np &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n\
-    \    while (1) {\n      root->prop();\n      u32 s1 = (root->l ? root->l->size\
+    \    while (1) {\n      root->push();\n      u32 s1 = (root->l ? root->l->size\
     \ : 0);\n      u32 s2 = (root->size) - (root->r ? root->r->size : 0);\n      if\
     \ (k < s1) root = root->l;\n      elif (k < s2) { break; }\n      else {\n   \
     \     k -= s2;\n        root = root->r;\n      }\n    }\n    splay(root, true);\n\
@@ -353,14 +353,14 @@ data:
     \ right};\n  }\n\n  template <typename F>\n  np find_max_right(np root, const\
     \ F &check) {\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\
     \u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr,\
-    \ last = nullptr;\n    while (root) {\n      last = root;\n      root->prop();\n\
+    \ last = nullptr;\n    while (root) {\n      last = root;\n      root->push();\n\
     \      if (check(root->x)) {\n        last_ok = root;\n        root = root->r;\n\
     \      } else {\n        root = root->l;\n      }\n    }\n    splay(last, true);\n\
     \    return last_ok;\n  }\n\n  template <typename F>\n  np find_max_right_cnt(np\
     \ root, const F &check) {\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok\
     \ \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok\
     \ = nullptr, last = nullptr;\n    ll n = 0;\n    while (root) {\n      last =\
-    \ root;\n      root->prop();\n      ll k = (root->size) - (root->r ? root->r->size\
+    \ root;\n      root->push();\n      ll k = (root->size) - (root->r ? root->r->size\
     \ : 0);\n      if (check(root->x, n + k)) {\n        last_ok = root;\n       \
     \ n += k;\n        root = root->r;\n      } else {\n        root = root->l;\n\
     \      }\n    }\n    splay(last, true);\n    return last_ok;\n  }\n\n  template\
@@ -368,7 +368,7 @@ data:
     \ Mono = typename Node::Monoid_X;\n    X prod = Mono::unit();\n    // \u6700\u5F8C\
     \u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\
     \u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root)\
-    \ {\n      last = root;\n      root->prop();\n      np tmp = root->r;\n      root->r\
+    \ {\n      last = root;\n      root->push();\n      np tmp = root->r;\n      root->r\
     \ = nullptr;\n      root->update();\n      X lprod = Mono::op(prod, root->prod);\n\
     \      root->r = tmp;\n      root->update();\n      if (check(lprod)) {\n    \
     \    prod = lprod;\n        last_ok = root;\n        root = root->r;\n      }\
@@ -376,14 +376,14 @@ data:
     \  return last_ok;\n  }\n};\n#line 2 \"ds/splaytree/splaytree_commutative_monoid.hpp\"\
     \n\nnamespace SplayTreeNodes {\ntemplate <typename Monoid>\nstruct Node_CM {\n\
     \  using Monoid_X = Monoid;\n  using X = typename Monoid::value_type;\n  using\
-    \ value_type = X;\n  using operator_type = int; // \u5B9A\u7FA9\u3060\u3051\u3057\
+    \ value_type = X;\n  using operator_type = int;  // \u5B9A\u7FA9\u3060\u3051\u3057\
     \u3066\u304A\u304F\n  using np = Node_CM *;\n\n  np p, l, r;\n  X x, prod;\n \
     \ u32 size;\n  bool rev;\n\n  static void new_node(np n, const X &x) {\n    n->p\
     \ = n->l = n->r = nullptr;\n    n->x = n->prod = x;\n    n->size = 1;\n    n->rev\
     \ = 0;\n  }\n\n  void update() {\n    size = 1;\n    prod = x;\n    if (l) {\n\
     \      size += l->size;\n      prod = Monoid::op(l->prod, prod);\n    }\n    if\
     \ (r) {\n      size += r->size;\n      prod = Monoid::op(prod, r->prod);\n   \
-    \ }\n  }\n\n  void prop() {\n    if (rev) {\n      if (l) {\n        l->rev ^=\
+    \ }\n  }\n\n  void push() {\n    if (rev) {\n      if (l) {\n        l->rev ^=\
     \ 1;\n        swap(l->l, l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n\
     \        swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  // update,\
     \ prop \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay\
@@ -394,7 +394,7 @@ data:
     \ = xx;\n    update();\n  }\n  void multiply(const X &xx) {\n    x = Monoid::op(x,\
     \ xx);\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n\
     \  }\n};\ntemplate <typename Monoid>\nusing SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>>;\n\
-    } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Commutative_Monoid;\n\
+    }  // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Commutative_Monoid;\n\
     #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -452,7 +452,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/splay_cm.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 20:23:00+09:00'
+  timestamp: '2025-09-16 20:49:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/splay_cm.test.cpp
