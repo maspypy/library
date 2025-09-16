@@ -30,11 +30,23 @@ vc<mint> revert_transform_of_factorials(const int N) {
 template <typename mint>
 vc<mint> simple_permutations(const int N) {
   vc<mint> S = revert_transform_of_factorials<mint>(N);
-  for (auto&& x: S) x = -x;
+  for (auto&& x : S) x = -x;
   S[1] += mint(1);
   FOR(i, 2, N + 1) {
     if (i % 2 == 0) S[i] -= 2;
     if (i % 2 == 1) S[i] += 2;
   }
   return S;
+}
+
+vc<int> find_one_simple(int n) {
+  assert(n >= 4);
+  vc<int> A;
+  if (n % 2 == 0) {
+    FOR(i, n / 2) A.eb(n / 2 + i), A.eb(i);
+    return A;
+  }
+  FOR(i, n / 2) A.eb(n / 2 + i), A.eb(i);
+  A.insert(A.begin() + 1, n - 1);
+  return A;
 }

@@ -4,10 +4,15 @@ int det_mod(vvc<int> A, int mod) {
   Barrett bt(mod);
   const int n = len(A);
   ll det = 1;
+  FOR(i, n) FOR(j, n) {
+    if (A[i][j] < 0) A[i][j] += mod;
+  }
   FOR(i, n) {
     FOR(j, i, n) {
       if (A[j][i] == 0) continue;
-      if (i != j) { swap(A[i], A[j]), det = mod - det; }
+      if (i != j) {
+        swap(A[i], A[j]), det = mod - det;
+      }
       break;
     }
     FOR(j, i + 1, n) {

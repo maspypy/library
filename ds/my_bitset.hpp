@@ -41,9 +41,8 @@ struct My_Bitset {
     return ANS;
   }
 
-  // thanks to chatgpt!
   class Proxy {
-  public:
+   public:
     Proxy(vc<u64> &d, int i) : dat(d), index(i) {}
     operator bool() const { return (dat[index >> 6] >> (index & 63)) & 1; }
 
@@ -53,10 +52,10 @@ struct My_Bitset {
       return *this;
     }
     void flip() {
-      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip the bit
+      dat[index >> 6] ^= (u64(1) << (index & 63));  // XOR to flip the bit
     }
 
-  private:
+   private:
     vc<u64> &dat;
     int index;
   };
@@ -106,7 +105,7 @@ struct My_Bitset {
 
   int count() {
     int ans = 0;
-    for (u64 val: dat) ans += popcnt(val);
+    for (u64 val : dat) ans += popcnt(val);
     return ans;
   }
 
@@ -164,7 +163,7 @@ struct My_Bitset {
     int lo = 64 - hi;
     int s = L >> 6;
     if (hi == 0) {
-      FOR(i, n) { p.dat[i] ^= dat[s + i]; }
+      FOR(i, n) { p.dat[i] = dat[s + i]; }
     } else {
       FOR(i, n) { p.dat[i] ^= (dat[s + i] >> hi) ^ (dat[s + i + 1] << lo); }
     }
@@ -187,11 +186,15 @@ struct My_Bitset {
   void assign_to_range(int L, int R, My_Bitset &p) {
     assert(p.N == R - L);
     int a = 0, b = p.N;
-    while (L < R && (L & 63)) { (*this)[L++] = bool(p[a++]); }
-    while (L < R && (R & 63)) { (*this)[--R] = bool(p[--b]); }
+    while (L < R && (L & 63)) {
+      (*this)[L++] = bool(p[a++]);
+    }
+    while (L < R && (R & 63)) {
+      (*this)[--R] = bool(p[--b]);
+    }
     // p[a:b] を [L:R] に
     int l = L >> 6, r = R >> 6;
-    int s = a >> 6, t = b >> t;
+    int s = a >> 6;
     int n = r - l;
     if (!(a & 63)) {
       FOR(i, n) dat[l + i] = p.dat[s + i];
@@ -216,7 +219,7 @@ struct My_Bitset {
     }
     // p[a:b] を [L:R] に
     int l = L >> 6, r = R >> 6;
-    int s = a >> 6, t = b >> t;
+    int s = a >> 6;
     int n = r - l;
     if (!(a & 63)) {
       FOR(i, n) dat[l + i] ^= p.dat[s + i];
@@ -248,7 +251,7 @@ struct My_Bitset {
     }
     // p[a:b] を [L:R] に
     int l = L >> 6, r = R >> 6;
-    int s = a >> 6, t = b >> t;
+    int s = a >> 6;
     int n = r - l;
     if (!(a & 63)) {
       FOR(i, n) dat[l + i] &= p.dat[s + i];
@@ -273,7 +276,7 @@ struct My_Bitset {
     }
     // p[a:b] を [L:R] に
     int l = L >> 6, r = R >> 6;
-    int s = a >> 6, t = b >> t;
+    int s = a >> 6;
     int n = r - l;
     if (!(a & 63)) {
       FOR(i, n) dat[l + i] |= p.dat[s + i];
@@ -283,6 +286,34 @@ struct My_Bitset {
       FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);
     }
   }
+
+  // [L,R) or= p[Lp:Rp)
+  void or_to_range(int L, int R, My_Bitset &p, int Lp, int Rp) {
+    assert(R - L == Rp - Lp);
+    while (L < R && (L & 63)) {
+      dat[L >> 6] |= (u64(p[Lp]) << (L & 63)), ++L, ++Lp;
+    }
+    while (L < R && (R & 63)) {
+      --R, --Rp, dat[R >> 6] |= (u64(p[Rp]) << (R & 63));
+    }
+    int l = L >> 6, r = R >> 6;
+    int a = Lp, b = Rp;
+    int s = a >> 6;
+    int n = r - l;
+
+    if (!(a & 63)) {
+      FOR(i, n) dat[l + i] |= p.dat[s + i];
+    } else {
+      int hi = a & 63, lo = 64 - hi;
+      int pw = (b + 63) >> 6;
+      FOR(i, n) {
+        u64 w0 = (s + i < pw ? (p.dat[s + i] >> hi) : 0);
+        u64 w1 = (s + i + 1 < pw ? (p.dat[s + i + 1] << lo) : 0);
+        dat[l + i] |= (w0 | w1);
+      }
+    }
+  }
+
   // 行列基本変形で使うやつ
   // p は [i:N) にしかないとして p を or する
   void or_suffix(int i, My_Bitset &p) {
@@ -292,22 +323,34 @@ struct My_Bitset {
 
   // [L,R) を 1 に変更
   void set_range(int L, int R) {
-    while (L < R && (L & 63)) { set(L++); }
-    while (L < R && (R & 63)) { set(--R); }
+    while (L < R && (L & 63)) {
+      set(L++);
+    }
+    while (L < R && (R & 63)) {
+      set(--R);
+    }
     FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);
   }
 
   // [L,R) を 1 に変更
   void reset_range(int L, int R) {
-    while (L < R && (L & 63)) { reset(L++); }
-    while (L < R && (R & 63)) { reset(--R); }
+    while (L < R && (L & 63)) {
+      reset(L++);
+    }
+    while (L < R && (R & 63)) {
+      reset(--R);
+    }
     FOR(i, L >> 6, R >> 6) dat[i] = u64(0);
   }
 
   // [L,R) を flip
   void flip_range(int L, int R) {
-    while (L < R && (L & 63)) { flip(L++); }
-    while (L < R && (R & 63)) { flip(--R); }
+    while (L < R && (L & 63)) {
+      flip(L++);
+    }
+    while (L < R && (R & 63)) {
+      flip(--R);
+    }
     FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);
   }
 
@@ -379,7 +422,9 @@ struct My_Bitset {
   string to_string() const {
     if (TO_STR[0].empty()) precompute();
     string S;
-    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }
+    for (auto &x : dat) {
+      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];
+    }
     S.resize(N);
     return S;
   }
