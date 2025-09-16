@@ -1,3 +1,5 @@
+#include "ds/node_pool.hpp"
+
 // 単に S の元の列を管理する
 template <typename S, bool PERSISTENT>
 struct RBST {
@@ -8,22 +10,16 @@ struct RBST {
     bool rev;
   };
 
-  const int NODES;
-  Node *pool;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node *;
 
-  RBST(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
-  ~RBST() { delete[] pool; }
-
-  void reset() { pid = 0; }
+  void reset() { pool.reset(); }
 
   np new_node(const S &s) {
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].s = s;
-    pool[pid].size = 1;
-    pool[pid].rev = 0;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = c->r = nullptr;
+    c->s = s, c->size = 1, c->rev = 0;
+    return c;
   }
 
   np new_node(const vc<S> &dat) {
@@ -43,11 +39,10 @@ struct RBST {
 
   np copy_node(np &n) {
     if (!n || !PERSISTENT) return n;
-    pool[pid].l = n->l, pool[pid].r = n->r;
-    pool[pid].s = n->s;
-    pool[pid].size = n->size;
-    pool[pid].rev = n->rev;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = n->l, c->r = n->r;
+    c->s = n->s, c->size = n->size, c->rev = n->rev;
+    return c;
   }
 
   np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }
@@ -104,7 +99,7 @@ struct RBST {
     return split_max_right_rec(root, check);
   }
 
-private:
+ private:
   inline u32 xor128() {
     static u32 x = 123456789;
     static u32 y = 362436069;
@@ -138,8 +133,12 @@ private:
   void update(np c) {
     // データを保ったまま正常化するだけなので、コピー不要
     c->size = 1;
-    if (c->l) { c->size += c->l->size; }
-    if (c->r) { c->size += c->r->size; }
+    if (c->l) {
+      c->size += c->l->size;
+    }
+    if (c->r) {
+      c->size += c->r->size;
+    }
   }
 
   np merge_rec(np l_root, np r_root) {

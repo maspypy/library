@@ -1,3 +1,5 @@
+#include "ds/node_pool.hpp"
+
 template <typename CommutativeMonoid, bool PERSISTENT>
 struct RBST_CommutativeMonoid {
   using Monoid = CommutativeMonoid;
@@ -6,28 +8,21 @@ struct RBST_CommutativeMonoid {
 
   struct Node {
     Node *l, *r;
-    X x, prod; // rev 反映済
+    X x, prod;  // rev 反映済
     u32 size;
     bool rev;
   };
 
-  const int NODES;
-  Node *pool;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node *;
 
-  RBST_CommutativeMonoid(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
-  ~RBST_CommutativeMonoid() { delete[] pool; }
-
-  void reset() { pid = 0; }
+  void reset() { pool.reset(); }
 
   np new_node(const X &x) {
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].x = x;
-    pool[pid].prod = x;
-    pool[pid].size = 1;
-    pool[pid].rev = 0;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = c->r = nullptr;
+    c->x = x, c->prod = x, c->size = 1, c->rev = 0;
+    return c;
   }
 
   np new_node(const vc<X> &dat) {
@@ -47,12 +42,11 @@ struct RBST_CommutativeMonoid {
 
   np copy_node(np &n) {
     if (!n || !PERSISTENT) return n;
-    pool[pid].l = n->l, pool[pid].r = n->r;
-    pool[pid].x = n->x;
-    pool[pid].prod = n->prod;
-    pool[pid].size = n->size;
-    pool[pid].rev = n->rev;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = l, c->r = n->r;
+    c->x = n->x, c->prod = n->prod;
+    c->size = n->size, c->rev = n->rev;
+    return c;
   }
 
   np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }
@@ -117,7 +111,7 @@ struct RBST_CommutativeMonoid {
     return split_max_right_rec(root, check, x);
   }
 
-private:
+ private:
   inline u32 xor128() {
     static u32 x = 123456789;
     static u32 y = 362436069;

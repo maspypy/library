@@ -1,3 +1,5 @@
+#include "ds/node_pool.hpp"
+
 template <typename ActedMonoid, bool PERSISTENT>
 struct RBST_ActedMonoid {
   using Monoid_X = typename ActedMonoid::Monoid_X;
@@ -7,30 +9,23 @@ struct RBST_ActedMonoid {
 
   struct Node {
     Node *l, *r;
-    X x, prod; // lazy, rev 反映済
+    X x, prod;  // lazy, rev 反映済
     A lazy;
     u32 size;
     bool rev;
   };
 
-  Node *pool;
-  const int NODES;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node *;
 
-  RBST_ActedMonoid(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
-  ~RBST_ActedMonoid() { delete[] pool; }
-
-  void reset() { pid = 0; }
+  void reset() { pool.reset(); }
 
   np new_node(const X &x) {
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].x = x;
-    pool[pid].prod = x;
-    pool[pid].lazy = Monoid_A::unit();
-    pool[pid].size = 1;
-    pool[pid].rev = 0;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = c->r = nullptr;
+    c->x = x, c->prod = x, c->lazy = Monoid_A::unit();
+    c->size = 1, c->rev = 0;
+    return c;
   }
 
   np new_node(const vc<X> &dat) {
@@ -50,13 +45,11 @@ struct RBST_ActedMonoid {
 
   np copy_node(np &n) {
     if (!n || !PERSISTENT) return n;
-    pool[pid].l = n->l, pool[pid].r = n->r;
-    pool[pid].x = n->x;
-    pool[pid].prod = n->prod;
-    pool[pid].lazy = n->lazy;
-    pool[pid].size = n->size;
-    pool[pid].rev = n->rev;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = n->l, c->r = n->r;
+    c->x = n->x, c->prod = n->prod, c->lazy = n->lazy;
+    c->size = n->size, c->rev = n->rev;
+    return c;
   }
 
   np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }
@@ -133,7 +126,7 @@ struct RBST_ActedMonoid {
     return split_max_right_rec(root, check, x);
   }
 
-private:
+ private:
   inline u32 xor128() {
     static u32 x = 123456789;
     static u32 y = 362436069;
@@ -276,7 +269,9 @@ private:
   }
 
   X prod_rec(np root, u32 l, u32 r, bool rev) {
-    if (l == 0 && r == root->size) { return root->prod; }
+    if (l == 0 && r == root->size) {
+      return root->prod;
+    }
     np left = (rev ? root->r : root->l);
     np right = (rev ? root->l : root->r);
     u32 sl = (left ? left->size : 0);
