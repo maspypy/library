@@ -1,23 +1,25 @@
 
+#include "ds/node_pool.hpp"
+
+// Lazy だけでもいいような気がしたが,
+// 加算が定義されていない型で使うかもしれないから残してある
 template <typename VAL, bool PERSISTENT, bool TOP_IS_MIN>
 struct Meldable_Heap {
   struct Node {
     Node *l, *r;
     VAL x;
-    u32 size, dist; // dist: leaf までの距離
+    u32 size, dist;  // dist: leaf までの距離
   };
-  Node *pool;
-  const int NODES;
+  Node_Pool<Node> pool;
   int pid;
   using np = Node *;
 
-  Meldable_Heap(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
-  ~Meldable_Heap() { delete[] pool; }
   np new_root() { return nullptr; }
   np new_node(const VAL &x) {
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].x = x, pool[pid].size = 1, pool[pid].dist = 1;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = c->r = nullptr;
+    c->x = x, c->size = 1, c->dist = 1;
+    return c;
   }
   np copy_node(np a) {
     if (!a || !PERSISTENT) return a;
@@ -68,26 +70,23 @@ struct Lazy_Meldable_Heap {
   struct Node {
     Node *l, *r;
     VAL x;
-    u32 size;
+    u32 size, dist;
   };
-  Node *pool;
-  const int NODES;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node *;
 
-  Lazy_Meldable_Heap(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
-  ~Lazy_Meldable_Heap() { delete[] pool; }
   np new_root() { return nullptr; }
   np new_node(const VAL &x) {
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].x = x, pool[pid].size = 1;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = c->r = nullptr;
+    c->x = x, c->size = 1, c->dist = 1;
+    return c;
   }
   np copy_node(np a) {
     if (!a || !PERSISTENT) return a;
     np b = new_node(a->x);
     b->l = a->l, b->r = a->r;
-    b->size = a->size;
+    b->size = a->size, b->dist = a->dist;
     return b;
   }
   np apply(np a, VAL x) {
@@ -97,8 +96,12 @@ struct Lazy_Meldable_Heap {
     return a;
   }
   np meld(np a, np b, VAL add_a = 0, VAL add_b = 0) {
-    if (!a) { return (add_b == 0 ? b : apply(b, add_b)); }
-    if (!b) { return (add_a == 0 ? a : apply(a, add_a)); }
+    if (!a) {
+      return (add_b == 0 ? b : apply(b, add_b));
+    }
+    if (!b) {
+      return (add_a == 0 ? a : apply(a, add_a));
+    }
     if constexpr (TOP_IS_MIN) {
       if ((a->x + add_a) > (b->x + add_b)) swap(a, b), swap(add_a, add_b);
     } else {
@@ -107,7 +110,8 @@ struct Lazy_Meldable_Heap {
     a = copy_node(a);
     a->x += add_a;
     a->r = meld(a->r, b, 0, -a->x + add_b);
-    if (!(a->l) || (a->l->size < a->r->size)) swap(a->l, a->r);
+    if (!(a->l) || (a->l->dist < a->r->dist)) swap(a->l, a->r);
+    a->dist = (a->r ? a->r->dist : 0) + 1;
     a->size = 1;
     if (a->l) a->size += a->l->size;
     if (a->r) a->size += a->r->size;
