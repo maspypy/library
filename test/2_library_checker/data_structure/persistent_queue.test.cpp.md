@@ -5,6 +5,9 @@ data:
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   - icon: ':question:'
+    path: ds/node_pool.hpp
+    title: ds/node_pool.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
@@ -241,25 +244,39 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
     \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/data_structure/persistent_queue.test.cpp\"\
-    \n\r\n#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT>\r\
-    \nstruct Dynamic_Array {\r\n  static constexpr int LOG = 4;\r\n  static constexpr\
-    \ int MASK = (1 << LOG) - 1;\r\n  struct Node {\r\n    T x;\r\n    Node* ch[1\
-    \ << LOG] = {};\r\n  };\r\n  const int NODES;\r\n  Node* pool;\r\n  int pid;\r\
+    \n\r\n#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool {\n\
+    \  struct Slot {\n    union alignas(Node) {\n      Slot* next;\n      unsigned\
+    \ char storage[sizeof(Node)];\n    };\n  };\n  using np = Node*;\n\n  static constexpr\
+    \ int CHUNK_SIZE = 1 << 16;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur =\
+    \ nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool()\
+    \ { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&... args)\
+    \ {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
+    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    auto\
+    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
+    \  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty()) {\n\
+    \      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
+    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
+    \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
+    \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
+    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename\
+    \ T, bool PERSISTENT>\r\nstruct Dynamic_Array {\r\n  static constexpr int LOG\
+    \ = 4;\r\n  static constexpr int MASK = (1 << LOG) - 1;\r\n  struct Node {\r\n\
+    \    T x;\r\n    Node* ch[1 << LOG] = {};\r\n  };\r\n  Node_Pool<Node> pool;\r\
     \n  using np = Node*;\r\n  const T x0;\r\n\r\n  Dynamic_Array(int NODES, T default_value)\
-    \ : NODES(NODES), pid(0), x0(default_value) { pool = new Node[NODES]; }\r\n  ~Dynamic_Array()\
-    \ { delete[] pool; }\r\n  np new_root() {\r\n    pool[pid].x = x0;\r\n    fill(pool[pid].ch,\
-    \ pool[pid].ch + (1 << LOG), nullptr);\r\n    return &(pool[pid++]);\r\n  }\r\n\
-    \r\n  np new_node(vc<T> dat) {\r\n    np root = new_root();\r\n    FOR(i, len(dat))\
-    \ root = set(root, i, dat[i], false);\r\n    return root;\r\n  }\r\n\r\n  T get(np\
-    \ c, int idx) {\r\n    if (!c) return x0;\r\n    if (idx == 0) return c->x;\r\n\
-    \    return get(c->ch[idx & MASK], (idx - 1) >> LOG);\r\n  }\r\n\r\n  np set(np\
-    \ c, int idx, T x, bool make_copy = true) {\r\n    c = (c ? copy_node(c, make_copy)\
-    \ : new_root());\r\n    if (idx == 0) {\r\n      c->x = x;\r\n      return c;\r\
-    \n    }\r\n    c->ch[idx & MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG, x);\r\
-    \n    return c;\r\n  }\r\n\r\nprivate:\r\n  np copy_node(np c, bool make_copy)\
-    \ {\r\n    if (!make_copy || !PERSISTENT) return c;\r\n    pool[pid].x = c->x;\r\
-    \n    FOR(k, (1 << LOG)) pool[pid].ch[k] = c->ch[k];\r\n    return &(pool[pid++]);\r\
-    \n  }\r\n};\r\n#line 6 \"test/2_library_checker/data_structure/persistent_queue.test.cpp\"\
+    \ : x0(default_value) {}\r\n  np new_root() {\r\n    np c = pool.create();\r\n\
+    \    c->x = x0;\r\n    fill(c->ch, c->ch + (1 << LOG), nullptr);\r\n    return\
+    \ c;\r\n  }\r\n\r\n  np new_node(vc<T> dat) {\r\n    np root = new_root();\r\n\
+    \    FOR(i, len(dat)) root = set(root, i, dat[i], false);\r\n    return root;\r\
+    \n  }\r\n\r\n  T get(np c, int idx) {\r\n    if (!c) return x0;\r\n    if (idx\
+    \ == 0) return c->x;\r\n    return get(c->ch[idx & MASK], (idx - 1) >> LOG);\r\
+    \n  }\r\n\r\n  np set(np c, int idx, T x, bool make_copy = true) {\r\n    c =\
+    \ (c ? copy_node(c, make_copy) : new_root());\r\n    if (idx == 0) {\r\n     \
+    \ c->x = x;\r\n      return c;\r\n    }\r\n    c->ch[idx & MASK] = set(c->ch[idx\
+    \ & MASK], (idx - 1) >> LOG, x);\r\n    return c;\r\n  }\r\n\r\n private:\r\n\
+    \  np copy_node(np c, bool make_copy) {\r\n    if (!make_copy || !PERSISTENT)\
+    \ return c;\r\n    np d = pool.create();\r\n    d->x = c->x;\r\n    FOR(k, (1\
+    \ << LOG)) d->ch[k] = c->ch[k];\r\n    return d;\r\n  }\r\n};\r\n#line 6 \"test/2_library_checker/data_structure/persistent_queue.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(Q);\r\n  vc<int> L, R;\r\n\r\n  Dynamic_Array<int,\
     \ true> X(2000000, 0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np> roots;\r\
     \n\r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q) {\r\n \
@@ -282,10 +299,11 @@ data:
   - my_template.hpp
   - other/io.hpp
   - ds/dynamic_array.hpp
+  - ds/node_pool.hpp
   isVerificationFile: true
   path: test/2_library_checker/data_structure/persistent_queue.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 22:16:37+09:00'
+  timestamp: '2025-09-16 15:56:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/persistent_queue.test.cpp

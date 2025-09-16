@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_add_range_max.hpp
     title: ds/segtree/range_add_range_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'

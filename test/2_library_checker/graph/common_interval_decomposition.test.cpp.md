@@ -357,8 +357,8 @@ data:
     \      }\n      st.eb(now);\n      seg.apply(0, i + 1, -1);\n    }\n    assert(len(st)\
     \ == 1);\n    root = POP(st);\n    return;\n  }\n\n  void debug() {\n    auto\
     \ dfs = [&](auto& dfs, Node* n) -> void {\n      print(\"l, r, lo, hi\", n->l,\
-    \ n->r, n->lo, n->hi);\n      for (auto&& c: n->ch) dfs(dfs, c);\n    };\n   \
-    \ dfs(dfs, root);\n  };\n};\n#line 5 \"test/2_library_checker/graph/common_interval_decomposition.test.cpp\"\
+    \ n->r, n->lo, n->hi);\n      for (auto&& c : n->ch) dfs(dfs, c);\n    };\n  \
+    \  dfs(dfs, root);\n  };\n};\n#line 5 \"test/2_library_checker/graph/common_interval_decomposition.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Inverval_Decomposition\
     \ X(P);\n  int nxt = 0;\n  auto dfs = [&](auto& dfs, auto n, int p) -> void {\n\
     \    string t = (n->inc || n->dec || (n->r - n->l == 1) ? \"linear\" : \"prime\"\
@@ -384,7 +384,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 22:16:37+09:00'
+  timestamp: '2025-09-16 15:56:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/common_interval_decomposition.test.cpp

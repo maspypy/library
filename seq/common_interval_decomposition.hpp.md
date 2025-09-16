@@ -131,8 +131,8 @@ data:
     \      }\n      st.eb(now);\n      seg.apply(0, i + 1, -1);\n    }\n    assert(len(st)\
     \ == 1);\n    root = POP(st);\n    return;\n  }\n\n  void debug() {\n    auto\
     \ dfs = [&](auto& dfs, Node* n) -> void {\n      print(\"l, r, lo, hi\", n->l,\
-    \ n->r, n->lo, n->hi);\n      for (auto&& c: n->ch) dfs(dfs, c);\n    };\n   \
-    \ dfs(dfs, root);\n  };\n};\n"
+    \ n->r, n->lo, n->hi);\n      for (auto&& c : n->ch) dfs(dfs, c);\n    };\n  \
+    \  dfs(dfs, root);\n  };\n};\n"
   code: "#include \"ds/segtree/lazy_segtree.hpp\"\n#include \"alg/acted_monoid/min_add.hpp\"\
     \n\nstruct Common_Inverval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n\
     \    bool inc, dec;\n    int l, r, lo, hi;\n  };\n\n  Node* pool;\n  Node* root;\n\
@@ -168,8 +168,8 @@ data:
     \      }\n      st.eb(now);\n      seg.apply(0, i + 1, -1);\n    }\n    assert(len(st)\
     \ == 1);\n    root = POP(st);\n    return;\n  }\n\n  void debug() {\n    auto\
     \ dfs = [&](auto& dfs, Node* n) -> void {\n      print(\"l, r, lo, hi\", n->l,\
-    \ n->r, n->lo, n->hi);\n      for (auto&& c: n->ch) dfs(dfs, c);\n    };\n   \
-    \ dfs(dfs, root);\n  };\n};\n"
+    \ n->r, n->lo, n->hi);\n      for (auto&& c : n->ch) dfs(dfs, c);\n    };\n  \
+    \  dfs(dfs, root);\n  };\n};\n"
   dependsOn:
   - ds/segtree/lazy_segtree.hpp
   - alg/acted_monoid/min_add.hpp
@@ -178,7 +178,7 @@ data:
   isVerificationFile: false
   path: seq/common_interval_decomposition.hpp
   requiredBy: []
-  timestamp: '2024-09-09 04:11:40+09:00'
+  timestamp: '2025-09-16 15:56:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1720.test.cpp
