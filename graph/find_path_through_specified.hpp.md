@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

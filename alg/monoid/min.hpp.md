@@ -99,7 +99,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_am_persistent.test.cpp
     title: test/1_mytest/rbst_am_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_test.test.cpp
     title: test/1_mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -183,7 +183,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,9 +195,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -235,7 +235,7 @@ data:
   - string/substring_shortest_border.hpp
   - string/substring_count_in_substring.hpp
   timestamp: '2023-02-02 02:12:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1270.test.cpp
   - test/3_yukicoder/1212.test.cpp

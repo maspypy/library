@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -28,10 +28,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
