@@ -8,7 +8,7 @@ void solve() {
   LL(N, Q);
   VEC(int, A, N);
 
-  RBST_Monoid<Monoid_Min<int>, false> X(N);
+  RBST_Monoid<Monoid_Min<int>, false> X;
   auto root = X.new_node(A);
   FOR(Q) {
     LL(t);

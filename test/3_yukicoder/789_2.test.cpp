@@ -7,13 +7,17 @@
 void solve() {
   LL(Q);
   using AM = ActedMonoid_Sum_Add<ll>;
-  Dynamic_Lazy_SegTree<AM, false> seg(60 * Q, 0, infty<int>);
+  Dynamic_Lazy_SegTree<AM, false> seg(0, infty<int>);
   auto root = seg.new_node();
   ll ANS = 0;
   FOR(Q) {
     LL(t, a, b);
-    if (t == 0) { seg.apply(root, a, a + 1, b); }
-    if (t == 1) { ANS += seg.prod(root, a, b + 1); }
+    if (t == 0) {
+      seg.apply(root, a, a + 1, b);
+    }
+    if (t == 1) {
+      ANS += seg.prod(root, a, b + 1);
+    }
   }
   print(ANS);
 }

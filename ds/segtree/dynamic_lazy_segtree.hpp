@@ -58,7 +58,7 @@ struct Dynamic_Lazy_SegTree {
 
   X prod(np root, ll l, ll r) {
     if (l == r || !root) return MX::unit();
-    assert(pid && L0 <= l && l < r && r <= R0);
+    assert(L0 <= l && l < r && r <= R0);
     X x = MX::unit();
     prod_rec(root, L0, R0, l, r, x, MA::unit());
     return x;
@@ -67,31 +67,31 @@ struct Dynamic_Lazy_SegTree {
   X prod_all(np root) { return prod(root, L0, R0); }
 
   np set(np root, ll i, const X &x) {
-    assert(pid && L0 <= i && i < R0);
+    assert(root && L0 <= i && i < R0);
     return set_rec(root, L0, R0, i, x);
   }
 
   np multiply(np root, ll i, const X &x) {
-    assert(pid && L0 <= i && i < R0);
+    assert(root && L0 <= i && i < R0);
     return multiply_rec(root, L0, R0, i, x);
   }
 
   np apply(np root, ll l, ll r, const A &a) {
     if (l == r) return root;
-    assert(pid && L0 <= l && l < r && r <= R0);
+    assert(root && L0 <= l && l < r && r <= R0);
     return apply_rec(root, L0, R0, l, r, a);
   }
 
   template <typename F>
   ll max_right(np root, F check, ll L) {
-    assert(pid && L0 <= L && L <= R0 && check(MX::unit()));
+    assert(root && L0 <= L && L <= R0 && check(MX::unit()));
     X x = MX::unit();
     return max_right_rec(root, check, L0, R0, L, x);
   }
 
   template <typename F>
   ll min_left(np root, F check, ll R) {
-    assert(pid && L0 <= R && R <= R0 && check(MX::unit()));
+    assert(root && L0 <= R && R <= R0 && check(MX::unit()));
     X x = MX::unit();
     return min_left_rec(root, check, L0, R0, R, x);
   }

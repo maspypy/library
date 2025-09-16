@@ -36,7 +36,6 @@ struct Sortable_SegTree {
   X prod_all() { return seg.prod_all(); }
 
   X prod(int l, int r) {
-    if (pid > NODES * 0.9) rebuild();
     split_at(l), split_at(r);
     return seg.prod(l, r);
   }
@@ -44,7 +43,6 @@ struct Sortable_SegTree {
   void sort_inc(int l, int r) {
     split_at(l), split_at(r);
     while (1) {
-      if (pid > NODES * 0.9) rebuild();
       np c = root[l];
       int i = ss.next(l + 1);
       if (i == r) break;
@@ -55,7 +53,6 @@ struct Sortable_SegTree {
   };
 
   void sort_dec(int l, int r) {
-    if (pid > NODES * 0.9) rebuild();
     sort_inc(l, r), rev[l] = 1;
     seg.set(l, root[l]->rev_x);
   };
@@ -117,7 +114,7 @@ struct Sortable_SegTree {
 
   void rebuild() {
     auto [key, dat] = get_all();
-    pid = 0;
+    pool.reset();
     init(key, dat);
   }
 

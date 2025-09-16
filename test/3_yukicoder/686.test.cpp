@@ -7,13 +7,14 @@
 void solve() {
   LL(N);
   using AM = ActedMonoid_Max_Add<int>;
-  RBST_ActedMonoid<AM, false> X(1 + N);
+  RBST_ActedMonoid<AM, false> X;
   using np = decltype(X)::np;
 
   np root = X.new_node(infty<int>);
 
   FOR(N) {
-    if (X.prod(root) != infty<int>) root = X.merge(root, X.new_node(infty<int>));
+    if (X.prod(root) != infty<int>)
+      root = X.merge(root, X.new_node(infty<int>));
     LL(L, R);
     // L未満 / R 未満
     np a, b, c, c1, c2;

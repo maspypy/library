@@ -35,11 +35,6 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
 
   FOR(i, len(CQ)) {
     ll c = CQ[i].fi;
-    if (X.pid > MAX * 0.9) {
-      auto dat = X.get_all(root);
-      X.reset();
-      root = X.new_node(dat);
-    }
     np nm, nr;
     tie(root, nr) =
         X.split_max_right(root, [&](S& s) { return get<0>(s) < c; });
