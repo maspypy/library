@@ -1,4 +1,5 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/persistent_range_affine_range_sum"
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/persistent_range_affine_range_sum"
 
 #include "my_template.hpp"
 #include "other/io.hpp"
@@ -13,7 +14,7 @@ void solve() {
   LL(N, Q);
   VEC(mint, A, N);
   using AM = ActedMonoid_Sum_Affine<mint>;
-  Dynamic_Lazy_SegTree<AM, true> seg(10000000, 0, N);
+  Dynamic_Lazy_SegTree<AM, true> seg(0, N);
   using np = decltype(seg)::np;
   vc<np> root(Q + 1);
   root[0] = seg.new_node(A);

@@ -23,8 +23,7 @@ struct Dynamic_Lazy_SegTree {
   using np = Node *;
 
   Dynamic_Lazy_SegTree(
-      int NODES, ll L0, ll R0,
-      F default_prod = [](ll, ll) -> X { return MX::unit(); })
+      ll L0, ll R0, F default_prod = [](ll, ll) -> X { return MX::unit(); })
       : default_prod(default_prod), L0(L0), R0(R0) {}
 
   np new_root() { return new_node(L0, R0); }

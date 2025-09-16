@@ -1,3 +1,5 @@
+#include "ds/node_pool.hpp"
+
 template <typename ActedSet, bool PERSISTENT>
 struct RBST_ActedSet {
   using Monoid_A = typename ActedSet::Monoid_A;

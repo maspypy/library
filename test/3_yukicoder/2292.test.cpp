@@ -11,7 +11,8 @@ void solve() {
 
   LL(N, Q);
   using AM = ActedMonoid_Sum_Assign<int, -1>;
-  Dynamic_Lazy_SegTree<AM, false> seg(10'000'000, 0, N + 10, [&](ll l, ll r) -> int { return r - l; });
+  Dynamic_Lazy_SegTree<AM, false> seg(0, N + 10,
+                                      [&](ll l, ll r) -> int { return r - l; });
 
   auto root = seg.new_root();
   FOR(Q) {
@@ -37,10 +38,8 @@ void solve() {
     }
     if (t == 4) {
       LL(v);
-      ll r = seg.max_right(
-          root, [&](auto e) -> bool { return e == 0; }, v);
-      ll l = seg.min_left(
-          root, [&](auto e) -> bool { return e == 0; }, v);
+      ll r = seg.max_right(root, [&](auto e) -> bool { return e == 0; }, v);
+      ll l = seg.min_left(root, [&](auto e) -> bool { return e == 0; }, v);
       print(r - l + 1);
     }
   }

@@ -12,7 +12,8 @@ void test() {
     int N = RNG(1, 1000);
     int Q = RNG(1, 1000);
     vc<int> A(N, 10);
-    Dynamic_Lazy_SegTree<AM, false> X(1 + 40 * Q, 0, N, [](ll l, ll r) -> P { return {10 * (r - l), 10}; });
+    Dynamic_Lazy_SegTree<AM, false> X(
+        0, N, [](ll l, ll r) -> P { return {10 * (r - l), 10}; });
 
     auto root = X.new_node(0, N);
 

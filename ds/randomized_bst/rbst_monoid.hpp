@@ -41,6 +41,7 @@ struct RBST_Monoid {
 
   np copy_node(np &n) {
     if (!n || !PERSISTENT) return n;
+    np c = pool.create();
     c->l = n->l, c->r = n->r;
     c->x = n->x, c->prod = n->prod, c->rev_prod = n->rev_prod;
     c->size = n->size, c->rev = n->rev;
