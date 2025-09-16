@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':heavy_check_mark:'
@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_add_range_max.hpp
     title: ds/segtree/range_add_range_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -259,10 +259,10 @@ data:
     \    return dfs(dfs, root);\n  }\n\n private:\n  inline void update(int c) {\n\
     \    node[c].prod = node[c].x;\n    node[c].prod = MX::op(node[node[c].ch[0]].prod,\
     \ node[c].prod);\n    node[c].prod = MX::op(node[c].prod, node[node[c].ch[1]].prod);\n\
-    \  }\n\n  inline int copy_node(int c) {\n    if constexpr (!PERSISTENT)\n    \
-    \  return c;\n    else {\n      if (c == NIL) return c;\n      node.eb(node[c]);\n\
-    \      return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l,\
-    \ ll r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = copy_node(c);\n\
+    \  }\n\n  inline int clone(int c) {\n    if constexpr (!PERSISTENT)\n      return\
+    \ c;\n    else {\n      if (c == NIL) return c;\n      node.eb(node[c]);\n   \
+    \   return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l, ll\
+    \ r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = clone(c);\n\
     \    if (node[c].idx == i) {\n      node[c].x = x;\n      update(c);\n      return\
     \ c;\n    }\n    ll m = (l + r) / 2;\n    if (i < m) {\n      if (node[c].idx\
     \ < i) swap(node[c].idx, i), swap(node[c].x, x);\n      node[c].ch[0] = set_rec(node[c].ch[0],\
@@ -270,7 +270,7 @@ data:
     \ i), swap(node[c].x, x);\n      node[c].ch[1] = set_rec(node[c].ch[1], m, r,\
     \ i, x);\n    }\n    update(c);\n    return c;\n  }\n\n  int multiply_rec(int\
     \ c, ll l, ll r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c\
-    \ = copy_node(c);\n    if (node[c].idx == i) {\n      node[c].x = MX::op(node[c].x,\
+    \ = clone(c);\n    if (node[c].idx == i) {\n      node[c].x = MX::op(node[c].x,\
     \ x);\n      update(c);\n      return c;\n    }\n    ll m = (l + r) / 2;\n   \
     \ if (i < m) {\n      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[0] = multiply_rec(node[c].ch[0], l, m, i, x);\n    }\n\
@@ -451,7 +451,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_max.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 02:56:17+09:00'
+  timestamp: '2025-09-16 20:23:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_max.test.cpp

@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -224,11 +224,13 @@ data:
     \ chunks;\n  Slot* cur = nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\
     \n  Node_Pool() { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&...\
     \ args) {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
-    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    auto\
-    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
-    \  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty()) {\n\
-    \      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
+    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
+    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
+    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
+    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
@@ -245,14 +247,12 @@ data:
     \      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n  \
     \    np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
     \      update(root);\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
-    \  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return n;\n    np\
-    \ c = pool.create();\n    c->l = n->l, c->r = n->r;\n    c->x = n->x, c->prod\
-    \ = n->prod, c->rev_prod = n->rev_prod;\n    c->size = n->size, c->rev = n->rev;\n\
-    \    return c;\n  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root,\
-    \ r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n\
-    \  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c), d);\
-    \ }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n      assert(k\
-    \ == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n\
+    \  }\n\n  np clone(np n) {\n    if (!n || !PERSISTENT) return n;\n    return pool.clone(n);\n\
+    \  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n\
+    \  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np\
+    \ a, np b, np c, np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np,\
+    \ np> split(np root, u32 k) {\n    if (!root) {\n      assert(k == 0);\n     \
+    \ return {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n\
     \    return split_rec(root, k);\n  }\n  tuple<np, np, np> split3(np root, u32\
     \ l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n    tie(root,\
     \ nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np, np, np,\
@@ -281,10 +281,10 @@ data:
     \u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\n    // \u5B50\u3092\u30B3\u30D4\
     \u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\u8907\u6570\u306E\u89AA\
     \u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\u3002\n   \
-    \ if (c->rev) {\n      if (c->l) {\n        c->l = copy_node(c->l);\n        c->l->rev\
+    \ if (c->rev) {\n      if (c->l) {\n        c->l = clone(c->l);\n        c->l->rev\
     \ ^= 1;\n        swap(c->l->l, c->l->r);\n        swap(c->l->prod, c->l->rev_prod);\n\
-    \      }\n      if (c->r) {\n        c->r = copy_node(c->r);\n        c->r->rev\
-    \ ^= 1;\n        swap(c->r->l, c->r->r);\n        swap(c->r->prod, c->r->rev_prod);\n\
+    \      }\n      if (c->r) {\n        c->r = clone(c->r);\n        c->r->rev ^=\
+    \ 1;\n        swap(c->r->l, c->r->r);\n        swap(c->r->prod, c->r->rev_prod);\n\
     \      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n    // \u30C7\
     \u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\u3059\u308B\
     \u3060\u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\n    c->size\
@@ -295,43 +295,43 @@ data:
     \ c->rev_prod);\n    }\n  }\n\n  np merge_rec(np l_root, np r_root) {\n    if\
     \ (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size,\
     \ sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n\
-    \      l_root = copy_node(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n\
+    \      l_root = clone(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n\
     \      update(l_root);\n      return l_root;\n    }\n    prop(r_root);\n    r_root\
-    \ = copy_node(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n\
+    \ = clone(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n\
     \    return r_root;\n  }\n\n  pair<np, np> split_rec(np root, u32 k) {\n    if\
     \ (!root) return {nullptr, nullptr};\n    prop(root);\n    u32 sl = (root->l ?\
     \ root->l->size : 0);\n    if (k <= sl) {\n      auto [nl, nr] = split_rec(root->l,\
-    \ k);\n      root = copy_node(root);\n      root->l = nr;\n      update(root);\n\
-    \      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1\
-    \ + sl));\n    root = copy_node(root);\n    root->r = nl;\n    update(root);\n\
-    \    return {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const X &x) {\n \
-    \   if (!root) return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
-    \ : 0);\n    if (k < sl) {\n      root = copy_node(root);\n      root->l = set_rec(root->l,\
+    \ k);\n      root = clone(root);\n      root->l = nr;\n      update(root);\n \
+    \     return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1\
+    \ + sl));\n    root = clone(root);\n    root->r = nl;\n    update(root);\n   \
+    \ return {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const X &x) {\n    if\
+    \ (!root) return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
+    \ : 0);\n    if (k < sl) {\n      root = clone(root);\n      root->l = set_rec(root->l,\
     \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
-    \      root = copy_node(root);\n      root->x = x;\n      update(root);\n    \
-    \  return root;\n    }\n    root = copy_node(root);\n    root->r = set_rec(root->r,\
-    \ k - (1 + sl), x);\n    update(root);\n    return root;\n  }\n\n  np multiply_rec(np\
+    \      root = clone(root);\n      root->x = x;\n      update(root);\n      return\
+    \ root;\n    }\n    root = clone(root);\n    root->r = set_rec(root->r, k - (1\
+    \ + sl), x);\n    update(root);\n    return root;\n  }\n\n  np multiply_rec(np\
     \ root, u32 k, const X &x) {\n    if (!root) return root;\n    prop(root);\n \
-    \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) {\n      root = copy_node(root);\n\
+    \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) {\n      root = clone(root);\n\
     \      root->l = multiply_rec(root->l, k, x);\n      update(root);\n      return\
-    \ root;\n    }\n    if (k == sl) {\n      root = copy_node(root);\n      root->x\
-    \ = Monoid::op(root->x, x);\n      update(root);\n      return root;\n    }\n\
-    \    root = copy_node(root);\n    root->r = multiply_rec(root->r, k - (1 + sl),\
-    \ x);\n    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l,\
-    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) {\n      return (rev\
-    \ ? root->rev_prod : root->prod);\n    }\n    np left = (rev ? root->r : root->l);\n\
-    \    np right = (rev ? root->l : root->r);\n    u32 sl = (left ? left->size :\
-    \ 0);\n    X res = Monoid::unit();\n    if (l < sl) {\n      X y = prod_rec(left,\
-    \ l, min(r, sl), rev ^ root->rev);\n      res = Monoid::op(res, y);\n    }\n \
-    \   if (l <= sl && sl < r) res = Monoid::op(res, root->x);\n    u32 k = 1 + sl;\n\
-    \    if (k < r) {\n      X y = prod_rec(right, max(k, l) - k, r - k, rev ^ root->rev);\n\
-    \      res = Monoid::op(res, y);\n    }\n    return res;\n  }\n\n  X get_rec(np\
-    \ root, u32 k, bool rev) {\n    np left = (rev ? root->r : root->l);\n    np right\
-    \ = (rev ? root->l : root->r);\n    u32 sl = (left ? left->size : 0);\n    if\
-    \ (k == sl) return root->x;\n    rev ^= root->rev;\n    if (k < sl) return get_rec(left,\
+    \ root;\n    }\n    if (k == sl) {\n      root = clone(root);\n      root->x =\
+    \ Monoid::op(root->x, x);\n      update(root);\n      return root;\n    }\n  \
+    \  root = clone(root);\n    root->r = multiply_rec(root->r, k - (1 + sl), x);\n\
+    \    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l, u32\
+    \ r, bool rev) {\n    if (l == 0 && r == root->size) {\n      return (rev ? root->rev_prod\
+    \ : root->prod);\n    }\n    np left = (rev ? root->r : root->l);\n    np right\
+    \ = (rev ? root->l : root->r);\n    u32 sl = (left ? left->size : 0);\n    X res\
+    \ = Monoid::unit();\n    if (l < sl) {\n      X y = prod_rec(left, l, min(r, sl),\
+    \ rev ^ root->rev);\n      res = Monoid::op(res, y);\n    }\n    if (l <= sl &&\
+    \ sl < r) res = Monoid::op(res, root->x);\n    u32 k = 1 + sl;\n    if (k < r)\
+    \ {\n      X y = prod_rec(right, max(k, l) - k, r - k, rev ^ root->rev);\n   \
+    \   res = Monoid::op(res, y);\n    }\n    return res;\n  }\n\n  X get_rec(np root,\
+    \ u32 k, bool rev) {\n    np left = (rev ? root->r : root->l);\n    np right =\
+    \ (rev ? root->l : root->r);\n    u32 sl = (left ? left->size : 0);\n    if (k\
+    \ == sl) return root->x;\n    rev ^= root->rev;\n    if (k < sl) return get_rec(left,\
     \ k, rev);\n    return get_rec(right, k - (1 + sl), rev);\n  }\n\n  template <typename\
     \ F>\n  pair<np, np> split_max_right_rec(np root, const F &check, X &x) {\n  \
-    \  if (!root) return {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n\
+    \  if (!root) return {nullptr, nullptr};\n    prop(root);\n    root = clone(root);\n\
     \    X y = Monoid::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n   \
     \   return {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n\
     \    if (left) {\n      X y = Monoid::op(x, root->l->prod);\n      if (!check(y))\
@@ -401,7 +401,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid_persistent.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 16:21:18+09:00'
+  timestamp: '2025-09-16 20:23:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_persistent.test.cpp

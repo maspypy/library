@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool\
@@ -33,11 +33,13 @@ data:
     \ nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool()\
     \ { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&... args)\
     \ {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
-    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    auto\
-    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
-    \  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty()) {\n\
-    \      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
+    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
+    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
+    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
+    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
@@ -84,14 +86,13 @@ data:
     \ MA::unit());\n  }\n\n  void reset() { pool.reset(); }\n\n  // root[l:r) \u3092\
     \ apply(other[l:r),a) \u3067\u4E0A\u66F8\u304D\u3057\u305F\u3082\u306E\u3092\u8FD4\
     \u3059\n  np copy_interval(np root, np other, ll l, ll r, A a) {\n    if (root\
-    \ == other) return root;\n    root = copy_node(root);\n    copy_interval_rec(root,\
-    \ other, L0, R0, l, r, a);\n    return root;\n  }\n\n private:\n  np copy_node(np\
-    \ c) {\n    if (!c || !PERSISTENT) return c;\n    np a = pool.create();\n    a->l\
-    \ = c->l, a->r = c->r;\n    a->x = c->x, a->lazy = c->lazy;\n    return a;\n \
-    \ }\n\n  void prop(np c, ll l, ll r) {\n    assert(r - l >= 2);\n    ll m = (l\
-    \ + r) / 2;\n    if (c->lazy == MA::unit()) return;\n    c->l = (c->l ? copy_node(c->l)\
+    \ == other) return root;\n    root = clone(root);\n    copy_interval_rec(root,\
+    \ other, L0, R0, l, r, a);\n    return root;\n  }\n\n private:\n  np clone(np\
+    \ c) {\n    if (!c || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
+    \n  void prop(np c, ll l, ll r) {\n    assert(r - l >= 2);\n    ll m = (l + r)\
+    \ / 2;\n    if (c->lazy == MA::unit()) return;\n    c->l = (c->l ? clone(c->l)\
     \ : new_node(l, m));\n    c->l->x = AM::act(c->l->x, c->lazy, m - l);\n    c->l->lazy\
-    \ = MA::op(c->l->lazy, c->lazy);\n    c->r = (c->r ? copy_node(c->r) : new_node(m,\
+    \ = MA::op(c->l->lazy, c->lazy);\n    c->r = (c->r ? clone(c->r) : new_node(m,\
     \ r));\n    c->r->x = AM::act(c->r->x, c->lazy, r - m);\n    c->r->lazy = MA::op(c->r->lazy,\
     \ c->lazy);\n    c->lazy = MA::unit();\n  }\n\n  void copy_interval_rec(np c,\
     \ np d, ll l, ll r, ll ql, ll qr, A a) {\n    // c[ql,qr) <- apply(d[ql,qr),a)\n\
@@ -101,26 +102,26 @@ data:
     \ = MA::op(d->lazy, a);\n        c->l = d->l, c->r = d->r;\n      } else {\n \
     \       c->x = AM::act(default_prod(l, r), a, r - l), c->lazy = a;\n        c->l\
     \ = nullptr, c->r = nullptr;\n      }\n      return;\n    }\n    // push\n   \
-    \ ll m = (l + r) / 2;\n    c->l = (c->l ? copy_node(c->l) : new_node());\n   \
-    \ c->r = (c->r ? copy_node(c->r) : new_node());\n    c->l->x = AM::act(c->l->x,\
-    \ c->lazy, m - l);\n    c->l->lazy = MA::op(c->l->lazy, c->lazy);\n    c->r->x\
-    \ = AM::act(c->r->x, c->lazy, r - m);\n    c->r->lazy = MA::op(c->r->lazy, c->lazy);\n\
-    \    c->lazy = MA::unit();\n    if (d) a = MA::op(d->lazy, a);\n    copy_interval_rec(c->l,\
+    \ ll m = (l + r) / 2;\n    c->l = (c->l ? clone(c->l) : new_node());\n    c->r\
+    \ = (c->r ? clone(c->r) : new_node());\n    c->l->x = AM::act(c->l->x, c->lazy,\
+    \ m - l);\n    c->l->lazy = MA::op(c->l->lazy, c->lazy);\n    c->r->x = AM::act(c->r->x,\
+    \ c->lazy, r - m);\n    c->r->lazy = MA::op(c->r->lazy, c->lazy);\n    c->lazy\
+    \ = MA::unit();\n    if (d) a = MA::op(d->lazy, a);\n    copy_interval_rec(c->l,\
     \ (d && d->l ? d->l : nullptr), l, m, ql, qr, a);\n    copy_interval_rec(c->r,\
     \ (d && d->r ? d->r : nullptr), m, r, ql, qr, a);\n    c->x = MX::op(c->l->x,\
     \ c->r->x);\n    return;\n  }\n\n  np set_rec(np c, ll l, ll r, ll i, const X\
-    \ &x) {\n    if (r == l + 1) {\n      c = copy_node(c);\n      c->x = x;\n   \
-    \   c->lazy = MA::unit();\n      return c;\n    }\n    prop(c, l, r);\n    ll\
-    \ m = (l + r) / 2;\n    if (!c->l) c->l = new_node(l, m);\n    if (!c->r) c->r\
-    \ = new_node(m, r);\n\n    c = copy_node(c);\n    if (i < m) {\n      c->l = set_rec(c->l,\
-    \ l, m, i, x);\n    } else {\n      c->r = set_rec(c->r, m, r, i, x);\n    }\n\
-    \    c->x = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\n  np multiply_rec(np\
-    \ c, ll l, ll r, ll i, const X &x) {\n    if (r == l + 1) {\n      c = copy_node(c);\n\
-    \      c->x = MX::op(c->x, x);\n      c->lazy = MA::unit();\n      return c;\n\
+    \ &x) {\n    if (r == l + 1) {\n      c = clone(c);\n      c->x = x;\n      c->lazy\
+    \ = MA::unit();\n      return c;\n    }\n    prop(c, l, r);\n    ll m = (l + r)\
+    \ / 2;\n    if (!c->l) c->l = new_node(l, m);\n    if (!c->r) c->r = new_node(m,\
+    \ r);\n\n    c = clone(c);\n    if (i < m) {\n      c->l = set_rec(c->l, l, m,\
+    \ i, x);\n    } else {\n      c->r = set_rec(c->r, m, r, i, x);\n    }\n    c->x\
+    \ = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\n  np multiply_rec(np c, ll\
+    \ l, ll r, ll i, const X &x) {\n    if (r == l + 1) {\n      c = clone(c);\n \
+    \     c->x = MX::op(c->x, x);\n      c->lazy = MA::unit();\n      return c;\n\
     \    }\n    prop(c, l, r);\n    ll m = (l + r) / 2;\n    if (!c->l) c->l = new_node(l,\
-    \ m);\n    if (!c->r) c->r = new_node(m, r);\n\n    c = copy_node(c);\n    if\
-    \ (i < m) {\n      c->l = multiply_rec(c->l, l, m, i, x);\n    } else {\n    \
-    \  c->r = multiply_rec(c->r, m, r, i, x);\n    }\n    c->x = MX::op(c->l->x, c->r->x);\n\
+    \ m);\n    if (!c->r) c->r = new_node(m, r);\n\n    c = clone(c);\n    if (i <\
+    \ m) {\n      c->l = multiply_rec(c->l, l, m, i, x);\n    } else {\n      c->r\
+    \ = multiply_rec(c->r, m, r, i, x);\n    }\n    c->x = MX::op(c->l->x, c->r->x);\n\
     \    return c;\n  }\n\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x, A\
     \ lazy) {\n    chmax(ql, l);\n    chmin(qr, r);\n    if (ql >= qr) return;\n \
     \   if (!c) {\n      x = MX::op(x, AM::act(default_prod(ql, qr), lazy, qr - ql));\n\
@@ -129,10 +130,10 @@ data:
     \ lazy);\n    prod_rec(c->l, l, m, ql, qr, x, lazy);\n    prod_rec(c->r, m, r,\
     \ ql, qr, x, lazy);\n  }\n\n  np apply_rec(np c, ll l, ll r, ll ql, ll qr, const\
     \ A &a) {\n    if (!c) c = new_node(l, r);\n    chmax(ql, l);\n    chmin(qr, r);\n\
-    \    if (ql >= qr) return c;\n    if (l == ql && r == qr) {\n      c = copy_node(c);\n\
+    \    if (ql >= qr) return c;\n    if (l == ql && r == qr) {\n      c = clone(c);\n\
     \      c->x = AM::act(c->x, a, r - l);\n      c->lazy = MA::op(c->lazy, a);\n\
     \      return c;\n    }\n    prop(c, l, r);\n    ll m = (l + r) / 2;\n    c =\
-    \ copy_node(c);\n    c->l = apply_rec(c->l, l, m, ql, qr, a);\n    c->r = apply_rec(c->r,\
+    \ clone(c);\n    c->l = apply_rec(c->l, l, m, ql, qr, a);\n    c->r = apply_rec(c->r,\
     \ m, r, ql, qr, a);\n    c->x = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\
     \n  template <typename F>\n  ll max_right_rec(np c, const F &check, ll l, ll r,\
     \ ll ql, X &x) {\n    if (r <= ql) return r;\n    if (!c) c = new_node(l, r);\n\
@@ -189,77 +190,75 @@ data:
     \    dfs(dfs, root, L0, R0, MA::unit());\n  }\n\n  void reset() { pool.reset();\
     \ }\n\n  // root[l:r) \u3092 apply(other[l:r),a) \u3067\u4E0A\u66F8\u304D\u3057\
     \u305F\u3082\u306E\u3092\u8FD4\u3059\n  np copy_interval(np root, np other, ll\
-    \ l, ll r, A a) {\n    if (root == other) return root;\n    root = copy_node(root);\n\
+    \ l, ll r, A a) {\n    if (root == other) return root;\n    root = clone(root);\n\
     \    copy_interval_rec(root, other, L0, R0, l, r, a);\n    return root;\n  }\n\
-    \n private:\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n  \
-    \  np a = pool.create();\n    a->l = c->l, a->r = c->r;\n    a->x = c->x, a->lazy\
-    \ = c->lazy;\n    return a;\n  }\n\n  void prop(np c, ll l, ll r) {\n    assert(r\
-    \ - l >= 2);\n    ll m = (l + r) / 2;\n    if (c->lazy == MA::unit()) return;\n\
-    \    c->l = (c->l ? copy_node(c->l) : new_node(l, m));\n    c->l->x = AM::act(c->l->x,\
-    \ c->lazy, m - l);\n    c->l->lazy = MA::op(c->l->lazy, c->lazy);\n    c->r =\
-    \ (c->r ? copy_node(c->r) : new_node(m, r));\n    c->r->x = AM::act(c->r->x, c->lazy,\
-    \ r - m);\n    c->r->lazy = MA::op(c->r->lazy, c->lazy);\n    c->lazy = MA::unit();\n\
-    \  }\n\n  void copy_interval_rec(np c, np d, ll l, ll r, ll ql, ll qr, A a) {\n\
-    \    // c[ql,qr) <- apply(d[ql,qr),a)\n    // \u3082\u3046 c \u306F\u65B0\u3057\
-    \u304F\u3057\u3066\u3042\u308B\n    assert(c);\n    chmax(ql, l), chmin(qr, r);\n\
-    \    if (ql >= qr) return;\n    if (l == ql && r == qr) {\n      if (d) {\n  \
-    \      c->x = AM::act(d->x, a, r - l), c->lazy = MA::op(d->lazy, a);\n       \
-    \ c->l = d->l, c->r = d->r;\n      } else {\n        c->x = AM::act(default_prod(l,\
-    \ r), a, r - l), c->lazy = a;\n        c->l = nullptr, c->r = nullptr;\n     \
-    \ }\n      return;\n    }\n    // push\n    ll m = (l + r) / 2;\n    c->l = (c->l\
-    \ ? copy_node(c->l) : new_node());\n    c->r = (c->r ? copy_node(c->r) : new_node());\n\
-    \    c->l->x = AM::act(c->l->x, c->lazy, m - l);\n    c->l->lazy = MA::op(c->l->lazy,\
-    \ c->lazy);\n    c->r->x = AM::act(c->r->x, c->lazy, r - m);\n    c->r->lazy =\
-    \ MA::op(c->r->lazy, c->lazy);\n    c->lazy = MA::unit();\n    if (d) a = MA::op(d->lazy,\
-    \ a);\n    copy_interval_rec(c->l, (d && d->l ? d->l : nullptr), l, m, ql, qr,\
-    \ a);\n    copy_interval_rec(c->r, (d && d->r ? d->r : nullptr), m, r, ql, qr,\
-    \ a);\n    c->x = MX::op(c->l->x, c->r->x);\n    return;\n  }\n\n  np set_rec(np\
-    \ c, ll l, ll r, ll i, const X &x) {\n    if (r == l + 1) {\n      c = copy_node(c);\n\
-    \      c->x = x;\n      c->lazy = MA::unit();\n      return c;\n    }\n    prop(c,\
-    \ l, r);\n    ll m = (l + r) / 2;\n    if (!c->l) c->l = new_node(l, m);\n   \
-    \ if (!c->r) c->r = new_node(m, r);\n\n    c = copy_node(c);\n    if (i < m) {\n\
-    \      c->l = set_rec(c->l, l, m, i, x);\n    } else {\n      c->r = set_rec(c->r,\
-    \ m, r, i, x);\n    }\n    c->x = MX::op(c->l->x, c->r->x);\n    return c;\n \
-    \ }\n\n  np multiply_rec(np c, ll l, ll r, ll i, const X &x) {\n    if (r == l\
-    \ + 1) {\n      c = copy_node(c);\n      c->x = MX::op(c->x, x);\n      c->lazy\
+    \n private:\n  np clone(np c) {\n    if (!c || !PERSISTENT) return c;\n    return\
+    \ pool.clone(c);\n  }\n\n  void prop(np c, ll l, ll r) {\n    assert(r - l >=\
+    \ 2);\n    ll m = (l + r) / 2;\n    if (c->lazy == MA::unit()) return;\n    c->l\
+    \ = (c->l ? clone(c->l) : new_node(l, m));\n    c->l->x = AM::act(c->l->x, c->lazy,\
+    \ m - l);\n    c->l->lazy = MA::op(c->l->lazy, c->lazy);\n    c->r = (c->r ? clone(c->r)\
+    \ : new_node(m, r));\n    c->r->x = AM::act(c->r->x, c->lazy, r - m);\n    c->r->lazy\
+    \ = MA::op(c->r->lazy, c->lazy);\n    c->lazy = MA::unit();\n  }\n\n  void copy_interval_rec(np\
+    \ c, np d, ll l, ll r, ll ql, ll qr, A a) {\n    // c[ql,qr) <- apply(d[ql,qr),a)\n\
+    \    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\n    assert(c);\n\
+    \    chmax(ql, l), chmin(qr, r);\n    if (ql >= qr) return;\n    if (l == ql &&\
+    \ r == qr) {\n      if (d) {\n        c->x = AM::act(d->x, a, r - l), c->lazy\
+    \ = MA::op(d->lazy, a);\n        c->l = d->l, c->r = d->r;\n      } else {\n \
+    \       c->x = AM::act(default_prod(l, r), a, r - l), c->lazy = a;\n        c->l\
+    \ = nullptr, c->r = nullptr;\n      }\n      return;\n    }\n    // push\n   \
+    \ ll m = (l + r) / 2;\n    c->l = (c->l ? clone(c->l) : new_node());\n    c->r\
+    \ = (c->r ? clone(c->r) : new_node());\n    c->l->x = AM::act(c->l->x, c->lazy,\
+    \ m - l);\n    c->l->lazy = MA::op(c->l->lazy, c->lazy);\n    c->r->x = AM::act(c->r->x,\
+    \ c->lazy, r - m);\n    c->r->lazy = MA::op(c->r->lazy, c->lazy);\n    c->lazy\
+    \ = MA::unit();\n    if (d) a = MA::op(d->lazy, a);\n    copy_interval_rec(c->l,\
+    \ (d && d->l ? d->l : nullptr), l, m, ql, qr, a);\n    copy_interval_rec(c->r,\
+    \ (d && d->r ? d->r : nullptr), m, r, ql, qr, a);\n    c->x = MX::op(c->l->x,\
+    \ c->r->x);\n    return;\n  }\n\n  np set_rec(np c, ll l, ll r, ll i, const X\
+    \ &x) {\n    if (r == l + 1) {\n      c = clone(c);\n      c->x = x;\n      c->lazy\
     \ = MA::unit();\n      return c;\n    }\n    prop(c, l, r);\n    ll m = (l + r)\
     \ / 2;\n    if (!c->l) c->l = new_node(l, m);\n    if (!c->r) c->r = new_node(m,\
-    \ r);\n\n    c = copy_node(c);\n    if (i < m) {\n      c->l = multiply_rec(c->l,\
-    \ l, m, i, x);\n    } else {\n      c->r = multiply_rec(c->r, m, r, i, x);\n \
-    \   }\n    c->x = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\n  void prod_rec(np\
-    \ c, ll l, ll r, ll ql, ll qr, X &x, A lazy) {\n    chmax(ql, l);\n    chmin(qr,\
-    \ r);\n    if (ql >= qr) return;\n    if (!c) {\n      x = MX::op(x, AM::act(default_prod(ql,\
-    \ qr), lazy, qr - ql));\n      return;\n    }\n    if (l == ql && r == qr) {\n\
-    \      x = MX::op(x, AM::act(c->x, lazy, r - l));\n      return;\n    }\n    ll\
-    \ m = (l + r) / 2;\n    lazy = MA::op(c->lazy, lazy);\n    prod_rec(c->l, l, m,\
-    \ ql, qr, x, lazy);\n    prod_rec(c->r, m, r, ql, qr, x, lazy);\n  }\n\n  np apply_rec(np\
-    \ c, ll l, ll r, ll ql, ll qr, const A &a) {\n    if (!c) c = new_node(l, r);\n\
-    \    chmax(ql, l);\n    chmin(qr, r);\n    if (ql >= qr) return c;\n    if (l\
-    \ == ql && r == qr) {\n      c = copy_node(c);\n      c->x = AM::act(c->x, a,\
-    \ r - l);\n      c->lazy = MA::op(c->lazy, a);\n      return c;\n    }\n    prop(c,\
-    \ l, r);\n    ll m = (l + r) / 2;\n    c = copy_node(c);\n    c->l = apply_rec(c->l,\
-    \ l, m, ql, qr, a);\n    c->r = apply_rec(c->r, m, r, ql, qr, a);\n    c->x =\
-    \ MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\n  template <typename F>\n \
-    \ ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {\n    if (r\
-    \ <= ql) return r;\n    if (!c) c = new_node(l, r);\n    chmax(ql, l);\n    if\
-    \ (l == ql && check(MX::op(x, c->x))) {\n      x = MX::op(x, c->x);\n      return\
-    \ r;\n    }\n    if (r == l + 1) return l;\n    prop(c, l, r);\n    ll m = (l\
-    \ + r) / 2;\n    ll k = max_right_rec(c->l, check, l, m, ql, x);\n    if (k <\
-    \ m) return k;\n    return max_right_rec(c->r, check, m, r, ql, x);\n  }\n\n \
-    \ template <typename F>\n  ll min_left_rec(np c, const F &check, ll l, ll r, ll\
-    \ qr, X &x) {\n    if (qr <= l) return l;\n    if (!c) c = new_node(l, r);\n \
-    \   chmin(qr, r);\n    if (r == qr && check(MX::op(c->x, x))) {\n      x = MX::op(c->x,\
-    \ x);\n      return l;\n    }\n    if (r == l + 1) return r;\n    prop(c, l, r);\n\
-    \    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check, m, r, qr, x);\n\
-    \    if (m < k) return k;\n    return min_left_rec(c->l, check, l, m, qr, x);\n\
-    \  }\n};"
+    \ r);\n\n    c = clone(c);\n    if (i < m) {\n      c->l = set_rec(c->l, l, m,\
+    \ i, x);\n    } else {\n      c->r = set_rec(c->r, m, r, i, x);\n    }\n    c->x\
+    \ = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\n  np multiply_rec(np c, ll\
+    \ l, ll r, ll i, const X &x) {\n    if (r == l + 1) {\n      c = clone(c);\n \
+    \     c->x = MX::op(c->x, x);\n      c->lazy = MA::unit();\n      return c;\n\
+    \    }\n    prop(c, l, r);\n    ll m = (l + r) / 2;\n    if (!c->l) c->l = new_node(l,\
+    \ m);\n    if (!c->r) c->r = new_node(m, r);\n\n    c = clone(c);\n    if (i <\
+    \ m) {\n      c->l = multiply_rec(c->l, l, m, i, x);\n    } else {\n      c->r\
+    \ = multiply_rec(c->r, m, r, i, x);\n    }\n    c->x = MX::op(c->l->x, c->r->x);\n\
+    \    return c;\n  }\n\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x, A\
+    \ lazy) {\n    chmax(ql, l);\n    chmin(qr, r);\n    if (ql >= qr) return;\n \
+    \   if (!c) {\n      x = MX::op(x, AM::act(default_prod(ql, qr), lazy, qr - ql));\n\
+    \      return;\n    }\n    if (l == ql && r == qr) {\n      x = MX::op(x, AM::act(c->x,\
+    \ lazy, r - l));\n      return;\n    }\n    ll m = (l + r) / 2;\n    lazy = MA::op(c->lazy,\
+    \ lazy);\n    prod_rec(c->l, l, m, ql, qr, x, lazy);\n    prod_rec(c->r, m, r,\
+    \ ql, qr, x, lazy);\n  }\n\n  np apply_rec(np c, ll l, ll r, ll ql, ll qr, const\
+    \ A &a) {\n    if (!c) c = new_node(l, r);\n    chmax(ql, l);\n    chmin(qr, r);\n\
+    \    if (ql >= qr) return c;\n    if (l == ql && r == qr) {\n      c = clone(c);\n\
+    \      c->x = AM::act(c->x, a, r - l);\n      c->lazy = MA::op(c->lazy, a);\n\
+    \      return c;\n    }\n    prop(c, l, r);\n    ll m = (l + r) / 2;\n    c =\
+    \ clone(c);\n    c->l = apply_rec(c->l, l, m, ql, qr, a);\n    c->r = apply_rec(c->r,\
+    \ m, r, ql, qr, a);\n    c->x = MX::op(c->l->x, c->r->x);\n    return c;\n  }\n\
+    \n  template <typename F>\n  ll max_right_rec(np c, const F &check, ll l, ll r,\
+    \ ll ql, X &x) {\n    if (r <= ql) return r;\n    if (!c) c = new_node(l, r);\n\
+    \    chmax(ql, l);\n    if (l == ql && check(MX::op(x, c->x))) {\n      x = MX::op(x,\
+    \ c->x);\n      return r;\n    }\n    if (r == l + 1) return l;\n    prop(c, l,\
+    \ r);\n    ll m = (l + r) / 2;\n    ll k = max_right_rec(c->l, check, l, m, ql,\
+    \ x);\n    if (k < m) return k;\n    return max_right_rec(c->r, check, m, r, ql,\
+    \ x);\n  }\n\n  template <typename F>\n  ll min_left_rec(np c, const F &check,\
+    \ ll l, ll r, ll qr, X &x) {\n    if (qr <= l) return l;\n    if (!c) c = new_node(l,\
+    \ r);\n    chmin(qr, r);\n    if (r == qr && check(MX::op(c->x, x))) {\n     \
+    \ x = MX::op(c->x, x);\n      return l;\n    }\n    if (r == l + 1) return r;\n\
+    \    prop(c, l, r);\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check,\
+    \ m, r, qr, x);\n    if (m < k) return k;\n    return min_left_rec(c->l, check,\
+    \ l, m, qr, x);\n  }\n};"
   dependsOn:
   - ds/node_pool.hpp
   isVerificationFile: false
   path: ds/segtree/dynamic_lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2025-09-16 16:42:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-09-16 20:23:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/789_2.test.cpp
   - test/3_yukicoder/2292.test.cpp

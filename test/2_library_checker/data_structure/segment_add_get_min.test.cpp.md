@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -251,11 +251,13 @@ data:
     \ nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool()\
     \ { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&... args)\
     \ {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
-    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    auto\
-    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
-    \  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty()) {\n\
-    \      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
+    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
+    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
+    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
+    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
@@ -287,40 +289,39 @@ data:
     \ xl, xr, fid, L, R);\n  }\n\n  // (\u5024\u30FB\u95A2\u6570\u756A\u53F7)\n  pair<T,\
     \ int> query(np root, ll x) {\n    assert(L <= x && x < R);\n    if (!root) {\n\
     \      if (MINIMIZE) return {infty<T>, -1};\n      if (!MINIMIZE) return {-infty<T>,\
-    \ -1};\n    }\n    return query_rec(root, x, L, R);\n  }\n\n private:\n  np copy_node(np\
-    \ c) {\n    if (!c || !PERSISTENT) return c;\n    np d = pool.create();\n    d->fid\
-    \ = c->fid, d->l = c->l, d->r = c->r;\n    return d;\n  }\n\n  inline T evaluate_inner(int\
-    \ fid, ll x) {\n    if (fid == -1) {\n      return (MINIMIZE ? infty<T> : -infty<T>);\n\
-    \    };\n    return evaluate(funcs[fid], x);\n  }\n\n  np add_segment_rec(np c,\
-    \ ll xl, ll xr, int fid, ll node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr,\
-    \ node_r);\n    if (xl >= xr) return c;\n    if (node_l < xl || xr < node_r) {\n\
-    \      c = copy_node(c);\n      ll node_m = (node_l + node_r) / 2;\n      if (!c->l)\
-    \ c->l = new_node();\n      if (!c->r) c->r = new_node();\n      c->l = add_segment_rec(c->l,\
-    \ xl, xr, fid, node_l, node_m);\n      c->r = add_segment_rec(c->r, xl, xr, fid,\
-    \ node_m, node_r);\n      return c;\n    }\n    return add_line_rec(c, fid, node_l,\
-    \ node_r);\n  }\n\n  np add_line_rec(np c, int fid, ll node_l, ll node_r) {\n\
-    \    int gid = c->fid;\n    T fl = evaluate_inner(fid, node_l), fr = evaluate_inner(fid,\
-    \ node_r - 1);\n    T gl = evaluate_inner(gid, node_l), gr = evaluate_inner(gid,\
-    \ node_r - 1);\n    bool bl = (MINIMIZE ? fl < gl : fl > gl);\n    bool br = (MINIMIZE\
-    \ ? fr < gr : fr > gr);\n    if (bl && br) {\n      c = copy_node(c);\n      c->fid\
-    \ = fid;\n      return c;\n    }\n    if (!bl && !br) {\n      return c;\n   \
-    \ }\n\n    c = copy_node(c);\n    ll node_m = (node_l + node_r) / 2;\n    auto\
-    \ fm = evaluate_inner(fid, node_m), gm = evaluate_inner(gid, node_m);\n    bool\
-    \ bm = (MINIMIZE ? fm < gm : fm > gm);\n    if (bm) {\n      c->fid = fid;\n \
-    \     if (bl) {\n        if (!c->r) c->r = new_node();\n        c->r = add_line_rec(c->r,\
-    \ gid, node_m, node_r);\n      } else {\n        if (!c->l) c->l = new_node();\n\
-    \        c->l = add_line_rec(c->l, gid, node_l, node_m);\n      }\n    }\n   \
-    \ if (!bm) {\n      if (!bl) {\n        if (!c->r) c->r = new_node();\n      \
-    \  c->r = add_line_rec(c->r, fid, node_m, node_r);\n      } else {\n        if\
-    \ (!c->l) c->l = new_node();\n        c->l = add_line_rec(c->l, fid, node_l, node_m);\n\
-    \      }\n    }\n    return c;\n  }\n\n  pair<T, int> query_rec(np c, ll x, ll\
-    \ node_l, ll node_r) {\n    int fid = c->fid;\n    pair<T, int> res = {evaluate_inner(fid,\
-    \ x), fid};\n    ll node_m = (node_l + node_r) / 2;\n    if (x < node_m && c->l)\
-    \ {\n      pair<T, int> res1 = query_rec(c->l, x, node_l, node_m);\n      res\
-    \ = (MINIMIZE ? min(res, res1) : max(res, res1));\n    }\n    if (x >= node_m\
-    \ && c->r) {\n      pair<T, int> res1 = query_rec(c->r, x, node_m, node_r);\n\
-    \      res = (MINIMIZE ? min(res, res1) : max(res, res1));\n    }\n    return\
-    \ res;\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/segment_add_get_min.test.cpp\"\
+    \ -1};\n    }\n    return query_rec(root, x, L, R);\n  }\n\n private:\n  np clone(np\
+    \ c) {\n    if (!c || !PERSISTENT) return c;\n    return pool.lone(c);\n  }\n\n\
+    \  inline T evaluate_inner(int fid, ll x) {\n    if (fid == -1) {\n      return\
+    \ (MINIMIZE ? infty<T> : -infty<T>);\n    };\n    return evaluate(funcs[fid],\
+    \ x);\n  }\n\n  np add_segment_rec(np c, ll xl, ll xr, int fid, ll node_l, ll\
+    \ node_r) {\n    chmax(xl, node_l), chmin(xr, node_r);\n    if (xl >= xr) return\
+    \ c;\n    if (node_l < xl || xr < node_r) {\n      c = clone(c);\n      ll node_m\
+    \ = (node_l + node_r) / 2;\n      if (!c->l) c->l = new_node();\n      if (!c->r)\
+    \ c->r = new_node();\n      c->l = add_segment_rec(c->l, xl, xr, fid, node_l,\
+    \ node_m);\n      c->r = add_segment_rec(c->r, xl, xr, fid, node_m, node_r);\n\
+    \      return c;\n    }\n    return add_line_rec(c, fid, node_l, node_r);\n  }\n\
+    \n  np add_line_rec(np c, int fid, ll node_l, ll node_r) {\n    int gid = c->fid;\n\
+    \    T fl = evaluate_inner(fid, node_l), fr = evaluate_inner(fid, node_r - 1);\n\
+    \    T gl = evaluate_inner(gid, node_l), gr = evaluate_inner(gid, node_r - 1);\n\
+    \    bool bl = (MINIMIZE ? fl < gl : fl > gl);\n    bool br = (MINIMIZE ? fr <\
+    \ gr : fr > gr);\n    if (bl && br) {\n      c = clone(c);\n      c->fid = fid;\n\
+    \      return c;\n    }\n    if (!bl && !br) {\n      return c;\n    }\n\n   \
+    \ c = clone(c);\n    ll node_m = (node_l + node_r) / 2;\n    auto fm = evaluate_inner(fid,\
+    \ node_m), gm = evaluate_inner(gid, node_m);\n    bool bm = (MINIMIZE ? fm < gm\
+    \ : fm > gm);\n    if (bm) {\n      c->fid = fid;\n      if (bl) {\n        if\
+    \ (!c->r) c->r = new_node();\n        c->r = add_line_rec(c->r, gid, node_m, node_r);\n\
+    \      } else {\n        if (!c->l) c->l = new_node();\n        c->l = add_line_rec(c->l,\
+    \ gid, node_l, node_m);\n      }\n    }\n    if (!bm) {\n      if (!bl) {\n  \
+    \      if (!c->r) c->r = new_node();\n        c->r = add_line_rec(c->r, fid, node_m,\
+    \ node_r);\n      } else {\n        if (!c->l) c->l = new_node();\n        c->l\
+    \ = add_line_rec(c->l, fid, node_l, node_m);\n      }\n    }\n    return c;\n\
+    \  }\n\n  pair<T, int> query_rec(np c, ll x, ll node_l, ll node_r) {\n    int\
+    \ fid = c->fid;\n    pair<T, int> res = {evaluate_inner(fid, x), fid};\n    ll\
+    \ node_m = (node_l + node_r) / 2;\n    if (x < node_m && c->l) {\n      pair<T,\
+    \ int> res1 = query_rec(c->l, x, node_l, node_m);\n      res = (MINIMIZE ? min(res,\
+    \ res1) : max(res, res1));\n    }\n    if (x >= node_m && c->r) {\n      pair<T,\
+    \ int> res1 = query_rec(c->r, x, node_m, node_r);\n      res = (MINIMIZE ? min(res,\
+    \ res1) : max(res, res1));\n    }\n    return res;\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/segment_add_get_min.test.cpp\"\
     \n\nstruct F {\n  using value_type = ll; // operator() \u306E\u623B\u308A\u5024\
     \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<F, 0, 20'000'000, 1> X(-infty<int>, infty<int>);\n\
@@ -351,8 +352,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:56:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-09-16 20:23:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
 layout: document

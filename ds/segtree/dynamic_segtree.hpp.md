@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/default_prod.hpp
     title: alg/default_prod.hpp
   _extendedRequiredBy: []
@@ -12,24 +12,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1036.test.cpp
     title: test/3_yukicoder/1036.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1649.test.cpp
     title: test/3_yukicoder/1649.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1826.test.cpp
     title: test/3_yukicoder/1826.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/789.test.cpp
     title: test/3_yukicoder/789.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/default_prod.hpp\"\ntemplate <class Monoid>\nstruct\
@@ -69,12 +69,12 @@ data:
     \ l <= r && r <= R0);\r\n    if (l == r) return MX::unit();\r\n    X x = MX::unit();\r\
     \n    prod_rec(root, L0, R0, l, r, x);\r\n    return x;\r\n  }\r\n\r\n  X prod_all(int\
     \ root) { return node[root].x; }\r\n\r\n  int set(int root, ll i, const X &x)\
-    \ {\r\n    assert(root != NIL && L0 <= i && i < R0);\r\n    root = copy_node(root);\r\
+    \ {\r\n    assert(root != NIL && L0 <= i && i < R0);\r\n    root = clone(root);\r\
     \n    set_rec(root, L0, R0, i, x);\r\n    return root;\r\n  }\r\n\r\n  int multiply(int\
     \ root, ll i, const X &x) {\r\n    assert(root != NIL && L0 <= i && i < R0);\r\
-    \n    root = copy_node(root);\r\n    multiply_rec(root, L0, R0, i, x);\r\n   \
-    \ return root;\r\n  }\r\n\r\n  template <typename F>\r\n  ll max_right(int root,\
-    \ F check, ll L) {\r\n    assert(root != NIL && L0 <= L && L <= R0 && check(MX::unit()));\r\
+    \n    root = clone(root);\r\n    multiply_rec(root, L0, R0, i, x);\r\n    return\
+    \ root;\r\n  }\r\n\r\n  template <typename F>\r\n  ll max_right(int root, F check,\
+    \ ll L) {\r\n    assert(root != NIL && L0 <= L && L <= R0 && check(MX::unit()));\r\
     \n    X x = MX::unit();\r\n    return max_right_rec(root, check, L0, R0, L, x);\r\
     \n  }\r\n\r\n  template <typename F>\r\n  ll min_left(int root, F check, ll R)\
     \ {\r\n    assert(root != NIL && L0 <= R && R <= R0 && check(MX::unit()));\r\n\
@@ -86,22 +86,22 @@ data:
     \ = (l + r) / 2;\r\n      dfs(dfs, node[c].ch[0], l, m), dfs(dfs, node[c].ch[1],\
     \ m, r);\r\n    };\r\n    dfs(dfs, root, L0, R0);\r\n  }\r\n\r\n private:\r\n\
     \  static constexpr bool kUnitOnly =\r\n      std::is_same_v<DefaultProd, DefaultUnitProd<Monoid>>;\r\
-    \n  int copy_node(int c) {\r\n    if constexpr (!PERSISTENT) return c;\r\n   \
-    \ if (c == NIL) return c;\r\n    node.eb(node[c]);\r\n    return int(node.size())\
-    \ - 1;\r\n  }\r\n\r\n  int touch_child(int c, ll l, ll r) {\r\n    if constexpr\
+    \n  int clone(int c) {\r\n    if constexpr (!PERSISTENT) return c;\r\n    if (c\
+    \ == NIL) return c;\r\n    node.eb(node[c]);\r\n    return int(node.size()) -\
+    \ 1;\r\n  }\r\n\r\n  int touch_child(int c, ll l, ll r) {\r\n    if constexpr\
     \ (!PERSISTENT) {\r\n      return (c == NIL ? new_node(l, r) : c);\r\n    } else\
-    \ {\r\n      return (c == NIL ? new_node(l, r) : copy_node(c));\r\n    }\r\n \
-    \ }\r\n\r\n  void set_rec(int c, ll l, ll r, ll i, const X &x) {\r\n    assert(c\
-    \ != NIL);\r\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\
-    \u308B\r\n    if (r == l + 1) {\r\n      node[c].x = x;\r\n      return;\r\n \
-    \   }\r\n    ll m = (l + r) / 2;\r\n    int b = (m <= i);\r\n    ll nl = (b ?\
-    \ m : l), nr = (b ? r : m);\r\n    node[c].ch[b] = touch_child(node[c].ch[b],\
-    \ nl, nr);\r\n    set_rec(node[c].ch[b], nl, nr, i, x);\r\n    update(c, l, r);\r\
-    \n  }\r\n\r\n  void multiply_rec(int c, ll l, ll r, ll i, const X &x) {\r\n  \
-    \  assert(c != NIL);\r\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\
-    \u3042\u308B\r\n    if (r == l + 1) {\r\n      node[c].x = MX::op(node[c].x, x);\r\
-    \n      return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    int b = (m <= i);\r\
-    \n    ll nl = (b ? m : l), nr = (b ? r : m);\r\n    node[c].ch[b] = touch_child(node[c].ch[b],\
+    \ {\r\n      return (c == NIL ? new_node(l, r) : clone(c));\r\n    }\r\n  }\r\n\
+    \r\n  void set_rec(int c, ll l, ll r, ll i, const X &x) {\r\n    assert(c != NIL);\r\
+    \n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\r\n \
+    \   if (r == l + 1) {\r\n      node[c].x = x;\r\n      return;\r\n    }\r\n  \
+    \  ll m = (l + r) / 2;\r\n    int b = (m <= i);\r\n    ll nl = (b ? m : l), nr\
+    \ = (b ? r : m);\r\n    node[c].ch[b] = touch_child(node[c].ch[b], nl, nr);\r\n\
+    \    set_rec(node[c].ch[b], nl, nr, i, x);\r\n    update(c, l, r);\r\n  }\r\n\r\
+    \n  void multiply_rec(int c, ll l, ll r, ll i, const X &x) {\r\n    assert(c !=\
+    \ NIL);\r\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\
+    \r\n    if (r == l + 1) {\r\n      node[c].x = MX::op(node[c].x, x);\r\n     \
+    \ return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    int b = (m <= i);\r\n   \
+    \ ll nl = (b ? m : l), nr = (b ? r : m);\r\n    node[c].ch[b] = touch_child(node[c].ch[b],\
     \ nl, nr);\r\n    multiply_rec(node[c].ch[b], nl, nr, i, x);\r\n    update(c,\
     \ l, r);\r\n  }\r\n\r\n  void prod_rec(int c, ll l, ll r, ll ql, ll qr, X &x)\
     \ {\r\n    chmax(ql, l), chmin(qr, r);\r\n    if (ql >= qr) return;\r\n    if\
@@ -156,10 +156,10 @@ data:
     \n    X x = MX::unit();\r\n    prod_rec(root, L0, R0, l, r, x);\r\n    return\
     \ x;\r\n  }\r\n\r\n  X prod_all(int root) { return node[root].x; }\r\n\r\n  int\
     \ set(int root, ll i, const X &x) {\r\n    assert(root != NIL && L0 <= i && i\
-    \ < R0);\r\n    root = copy_node(root);\r\n    set_rec(root, L0, R0, i, x);\r\n\
-    \    return root;\r\n  }\r\n\r\n  int multiply(int root, ll i, const X &x) {\r\
-    \n    assert(root != NIL && L0 <= i && i < R0);\r\n    root = copy_node(root);\r\
-    \n    multiply_rec(root, L0, R0, i, x);\r\n    return root;\r\n  }\r\n\r\n  template\
+    \ < R0);\r\n    root = clone(root);\r\n    set_rec(root, L0, R0, i, x);\r\n  \
+    \  return root;\r\n  }\r\n\r\n  int multiply(int root, ll i, const X &x) {\r\n\
+    \    assert(root != NIL && L0 <= i && i < R0);\r\n    root = clone(root);\r\n\
+    \    multiply_rec(root, L0, R0, i, x);\r\n    return root;\r\n  }\r\n\r\n  template\
     \ <typename F>\r\n  ll max_right(int root, F check, ll L) {\r\n    assert(root\
     \ != NIL && L0 <= L && L <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\
     \n    return max_right_rec(root, check, L0, R0, L, x);\r\n  }\r\n\r\n  template\
@@ -173,22 +173,22 @@ data:
     \n      dfs(dfs, node[c].ch[0], l, m), dfs(dfs, node[c].ch[1], m, r);\r\n    };\r\
     \n    dfs(dfs, root, L0, R0);\r\n  }\r\n\r\n private:\r\n  static constexpr bool\
     \ kUnitOnly =\r\n      std::is_same_v<DefaultProd, DefaultUnitProd<Monoid>>;\r\
-    \n  int copy_node(int c) {\r\n    if constexpr (!PERSISTENT) return c;\r\n   \
-    \ if (c == NIL) return c;\r\n    node.eb(node[c]);\r\n    return int(node.size())\
-    \ - 1;\r\n  }\r\n\r\n  int touch_child(int c, ll l, ll r) {\r\n    if constexpr\
+    \n  int clone(int c) {\r\n    if constexpr (!PERSISTENT) return c;\r\n    if (c\
+    \ == NIL) return c;\r\n    node.eb(node[c]);\r\n    return int(node.size()) -\
+    \ 1;\r\n  }\r\n\r\n  int touch_child(int c, ll l, ll r) {\r\n    if constexpr\
     \ (!PERSISTENT) {\r\n      return (c == NIL ? new_node(l, r) : c);\r\n    } else\
-    \ {\r\n      return (c == NIL ? new_node(l, r) : copy_node(c));\r\n    }\r\n \
-    \ }\r\n\r\n  void set_rec(int c, ll l, ll r, ll i, const X &x) {\r\n    assert(c\
-    \ != NIL);\r\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\
-    \u308B\r\n    if (r == l + 1) {\r\n      node[c].x = x;\r\n      return;\r\n \
-    \   }\r\n    ll m = (l + r) / 2;\r\n    int b = (m <= i);\r\n    ll nl = (b ?\
-    \ m : l), nr = (b ? r : m);\r\n    node[c].ch[b] = touch_child(node[c].ch[b],\
-    \ nl, nr);\r\n    set_rec(node[c].ch[b], nl, nr, i, x);\r\n    update(c, l, r);\r\
-    \n  }\r\n\r\n  void multiply_rec(int c, ll l, ll r, ll i, const X &x) {\r\n  \
-    \  assert(c != NIL);\r\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\
-    \u3042\u308B\r\n    if (r == l + 1) {\r\n      node[c].x = MX::op(node[c].x, x);\r\
-    \n      return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    int b = (m <= i);\r\
-    \n    ll nl = (b ? m : l), nr = (b ? r : m);\r\n    node[c].ch[b] = touch_child(node[c].ch[b],\
+    \ {\r\n      return (c == NIL ? new_node(l, r) : clone(c));\r\n    }\r\n  }\r\n\
+    \r\n  void set_rec(int c, ll l, ll r, ll i, const X &x) {\r\n    assert(c != NIL);\r\
+    \n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\r\n \
+    \   if (r == l + 1) {\r\n      node[c].x = x;\r\n      return;\r\n    }\r\n  \
+    \  ll m = (l + r) / 2;\r\n    int b = (m <= i);\r\n    ll nl = (b ? m : l), nr\
+    \ = (b ? r : m);\r\n    node[c].ch[b] = touch_child(node[c].ch[b], nl, nr);\r\n\
+    \    set_rec(node[c].ch[b], nl, nr, i, x);\r\n    update(c, l, r);\r\n  }\r\n\r\
+    \n  void multiply_rec(int c, ll l, ll r, ll i, const X &x) {\r\n    assert(c !=\
+    \ NIL);\r\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\
+    \r\n    if (r == l + 1) {\r\n      node[c].x = MX::op(node[c].x, x);\r\n     \
+    \ return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    int b = (m <= i);\r\n   \
+    \ ll nl = (b ? m : l), nr = (b ? r : m);\r\n    node[c].ch[b] = touch_child(node[c].ch[b],\
     \ nl, nr);\r\n    multiply_rec(node[c].ch[b], nl, nr, i, x);\r\n    update(c,\
     \ l, r);\r\n  }\r\n\r\n  void prod_rec(int c, ll l, ll r, ll ql, ll qr, X &x)\
     \ {\r\n    chmax(ql, l), chmin(qr, r);\r\n    if (ql >= qr) return;\r\n    if\
@@ -214,8 +214,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_segtree.hpp
   requiredBy: []
-  timestamp: '2025-09-05 13:01:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-09-16 20:23:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1649.test.cpp
   - test/3_yukicoder/1036.test.cpp

@@ -21,24 +21,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1649_2.test.cpp
     title: test/3_yukicoder/1649_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1826_2.test.cpp
     title: test/3_yukicoder/1826_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2242.test.cpp
     title: test/3_yukicoder/2242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2627.test.cpp
     title: test/3_yukicoder/2627.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/789_3.test.cpp
     title: test/3_yukicoder/789_3.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/671/D
@@ -88,10 +88,10 @@ data:
     \    return dfs(dfs, root);\n  }\n\n private:\n  inline void update(int c) {\n\
     \    node[c].prod = node[c].x;\n    node[c].prod = MX::op(node[node[c].ch[0]].prod,\
     \ node[c].prod);\n    node[c].prod = MX::op(node[c].prod, node[node[c].ch[1]].prod);\n\
-    \  }\n\n  inline int copy_node(int c) {\n    if constexpr (!PERSISTENT)\n    \
-    \  return c;\n    else {\n      if (c == NIL) return c;\n      node.eb(node[c]);\n\
-    \      return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l,\
-    \ ll r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = copy_node(c);\n\
+    \  }\n\n  inline int clone(int c) {\n    if constexpr (!PERSISTENT)\n      return\
+    \ c;\n    else {\n      if (c == NIL) return c;\n      node.eb(node[c]);\n   \
+    \   return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l, ll\
+    \ r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = clone(c);\n\
     \    if (node[c].idx == i) {\n      node[c].x = x;\n      update(c);\n      return\
     \ c;\n    }\n    ll m = (l + r) / 2;\n    if (i < m) {\n      if (node[c].idx\
     \ < i) swap(node[c].idx, i), swap(node[c].x, x);\n      node[c].ch[0] = set_rec(node[c].ch[0],\
@@ -99,7 +99,7 @@ data:
     \ i), swap(node[c].x, x);\n      node[c].ch[1] = set_rec(node[c].ch[1], m, r,\
     \ i, x);\n    }\n    update(c);\n    return c;\n  }\n\n  int multiply_rec(int\
     \ c, ll l, ll r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c\
-    \ = copy_node(c);\n    if (node[c].idx == i) {\n      node[c].x = MX::op(node[c].x,\
+    \ = clone(c);\n    if (node[c].idx == i) {\n      node[c].x = MX::op(node[c].x,\
     \ x);\n      update(c);\n      return c;\n    }\n    ll m = (l + r) / 2;\n   \
     \ if (i < m) {\n      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[0] = multiply_rec(node[c].ch[0], l, m, i, x);\n    }\n\
@@ -170,10 +170,10 @@ data:
     \    return dfs(dfs, root);\n  }\n\n private:\n  inline void update(int c) {\n\
     \    node[c].prod = node[c].x;\n    node[c].prod = MX::op(node[node[c].ch[0]].prod,\
     \ node[c].prod);\n    node[c].prod = MX::op(node[c].prod, node[node[c].ch[1]].prod);\n\
-    \  }\n\n  inline int copy_node(int c) {\n    if constexpr (!PERSISTENT)\n    \
-    \  return c;\n    else {\n      if (c == NIL) return c;\n      node.eb(node[c]);\n\
-    \      return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l,\
-    \ ll r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = copy_node(c);\n\
+    \  }\n\n  inline int clone(int c) {\n    if constexpr (!PERSISTENT)\n      return\
+    \ c;\n    else {\n      if (c == NIL) return c;\n      node.eb(node[c]);\n   \
+    \   return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l, ll\
+    \ r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = clone(c);\n\
     \    if (node[c].idx == i) {\n      node[c].x = x;\n      update(c);\n      return\
     \ c;\n    }\n    ll m = (l + r) / 2;\n    if (i < m) {\n      if (node[c].idx\
     \ < i) swap(node[c].idx, i), swap(node[c].x, x);\n      node[c].ch[0] = set_rec(node[c].ch[0],\
@@ -181,7 +181,7 @@ data:
     \ i), swap(node[c].x, x);\n      node[c].ch[1] = set_rec(node[c].ch[1], m, r,\
     \ i, x);\n    }\n    update(c);\n    return c;\n  }\n\n  int multiply_rec(int\
     \ c, ll l, ll r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c\
-    \ = copy_node(c);\n    if (node[c].idx == i) {\n      node[c].x = MX::op(node[c].x,\
+    \ = clone(c);\n    if (node[c].idx == i) {\n      node[c].x = MX::op(node[c].x,\
     \ x);\n      update(c);\n      return c;\n    }\n    ll m = (l + r) / 2;\n   \
     \ if (i < m) {\n      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[0] = multiply_rec(node[c].ch[0], l, m, i, x);\n    }\n\
@@ -213,8 +213,8 @@ data:
   requiredBy:
   - ds/segtree/range_add_range_max.hpp
   - ds/my_multiset.hpp
-  timestamp: '2025-09-02 00:55:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-09-16 20:23:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/789_3.test.cpp
   - test/3_yukicoder/1649_2.test.cpp

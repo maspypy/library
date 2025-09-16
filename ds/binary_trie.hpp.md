@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
@@ -24,11 +24,13 @@ data:
     \ nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool()\
     \ { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&... args)\
     \ {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
-    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    auto\
-    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
-    \  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty()) {\n\
-    \      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
+    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
+    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
+    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
+    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
@@ -65,35 +67,34 @@ data:
     \ lo, xor_val);\n  }\n\n private:\n  inline UINT mask(int k) { return (UINT(1)\
     \ << k) - 1; }\n\n  np new_node(int width, UINT val) {\n    np c = pool.create();\n\
     \    c->l = c->r = nullptr;\n    c->width = width, c->val = val, c->cnt = 0;\n\
-    \    return c;\n  }\n\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return\
-    \ c;\n    np res = pool.create();\n    res->width = c->width, res->val = c->val;\n\
-    \    res->cnt = c->cnt, res->l = c->l, res->r = c->r;\n    return res;\n  }\n\n\
-    \  np add_rec(np root, int ht, UINT val, T cnt) {\n    root = copy_node(root);\n\
-    \    root->cnt += cnt;\n    if (ht == 0) return root;\n\n    bool go_r = (val\
-    \ >> (ht - 1)) & 1;\n    np c = (go_r ? root->r : root->l);\n    if (!c) {\n \
-    \     c = new_node(ht, val);\n      c->cnt = cnt;\n      if (!go_r) root->l =\
-    \ c;\n      if (go_r) root->r = c;\n      return root;\n    }\n    int w = c->width;\n\
-    \    if ((val >> (ht - w)) == c->val) {\n      c = add_rec(c, ht - w, val & mask(ht\
-    \ - w), cnt);\n      if (!go_r) root->l = c;\n      if (go_r) root->r = c;\n \
-    \     return root;\n    }\n    int same = w - 1 - topbit((val >> (ht - w)) ^ (c->val));\n\
-    \    np n = new_node(same, (c->val) >> (w - same));\n    n->cnt = c->cnt + cnt;\n\
-    \    c = copy_node(c);\n    c->width = w - same;\n    c->val = c->val & mask(w\
-    \ - same);\n    if ((val >> (ht - same - 1)) & 1) {\n      n->l = c;\n      n->r\
-    \ = new_node(ht - same, val & mask(ht - same));\n      n->r->cnt = cnt;\n    }\
-    \ else {\n      n->r = c;\n      n->l = new_node(ht - same, val & mask(ht - same));\n\
-    \      n->l->cnt = cnt;\n    }\n    if (!go_r) root->l = n;\n    if (go_r) root->r\
-    \ = n;\n    return root;\n  }\n\n  UINT kth_rec(np root, UINT val, T k, int ht,\
-    \ UINT xor_val) {\n    if (ht == 0) return val;\n    np left = root->l, right\
-    \ = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left, right);\n    T sl\
-    \ = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) {\n      c = left;\n \
-    \   }\n    if (k >= sl) {\n      c = right, k -= sl;\n    }\n    int w = c->width;\n\
-    \    return kth_rec(c, val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T prefix_count_rec(np\
-    \ root, int ht, UINT LIM, UINT xor_val, UINT val) {\n    UINT now = (val << ht)\
-    \ ^ (xor_val);\n    if ((LIM >> ht) > (now >> ht)) return root->cnt;\n    if (ht\
-    \ == 0 || (LIM >> ht) < (now >> ht)) return 0;\n    T res = 0;\n    FOR(k, 2)\
-    \ {\n      np c = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w\
-    \ = c->width;\n        res += prefix_count_rec(c, ht - w, LIM, xor_val, val <<\
-    \ w | c->val);\n      }\n    }\n    return res;\n  }\n};\n"
+    \    return c;\n  }\n\n  np clone(np c) {\n    if (!c || !PERSISTENT) return c;\n\
+    \    return pool.clone(c);\n  }\n\n  np add_rec(np root, int ht, UINT val, T cnt)\
+    \ {\n    root = clone(root);\n    root->cnt += cnt;\n    if (ht == 0) return root;\n\
+    \n    bool go_r = (val >> (ht - 1)) & 1;\n    np c = (go_r ? root->r : root->l);\n\
+    \    if (!c) {\n      c = new_node(ht, val);\n      c->cnt = cnt;\n      if (!go_r)\
+    \ root->l = c;\n      if (go_r) root->r = c;\n      return root;\n    }\n    int\
+    \ w = c->width;\n    if ((val >> (ht - w)) == c->val) {\n      c = add_rec(c,\
+    \ ht - w, val & mask(ht - w), cnt);\n      if (!go_r) root->l = c;\n      if (go_r)\
+    \ root->r = c;\n      return root;\n    }\n    int same = w - 1 - topbit((val\
+    \ >> (ht - w)) ^ (c->val));\n    np n = new_node(same, (c->val) >> (w - same));\n\
+    \    n->cnt = c->cnt + cnt;\n    c = clone(c);\n    c->width = w - same;\n   \
+    \ c->val = c->val & mask(w - same);\n    if ((val >> (ht - same - 1)) & 1) {\n\
+    \      n->l = c;\n      n->r = new_node(ht - same, val & mask(ht - same));\n \
+    \     n->r->cnt = cnt;\n    } else {\n      n->r = c;\n      n->l = new_node(ht\
+    \ - same, val & mask(ht - same));\n      n->l->cnt = cnt;\n    }\n    if (!go_r)\
+    \ root->l = n;\n    if (go_r) root->r = n;\n    return root;\n  }\n\n  UINT kth_rec(np\
+    \ root, UINT val, T k, int ht, UINT xor_val) {\n    if (ht == 0) return val;\n\
+    \    np left = root->l, right = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left,\
+    \ right);\n    T sl = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) {\n\
+    \      c = left;\n    }\n    if (k >= sl) {\n      c = right, k -= sl;\n    }\n\
+    \    int w = c->width;\n    return kth_rec(c, val << w | (c->val), k, ht - w,\
+    \ xor_val);\n  }\n\n  T prefix_count_rec(np root, int ht, UINT LIM, UINT xor_val,\
+    \ UINT val) {\n    UINT now = (val << ht) ^ (xor_val);\n    if ((LIM >> ht) >\
+    \ (now >> ht)) return root->cnt;\n    if (ht == 0 || (LIM >> ht) < (now >> ht))\
+    \ return 0;\n    T res = 0;\n    FOR(k, 2) {\n      np c = (k == 0 ? root->l :\
+    \ root->r);\n      if (c) {\n        int w = c->width;\n        res += prefix_count_rec(c,\
+    \ ht - w, LIM, xor_val, val << w | c->val);\n      }\n    }\n    return res;\n\
+    \  }\n};\n"
   code: "#include \"ds/node_pool.hpp\"\n\n// \u975E\u6C38\u7D9A\u306A\u3089\u3070\u3001\
     2 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\ntemplate <int LOG, bool\
     \ PERSISTENT, typename UINT = u64,\n          typename SIZE_TYPE = u32>\nstruct\
@@ -127,41 +128,40 @@ data:
     \ lo, xor_val);\n  }\n\n private:\n  inline UINT mask(int k) { return (UINT(1)\
     \ << k) - 1; }\n\n  np new_node(int width, UINT val) {\n    np c = pool.create();\n\
     \    c->l = c->r = nullptr;\n    c->width = width, c->val = val, c->cnt = 0;\n\
-    \    return c;\n  }\n\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return\
-    \ c;\n    np res = pool.create();\n    res->width = c->width, res->val = c->val;\n\
-    \    res->cnt = c->cnt, res->l = c->l, res->r = c->r;\n    return res;\n  }\n\n\
-    \  np add_rec(np root, int ht, UINT val, T cnt) {\n    root = copy_node(root);\n\
-    \    root->cnt += cnt;\n    if (ht == 0) return root;\n\n    bool go_r = (val\
-    \ >> (ht - 1)) & 1;\n    np c = (go_r ? root->r : root->l);\n    if (!c) {\n \
-    \     c = new_node(ht, val);\n      c->cnt = cnt;\n      if (!go_r) root->l =\
-    \ c;\n      if (go_r) root->r = c;\n      return root;\n    }\n    int w = c->width;\n\
-    \    if ((val >> (ht - w)) == c->val) {\n      c = add_rec(c, ht - w, val & mask(ht\
-    \ - w), cnt);\n      if (!go_r) root->l = c;\n      if (go_r) root->r = c;\n \
-    \     return root;\n    }\n    int same = w - 1 - topbit((val >> (ht - w)) ^ (c->val));\n\
-    \    np n = new_node(same, (c->val) >> (w - same));\n    n->cnt = c->cnt + cnt;\n\
-    \    c = copy_node(c);\n    c->width = w - same;\n    c->val = c->val & mask(w\
-    \ - same);\n    if ((val >> (ht - same - 1)) & 1) {\n      n->l = c;\n      n->r\
-    \ = new_node(ht - same, val & mask(ht - same));\n      n->r->cnt = cnt;\n    }\
-    \ else {\n      n->r = c;\n      n->l = new_node(ht - same, val & mask(ht - same));\n\
-    \      n->l->cnt = cnt;\n    }\n    if (!go_r) root->l = n;\n    if (go_r) root->r\
-    \ = n;\n    return root;\n  }\n\n  UINT kth_rec(np root, UINT val, T k, int ht,\
-    \ UINT xor_val) {\n    if (ht == 0) return val;\n    np left = root->l, right\
-    \ = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left, right);\n    T sl\
-    \ = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) {\n      c = left;\n \
-    \   }\n    if (k >= sl) {\n      c = right, k -= sl;\n    }\n    int w = c->width;\n\
-    \    return kth_rec(c, val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T prefix_count_rec(np\
-    \ root, int ht, UINT LIM, UINT xor_val, UINT val) {\n    UINT now = (val << ht)\
-    \ ^ (xor_val);\n    if ((LIM >> ht) > (now >> ht)) return root->cnt;\n    if (ht\
-    \ == 0 || (LIM >> ht) < (now >> ht)) return 0;\n    T res = 0;\n    FOR(k, 2)\
-    \ {\n      np c = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w\
-    \ = c->width;\n        res += prefix_count_rec(c, ht - w, LIM, xor_val, val <<\
-    \ w | c->val);\n      }\n    }\n    return res;\n  }\n};"
+    \    return c;\n  }\n\n  np clone(np c) {\n    if (!c || !PERSISTENT) return c;\n\
+    \    return pool.clone(c);\n  }\n\n  np add_rec(np root, int ht, UINT val, T cnt)\
+    \ {\n    root = clone(root);\n    root->cnt += cnt;\n    if (ht == 0) return root;\n\
+    \n    bool go_r = (val >> (ht - 1)) & 1;\n    np c = (go_r ? root->r : root->l);\n\
+    \    if (!c) {\n      c = new_node(ht, val);\n      c->cnt = cnt;\n      if (!go_r)\
+    \ root->l = c;\n      if (go_r) root->r = c;\n      return root;\n    }\n    int\
+    \ w = c->width;\n    if ((val >> (ht - w)) == c->val) {\n      c = add_rec(c,\
+    \ ht - w, val & mask(ht - w), cnt);\n      if (!go_r) root->l = c;\n      if (go_r)\
+    \ root->r = c;\n      return root;\n    }\n    int same = w - 1 - topbit((val\
+    \ >> (ht - w)) ^ (c->val));\n    np n = new_node(same, (c->val) >> (w - same));\n\
+    \    n->cnt = c->cnt + cnt;\n    c = clone(c);\n    c->width = w - same;\n   \
+    \ c->val = c->val & mask(w - same);\n    if ((val >> (ht - same - 1)) & 1) {\n\
+    \      n->l = c;\n      n->r = new_node(ht - same, val & mask(ht - same));\n \
+    \     n->r->cnt = cnt;\n    } else {\n      n->r = c;\n      n->l = new_node(ht\
+    \ - same, val & mask(ht - same));\n      n->l->cnt = cnt;\n    }\n    if (!go_r)\
+    \ root->l = n;\n    if (go_r) root->r = n;\n    return root;\n  }\n\n  UINT kth_rec(np\
+    \ root, UINT val, T k, int ht, UINT xor_val) {\n    if (ht == 0) return val;\n\
+    \    np left = root->l, right = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left,\
+    \ right);\n    T sl = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) {\n\
+    \      c = left;\n    }\n    if (k >= sl) {\n      c = right, k -= sl;\n    }\n\
+    \    int w = c->width;\n    return kth_rec(c, val << w | (c->val), k, ht - w,\
+    \ xor_val);\n  }\n\n  T prefix_count_rec(np root, int ht, UINT LIM, UINT xor_val,\
+    \ UINT val) {\n    UINT now = (val << ht) ^ (xor_val);\n    if ((LIM >> ht) >\
+    \ (now >> ht)) return root->cnt;\n    if (ht == 0 || (LIM >> ht) < (now >> ht))\
+    \ return 0;\n    T res = 0;\n    FOR(k, 2) {\n      np c = (k == 0 ? root->l :\
+    \ root->r);\n      if (c) {\n        int w = c->width;\n        res += prefix_count_rec(c,\
+    \ ht - w, LIM, xor_val, val << w | c->val);\n      }\n    }\n    return res;\n\
+    \  }\n};"
   dependsOn:
   - ds/node_pool.hpp
   isVerificationFile: false
   path: ds/binary_trie.hpp
   requiredBy: []
-  timestamp: '2025-09-16 14:24:32+09:00'
+  timestamp: '2025-09-16 20:23:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/set_xor_min.test.cpp

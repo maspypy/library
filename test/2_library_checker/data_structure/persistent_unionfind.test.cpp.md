@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -254,11 +254,13 @@ data:
     \ nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool()\
     \ { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&... args)\
     \ {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
-    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    auto\
-    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
-    \  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty()) {\n\
-    \      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
+    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
+    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
+    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
+    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
@@ -274,12 +276,11 @@ data:
     \n  }\r\n\r\n  T get(np c, int idx) {\r\n    if (!c) return x0;\r\n    if (idx\
     \ == 0) return c->x;\r\n    return get(c->ch[idx & MASK], (idx - 1) >> LOG);\r\
     \n  }\r\n\r\n  np set(np c, int idx, T x, bool make_copy = true) {\r\n    c =\
-    \ (c ? copy_node(c, make_copy) : new_root());\r\n    if (idx == 0) {\r\n     \
-    \ c->x = x;\r\n      return c;\r\n    }\r\n    c->ch[idx & MASK] = set(c->ch[idx\
-    \ & MASK], (idx - 1) >> LOG, x);\r\n    return c;\r\n  }\r\n\r\n private:\r\n\
-    \  np copy_node(np c, bool make_copy) {\r\n    if (!make_copy || !PERSISTENT)\
-    \ return c;\r\n    np d = pool.create();\r\n    d->x = c->x;\r\n    FOR(k, (1\
-    \ << LOG)) d->ch[k] = c->ch[k];\r\n    return d;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/dynamic_unionfind.hpp\"\
+    \ (c ? clone(c, make_copy) : new_root());\r\n    if (idx == 0) {\r\n      c->x\
+    \ = x;\r\n      return c;\r\n    }\r\n    c->ch[idx & MASK] = set(c->ch[idx &\
+    \ MASK], (idx - 1) >> LOG, x);\r\n    return c;\r\n  }\r\n\r\n private:\r\n  np\
+    \ clone(np c, bool make_copy) {\r\n    if (!make_copy || !PERSISTENT) return c;\r\
+    \n    return pool.clone(c);\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/dynamic_unionfind.hpp\"\
     \n\r\ntemplate <bool PERSISTENT>\r\nstruct Dynamic_UnionFind {\r\n  // \u7D4C\u8DEF\
     \u5727\u7E2E\u306A\u3057\r\n  Dynamic_Array<int, PERSISTENT> PA;\r\n  using np\
     \ = typename decltype(PA)::np;\r\n\r\n  Dynamic_UnionFind(int N) : PA(15 * N,\
@@ -318,7 +319,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:56:22+09:00'
+  timestamp: '2025-09-16 20:23:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
