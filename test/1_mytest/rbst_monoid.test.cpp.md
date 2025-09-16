@@ -346,11 +346,11 @@ data:
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/rbst_monoid.test.cpp\"\n\nusing\
     \ mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Assign<int, -1>;\n\
-    \  RBST_Monoid<Mono, false> X(100);\n\n  FOR(1000) {\n    X.reset();\n    int\
-    \ N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N)\
-    \ A[i] = RNG(0, 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int>\
-    \ cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if\
-    \ (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n\
+    \  RBST_Monoid<Mono, false> X;\n\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
+    \ 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0,\
+    \ 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int> cand =\
+    \ {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if (t ==\
+    \ 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n\
     \      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(0,\
     \ 100);\n        root = X.set(root, i, x);\n        A[i] = x;\n      }\n     \
     \ if (t == 2) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n  \
@@ -369,9 +369,9 @@ data:
     \n#include \"alg/monoid/assign.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
     ds/randomized_bst/rbst_monoid.hpp\"\n#include \"random/base.hpp\"\n\nusing mint\
     \ = modint998;\n\nvoid test() {\n  using Mono = Monoid_Assign<int, -1>;\n  RBST_Monoid<Mono,\
-    \ false> X(100);\n\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n \
-    \   int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0, 100);\n\
-    \    auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2,\
+    \ false> X;\n\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int\
+    \ Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0, 100);\n  \
+    \  auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2,\
     \ 3, 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if (t == 0) {\n   \
     \     int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n \
     \     if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n\
@@ -399,7 +399,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:18:17+09:00'
+  timestamp: '2025-09-16 15:39:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid.test.cpp

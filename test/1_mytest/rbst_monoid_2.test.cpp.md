@@ -351,7 +351,7 @@ data:
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/rbst_monoid_2.test.cpp\"\n\n\
     using mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Affine<mint>;\n\
-    \  RBST_Monoid<Mono, false> X(100);\n  auto rnd_affine = [&]() -> pair<mint, mint>\
+    \  RBST_Monoid<Mono, false> X;\n  auto rnd_affine = [&]() -> pair<mint, mint>\
     \ {\n    int a = RNG(0, 3);\n    int b = RNG(0, 3);\n    return {a, b};\n  };\n\
     \n  using T = typename Mono::value_type;\n\n  FOR(1000) {\n    X.reset();\n  \
     \  int N = 2;\n    int Q = RNG(1, 1000);\n    vc<T> A(N);\n    FOR(i, N) A[i]\
@@ -364,7 +364,7 @@ data:
     \ = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n    \
     \  if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n   \
     \     if (L > R) swap(L, R);\n        ++R;\n        vc<T> B = {A.begin() + L,\
-    \ A.begin() + R};\n        T t = Mono::unit();\n        for (auto&& b: B) t =\
+    \ A.begin() + R};\n        T t = Mono::unit();\n        for (auto&& b : B) t =\
     \ Mono::op(t, b);\n        assert(X.prod(root, L, R) == t);\n      }\n      if\
     \ (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n       \
     \ if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root, L, R);\n\
@@ -376,27 +376,27 @@ data:
     \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
     ds/randomized_bst/rbst_monoid.hpp\"\n#include \"random/base.hpp\"\n\nusing mint\
     \ = modint998;\n\nvoid test() {\n  using Mono = Monoid_Affine<mint>;\n  RBST_Monoid<Mono,\
-    \ false> X(100);\n  auto rnd_affine = [&]() -> pair<mint, mint> {\n    int a =\
-    \ RNG(0, 3);\n    int b = RNG(0, 3);\n    return {a, b};\n  };\n\n  using T =\
-    \ typename Mono::value_type;\n\n  FOR(1000) {\n    X.reset();\n    int N = 2;\n\
-    \    int Q = RNG(1, 1000);\n    vc<T> A(N);\n    FOR(i, N) A[i] = rnd_affine();\n\
-    \    auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2,\
-    \ 3, 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if (t == 0) {\n   \
-    \     int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n \
-    \     if (t == 1) {\n        int i = RNG(0, N);\n        T x = rnd_affine();\n\
-    \        root = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t ==\
-    \ 2) {\n        int i = RNG(0, N);\n        T x = rnd_affine();\n        root\
-    \ = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n    \
-    \  if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n   \
-    \     if (L > R) swap(L, R);\n        ++R;\n        vc<T> B = {A.begin() + L,\
-    \ A.begin() + R};\n        T t = Mono::unit();\n        for (auto&& b: B) t =\
-    \ Mono::op(t, b);\n        assert(X.prod(root, L, R) == t);\n      }\n      if\
-    \ (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n       \
-    \ if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root, L, R);\n\
-    \        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t == 5) {\n\
-    \        vc<T> B = X.get_all(root);\n        assert(A == B);\n      }\n    }\n\
-    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ false> X;\n  auto rnd_affine = [&]() -> pair<mint, mint> {\n    int a = RNG(0,\
+    \ 3);\n    int b = RNG(0, 3);\n    return {a, b};\n  };\n\n  using T = typename\
+    \ Mono::value_type;\n\n  FOR(1000) {\n    X.reset();\n    int N = 2;\n    int\
+    \ Q = RNG(1, 1000);\n    vc<T> A(N);\n    FOR(i, N) A[i] = rnd_affine();\n   \
+    \ auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3,\
+    \ 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if (t == 0) {\n      \
+    \  int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n    \
+    \  if (t == 1) {\n        int i = RNG(0, N);\n        T x = rnd_affine();\n  \
+    \      root = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t == 2)\
+    \ {\n        int i = RNG(0, N);\n        T x = rnd_affine();\n        root = X.multiply(root,\
+    \ i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n      if (t == 3) {\n  \
+    \      int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
+    \ R);\n        ++R;\n        vc<T> B = {A.begin() + L, A.begin() + R};\n     \
+    \   T t = Mono::unit();\n        for (auto&& b : B) t = Mono::op(t, b);\n    \
+    \    assert(X.prod(root, L, R) == t);\n      }\n      if (t == 4) {\n        int\
+    \ L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n\
+    \        ++R;\n        root = X.reverse(root, L, R);\n        reverse(A.begin()\
+    \ + L, A.begin() + R);\n      }\n      if (t == 5) {\n        vc<T> B = X.get_all(root);\n\
+    \        assert(A == B);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - alg/monoid/affine.hpp
@@ -408,7 +408,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid_2.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:18:17+09:00'
+  timestamp: '2025-09-16 15:39:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_2.test.cpp

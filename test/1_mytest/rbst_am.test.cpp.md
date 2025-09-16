@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -299,10 +299,10 @@ data:
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/rbst_am.test.cpp\"\n\nvoid test()\
     \ {\n  using AM = ActedMonoid_Min_Assign<int, -1>;\n  using MonoX = typename AM::Monoid_X;\n\
-    \n  RBST_ActedMonoid<AM, false> X(100);\n  FOR(1000) {\n    X.reset();\n    int\
-    \ N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N)\
-    \ A[i] = RNG(1, 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      int\
-    \ t = RNG(0, 7);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i]\
+    \n  RBST_ActedMonoid<AM, false> X;\n  FOR(1000) {\n    X.reset();\n    int N =\
+    \ RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i]\
+    \ = RNG(1, 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      int t\
+    \ = RNG(0, 7);\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i]\
     \ == X.get(root, i));\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n\
     \        int x = RNG(1, 100);\n        root = X.set(root, i, x);\n        A[i]\
     \ = x;\n      }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int\
@@ -324,11 +324,11 @@ data:
     \n#include \"alg/acted_monoid/min_assign.hpp\"\n#include \"ds/randomized_bst/rbst_acted_monoid.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  using AM = ActedMonoid_Min_Assign<int,\
     \ -1>;\n  using MonoX = typename AM::Monoid_X;\n\n  RBST_ActedMonoid<AM, false>\
-    \ X(100);\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q =\
-    \ RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n    auto\
-    \ root = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0, 7);\n      if (t\
-    \ == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n\
-    \      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(1,\
+    \ X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1,\
+    \ 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n    auto root\
+    \ = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0, 7);\n      if (t == 0)\
+    \ {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n   \
+    \   }\n      if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(1,\
     \ 100);\n        root = X.set(root, i, x);\n        A[i] = x;\n      }\n     \
     \ if (t == 2) {\n        int i = RNG(0, N);\n        int x = RNG(1, 100);\n  \
     \      root = X.multiply(root, i, x);\n        A[i] = MonoX::op(A[i], x);\n  \
@@ -356,8 +356,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_am.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-16 15:39:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_am.test.cpp
 layout: document

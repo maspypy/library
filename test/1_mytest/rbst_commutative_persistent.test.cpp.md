@@ -346,33 +346,32 @@ data:
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/rbst_commutative_persistent.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Add<int>;\n\
-    \  RBST_CommutativeMonoid<Mono, true> X(10000);\n  using np = decltype(X)::np;\n\
-    \n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n\
-    \    vvc<int> AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots =\
-    \ {X.new_node(AA[0])};\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n\
-    \      int t = cand[RNG(0, len(cand))];\n      int frm = RNG(0, len(AA));\n  \
-    \    vc<int> A = AA[frm];\n      np root = roots[frm];\n      if (t == 0) {\n\
-    \        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n\
-    \      if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n\
-    \        root = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t ==\
-    \ 2) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n        root\
-    \ = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n    \
-    \  if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n   \
-    \     if (L > R) swap(L, R);\n        ++R;\n        vc<int> B = {A.begin() + L,\
-    \ A.begin() + R};\n        assert(X.prod(root, L, R) == SUM<int>(B));\n      }\n\
-    \      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n\
-    \        if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root,\
-    \ L, R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t\
-    \ == 5) {\n        vc<int> B = X.get_all(root);\n        assert(A == B);\n   \
-    \   }\n      AA.eb(A);\n      roots.eb(root);\n    }\n  }\n}\n\nvoid solve() {\n\
-    \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \  RBST_CommutativeMonoid<Mono, true> X;\n  using np = decltype(X)::np;\n\n  FOR(1000)\
+    \ {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vvc<int>\
+    \ AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots = {X.new_node(AA[0])};\n\
+    \n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0,\
+    \ len(cand))];\n      int frm = RNG(0, len(AA));\n      vc<int> A = AA[frm];\n\
+    \      np root = roots[frm];\n      if (t == 0) {\n        int i = RNG(0, N);\n\
+    \        assert(A[i] == X.get(root, i));\n      }\n      if (t == 1) {\n     \
+    \   int i = RNG(0, N);\n        int x = RNG(0, 100);\n        root = X.set(root,\
+    \ i, x);\n        A[i] = x;\n      }\n      if (t == 2) {\n        int i = RNG(0,\
+    \ N);\n        int x = RNG(0, 100);\n        root = X.multiply(root, i, x);\n\
+    \        A[i] = Mono::op(A[i], x);\n      }\n      if (t == 3) {\n        int\
+    \ L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n\
+    \        ++R;\n        vc<int> B = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root,\
+    \ L, R) == SUM<int>(B));\n      }\n      if (t == 4) {\n        int L = RNG(0,\
+    \ N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n\
+    \        root = X.reverse(root, L, R);\n        reverse(A.begin() + L, A.begin()\
+    \ + R);\n      }\n      if (t == 5) {\n        vc<int> B = X.get_all(root);\n\
+    \        assert(A == B);\n      }\n      AA.eb(A);\n      roots.eb(root);\n  \
+    \  }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n#include \"mod/modint.hpp\"\n#include \"ds/randomized_bst/rbst_commutative_monoid.hpp\"\
     \n#include \"random/base.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n \
-    \ using Mono = Monoid_Add<int>;\n  RBST_CommutativeMonoid<Mono, true> X(10000);\n\
-    \  using np = decltype(X)::np;\n\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
-    \ 20);\n    int Q = RNG(1, 1000);\n    vvc<int> AA(1);\n    FOR(i, N) AA[0].eb(RNG(0,\
+    \ using Mono = Monoid_Add<int>;\n  RBST_CommutativeMonoid<Mono, true> X;\n  using\
+    \ np = decltype(X)::np;\n\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n\
+    \    int Q = RNG(1, 1000);\n    vvc<int> AA(1);\n    FOR(i, N) AA[0].eb(RNG(0,\
     \ 100));\n    vc<np> roots = {X.new_node(AA[0])};\n\n    FOR(Q) {\n      vc<int>\
     \ cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      int\
     \ frm = RNG(0, len(AA));\n      vc<int> A = AA[frm];\n      np root = roots[frm];\n\
@@ -402,7 +401,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_commutative_persistent.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:18:17+09:00'
+  timestamp: '2025-09-16 15:39:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_commutative_persistent.test.cpp

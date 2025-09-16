@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
   - icon: ':question:'
@@ -30,16 +30,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
   bundledCode: "#line 1 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
@@ -258,7 +258,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
     \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
@@ -500,26 +500,26 @@ data:
     \    }\n    y = Monoid_X::op(x, root->x);\n    if (!check(y)) {\n      root->l\
     \ = nullptr;\n      update(root);\n      return {left, root};\n    }\n    x =\
     \ y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n    root->r =\
-    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 8 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
+    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 9 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
-    \  RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false> X(N + Q);\n  auto root\
-    \ = X.new_node(A);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i, x);\n\
-    \      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)),\
-    \ b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root,\
-    \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
+    \  RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false> X;\n  auto root = X.new_node(A);\n\
+    \n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i, x);\n      auto [a, b]\
+    \ = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)), b);\n   \
+    \ }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root, i,\
+    \ i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
     \ r);\n      root = X.reverse(root, l, r);\n    }\n    if (t == 3) {\n      LL(l,\
     \ r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n    }\n  \
     \  if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r));\n    }\n \
     \ }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/acted_monoid/sum_affine.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"ds/randomized_bst/rbst_acted_monoid.hpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
-    \  RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false> X(N + Q);\n  auto root\
-    \ = X.new_node(A);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i, x);\n\
-    \      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)),\
-    \ b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root,\
-    \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
+    \  RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false> X;\n  auto root = X.new_node(A);\n\
+    \n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i, x);\n      auto [a, b]\
+    \ = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)), b);\n   \
+    \ }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root, i,\
+    \ i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
     \ r);\n      root = X.reverse(root, l, r);\n    }\n    if (t == 3) {\n      LL(l,\
     \ r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n    }\n  \
     \  if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r));\n    }\n \
@@ -537,8 +537,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 15:18:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-16 15:39:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 layout: document
