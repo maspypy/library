@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/default_prod.hpp
     title: alg/default_prod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'

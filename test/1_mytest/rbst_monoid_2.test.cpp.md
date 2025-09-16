@@ -1,16 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: ds/node_pool.hpp
+    title: ds/node_pool.hpp
+  - icon: ':x:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -21,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -219,40 +222,52 @@ data:
     template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
     \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\
-    \ntemplate <typename Monoid, bool PERSISTENT>\nstruct RBST_Monoid {\n  using X\
-    \ = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x,\
-    \ prod, rev_prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\
-    \n  int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Monoid(int\
-    \ NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_Monoid()\
-    \ { delete[] pool; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x)\
-    \ {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod\
-    \ = x;\n    pool[pid].rev_prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev\
-    \ = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n\
-    \    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return\
-    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l +\
-    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
-    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
+    using modint998 = modint<998244353>;\n#line 1 \"ds/node_pool.hpp\"\ntemplate <class\
+    \ Node>\nstruct Node_Pool {\n  struct Slot {\n    union alignas(Node) {\n    \
+    \  Slot* next;\n      unsigned char storage[sizeof(Node)];\n    };\n  };\n  using\
+    \ np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 16;\n\n  vc<unique_ptr<Slot[]>>\
+    \ chunks;\n  Slot* cur = nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\
+    \n  Node_Pool() { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&...\
+    \ args) {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
+    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    auto\
+    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
+    \  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty()) {\n\
+    \      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
+    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
+    \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
+    \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/randomized_bst/rbst_monoid.hpp\"\n\n\
+    template <typename Monoid, bool PERSISTENT>\nstruct RBST_Monoid {\n  using X =\
+    \ typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x,\
+    \ prod, rev_prod;  // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n \
+    \ };\n\n  Node_Pool<Node> pool;\n  using np = Node *;\n\n  void reset() { pool.reset();\
+    \ }\n\n  np new_node(const X &x) {\n    np c = pool.create();\n    c->l = c->r\
+    \ = nullptr;\n    c->x = x, c->prod = x, c->rev_prod = x;\n    c->size = 1, c->rev\
+    \ = 0;\n    return c;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs\
+    \ = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n\
+    \      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n\
+    \      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n  \
+    \    np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
     \      update(root);\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
-    \  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l\
-    \ = n->l, pool[pid].r = n->r;\n    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n\
-    \    pool[pid].rev_prod = n->rev_prod;\n    pool[pid].size = n->size;\n    pool[pid].rev\
-    \ = n->rev;\n    return &(pool[pid++]);\n  }\n\n  np merge(np l_root, np r_root)\
-    \ { return merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np c) { return\
-    \ merge(merge(a, b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
-    \ b), c), d); }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n  \
-    \    assert(k == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0 <=\
-    \ k && k <= root->size);\n    return split_rec(root, k);\n  }\n  tuple<np, np,\
-    \ np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root,\
-    \ r);\n    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n\
-    \  tuple<np, np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n \
-    \   tie(root, d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n\
-    \    return {a, b, c, d};\n  }\n\n  X prod(np root, u32 l, u32 r) {\n    if (l\
-    \ == r) return Monoid::unit();\n    return prod_rec(root, l, r, false);\n  }\n\
-    \  X prod(np root) { return (root ? root->prod : Monoid::unit()); }\n\n  np reverse(np\
-    \ root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n  \
-    \  if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
-    \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    swap(nm->prod, nm->rev_prod);\n\
+    \  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return n;\n    c->l\
+    \ = n->l, c->r = n->r;\n    c->x = n->x, c->prod = n->prod, c->rev_prod = n->rev_prod;\n\
+    \    c->size = n->size, c->rev = n->rev;\n    return c;\n  }\n\n  np merge(np\
+    \ l_root, np r_root) { return merge_rec(l_root, r_root); }\n  np merge3(np a,\
+    \ np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np c,\
+    \ np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np, np> split(np root,\
+    \ u32 k) {\n    if (!root) {\n      assert(k == 0);\n      return {nullptr, nullptr};\n\
+    \    }\n    assert(0 <= k && k <= root->size);\n    return split_rec(root, k);\n\
+    \  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n  \
+    \  tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n    return\
+    \ {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i, u32 j,\
+    \ u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto [a, b, c]\
+    \ = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  X prod(np root, u32\
+    \ l, u32 r) {\n    if (l == r) return Monoid::unit();\n    return prod_rec(root,\
+    \ l, r, false);\n  }\n  X prod(np root) { return (root ? root->prod : Monoid::unit());\
+    \ }\n\n  np reverse(np root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r\
+    \ <= root->size);\n    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root,\
+    \ l, r);\n    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    swap(nm->prod, nm->rev_prod);\n\
     \    return merge3(nl, nm, nr);\n  }\n\n  np set(np root, u32 k, const X &x) {\
     \ return set_rec(root, k, x); }\n  np multiply(np root, u32 k, const X &x) { return\
     \ multiply_rec(root, k, x); }\n  X get(np root, u32 k) { return get_rec(root,\
@@ -262,7 +277,7 @@ data:
     \ dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev);\n    };\n    dfs(dfs,\
     \ root, 0);\n    return res;\n  }\n\n  template <typename F>\n  pair<np, np> split_max_right(np\
     \ root, const F check) {\n    assert(check(Monoid::unit()));\n    X x = Monoid::unit();\n\
-    \    return split_max_right_rec(root, check, x);\n  }\n\nprivate:\n  inline u32\
+    \    return split_max_right_rec(root, check, x);\n  }\n\n private:\n  inline u32\
     \ xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n \
     \   static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x\
     \ << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
@@ -308,30 +323,30 @@ data:
     \ = Monoid::op(root->x, x);\n      update(root);\n      return root;\n    }\n\
     \    root = copy_node(root);\n    root->r = multiply_rec(root->r, k - (1 + sl),\
     \ x);\n    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l,\
-    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) { return (rev ? root->rev_prod\
-    \ : root->prod); }\n    np left = (rev ? root->r : root->l);\n    np right = (rev\
-    \ ? root->l : root->r);\n    u32 sl = (left ? left->size : 0);\n    X res = Monoid::unit();\n\
-    \    if (l < sl) {\n      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n\
-    \      res = Monoid::op(res, y);\n    }\n    if (l <= sl && sl < r) res = Monoid::op(res,\
-    \ root->x);\n    u32 k = 1 + sl;\n    if (k < r) {\n      X y = prod_rec(right,\
-    \ max(k, l) - k, r - k, rev ^ root->rev);\n      res = Monoid::op(res, y);\n \
-    \   }\n    return res;\n  }\n\n  X get_rec(np root, u32 k, bool rev) {\n    np\
-    \ left = (rev ? root->r : root->l);\n    np right = (rev ? root->l : root->r);\n\
-    \    u32 sl = (left ? left->size : 0);\n    if (k == sl) return root->x;\n   \
-    \ rev ^= root->rev;\n    if (k < sl) return get_rec(left, k, rev);\n    return\
-    \ get_rec(right, k - (1 + sl), rev);\n  }\n\n  template <typename F>\n  pair<np,\
-    \ np> split_max_right_rec(np root, const F &check, X &x) {\n    if (!root) return\
-    \ {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n    X y =\
-    \ Monoid::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n      return\
-    \ {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n    if (left)\
-    \ {\n      X y = Monoid::op(x, root->l->prod);\n      if (!check(y)) {\n     \
-    \   auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l = n2;\n\
-    \        update(root);\n        return {n1, root};\n      }\n      x = y;\n  \
-    \  }\n    y = Monoid::op(x, root->x);\n    if (!check(y)) {\n      root->l = nullptr;\n\
-    \      update(root);\n      return {left, root};\n    }\n    x = y;\n    auto\
-    \ [n1, n2] = split_max_right_rec(right, check, x);\n    root->r = n1;\n    update(root);\n\
-    \    return {root, n2};\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) {\n      return (rev\
+    \ ? root->rev_prod : root->prod);\n    }\n    np left = (rev ? root->r : root->l);\n\
+    \    np right = (rev ? root->l : root->r);\n    u32 sl = (left ? left->size :\
+    \ 0);\n    X res = Monoid::unit();\n    if (l < sl) {\n      X y = prod_rec(left,\
+    \ l, min(r, sl), rev ^ root->rev);\n      res = Monoid::op(res, y);\n    }\n \
+    \   if (l <= sl && sl < r) res = Monoid::op(res, root->x);\n    u32 k = 1 + sl;\n\
+    \    if (k < r) {\n      X y = prod_rec(right, max(k, l) - k, r - k, rev ^ root->rev);\n\
+    \      res = Monoid::op(res, y);\n    }\n    return res;\n  }\n\n  X get_rec(np\
+    \ root, u32 k, bool rev) {\n    np left = (rev ? root->r : root->l);\n    np right\
+    \ = (rev ? root->l : root->r);\n    u32 sl = (left ? left->size : 0);\n    if\
+    \ (k == sl) return root->x;\n    rev ^= root->rev;\n    if (k < sl) return get_rec(left,\
+    \ k, rev);\n    return get_rec(right, k - (1 + sl), rev);\n  }\n\n  template <typename\
+    \ F>\n  pair<np, np> split_max_right_rec(np root, const F &check, X &x) {\n  \
+    \  if (!root) return {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n\
+    \    X y = Monoid::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n   \
+    \   return {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n\
+    \    if (left) {\n      X y = Monoid::op(x, root->l->prod);\n      if (!check(y))\
+    \ {\n        auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l\
+    \ = n2;\n        update(root);\n        return {n1, root};\n      }\n      x =\
+    \ y;\n    }\n    y = Monoid::op(x, root->x);\n    if (!check(y)) {\n      root->l\
+    \ = nullptr;\n      update(root);\n      return {left, root};\n    }\n    x =\
+    \ y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n    root->r =\
+    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/rbst_monoid_2.test.cpp\"\n\n\
@@ -388,12 +403,13 @@ data:
   - mod/modint.hpp
   - mod/modint_common.hpp
   - ds/randomized_bst/rbst_monoid.hpp
+  - ds/node_pool.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid_2.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 02:56:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-09-16 15:18:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_2.test.cpp
 layout: document

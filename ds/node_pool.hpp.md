@@ -11,6 +11,18 @@ data:
   - icon: ':x:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
+  - icon: ':x:'
+    path: ds/randomized_bst/rbst.hpp
+    title: ds/randomized_bst/rbst.hpp
+  - icon: ':x:'
+    path: ds/randomized_bst/rbst_acted_monoid.hpp
+    title: ds/randomized_bst/rbst_acted_monoid.hpp
+  - icon: ':x:'
+    path: ds/randomized_bst/rbst_commutative_monoid.hpp
+    title: ds/randomized_bst/rbst_commutative_monoid.hpp
+  - icon: ':x:'
+    path: ds/randomized_bst/rbst_monoid.hpp
+    title: ds/randomized_bst/rbst_monoid.hpp
   - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
@@ -39,6 +51,9 @@ data:
     path: seq/cycle_decomposition.hpp
     title: seq/cycle_decomposition.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/1_mytest/ARC30D.test.cpp
+    title: test/1_mytest/ARC30D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/binary_trie.test.cpp
     title: test/1_mytest/binary_trie.test.cpp
@@ -48,6 +63,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/rbst.test.cpp
+    title: test/1_mytest/rbst.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/rbst_am.test.cpp
+    title: test/1_mytest/rbst_am.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/rbst_am_2.test.cpp
+    title: test/1_mytest/rbst_am_2.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/rbst_am_persistent.test.cpp
+    title: test/1_mytest/rbst_am_persistent.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/rbst_commutative_persistent.test.cpp
+    title: test/1_mytest/rbst_commutative_persistent.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/rbst_monoid.test.cpp
+    title: test/1_mytest/rbst_monoid.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/rbst_monoid_2.test.cpp
+    title: test/1_mytest/rbst_monoid_2.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/rbst_monoid_persistent.test.cpp
+    title: test/1_mytest/rbst_monoid_persistent.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/rbst_test.test.cpp
+    title: test/1_mytest/rbst_test.test.cpp
   - icon: ':x:'
     path: test/1_mytest/slope_super.test.cpp
     title: test/1_mytest/slope_super.test.cpp
@@ -63,6 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+    title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
@@ -84,9 +129,15 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1752.test.cpp
     title: test/3_yukicoder/1752.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/686.test.cpp
+    title: test/3_yukicoder/686.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/1508_2.test.cpp
+    title: test/4_aoj/1508_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -130,6 +181,10 @@ data:
   - seq/cycle_decomposition.hpp
   - ds/binary_trie.hpp
   - ds/meldable_heap.hpp
+  - ds/randomized_bst/rbst_commutative_monoid.hpp
+  - ds/randomized_bst/rbst.hpp
+  - ds/randomized_bst/rbst_acted_monoid.hpp
+  - ds/randomized_bst/rbst_monoid.hpp
   - ds/splaytree/splaytree_basic.hpp
   - ds/splaytree/splaytree_acted_set.hpp
   - ds/splaytree/splaytree.hpp
@@ -145,18 +200,31 @@ data:
   - test/3_yukicoder/1154.test.cpp
   - test/3_yukicoder/1441.test.cpp
   - test/3_yukicoder/1752.test.cpp
+  - test/3_yukicoder/686.test.cpp
   - test/2_library_checker/data_structure/set_xor_min.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
+  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/splay.test.cpp
+  - test/1_mytest/rbst_monoid_2.test.cpp
   - test/1_mytest/splay_monoid.test.cpp
+  - test/1_mytest/rbst_am_persistent.test.cpp
+  - test/1_mytest/rbst.test.cpp
   - test/1_mytest/slope_super.test.cpp
+  - test/1_mytest/rbst_am_2.test.cpp
+  - test/1_mytest/rbst_monoid.test.cpp
+  - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/binary_trie.test.cpp
+  - test/1_mytest/ARC30D.test.cpp
+  - test/1_mytest/rbst_monoid_persistent.test.cpp
+  - test/1_mytest/rbst_commutative_persistent.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/cf702_F_splay.test.cpp
+  - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
+  - test/4_aoj/1508_2.test.cpp
   - test/4_aoj/1508.test.cpp
 documentation_of: ds/node_pool.hpp
 layout: document

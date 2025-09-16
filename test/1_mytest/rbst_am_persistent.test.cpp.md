@@ -1,16 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: ds/node_pool.hpp
+    title: ds/node_pool.hpp
+  - icon: ':x:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
   - icon: ':question:'
@@ -21,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -146,28 +149,40 @@ data:
     \ = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using\
     \ X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return\
-    \ (a == none_val ? x : a);\r\n  }\r\n};\r\n#line 1 \"ds/randomized_bst/rbst_acted_monoid.hpp\"\
-    \ntemplate <typename ActedMonoid, bool PERSISTENT>\nstruct RBST_ActedMonoid {\n\
-    \  using Monoid_X = typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename\
+    \ (a == none_val ? x : a);\r\n  }\r\n};\r\n#line 1 \"ds/node_pool.hpp\"\ntemplate\
+    \ <class Node>\nstruct Node_Pool {\n  struct Slot {\n    union alignas(Node) {\n\
+    \      Slot* next;\n      unsigned char storage[sizeof(Node)];\n    };\n  };\n\
+    \  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 16;\n\n  vc<unique_ptr<Slot[]>>\
+    \ chunks;\n  Slot* cur = nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\
+    \n  Node_Pool() { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&...\
+    \ args) {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
+    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    auto\
+    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
+    \  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty()) {\n\
+    \      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
+    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
+    \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
+    \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/randomized_bst/rbst_acted_monoid.hpp\"\
+    \n\ntemplate <typename ActedMonoid, bool PERSISTENT>\nstruct RBST_ActedMonoid\
+    \ {\n  using Monoid_X = typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename\
     \ ActedMonoid::Monoid_A;\n  using X = typename Monoid_X::value_type;\n  using\
     \ A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n  \
-    \  X x, prod; // lazy, rev \u53CD\u6620\u6E08\n    A lazy;\n    u32 size;\n  \
-    \  bool rev;\n  };\n\n  Node *pool;\n  const int NODES;\n  int pid;\n  using np\
-    \ = Node *;\n\n  RBST_ActedMonoid(int NODES) : NODES(NODES), pid(0) { pool = new\
-    \ Node[NODES]; }\n  ~RBST_ActedMonoid() { delete[] pool; }\n\n  void reset() {\
-    \ pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
-    \    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].lazy = Monoid_A::unit();\n\
-    \    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
-    \  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
-    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
-    \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
-    \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
-    \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
-    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
-    \ {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l = n->l, pool[pid].r\
-    \ = n->r;\n    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n    pool[pid].lazy\
-    \ = n->lazy;\n    pool[pid].size = n->size;\n    pool[pid].rev = n->rev;\n   \
-    \ return &(pool[pid++]);\n  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root,\
+    \  X x, prod;  // lazy, rev \u53CD\u6620\u6E08\n    A lazy;\n    u32 size;\n \
+    \   bool rev;\n  };\n\n  Node_Pool<Node> pool;\n  using np = Node *;\n\n  void\
+    \ reset() { pool.reset(); }\n\n  np new_node(const X &x) {\n    np c = pool.create();\n\
+    \    c->l = c->r = nullptr;\n    c->x = x, c->prod = x, c->lazy = Monoid_A::unit();\n\
+    \    c->size = 1, c->rev = 0;\n    return c;\n  }\n\n  np new_node(const vc<X>\
+    \ &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l ==\
+    \ r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32\
+    \ m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs,\
+    \ m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r\
+    \ = r_root;\n      update(root);\n      return root;\n    };\n    return dfs(dfs,\
+    \ 0, len(dat));\n  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return\
+    \ n;\n    np c = pool.create();\n    c->l = n->l, c->r = n->r;\n    c->x = n->x,\
+    \ c->prod = n->prod, c->lazy = n->lazy;\n    c->size = n->size, c->rev = n->rev;\n\
+    \    return c;\n  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root,\
     \ r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n\
     \  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c), d);\
     \ }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n      assert(k\
@@ -197,9 +212,9 @@ data:
     \   dfs(dfs, root, 0, Monoid_A::unit());\n    return res;\n  }\n\n  template <typename\
     \ F>\n  pair<np, np> split_max_right(np root, const F check) {\n    assert(check(Monoid_X::unit()));\n\
     \    X x = Monoid_X::unit();\n    return split_max_right_rec(root, check, x);\n\
-    \  }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x = 123456789;\n   \
-    \ static u32 y = 362436069;\n    static u32 z = 521288629;\n    static u32 w =\
-    \ 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n\
+    \  }\n\n private:\n  inline u32 xor128() {\n    static u32 x = 123456789;\n  \
+    \  static u32 y = 362436069;\n    static u32 z = 521288629;\n    static u32 w\
+    \ = 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n\
     \    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void prop(np c) {\n\
     \    // \u81EA\u8EAB\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\
     \u3044\u3002\n    // \u5B50\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\
@@ -247,9 +262,9 @@ data:
     \ = Monoid_X::op(root->x, x);\n      update(root);\n      return root;\n    }\n\
     \    root = copy_node(root);\n    root->r = multiply_rec(root->r, k - (1 + sl),\
     \ x);\n    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l,\
-    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) { return root->prod;\
-    \ }\n    np left = (rev ? root->r : root->l);\n    np right = (rev ? root->l :\
-    \ root->r);\n    u32 sl = (left ? left->size : 0);\n    X res = Monoid_X::unit();\n\
+    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) {\n      return root->prod;\n\
+    \    }\n    np left = (rev ? root->r : root->l);\n    np right = (rev ? root->l\
+    \ : root->r);\n    u32 sl = (left ? left->size : 0);\n    X res = Monoid_X::unit();\n\
     \    if (l < sl) {\n      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n\
     \      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy, min(r, sl) - l));\n\
     \    }\n    if (l <= sl && sl < r) res = Monoid_X::op(res, root->x);\n    u32\
@@ -341,12 +356,13 @@ data:
   - alg/monoid/min.hpp
   - alg/monoid/assign.hpp
   - ds/randomized_bst/rbst_acted_monoid.hpp
+  - ds/node_pool.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/1_mytest/rbst_am_persistent.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 02:56:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-09-16 15:18:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_am_persistent.test.cpp
 layout: document
