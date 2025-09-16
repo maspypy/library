@@ -7,7 +7,7 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  SplayTree_Monoid<Monoid_Add<ll>> ST(N);
+  SplayTree_Monoid<Monoid_Add<ll>> ST;
   auto root = ST.new_node(A);
   FOR(Q) {
     LL(t, l, r);
@@ -20,7 +20,9 @@ void solve() {
       root->update();
       ST.splay(root, true);
     }
-    if (t == 2) { print(ST.prod(root, l, r)); }
+    if (t == 2) {
+      print(ST.prod(root, l, r));
+    }
   }
 }
 

@@ -21,13 +21,17 @@ vc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<T>> point) {
   FOR(i, 2, N - 1) {
     int v = I[i], t = side(v);
     if (s == 0 && t == 0) {
-      while (len(stack) >= 2 && ccw(point[stack[len(stack) - 2]], point[stack[len(stack) - 1]], point[v]) == 1) {
+      while (len(stack) >= 2 &&
+             ccw(point[stack[len(stack) - 2]], point[stack[len(stack) - 1]],
+                 point[v]) == 1) {
         res.eb(stack[len(stack) - 2], stack[len(stack) - 1], v), POP(stack);
       }
       stack.eb(v);
     }
     elif (s == 1 && t == 1) {
-      while (len(stack) >= 2 && ccw(point[stack[len(stack) - 2]], point[stack[len(stack) - 1]], point[v]) == -1) {
+      while (len(stack) >= 2 &&
+             ccw(point[stack[len(stack) - 2]], point[stack[len(stack) - 1]],
+                 point[v]) == -1) {
         res.eb(stack[len(stack) - 2], v, stack[len(stack) - 1]), POP(stack);
       }
       stack.eb(v);
@@ -41,9 +45,12 @@ vc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<T>> point) {
       stack = {stack.back(), v}, s = t;
     }
   }
-  if (s == 0) { FOR(j, len(stack) - 1) res.eb(stack[j], stack[j + 1], n); }
+  if (s == 0) {
+    FOR(j, len(stack) - 1) res.eb(stack[j], stack[j + 1], n);
+  }
   elif (s == 1) { FOR(j, len(stack) - 1) res.eb(stack[j], n, stack[j + 1]); }
-  for (auto& [a, b, c]: res) a = (a + rot) % N, b = (b + rot) % N, c = (c + rot) % N;
+  for (auto& [a, b, c] : res)
+    a = (a + rot) % N, b = (b + rot) % N, c = (c + rot) % N;
   return res;
 }
 
@@ -57,14 +64,19 @@ vc<tuple<int, int, int>> polygon_triangulation(vc<Point<T>> point) {
   auto nxt = [&](int i) -> int { return (i < N - 1 ? i + 1 : 0); };
   auto get_vtype = [&](int i) -> vtype {
     int l = pre(i), r = nxt(i);
-    if (point[i] < point[l] && point[i] < point[r]) { return (ccw(point[l], point[i], point[r]) == 1 ? START : SPLIT); }
-    if (point[l] < point[i] && point[r] < point[i]) { return (ccw(point[l], point[i], point[r]) == 1 ? END : MERGE); }
+    if (point[i] < point[l] && point[i] < point[r]) {
+      return (ccw(point[l], point[i], point[r]) == 1 ? START : SPLIT);
+    }
+    if (point[l] < point[i] && point[r] < point[i]) {
+      return (ccw(point[l], point[i], point[r]) == 1 ? END : MERGE);
+    }
     if (point[l] < point[i] && point[i] < point[r]) return LOWER;
     if (point[r] < point[i] && point[i] < point[l]) return UPPER;
     assert(0);
     return END;
   };
-  SplayTree_Basic<int> ST(N);
+  static SplayTree_Basic<int> ST;
+  ST.reset();
   using np = decltype(ST)::np;
   vc<np> nodes(N);
   FOR(i, N) nodes[i] = ST.new_node(i);
@@ -84,10 +96,12 @@ vc<tuple<int, int, int>> polygon_triangulation(vc<Point<T>> point) {
 
   auto fix_up = [&](int v, int e) -> void {
     int w = helper[e];
-    if (get_vtype(w) == vtype::MERGE && !merged[w]) { add_edge(v, w); }
+    if (get_vtype(w) == vtype::MERGE && !merged[w]) {
+      add_edge(v, w);
+    }
   };
   auto I = argsort(point);
-  for (auto& i: I) {
+  for (auto& i : I) {
     vtype t = get_vtype(i);
     if (t == vtype::MERGE) {
       ST.splay(nodes[i], 1), S = nodes[i];
@@ -99,14 +113,16 @@ vc<tuple<int, int, int>> polygon_triangulation(vc<Point<T>> point) {
       helper[j] = i;
     }
     if (t == vtype::SPLIT) {
-      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k, point[i]); });
+      auto [L, R] = ST.split_max_right(
+          S, [&](int k) -> bool { return comp(k, point[i]); });
       int j = ST.get(R, 0);
       add_edge(i, helper[j]);
       helper[j] = i, helper[pre(i)] = i;
       S = ST.merge3(L, nodes[pre(i)], R);
     }
     if (t == vtype::START) {
-      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k, point[i]); });
+      auto [L, R] = ST.split_max_right(
+          S, [&](int k) -> bool { return comp(k, point[i]); });
       S = ST.merge3(L, nodes[pre(i)], R), helper[pre(i)] = i;
     }
     if (t == vtype::END) {
@@ -125,7 +141,8 @@ vc<tuple<int, int, int>> polygon_triangulation(vc<Point<T>> point) {
       helper[pre(i)] = i;
     }
     if (t == vtype::LOWER) {
-      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k, point[i]); });
+      auto [L, R] = ST.split_max_right(
+          S, [&](int k) -> bool { return comp(k, point[i]); });
       int j = ST.get(R, 0);
       S = ST.merge(L, R);
       fix_up(i, j);
@@ -138,7 +155,8 @@ vc<tuple<int, int, int>> polygon_triangulation(vc<Point<T>> point) {
     auto [vs, es] = G.get_face_data(f);
     POP(vs);
     vc<P> sub = rearrange(point, vs);
-    for (auto& [a, b, c]: monotone_polygon_triangulation(sub)) ANS.eb(vs[a], vs[b], vs[c]);
+    for (auto& [a, b, c] : monotone_polygon_triangulation(sub))
+      ANS.eb(vs[a], vs[b], vs[c]);
   }
   return ANS;
 }

@@ -7,7 +7,7 @@
 void solve() {
   INT(Q);
   HashMap<char> MP(Q);
-  Binary_Trie<30, false, 1'000'000, int, int> X;
+  Binary_Trie<30, false, u32, u32> X;
   using np = decltype(X)::np;
   np root = nullptr;
   FOR(Q) {
@@ -24,7 +24,9 @@ void solve() {
         root = X.add(root, x, -1);
       }
     }
-    if (t == 2) { print(X.min(root, x)); }
+    if (t == 2) {
+      print(X.min(root, x));
+    }
   }
 }
 

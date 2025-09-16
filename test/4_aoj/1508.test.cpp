@@ -8,7 +8,7 @@ void solve() {
   LL(N, Q);
   VEC(int, A, N);
 
-  SplayTree_Monoid<Monoid_Min<int>> ST(N);
+  SplayTree_Monoid<Monoid_Min<int>> ST;
   auto root = ST.new_node(A);
   FOR(Q) {
     LL(t);

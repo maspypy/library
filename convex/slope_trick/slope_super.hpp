@@ -29,8 +29,8 @@ struct Node {
   np p, l, r;
   bool rev;
   u32 size;
-  pair<T, T> x;    // (x,a)
-  pair<T, T> prod; // (a sum, xa sum)
+  pair<T, T> x;     // (x,a)
+  pair<T, T> prod;  // (a sum, xa sum)
   T add_x;
 
   static void new_node(np n, const pair<T, T> &x) {
@@ -40,8 +40,12 @@ struct Node {
 
   void update() {
     size = 1;
-    if (l) { size += l->size; }
-    if (r) { size += r->size; }
+    if (l) {
+      size += l->size;
+    }
+    if (r) {
+      size += r->size;
+    }
     prod = {x.se, x.fi * x.se};
     if (l) prod = Monoid_X::op(prod, l->prod);
     if (r) prod = Monoid_X::op(prod, r->prod);
@@ -50,8 +54,10 @@ struct Node {
   void prop() {
     assert(!rev);
     if (add_x == 0) return;
-    if (l) l->x.fi += add_x, l->prod.se += l->prod.fi * add_x, l->add_x += add_x;
-    if (r) r->x.fi += add_x, r->prod.se += r->prod.fi * add_x, r->add_x += add_x;
+    if (l)
+      l->x.fi += add_x, l->prod.se += l->prod.fi * add_x, l->add_x += add_x;
+    if (r)
+      r->x.fi += add_x, r->prod.se += r->prod.fi * add_x, r->add_x += add_x;
     add_x = 0;
   }
 
@@ -73,17 +79,18 @@ struct Slope_Trick_Super {
   using np = Node<T> *;
 
   struct FUNC {
-    np root; // 定義域がこわれていたら root == empty
+    np root;  // 定義域がこわれていたら root == empty
     T x0, x1, a0, y0;
     int size() { return (root ? root->size : 0); }
   };
 
-  Slope_Trick_Super(int NODES) : ST(NODES) {}
-
   // (L,R,a,b) : [L,R] で y=ax+b
-  FUNC segment_func(T L, T R, T a, T b) { return {nullptr, L, R, a, a * L + b}; }
+  FUNC segment_func(T L, T R, T a, T b) {
+    return {nullptr, L, R, a, a * L + b};
+  }
   FUNC from_points(vc<pair<T, T>> &point) {
-    return from_points(len(point), [&](int i) -> pair<T, T> { return point[i]; });
+    return from_points(len(point),
+                       [&](int i) -> pair<T, T> { return point[i]; });
   }
   template <typename F>
   FUNC from_points(int N, F f) {
@@ -105,7 +112,8 @@ struct Slope_Trick_Super {
   T eval(FUNC &f, T x) {
     auto [x0, x1] = domain(f);
     if (!(x0 <= x && x <= x1)) return infty<T>;
-    auto [l, r] = ST.split_max_right(f.root, [&](auto dat) -> bool { return dat.fi <= x; });
+    auto [l, r] = ST.split_max_right(
+        f.root, [&](auto dat) -> bool { return dat.fi <= x; });
     auto [a_sum, xa_sum] = ST.prod(l);
     f.root = ST.merge(l, r);
     return f.y0 + f.a0 * (x - x0) + a_sum * x - xa_sum;
@@ -120,10 +128,12 @@ struct Slope_Trick_Super {
       return f;
     }
     // まずは右側をちぢめる. R 以上の傾き変化を消してしまえばよい
-    auto [l, r] = ST.split_max_right(f.root, [&](auto dat) -> bool { return dat.fi < R; });
+    auto [l, r] = ST.split_max_right(
+        f.root, [&](auto dat) -> bool { return dat.fi < R; });
     ST.free_subtree(r);
     // 左側をちぢめる.
-    tie(l, r) = ST.split_max_right(l, [&](auto dat) -> bool { return dat.fi <= L; });
+    tie(l, r) =
+        ST.split_max_right(l, [&](auto dat) -> bool { return dat.fi <= L; });
     auto [a_sum, xa_sum] = ST.prod(l);
     T new_a0 = f.a0 + a_sum;
     T new_y0 = f.y0 + f.a0 * (L - x0) + a_sum * L - xa_sum;
@@ -152,7 +162,8 @@ struct Slope_Trick_Super {
       root->prop();
       T x = root->x.fi;
       // [l,m),[m,r)
-      int m = binary_search([&](int i) -> bool { return tmp[i].fi >= x; }, r, l - 1, 0);
+      int m = binary_search([&](int i) -> bool { return tmp[i].fi >= x; }, r,
+                            l - 1, 0);
       if (l < m) {
         if (!root->l) {
           root->l = ST.new_node({tmp.begin() + l, tmp.begin() + m});
@@ -177,18 +188,20 @@ struct Slope_Trick_Super {
   FUNC sum_all(vc<FUNC> &funcs) {
     assert(len(funcs) >= 1);
     T x0 = funcs[0].x0, x1 = funcs[0].x1;
-    for (auto &g: funcs) chmax(x0, g.x0), chmin(x1, g.x1);
+    for (auto &g : funcs) chmax(x0, g.x0), chmin(x1, g.x1);
     if (x0 > x1) {
-      for (auto &f: funcs) { ST.free_subtree(f.root); }
+      for (auto &f : funcs) {
+        ST.free_subtree(f.root);
+      }
       return {nullptr, infty<T>, -infty<T>, 0, 0};
     }
-    for (auto &f: funcs) f = restrict_domain(f, x0, x1);
+    for (auto &f : funcs) f = restrict_domain(f, x0, x1);
     int idx = 0;
     FOR(i, 1, len(funcs)) if (len(funcs[idx]) < len(funcs[i])) idx = i;
     swap(funcs[idx], funcs.back());
     FUNC f = POP(funcs);
     vc<pair<T, T>> dat;
-    for (auto &g: funcs) {
+    for (auto &g : funcs) {
       f.y0 += g.y0, f.a0 += g.a0;
       auto tmp = ST.get_all(g.root);
       concat(dat, tmp);
@@ -205,7 +218,8 @@ struct Slope_Trick_Super {
       root->prop();
       T x = root->x.fi;
       // [l,m),[m,r)
-      int m = binary_search([&](int i) -> bool { return dat[i].fi >= x; }, r, l - 1, 0);
+      int m = binary_search([&](int i) -> bool { return dat[i].fi >= x; }, r,
+                            l - 1, 0);
       if (l < m) {
         if (!root->l) {
           root->l = ST.new_node({dat.begin() + l, dat.begin() + m});
@@ -236,10 +250,14 @@ struct Slope_Trick_Super {
 
   // h[z]=min(x+y==z)f(x)+g(y)
   FUNC convolve(FUNC &f, FUNC &g) {
-    if (f.x0 > f.x1 || g.x0 > g.x1) { return {nullptr, infty<T>, -infty<T>, 0, 0}; }
+    if (f.x0 > f.x1 || g.x0 > g.x1) {
+      return {nullptr, infty<T>, -infty<T>, 0, 0};
+    }
     if (len(f) < len(g)) swap(f, g);
     shift(f, g.x0, g.y0), shift(g, -g.x0, -g.y0);
-    if (len(g) == 0) { return convolve_segment(f, 0, g.x1, g.a0, 0); }
+    if (len(g) == 0) {
+      return convolve_segment(f, 0, g.x1, g.a0, 0);
+    }
     auto tmp = ST.get_all(g.root);
     ST.free_subtree(g.root);
     f = convolve_segment(f, 0, tmp[0].fi, g.a0, 0);
@@ -248,7 +266,7 @@ struct Slope_Trick_Super {
       T nx = (i + 1 < len(tmp) ? tmp[i + 1].fi : g.x1);
       a += tmp[i].se;
       f = convolve_segment(f, 0, nx - tmp[i].fi, a, 0);
-      for (auto &[x, a]: ST.get_all(f.root)) {
+      for (auto &[x, a] : ST.get_all(f.root)) {
         assert(f.x0 <= x && x <= f.x1);
         if (f.root) assert(!f.root->p);
       }
@@ -259,13 +277,17 @@ struct Slope_Trick_Super {
   // [x0,x1], y=ax+b
   FUNC convolve_segment(FUNC &f, T x0, T x1, T a, T b) {
     assert(x0 <= x1);
-    if (f.x0 > f.x1) { return {nullptr, infty<T>, -infty<T>, 0, 0}; }
+    if (f.x0 > f.x1) {
+      return {nullptr, infty<T>, -infty<T>, 0, 0};
+    }
     f = shift(f, x0, a * x0 + b);
     T d = x1 - x0;
     if (d == 0) return f;
     // (0,0) から (x1,ax1) への線分をどこかに挿入する
     // 特に x0, y0 はこのままでよい
-    if (f.x0 == f.x1) { return {nullptr, f.x0, f.x0 + d, a, f.y0}; }
+    if (f.x0 == f.x1) {
+      return {nullptr, f.x0, f.x0 + d, a, f.y0};
+    }
     // 先頭に挿入できる場合
     if (a <= f.a0) {
       ST.apply(f.root, d);
@@ -281,7 +303,8 @@ struct Slope_Trick_Super {
       return f;
     }
     // 間のどこかに挿入
-    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < a; });
+    auto [l, r] = ST.split_max_right_prod(
+        f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < a; });
     T asum = ST.prod(l).fi;
     T a1 = a - (asum + f.a0);
     auto [xx, aa] = ST.get(r, 0);
@@ -337,8 +360,11 @@ struct Slope_Trick_Super {
   // fx,x
   pair<T, T> get_min(FUNC &f) {
     if (f.x0 > f.x1) return {infty<T>, 0};
-    if (f.a0 >= 0) { return {f.y0, f.x0}; }
-    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });
+    if (f.a0 >= 0) {
+      return {f.y0, f.x0};
+    }
+    auto [l, r] = ST.split_max_right_prod(
+        f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });
     auto [asum, xasum] = ST.prod(l);
     T x = (r ? ST.get(r, 0).fi : f.x1);
     f.root = ST.merge(l, r);
@@ -351,17 +377,23 @@ struct Slope_Trick_Super {
       ST.free_subtree(f.root), f.root = nullptr, f.a0 = 0;
       return f;
     }
-    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });
+    auto [l, r] = ST.split_max_right_prod(
+        f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });
     f.root = l;
-    if (!r) { return f; }
+    if (!r) {
+      return f;
+    }
     T x = ST.get(r, 0).fi;
     ST.free_subtree(r);
     f.root = ST.merge(f.root, ST.new_node({x, -(f.a0 + ST.prod(l).fi)}));
     return f;
   }
   FUNC clear_left(FUNC &f) {
-    if (f.a0 >= 0) { return f; }
-    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });
+    if (f.a0 >= 0) {
+      return f;
+    }
+    auto [l, r] = ST.split_max_right_prod(
+        f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });
     auto [asum, xasum] = ST.prod(l);
     if (!r) {
       // 定数にする
@@ -390,5 +422,5 @@ struct Slope_Trick_Super {
   }
 #endif
 };
-} // namespace SLOPE_TRICK_SUPER
+}  // namespace SLOPE_TRICK_SUPER
 using SLOPE_TRICK_SUPER::Slope_Trick_Super;

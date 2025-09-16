@@ -24,10 +24,11 @@ void test() {
     return {l, r};
   };
 
+  SplayTree_Monoid<Mono> ST;
   FOR(N, 1, 10) {
     vc<X> A(N);
     FOR(i, N) { A[i] = rnd_X(); }
-    SplayTree_Monoid<Mono> ST(N);
+    ST.reset();
 
     auto root = ST.new_node(A);
     FOR(100) {

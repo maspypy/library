@@ -1,4 +1,5 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -12,7 +13,7 @@ void solve() {
   INT(N, Q);
 
   using AM = ActedMonoid_Sum_Affine<mint>;
-  SplayTree_ActedMonoid<AM> X(N + Q);
+  SplayTree_ActedMonoid<AM> X;
 
   VEC(mint, dat, N);
   auto root = X.new_node(dat);
