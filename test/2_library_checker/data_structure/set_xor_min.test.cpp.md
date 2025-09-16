@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -350,21 +350,21 @@ data:
     \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 6 \"test/2_library_checker/data_structure/set_xor_min.test.cpp\"\
     \n\nvoid solve() {\n  INT(Q);\n  HashMap<char> MP(Q);\n  Binary_Trie<30, false,\
-    \ 1'000'000, int, int> X;\n  using np = decltype(X)::np;\n  np root = nullptr;\n\
-    \  FOR(Q) {\n    INT(t, x);\n    if (t == 0) {\n      if (MP[x] == 0) {\n    \
-    \    MP[x] = 1;\n        root = X.add(root, x, 1);\n      }\n    }\n    if (t\
-    \ == 1) {\n      if (MP[x] == 1) {\n        MP[x] = 0;\n        root = X.add(root,\
-    \ x, -1);\n      }\n    }\n    if (t == 2) { print(X.min(root, x)); }\n  }\n}\n\
-    \nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ u32, u32> X;\n  using np = decltype(X)::np;\n  np root = nullptr;\n  FOR(Q)\
+    \ {\n    INT(t, x);\n    if (t == 0) {\n      if (MP[x] == 0) {\n        MP[x]\
+    \ = 1;\n        root = X.add(root, x, 1);\n      }\n    }\n    if (t == 1) {\n\
+    \      if (MP[x] == 1) {\n        MP[x] = 0;\n        root = X.add(root, x, -1);\n\
+    \      }\n    }\n    if (t == 2) {\n      print(X.min(root, x));\n    }\n  }\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/binary_trie.hpp\"\
     \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  INT(Q);\n  HashMap<char> MP(Q);\n\
-    \  Binary_Trie<30, false, 1'000'000, int, int> X;\n  using np = decltype(X)::np;\n\
-    \  np root = nullptr;\n  FOR(Q) {\n    INT(t, x);\n    if (t == 0) {\n      if\
-    \ (MP[x] == 0) {\n        MP[x] = 1;\n        root = X.add(root, x, 1);\n    \
-    \  }\n    }\n    if (t == 1) {\n      if (MP[x] == 1) {\n        MP[x] = 0;\n\
-    \        root = X.add(root, x, -1);\n      }\n    }\n    if (t == 2) { print(X.min(root,\
-    \ x)); }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  Binary_Trie<30, false, u32, u32> X;\n  using np = decltype(X)::np;\n  np root\
+    \ = nullptr;\n  FOR(Q) {\n    INT(t, x);\n    if (t == 0) {\n      if (MP[x] ==\
+    \ 0) {\n        MP[x] = 1;\n        root = X.add(root, x, 1);\n      }\n    }\n\
+    \    if (t == 1) {\n      if (MP[x] == 1) {\n        MP[x] = 0;\n        root\
+    \ = X.add(root, x, -1);\n      }\n    }\n    if (t == 2) {\n      print(X.min(root,\
+    \ x));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -374,8 +374,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 14:24:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-16 15:02:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/set_xor_min.test.cpp
 layout: document

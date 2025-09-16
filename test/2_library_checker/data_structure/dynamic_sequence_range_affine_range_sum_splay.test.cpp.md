@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -33,16 +33,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
   bundledCode: "#line 1 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
@@ -261,7 +261,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
     \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
@@ -534,25 +534,25 @@ data:
     \ a);\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate\
     \ <typename ActedMonoid>\nusing SplayTree_ActedMonoid = SplayTree<Node_AM<ActedMonoid>>;\n\
     } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedMonoid;\n\
-    #line 8 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
+    #line 9 \"test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n\n  using AM = ActedMonoid_Sum_Affine<mint>;\n\
-    \  SplayTree_ActedMonoid<AM> X(N + Q);\n\n  VEC(mint, dat, N);\n  auto root =\
-    \ X.new_node(dat);\n\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(i,\
-    \ x);\n      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)),\
-    \ b);\n    }\n    if (t == 1) {\n      INT(i);\n      auto [a, b, c] = X.split3(root,\
+    \  SplayTree_ActedMonoid<AM> X;\n\n  VEC(mint, dat, N);\n  auto root = X.new_node(dat);\n\
+    \n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(i, x);\n      auto [a,\
+    \ b] = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)), b);\n\
+    \    }\n    if (t == 1) {\n      INT(i);\n      auto [a, b, c] = X.split3(root,\
     \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      INT(L,\
     \ R);\n      X.reverse(root, L, R);\n    }\n    if (t == 3) {\n      INT(L, R,\
     \ b, c);\n      X.apply(root, L, R, {mint(b), mint(c)});\n    }\n    if (t ==\
     \ 4) {\n      INT(L, R);\n      print(X.prod(root, L, R));\n    }\n  }\n}\n\n\
     signed main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/acted_monoid/sum_affine.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"ds/splaytree/splaytree_acted_monoid.hpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n\n  using AM = ActedMonoid_Sum_Affine<mint>;\n\
-    \  SplayTree_ActedMonoid<AM> X(N + Q);\n\n  VEC(mint, dat, N);\n  auto root =\
-    \ X.new_node(dat);\n\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(i,\
-    \ x);\n      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)),\
-    \ b);\n    }\n    if (t == 1) {\n      INT(i);\n      auto [a, b, c] = X.split3(root,\
+    \  SplayTree_ActedMonoid<AM> X;\n\n  VEC(mint, dat, N);\n  auto root = X.new_node(dat);\n\
+    \n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(i, x);\n      auto [a,\
+    \ b] = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)), b);\n\
+    \    }\n    if (t == 1) {\n      INT(i);\n      auto [a, b, c] = X.split3(root,\
     \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      INT(L,\
     \ R);\n      X.reverse(root, L, R);\n    }\n    if (t == 3) {\n      INT(L, R,\
     \ b, c);\n      X.apply(root, L, R, {mint(b), mint(c)});\n    }\n    if (t ==\
@@ -572,8 +572,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 14:24:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-16 15:02:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
 layout: document

@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':question:'
@@ -52,14 +52,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -773,61 +773,64 @@ data:
     \  auto side = [&](int i) -> int {\n    assert(i != 0 && i != n);\n    return\
     \ (i < n ? 0 : 1);\n  };\n  vc<int> I = argsort(point);\n  vc<int> stack = {I[0],\
     \ I[1]};\n  int s = side(I[1]);\n  FOR(i, 2, N - 1) {\n    int v = I[i], t = side(v);\n\
-    \    if (s == 0 && t == 0) {\n      while (len(stack) >= 2 && ccw(point[stack[len(stack)\
-    \ - 2]], point[stack[len(stack) - 1]], point[v]) == 1) {\n        res.eb(stack[len(stack)\
-    \ - 2], stack[len(stack) - 1], v), POP(stack);\n      }\n      stack.eb(v);\n\
-    \    }\n    elif (s == 1 && t == 1) {\n      while (len(stack) >= 2 && ccw(point[stack[len(stack)\
-    \ - 2]], point[stack[len(stack) - 1]], point[v]) == -1) {\n        res.eb(stack[len(stack)\
+    \    if (s == 0 && t == 0) {\n      while (len(stack) >= 2 &&\n             ccw(point[stack[len(stack)\
+    \ - 2]], point[stack[len(stack) - 1]],\n                 point[v]) == 1) {\n \
+    \       res.eb(stack[len(stack) - 2], stack[len(stack) - 1], v), POP(stack);\n\
+    \      }\n      stack.eb(v);\n    }\n    elif (s == 1 && t == 1) {\n      while\
+    \ (len(stack) >= 2 &&\n             ccw(point[stack[len(stack) - 2]], point[stack[len(stack)\
+    \ - 1]],\n                 point[v]) == -1) {\n        res.eb(stack[len(stack)\
     \ - 2], v, stack[len(stack) - 1]), POP(stack);\n      }\n      stack.eb(v);\n\
     \    }\n    elif (s == 0 && t == 1) {\n      FOR(j, len(stack) - 1) res.eb(stack[j],\
     \ stack[j + 1], v);\n      stack = {stack.back(), v}, s = t;\n    }\n    elif\
     \ (s == 1 && t == 0) {\n      FOR(j, len(stack) - 1) res.eb(stack[j], v, stack[j\
-    \ + 1]);\n      stack = {stack.back(), v}, s = t;\n    }\n  }\n  if (s == 0) {\
-    \ FOR(j, len(stack) - 1) res.eb(stack[j], stack[j + 1], n); }\n  elif (s == 1)\
-    \ { FOR(j, len(stack) - 1) res.eb(stack[j], n, stack[j + 1]); }\n  for (auto&\
-    \ [a, b, c]: res) a = (a + rot) % N, b = (b + rot) % N, c = (c + rot) % N;\n \
-    \ return res;\n}\n\n// (i,j,k), ccw\ntemplate <typename T>\nvc<tuple<int, int,\
-    \ int>> polygon_triangulation(vc<Point<T>> point) {\n  using P = Point<T>;\n \
-    \ int N = len(point);\n  enum vtype { MERGE, SPLIT, START, END, UPPER, LOWER };\n\
-    \  auto pre = [&](int i) -> int { return (i > 0 ? i - 1 : N - 1); };\n  auto nxt\
-    \ = [&](int i) -> int { return (i < N - 1 ? i + 1 : 0); };\n  auto get_vtype =\
-    \ [&](int i) -> vtype {\n    int l = pre(i), r = nxt(i);\n    if (point[i] < point[l]\
-    \ && point[i] < point[r]) { return (ccw(point[l], point[i], point[r]) == 1 ? START\
-    \ : SPLIT); }\n    if (point[l] < point[i] && point[r] < point[i]) { return (ccw(point[l],\
-    \ point[i], point[r]) == 1 ? END : MERGE); }\n    if (point[l] < point[i] && point[i]\
-    \ < point[r]) return LOWER;\n    if (point[r] < point[i] && point[i] < point[l])\
-    \ return UPPER;\n    assert(0);\n    return END;\n  };\n  SplayTree_Basic<int>\
-    \ ST(N);\n  using np = decltype(ST)::np;\n  vc<np> nodes(N);\n  FOR(i, N) nodes[i]\
-    \ = ST.new_node(i);\n  np S = ST.new_root();\n  auto comp = [&](int i, P p) ->\
-    \ bool {\n    P A = point[i], B = point[nxt(i)];\n    return ccw(A, B, p) == -1;\n\
-    \  };\n\n  vc<int> helper(N, -1);\n  vc<bool> merged(N);\n\n  Planar_Graph<T>\
-    \ G(N, point);\n  FOR(i, N) G.add(i, nxt(i));\n\n  auto add_edge = [&](int v,\
-    \ int w) -> void { merged[w] = 1, G.add(v, w); };\n\n  auto fix_up = [&](int v,\
-    \ int e) -> void {\n    int w = helper[e];\n    if (get_vtype(w) == vtype::MERGE\
-    \ && !merged[w]) { add_edge(v, w); }\n  };\n  auto I = argsort(point);\n  for\
-    \ (auto& i: I) {\n    vtype t = get_vtype(i);\n    if (t == vtype::MERGE) {\n\
-    \      ST.splay(nodes[i], 1), S = nodes[i];\n      int n = (nodes[i]->l ? nodes[i]->l->size\
-    \ : 0);\n      auto [L, M, R] = ST.split3(S, n, n + 1);\n      int j = ST.get(R,\
-    \ 0);\n      S = ST.merge(L, R);\n      fix_up(i, i), fix_up(i, j);\n      helper[j]\
-    \ = i;\n    }\n    if (t == vtype::SPLIT) {\n      auto [L, R] = ST.split_max_right(S,\
-    \ [&](int k) -> bool { return comp(k, point[i]); });\n      int j = ST.get(R,\
-    \ 0);\n      add_edge(i, helper[j]);\n      helper[j] = i, helper[pre(i)] = i;\n\
-    \      S = ST.merge3(L, nodes[pre(i)], R);\n    }\n    if (t == vtype::START)\
-    \ {\n      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k,\
-    \ point[i]); });\n      S = ST.merge3(L, nodes[pre(i)], R), helper[pre(i)] = i;\n\
-    \    }\n    if (t == vtype::END) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n\
+    \ + 1]);\n      stack = {stack.back(), v}, s = t;\n    }\n  }\n  if (s == 0) {\n\
+    \    FOR(j, len(stack) - 1) res.eb(stack[j], stack[j + 1], n);\n  }\n  elif (s\
+    \ == 1) { FOR(j, len(stack) - 1) res.eb(stack[j], n, stack[j + 1]); }\n  for (auto&\
+    \ [a, b, c] : res)\n    a = (a + rot) % N, b = (b + rot) % N, c = (c + rot) %\
+    \ N;\n  return res;\n}\n\n// (i,j,k), ccw\ntemplate <typename T>\nvc<tuple<int,\
+    \ int, int>> polygon_triangulation(vc<Point<T>> point) {\n  using P = Point<T>;\n\
+    \  int N = len(point);\n  enum vtype { MERGE, SPLIT, START, END, UPPER, LOWER\
+    \ };\n  auto pre = [&](int i) -> int { return (i > 0 ? i - 1 : N - 1); };\n  auto\
+    \ nxt = [&](int i) -> int { return (i < N - 1 ? i + 1 : 0); };\n  auto get_vtype\
+    \ = [&](int i) -> vtype {\n    int l = pre(i), r = nxt(i);\n    if (point[i] <\
+    \ point[l] && point[i] < point[r]) {\n      return (ccw(point[l], point[i], point[r])\
+    \ == 1 ? START : SPLIT);\n    }\n    if (point[l] < point[i] && point[r] < point[i])\
+    \ {\n      return (ccw(point[l], point[i], point[r]) == 1 ? END : MERGE);\n  \
+    \  }\n    if (point[l] < point[i] && point[i] < point[r]) return LOWER;\n    if\
+    \ (point[r] < point[i] && point[i] < point[l]) return UPPER;\n    assert(0);\n\
+    \    return END;\n  };\n  static SplayTree_Basic<int> ST;\n  ST.reset();\n  using\
+    \ np = decltype(ST)::np;\n  vc<np> nodes(N);\n  FOR(i, N) nodes[i] = ST.new_node(i);\n\
+    \  np S = ST.new_root();\n  auto comp = [&](int i, P p) -> bool {\n    P A = point[i],\
+    \ B = point[nxt(i)];\n    return ccw(A, B, p) == -1;\n  };\n\n  vc<int> helper(N,\
+    \ -1);\n  vc<bool> merged(N);\n\n  Planar_Graph<T> G(N, point);\n  FOR(i, N) G.add(i,\
+    \ nxt(i));\n\n  auto add_edge = [&](int v, int w) -> void { merged[w] = 1, G.add(v,\
+    \ w); };\n\n  auto fix_up = [&](int v, int e) -> void {\n    int w = helper[e];\n\
+    \    if (get_vtype(w) == vtype::MERGE && !merged[w]) {\n      add_edge(v, w);\n\
+    \    }\n  };\n  auto I = argsort(point);\n  for (auto& i : I) {\n    vtype t =\
+    \ get_vtype(i);\n    if (t == vtype::MERGE) {\n      ST.splay(nodes[i], 1), S\
+    \ = nodes[i];\n      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto\
+    \ [L, M, R] = ST.split3(S, n, n + 1);\n      int j = ST.get(R, 0);\n      S =\
+    \ ST.merge(L, R);\n      fix_up(i, i), fix_up(i, j);\n      helper[j] = i;\n \
+    \   }\n    if (t == vtype::SPLIT) {\n      auto [L, R] = ST.split_max_right(\n\
+    \          S, [&](int k) -> bool { return comp(k, point[i]); });\n      int j\
+    \ = ST.get(R, 0);\n      add_edge(i, helper[j]);\n      helper[j] = i, helper[pre(i)]\
+    \ = i;\n      S = ST.merge3(L, nodes[pre(i)], R);\n    }\n    if (t == vtype::START)\
+    \ {\n      auto [L, R] = ST.split_max_right(\n          S, [&](int k) -> bool\
+    \ { return comp(k, point[i]); });\n      S = ST.merge3(L, nodes[pre(i)], R), helper[pre(i)]\
+    \ = i;\n    }\n    if (t == vtype::END) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n\
     \      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] =\
     \ ST.split3(S, n, n + 1);\n      S = ST.merge(L, R);\n      fix_up(i, i);\n  \
     \  }\n    if (t == vtype::UPPER) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n\
     \      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] =\
     \ ST.split3(S, n, n + 1);\n      S = ST.merge3(L, nodes[pre(i)], R);\n      fix_up(i,\
     \ i);\n      helper[pre(i)] = i;\n    }\n    if (t == vtype::LOWER) {\n      auto\
-    \ [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k, point[i]);\
-    \ });\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n      fix_up(i,\
-    \ j);\n      helper[j] = i;\n    }\n  }\n  G.build();\n  vc<tuple<int, int, int>>\
-    \ ANS;\n  FOR(f, 1, G.NF) {\n    auto [vs, es] = G.get_face_data(f);\n    POP(vs);\n\
-    \    vc<P> sub = rearrange(point, vs);\n    for (auto& [a, b, c]: monotone_polygon_triangulation(sub))\
-    \ ANS.eb(vs[a], vs[b], vs[c]);\n  }\n  return ANS;\n}\n#line 6 \"test/1_mytest/polygon_triangulation.test.cpp\"\
+    \ [L, R] = ST.split_max_right(\n          S, [&](int k) -> bool { return comp(k,\
+    \ point[i]); });\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n   \
+    \   fix_up(i, j);\n      helper[j] = i;\n    }\n  }\n  G.build();\n  vc<tuple<int,\
+    \ int, int>> ANS;\n  FOR(f, 1, G.NF) {\n    auto [vs, es] = G.get_face_data(f);\n\
+    \    POP(vs);\n    vc<P> sub = rearrange(point, vs);\n    for (auto& [a, b, c]\
+    \ : monotone_polygon_triangulation(sub))\n      ANS.eb(vs[a], vs[b], vs[c]);\n\
+    \  }\n  return ANS;\n}\n#line 6 \"test/1_mytest/polygon_triangulation.test.cpp\"\
     \n\nvoid test() {\n  auto check = [&](vc<Point<ll>> point) -> void {\n    int\
     \ N = len(point);\n    auto dat = polygon_triangulation(point);\n    assert(len(dat)\
     \ == N - 2);\n    // \u7C21\u6613\u30C6\u30B9\u30C8. \u9762\u7A4D\u548C\u304C\u3044\
@@ -876,8 +879,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/polygon_triangulation.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 14:24:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-16 15:02:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/polygon_triangulation.test.cpp
 layout: document

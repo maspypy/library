@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -409,18 +409,18 @@ data:
     \ -> X {\n    ll a = RNG(0, 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return\
     \ {mint(a), mint(b)};\n  };\n  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0,\
     \ N);\n    int r = RNG(0, N);\n    if (l > r) swap(l, r);\n    ++r;\n    return\
-    \ {l, r};\n  };\n\n  FOR(N, 1, 10) {\n    vc<X> A(N);\n    FOR(i, N) { A[i] =\
-    \ rnd_X(); }\n    SplayTree_Monoid<Mono> ST(N);\n\n    auto root = ST.new_node(A);\n\
-    \    FOR(100) {\n      int t = RNG(0, 3);\n      if (t == 0) {\n        // set\n\
-    \        int i = RNG(0, N);\n        X x = rnd_X();\n        A[i] = x;\n     \
-    \   ST.set(root, i, x);\n      }\n      if (t == 1) {\n        // reverse\n  \
-    \      auto [l, r] = get_lr(N);\n        reverse(A.begin() + l, A.begin() + r);\n\
-    \        ST.reverse(root, l, r);\n      }\n      if (t == 2) {\n        // prod\n\
-    \        auto [l, r] = get_lr(N);\n        X a = Mono::unit();\n        FOR(i,\
-    \ l, r) a = Mono::op(a, A[i]);\n        X b = ST.prod(root, l, r);\n        assert(a\
-    \ == b);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ {l, r};\n  };\n\n  SplayTree_Monoid<Mono> ST;\n  FOR(N, 1, 10) {\n    vc<X>\
+    \ A(N);\n    FOR(i, N) { A[i] = rnd_X(); }\n    ST.reset();\n\n    auto root =\
+    \ ST.new_node(A);\n    FOR(100) {\n      int t = RNG(0, 3);\n      if (t == 0)\
+    \ {\n        // set\n        int i = RNG(0, N);\n        X x = rnd_X();\n    \
+    \    A[i] = x;\n        ST.set(root, i, x);\n      }\n      if (t == 1) {\n  \
+    \      // reverse\n        auto [l, r] = get_lr(N);\n        reverse(A.begin()\
+    \ + l, A.begin() + r);\n        ST.reverse(root, l, r);\n      }\n      if (t\
+    \ == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n        X a = Mono::unit();\n\
+    \        FOR(i, l, r) a = Mono::op(a, A[i]);\n        X b = ST.prod(root, l, r);\n\
+    \        assert(a == b);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
     random/base.hpp\"\n#include \"ds/splaytree/splaytree_monoid.hpp\"\n\nvoid test()\
@@ -429,12 +429,12 @@ data:
     \n  auto rnd_X = [&]() -> X {\n    ll a = RNG(0, 1 << 30);\n    ll b = RNG(0,\
     \ 1 << 30);\n    return {mint(a), mint(b)};\n  };\n  auto get_lr = [&](int N)\
     \ -> pi {\n    int l = RNG(0, N);\n    int r = RNG(0, N);\n    if (l > r) swap(l,\
-    \ r);\n    ++r;\n    return {l, r};\n  };\n\n  FOR(N, 1, 10) {\n    vc<X> A(N);\n\
-    \    FOR(i, N) { A[i] = rnd_X(); }\n    SplayTree_Monoid<Mono> ST(N);\n\n    auto\
-    \ root = ST.new_node(A);\n    FOR(100) {\n      int t = RNG(0, 3);\n      if (t\
-    \ == 0) {\n        // set\n        int i = RNG(0, N);\n        X x = rnd_X();\n\
-    \        A[i] = x;\n        ST.set(root, i, x);\n      }\n      if (t == 1) {\n\
-    \        // reverse\n        auto [l, r] = get_lr(N);\n        reverse(A.begin()\
+    \ r);\n    ++r;\n    return {l, r};\n  };\n\n  SplayTree_Monoid<Mono> ST;\n  FOR(N,\
+    \ 1, 10) {\n    vc<X> A(N);\n    FOR(i, N) { A[i] = rnd_X(); }\n    ST.reset();\n\
+    \n    auto root = ST.new_node(A);\n    FOR(100) {\n      int t = RNG(0, 3);\n\
+    \      if (t == 0) {\n        // set\n        int i = RNG(0, N);\n        X x\
+    \ = rnd_X();\n        A[i] = x;\n        ST.set(root, i, x);\n      }\n      if\
+    \ (t == 1) {\n        // reverse\n        auto [l, r] = get_lr(N);\n        reverse(A.begin()\
     \ + l, A.begin() + r);\n        ST.reverse(root, l, r);\n      }\n      if (t\
     \ == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n        X a = Mono::unit();\n\
     \        FOR(i, l, r) a = Mono::op(a, A[i]);\n        X b = ST.prod(root, l, r);\n\
@@ -453,8 +453,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/splay.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 14:24:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-16 15:02:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/splay.test.cpp
 layout: document
