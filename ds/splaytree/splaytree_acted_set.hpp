@@ -26,14 +26,22 @@ struct Node_AS {
 
   void update() {
     size = 1;
-    if (l) { size += l->size; }
-    if (r) { size += r->size; }
+    if (l) {
+      size += l->size;
+    }
+    if (r) {
+      size += r->size;
+    }
   }
 
-  void prop() {
+  void push() {
     if (lazy != Monoid_A::unit()) {
-      if (l) { l->apply(lazy); }
-      if (r) { r->apply(lazy); }
+      if (l) {
+        l->apply(lazy);
+      }
+      if (r) {
+        r->apply(lazy);
+      }
       lazy = Monoid_A::unit();
     }
     if (rev) {
@@ -49,8 +57,8 @@ struct Node_AS {
     }
   }
 
-  // update, prop 以外で呼ばれるものは、splay 後であることが想定されている。
-  // したがってその時点で update, prop 済であることを仮定してよい。
+  // update, push 以外で呼ばれるものは、splay 後であることが想定されている。
+  // したがってその時点で update, push 済であることを仮定してよい。
   S get() { return x; }
   void set(const S &xx) {
     x = xx;
@@ -67,6 +75,6 @@ struct Node_AS {
 };
 template <typename ActedSet>
 using SplayTree_ActedSet = SplayTree<Node_AS<ActedSet>>;
-} // namespace SplayTreeNodes
+}  // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_ActedSet;

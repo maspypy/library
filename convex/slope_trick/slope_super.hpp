@@ -51,7 +51,7 @@ struct Node {
     if (r) prod = Monoid_X::op(prod, r->prod);
   }
 
-  void prop() {
+  void push() {
     assert(!rev);
     if (add_x == 0) return;
     if (l)
@@ -63,8 +63,8 @@ struct Node {
 
   void apply(T a) { x.fi += a, prod.se += a * prod.fi, add_x += a; }
 
-  // update, prop 以外で呼ばれるものは、splay 後であることが想定されている。
-  // したがってその時点で update, prop 済であることを仮定してよい。
+  // update, push 以外で呼ばれるものは、splay 後であることが想定されている。
+  // したがってその時点で update, push 済であることを仮定してよい。
   pair<T, T> get() { return x; }
   void set(const pair<T, T> &xx) {
     x = xx;
@@ -159,7 +159,7 @@ struct Slope_Trick_Super {
     // あとは単に tmp を挿入していけばいい
     auto dfs = [&](auto &dfs, np root, int l, int r) -> void {
       if (l == r) return;
-      root->prop();
+      root->push();
       T x = root->x.fi;
       // [l,m),[m,r)
       int m = binary_search([&](int i) -> bool { return tmp[i].fi >= x; }, r,
@@ -215,7 +215,7 @@ struct Slope_Trick_Super {
     }
     auto dfs = [&](auto &dfs, np root, int l, int r) -> void {
       if (l == r) return;
-      root->prop();
+      root->push();
       T x = root->x.fi;
       // [l,m),[m,r)
       int m = binary_search([&](int i) -> bool { return dat[i].fi >= x; }, r,

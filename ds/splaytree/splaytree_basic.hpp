@@ -19,20 +19,28 @@ struct Node_Basic {
 
   void update() {
     size = 1;
-    if (l) { size += l->size; }
-    if (r) { size += r->size; }
+    if (l) {
+      size += l->size;
+    }
+    if (r) {
+      size += r->size;
+    }
   }
 
-  void prop() {
+  void push() {
     if (rev) {
-      if (l) { l->rev ^= 1, swap(l->l, l->r); }
-      if (r) { r->rev ^= 1, swap(r->l, r->r); }
+      if (l) {
+        l->rev ^= 1, swap(l->l, l->r);
+      }
+      if (r) {
+        r->rev ^= 1, swap(r->l, r->r);
+      }
       rev = 0;
     }
   }
 
-  // update, prop 以外で呼ばれるものは、splay 後であることが想定されている。
-  // したがってその時点で update, prop 済であることを仮定してよい。
+  // update, push 以外で呼ばれるものは、splay 後であることが想定されている。
+  // したがってその時点で update, push 済であることを仮定してよい。
   S get() { return x; }
   void set(const S &xx) {
     x = xx;
@@ -45,6 +53,6 @@ struct Node_Basic {
 };
 template <typename S>
 using SplayTree_Basic = SplayTree<Node_Basic<S>>;
-} // namespace SplayTreeNodes
+}  // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_Basic;

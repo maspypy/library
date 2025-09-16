@@ -135,7 +135,7 @@ struct RBST_ActedMonoid {
     return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
   }
 
-  void prop(np c) {
+  void push(np c) {
     // 自身をコピーする必要はない。
     // 子をコピーする必要がある。複数の親を持つ可能性があるため。
     bool bl_lazy = (c->lazy != Monoid_A::unit());
@@ -189,13 +189,13 @@ struct RBST_ActedMonoid {
     if (!r_root) return l_root;
     u32 sl = l_root->size, sr = r_root->size;
     if (xor128() % (sl + sr) < sl) {
-      prop(l_root);
+      push(l_root);
       l_root = clone(l_root);
       l_root->r = merge_rec(l_root->r, r_root);
       update(l_root);
       return l_root;
     }
-    prop(r_root);
+    push(r_root);
     r_root = clone(r_root);
     r_root->l = merge_rec(l_root, r_root->l);
     update(r_root);
@@ -204,7 +204,7 @@ struct RBST_ActedMonoid {
 
   pair<np, np> split_rec(np root, u32 k) {
     if (!root) return {nullptr, nullptr};
-    prop(root);
+    push(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k <= sl) {
       auto [nl, nr] = split_rec(root->l, k);
@@ -222,7 +222,7 @@ struct RBST_ActedMonoid {
 
   np set_rec(np root, u32 k, const X &x) {
     if (!root) return root;
-    prop(root);
+    push(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
       root = clone(root);
@@ -244,7 +244,7 @@ struct RBST_ActedMonoid {
 
   np multiply_rec(np root, u32 k, const X &x) {
     if (!root) return root;
-    prop(root);
+    push(root);
     u32 sl = (root->l ? root->l->size : 0);
     if (k < sl) {
       root = clone(root);
@@ -297,7 +297,7 @@ struct RBST_ActedMonoid {
   }
 
   np apply_rec(np root, u32 l, u32 r, const A &a) {
-    prop(root);
+    push(root);
     root = clone(root);
     if (l == 0 && r == root->size) {
       root->x = ActedMonoid::act(root->x, a, 1);
@@ -317,7 +317,7 @@ struct RBST_ActedMonoid {
   template <typename F>
   pair<np, np> split_max_right_rec(np root, F check, X &x) {
     if (!root) return {nullptr, nullptr};
-    prop(root);
+    push(root);
     root = clone(root);
     X y = Monoid_X::op(x, root->prod);
     if (check(y)) {

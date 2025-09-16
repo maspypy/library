@@ -129,7 +129,7 @@ struct Dynamic_Lazy_SegTree {
     return pool.clone(c);
   }
 
-  void prop(np c, ll l, ll r) {
+  void push(np c, ll l, ll r) {
     assert(r - l >= 2);
     ll m = (l + r) / 2;
     if (c->lazy == MA::unit()) return;
@@ -181,7 +181,7 @@ struct Dynamic_Lazy_SegTree {
       c->lazy = MA::unit();
       return c;
     }
-    prop(c, l, r);
+    push(c, l, r);
     ll m = (l + r) / 2;
     if (!c->l) c->l = new_node(l, m);
     if (!c->r) c->r = new_node(m, r);
@@ -203,7 +203,7 @@ struct Dynamic_Lazy_SegTree {
       c->lazy = MA::unit();
       return c;
     }
-    prop(c, l, r);
+    push(c, l, r);
     ll m = (l + r) / 2;
     if (!c->l) c->l = new_node(l, m);
     if (!c->r) c->r = new_node(m, r);
@@ -247,7 +247,7 @@ struct Dynamic_Lazy_SegTree {
       c->lazy = MA::op(c->lazy, a);
       return c;
     }
-    prop(c, l, r);
+    push(c, l, r);
     ll m = (l + r) / 2;
     c = clone(c);
     c->l = apply_rec(c->l, l, m, ql, qr, a);
@@ -266,7 +266,7 @@ struct Dynamic_Lazy_SegTree {
       return r;
     }
     if (r == l + 1) return l;
-    prop(c, l, r);
+    push(c, l, r);
     ll m = (l + r) / 2;
     ll k = max_right_rec(c->l, check, l, m, ql, x);
     if (k < m) return k;
@@ -283,7 +283,7 @@ struct Dynamic_Lazy_SegTree {
       return l;
     }
     if (r == l + 1) return r;
-    prop(c, l, r);
+    push(c, l, r);
     ll m = (l + r) / 2;
     ll k = min_left_rec(c->r, check, m, r, qr, x);
     if (m < k) return k;

@@ -6,7 +6,7 @@ struct Node_CM {
   using Monoid_X = Monoid;
   using X = typename Monoid::value_type;
   using value_type = X;
-  using operator_type = int; // 定義だけしておく
+  using operator_type = int;  // 定義だけしておく
   using np = Node_CM *;
 
   np p, l, r;
@@ -34,7 +34,7 @@ struct Node_CM {
     }
   }
 
-  void prop() {
+  void push() {
     if (rev) {
       if (l) {
         l->rev ^= 1;
@@ -66,6 +66,6 @@ struct Node_CM {
 };
 template <typename Monoid>
 using SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>>;
-} // namespace SplayTreeNodes
+}  // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_Commutative_Monoid;

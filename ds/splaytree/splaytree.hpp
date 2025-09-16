@@ -52,7 +52,7 @@ struct SplayTree {
     if (!l_root) return r_root;
     if (!r_root) return l_root;
     assert((!l_root->p) && (!r_root->p));
-    splay_kth(r_root, 0);  // splay したので prop 済
+    splay_kth(r_root, 0);  // splay したので push 済
     r_root->l = l_root;
     l_root->p = r_root;
     r_root->update();
@@ -119,7 +119,7 @@ struct SplayTree {
     vc<X> res;
     auto dfs = [&](auto &dfs, np root) -> void {
       if (!root) return;
-      root->prop();
+      root->push();
       dfs(dfs, root->l);
       res.eb(root->get());
       dfs(dfs, root->r);
@@ -189,7 +189,7 @@ struct SplayTree {
   }
 
   void rotate(Node *n) {
-    // n を根に近づける。prop, update は rotate の外で行う。
+    // n を根に近づける。push, update は rotate の外で行う。
     Node *pp, *p, *c;
     p = n->p;
     pp = p->p;
@@ -209,20 +209,20 @@ struct SplayTree {
     if (c) c->p = p;
   }
 
-  void prop_from_root(np c) {
+  void push_from_root(np c) {
     if (!c->p) {
-      c->prop();
+      c->push();
       return;
     }
-    prop_from_root(c->p);
-    c->prop();
+    push_from_root(c->p);
+    c->push();
   }
 
-  void splay(Node *me, bool prop_from_root_done) {
-    // これを呼ぶ時点で、me の祖先（me を除く）は既に prop 済であることを仮定
-    // 特に、splay 終了時点で me は upd / prop 済である
-    if (!prop_from_root_done) prop_from_root(me);
-    me->prop();
+  void splay(Node *me, bool push_from_root_done) {
+    // これを呼ぶ時点で、me の祖先（me を除く）は既に push 済であることを仮定
+    // 特に、splay 終了時点で me は upd / push 済である
+    if (!push_from_root_done) push_from_root(me);
+    me->push();
     while (me->p) {
       np p = me->p;
       np pp = p->p;
@@ -243,7 +243,7 @@ struct SplayTree {
   void splay_kth(np &root, u32 k) {
     assert(0 <= k && k < (root->size));
     while (1) {
-      root->prop();
+      root->push();
       u32 s1 = (root->l ? root->l->size : 0);
       u32 s2 = (root->size) - (root->r ? root->r->size : 0);
       if (k < s1) root = root->l;
@@ -319,7 +319,7 @@ struct SplayTree {
     np last_ok = nullptr, last = nullptr;
     while (root) {
       last = root;
-      root->prop();
+      root->push();
       if (check(root->x)) {
         last_ok = root;
         root = root->r;
@@ -338,7 +338,7 @@ struct SplayTree {
     ll n = 0;
     while (root) {
       last = root;
-      root->prop();
+      root->push();
       ll k = (root->size) - (root->r ? root->r->size : 0);
       if (check(root->x, n + k)) {
         last_ok = root;
@@ -360,7 +360,7 @@ struct SplayTree {
     np last_ok = nullptr, last = nullptr;
     while (root) {
       last = root;
-      root->prop();
+      root->push();
       np tmp = root->r;
       root->r = nullptr;
       root->update();
