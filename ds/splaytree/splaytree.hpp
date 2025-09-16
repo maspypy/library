@@ -1,8 +1,6 @@
-#pragma once
+#include "ds/node_pool.hpp"
 
-/*
-update でちゃんと prod が計算されてくれれば prod は op(lprod,x,rprod) でなくてもよい.
-*/
+#pragma once
 
 // Node 型を別に定義して使う
 template <typename Node>
@@ -65,7 +63,7 @@ struct SplayTree {
     if (!l_root) return r_root;
     if (!r_root) return l_root;
     assert((!l_root->p) && (!r_root->p));
-    splay_kth(r_root, 0); // splay したので prop 済
+    splay_kth(r_root, 0);  // splay したので prop 済
     r_root->l = l_root;
     l_root->p = r_root;
     r_root->update();
