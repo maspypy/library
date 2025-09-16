@@ -9,6 +9,9 @@ data:
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':x:'
+    path: ds/meldable_heap.hpp
+    title: ds/meldable_heap.hpp
+  - icon: ':x:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':x:'
@@ -29,6 +32,9 @@ data:
   - icon: ':x:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
+  - icon: ':x:'
+    path: graph/shortest_path/K_shortest_walk.hpp
+    title: graph/shortest_path/K_shortest_walk.hpp
   - icon: ':warning:'
     path: seq/cycle_decomposition.hpp
     title: seq/cycle_decomposition.hpp
@@ -67,8 +73,17 @@ data:
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
   - icon: ':x:'
+    path: test/2_library_checker/graph/K_shortest_walk.test.cpp
+    title: test/2_library_checker/graph/K_shortest_walk.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1154.test.cpp
+    title: test/3_yukicoder/1154.test.cpp
+  - icon: ':x:'
     path: test/3_yukicoder/1441.test.cpp
     title: test/3_yukicoder/1441.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1752.test.cpp
+    title: test/3_yukicoder/1752.test.cpp
   - icon: ':x:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
@@ -114,6 +129,7 @@ data:
   requiredBy:
   - seq/cycle_decomposition.hpp
   - ds/binary_trie.hpp
+  - ds/meldable_heap.hpp
   - ds/splaytree/splaytree_basic.hpp
   - ds/splaytree/splaytree_acted_set.hpp
   - ds/splaytree/splaytree.hpp
@@ -122,13 +138,17 @@ data:
   - ds/splaytree/splaytree_monoid.hpp
   - convex/slope_trick/slope_super.hpp
   - geo/polygon_triangulation.hpp
+  - graph/shortest_path/K_shortest_walk.hpp
   timestamp: '2025-09-16 13:47:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/3_yukicoder/1154.test.cpp
   - test/3_yukicoder/1441.test.cpp
+  - test/3_yukicoder/1752.test.cpp
   - test/2_library_checker/data_structure/set_xor_min.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/2_library_checker/graph/K_shortest_walk.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/splay.test.cpp
   - test/1_mytest/splay_monoid.test.cpp
