@@ -105,7 +105,7 @@ struct Common_Inverval_Decomposition {
   void debug() {
     auto dfs = [&](auto& dfs, Node* n) -> void {
       print("l, r, lo, hi", n->l, n->r, n->lo, n->hi);
-      for (auto&& c: n->ch) dfs(dfs, c);
+      for (auto&& c : n->ch) dfs(dfs, c);
     };
     dfs(dfs, root);
   };

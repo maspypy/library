@@ -1,3 +1,5 @@
+#include "ds/node_pool.hpp"
+
 /*
 struct F {
   using value_type = ll;  // operator() の戻り値
@@ -21,26 +23,21 @@ struct Dynamic_LiChao_Tree {
     int fid;
     Node *l, *r;
   };
-
-  Node *pool;
-  int pid;
+  Node_Pool<Node> pool;
   ll L, R;
 
   using np = Node *;
 
-  Dynamic_LiChao_Tree(ll L, ll R) : pid(0), L(L), R(R) { pool = new Node[NODES]; }
+  Dynamic_LiChao_Tree(ll L, ll R) : L(L), R(R) {}
 
-  void reset() {
-    funcs.clear();
-    pid = 0;
-  }
+  void reset() { funcs.clear(), pool.reset(); }
 
   np new_root() { return nullptr; }
 
   np new_node() {
-    pool[pid].fid = -1;
-    pool[pid].l = nullptr, pool[pid].r = nullptr;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->fid = -1, c->l = c->r = nullptr;
+    return c;
   }
 
   np chmin_line(np root, FUNC f) {
@@ -85,16 +82,18 @@ struct Dynamic_LiChao_Tree {
     return query_rec(root, x, L, R);
   }
 
-private:
-  np copy_node(Node *c) {
+ private:
+  np copy_node(np c) {
     if (!c || !PERSISTENT) return c;
-    pool[pid].fid = c->fid;
-    pool[pid].l = c->l, pool[pid].r = c->r;
-    return &(pool[pid++]);
+    np d = pool.create();
+    d->fid = c->fid, d->l = c->l, d->r = c->r;
+    return d;
   }
 
   inline T evaluate_inner(int fid, ll x) {
-    if (fid == -1) { return (MINIMIZE ? infty<T> : -infty<T>); };
+    if (fid == -1) {
+      return (MINIMIZE ? infty<T> : -infty<T>);
+    };
     return evaluate(funcs[fid], x);
   }
 
@@ -124,7 +123,9 @@ private:
       c->fid = fid;
       return c;
     }
-    if (!bl && !br) { return c; }
+    if (!bl && !br) {
+      return c;
+    }
 
     c = copy_node(c);
     ll node_m = (node_l + node_r) / 2;

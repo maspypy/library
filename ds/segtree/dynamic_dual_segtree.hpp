@@ -1,3 +1,4 @@
+#include "ds/node_pool.hpp"
 
 // Q*2logN 程度必要
 // https://qoj.ac/contest/1516/problem/8240
@@ -11,22 +12,18 @@ struct Dynamic_Dual_SegTree {
     X x;
   };
 
-  const int NODES;
   const ll L0, R0;
-  Node *pool;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node *;
 
-  Dynamic_Dual_SegTree(int NODES, ll L0, ll R0) : NODES(NODES), L0(L0), R0(R0), pid(0) { pool = new Node[NODES]; }
-  ~Dynamic_Dual_SegTree() { delete[] pool; }
+  Dynamic_Dual_SegTree(ll L0, ll R0) : L0(L0), R0(R0) {}
 
   np new_root() { return new_node(MX::unit()); }
 
   np new_node(const X x = MX::unit()) {
-    assert(pid < NODES);
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].x = x;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = c->r = nullptr, c->x = x;
+    return c;
   }
 
   np new_node(const vc<X> &dat) {
@@ -53,7 +50,7 @@ struct Dynamic_Dual_SegTree {
 
   np apply(np root, ll l, ll r, const X &x) {
     if (l == r) return root;
-    assert(pid && L0 <= l && l < r && r <= R0);
+    assert(root && L0 <= l && l < r && r <= R0);
     root = copy_node(root);
     apply_rec(root, L0, R0, l, r, x);
     return root;
@@ -67,7 +64,7 @@ struct Dynamic_Dual_SegTree {
     return root;
   }
 
-  void reset() { pid = 0; }
+  void reset() { pool.reset(); }
 
   vc<X> get_all(np root) {
     vc<X> res;
@@ -89,12 +86,12 @@ struct Dynamic_Dual_SegTree {
     return res;
   }
 
-private:
+ private:
   np copy_node(np c) {
     if (!c || !PERSISTENT) return c;
-    pool[pid].l = c->l, pool[pid].r = c->r;
-    pool[pid].x = c->x;
-    return &(pool[pid++]);
+    np d = pool.create();
+    d->l = c->l, d->r = c->r, d->x = c->x;
+    return d;
   }
 
   void apply_rec(np c, ll l, ll r, ll ql, ll qr, const X &a) {
@@ -146,7 +143,9 @@ private:
   void get_rec(np c, ll l, ll r, ll i, X &x) {
     if (!c) return;
     x = MX::op(c->x, x);
-    if (r == l + 1) { return; }
+    if (r == l + 1) {
+      return;
+    }
     ll m = (l + r) / 2;
     if (i < m) return get_rec(c->l, l, m, i, x);
     return get_rec(c->r, m, r, i, x);

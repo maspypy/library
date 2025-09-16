@@ -1,4 +1,5 @@
 #pragma once
+#include "ds/node_pool.hpp"
 
 template <typename T, bool PERSISTENT>
 struct Dynamic_Array {
@@ -8,18 +9,16 @@ struct Dynamic_Array {
     T x;
     Node* ch[1 << LOG] = {};
   };
-  const int NODES;
-  Node* pool;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node*;
   const T x0;
 
-  Dynamic_Array(int NODES, T default_value) : NODES(NODES), pid(0), x0(default_value) { pool = new Node[NODES]; }
-  ~Dynamic_Array() { delete[] pool; }
+  Dynamic_Array(int NODES, T default_value) : x0(default_value) {}
   np new_root() {
-    pool[pid].x = x0;
-    fill(pool[pid].ch, pool[pid].ch + (1 << LOG), nullptr);
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->x = x0;
+    fill(c->ch, c->ch + (1 << LOG), nullptr);
+    return c;
   }
 
   np new_node(vc<T> dat) {
@@ -44,11 +43,12 @@ struct Dynamic_Array {
     return c;
   }
 
-private:
+ private:
   np copy_node(np c, bool make_copy) {
     if (!make_copy || !PERSISTENT) return c;
-    pool[pid].x = c->x;
-    FOR(k, (1 << LOG)) pool[pid].ch[k] = c->ch[k];
-    return &(pool[pid++]);
+    np d = pool.create();
+    d->x = c->x;
+    FOR(k, (1 << LOG)) d->ch[k] = c->ch[k];
+    return d;
   }
 };

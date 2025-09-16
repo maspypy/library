@@ -1,4 +1,5 @@
 #pragma once
+#include "ds/node_pool.hpp"
 
 // Q*4logN 程度必要? apply で 4logN ノード作っていると思う
 template <typename ActedMonoid, bool PERSISTENT>
@@ -17,27 +18,22 @@ struct Dynamic_Lazy_SegTree {
     A lazy;
   };
 
-  const int NODES;
+  Node_Pool<Node> pool;
   const ll L0, R0;
-  Node *pool;
-  int pid;
   using np = Node *;
 
   Dynamic_Lazy_SegTree(
-      int NODES, ll L0, ll R0, F default_prod = [](ll, ll) -> X { return MX::unit(); })
-      : default_prod(default_prod), NODES(NODES), L0(L0), R0(R0), pid(0) {
-    pool = new Node[NODES];
-  }
-  ~Dynamic_Lazy_SegTree() { delete[] pool; }
+      int NODES, ll L0, ll R0,
+      F default_prod = [](ll, ll) -> X { return MX::unit(); })
+      : default_prod(default_prod), L0(L0), R0(R0) {}
 
   np new_root() { return new_node(L0, R0); }
 
   np new_node(const X x) {
-    assert(pid < NODES);
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].x = x;
-    pool[pid].lazy = MA::unit();
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = c->r = nullptr;
+    c->x = x, c->lazy = MA::unit();
+    return c;
   }
 
   np new_node(ll l, ll r) {
@@ -118,7 +114,7 @@ struct Dynamic_Lazy_SegTree {
     dfs(dfs, root, L0, R0, MA::unit());
   }
 
-  void reset() { pid = 0; }
+  void reset() { pool.reset(); }
 
   // root[l:r) を apply(other[l:r),a) で上書きしたものを返す
   np copy_interval(np root, np other, ll l, ll r, A a) {
@@ -128,13 +124,13 @@ struct Dynamic_Lazy_SegTree {
     return root;
   }
 
-private:
+ private:
   np copy_node(np c) {
     if (!c || !PERSISTENT) return c;
-    pool[pid].l = c->l, pool[pid].r = c->r;
-    pool[pid].x = c->x;
-    pool[pid].lazy = c->lazy;
-    return &(pool[pid++]);
+    np a = pool.create();
+    a->l = c->l, a->r = c->r;
+    a->x = c->x, a->lazy = c->lazy;
+    return a;
   }
 
   void prop(np c, ll l, ll r) {

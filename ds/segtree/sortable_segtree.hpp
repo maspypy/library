@@ -1,5 +1,6 @@
 #include "ds/fastset.hpp"
 #include "ds/segtree/segtree.hpp"
+#include "ds/node_pool.hpp"
 
 template <typename Monoid>
 struct Sortable_SegTree {
@@ -12,21 +13,18 @@ struct Sortable_SegTree {
     int size;
     Node *l, *r;
   };
-  Node* pool;
-  const int NODES;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node*;
 
-  FastSet ss;      // 区間の左端全体を表す fastset
-  SegTree<MX> seg; // 区間を集約した値を区間の左端にのせた segtree
-  vector<np> root; // 区間の左端に、dynamic segtree の node を乗せる
+  FastSet ss;       // 区間の左端全体を表す fastset
+  SegTree<MX> seg;  // 区間を集約した値を区間の左端にのせた segtree
+  vector<np> root;  // 区間の左端に、dynamic segtree の node を乗せる
   vector<bool> rev;
 
-  Sortable_SegTree(int NODES, int KEY_MAX, vector<int> key, vector<X> dat) : N(key.size()), KEY_MAX(KEY_MAX), NODES(NODES), pid(0), ss(key.size()), seg(dat) {
-    pool = new Node[NODES];
+  Sortable_SegTree(int NODES, int KEY_MAX, vector<int> key, vector<X> dat)
+      : N(key.size()), KEY_MAX(KEY_MAX), ss(key.size()), seg(dat) {
     init(key, dat);
   }
-  ~Sortable_SegTree() { delete[] pool; }
   void set(int i, int key, const X& x) {
     assert(key < KEY_MAX);
     split_at(i), split_at(i + 1);
@@ -74,8 +72,12 @@ struct Sortable_SegTree {
         return;
       }
       int m = (l + r) / 2;
-      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m, r, rev); }
-      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev); }
+      if (!rev) {
+        dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m, r, rev);
+      }
+      if (rev) {
+        dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev);
+      }
     };
     for (int i = 0; i < N; ++i) {
       if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);
@@ -83,7 +85,7 @@ struct Sortable_SegTree {
     return {key, dat};
   }
 
-private:
+ private:
   void init(vector<int>& key, vector<X>& dat) {
     rev.assign(N, 0), root.clear(), root.reserve(N);
     seg.build(N, [&](int i) -> X { return dat[i]; });
@@ -120,16 +122,20 @@ private:
   }
 
   np new_node(X x = MX::unit()) {
-    assert(pid < NODES);
-    pool[pid].x = pool[pid].rev_x = x;
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].size = 1;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->x = c->rev_x = x;
+    c->l = c->r = nullptr;
+    c->size = 1;
+    return c;
   }
 
   pair<np, np> split(np n, int k) {
-    if (k == 0) { return {nullptr, n}; }
-    if (k == n->size) { return {n, nullptr}; }
+    if (k == 0) {
+      return {nullptr, n};
+    }
+    if (k == n->size) {
+      return {n, nullptr};
+    }
     int s = (n->l ? n->l->size : 0);
     Node* b = new_node();
     if (k <= s) {
@@ -153,7 +159,9 @@ private:
   }
 
   void update(np n) {
-    if (!(n->l) && !(n->r)) { return; }
+    if (!(n->l) && !(n->r)) {
+      return;
+    }
     if (!(n->l)) {
       n->x = n->r->x, n->rev_x = n->r->rev_x, n->size = n->r->size;
       return;

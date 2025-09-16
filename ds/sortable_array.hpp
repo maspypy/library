@@ -1,4 +1,5 @@
 #include "ds/fastset.hpp"
+#include "ds/node_pool.hpp"
 
 // int 列を扱う. key の重複可.
 struct Sortable_Array {
@@ -8,20 +9,17 @@ struct Sortable_Array {
     int size;
     Node *l, *r;
   };
-  Node* pool;
-  const int NODES;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node*;
 
-  FastSet ss;      // 区間の左端全体を表す fastset
-  vector<np> root; // 区間の左端に、dynamic segtree の node を乗せる
+  FastSet ss;       // 区間の左端全体を表す fastset
+  vector<np> root;  // 区間の左端に、dynamic segtree の node を乗せる
   vector<bool> rev;
 
-  Sortable_Array(int NODES, int KEY_MAX, vector<int> key) : N(key.size()), KEY_MAX(KEY_MAX), NODES(NODES), pid(0), ss(key.size()) {
-    pool = new Node[NODES];
+  Sortable_Array(int NODES, int KEY_MAX, vector<int> key)
+      : N(key.size()), KEY_MAX(KEY_MAX), ss(key.size()) {
     init(key);
   }
-  ~Sortable_Array() { delete[] pool; }
 
   void set(int i, int key) {
     assert(0 <= key && key < KEY_MAX);
@@ -34,7 +32,6 @@ struct Sortable_Array {
     if (l == r) return;
     split_at(l), split_at(r);
     while (1) {
-      if (pid > NODES * 0.9) rebuild();
       np c = root[l];
       int i = ss.next(l + 1);
       if (i == r) break;
@@ -46,7 +43,6 @@ struct Sortable_Array {
 
   void sort_dec(int l, int r) {
     if (l == r) return;
-    if (pid > NODES * 0.9) rebuild();
     sort_inc(l, r), rev[l] = 1;
   };
 
@@ -60,8 +56,12 @@ struct Sortable_Array {
         return;
       }
       int m = (l + r) / 2;
-      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m, r, rev); }
-      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev); }
+      if (!rev) {
+        dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m, r, rev);
+      }
+      if (rev) {
+        dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev);
+      }
     };
     for (int i = 0; i < N; ++i) {
       if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);
@@ -71,7 +71,9 @@ struct Sortable_Array {
 
   int get(int idx) {
     auto dfs = [&](auto& dfs, np n, int l, int r, int k) -> int {
-      if (r == l + 1) { return l; }
+      if (r == l + 1) {
+        return l;
+      }
       int m = (l + r) / 2;
       int s = (n->l ? n->l->size : 0);
       if (k < s) return dfs(dfs, n->l, l, m, k);
@@ -84,7 +86,7 @@ struct Sortable_Array {
     return dfs(dfs, root[i], 0, KEY_MAX, k);
   }
 
-private:
+ private:
   void init(vector<int>& key) {
     rev.assign(N, 0), root.clear(), root.reserve(N);
     ss.build(N, [&](int i) -> int { return 1; });
@@ -113,20 +115,23 @@ private:
 
   void rebuild() {
     auto key = get_all();
-    pid = 0;
+    pool.reset();
     init(key);
   }
 
   np new_node(int size) {
-    assert(pid < NODES);
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].size = size;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = c->r = nullptr, c->size = size;
+    return c;
   }
 
   pair<np, np> split(np n, int l, int r, int k) {
-    if (k == 0) { return {nullptr, n}; }
-    if (k == n->size) { return {n, nullptr}; }
+    if (k == 0) {
+      return {nullptr, n};
+    }
+    if (k == n->size) {
+      return {n, nullptr};
+    }
     if (r == l + 1) {
       int s = n->size;
       n->size = k;
@@ -162,7 +167,9 @@ private:
   }
 
   void update(np n) {
-    if (!(n->l) && !(n->r)) { return; }
+    if (!(n->l) && !(n->r)) {
+      return;
+    }
     if (!(n->l)) {
       n->size = n->r->size;
       return;
