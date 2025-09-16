@@ -2237,6 +2237,9 @@ data:
     - icon: ':warning:'
       path: setfunc/sps_log.hpp
       title: setfunc/sps_log.hpp
+    - icon: ':warning:'
+      path: setfunc/submask_range_query.hpp
+      title: setfunc/submask_range_query.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp

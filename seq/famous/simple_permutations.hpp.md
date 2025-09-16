@@ -191,9 +191,12 @@ data:
     // \u305F\u3060\u3057\u3001n=1, 2 \u306B\u5BFE\u3057\u3066\u306F 0 \u3092\u8FD4\
     \u3059\u3088\u3046\u306B\u3057\u3066\u3044\u308B\ntemplate <typename mint>\nvc<mint>\
     \ simple_permutations(const int N) {\n  vc<mint> S = revert_transform_of_factorials<mint>(N);\n\
-    \  for (auto&& x: S) x = -x;\n  S[1] += mint(1);\n  FOR(i, 2, N + 1) {\n    if\
+    \  for (auto&& x : S) x = -x;\n  S[1] += mint(1);\n  FOR(i, 2, N + 1) {\n    if\
     \ (i % 2 == 0) S[i] -= 2;\n    if (i % 2 == 1) S[i] += 2;\n  }\n  return S;\n\
-    }\n"
+    }\n\nvc<int> find_one_simple(int n) {\n  assert(n >= 4);\n  vc<int> A;\n  if (n\
+    \ % 2 == 0) {\n    FOR(i, n / 2) A.eb(n / 2 + i), A.eb(i);\n    return A;\n  }\n\
+    \  FOR(i, n / 2) A.eb(n / 2 + i), A.eb(i);\n  A.insert(A.begin() + 1, n - 1);\n\
+    \  return A;\n}\n"
   code: "#include \"poly/online/online_convolution.hpp\"\n\n// https://oeis.org/A059372\
     \ sum_{n>0} n!x^n \u306E\u9006\u95A2\u6570\ntemplate <typename mint>\nvc<mint>\
     \ revert_transform_of_factorials(const int N) {\n  // xQ' = Q^2 + (1+x)Q'Q\n \
@@ -211,9 +214,12 @@ data:
     // \u305F\u3060\u3057\u3001n=1, 2 \u306B\u5BFE\u3057\u3066\u306F 0 \u3092\u8FD4\
     \u3059\u3088\u3046\u306B\u3057\u3066\u3044\u308B\ntemplate <typename mint>\nvc<mint>\
     \ simple_permutations(const int N) {\n  vc<mint> S = revert_transform_of_factorials<mint>(N);\n\
-    \  for (auto&& x: S) x = -x;\n  S[1] += mint(1);\n  FOR(i, 2, N + 1) {\n    if\
+    \  for (auto&& x : S) x = -x;\n  S[1] += mint(1);\n  FOR(i, 2, N + 1) {\n    if\
     \ (i % 2 == 0) S[i] -= 2;\n    if (i % 2 == 1) S[i] += 2;\n  }\n  return S;\n\
-    }\n"
+    }\n\nvc<int> find_one_simple(int n) {\n  assert(n >= 4);\n  vc<int> A;\n  if (n\
+    \ % 2 == 0) {\n    FOR(i, n / 2) A.eb(n / 2 + i), A.eb(i);\n    return A;\n  }\n\
+    \  FOR(i, n / 2) A.eb(n / 2 + i), A.eb(i);\n  A.insert(A.begin() + 1, n - 1);\n\
+    \  return A;\n}"
   dependsOn:
   - poly/online/online_convolution.hpp
   - poly/ntt.hpp
@@ -222,7 +228,7 @@ data:
   isVerificationFile: false
   path: seq/famous/simple_permutations.hpp
   requiredBy: []
-  timestamp: '2025-09-02 02:05:25+09:00'
+  timestamp: '2025-09-16 11:00:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/simple_perm.test.cpp

@@ -51,14 +51,15 @@ data:
     \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
     \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 2 \"\
     linalg/det.hpp\"\n\r\nint det_mod(vvc<int> A, int mod) {\r\n  Barrett bt(mod);\r\
-    \n  const int n = len(A);\r\n  ll det = 1;\r\n  FOR(i, n) {\r\n    FOR(j, i, n)\
-    \ {\r\n      if (A[j][i] == 0) continue;\r\n      if (i != j) { swap(A[i], A[j]),\
-    \ det = mod - det; }\r\n      break;\r\n    }\r\n    FOR(j, i + 1, n) {\r\n  \
-    \    while (A[i][i] != 0) {\r\n        ll c = mod - A[j][i] / A[i][i];\r\n   \
-    \     FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] * c); }\r\n     \
-    \   swap(A[i], A[j]), det = mod - det;\r\n      }\r\n      swap(A[i], A[j]), det\
-    \ = mod - det;\r\n    }\r\n  }\r\n  FOR(i, n) det = bt.mul(det, A[i][i]);\r\n\
-    \  return det % mod;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint det(vvc<mint>&\
+    \n  const int n = len(A);\r\n  ll det = 1;\r\n  FOR(i, n) FOR(j, n) {\r\n    if\
+    \ (A[i][j] < 0) A[i][j] += mod;\r\n  }\r\n  FOR(i, n) {\r\n    FOR(j, i, n) {\r\
+    \n      if (A[j][i] == 0) continue;\r\n      if (i != j) {\r\n        swap(A[i],\
+    \ A[j]), det = mod - det;\r\n      }\r\n      break;\r\n    }\r\n    FOR(j, i\
+    \ + 1, n) {\r\n      while (A[i][i] != 0) {\r\n        ll c = mod - A[j][i] /\
+    \ A[i][i];\r\n        FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] *\
+    \ c); }\r\n        swap(A[i], A[j]), det = mod - det;\r\n      }\r\n      swap(A[i],\
+    \ A[j]), det = mod - det;\r\n    }\r\n  }\r\n  FOR(i, n) det = bt.mul(det, A[i][i]);\r\
+    \n  return det % mod;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint det(vvc<mint>&\
     \ A) {\r\n  const int n = len(A);\r\n  vv(int, B, n, n);\r\n  FOR(i, n) FOR(j,\
     \ n) B[i][j] = A[i][j].val;\r\n  return det_mod(B, mint::get_mod());\r\n}\r\n\
     #line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
@@ -194,7 +195,7 @@ data:
   isVerificationFile: false
   path: random/random_matrix.hpp
   requiredBy: []
-  timestamp: '2025-09-01 23:33:15+09:00'
+  timestamp: '2025-09-16 11:00:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/blackbox_solve_linear.test.cpp

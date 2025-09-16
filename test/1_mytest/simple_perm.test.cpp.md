@@ -468,15 +468,19 @@ data:
     }\n\n// https://oeis.org/A111111\n// \u305F\u3060\u3057\u3001n=1, 2 \u306B\u5BFE\
     \u3057\u3066\u306F 0 \u3092\u8FD4\u3059\u3088\u3046\u306B\u3057\u3066\u3044\u308B\
     \ntemplate <typename mint>\nvc<mint> simple_permutations(const int N) {\n  vc<mint>\
-    \ S = revert_transform_of_factorials<mint>(N);\n  for (auto&& x: S) x = -x;\n\
+    \ S = revert_transform_of_factorials<mint>(N);\n  for (auto&& x : S) x = -x;\n\
     \  S[1] += mint(1);\n  FOR(i, 2, N + 1) {\n    if (i % 2 == 0) S[i] -= 2;\n  \
-    \  if (i % 2 == 1) S[i] += 2;\n  }\n  return S;\n}\n#line 6 \"test/1_mytest/simple_perm.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> I = indecomposable_permutations<mint>(10);\n\
-    \  assert(I\n         == vc<mint>({0, 1, 1, 3, 13, 71, 461, 3447, 29093, 273343,\
-    \ 2829325}));\n  vc<mint> S = simple_permutations<mint>(10);\n  assert(S == vc<mint>({0,\
-    \ 0, 0, 0, 2, 6, 46, 338, 2926, 28146, 298526}));\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test();\n  solve();\n\n  return 0;\n}\n"
+    \  if (i % 2 == 1) S[i] += 2;\n  }\n  return S;\n}\n\nvc<int> find_one_simple(int\
+    \ n) {\n  assert(n >= 4);\n  vc<int> A;\n  if (n % 2 == 0) {\n    FOR(i, n / 2)\
+    \ A.eb(n / 2 + i), A.eb(i);\n    return A;\n  }\n  FOR(i, n / 2) A.eb(n / 2 +\
+    \ i), A.eb(i);\n  A.insert(A.begin() + 1, n - 1);\n  return A;\n}\n#line 6 \"\
+    test/1_mytest/simple_perm.test.cpp\"\n\nusing mint = modint998;\n\nvoid test()\
+    \ {\n  vc<mint> I = indecomposable_permutations<mint>(10);\n  assert(I\n     \
+    \    == vc<mint>({0, 1, 1, 3, 13, 71, 461, 3447, 29093, 273343, 2829325}));\n\
+    \  vc<mint> S = simple_permutations<mint>(10);\n  assert(S == vc<mint>({0, 0,\
+    \ 0, 0, 2, 6, 46, 338, 2926, 28146, 298526}));\n}\n\nvoid solve() {\n  int a,\
+    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"seq/famous/indecomposable_permutations.hpp\"\
     \n#include \"seq/famous/simple_permutations.hpp\"\n\nusing mint = modint998;\n\
@@ -504,7 +508,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/simple_perm.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 02:56:17+09:00'
+  timestamp: '2025-09-16 11:00:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/simple_perm.test.cpp

@@ -162,6 +162,9 @@ data:
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   - icon: ':warning:'
+    path: setfunc/submask_range_query.hpp
+    title: setfunc/submask_range_query.hpp
+  - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
   - icon: ':heavy_check_mark:'
@@ -981,6 +984,7 @@ data:
   - linalg/adjugate_matrix.hpp
   - linalg/frobenius.hpp
   - linalg/det_A_plus_xB.hpp
+  - setfunc/submask_range_query.hpp
   - alg/monoid/rollinghash.hpp
   - string/wildcard_pattern_matching.hpp
   - string/basic_substring_structure.hpp

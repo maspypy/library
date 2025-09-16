@@ -140,6 +140,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':warning:'
+    path: setfunc/submask_range_query.hpp
+    title: setfunc/submask_range_query.hpp
   - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
@@ -573,6 +576,7 @@ data:
   - graph/ds/tree_abelgroup.hpp
   - graph/functional.hpp
   - graph/count/count_connected_intervals.hpp
+  - setfunc/submask_range_query.hpp
   - alg/acted_monoid/minmincnt_add.hpp
   - alg/acted_monoid/max_add.hpp
   - alg/acted_monoid/minmax_add.hpp

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: setfunc/submask_range_query.hpp
+    title: setfunc/submask_range_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1602.test.cpp
@@ -37,7 +40,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/xor.hpp
-  requiredBy: []
+  requiredBy:
+  - setfunc/submask_range_query.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
