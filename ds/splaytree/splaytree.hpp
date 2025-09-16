@@ -1,41 +1,30 @@
-#include "ds/node_pool.hpp"
-
 #pragma once
+#include "ds/node_pool.hpp"
 
 // Node 型を別に定義して使う
 template <typename Node>
 struct SplayTree {
-  Node *pool;
-  const int NODES;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node *;
   using X = typename Node::value_type;
   using A = typename Node::operator_type;
-  vc<np> FREE;
-
-  SplayTree(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
-  ~SplayTree() { delete[] pool; }
 
   void free_subtree(np c) {
     if (!c) return;
     auto dfs = [&](auto &dfs, np c) -> void {
       if (c->l) dfs(dfs, c->l);
       if (c->r) dfs(dfs, c->r);
-      FREE.eb(c);
+      pool.destroy(c);
     };
     dfs(dfs, c);
   }
 
-  void reset() {
-    pid = 0;
-    FREE.clear();
-  }
+  void reset() { pool.reset(); }
 
   np new_root() { return nullptr; }
 
   np new_node(const X &x) {
-    assert(!FREE.empty() || pid < NODES);
-    np n = (FREE.empty() ? &(pool[pid++]) : POP(FREE));
+    np n = pool.create();
     Node::new_node(n, x);
     return n;
   }

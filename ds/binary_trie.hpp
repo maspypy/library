@@ -1,8 +1,13 @@
+#include "ds/node_pool.hpp"
+
 // 非永続ならば、2 * 要素数 のノード数
-template <int LOG, bool PERSISTENT, int NODES, typename UINT = u64,
-          typename SIZE_TYPE = int>
+template <int LOG, bool PERSISTENT, typename UINT = u64,
+          typename SIZE_TYPE = u32>
 struct Binary_Trie {
   using T = SIZE_TYPE;
+  static_assert(is_same_v<T, u32> || is_same_v<T, u64>);
+  static_assert(0 < LOG && LOG <= numeric_limits<UINT>::digits);
+
   struct Node {
     int width;
     UINT val;
@@ -10,19 +15,16 @@ struct Binary_Trie {
     Node *l, *r;
   };
 
-  Node *pool;
-  int pid;
+  Node_Pool<Node> pool;
   using np = Node *;
 
-  Binary_Trie() : pid(0) { pool = new Node[NODES]; }
-
-  void reset() { pid = 0; }
+  void reset() { pool.reset(); }
 
   np new_root() { return nullptr; }
 
   np add(np root, UINT val, T cnt = 1) {
     if (!root) root = new_node(0, 0);
-    assert(0 <= val && val < (1LL << LOG));
+    assert((val >> LOG) == 0);
     return add_rec(root, LOG, val, cnt);
   }
 
@@ -35,16 +37,20 @@ struct Binary_Trie {
         return;
       }
       np c = root->l;
-      if (c) { dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width)); }
+      if (c) {
+        dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width));
+      }
       c = root->r;
-      if (c) { dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width)); }
+      if (c) {
+        dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width));
+      }
     };
     if (root) dfs(dfs, root, 0, LOG);
   }
 
   // xor_val したあとの値で昇順 k 番目
   UINT kth(np root, T k, UINT xor_val) {
-    assert(root && 0 <= k && k < root->cnt);
+    assert(root && k < root->cnt);
     return kth_rec(root, 0, k, LOG, xor_val) ^ xor_val;
   }
 
@@ -71,20 +77,19 @@ struct Binary_Trie {
     return prefix_count(root, hi, xor_val) - prefix_count(root, lo, xor_val);
   }
 
-private:
+ private:
   inline UINT mask(int k) { return (UINT(1) << k) - 1; }
 
   np new_node(int width, UINT val) {
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].width = width;
-    pool[pid].val = val;
-    pool[pid].cnt = 0;
-    return &(pool[pid++]);
+    np c = pool.create();
+    c->l = c->r = nullptr;
+    c->width = width, c->val = val, c->cnt = 0;
+    return c;
   }
 
   np copy_node(np c) {
     if (!c || !PERSISTENT) return c;
-    np res = &(pool[pid++]);
+    np res = pool.create();
     res->width = c->width, res->val = c->val;
     res->cnt = c->cnt, res->l = c->l, res->r = c->r;
     return res;
@@ -137,8 +142,12 @@ private:
     if ((xor_val >> (ht - 1)) & 1) swap(left, right);
     T sl = (left ? left->cnt : 0);
     np c;
-    if (k < sl) { c = left; }
-    if (k >= sl) { c = right, k -= sl; }
+    if (k < sl) {
+      c = left;
+    }
+    if (k >= sl) {
+      c = right, k -= sl;
+    }
     int w = c->width;
     return kth_rec(c, val << w | (c->val), k, ht - w, xor_val);
   }
