@@ -9,9 +9,6 @@ data:
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/QOJ5445.test.cpp
-    title: test/1_mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/xor_transpose.test.cpp
     title: test/1_mytest/xor_transpose.test.cpp
@@ -65,7 +62,6 @@ data:
   - test/3_yukicoder/184.test.cpp
   - test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
   - test/1_mytest/xor_transpose.test.cpp
-  - test/1_mytest/QOJ5445.test.cpp
 documentation_of: linalg/xor/transpose.hpp
 layout: document
 redirect_from:

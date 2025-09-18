@@ -316,7 +316,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -880,7 +880,7 @@ data:
       title: geo3d/cross_point.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':warning:'
@@ -1054,7 +1054,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1318,7 +1318,7 @@ data:
       title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree_dp
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_dp/rerooting_dp.hpp
       title: graph/tree_dp/rerooting_dp.hpp
     - icon: ':warning:'
@@ -1454,7 +1454,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/xor/basis.hpp
       title: linalg/xor/basis.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: linalg/xor/mat_inv.hpp
       title: linalg/xor/mat_inv.hpp
     - icon: ':warning:'
@@ -2425,9 +2425,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/O1_inv.test.cpp
       title: test/1_mytest/O1_inv.test.cpp
-    - icon: ':x:'
-      path: test/1_mytest/QOJ5445.test.cpp
-      title: test/1_mytest/QOJ5445.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/add_chmin.test.cpp
       title: test/1_mytest/add_chmin.test.cpp

@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/QOJ5445.test.cpp
-    title: test/1_mytest/QOJ5445.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/xor/mat_inv.hpp\"\n// \u884C\u30D9\u30AF\u30C8\u30EB\
@@ -27,9 +24,8 @@ data:
   path: linalg/xor/mat_inv.hpp
   requiredBy: []
   timestamp: '2023-02-03 10:57:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/1_mytest/QOJ5445.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: linalg/xor/mat_inv.hpp
 layout: document
 redirect_from:

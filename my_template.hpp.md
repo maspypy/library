@@ -21,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/QOJ5445.test.cpp
-    title: test/1_mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/add_chmin.test.cpp
     title: test/1_mytest/add_chmin.test.cpp
@@ -3360,7 +3357,6 @@ data:
   - test/1_mytest/xor_transpose.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/tournament.test.cpp
-  - test/1_mytest/QOJ5445.test.cpp
   - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/floor_ceil.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp

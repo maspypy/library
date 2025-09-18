@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':warning:'
@@ -93,9 +93,6 @@ data:
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/QOJ5445.test.cpp
-    title: test/1_mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
@@ -267,9 +264,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -619,7 +616,7 @@ data:
   - graph/unicyclic.hpp
   - graph/count_matching_on_tree.hpp
   timestamp: '2025-05-05 02:10:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/590.test.cpp
@@ -669,7 +666,6 @@ data:
   - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp
-  - test/1_mytest/QOJ5445.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
