@@ -14,6 +14,7 @@ struct SplayTree {
     auto dfs = [&](auto &dfs, np c) -> void {
       if (c->l) dfs(dfs, c->l);
       if (c->r) dfs(dfs, c->r);
+      c->p = c->l = c->r = nullptr;
       pool.destroy(c);
     };
     dfs(dfs, c);

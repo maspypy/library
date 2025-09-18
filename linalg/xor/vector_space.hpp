@@ -1,98 +1,91 @@
 #include "linalg/xor/transpose.hpp"
 
-template <typename UINT>
+template <typename UINT, int MAX_DIM>
 struct Vector_Space {
-#define SP Vector_Space
-  vc<UINT> dat;
+  static_assert(is_same_v<UINT, u32> || is_same_v<UINT, u64> ||
+                is_same_v<UINT, u128>);
+  int dim;
+  array<UINT, MAX_DIM> dat;
 
-  Vector_Space() {}
-  Vector_Space(vc<UINT> dat, bool is_reduced = false) : dat(dat) {
-    if (!is_reduced) reduce();
-  }
-
-  int size() { return dat.size(); }
-  int dim() { return dat.size(); }
+  Vector_Space() : dim(0), dat{} {}
 
   bool add_element(UINT v) {
-    for (auto&& e: dat) {
-      if (e == 0 || v == 0) break;
-      chmin(v, v ^ e);
+    FOR_R(i, MAX_DIM) { chmin(v, v ^ dat[i]); }
+    if (v == 0) return 0;
+    FOR(i, MAX_DIM) {
+      if (dat[i] != 0) chmin(dat[i], dat[i] ^ v);
     }
-    if (v) {
-      dat.eb(v);
-      return true;
-    }
-    return false;
+    dat[topbit(v)] = v;
+    ++dim;
+    return true;
   }
 
   bool contain(UINT v) {
-    for (auto&& w: dat) {
-      if (v == 0) break;
+    for (UINT w : dat) {
       chmin(v, v ^ w);
     }
     return v == 0;
   }
 
+  UINT lower_bound(UINT x) {
+    int d = dim;
+    u32 ans = 0, now = 0;
+    FOR_R(i, MAX_DIM) {
+      if (dat[i] == 0) continue;
+      --d;
+      SHOW(now, ans, dat[i], x);
+      if ((now ^ dat[i]) < x) {
+        ans += UINT(1) << d;
+        now ^= dat[i];
+      }
+    }
+    if (now < x) ans += 1;
+    return ans;
+  }
+
+  UINT kth(UINT k) {
+    assert(k < (UINT(1) << dim));
+    int d = 0;
+    UINT ans = 0;
+    FOR(i, MAX_DIM) {
+      if (dat[i] == 0) continue;
+      if (k >> d & 1) ans ^= dat[i];
+      ++d;
+    }
+    return ans;
+  }
+
   UINT get_max(UINT xor_val = 0) {
     UINT res = xor_val;
-    for (auto&& x: dat) chmax(res, res ^ x);
+    for (auto&& x : dat) chmax(res, res ^ x);
     return res;
   }
 
-  UINT get_min(UINT xor_val) {
+  UINT get_min(UINT xor_val = 0) {
     UINT res = xor_val;
-    for (auto&& x: dat) chmin(res, res ^ x);
+    for (auto&& x : dat) chmin(res, res ^ x);
     return res;
   }
 
-  static SP merge(SP x, SP y) {
+  static Vector_Space merge(Vector_Space x, Vector_Space y) {
     if (len(x) < len(y)) swap(x, y);
-    for (auto v: y.dat) { x.add_element(v); }
+    for (auto v : y.dat) {
+      x.add_element(v);
+    }
     return x;
   }
 
-  static SP intersection(SP& x, SP& y) {
+  static Vector_Space intersection(Vector_Space& x, Vector_Space& y) {
     // とりあえず
     static_assert(is_same_v<UINT, u32>);
     vc<u64> xx;
-    for (auto& v: x.dat) xx.eb(v | static_cast<u64>(v) << 32);
-    Vector_Space<u64> z(xx, true);
-    for (auto& v: y.dat) z.add_element(static_cast<u64>(v) << 32);
-    vc<u32> xy;
-    for (auto& v: z.dat) {
-      if (v <= u32(-1)) xy.eb(v);
+    for (auto& v : x.dat) xx.eb(v | static_cast<u64>(v) << 32);
+    Vector_Space<u64, MAX_DIM * 2> z(xx, true);
+    for (auto& v : y.dat) z.add_element(static_cast<u64>(v) << 32);
+    Vector_Space<UINT, MAX_DIM> ANS;
+    for (auto& v : z.dat) {
+      if (v <= u32(-1)) ANS.add_element(v);
     }
-    return SP(xy, true);
+    return ANS;
   }
-
-  SP orthogonal_space(int max_dim) {
-    normalize();
-    int m = max_dim;
-    // pivot[k] == k となるように行の順番を変える
-    vc<u64> tmp(m);
-    FOR(i, len(dat)) tmp[topbit(dat[i])] = dat[i];
-    tmp = transpose(m, m, tmp, 0);
-    SP res;
-    FOR(j, m) {
-      if (tmp[j] >> j & 1) continue;
-      res.add_element(tmp[j] | UINT(1) << j);
-    }
-    return res;
-  }
-
-  void normalize(bool dec = true) {
-    int n = len(dat);
-    // 三角化
-    FOR(j, n) FOR(i, j) chmin(dat[i], dat[i] ^ dat[j]);
-    sort(all(dat));
-    if (dec) reverse(all(dat));
-  }
-
-private:
-  void reduce() {
-    SP y;
-    for (auto&& e: dat) y.add_element(e);
-    (*this) = y;
-  }
-#undef SP
 };

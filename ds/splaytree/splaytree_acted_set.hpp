@@ -16,6 +16,7 @@ struct Node_AS {
   u32 size;
   bool rev;
 
+  u32 lsize() { return (l ? l->size : 0); }
   static void new_node(np n, const S &x) {
     n->p = n->l = n->r = nullptr;
     n->x = x;
