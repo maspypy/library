@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/QOJ5445.test.cpp
     title: test/1_mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1128,7 +1128,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
     title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
     title: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1872,13 +1872,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826.test.cpp
     title: test/3_yukicoder/1826.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826_2.test.cpp
     title: test/3_yukicoder/1826_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/184.test.cpp
     title: test/3_yukicoder/184.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2013,7 +2013,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2231.test.cpp
     title: test/3_yukicoder/2231.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2242.test.cpp
     title: test/3_yukicoder/2242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2043,7 +2043,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2288.test.cpp
     title: test/3_yukicoder/2288.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2151,7 +2151,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2627.test.cpp
     title: test/3_yukicoder/2627.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2172,7 +2172,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2801.test.cpp
     title: test/3_yukicoder/2801.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2208,7 +2208,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2909.test.cpp
     title: test/3_yukicoder/2909.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2277,7 +2277,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/655.test.cpp
     title: test/3_yukicoder/655.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2298,13 +2298,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/779.test.cpp
     title: test/3_yukicoder/779.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789.test.cpp
     title: test/3_yukicoder/789.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_3.test.cpp
     title: test/3_yukicoder/789_3.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2334,10 +2334,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/0350.test.cpp
     title: test/4_aoj/0350.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
   - icon: ':heavy_check_mark:'

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':heavy_check_mark:'

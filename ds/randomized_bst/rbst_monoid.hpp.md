@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_test.test.cpp
     title: test/1_mytest/rbst_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool\
@@ -262,7 +262,7 @@ data:
   path: ds/randomized_bst/rbst_monoid.hpp
   requiredBy: []
   timestamp: '2025-09-16 20:49:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/rbst_monoid_2.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp

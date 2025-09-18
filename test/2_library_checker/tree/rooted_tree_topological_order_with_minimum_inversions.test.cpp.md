@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'

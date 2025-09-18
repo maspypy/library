@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/184.test.cpp
     title: test/3_yukicoder/184.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\u5217\u306E\
@@ -30,39 +30,37 @@ data:
     \ mask) ^ *x;\n        *y = ((*x & mask) >> width) ^ *y;\n        *x = ((*y <<\
     \ width) & mask) ^ *x;\n      }\n    }\n  }\n  A.resize(m);\n  if (!keep_A) return\
     \ A;\n  swap(A, tmp);\n  return tmp;\n}\n#line 2 \"linalg/xor/vector_space.hpp\"\
-    \n\ntemplate <typename UINT>\nstruct Vector_Space {\n#define SP Vector_Space\n\
-    \  vc<UINT> dat;\n\n  Vector_Space() {}\n  Vector_Space(vc<UINT> dat, bool is_reduced\
-    \ = false) : dat(dat) {\n    if (!is_reduced) reduce();\n  }\n\n  int size() {\
-    \ return dat.size(); }\n  int dim() { return dat.size(); }\n\n  bool add_element(UINT\
-    \ v) {\n    for (auto&& e: dat) {\n      if (e == 0 || v == 0) break;\n      chmin(v,\
-    \ v ^ e);\n    }\n    if (v) {\n      dat.eb(v);\n      return true;\n    }\n\
-    \    return false;\n  }\n\n  bool contain(UINT v) {\n    for (auto&& w: dat) {\n\
-    \      if (v == 0) break;\n      chmin(v, v ^ w);\n    }\n    return v == 0;\n\
-    \  }\n\n  UINT get_max(UINT xor_val = 0) {\n    UINT res = xor_val;\n    for (auto&&\
-    \ x: dat) chmax(res, res ^ x);\n    return res;\n  }\n\n  UINT get_min(UINT xor_val)\
-    \ {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n \
-    \   return res;\n  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y))\
-    \ swap(x, y);\n    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n\
-    \  }\n\n  static SP intersection(SP& x, SP& y) {\n    // \u3068\u308A\u3042\u3048\
-    \u305A\n    static_assert(is_same_v<UINT, u32>);\n    vc<u64> xx;\n    for (auto&\
-    \ v: x.dat) xx.eb(v | static_cast<u64>(v) << 32);\n    Vector_Space<u64> z(xx,\
-    \ true);\n    for (auto& v: y.dat) z.add_element(static_cast<u64>(v) << 32);\n\
-    \    vc<u32> xy;\n    for (auto& v: z.dat) {\n      if (v <= u32(-1)) xy.eb(v);\n\
-    \    }\n    return SP(xy, true);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
-    \    normalize();\n    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\
-    \u3088\u3046\u306B\u884C\u306E\u9806\u756A\u3092\u5909\u3048\u308B\n    vc<u64>\
-    \ tmp(m);\n    FOR(i, len(dat)) tmp[topbit(dat[i])] = dat[i];\n    tmp = transpose(m,\
-    \ m, tmp, 0);\n    SP res;\n    FOR(j, m) {\n      if (tmp[j] >> j & 1) continue;\n\
-    \      res.add_element(tmp[j] | UINT(1) << j);\n    }\n    return res;\n  }\n\n\
-    \  void normalize(bool dec = true) {\n    int n = len(dat);\n    // \u4E09\u89D2\
-    \u5316\n    FOR(j, n) FOR(i, j) chmin(dat[i], dat[i] ^ dat[j]);\n    sort(all(dat));\n\
-    \    if (dec) reverse(all(dat));\n  }\n\nprivate:\n  void reduce() {\n    SP y;\n\
-    \    for (auto&& e: dat) y.add_element(e);\n    (*this) = y;\n  }\n#undef SP\n\
-    };\n#line 2 \"alg/monoid/merge_vector_space.hpp\"\n\ntemplate <typename UINT>\n\
-    struct Merge_Vector_Space {\n  using value_type = Vector_Space<UINT>;\n  using\
-    \ X = value_type;\n  static X op(X x, X y) { return Vector_Space<UINT>::merge(x,\
-    \ y); }\n  static constexpr X unit() { return {}; }\n  static constexpr bool commute\
-    \ = 1;\n};\n"
+    \n\ntemplate <typename UINT, int MAX_DIM>\nstruct Vector_Space {\n  static_assert(is_same_v<UINT,\
+    \ u32> || is_same_v<UINT, u64> ||\n                is_same_v<UINT, u128>);\n \
+    \ int dim;\n  array<UINT, MAX_DIM> dat;\n\n  Vector_Space() : dim(0), dat{} {}\n\
+    \n  bool add_element(UINT v) {\n    FOR_R(i, MAX_DIM) { chmin(v, v ^ dat[i]);\
+    \ }\n    if (v == 0) return 0;\n    FOR(i, MAX_DIM) {\n      if (dat[i] != 0)\
+    \ chmin(dat[i], dat[i] ^ v);\n    }\n    dat[topbit(v)] = v;\n    ++dim;\n   \
+    \ return true;\n  }\n\n  bool contain(UINT v) {\n    for (UINT w : dat) {\n  \
+    \    chmin(v, v ^ w);\n    }\n    return v == 0;\n  }\n\n  UINT lower_bound(UINT\
+    \ x) {\n    int d = dim;\n    u32 ans = 0, now = 0;\n    FOR_R(i, MAX_DIM) {\n\
+    \      if (dat[i] == 0) continue;\n      --d;\n      SHOW(now, ans, dat[i], x);\n\
+    \      if ((now ^ dat[i]) < x) {\n        ans += UINT(1) << d;\n        now ^=\
+    \ dat[i];\n      }\n    }\n    if (now < x) ans += 1;\n    return ans;\n  }\n\n\
+    \  UINT kth(UINT k) {\n    assert(k < (UINT(1) << dim));\n    int d = 0;\n   \
+    \ UINT ans = 0;\n    FOR(i, MAX_DIM) {\n      if (dat[i] == 0) continue;\n   \
+    \   if (k >> d & 1) ans ^= dat[i];\n      ++d;\n    }\n    return ans;\n  }\n\n\
+    \  UINT get_max(UINT xor_val = 0) {\n    UINT res = xor_val;\n    for (auto&&\
+    \ x : dat) chmax(res, res ^ x);\n    return res;\n  }\n\n  UINT get_min(UINT xor_val\
+    \ = 0) {\n    UINT res = xor_val;\n    for (auto&& x : dat) chmin(res, res ^ x);\n\
+    \    return res;\n  }\n\n  static Vector_Space merge(Vector_Space x, Vector_Space\
+    \ y) {\n    if (len(x) < len(y)) swap(x, y);\n    for (auto v : y.dat) {\n   \
+    \   x.add_element(v);\n    }\n    return x;\n  }\n\n  static Vector_Space intersection(Vector_Space&\
+    \ x, Vector_Space& y) {\n    // \u3068\u308A\u3042\u3048\u305A\n    static_assert(is_same_v<UINT,\
+    \ u32>);\n    vc<u64> xx;\n    for (auto& v : x.dat) xx.eb(v | static_cast<u64>(v)\
+    \ << 32);\n    Vector_Space<u64, MAX_DIM * 2> z(xx, true);\n    for (auto& v :\
+    \ y.dat) z.add_element(static_cast<u64>(v) << 32);\n    Vector_Space<UINT, MAX_DIM>\
+    \ ANS;\n    for (auto& v : z.dat) {\n      if (v <= u32(-1)) ANS.add_element(v);\n\
+    \    }\n    return ANS;\n  }\n};\n#line 2 \"alg/monoid/merge_vector_space.hpp\"\
+    \n\ntemplate <typename UINT>\nstruct Merge_Vector_Space {\n  using value_type\
+    \ = Vector_Space<UINT>;\n  using X = value_type;\n  static X op(X x, X y) { return\
+    \ Vector_Space<UINT>::merge(x, y); }\n  static constexpr X unit() { return {};\
+    \ }\n  static constexpr bool commute = 1;\n};\n"
   code: "#include \"linalg/xor/vector_space.hpp\"\n\ntemplate <typename UINT>\nstruct\
     \ Merge_Vector_Space {\n  using value_type = Vector_Space<UINT>;\n  using X =\
     \ value_type;\n  static X op(X x, X y) { return Vector_Space<UINT>::merge(x, y);\
@@ -74,8 +72,8 @@ data:
   isVerificationFile: false
   path: alg/monoid/merge_vector_space.hpp
   requiredBy: []
-  timestamp: '2024-05-04 19:37:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-09-18 21:29:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/184.test.cpp
 documentation_of: alg/monoid/merge_vector_space.hpp

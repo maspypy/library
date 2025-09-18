@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':question:'
@@ -165,203 +165,204 @@ data:
     \ using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
     \n  void free_subtree(np c) {\n    if (!c) return;\n    auto dfs = [&](auto &dfs,\
     \ np c) -> void {\n      if (c->l) dfs(dfs, c->l);\n      if (c->r) dfs(dfs, c->r);\n\
-    \      pool.destroy(c);\n    };\n    dfs(dfs, c);\n  }\n\n  void reset() { pool.reset();\
-    \ }\n\n  np new_root() { return nullptr; }\n\n  np new_node(const X &x) {\n  \
-    \  np n = pool.create();\n    Node::new_node(n, x);\n    return n;\n  }\n\n  np\
-    \ new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, int l, int r) ->\
-    \ np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
-    \      int m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
-    \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
-    \ root->r = r_root;\n      if (l_root) l_root->p = root;\n      if (r_root) r_root->p\
-    \ = root;\n      root->update();\n      return root;\n    };\n    return dfs(dfs,\
-    \ 0, len(dat));\n  }\n\n  u32 get_size(np root) { return (root ? root->size :\
-    \ 0); }\n\n  np merge(np l_root, np r_root) {\n    if (!l_root) return r_root;\n\
-    \    if (!r_root) return l_root;\n    assert((!l_root->p) && (!r_root->p));\n\
-    \    splay_kth(r_root, 0);  // splay \u3057\u305F\u306E\u3067 push \u6E08\n  \
-    \  r_root->l = l_root;\n    l_root->p = r_root;\n    r_root->update();\n    return\
-    \ r_root;\n  }\n  np merge3(np a, np b, np c) { return merge(merge(a, b), c);\
-    \ }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c),\
-    \ d); }\n\n  pair<np, np> split(np root, u32 k) {\n    assert(!root || !root->p);\n\
-    \    if (k == 0) return {nullptr, root};\n    if (k == (root->size)) return {root,\
-    \ nullptr};\n    splay_kth(root, k - 1);\n    np right = root->r;\n    root->r\
-    \ = nullptr, right->p = nullptr;\n    root->update();\n    return {root, right};\n\
-    \  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n  \
-    \  tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n    return\
-    \ {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i, u32 j,\
-    \ u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto [a, b, c]\
-    \ = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  tuple<np, np, np>\
-    \ split_L_root_R(np root) {\n    u32 s = (root->l ? root->l->size : 0);\n    return\
-    \ split3(root, s, s + 1);\n  }\n\n  // \u90E8\u5206\u6728\u304C\u533A\u9593 [l,r)\
-    \ \u306B\u5BFE\u5FDC\u3059\u308B\u3088\u3046\u306A\u30CE\u30FC\u30C9\u3092\u4F5C\
-    \u3063\u3066\u8FD4\u3059\n  // \u305D\u306E\u30CE\u30FC\u30C9\u304C root \u306B\
-    \u306A\u308B\u308F\u3051\u3067\u306F\u306A\u3044\u306E\u3067\u3001\n  // \u3053\
-    \u306E\u30CE\u30FC\u30C9\u3092\u53C2\u7167\u3057\u305F\u5F8C\u306B\u3059\u3050\
-    \u306B splay \u3057\u3066\u6839\u306B\u6301\u3061\u4E0A\u3052\u308B\u3053\u3068\
-    \n  void goto_between(np &root, u32 l, u32 r) {\n    if (l == 0 && r == root->size)\
-    \ return;\n    if (l == 0) {\n      splay_kth(root, r);\n      root = root->l;\n\
-    \      return;\n    }\n    if (r == root->size) {\n      splay_kth(root, l - 1);\n\
-    \      root = root->r;\n      return;\n    }\n    splay_kth(root, r);\n    np\
-    \ rp = root;\n    root = rp->l;\n    root->p = nullptr;\n    splay_kth(root, l\
-    \ - 1);\n    root->p = rp;\n    rp->l = root;\n    rp->update();\n    root = root->r;\n\
-    \  }\n\n  vc<X> get_all(const np &root) {\n    vc<X> res;\n    auto dfs = [&](auto\
-    \ &dfs, np root) -> void {\n      if (!root) return;\n      root->push();\n  \
-    \    dfs(dfs, root->l);\n      res.eb(root->get());\n      dfs(dfs, root->r);\n\
-    \    };\n    dfs(dfs, root);\n    return res;\n  }\n\n  X get(np &root, u32 k)\
-    \ {\n    assert(root == nullptr || !root->p);\n    splay_kth(root, k);\n    return\
-    \ root->get();\n  }\n\n  void set(np &root, u32 k, const X &x) {\n    assert(root\
-    \ != nullptr && !root->p);\n    splay_kth(root, k);\n    root->set(x);\n  }\n\n\
-    \  void multiply(np &root, u32 k, const X &x) {\n    assert(root != nullptr &&\
-    \ !root->p);\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\n  X prod(np\
-    \ &root, u32 l, u32 r) {\n    assert(root == nullptr || !root->p);\n    using\
-    \ Mono = typename Node::Monoid_X;\n    if (l == r) return Mono::unit();\n    assert(0\
-    \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    X res\
-    \ = root->prod;\n    splay(root, true);\n    return res;\n  }\n\n  X prod(np &root)\
-    \ {\n    assert(root == nullptr || !root->p);\n    using Mono = typename Node::Monoid_X;\n\
-    \    return (root ? root->prod : Mono::unit());\n  }\n\n  void apply(np &root,\
-    \ u32 l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l\
-    \ < r && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n\
-    \    splay(root, true);\n  }\n  void apply(np &root, const A &a) {\n    if (!root)\
-    \ return;\n    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r)\
-    \ {\n    assert(root == nullptr || !root->p);\n    if (l == r) return;\n    assert(0\
-    \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
-    \    splay(root, true);\n  }\n  void reverse(np root) {\n    if (!root) return;\n\
-    \    root->reverse();\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
-    \u8FD1\u3065\u3051\u308B\u3002push, update \u306F rotate \u306E\u5916\u3067\u884C\
-    \u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l\
-    \ == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else {\n \
-    \     c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n    if (pp && pp->l\
-    \ == p) pp->l = n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n   \
-    \ p->p = n;\n    if (c) c->p = p;\n  }\n\n  void push_from_root(np c) {\n    if\
-    \ (!c->p) {\n      c->push();\n      return;\n    }\n    push_from_root(c->p);\n\
-    \    c->push();\n  }\n\n  void splay(Node *me, bool push_from_root_done) {\n \
-    \   // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\u3067\u3001me \u306E\u7956\u5148\
-    \uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B push \u6E08\u3067\u3042\u308B\
-    \u3053\u3068\u3092\u4EEE\u5B9A\n    // \u7279\u306B\u3001splay \u7D42\u4E86\u6642\
-    \u70B9\u3067 me \u306F upd / push \u6E08\u3067\u3042\u308B\n    if (!push_from_root_done)\
-    \ push_from_root(me);\n    me->push();\n    while (me->p) {\n      np p = me->p;\n\
-    \      np pp = p->p;\n      if (!pp) {\n        rotate(me);\n        p->update();\n\
-    \        break;\n      }\n      bool same = (p->l == me && pp->l == p) || (p->r\
-    \ == me && pp->r == p);\n      if (same) rotate(p), rotate(me);\n      if (!same)\
-    \ rotate(me), rotate(me);\n      pp->update(), p->update();\n    }\n    // me\
-    \ \u306E update \u306F\u6700\u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n\
-    \  }\n\n  void splay_kth(np &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n\
-    \    while (1) {\n      root->push();\n      u32 s1 = (root->l ? root->l->size\
-    \ : 0);\n      u32 s2 = (root->size) - (root->r ? root->r->size : 0);\n      if\
-    \ (k < s1) root = root->l;\n      elif (k < s2) { break; }\n      else {\n   \
-    \     k -= s2;\n        root = root->r;\n      }\n    }\n    splay(root, true);\n\
-    \  }\n\n  // check(x), \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C\
+    \      c->p = c->l = c->r = nullptr;\n      pool.destroy(c);\n    };\n    dfs(dfs,\
+    \ c);\n  }\n\n  void reset() { pool.reset(); }\n\n  np new_root() { return nullptr;\
+    \ }\n\n  np new_node(const X &x) {\n    np n = pool.create();\n    Node::new_node(n,\
+    \ x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs =\
+    \ [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return nullptr;\n  \
+    \    if (r == l + 1) return new_node(dat[l]);\n      int m = (l + r) / 2;\n  \
+    \    np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n    \
+    \  np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n  \
+    \    if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n    \
+    \  root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
+    \  }\n\n  u32 get_size(np root) { return (root ? root->size : 0); }\n\n  np merge(np\
+    \ l_root, np r_root) {\n    if (!l_root) return r_root;\n    if (!r_root) return\
+    \ l_root;\n    assert((!l_root->p) && (!r_root->p));\n    splay_kth(r_root, 0);\
+    \  // splay \u3057\u305F\u306E\u3067 push \u6E08\n    r_root->l = l_root;\n  \
+    \  l_root->p = r_root;\n    r_root->update();\n    return r_root;\n  }\n  np merge3(np\
+    \ a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np\
+    \ c, np d) { return merge(merge(merge(a, b), c), d); }\n\n  pair<np, np> split(np\
+    \ root, u32 k) {\n    assert(!root || !root->p);\n    if (k == 0) return {nullptr,\
+    \ root};\n    if (k == (root->size)) return {root, nullptr};\n    splay_kth(root,\
+    \ k - 1);\n    np right = root->r;\n    root->r = nullptr, right->p = nullptr;\n\
+    \    root->update();\n    return {root, right};\n  }\n  tuple<np, np, np> split3(np\
+    \ root, u32 l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n\
+    \    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np,\
+    \ np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root,\
+    \ d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a,\
+    \ b, c, d};\n  }\n\n  tuple<np, np, np> split_L_root_R(np root) {\n    u32 s =\
+    \ (root->l ? root->l->size : 0);\n    return split3(root, s, s + 1);\n  }\n\n\
+    \  // \u90E8\u5206\u6728\u304C\u533A\u9593 [l,r) \u306B\u5BFE\u5FDC\u3059\u308B\
+    \u3088\u3046\u306A\u30CE\u30FC\u30C9\u3092\u4F5C\u3063\u3066\u8FD4\u3059\n  //\
+    \ \u305D\u306E\u30CE\u30FC\u30C9\u304C root \u306B\u306A\u308B\u308F\u3051\u3067\
+    \u306F\u306A\u3044\u306E\u3067\u3001\n  // \u3053\u306E\u30CE\u30FC\u30C9\u3092\
+    \u53C2\u7167\u3057\u305F\u5F8C\u306B\u3059\u3050\u306B splay \u3057\u3066\u6839\
+    \u306B\u6301\u3061\u4E0A\u3052\u308B\u3053\u3068\n  void goto_between(np &root,\
+    \ u32 l, u32 r) {\n    if (l == 0 && r == root->size) return;\n    if (l == 0)\
+    \ {\n      splay_kth(root, r);\n      root = root->l;\n      return;\n    }\n\
+    \    if (r == root->size) {\n      splay_kth(root, l - 1);\n      root = root->r;\n\
+    \      return;\n    }\n    splay_kth(root, r);\n    np rp = root;\n    root =\
+    \ rp->l;\n    root->p = nullptr;\n    splay_kth(root, l - 1);\n    root->p = rp;\n\
+    \    rp->l = root;\n    rp->update();\n    root = root->r;\n  }\n\n  vc<X> get_all(const\
+    \ np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root) -> void\
+    \ {\n      if (!root) return;\n      root->push();\n      dfs(dfs, root->l);\n\
+    \      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n    dfs(dfs, root);\n\
+    \    return res;\n  }\n\n  X get(np &root, u32 k) {\n    assert(root == nullptr\
+    \ || !root->p);\n    splay_kth(root, k);\n    return root->get();\n  }\n\n  void\
+    \ set(np &root, u32 k, const X &x) {\n    assert(root != nullptr && !root->p);\n\
+    \    splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np &root,\
+    \ u32 k, const X &x) {\n    assert(root != nullptr && !root->p);\n    splay_kth(root,\
+    \ k);\n    root->multiply(x);\n  }\n\n  X prod(np &root, u32 l, u32 r) {\n   \
+    \ assert(root == nullptr || !root->p);\n    using Mono = typename Node::Monoid_X;\n\
+    \    if (l == r) return Mono::unit();\n    assert(0 <= l && l < r && r <= root->size);\n\
+    \    goto_between(root, l, r);\n    X res = root->prod;\n    splay(root, true);\n\
+    \    return res;\n  }\n\n  X prod(np &root) {\n    assert(root == nullptr || !root->p);\n\
+    \    using Mono = typename Node::Monoid_X;\n    return (root ? root->prod : Mono::unit());\n\
+    \  }\n\n  void apply(np &root, u32 l, u32 r, const A &a) {\n    if (l == r) return;\n\
+    \    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n\
+    \    root->apply(a);\n    splay(root, true);\n  }\n  void apply(np &root, const\
+    \ A &a) {\n    if (!root) return;\n    root->apply(a);\n  }\n\n  void reverse(np\
+    \ &root, u32 l, u32 r) {\n    assert(root == nullptr || !root->p);\n    if (l\
+    \ == r) return;\n    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root,\
+    \ l, r);\n    root->reverse();\n    splay(root, true);\n  }\n  void reverse(np\
+    \ root) {\n    if (!root) return;\n    root->reverse();\n  }\n\n  void rotate(Node\
+    \ *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002push, update\
+    \ \u306F rotate \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n\
+    \    p = n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r\
+    \ = p;\n      p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n    \
+    \  p->r = c;\n    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r\
+    \ == p) pp->r = n;\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\
+    \n  void push_from_root(np c) {\n    if (!c->p) {\n      c->push();\n      return;\n\
+    \    }\n    push_from_root(c->p);\n    c->push();\n  }\n\n  void splay(Node *me,\
+    \ bool push_from_root_done) {\n    // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\
+    \u3067\u3001me \u306E\u7956\u5148\uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\
+    \u306B push \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\n    // \u7279\
+    \u306B\u3001splay \u7D42\u4E86\u6642\u70B9\u3067 me \u306F upd / push \u6E08\u3067\
+    \u3042\u308B\n    if (!push_from_root_done) push_from_root(me);\n    me->push();\n\
+    \    while (me->p) {\n      np p = me->p;\n      np pp = p->p;\n      if (!pp)\
+    \ {\n        rotate(me);\n        p->update();\n        break;\n      }\n    \
+    \  bool same = (p->l == me && pp->l == p) || (p->r == me && pp->r == p);\n   \
+    \   if (same) rotate(p), rotate(me);\n      if (!same) rotate(me), rotate(me);\n\
+    \      pp->update(), p->update();\n    }\n    // me \u306E update \u306F\u6700\
+    \u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n  }\n\n  void splay_kth(np\
+    \ &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n    while (1) {\n\
+    \      root->push();\n      u32 s1 = (root->l ? root->l->size : 0);\n      u32\
+    \ s2 = (root->size) - (root->r ? root->r->size : 0);\n      if (k < s1) root =\
+    \ root->l;\n      elif (k < s2) { break; }\n      else {\n        k -= s2;\n \
+    \       root = root->r;\n      }\n    }\n    splay(root, true);\n  }\n\n  // check(x),\
+    \ \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C check \u3092\u6E80\u305F\
+    \u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np, np>\
+    \ split_max_right(np root, F check) {\n    if (!root) return {nullptr, nullptr};\n\
+    \    assert(!root->p);\n    np c = find_max_right(root, check);\n    if (!c) {\n\
+    \      splay(root, true);\n      return {nullptr, root};\n    }\n    splay(c,\
+    \ true);\n    np right = c->r;\n    if (!right) return {c, nullptr};\n    right->p\
+    \ = nullptr;\n    c->r = nullptr;\n    c->update();\n    return {c, right};\n\
+    \  }\n\n  // check(x, cnt), \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C\
     \ check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename\
-    \ F>\n  pair<np, np> split_max_right(np root, F check) {\n    if (!root) return\
-    \ {nullptr, nullptr};\n    assert(!root->p);\n    np c = find_max_right(root,\
+    \ F>\n  pair<np, np> split_max_right_cnt(np root, F check) {\n    if (!root) return\
+    \ {nullptr, nullptr};\n    assert(!root->p);\n    np c = find_max_right_cnt(root,\
     \ check);\n    if (!c) {\n      splay(root, true);\n      return {nullptr, root};\n\
     \    }\n    splay(c, true);\n    np right = c->r;\n    if (!right) return {c,\
     \ nullptr};\n    right->p = nullptr;\n    c->r = nullptr;\n    c->update();\n\
-    \    return {c, right};\n  }\n\n  // check(x, cnt), \u5DE6\u5074\u306E\u30CE\u30FC\
-    \u30C9\u5168\u4F53\u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\
-    \u308B\n  template <typename F>\n  pair<np, np> split_max_right_cnt(np root, F\
-    \ check) {\n    if (!root) return {nullptr, nullptr};\n    assert(!root->p);\n\
-    \    np c = find_max_right_cnt(root, check);\n    if (!c) {\n      splay(root,\
+    \    return {c, right};\n  }\n\n  // \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\
+    \u4F53\u306E prod \u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\
+    \u308B\n  template <typename F>\n  pair<np, np> split_max_right_prod(np root,\
+    \ F check) {\n    if (!root) return {nullptr, nullptr};\n    assert(!root->p);\n\
+    \    np c = find_max_right_prod(root, check);\n    if (!c) {\n      splay(root,\
     \ true);\n      return {nullptr, root};\n    }\n    splay(c, true);\n    np right\
     \ = c->r;\n    if (!right) return {c, nullptr};\n    right->p = nullptr;\n   \
-    \ c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  // \u5DE6\
-    \u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u306E prod \u304C check \u3092\u6E80\
-    \u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np,\
-    \ np> split_max_right_prod(np root, F check) {\n    if (!root) return {nullptr,\
-    \ nullptr};\n    assert(!root->p);\n    np c = find_max_right_prod(root, check);\n\
-    \    if (!c) {\n      splay(root, true);\n      return {nullptr, root};\n    }\n\
-    \    splay(c, true);\n    np right = c->r;\n    if (!right) return {c, nullptr};\n\
-    \    right->p = nullptr;\n    c->r = nullptr;\n    c->update();\n    return {c,\
-    \ right};\n  }\n\n  template <typename F>\n  np find_max_right(np root, const\
-    \ F &check) {\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\
-    \u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr,\
-    \ last = nullptr;\n    while (root) {\n      last = root;\n      root->push();\n\
-    \      if (check(root->x)) {\n        last_ok = root;\n        root = root->r;\n\
-    \      } else {\n        root = root->l;\n      }\n    }\n    splay(last, true);\n\
-    \    return last_ok;\n  }\n\n  template <typename F>\n  np find_max_right_cnt(np\
-    \ root, const F &check) {\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok\
-    \ \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok\
-    \ = nullptr, last = nullptr;\n    ll n = 0;\n    while (root) {\n      last =\
-    \ root;\n      root->push();\n      ll k = (root->size) - (root->r ? root->r->size\
-    \ : 0);\n      if (check(root->x, n + k)) {\n        last_ok = root;\n       \
-    \ n += k;\n        root = root->r;\n      } else {\n        root = root->l;\n\
-    \      }\n    }\n    splay(last, true);\n    return last_ok;\n  }\n\n  template\
-    \ <typename F>\n  np find_max_right_prod(np root, const F &check) {\n    using\
-    \ Mono = typename Node::Monoid_X;\n    X prod = Mono::unit();\n    // \u6700\u5F8C\
+    \ c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  template\
+    \ <typename F>\n  np find_max_right(np root, const F &check) {\n    // \u6700\u5F8C\
     \u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\
     \u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root)\
-    \ {\n      last = root;\n      root->push();\n      np tmp = root->r;\n      root->r\
-    \ = nullptr;\n      root->update();\n      X lprod = Mono::op(prod, root->prod);\n\
-    \      root->r = tmp;\n      root->update();\n      if (check(lprod)) {\n    \
-    \    prod = lprod;\n        last_ok = root;\n        root = root->r;\n      }\
-    \ else {\n        root = root->l;\n      }\n    }\n    splay(last, true);\n  \
-    \  return last_ok;\n  }\n};\n#line 2 \"alg/monoid/add_pair.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type = pair<E, E>;\r\
-    \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\r\
-    \n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const\
-    \ X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit() { return {0,\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"convex/slope_trick/slope_super.hpp\"\
-    \n\nnamespace SLOPE_TRICK_SUPER {\n/*\n\u50BE\u304D\u3068\u5EA7\u6A19\u304C\u5168\
-    \u90E8 T.\n(x0,y0,a0) / \u50BE\u304D\u5909\u5316\u3092 splay tree \u3067\u6301\
-    \u3064.\n\u672B\u5C3E\u306B\u306F\u5FC5\u305A infty \u304C\u5165\u3063\u3066\u3044\
-    \u308B\u3088\u3046\u306B\u3059\u308B.\n(0,10),(1,6),(3,4),(6,7)\n->\n(x0,y0,a0)=(0,10,-4)\n\
-    dat = ([1,3],[3,2])\n\nf(x) \u306E\u8A08\u7B97, (min,argmin) \u306E\u8A08\u7B97\
-    \n\u52A0\u6CD5, \u7573\u307F\u8FBC\u307F\n\n\u52A0\u6CD5: easy\nf(x) \u306E\u8A08\
-    \u7B97: sum(a), sum(xa) \u304C\u8981\u308B\n\u7573\u307F\u8FBC\u307F: x->x+c \u304C\
-    \u8981\u308B\n*/\n\ntemplate <typename T>\nstruct Node {\n  using value_type =\
-    \ pair<T, T>;\n  using operator_type = T;\n  using np = Node *;\n  using Monoid_X\
-    \ = Monoid_Add_Pair<T>;\n\n  np p, l, r;\n  bool rev;\n  u32 size;\n  pair<T,\
-    \ T> x;     // (x,a)\n  pair<T, T> prod;  // (a sum, xa sum)\n  T add_x;\n\n \
-    \ static void new_node(np n, const pair<T, T> &x) {\n    n->p = n->l = n->r =\
-    \ nullptr, n->rev = 0, n->size = 1;\n    n->x = x, n->prod = {x.se, x.fi * x.se},\
-    \ n->add_x = 0;\n  }\n\n  void update() {\n    size = 1;\n    if (l) {\n     \
-    \ size += l->size;\n    }\n    if (r) {\n      size += r->size;\n    }\n    prod\
-    \ = {x.se, x.fi * x.se};\n    if (l) prod = Monoid_X::op(prod, l->prod);\n   \
-    \ if (r) prod = Monoid_X::op(prod, r->prod);\n  }\n\n  void push() {\n    assert(!rev);\n\
-    \    if (add_x == 0) return;\n    if (l)\n      l->x.fi += add_x, l->prod.se +=\
-    \ l->prod.fi * add_x, l->add_x += add_x;\n    if (r)\n      r->x.fi += add_x,\
-    \ r->prod.se += r->prod.fi * add_x, r->add_x += add_x;\n    add_x = 0;\n  }\n\n\
-    \  void apply(T a) { x.fi += a, prod.se += a * prod.fi, add_x += a; }\n\n  //\
-    \ update, push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001\
-    splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\
-    \u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\
-    \u3067 update, push \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\
-    \u3066\u3088\u3044\u3002\n  pair<T, T> get() { return x; }\n  void set(const pair<T,\
-    \ T> &xx) {\n    x = xx;\n    update();\n  }\n};\n\n// \u95A2\u6570\u306F\u7834\
-    \u58CA\u7684\u306A\u5909\u66F4\u306B\u3055\u308C\u308B\ntemplate <typename T>\n\
-    struct Slope_Trick_Super {\n  SplayTree<Node<T>> ST;\n  using np = Node<T> *;\n\
-    \n  struct FUNC {\n    np root;  // \u5B9A\u7FA9\u57DF\u304C\u3053\u308F\u308C\
-    \u3066\u3044\u305F\u3089 root == empty\n    T x0, x1, a0, y0;\n    int size()\
-    \ { return (root ? root->size : 0); }\n  };\n\n  // (L,R,a,b) : [L,R] \u3067 y=ax+b\n\
-    \  FUNC segment_func(T L, T R, T a, T b) {\n    return {nullptr, L, R, a, a *\
-    \ L + b};\n  }\n  FUNC from_points(vc<pair<T, T>> &point) {\n    return from_points(len(point),\n\
-    \                       [&](int i) -> pair<T, T> { return point[i]; });\n  }\n\
-    \  template <typename F>\n  FUNC from_points(int N, F f) {\n    vc<T> X(N), Y(N);\n\
-    \    FOR(i, N) tie(X[i], Y[i]) = f(i);\n    if (N == 1) return segment_func(X[0],\
-    \ X[0], 0, Y[0]);\n    T a0 = (Y[1] - Y[0]) / (X[1] - X[0]);\n    T x0 = X[0],\
-    \ x1 = X.back();\n    vc<pair<T, T>> dat;\n    T a = a0;\n    FOR(i, 1, N - 1)\
-    \ {\n      T a1 = (Y[i + 1] - Y[i]) / (X[i + 1] - X[i]);\n      dat.eb(X[i], a1\
-    \ - a), a = a1;\n    }\n    return FUNC{ST.new_node(dat), x0, x1, a0, Y[0]};\n\
-    \  }\n\n  pair<T, T> domain(FUNC &f) { return {f.x0, f.x1}; }\n  T eval(FUNC &f,\
-    \ T x) {\n    auto [x0, x1] = domain(f);\n    if (!(x0 <= x && x <= x1)) return\
-    \ infty<T>;\n    auto [l, r] = ST.split_max_right(\n        f.root, [&](auto dat)\
-    \ -> bool { return dat.fi <= x; });\n    auto [a_sum, xa_sum] = ST.prod(l);\n\
-    \    f.root = ST.merge(l, r);\n    return f.y0 + f.a0 * (x - x0) + a_sum * x -\
-    \ xa_sum;\n  }\n  FUNC restrict_domain(FUNC &f, T L, T R) {\n    auto [x0, x1]\
-    \ = domain(f);\n    chmax(L, x0), chmin(R, x1);\n    if (L > R) {\n      ST.free_subtree(f.root),\
-    \ f.root = nullptr;\n      f.root = nullptr;\n      f.x0 = infty<T>, f.x1 = -infty<T>;\n\
-    \      return f;\n    }\n    // \u307E\u305A\u306F\u53F3\u5074\u3092\u3061\u3062\
-    \u3081\u308B. R \u4EE5\u4E0A\u306E\u50BE\u304D\u5909\u5316\u3092\u6D88\u3057\u3066\
-    \u3057\u307E\u3048\u3070\u3088\u3044\n    auto [l, r] = ST.split_max_right(\n\
-    \        f.root, [&](auto dat) -> bool { return dat.fi < R; });\n    ST.free_subtree(r);\n\
-    \    // \u5DE6\u5074\u3092\u3061\u3062\u3081\u308B.\n    tie(l, r) =\n       \
-    \ ST.split_max_right(l, [&](auto dat) -> bool { return dat.fi <= L; });\n    auto\
-    \ [a_sum, xa_sum] = ST.prod(l);\n    T new_a0 = f.a0 + a_sum;\n    T new_y0 =\
-    \ f.y0 + f.a0 * (L - x0) + a_sum * L - xa_sum;\n    ST.free_subtree(l);\n    f.root\
-    \ = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n    return f;\n  }\n\
-    \  FUNC add(FUNC &f, FUNC &g) {\n    T x0 = max(f.x0, g.x0);\n    T x1 = min(f.x1,\
-    \ g.x1);\n    restrict_domain(f, x0, x1), restrict_domain(g, x0, x1);\n    if\
-    \ (x0 > x1) return f;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n    if (len(f)\
-    \ < len(g)) swap(f, g);\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n\
+    \ {\n      last = root;\n      root->push();\n      if (check(root->x)) {\n  \
+    \      last_ok = root;\n        root = root->r;\n      } else {\n        root\
+    \ = root->l;\n      }\n    }\n    splay(last, true);\n    return last_ok;\n  }\n\
+    \n  template <typename F>\n  np find_max_right_cnt(np root, const F &check) {\n\
+    \    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\
+    \u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n\
+    \    ll n = 0;\n    while (root) {\n      last = root;\n      root->push();\n\
+    \      ll k = (root->size) - (root->r ? root->r->size : 0);\n      if (check(root->x,\
+    \ n + k)) {\n        last_ok = root;\n        n += k;\n        root = root->r;\n\
+    \      } else {\n        root = root->l;\n      }\n    }\n    splay(last, true);\n\
+    \    return last_ok;\n  }\n\n  template <typename F>\n  np find_max_right_prod(np\
+    \ root, const F &check) {\n    using Mono = typename Node::Monoid_X;\n    X prod\
+    \ = Mono::unit();\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\
+    \u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok =\
+    \ nullptr, last = nullptr;\n    while (root) {\n      last = root;\n      root->push();\n\
+    \      np tmp = root->r;\n      root->r = nullptr;\n      root->update();\n  \
+    \    X lprod = Mono::op(prod, root->prod);\n      root->r = tmp;\n      root->update();\n\
+    \      if (check(lprod)) {\n        prod = lprod;\n        last_ok = root;\n \
+    \       root = root->r;\n      } else {\n        root = root->l;\n      }\n  \
+    \  }\n    splay(last, true);\n    return last_ok;\n  }\n};\n#line 2 \"alg/monoid/add_pair.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type\
+    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
+    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
+    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 3 \"convex/slope_trick/slope_super.hpp\"\n\nnamespace SLOPE_TRICK_SUPER\
+    \ {\n/*\n\u50BE\u304D\u3068\u5EA7\u6A19\u304C\u5168\u90E8 T.\n(x0,y0,a0) / \u50BE\
+    \u304D\u5909\u5316\u3092 splay tree \u3067\u6301\u3064.\n\u672B\u5C3E\u306B\u306F\
+    \u5FC5\u305A infty \u304C\u5165\u3063\u3066\u3044\u308B\u3088\u3046\u306B\u3059\
+    \u308B.\n(0,10),(1,6),(3,4),(6,7)\n->\n(x0,y0,a0)=(0,10,-4)\ndat = ([1,3],[3,2])\n\
+    \nf(x) \u306E\u8A08\u7B97, (min,argmin) \u306E\u8A08\u7B97\n\u52A0\u6CD5, \u7573\
+    \u307F\u8FBC\u307F\n\n\u52A0\u6CD5: easy\nf(x) \u306E\u8A08\u7B97: sum(a), sum(xa)\
+    \ \u304C\u8981\u308B\n\u7573\u307F\u8FBC\u307F: x->x+c \u304C\u8981\u308B\n*/\n\
+    \ntemplate <typename T>\nstruct Node {\n  using value_type = pair<T, T>;\n  using\
+    \ operator_type = T;\n  using np = Node *;\n  using Monoid_X = Monoid_Add_Pair<T>;\n\
+    \n  np p, l, r;\n  bool rev;\n  u32 size;\n  pair<T, T> x;     // (x,a)\n  pair<T,\
+    \ T> prod;  // (a sum, xa sum)\n  T add_x;\n\n  static void new_node(np n, const\
+    \ pair<T, T> &x) {\n    n->p = n->l = n->r = nullptr, n->rev = 0, n->size = 1;\n\
+    \    n->x = x, n->prod = {x.se, x.fi * x.se}, n->add_x = 0;\n  }\n\n  void update()\
+    \ {\n    size = 1;\n    if (l) {\n      size += l->size;\n    }\n    if (r) {\n\
+    \      size += r->size;\n    }\n    prod = {x.se, x.fi * x.se};\n    if (l) prod\
+    \ = Monoid_X::op(prod, l->prod);\n    if (r) prod = Monoid_X::op(prod, r->prod);\n\
+    \  }\n\n  void push() {\n    assert(!rev);\n    if (add_x == 0) return;\n    if\
+    \ (l)\n      l->x.fi += add_x, l->prod.se += l->prod.fi * add_x, l->add_x += add_x;\n\
+    \    if (r)\n      r->x.fi += add_x, r->prod.se += r->prod.fi * add_x, r->add_x\
+    \ += add_x;\n    add_x = 0;\n  }\n\n  void apply(T a) { x.fi += a, prod.se +=\
+    \ a * prod.fi, add_x += a; }\n\n  // update, push \u4EE5\u5916\u3067\u547C\u3070\
+    \u308C\u308B\u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\u3068\
+    \u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\u304C\
+    \u3063\u3066\u305D\u306E\u6642\u70B9\u3067 update, push \u6E08\u3067\u3042\u308B\
+    \u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  pair<T, T> get()\
+    \ { return x; }\n  void set(const pair<T, T> &xx) {\n    x = xx;\n    update();\n\
+    \  }\n};\n\n// \u95A2\u6570\u306F\u7834\u58CA\u7684\u306A\u5909\u66F4\u306B\u3055\
+    \u308C\u308B\ntemplate <typename T>\nstruct Slope_Trick_Super {\n  SplayTree<Node<T>>\
+    \ ST;\n  using np = Node<T> *;\n\n  struct FUNC {\n    np root;  // \u5B9A\u7FA9\
+    \u57DF\u304C\u3053\u308F\u308C\u3066\u3044\u305F\u3089 root == empty\n    T x0,\
+    \ x1, a0, y0;\n    int size() { return (root ? root->size : 0); }\n  };\n\n  //\
+    \ (L,R,a,b) : [L,R] \u3067 y=ax+b\n  FUNC segment_func(T L, T R, T a, T b) {\n\
+    \    return {nullptr, L, R, a, a * L + b};\n  }\n  FUNC from_points(vc<pair<T,\
+    \ T>> &point) {\n    return from_points(len(point),\n                       [&](int\
+    \ i) -> pair<T, T> { return point[i]; });\n  }\n  template <typename F>\n  FUNC\
+    \ from_points(int N, F f) {\n    vc<T> X(N), Y(N);\n    FOR(i, N) tie(X[i], Y[i])\
+    \ = f(i);\n    if (N == 1) return segment_func(X[0], X[0], 0, Y[0]);\n    T a0\
+    \ = (Y[1] - Y[0]) / (X[1] - X[0]);\n    T x0 = X[0], x1 = X.back();\n    vc<pair<T,\
+    \ T>> dat;\n    T a = a0;\n    FOR(i, 1, N - 1) {\n      T a1 = (Y[i + 1] - Y[i])\
+    \ / (X[i + 1] - X[i]);\n      dat.eb(X[i], a1 - a), a = a1;\n    }\n    return\
+    \ FUNC{ST.new_node(dat), x0, x1, a0, Y[0]};\n  }\n\n  pair<T, T> domain(FUNC &f)\
+    \ { return {f.x0, f.x1}; }\n  T eval(FUNC &f, T x) {\n    auto [x0, x1] = domain(f);\n\
+    \    if (!(x0 <= x && x <= x1)) return infty<T>;\n    auto [l, r] = ST.split_max_right(\n\
+    \        f.root, [&](auto dat) -> bool { return dat.fi <= x; });\n    auto [a_sum,\
+    \ xa_sum] = ST.prod(l);\n    f.root = ST.merge(l, r);\n    return f.y0 + f.a0\
+    \ * (x - x0) + a_sum * x - xa_sum;\n  }\n  FUNC restrict_domain(FUNC &f, T L,\
+    \ T R) {\n    auto [x0, x1] = domain(f);\n    chmax(L, x0), chmin(R, x1);\n  \
+    \  if (L > R) {\n      ST.free_subtree(f.root), f.root = nullptr;\n      f.root\
+    \ = nullptr;\n      f.x0 = infty<T>, f.x1 = -infty<T>;\n      return f;\n    }\n\
+    \    // \u307E\u305A\u306F\u53F3\u5074\u3092\u3061\u3062\u3081\u308B. R \u4EE5\
+    \u4E0A\u306E\u50BE\u304D\u5909\u5316\u3092\u6D88\u3057\u3066\u3057\u307E\u3048\
+    \u3070\u3088\u3044\n    auto [l, r] = ST.split_max_right(\n        f.root, [&](auto\
+    \ dat) -> bool { return dat.fi < R; });\n    ST.free_subtree(r);\n    // \u5DE6\
+    \u5074\u3092\u3061\u3062\u3081\u308B.\n    tie(l, r) =\n        ST.split_max_right(l,\
+    \ [&](auto dat) -> bool { return dat.fi <= L; });\n    auto [a_sum, xa_sum] =\
+    \ ST.prod(l);\n    T new_a0 = f.a0 + a_sum;\n    T new_y0 = f.y0 + f.a0 * (L -\
+    \ x0) + a_sum * L - xa_sum;\n    ST.free_subtree(l);\n    f.root = r, f.x0 = L,\
+    \ f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n    return f;\n  }\n  FUNC add(FUNC\
+    \ &f, FUNC &g) {\n    T x0 = max(f.x0, g.x0);\n    T x1 = min(f.x1, g.x1);\n \
+    \   restrict_domain(f, x0, x1), restrict_domain(g, x0, x1);\n    if (x0 > x1)\
+    \ return f;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n    if (len(f) < len(g))\
+    \ swap(f, g);\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n\
     \    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;\n    if (!f.root) {\n      f.root\
     \ = ST.new_node(tmp);\n      return f;\n    }\n    // \u3042\u3068\u306F\u5358\
     \u306B tmp \u3092\u633F\u5165\u3057\u3066\u3044\u3051\u3070\u3044\u3044\n    auto\
@@ -546,7 +547,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/slope_super.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 20:49:12+09:00'
+  timestamp: '2025-09-18 21:29:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/slope_super.test.cpp

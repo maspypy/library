@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -21,7 +21,7 @@ data:
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/QOJ5445.test.cpp
     title: test/1_mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,9 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -334,7 +334,7 @@ data:
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_hash.hpp
   timestamp: '2025-05-05 02:10:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1718.test.cpp
   - test/3_yukicoder/1494.test.cpp
