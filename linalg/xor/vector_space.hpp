@@ -8,8 +8,13 @@ struct Vector_Space {
   array<UINT, MAX_DIM> dat;
 
   Vector_Space() : dim(0), dat{} {}
+  Vector_Space(array<UINT, MAX_DIM> dat) : dat(dat) {
+    dim = 0;
+    FOR(i, MAX_DIM) dim += (dat[i] != 0);
+  }
 
-  bool add_element(UINT v) {
+  int size() { return dim; }
+  u64 add_element(UINT v) {
     FOR_R(i, MAX_DIM) { chmin(v, v ^ dat[i]); }
     if (v == 0) return 0;
     FOR(i, MAX_DIM) {
@@ -17,7 +22,7 @@ struct Vector_Space {
     }
     dat[topbit(v)] = v;
     ++dim;
-    return true;
+    return v;
   }
 
   bool contain(UINT v) {
@@ -87,5 +92,40 @@ struct Vector_Space {
       if (v <= u32(-1)) ANS.add_element(v);
     }
     return ANS;
+  }
+
+  static array<UINT, MAX_DIM> transpose(array<UINT, MAX_DIM> A) {
+    constexpr int L = numeric_limits<UINT>::digits;
+    array<UINT, L> B;
+    FOR(i, MAX_DIM) B[i] = A[i];
+    int LOG = 0;
+    while ((1 << LOG) < L) ++LOG;
+    int width = 1 << LOG;
+    UINT mask = -1;
+    FOR(t, LOG) {
+      width >>= 1;
+      mask = mask ^ (mask >> width);
+      FOR(i, 1 << t) {
+        FOR(j, width) {
+          UINT* x = &B[width * (2 * i + 0) + j];
+          UINT* y = &B[width * (2 * i + 1) + j];
+          *x = ((*y << width) & mask) ^ *x;
+          *y = ((*x & mask) >> width) ^ *y;
+          *x = ((*y << width) & mask) ^ *x;
+        }
+      }
+    }
+    FOR(i, MAX_DIM) A[i] = B[i];
+    return A;
+  }
+
+  Vector_Space orthogonal_space() {
+    array<u64, MAX_DIM> T = transpose(dat);
+    array<u64, MAX_DIM> ANS{};
+    FOR_R(j, MAX_DIM) {
+      if (T[j] >> j & 1) continue;
+      ANS[j] = (UINT(1) << j) | T[j];
+    }
+    return Vector_Space(ANS);
   }
 };
