@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool\
@@ -63,8 +63,8 @@ data:
     \ int> query(np root, ll x) {\n    assert(L <= x && x < R);\n    if (!root) {\n\
     \      if (MINIMIZE) return {infty<T>, -1};\n      if (!MINIMIZE) return {-infty<T>,\
     \ -1};\n    }\n    return query_rec(root, x, L, R);\n  }\n\n private:\n  np clone(np\
-    \ c) {\n    if (!c || !PERSISTENT) return c;\n    return pool.lone(c);\n  }\n\n\
-    \  inline T evaluate_inner(int fid, ll x) {\n    if (fid == -1) {\n      return\
+    \ c) {\n    if (!c || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
+    \n  inline T evaluate_inner(int fid, ll x) {\n    if (fid == -1) {\n      return\
     \ (MINIMIZE ? infty<T> : -infty<T>);\n    };\n    return evaluate(funcs[fid],\
     \ x);\n  }\n\n  np add_segment_rec(np c, ll xl, ll xr, int fid, ll node_l, ll\
     \ node_r) {\n    chmax(xl, node_l), chmin(xr, node_r);\n    if (xl >= xr) return\
@@ -124,7 +124,7 @@ data:
     \ root, ll x) {\n    assert(L <= x && x < R);\n    if (!root) {\n      if (MINIMIZE)\
     \ return {infty<T>, -1};\n      if (!MINIMIZE) return {-infty<T>, -1};\n    }\n\
     \    return query_rec(root, x, L, R);\n  }\n\n private:\n  np clone(np c) {\n\
-    \    if (!c || !PERSISTENT) return c;\n    return pool.lone(c);\n  }\n\n  inline\
+    \    if (!c || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\n  inline\
     \ T evaluate_inner(int fid, ll x) {\n    if (fid == -1) {\n      return (MINIMIZE\
     \ ? infty<T> : -infty<T>);\n    };\n    return evaluate(funcs[fid], x);\n  }\n\
     \n  np add_segment_rec(np c, ll xl, ll xr, int fid, ll node_l, ll node_r) {\n\
@@ -161,8 +161,8 @@ data:
   isVerificationFile: false
   path: convex/dynamic_lichao.hpp
   requiredBy: []
-  timestamp: '2025-09-16 20:23:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-09-19 09:11:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
   - test/2_library_checker/data_structure/segment_add_get_min.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -290,8 +290,8 @@ data:
     \ int> query(np root, ll x) {\n    assert(L <= x && x < R);\n    if (!root) {\n\
     \      if (MINIMIZE) return {infty<T>, -1};\n      if (!MINIMIZE) return {-infty<T>,\
     \ -1};\n    }\n    return query_rec(root, x, L, R);\n  }\n\n private:\n  np clone(np\
-    \ c) {\n    if (!c || !PERSISTENT) return c;\n    return pool.lone(c);\n  }\n\n\
-    \  inline T evaluate_inner(int fid, ll x) {\n    if (fid == -1) {\n      return\
+    \ c) {\n    if (!c || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
+    \n  inline T evaluate_inner(int fid, ll x) {\n    if (fid == -1) {\n      return\
     \ (MINIMIZE ? infty<T> : -infty<T>);\n    };\n    return evaluate(funcs[fid],\
     \ x);\n  }\n\n  np add_segment_rec(np c, ll xl, ll xr, int fid, ll node_l, ll\
     \ node_r) {\n    chmax(xl, node_l), chmin(xr, node_r);\n    if (xl >= xr) return\
@@ -352,8 +352,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2025-09-16 20:23:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-19 09:11:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
 layout: document
