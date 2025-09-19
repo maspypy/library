@@ -1,20 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/3_yukicoder/184.test.cpp
-    title: test/3_yukicoder/184.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\u5217\u306E\
@@ -91,9 +88,8 @@ data:
   path: alg/monoid/merge_vector_space.hpp
   requiredBy: []
   timestamp: '2025-09-19 11:50:34+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/3_yukicoder/184.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/merge_vector_space.hpp
 layout: document
 redirect_from:
