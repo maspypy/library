@@ -73,22 +73,24 @@ data:
     \    array<u64, MAX_DIM> ANS{};\n    FOR_R(j, MAX_DIM) {\n      if (T[j] >> j\
     \ & 1) continue;\n      ANS[j] = (UINT(1) << j) | T[j];\n    }\n    return Vector_Space(ANS);\n\
     \  }\n};\n#line 2 \"alg/monoid/merge_vector_space.hpp\"\n\ntemplate <typename\
-    \ UINT>\nstruct Merge_Vector_Space {\n  using value_type = Vector_Space<UINT>;\n\
-    \  using X = value_type;\n  static X op(X x, X y) { return Vector_Space<UINT>::merge(x,\
-    \ y); }\n  static constexpr X unit() { return {}; }\n  static constexpr bool commute\
-    \ = 1;\n};\n"
-  code: "#include \"linalg/xor/vector_space.hpp\"\n\ntemplate <typename UINT>\nstruct\
-    \ Merge_Vector_Space {\n  using value_type = Vector_Space<UINT>;\n  using X =\
-    \ value_type;\n  static X op(X x, X y) { return Vector_Space<UINT>::merge(x, y);\
-    \ }\n  static constexpr X unit() { return {}; }\n  static constexpr bool commute\
-    \ = 1;\n};\n"
+    \ UINT, int MAX_DIM>\nstruct Merge_Vector_Space {\n  using value_type = Vector_Space<UINT,\
+    \ MAX_DIM>;\n  using X = value_type;\n  static X op(X x, X y) {\n    if (len(x)\
+    \ < len(y)) swap(x, y);\n    for (UINT v : y.dat) {\n      x.add_element(v);\n\
+    \    }\n    return x;\n  }\n  static constexpr X unit() { return {}; }\n  static\
+    \ constexpr bool commute = 1;\n};\n"
+  code: "#include \"linalg/xor/vector_space.hpp\"\n\ntemplate <typename UINT, int\
+    \ MAX_DIM>\nstruct Merge_Vector_Space {\n  using value_type = Vector_Space<UINT,\
+    \ MAX_DIM>;\n  using X = value_type;\n  static X op(X x, X y) {\n    if (len(x)\
+    \ < len(y)) swap(x, y);\n    for (UINT v : y.dat) {\n      x.add_element(v);\n\
+    \    }\n    return x;\n  }\n  static constexpr X unit() { return {}; }\n  static\
+    \ constexpr bool commute = 1;\n};\n"
   dependsOn:
   - linalg/xor/vector_space.hpp
   - linalg/xor/transpose.hpp
   isVerificationFile: false
   path: alg/monoid/merge_vector_space.hpp
   requiredBy: []
-  timestamp: '2025-09-19 11:37:43+09:00'
+  timestamp: '2025-09-19 11:50:34+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/184.test.cpp
