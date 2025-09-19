@@ -370,6 +370,7 @@
 "test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp": "2025-09-04 22:16:37 +0900",
 "test/2_library_checker/linear_algebra/solve_linear.test.cpp": "2025-09-04 22:16:37 +0900",
 "test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp": "2025-09-04 22:16:37 +0900",
+"test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp": "2025-09-19 11:37:43 +0900",
 "test/2_library_checker/number_theory/bernoulli.test.cpp": "2025-09-04 22:16:37 +0900",
 "test/2_library_checker/number_theory/counting_primes.test.cpp": "2025-09-04 22:16:37 +0900",
 "test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp": "2025-09-04 22:16:37 +0900",
