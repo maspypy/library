@@ -5,17 +5,22 @@
 
 #include "linalg/xor/vector_space.hpp"
 
-using SP = Vector_Space<u32>;
+using SP = Vector_Space<u32, 32>;
 
 void solve() {
   auto get = [&]() -> SP {
     INT(n);
-    VEC(u32, a, n);
-    return SP(a, 0);
+    SP V;
+    FOR(n) {
+      U32(a);
+      V.add_element(a);
+    }
+    return V;
   };
   auto x = get(), y = get();
   x = SP::intersection(x, y);
-  print(x.dim(), x.dat);
+  auto basis = x.to_vec();
+  print(len(basis), basis);
 }
 
 signed main() {

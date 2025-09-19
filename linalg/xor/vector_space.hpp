@@ -13,6 +13,12 @@ struct Vector_Space {
     FOR(i, MAX_DIM) dim += (dat[i] != 0);
   }
 
+  vc<UINT> to_vec() {
+    vc<UINT> ANS;
+    FOR(i, MAX_DIM) if (dat[i]) ANS.eb(dat[i]);
+    return ANS;
+  }
+
   int size() { return dim; }
   u64 add_element(UINT v) {
     FOR_R(i, MAX_DIM) { chmin(v, v ^ dat[i]); }
@@ -83,10 +89,13 @@ struct Vector_Space {
   static Vector_Space intersection(Vector_Space& x, Vector_Space& y) {
     // とりあえず
     static_assert(is_same_v<UINT, u32>);
-    vc<u64> xx;
-    for (auto& v : x.dat) xx.eb(v | static_cast<u64>(v) << 32);
-    Vector_Space<u64, MAX_DIM * 2> z(xx, true);
-    for (auto& v : y.dat) z.add_element(static_cast<u64>(v) << 32);
+    Vector_Space<u64, MAX_DIM * 2> z;
+    for (auto v : x.dat) {
+      if (v) z.add_element(v | static_cast<u64>(v) << MAX_DIM);
+    }
+    for (auto v : y.dat) {
+      if (v) z.add_element(static_cast<u64>(v) << MAX_DIM);
+    }
     Vector_Space<UINT, MAX_DIM> ANS;
     for (auto& v : z.dat) {
       if (v <= u32(-1)) ANS.add_element(v);
