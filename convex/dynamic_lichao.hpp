@@ -85,7 +85,7 @@ struct Dynamic_LiChao_Tree {
  private:
   np clone(np c) {
     if (!c || !PERSISTENT) return c;
-    return pool.lone(c);
+    return pool.clone(c);
   }
 
   inline T evaluate_inner(int fid, ll x) {
