@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':warning:'
@@ -122,7 +122,7 @@ data:
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':heavy_check_mark:'
@@ -284,7 +284,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -308,7 +308,7 @@ data:
   - icon: ':warning:'
     path: graph/to_directed_tree.hpp
     title: graph/to_directed_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':heavy_check_mark:'
@@ -918,7 +918,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1566.test.cpp
     title: test/4_aoj/1566.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -972,9 +972,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -1166,7 +1166,7 @@ data:
   - string/aho_corasick_for_general_trie.hpp
   - string/substring_count_in_substring.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/578.test.cpp
