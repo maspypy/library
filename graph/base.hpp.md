@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -110,7 +110,7 @@ data:
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':heavy_check_mark:'
@@ -272,7 +272,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -296,7 +296,7 @@ data:
   - icon: ':warning:'
     path: graph/to_directed_tree.hpp
     title: graph/to_directed_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':heavy_check_mark:'
@@ -786,7 +786,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1566.test.cpp
     title: test/4_aoj/1566.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -837,9 +837,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -1138,7 +1138,7 @@ data:
   - string/suffix_tree.hpp
   - string/aho_corasick_for_general_trie.hpp
   timestamp: '2025-04-06 22:14:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/1154.test.cpp

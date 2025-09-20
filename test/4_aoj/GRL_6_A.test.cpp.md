@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
@@ -244,7 +244,7 @@ data:
     \n#line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap>\nstruct MaxFlow {\n  struct\
     \ Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  vc<Edge> edges;\n  vc<int>\
     \ indptr, level;\n  vc<Cap> init_cap;\n  vc<tuple<int, int, Cap, Cap>> edge_pool;\n\
-    \n  const int N, source, sink;\n  bool calculated;\n  Cap flow_ans;\n\n  MaxFlow_CSR(int\
+    \n  const int N, source, sink;\n  bool calculated;\n  Cap flow_ans;\n\n  MaxFlow(int\
     \ N, int source, int sink)\n      : N(N), source(source), sink(sink), calculated(0),\
     \ flow_ans(0) {}\n\n  void add(int frm, int to, Cap cap, Cap rev_cap = 0) {\n\
     \    calculated = 0;\n    assert(0 <= frm && frm < N);\n    assert(0 <= to &&\
@@ -346,8 +346,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2025-09-20 13:50:31+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-09-20 14:04:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_6_A.test.cpp
 layout: document

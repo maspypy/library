@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':warning:'
@@ -11,41 +11,41 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':warning:'
     path: graph/maximum_weighted_antichain.hpp
     title: graph/maximum_weighted_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1541.test.cpp
     title: test/3_yukicoder/1541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/177.test.cpp
     title: test/3_yukicoder/177.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2320.test.cpp
     title: test/3_yukicoder/2320.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
   - icon: ':x:'
     path: test/4_aoj/2835.test.cpp
     title: test/4_aoj/2835.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_A.test.cpp
     title: test/4_aoj/GRL_6_A.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap>\nstruct MaxFlow\
     \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  vc<Edge> edges;\n\
     \  vc<int> indptr, level;\n  vc<Cap> init_cap;\n  vc<tuple<int, int, Cap, Cap>>\
     \ edge_pool;\n\n  const int N, source, sink;\n  bool calculated;\n  Cap flow_ans;\n\
-    \n  MaxFlow_CSR(int N, int source, int sink)\n      : N(N), source(source), sink(sink),\
+    \n  MaxFlow(int N, int source, int sink)\n      : N(N), source(source), sink(sink),\
     \ calculated(0), flow_ans(0) {}\n\n  void add(int frm, int to, Cap cap, Cap rev_cap\
     \ = 0) {\n    calculated = 0;\n    assert(0 <= frm && frm < N);\n    assert(0\
     \ <= to && to < N);\n    assert(Cap(0) <= cap);\n    if (frm != to) edge_pool.eb(frm,\
@@ -133,8 +133,8 @@ data:
   code: "template <typename Cap>\nstruct MaxFlow {\n  struct Edge {\n    int to, rev;\n\
     \    Cap cap;\n  };\n\n  vc<Edge> edges;\n  vc<int> indptr, level;\n  vc<Cap>\
     \ init_cap;\n  vc<tuple<int, int, Cap, Cap>> edge_pool;\n\n  const int N, source,\
-    \ sink;\n  bool calculated;\n  Cap flow_ans;\n\n  MaxFlow_CSR(int N, int source,\
-    \ int sink)\n      : N(N), source(source), sink(sink), calculated(0), flow_ans(0)\
+    \ sink;\n  bool calculated;\n  Cap flow_ans;\n\n  MaxFlow(int N, int source, int\
+    \ sink)\n      : N(N), source(source), sink(sink), calculated(0), flow_ans(0)\
     \ {}\n\n  void add(int frm, int to, Cap cap, Cap rev_cap = 0) {\n    calculated\
     \ = 0;\n    assert(0 <= frm && frm < N);\n    assert(0 <= to && to < N);\n   \
     \ assert(Cap(0) <= cap);\n    if (frm != to) edge_pool.eb(frm, to, cap, rev_cap);\n\
@@ -228,8 +228,8 @@ data:
   - flow/binary_optimization.hpp
   - graph/maximum_weighted_antichain.hpp
   - graph/dag_path_cover.hpp
-  timestamp: '2025-09-20 13:50:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-09-20 14:04:17+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/177.test.cpp
   - test/3_yukicoder/1541.test.cpp

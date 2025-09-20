@@ -313,10 +313,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -633,7 +633,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
@@ -704,7 +704,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/bflow.hpp
       title: flow/bflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/binary_optimization.hpp
       title: flow/binary_optimization.hpp
     - icon: ':heavy_check_mark:'
@@ -731,7 +731,7 @@ data:
     - icon: ':warning:'
       path: flow/longest_shortest_path.hpp
       title: flow/longest_shortest_path.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
     - icon: ':warning:'
@@ -883,7 +883,7 @@ data:
       title: geo3d/cross_point.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':warning:'
@@ -922,7 +922,7 @@ data:
     - icon: ':warning:'
       path: graph/count_matching_on_tree.hpp
       title: graph/count_matching_on_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/dag_path_cover.hpp
       title: graph/dag_path_cover.hpp
     - icon: ':warning:'
@@ -1051,7 +1051,7 @@ data:
     - icon: ':warning:'
       path: graph/to_directed_tree.hpp
       title: graph/to_directed_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/toposort.hpp
       title: graph/toposort.hpp
     - icon: ':heavy_check_mark:'
@@ -1301,7 +1301,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/dial.hpp
       title: graph/shortest_path/dial.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
     - icon: ':heavy_check_mark:'
@@ -4140,7 +4140,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1533.test.cpp
       title: test/3_yukicoder/1533.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1541.test.cpp
       title: test/3_yukicoder/1541.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4257,7 +4257,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1769.test.cpp
       title: test/3_yukicoder/1769.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/177.test.cpp
       title: test/3_yukicoder/177.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4497,7 +4497,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2305.test.cpp
       title: test/3_yukicoder/2305.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2320.test.cpp
       title: test/3_yukicoder/2320.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4781,7 +4781,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/1566.test.cpp
       title: test/4_aoj/1566.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/2251_1.test.cpp
       title: test/4_aoj/2251_1.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4922,7 +4922,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/GRL_5_E.test.cpp
       title: test/4_aoj/GRL_5_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/GRL_6_A.test.cpp
       title: test/4_aoj/GRL_6_A.test.cpp
     - icon: ':heavy_check_mark:'

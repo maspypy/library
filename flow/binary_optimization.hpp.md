@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1541.test.cpp
     title: test/3_yukicoder/1541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2320.test.cpp
     title: test/3_yukicoder/2320.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap>\nstruct MaxFlow\
     \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  vc<Edge> edges;\n\
     \  vc<int> indptr, level;\n  vc<Cap> init_cap;\n  vc<tuple<int, int, Cap, Cap>>\
     \ edge_pool;\n\n  const int N, source, sink;\n  bool calculated;\n  Cap flow_ans;\n\
-    \n  MaxFlow_CSR(int N, int source, int sink)\n      : N(N), source(source), sink(sink),\
+    \n  MaxFlow(int N, int source, int sink)\n      : N(N), source(source), sink(sink),\
     \ calculated(0), flow_ans(0) {}\n\n  void add(int frm, int to, Cap cap, Cap rev_cap\
     \ = 0) {\n    calculated = 0;\n    assert(0 <= frm && frm < N);\n    assert(0\
     \ <= to && to < N);\n    assert(Cap(0) <= cap);\n    if (frm != to) edge_pool.eb(frm,\
@@ -235,8 +235,8 @@ data:
   isVerificationFile: false
   path: flow/binary_optimization.hpp
   requiredBy: []
-  timestamp: '2025-09-20 13:50:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-09-20 14:04:17+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1541.test.cpp
   - test/3_yukicoder/2320.test.cpp

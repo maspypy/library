@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -21,7 +21,7 @@ data:
     \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  vc<Edge> edges;\n\
     \  vc<int> indptr, level;\n  vc<Cap> init_cap;\n  vc<tuple<int, int, Cap, Cap>>\
     \ edge_pool;\n\n  const int N, source, sink;\n  bool calculated;\n  Cap flow_ans;\n\
-    \n  MaxFlow_CSR(int N, int source, int sink)\n      : N(N), source(source), sink(sink),\
+    \n  MaxFlow(int N, int source, int sink)\n      : N(N), source(source), sink(sink),\
     \ calculated(0), flow_ans(0) {}\n\n  void add(int frm, int to, Cap cap, Cap rev_cap\
     \ = 0) {\n    calculated = 0;\n    assert(0 <= frm && frm < N);\n    assert(0\
     \ <= to && to < N);\n    assert(Cap(0) <= cap);\n    if (frm != to) edge_pool.eb(frm,\
@@ -227,7 +227,7 @@ data:
   isVerificationFile: false
   path: graph/maximum_weighted_antichain.hpp
   requiredBy: []
-  timestamp: '2025-09-20 13:50:31+09:00'
+  timestamp: '2025-09-20 14:04:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/maximum_weighted_antichain.hpp
