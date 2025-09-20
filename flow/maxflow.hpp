@@ -14,7 +14,7 @@ struct MaxFlow {
   bool calculated;
   Cap flow_ans;
 
-  MaxFlow_CSR(int N, int source, int sink)
+  MaxFlow(int N, int source, int sink)
       : N(N), source(source), sink(sink), calculated(0), flow_ans(0) {}
 
   void add(int frm, int to, Cap cap, Cap rev_cap = 0) {
