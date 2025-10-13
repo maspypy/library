@@ -85,7 +85,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/default_prod.hpp
       title: alg/default_prod.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_pow.hpp
       title: alg/monoid_pow.hpp
   - name: alg/monoid
@@ -214,7 +214,7 @@ data:
     - icon: ':warning:'
       path: convex/cht_monotone_F.hpp
       title: convex/cht_monotone_F.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
     - icon: ':heavy_check_mark:'
@@ -340,7 +340,7 @@ data:
     - icon: ':warning:'
       path: ds/my_multiset.hpp
       title: ds/my_multiset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/node_pool.hpp
       title: ds/node_pool.hpp
     - icon: ':heavy_check_mark:'
@@ -569,7 +569,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/range_add_make_increasing.hpp
       title: ds/segtree/range_add_make_increasing.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/range_assignment_segtree.hpp
       title: ds/segtree/range_assignment_segtree.hpp
     - icon: ':warning:'
@@ -587,7 +587,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_beats.hpp
       title: ds/segtree/segtree_beats.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/sortable_segtree.hpp
       title: ds/segtree/sortable_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -1020,10 +1020,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/optimal_product_on_tree.hpp
       title: graph/optimal_product_on_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1235,7 +1235,7 @@ data:
     - icon: ':warning:'
       path: graph/ds/distance_sum.hpp
       title: graph/ds/distance_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/ds/dual_tree_monoid.hpp
       title: graph/ds/dual_tree_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -1647,7 +1647,7 @@ data:
     - icon: ':question:'
       path: nt/digit_sum.hpp
       title: nt/digit_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/dirichlet.hpp
       title: nt/dirichlet.hpp
     - icon: ':heavy_check_mark:'
@@ -1680,7 +1680,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/gcd_convolution.hpp
       title: nt/gcd_convolution.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/integer_kth_root.hpp
       title: nt/integer_kth_root.hpp
     - icon: ':heavy_check_mark:'
@@ -2355,7 +2355,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/longest_common_subsequence.hpp
       title: string/longest_common_subsequence.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/longest_common_substring.hpp
       title: string/longest_common_substring.hpp
     - icon: ':heavy_check_mark:'
@@ -3278,7 +3278,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
       title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
       title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3299,19 +3299,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
       title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
       title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
       title: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/set_xor_min.test.cpp
       title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/sort_segtree.test.cpp
       title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
       title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3347,7 +3347,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3588,10 +3588,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/number_theory/counting_primes.test.cpp
       title: test/2_library_checker/number_theory/counting_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/number_theory/dirichlet.test.cpp
       title: test/2_library_checker/number_theory/dirichlet.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
       title: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3814,7 +3814,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/enumerate_palindromes.test.cpp
       title: test/2_library_checker/string/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/longest_common_substring.test.cpp
       title: test/2_library_checker/string/longest_common_substring.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3823,7 +3823,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/number_of_subsequences.test.cpp
       title: test/2_library_checker/string/number_of_subsequences.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/number_of_substrings.test.cpp
       title: test/2_library_checker/string/number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3844,10 +3844,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/run_enumerate_vec.test.cpp
       title: test/2_library_checker/string/run_enumerate_vec.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/suffix_array.test.cpp
       title: test/2_library_checker/string/suffix_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/suffix_array_vec.test.cpp
       title: test/2_library_checker/string/suffix_array_vec.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3894,7 +3894,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/lca_fast.test.cpp
       title: test/2_library_checker/tree/lca_fast.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/mst.test.cpp
       title: test/2_library_checker/tree/mst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3906,7 +3906,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/rerooting_dp.test.cpp
       title: test/2_library_checker/tree/rerooting_dp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
       title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3915,7 +3915,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
       title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
       title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     - icon: ':heavy_check_mark:'

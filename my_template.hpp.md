@@ -831,7 +831,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -852,19 +852,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -900,7 +900,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1128,10 +1128,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/counting_primes.test.cpp
     title: test/2_library_checker/number_theory/counting_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/dirichlet.test.cpp
     title: test/2_library_checker/number_theory/dirichlet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
     title: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1344,7 +1344,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/enumerate_palindromes.test.cpp
     title: test/2_library_checker/string/enumerate_palindromes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1353,7 +1353,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/number_of_subsequences.test.cpp
     title: test/2_library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/number_of_substrings.test.cpp
     title: test/2_library_checker/string/number_of_substrings.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1374,10 +1374,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/run_enumerate_vec.test.cpp
     title: test/2_library_checker/string/run_enumerate_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array.test.cpp
     title: test/2_library_checker/string/suffix_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1422,7 +1422,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1434,7 +1434,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
     title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1443,7 +1443,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':heavy_check_mark:'
