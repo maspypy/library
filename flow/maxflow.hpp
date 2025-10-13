@@ -45,7 +45,7 @@ struct MaxFlow {
   Cap flow() {
     if (calculated) return flow_ans;
     calculated = true;
-    if (len(edges) != 2 * len(edge_pool)) build_csr();
+    if (indptr.empty()) build_csr();
     vc<int> prog = indptr;
     level.resize(N);
     vc<int> que(N);
