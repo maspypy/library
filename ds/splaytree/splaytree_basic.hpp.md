@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'
@@ -216,8 +216,8 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree_basic.hpp
   requiredBy:
-  - seq/cycle_decomposition.hpp
   - geo/polygon_triangulation.hpp
+  - seq/cycle_decomposition.hpp
   timestamp: '2025-09-18 21:29:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

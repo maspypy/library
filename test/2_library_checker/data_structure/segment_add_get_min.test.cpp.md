@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -303,12 +303,12 @@ data:
     \n  np add_line_rec(np c, int fid, ll node_l, ll node_r) {\n    int gid = c->fid;\n\
     \    T fl = evaluate_inner(fid, node_l), fr = evaluate_inner(fid, node_r - 1);\n\
     \    T gl = evaluate_inner(gid, node_l), gr = evaluate_inner(gid, node_r - 1);\n\
-    \    bool bl = (MINIMIZE ? fl < gl : fl > gl);\n    bool br = (MINIMIZE ? fr <\
-    \ gr : fr > gr);\n    if (bl && br) {\n      c = clone(c);\n      c->fid = fid;\n\
+    \    bool bl = (MINIMIZE ? fl < gl : gl < fl);\n    bool br = (MINIMIZE ? fr <\
+    \ gr : gr < fr);\n    if (bl && br) {\n      c = clone(c);\n      c->fid = fid;\n\
     \      return c;\n    }\n    if (!bl && !br) {\n      return c;\n    }\n\n   \
     \ c = clone(c);\n    ll node_m = (node_l + node_r) / 2;\n    auto fm = evaluate_inner(fid,\
     \ node_m), gm = evaluate_inner(gid, node_m);\n    bool bm = (MINIMIZE ? fm < gm\
-    \ : fm > gm);\n    if (bm) {\n      c->fid = fid;\n      if (bl) {\n        if\
+    \ : gm < fm);\n    if (bm) {\n      c->fid = fid;\n      if (bl) {\n        if\
     \ (!c->r) c->r = new_node();\n        c->r = add_line_rec(c->r, gid, node_m, node_r);\n\
     \      } else {\n        if (!c->l) c->l = new_node();\n        c->l = add_line_rec(c->l,\
     \ gid, node_l, node_m);\n      }\n    }\n    if (!bm) {\n      if (!bl) {\n  \
@@ -352,8 +352,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2025-09-19 09:11:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-10-13 19:02:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
 layout: document

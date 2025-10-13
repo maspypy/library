@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -162,11 +162,11 @@ data:
     \ d] : edge_pool) {\n      int I1 = prog[a], I2 = prog[b];\n      edges[I1] =\
     \ Edge{b, I2, c}, init_cap[I1] = c, prog[a]++;\n      edges[I2] = Edge{a, I1,\
     \ d}, init_cap[I2] = d, prog[b]++;\n      pos.eb(I1);\n    }\n  }\n\n  Cap flow()\
-    \ {\n    if (calculated) return flow_ans;\n    calculated = true;\n    if (len(edges)\
-    \ != 2 * len(edge_pool)) build_csr();\n    vc<int> prog = indptr;\n    level.resize(N);\n\
-    \    vc<int> que(N);\n    auto bfs = [&]() -> void {\n      fill(all(level), -1);\n\
-    \      int ql = 0, qr = 0;\n      level[source] = 0, que[qr++] = source;\n   \
-    \   while (ql < qr) {\n        int v = que[ql++];\n        FOR(i, indptr[v], indptr[v\
+    \ {\n    if (calculated) return flow_ans;\n    calculated = true;\n    if (indptr.empty())\
+    \ build_csr();\n    vc<int> prog = indptr;\n    level.resize(N);\n    vc<int>\
+    \ que(N);\n    auto bfs = [&]() -> void {\n      fill(all(level), -1);\n     \
+    \ int ql = 0, qr = 0;\n      level[source] = 0, que[qr++] = source;\n      while\
+    \ (ql < qr) {\n        int v = que[ql++];\n        FOR(i, indptr[v], indptr[v\
     \ + 1]) {\n          Edge& e = edges[i];\n          if (e.cap > 0 && level[e.to]\
     \ == -1) {\n            level[e.to] = level[v] + 1;\n            que[qr++] = e.to;\n\
     \            if (e.to == sink) return;\n          }\n        }\n      }\n    };\n\
@@ -291,7 +291,7 @@ data:
   isVerificationFile: false
   path: game/graph_path_game.hpp
   requiredBy: []
-  timestamp: '2025-09-20 19:38:21+09:00'
+  timestamp: '2025-10-13 18:56:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: game/graph_path_game.hpp

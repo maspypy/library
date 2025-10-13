@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':warning:'
@@ -11,34 +11,34 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':warning:'
     path: graph/maximum_weighted_antichain.hpp
     title: graph/maximum_weighted_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1541.test.cpp
     title: test/3_yukicoder/1541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/177.test.cpp
     title: test/3_yukicoder/177.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2320.test.cpp
     title: test/3_yukicoder/2320.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2835.test.cpp
     title: test/4_aoj/2835.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_6_A.test.cpp
     title: test/4_aoj/GRL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap>\nstruct MaxFlow\
@@ -57,12 +57,12 @@ data:
     \     edges[I1] = Edge{b, I2, c}, init_cap[I1] = c, prog[a]++;\n      edges[I2]\
     \ = Edge{a, I1, d}, init_cap[I2] = d, prog[b]++;\n      pos.eb(I1);\n    }\n \
     \ }\n\n  Cap flow() {\n    if (calculated) return flow_ans;\n    calculated =\
-    \ true;\n    if (len(edges) != 2 * len(edge_pool)) build_csr();\n    vc<int> prog\
-    \ = indptr;\n    level.resize(N);\n    vc<int> que(N);\n    auto bfs = [&]() ->\
-    \ void {\n      fill(all(level), -1);\n      int ql = 0, qr = 0;\n      level[source]\
-    \ = 0, que[qr++] = source;\n      while (ql < qr) {\n        int v = que[ql++];\n\
-    \        FOR(i, indptr[v], indptr[v + 1]) {\n          Edge& e = edges[i];\n \
-    \         if (e.cap > 0 && level[e.to] == -1) {\n            level[e.to] = level[v]\
+    \ true;\n    if (indptr.empty()) build_csr();\n    vc<int> prog = indptr;\n  \
+    \  level.resize(N);\n    vc<int> que(N);\n    auto bfs = [&]() -> void {\n   \
+    \   fill(all(level), -1);\n      int ql = 0, qr = 0;\n      level[source] = 0,\
+    \ que[qr++] = source;\n      while (ql < qr) {\n        int v = que[ql++];\n \
+    \       FOR(i, indptr[v], indptr[v + 1]) {\n          Edge& e = edges[i];\n  \
+    \        if (e.cap > 0 && level[e.to] == -1) {\n            level[e.to] = level[v]\
     \ + 1;\n            que[qr++] = e.to;\n            if (e.to == sink) return;\n\
     \          }\n        }\n      }\n    };\n\n    // ACL \u53C2\u8003. v \u307E\u3067\
     \u3044\u304F\u3064\u6D41\u3057\u3066\u304F\u308B\u3068\u3044\u3046\u65B9\u5F0F\
@@ -143,11 +143,11 @@ data:
     \ d] : edge_pool) {\n      int I1 = prog[a], I2 = prog[b];\n      edges[I1] =\
     \ Edge{b, I2, c}, init_cap[I1] = c, prog[a]++;\n      edges[I2] = Edge{a, I1,\
     \ d}, init_cap[I2] = d, prog[b]++;\n      pos.eb(I1);\n    }\n  }\n\n  Cap flow()\
-    \ {\n    if (calculated) return flow_ans;\n    calculated = true;\n    if (len(edges)\
-    \ != 2 * len(edge_pool)) build_csr();\n    vc<int> prog = indptr;\n    level.resize(N);\n\
-    \    vc<int> que(N);\n    auto bfs = [&]() -> void {\n      fill(all(level), -1);\n\
-    \      int ql = 0, qr = 0;\n      level[source] = 0, que[qr++] = source;\n   \
-    \   while (ql < qr) {\n        int v = que[ql++];\n        FOR(i, indptr[v], indptr[v\
+    \ {\n    if (calculated) return flow_ans;\n    calculated = true;\n    if (indptr.empty())\
+    \ build_csr();\n    vc<int> prog = indptr;\n    level.resize(N);\n    vc<int>\
+    \ que(N);\n    auto bfs = [&]() -> void {\n      fill(all(level), -1);\n     \
+    \ int ql = 0, qr = 0;\n      level[source] = 0, que[qr++] = source;\n      while\
+    \ (ql < qr) {\n        int v = que[ql++];\n        FOR(i, indptr[v], indptr[v\
     \ + 1]) {\n          Edge& e = edges[i];\n          if (e.cap > 0 && level[e.to]\
     \ == -1) {\n            level[e.to] = level[v] + 1;\n            que[qr++] = e.to;\n\
     \            if (e.to == sink) return;\n          }\n        }\n      }\n    };\n\
@@ -219,18 +219,18 @@ data:
   path: flow/maxflow.hpp
   requiredBy:
   - game/graph_path_game.hpp
-  - flow/k_ary_optimization.hpp
   - flow/binary_optimization.hpp
-  - graph/maximum_weighted_antichain.hpp
+  - flow/k_ary_optimization.hpp
   - graph/dag_path_cover.hpp
-  timestamp: '2025-09-20 19:38:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - graph/maximum_weighted_antichain.hpp
+  timestamp: '2025-10-13 18:56:57+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/177.test.cpp
-  - test/3_yukicoder/1541.test.cpp
   - test/3_yukicoder/2320.test.cpp
-  - test/4_aoj/2251_1.test.cpp
+  - test/3_yukicoder/1541.test.cpp
   - test/4_aoj/2835.test.cpp
+  - test/4_aoj/2251_1.test.cpp
   - test/4_aoj/GRL_6_A.test.cpp
 documentation_of: flow/maxflow.hpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy:
@@ -371,31 +371,31 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree.hpp
   requiredBy:
-  - seq/cycle_decomposition.hpp
-  - ds/piecewise_constant/piecewise_constant_acted.hpp
   - ds/piecewise_constant/piecewise_constant.hpp
   - ds/piecewise_constant/piecewise_constant_basic.hpp
+  - ds/piecewise_constant/piecewise_constant_acted.hpp
+  - ds/splaytree/splaytree_commutative_monoid.hpp
+  - ds/splaytree/splaytree_acted_monoid.hpp
   - ds/splaytree/splaytree_basic.hpp
   - ds/splaytree/splaytree_acted_set.hpp
-  - ds/splaytree/splaytree_acted_monoid.hpp
-  - ds/splaytree/splaytree_commutative_monoid.hpp
   - ds/splaytree/splaytree_monoid.hpp
-  - convex/slope_trick/slope_super.hpp
   - geo/polygon_triangulation.hpp
+  - convex/slope_trick/slope_super.hpp
+  - seq/cycle_decomposition.hpp
   timestamp: '2025-09-18 21:29:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1441.test.cpp
-  - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/splay.test.cpp
+  - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/splay_monoid.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/splay_cm.test.cpp
-  - test/1_mytest/cf702_F_splay.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/1_mytest/splay_am.test.cpp
   - test/4_aoj/1508.test.cpp
+  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
 documentation_of: ds/splaytree/splaytree.hpp
 layout: document
 redirect_from:

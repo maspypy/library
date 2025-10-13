@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -157,37 +157,42 @@ data:
     \ Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while (L\
     \ < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr\
     \ = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
-    \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
-    \ max_right(F check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
-    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) {\n    assert(0 <= L && L <= R\
+    \ && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R)\
+    \ {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1,\
+    \ R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\
+    \n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int max_right(F\
+    \ check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n  \
+    \  if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do {\n\
+    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
     \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
-    \ dat[L]))) { sm = Monoid::op(sm, dat[L++]); }\n        }\n        return L -\
-    \ size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L)\
-    \ != L);\n    return n;\n  }\n\n  template <class F>\n  int min_left(F check,\
-    \ int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R\
-    \ == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n    \
-    \  --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
+    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
+    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
+    \ min_left(F check, int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
     \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
-    \ (check(Monoid::op(dat[R], sm))) { sm = Monoid::op(dat[R--], sm); }\n       \
-    \ }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R], sm);\n\
-    \    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r} A[i xor\
-    \ x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
+    \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
+    \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
+    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r}\
+    \ A[i xor x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
     \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
-    \ (l >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
-    \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
-    \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
-    \  }\n};\n#line 6 \"test/1_mytest/segtree_xor_prod.test.cpp\"\n\nvoid test() {\n\
-    \  FOR(100) {\n    int n = RNG(0, 5);\n    int N = 1 << n;\n    using Mono = Monoid_Add<int>;\n\
-    \    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0, 10);\n    SegTree<Mono> seg(A);\n\
-    \    FOR(100) {\n      int t = RNG(0, 2);\n      if (t == 0) {\n        int i\
-    \ = RNG(0, N);\n        int x = RNG(0, 10);\n        seg.set(i, x);\n        A[i]\
-    \ = x;\n      }\n      if (t == 1) {\n        int L = RNG(0, N);\n        int\
-    \ R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n        int xor_val\
-    \ = RNG(0, N);\n        int sm = 0;\n        FOR(i, L, R) sm += A[i ^ xor_val];\n\
-    \        assert(sm == seg.xor_prod(L, R, xor_val));\n      }\n    }\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
+    \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
+    \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
+    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 6 \"test/1_mytest/segtree_xor_prod.test.cpp\"\
+    \n\nvoid test() {\n  FOR(100) {\n    int n = RNG(0, 5);\n    int N = 1 << n;\n\
+    \    using Mono = Monoid_Add<int>;\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0,\
+    \ 10);\n    SegTree<Mono> seg(A);\n    FOR(100) {\n      int t = RNG(0, 2);\n\
+    \      if (t == 0) {\n        int i = RNG(0, N);\n        int x = RNG(0, 10);\n\
+    \        seg.set(i, x);\n        A[i] = x;\n      }\n      if (t == 1) {\n   \
+    \     int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
+    \ R);\n        ++R;\n        int xor_val = RNG(0, N);\n        int sm = 0;\n \
+    \       FOR(i, L, R) sm += A[i ^ xor_val];\n        assert(sm == seg.xor_prod(L,\
+    \ R, xor_val));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n#include \"random/base.hpp\"\n#include \"ds/segtree/segtree.hpp\"\
     \n\nvoid test() {\n  FOR(100) {\n    int n = RNG(0, 5);\n    int N = 1 << n;\n\
@@ -209,7 +214,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/segtree_xor_prod.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 02:56:17+09:00'
+  timestamp: '2025-10-13 19:00:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/segtree_xor_prod.test.cpp

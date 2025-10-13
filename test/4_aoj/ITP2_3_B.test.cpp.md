@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_3_B
@@ -263,38 +263,42 @@ data:
     \ Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while (L\
     \ < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr\
     \ = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
-    \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
-    \ max_right(F check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
-    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) {\n    assert(0 <= L && L <= R\
+    \ && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R)\
+    \ {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1,\
+    \ R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\
+    \n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int max_right(F\
+    \ check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n  \
+    \  if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do {\n\
+    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
     \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
-    \ dat[L]))) { sm = Monoid::op(sm, dat[L++]); }\n        }\n        return L -\
-    \ size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L)\
-    \ != L);\n    return n;\n  }\n\n  template <class F>\n  int min_left(F check,\
-    \ int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R\
-    \ == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n    \
-    \  --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
+    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
+    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
+    \ min_left(F check, int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
     \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
-    \ (check(Monoid::op(dat[R], sm))) { sm = Monoid::op(dat[R--], sm); }\n       \
-    \ }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R], sm);\n\
-    \    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r} A[i xor\
-    \ x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
+    \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
+    \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
+    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r}\
+    \ A[i xor x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
     \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
-    \ (l >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
-    \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
-    \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
-    \  }\n};\n#line 2 \"alg/monoid/minmax.hpp\"\n\r\ntemplate <class X>\r\nstruct\
-    \ Monoid_MinMax {\r\n  using P = pair<X, X>;\r\n  using value_type = P;\r\n  static\
-    \ constexpr P op(const P x, const P y) noexcept {\r\n    return {min(x.fi, y.fi),\
-    \ max(x.se, y.se)};\r\n  }\r\n  static constexpr P from_element(const X x) { return\
-    \ {x, x}; }\r\n  static constexpr P unit() { return {infty<X>, -infty<X>}; }\r\
-    \n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/4_aoj/ITP2_3_B.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  using Mono = Monoid_MinMax<int>;\n\
-    \  SegTree<Mono> seg(N, [&](int i) { return Mono::from_element(A[i]); });\n  LL(Q);\n\
-    \  FOR(Q) {\n    LL(t, b, e);\n    if (t == 0) print(seg.prod(b, e).fi);\n   \
-    \ if (t == 1) print(seg.prod(b, e).se);\n  }\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
+    \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
+    \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
+    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 2 \"alg/monoid/minmax.hpp\"\n\r\n\
+    template <class X>\r\nstruct Monoid_MinMax {\r\n  using P = pair<X, X>;\r\n  using\
+    \ value_type = P;\r\n  static constexpr P op(const P x, const P y) noexcept {\r\
+    \n    return {min(x.fi, y.fi), max(x.se, y.se)};\r\n  }\r\n  static constexpr\
+    \ P from_element(const X x) { return {x, x}; }\r\n  static constexpr P unit()\
+    \ { return {infty<X>, -infty<X>}; }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 7 \"test/4_aoj/ITP2_3_B.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
+    \  VEC(int, A, N);\n  using Mono = Monoid_MinMax<int>;\n  SegTree<Mono> seg(N,\
+    \ [&](int i) { return Mono::from_element(A[i]); });\n  LL(Q);\n  FOR(Q) {\n  \
+    \  LL(t, b, e);\n    if (t == 0) print(seg.prod(b, e).fi);\n    if (t == 1) print(seg.prod(b,\
+    \ e).se);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
+    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_3_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/segtree.hpp\"\
     \n#include \"alg/monoid/minmax.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(int, A,\
@@ -311,8 +315,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP2_3_B.test.cpp
   requiredBy: []
-  timestamp: '2025-09-04 22:16:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-10-13 19:00:48+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_3_B.test.cpp
 layout: document

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -174,16 +174,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -216,9 +216,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool\
@@ -261,80 +261,80 @@ data:
   isVerificationFile: false
   path: ds/node_pool.hpp
   requiredBy:
-  - seq/cycle_decomposition.hpp
-  - ds/unionfind/dynamic_unionfind.hpp
-  - ds/segtree/dynamic_dual_segtree.hpp
+  - string/aho_corasick_for_general_trie.hpp
+  - ds/dynamic_array.hpp
+  - ds/binary_trie.hpp
+  - ds/sortable_array.hpp
   - ds/segtree/dynamic_lazy_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
-  - ds/piecewise_constant/piecewise_constant_acted.hpp
+  - ds/segtree/dynamic_dual_segtree.hpp
+  - ds/randomized_bst/rbst_acted_monoid.hpp
+  - ds/randomized_bst/rbst_acted_set.hpp
+  - ds/randomized_bst/rbst.hpp
+  - ds/randomized_bst/rbst_commutative_monoid.hpp
+  - ds/randomized_bst/rbst_monoid.hpp
+  - ds/meldable_heap.hpp
   - ds/piecewise_constant/piecewise_constant.hpp
   - ds/piecewise_constant/piecewise_constant_basic.hpp
-  - ds/binary_trie.hpp
-  - ds/meldable_heap.hpp
-  - ds/randomized_bst/rbst_acted_set.hpp
-  - ds/randomized_bst/rbst_commutative_monoid.hpp
-  - ds/randomized_bst/rbst.hpp
-  - ds/randomized_bst/rbst_acted_monoid.hpp
-  - ds/randomized_bst/rbst_monoid.hpp
-  - ds/sortable_array.hpp
+  - ds/piecewise_constant/piecewise_constant_acted.hpp
+  - ds/unionfind/dynamic_unionfind.hpp
+  - ds/splaytree/splaytree.hpp
+  - ds/splaytree/splaytree_commutative_monoid.hpp
+  - ds/splaytree/splaytree_acted_monoid.hpp
   - ds/splaytree/splaytree_basic.hpp
   - ds/splaytree/splaytree_acted_set.hpp
-  - ds/splaytree/splaytree.hpp
-  - ds/splaytree/splaytree_acted_monoid.hpp
-  - ds/splaytree/splaytree_commutative_monoid.hpp
   - ds/splaytree/splaytree_monoid.hpp
-  - ds/dynamic_array.hpp
+  - graph/shortest_path/K_shortest_walk.hpp
+  - geo/polygon_triangulation.hpp
   - convex/dynamic_lichao.hpp
   - convex/slope_trick/slope_super.hpp
-  - geo/polygon_triangulation.hpp
-  - graph/shortest_path/K_shortest_walk.hpp
-  - string/aho_corasick_for_general_trie.hpp
+  - seq/cycle_decomposition.hpp
   timestamp: '2025-09-16 20:23:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1154.test.cpp
   - test/3_yukicoder/1441.test.cpp
-  - test/3_yukicoder/1752.test.cpp
-  - test/3_yukicoder/789_2.test.cpp
   - test/3_yukicoder/2292.test.cpp
-  - test/3_yukicoder/686.test.cpp
+  - test/3_yukicoder/789_2.test.cpp
+  - test/3_yukicoder/1752.test.cpp
+  - test/3_yukicoder/1154.test.cpp
   - test/3_yukicoder/2809.test.cpp
-  - test/2_library_checker/data_structure/set_xor_min.test.cpp
-  - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
-  - test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
-  - test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/2_library_checker/data_structure/persistent_queue.test.cpp
-  - test/2_library_checker/graph/K_shortest_walk.test.cpp
-  - test/1_mytest/splay_am.test.cpp
-  - test/1_mytest/splay.test.cpp
-  - test/1_mytest/rbst_monoid_2.test.cpp
-  - test/1_mytest/splay_monoid.test.cpp
-  - test/1_mytest/rbst_am_persistent.test.cpp
-  - test/1_mytest/rbst.test.cpp
-  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - test/1_mytest/slope_super.test.cpp
-  - test/1_mytest/rbst_am_2.test.cpp
+  - test/3_yukicoder/686.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
-  - test/1_mytest/rbst_test.test.cpp
-  - test/1_mytest/binary_trie.test.cpp
-  - test/1_mytest/ARC30D.test.cpp
-  - test/1_mytest/rbst_monoid_persistent.test.cpp
-  - test/1_mytest/rbst_commutative_persistent.test.cpp
-  - test/1_mytest/splay_cm.test.cpp
+  - test/1_mytest/splay.test.cpp
+  - test/1_mytest/rbst.test.cpp
+  - test/1_mytest/rbst_am_2.test.cpp
   - test/1_mytest/cf702_F_splay.test.cpp
-  - test/1_mytest/sortable_array.test.cpp
   - test/1_mytest/cf702_F.test.cpp
-  - test/1_mytest/rbst_am.test.cpp
+  - test/1_mytest/splay_monoid.test.cpp
+  - test/1_mytest/rbst_commutative_persistent.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
+  - test/1_mytest/rbst_monoid_persistent.test.cpp
+  - test/1_mytest/sortable_array.test.cpp
+  - test/1_mytest/rbst_test.test.cpp
+  - test/1_mytest/slope_super.test.cpp
+  - test/1_mytest/binary_trie.test.cpp
+  - test/1_mytest/splay_cm.test.cpp
+  - test/1_mytest/ARC30D.test.cpp
+  - test/1_mytest/rbst_am.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
-  - test/4_aoj/1508_2.test.cpp
+  - test/1_mytest/rbst_am_persistent.test.cpp
+  - test/1_mytest/rbst_monoid_2.test.cpp
+  - test/1_mytest/splay_am.test.cpp
   - test/4_aoj/1508.test.cpp
+  - test/4_aoj/1508_2.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
+  - test/2_library_checker/data_structure/set_xor_min.test.cpp
+  - test/2_library_checker/data_structure/persistent_queue.test.cpp
+  - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
+  - test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
+  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
+  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/2_library_checker/data_structure/segment_add_get_min.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: ds/node_pool.hpp
 layout: document
 redirect_from:

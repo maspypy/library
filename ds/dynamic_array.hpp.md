@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy:
@@ -79,8 +79,8 @@ data:
   isVerificationFile: false
   path: ds/dynamic_array.hpp
   requiredBy:
-  - ds/unionfind/dynamic_unionfind.hpp
   - string/aho_corasick_for_general_trie.hpp
+  - ds/unionfind/dynamic_unionfind.hpp
   timestamp: '2025-09-16 20:23:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

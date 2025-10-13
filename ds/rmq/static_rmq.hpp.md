@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
-    title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\
@@ -39,10 +36,10 @@ data:
     \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
     \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
     \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line\
-    \ 2 \"ds/static_rmq.hpp\"\n\n// \u69CB\u7BC9 O(N), \u30AF\u30A8\u30EA O(1)\n//\
-    \ static_range_product \u3088\u308A\u9045\u3044\u3063\u307D\u3044\u306E\u3067\u4F7F\
-    \u3046\u3053\u3068\u306F\u306A\u3055\u305D\u3046\u3060\ntemplate <typename Monoid>\n\
-    struct Static_RMQ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \ 2 \"ds/rmq/static_rmq.hpp\"\n\n// \u69CB\u7BC9 O(N), \u30AF\u30A8\u30EA O(1)\n\
+    // static_range_product \u3088\u308A\u9045\u3044\u3063\u307D\u3044\u306E\u3067\
+    \u4F7F\u3046\u3053\u3068\u306F\u306A\u3055\u305D\u3046\u3060\ntemplate <typename\
+    \ Monoid>\nstruct Static_RMQ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
     \  static constexpr int LOG = 4;\n  int N, b_num;\n  vc<X> A, pre, suf; // inclusive\n\
     \  Sparse_Table<Monoid> ST;\n\n  using u16 = unsigned short;\n  vc<u16> dat;\n\
     \n  Static_RMQ() {}\n  template <typename F>\n  Static_RMQ(int n, F f) {\n   \
@@ -96,16 +93,15 @@ data:
   dependsOn:
   - ds/sparse_table/sparse_table.hpp
   isVerificationFile: false
-  path: ds/static_rmq.hpp
+  path: ds/rmq/static_rmq.hpp
   requiredBy: []
-  timestamp: '2024-09-06 01:41:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/2_library_checker/data_structure/staticrmq_x.test.cpp
-documentation_of: ds/static_rmq.hpp
+  timestamp: '2025-10-13 18:56:57+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/rmq/static_rmq.hpp
 layout: document
 redirect_from:
-- /library/ds/static_rmq.hpp
-- /library/ds/static_rmq.hpp.html
-title: ds/static_rmq.hpp
+- /library/ds/rmq/static_rmq.hpp
+- /library/ds/rmq/static_rmq.hpp.html
+title: ds/rmq/static_rmq.hpp
 ---
