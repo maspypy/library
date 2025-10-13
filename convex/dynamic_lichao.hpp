@@ -114,8 +114,8 @@ struct Dynamic_LiChao_Tree {
     int gid = c->fid;
     T fl = evaluate_inner(fid, node_l), fr = evaluate_inner(fid, node_r - 1);
     T gl = evaluate_inner(gid, node_l), gr = evaluate_inner(gid, node_r - 1);
-    bool bl = (MINIMIZE ? fl < gl : fl > gl);
-    bool br = (MINIMIZE ? fr < gr : fr > gr);
+    bool bl = (MINIMIZE ? fl < gl : gl < fl);
+    bool br = (MINIMIZE ? fr < gr : gr < fr);
     if (bl && br) {
       c = clone(c);
       c->fid = fid;
@@ -128,7 +128,7 @@ struct Dynamic_LiChao_Tree {
     c = clone(c);
     ll node_m = (node_l + node_r) / 2;
     auto fm = evaluate_inner(fid, node_m), gm = evaluate_inner(gid, node_m);
-    bool bm = (MINIMIZE ? fm < gm : fm > gm);
+    bool bm = (MINIMIZE ? fm < gm : gm < fm);
     if (bm) {
       c->fid = fid;
       if (bl) {
