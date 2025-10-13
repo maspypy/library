@@ -5,13 +5,16 @@ data:
   - icon: ':warning:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_segtree_sparse.test.cpp
     title: test/1_mytest/dynamic_segtree_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_max.test.cpp
+    title: test/1_mytest/range_add_range_max.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
     title: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
@@ -219,6 +222,7 @@ data:
   - test/3_yukicoder/2242.test.cpp
   - test/3_yukicoder/2627.test.cpp
   - test/1_mytest/dynamic_segtree_sparse.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
   - test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
 documentation_of: ds/segtree/dynamic_segtree_sparse.hpp

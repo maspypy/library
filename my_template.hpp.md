@@ -490,6 +490,12 @@ data:
     path: test/1_mytest/qoj5443.test.cpp
     title: test/1_mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_max.test.cpp
+    title: test/1_mytest/range_add_range_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_min.test.cpp
+    title: test/1_mytest/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -909,6 +915,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/unionfind.test.cpp
     title: test/2_library_checker/data_structure/unionfind.test.cpp
@@ -3134,6 +3143,8 @@ data:
   - test/1_mytest/maxidx_add.test.cpp
   - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/rbst_commutative_persistent.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/fibonacci_search.test.cpp
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
@@ -3349,6 +3360,7 @@ data:
   - test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   - test/2_library_checker/data_structure/double_ended_pq.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_x.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
   - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp

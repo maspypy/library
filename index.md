@@ -504,13 +504,13 @@ data:
       title: ds/randomized_bst/rbst_monoid.hpp
   - name: ds/rmq
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/rmq/range_add_range_max.hpp
       title: ds/rmq/range_add_range_max.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/rmq/range_add_range_min.hpp
       title: ds/rmq/range_add_range_min.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/rmq/static_rmq.hpp
       title: ds/rmq/static_rmq.hpp
     - icon: ':warning:'
@@ -2924,10 +2924,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/qoj5443.test.cpp
       title: test/1_mytest/qoj5443.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/range_add_range_max.test.cpp
       title: test/1_mytest/range_add_range_max.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/range_add_range_min.test.cpp
       title: test/1_mytest/range_add_range_min.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3356,7 +3356,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
     - icon: ':heavy_check_mark:'

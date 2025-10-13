@@ -8,10 +8,13 @@ data:
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_max.test.cpp
+    title: test/1_mytest/range_add_range_max.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/542/problem/B
@@ -238,8 +241,9 @@ data:
   path: ds/rmq/range_add_range_max.hpp
   requiredBy: []
   timestamp: '2025-10-13 19:00:48+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/range_add_range_max.test.cpp
 documentation_of: ds/rmq/range_add_range_max.hpp
 layout: document
 redirect_from:

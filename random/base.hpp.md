@@ -505,6 +505,12 @@ data:
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_max.test.cpp
+    title: test/1_mytest/range_add_range_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_min.test.cpp
+    title: test/1_mytest/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1106,6 +1112,8 @@ data:
   - test/1_mytest/maxidx_add.test.cpp
   - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/rbst_commutative_persistent.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp

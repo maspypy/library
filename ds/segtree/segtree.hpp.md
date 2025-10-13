@@ -8,10 +8,10 @@ data:
   - icon: ':warning:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_min.hpp
     title: ds/rmq/range_add_range_min.hpp
   - icon: ':heavy_check_mark:'
@@ -75,6 +75,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_max.test.cpp
+    title: test/1_mytest/range_add_range_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_min.test.cpp
+    title: test/1_mytest/range_add_range_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
@@ -323,6 +329,8 @@ data:
   - test/1_mytest/manhattan_nns.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/wavelet_matrix.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/range_mex.test.cpp

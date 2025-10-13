@@ -85,6 +85,9 @@ data:
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_min.test.cpp
+    title: test/1_mytest/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,6 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
@@ -244,6 +250,7 @@ data:
   - test/1_mytest/seg2d.test.cpp
   - test/1_mytest/wavelet_matrix.test.cpp
   - test/1_mytest/dynamic_segtree_sparse.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
@@ -263,6 +270,7 @@ data:
   - test/2_library_checker/string/suffix_array.test.cpp
   - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_x.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
   - test/2_library_checker/data_structure/staticrmq.test.cpp
   - test/2_library_checker/data_structure/staticrmq_seg.test.cpp

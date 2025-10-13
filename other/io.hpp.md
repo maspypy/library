@@ -298,6 +298,9 @@ data:
     path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/unionfind.test.cpp
     title: test/2_library_checker/data_structure/unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2555,6 +2558,7 @@ data:
   - test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   - test/2_library_checker/data_structure/double_ended_pq.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_x.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
   - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
