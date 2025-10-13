@@ -1,5 +1,6 @@
 /*
 partition は、「減少列」として辞書式の降順に列挙する。
+N=10,20,30,40：42, 527, 5604, 37338
 N = 50（204226）：12 ms
 N = 60（966467）：60 ms
 N = 70（4087968）：270 ms
@@ -15,11 +16,9 @@ void enumerate_partition(int N, F query, int LIM_len = -1, int LIM_val = -1) {
       query(p);
       return;
     }
-    if (LIM_len != -1 && len(p) == LIM_len)
-      return;
+    if (LIM_len != -1 && len(p) == LIM_len) return;
     int nxt = (len(p) == 0 ? N : p.back());
-    if (LIM_val != -1)
-      chmin(nxt, LIM_val);
+    if (LIM_val != -1) chmin(nxt, LIM_val);
     chmin(nxt, N - sum);
     p.eb(0);
     FOR3_R(x, 1, nxt + 1) {
@@ -38,7 +37,8 @@ void enumerate_partition(int N, F query, int LIM_len = -1, int LIM_val = -1) {
 // N = 11（678570）：29 ms
 // N = 12（4213597）：208 ms
 // N = 13（27644437）：2084 ms
-template <typename F> void enumerate_set_partition(int N, F f) {
+template <typename F>
+void enumerate_set_partition(int N, F f) {
   vc<int> S;
   auto dfs = [&](auto &dfs, int rest) -> void {
     if (rest == 0) {

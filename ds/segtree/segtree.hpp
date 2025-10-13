@@ -61,6 +61,20 @@ struct SegTree {
     return Monoid::op(vl, vr);
   }
 
+  vc<int> prod_ids(int L, int R) {
+    assert(0 <= L && L <= R && R <= n);
+    vc<int> I, J;
+    L += size, R += size;
+    while (L < R) {
+      if (L & 1) I.eb(L++);
+      if (R & 1) J.eb(--R);
+      L >>= 1, R >>= 1;
+    }
+    reverse(all(J));
+    concat(I, J);
+    return I;
+  }
+
   X prod_all() { return dat[1]; }
 
   template <class F>
@@ -74,7 +88,9 @@ struct SegTree {
       if (!check(Monoid::op(sm, dat[L]))) {
         while (L < size) {
           L = 2 * L;
-          if (check(Monoid::op(sm, dat[L]))) { sm = Monoid::op(sm, dat[L++]); }
+          if (check(Monoid::op(sm, dat[L]))) {
+            sm = Monoid::op(sm, dat[L++]);
+          }
         }
         return L - size;
       }
@@ -95,7 +111,9 @@ struct SegTree {
       if (!check(Monoid::op(dat[R], sm))) {
         while (R < size) {
           R = 2 * R + 1;
-          if (check(Monoid::op(dat[R], sm))) { sm = Monoid::op(dat[R--], sm); }
+          if (check(Monoid::op(dat[R], sm))) {
+            sm = Monoid::op(dat[R--], sm);
+          }
         }
         return R + 1 - size;
       }
@@ -110,8 +128,12 @@ struct SegTree {
     X x = Monoid::unit();
     for (int k = 0; k < log + 1; ++k) {
       if (l >= r) break;
-      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }
-      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }
+      if (l & 1) {
+        x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]);
+      }
+      if (r & 1) {
+        x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]);
+      }
       l /= 2, r /= 2, xor_val /= 2;
     }
     return x;
