@@ -4,7 +4,7 @@
 #include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/min_add.hpp"
 #include "random/base.hpp"
-#include "ds/segtree/range_add_range_min.hpp"
+#include "ds/rmq/range_add_range_min.hpp"
 
 vi sol_0(int N, int Q, vi A, vc<tuple<int, int, int, int>> query) {
   Lazy_SegTree<ActedMonoid_Min_Add<ll>> seg(A);
