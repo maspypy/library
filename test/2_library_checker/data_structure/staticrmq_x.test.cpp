@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/static_rmq.hpp"
+#include "ds/rmq/static_rmq.hpp"
 #include "alg/monoid/min.hpp"
 
 void solve() {

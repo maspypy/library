@@ -3,7 +3,7 @@
 
 #include "alg/acted_monoid/max_add.hpp"
 #include "ds/segtree/lazy_segtree.hpp"
-#include "ds/segtree/range_add_range_max.hpp"
+#include "ds/rmq/range_add_range_max.hpp"
 #include "random/base.hpp"
 
 vi sol_0(int N, int Q, vi A, vc<tuple<int, int, int, int>> query) {
