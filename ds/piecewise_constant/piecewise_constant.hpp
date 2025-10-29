@@ -78,10 +78,16 @@ struct Piecewise_Constant {
   }
 
   // f(x) を g(x) に変更. g(x)=min_{x+a<=t<=x+b} f(x).
-  void slide_min(ll a, ll b) { slide(BT::inc, BT::dec, a, b, que_hi); }
+  void slide_min(ll a, ll b) {
+    assert(a <= b);
+    slide(BT::inc, BT::dec, a, b, que_hi);
+  }
 
   // f(x) を g(x) に変更. g(x)=max_{x+a<=t<=x+b} f(x).
-  void slide_max(ll a, ll b) { slide(BT::dec, BT::inc, a, b, que_lo); }
+  void slide_max(ll a, ll b) {
+    assert(a <= b);
+    slide(BT::dec, BT::inc, a, b, que_lo);
+  }
 
   vc<tuple<ll, ll, Y>> get_all() {
     vc<tuple<ll, ll, Y>> ANS;

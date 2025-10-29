@@ -60,7 +60,10 @@ struct My_Bitset {
     int index;
   };
 
-  Proxy operator[](int i) { return Proxy(dat, i); }
+  Proxy operator[](int i) {
+    assert(0 <= i && i < N);
+    return Proxy(dat, i);
+  }
 
   bool operator==(const T &p) {
     assert(N == p.N);

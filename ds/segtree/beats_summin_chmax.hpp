@@ -54,7 +54,9 @@ struct Beats_SumMin_Chmax {
 
       T before_min = x.min;
       x.min = max(x.min, ma);
-      if (x.minc == cnt) { x.min2 = x.min, x.sum = cnt * x.min; }
+      if (x.minc == cnt) {
+        x.min2 = x.min, x.sum = cnt * x.min;
+      }
       elif (x.min2 > x.min) { x.sum += (x.min - before_min) * x.minc; }
       else {
         x.fail = 1;
@@ -64,6 +66,7 @@ struct Beats_SumMin_Chmax {
   };
   using X = typename SumMin::X;
   SegTree_Beats<Beats> seg;
+  Beats_SumMin_Chmax() {}
   Beats_SumMin_Chmax(vc<T>& A) {
     seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });
   }
@@ -71,6 +74,12 @@ struct Beats_SumMin_Chmax {
   Beats_SumMin_Chmax(int n, F f) {
     seg.build(n, [&](int i) -> X { return from_element(f(i)); });
   }
+
+  template <typename F>
+  void build(int n, F f) {
+    seg.build(n, [&](int i) -> X { return from_element(f(i)); });
+  }
+
   void set(int i, T x) { seg.set(i, from_element(x)); }
 
   // (sum, min)

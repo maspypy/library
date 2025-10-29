@@ -126,7 +126,6 @@ void read(H &h, T &...t) {
   rd(h), read(t...);
 }
 
-// 先に用意（既出なら不要）
 inline void wt_range(const char *s, size_t n) {
   size_t i = 0;
   while (i < n) {
@@ -176,10 +175,8 @@ void wt_integer(T x) {
 template <typename T>
 inline void wt_real(T x) {
   char buf[64];
-  // 有効数字 15 桁、通常/指数を自動選択（printf("%.15g") 相当）
   int n = std::snprintf(buf, sizeof(buf), "%.15g", (double)x);
 
-  // （任意）-0 を 0 に正規化
   if (n == 2 && buf[0] == '-' && buf[1] == '0') {
     buf[0] = '0';
     n = 1;
