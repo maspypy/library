@@ -6,7 +6,7 @@ data:
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool\
@@ -162,7 +162,7 @@ data:
   path: convex/dynamic_lichao.hpp
   requiredBy: []
   timestamp: '2025-10-13 19:02:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
   - test/2_library_checker/data_structure/segment_add_get_min.test.cpp
