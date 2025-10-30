@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy:
@@ -15,9 +15,12 @@ data:
     path: ds/piecewise_constant/piecewise_constant_acted.hpp
     title: ds/piecewise_constant/piecewise_constant_acted.hpp
   - icon: ':warning:'
+    path: ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
+    title: ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
+  - icon: ':warning:'
     path: ds/piecewise_constant/piecewise_constant_basic.hpp
     title: ds/piecewise_constant/piecewise_constant_basic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -26,10 +29,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -60,21 +63,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1441.test.cpp
     title: test/3_yukicoder/1441.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool\
@@ -372,6 +375,7 @@ data:
   path: ds/splaytree/splaytree.hpp
   requiredBy:
   - ds/piecewise_constant/piecewise_constant.hpp
+  - ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
   - ds/piecewise_constant/piecewise_constant_basic.hpp
   - ds/piecewise_constant/piecewise_constant_acted.hpp
   - ds/splaytree/splaytree_commutative_monoid.hpp
@@ -383,7 +387,7 @@ data:
   - convex/slope_trick/slope_super.hpp
   - seq/cycle_decomposition.hpp
   timestamp: '2025-09-18 21:29:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1441.test.cpp
   - test/1_mytest/splay.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':warning:'
     path: ds/piecewise_constant/piecewise_constant.hpp
     title: ds/piecewise_constant/piecewise_constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
@@ -195,26 +195,26 @@ data:
     \ a) {\n    add[0] += a, add[1] += a, add[2] += a, add[3] += a;\n    if (domain[0]\
     \ != -infty<ll>) domain[0] += a;\n    if (domain[1] != infty<ll>) domain[1] +=\
     \ a;\n  }\n\n  // f(x) \u3092 g(x) \u306B\u5909\u66F4. g(x)=min_{x+a<=t<=x+b}\
-    \ f(x).\n  void slide_min(ll a, ll b) { slide(BT::inc, BT::dec, a, b, que_hi);\
-    \ }\n\n  // f(x) \u3092 g(x) \u306B\u5909\u66F4. g(x)=max_{x+a<=t<=x+b} f(x).\n\
-    \  void slide_max(ll a, ll b) { slide(BT::dec, BT::inc, a, b, que_lo); }\n\n \
-    \ vc<tuple<ll, ll, Y>> get_all() {\n    vc<tuple<ll, ll, Y>> ANS;\n    auto dfs\
-    \ = [&](auto& dfs, np c) -> void {\n      auto [x1, x2] = position(c);\n     \
-    \ c->push();\n      if (c->l) dfs(dfs, c->l);\n      ANS.eb(x1, x2, c->y());\n\
-    \      if (c->r) dfs(dfs, c->r);\n    };\n    dfs(dfs, root);\n    return ANS;\n\
-    \  }\n\n  // \u5B9A\u7FA9\u57DF\u306E\u5DE6\u7AEF\u304C x \u306B\u306A\u308B\u3088\
-    \u3046\u306B\u62E1\u5F35, y \u3067\u57CB\u3081\u308B\n  void extend_domain_left(ll\
-    \ x, Y y) {\n    if (x == domain[0]) return;\n    assert(x < domain[0]);\n   \
-    \ ST.splay_kth(root, 0);\n    BT color = (y < root->y() ? BT::inc : BT::dec);\n\
-    \    np c = new_node(S{x - add[BT::l], domain[0] - add[color], y, BT::l, color});\n\
-    \    root->c1() = color, root->x1() = domain[0] - add[color];\n    add_que(root);\n\
-    \    root = ST.merge(c, root);\n    domain[0] = x;\n  }\n\n  void apply(ll L,\
-    \ ll R, App app) {\n    if (L == R) return;\n    auto [A, tmp] = split(root, L,\
-    \ domain[0], domain[1]);\n    auto [B, C] = split(tmp, R, L, domain[1]);\n   \
-    \ ST.apply(B, app);\n    if (A) {\n      ST.splay_kth(A, A->size - 1);\n     \
-    \ ST.splay_kth(B, 0);\n      assert(position(A).se == L && position(B).fi == L);\n\
-    \      BT color = (A->y() < B->y() ? BT::inc : BT::dec);\n      A->c2() = color,\
-    \ A->x2() = L - add[color];\n      B->c1() = color, B->x1() = L - add[color];\n\
+    \ f(x).\n  void slide_min(ll a, ll b) {\n    assert(a <= b);\n    slide(BT::inc,\
+    \ BT::dec, a, b, que_hi);\n  }\n\n  // f(x) \u3092 g(x) \u306B\u5909\u66F4. g(x)=max_{x+a<=t<=x+b}\
+    \ f(x).\n  void slide_max(ll a, ll b) {\n    assert(a <= b);\n    slide(BT::dec,\
+    \ BT::inc, a, b, que_lo);\n  }\n\n  vc<tuple<ll, ll, Y>> get_all() {\n    vc<tuple<ll,\
+    \ ll, Y>> ANS;\n    auto dfs = [&](auto& dfs, np c) -> void {\n      auto [x1,\
+    \ x2] = position(c);\n      c->push();\n      if (c->l) dfs(dfs, c->l);\n    \
+    \  ANS.eb(x1, x2, c->y());\n      if (c->r) dfs(dfs, c->r);\n    };\n    dfs(dfs,\
+    \ root);\n    return ANS;\n  }\n\n  // \u5B9A\u7FA9\u57DF\u306E\u5DE6\u7AEF\u304C\
+    \ x \u306B\u306A\u308B\u3088\u3046\u306B\u62E1\u5F35, y \u3067\u57CB\u3081\u308B\
+    \n  void extend_domain_left(ll x, Y y) {\n    if (x == domain[0]) return;\n  \
+    \  assert(x < domain[0]);\n    ST.splay_kth(root, 0);\n    BT color = (y < root->y()\
+    \ ? BT::inc : BT::dec);\n    np c = new_node(S{x - add[BT::l], domain[0] - add[color],\
+    \ y, BT::l, color});\n    root->c1() = color, root->x1() = domain[0] - add[color];\n\
+    \    add_que(root);\n    root = ST.merge(c, root);\n    domain[0] = x;\n  }\n\n\
+    \  void apply(ll L, ll R, App app) {\n    if (L == R) return;\n    auto [A, tmp]\
+    \ = split(root, L, domain[0], domain[1]);\n    auto [B, C] = split(tmp, R, L,\
+    \ domain[1]);\n    ST.apply(B, app);\n    if (A) {\n      ST.splay_kth(A, A->size\
+    \ - 1);\n      ST.splay_kth(B, 0);\n      assert(position(A).se == L && position(B).fi\
+    \ == L);\n      BT color = (A->y() < B->y() ? BT::inc : BT::dec);\n      A->c2()\
+    \ = color, A->x2() = L - add[color];\n      B->c1() = color, B->x1() = L - add[color];\n\
     \      add_que(A), add_que(B);\n    } else {\n      ST.splay_kth(B, 0);\n    \
     \  assert(position(B).fi == L);\n      B->c1() = BT::l, B->x1() = L - add[BT::l];\n\
     \    }\n    if (C) {\n      ST.splay_kth(B, B->size - 1);\n      ST.splay_kth(C,\
@@ -319,7 +319,7 @@ data:
   isVerificationFile: false
   path: ds/piecewise_constant/piecewise_constant_basic.hpp
   requiredBy: []
-  timestamp: '2025-09-18 21:29:06+09:00'
+  timestamp: '2025-10-30 08:59:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/piecewise_constant/piecewise_constant_basic.hpp
