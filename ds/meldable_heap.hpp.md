@@ -5,11 +5,11 @@ data:
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/3_yukicoder/1752.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://qoj.ac/contest/1699/problem/8518
@@ -149,7 +149,7 @@ data:
   requiredBy:
   - graph/shortest_path/K_shortest_walk.hpp
   timestamp: '2025-09-16 20:23:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1752.test.cpp
   - test/3_yukicoder/1154.test.cpp

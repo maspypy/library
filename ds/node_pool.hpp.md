@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
   - icon: ':warning:'
@@ -80,7 +80,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   - icon: ':warning:'
@@ -189,7 +189,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':x:'
