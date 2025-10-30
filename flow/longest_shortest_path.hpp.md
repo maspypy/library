@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
   - icon: ':question:'
