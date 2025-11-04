@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1297.test.cpp
     title: test/3_yukicoder/1297.test.cpp
   - icon: ':x:'
