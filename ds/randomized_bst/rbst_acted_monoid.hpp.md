@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\ntemplate <class Node>\nstruct Node_Pool\
@@ -309,7 +309,7 @@ data:
   path: ds/randomized_bst/rbst_acted_monoid.hpp
   requiredBy: []
   timestamp: '2025-09-16 20:49:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/686.test.cpp
   - test/1_mytest/rbst_am_2.test.cpp

@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
   - icon: ':question:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_mul.hpp
     title: alg/acted_monoid/sum_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_1.hpp
     title: convex/slope_trick/slope_trick_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -122,7 +122,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':warning:'
@@ -456,28 +456,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/655.test.cpp
     title: test/3_yukicoder/655.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789.test.cpp
     title: test/3_yukicoder/789.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_3.test.cpp
     title: test/3_yukicoder/789_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
   - icon: ':x:'

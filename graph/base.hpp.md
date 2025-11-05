@@ -53,7 +53,7 @@ data:
   - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -119,7 +119,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/bfs_numbering.hpp
     title: graph/ds/bfs_numbering.hpp
   - icon: ':heavy_check_mark:'
@@ -203,7 +203,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -236,7 +236,7 @@ data:
   - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -768,16 +768,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2892.test.cpp
     title: test/3_yukicoder/2892.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
   - icon: ':x:'

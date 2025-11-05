@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst.hpp
     title: ds/randomized_bst/rbst.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':warning:'
     path: ds/segtree/dynamic_dual_segtree.hpp
     title: ds/segtree/dynamic_dual_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -207,10 +207,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
   - icon: ':x:'
