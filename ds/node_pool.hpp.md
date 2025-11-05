@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':question:'
@@ -204,7 +204,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
   - icon: ':x:'

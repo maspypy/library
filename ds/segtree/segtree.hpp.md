@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   - icon: ':question:'
@@ -162,16 +162,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2890.test.cpp
     title: test/3_yukicoder/2890.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2897.test.cpp
     title: test/3_yukicoder/2897.test.cpp
   - icon: ':x:'
