@@ -9,7 +9,7 @@ data:
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dyadic_rational.test.cpp
     title: test/1_mytest/dyadic_rational.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/1_mytest/partizan.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\u5F62\u3067\
@@ -106,7 +106,7 @@ data:
   - game/solve_partizan_game.hpp
   - game/number_and_star.hpp
   timestamp: '2024-11-11 22:49:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/partizan.test.cpp
   - test/1_mytest/dyadic_rational.test.cpp
