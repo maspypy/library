@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   _extendedRequiredBy: []
@@ -216,48 +216,54 @@ data:
     \ {\n    vc<tuple<int, int, Cap>> res;\n    FOR(v, N) {\n      FOR(i, indptr[v],\
     \ indptr[v + 1]) {\n        Edge& e = edges[i];\n        Cap f = init_cap[i] -\
     \ e.cap;\n        if (f > 0) res.eb(v, e.to, f);\n      }\n    }\n    return res;\n\
-    \  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\
-    \u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap,\
-    \ vc<int>> cut() {\n    flow();\n    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v]\
-    \ >= 0 ? 0 : 1);\n    return {flow_ans, res};\n  }\n\n  // O(F(N+M)) \u304F\u3089\
-    \u3044\u4F7F\u3063\u3066\u7D4C\u8DEF\u5FA9\u5143\n  // simple path \u306B\u306A\
-    \u308B\n  vvc<int> path_decomposition() {\n    flow();\n    auto edges = get_flow_edges();\n\
-    \    vvc<int> TO(N);\n    for (auto&& [frm, to, flow] : edges) {\n      FOR(flow)\
-    \ TO[frm].eb(to);\n    }\n    vvc<int> res;\n    vc<int> vis(N);\n\n    FOR(flow_ans)\
-    \ {\n      vc<int> path = {source};\n      vis[source] = 1;\n      while (path.back()\
-    \ != sink) {\n        int to = POP(TO[path.back()]);\n        while (vis[to])\
-    \ {\n          vis[POP(path)] = 0;\n        }\n        path.eb(to), vis[to] =\
-    \ 1;\n      }\n      for (auto&& v : path) vis[v] = 0;\n      res.eb(path);\n\
-    \    }\n    return res;\n  }\n\n  void debug() {\n#ifdef LOCAL\n    print(\"source\"\
-    , source);\n    print(\"sink\", sink);\n    print(\"edges (frm, to, cap, flow)\"\
-    );\n    FOR(v, N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e\
-    \ = edges[i];\n        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to,\
-    \ e.cap, f);\n      }\n    }\n#endif\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\
-    \n\r\ntemplate <typename GT>\r\nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\
-    \n  GT G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id);\
-    \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"game/graph_path_game.hpp\"\
-    \n\n// \u30B0\u30E9\u30D5\u304C\u3042\u308B. \u9802\u70B9 v \u306F A[v] \u56DE\
-    \u307E\u3067\u4F7F\u3048\u308B\uFF08\u591A\u91CD\u9802\u70B9\uFF09\n// winning\
-    \ position \u306E\u5217\u3092\u304B\u3048\u3059. \u305D\u308C\u3092\u542B\u307E\
-    \u306A\u3044\u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u304C\u3042\u3042\u308B\
-    \u3068\u3044\u3046\u3053\u3068\n// https://qoj.ac/contest/1576/problem/8507\n\
-    vc<int> graph_path_game(Graph<int, 0> G, vc<int> A) {\n  // \u4E8C\u90E8\u3060\
-    \u3051\n  auto color = bipartite_vertex_coloring(G);\n  assert(!color.empty());\n\
-    \  int N = G.N;\n  int s = N, t = N + 1;\n  MaxFlow<int> F(N + 2, s, t);\n  FOR(v,\
-    \ N) {\n    if (color[v] == 0) F.add(s, v, A[v]);\n    if (color[v] == 1) F.add(v,\
-    \ t, A[v]);\n  }\n  for (auto& e: G.edges) {\n    int a = e.frm, b = e.to;\n \
-    \   if (color[a] == 1) swap(a, b);\n    F.add(a, b, infty<int>);\n  }\n  F.flow();\n\
-    \  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u3067 s \u304B\u3089\u5230\u9054\u53EF\u80FD\
-    \u306A\u5DE6\u5074\u306E\u70B9\n  // t \u3078\u5230\u9054\u53EF\u80FD\u306A\u53F3\
-    \u5074\u306E\u70B9\n  Graph<int, 1> H(N + 2);\n  FOR(v, N + 2) {\n    for (auto&\
-    \ e: F.edges[v]) {\n      if (e.cap > 0) H.add(v, e.to);\n    }\n  }\n  H.build();\n\
-    \  auto reach = [&](int v) -> vc<int> {\n    vc<bool> vis(N + 2);\n    vc<int>\
-    \ que;\n    que.eb(v), vis[v] = 1;\n    FOR(i, len(que)) {\n      int v = que[i];\n\
-    \      for (auto& e: H[v]) {\n        if (!vis[e.to]) vis[e.to] = 1, que.eb(e.to);\n\
-    \      }\n    }\n    return que;\n  };\n  vc<int> ANS;\n  for (auto& v: reach(s))\
-    \ {\n    if (v < N && color[v] == 0) ANS.eb(v);\n  }\n  H = reverse_graph(H);\n\
-    \  for (auto& v: reach(t)) {\n    if (v < N && color[v] == 1) ANS.eb(v);\n  }\n\
-    \  return ANS;\n}\n"
+    \  }\n\n  // \u307E\u3060\u4F7F\u3063\u305F\u3053\u3068\u304C\u306A\u3044\u306F\
+    \u305A\u306A\u306E\u3067\u8981\u78BA\u8A8D\n  Graph<int, 1> res_graph() {\n  \
+    \  Graph<int, 1> G(N);\n    vc<tuple<int, int, Cap>> res;\n    FOR(v, N) {\n \
+    \     FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e = edges[i];\n      \
+    \  if (e.cap > 0) {\n          G.add(v, e.to);\n        }\n      }\n    }\n  \
+    \  G.build();\n    return G;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\
+    \u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\
+    \u8FD4\u3059\n  pair<Cap, vc<int>> cut() {\n    flow();\n    vc<int> res(N);\n\
+    \    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return {flow_ans, res};\n\
+    \  }\n\n  // O(F(N+M)) \u304F\u3089\u3044\u4F7F\u3063\u3066\u7D4C\u8DEF\u5FA9\u5143\
+    \n  // simple path \u306B\u306A\u308B\n  vvc<int> path_decomposition() {\n   \
+    \ flow();\n    auto edges = get_flow_edges();\n    vvc<int> TO(N);\n    for (auto&&\
+    \ [frm, to, flow] : edges) {\n      FOR(flow) TO[frm].eb(to);\n    }\n    vvc<int>\
+    \ res;\n    vc<int> vis(N);\n\n    FOR(flow_ans) {\n      vc<int> path = {source};\n\
+    \      vis[source] = 1;\n      while (path.back() != sink) {\n        int to =\
+    \ POP(TO[path.back()]);\n        while (vis[to]) {\n          vis[POP(path)] =\
+    \ 0;\n        }\n        path.eb(to), vis[to] = 1;\n      }\n      for (auto&&\
+    \ v : path) vis[v] = 0;\n      res.eb(path);\n    }\n    return res;\n  }\n\n\
+    \  void debug() {\n#ifdef LOCAL\n    print(\"source\", source);\n    print(\"\
+    sink\", sink);\n    print(\"edges (frm, to, cap, flow)\");\n    FOR(v, N) {\n\
+    \      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e = edges[i];\n     \
+    \   Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to, e.cap, f);\n      }\n\
+    \    }\n#endif\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename\
+    \ GT>\r\nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT\
+    \ G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\
+    \n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"game/graph_path_game.hpp\"\n\
+    \n// \u30B0\u30E9\u30D5\u304C\u3042\u308B. \u9802\u70B9 v \u306F A[v] \u56DE\u307E\
+    \u3067\u4F7F\u3048\u308B\uFF08\u591A\u91CD\u9802\u70B9\uFF09\n// winning position\
+    \ \u306E\u5217\u3092\u304B\u3048\u3059. \u305D\u308C\u3092\u542B\u307E\u306A\u3044\
+    \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u304C\u3042\u3042\u308B\u3068\u3044\
+    \u3046\u3053\u3068\n// https://qoj.ac/contest/1576/problem/8507\nvc<int> graph_path_game(Graph<int,\
+    \ 0> G, vc<int> A) {\n  // \u4E8C\u90E8\u3060\u3051\n  auto color = bipartite_vertex_coloring(G);\n\
+    \  assert(!color.empty());\n  int N = G.N;\n  int s = N, t = N + 1;\n  MaxFlow<int>\
+    \ F(N + 2, s, t);\n  FOR(v, N) {\n    if (color[v] == 0) F.add(s, v, A[v]);\n\
+    \    if (color[v] == 1) F.add(v, t, A[v]);\n  }\n  for (auto& e: G.edges) {\n\
+    \    int a = e.frm, b = e.to;\n    if (color[a] == 1) swap(a, b);\n    F.add(a,\
+    \ b, infty<int>);\n  }\n  F.flow();\n  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u3067\
+    \ s \u304B\u3089\u5230\u9054\u53EF\u80FD\u306A\u5DE6\u5074\u306E\u70B9\n  // t\
+    \ \u3078\u5230\u9054\u53EF\u80FD\u306A\u53F3\u5074\u306E\u70B9\n  Graph<int, 1>\
+    \ H(N + 2);\n  FOR(v, N + 2) {\n    for (auto& e: F.edges[v]) {\n      if (e.cap\
+    \ > 0) H.add(v, e.to);\n    }\n  }\n  H.build();\n  auto reach = [&](int v) ->\
+    \ vc<int> {\n    vc<bool> vis(N + 2);\n    vc<int> que;\n    que.eb(v), vis[v]\
+    \ = 1;\n    FOR(i, len(que)) {\n      int v = que[i];\n      for (auto& e: H[v])\
+    \ {\n        if (!vis[e.to]) vis[e.to] = 1, que.eb(e.to);\n      }\n    }\n  \
+    \  return que;\n  };\n  vc<int> ANS;\n  for (auto& v: reach(s)) {\n    if (v <\
+    \ N && color[v] == 0) ANS.eb(v);\n  }\n  H = reverse_graph(H);\n  for (auto& v:\
+    \ reach(t)) {\n    if (v < N && color[v] == 1) ANS.eb(v);\n  }\n  return ANS;\n\
+    }\n"
   code: "#include \"graph/bipartite_vertex_coloring.hpp\"\n#include \"flow/maxflow.hpp\"\
     \n#include \"graph/reverse_graph.hpp\"\n\n// \u30B0\u30E9\u30D5\u304C\u3042\u308B\
     . \u9802\u70B9 v \u306F A[v] \u56DE\u307E\u3067\u4F7F\u3048\u308B\uFF08\u591A\u91CD\
@@ -291,7 +297,7 @@ data:
   isVerificationFile: false
   path: game/graph_path_game.hpp
   requiredBy: []
-  timestamp: '2025-10-13 18:56:57+09:00'
+  timestamp: '2025-11-18 00:27:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: game/graph_path_game.hpp

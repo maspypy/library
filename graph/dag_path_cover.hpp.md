@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -191,14 +191,19 @@ data:
     \n  // frm, to, flow\n  vc<tuple<int, int, Cap>> get_flow_edges() {\n    vc<tuple<int,\
     \ int, Cap>> res;\n    FOR(v, N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n\
     \        Edge& e = edges[i];\n        Cap f = init_cap[i] - e.cap;\n        if\
-    \ (f > 0) res.eb(v, e.to, f);\n      }\n    }\n    return res;\n  }\n\n  // \u6700\
-    \u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\
-    \u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut() {\n\
-    \    flow();\n    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 :\
-    \ 1);\n    return {flow_ans, res};\n  }\n\n  // O(F(N+M)) \u304F\u3089\u3044\u4F7F\
-    \u3063\u3066\u7D4C\u8DEF\u5FA9\u5143\n  // simple path \u306B\u306A\u308B\n  vvc<int>\
-    \ path_decomposition() {\n    flow();\n    auto edges = get_flow_edges();\n  \
-    \  vvc<int> TO(N);\n    for (auto&& [frm, to, flow] : edges) {\n      FOR(flow)\
+    \ (f > 0) res.eb(v, e.to, f);\n      }\n    }\n    return res;\n  }\n\n  // \u307E\
+    \u3060\u4F7F\u3063\u305F\u3053\u3068\u304C\u306A\u3044\u306F\u305A\u306A\u306E\
+    \u3067\u8981\u78BA\u8A8D\n  Graph<int, 1> res_graph() {\n    Graph<int, 1> G(N);\n\
+    \    vc<tuple<int, int, Cap>> res;\n    FOR(v, N) {\n      FOR(i, indptr[v], indptr[v\
+    \ + 1]) {\n        Edge& e = edges[i];\n        if (e.cap > 0) {\n          G.add(v,\
+    \ e.to);\n        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\n  //\
+    \ \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\
+    \u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut()\
+    \ {\n    flow();\n    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ?\
+    \ 0 : 1);\n    return {flow_ans, res};\n  }\n\n  // O(F(N+M)) \u304F\u3089\u3044\
+    \u4F7F\u3063\u3066\u7D4C\u8DEF\u5FA9\u5143\n  // simple path \u306B\u306A\u308B\
+    \n  vvc<int> path_decomposition() {\n    flow();\n    auto edges = get_flow_edges();\n\
+    \    vvc<int> TO(N);\n    for (auto&& [frm, to, flow] : edges) {\n      FOR(flow)\
     \ TO[frm].eb(to);\n    }\n    vvc<int> res;\n    vc<int> vis(N);\n\n    FOR(flow_ans)\
     \ {\n      vc<int> path = {source};\n      vis[source] = 1;\n      while (path.back()\
     \ != sink) {\n        int to = POP(TO[path.back()]);\n        while (vis[to])\
@@ -254,8 +259,8 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2025-10-13 18:56:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-11-18 00:27:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/2251_1.test.cpp
 documentation_of: graph/dag_path_cover.hpp

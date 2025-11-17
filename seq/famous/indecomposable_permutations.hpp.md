@@ -1,46 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
+    - https://atcoder.jp/contests/fps-24/tasks/fps_24_k
     - https://oeis.org/A003319
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
     \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
@@ -318,16 +319,17 @@ data:
     \n}\r\n#line 2 \"seq/famous/indecomposable_permutations.hpp\"\n\n// \u975E\u7A7A\
     \u306A prefix < suffix \u306B\u5206\u5272\u3067\u304D\u306A\u3044\u3082\u306E\n\
     // ng: [1][2][3], [1][32], [21][3]\n// ok: [231], [312], [321]\n// https://oeis.org/A003319\
-    \  0, 1, 1, 3, 13, 71\ntemplate <typename mint>\nvc<mint> indecomposable_permutations(const\
-    \ int N) {\n  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i] = fact<mint>(i);\n  f =\
-    \ fps_inv(f);\n  for (auto&& x: f) x = -x;\n  f[0] += mint(1);\n  return f;\n\
-    }\n"
+    \  0, 1, 1, 3, 13, 71\n// https://atcoder.jp/contests/fps-24/tasks/fps_24_k\n\
+    template <typename mint>\nvc<mint> indecomposable_permutations(const int N) {\n\
+    \  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i] = fact<mint>(i);\n  f = fps_inv(f);\n\
+    \  for (auto&& x : f) x = -x;\n  f[0] += mint(1);\n  return f;\n}\n"
   code: "#include \"poly/fps_inv.hpp\"\n\n// \u975E\u7A7A\u306A prefix < suffix \u306B\
     \u5206\u5272\u3067\u304D\u306A\u3044\u3082\u306E\n// ng: [1][2][3], [1][32], [21][3]\n\
     // ok: [231], [312], [321]\n// https://oeis.org/A003319  0, 1, 1, 3, 13, 71\n\
-    template <typename mint>\nvc<mint> indecomposable_permutations(const int N) {\n\
-    \  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i] = fact<mint>(i);\n  f = fps_inv(f);\n\
-    \  for (auto&& x: f) x = -x;\n  f[0] += mint(1);\n  return f;\n}"
+    // https://atcoder.jp/contests/fps-24/tasks/fps_24_k\ntemplate <typename mint>\n\
+    vc<mint> indecomposable_permutations(const int N) {\n  vc<mint> f(N + 1);\n  FOR(i,\
+    \ N + 1) f[i] = fact<mint>(i);\n  f = fps_inv(f);\n  for (auto&& x : f) x = -x;\n\
+    \  f[0] += mint(1);\n  return f;\n}"
   dependsOn:
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
@@ -342,8 +344,8 @@ data:
   isVerificationFile: false
   path: seq/famous/indecomposable_permutations.hpp
   requiredBy: []
-  timestamp: '2025-09-02 05:19:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-11-18 00:27:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/simple_perm.test.cpp
 documentation_of: seq/famous/indecomposable_permutations.hpp
