@@ -179,6 +179,22 @@ struct MaxFlow {
     return res;
   }
 
+  // まだ使ったことがないはずなので要確認
+  Graph<int, 1> res_graph() {
+    Graph<int, 1> G(N);
+    vc<tuple<int, int, Cap>> res;
+    FOR(v, N) {
+      FOR(i, indptr[v], indptr[v + 1]) {
+        Edge& e = edges[i];
+        if (e.cap > 0) {
+          G.add(v, e.to);
+        }
+      }
+    }
+    G.build();
+    return G;
+  }
+
   // 最小カットの値および、カットを表す 01 列を返す
   pair<Cap, vc<int>> cut() {
     flow();

@@ -1,3 +1,4 @@
+// マルチテストケースに弱いので static で確保すること
 template <class Node>
 struct Node_Pool {
   struct Slot {
@@ -8,7 +9,7 @@ struct Node_Pool {
   };
   using np = Node*;
 
-  static constexpr int CHUNK_SIZE = 1 << 16;
+  static constexpr int CHUNK_SIZE = 1 << 12;
 
   vc<unique_ptr<Slot[]>> chunks;
   Slot* cur = nullptr;

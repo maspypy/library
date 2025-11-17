@@ -16,7 +16,7 @@ pair<vc<T>, vc<int>> dijkstra_dense(GT& G, int s) {
     }
     if (v == -1) break;
     done[v] = 1;
-    for (auto&& e: G[v]) {
+    for (auto&& e : G[v]) {
       if (chmin(dist[e.to], dist[v] + e.cost)) par[e.to] = v;
     }
   }
@@ -39,7 +39,7 @@ pair<vc<T>, vc<int>> dijkstra(GT& G, int v) {
     auto [dv, v] = que.top();
     que.pop();
     if (dv > dist[v]) continue;
-    for (auto&& e: G[v]) {
+    for (auto&& e : G[v]) {
       if (chmin(dist[e.to], dist[e.frm] + e.cost)) {
         par[e.to] = e.frm;
         que.emplace(dist[e.to], e.to);
@@ -62,9 +62,10 @@ tuple<vc<T>, vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {
 
   priority_queue<P, vector<P>, greater<P>> que;
 
-  for (auto&& v: vs) {
+  FOR(k, len(vs)) {
+    int v = vs[k];
     dist[v] = 0;
-    root[v] = v;
+    root[v] = k;
     que.emplace(T(0), v);
   }
 
@@ -72,7 +73,7 @@ tuple<vc<T>, vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {
     auto [dv, v] = que.top();
     que.pop();
     if (dv > dist[v]) continue;
-    for (auto&& e: G[v]) {
+    for (auto&& e : G[v]) {
       if (chmin(dist[e.to], dist[e.frm] + e.cost)) {
         root[e.to] = root[e.frm];
         par[e.to] = e.frm;

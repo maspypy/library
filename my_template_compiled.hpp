@@ -247,11 +247,17 @@ double binary_search_real(F check, double ok, double ng, int iter = 100) {
 
 template <class T, class S>
 inline bool chmax(T &a, const S &b) {
-  return (a < b ? a = b, 1 : 0);
+  T c = max<T>(a, b);
+  bool changed = (c != a);
+  a = c;
+  return changed;
 }
 template <class T, class S>
 inline bool chmin(T &a, const S &b) {
-  return (a > b ? a = b, 1 : 0);
+  T c = min<T>(a, b);
+  bool changed = (c != a);
+  a = c;
+  return changed;
 }
 
 // ? は -1
