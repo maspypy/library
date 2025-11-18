@@ -9,7 +9,7 @@ data:
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_cm.test.cpp
     title: test/1_mytest/splay_cm.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
@@ -225,7 +225,7 @@ data:
   path: ds/splaytree/splaytree_commutative_monoid.hpp
   requiredBy: []
   timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/splay_cm.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
