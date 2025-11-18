@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_tree.hpp
     title: graph/count/count_labeled_tree.hpp
   - icon: ':question:'

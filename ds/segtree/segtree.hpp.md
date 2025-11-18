@@ -20,7 +20,7 @@ data:
   - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   - icon: ':x:'
@@ -35,10 +35,10 @@ data:
   - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':warning:'
@@ -53,7 +53,7 @@ data:
   - icon: ':warning:'
     path: string/substring_shortest_border.hpp
     title: string/substring_shortest_border.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':x:'
@@ -63,13 +63,13 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/manhattan_nns.test.cpp
     title: test/1_mytest/manhattan_nns.test.cpp
   - icon: ':x:'
@@ -191,7 +191,7 @@ data:
     title: test/4_aoj/ITP2_3_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -309,7 +309,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - geo/manhattan_nns.hpp
   timestamp: '2025-10-13 19:00:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1036_2.test.cpp
   - test/3_yukicoder/2897.test.cpp

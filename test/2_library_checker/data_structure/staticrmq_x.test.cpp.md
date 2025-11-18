@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/rmq/static_rmq.hpp
     title: ds/rmq/static_rmq.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'

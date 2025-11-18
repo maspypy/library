@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
