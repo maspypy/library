@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   - icon: ':warning:'
@@ -15,10 +15,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/shortest_path.test.cpp
     title: test/2_library_checker/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
   - icon: ':x:'

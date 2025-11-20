@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   - icon: ':question:'

@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
   - icon: ':question:'
@@ -18,10 +18,10 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
     title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/4_aoj/CGL_5_A.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -197,7 +197,7 @@ data:
   path: geo/closest_pair.hpp
   requiredBy: []
   timestamp: '2025-05-18 17:51:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/CGL_5_A.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp

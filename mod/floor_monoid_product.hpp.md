@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
   - icon: ':x:'

@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
   - icon: ':question:'

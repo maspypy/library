@@ -5,7 +5,7 @@ data:
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':warning:'
@@ -36,13 +36,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/qoj5443.test.cpp
     title: test/1_mytest/qoj5443.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - icon: ':x:'

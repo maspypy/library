@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   - icon: ':x:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
   - icon: ':x:'

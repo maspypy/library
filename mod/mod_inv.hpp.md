@@ -17,7 +17,7 @@ data:
   - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
@@ -68,7 +68,7 @@ data:
   - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':question:'
@@ -80,19 +80,19 @@ data:
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':warning:'
@@ -128,7 +128,7 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
   - icon: ':heavy_check_mark:'
@@ -152,7 +152,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
@@ -209,10 +209,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multipoint_evaluation_for_prefix_product.hpp
     title: poly/multipoint_evaluation_for_prefix_product.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -230,7 +230,7 @@ data:
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
   - icon: ':question:'
@@ -299,7 +299,7 @@ data:
   - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':question:'
@@ -314,7 +314,7 @@ data:
   - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':x:'
@@ -323,7 +323,7 @@ data:
   - icon: ':x:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':warning:'
@@ -516,82 +516,82 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
     title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/multivariate_convolution.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/bernoulli.test.cpp
     title: test/2_library_checker/number_theory/bernoulli.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
     title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/composition_dmint.test.cpp
     title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - icon: ':x:'

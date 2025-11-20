@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: ds/rmq/suffix_min.hpp
     title: ds/rmq/suffix_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/parallel_unionfind.hpp
     title: ds/unionfind/parallel_unionfind.hpp
   - icon: ':question:'
@@ -26,19 +26,19 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
   - icon: ':warning:'
     path: graph/bipartite_balanced_edge_coloring.hpp
     title: graph/bipartite_balanced_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
   - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/blackbox/complement_graph_unionfind.hpp
     title: graph/blackbox/complement_graph_unionfind.hpp
   - icon: ':warning:'
@@ -56,10 +56,10 @@ data:
   - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   - icon: ':x:'
@@ -74,7 +74,7 @@ data:
   - icon: ':x:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   - icon: ':x:'
@@ -159,37 +159,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
     title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/unionfind.test.cpp
     title: test/2_library_checker/data_structure/unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/manhattan_mst.test.cpp
     title: test/2_library_checker/geometry/manhattan_mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/bipartitematching.test.cpp
     title: test/2_library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/complement_graph_unionfind.test.cpp
     title: test/2_library_checker/graph/complement_graph_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/directed_mst.test.cpp
     title: test/2_library_checker/graph/directed_mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/eulerwalk_d.test.cpp
     title: test/2_library_checker/graph/eulerwalk_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/eulerwalk_ud.test.cpp
     title: test/2_library_checker/graph/eulerwalk_ud.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/incremental_scc.test.cpp
     title: test/2_library_checker/graph/incremental_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
   - icon: ':x:'

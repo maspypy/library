@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
   - icon: ':question:'

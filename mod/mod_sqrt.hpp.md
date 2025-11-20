@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/sqrt_mod.test.cpp
     title: test/2_library_checker/number_theory/sqrt_mod.test.cpp
   - icon: ':x:'

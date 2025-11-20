@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
   - icon: ':x:'

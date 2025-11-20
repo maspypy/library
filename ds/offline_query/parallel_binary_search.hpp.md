@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/3_yukicoder/3314.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/offline_query/parallel_binary_search.hpp\"\n/*\r\n\u4E26\
@@ -56,7 +56,7 @@ data:
   path: ds/offline_query/parallel_binary_search.hpp
   requiredBy: []
   timestamp: '2022-12-01 18:20:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/3314.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp

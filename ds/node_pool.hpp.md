@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_super.hpp
     title: convex/slope_trick/slope_super.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
   - icon: ':warning:'
@@ -50,7 +50,7 @@ data:
   - icon: ':question:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':question:'
@@ -59,7 +59,7 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -68,19 +68,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':question:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   - icon: ':warning:'
@@ -156,40 +156,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/persistent_queue.test.cpp
     title: test/2_library_checker/data_structure/persistent_queue.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
     title: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':x:'

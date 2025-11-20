@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
   - icon: ':heavy_check_mark:'
@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -63,19 +63,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/composition_dmint.test.cpp
     title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':x:'

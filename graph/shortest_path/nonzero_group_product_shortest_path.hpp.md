@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
