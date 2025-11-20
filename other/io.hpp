@@ -174,13 +174,8 @@ void wt_integer(T x) {
 
 template <typename T>
 inline void wt_real(T x) {
-  char buf[64];
-  int n = std::snprintf(buf, sizeof(buf), "%.15g", (double)x);
-
-  if (n == 2 && buf[0] == '-' && buf[1] == '0') {
-    buf[0] = '0';
-    n = 1;
-  }
+  static char buf[1000];
+  int n = std::snprintf(buf, sizeof(buf), "%.15f", (double)x);
   wt_range(buf, (size_t)n);
 }
 
