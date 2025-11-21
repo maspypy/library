@@ -1,3 +1,5 @@
+#include "graph/base.hpp"
+
 template <typename Cap>
 struct MaxFlow {
   struct Edge {
