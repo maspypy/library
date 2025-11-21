@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
   _extendedRequiredBy: []
