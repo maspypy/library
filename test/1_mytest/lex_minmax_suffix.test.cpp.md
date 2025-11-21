@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/lex_min_suffix_for_all_prefix.hpp
     title: string/lex_min_suffix_for_all_prefix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/lyndon.hpp
     title: string/lyndon.hpp
   - icon: ':question:'
