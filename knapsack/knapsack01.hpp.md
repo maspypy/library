@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_1_B.test.cpp
     title: test/4_aoj/DPL_1_B.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/4_aoj/DPL_1_H.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"knapsack/knapsack01.hpp\"\n/*\nknapsack01 \u306E\u5168\u5217\
@@ -92,7 +92,7 @@ data:
   path: knapsack/knapsack01.hpp
   requiredBy: []
   timestamp: '2024-02-02 05:06:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/DPL_1_B.test.cpp
   - test/4_aoj/DPL_1_F.test.cpp

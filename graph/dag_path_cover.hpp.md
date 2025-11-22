@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -122,7 +122,7 @@ data:
     \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap>\nstruct MaxFlow {\n  struct\
+    #line 2 \"flow/maxflow.hpp\"\n\ntemplate <typename Cap>\nstruct MaxFlow {\n  struct\
     \ Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  vc<Edge> edges;\n  vc<int>\
     \ indptr, level;\n  vc<Cap> init_cap;\n  vc<tuple<int, int, Cap, Cap>> edge_pool;\n\
     \n  const int N, source, sink;\n  bool calculated;\n  Cap flow_ans;\n  vc<int>\
@@ -259,8 +259,8 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-11-22 06:59:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2251_1.test.cpp
 documentation_of: graph/dag_path_cover.hpp

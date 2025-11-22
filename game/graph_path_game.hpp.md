@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   _extendedRequiredBy: []
@@ -146,8 +146,8 @@ data:
     \n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
     \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
     \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
-    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 1 \"flow/maxflow.hpp\"\
-    \ntemplate <typename Cap>\nstruct MaxFlow {\n  struct Edge {\n    int to, rev;\n\
+    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 2 \"flow/maxflow.hpp\"\
+    \n\ntemplate <typename Cap>\nstruct MaxFlow {\n  struct Edge {\n    int to, rev;\n\
     \    Cap cap;\n  };\n\n  vc<Edge> edges;\n  vc<int> indptr, level;\n  vc<Cap>\
     \ init_cap;\n  vc<tuple<int, int, Cap, Cap>> edge_pool;\n\n  const int N, source,\
     \ sink;\n  bool calculated;\n  Cap flow_ans;\n  vc<int> pos;\n\n  MaxFlow(int\
@@ -297,7 +297,7 @@ data:
   isVerificationFile: false
   path: game/graph_path_game.hpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
+  timestamp: '2025-11-22 06:59:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: game/graph_path_game.hpp
