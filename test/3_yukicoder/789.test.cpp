@@ -7,7 +7,6 @@
 void solve() {
   LL(Q);
   Dynamic_SegTree<Monoid_Add<ll>, false> seg(0, 1LL << 30);
-  seg.reserve(1 + 30 * Q);
   auto root = seg.new_root();
   ll ANS = 0;
   FOR(Q) {
