@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -347,20 +347,21 @@ data:
     \ new_node(l, m);\r\n    return min_left_rec(c->l, check, l, m, qr, x);\r\n  }\r\
     \n};\n#line 6 \"test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Dynamic_SegTree<Monoid_Add<int>,\
-    \ true> seg(0, N);\n  auto I = argsort(A);\n\n  vc<int> roots;\n  roots.eb(seg.new_node(0,\
+    \ true> seg(0, N);\n  using np = decltype(seg)::np;\n  auto I = argsort(A);\n\n\
+    \  vc<np> roots;\n  roots.eb(seg.new_node(0, N));\n  FOR(k, N) { roots.eb(seg.set(roots.back(),\
+    \ I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n    auto check = [&](ll t) -> bool\
+    \ { return seg.prod(roots[t], L, R) <= k; };\n    ll t = binary_search(check,\
+    \ 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
+    \n#include \"ds/segtree/dynamic_segtree.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
+    \  VEC(int, A, N);\n  Dynamic_SegTree<Monoid_Add<int>, true> seg(0, N);\n  using\
+    \ np = decltype(seg)::np;\n  auto I = argsort(A);\n\n  vc<np> roots;\n  roots.eb(seg.new_node(0,\
     \ N));\n  FOR(k, N) { roots.eb(seg.set(roots.back(), I[k], 1)); }\n  FOR(Q) {\n\
     \    LL(L, R, k);\n    auto check = [&](ll t) -> bool { return seg.prod(roots[t],\
     \ L, R) <= k; };\n    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n\
     \  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
-    \n#include \"ds/segtree/dynamic_segtree.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
-    \  VEC(int, A, N);\n  Dynamic_SegTree<Monoid_Add<int>, true> seg(0, N);\n  auto\
-    \ I = argsort(A);\n\n  vc<int> roots;\n  roots.eb(seg.new_node(0, N));\n  FOR(k,\
-    \ N) { roots.eb(seg.set(roots.back(), I[k], 1)); }\n  FOR(Q) {\n    LL(L, R, k);\n\
-    \    auto check = [&](ll t) -> bool { return seg.prod(roots[t], L, R) <= k; };\n\
-    \    ll t = binary_search(check, 0, N);\n    print(A[I[t]]);\n  }\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -370,8 +371,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   requiredBy: []
-  timestamp: '2025-12-02 17:14:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-12-02 22:29:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
 layout: document
