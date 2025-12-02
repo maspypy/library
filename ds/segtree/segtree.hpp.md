@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
+  - icon: ':warning:'
+    path: ds/rmq/range_add_range_maxidx.hpp
+    title: ds/rmq/range_add_range_maxidx.hpp
   - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_min.hpp
     title: ds/rmq/range_add_range_min.hpp
@@ -301,6 +304,7 @@ data:
   - ds/segtree/sortable_segtree.hpp
   - ds/segtree/range_assignment_segtree.hpp
   - ds/rmq/range_add_range_min.hpp
+  - ds/rmq/range_add_range_maxidx.hpp
   - ds/rmq/range_add_range_max.hpp
   - ds/offline_query/range_mex_query.hpp
   - ds/offline_query/uniqueproductquery.hpp

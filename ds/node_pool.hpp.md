@@ -50,6 +50,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
+  - icon: ':x:'
+    path: ds/segtree/dynamic_segtree.hpp
+    title: ds/segtree/dynamic_segtree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
@@ -174,6 +177,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
     title: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
+    title: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
+    title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
@@ -192,24 +201,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1036.test.cpp
+    title: test/3_yukicoder/1036.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1154.test.cpp
     title: test/3_yukicoder/1154.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1441.test.cpp
     title: test/3_yukicoder/1441.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1649.test.cpp
+    title: test/3_yukicoder/1649.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1752.test.cpp
     title: test/3_yukicoder/1752.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1826.test.cpp
+    title: test/3_yukicoder/1826.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2935.test.cpp
+    title: test/3_yukicoder/2935.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/789.test.cpp
+    title: test/3_yukicoder/789.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
@@ -219,9 +243,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
@@ -272,6 +296,7 @@ data:
   - ds/binary_trie.hpp
   - ds/sortable_array.hpp
   - ds/segtree/dynamic_lazy_segtree.hpp
+  - ds/segtree/dynamic_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
   - ds/segtree/dynamic_dual_segtree.hpp
   - ds/randomized_bst/rbst_acted_monoid.hpp
@@ -297,14 +322,19 @@ data:
   - convex/slope_trick/slope_super.hpp
   - seq/cycle_decomposition.hpp
   timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1441.test.cpp
+  - test/3_yukicoder/1036.test.cpp
+  - test/3_yukicoder/1649.test.cpp
   - test/3_yukicoder/2292.test.cpp
   - test/3_yukicoder/789_2.test.cpp
   - test/3_yukicoder/1752.test.cpp
   - test/3_yukicoder/1154.test.cpp
   - test/3_yukicoder/2809.test.cpp
+  - test/3_yukicoder/2935.test.cpp
+  - test/3_yukicoder/789.test.cpp
+  - test/3_yukicoder/1826.test.cpp
   - test/3_yukicoder/686.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
   - test/1_mytest/splay.test.cpp
@@ -332,9 +362,11 @@ data:
   - test/4_aoj/1508_2.test.cpp
   - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
   - test/2_library_checker/data_structure/set_xor_min.test.cpp
   - test/2_library_checker/data_structure/persistent_queue.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   - test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
   - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp

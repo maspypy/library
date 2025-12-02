@@ -209,19 +209,20 @@ data:
     \ != sink) {\n        int to = POP(TO[path.back()]);\n        while (vis[to])\
     \ {\n          vis[POP(path)] = 0;\n        }\n        path.eb(to), vis[to] =\
     \ 1;\n      }\n      for (auto&& v : path) vis[v] = 0;\n      res.eb(path);\n\
-    \    }\n    return res;\n  }\n\n  void debug() {\n#ifdef LOCAL\n    print(\"source\"\
-    , source);\n    print(\"sink\", sink);\n    print(\"edges (frm, to, cap, flow)\"\
-    );\n    FOR(v, N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e\
-    \ = edges[i];\n        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to,\
-    \ e.cap, f);\n      }\n    }\n#endif\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\
-    \n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n \
-    \ UnionFind(int n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp\
-    \ = m;\n    dat.assign(n, -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int\
-    \ x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp <\
-    \ 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n\
-    \  ll size(int x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int\
-    \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
-    \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    }\n    return res;\n  }\n\n  void debug() {\n#ifdef LOCAL\n    if (indptr.empty())\
+    \ build_csr();\n    print(\"source\", source);\n    print(\"sink\", sink);\n \
+    \   print(\"edges (frm, to, cap, flow)\");\n    SHOW(N, len(indptr));\n    FOR(v,\
+    \ N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e = edges[i];\n\
+    \        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to, e.cap, f);\n \
+    \     }\n    }\n#endif\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct\
+    \ UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
     \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 4 \"graph/dag_path_cover.hpp\"\
     \n\n// \u5404\u9802\u70B9\u306E\u8272\u3092\u304B\u3048\u3059\u3002\u5404\u8272\
@@ -259,7 +260,7 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2025-11-22 06:59:07+09:00'
+  timestamp: '2025-12-02 17:14:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2251_1.test.cpp

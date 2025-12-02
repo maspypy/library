@@ -233,11 +233,12 @@ data:
     \ != sink) {\n        int to = POP(TO[path.back()]);\n        while (vis[to])\
     \ {\n          vis[POP(path)] = 0;\n        }\n        path.eb(to), vis[to] =\
     \ 1;\n      }\n      for (auto&& v : path) vis[v] = 0;\n      res.eb(path);\n\
-    \    }\n    return res;\n  }\n\n  void debug() {\n#ifdef LOCAL\n    print(\"source\"\
-    , source);\n    print(\"sink\", sink);\n    print(\"edges (frm, to, cap, flow)\"\
-    );\n    FOR(v, N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e\
-    \ = edges[i];\n        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to,\
-    \ e.cap, f);\n      }\n    }\n#endif\n  }\n};\n"
+    \    }\n    return res;\n  }\n\n  void debug() {\n#ifdef LOCAL\n    if (indptr.empty())\
+    \ build_csr();\n    print(\"source\", source);\n    print(\"sink\", sink);\n \
+    \   print(\"edges (frm, to, cap, flow)\");\n    SHOW(N, len(indptr));\n    FOR(v,\
+    \ N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e = edges[i];\n\
+    \        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to, e.cap, f);\n \
+    \     }\n    }\n#endif\n  }\n};\n"
   code: "#include \"graph/base.hpp\"\n\ntemplate <typename Cap>\nstruct MaxFlow {\n\
     \  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  vc<Edge> edges;\n\
     \  vc<int> indptr, level;\n  vc<Cap> init_cap;\n  vc<tuple<int, int, Cap, Cap>>\
@@ -325,11 +326,12 @@ data:
     \ != sink) {\n        int to = POP(TO[path.back()]);\n        while (vis[to])\
     \ {\n          vis[POP(path)] = 0;\n        }\n        path.eb(to), vis[to] =\
     \ 1;\n      }\n      for (auto&& v : path) vis[v] = 0;\n      res.eb(path);\n\
-    \    }\n    return res;\n  }\n\n  void debug() {\n#ifdef LOCAL\n    print(\"source\"\
-    , source);\n    print(\"sink\", sink);\n    print(\"edges (frm, to, cap, flow)\"\
-    );\n    FOR(v, N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e\
-    \ = edges[i];\n        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to,\
-    \ e.cap, f);\n      }\n    }\n#endif\n  }\n};\n"
+    \    }\n    return res;\n  }\n\n  void debug() {\n#ifdef LOCAL\n    if (indptr.empty())\
+    \ build_csr();\n    print(\"source\", source);\n    print(\"sink\", sink);\n \
+    \   print(\"edges (frm, to, cap, flow)\");\n    SHOW(N, len(indptr));\n    FOR(v,\
+    \ N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e = edges[i];\n\
+    \        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to, e.cap, f);\n \
+    \     }\n    }\n#endif\n  }\n};\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -341,7 +343,7 @@ data:
   - flow/k_ary_optimization.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_weighted_antichain.hpp
-  timestamp: '2025-11-22 06:59:07+09:00'
+  timestamp: '2025-12-02 17:14:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/177.test.cpp
