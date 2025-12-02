@@ -2,8 +2,9 @@
 
 // (v,w) or (v,-1)
 template <typename GT>
-pair<int, int> find_centroids(GT& G) {
+pair<int, int> find_centroids(GT& G, vi weight = {}) {
   int N = G.N;
+  if (weight.empty()) weight.assign(N, 1);
   vc<int> par(N, -1);
   vc<int> V(N);
   vc<int> sz(N);
@@ -11,7 +12,7 @@ pair<int, int> find_centroids(GT& G) {
   V[r++] = 0;
   while (l < r) {
     int v = V[l++];
-    for (auto&& e: G[v])
+    for (auto&& e : G[v])
       if (e.to != par[v]) {
         par[e.to] = v;
         V[r++] = e.to;
@@ -19,15 +20,16 @@ pair<int, int> find_centroids(GT& G) {
   }
   FOR_R(i, N) {
     int v = V[i];
-    sz[v] += 1;
+    sz[v] += weight[v];
     int p = par[v];
     if (p != -1) sz[p] += sz[v];
   }
 
-  int M = N / 2;
+  ll FULL = SUM<ll>(weight);
+  ll M = FULL / 2;
   auto check = [&](int v) -> bool {
-    if (N - sz[v] > M) return false;
-    for (auto&& e: G[v]) {
+    if (FULL - sz[v] > M) return false;
+    for (auto&& e : G[v]) {
       if (e.to != par[v] && sz[e.to] > M) return false;
     }
     return true;

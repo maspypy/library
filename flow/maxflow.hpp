@@ -235,9 +235,11 @@ struct MaxFlow {
 
   void debug() {
 #ifdef LOCAL
+    if (indptr.empty()) build_csr();
     print("source", source);
     print("sink", sink);
     print("edges (frm, to, cap, flow)");
+    SHOW(N, len(indptr));
     FOR(v, N) {
       FOR(i, indptr[v], indptr[v + 1]) {
         Edge& e = edges[i];
