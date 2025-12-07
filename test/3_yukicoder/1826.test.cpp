@@ -26,7 +26,7 @@ void solve() {
     ll t = seg.prod(root, -LIM, y + 1) + v;
     root = seg.multiply(root, y, t);
   }
-  print(seg[root].x);
+  print(root->x);
 }
 
 signed main() {

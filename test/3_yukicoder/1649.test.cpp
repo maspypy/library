@@ -29,7 +29,7 @@ void solve() {
   FOR(4) {
     for (auto &&[x, y] : XY) tie(x, y) = mp(-y, x);
     seg.reset();
-    int root = seg.new_node(-LIM, LIM);
+    auto root = seg.new_node(-LIM, LIM);
     sort(all(XY));
     for (auto &&[x, y] : XY) {
       mint x2 = (x + y) * (x + y);

@@ -15,7 +15,7 @@ void solve() {
   VEC(X, dat, N);
 
   Dynamic_SegTree<Mono, false> seg(0, N);
-  int root = seg.new_node(dat);
+  auto root = seg.new_node(dat);
 
   FOR(Q) {
     LL(t, a, b, c);
