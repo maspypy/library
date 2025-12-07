@@ -1,10 +1,11 @@
+#include "ds/index_compression.hpp"
 #include "ds/fenwicktree/fenwicktree.hpp"
 
 // A, B：定数
 // Sparse Laurent Polynomial f(x,y) を与える
 // [x^py^q] f(x,y)/(1-x)^A(1-y)^B をたくさん求める
 // O(AB N logN) 時間
-template <int A, int B, typename T, typename XY>
+template <int A, int B, typename T, bool STATIC>
 struct Coefficient_Query_2D {
   struct Mono {
     using value_type = array<T, A * B>;
@@ -16,68 +17,106 @@ struct Coefficient_Query_2D {
     static constexpr X unit() { return X{}; }
     static constexpr bool commute = 1;
   };
+  vc<tuple<ll, ll, T, int>> query;
 
-  vc<tuple<XY, XY, T>> F;
-  vc<pair<XY, XY>> QUERY;
-
+  int nsum = 0;
   Coefficient_Query_2D() {}
-  void add_query(XY x, XY y, T c) { F.eb(x, y, c); }
-  void sum_query(XY p, XY q) { QUERY.eb(p, q); }
+  void add_query(ll x, ll y, T c) {
+    if (c != T(0)) query.eb(x, y, c, -1);
+  }
+  void sum_query(ll p, ll q) { query.eb(p, q, 0, nsum++); }
 
-  // div_fact：最後に (A-1)!(B-1)! で割るかどうか。ふつうは割る。
-  vc<T> calc(bool div_fact = true) {
-    // 加算する点の x について座圧
-    sort(all(F),
-         [&](auto& a, auto& b) -> bool { return get<0>(a) < get<0>(b); });
-    vc<XY> keyX;
-    keyX.reserve(len(F));
-    for (auto&& [a, b, c]: F) {
-      if (keyX.empty() || keyX.back() != a) keyX.eb(a);
-      a = len(keyX) - 1;
+  // オーバーフローなどの状況次第で書き換える
+  template <int n>
+  void comb_array(ll x, array<T, n>& S) {
+    static_assert(n < 4);
+    if constexpr (n == 1) S = {T(1)};
+    if constexpr (n == 2) S = {T(1), T(x)};
+    if constexpr (n == 3) S = {T(1), T(x), T(x * (x - 1) / 2)};
+  }
+  template <int n>
+  void coef_array(ll b, array<T, n>& S) {
+    static_assert(n < 4);
+    // [t^x]t^b(1-t)^{-n} を binom(x,k) の線形結合で表す係数
+    if constexpr (n == 1) S = {T(1)};
+    if constexpr (n == 2) S = {T(1 - b), T(1)};
+    if constexpr (n == 3) S = {T((b - 1) * (b - 2) / 2), T(2 - b), T(1)};
+  }
+
+  vc<T> ANS;
+  bool done = false;
+  void calc_static(const vc<int>& ADD_I, vc<int>& GET_I) {
+    if (ADD_I.empty() || GET_I.empty()) return;
+    Index_Compression<ll, true, false> IY;
+    {
+      vc<ll> tmp;
+      for (int q : ADD_I) {
+        auto [a, b, w, qid] = query[q];
+        if (qid == -1) tmp.eb(b);
+      }
+      IY.build(tmp);
     }
-    keyX.shrink_to_fit();
-    // y 昇順にクエリ処理する
-    const int Q = len(QUERY);
-    vc<int> I(Q);
-    iota(all(I), 0);
-    sort(all(I),
-         [&](auto& a, auto& b) -> bool { return QUERY[a].se < QUERY[b].se; });
-    sort(all(F),
-         [&](auto& a, auto& b) -> bool { return get<1>(a) < get<1>(b); });
-    FenwickTree<Mono> bit(len(keyX));
-    vc<T> res(Q);
+
+    FenwickTree<Mono> bit(len(IY));
+
+    array<T, A> CX;
+    array<T, B> CY;
+    array<T, A * B> tmp;
+
     int ptr = 0;
-    for (auto&& qid: I) {
-      auto [p, q] = QUERY[qid];
-      // y <= q となる F の加算
-      while (ptr < len(F) && get<1>(F[ptr]) <= q) {
-        auto& [ia, b, w] = F[ptr++];
-        XY a = keyX[ia];
-        // w(p-a+1)...(p-a+A-1)(q-b+1)...(q-b+B-1) を p,q の多項式として
-        vc<T> f(A), g(B);
-        f[0] = w, g[0] = 1;
-        FOR(i, A - 1) { FOR_R(j, i + 1) f[j + 1] += f[j] * T(-a + 1 + i); }
-        FOR(i, B - 1) { FOR_R(j, i + 1) g[j + 1] += g[j] * T(-b + 1 + i); }
-        reverse(all(f)), reverse(all(g));
-        array<T, A * B> G{};
-        FOR(i, A) FOR(j, B) G[B * i + j] = f[i] * g[j];
-        bit.add(ia, G);
+    for (int q : GET_I) {
+      auto [a, b, w, qid] = query[q];
+      while (ptr < len(ADD_I) && (get<0>(query[ADD_I[ptr]])) <= a) {
+        int q = ADD_I[ptr++];
+        auto [a, b, w, qid] = query[q];
+        coef_array<A>(a, CX);
+        coef_array<B>(b, CY);
+        FOR(i, A) FOR(j, B) tmp[B * i + j] = CX[i] * CY[j] * w;
+        bit.add(IY(b), tmp);
       }
-      auto SM = bit.sum(UB(keyX, p));
-      T sm = 0, pow_p = 1;
-      FOR(i, A) {
-        T prod = pow_p;
-        FOR(j, B) { sm += prod * SM[B * i + j], prod *= T(q); }
-        pow_p *= T(p);
+      comb_array<A>(a, CX);
+      comb_array<B>(b, CY);
+      // calc query
+      tmp = bit.prod(IY(b + 1));
+      T ans = 0;
+      FOR(i, A) FOR(j, B) ans += tmp[B * i + j] * CX[i] * CY[j];
+      ANS[qid] += ans;
+    }
+  }
+
+  vc<T> calc() {
+    assert(!done);
+    done = 1;
+    ANS.assign(nsum, 0);
+    int Q = len(query);
+    auto comp = [&](int i, int j) -> bool {
+      return (get<0>(query[i])) < (get<0>(query[j]));
+    };
+    if (STATIC) {
+      vc<int> ADD, GET;
+      FOR(i, Q) { (get<3>(query[i]) == -1 ? ADD : GET).eb(i); }
+      sort(all(ADD), comp);
+      sort(all(GET), comp);
+      calc_static(ADD, GET);
+      return ANS;
+    }
+    auto dfs = [&](auto& dfs, int L, int R) -> pair<vc<int>, vc<int>> {
+      vc<int> ADD, GET;
+      if (R == L + 1) {
+        (get<3>(query[L]) == -1 ? ADD : GET).eb(L);
+        return {ADD, GET};
       }
-      res[qid] = sm;
-    }
-    if (div_fact && (A >= 3 || B >= 3)) {
-      T cf = T(1);
-      FOR(a, 1, A) cf *= T(a);
-      FOR(b, 1, B) cf *= T(b);
-      for (auto&& x: res) x /= cf;
-    }
-    return res;
+      int M = (L + R) / 2;
+      auto [ADD1, GET1] = dfs(dfs, L, M);
+      auto [ADD2, GET2] = dfs(dfs, M, R);
+      calc_static(ADD1, GET2);
+      ADD.resize(len(ADD1) + len(ADD2));
+      GET.resize(len(GET1) + len(GET2));
+      merge(all(ADD1), all(ADD2), ADD.begin(), comp);
+      merge(all(GET1), all(GET2), GET.begin(), comp);
+      return {ADD, GET};
+    };
+    dfs(dfs, 0, Q);
+    return ANS;
   }
 };

@@ -31,14 +31,18 @@ struct FastSet {
     build(n);
     FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i % B); }
     FOR(h, log - 1) {
-      FOR(i, len(seg[h])) { seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B); }
+      FOR(i, len(seg[h])) {
+        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);
+      }
     }
   }
 
   bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }
   void insert(int i) {
     assert(0 <= i && i < n);
-    for (int h = 0; h < log; h++) { seg[h][i / B] |= u64(1) << (i % B), i /= B; }
+    for (int h = 0; h < log; h++) {
+      seg[h][i / B] |= u64(1) << (i % B), i /= B;
+    }
   }
   void add(int i) { insert(i); }
   void erase(int i) {
@@ -101,6 +105,10 @@ struct FastSet {
   template <typename F>
   void enumerate(int l, int r, F f) {
     for (int x = next(l); x < r; x = next(x + 1)) f(x);
+  }
+
+  void reset() {
+    enumerate(0, n, [&](int i) -> void { erase(i); });
   }
 
   string to_string() {
