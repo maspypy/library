@@ -344,33 +344,33 @@ data:
     \ SAME, bool SMALL>\nusing Index_Compression =\n    typename std::conditional<SAME,\
     \ Index_Compression_SAME<T, SMALL>,\n                              Index_Compression_DISTINCT<T,\
     \ SMALL>>::type;\n#line 3 \"ds/offline_query/coeffient_query_2d.hpp\"\n\n// A,\
-    \ B\uFF1A\u5B9A\u6570\n// Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\u3048\u308B\
-    \n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B \u3092\u305F\u304F\u3055\u3093\u6C42\u3081\
-    \u308B\n// O(AB N logN) \u6642\u9593\ntemplate <int A, int B, typename T, bool\
-    \ STATIC>\nstruct Coefficient_Query_2D {\n  struct Mono {\n    using value_type\
-    \ = array<T, A * B>;\n    using X = value_type;\n    static X op(X x, X y) {\n\
-    \      FOR(i, A * B) x[i] += y[i];\n      return x;\n    }\n    static constexpr\
-    \ X unit() { return X{}; }\n    static constexpr bool commute = 1;\n  };\n  vc<tuple<ll,\
-    \ ll, T, int>> query;\n\n  int nsum = 0;\n  Coefficient_Query_2D() {}\n  void\
-    \ add_query(ll x, ll y, T c) {\n    if (c != T(0)) query.eb(x, y, c, -1);\n  }\n\
-    \  void sum_query(ll p, ll q) { query.eb(p, q, 0, nsum++); }\n\n  // \u30AA\u30FC\
-    \u30D0\u30FC\u30D5\u30ED\u30FC\u306A\u3069\u306E\u72B6\u6CC1\u6B21\u7B2C\u3067\
-    \u66F8\u304D\u63DB\u3048\u308B\n  template <int n>\n  void comb_array(ll x, array<T,\
-    \ n>& S) {\n    static_assert(n < 4);\n    if constexpr (n == 1) S = {T(1)};\n\
-    \    if constexpr (n == 2) S = {T(1), T(x)};\n    if constexpr (n == 3) S = {T(1),\
-    \ T(x), T(x * (x - 1) / 2)};\n  }\n  template <int n>\n  void coef_array(ll b,\
-    \ array<T, n>& S) {\n    static_assert(n < 4);\n    // [t^x]t^b(1-t)^{-n} \u3092\
-    \ binom(x,k) \u306E\u7DDA\u5F62\u7D50\u5408\u3067\u8868\u3059\u4FC2\u6570\n  \
-    \  if constexpr (n == 1) S = {T(1)};\n    if constexpr (n == 2) S = {T(1 - b),\
-    \ T(1)};\n    if constexpr (n == 3) S = {T((b - 1) * (b - 2) / 2), T(2 - b), T(1)};\n\
-    \  }\n\n  vc<T> ANS;\n  bool done = false;\n  void calc_static(const vc<int>&\
-    \ ADD_I, vc<int>& GET_I) {\n    if (ADD_I.empty() || GET_I.empty()) return;\n\
-    \    Index_Compression<ll, true, false> IY;\n    {\n      vc<ll> tmp;\n      for\
-    \ (int q : ADD_I) {\n        auto [a, b, w, qid] = query[q];\n        if (qid\
-    \ == -1) tmp.eb(b);\n      }\n      IY.build(tmp);\n    }\n\n    FenwickTree<Mono>\
-    \ bit(len(IY));\n\n    array<T, A> CX;\n    array<T, B> CY;\n    array<T, A *\
-    \ B> tmp;\n\n    int ptr = 0;\n    for (int q : GET_I) {\n      auto [a, b, w,\
-    \ qid] = query[q];\n      while (ptr < len(ADD_I) && (get<0>(query[ADD_I[ptr]]))\
+    \ B\uFF1A\u5B9A\u6570\n// \u5EA7\u6A19\u306F ll \u3067\u4FC2\u6570\u306F T\n//\
+    \ Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B\
+    \ \u3092\u305F\u304F\u3055\u3093\u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\
+    \ntemplate <int A, int B, typename T, bool STATIC>\nstruct Coefficient_Query_2D\
+    \ {\n  struct Mono {\n    using value_type = array<T, A * B>;\n    using X = value_type;\n\
+    \    static X op(X x, X y) {\n      FOR(i, A * B) x[i] += y[i];\n      return\
+    \ x;\n    }\n    static constexpr X unit() { return X{}; }\n    static constexpr\
+    \ bool commute = 1;\n  };\n  vc<tuple<ll, ll, T, int>> query;\n\n  int nsum =\
+    \ 0;\n  Coefficient_Query_2D() {}\n  void add_query(ll x, ll y, T c) {\n    if\
+    \ (c != T(0)) query.eb(x, y, c, -1);\n  }\n  void sum_query(ll p, ll q) { query.eb(p,\
+    \ q, 0, nsum++); }\n\n  // \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u306A\u3069\
+    \u306E\u72B6\u6CC1\u6B21\u7B2C\u3067\u66F8\u304D\u63DB\u3048\u308B\n  template\
+    \ <int n>\n  void comb_array(ll x, array<T, n>& S) {\n    static_assert(n < 4);\n\
+    \    if constexpr (n == 1) S = {T(1)};\n    if constexpr (n == 2) S = {T(1), T(x)};\n\
+    \    if constexpr (n == 3) S = {T(1), T(x), T(x * (x - 1) / 2)};\n  }\n  template\
+    \ <int n>\n  void coef_array(ll b, array<T, n>& S) {\n    static_assert(n < 4);\n\
+    \    // [t^x]t^b(1-t)^{-n} \u3092 binom(x,k) \u306E\u7DDA\u5F62\u7D50\u5408\u3067\
+    \u8868\u3059\u4FC2\u6570\n    if constexpr (n == 1) S = {T(1)};\n    if constexpr\
+    \ (n == 2) S = {T(1 - b), T(1)};\n    if constexpr (n == 3) S = {T((b - 1) * (b\
+    \ - 2) / 2), T(2 - b), T(1)};\n  }\n\n  vc<T> ANS;\n  bool done = false;\n  void\
+    \ calc_static(const vc<int>& ADD_I, vc<int>& GET_I) {\n    if (ADD_I.empty() ||\
+    \ GET_I.empty()) return;\n    Index_Compression<ll, true, false> IY;\n    {\n\
+    \      vc<ll> tmp;\n      for (int q : ADD_I) {\n        auto [a, b, w, qid] =\
+    \ query[q];\n        if (qid == -1) tmp.eb(b);\n      }\n      IY.build(tmp);\n\
+    \    }\n\n    FenwickTree<Mono> bit(len(IY));\n\n    array<T, A> CX;\n    array<T,\
+    \ B> CY;\n    array<T, A * B> tmp;\n\n    int ptr = 0;\n    for (int q : GET_I)\
+    \ {\n      auto [a, b, w, qid] = query[q];\n      while (ptr < len(ADD_I) && (get<0>(query[ADD_I[ptr]]))\
     \ <= a) {\n        int q = ADD_I[ptr++];\n        auto [a, b, w, qid] = query[q];\n\
     \        coef_array<A>(a, CX);\n        coef_array<B>(b, CY);\n        FOR(i,\
     \ A) FOR(j, B) tmp[B * i + j] = CX[i] * CY[j] * w;\n        bit.add(IY(b), tmp);\n\
@@ -419,7 +419,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   requiredBy: []
-  timestamp: '2025-12-07 20:35:27+09:00'
+  timestamp: '2025-12-08 19:21:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp

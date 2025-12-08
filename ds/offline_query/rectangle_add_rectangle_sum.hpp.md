@@ -124,13 +124,14 @@ data:
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
     \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
     \ bool { return x <= k; }, L);\n  }\n};\n#line 3 \"ds/offline_query/coeffient_query_2d.hpp\"\
-    \n\n// A, B\uFF1A\u5B9A\u6570\n// Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\
-    \u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B \u3092\u305F\u304F\u3055\u3093\
-    \u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\ntemplate <int A, int B, typename\
-    \ T, bool STATIC>\nstruct Coefficient_Query_2D {\n  struct Mono {\n    using value_type\
-    \ = array<T, A * B>;\n    using X = value_type;\n    static X op(X x, X y) {\n\
-    \      FOR(i, A * B) x[i] += y[i];\n      return x;\n    }\n    static constexpr\
-    \ X unit() { return X{}; }\n    static constexpr bool commute = 1;\n  };\n  vc<tuple<ll,\
+    \n\n// A, B\uFF1A\u5B9A\u6570\n// \u5EA7\u6A19\u306F ll \u3067\u4FC2\u6570\u306F\
+    \ T\n// Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\u3048\u308B\n// [x^py^q]\
+    \ f(x,y)/(1-x)^A(1-y)^B \u3092\u305F\u304F\u3055\u3093\u6C42\u3081\u308B\n// O(AB\
+    \ N logN) \u6642\u9593\ntemplate <int A, int B, typename T, bool STATIC>\nstruct\
+    \ Coefficient_Query_2D {\n  struct Mono {\n    using value_type = array<T, A *\
+    \ B>;\n    using X = value_type;\n    static X op(X x, X y) {\n      FOR(i, A\
+    \ * B) x[i] += y[i];\n      return x;\n    }\n    static constexpr X unit() {\
+    \ return X{}; }\n    static constexpr bool commute = 1;\n  };\n  vc<tuple<ll,\
     \ ll, T, int>> query;\n\n  int nsum = 0;\n  Coefficient_Query_2D() {}\n  void\
     \ add_query(ll x, ll y, T c) {\n    if (c != T(0)) query.eb(x, y, c, -1);\n  }\n\
     \  void sum_query(ll p, ll q) { query.eb(p, q, 0, nsum++); }\n\n  // \u30AA\u30FC\
@@ -171,20 +172,20 @@ data:
     \ + len(GET2));\n      merge(all(ADD1), all(ADD2), ADD.begin(), comp);\n     \
     \ merge(all(GET1), all(GET2), GET.begin(), comp);\n      return {ADD, GET};\n\
     \    };\n    dfs(dfs, 0, Q);\n    return ANS;\n  }\n};\n#line 2 \"ds/offline_query/rectangle_add_rectangle_sum.hpp\"\
-    \n\ntemplate <typename T, typename XY>\nstruct Rectangle_Add_Rectangle_Sum {\n\
-    \  Coefficient_Query_2D<2, 2, T, XY> CQ;\n  void add_query(XY x1, XY x2, XY y1,\
-    \ XY y2, T w) {\n    CQ.add_query(x1, y1, w), CQ.add_query(x1, y2, -w);\n    CQ.add_query(x2,\
-    \ y1, -w), CQ.add_query(x2, y2, w);\n  }\n  void sum_query(XY x1, XY x2, XY y1,\
-    \ XY y2) {\n    --x1, --y1, --x2, --y2;\n    CQ.sum_query(x1, y1), CQ.sum_query(x1,\
-    \ y2);\n    CQ.sum_query(x2, y1), CQ.sum_query(x2, y2);\n  }\n  vc<T> calc() {\n\
-    \    vc<T> tmp = CQ.calc();\n    int Q = len(tmp) / 4;\n    vc<T> res(Q);\n  \
-    \  FOR(q, Q) {\n      res[q] = tmp[4 * q] - tmp[4 * q + 1] - tmp[4 * q + 2] +\
-    \ tmp[4 * q + 3];\n    }\n    return res;\n  }\n};\n"
-  code: "#include \"ds/offline_query/coeffient_query_2d.hpp\"\n\ntemplate <typename\
-    \ T, typename XY>\nstruct Rectangle_Add_Rectangle_Sum {\n  Coefficient_Query_2D<2,\
-    \ 2, T, XY> CQ;\n  void add_query(XY x1, XY x2, XY y1, XY y2, T w) {\n    CQ.add_query(x1,\
+    \n\ntemplate <typename T>\nstruct Rectangle_Add_Rectangle_Sum {\n  Coefficient_Query_2D<2,\
+    \ 2, T, true> CQ;\n  void add_query(ll x1, ll x2, ll y1, ll y2, T w) {\n    CQ.add_query(x1,\
     \ y1, w), CQ.add_query(x1, y2, -w);\n    CQ.add_query(x2, y1, -w), CQ.add_query(x2,\
-    \ y2, w);\n  }\n  void sum_query(XY x1, XY x2, XY y1, XY y2) {\n    --x1, --y1,\
+    \ y2, w);\n  }\n  void sum_query(ll x1, ll x2, ll y1, ll y2) {\n    --x1, --y1,\
+    \ --x2, --y2;\n    CQ.sum_query(x1, y1), CQ.sum_query(x1, y2);\n    CQ.sum_query(x2,\
+    \ y1), CQ.sum_query(x2, y2);\n  }\n  vc<T> calc() {\n    vc<T> tmp = CQ.calc();\n\
+    \    int Q = len(tmp) / 4;\n    vc<T> res(Q);\n    FOR(q, Q) {\n      res[q] =\
+    \ tmp[4 * q] - tmp[4 * q + 1] - tmp[4 * q + 2] + tmp[4 * q + 3];\n    }\n    return\
+    \ res;\n  }\n};\n"
+  code: "#include \"ds/offline_query/coeffient_query_2d.hpp\"\n\ntemplate <typename\
+    \ T>\nstruct Rectangle_Add_Rectangle_Sum {\n  Coefficient_Query_2D<2, 2, T, true>\
+    \ CQ;\n  void add_query(ll x1, ll x2, ll y1, ll y2, T w) {\n    CQ.add_query(x1,\
+    \ y1, w), CQ.add_query(x1, y2, -w);\n    CQ.add_query(x2, y1, -w), CQ.add_query(x2,\
+    \ y2, w);\n  }\n  void sum_query(ll x1, ll x2, ll y1, ll y2) {\n    --x1, --y1,\
     \ --x2, --y2;\n    CQ.sum_query(x1, y1), CQ.sum_query(x1, y2);\n    CQ.sum_query(x2,\
     \ y1), CQ.sum_query(x2, y2);\n  }\n  vc<T> calc() {\n    vc<T> tmp = CQ.calc();\n\
     \    int Q = len(tmp) / 4;\n    vc<T> res(Q);\n    FOR(q, Q) {\n      res[q] =\
@@ -198,7 +199,7 @@ data:
   isVerificationFile: false
   path: ds/offline_query/rectangle_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2025-12-07 20:35:27+09:00'
+  timestamp: '2025-12-08 19:21:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1490.test.cpp

@@ -352,13 +352,14 @@ data:
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
     \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
     \ bool { return x <= k; }, L);\n  }\n};\n#line 3 \"ds/offline_query/coeffient_query_2d.hpp\"\
-    \n\n// A, B\uFF1A\u5B9A\u6570\n// Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\
-    \u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B \u3092\u305F\u304F\u3055\u3093\
-    \u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\ntemplate <int A, int B, typename\
-    \ T, bool STATIC>\nstruct Coefficient_Query_2D {\n  struct Mono {\n    using value_type\
-    \ = array<T, A * B>;\n    using X = value_type;\n    static X op(X x, X y) {\n\
-    \      FOR(i, A * B) x[i] += y[i];\n      return x;\n    }\n    static constexpr\
-    \ X unit() { return X{}; }\n    static constexpr bool commute = 1;\n  };\n  vc<tuple<ll,\
+    \n\n// A, B\uFF1A\u5B9A\u6570\n// \u5EA7\u6A19\u306F ll \u3067\u4FC2\u6570\u306F\
+    \ T\n// Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\u3048\u308B\n// [x^py^q]\
+    \ f(x,y)/(1-x)^A(1-y)^B \u3092\u305F\u304F\u3055\u3093\u6C42\u3081\u308B\n// O(AB\
+    \ N logN) \u6642\u9593\ntemplate <int A, int B, typename T, bool STATIC>\nstruct\
+    \ Coefficient_Query_2D {\n  struct Mono {\n    using value_type = array<T, A *\
+    \ B>;\n    using X = value_type;\n    static X op(X x, X y) {\n      FOR(i, A\
+    \ * B) x[i] += y[i];\n      return x;\n    }\n    static constexpr X unit() {\
+    \ return X{}; }\n    static constexpr bool commute = 1;\n  };\n  vc<tuple<ll,\
     \ ll, T, int>> query;\n\n  int nsum = 0;\n  Coefficient_Query_2D() {}\n  void\
     \ add_query(ll x, ll y, T c) {\n    if (c != T(0)) query.eb(x, y, c, -1);\n  }\n\
     \  void sum_query(ll p, ll q) { query.eb(p, q, 0, nsum++); }\n\n  // \u30AA\u30FC\
@@ -399,33 +400,32 @@ data:
     \ + len(GET2));\n      merge(all(ADD1), all(ADD2), ADD.begin(), comp);\n     \
     \ merge(all(GET1), all(GET2), GET.begin(), comp);\n      return {ADD, GET};\n\
     \    };\n    dfs(dfs, 0, Q);\n    return ANS;\n  }\n};\n#line 2 \"ds/offline_query/rectangle_add_rectangle_sum.hpp\"\
-    \n\ntemplate <typename T, typename XY>\nstruct Rectangle_Add_Rectangle_Sum {\n\
-    \  Coefficient_Query_2D<2, 2, T, XY> CQ;\n  void add_query(XY x1, XY x2, XY y1,\
-    \ XY y2, T w) {\n    CQ.add_query(x1, y1, w), CQ.add_query(x1, y2, -w);\n    CQ.add_query(x2,\
-    \ y1, -w), CQ.add_query(x2, y2, w);\n  }\n  void sum_query(XY x1, XY x2, XY y1,\
-    \ XY y2) {\n    --x1, --y1, --x2, --y2;\n    CQ.sum_query(x1, y1), CQ.sum_query(x1,\
-    \ y2);\n    CQ.sum_query(x2, y1), CQ.sum_query(x2, y2);\n  }\n  vc<T> calc() {\n\
-    \    vc<T> tmp = CQ.calc();\n    int Q = len(tmp) / 4;\n    vc<T> res(Q);\n  \
-    \  FOR(q, Q) {\n      res[q] = tmp[4 * q] - tmp[4 * q + 1] - tmp[4 * q + 2] +\
-    \ tmp[4 * q + 3];\n    }\n    return res;\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
-    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0 /\
-    \ n;\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
-    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
-    \ = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
+    \n\ntemplate <typename T>\nstruct Rectangle_Add_Rectangle_Sum {\n  Coefficient_Query_2D<2,\
+    \ 2, T, true> CQ;\n  void add_query(ll x1, ll x2, ll y1, ll y2, T w) {\n    CQ.add_query(x1,\
+    \ y1, w), CQ.add_query(x1, y2, -w);\n    CQ.add_query(x2, y1, -w), CQ.add_query(x2,\
+    \ y2, w);\n  }\n  void sum_query(ll x1, ll x2, ll y1, ll y2) {\n    --x1, --y1,\
+    \ --x2, --y2;\n    CQ.sum_query(x1, y1), CQ.sum_query(x1, y2);\n    CQ.sum_query(x2,\
+    \ y1), CQ.sum_query(x2, y2);\n  }\n  vc<T> calc() {\n    vc<T> tmp = CQ.calc();\n\
+    \    int Q = len(tmp) / 4;\n    vc<T> res(Q);\n    FOR(q, Q) {\n      res[q] =\
+    \ tmp[4 * q] - tmp[4 * q + 1] - tmp[4 * q + 2] + tmp[4 * q + 3];\n    }\n    return\
+    \ res;\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n\
+    \  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
+    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
+    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
+    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n\
+    \  static const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static\
+    \ vector<mint> dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1]\
+    \ * mint(len(dat)));\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int\
+    \ n) {\n  static vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while\
+    \ (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n\
+    }\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return\
+    \ (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head,\
+    \ class... Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
     \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
     mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
     \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
@@ -510,7 +510,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-12-07 20:35:27+09:00'
+  timestamp: '2025-12-08 19:21:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
