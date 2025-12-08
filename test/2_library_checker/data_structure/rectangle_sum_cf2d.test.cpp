@@ -8,7 +8,7 @@
 
 void solve() {
   LL(N, Q);
-  Coefficient_Query_2D<1, 1, ll, int> X;
+  Coefficient_Query_2D<1, 1, ll, true> X;
   FOR(i, N) {
     LL(x, y, w);
     X.add_query(x, y, w);
@@ -21,7 +21,7 @@ void solve() {
     X.sum_query(x2, y1);
     X.sum_query(x2, y2);
   }
-  auto res = X.calc(0);
+  auto res = X.calc();
   vi ANS(Q);
   FOR(q, Q)
   ANS[q] = res[4 * q] - res[4 * q + 1] - res[4 * q + 2] + res[4 * q + 3];
@@ -29,11 +29,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }
