@@ -11,7 +11,7 @@ using mint = modint998;
 
 void solve() {
   LL(N, Q);
-  Rectangle_Add_Rectangle_Sum<mint, int> X;
+  Rectangle_Add_Rectangle_Sum<mint> X;
 
   FOR(N) {
     LL(l, d, r, u, w);
