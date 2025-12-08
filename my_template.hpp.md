@@ -846,7 +846,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2538,9 +2538,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2760,7 +2760,7 @@ data:
   - other/mhc_template_directory/main.cpp
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
   timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/1170.test.cpp

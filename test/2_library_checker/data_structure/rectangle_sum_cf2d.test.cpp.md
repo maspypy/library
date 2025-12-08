@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -395,21 +395,19 @@ data:
     \ FOR(i, N) {\n    LL(x, y, w);\n    X.add_query(x, y, w);\n  }\n  FOR(Q) {\n\
     \    LL(x1, y1, x2, y2);\n    --x1, --y1, --x2, --y2;\n    X.sum_query(x1, y1);\n\
     \    X.sum_query(x1, y2);\n    X.sum_query(x2, y1);\n    X.sum_query(x2, y2);\n\
-    \  }\n  auto res = X.calc(0);\n  vi ANS(Q);\n  FOR(q, Q)\n  ANS[q] = res[4 * q]\
+    \  }\n  auto res = X.calc();\n  vi ANS(Q);\n  FOR(q, Q)\n  ANS[q] = res[4 * q]\
     \ - res[4 * q + 1] - res[4 * q + 2] + res[4 * q + 3];\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
     \n#include \"ds/offline_query/coeffient_query_2d.hpp\"\n\nvoid solve() {\n  LL(N,\
     \ Q);\n  Coefficient_Query_2D<1, 1, ll, true> X;\n  FOR(i, N) {\n    LL(x, y,\
     \ w);\n    X.add_query(x, y, w);\n  }\n  FOR(Q) {\n    LL(x1, y1, x2, y2);\n \
     \   --x1, --y1, --x2, --y2;\n    X.sum_query(x1, y1);\n    X.sum_query(x1, y2);\n\
-    \    X.sum_query(x2, y1);\n    X.sum_query(x2, y2);\n  }\n  auto res = X.calc(0);\n\
+    \    X.sum_query(x2, y1);\n    X.sum_query(x2, y2);\n  }\n  auto res = X.calc();\n\
     \  vi ANS(Q);\n  FOR(q, Q)\n  ANS[q] = res[4 * q] - res[4 * q + 1] - res[4 * q\
-    \ + 2] + res[4 * q + 3];\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \ + 2] + res[4 * q + 3];\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -420,8 +418,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   requiredBy: []
-  timestamp: '2025-12-08 20:07:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-12-08 20:26:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
 layout: document
