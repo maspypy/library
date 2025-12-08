@@ -292,6 +292,7 @@
 "test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp": "2025-11-20 15:04:14 +0900",
 "test/2_library_checker/data_structure/static_range_mode_query.test.cpp": "2025-11-20 15:04:14 +0900",
 "test/2_library_checker/data_structure/static_range_sum.test.cpp": "2025-11-20 15:04:14 +0900",
+"test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp": "2025-12-08 20:07:08 +0900",
 "test/2_library_checker/data_structure/staticrmq.test.cpp": "2025-11-20 15:04:14 +0900",
 "test/2_library_checker/data_structure/staticrmq_dc.test.cpp": "2025-11-20 15:04:14 +0900",
 "test/2_library_checker/data_structure/staticrmq_dst.test.cpp": "2025-11-20 15:04:14 +0900",
