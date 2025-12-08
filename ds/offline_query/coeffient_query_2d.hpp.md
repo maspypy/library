@@ -11,7 +11,7 @@ data:
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
   _extendedVerifiedWith:
@@ -21,12 +21,12 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1490.test.cpp
     title: test/3_yukicoder/1490.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct\
@@ -233,7 +233,7 @@ data:
   requiredBy:
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   timestamp: '2025-12-08 19:21:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1490.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
