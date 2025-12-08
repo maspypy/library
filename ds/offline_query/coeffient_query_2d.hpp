@@ -2,6 +2,7 @@
 #include "ds/fenwicktree/fenwicktree.hpp"
 
 // A, B：定数
+// 座標は ll で係数は T
 // Sparse Laurent Polynomial f(x,y) を与える
 // [x^py^q] f(x,y)/(1-x)^A(1-y)^B をたくさん求める
 // O(AB N logN) 時間

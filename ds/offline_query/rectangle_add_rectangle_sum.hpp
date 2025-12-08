@@ -1,13 +1,13 @@
 #include "ds/offline_query/coeffient_query_2d.hpp"
 
-template <typename T, typename XY>
+template <typename T>
 struct Rectangle_Add_Rectangle_Sum {
-  Coefficient_Query_2D<2, 2, T, XY> CQ;
-  void add_query(XY x1, XY x2, XY y1, XY y2, T w) {
+  Coefficient_Query_2D<2, 2, T, true> CQ;
+  void add_query(ll x1, ll x2, ll y1, ll y2, T w) {
     CQ.add_query(x1, y1, w), CQ.add_query(x1, y2, -w);
     CQ.add_query(x2, y1, -w), CQ.add_query(x2, y2, w);
   }
-  void sum_query(XY x1, XY x2, XY y1, XY y2) {
+  void sum_query(ll x1, ll x2, ll y1, ll y2) {
     --x1, --y1, --x2, --y2;
     CQ.sum_query(x1, y1), CQ.sum_query(x1, y2);
     CQ.sum_query(x2, y1), CQ.sum_query(x2, y2);
