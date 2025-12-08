@@ -8,7 +8,7 @@
 
 void solve() {
   LL(N, Q);
-  Coefficient_Query_2D<1, 1, ll, int> X;
+  Coefficient_Query_2D<1, 1, ll, true> X;
   FOR(i, N) {
     LL(x, y, w);
     X.add_query(x, y, w);
