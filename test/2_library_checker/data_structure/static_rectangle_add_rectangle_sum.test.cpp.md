@@ -13,13 +13,13 @@ data:
   - icon: ':question:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
@@ -486,15 +486,15 @@ data:
     \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 9 \"test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  Rectangle_Add_Rectangle_Sum<mint,\
-    \ int> X;\n\n  FOR(N) {\n    LL(l, d, r, u, w);\n    X.add_query(l, r, d, u, w);\n\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  Rectangle_Add_Rectangle_Sum<mint>\
+    \ X;\n\n  FOR(N) {\n    LL(l, d, r, u, w);\n    X.add_query(l, r, d, u, w);\n\
     \  }\n  FOR(Q) {\n    LL(l, d, r, u);\n    X.sum_query(l, r, d, u);\n  }\n  print(X.calc());\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/offline_query/rectangle_add_rectangle_sum.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"alg/monoid/add.hpp\"\n\nusing mint =\
-    \ modint998;\n\nvoid solve() {\n  LL(N, Q);\n  Rectangle_Add_Rectangle_Sum<mint,\
-    \ int> X;\n\n  FOR(N) {\n    LL(l, d, r, u, w);\n    X.add_query(l, r, d, u, w);\n\
+    \ modint998;\n\nvoid solve() {\n  LL(N, Q);\n  Rectangle_Add_Rectangle_Sum<mint>\
+    \ X;\n\n  FOR(N) {\n    LL(l, d, r, u, w);\n    X.add_query(l, r, d, u, w);\n\
     \  }\n  FOR(Q) {\n    LL(l, d, r, u);\n    X.sum_query(l, r, d, u);\n  }\n  print(X.calc());\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
@@ -510,8 +510,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-12-08 19:21:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-12-08 20:07:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
 layout: document
