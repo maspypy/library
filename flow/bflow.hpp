@@ -1,6 +1,7 @@
 #pragma once
 
 // 負辺があっても動作するよ
+// INF 辺が大きすぎると壊れたりするみたいなのでので注意
 template <class Flow = ll, class Cost = ll>
 struct MinCostFlow {
  private:
