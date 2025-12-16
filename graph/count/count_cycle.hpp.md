@@ -21,28 +21,34 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\n\
-    void enumerate_bits_bitset(BS& b, int L, int R, F f) {\n  if (L >= len(b)) return;\n\
+    void enumerate_bits_bitset(BS& b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n\
     \  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p\
-    \ = b._Find_next(p);\n  }\n}\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\n\
-    template <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\
-    \u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n);\
-    \ }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\
-    \n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k,\
-    \ 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\
-    \u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear()\
-    \ {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n\
-    \  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const u64& k)\
-    \ {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i\
-    \ + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64&\
-    \ k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i])\
-    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
-    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
-    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
-    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
-    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \ = b._Find_next(p);\n  }\n}\n\ntemplate <typename UINT, typename F>\ninline void\
+    \ enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
+    \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
+    \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
+    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 2 \"ds/hashmap.hpp\"\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
+    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
+    \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
+    \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
+    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
+    \u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap\
+    \ = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\
+    \r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i]\
+    \ && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val&\
+    \ operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\
+    \n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\
+    \n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n\
+    \  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
+    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
+    \ F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i],\
+    \ val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val>\
+    \ val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64\
+    \ FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
     \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
     \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
@@ -127,28 +133,30 @@ data:
     \u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\uFF08\u5358\u7D14\u30B0\u30E9\
     \u30D5\u3092\u4EEE\u5B9A\uFF09\ntemplate <typename T, typename GT>\nvc<T> count_cycle(GT&\
     \ G) {\n  const int N = G.N;\n  assert(N <= 32 && !GT::is_directed);\n  vc<u32>\
-    \ nbd(N);\n  FOR(v, N) for (auto& e: G[v]) nbd[v] |= u32(1) << (e.to);\n\n  vc<T>\
+    \ nbd(N);\n  FOR(v, N) for (auto& e : G[v]) nbd[v] |= u32(1) << (e.to);\n\n  vc<T>\
     \ cyc(1 << N);\n  for (int v = 0; v < N; ++v) {\n    vc<T> dp(v << v);\n    for\
     \ (int w = 0; w < v; ++w) {\n      if (nbd[v] >> w & 1) dp[(v << w) + w] = 1;\n\
     \    }\n    const u32 mask = (u32(1) << v) - 1;\n    for (u32 s = 0; s < (u32(1)\
-    \ << v); ++s) {\n      for (int a: all_bit<u32>(s)) {\n        for (int b: all_bit<u32>(nbd[a]\
-    \ & mask & (~s))) { dp[v * (s | 1 << b) + b] += dp[v * s + a]; }\n        if (popcnt(s)\
-    \ >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v * s + a];\n      }\n    }\n\
-    \  }\n  for (auto& x: cyc) x /= T(2);\n  return cyc;\n}\n"
+    \ << v); ++s) {\n      enumerate_all_bit(s, [&](int a) -> void {\n        enumerate_all_bit(nbd[a]\
+    \ & mask & (~s), [&](int b) -> void {\n          dp[v * (s | 1 << b) + b] += dp[v\
+    \ * s + a];\n        });\n        if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s\
+    \ | 1 << v] += dp[v * s + a];\n      });\n    }\n  }\n  for (auto& x : cyc) x\
+    \ /= T(2);\n  return cyc;\n}\n"
   code: "#include \"enumerate/bits.hpp\"\n#include \"graph/base.hpp\"\n\n// \u9802\
     \u70B9\u96C6\u5408\u3054\u3068\u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\
     \u308B. N^22^N.\n// \u30B5\u30A4\u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\
     \uFF08\u5358\u7D14\u30B0\u30E9\u30D5\u3092\u4EEE\u5B9A\uFF09\ntemplate <typename\
     \ T, typename GT>\nvc<T> count_cycle(GT& G) {\n  const int N = G.N;\n  assert(N\
-    \ <= 32 && !GT::is_directed);\n  vc<u32> nbd(N);\n  FOR(v, N) for (auto& e: G[v])\
+    \ <= 32 && !GT::is_directed);\n  vc<u32> nbd(N);\n  FOR(v, N) for (auto& e : G[v])\
     \ nbd[v] |= u32(1) << (e.to);\n\n  vc<T> cyc(1 << N);\n  for (int v = 0; v < N;\
     \ ++v) {\n    vc<T> dp(v << v);\n    for (int w = 0; w < v; ++w) {\n      if (nbd[v]\
     \ >> w & 1) dp[(v << w) + w] = 1;\n    }\n    const u32 mask = (u32(1) << v) -\
-    \ 1;\n    for (u32 s = 0; s < (u32(1) << v); ++s) {\n      for (int a: all_bit<u32>(s))\
-    \ {\n        for (int b: all_bit<u32>(nbd[a] & mask & (~s))) { dp[v * (s | 1 <<\
-    \ b) + b] += dp[v * s + a]; }\n        if (popcnt(s) >= 2 && nbd[a] >> v & 1)\
-    \ cyc[s | 1 << v] += dp[v * s + a];\n      }\n    }\n  }\n  for (auto& x: cyc)\
-    \ x /= T(2);\n  return cyc;\n}\n"
+    \ 1;\n    for (u32 s = 0; s < (u32(1) << v); ++s) {\n      enumerate_all_bit(s,\
+    \ [&](int a) -> void {\n        enumerate_all_bit(nbd[a] & mask & (~s), [&](int\
+    \ b) -> void {\n          dp[v * (s | 1 << b) + b] += dp[v * s + a];\n       \
+    \ });\n        if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v\
+    \ * s + a];\n      });\n    }\n  }\n  for (auto& x : cyc) x /= T(2);\n  return\
+    \ cyc;\n}\n"
   dependsOn:
   - enumerate/bits.hpp
   - graph/base.hpp
@@ -156,7 +164,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_cycle.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
+  timestamp: '2025-12-16 20:51:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp

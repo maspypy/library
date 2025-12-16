@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: enumerate/bits.hpp
+    title: enumerate/bits.hpp
   - icon: ':warning:'
     path: setfunc/online/online_subset_mobius.hpp
     title: setfunc/online/online_subset_mobius.hpp
@@ -14,36 +17,51 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"setfunc/online/online_subset_zeta.hpp\"\n/*\nsegtree \u3092\
-    \u8003\u3048\u308B\n\u73FE\u5728\u306E\u30DD\u30A4\u30F3\u30BF\u306E\u4F4D\u7F6E\
-    \u304C\u3042\u308B\n\u3082\u3046\u5168\u90E8\u306E\u5024\u304C\u8AAD\u307E\u308C\
-    \u305F subtree \u3067\u306F\u30BC\u30FC\u30BF\u3055\u308C\u305F\u72B6\u614B\u306B\
-    \u3057\u3066\u304A\u304F\n*/\ntemplate <typename T>\nstruct Online_Subset_Zeta\
-    \ {\n  int n;\n  int p = 0;\n  vc<T> A;\n  Online_Subset_Zeta(int LOG) : n(LOG),\
-    \ A(1 << n) {}\n\n  // set a[i], return zeta(a)[i]\n  T set(int i, T a) {\n  \
-    \  assert(p == i);\n    T ans = assume(i, 0) + a;\n    A[p++] = a;\n    int K\
-    \ = lowbit(p);\n    for (int k = 0; k < K; ++k)\n      for (int j = p - (1 <<\
-    \ k); j < p; ++j) A[j] += A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume\
-    \ a[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int i, T ai)\
-    \ {\n    assert(p == i);\n    T ans = ai;\n    // \u306A\u3093\u3068\u3053\u308C\
-    \u3060\u3051\uFF1F\n    for (int j: all_bit<u32>(i)) ans += A[i - (1 << j)];\n\
-    \    return ans;\n  }\n};\n#line 1 \"setfunc/online/online_subset_mobius.hpp\"\
-    \n\ntemplate <typename T>\nstruct Online_Subset_Mobius {\n  int n;\n  int p =\
-    \ 0;\n  vc<T> A;\n  Online_Subset_Mobius(int LOG) : n(LOG), A(1 << n) {}\n\n \
-    \ // set a[i], return zeta(a)[i]\n  T set(int i, T a) {\n    assert(p == i);\n\
-    \    T ans = assume(i, 0) + a;\n    A[p++] = a;\n    int K = lowbit(p);\n    for\
-    \ (int k = 0; k < K; ++k)\n      for (int j = p - (1 << k); j < p; ++j) A[j] -=\
-    \ A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume a[i], return zeta(a)[i].\
-    \ not increment the pointer.\n  T assume(int i, T ai) {\n    assert(p == i);\n\
-    \    T ans = ai;\n    for (int j: all_bit<u32>(i)) ans -= A[i - (1 << j)];\n \
-    \   return ans;\n  }\n};\n#line 3 \"setfunc/online/online_or_convolution.hpp\"\
-    \n\ntemplate <typename T>\nstruct Online_Or_Convolution {\n  Online_Subset_Zeta<T>\
-    \ X1, X2;\n  Online_Subset_Mobius<T> Y;\n  Online_Or_Convolution(int LOG) : X1(LOG),\
-    \ X2(LOG), Y(LOG) {}\n  // set a[i] and b[i], return conv(a,b)[i]\n  T set(int\
-    \ i, T ai, T bi) { return Y.set(i, X1.set(i, ai) * X2.set(i, bi)); }\n  // assume\
-    \ a[i],b[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int i,\
-    \ T ai, T bi) {\n    return Y.assume(i, X1.assume(i, ai) * X2.assume(i, bi));\n\
-    \  }\n};\n"
+  bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\n\
+    void enumerate_bits_bitset(BS& b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n\
+    \  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p\
+    \ = b._Find_next(p);\n  }\n}\n\ntemplate <typename UINT, typename F>\ninline void\
+    \ enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
+    \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
+    \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
+    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 2 \"setfunc/online/online_subset_zeta.hpp\"\
+    \n\n/*\nsegtree \u3092\u8003\u3048\u308B\n\u73FE\u5728\u306E\u30DD\u30A4\u30F3\
+    \u30BF\u306E\u4F4D\u7F6E\u304C\u3042\u308B\n\u3082\u3046\u5168\u90E8\u306E\u5024\
+    \u304C\u8AAD\u307E\u308C\u305F subtree \u3067\u306F\u30BC\u30FC\u30BF\u3055\u308C\
+    \u305F\u72B6\u614B\u306B\u3057\u3066\u304A\u304F\n*/\ntemplate <typename T>\n\
+    struct Online_Subset_Zeta {\n  int n;\n  int p = 0;\n  vc<T> A;\n  Online_Subset_Zeta(int\
+    \ LOG) : n(LOG), A(1 << n) {}\n\n  // set a[i], return zeta(a)[i]\n  T set(int\
+    \ i, T a) {\n    assert(p == i);\n    T ans = assume(i, 0) + a;\n    A[p++] =\
+    \ a;\n    int K = lowbit(p);\n    for (int k = 0; k < K; ++k)\n      for (int\
+    \ j = p - (1 << k); j < p; ++j) A[j] += A[j - (1 << k)];\n    return ans;\n  }\n\
+    \n  // assume a[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int\
+    \ i, T ai) {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(i,\
+    \ [&](int j) -> void { ans += A[i - (1 << j)]; });\n    return ans;\n  }\n};\n\
+    #line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
+    \ b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L :\
+    \ b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n\
+    \  }\n}\n\ntemplate <typename UINT, typename F>\ninline void enumerate_all_bit(UINT\
+    \ s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  while (s) {\n   \
+    \ f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename UINT, bool inc_empty,\
+    \ typename F>\ninline void enumerate_all_subset(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  for (UINT t = s; t; t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n\
+    }\n#line 2 \"setfunc/online/online_subset_mobius.hpp\"\n\ntemplate <typename T>\n\
+    struct Online_Subset_Mobius {\n  int n;\n  int p = 0;\n  vc<T> A;\n  Online_Subset_Mobius(int\
+    \ LOG) : n(LOG), A(1 << n) {}\n\n  // set a[i], return zeta(a)[i]\n  T set(int\
+    \ i, T a) {\n    assert(p == i);\n    T ans = assume(i, 0) + a;\n    A[p++] =\
+    \ a;\n    int K = lowbit(p);\n    for (int k = 0; k < K; ++k)\n      for (int\
+    \ j = p - (1 << k); j < p; ++j) A[j] -= A[j - (1 << k)];\n    return ans;\n  }\n\
+    \n  // assume a[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int\
+    \ i, T ai) {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(i,\
+    \ [&](int j) -> vood { ans -= A[i - (1 << j)]; });\n    return ans;\n  }\n};\n\
+    #line 3 \"setfunc/online/online_or_convolution.hpp\"\n\ntemplate <typename T>\n\
+    struct Online_Or_Convolution {\n  Online_Subset_Zeta<T> X1, X2;\n  Online_Subset_Mobius<T>\
+    \ Y;\n  Online_Or_Convolution(int LOG) : X1(LOG), X2(LOG), Y(LOG) {}\n  // set\
+    \ a[i] and b[i], return conv(a,b)[i]\n  T set(int i, T ai, T bi) { return Y.set(i,\
+    \ X1.set(i, ai) * X2.set(i, bi)); }\n  // assume a[i],b[i], return zeta(a)[i].\
+    \ not increment the pointer.\n  T assume(int i, T ai, T bi) {\n    return Y.assume(i,\
+    \ X1.assume(i, ai) * X2.assume(i, bi));\n  }\n};\n"
   code: "#include \"setfunc/online/online_subset_zeta.hpp\"\n#include \"setfunc/online/online_subset_mobius.hpp\"\
     \n\ntemplate <typename T>\nstruct Online_Or_Convolution {\n  Online_Subset_Zeta<T>\
     \ X1, X2;\n  Online_Subset_Mobius<T> Y;\n  Online_Or_Convolution(int LOG) : X1(LOG),\
@@ -54,11 +72,12 @@ data:
     \  }\n};\n"
   dependsOn:
   - setfunc/online/online_subset_zeta.hpp
+  - enumerate/bits.hpp
   - setfunc/online/online_subset_mobius.hpp
   isVerificationFile: false
   path: setfunc/online/online_or_convolution.hpp
   requiredBy: []
-  timestamp: '2025-09-02 08:16:33+09:00'
+  timestamp: '2025-12-16 20:51:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/online/online_or_convolution.hpp

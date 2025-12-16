@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: enumerate/bits.hpp
+    title: enumerate/bits.hpp
+  - icon: ':heavy_check_mark:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
   - icon: ':heavy_check_mark:'
@@ -163,9 +166,17 @@ data:
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 4 \"test/1_mytest/enum_partitions.test.cpp\"\n\n\
-    #line 1 \"enumerate/partition.hpp\"\n/*\npartition \u306F\u3001\u300C\u6E1B\u5C11\
-    \u5217\u300D\u3068\u3057\u3066\u8F9E\u66F8\u5F0F\u306E\u964D\u9806\u306B\u5217\
-    \u6319\u3059\u308B\u3002\nN=10,20,30,40\uFF1A42, 527, 5604, 37338\nN = 50\uFF08\
+    #line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
+    \ b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L :\
+    \ b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n\
+    \  }\n}\n\ntemplate <typename UINT, typename F>\ninline void enumerate_all_bit(UINT\
+    \ s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  while (s) {\n   \
+    \ f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename UINT, bool inc_empty,\
+    \ typename F>\ninline void enumerate_all_subset(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  for (UINT t = s; t; t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n\
+    }\n#line 2 \"enumerate/partition.hpp\"\n\n/*\npartition \u306F\u3001\u300C\u6E1B\
+    \u5C11\u5217\u300D\u3068\u3057\u3066\u8F9E\u66F8\u5F0F\u306E\u964D\u9806\u306B\
+    \u5217\u6319\u3059\u308B\u3002\nN=10,20,30,40\uFF1A42, 527, 5604, 37338\nN = 50\uFF08\
     204226\uFF09\uFF1A12 ms\nN = 60\uFF08966467\uFF09\uFF1A60 ms\nN = 70\uFF084087968\uFF09\
     \uFF1A270 ms\nN = 80\uFF0815796476\uFF09\uFF1A1100 ms\nN = 90\uFF0856634173\uFF09\
     \uFF1A4800 ms\nN = 100 (190569292) : 15600 ms\n*/\ntemplate <typename F>\nvoid\
@@ -180,17 +191,17 @@ data:
     \ f(vc<int>)\n// https://atcoder.jp/contests/abc390/tasks/abc390_d\n// N = 11\uFF08\
     678570\uFF09\uFF1A29 ms\n// N = 12\uFF084213597\uFF09\uFF1A208 ms\n// N = 13\uFF08\
     27644437\uFF09\uFF1A2084 ms\ntemplate <typename F>\nvoid enumerate_set_partition(int\
-    \ N, F f) {\n  vc<int> S;\n  auto dfs = [&](auto &dfs, int rest) -> void {\n \
+    \ N, F f) {\n  vc<u32> S;\n  auto dfs = [&](auto &dfs, u32 rest) -> void {\n \
     \   if (rest == 0) {\n      return f(S);\n    }\n    int a = lowbit(rest);\n \
-    \   rest -= u32(1) << a;\n    for (int s : all_subset<u32>(rest)) {\n      S.eb(s\
-    \ | 1 << a);\n      dfs(dfs, rest - s);\n      POP(S);\n    }\n  };\n  dfs(dfs,\
-    \ (u32(1) << N) - 1);\n}\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
-    \ mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f))\
-    \ if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"poly/convolution.hpp\"\
-    \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \   rest -= u32(1) << a;\n    enumerate_all_subset<u32, true>(rest, [&](u32 s)\
+    \ -> void {\n      S.eb(s | 1 << a);\n      dfs(dfs, rest - s);\n      POP(S);\n\
+    \    });\n  };\n  dfs(dfs, (u32(1) << N) - 1);\n}\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
+    \ \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -499,6 +510,7 @@ data:
   - my_template.hpp
   - random/base.hpp
   - enumerate/partition.hpp
+  - enumerate/bits.hpp
   - seq/famous/partition_number.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
@@ -513,7 +525,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enum_partitions.test.cpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
+  timestamp: '2025-12-16 20:51:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enum_partitions.test.cpp

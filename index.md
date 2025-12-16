@@ -1843,6 +1843,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/mex.hpp
       title: other/mex.hpp
+    - icon: ':warning:'
+      path: other/optimize_2d.hpp
+      title: other/optimize_2d.hpp
     - icon: ':heavy_check_mark:'
       path: other/reduce_intervals.hpp
       title: other/reduce_intervals.hpp

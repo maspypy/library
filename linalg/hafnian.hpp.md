@@ -58,8 +58,13 @@ data:
     \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
     \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 1 \"enumerate/bits.hpp\"\
     \ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L,\
-    \ int R, F f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
-    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"linalg/hafnian.hpp\"\
+    \ int R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
+    \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
+    \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
+    \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
+    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 3 \"linalg/hafnian.hpp\"\
     \n\r\n// \u96A3\u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\u30C3\
     \u30C1\u30F3\u30B0\u3092\u6570\u3048\u308B\u3002\r\ntemplate <typename mint, int\
     \ LIM = 20>\r\nmint Hufnian(vc<vc<mint>>& mat) {\r\n  int N = len(mat);\r\n  int\
@@ -71,12 +76,13 @@ data:
     \ for (int s = 0; s < (1 << i); ++s) {\r\n      for (int j = 0; j < i; ++j) {\r\
     \n        int j0 = 2 * j + 0, j1 = 2 * j + 1;\r\n        cyc[s | 1 << i] += dp[K\
     \ * s + j0] * mat[B][j0];\r\n        cyc[s | 1 << i] += dp[K * s + j1] * mat[B][j1];\r\
-    \n        for (int k: all_bit<u32>((1 << i) - 1 - s)) {\r\n          int k0 =\
-    \ 2 * k + 0, k1 = 2 * k + 1;\r\n          int t = s | 1 << k;\r\n          dp[K\
-    \ * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K * t + k0] += dp[K\
-    \ * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K * s + j0] * mat[j0][k0];\r\
-    \n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\n        }\r\n \
-    \     }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\n}\r\n"
+    \n        enumerate_all_bit<u32>((1 << i) - 1 - s, [&](int k) -> void {\r\n  \
+    \        int k0 = 2 * k + 0, k1 = 2 * k + 1;\r\n          int t = s | 1 << k;\r\
+    \n          dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K\
+    \ * t + k0] += dp[K * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K\
+    \ * s + j0] * mat[j0][k0];\r\n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\
+    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\
+    \n}\r\n"
   code: "#include \"setfunc/sps_exp.hpp\"\r\n#include \"enumerate/bits.hpp\"\r\n\r\
     \n// \u96A3\u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\u30C3\u30C1\
     \u30F3\u30B0\u3092\u6570\u3048\u308B\u3002\r\ntemplate <typename mint, int LIM\
@@ -89,12 +95,13 @@ data:
     \ (int s = 0; s < (1 << i); ++s) {\r\n      for (int j = 0; j < i; ++j) {\r\n\
     \        int j0 = 2 * j + 0, j1 = 2 * j + 1;\r\n        cyc[s | 1 << i] += dp[K\
     \ * s + j0] * mat[B][j0];\r\n        cyc[s | 1 << i] += dp[K * s + j1] * mat[B][j1];\r\
-    \n        for (int k: all_bit<u32>((1 << i) - 1 - s)) {\r\n          int k0 =\
-    \ 2 * k + 0, k1 = 2 * k + 1;\r\n          int t = s | 1 << k;\r\n          dp[K\
-    \ * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K * t + k0] += dp[K\
-    \ * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K * s + j0] * mat[j0][k0];\r\
-    \n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\n        }\r\n \
-    \     }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\n}\r\n"
+    \n        enumerate_all_bit<u32>((1 << i) - 1 - s, [&](int k) -> void {\r\n  \
+    \        int k0 = 2 * k + 0, k1 = 2 * k + 1;\r\n          int t = s | 1 << k;\r\
+    \n          dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K\
+    \ * t + k0] += dp[K * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K\
+    \ * s + j0] * mat[j0][k0];\r\n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\
+    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\
+    \n}\r\n"
   dependsOn:
   - setfunc/sps_exp.hpp
   - setfunc/subset_convolution.hpp
@@ -103,7 +110,7 @@ data:
   isVerificationFile: false
   path: linalg/hafnian.hpp
   requiredBy: []
-  timestamp: '2025-05-25 23:45:10+09:00'
+  timestamp: '2025-12-16 20:51:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
