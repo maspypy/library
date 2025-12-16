@@ -1,3 +1,5 @@
+#include "enumerate/bits.hpp"
+
 /*
 partition は、「減少列」として辞書式の降順に列挙する。
 N=10,20,30,40：42, 527, 5604, 37338
@@ -39,18 +41,18 @@ void enumerate_partition(int N, F query, int LIM_len = -1, int LIM_val = -1) {
 // N = 13（27644437）：2084 ms
 template <typename F>
 void enumerate_set_partition(int N, F f) {
-  vc<int> S;
-  auto dfs = [&](auto &dfs, int rest) -> void {
+  vc<u32> S;
+  auto dfs = [&](auto &dfs, u32 rest) -> void {
     if (rest == 0) {
       return f(S);
     }
     int a = lowbit(rest);
     rest -= u32(1) << a;
-    for (int s : all_subset<u32>(rest)) {
+    enumerate_all_subset<u32, true>(rest, [&](u32 s) -> void {
       S.eb(s | 1 << a);
       dfs(dfs, rest - s);
       POP(S);
-    }
+    });
   };
   dfs(dfs, (u32(1) << N) - 1);
 }

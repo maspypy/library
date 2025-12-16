@@ -1,6 +1,7 @@
 #include "random/shuffle.hpp"
 #include "alg/monoid/add.hpp"
 #include "alg/monoid/xor.hpp"
+#include "enumerate/bits.hpp"
 
 // O((4/3)^LOG) per query
 template <typename Monoid>
@@ -57,9 +58,8 @@ struct SubMask_Range_Query {
   void add(u32 i, X x) {
     u32 base = i & mask[0];
     u32 s = ((~i) & mask[1]) | (i & mask[2]);
-    for (u32 t : all_subset<u32>(s)) {
-      S[base | t] = MX::op(S[base | t], x);
-    }
+    enumerate_all_subset<u32, true>(
+        s, [&](u32 t) -> void { S[base | t] = MX::op(S[base | t], x); });
   }
 
   X get_sum(u32 i) {
@@ -67,22 +67,21 @@ struct SubMask_Range_Query {
     u32 s = (i & mask[0]) | ((~i) & mask[2]);
     if constexpr (is_same_v<Monoid_Add<X>, MX>) {
       X ANS = 0;
-      for (u32 t : all_subset<u32>(s)) {
+      enumerate_all_subset<u32, true>(s, [&](u32 t) -> void {
         ANS += S[base | t] * popcnt_sgn(t & mask[2]);
-      }
+      });
       return ANS;
     } else if constexpr (is_same_v<Monoid_Xor<X>, MX>) {
       X ANS = 0;
-      for (u32 t : all_subset<u32>(s)) {
-        ANS ^= S[base | t];
-      }
+      enumerate_all_subset<u32, true>(
+          s, [&](u32 t) -> void { ANS ^= S[base | t]; });
       return ANS;
     } else {
       X a[] = {MX::unit(), MX::unit()};
-      for (u32 t : all_subset<u32>(s)) {
+      enumerate_all_subset<u32, true>(s, [&](u32 t) -> void {
         int k = __builtin_parity(t & mask[2]);
         a[k] = MX::op(a[k], S[base | t]);
-      }
+      });
       return MX::op(a[0], MX::inverse(a[1]));
     }
   }

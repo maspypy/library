@@ -8,19 +8,23 @@ vc<int> subset_sum_solution_1(vc<T>& vals, int target) {
   if (n == 0) return {};
   int mx = MAX(vals);
   int b = 0, sb = 0;
-  while (b < n && sb + vals[b] <= target) { sb += vals[b++]; }
+  while (b < n && sb + vals[b] <= target) {
+    sb += vals[b++];
+  }
   if (b == n && sb != target) return {};
 
   int off = target - mx + 1;
   vc<int> dp(2 * mx, -1);
   vv(int, PAR, n, 2 * mx, -1);
   dp[sb - off] = b;
-  FOR3(i, b, n) {
+  FOR(i, b, n) {
     auto newdp = dp;
     auto& par = PAR[i];
     int a = vals[i];
     FOR(j, mx) {
-      if (chmax(newdp[j + a], dp[j])) { par[j + a] = -2; }
+      if (chmax(newdp[j + a], dp[j])) {
+        par[j + a] = -2;
+      }
     }
     FOR3_R(j, mx, 2 * mx) {
       FOR3_R(k, max(dp[j], 0), newdp[j]) {
@@ -52,7 +56,7 @@ vc<int> subset_sum_solution_1(vc<T>& vals, int target) {
   FOR(i, n) if (use[i]) I.eb(i);
 
   ll sm = 0;
-  for (auto&& i: I) sm += vals[i];
+  for (auto&& i : I) sm += vals[i];
   assert(sm == target);
 
   return I;
@@ -76,7 +80,8 @@ vc<int> subset_sum_solution_2(vc<T>& vals, int target) {
     // update したところをメモ
     FOR(i, len(newdp.dat)) {
       u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^ newdp.dat[i];
-      for (int p: all_bit<u64>(upd)) { last[(i << 6) | p] = I[k]; }
+      enumerate_all_bit<u64>(upd,
+                             [&](int p) -> void { last[(i << 6) | p] = I[k]; });
     }
     swap(dp, newdp);
   }
@@ -109,14 +114,14 @@ vc<int> subset_sum_solution_3(vc<T>& vals, int target) {
       par.eb(a, b);
       IDS[2 * x].eb(c);
     }
-    for (auto& i: I) {
+    for (auto& i : I) {
       grp_vals.eb(x);
       raw_idx.eb(i);
     }
   }
   auto I = subset_sum_solution_2<int>(grp_vals, target);
   vc<int> ANS;
-  for (auto& i: I) {
+  for (auto& i : I) {
     vc<int> st = {raw_idx[i]};
     while (len(st)) {
       auto c = POP(st);
@@ -170,7 +175,9 @@ vc<int> subset_sum_solution_4(vc<T>& vals, T target) {
   auto dp2 = calc(M, N);
   int t = 0;
   FOR_R(s, len(dp1)) {
-    while (t + 1 < len(dp2) && dp1[s] + dp2[t + 1] <= target) { ++t; }
+    while (t + 1 < len(dp2) && dp1[s] + dp2[t + 1] <= target) {
+      ++t;
+    }
     if (dp1[s] + dp2[t] == target) {
       vc<int> I1 = restore(0, M, dp1[s]);
       vc<int> I2 = restore(M, N, dp2[t]);

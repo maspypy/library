@@ -1,3 +1,5 @@
+#include "enumerate/bits.hpp"
+
 /*
 segtree を考える
 現在のポインタの位置がある
@@ -25,8 +27,7 @@ struct Online_Subset_Zeta {
   T assume(int i, T ai) {
     assert(p == i);
     T ans = ai;
-    // なんとこれだけ？
-    for (int j: all_bit<u32>(i)) ans += A[i - (1 << j)];
+    enumerate_all_bit<u32>(i, [&](int j) -> void { ans += A[i - (1 << j)]; });
     return ans;
   }
 };

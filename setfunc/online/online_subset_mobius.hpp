@@ -1,3 +1,4 @@
+#include "enumerate/bits.hpp"
 
 template <typename T>
 struct Online_Subset_Mobius {
@@ -21,7 +22,7 @@ struct Online_Subset_Mobius {
   T assume(int i, T ai) {
     assert(p == i);
     T ans = ai;
-    for (int j: all_bit<u32>(i)) ans -= A[i - (1 << j)];
+    enumerate_all_bit<u32>(i, [&](int j) -> vood { ans -= A[i - (1 << j)]; });
     return ans;
   }
 };
