@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum
@@ -553,21 +553,21 @@ data:
     \ 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n\
     \    assert(len(par) == 2 * N - 1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\
     \u96C6\u7D04\u5024\u3092\u5F97\u308B\n  // single(v) : v \u3068\u305D\u306E\u89AA\
-    \u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y,\
-    \ u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
-    \ (maybe v=-1)\n  // compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n\
-    \  template <typename TREE_DP, typename F>\n  typename TREE_DP::value_type tree_dp(F\
-    \ single) {\n    using Data = typename TREE_DP::value_type;\n    auto dfs = [&](auto\
-    \ &dfs, int k) -> Data {\n      if (0 <= k && k < N) return single(k);\n     \
-    \ Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k])\
-    \ {\n        assert(B[lch[k]] == A[rch[k]]);\n        return TREE_DP::compress(x,\
-    \ y);\n      }\n      return TREE_DP::rake(x, y);\n    };\n    return dfs(dfs,\
-    \ 2 * N - 2);\n  }\n\n private:\n  int new_node(int l, int r, int a, int b, bool\
-    \ c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a),\
-    \ B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n\
-    \  // height, node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
-    \  // \u305F\u3060\u3057 heavy path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\
-    \u8003\u616E\u3057\u306A\u3044\n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v]\
+    \u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y)\
+    \ uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\n  //\
+    \ compress(x,y)  (top-down) \u9806\u306B (a,b] + (b,c]\n  template <typename TREE_DP,\
+    \ typename F>\n  typename TREE_DP::value_type tree_dp(F single) {\n    using Data\
+    \ = typename TREE_DP::value_type;\n    auto dfs = [&](auto &dfs, int k) -> Data\
+    \ {\n      if (0 <= k && k < N) return single(k);\n      Data x = dfs(dfs, lch[k]),\
+    \ y = dfs(dfs, rch[k]);\n      if (is_compress[k]) {\n        assert(B[lch[k]]\
+    \ == A[rch[k]]);\n        return TREE_DP::compress(x, y);\n      }\n      return\
+    \ TREE_DP::rake(x, y);\n    };\n    return dfs(dfs, 2 * N - 2);\n  }\n\n private:\n\
+    \  int new_node(int l, int r, int a, int b, bool c) {\n    int v = len(par);\n\
+    \    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);\n\
+    \    par[l] = par[r] = v;\n    return v;\n  }\n\n  // height, node idx\n  // compress\
+    \ \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n  // \u305F\
+    \u3060\u3057 heavy path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\u8003\u616E\
+    \u3057\u306A\u3044\n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v]\
     \ == v);\n    auto path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n\
     \    stack.eb(0, path[0]);\n    auto merge_last_two = [&]() -> void {\n      auto\
     \ [h2, k2] = POP(stack);\n      auto [h1, k1] = POP(stack);\n      stack.eb(max(h1,\
@@ -716,8 +716,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-03 22:59:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
 layout: document

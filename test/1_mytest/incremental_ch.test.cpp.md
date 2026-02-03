@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -128,8 +128,9 @@ data:
     \ others.end()), ...);\n}\n#endif\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
     \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
     \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
-    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const\
-    \ Point p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
+    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
+    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {}\n\n  Point operator+=(const Point\
+    \ p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
     \ Point p) {\n    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point\
     \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
     \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
@@ -154,47 +155,47 @@ data:
     \ T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx = REAL(A.x) -\
     \ REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx * dx + dy *\
     \ dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n\
-    \  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\
-    \ a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x; }\n  Line(T x1, T y1,\
-    \ T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
-    \ U>\n  U eval(Point<U> P) {\n    return U(a) * P.x + U(b) * P.y + U(c);\n  }\n\
-    \n  template <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n\
-    \  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\
-    \u3055\u308C\u308B\u3088\u3046\u306B\u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T,\
-    \ int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n\
-    \    a /= g, b /= g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n   \
-    \ if (b == 0 && a < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line\
-    \ other) { return a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line\
-    \ other) { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename\
-    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
-    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2) : Segment(Point<T>(x1, y1),\
-    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
-    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
-    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
-    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
-    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
-    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
-    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\
-    \u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct IncrementalConvexHull_Lower\
-    \ {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\
-    \n  int size() { return len(S); }\n\n  template <typename ADD_V, typename RM_V,\
-    \ typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V rm_v,\
-    \ ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >= 0) return;\n\
-    \    if (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n    add_v(p);\n\
-    \    S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n    \
-    \  while (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n   \
-    \       left.eb(*it);\n          continue;\n        }\n        auto a = *it;\n\
-    \        auto b = left.back();\n        T det = (b - a).det(p - a);\n        if\
-    \ (strict && det > 0) break;\n        if (!strict && det >= 0) break;\n      \
-    \  left.eb(a);\n      }\n    }\n\n    vc<P> right;\n    {\n      auto it = S.find(p);\n\
-    \      while (1) {\n        ++it;\n        if (it == S.end()) break;\n       \
-    \ if (right.empty()) {\n          right.eb(*it);\n          continue;\n      \
-    \  }\n        auto a = right.back();\n        auto b = *it;\n        T det = (a\
-    \ - p).det(b - p);\n        if (strict && det > 0) break;\n        if (!strict\
-    \ && det >= 0) break;\n        right.eb(b);\n      }\n    }\n\n    // \u70B9\u524A\
-    \u9664\n    if (len(left) > 1) { S.erase(next(S.find(left.back())), S.find(p));\
-    \ }\n    if (len(right) > 1) { S.erase(next(S.find(p)), S.find(right.back()));\
+    \  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n\
+    \    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1,\
+    \ T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template\
+    \ <typename U>\n  U eval(Point<U> P) {\n    return U(a) * P.x + U(b) * P.y + U(c);\n\
+    \  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return a * x + b *\
+    \ y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\
+    \u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\u308B\n  void normalize() {\n\
+    \    static_assert(is_same_v<T, int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a),\
+    \ abs(b)), abs(c));\n    a /= g, b /= g, c /= g;\n    if (b < 0) {\n      a =\
+    \ -a, b = -b, c = -c;\n    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b,\
+    \ c = -c;\n    }\n  }\n\n  bool is_parallel(Line other) { return a * other.b -\
+    \ b * other.a == 0; }\n  bool is_orthogonal(Line other) { return a * other.a +\
+    \ b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T>\
+    \ A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1,\
+    \ T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n\
+    \  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
+    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
+    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\u51F8\u5305\ntemplate\
+    \ <typename T, bool strict = true>\nstruct IncrementalConvexHull_Lower {\n  using\
+    \ P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\n  int size()\
+    \ { return len(S); }\n\n  template <typename ADD_V, typename RM_V, typename ADD_E,\
+    \ typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V rm_v, ADD_E add_e,\
+    \ RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >= 0) return;\n    if\
+    \ (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n    add_v(p);\n   \
+    \ S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n      while\
+    \ (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n          left.eb(*it);\n\
+    \          continue;\n        }\n        auto a = *it;\n        auto b = left.back();\n\
+    \        T det = (b - a).det(p - a);\n        if (strict && det > 0) break;\n\
+    \        if (!strict && det >= 0) break;\n        left.eb(a);\n      }\n    }\n\
+    \n    vc<P> right;\n    {\n      auto it = S.find(p);\n      while (1) {\n   \
+    \     ++it;\n        if (it == S.end()) break;\n        if (right.empty()) {\n\
+    \          right.eb(*it);\n          continue;\n        }\n        auto a = right.back();\n\
+    \        auto b = *it;\n        T det = (a - p).det(b - p);\n        if (strict\
+    \ && det > 0) break;\n        if (!strict && det >= 0) break;\n        right.eb(b);\n\
+    \      }\n    }\n\n    // \u70B9\u524A\u9664\n    if (len(left) > 1) { S.erase(next(S.find(left.back())),\
+    \ S.find(p)); }\n    if (len(right) > 1) { S.erase(next(S.find(p)), S.find(right.back()));\
     \ }\n    FOR(i, len(left) - 1) rm_v(left[i]);\n    FOR(i, len(right) - 1) rm_v(right[i]);\n\
     \n    // \u8FBA\u524A\u9664\n    if (len(left) && len(right)) {\n      auto a\
     \ = left[0], b = right[0];\n      rm_e(a, b);\n    }\n    FOR(i, len(left) - 1)\
@@ -275,7 +276,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/incremental_ch.test.cpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
+  timestamp: '2026-02-03 22:59:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/incremental_ch.test.cpp

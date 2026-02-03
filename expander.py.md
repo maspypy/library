@@ -14,10 +14,11 @@ data:
     \         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
     \  File \"/opt/hostedtoolcache/Python/3.14.2/x64/lib/python3.14/site-packages/onlinejudge_verify/languages/python.py\"\
     , line 96, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
-  code: "import sys\nimport os\nimport re\n\nINCLUDE_PATHS = ['.', os.path.expanduser('~/compro/library')]\n\
-    visited = set()\n\ndef resolve_include(header):\n    for path in INCLUDE_PATHS:\n\
+  code: "import sys\nimport os\nimport re\n\nINCLUDE_PATHS = ['.', os.path.expanduser(\n\
+    \    '~/compro/library'), os.path.expanduser('~/compro/other_library')]\nvisited\
+    \ = set()\n\n\ndef resolve_include(header):\n    for path in INCLUDE_PATHS:\n\
     \        full_path = os.path.join(path, header)\n        if os.path.isfile(full_path):\n\
-    \            return os.path.abspath(full_path)\n    return None\n\ndef expand_file(path,\
+    \            return os.path.abspath(full_path)\n    return None\n\n\ndef expand_file(path,\
     \ display_name=None, caller_file=None, caller_line=None):\n    abs_path = os.path.abspath(path)\n\
     \    if abs_path in visited:\n        return\n    visited.add(abs_path)\n\n  \
     \  if display_name is None:\n        display_name = os.path.basename(path)\n\n\
@@ -34,9 +35,9 @@ data:
     \                    print(f'// [warning] include not found: {header}')\n    \
     \        elif re.match(r'#\\s*include\\s*<[^>]+>', line):\n                print(line,\
     \ end='')\n            else:\n                print(line, end='')\n\n    print(f'//\
-    \ END: {display_name}')\n\nif __name__ == '__main__':\n    if len(sys.argv) !=\
-    \ 2:\n        print(\"Usage: python3 expander.py main.cpp > singlefile.cpp\")\n\
-    \        sys.exit(1)\n\n    expand_file(sys.argv[1])\n"
+    \ END: {display_name}')\n\n\nif __name__ == '__main__':\n    if len(sys.argv)\
+    \ != 2:\n        print(\"Usage: python3 expander.py main.cpp > singlefile.cpp\"\
+    )\n        sys.exit(1)\n\n    expand_file(sys.argv[1])\n"
   dependsOn: []
   isVerificationFile: false
   path: expander.py

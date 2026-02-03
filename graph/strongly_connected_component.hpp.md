@@ -1,16 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
+  - icon: ':x:'
+    path: graph/all_cycle_common_vertex.hpp
+    title: graph/all_cycle_common_vertex.hpp
   - icon: ':warning:'
     path: graph/bipartite_balanced_edge_coloring.hpp
     title: graph/bipartite_balanced_edge_coloring.hpp
@@ -33,6 +36,9 @@ data:
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/1_mytest/all_cycle_common_vertex.test.cpp
+    title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_odd_cycle.test.cpp
     title: test/1_mytest/find_odd_cycle.test.cpp
@@ -90,9 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_2.test.cpp
     title: test/4_aoj/2251_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -236,12 +242,13 @@ data:
   - graph/maximum_antichain.hpp
   - graph/find_odd_cycle.hpp
   - graph/reachability.hpp
+  - graph/all_cycle_common_vertex.hpp
   - graph/incremental_scc.hpp
   - graph/bipartite_balanced_edge_coloring.hpp
   - graph/twosat.hpp
   - graph/bipartite_edge_coloring.hpp
   timestamp: '2025-04-06 22:14:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1170.test.cpp
   - test/3_yukicoder/1293.test.cpp
@@ -249,6 +256,7 @@ data:
   - test/3_yukicoder/1745.test.cpp
   - test/3_yukicoder/1479.test.cpp
   - test/3_yukicoder/1744.test.cpp
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp
   - test/1_mytest/incremental_scc.test.cpp
