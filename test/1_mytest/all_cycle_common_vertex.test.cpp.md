@@ -356,7 +356,7 @@ data:
     \u9806\u5168\u5217\u6319\u3059\u308B\n// v \u3092\u6D88\u3059\u3068 \u975EDAG\
     \ -> DAG\n// loop \u306F\u306A\u3044\u3082\u306E\u3068\u3057\u305F\u304B\u3082\
     \n// https://codeforces.com/contest/982/problem/F\ntemplate <typename GT>\nvc<int>\
-    \ all_cycle_common_vertex(GT& G, bool strongly_connected) {\n  static_assert(G.is_directed);\n\
+    \ all_cycle_common_vertex(GT& G, bool strongly_connected) {\n  static_assert(G.is_directed());\n\
     \  int N = G.N;\n  if (!strongly_connected) {\n    auto [nc, comp] = strongly_connected_component(G);\n\
     \    vc<int> sz(nc);\n    FOR(v, N) sz[comp[v]]++;\n    int k = -1;\n    FOR(i,\
     \ nc) {\n      if (sz[i] >= 2) {\n        if (k != -1) return {};\n        k =\
@@ -427,7 +427,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/all_cycle_common_vertex.test.cpp
   requiredBy: []
-  timestamp: '2026-02-03 23:39:24+09:00'
+  timestamp: '2026-02-04 01:41:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/all_cycle_common_vertex.test.cpp
