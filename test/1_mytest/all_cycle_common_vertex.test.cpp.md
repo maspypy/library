@@ -35,17 +35,21 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
-    Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
-    \ = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    links:
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
+    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
     template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
     \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
@@ -139,7 +143,7 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 2 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\
+    \ others.end()), ...);\n}\n#endif\n#line 4 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\
     \n// #include \"other/io.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
     \ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\
     \u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n);\
@@ -378,11 +382,11 @@ data:
     \ + 1] += F[i];\n  F.pop_back();\n\n  vc<int> ANS;\n  FOR(i, n) if (F[i] == 0)\
     \ ANS.eb(C[i]);\n\n  if (ANS.empty()) return {};\n  vc<int> V;\n  FOR(v, N) if\
     \ (v != ANS[0]) V.eb(v);\n  {\n    Graph<int, 1> H = G.rearrange(V);\n    if (toposort(H).empty())\
-    \ return {};\n  }\n  return ANS;\n}\n#line 6 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\
+    \ return {};\n  }\n  return ANS;\n}\n#line 8 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\
     \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 8 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\
+    \ RNG_64() % (r - l); }\n#line 10 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\
     \n\nvc<int> naive(Graph<int, 1> G) {\n  int N = G.N;\n  vc<int> ANS;\n  auto dag\
     \ = [&](vc<int> V) -> bool {\n    Graph<int, 1> H = G.rearrange(V);\n    return\
     \ V.empty() || (!toposort(H).empty());\n  };\n  vc<int> V;\n  FOR(i, N) V.eb(i);\n\
@@ -395,16 +399,17 @@ data:
     \    sort(all(ANS2));\n    // G.debug();\n    // SHOW(ANS1, ANS2);\n    assert(ANS1\
     \ == ANS2);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
     \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n}\n"
-  code: "#include \"my_template.hpp\"\n// #include \"other/io.hpp\"\n\n#include \"\
-    graph/base.hpp\"\n#include \"graph/all_cycle_common_vertex.hpp\"\n\n#include \"\
-    random/base.hpp\"\n\nvc<int> naive(Graph<int, 1> G) {\n  int N = G.N;\n  vc<int>\
-    \ ANS;\n  auto dag = [&](vc<int> V) -> bool {\n    Graph<int, 1> H = G.rearrange(V);\n\
-    \    return V.empty() || (!toposort(H).empty());\n  };\n  vc<int> V;\n  FOR(i,\
-    \ N) V.eb(i);\n  if (dag(V)) return {};\n  FOR(v, N) {\n    V.erase(find(all(V),\
-    \ v));\n    if (dag(V)) ANS.eb(v);\n    V.eb(v);\n  }\n  return ANS;\n}\n\nvoid\
-    \ test() {\n  FOR(1 << 18) {\n    int N = RNG(1, 4);\n    Graph<int, 1> G(N);\n\
-    \    int prob = RNG(0, 100);\n    FOR(a, N) FOR(b, N) {\n      if (a == b) continue;\n\
-    \      if (RNG(0, 100) < prob) G.add(a, b);\n    }\n    G.build();\n    auto ANS1\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    my_template.hpp\"\n// #include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
+    \n#include \"graph/all_cycle_common_vertex.hpp\"\n\n#include \"random/base.hpp\"\
+    \n\nvc<int> naive(Graph<int, 1> G) {\n  int N = G.N;\n  vc<int> ANS;\n  auto dag\
+    \ = [&](vc<int> V) -> bool {\n    Graph<int, 1> H = G.rearrange(V);\n    return\
+    \ V.empty() || (!toposort(H).empty());\n  };\n  vc<int> V;\n  FOR(i, N) V.eb(i);\n\
+    \  if (dag(V)) return {};\n  FOR(v, N) {\n    V.erase(find(all(V), v));\n    if\
+    \ (dag(V)) ANS.eb(v);\n    V.eb(v);\n  }\n  return ANS;\n}\n\nvoid test() {\n\
+    \  FOR(1 << 18) {\n    int N = RNG(1, 4);\n    Graph<int, 1> G(N);\n    int prob\
+    \ = RNG(0, 100);\n    FOR(a, N) FOR(b, N) {\n      if (a == b) continue;\n   \
+    \   if (RNG(0, 100) < prob) G.add(a, b);\n    }\n    G.build();\n    auto ANS1\
     \ = all_cycle_common_vertex(G, 0);\n    auto ANS2 = naive(G);\n    sort(all(ANS1));\n\
     \    sort(all(ANS2));\n    // G.debug();\n    // SHOW(ANS1, ANS2);\n    assert(ANS1\
     \ == ANS2);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
@@ -422,7 +427,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/all_cycle_common_vertex.test.cpp
   requiredBy: []
-  timestamp: '2026-02-03 22:59:09+09:00'
+  timestamp: '2026-02-03 23:39:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/all_cycle_common_vertex.test.cpp
