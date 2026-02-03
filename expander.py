@@ -34,7 +34,7 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
 
             m = re.match(r'#\s*include\s*"([^"]+)"', line)
             if m:
-                header = m.group(1)
+                header = os.path.normpath(os.path.join(os.path.dirname(display_name), m.group(1)))
                 resolved = resolve_include(header)
                 if resolved:
                     if resolved not in visited:
