@@ -1,6 +1,6 @@
 // find max true
 template <typename F>
-ll exp_search(F check, ll ok) {
+ll exp_search(F&& check, ll ok) {
   ll d = 1;
   while (check(ok + d)) {
     ok += d;

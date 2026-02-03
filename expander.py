@@ -2,8 +2,10 @@ import sys
 import os
 import re
 
-INCLUDE_PATHS = ['.', os.path.expanduser('~/compro/library')]
+INCLUDE_PATHS = ['.', os.path.expanduser(
+    '~/compro/library'), os.path.expanduser('~/compro/other_library')]
 visited = set()
+
 
 def resolve_include(header):
     for path in INCLUDE_PATHS:
@@ -11,6 +13,7 @@ def resolve_include(header):
         if os.path.isfile(full_path):
             return os.path.abspath(full_path)
     return None
+
 
 def expand_file(path, display_name=None, caller_file=None, caller_line=None):
     abs_path = os.path.abspath(path)
@@ -45,6 +48,7 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
                 print(line, end='')
 
     print(f'// END: {display_name}')
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:

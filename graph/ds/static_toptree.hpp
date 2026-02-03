@@ -28,8 +28,8 @@ struct Static_TopTree {
 
   // 木全体での集約値を得る
   // single(v) : v とその親辺を合わせたクラスタ
-  // rake(x, y, u, v) uv(top down) が boundary になるように rake (maybe v=-1)
-  // compress(x,y,a,b,c)  (top-down) 順に (a,b] + (b,c]
+  // rake(x, y) uv(top down) が boundary になるように rake
+  // compress(x,y)  (top-down) 順に (a,b] + (b,c]
   template <typename TREE_DP, typename F>
   typename TREE_DP::value_type tree_dp(F single) {
     using Data = typename TREE_DP::value_type;

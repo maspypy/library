@@ -1,0 +1,41 @@
+[最初に]
+cp -r mhc_template_directory/ A
+などとして問題ごとのフォルダを作っておいた方がよい
+いろいろダウンロードして混ざるとだるいので
+
+ダウンロード，アップロート時に選ぶディレクトリが compro/mhc になるようにしておくこと．
+
+
+[ANS の出力]
+print(OFFSET, ANS);
+
+[提出手順]
+(validation) ダウンロード
+aa < xxx.txt > out.txt
+out.txt を貼り付ける
+
+(input) ダウンロード
+7z x filename.zip
+パスワードの入力が求められたら Show PW を押して PW をコピーして貼り付け
+aa < xxx.txt > out.txt
+out.txt を貼り付ける
+ソースコードも貼り付ける
+
+[並列実行やり方]
+とりあえずいつも通りに main.cpp を書いてしまってからでよいと思う
+
+para.cpp を開く
+TestCase, Result 型を定義して入力と solve を実装する
+
+bash para.sh とすると temp.cpp, ./a.out が作られる
+あとは普通に実行すればよい
+
+並列数をおさえるための para2.cpp も用意したけど動作確認はあまりしていない．
+
+メモリはプログラム全体で，10GB くらいなら動作すると思う．
+int で 2e9 個くらい．
+
+[注意点]
+LOCAL compile してデバッグ出力を出すとダメなので超注意する
+validate を提出してから再コンパイルしないことを推奨
+提出前に目視確認を推奨

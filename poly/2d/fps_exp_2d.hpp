@@ -1,3 +1,4 @@
+#include "poly/fps_exp.hpp"
 
 // 注意 (H+W)^2log(H+W) 時間になっているので正方形じゃないとダメなさぼり実装
 template <typename mint>
@@ -15,7 +16,7 @@ vvc<mint> fps_exp_2d(vvc<mint> F) {
     ntt(f, false);
     FOR(i, L) F1[i][j] = f[i];
   }
-  FOR(i, L) F1[i] = fps_exp<mint>(F1[i]);
+  FOR(i, L) { F1[i] = fps_exp<mint>(F1[i]); }
   FOR(j, N + M + 1) {
     vc<mint> f(L);
     FOR(i, L) f[i] = F1[i][j];

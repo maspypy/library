@@ -1,3 +1,5 @@
+#include "ds/hashmap.hpp"
+#include "random/base.hpp"
 
 // どのくらい使えることがあるのか不明
 // https://atcoder.jp/contests/ajo2025-final/submissions/71727945
@@ -6,13 +8,12 @@ template <typename T, bool MINIMIZE, typename F>
 tuple<T, ll, ll> optimize_2d(ll x1, ll x2, ll y1, ll y2, F f, int beam_width) {
   assert(x1 < x2 && y1 < y2);
 
-  map<pi, T> MP;
+  HashMap<T> MP;
+  u64 rnd = RNG_64();
   auto eval = [&](ll x, ll y) -> T {
-    pi k = {x, y};
-    if (MP.count(k)) return MP[k];
     T ans = f(x1 + x, y1 + y);
     if (!MINIMIZE) ans = -ans;
-    return MP[k] = ans;
+    return ans;
   };
 
   vc<tuple<T, ll, ll>> cand;
@@ -28,7 +29,11 @@ tuple<T, ll, ll> optimize_2d(ll x1, ll x2, ll y1, ll y2, F f, int beam_width) {
     vc<tuple<T, ll, ll>> nxt = cand;
     auto upd = [&](ll x, ll y) -> void {
       if (0 <= x && x < X && 0 <= y && y < Y) {
-        nxt.eb(eval(x, y), x, y);
+        u64 key = rnd * x + y;
+        if (MP.count(key)) return;
+        T z = eval(x, y);
+        MP[key] = z;
+        nxt.eb(z, x, y);
       }
     };
     ll dx = 0, dy = 0;
@@ -41,10 +46,13 @@ tuple<T, ll, ll> optimize_2d(ll x1, ll x2, ll y1, ll y2, F f, int beam_width) {
       upd(x - dx, y - dy), upd(x + dx, y + dy);
     }
     swap(cand, nxt);
-    UNIQUE(cand);
-    while (len(cand) > beam_width) POP(cand);
+    // UNIQUE(cand);
+    if (len(cand) > beam_width) {
+      nth_element(cand.begin(), cand.begin() + beam_width, cand.end());
+      cand.resize(beam_width);
+    }
   }
-  auto [v, x, y] = cand[0];
+  auto [v, x, y] = *(min_element(all(cand)));
   if (!MINIMIZE) v = -v;
   return {v, x1 + x, y1 + y};
 }

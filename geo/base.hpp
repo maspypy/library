@@ -11,6 +11,9 @@ struct Point {
   template <typename A, typename B>
   Point(pair<A, B> p) : x(p.fi), y(p.se) {}
 
+  template <typename U>
+  Point(Point<U> p) : x(p.x), y(p.y) {}
+
   Point operator+=(const Point p) {
     x += p.x, y += p.y;
     return *this;
@@ -80,7 +83,9 @@ struct Line {
   T a, b, c;
 
   Line(T a, T b, T c) : a(a), b(b), c(c) {}
-  Line(Point<T> A, Point<T> B) { a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x; }
+  Line(Point<T> A, Point<T> B) {
+    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;
+  }
   Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}
 
   template <typename U>
@@ -98,8 +103,12 @@ struct Line {
     static_assert(is_same_v<T, int> || is_same_v<T, long long>);
     T g = gcd(gcd(abs(a), abs(b)), abs(c));
     a /= g, b /= g, c /= g;
-    if (b < 0) { a = -a, b = -b, c = -c; }
-    if (b == 0 && a < 0) { a = -a, b = -b, c = -c; }
+    if (b < 0) {
+      a = -a, b = -b, c = -c;
+    }
+    if (b == 0 && a < 0) {
+      a = -a, b = -b, c = -c;
+    }
   }
 
   bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }
@@ -111,7 +120,8 @@ struct Segment {
   Point<T> A, B;
 
   Segment(Point<T> A, Point<T> B) : A(A), B(B) {}
-  Segment(T x1, T y1, T x2, T y2) : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}
+  Segment(T x1, T y1, T x2, T y2)
+      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}
 
   bool contain(Point<T> C) {
     T det = (C - A).det(B - A);

@@ -3,7 +3,7 @@
 #include "geo/base.hpp"
 #include "geo/convex_hull.hpp"
 
-// n=2 は現状サポートしていない
+// n=2 は何が起こるかわからない
 template <typename T>
 struct ConvexPolygon {
   using P = Point<T>;
@@ -12,7 +12,7 @@ struct ConvexPolygon {
   T area2;
 
   ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {
-    assert(n >= 3);
+    // assert(n >= 3);
     area2 = 0;
     FOR(i, n) {
       int j = nxt_idx(i), k = nxt_idx(j);
@@ -28,7 +28,9 @@ struct ConvexPolygon {
     while (1) {
       if (R - L == 2) break;
       int L1 = (L + M) / 2, R1 = (M + R + 1) / 2;
-      if (comp(L1 % n, M % n)) { R = M, M = L1; }
+      if (comp(L1 % n, M % n)) {
+        R = M, M = L1;
+      }
       elif (comp(R1 % n, M % n)) { L = M, M = R1; }
       else {
         L = L1, R = R1;
@@ -42,6 +44,13 @@ struct ConvexPolygon {
 
   // 中：1, 境界：0, 外：-1. test した.
   int side(P p) {
+    if (n == 2) {
+      P A = point[0], B = point[1];
+      if ((B - A).det(p - A) == 0) {
+        if ((B - A).dot(p - A) >= 0 && (A - B).dot(p - B) >= 0) return 0;
+      }
+      return -1;
+    }
     int L = 1, R = n - 1;
     T a = (point[L] - point[0]).det(p - point[0]);
     T b = (point[R] - point[0]).det(p - point[0]);
@@ -68,21 +77,37 @@ struct ConvexPolygon {
 
   // return {min, idx}. test した.
   pair<T, int> min_dot(P p) {
-    int idx = periodic_min_comp([&](int i, int j) -> bool { return point[i].dot(p) < point[j].dot(p); });
+    int idx = periodic_min_comp([&](int i, int j) -> bool {
+      return point[i].dot(p) < point[j].dot(p);
+    });
     return {point[idx].dot(p), idx};
   }
 
   // return {max, idx}. test した.
   pair<T, int> max_dot(P p) {
-    int idx = periodic_min_comp([&](int i, int j) -> bool { return point[i].dot(p) > point[j].dot(p); });
+    int idx = periodic_min_comp([&](int i, int j) -> bool {
+      return point[i].dot(p) > point[j].dot(p);
+    });
     return {point[idx].dot(p), idx};
   }
 
   // p から見える範囲. p 辺に沿って見えるところも見えるとする. test した.
   // 多角形からの反時計順は [l,r] だが p から見た偏角順は [r,l] なので注意
   pair<int, int> visible_range(P p) {
-    int a = periodic_min_comp([&](int i, int j) -> bool { return ((point[i] - p).det(point[j] - p) < 0); });
-    int b = periodic_min_comp([&](int i, int j) -> bool { return ((point[i] - p).det(point[j] - p) > 0); });
+    if (n == 2) {
+      P A = point[0], B = point[1];
+      int c = ccw(A, B, p);
+      if (c == 1) return {1, 0};
+      if (c == -1) return {0, 1};
+      if ((B - A).dot(p - A) < 0) return {0, 0};
+      return {1, 1};
+    }
+    int a = periodic_min_comp([&](int i, int j) -> bool {
+      return ((point[i] - p).det(point[j] - p) < 0);
+    });
+    int b = periodic_min_comp([&](int i, int j) -> bool {
+      return ((point[i] - p).det(point[j] - p) > 0);
+    });
     if ((p - point[a]).det(p - point[prev_idx(a)]) == T(0)) a = prev_idx(a);
     if ((p - point[b]).det(p - point[nxt_idx(b)]) == T(0)) b = nxt_idx(b);
     return {a, b};
@@ -127,8 +152,10 @@ struct ConvexPolygon {
     int b = max_dot(normal).se;
     if (b < a) b += n;
     assert(L.eval(point[a % n]) < 0 && L.eval(point[b % n]) > 0);
-    int p = binary_search([&](int i) -> bool { return L.eval(point[i % n]) < 0; }, a, b);
-    int q = binary_search([&](int i) -> bool { return L.eval(point[i % n]) > 0; }, b, a + n);
+    int p = binary_search(
+        [&](int i) -> bool { return L.eval(point[i % n]) < 0; }, a, b);
+    int q = binary_search(
+        [&](int i) -> bool { return L.eval(point[i % n]) > 0; }, b, a + n);
     T s, t;
     {
       T x = L.eval(point[p % n]);

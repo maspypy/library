@@ -6,14 +6,14 @@ void to_Hessenberg_matrix(vc<vc<T>>& A) {
   */
   int n = len(A);
   FOR(k, n - 2) {
-    FOR3(i, k + 1, n) if (A[i][k] != 0) {
+    FOR3(i, k + 1, n) if (A[i][k] != T(0)) {
       if (i != k + 1) {
         swap(A[i], A[k + 1]);
         FOR(j, n) swap(A[j][i], A[j][k + 1]);
       }
       break;
     }
-    if (A[k + 1][k] == 0) continue;
+    if (A[k + 1][k] == T(0)) continue;
     FOR3(i, k + 2, n) {
       T c = A[i][k] / A[k + 1][k];
       // i 行目 -= k+1 行目 * c
@@ -34,7 +34,7 @@ vc<T> characteristic_poly(vc<vc<T>> A) {
   int n = len(A);
   to_Hessenberg_matrix(A);
   vc<vc<T>> DP(n + 1);
-  DP[0] = {1};
+  DP[0] = {T(1)};
   FOR(k, n) {
     DP[k + 1].resize(k + 2);
     auto& dp = DP[k + 1];
@@ -42,7 +42,7 @@ vc<T> characteristic_poly(vc<vc<T>> A) {
     FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];
     FOR(i, len(DP[k])) dp[i] -= DP[k][i] * A[k][k];
     // 下側対角の総積を管理
-    T prod = 1;
+    T prod = T(1);
     FOR_R(i, k) {
       // (i, k) 成分を使う場合
       prod *= A[i + 1][i];
