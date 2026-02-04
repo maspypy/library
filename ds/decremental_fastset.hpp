@@ -67,6 +67,12 @@ struct Decremental_FastSet {
     return (a == n ? N : 64 * a + lowbit(dat[a]));
   }
 
+  // [l, r)
+  template <typename F>
+  void enumerate(int l, int r, F&& f) {
+    for (int x = next(l); x < r; x = next(x + 1)) f(x);
+  }
+
   string to_string() {
     string S(N, '.');
     FOR(i, N) S[i] = '0' + (dat[i / 64] >> (i & 63) & 1);

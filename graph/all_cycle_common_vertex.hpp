@@ -8,7 +8,7 @@
 // https://codeforces.com/contest/982/problem/F
 template <typename GT>
 vc<int> all_cycle_common_vertex(GT& G, bool strongly_connected) {
-  static_assert(G.is_directed());
+  static_assert(GT::is_directed);
   int N = G.N;
   if (!strongly_connected) {
     auto [nc, comp] = strongly_connected_component(G);
