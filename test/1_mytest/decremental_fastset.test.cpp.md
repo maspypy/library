@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/decremental_fastset.hpp
     title: ds/decremental_fastset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
     path: other/timer.hpp
     title: other/timer.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -220,8 +220,10 @@ data:
     \ <= N);\n    chmax(i, 0);\n    if (i == N) return N;\n    int a = i / 64, b =\
     \ i & 63;\n    u64 x = dat[a] >> b;\n    if (x != 0) return 64 * a + b + lowbit(x);\n\
     \    a = X.next(a + 1);\n    return (a == n ? N : 64 * a + lowbit(dat[a]));\n\
-    \  }\n\n  string to_string() {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0'\
-    \ + (dat[i / 64] >> (i & 63) & 1);\n    return S;\n  }\n};\n#line 9 \"test/1_mytest/decremental_fastset.test.cpp\"\
+    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F&&\
+    \ f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n  }\n\n  string\
+    \ to_string() {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0' + (dat[i / 64]\
+    \ >> (i & 63) & 1);\n    return S;\n  }\n};\n#line 9 \"test/1_mytest/decremental_fastset.test.cpp\"\
     \n\n// ackerman. memory \u591A\u3081\nstruct Decremental_FastSet_UF_ONLY {\n \
     \ int n;\n  UnionFind uf;\n  vc<int> L, R;\n  Decremental_FastSet_UF_ONLY(int\
     \ n) : n(n), uf(n + 2), L(n + 2), R(n + 2) {\n    FOR(i, n + 2) L[i] = i, R[i]\
@@ -292,7 +294,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/decremental_fastset.test.cpp
   requiredBy: []
-  timestamp: '2025-12-07 20:35:27+09:00'
+  timestamp: '2026-02-05 01:08:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/decremental_fastset.test.cpp

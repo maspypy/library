@@ -74,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
+  - icon: ':warning:'
+    path: graph/restore_euler_tour.hpp
+    title: graph/restore_euler_tour.hpp
   - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
@@ -322,6 +325,7 @@ data:
   - ds/rmq/suffix_max.hpp
   - ds/rmq/suffix_min.hpp
   - random/random_graph.hpp
+  - graph/restore_euler_tour.hpp
   - graph/maximum_antichain.hpp
   - graph/dag_path_cover.hpp
   - graph/optimal_product_on_tree.hpp

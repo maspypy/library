@@ -4,7 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/restore_euler_tour.hpp
+    title: graph/restore_euler_tour.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/decremental_fastset.test.cpp
@@ -47,8 +50,10 @@ data:
     \ <= N);\n    chmax(i, 0);\n    if (i == N) return N;\n    int a = i / 64, b =\
     \ i & 63;\n    u64 x = dat[a] >> b;\n    if (x != 0) return 64 * a + b + lowbit(x);\n\
     \    a = X.next(a + 1);\n    return (a == n ? N : 64 * a + lowbit(dat[a]));\n\
-    \  }\n\n  string to_string() {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0'\
-    \ + (dat[i / 64] >> (i & 63) & 1);\n    return S;\n  }\n};\n"
+    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F&&\
+    \ f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n  }\n\n  string\
+    \ to_string() {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0' + (dat[i / 64]\
+    \ >> (i & 63) & 1);\n    return S;\n  }\n};\n"
   code: "#include \"ds/unionfind/unionfind.hpp\"\n\n// amortized linear\n// MoFR \u306A\
     \u3057\u3060\u3068 FastSet \u3088\u308A\u9045\u304B\u3063\u305F\nstruct Decremental_FastSet\
     \ {\n  struct Decremental_Neighbor_UF {\n    int n;\n    UnionFind uf;\n    vc<int>\
@@ -72,14 +77,17 @@ data:
     \ <= N);\n    chmax(i, 0);\n    if (i == N) return N;\n    int a = i / 64, b =\
     \ i & 63;\n    u64 x = dat[a] >> b;\n    if (x != 0) return 64 * a + b + lowbit(x);\n\
     \    a = X.next(a + 1);\n    return (a == n ? N : 64 * a + lowbit(dat[a]));\n\
-    \  }\n\n  string to_string() {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0'\
-    \ + (dat[i / 64] >> (i & 63) & 1);\n    return S;\n  }\n};\n"
+    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F&&\
+    \ f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n  }\n\n  string\
+    \ to_string() {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0' + (dat[i / 64]\
+    \ >> (i & 63) & 1);\n    return S;\n  }\n};\n"
   dependsOn:
   - ds/unionfind/unionfind.hpp
   isVerificationFile: false
   path: ds/decremental_fastset.hpp
-  requiredBy: []
-  timestamp: '2025-10-13 19:02:32+09:00'
+  requiredBy:
+  - graph/restore_euler_tour.hpp
+  timestamp: '2026-02-05 01:08:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/decremental_fastset.test.cpp

@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/all_cycle_common_vertex.hpp
     title: graph/all_cycle_common_vertex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -356,7 +356,7 @@ data:
     \u9806\u5168\u5217\u6319\u3059\u308B\n// v \u3092\u6D88\u3059\u3068 \u975EDAG\
     \ -> DAG\n// loop \u306F\u306A\u3044\u3082\u306E\u3068\u3057\u305F\u304B\u3082\
     \n// https://codeforces.com/contest/982/problem/F\ntemplate <typename GT>\nvc<int>\
-    \ all_cycle_common_vertex(GT& G, bool strongly_connected) {\n  static_assert(G.is_directed());\n\
+    \ all_cycle_common_vertex(GT& G, bool strongly_connected) {\n  static_assert(GT::is_directed);\n\
     \  int N = G.N;\n  if (!strongly_connected) {\n    auto [nc, comp] = strongly_connected_component(G);\n\
     \    vc<int> sz(nc);\n    FOR(v, N) sz[comp[v]]++;\n    int k = -1;\n    FOR(i,\
     \ nc) {\n      if (sz[i] >= 2) {\n        if (k != -1) return {};\n        k =\
@@ -427,8 +427,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/all_cycle_common_vertex.test.cpp
   requiredBy: []
-  timestamp: '2026-02-04 01:41:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-02-05 01:08:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/all_cycle_common_vertex.test.cpp
 layout: document
