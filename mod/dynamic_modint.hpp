@@ -30,6 +30,7 @@ struct Dynamic_Modint {
   Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
   Dynamic_Modint(i128 x) : val((x %= get_mod()) < 0 ? x + get_mod() : x){};
 
+  bool operator<(const mint& other) const { return val < other.val; }
   mint& operator+=(const mint& rhs) {
     val = (val += rhs.val) < umod() ? val : val - umod();
     return *this;
@@ -64,12 +65,24 @@ struct Dynamic_Modint {
     return u;
   }
 
-  friend mint operator+(const mint& lhs, const mint& rhs) { return mint(lhs) += rhs; }
-  friend mint operator-(const mint& lhs, const mint& rhs) { return mint(lhs) -= rhs; }
-  friend mint operator*(const mint& lhs, const mint& rhs) { return mint(lhs) *= rhs; }
-  friend mint operator/(const mint& lhs, const mint& rhs) { return mint(lhs) /= rhs; }
-  friend bool operator==(const mint& lhs, const mint& rhs) { return lhs.val == rhs.val; }
-  friend bool operator!=(const mint& lhs, const mint& rhs) { return lhs.val != rhs.val; }
+  friend mint operator+(const mint& lhs, const mint& rhs) {
+    return mint(lhs) += rhs;
+  }
+  friend mint operator-(const mint& lhs, const mint& rhs) {
+    return mint(lhs) -= rhs;
+  }
+  friend mint operator*(const mint& lhs, const mint& rhs) {
+    return mint(lhs) *= rhs;
+  }
+  friend mint operator/(const mint& lhs, const mint& rhs) {
+    return mint(lhs) /= rhs;
+  }
+  friend bool operator==(const mint& lhs, const mint& rhs) {
+    return lhs.val == rhs.val;
+  }
+  friend bool operator!=(const mint& lhs, const mint& rhs) {
+    return lhs.val != rhs.val;
+  }
   static pair<int, int>& get_ntt() {
     static pair<int, int> p = {-1, -1};
     return p;

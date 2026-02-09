@@ -12,6 +12,12 @@ struct Gaussian_Integer {
   T norm() const { return x * x + y * y; }
   G conjugate() const { return G(x, -y); }
 
+  // 暫定的に
+  bool operator<(const G &other) const {
+    if (x != other.x) return x < other.x;
+    return y < other.y;
+  }
+
   G &operator+=(const G &g) {
     x += g.x, y += g.y;
     return *this;
@@ -38,11 +44,11 @@ struct Gaussian_Integer {
     return *this;
   }
   G operator-() { return G(-x, -y); }
-  G operator+(const G &g) { return G(*this) += g; }
-  G operator-(const G &g) { return G(*this) -= g; }
-  G operator*(const G &g) { return G(*this) *= g; }
-  G operator/(const G &g) { return G(*this) /= g; }
-  G operator%(const G &g) { return G(*this) %= g; }
+  G operator+(const G &g) const { return G(*this) += g; }
+  G operator-(const G &g) const { return G(*this) -= g; }
+  G operator*(const G &g) const { return G(*this) *= g; }
+  G operator/(const G &g) const { return G(*this) /= g; }
+  G operator%(const G &g) const { return G(*this) %= g; }
   bool operator==(const G &g) { return (x == g.x && y == g.y); }
 
   static G gcd(G a, G b) {
@@ -104,16 +110,16 @@ template <typename T>
 vc<Gaussian_Integer<T>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
   using G = Gaussian_Integer<T>;
   vc<G> res;
-  for (auto &&[p, e]: pfs) {
+  for (auto &&[p, e] : pfs) {
     if (p % 4 == 3 && e % 2 == 1) return {};
   }
 
   res.eb(G(1, 0));
-  for (auto &&[p, e]: pfs) {
+  for (auto &&[p, e] : pfs) {
     if (p % 4 == 3) {
       T pp = 1;
       FOR(e / 2) pp *= p;
-      for (auto &&g: res) {
+      for (auto &&g : res) {
         g.x *= pp;
         g.y *= pp;
       }
@@ -125,21 +131,25 @@ vc<Gaussian_Integer<T>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
     pows[0] = G(1, 0);
     FOR(i, e) pows[i + 1] = pows[i] * pi;
     if (p == 2) {
-      for (auto &&g: res) g *= pows[e];
+      for (auto &&g : res) g *= pows[e];
       continue;
     }
     vc<G> pis(e + 1);
     FOR(j, e + 1) { pis[j] = pows[j] * (pows[e - j].conjugate()); }
     vc<G> new_res;
     new_res.reserve(len(res) * (e + 1));
-    for (auto &&g: res) {
-      for (auto &&a: pis) { new_res.eb(g * a); }
+    for (auto &&g : res) {
+      for (auto &&a : pis) {
+        new_res.eb(g * a);
+      }
     }
     swap(res, new_res);
   }
 
-  for (auto &&g: res) {
-    while (g.x <= 0 || g.y < 0) { g = G(-g.y, g.x); }
+  for (auto &&g : res) {
+    while (g.x <= 0 || g.y < 0) {
+      g = G(-g.y, g.x);
+    }
   }
   return res;
 }

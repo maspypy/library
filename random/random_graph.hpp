@@ -8,7 +8,7 @@ void random_relabel(int N, vc<pair<int, int>>& G) {
   vc<int> A(N);
   FOR(i, N) A[i] = i;
   shuffle(A);
-  for (auto& [a, b]: G) a = A[a], b = A[b];
+  for (auto& [a, b] : G) a = A[a], b = A[b];
 }
 
 template <int DIRECTED>
@@ -79,7 +79,7 @@ vc<pair<int, int>> random_cactus(int N, bool EDGE) {
       if (len(V) == 1) continue;
       FOR(k, len(V)) { G.eb(V[k], V[(1 + k) % len(V)]); }
     }
-    for (auto& [c1, c2]: H) {
+    for (auto& [c1, c2] : H) {
       int a = A[c1][RNG(0, len(A[c1]))];
       int b = A[c2][RNG(0, len(A[c2]))];
       G.eb(a, b);
@@ -107,7 +107,7 @@ vc<pair<int, int>> random_cactus(int N, bool EDGE) {
   assert(p == N + n - 1);
   UnionFind uf(p);
   auto H = random_tree(n);
-  for (auto& [c1, c2]: H) {
+  for (auto& [c1, c2] : H) {
     int a = A[c1][RNG(0, len(A[c1]))];
     int b = A[c2][RNG(0, len(A[c2]))];
     uf.merge(a, b);
@@ -120,7 +120,7 @@ vc<pair<int, int>> random_cactus(int N, bool EDGE) {
   vc<pair<int, int>> G;
   FOR(i, n) {
     vc<int>& V = A[i];
-    for (auto& v: V) v = new_idx[v];
+    for (auto& v : V) v = new_idx[v];
     if (len(V) == 2) {
       G.eb(V[0], V[1]);
     } else {
@@ -132,31 +132,32 @@ vc<pair<int, int>> random_cactus(int N, bool EDGE) {
 }
 
 // |child| = 0 or 2 or (1 if can1), ラベルはトポロジカル
-// return: par
-vc<int> random_binary_tree(int N, bool can_1) {
+// return: {lch,rch}
+pair<vc<int>, vc<int>> random_binary_tree(int N, bool can_1) {
   if (can_1) {
-    vc<int> S;
-    S.eb(0), S.eb(0);
-    vc<int> par(N, -1);
+    vc<pair<int, int>> S;
+    S.eb(0, 0), S.eb(0, 1);
+    vc<int> lch(N, -1), rch(N, -1);
     FOR(v, 1, N) {
       int k = RNG(0, len(S));
       swap(S[k], S.back());
-      par[v] = POP(S);
-      S.eb(v), S.eb(v);
+      auto [r, side] = POP(S);
+      (side == 0 ? lch[r] : rch[r]) = v;
+      S.eb(v, 0), S.eb(v, 1);
     }
-    return par;
+    return {lch, rch};
   }
   // 0 or 2
   assert(N % 2 == 1);
-  vc<int> par(N, -1);
+  vc<int> lch(N, -1), rch(N, -1);
   vc<int> S;
   FOR(v, N / 2, N) S.eb(v);
   int nxt = N / 2 - 1;
   while (len(S) >= 2) {
     shuffle(S);
     int a = POP(S), b = POP(S);
-    par[a] = par[b] = nxt;
-    S.eb(nxt), --nxt;
+    lch[nxt] = a, rch[nxt] = b;
+    S.eb(nxt--);
   }
-  return par;
+  return {lch, rch};
 }
