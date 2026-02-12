@@ -29,6 +29,12 @@ struct My_Bitset {
     N = size;
   }
 
+  void fill0() { fill(all(dat), u64(0)); }
+  void fill1() {
+    fill(all(dat), u64(-1));
+    resize(N);
+  }
+
   void append(int idx, bool b) {
     assert(N == idx);
     resize(idx + 1), (*this)[idx] = b;

@@ -1,57 +1,68 @@
-// 単純グラフの存在判定。Erdos-Gallai の定理。
-bool check_degree_sequence(vc<int> deg) {
-  const int N = len(deg);
-  if (N == 0) return true;
-  if (MAX(deg) >= N) return false;
-  if (SUM<ll>(deg) % 2 != 0) return false;
-  vc<int> CNT(N);
-  for (auto&& x: deg) CNT[x]++;
-  int p = 0;
-  FOR(x, N) FOR(CNT[x]) deg[p++] = x;
+#include "ds/csr.hpp"
 
-  vi A(N + 1), B(N + 1);
+// O(N). 単純グラフの存在判定. Erdos-Gallai の定理.
+bool check_degree_sequence(vc<int> deg) {
+  int N = len(deg);
+  if (N == 0) return true;
+  ll sm = 0;
+  vc<int> freq(N, 0);
   FOR(i, N) {
     int d = deg[i];
-    A[i + 1] += 2 * i - d;
-    if (d < i) { B[0] += 1, B[d] -= 1, A[d] += d, A[i + 1] -= d; }
-    if (d >= i) { B[0] += 1, B[i + 1] -= 1; }
+    if (!(0 <= d && d < N)) return false;
+    freq[d]++, sm += d;
   }
-  A = cumsum<ll>(A, 0);
-  B = cumsum<ll>(B, 0);
-  FOR(k, N + 1) {
-    ll x = A[k] + B[k] * k;
-    if (x < 0) return false;
+  if (sm & 1) return false;
+  int p = 0;
+  FOR_R(x, N) FOR(freq[x]) deg[p++] = x;
+
+  vi S = cumsum<ll>(deg);
+  ll m = 0;  // # of d_i s.t. d_i>=k
+  FOR_R(k, N + 1) {
+    while (m < N && deg[m] >= k) ++m;
+    ll lhs = S[k];
+    ll rhs = k * (k - 1);
+    if (m < k) {
+      rhs += S[N] - S[k];
+    } else {
+      rhs += (m - k) * k;
+      rhs += S[N] - S[m];
+    }
+    if (lhs > rhs) return false;
   }
   return true;
 }
 
-vc<pair<int, int>> construct_from_degree_sequence(vc<int> deg) {
-  if (!check_degree_sequence(deg)) return {};
+// O(N+M) time
+// https://codeforces.com/contest/134/problem/C
+pair<bool, vc<pair<int, int>>> construct_from_degree_sequence(vc<int> deg) {
+  if (!check_degree_sequence(deg)) return {false, {}};
   int N = len(deg);
-  vvc<int> dat(N);
-  FOR(v, N) dat[deg[v]].eb(v);
-  vc<pair<int, int>> edges;
-  int mx = N - 1;
-  FOR(N) {
-    while (mx >= 0 && len(dat[mx]) == 0) --mx;
-    int v = POP(dat[mx]);
-    vc<int> nbd;
-    int k = mx;
-    while (len(nbd) < deg[v]) {
-      if (k == 0) return {};
-      if (len(dat[k]) == 0) {
-        --k;
-        continue;
+  CSR<int> csr(N);
+  FOR(v, N) { csr.add(deg[v], v); }
+  csr.build();
+  vc<int> cnt(N), D(N), V(N);
+  int p = 0;
+  FOR(x, N) for (auto& v : csr[x]) cnt[x]++, D[p] = x, V[p] = v, ++p;
+  assert(p == N);
+
+  vc<pair<int, int>> ANS;
+  vc<pair<int, int>> tmp;
+  FOR_R(idx, N) {
+    int v = V[idx], n = D[idx];
+    cnt[D[idx]] -= 1, D[idx] = 0;
+    int p = idx;  // [p,n) used
+    while (n > 0) {
+      int d = D[p - 1];
+      int l = p - cnt[d];
+      int m = min(n, cnt[d]);
+      for (int i = l; i < l + m; ++i) {
+        ANS.eb(V[i], v), D[i]--;
       }
-      int x = POP(dat[k]);
-      nbd.eb(x);
+      tmp.eb(d, m);
+      n -= m, p = l;
     }
-    for (auto&& x: nbd) {
-      edges.eb(v, x);
-      --deg[x];
-      dat[deg[x]].eb(x);
-    }
-    deg[v] = 0;
+    for (auto& [d, m] : tmp) cnt[d] -= m, cnt[d - 1] += m;
+    tmp.clear();
   }
-  return edges;
+  return {true, ANS};
 }
