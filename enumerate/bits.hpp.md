@@ -33,7 +33,7 @@ data:
     path: setfunc/submask_range_query.hpp
     title: setfunc/submask_range_query.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enum_partitions.test.cpp
     title: test/1_mytest/enum_partitions.test.cpp
   - icon: ':x:'

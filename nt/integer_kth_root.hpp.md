@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/dirichlet.hpp
     title: nt/dirichlet.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dirichlet.test.cpp
     title: test/1_mytest/dirichlet.test.cpp
   - icon: ':x:'
