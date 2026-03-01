@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: graph/bitset/transitive_reduction.hpp
     title: graph/bitset/transitive_reduction.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
@@ -45,10 +45,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sum_over_bit_positions.test.cpp
     title: test/1_mytest/sum_over_bit_positions.test.cpp
   - icon: ':x:'

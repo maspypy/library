@@ -45,7 +45,7 @@ data:
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/slice_rational_fps.test.cpp
     title: test/1_mytest/slice_rational_fps.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -561,7 +561,7 @@ data:
   path: poly/slice_rational_fps.hpp
   requiredBy: []
   timestamp: '2026-03-02 00:39:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/slice_rational_fps.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
