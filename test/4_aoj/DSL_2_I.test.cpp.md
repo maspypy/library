@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I
@@ -302,27 +302,38 @@ data:
     \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
     \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
     \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
-    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
-    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
-    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
-    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
-    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
-    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
-    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
-    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
-    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    ll sz = 1 << (log -\
-    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
-    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n#line 8 \"test/4_aoj/DSL_2_I.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  using AM = ActedMonoid_Sum_Assign<ll, 12345>;\r\n  Lazy_SegTree<AM>\
-    \ seg(N);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n    ++R;\r\n    if (t == 0) {\r\
-    \n      LL(x);\r\n      seg.apply(L, R, x);\r\n    } else {\r\n      print(seg.prod(L,\
-    \ R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T =\
-    \ 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ {\n            sm = MX::op(sm, dat[l++]);\n          }\n        }\n        return\
+    \ l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l)\
+    \ != l);\n    return n;\n  }\n\n  template <typename F>\n  int min_left(const\
+    \ F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
+    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
+    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
+    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
+    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
+    \     if (check(MX::op(dat[r], sm))) {\n            sm = MX::op(dat[r--], sm);\n\
+    \          }\n        }\n        return r + 1 - size;\n      }\n      sm = MX::op(dat[r],\
+    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  // l <= i xor (xor_val)\
+    \ < r \u3068\u306A\u308B i \u5168\u4F53\u306B apply\n  void apply_xor_range(int\
+    \ l, int r, int xor_val, A a) {\n    assert(!(n & (n - 1)));\n    assert(0 <=\
+    \ xor_val && xor_val < n);\n    assert(0 <= l && l <= r && r <= n);\n\n    auto\
+    \ dfs = [&](auto& dfs, int idx, int seg_l, int seg_r) -> void {\n      if (l <=\
+    \ seg_l && seg_r <= r) {\n        return apply_at(idx, a);\n      }\n      if\
+    \ (r <= seg_l || seg_r <= l) return;\n      push(idx);\n      int seg_m = (seg_l\
+    \ + seg_r) / 2;\n      int bit = (seg_r - seg_l) / 2;\n      int left = 2 * idx\
+    \ + 0, right = 2 * idx + 1;\n      if (xor_val & bit) swap(left, right);\n   \
+    \   dfs(dfs, left, seg_l, seg_m);\n      dfs(dfs, right, seg_m, seg_r);\n    \
+    \  update(idx);\n    };\n    dfs(dfs, 1, 0, n);\n  }\n\n private:\n  void apply_at(int\
+    \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
+    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
+    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
+    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line 8 \"test/4_aoj/DSL_2_I.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  using AM = ActedMonoid_Sum_Assign<ll,\
+    \ 12345>;\r\n  Lazy_SegTree<AM> seg(N);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n\
+    \    ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\n\
+    \    } else {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
+    \ << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I\"\
     \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
     \ \"alg/acted_monoid/sum_assign.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
@@ -343,8 +354,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_I.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-27 23:10:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_I.test.cpp
 layout: document

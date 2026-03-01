@@ -2,124 +2,124 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/fenwick_raq.test.cpp
     title: test/1_mytest/fenwick_raq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_assign.test.cpp
     title: test/1_mytest/max_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_max.test.cpp
     title: test/1_mytest/max_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_min.test.cpp
     title: test/1_mytest/max_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/maxidx_add.test.cpp
     title: test/1_mytest/maxidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/min_max.test.cpp
     title: test/1_mytest/min_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/minidx_add.test.cpp
     title: test/1_mytest/minidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/minmax_add.test.cpp
     title: test/1_mytest/minmax_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/summax_add.test.cpp
     title: test/1_mytest/summax_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/summax_assign.test.cpp
     title: test/1_mytest/summax_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/summin_add.test.cpp
     title: test/1_mytest/summin_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/summin_assign.test.cpp
     title: test/1_mytest/summin_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
     title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1234.test.cpp
     title: test/3_yukicoder/1234.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1548.test.cpp
     title: test/3_yukicoder/1548.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/235.test.cpp
     title: test/3_yukicoder/235.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/255.test.cpp
     title: test/3_yukicoder/255.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/749.test.cpp
     title: test/3_yukicoder/749.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_F.test.cpp
     title: test/4_aoj/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_H.test.cpp
     title: test/4_aoj/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_I.test.cpp
     title: test/4_aoj/DSL_2_I.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_4_A.test.cpp
     title: test/4_aoj/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -164,21 +164,31 @@ data:
     \ i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n \
     \     if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n        \
     \  push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
-    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
-    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
-    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
-    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
-    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
-    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
-    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
-    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
-    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    ll sz = 1 << (log -\
-    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
-    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n"
+    \ {\n            sm = MX::op(sm, dat[l++]);\n          }\n        }\n        return\
+    \ l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l)\
+    \ != l);\n    return n;\n  }\n\n  template <typename F>\n  int min_left(const\
+    \ F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
+    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
+    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
+    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
+    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
+    \     if (check(MX::op(dat[r], sm))) {\n            sm = MX::op(dat[r--], sm);\n\
+    \          }\n        }\n        return r + 1 - size;\n      }\n      sm = MX::op(dat[r],\
+    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  // l <= i xor (xor_val)\
+    \ < r \u3068\u306A\u308B i \u5168\u4F53\u306B apply\n  void apply_xor_range(int\
+    \ l, int r, int xor_val, A a) {\n    assert(!(n & (n - 1)));\n    assert(0 <=\
+    \ xor_val && xor_val < n);\n    assert(0 <= l && l <= r && r <= n);\n\n    auto\
+    \ dfs = [&](auto& dfs, int idx, int seg_l, int seg_r) -> void {\n      if (l <=\
+    \ seg_l && seg_r <= r) {\n        return apply_at(idx, a);\n      }\n      if\
+    \ (r <= seg_l || seg_r <= l) return;\n      push(idx);\n      int seg_m = (seg_l\
+    \ + seg_r) / 2;\n      int bit = (seg_r - seg_l) / 2;\n      int left = 2 * idx\
+    \ + 0, right = 2 * idx + 1;\n      if (xor_val & bit) swap(left, right);\n   \
+    \   dfs(dfs, left, seg_l, seg_m);\n      dfs(dfs, right, seg_m, seg_r);\n    \
+    \  update(idx);\n    };\n    dfs(dfs, 1, 0, n);\n  }\n\n private:\n  void apply_at(int\
+    \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
+    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
+    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
+    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n"
   code: "#pragma once\n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n\
     \  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA =\
     \ typename AM::Monoid_A;\n  using X = typename MX::value_type;\n  using A = typename\
@@ -221,66 +231,76 @@ data:
     \ i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n \
     \     if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n        \
     \  push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
-    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
-    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
-    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
-    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
-    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
-    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
-    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
-    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
-    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    ll sz = 1 << (log -\
-    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
-    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n"
+    \ {\n            sm = MX::op(sm, dat[l++]);\n          }\n        }\n        return\
+    \ l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l)\
+    \ != l);\n    return n;\n  }\n\n  template <typename F>\n  int min_left(const\
+    \ F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
+    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
+    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
+    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
+    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
+    \     if (check(MX::op(dat[r], sm))) {\n            sm = MX::op(dat[r--], sm);\n\
+    \          }\n        }\n        return r + 1 - size;\n      }\n      sm = MX::op(dat[r],\
+    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  // l <= i xor (xor_val)\
+    \ < r \u3068\u306A\u308B i \u5168\u4F53\u306B apply\n  void apply_xor_range(int\
+    \ l, int r, int xor_val, A a) {\n    assert(!(n & (n - 1)));\n    assert(0 <=\
+    \ xor_val && xor_val < n);\n    assert(0 <= l && l <= r && r <= n);\n\n    auto\
+    \ dfs = [&](auto& dfs, int idx, int seg_l, int seg_r) -> void {\n      if (l <=\
+    \ seg_l && seg_r <= r) {\n        return apply_at(idx, a);\n      }\n      if\
+    \ (r <= seg_l || seg_r <= l) return;\n      push(idx);\n      int seg_m = (seg_l\
+    \ + seg_r) / 2;\n      int bit = (seg_r - seg_l) / 2;\n      int left = 2 * idx\
+    \ + 0, right = 2 * idx + 1;\n      if (xor_val & bit) swap(left, right);\n   \
+    \   dfs(dfs, left, seg_l, seg_m);\n      dfs(dfs, right, seg_m, seg_r);\n    \
+    \  update(idx);\n    };\n    dfs(dfs, 1, 0, n);\n  }\n\n private:\n  void apply_at(int\
+    \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
+    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
+    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
+    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/lazy_segtree.hpp
   requiredBy:
-  - ds/rectangle_union.hpp
-  - graph/ds/lazy_tree_monoid.hpp
   - graph/count/count_connected_intervals.hpp
+  - graph/ds/lazy_tree_monoid.hpp
   - seq/common_interval_decomposition.hpp
-  timestamp: '2023-05-21 00:13:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - ds/rectangle_union.hpp
+  timestamp: '2026-02-27 23:10:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/899.test.cpp
-  - test/3_yukicoder/1720.test.cpp
   - test/3_yukicoder/1234.test.cpp
-  - test/3_yukicoder/1197.test.cpp
-  - test/3_yukicoder/749.test.cpp
-  - test/3_yukicoder/1270.test.cpp
   - test/3_yukicoder/1548.test.cpp
+  - test/3_yukicoder/1270.test.cpp
+  - test/3_yukicoder/255.test.cpp
+  - test/3_yukicoder/1720.test.cpp
+  - test/3_yukicoder/1197.test.cpp
   - test/3_yukicoder/1790.test.cpp
   - test/3_yukicoder/235.test.cpp
-  - test/3_yukicoder/255.test.cpp
+  - test/3_yukicoder/749.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
+  - test/1_mytest/min_min.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
+  - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/range_assign.test.cpp
-  - test/1_mytest/summin_add.test.cpp
-  - test/1_mytest/min_max.test.cpp
+  - test/1_mytest/max_assign.test.cpp
   - test/1_mytest/summax_add.test.cpp
   - test/1_mytest/summin_assign.test.cpp
-  - test/1_mytest/max_max.test.cpp
-  - test/1_mytest/maxidx_add.test.cpp
-  - test/1_mytest/range_add_range_max.test.cpp
-  - test/1_mytest/range_add_range_min.test.cpp
-  - test/1_mytest/minmax_add.test.cpp
-  - test/1_mytest/fenwick_raq.test.cpp
-  - test/1_mytest/max_assign.test.cpp
-  - test/1_mytest/minidx_add.test.cpp
-  - test/1_mytest/min_min.test.cpp
   - test/1_mytest/max_min.test.cpp
   - test/1_mytest/summax_assign.test.cpp
-  - test/4_aoj/GRL_5_E.test.cpp
-  - test/4_aoj/DSL_2_H.test.cpp
-  - test/4_aoj/DSL_2_F.test.cpp
-  - test/4_aoj/DSL_4_A.test.cpp
+  - test/1_mytest/summin_add.test.cpp
+  - test/1_mytest/minmax_add.test.cpp
+  - test/1_mytest/max_max.test.cpp
+  - test/1_mytest/maxidx_add.test.cpp
+  - test/1_mytest/min_max.test.cpp
+  - test/1_mytest/minidx_add.test.cpp
   - test/4_aoj/DSL_2_I.test.cpp
+  - test/4_aoj/DSL_4_A.test.cpp
+  - test/4_aoj/DSL_2_H.test.cpp
+  - test/4_aoj/GRL_5_E.test.cpp
+  - test/4_aoj/DSL_2_F.test.cpp
+  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
 documentation_of: ds/segtree/lazy_segtree.hpp
 layout: document
 redirect_from:

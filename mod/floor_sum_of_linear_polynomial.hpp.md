@@ -1,58 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/monoid_for_floor_sum.hpp
     title: alg/monoid/monoid_for_floor_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_sum_polynomial.hpp
     title: convex/lattice_point_sum_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/floor_sum_of_polynomial.test.cpp
     title: test/1_mytest/floor_sum_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/floor_sum_of_linear_polynomial.hpp\"\n\n#line 2 \"alg/monoid_pow.hpp\"\
     \n\n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
-    \ {\nprivate:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n \
-    \ template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
+    \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
+    \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
     \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
     \                             std::declval<A2>()),\n                  std::true_type{});\n\
     \  template <typename, typename, typename>\n  static auto check(...) -> std::false_type;\n\
-    \npublic:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
+    \n public:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
     \n  static constexpr bool value = decltype(check<U, Arg1, Arg2>(0))::value;\n\
     };\n\ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
     \ x, ll exp) {\n  using X = typename Monoid::X;\n  if constexpr (has_power_method<Monoid,\
     \ X, ll>::value) {\n    return Monoid::power(x, exp);\n  } else {\n    assert(exp\
-    \ >= 0);\n    X res = Monoid::unit();\n    while (exp) {\n      if (exp & 1) res\
-    \ = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n\
-    \    return res;\n  }\n}\n#line 3 \"mod/floor_monoid_product.hpp\"\n\n// https://yukicoder.me/submissions/883884\n\
+    \ >= 0);\n    if (exp == 0) return Monoid::unit();\n    if (exp == 1) return x;\n\
+    \    X res = Monoid::unit();\n    while (exp) {\n      if (exp & 1) res = Monoid::op(res,\
+    \ x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n    return res;\n\
+    \  }\n}\n#line 3 \"mod/floor_monoid_product.hpp\"\n\n// https://yukicoder.me/submissions/883884\n\
     // https://qoj.ac/contest/1411/problem/7620\n// U \u306F\u7BC4\u56F2\u5185\u3067\
     \ ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\
     \u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092 N \u500B)\n// k \u500B\u76EE\u306E\
@@ -135,15 +136,15 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear_polynomial.hpp
   requiredBy:
-  - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
-  timestamp: '2025-02-12 14:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - convex/lattice_point_sum_polynomial.hpp
+  timestamp: '2026-02-27 23:10:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2362.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
 documentation_of: mod/floor_sum_of_linear_polynomial.hpp
 layout: document

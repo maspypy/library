@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -195,32 +195,43 @@ data:
     \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
     \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
     \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
-    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
-    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
-    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
-    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
-    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
-    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
-    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
-    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
-    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    ll sz = 1 << (log -\
-    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
-    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n#line 6 \"test/1_mytest/summax_add.test.cpp\"\n\nvoid\
-    \ test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1,\
-    \ 100);\n  using AM = ActedMonoid_SumMax_Add<ll>;\n  using Mono = typename AM::Monoid_X;\n\
-    \  Lazy_SegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]);\
-    \ });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0,\
-    \ N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t\
-    \ == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] += x;\n      seg.apply(L,\
-    \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
-    \ + R};\n      auto [sm, ma] = seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n\
-    \      assert(ma == MAX(B));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n \
-    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100)\
-    \ test();\n  solve();\n\n  return 0;\n}\n"
+    \ {\n            sm = MX::op(sm, dat[l++]);\n          }\n        }\n        return\
+    \ l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l)\
+    \ != l);\n    return n;\n  }\n\n  template <typename F>\n  int min_left(const\
+    \ F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
+    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
+    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
+    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
+    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
+    \     if (check(MX::op(dat[r], sm))) {\n            sm = MX::op(dat[r--], sm);\n\
+    \          }\n        }\n        return r + 1 - size;\n      }\n      sm = MX::op(dat[r],\
+    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  // l <= i xor (xor_val)\
+    \ < r \u3068\u306A\u308B i \u5168\u4F53\u306B apply\n  void apply_xor_range(int\
+    \ l, int r, int xor_val, A a) {\n    assert(!(n & (n - 1)));\n    assert(0 <=\
+    \ xor_val && xor_val < n);\n    assert(0 <= l && l <= r && r <= n);\n\n    auto\
+    \ dfs = [&](auto& dfs, int idx, int seg_l, int seg_r) -> void {\n      if (l <=\
+    \ seg_l && seg_r <= r) {\n        return apply_at(idx, a);\n      }\n      if\
+    \ (r <= seg_l || seg_r <= l) return;\n      push(idx);\n      int seg_m = (seg_l\
+    \ + seg_r) / 2;\n      int bit = (seg_r - seg_l) / 2;\n      int left = 2 * idx\
+    \ + 0, right = 2 * idx + 1;\n      if (xor_val & bit) swap(left, right);\n   \
+    \   dfs(dfs, left, seg_l, seg_m);\n      dfs(dfs, right, seg_m, seg_r);\n    \
+    \  update(idx);\n    };\n    dfs(dfs, 1, 0, n);\n  }\n\n private:\n  void apply_at(int\
+    \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
+    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
+    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
+    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line 6 \"test/1_mytest/summax_add.test.cpp\"\
+    \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] =\
+    \ RNG(1, 100);\n  using AM = ActedMonoid_SumMax_Add<ll>;\n  using Mono = typename\
+    \ AM::Monoid_X;\n  Lazy_SegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type\
+    \ { return Mono::from_element(A[i]); });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n\
+    \    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L\
+    \ > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll x = RNG(1, 100);\n \
+    \     FOR(i, L, R) A[i] += x;\n      seg.apply(L, R, x);\n    }\n    if (t ==\
+    \ 2) {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n      auto [sm, ma]\
+    \ = seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n      assert(ma == MAX(B));\n\
+    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/acted_monoid/summax_add.hpp\"\n#include \"random/base.hpp\"\n\
     #include \"ds/segtree/lazy_segtree.hpp\"\n\nvoid test() {\n  int N = RNG(1, 100);\n\
@@ -245,8 +256,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/summax_add.test.cpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-27 23:10:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/summax_add.test.cpp
 layout: document

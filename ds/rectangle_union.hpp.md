@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
     title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_4_A.test.cpp
     title: test/4_aoj/DSL_4_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -68,45 +68,56 @@ data:
     \ i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n \
     \     if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n        \
     \  push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
-    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
-    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
-    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
-    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
-    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
-    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
-    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
-    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
-    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    ll sz = 1 << (log -\
-    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
-    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\
-    \u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\u6570\r\ntemplate <typename E>\r\n\
-    struct Monoid_MinMincnt {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
-    \n  static X op(X x, X y) {\r\n    auto [xmin, xmincnt] = x;\r\n    auto [ymin,\
-    \ ymincnt] = y;\r\n    if (xmin > ymin) return y;\r\n    if (xmin < ymin) return\
-    \ x;\r\n    return {xmin, xmincnt + ymincnt};\r\n  }\r\n  static constexpr X unit()\
-    \ { return {infty<E>, 0}; }\r\n  static constexpr bool commute = true;\r\n};\n\
-    #line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X\
-    \ = Monoid_MinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
-    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    auto [xmin,\
-    \ xmincnt] = x;\r\n    if (xmin == infty<E>) return x;\r\n    return {xmin + a,\
-    \ xmincnt};\r\n  }\r\n};\r\n#line 3 \"ds/rectangle_union.hpp\"\n\r\ntemplate <typename\
-    \ XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT = tuple<XY, XY, XY, XY>;\r\
-    \n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY xl, XY xr,\
-    \ XY yl, XY yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr),\
-    \ Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template\
-    \ <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    if (rectangles.empty())\
-    \ return 0;\r\n    int N = len(X);\r\n    vc<int> ord_x = argsort(X);\r\n    vc<int>\
+    \ {\n            sm = MX::op(sm, dat[l++]);\n          }\n        }\n        return\
+    \ l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l)\
+    \ != l);\n    return n;\n  }\n\n  template <typename F>\n  int min_left(const\
+    \ F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
+    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
+    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
+    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
+    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
+    \     if (check(MX::op(dat[r], sm))) {\n            sm = MX::op(dat[r--], sm);\n\
+    \          }\n        }\n        return r + 1 - size;\n      }\n      sm = MX::op(dat[r],\
+    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  // l <= i xor (xor_val)\
+    \ < r \u3068\u306A\u308B i \u5168\u4F53\u306B apply\n  void apply_xor_range(int\
+    \ l, int r, int xor_val, A a) {\n    assert(!(n & (n - 1)));\n    assert(0 <=\
+    \ xor_val && xor_val < n);\n    assert(0 <= l && l <= r && r <= n);\n\n    auto\
+    \ dfs = [&](auto& dfs, int idx, int seg_l, int seg_r) -> void {\n      if (l <=\
+    \ seg_l && seg_r <= r) {\n        return apply_at(idx, a);\n      }\n      if\
+    \ (r <= seg_l || seg_r <= l) return;\n      push(idx);\n      int seg_m = (seg_l\
+    \ + seg_r) / 2;\n      int bit = (seg_r - seg_l) / 2;\n      int left = 2 * idx\
+    \ + 0, right = 2 * idx + 1;\n      if (xor_val & bit) swap(left, right);\n   \
+    \   dfs(dfs, left, seg_l, seg_m);\n      dfs(dfs, right, seg_m, seg_r);\n    \
+    \  update(idx);\n    };\n    dfs(dfs, 1, 0, n);\n  }\n\n private:\n  void apply_at(int\
+    \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
+    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
+    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
+    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/minmincnt.hpp\"\
+    \n\r\n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\u6570\r\ntemplate\
+    \ <typename E>\r\nstruct Monoid_MinMincnt {\r\n  using value_type = pair<E, E>;\r\
+    \n  using X = value_type;\r\n  static X op(X x, X y) {\r\n    auto [xmin, xmincnt]\
+    \ = x;\r\n    auto [ymin, ymincnt] = y;\r\n    if (xmin > ymin) return y;\r\n\
+    \    if (xmin < ymin) return x;\r\n    return {xmin, xmincnt + ymincnt};\r\n \
+    \ }\r\n  static constexpr X unit() { return {infty<E>, 0}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n \
+    \ static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n\
+    \  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
+    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X = Monoid_MinMincnt<E>;\r\
+    \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X &x, const A &a, const ll &size) {\r\n    auto [xmin, xmincnt] = x;\r\n   \
+    \ if (xmin == infty<E>) return x;\r\n    return {xmin + a, xmincnt};\r\n  }\r\n\
+    };\r\n#line 3 \"ds/rectangle_union.hpp\"\n\r\ntemplate <typename XY = int>\r\n\
+    struct Rectangle_Union {\r\n  using RECT = tuple<XY, XY, XY, XY>;\r\n  vc<RECT>\
+    \ rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY xl, XY xr, XY yl, XY\
+    \ yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl),\
+    \ Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template <typename\
+    \ ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    if (rectangles.empty()) return\
+    \ 0;\r\n    int N = len(X);\r\n    vc<int> ord_x = argsort(X);\r\n    vc<int>\
     \ ord_y = argsort(Y);\r\n    vc<int> rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]]\
     \ = i;\r\n    X = rearrange(X, ord_x);\r\n    Y = rearrange(Y, ord_y);\r\n\r\n\
     \    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\n    Lazy_SegTree<AM> seg(N -\
@@ -142,8 +153,8 @@ data:
   isVerificationFile: false
   path: ds/rectangle_union.hpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-02-27 23:10:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/DSL_4_A.test.cpp
   - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp

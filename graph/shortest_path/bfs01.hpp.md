@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':warning:'
@@ -29,26 +29,26 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,24 +66,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1796_1.test.cpp
     title: test/3_yukicoder/1796_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1868.test.cpp
     title: test/3_yukicoder/1868.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2892.test.cpp
     title: test/3_yukicoder/2892.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -230,33 +230,33 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/bfs01.hpp
   requiredBy:
-  - graph/tree_all_distances.hpp
   - graph/tree_diameter.hpp
-  - graph/ds/contour_query_range.hpp
   - graph/tree_walk_generating_function.hpp
+  - graph/tree_all_distances.hpp
   - graph/st_numbering.hpp
-  - graph/tree_center.hpp
-  - graph/centroid_decomposition.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - graph/centroid_decomposition.hpp
+  - graph/tree_center.hpp
+  - graph/ds/contour_query_range.hpp
   timestamp: '2025-04-06 22:14:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/1868.test.cpp
+  - test/3_yukicoder/1718.test.cpp
+  - test/3_yukicoder/2892.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/1718.test.cpp
-  - test/3_yukicoder/2892.test.cpp
-  - test/3_yukicoder/1868.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/st_numbering.test.cpp
   - test/2_library_checker/graph/st_numbering.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/2_library_checker/tree/tree_diameter.test.cpp
-  - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+  - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/shortest_path/bfs01.hpp
 layout: document
 redirect_from:

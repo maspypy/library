@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   _extendedRequiredBy: []
@@ -13,19 +13,20 @@ data:
     links:
     - https://codeforces.com/contest/1515/problem/I
   bundledCode: "#line 2 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
-    \ U, typename Arg1, typename Arg2>\nstruct has_power_method {\nprivate:\n  //\
+    \ U, typename Arg1, typename Arg2>\nstruct has_power_method {\n private:\n  //\
     \ \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename\
     \ V, typename A1, typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
     \                                          std::declval<A2>()),\n            \
     \      std::true_type{});\n  template <typename, typename, typename>\n  static\
-    \ auto check(...) -> std::false_type;\n\npublic:\n  // \u30E1\u30BD\u30C3\u30C9\
+    \ auto check(...) -> std::false_type;\n\n public:\n  // \u30E1\u30BD\u30C3\u30C9\
     \u306E\u6709\u7121\u3092\u8868\u3059\u578B\n  static constexpr bool value = decltype(check<U,\
     \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
     \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
     \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    X res = Monoid::unit();\n    while\
-    \ (exp) {\n      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x,\
-    \ x);\n      exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"ds/segtree/greedy_subtract_segtree.hpp\"\
+    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::unit();\n\
+    \    if (exp == 1) return x;\n    X res = Monoid::unit();\n    while (exp) {\n\
+    \      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n \
+    \     exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"ds/segtree/greedy_subtract_segtree.hpp\"\
     \n\n/*\n\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 i \u306B\u30B3\u30B9\u30C8 cost_i\
     \ \u306E\u7269\u304C cnt_i \u500B\u3042\u308B. dat_i in Monoid \u3082\u3042\u308B\
     .\n\u6240\u6301\u91D1 x \u304B\u3089\u306F\u3058\u3081\u3066 i=l,l+1,...,r-1 \u306B\
@@ -135,7 +136,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/greedy_subtract_segtree.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:12:23+09:00'
+  timestamp: '2026-02-27 23:10:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/greedy_subtract_segtree.hpp

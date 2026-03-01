@@ -8,19 +8,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lattice_point_count.hpp
     title: convex/lattice_point_count.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_sum_polynomial.hpp
     title: convex/lattice_point_sum_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':warning:'
     path: convex/lower_integer_hull.hpp
     title: convex/lower_integer_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
@@ -120,10 +120,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_ch.test.cpp
     title: test/1_mytest/incremental_ch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,7 +132,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/qoj5443.test.cpp
     title: test/1_mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,9 +195,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -308,73 +308,73 @@ data:
   isVerificationFile: false
   path: geo/base.hpp
   requiredBy:
-  - random/random_polygon.hpp
   - graph/planar_graph.hpp
-  - geo/reflection.hpp
-  - geo/polygon_triangulation.hpp
-  - geo/rotating_swaps.hpp
-  - geo/minkowski_sum.hpp
-  - geo/projection.hpp
-  - geo/distance.hpp
-  - geo/outcircle.hpp
-  - geo/furthest_pair.hpp
-  - geo/perpendicular_bisector.hpp
-  - geo/polygon.hpp
-  - geo/incircle.hpp
-  - geo/minimum_three_distance_sum.hpp
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
-  - geo/convex_hull.hpp
-  - geo/closest_pair.hpp
-  - geo/minimum_enclosing_circle.hpp
-  - geo/convex_polygon.hpp
-  - geo/angle_sort.hpp
-  - geo/apollonian_circle.hpp
-  - geo/dynamicupperhull.hpp
-  - geo/delaunay_triangulation.hpp
-  - geo/incremental_convexhull.hpp
-  - geo/count_points_in_triangles.hpp
-  - geo/convex_layers.hpp
-  - geo/max_norm_sum.hpp
-  - geo/cross_point.hpp
-  - convex/fenchel.hpp
-  - convex/lattice_point_sum_polynomial.hpp
-  - convex/line_min_function.hpp
   - convex/lattice_point_count.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/lattice_point_sum_polynomial.hpp
   - convex/lower_integer_hull.hpp
+  - convex/line_min_function.hpp
+  - convex/fenchel.hpp
+  - random/random_polygon.hpp
+  - geo/minkowski_sum.hpp
+  - geo/count_points_in_triangles.hpp
+  - geo/convex_polygon.hpp
+  - geo/closest_pair.hpp
+  - geo/rotating_swaps.hpp
+  - geo/furthest_pair.hpp
+  - geo/incircle.hpp
+  - geo/minimum_three_distance_sum.hpp
+  - geo/dynamicupperhull.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
+  - geo/reflection.hpp
+  - geo/minimum_enclosing_circle.hpp
+  - geo/convex_hull.hpp
+  - geo/distance.hpp
+  - geo/perpendicular_bisector.hpp
+  - geo/angle_sort.hpp
+  - geo/apollonian_circle.hpp
+  - geo/outcircle.hpp
+  - geo/convex_layers.hpp
+  - geo/projection.hpp
+  - geo/polygon.hpp
+  - geo/polygon_triangulation.hpp
+  - geo/delaunay_triangulation.hpp
+  - geo/cross_point.hpp
+  - geo/incremental_convexhull.hpp
+  - geo/max_norm_sum.hpp
   timestamp: '2026-02-03 22:59:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2602.test.cpp
-  - test/3_yukicoder/3005.test.cpp
   - test/3_yukicoder/1777.test.cpp
-  - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/1_mytest/qoj5443.test.cpp
-  - test/1_mytest/convex_polygon_side.test.cpp
-  - test/1_mytest/convex_polygon_visible_range.test.cpp
-  - test/1_mytest/incremental_ch.test.cpp
-  - test/1_mytest/max_dot.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/3_yukicoder/3005.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  - test/4_aoj/CGL_1_A.test.cpp
-  - test/4_aoj/CGL_7_B.test.cpp
+  - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/incremental_ch.test.cpp
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/1_mytest/convex_polygon_side.test.cpp
+  - test/1_mytest/qoj5443.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/count_points_in_triangles.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
+  - test/4_aoj/CGL_2_A.test.cpp
+  - test/4_aoj/CGL_7_C.test.cpp
   - test/4_aoj/CGL_2_C.test.cpp
   - test/4_aoj/CGL_2_B.test.cpp
-  - test/4_aoj/CGL_5_A.test.cpp
-  - test/4_aoj/CGL_2_A.test.cpp
   - test/4_aoj/CGL_1_B.test.cpp
-  - test/4_aoj/CGL_7_C.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/4_aoj/CGL_1_A.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
+  - test/4_aoj/CGL_5_A.test.cpp
   - test/2_library_checker/geometry/convex_layers.test.cpp
-  - test/2_library_checker/geometry/furthest_pair.test.cpp
-  - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/2_library_checker/geometry/closest_pair_dc.test.cpp
-  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/2_library_checker/geometry/furthest_pair.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

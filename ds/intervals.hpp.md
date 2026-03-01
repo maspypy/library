@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   _extendedRequiredBy: []
@@ -90,8 +90,8 @@ data:
     \ X = ll>\nstruct Intervals {\n  static constexpr X LLIM = -infty<X>;\n  static\
     \ constexpr X RLIM = infty<X>;\n  T none_val;\n  // const T none_val;\n  // none_val\
     \ \u3067\u306A\u3044\u533A\u9593\u306E\u500B\u6570\u3068\u9577\u3055\u5408\u8A08\
-    \n  int total_num;\n  X total_len;\n  map<X, T> dat;\n\n  Intervals(T none_val)\
-    \ : none_val(none_val), total_num(0), total_len(0) {\n    dat[LLIM] = none_val;\n\
+    \n  int total_num;\n  X total_len;\n  map<X, T> dat;\n\n  Intervals(T none_val\
+    \ = 0) : none_val(none_val), total_num(0), total_len(0) {\n    dat[LLIM] = none_val;\n\
     \    dat[RLIM] = none_val;\n  }\n\n  // x \u3092\u542B\u3080\u533A\u9593\u306E\
     \u60C5\u5831\u306E\u53D6\u5F97 l, r, t\n  tuple<X, X, T> get(X x, bool ERASE =\
     \ false) {\n    auto it2 = dat.upper_bound(x);\n    auto it1 = prev(it2);\n  \
@@ -162,8 +162,8 @@ data:
     \ X = ll>\nstruct Intervals {\n  static constexpr X LLIM = -infty<X>;\n  static\
     \ constexpr X RLIM = infty<X>;\n  T none_val;\n  // const T none_val;\n  // none_val\
     \ \u3067\u306A\u3044\u533A\u9593\u306E\u500B\u6570\u3068\u9577\u3055\u5408\u8A08\
-    \n  int total_num;\n  X total_len;\n  map<X, T> dat;\n\n  Intervals(T none_val)\
-    \ : none_val(none_val), total_num(0), total_len(0) {\n    dat[LLIM] = none_val;\n\
+    \n  int total_num;\n  X total_len;\n  map<X, T> dat;\n\n  Intervals(T none_val\
+    \ = 0) : none_val(none_val), total_num(0), total_len(0) {\n    dat[LLIM] = none_val;\n\
     \    dat[RLIM] = none_val;\n  }\n\n  // x \u3092\u542B\u3080\u533A\u9593\u306E\
     \u60C5\u5831\u306E\u53D6\u5F97 l, r, t\n  tuple<X, X, T> get(X x, bool ERASE =\
     \ false) {\n    auto it2 = dat.upper_bound(x);\n    auto it1 = prev(it2);\n  \
@@ -197,7 +197,7 @@ data:
   isVerificationFile: false
   path: ds/intervals.hpp
   requiredBy: []
-  timestamp: '2025-12-07 20:35:27+09:00'
+  timestamp: '2026-02-27 23:10:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/intervals.hpp

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/degree_sequence.hpp
+    title: graph/degree_sequence.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -35,7 +38,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/csr.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/degree_sequence.hpp
   timestamp: '2025-12-02 17:14:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

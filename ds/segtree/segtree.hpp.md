@@ -8,25 +8,25 @@ data:
   - icon: ':warning:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
   - icon: ':warning:'
     path: ds/rmq/range_add_range_maxidx.hpp
     title: ds/rmq/range_add_range_maxidx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rmq/range_add_range_min.hpp
     title: ds/rmq/range_add_range_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -75,16 +75,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/manhattan_nns.test.cpp
     title: test/1_mytest/manhattan_nns.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,19 +102,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,7 +144,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -156,7 +156,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1435.test.cpp
     title: test/3_yukicoder/1435.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1549.test.cpp
     title: test/3_yukicoder/1549.test.cpp
   - icon: ':heavy_check_mark:'
@@ -165,7 +165,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
@@ -180,7 +180,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
@@ -192,9 +192,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_3_B.test.cpp
     title: test/4_aoj/ITP2_3_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -291,72 +291,72 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree.hpp
   requiredBy:
-  - string/longest_common_substring.hpp
-  - string/suffix_array.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
-  - string/sort_substrings.hpp
-  - string/many_string_compare.hpp
-  - string/substring_shortest_border.hpp
-  - string/basic_substring_structure.hpp
-  - string/suffix_lcp_change.hpp
-  - string/substring_count_in_substring.hpp
-  - string/suffix_tree.hpp
-  - ds/segtree/sortable_segtree.hpp
-  - ds/segtree/range_assignment_segtree.hpp
-  - ds/rmq/range_add_range_min.hpp
-  - ds/rmq/range_add_range_maxidx.hpp
-  - ds/rmq/range_add_range_max.hpp
-  - ds/offline_query/range_mex_query.hpp
-  - ds/offline_query/uniqueproductquery.hpp
+  - graph/minimum_spanning_tree.hpp
   - graph/optimal_product_on_tree.hpp
   - graph/ds/tree_monoid.hpp
-  - graph/minimum_spanning_tree.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
+  - string/suffix_tree.hpp
+  - string/sort_substrings.hpp
+  - string/suffix_lcp_change.hpp
+  - string/substring_count_in_substring.hpp
+  - string/substring_shortest_border.hpp
+  - string/basic_substring_structure.hpp
+  - string/suffix_array.hpp
+  - string/longest_common_substring.hpp
+  - string/many_string_compare.hpp
   - geo/manhattan_nns.hpp
+  - ds/offline_query/range_mex_query.hpp
+  - ds/offline_query/uniqueproductquery.hpp
+  - ds/segtree/sortable_segtree.hpp
+  - ds/segtree/range_assignment_segtree.hpp
+  - ds/rmq/range_add_range_maxidx.hpp
+  - ds/rmq/range_add_range_max.hpp
+  - ds/rmq/range_add_range_min.hpp
   timestamp: '2025-10-13 19:00:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1036_2.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/3148.test.cpp
+  - test/3_yukicoder/2595.test.cpp
+  - test/3_yukicoder/2361.test.cpp
+  - test/3_yukicoder/2859.test.cpp
+  - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/2897.test.cpp
   - test/3_yukicoder/426.test.cpp
-  - test/3_yukicoder/529.test.cpp
-  - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/2890.test.cpp
-  - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/1435.test.cpp
+  - test/3_yukicoder/2890.test.cpp
   - test/3_yukicoder/1212.test.cpp
-  - test/3_yukicoder/2361.test.cpp
-  - test/3_yukicoder/3148.test.cpp
   - test/3_yukicoder/1549.test.cpp
-  - test/1_mytest/range_assign.test.cpp
-  - test/1_mytest/segtree_xor_prod.test.cpp
-  - test/1_mytest/manhattan_nns.test.cpp
-  - test/1_mytest/mo_on_tree.test.cpp
-  - test/1_mytest/wavelet_matrix.test.cpp
-  - test/1_mytest/range_add_range_max.test.cpp
-  - test/1_mytest/range_add_range_min.test.cpp
-  - test/1_mytest/suffix_lcp_change.test.cpp
+  - test/3_yukicoder/1036_2.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
-  - test/1_mytest/range_mex.test.cpp
+  - test/1_mytest/manhattan_nns.test.cpp
+  - test/1_mytest/wavelet_matrix.test.cpp
+  - test/1_mytest/segtree_xor_prod.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
+  - test/1_mytest/suffix_lcp_change.test.cpp
+  - test/1_mytest/range_mex.test.cpp
+  - test/1_mytest/mo_on_tree.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/ITP2_3_B.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/2_library_checker/string/suffix_array.test.cpp
-  - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
+  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
+  - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
-  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
-  - test/2_library_checker/tree/mst.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
 documentation_of: ds/segtree/segtree.hpp
 layout: document
 redirect_from:

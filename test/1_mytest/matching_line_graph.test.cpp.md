@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_matching_of_line_graph.hpp
     title: graph/maximum_matching_of_line_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -265,7 +265,7 @@ data:
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
     \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 5 \"random/random_graph.hpp\"\
     \n\nvoid random_relabel(int N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int>\
-    \ A(N);\n  FOR(i, N) A[i] = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a],\
+    \ A(N);\n  FOR(i, N) A[i] = i;\n  shuffle(A);\n  for (auto& [a, b] : G) a = A[a],\
     \ b = A[b];\n}\n\ntemplate <int DIRECTED>\nvc<pair<int, int>> random_graph(int\
     \ n, bool simple) {\n  vc<pair<int, int>> G, cand;\n  FOR(a, n) FOR(b, n) {\n\
     \    if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n\
@@ -290,73 +290,86 @@ data:
     \      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
     \    vc<pair<int, int>> G;\n    FOR(i, m) {\n      vc<int>& V = A[i];\n      if\
     \ (len(V) == 1) continue;\n      FOR(k, len(V)) { G.eb(V[k], V[(1 + k) % len(V)]);\
-    \ }\n    }\n    for (auto& [c1, c2]: H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
+    \ }\n    }\n    for (auto& [c1, c2] : H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
     \      int b = A[c2][RNG(0, len(A[c2]))];\n      G.eb(a, b);\n    }\n    random_relabel(N,\
     \ G);\n    return G;\n  }\n  assert(EDGE);\n  if (N == 1) return {};\n  int n\
     \ = RNG(1, N);\n  vc<int> S(n, 2);\n  int rest = N - 1 - n;\n  while (rest > 0)\
     \ {\n    int k = RNG(0, n);\n    S[k]++, --rest;\n  }\n  vvc<int> A;\n  int p\
     \ = 0;\n  FOR(i, n) {\n    vc<int> C;\n    FOR(v, p, p + S[i]) C.eb(v);\n    A.eb(C);\n\
     \    p += S[i];\n  }\n  assert(p == N + n - 1);\n  UnionFind uf(p);\n  auto H\
-    \ = random_tree(n);\n  for (auto& [c1, c2]: H) {\n    int a = A[c1][RNG(0, len(A[c1]))];\n\
+    \ = random_tree(n);\n  for (auto& [c1, c2] : H) {\n    int a = A[c1][RNG(0, len(A[c1]))];\n\
     \    int b = A[c2][RNG(0, len(A[c2]))];\n    uf.merge(a, b);\n  }\n  vc<int> new_idx(p);\n\
     \  int x = 0;\n  FOR(i, p) if (uf[i] == i) new_idx[i] = x++;\n  assert(x == N);\n\
     \  FOR(i, p) new_idx[i] = new_idx[uf[i]];\n  vc<pair<int, int>> G;\n  FOR(i, n)\
-    \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
+    \ {\n    vc<int>& V = A[i];\n    for (auto& v : V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
     }\n\n// |child| = 0 or 2 or (1 if can1), \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\
-    \u30B8\u30AB\u30EB\n// return: par\nvc<int> random_binary_tree(int N, bool can_1)\
-    \ {\n  if (can_1) {\n    vc<int> S;\n    S.eb(0), S.eb(0);\n    vc<int> par(N,\
-    \ -1);\n    FOR(v, 1, N) {\n      int k = RNG(0, len(S));\n      swap(S[k], S.back());\n\
-    \      par[v] = POP(S);\n      S.eb(v), S.eb(v);\n    }\n    return par;\n  }\n\
-    \  // 0 or 2\n  assert(N % 2 == 1);\n  vc<int> par(N, -1);\n  vc<int> S;\n  FOR(v,\
-    \ N / 2, N) S.eb(v);\n  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n\
-    \    int a = POP(S), b = POP(S);\n    par[a] = par[b] = nxt;\n    S.eb(nxt), --nxt;\n\
-    \  }\n  return par;\n}\n#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n\
-    \  static constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61()\
-    \ : val(0ULL) {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64\
-    \ x) : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
-    \ : x) {}\r\n  constexpr modint61(ll x) : val(((x %= static_cast<ll>(mod)) < 0)\
-    \ ? (x + static_cast<ll>(mod)) : x) {}\r\n  static constexpr u64 get_mod() { return\
-    \ mod; }\r\n\r\n  modint61 &operator+=(const modint61 &a) {\r\n    val = ((val\
-    \ += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61\
-    \ &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val) >= mod) ? (val\
-    \ + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const modint61\
-    \ &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const {\
-    \ return modint61(val ? mod - val : u64(0)); }\r\n  modint61 &operator/=(const\
-    \ modint61 &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const\
-    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
-    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
-    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
-    \ modint61 &p) const { return modint61(*this) /= p; }\r\n  bool operator<(const\
-    \ modint61 &other) const { return val < other.val; }\r\n  bool operator==(const\
-    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
-    \ &p) const { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll\
-    \ a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\
-    \n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
-    \nvoid rd(modint61 &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val\
-    \ < modint61::mod);\r\n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n\
-    #endif\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(vc<vc<T>>\
-    \ a, int n = -1, int m = -1) {\n  if (n == 0) return 0;\n  if (n == -1) { n =\
-    \ len(a), m = len(a[0]); }\n  assert(n == len(a) && m == len(a[0]));\n  int rk\
-    \ = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    if (a[rk][j] == 0) {\n   \
-    \   FOR(i, rk + 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n   \
-    \     break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
-    \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
-    \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
-    \   ++rk;\n  }\n  return rk;\n}\n#line 4 \"graph/maximum_matching_size.hpp\"\n\
-    \ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
-    \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
-    \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
-    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte,\
-    \ N, N) / 2;\n}\n#line 2 \"graph/maximum_matching_of_line_graph.hpp\"\n\n// \u540C\
-    \u3058\u9802\u70B9\u306B\u63A5\u7D9A\u3059\u308B 2 \u8FBA\u3092\u30DE\u30C3\u30C1\
-    \u3067\u304D\u308B\ntemplate <typename GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT&\
+    \u30B8\u30AB\u30EB\n// return: {lch,rch}\npair<vc<int>, vc<int>> random_binary_tree(int\
+    \ N, bool can_1) {\n  if (can_1) {\n    vc<pair<int, int>> S;\n    S.eb(0, 0),\
+    \ S.eb(0, 1);\n    vc<int> lch(N, -1), rch(N, -1);\n    FOR(v, 1, N) {\n     \
+    \ int k = RNG(0, len(S));\n      swap(S[k], S.back());\n      auto [r, side] =\
+    \ POP(S);\n      (side == 0 ? lch[r] : rch[r]) = v;\n      S.eb(v, 0), S.eb(v,\
+    \ 1);\n    }\n    return {lch, rch};\n  }\n  // 0 or 2\n  assert(N % 2 == 1);\n\
+    \  vc<int> lch(N, -1), rch(N, -1);\n  vc<int> S;\n  FOR(v, N / 2, N) S.eb(v);\n\
+    \  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n    int a =\
+    \ POP(S), b = POP(S);\n    lch[nxt] = a, rch[nxt] = b;\n    S.eb(nxt--);\n  }\n\
+    \  return {lch, rch};\n}\n\n// N>=3. biconnected.\nvc<pair<int, int>> random_outerplanar(int\
+    \ N) {\n  assert(N >= 3);\n  vc<pair<int, int>> E;\n  int M = RNG(0, (N - 3) +\
+    \ 1);\n  FOR(M) {\n    int a = RNG(0, N);\n    int b = RNG(0, N);\n    if (a ==\
+    \ b) continue;\n    if (a > b) swap(a, b);\n    if (b == a + 1 || b == a + (N\
+    \ - 1)) continue;\n    bool ok = 1;\n    for (auto& [c, d] : E) {\n      if (a\
+    \ == c && b == d) ok = 0;\n      if (a == c || a == d || b == c || b == d) continue;\n\
+    \      if (a < c && c < b && b < d) ok = 0;\n      if (c < a && a < d && d < b)\
+    \ ok = 0;\n    }\n    if (ok) E.eb(a, b);\n  }\n  vc<int> label(N);\n  FOR(i,\
+    \ N) label[i] = i;\n  shuffle(label);\n  FOR(i, N) E.eb(i, (i + 1) % N);\n  for\
+    \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
+    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 2 \"mod/modint61.hpp\"\n\r\n\
+    struct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\
+    \n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32 x) : val(x)\
+    \ {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr modint61(int\
+    \ x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr modint61(ll\
+    \ x) : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod)) : x)\
+    \ {}\r\n  static constexpr u64 get_mod() { return mod; }\r\n\r\n  modint61 &operator+=(const\
+    \ modint61 &a) {\r\n    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n\
+    \    return *this;\r\n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n \
+    \   val = ((val -= a.val) >= mod) ? (val + mod) : val;\r\n    return *this;\r\n\
+    \  }\r\n  modint61 &operator*=(const modint61 &a) {\r\n    const unsigned __int128\
+    \ y = static_cast<unsigned __int128>(val) * a.val;\r\n    val = (y >> 61) + (y\
+    \ & mod);\r\n    val = (val >= mod) ? (val - mod) : val;\r\n    return *this;\r\
+    \n  }\r\n  modint61 operator-() const { return modint61(val ? mod - val : u64(0));\
+    \ }\r\n  modint61 &operator/=(const modint61 &a) { return (*this *= a.inverse());\
+    \ }\r\n  modint61 operator+(const modint61 &p) const { return modint61(*this)\
+    \ += p; }\r\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
+    \ -= p; }\r\n  modint61 operator*(const modint61 &p) const { return modint61(*this)\
+    \ *= p; }\r\n  modint61 operator/(const modint61 &p) const { return modint61(*this)\
+    \ /= p; }\r\n  bool operator<(const modint61 &other) const { return val < other.val;\
+    \ }\r\n  bool operator==(const modint61 &p) const { return val == p.val; }\r\n\
+    \  bool operator!=(const modint61 &p) const { return val != p.val; }\r\n  modint61\
+    \ inverse() const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n    while\
+    \ (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t * b, b), swap(u -= t * v,\
+    \ v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll n) const\
+    \ {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while (n >\
+    \ 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n    }\r\
+    \n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\nvoid rd(modint61 &x) {\r\
+    \n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val < modint61::mod);\r\n}\r\
+    \n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n#endif\n#line 1 \"linalg/matrix_rank.hpp\"\
+    \ntemplate <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1)\
+    \ {\n  if (n == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n\
+    \  assert(n == len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if\
+    \ (rk == n) break;\n    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j]\
+    \ != T(0)) {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n   \
+    \ if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k]\
+    \ *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) {\
+    \ a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 4\
+    \ \"graph/maximum_matching_size.hpp\"\n\ntemplate <typename GT>\nint maximum_matching_size(GT&\
+    \ G) {\n  static_assert(!GT::is_directed);\n  using mint = modint61;\n  int N\
+    \ = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint x =\
+    \ RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n    tutte[i][j] += x;\n\
+    \    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte, N, N) / 2;\n}\n#line\
+    \ 2 \"graph/maximum_matching_of_line_graph.hpp\"\n\n// \u540C\u3058\u9802\u70B9\
+    \u306B\u63A5\u7D9A\u3059\u308B 2 \u8FBA\u3092\u30DE\u30C3\u30C1\u3067\u304D\u308B\
+    \ntemplate <typename GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT&\
     \ G) {\n  assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const int N\
     \ = G.N, M = G.M;\n  vc<pair<int, int>> ANS;\n  vc<int> V;\n  vc<int> par(N, -1);\
     \ // eid\n  {\n    vc<int> done(N);\n    FOR(v, N) {\n      if (done[v]) continue;\n\
@@ -421,8 +434,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-27 23:10:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/matching_line_graph.test.cpp
 layout: document

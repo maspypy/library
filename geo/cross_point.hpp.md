@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -186,17 +186,17 @@ data:
   path: geo/cross_point.hpp
   requiredBy:
   - random/random_polygon.hpp
+  - geo/minimum_three_distance_sum.hpp
   - geo/distance.hpp
   - geo/polygon.hpp
-  - geo/minimum_three_distance_sum.hpp
   timestamp: '2026-02-03 22:59:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
-  - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
   - test/4_aoj/CGL_2_C.test.cpp
   - test/4_aoj/CGL_2_B.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document
 redirect_from:

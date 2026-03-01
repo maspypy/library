@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -349,7 +349,7 @@ data:
     \ T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0, i + 1);\n\
     \    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 5 \"random/random_graph.hpp\"\
     \n\nvoid random_relabel(int N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int>\
-    \ A(N);\n  FOR(i, N) A[i] = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a],\
+    \ A(N);\n  FOR(i, N) A[i] = i;\n  shuffle(A);\n  for (auto& [a, b] : G) a = A[a],\
     \ b = A[b];\n}\n\ntemplate <int DIRECTED>\nvc<pair<int, int>> random_graph(int\
     \ n, bool simple) {\n  vc<pair<int, int>> G, cand;\n  FOR(a, n) FOR(b, n) {\n\
     \    if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n\
@@ -374,34 +374,46 @@ data:
     \      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
     \    vc<pair<int, int>> G;\n    FOR(i, m) {\n      vc<int>& V = A[i];\n      if\
     \ (len(V) == 1) continue;\n      FOR(k, len(V)) { G.eb(V[k], V[(1 + k) % len(V)]);\
-    \ }\n    }\n    for (auto& [c1, c2]: H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
+    \ }\n    }\n    for (auto& [c1, c2] : H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
     \      int b = A[c2][RNG(0, len(A[c2]))];\n      G.eb(a, b);\n    }\n    random_relabel(N,\
     \ G);\n    return G;\n  }\n  assert(EDGE);\n  if (N == 1) return {};\n  int n\
     \ = RNG(1, N);\n  vc<int> S(n, 2);\n  int rest = N - 1 - n;\n  while (rest > 0)\
     \ {\n    int k = RNG(0, n);\n    S[k]++, --rest;\n  }\n  vvc<int> A;\n  int p\
     \ = 0;\n  FOR(i, n) {\n    vc<int> C;\n    FOR(v, p, p + S[i]) C.eb(v);\n    A.eb(C);\n\
     \    p += S[i];\n  }\n  assert(p == N + n - 1);\n  UnionFind uf(p);\n  auto H\
-    \ = random_tree(n);\n  for (auto& [c1, c2]: H) {\n    int a = A[c1][RNG(0, len(A[c1]))];\n\
+    \ = random_tree(n);\n  for (auto& [c1, c2] : H) {\n    int a = A[c1][RNG(0, len(A[c1]))];\n\
     \    int b = A[c2][RNG(0, len(A[c2]))];\n    uf.merge(a, b);\n  }\n  vc<int> new_idx(p);\n\
     \  int x = 0;\n  FOR(i, p) if (uf[i] == i) new_idx[i] = x++;\n  assert(x == N);\n\
     \  FOR(i, p) new_idx[i] = new_idx[uf[i]];\n  vc<pair<int, int>> G;\n  FOR(i, n)\
-    \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
+    \ {\n    vc<int>& V = A[i];\n    for (auto& v : V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
     }\n\n// |child| = 0 or 2 or (1 if can1), \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\
-    \u30B8\u30AB\u30EB\n// return: par\nvc<int> random_binary_tree(int N, bool can_1)\
-    \ {\n  if (can_1) {\n    vc<int> S;\n    S.eb(0), S.eb(0);\n    vc<int> par(N,\
-    \ -1);\n    FOR(v, 1, N) {\n      int k = RNG(0, len(S));\n      swap(S[k], S.back());\n\
-    \      par[v] = POP(S);\n      S.eb(v), S.eb(v);\n    }\n    return par;\n  }\n\
-    \  // 0 or 2\n  assert(N % 2 == 1);\n  vc<int> par(N, -1);\n  vc<int> S;\n  FOR(v,\
-    \ N / 2, N) S.eb(v);\n  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n\
-    \    int a = POP(S), b = POP(S);\n    par[a] = par[b] = nxt;\n    S.eb(nxt), --nxt;\n\
-    \  }\n  return par;\n}\n#line 6 \"test/1_mytest/st_numbering.test.cpp\"\n\nvoid\
-    \ test() {\n  // valid \u306A output \u306B\u306A\u3063\u3066\u3044\u308B\u3053\
-    \u3068\u306F\u6700\u5F8C\u306B\u30C1\u30A7\u30C3\u30AF\u3057\u3066\u3044\u308B\
-    \u306E\u3067\n  // invalid \u3068\u8A00\u308F\u308C\u305F\u3068\u304D\u306B\u69CB\
-    \u7BC9\u4E0D\u53EF\u80FD\u3067\u3042\u308B\u3053\u3068\u3092\u78BA\u304B\u3081\
-    \u308C\u3070\u3088\u3044\n  FOR(N, 2, 20) {\n    FOR(100) {\n      Graph<int,\
+    \u30B8\u30AB\u30EB\n// return: {lch,rch}\npair<vc<int>, vc<int>> random_binary_tree(int\
+    \ N, bool can_1) {\n  if (can_1) {\n    vc<pair<int, int>> S;\n    S.eb(0, 0),\
+    \ S.eb(0, 1);\n    vc<int> lch(N, -1), rch(N, -1);\n    FOR(v, 1, N) {\n     \
+    \ int k = RNG(0, len(S));\n      swap(S[k], S.back());\n      auto [r, side] =\
+    \ POP(S);\n      (side == 0 ? lch[r] : rch[r]) = v;\n      S.eb(v, 0), S.eb(v,\
+    \ 1);\n    }\n    return {lch, rch};\n  }\n  // 0 or 2\n  assert(N % 2 == 1);\n\
+    \  vc<int> lch(N, -1), rch(N, -1);\n  vc<int> S;\n  FOR(v, N / 2, N) S.eb(v);\n\
+    \  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n    int a =\
+    \ POP(S), b = POP(S);\n    lch[nxt] = a, rch[nxt] = b;\n    S.eb(nxt--);\n  }\n\
+    \  return {lch, rch};\n}\n\n// N>=3. biconnected.\nvc<pair<int, int>> random_outerplanar(int\
+    \ N) {\n  assert(N >= 3);\n  vc<pair<int, int>> E;\n  int M = RNG(0, (N - 3) +\
+    \ 1);\n  FOR(M) {\n    int a = RNG(0, N);\n    int b = RNG(0, N);\n    if (a ==\
+    \ b) continue;\n    if (a > b) swap(a, b);\n    if (b == a + 1 || b == a + (N\
+    \ - 1)) continue;\n    bool ok = 1;\n    for (auto& [c, d] : E) {\n      if (a\
+    \ == c && b == d) ok = 0;\n      if (a == c || a == d || b == c || b == d) continue;\n\
+    \      if (a < c && c < b && b < d) ok = 0;\n      if (c < a && a < d && d < b)\
+    \ ok = 0;\n    }\n    if (ok) E.eb(a, b);\n  }\n  vc<int> label(N);\n  FOR(i,\
+    \ N) label[i] = i;\n  shuffle(label);\n  FOR(i, N) E.eb(i, (i + 1) % N);\n  for\
+    \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
+    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 6 \"test/1_mytest/st_numbering.test.cpp\"\
+    \n\nvoid test() {\n  // valid \u306A output \u306B\u306A\u3063\u3066\u3044\u308B\
+    \u3053\u3068\u306F\u6700\u5F8C\u306B\u30C1\u30A7\u30C3\u30AF\u3057\u3066\u3044\
+    \u308B\u306E\u3067\n  // invalid \u3068\u8A00\u308F\u308C\u305F\u3068\u304D\u306B\
+    \u69CB\u7BC9\u4E0D\u53EF\u80FD\u3067\u3042\u308B\u3053\u3068\u3092\u78BA\u304B\
+    \u3081\u308C\u3070\u3088\u3044\n  FOR(N, 2, 20) {\n    FOR(100) {\n      Graph<int,\
     \ 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N, false)) { G.add(a, b);\
     \ };\n      G.build();\n\n      auto BCT = block_cut(G);\n      UnionFind uf(N);\n\
     \      for (auto& e: G.edges) uf.merge(e.frm, e.to);\n      FOR(s, N) FOR(t, N)\
@@ -438,8 +450,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/st_numbering.test.cpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-02-27 23:10:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/st_numbering.test.cpp
 layout: document

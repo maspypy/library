@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/qoj5443.test.cpp
     title: test/1_mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -139,19 +139,19 @@ data:
   isVerificationFile: false
   path: geo/angle_sort.hpp
   requiredBy:
-  - random/random_polygon.hpp
   - graph/planar_graph.hpp
-  - geo/polygon_triangulation.hpp
-  - geo/rotating_swaps.hpp
+  - random/random_polygon.hpp
   - geo/count_points_in_triangles.hpp
+  - geo/rotating_swaps.hpp
+  - geo/polygon_triangulation.hpp
   - geo/max_norm_sum.hpp
   timestamp: '2026-02-03 22:59:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1777.test.cpp
-  - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/1_mytest/qoj5443.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
+  - test/1_mytest/qoj5443.test.cpp
+  - test/1_mytest/count_points_in_triangles.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp

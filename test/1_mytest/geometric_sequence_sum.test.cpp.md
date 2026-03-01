@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/geometric_sequence_sum.hpp
     title: seq/geometric_sequence_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -154,42 +154,43 @@ data:
     struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
-    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static\
-    \ vector<mint> dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1]\
-    \ * mint(len(dat)));\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int\
-    \ n) {\n  static vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while\
-    \ (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n\
-    }\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return\
-    \ (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head,\
-    \ class... Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
-    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
-    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n\
-    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
-    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
-    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr (dense)\
-    \ return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n    return (d == 0 ?\
-    \ mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\
-    #line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"\
-    random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
+    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
+    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
+    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
+    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
+    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
+    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
+    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
+    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
+    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
+    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
+    \ + d - 1, d);\n}\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
@@ -300,50 +301,52 @@ data:
     \  Dynamic_Modint(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
     \  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n \
     \ Dynamic_Modint(i128 x) : val((x %= get_mod()) < 0 ? x + get_mod() : x){};\n\n\
-    \  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ?\
-    \ val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const mint&\
-    \ rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
-    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
-    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
-    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
-    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
-    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
-    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
+    \  bool operator<(const mint& other) const { return val < other.val; }\n  mint&\
+    \ operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ? val : val\
+    \ - umod();\n    return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n \
+    \   val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n    return\
+    \ *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n\
+    \    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return *this =\
+    \ *this * rhs.inverse(); }\n  mint operator-() const { return mint() - *this;\
+    \ }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this, r = 1;\n\
+    \    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n    }\n  \
+    \  return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
     \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
     \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
     \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
-    \ mint& rhs) { return mint(lhs) += rhs; }\n  friend mint operator-(const mint&\
-    \ lhs, const mint& rhs) { return mint(lhs) -= rhs; }\n  friend mint operator*(const\
-    \ mint& lhs, const mint& rhs) { return mint(lhs) *= rhs; }\n  friend mint operator/(const\
-    \ mint& lhs, const mint& rhs) { return mint(lhs) /= rhs; }\n  friend bool operator==(const\
-    \ mint& lhs, const mint& rhs) { return lhs.val == rhs.val; }\n  friend bool operator!=(const\
-    \ mint& lhs, const mint& rhs) { return lhs.val != rhs.val; }\n  static pair<int,\
-    \ int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return p;\n\
-    \  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k = lowbit(mod\
-    \ - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod - 1) >> k,\
-    \ mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info() { return\
-    \ get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n\
-    #ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n  fastio::rd(x.val);\n\
-    \  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int id>\nvoid wt(Dynamic_Modint<id>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing dmint = Dynamic_Modint<-1>;\n\
-    template <int id>\nBarrett Dynamic_Modint<id>::bt;\n#line 1 \"seq/geometric_sequence_sum.hpp\"\
-    \n\n// sum_{i=0}^{n-1}r^i\ntemplate <typename T>\nT geometric_sequence_sum(T r,\
-    \ ll n) {\n  if (n == 0) return T(0);\n  // (r^n, 1+...+r^{n-1})\n  auto dfs =\
-    \ [&](auto& dfs, ll n) -> pair<T, T> {\n    if (n == 1) return {r, 1};\n    auto\
-    \ [x, y] = dfs(dfs, n / 2);\n    tie(x, y) = mp(x * x, x * y + y);\n    if (n\
-    \ % 2 == 0) return {x, y};\n    return {x * r, y + x};\n  };\n  return dfs(dfs,\
-    \ n).se;\n}\n\n// sum_{i=0}^{n-1}i^kr^i \u3092 k=0,1,...,K\ntemplate <typename\
-    \ T, int K>\narray<T, K + 1> geometric_sequence_sum_K(T r, ll n) {\n  array<array<T,\
-    \ K + 1>, K + 1> comb{};\n  comb[0][0] = 1;\n  FOR(i, K) {\n    FOR(j, i + 1)\
-    \ { comb[i + 1][j] += comb[i][j], comb[i + 1][j + 1] += comb[i][j]; }\n  }\n\n\
-    \  // (n, r^n, sum i^kr^i)\n  using X = tuple<T, T, array<T, K + 1>>;\n  auto\
-    \ mul = [&](X& l, X& r) -> X {\n    auto& [n1, r1, A] = l;\n    auto& [n2, r2,\
-    \ B] = r;\n    array<T, K + 1> C;\n    FOR(k, K + 1) {\n      C[k] = A[k];\n \
-    \     T c = r1;\n      FOR(j, k + 1) { C[k] += comb[k][j] * c * B[k - j], c *=\
-    \ n1; }\n    }\n    return {n1 + n2, r1 * r2, C};\n  };\n\n  X res = {T(0), T(1),\
-    \ array<T, K + 1>{}};\n  X a = {T(1), T(r), array<T, K + 1>{}};\n  get<2>(a)[0]\
-    \ = 1;\n\n  while (n) {\n    if (n & 1) res = mul(res, a);\n    a = mul(a, a),\
-    \ n /= 2;\n  }\n  return get<2>(res);\n}\n#line 6 \"test/1_mytest/geometric_sequence_sum.test.cpp\"\
+    \ mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint operator-(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint\
+    \ operator*(const mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n\
+    \  }\n  friend mint operator/(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
+    \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
+    \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n  static\
+    \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
+    \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
+    \ = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod\
+    \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
+    \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
+    \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    #line 1 \"seq/geometric_sequence_sum.hpp\"\n\n// sum_{i=0}^{n-1}r^i\ntemplate\
+    \ <typename T>\nT geometric_sequence_sum(T r, ll n) {\n  if (n == 0) return T(0);\n\
+    \  // (r^n, 1+...+r^{n-1})\n  auto dfs = [&](auto& dfs, ll n) -> pair<T, T> {\n\
+    \    if (n == 1) return {r, 1};\n    auto [x, y] = dfs(dfs, n / 2);\n    tie(x,\
+    \ y) = mp(x * x, x * y + y);\n    if (n % 2 == 0) return {x, y};\n    return {x\
+    \ * r, y + x};\n  };\n  return dfs(dfs, n).se;\n}\n\n// sum_{i=0}^{n-1}i^kr^i\
+    \ \u3092 k=0,1,...,K\ntemplate <typename T, int K>\narray<T, K + 1> geometric_sequence_sum_K(T\
+    \ r, ll n) {\n  array<array<T, K + 1>, K + 1> comb{};\n  comb[0][0] = 1;\n  FOR(i,\
+    \ K) {\n    FOR(j, i + 1) { comb[i + 1][j] += comb[i][j], comb[i + 1][j + 1] +=\
+    \ comb[i][j]; }\n  }\n\n  // (n, r^n, sum i^kr^i)\n  using X = tuple<T, T, array<T,\
+    \ K + 1>>;\n  auto mul = [&](X& l, X& r) -> X {\n    auto& [n1, r1, A] = l;\n\
+    \    auto& [n2, r2, B] = r;\n    array<T, K + 1> C;\n    FOR(k, K + 1) {\n   \
+    \   C[k] = A[k];\n      T c = r1;\n      FOR(j, k + 1) { C[k] += comb[k][j] *\
+    \ c * B[k - j], c *= n1; }\n    }\n    return {n1 + n2, r1 * r2, C};\n  };\n\n\
+    \  X res = {T(0), T(1), array<T, K + 1>{}};\n  X a = {T(1), T(r), array<T, K +\
+    \ 1>{}};\n  get<2>(a)[0] = 1;\n\n  while (n) {\n    if (n & 1) res = mul(res,\
+    \ a);\n    a = mul(a, a), n /= 2;\n  }\n  return get<2>(res);\n}\n#line 6 \"test/1_mytest/geometric_sequence_sum.test.cpp\"\
     \n\ntemplate <int K>\nvoid test() {\n  using mint = dmint;\n  FOR(p, 1, 50) {\n\
     \    FOR(r, 50) {\n      FOR(n, 50) {\n        mint::set_mod(p);\n        auto\
     \ A = geometric_sequence_sum_K<mint, K>(r, n);\n        FOR(k, K + 1) {\n    \
@@ -387,8 +390,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/geometric_sequence_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-03-02 00:39:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/geometric_sequence_sum.test.cpp
 layout: document

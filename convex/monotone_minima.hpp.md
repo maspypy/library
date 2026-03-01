@@ -53,8 +53,8 @@ data:
   isVerificationFile: false
   path: convex/monotone_minima.hpp
   requiredBy:
-  - convex/minplus_convolution_of_triples.hpp
   - convex/maxplus_convolution.hpp
+  - convex/minplus_convolution_of_triples.hpp
   - convex/minplus_convolution.hpp
   timestamp: '2023-07-06 21:02:18+09:00'
   verificationStatus: LIBRARY_ALL_AC

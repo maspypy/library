@@ -1,86 +1,86 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -308,7 +308,7 @@ data:
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
     \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 5 \"random/random_graph.hpp\"\
     \n\nvoid random_relabel(int N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int>\
-    \ A(N);\n  FOR(i, N) A[i] = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a],\
+    \ A(N);\n  FOR(i, N) A[i] = i;\n  shuffle(A);\n  for (auto& [a, b] : G) a = A[a],\
     \ b = A[b];\n}\n\ntemplate <int DIRECTED>\nvc<pair<int, int>> random_graph(int\
     \ n, bool simple) {\n  vc<pair<int, int>> G, cand;\n  FOR(a, n) FOR(b, n) {\n\
     \    if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n\
@@ -333,31 +333,43 @@ data:
     \      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
     \    vc<pair<int, int>> G;\n    FOR(i, m) {\n      vc<int>& V = A[i];\n      if\
     \ (len(V) == 1) continue;\n      FOR(k, len(V)) { G.eb(V[k], V[(1 + k) % len(V)]);\
-    \ }\n    }\n    for (auto& [c1, c2]: H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
+    \ }\n    }\n    for (auto& [c1, c2] : H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
     \      int b = A[c2][RNG(0, len(A[c2]))];\n      G.eb(a, b);\n    }\n    random_relabel(N,\
     \ G);\n    return G;\n  }\n  assert(EDGE);\n  if (N == 1) return {};\n  int n\
     \ = RNG(1, N);\n  vc<int> S(n, 2);\n  int rest = N - 1 - n;\n  while (rest > 0)\
     \ {\n    int k = RNG(0, n);\n    S[k]++, --rest;\n  }\n  vvc<int> A;\n  int p\
     \ = 0;\n  FOR(i, n) {\n    vc<int> C;\n    FOR(v, p, p + S[i]) C.eb(v);\n    A.eb(C);\n\
     \    p += S[i];\n  }\n  assert(p == N + n - 1);\n  UnionFind uf(p);\n  auto H\
-    \ = random_tree(n);\n  for (auto& [c1, c2]: H) {\n    int a = A[c1][RNG(0, len(A[c1]))];\n\
+    \ = random_tree(n);\n  for (auto& [c1, c2] : H) {\n    int a = A[c1][RNG(0, len(A[c1]))];\n\
     \    int b = A[c2][RNG(0, len(A[c2]))];\n    uf.merge(a, b);\n  }\n  vc<int> new_idx(p);\n\
     \  int x = 0;\n  FOR(i, p) if (uf[i] == i) new_idx[i] = x++;\n  assert(x == N);\n\
     \  FOR(i, p) new_idx[i] = new_idx[uf[i]];\n  vc<pair<int, int>> G;\n  FOR(i, n)\
-    \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
+    \ {\n    vc<int>& V = A[i];\n    for (auto& v : V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
     }\n\n// |child| = 0 or 2 or (1 if can1), \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\
-    \u30B8\u30AB\u30EB\n// return: par\nvc<int> random_binary_tree(int N, bool can_1)\
-    \ {\n  if (can_1) {\n    vc<int> S;\n    S.eb(0), S.eb(0);\n    vc<int> par(N,\
-    \ -1);\n    FOR(v, 1, N) {\n      int k = RNG(0, len(S));\n      swap(S[k], S.back());\n\
-    \      par[v] = POP(S);\n      S.eb(v), S.eb(v);\n    }\n    return par;\n  }\n\
-    \  // 0 or 2\n  assert(N % 2 == 1);\n  vc<int> par(N, -1);\n  vc<int> S;\n  FOR(v,\
-    \ N / 2, N) S.eb(v);\n  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n\
-    \    int a = POP(S), b = POP(S);\n    par[a] = par[b] = nxt;\n    S.eb(nxt), --nxt;\n\
-    \  }\n  return par;\n}\n#line 1 \"graph/tree_walk_generating_function.hpp\"\n\n\
-    #line 2 \"graph/tree.hpp\"\n\r\n#line 4 \"graph/tree.hpp\"\n\r\n// HLD euler tour\
-    \ \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\r\ntemplate <typename\
+    \u30B8\u30AB\u30EB\n// return: {lch,rch}\npair<vc<int>, vc<int>> random_binary_tree(int\
+    \ N, bool can_1) {\n  if (can_1) {\n    vc<pair<int, int>> S;\n    S.eb(0, 0),\
+    \ S.eb(0, 1);\n    vc<int> lch(N, -1), rch(N, -1);\n    FOR(v, 1, N) {\n     \
+    \ int k = RNG(0, len(S));\n      swap(S[k], S.back());\n      auto [r, side] =\
+    \ POP(S);\n      (side == 0 ? lch[r] : rch[r]) = v;\n      S.eb(v, 0), S.eb(v,\
+    \ 1);\n    }\n    return {lch, rch};\n  }\n  // 0 or 2\n  assert(N % 2 == 1);\n\
+    \  vc<int> lch(N, -1), rch(N, -1);\n  vc<int> S;\n  FOR(v, N / 2, N) S.eb(v);\n\
+    \  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n    int a =\
+    \ POP(S), b = POP(S);\n    lch[nxt] = a, rch[nxt] = b;\n    S.eb(nxt--);\n  }\n\
+    \  return {lch, rch};\n}\n\n// N>=3. biconnected.\nvc<pair<int, int>> random_outerplanar(int\
+    \ N) {\n  assert(N >= 3);\n  vc<pair<int, int>> E;\n  int M = RNG(0, (N - 3) +\
+    \ 1);\n  FOR(M) {\n    int a = RNG(0, N);\n    int b = RNG(0, N);\n    if (a ==\
+    \ b) continue;\n    if (a > b) swap(a, b);\n    if (b == a + 1 || b == a + (N\
+    \ - 1)) continue;\n    bool ok = 1;\n    for (auto& [c, d] : E) {\n      if (a\
+    \ == c && b == d) ok = 0;\n      if (a == c || a == d || b == c || b == d) continue;\n\
+    \      if (a < c && c < b && b < d) ok = 0;\n      if (c < a && a < d && d < b)\
+    \ ok = 0;\n    }\n    if (ok) E.eb(a, b);\n  }\n  vc<int> label(N);\n  FOR(i,\
+    \ N) label[i] = i;\n  shuffle(label);\n  FOR(i, N) E.eb(i, (i + 1) % N);\n  for\
+    \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
+    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 1 \"graph/tree_walk_generating_function.hpp\"\
+    \n\n#line 2 \"graph/tree.hpp\"\n\r\n#line 4 \"graph/tree.hpp\"\n\r\n// HLD euler\
+    \ tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\r\ntemplate <typename\
     \ GT>\r\nstruct Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT =\
     \ typename GT::cost_type;\r\n  int N;\r\n  vector<int> LID, RID, head, V, parent,\
     \ VtoE;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  Tree(GT &G, int\
@@ -532,106 +544,108 @@ data:
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
     \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
     \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
-    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0 /\
-    \ n;\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
-    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
-    \ = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint(len(dat)));\n\
+    \ mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
+    \ <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  if (len(dat) <= n)\
+    \ {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n  \
+    \  dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n\
     \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
-    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
-    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n\
-    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
-    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
-    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr (dense)\
-    \ return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n    return (d == 0 ?\
-    \ mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\
-    #line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr\
-    \ u32 umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n\
-    \  static modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n\
-    \  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod)\
-    \ {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x)\
-    \ : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod\
-    \ : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n \
-    \ constexpr modint(i128 x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const\
-    \ modint &other) const { return val < other.val; }\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += umod - p.val) >=\
-    \ umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint\
-    \ &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return *this;\n\
-    \  }\n  modint operator-() const { return modint::raw(val ? mod - val : u32(0));\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
-    \ n) const {\n    if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n\
-    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 120586241) return\
-    \ {20, 74066978};\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
-    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
-    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
-    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
-    \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
-    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
-    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
-    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
-    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long\
-    \ \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\
-    \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\
-    \u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod\
-    \ == 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val\
-    \ += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n\
-    \    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if\
-    \ (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"mod/crt3.hpp\"\n\nconstexpr\
-    \ u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n\
-    \  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a * a % mod, n /= 2;\n\
-    \  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32 p1>\nT CRT2(u64 a0,\
-    \ u64 a1) {\n  static_assert(p0 < p1);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0,\
-    \ p1 - 2, p1);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  return a0 + c * p0;\n\
-    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64\
-    \ a2) {\n  static_assert(p0 < p1 && p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
-    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
-    \ p2 - 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0\
-    \ + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) *\
-    \ x2 % p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32\
-    \ p0, u32 p1, u32 p2, u32 p3>\nT CRT4(u64 a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0\
-    \ < p1 && p1 < p2 && p2 < p3);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
-    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
-    \ p2 - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3\
-    \ * p2 % p3, p3 - 2, p3);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c\
-    \ = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 %\
-    \ p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c\
-    \ = (a3 - ans_2 % p3 + p3) * x3 % p3;\n  return T(ans_2) + T(c) * T(p01) * T(p2);\n\
+    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  if\
+    \ (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int now = len(dat);\n \
+    \   int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1]\
+    \ = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1]\
+    \ * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
+    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
+    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
+    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
+    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
+    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
+    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
+    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
+    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
+    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
+    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
+    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod < u32(1) <<\
+    \ 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n    x.val =\
+    \ v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32\
+    \ x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
+    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
+    \ : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0 ? x + mod : x){};\n\
+    \  bool operator<(const modint &other) const { return val < other.val; }\n  modint\
+    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n\
+    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
+    \ += umod - p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const\
+    \ modint &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n \
+    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint::raw(val ? mod - val\
+    \ : u32(0)); }\n  modint operator+(const modint &p) const { return modint(*this)\
+    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
+    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
+    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
+    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
+    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
+    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
+    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
+    \  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n \
+    \   assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n     \
+    \ if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
+    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
+    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
+    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
+    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
+    \ (mod == 1012924417) return {21, 368093570};\n    if (mod == 1224736769) return\
+    \ {24, 1191450770};\n    if (mod == 2013265921) return {27, 244035102};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n//\
+    \ (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\
+    \u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\
+    \r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
+    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
+    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
+    #line 2 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32\
+    \ mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res = res *\
+    \ a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename\
+    \ T, u32 p0, u32 p1>\nT CRT2(u64 a0, u64 a1) {\n  static_assert(p0 < p1);\n  static\
+    \ constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  u64 c = (a1 - a0\
+    \ + p1) * x0_1 % p1;\n  return a0 + c * p0;\n}\n\ntemplate <typename T, u32 p0,\
+    \ u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0 < p1 &&\
+    \ p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n\
+    \  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n\
+    \  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n\
+    \  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  return\
+    \ T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2,\
+    \ u32 p3>\nT CRT4(u64 a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0 < p1 &&\
+    \ p1 < p2 && p2 < p3);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
+    \ 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2\
+    \ - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 *\
+    \ p2 % p3, p3 - 2, p3);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c =\
+    \ (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2\
+    \ + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c =\
+    \ (a3 - ans_2 % p3 + p3) * x3 % p3;\n  return T(ans_2) + T(c) * T(p01) * T(p2);\n\
     }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64\
     \ a0, u64 a1, u64 a2, u64 a3, u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 &&\
     \ p2 < p3 && p3 < p4);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
@@ -971,8 +985,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/tree_walk_gf.test.cpp
   requiredBy: []
-  timestamp: '2026-02-03 22:59:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-03-02 00:39:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/tree_walk_gf.test.cpp
 layout: document

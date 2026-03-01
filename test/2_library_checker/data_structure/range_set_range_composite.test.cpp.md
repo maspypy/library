@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_set_range_composite
@@ -259,184 +259,185 @@ data:
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
-    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n\
-    \  static const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static\
-    \ vector<mint> dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1]\
-    \ * mint(len(dat)));\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int\
-    \ n) {\n  static vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while\
-    \ (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n\
-    }\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return\
-    \ (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head,\
-    \ class... Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
-    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
-    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n\
-    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
-    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
-    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr (dense)\
-    \ return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n    return (d == 0 ?\
-    \ mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\
-    #line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr\
-    \ u32 umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n\
-    \  static modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n\
-    \  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod)\
-    \ {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x)\
-    \ : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod\
-    \ : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n \
-    \ constexpr modint(i128 x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const\
-    \ modint &other) const { return val < other.val; }\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += umod - p.val) >=\
-    \ umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint\
-    \ &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return *this;\n\
-    \  }\n  modint operator-() const { return modint::raw(val ? mod - val : u32(0));\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
-    \ n) const {\n    if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n\
-    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 120586241) return\
-    \ {20, 74066978};\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
-    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
-    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
-    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
-    \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
-    \ 368093570};\n    if (mod == 1224736769) return {24, 1191450770};\n    if (mod\
-    \ == 2013265921) return {27, 244035102};\n    return {-1, -1};\n  }\n  static\
-    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
-    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
-    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"alg/monoid/affine.hpp\"\n\n//\
-    \ op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\n\
-    struct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using\
-    \ X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
-    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
-    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
-    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
-    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
-    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 2 \"ds/segtree/segtree.hpp\"\
-    \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
-    \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
-    \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
-    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
-    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
-    \ MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
-    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
-    \ << log;\n    dat.assign(size << 1, MX::unit());\n    FOR(i, n) dat[size + i]\
-    \ = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) { return dat[size\
-    \ + i]; }\n  vc<X> get_all() { return {dat.begin() + size, dat.begin() + size\
-    \ + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i\
-    \ + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i +=\
-    \ size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i, const\
-    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
-    \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(0\
-    \ <= L && L <= R && R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
-    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
-    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
-    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  vc<int> prod_ids(int\
-    \ L, int R) {\n    assert(0 <= L && L <= R && R <= n);\n    vc<int> I, J;\n  \
-    \  L += size, R += size;\n    while (L < R) {\n      if (L & 1) I.eb(L++);\n \
-    \     if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n\
-    \    concat(I, J);\n    return I;\n  }\n\n  X prod_all() { return dat[1]; }\n\n\
-    \  template <class F>\n  int max_right(F check, int L) {\n    assert(0 <= L &&\
-    \ L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L += size;\n\
-    \    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>= 1;\n   \
-    \   if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n      \
-    \    L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) {\n            sm\
-    \ = Monoid::op(sm, dat[L++]);\n          }\n        }\n        return L - size;\n\
-    \      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L) != L);\n\
-    \    return n;\n  }\n\n  template <class F>\n  int min_left(F check, int R) {\n\
-    \    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R == 0) return\
-    \ 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n      --R;\n     \
-    \ while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R], sm)))\
-    \ {\n        while (R < size) {\n          R = 2 * R + 1;\n          if (check(Monoid::op(dat[R],\
-    \ sm))) {\n            sm = Monoid::op(dat[R--], sm);\n          }\n        }\n\
-    \        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R], sm);\n \
-    \   } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r} A[i xor\
-    \ x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
+    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
+    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
+    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
+    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
+    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
+    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
+    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
+    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
+    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
+    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
+    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod < u32(1) <<\
+    \ 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n    x.val =\
+    \ v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32\
+    \ x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
+    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
+    \ : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0 ? x + mod : x){};\n\
+    \  bool operator<(const modint &other) const { return val < other.val; }\n  modint\
+    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n\
+    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
+    \ += umod - p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const\
+    \ modint &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n \
+    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint::raw(val ? mod - val\
+    \ : u32(0)); }\n  modint operator+(const modint &p) const { return modint(*this)\
+    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
+    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
+    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
+    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
+    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
+    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
+    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
+    \  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n \
+    \   assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n     \
+    \ if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
+    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
+    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
+    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
+    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
+    \ (mod == 1012924417) return {21, 368093570};\n    if (mod == 1224736769) return\
+    \ {24, 1191450770};\n    if (mod == 2013265921) return {27, 244035102};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\
+    \u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n\
+    \  using value_type = F;\n  using X = value_type;\n  static constexpr F op(const\
+    \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
+    \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
+    \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
+    \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
+    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
+    \ commute = false;\n};\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class\
+    \ Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n\
+    \  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f)\
+    \ {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void\
+    \ build(int m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n\
+    \  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i];\
+    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log\
+    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, MX::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
+    \ update(i);\n  }\n\n  X get(int i) { return dat[size + i]; }\n  vc<X> get_all()\
+    \ { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
+    \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
+    \ X& x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
+    \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
+    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
+    \  X prod(int L, int R) {\n    assert(0 <= L && L <= R && R <= n);\n    X vl =\
+    \ Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while (L\
+    \ < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr\
+    \ = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
+    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) {\n    assert(0 <= L && L <= R\
+    \ && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R)\
+    \ {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1,\
+    \ R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\
+    \n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int max_right(F\
+    \ check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n  \
+    \  if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do {\n\
+    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
+    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
+    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
+    \ min_left(F check, int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
+    \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
+    \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
+    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r}\
+    \ A[i xor x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
     \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
     \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
     \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
     \ /= 2;\n    }\n    return x;\n  }\n};\n#line 2 \"alg/monoid_pow.hpp\"\n\n// chat\
     \ gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
-    \ {\nprivate:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n \
-    \ template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
+    \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
+    \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
     \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
     \                             std::declval<A2>()),\n                  std::true_type{});\n\
     \  template <typename, typename, typename>\n  static auto check(...) -> std::false_type;\n\
-    \npublic:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
+    \n public:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
     \n  static constexpr bool value = decltype(check<U, Arg1, Arg2>(0))::value;\n\
     };\n\ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
     \ x, ll exp) {\n  using X = typename Monoid::X;\n  if constexpr (has_power_method<Monoid,\
     \ X, ll>::value) {\n    return Monoid::power(x, exp);\n  } else {\n    assert(exp\
-    \ >= 0);\n    X res = Monoid::unit();\n    while (exp) {\n      if (exp & 1) res\
-    \ = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n\
-    \    return res;\n  }\n}\n#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n//\
-    \ space: (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n\
-    \  int n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) {\
-    \ build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  template <typename F>\r\
-    \n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
-    \ {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
-    \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
-    \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
-    \ B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h\
-    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n      }\r\n    }\r\n  }\r\
-    \n\r\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\r\
-    \n  void insert(int i) {\r\n    assert(0 <= i && i < n);\r\n    for (int h = 0;\
-    \ h < log; h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\r\n   \
-    \ }\r\n  }\r\n  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n  \
-    \  assert(0 <= i && i < n);\r\n    u64 x = 0;\r\n    for (int h = 0; h < log;\
-    \ h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B]\
-    \ |= x << (i % B);\r\n      x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\
-    \n  }\r\n  void remove(int i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int\
-    \ next(int i) {\r\n    assert(i <= n);\r\n    chmax(i, 0);\r\n    for (int h =\
-    \ 0; h < log; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      u64\
-    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
-    \n        continue;\r\n      }\r\n      i += lowbit(d);\r\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\
-    \n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // max\
-    \ [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i >= -1);\r\n    if (i >=\
-    \ n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\n      if (i == -1) break;\r\
-    \n      u64 d = seg[h][i / B] << (63 - i % B);\r\n      if (!d) {\r\n        i\
-    \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
+    \ >= 0);\n    if (exp == 0) return Monoid::unit();\n    if (exp == 1) return x;\n\
+    \    X res = Monoid::unit();\n    while (exp) {\n      if (exp & 1) res = Monoid::op(res,\
+    \ x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n    return res;\n\
+    \  }\n}\n#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63) *\
+    \ u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int n, log;\r\
+    \n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n); }\r\n\r\
+    \n  int size() { return n; }\r\n\r\n  template <typename F>\r\n  FastSet(int n,\
+    \ F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m) {\r\n    seg.clear();\r\
+    \n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m + B - 1) / B));\r\n\
+    \      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n    log = len(seg);\r\n\
+    \  }\r\n  template <typename F>\r\n  void build(int n, F f) {\r\n    build(n);\r\
+    \n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i % B); }\r\n    FOR(h, log -\
+    \ 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
+    \ << (i % B);\r\n      }\r\n    }\r\n  }\r\n\r\n  bool operator[](int i) const\
+    \ { return seg[0][i / B] >> (i % B) & 1; }\r\n  void insert(int i) {\r\n    assert(0\
+    \ <= i && i < n);\r\n    for (int h = 0; h < log; h++) {\r\n      seg[h][i / B]\
+    \ |= u64(1) << (i % B), i /= B;\r\n    }\r\n  }\r\n  void add(int i) { insert(i);\
+    \ }\r\n  void erase(int i) {\r\n    assert(0 <= i && i < n);\r\n    u64 x = 0;\r\
+    \n    for (int h = 0; h < log; h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i\
+    \ % B));\r\n      seg[h][i / B] |= x << (i % B);\r\n      x = bool(seg[h][i /\
+    \ B]);\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int i) { erase(i); }\r\
+    \n\r\n  // min[x,n) or n\r\n  int next(int i) {\r\n    assert(i <= n);\r\n   \
+    \ chmax(i, 0);\r\n    for (int h = 0; h < log; h++) {\r\n      if (i / B == seg[h].size())\
+    \ break;\r\n      u64 d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n   \
+    \     i = i / B + 1;\r\n        continue;\r\n      }\r\n      i += lowbit(d);\r\
     \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
-    \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
-    \ -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return next(l) < r; }\r\n\r\n \
-    \ // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
-    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
-    \  void reset() {\r\n    enumerate(0, n, [&](int i) -> void { erase(i); });\r\n\
-    \  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
-    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
-    };\n#line 4 \"ds/segtree/range_assignment_segtree.hpp\"\n\ntemplate <typename\
+    \ lowbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
+    \ n;\r\n  }\r\n\r\n  // max [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i\
+    \ >= -1);\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\
+    \n      if (i == -1) break;\r\n      u64 d = seg[h][i / B] << (63 - i % B);\r\n\
+    \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
+    \      i -= __builtin_clzll(d);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n\
+    \        i *= B;\r\n        i += topbit(seg[g][i / B]);\r\n      }\r\n      return\
+    \ i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return\
+    \ next(l) < r; }\r\n\r\n  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int\
+    \ l, int r, F f) {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\
+    \n  }\r\n\r\n  void reset() {\r\n    enumerate(0, n, [&](int i) -> void { erase(i);\
+    \ });\r\n  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for\
+    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n\
+    \  }\r\n};\n#line 4 \"ds/segtree/range_assignment_segtree.hpp\"\n\ntemplate <typename\
     \ Monoid>\nstruct Range_Assignment_SegTree {\n  using MX = Monoid;\n  using X\
     \ = typename MX::value_type;\n  int n;\n  SegTree<MX> seg;\n  FastSet cut;\n \
     \ vc<X> dat;\n\n  Range_Assignment_SegTree() {}\n  Range_Assignment_SegTree(int\
@@ -451,15 +452,15 @@ data:
     \ r - l);\n    };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b - l);\n\
     \    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n    return\
     \ MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all(); }\n\
-    \n  void assign(int l, int r, X x) {\n    int a = cut.prev(l), b = cut.next(r);\n\
-    \    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));\n    if (r < b) {\n\
-    \      X y = dat[cut.prev(r)];\n      dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y,\
-    \ b - r));\n    }\n    cut.enumerate(l + 1, r,\n                  [&](int i) ->\
-    \ void { seg.set(i, MX::unit()), cut.erase(i); });\n    dat[l] = x, cut.insert(l),\
-    \ seg.set(l, monoid_pow<MX>(x, r - l));\n  }\n\n  vc<X> get_all() {\n    vc<X>\
-    \ ANS(n);\n    int p = 0;\n    while (p < n) {\n      int q = cut.next(p + 1);\n\
-    \      FOR(i, p, q) ANS[i] = dat[p];\n      p = q;\n    }\n    return ANS;\n \
-    \ }\n};\n#line 9 \"test/2_library_checker/data_structure/range_set_range_composite.test.cpp\"\
+    \n  void assign(int l, int r, X x) {\n    if (l == r) return;\n    int a = cut.prev(l),\
+    \ b = cut.next(r);\n    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));\n\
+    \    if (r < b) {\n      X y = dat[cut.prev(r)];\n      dat[r] = y, cut.insert(r),\
+    \ seg.set(r, monoid_pow<MX>(y, b - r));\n    }\n    cut.enumerate(l + 1, r,\n\
+    \                  [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i);\
+    \ });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));\n\
+    \  }\n\n  vc<X> get_all() {\n    vc<X> ANS(n);\n    int p = 0;\n    while (p <\
+    \ n) {\n      int q = cut.next(p + 1);\n      FOR(i, p, q) ANS[i] = dat[p];\n\
+    \      p = q;\n    }\n    return ANS;\n  }\n};\n#line 9 \"test/2_library_checker/data_structure/range_set_range_composite.test.cpp\"\
     \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\nusing AFF = typename\
     \ Mono::value_type;\n\nvoid solve() {\n  INT(N, Q);\n\n  Range_Assignment_SegTree<Mono>\
     \ seg(N, [&](int i) -> AFF {\n    INT(a, b);\n    return {mint(a), mint(b)};\n\
@@ -492,8 +493,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2025-12-07 20:35:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-03-02 00:39:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
 layout: document
