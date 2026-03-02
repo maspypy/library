@@ -34,10 +34,10 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
   - icon: ':question:'
@@ -456,7 +456,7 @@ data:
     \u308B\u3002\n// g[0] == 1 \u3092\u4EEE\u5B9A\u3059\u308B\ntemplate <typename\
     \ mint>\nstruct Online_Division {\n  vc<mint> f, g, F;\n  Online_Convolution<mint>\
     \ X;\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == len(f));\n\
-    \    f.eb(f_i);\n    g.eb(g_i);\n    if (i == 0) {\n      assert(g_i == mint(1));\n\
+    \    f.eb(f_i), g.eb(g_i);\n    if (i == 0) {\n      assert(g_i == mint(1));\n\
     \      F.eb(f_i);\n      return F[0];\n    }\n    F.eb(f[i] - X.query(i - 1, F[i\
     \ - 1], g[i]));\n    return F[i];\n  }\n};\n#line 7 \"test/1_mytest/online_division.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  auto gen = [&](int n) -> vc<mint>\
@@ -495,7 +495,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/online_division.test.cpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
+  timestamp: '2026-03-03 00:45:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/online_division.test.cpp
