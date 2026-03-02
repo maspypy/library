@@ -27,7 +27,7 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test/3_yukicoder/1783.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -356,7 +356,7 @@ data:
   path: poly/multivar_convolution.hpp
   requiredBy: []
   timestamp: '2026-03-02 00:39:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1783.test.cpp
   - test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
