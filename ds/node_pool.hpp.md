@@ -53,7 +53,7 @@ data:
   - icon: ':question:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -192,10 +192,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'

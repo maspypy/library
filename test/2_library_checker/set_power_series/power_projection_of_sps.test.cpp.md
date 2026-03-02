@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':question:'

@@ -90,7 +90,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - icon: ':x:'
