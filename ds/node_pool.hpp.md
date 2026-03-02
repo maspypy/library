@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -210,7 +210,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1441.test.cpp
     title: test/3_yukicoder/1441.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1649.test.cpp
     title: test/3_yukicoder/1649.test.cpp
   - icon: ':heavy_check_mark:'
@@ -243,9 +243,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
@@ -322,7 +322,7 @@ data:
   - ds/piecewise_constant/piecewise_constant_basic.hpp
   - ds/piecewise_constant/piecewise_constant.hpp
   timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1154.test.cpp
   - test/3_yukicoder/1752.test.cpp
