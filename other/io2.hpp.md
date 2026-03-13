@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ITP1_9_A.test.cpp
     title: test/4_aoj/ITP1_9_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io2.hpp\"\n#define INT(...)   \\\r\n  int __VA_ARGS__;\
@@ -32,28 +32,27 @@ data:
     \ &operator<<(ostream &os, const vector<T> &A) {\r\n  for (size_t i = 0; i < A.size();\
     \ i++) {\r\n    if (i) os << \" \";\r\n    os << A[i];\r\n  }\r\n  return os;\r\
     \n}\r\n\r\nclass CoutInitializer {\r\n public:\r\n  CoutInitializer() { std::cout\
-    \ << std::defaultfloat << std::setprecision(15); }\r\n};\r\nstatic CoutInitializer\
-    \ cout_initializer;\r\n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\
-    \n}\r\n\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&...tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n\
-    \  print(forward<Tail>(tail)...);\r\n}\r\n\r\n#if defined(LOCAL)\r\ntemplate <class...\
-    \ Ts>\r\ninline void _show_pack(const char *func, int line, const char *names,\r\
-    \n                       Ts &&...args) {\r\n  // [DEBUG] solve:123 \u306E\u3088\
-    \u3046\u306B\u5148\u982D\u306B\u51FA\u3059\r\n  cout << \"[DEBUG \" << func <<\
-    \ ':' << line << \"] \";\r\n\r\n  const char *p = names;\r\n  bool first = true;\r\
-    \n\r\n  auto next_token = [&]() -> std::pair<const char *, const char *> {\r\n\
-    \    while (*p == ' ' || *p == ',') ++p;\r\n    const char *l = p;\r\n    while\
-    \ (*p && *p != ',') ++p;\r\n    const char *r = p;\r\n    return {l, r};\r\n \
-    \ };\r\n\r\n  (\r\n      [&] {\r\n        auto [l, r] = next_token();\r\n    \
-    \    while (r > l && r[-1] == ' ') --r;\r\n        if (!first) cout << ' ';\r\n\
-    \        first = false;\r\n        std::string name(l, r);\r\n        cout <<\
-    \ name << \" = \" << args;\r\n      }(),\r\n      ...);\r\n  print();\r\n}\r\n\
-    \r\n#define SHOW(...) _show_pack(__func__, __LINE__, #__VA_ARGS__, __VA_ARGS__)\r\
-    \n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n"
+    \ << std::fixed << std::setprecision(15); }\r\n};\r\nstatic CoutInitializer cout_initializer;\r\
+    \n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate\
+    \ <class Head, class... Tail>\r\nvoid print(Head &&head, Tail &&...tail) {\r\n\
+    \  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n#if defined(LOCAL)\r\ntemplate <class... Ts>\r\ninline void _show_pack(const\
+    \ char *func, int line, const char *names,\r\n                       Ts &&...args)\
+    \ {\r\n  // [DEBUG] solve:123 \u306E\u3088\u3046\u306B\u5148\u982D\u306B\u51FA\
+    \u3059\r\n  cout << \"[DEBUG \" << func << ':' << line << \"] \";\r\n\r\n  const\
+    \ char *p = names;\r\n  bool first = true;\r\n\r\n  auto next_token = [&]() ->\
+    \ std::pair<const char *, const char *> {\r\n    while (*p == ' ' || *p == ',')\
+    \ ++p;\r\n    const char *l = p;\r\n    while (*p && *p != ',') ++p;\r\n    const\
+    \ char *r = p;\r\n    return {l, r};\r\n  };\r\n\r\n  (\r\n      [&] {\r\n   \
+    \     auto [l, r] = next_token();\r\n        while (r > l && r[-1] == ' ') --r;\r\
+    \n        if (!first) cout << ' ';\r\n        first = false;\r\n        std::string\
+    \ name(l, r);\r\n        cout << name << \" = \" << args;\r\n      }(),\r\n  \
+    \    ...);\r\n  print();\r\n}\r\n\r\n#define SHOW(...) _show_pack(__func__, __LINE__,\
+    \ #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\nvoid\
+    \ YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t);\
+    \ }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t\
+    \ = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\
+    \nvoid no(bool t = 1) { yes(!t); }\r\n"
   code: "#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define\
     \ LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define STR(...)\
     \      \\\r\n  string __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define CHR(...)\
@@ -75,34 +74,33 @@ data:
     \ &operator<<(ostream &os, const vector<T> &A) {\r\n  for (size_t i = 0; i < A.size();\
     \ i++) {\r\n    if (i) os << \" \";\r\n    os << A[i];\r\n  }\r\n  return os;\r\
     \n}\r\n\r\nclass CoutInitializer {\r\n public:\r\n  CoutInitializer() { std::cout\
-    \ << std::defaultfloat << std::setprecision(15); }\r\n};\r\nstatic CoutInitializer\
-    \ cout_initializer;\r\n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\
-    \n}\r\n\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&...tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n\
-    \  print(forward<Tail>(tail)...);\r\n}\r\n\r\n#if defined(LOCAL)\r\ntemplate <class...\
-    \ Ts>\r\ninline void _show_pack(const char *func, int line, const char *names,\r\
-    \n                       Ts &&...args) {\r\n  // [DEBUG] solve:123 \u306E\u3088\
-    \u3046\u306B\u5148\u982D\u306B\u51FA\u3059\r\n  cout << \"[DEBUG \" << func <<\
-    \ ':' << line << \"] \";\r\n\r\n  const char *p = names;\r\n  bool first = true;\r\
-    \n\r\n  auto next_token = [&]() -> std::pair<const char *, const char *> {\r\n\
-    \    while (*p == ' ' || *p == ',') ++p;\r\n    const char *l = p;\r\n    while\
-    \ (*p && *p != ',') ++p;\r\n    const char *r = p;\r\n    return {l, r};\r\n \
-    \ };\r\n\r\n  (\r\n      [&] {\r\n        auto [l, r] = next_token();\r\n    \
-    \    while (r > l && r[-1] == ' ') --r;\r\n        if (!first) cout << ' ';\r\n\
-    \        first = false;\r\n        std::string name(l, r);\r\n        cout <<\
-    \ name << \" = \" << args;\r\n      }(),\r\n      ...);\r\n  print();\r\n}\r\n\
-    \r\n#define SHOW(...) _show_pack(__func__, __LINE__, #__VA_ARGS__, __VA_ARGS__)\r\
-    \n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n"
+    \ << std::fixed << std::setprecision(15); }\r\n};\r\nstatic CoutInitializer cout_initializer;\r\
+    \n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate\
+    \ <class Head, class... Tail>\r\nvoid print(Head &&head, Tail &&...tail) {\r\n\
+    \  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n#if defined(LOCAL)\r\ntemplate <class... Ts>\r\ninline void _show_pack(const\
+    \ char *func, int line, const char *names,\r\n                       Ts &&...args)\
+    \ {\r\n  // [DEBUG] solve:123 \u306E\u3088\u3046\u306B\u5148\u982D\u306B\u51FA\
+    \u3059\r\n  cout << \"[DEBUG \" << func << ':' << line << \"] \";\r\n\r\n  const\
+    \ char *p = names;\r\n  bool first = true;\r\n\r\n  auto next_token = [&]() ->\
+    \ std::pair<const char *, const char *> {\r\n    while (*p == ' ' || *p == ',')\
+    \ ++p;\r\n    const char *l = p;\r\n    while (*p && *p != ',') ++p;\r\n    const\
+    \ char *r = p;\r\n    return {l, r};\r\n  };\r\n\r\n  (\r\n      [&] {\r\n   \
+    \     auto [l, r] = next_token();\r\n        while (r > l && r[-1] == ' ') --r;\r\
+    \n        if (!first) cout << ' ';\r\n        first = false;\r\n        std::string\
+    \ name(l, r);\r\n        cout << name << \" = \" << args;\r\n      }(),\r\n  \
+    \    ...);\r\n  print();\r\n}\r\n\r\n#define SHOW(...) _show_pack(__func__, __LINE__,\
+    \ #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\nvoid\
+    \ YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t);\
+    \ }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t\
+    \ = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\
+    \nvoid no(bool t = 1) { yes(!t); }\r\n"
   dependsOn: []
   isVerificationFile: false
   path: other/io2.hpp
   requiredBy: []
-  timestamp: '2025-09-01 20:37:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-03-14 08:28:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/ITP1_9_A.test.cpp
 documentation_of: other/io2.hpp

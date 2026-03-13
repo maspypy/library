@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/palindromic_tree.hpp
     title: string/palindromic_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/eertree
@@ -237,33 +237,49 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
     \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/string/eertree.test.cpp\"\
-    \n\n#line 1 \"string/palindromic_tree.hpp\"\n// palindromic tree \u3092\u4F5C\u308B\
-    \ntemplate <int sigma>\nstruct Palindromic_Tree {\n  struct Node {\n    array<int,\
-    \ sigma> TO;\n    int link;\n    int length;\n    pair<int, int> pos; // position\
-    \ of first ocurrence\n    Node(int link, int length, int l, int r)\n        :\
-    \ link(link), length(length), pos({l, r}) {\n      fill(all(TO), -1);\n    }\n\
-    \  };\n\n  vc<Node> nodes;\n  vc<int> path;\n\n  template <typename STRING>\n\
-    \  Palindromic_Tree(const STRING& S, char off) {\n    nodes.eb(Node(-1, -1, 0,\
-    \ -1));\n    nodes.eb(Node(0, 0, 0, 0));\n    int p = 0;\n    FOR(i, len(S)) {\n\
-    \      path.eb(p);\n      int x = S[i] - off;\n      while (p) {\n        int\
-    \ j = i - 1 - nodes[p].length;\n        bool can = (j >= 0 && S[j] - off == x);\n\
-    \        if (!can) {\n          p = nodes[p].link;\n          continue;\n    \
-    \    }\n        break;\n      }\n      if (nodes[p].TO[x] != -1) {\n        p\
-    \ = nodes[p].TO[x];\n        continue;\n      }\n      int to = len(nodes);\n\
-    \      int l = i - 1 - nodes[p].length;\n      int r = i + 1;\n      nodes[p].TO[x]\
-    \ = to;\n\n      int link;\n      if (p == 0) link = 1;\n      if (p != 0) {\n\
-    \        while (1) {\n          p = nodes[p].link;\n          int j = i - 1 -\
-    \ nodes[p].length;\n          bool can = (j >= 0 && S[j] - off == x);\n      \
-    \    if (can) break;\n        }\n        assert(nodes[p].TO[x] != -1);\n     \
-    \   link = nodes[p].TO[x];\n      }\n      nodes.eb(Node(link, r - l, l, r));\n\
-    \      p = to;\n    }\n    path.eb(p);\n  }\n\n  // node \u3054\u3068\u306E\u51FA\
+    \n\n#line 1 \"string/palindromic_tree.hpp\"\ntemplate <int sigma>\nstruct Palindromic_Tree\
+    \ {\n  struct Node {\n    array<int, sigma> TO;\n    int link;\n    int length;\n\
+    \    int diff;            // link \u3068\u306E\u5DEE\u5206\n    int slink;   \
+    \        // series link, diff \u3067\u306A\u308B\u3079\u304F\u305F\u3069\u3063\
+    \u305F\u5148\n    pair<int, int> pos;  // one occurrence [l, r)\n\n    Node(int\
+    \ link = -1, int length = 0, int l = 0, int r = 0)\n        : link(link), length(length),\
+    \ diff(0), slink(0), pos({l, r}) {\n      fill(all(TO), -1);\n    }\n  };\n\n\
+    \  vc<Node> nodes;\n  // |path|=|S|+1\n  // path[i]: longest palindromic suffix\
+    \ of S[0, i)\n  vc<int> path;\n\n  Palindromic_Tree() {}\n\n  template <typename\
+    \ STRING>\n  Palindromic_Tree(const STRING& S, char off) {\n    build(S, off);\n\
+    \  }\n\n  int size() const { return len(nodes); }\n\n  template <typename STRING>\n\
+    \  void build(const STRING& S, char off) {\n    nodes.clear();\n    path.clear();\n\
+    \n    // 0: imaginary root (length = -1)\n    // 1: empty root (length = 0)\n\
+    \    nodes.eb(Node(-1, -1, 0, -1));\n    nodes.eb(Node(0, 0, 0, 0));\n    nodes[0].diff\
+    \ = nodes[1].diff = 0;\n    nodes[0].slink = nodes[1].slink = 0;\n\n    int p\
+    \ = 1;\n    FOR(i, len(S)) {\n      path.eb(p);\n      int x = S[i] - off;\n \
+    \     assert(0 <= x && x < sigma);\n\n      while (p) {\n        int j = i - 1\
+    \ - nodes[p].length;\n        bool can = (j >= 0 && S[j] - off == x);\n      \
+    \  if (can) break;\n        p = nodes[p].link;\n      }\n\n      if (nodes[p].TO[x]\
+    \ != -1) {\n        p = nodes[p].TO[x];\n        continue;\n      }\n\n      int\
+    \ to = len(nodes);\n      int l = i - 1 - nodes[p].length;\n      int r = i +\
+    \ 1;\n      nodes[p].TO[x] = to;\n\n      int link = 1;\n      if (p != 0) {\n\
+    \        int q = nodes[p].link;\n        while (1) {\n          int j = i - 1\
+    \ - nodes[q].length;\n          bool can = (j >= 0 && S[j] - off == x);\n    \
+    \      if (can) break;\n          q = nodes[q].link;\n        }\n        assert(nodes[q].TO[x]\
+    \ != -1);\n        link = nodes[q].TO[x];\n      }\n\n      nodes.eb(Node(link,\
+    \ r - l, l, r));\n      nodes[to].diff = nodes[to].length - nodes[link].length;\n\
+    \      nodes[to].slink =\n          (nodes[to].diff == nodes[link].diff ? nodes[link].slink\
+    \ : link);\n      p = to;\n    }\n    path.eb(p);\n  }\n\n  // length of maximum\
+    \ suffix palindrome of [l,r)\n  int max_suffix_length(int l, int r) {\n    assert(0\
+    \ <= l && l < r && r < len(path));\n    int n = r - l;\n    int v = path[r];\n\
+    \    while (v > 1) {\n      int d = nodes[v].diff;\n      int hi = nodes[v].length;\n\
+    \      int u = nodes[v].slink;\n      int low = nodes[u].length + d;\n      if\
+    \ (hi <= n) return hi;\n      if (low <= n) {\n        // hi - xd <= n\n     \
+    \   int x = ceil<int>(hi - n, d);\n        return hi - x * d;\n      }\n     \
+    \ v = u;\n    }\n    assert(false);\n  }\n\n  // node(>=2) \u3054\u3068\u306E\u51FA\
     \u73FE\u56DE\u6570\n  vc<int> count() {\n    vc<int> res(len(nodes));\n    for\
-    \ (auto&& p: path) res[p]++;\n    FOR_R(k, 1, len(nodes)) {\n      int link =\
-    \ nodes[k].link;\n      res[link] += res[k];\n    }\n    return res;\n  }\n};\n\
-    #line 6 \"test/2_library_checker/string/eertree.test.cpp\"\n\nvoid solve() {\n\
-    \  STR(S);\n  Palindromic_Tree<26> X(S, 'a');\n  int n = len(X.nodes);\n  vc<int>\
-    \ par(n, -1);\n  FOR(i, n) {\n    for (auto& j: X.nodes[i].TO) {\n      if (j\
-    \ != -1) par[j] = i;\n    }\n  }\n  print(n - 2);\n  FOR(i, 2, n) { print(par[i]\
+    \ (auto&& p : path) res[p]++;\n    FOR_R(k, 1, len(nodes)) {\n      int link =\
+    \ nodes[k].link;\n      res[link] += res[k];\n    }\n    res[0] = res[1] = 0;\n\
+    \    return res;\n  }\n};\n#line 6 \"test/2_library_checker/string/eertree.test.cpp\"\
+    \n\nvoid solve() {\n  STR(S);\n  Palindromic_Tree<26> X(S, 'a');\n  int n = len(X.nodes);\n\
+    \  vc<int> par(n, -1);\n  FOR(i, n) {\n    for (auto& j: X.nodes[i].TO) {\n  \
+    \    if (j != -1) par[j] = i;\n    }\n  }\n  print(n - 2);\n  FOR(i, 2, n) { print(par[i]\
     \ - 1, X.nodes[i].link - 1); }\n  vc<int> ANS = {X.path.begin() + 1, X.path.end()};\n\
     \  for (auto& x: ANS) --x;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
@@ -282,8 +298,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/eertree.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-03-14 08:28:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/eertree.test.cpp
 layout: document

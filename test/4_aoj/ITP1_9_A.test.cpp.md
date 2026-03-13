@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/io2.hpp
     title: other/io2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A
@@ -146,7 +146,7 @@ data:
     \ntemplate <typename T>\r\nostream &operator<<(ostream &os, const vector<T> &A)\
     \ {\r\n  for (size_t i = 0; i < A.size(); i++) {\r\n    if (i) os << \" \";\r\n\
     \    os << A[i];\r\n  }\r\n  return os;\r\n}\r\n\r\nclass CoutInitializer {\r\n\
-    \ public:\r\n  CoutInitializer() { std::cout << std::defaultfloat << std::setprecision(15);\
+    \ public:\r\n  CoutInitializer() { std::cout << std::fixed << std::setprecision(15);\
     \ }\r\n};\r\nstatic CoutInitializer cout_initializer;\r\n\r\nvoid print() {\r\n\
     \  cout << \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate <class Head, class...\
     \ Tail>\r\nvoid print(Head &&head, Tail &&...tail) {\r\n  cout << head;\r\n  if\
@@ -195,8 +195,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP1_9_A.test.cpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-03-14 08:28:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP1_9_A.test.cpp
 layout: document
