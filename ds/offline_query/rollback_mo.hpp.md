@@ -3,26 +3,28 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
     title: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/620/problem/F
+    - https://codeforces.com/problemset/problem/2206/E
     - https://codeforces.com/problemset/submission/765/240821486
   bundledCode: "#line 1 \"ds/offline_query/rollback_mo.hpp\"\n// https://codeforces.com/contest/620/problem/F\n\
     // (10^5,3*10^5), mo+fastset 1300ms\n// https://codeforces.com/problemset/submission/765/240821486\n\
-    struct Rollback_Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) { LR.emplace_back(L,\
-    \ R); }\n\n  template <typename AL, typename AR, typename F1, typename F2, typename\
-    \ F3,\n            typename O>\n  void calc(AL add_left, AR add_right, F1 reset,\
-    \ F2 save, F3 rollback,\n            O query) {\n    const int Q = len(LR);\n\
-    \    if (Q == 0) return;\n    int N = 0;\n    for (auto &&[L, R]: LR) chmax(N,\
+    // https://codeforces.com/problemset/problem/2206/E\nstruct Rollback_Mo {\n  vc<pair<int,\
+    \ int>> LR;\n  void add(int L, int R) { LR.emplace_back(L, R); }\n\n  // reset\
+    \ \u56DE\u6570: O(sqrt)\n  template <typename AL, typename AR, typename F1, typename\
+    \ F2, typename F3,\n            typename O>\n  void calc(AL add_left, AR add_right,\
+    \ F1 reset, F2 save, F3 rollback,\n            O query) {\n    const int Q = len(LR);\n\
+    \    if (Q == 0) return;\n    int N = 0;\n    for (auto &&[L, R] : LR) chmax(N,\
     \ R);\n    const int b_num = sqrt(Q);\n    const int b_sz = ceil(N, b_num);\n\
     \    vvc<int> QID((N - 1) / b_sz + 1);\n    // \u5DE6\u7AEF\u306E\u5C5E\u3059\u308B\
     \u30D6\u30ED\u30C3\u30AF\u3067\u5206\u985E\n    // \u5DE6\u7AEF\u3068\u53F3\u7AEF\
@@ -35,46 +37,46 @@ data:
     \      }\n      QID[iL].eb(qid);\n    }\n\n    FOR(iL, len(QID)) {\n      auto\
     \ &I = QID[iL];\n      if (I.empty()) continue;\n      sort(all(I),\n        \
     \   [&](auto &a, auto &b) -> bool { return LR[a].se < LR[b].se; });\n      int\
-    \ LMAX = 0;\n      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n   \
-    \     chmax(LMAX, L);\n      }\n      reset();\n      int l = LMAX, r = LMAX;\n\
-    \      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n        while (r\
+    \ LMAX = 0;\n      for (auto &&qid : I) {\n        auto [L, R] = LR[qid];\n  \
+    \      chmax(LMAX, L);\n      }\n      reset();\n      int l = LMAX, r = LMAX;\n\
+    \      for (auto &&qid : I) {\n        auto [L, R] = LR[qid];\n        while (r\
     \ < R) add_right(r++);\n        save();\n        while (L < l) add_left(--l);\n\
     \        query(qid);\n        rollback();\n        l = LMAX;\n      }\n    }\n\
     \  }\n};\n"
   code: "// https://codeforces.com/contest/620/problem/F\n// (10^5,3*10^5), mo+fastset\
-    \ 1300ms\n// https://codeforces.com/problemset/submission/765/240821486\nstruct\
-    \ Rollback_Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) { LR.emplace_back(L,\
-    \ R); }\n\n  template <typename AL, typename AR, typename F1, typename F2, typename\
-    \ F3,\n            typename O>\n  void calc(AL add_left, AR add_right, F1 reset,\
-    \ F2 save, F3 rollback,\n            O query) {\n    const int Q = len(LR);\n\
-    \    if (Q == 0) return;\n    int N = 0;\n    for (auto &&[L, R]: LR) chmax(N,\
-    \ R);\n    const int b_num = sqrt(Q);\n    const int b_sz = ceil(N, b_num);\n\
-    \    vvc<int> QID((N - 1) / b_sz + 1);\n    // \u5DE6\u7AEF\u306E\u5C5E\u3059\u308B\
-    \u30D6\u30ED\u30C3\u30AF\u3067\u5206\u985E\n    // \u5DE6\u7AEF\u3068\u53F3\u7AEF\
-    \u304C\u540C\u3058\u30D6\u30ED\u30C3\u30AF\u306B\u5C5E\u3059\u308B\u3082\u306E\
-    \u306F\u3001\u5148\u306B\u51E6\u7406\u3057\u3066\u3057\u307E\u3046\u3002\n   \
-    \ auto naive = [&](int qid) -> void {\n      save();\n      auto [L, R] = LR[qid];\n\
-    \      FOR(i, L, R) add_right(i);\n      query(qid);\n      rollback();\n    };\n\
-    \n    FOR(qid, Q) {\n      auto [L, R] = LR[qid];\n      int iL = L / b_sz, iR\
-    \ = R / b_sz;\n      if (iL == iR) {\n        naive(qid);\n        continue;\n\
-    \      }\n      QID[iL].eb(qid);\n    }\n\n    FOR(iL, len(QID)) {\n      auto\
-    \ &I = QID[iL];\n      if (I.empty()) continue;\n      sort(all(I),\n        \
-    \   [&](auto &a, auto &b) -> bool { return LR[a].se < LR[b].se; });\n      int\
-    \ LMAX = 0;\n      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n   \
-    \     chmax(LMAX, L);\n      }\n      reset();\n      int l = LMAX, r = LMAX;\n\
-    \      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n        while (r\
-    \ < R) add_right(r++);\n        save();\n        while (L < l) add_left(--l);\n\
-    \        query(qid);\n        rollback();\n        l = LMAX;\n      }\n    }\n\
-    \  }\n};"
+    \ 1300ms\n// https://codeforces.com/problemset/submission/765/240821486\n// https://codeforces.com/problemset/problem/2206/E\n\
+    struct Rollback_Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) { LR.emplace_back(L,\
+    \ R); }\n\n  // reset \u56DE\u6570: O(sqrt)\n  template <typename AL, typename\
+    \ AR, typename F1, typename F2, typename F3,\n            typename O>\n  void\
+    \ calc(AL add_left, AR add_right, F1 reset, F2 save, F3 rollback,\n          \
+    \  O query) {\n    const int Q = len(LR);\n    if (Q == 0) return;\n    int N\
+    \ = 0;\n    for (auto &&[L, R] : LR) chmax(N, R);\n    const int b_num = sqrt(Q);\n\
+    \    const int b_sz = ceil(N, b_num);\n    vvc<int> QID((N - 1) / b_sz + 1);\n\
+    \    // \u5DE6\u7AEF\u306E\u5C5E\u3059\u308B\u30D6\u30ED\u30C3\u30AF\u3067\u5206\
+    \u985E\n    // \u5DE6\u7AEF\u3068\u53F3\u7AEF\u304C\u540C\u3058\u30D6\u30ED\u30C3\
+    \u30AF\u306B\u5C5E\u3059\u308B\u3082\u306E\u306F\u3001\u5148\u306B\u51E6\u7406\
+    \u3057\u3066\u3057\u307E\u3046\u3002\n    auto naive = [&](int qid) -> void {\n\
+    \      save();\n      auto [L, R] = LR[qid];\n      FOR(i, L, R) add_right(i);\n\
+    \      query(qid);\n      rollback();\n    };\n\n    FOR(qid, Q) {\n      auto\
+    \ [L, R] = LR[qid];\n      int iL = L / b_sz, iR = R / b_sz;\n      if (iL ==\
+    \ iR) {\n        naive(qid);\n        continue;\n      }\n      QID[iL].eb(qid);\n\
+    \    }\n\n    FOR(iL, len(QID)) {\n      auto &I = QID[iL];\n      if (I.empty())\
+    \ continue;\n      sort(all(I),\n           [&](auto &a, auto &b) -> bool { return\
+    \ LR[a].se < LR[b].se; });\n      int LMAX = 0;\n      for (auto &&qid : I) {\n\
+    \        auto [L, R] = LR[qid];\n        chmax(LMAX, L);\n      }\n      reset();\n\
+    \      int l = LMAX, r = LMAX;\n      for (auto &&qid : I) {\n        auto [L,\
+    \ R] = LR[qid];\n        while (r < R) add_right(r++);\n        save();\n    \
+    \    while (L < l) add_left(--l);\n        query(qid);\n        rollback();\n\
+    \        l = LMAX;\n      }\n    }\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/offline_query/rollback_mo.hpp
   requiredBy: []
-  timestamp: '2024-01-13 12:25:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-04-05 00:48:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/2_library_checker/data_structure/static_range_mode_query.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
+  - test/2_library_checker/data_structure/static_range_mode_query.test.cpp
 documentation_of: ds/offline_query/rollback_mo.hpp
 layout: document
 redirect_from:

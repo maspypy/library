@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/pascal.test.cpp
     title: test/1_mytest/pascal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2108.test.cpp
     title: test/3_yukicoder/2108.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -287,21 +287,25 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"linalg/blackbox/pascal.hpp\"\n\n// transpose = 0\uFF1Ag[p] = sum\
-    \ binom(p,q) f[q]\n// transpose = 1\uFF1Ag[p] = sum binom(q,p) f[q]\ntemplate\
-    \ <typename mint>\nvc<mint> pascal(vc<mint> f, bool transpose, bool inverse) {\n\
-    \  if (!transpose) {\n    int n = len(f);\n    vc<mint> g(n);\n    FOR(i, n) g[i]\
-    \ = fact_inv<mint>(i);\n    if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n\
-    \    FOR(i, n) f[i] *= fact_inv<mint>(i);\n    f = convolution(f, g);\n    f.resize(n);\n\
-    \    FOR(i, n) f[i] *= fact<mint>(i);\n    return f;\n  }\n  int n = len(f);\n\
-    \  FOR(i, n) f[i] *= fact<mint>(i);\n  reverse(all(f));\n  vc<mint> g(n);\n  FOR(i,\
-    \ n) g[i] = fact_inv<mint>(i);\n  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  reverse(all(f));\n  FOR(i, n) f[i]\
-    \ *= fact_inv<mint>(i);\n  return f;\n}\n"
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 2 \"linalg/blackbox/pascal.hpp\"\
+    \n\n// transpose = 0\uFF1Ag[p] = sum binom(p,q) f[q]\n// transpose = 1\uFF1Ag[p]\
+    \ = sum binom(q,p) f[q]\ntemplate <typename mint>\nvc<mint> pascal(vc<mint> f,\
+    \ bool transpose, bool inverse) {\n  if (!transpose) {\n    int n = len(f);\n\
+    \    vc<mint> g(n);\n    FOR(i, n) g[i] = fact_inv<mint>(i);\n    if (inverse)\
+    \ FOR(i, n) if (i & 1) g[i] = -g[i];\n    FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
+    \    f = convolution(f, g);\n    f.resize(n);\n    FOR(i, n) f[i] *= fact<mint>(i);\n\
+    \    return f;\n  }\n  int n = len(f);\n  FOR(i, n) f[i] *= fact<mint>(i);\n \
+    \ reverse(all(f));\n  vc<mint> g(n);\n  FOR(i, n) g[i] = fact_inv<mint>(i);\n\
+    \  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n  f = convolution(f, g);\n\
+    \  f.resize(n);\n  reverse(all(f));\n  FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
+    \  return f;\n}\n"
   code: "#include \"poly/convolution.hpp\"\n\n// transpose = 0\uFF1Ag[p] = sum binom(p,q)\
     \ f[q]\n// transpose = 1\uFF1Ag[p] = sum binom(q,p) f[q]\ntemplate <typename mint>\n\
     vc<mint> pascal(vc<mint> f, bool transpose, bool inverse) {\n  if (!transpose)\
@@ -325,11 +329,11 @@ data:
   isVerificationFile: false
   path: linalg/blackbox/pascal.hpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-04-05 00:48:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/3_yukicoder/2243.test.cpp
   - test/3_yukicoder/2108.test.cpp
+  - test/3_yukicoder/2243.test.cpp
   - test/1_mytest/pascal.test.cpp
 documentation_of: linalg/blackbox/pascal.hpp
 layout: document

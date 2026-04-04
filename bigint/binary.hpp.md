@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -282,15 +282,19 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"bigint/binary.hpp\"\n\nstruct BigInteger_Binary {\n  static constexpr\
-    \ int LOG = 30;\n  static constexpr int MOD = 1 << LOG;\n  using bint = BigInteger_Binary;\n\
-    \  int sgn;\n  vc<int> dat;\n\n  BigInteger_Binary() : sgn(0) {}\n  BigInteger_Binary(i128\
-    \ val) {\n    if (val == 0) {\n      sgn = 0;\n      return;\n    }\n    sgn =\
-    \ 1;\n    if (val < 0) sgn = -1, val = -val;\n    while (val > 0) {\n      dat.eb(val\
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 2 \"bigint/binary.hpp\"\
+    \n\nstruct BigInteger_Binary {\n  static constexpr int LOG = 30;\n  static constexpr\
+    \ int MOD = 1 << LOG;\n  using bint = BigInteger_Binary;\n  int sgn;\n  vc<int>\
+    \ dat;\n\n  BigInteger_Binary() : sgn(0) {}\n  BigInteger_Binary(i128 val) {\n\
+    \    if (val == 0) {\n      sgn = 0;\n      return;\n    }\n    sgn = 1;\n   \
+    \ if (val < 0) sgn = -1, val = -val;\n    while (val > 0) {\n      dat.eb(val\
     \ % MOD);\n      val /= MOD;\n    }\n  }\n  BigInteger_Binary(string s) {\n  \
     \  assert(!s.empty());\n    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n\
     \      s.erase(s.begin());\n      assert(!s.empty());\n    }\n    if (s[0] ==\
@@ -462,7 +466,7 @@ data:
   isVerificationFile: false
   path: bigint/binary.hpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
+  timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/bigint.test.cpp

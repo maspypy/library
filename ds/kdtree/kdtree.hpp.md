@@ -124,8 +124,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2909.test.cpp
-  - test/1_mytest/kdtree_nns.test.cpp
   - test/4_aoj/DSL_2_C.test.cpp
+  - test/1_mytest/kdtree_nns.test.cpp
 documentation_of: ds/kdtree/kdtree.hpp
 layout: document
 redirect_from:

@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -350,41 +350,45 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 7 \"poly/egf_convolution.hpp\"\n\n// https://qoj.ac/problem/2205\n\
-    // 4 * convolution_ntt \u7A0B\u5EA6\n// mod \u306F\u4E0A\u306E\u554F\u984C\u306E\
-    \u305F\u3081\u306B u64 \u306B\u3057\u3066\u304A\u3044\u305F\u304C\u901A\u5E38\
-    \ u32 \u3067\u3044\u3044\u306F\u305A\n// ANS[k] = sum_{i+j==k} A[i]B[j]\nvc<u64>\
-    \ egf_convolution(vc<u64> A, vc<u64> B, u64 mod) {\n  assert(mod <= u64(1) <<\
-    \ 32);\n  vc<int> P;\n  for (auto& [p, e]: factor(mod)) P.eb(p);\n  int N = len(A)\
-    \ - 1, M = len(B) - 1;\n  vc<u64> R(N + M + 1, 1);\n  vc<u64> F(N + M + 1, 1);\n\
-    \  vc<u64> IF(N + M + 1, 1);\n  FOR(n, 1, N + M + 1) {\n    int x = n;\n    for\
-    \ (auto& p: P)\n      while (x % p == 0) x /= p;\n    R[n] = x;\n  }\n  FOR(n,\
-    \ 1, N + M + 1) F[n] = F[n - 1] * R[n] % mod;\n  IF[N + M] = mod_inv(F[N + M],\
-    \ mod);\n  FOR_R(n, N + M) IF[n] = IF[n + 1] * R[n + 1] % mod;\n  assert(IF[0]\
-    \ == 1);\n  // IF \u306F mod \u3067\u51E6\u7406\u3059\u308B\n  FOR(i, N + 1) A[i]\
-    \ = A[i] * IF[i] % mod;\n  FOR(i, M + 1) B[i] = B[i] * IF[i] % mod;\n  auto calc_mint\
-    \ = [&]<typename mint>() -> vc<mint> {\n    // p-part \u306F modint \u3067\u51E6\
-    \u7406\n    vc<mint> X(N + 1), Y(M + 1);\n    FOR(i, N + 1) X[i] = A[i];\n   \
-    \ FOR(i, M + 1) Y[i] = B[i];\n    for (auto& p: P) {\n      mint ip = mint(p).inverse();\n\
-    \      vc<mint> IF(N + M + 1, 1);\n      for (ll q = p; q <= N + M; q *= p) {\n\
-    \        for (int i = q; i <= N + M; i += q) { IF[i] *= ip; }\n      }\n     \
-    \ FOR(i, N + M) IF[i + 1] *= IF[i];\n      FOR(i, N + 1) X[i] *= IF[i];\n    \
-    \  FOR(i, M + 1) Y[i] *= IF[i];\n    }\n    X = convolution<mint>(X, Y);\n   \
-    \ for (auto& p: P) {\n      vc<mint> F(N + M + 1, 1);\n      for (ll q = p; q\
-    \ <= N + M; q *= p) {\n        for (int i = q; i <= N + M; i += q) { F[i] *= p;\
-    \ }\n      }\n      FOR(i, N + M) F[i + 1] *= F[i];\n      FOR(i, N + M + 1) X[i]\
-    \ *= F[i];\n    }\n    return X;\n  };\n  constexpr int p0 = 469762049;\n  constexpr\
-    \ int p1 = 754974721;\n  constexpr int p2 = 880803841;\n  constexpr int p3 = 998244353;\n\
-    \  // \u8B0E by chatgpt\n  auto A0 = calc_mint.template operator()<modint<p0>>();\n\
-    \  auto A1 = calc_mint.template operator()<modint<p1>>();\n  auto A2 = calc_mint.template\
-    \ operator()<modint<p2>>();\n  auto A3 = calc_mint.template operator()<modint<p3>>();\n\
-    \  vc<u64> ANS(N + M + 1);\n  FOR(i, N + M + 1) ANS[i] = CRT4<u128, p0, p1, p2,\
-    \ p3>(A0[i].val, A1[i].val, A2[i].val, A3[i].val) % mod;\n  FOR(i, N + M + 1)\
-    \ ANS[i] = ANS[i] * F[i] % mod;\n  return ANS;\n}\n"
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 7 \"poly/egf_convolution.hpp\"\
+    \n\n// https://qoj.ac/problem/2205\n// 4 * convolution_ntt \u7A0B\u5EA6\n// mod\
+    \ \u306F\u4E0A\u306E\u554F\u984C\u306E\u305F\u3081\u306B u64 \u306B\u3057\u3066\
+    \u304A\u3044\u305F\u304C\u901A\u5E38 u32 \u3067\u3044\u3044\u306F\u305A\n// ANS[k]\
+    \ = sum_{i+j==k} A[i]B[j]\nvc<u64> egf_convolution(vc<u64> A, vc<u64> B, u64 mod)\
+    \ {\n  assert(mod <= u64(1) << 32);\n  vc<int> P;\n  for (auto& [p, e]: factor(mod))\
+    \ P.eb(p);\n  int N = len(A) - 1, M = len(B) - 1;\n  vc<u64> R(N + M + 1, 1);\n\
+    \  vc<u64> F(N + M + 1, 1);\n  vc<u64> IF(N + M + 1, 1);\n  FOR(n, 1, N + M +\
+    \ 1) {\n    int x = n;\n    for (auto& p: P)\n      while (x % p == 0) x /= p;\n\
+    \    R[n] = x;\n  }\n  FOR(n, 1, N + M + 1) F[n] = F[n - 1] * R[n] % mod;\n  IF[N\
+    \ + M] = mod_inv(F[N + M], mod);\n  FOR_R(n, N + M) IF[n] = IF[n + 1] * R[n +\
+    \ 1] % mod;\n  assert(IF[0] == 1);\n  // IF \u306F mod \u3067\u51E6\u7406\u3059\
+    \u308B\n  FOR(i, N + 1) A[i] = A[i] * IF[i] % mod;\n  FOR(i, M + 1) B[i] = B[i]\
+    \ * IF[i] % mod;\n  auto calc_mint = [&]<typename mint>() -> vc<mint> {\n    //\
+    \ p-part \u306F modint \u3067\u51E6\u7406\n    vc<mint> X(N + 1), Y(M + 1);\n\
+    \    FOR(i, N + 1) X[i] = A[i];\n    FOR(i, M + 1) Y[i] = B[i];\n    for (auto&\
+    \ p: P) {\n      mint ip = mint(p).inverse();\n      vc<mint> IF(N + M + 1, 1);\n\
+    \      for (ll q = p; q <= N + M; q *= p) {\n        for (int i = q; i <= N +\
+    \ M; i += q) { IF[i] *= ip; }\n      }\n      FOR(i, N + M) IF[i + 1] *= IF[i];\n\
+    \      FOR(i, N + 1) X[i] *= IF[i];\n      FOR(i, M + 1) Y[i] *= IF[i];\n    }\n\
+    \    X = convolution<mint>(X, Y);\n    for (auto& p: P) {\n      vc<mint> F(N\
+    \ + M + 1, 1);\n      for (ll q = p; q <= N + M; q *= p) {\n        for (int i\
+    \ = q; i <= N + M; i += q) { F[i] *= p; }\n      }\n      FOR(i, N + M) F[i +\
+    \ 1] *= F[i];\n      FOR(i, N + M + 1) X[i] *= F[i];\n    }\n    return X;\n \
+    \ };\n  constexpr int p0 = 469762049;\n  constexpr int p1 = 754974721;\n  constexpr\
+    \ int p2 = 880803841;\n  constexpr int p3 = 998244353;\n  // \u8B0E by chatgpt\n\
+    \  auto A0 = calc_mint.template operator()<modint<p0>>();\n  auto A1 = calc_mint.template\
+    \ operator()<modint<p1>>();\n  auto A2 = calc_mint.template operator()<modint<p2>>();\n\
+    \  auto A3 = calc_mint.template operator()<modint<p3>>();\n  vc<u64> ANS(N + M\
+    \ + 1);\n  FOR(i, N + M + 1) ANS[i] = CRT4<u128, p0, p1, p2, p3>(A0[i].val, A1[i].val,\
+    \ A2[i].val, A3[i].val) % mod;\n  FOR(i, N + M + 1) ANS[i] = ANS[i] * F[i] % mod;\n\
+    \  return ANS;\n}\n"
   code: "\n#include \"nt/factor.hpp\"\n#include \"mod/mod_inv.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"mod/crt3.hpp\"\n#include \"poly/convolution.hpp\"\n\n// https://qoj.ac/problem/2205\n\
     // 4 * convolution_ntt \u7A0B\u5EA6\n// mod \u306F\u4E0A\u306E\u554F\u984C\u306E\
@@ -433,7 +437,7 @@ data:
   isVerificationFile: false
   path: poly/egf_convolution.hpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
+  timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/egf_convolution.hpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -303,30 +303,31 @@ data:
     \    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[1] = multiply_rec(node[c].ch[1], m, r, i, x);\n    }\n\
     \    update(c);\n    return c;\n  }\n\n  void prod_rec(int c, ll l, ll r, ll ql,\
-    \ ll qr, X &x) {\n    chmax(ql, l);\n    chmin(qr, r);\n    if (ql >= qr || c\
-    \ == NIL) return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, node[c].prod);\n\
+    \ ll qr, X &x) {\n    chmax(ql, l), chmin(qr, r);\n    if (ql >= qr || c == NIL)\
+    \ return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, node[c].prod);\n\
     \      return;\n    }\n    ll m = (l + r) / 2;\n    prod_rec(node[c].ch[0], l,\
     \ m, ql, qr, x);\n    if (ql <= (node[c].idx) && (node[c].idx) < qr) x = MX::op(x,\
     \ node[c].x);\n    prod_rec(node[c].ch[1], m, r, ql, qr, x);\n  }\n\n  template\
     \ <typename F>\n  ll max_right_rec(int c, const F &check, ll l, ll r, ll ql, X\
-    \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (check(MX::op(x, node[c].prod)))\
-    \ {\n      x = MX::op(x, node[c].prod);\n      return R0;\n    }\n    ll m = (l\
-    \ + r) / 2;\n    ll k = max_right_rec(node[c].ch[0], check, l, m, ql, x);\n  \
-    \  if (k != R0) return k;\n    if (ql <= node[c].idx) {\n      x = MX::op(x, node[c].x);\n\
-    \      if (!check(x)) return node[c].idx;\n    }\n    return max_right_rec(node[c].ch[1],\
-    \ check, m, r, ql, x);\n  }\n\n  template <typename F>\n  ll min_left_rec(int\
-    \ c, const F &check, ll l, ll r, ll qr, X &x) {\n    if (c == NIL || qr <= l)\
-    \ return L0;\n    if (check(MX::op(node[c].prod, x))) {\n      x = MX::op(node[c].prod,\
-    \ x);\n      return L0;\n    }\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1],\
-    \ check, m, r, qr, x);\n    if (k != L0) return k;\n    if (node[c].idx < qr)\
-    \ {\n      x = MX::op(node[c].x, x);\n      if (!check(x)) return node[c].idx\
-    \ + 1;\n    }\n    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n \
-    \ }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/2_library_checker/data_structure/double_ended_pq_2.test.cpp\"\
+    \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (ql <= l && check(MX::op(x,\
+    \ node[c].prod))) {\n      x = MX::op(x, node[c].prod);\n      return R0;\n  \
+    \  }\n    ll m = (l + r) / 2;\n    ll k = max_right_rec(node[c].ch[0], check,\
+    \ l, m, ql, x);\n    if (k != R0) return k;\n    if (ql <= node[c].idx) {\n  \
+    \    x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n   \
+    \ }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n  template\
+    \ <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r, ll qr, X\
+    \ &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (check(MX::op(node[c].prod,\
+    \ x))) {\n      x = MX::op(node[c].prod, x);\n      return L0;\n    }\n    ll\
+    \ m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);\n\
+    \    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
+    \ x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n    return min_left_rec(node[c].ch[0],\
+    \ check, l, m, qr, x);\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
+    \ <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
+    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
+    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 7 \"test/2_library_checker/data_structure/double_ended_pq_2.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  const int LIM = 1'000'000'000;\n\
     \n  Dynamic_SegTree_Sparse<Monoid_Add<int>, false> seg(-LIM, LIM + 1);\n  int\
     \ root = decltype(seg)::NIL;\n  for (auto&& a : A) root = seg.multiply(root, a,\
@@ -359,8 +360,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-04-05 00:48:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
 layout: document

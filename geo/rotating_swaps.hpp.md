@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -14,6 +14,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
+    - https://atcoder.jp/contests/pakencamp-2025-day2/tasks/pakencamp_2025_day2_f
     - https://atcoder.jp/contests/tupc2023/tasks/tupc2023_m
   bundledCode: "#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 2 \"geo/base.hpp\"\ntemplate\
     \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
@@ -88,42 +89,7 @@ data:
     \u306E\u9806\u5E8F\nevents: i,j \u306E\u9806\u4F4D\u304C\u5165\u308C\u66FF\u308F\
     \u308B (i<j \u304B\u3089 j<i)\u3068\u3044\u3046\u30A4\u30D9\u30F3\u30C8\u306E\u5217\
     \n360\u5EA6\u5206\u3042\u308B, \u6700\u5F8C\u306B\u306F init \u306B\u623B\u3063\
-    \u3066\u304F\u308B\nhttps://atcoder.jp/contests/tupc2023/tasks/tupc2023_m\n*/\n\
-    template <typename T>\npair<vc<int>, vc<pair<int, int>>> rotating_swaps(vc<Point<T>>\
-    \ point) {\n  using P = Point<T>;\n  /*\n  \u89D2\u5EA6 t \u306B\u304A\u3051\u308B\
-    \u30BF\u30A4\u30D6\u30EC\u30A4\u30AF\u306B\u3064\u3044\u3066\n  \u89D2\u5EA6 t-eps\
-    \ \u306E\u3068\u304D\u306E\u30BD\u30FC\u30C8\u9806\u3092 p1,...,pk \u3068\u3059\
-    \u308B\n  \u3053\u308C\u3089\u304C\u4E00\u6589\u306B\u30BF\u30A4\u306B\u306A\u3063\
-    \u305F\u3042\u3068 reverse \u3055\u308C\u308B\u3068\u3044\u3046\u3053\u3068\u306B\
-    \u306A\u308B\n  (i,j) \u3092\u30DA\u30A2\u8F9E\u66F8\u9806\u306B swap \u3059\u308C\
-    \u3070\u3088\u3044\n\n  \u540C\u4E00\u5EA7\u6A19\u306E\u70B9\u306B\u3064\u3044\
-    \u3066\n  \u540C\u3058\u5EA7\u6A19\u3067\u3042\u308B\u3082\u306E\u306F\u5E38\u306B\
-    \u3082\u3068\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u9806\u3067\u3042\u308B\
-    \u3068\u3059\u308B\n  (..i1,...,i2) (...,j1,...,j2)\n  j \u306F\u5C0F\u3055\u3044\
-    \u3082\u306E, i \u306F\u5927\u304D\u3044\u3082\u306E\u3092\u512A\u5148\u3059\u308B\
-    \n  */\n  for (auto &p: point) p = -p;\n  auto I = argsort(point);\n  for (auto\
-    \ &p: point) p = -p;\n  point = rearrange(point, I);\n  int N = len(point);\n\
-    \  vc<pair<int, int>> pairs;\n  pairs.reserve(N * (N - 1));\n\n  FOR(i, N) FOR(j,\
-    \ N) {\n    if (point[i] != point[j]) pairs.eb(i, j);\n  }\n\n  sort(all(pairs),\
-    \ [&](auto &L, auto &R) -> bool {\n    if (L == R) return 0;\n    auto [i1, j1]\
-    \ = L;\n    auto [i2, j2] = R;\n    P p1 = (point[j1] - point[i1]).rot90(true);\n\
-    \    P p2 = (point[j2] - point[i2]).rot90(true);\n    int c = angle_comp_3(p1,\
-    \ p2);\n    if (c != 0) return c == -1;\n    // p1,p2 \u306F\u5E73\u884C\n   \
-    \ if (point[i1].dot(p1) != point[i2].dot(p1)) { return point[i1].dot(p1) < point[i2].dot(p1);\
-    \ }\n    // p1 - eps \u306E\u3068\u304D\u306E dot \u306E pair \u306E\u8F9E\u66F8\
-    \u9806\u3067\u6BD4\u3079\u308B\n    P d = p1.rot90(false);\n    pair<T, T> s1\
-    \ = {point[j1].dot(d), point[i1].dot(d)};\n    pair<T, T> s2 = {point[j2].dot(d),\
-    \ point[i2].dot(d)};\n    if (s1 != s2) return s1 < s2;\n    // \u3053\u3053\u306B\
-    \u6765\u305F\u6642\u70B9\u3067\u5EA7\u6A19\u306E\u7D44\u304C\u5B8C\u5168\u4E00\
-    \u81F4\u3057\u3066\u3044\u308B\n    assert(point[i1] == point[i2] && point[j1]\
-    \ == point[j2]);\n    if (i1 != i2) return i1 > i2;\n    return j1 < j2;\n  });\n\
-    \  for (auto &[i, j]: pairs) { i = I[i], j = I[j]; }\n  return {I, pairs};\n}\n"
-  code: "#include \"geo/angle_sort.hpp\"\n\n/*\nreturn : {init, events}\ninit: \u65B9\
-    \u5411\u30D9\u30AF\u30C8\u30EB (-1,-eps) \u65B9\u5411\u306B\u3064\u3044\u3066\u30BD\
-    \u30FC\u30C8\u3057\u305F\u3068\u304D\u306E\u9806\u5E8F\nevents: i,j \u306E\u9806\
-    \u4F4D\u304C\u5165\u308C\u66FF\u308F\u308B (i<j \u304B\u3089 j<i)\u3068\u3044\u3046\
-    \u30A4\u30D9\u30F3\u30C8\u306E\u5217\n360\u5EA6\u5206\u3042\u308B, \u6700\u5F8C\
-    \u306B\u306F init \u306B\u623B\u3063\u3066\u304F\u308B\nhttps://atcoder.jp/contests/tupc2023/tasks/tupc2023_m\n\
+    \u3066\u304F\u308B\nhttps://atcoder.jp/contests/tupc2023/tasks/tupc2023_m\nhttps://atcoder.jp/contests/pakencamp-2025-day2/tasks/pakencamp_2025_day2_f\n\
     */\ntemplate <typename T>\npair<vc<int>, vc<pair<int, int>>> rotating_swaps(vc<Point<T>>\
     \ point) {\n  using P = Point<T>;\n  /*\n  \u89D2\u5EA6 t \u306B\u304A\u3051\u308B\
     \u30BF\u30A4\u30D6\u30EC\u30A4\u30AF\u306B\u3064\u3044\u3066\n  \u89D2\u5EA6 t-eps\
@@ -136,30 +102,68 @@ data:
     \u3082\u3068\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u9806\u3067\u3042\u308B\
     \u3068\u3059\u308B\n  (..i1,...,i2) (...,j1,...,j2)\n  j \u306F\u5C0F\u3055\u3044\
     \u3082\u306E, i \u306F\u5927\u304D\u3044\u3082\u306E\u3092\u512A\u5148\u3059\u308B\
-    \n  */\n  for (auto &p: point) p = -p;\n  auto I = argsort(point);\n  for (auto\
-    \ &p: point) p = -p;\n  point = rearrange(point, I);\n  int N = len(point);\n\
+    \n  */\n  for (auto &p : point) p = -p;\n  auto I = argsort(point);\n  for (auto\
+    \ &p : point) p = -p;\n  point = rearrange(point, I);\n  int N = len(point);\n\
     \  vc<pair<int, int>> pairs;\n  pairs.reserve(N * (N - 1));\n\n  FOR(i, N) FOR(j,\
     \ N) {\n    if (point[i] != point[j]) pairs.eb(i, j);\n  }\n\n  sort(all(pairs),\
     \ [&](auto &L, auto &R) -> bool {\n    if (L == R) return 0;\n    auto [i1, j1]\
     \ = L;\n    auto [i2, j2] = R;\n    P p1 = (point[j1] - point[i1]).rot90(true);\n\
     \    P p2 = (point[j2] - point[i2]).rot90(true);\n    int c = angle_comp_3(p1,\
     \ p2);\n    if (c != 0) return c == -1;\n    // p1,p2 \u306F\u5E73\u884C\n   \
-    \ if (point[i1].dot(p1) != point[i2].dot(p1)) { return point[i1].dot(p1) < point[i2].dot(p1);\
-    \ }\n    // p1 - eps \u306E\u3068\u304D\u306E dot \u306E pair \u306E\u8F9E\u66F8\
-    \u9806\u3067\u6BD4\u3079\u308B\n    P d = p1.rot90(false);\n    pair<T, T> s1\
-    \ = {point[j1].dot(d), point[i1].dot(d)};\n    pair<T, T> s2 = {point[j2].dot(d),\
-    \ point[i2].dot(d)};\n    if (s1 != s2) return s1 < s2;\n    // \u3053\u3053\u306B\
-    \u6765\u305F\u6642\u70B9\u3067\u5EA7\u6A19\u306E\u7D44\u304C\u5B8C\u5168\u4E00\
-    \u81F4\u3057\u3066\u3044\u308B\n    assert(point[i1] == point[i2] && point[j1]\
-    \ == point[j2]);\n    if (i1 != i2) return i1 > i2;\n    return j1 < j2;\n  });\n\
-    \  for (auto &[i, j]: pairs) { i = I[i], j = I[j]; }\n  return {I, pairs};\n}\n"
+    \ if (point[i1].dot(p1) != point[i2].dot(p1)) {\n      return point[i1].dot(p1)\
+    \ < point[i2].dot(p1);\n    }\n    // p1 - eps \u306E\u3068\u304D\u306E dot \u306E\
+    \ pair \u306E\u8F9E\u66F8\u9806\u3067\u6BD4\u3079\u308B\n    P d = p1.rot90(false);\n\
+    \    pair<T, T> s1 = {point[j1].dot(d), point[i1].dot(d)};\n    pair<T, T> s2\
+    \ = {point[j2].dot(d), point[i2].dot(d)};\n    if (s1 != s2) return s1 < s2;\n\
+    \    // \u3053\u3053\u306B\u6765\u305F\u6642\u70B9\u3067\u5EA7\u6A19\u306E\u7D44\
+    \u304C\u5B8C\u5168\u4E00\u81F4\u3057\u3066\u3044\u308B\n    assert(point[i1] ==\
+    \ point[i2] && point[j1] == point[j2]);\n    if (i1 != i2) return i1 > i2;\n \
+    \   return j1 < j2;\n  });\n  for (auto &[i, j] : pairs) {\n    i = I[i], j =\
+    \ I[j];\n  }\n  return {I, pairs};\n}\n"
+  code: "#include \"geo/angle_sort.hpp\"\n\n/*\nreturn : {init, events}\ninit: \u65B9\
+    \u5411\u30D9\u30AF\u30C8\u30EB (-1,-eps) \u65B9\u5411\u306B\u3064\u3044\u3066\u30BD\
+    \u30FC\u30C8\u3057\u305F\u3068\u304D\u306E\u9806\u5E8F\nevents: i,j \u306E\u9806\
+    \u4F4D\u304C\u5165\u308C\u66FF\u308F\u308B (i<j \u304B\u3089 j<i)\u3068\u3044\u3046\
+    \u30A4\u30D9\u30F3\u30C8\u306E\u5217\n360\u5EA6\u5206\u3042\u308B, \u6700\u5F8C\
+    \u306B\u306F init \u306B\u623B\u3063\u3066\u304F\u308B\nhttps://atcoder.jp/contests/tupc2023/tasks/tupc2023_m\n\
+    https://atcoder.jp/contests/pakencamp-2025-day2/tasks/pakencamp_2025_day2_f\n\
+    */\ntemplate <typename T>\npair<vc<int>, vc<pair<int, int>>> rotating_swaps(vc<Point<T>>\
+    \ point) {\n  using P = Point<T>;\n  /*\n  \u89D2\u5EA6 t \u306B\u304A\u3051\u308B\
+    \u30BF\u30A4\u30D6\u30EC\u30A4\u30AF\u306B\u3064\u3044\u3066\n  \u89D2\u5EA6 t-eps\
+    \ \u306E\u3068\u304D\u306E\u30BD\u30FC\u30C8\u9806\u3092 p1,...,pk \u3068\u3059\
+    \u308B\n  \u3053\u308C\u3089\u304C\u4E00\u6589\u306B\u30BF\u30A4\u306B\u306A\u3063\
+    \u305F\u3042\u3068 reverse \u3055\u308C\u308B\u3068\u3044\u3046\u3053\u3068\u306B\
+    \u306A\u308B\n  (i,j) \u3092\u30DA\u30A2\u8F9E\u66F8\u9806\u306B swap \u3059\u308C\
+    \u3070\u3088\u3044\n\n  \u540C\u4E00\u5EA7\u6A19\u306E\u70B9\u306B\u3064\u3044\
+    \u3066\n  \u540C\u3058\u5EA7\u6A19\u3067\u3042\u308B\u3082\u306E\u306F\u5E38\u306B\
+    \u3082\u3068\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u9806\u3067\u3042\u308B\
+    \u3068\u3059\u308B\n  (..i1,...,i2) (...,j1,...,j2)\n  j \u306F\u5C0F\u3055\u3044\
+    \u3082\u306E, i \u306F\u5927\u304D\u3044\u3082\u306E\u3092\u512A\u5148\u3059\u308B\
+    \n  */\n  for (auto &p : point) p = -p;\n  auto I = argsort(point);\n  for (auto\
+    \ &p : point) p = -p;\n  point = rearrange(point, I);\n  int N = len(point);\n\
+    \  vc<pair<int, int>> pairs;\n  pairs.reserve(N * (N - 1));\n\n  FOR(i, N) FOR(j,\
+    \ N) {\n    if (point[i] != point[j]) pairs.eb(i, j);\n  }\n\n  sort(all(pairs),\
+    \ [&](auto &L, auto &R) -> bool {\n    if (L == R) return 0;\n    auto [i1, j1]\
+    \ = L;\n    auto [i2, j2] = R;\n    P p1 = (point[j1] - point[i1]).rot90(true);\n\
+    \    P p2 = (point[j2] - point[i2]).rot90(true);\n    int c = angle_comp_3(p1,\
+    \ p2);\n    if (c != 0) return c == -1;\n    // p1,p2 \u306F\u5E73\u884C\n   \
+    \ if (point[i1].dot(p1) != point[i2].dot(p1)) {\n      return point[i1].dot(p1)\
+    \ < point[i2].dot(p1);\n    }\n    // p1 - eps \u306E\u3068\u304D\u306E dot \u306E\
+    \ pair \u306E\u8F9E\u66F8\u9806\u3067\u6BD4\u3079\u308B\n    P d = p1.rot90(false);\n\
+    \    pair<T, T> s1 = {point[j1].dot(d), point[i1].dot(d)};\n    pair<T, T> s2\
+    \ = {point[j2].dot(d), point[i2].dot(d)};\n    if (s1 != s2) return s1 < s2;\n\
+    \    // \u3053\u3053\u306B\u6765\u305F\u6642\u70B9\u3067\u5EA7\u6A19\u306E\u7D44\
+    \u304C\u5B8C\u5168\u4E00\u81F4\u3057\u3066\u3044\u308B\n    assert(point[i1] ==\
+    \ point[i2] && point[j1] == point[j2]);\n    if (i1 != i2) return i1 > i2;\n \
+    \   return j1 < j2;\n  });\n  for (auto &[i, j] : pairs) {\n    i = I[i], j =\
+    \ I[j];\n  }\n  return {I, pairs};\n}\n"
   dependsOn:
   - geo/angle_sort.hpp
   - geo/base.hpp
   isVerificationFile: false
   path: geo/rotating_swaps.hpp
   requiredBy: []
-  timestamp: '2026-02-03 22:59:09+09:00'
+  timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/rotating_swaps.hpp

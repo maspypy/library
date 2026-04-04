@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorial
@@ -584,22 +584,25 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 5 \"poly/lagrange_interpolate_iota.hpp\"\n\r\n// Input: f(0), ...,\
-    \ f(n-1) and c. Return: f(c)\r\ntemplate <typename T, typename enable_if<has_mod<T>::value>::type\
-    \ * = nullptr>\r\nT lagrange_interpolate_iota(vc<T> &f, T c) {\r\n  int n = len(f);\r\
-    \n  if (int(c.val) < n) return f[c.val];\r\n  auto a = f;\r\n  FOR(i, n) {\r\n\
-    \    a[i] = a[i] * fact_inv<T>(i) * fact_inv<T>(n - 1 - i);\r\n    if ((n - 1\
-    \ - i) & 1) a[i] = -a[i];\r\n  }\r\n  vc<T> lp(n + 1), rp(n + 1);\r\n  lp[0] =\
-    \ rp[n] = 1;\r\n  FOR(i, n) lp[i + 1] = lp[i] * (c - i);\r\n  FOR_R(i, n) rp[i]\
-    \ = rp[i + 1] * (c - i);\r\n  T ANS = 0;\r\n  FOR(i, n) ANS += a[i] * lp[i] *\
-    \ rp[i + 1];\r\n  return ANS;\r\n}\r\n\r\n// mod \u3058\u3083\u306A\u3044\u5834\
-    \u5408\u3002\u304B\u306A\u308A\u4F4E\u6B21\u306E\u591A\u9805\u5F0F\u3092\u60F3\
-    \u5B9A\u3057\u3066\u3044\u308B\u3002O(n^2)\r\n// Input: f(0), ..., f(n-1) and\
-    \ c. Return: f(c)\r\ntemplate <typename T, typename enable_if<!has_mod<T>::value>::type\
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 5 \"poly/lagrange_interpolate_iota.hpp\"\
+    \n\r\n// Input: f(0), ..., f(n-1) and c. Return: f(c)\r\ntemplate <typename T,\
+    \ typename enable_if<has_mod<T>::value>::type * = nullptr>\r\nT lagrange_interpolate_iota(vc<T>\
+    \ &f, T c) {\r\n  int n = len(f);\r\n  if (int(c.val) < n) return f[c.val];\r\n\
+    \  auto a = f;\r\n  FOR(i, n) {\r\n    a[i] = a[i] * fact_inv<T>(i) * fact_inv<T>(n\
+    \ - 1 - i);\r\n    if ((n - 1 - i) & 1) a[i] = -a[i];\r\n  }\r\n  vc<T> lp(n +\
+    \ 1), rp(n + 1);\r\n  lp[0] = rp[n] = 1;\r\n  FOR(i, n) lp[i + 1] = lp[i] * (c\
+    \ - i);\r\n  FOR_R(i, n) rp[i] = rp[i + 1] * (c - i);\r\n  T ANS = 0;\r\n  FOR(i,\
+    \ n) ANS += a[i] * lp[i] * rp[i + 1];\r\n  return ANS;\r\n}\r\n\r\n// mod \u3058\
+    \u3083\u306A\u3044\u5834\u5408\u3002\u304B\u306A\u308A\u4F4E\u6B21\u306E\u591A\
+    \u9805\u5F0F\u3092\u60F3\u5B9A\u3057\u3066\u3044\u308B\u3002O(n^2)\r\n// Input:\
+    \ f(0), ..., f(n-1) and c. Return: f(c)\r\ntemplate <typename T, typename enable_if<!has_mod<T>::value>::type\
     \ * = nullptr>\r\nT lagrange_interpolate_iota(vc<T> &f, T c) {\r\n  const int\
     \ LIM = 10;\r\n  int n = len(f);\r\n  assert(n < LIM);\r\n\r\n  // (-1)^{i-j}\
     \ binom(i,j)\r\n  static vvc<int> C;\r\n  if (C.empty()) {\r\n    C.assign(LIM,\
@@ -679,8 +682,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-04-05 00:48:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
 layout: document

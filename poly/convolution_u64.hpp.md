@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -281,27 +281,31 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 3 \"poly/convolution_u64.hpp\"\n\r\ntemplate <typename T = u64>\r\n\
-    vector<T> convolution_u64(const vector<u64>& a, const vector<u64>& b) {\r\n  static_assert(is_same_v<T,\
-    \ u64> || is_same_v<T, u128>);\r\n  int n = len(a), m = len(b);\r\n  if (!n ||\
-    \ !m) return {};\r\n  if (min(n, m) <= 12500) return convolution_karatsuba(a,\
-    \ b);\r\n  constexpr int p0 = 880803841;\r\n  constexpr int p1 = 943718401;\r\n\
-    \  constexpr int p2 = 998244353;\r\n  constexpr int p3 = 1004535809;\r\n  constexpr\
-    \ int p4 = 1012924417;\r\n  using M0 = modint<p0>;\r\n  using M1 = modint<p1>;\r\
-    \n  using M2 = modint<p2>;\r\n  using M3 = modint<p3>;\r\n  using M4 = modint<p4>;\r\
-    \n  vc<M0> a0(n), b0(m);\r\n  vc<M1> a1(n), b1(m);\r\n  vc<M2> a2(n), b2(m);\r\
-    \n  vc<M3> a3(n), b3(m);\r\n  vc<M4> a4(n), b4(m);\r\n  FOR(i, n) { a0[i] = a[i],\
-    \ a1[i] = a[i], a2[i] = a[i], a3[i] = a[i], a4[i] = a[i]; }\r\n  FOR(i, m) { b0[i]\
-    \ = b[i], b1[i] = b[i], b2[i] = b[i], b3[i] = b[i], b4[i] = b[i]; }\r\n  a0 =\
-    \ convolution_ntt<M0>(a0, b0);\r\n  a1 = convolution_ntt<M1>(a1, b1);\r\n  a2\
-    \ = convolution_ntt<M2>(a2, b2);\r\n  a3 = convolution_ntt<M3>(a3, b3);\r\n  a4\
-    \ = convolution_ntt<M4>(a4, b4);\r\n  vc<T> c(n + m - 1);\r\n  FOR(i, n + m -\
-    \ 1)\r\n  c[i] = CRT5<T, p0, p1, p2, p3, p4>(a0[i].val, a1[i].val, a2[i].val,\
-    \ a3[i].val, a4[i].val);\r\n  return c;\r\n}\r\n"
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 3 \"poly/convolution_u64.hpp\"\
+    \n\r\ntemplate <typename T = u64>\r\nvector<T> convolution_u64(const vector<u64>&\
+    \ a, const vector<u64>& b) {\r\n  static_assert(is_same_v<T, u64> || is_same_v<T,\
+    \ u128>);\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n \
+    \ if (min(n, m) <= 12500) return convolution_karatsuba(a, b);\r\n  constexpr int\
+    \ p0 = 880803841;\r\n  constexpr int p1 = 943718401;\r\n  constexpr int p2 = 998244353;\r\
+    \n  constexpr int p3 = 1004535809;\r\n  constexpr int p4 = 1012924417;\r\n  using\
+    \ M0 = modint<p0>;\r\n  using M1 = modint<p1>;\r\n  using M2 = modint<p2>;\r\n\
+    \  using M3 = modint<p3>;\r\n  using M4 = modint<p4>;\r\n  vc<M0> a0(n), b0(m);\r\
+    \n  vc<M1> a1(n), b1(m);\r\n  vc<M2> a2(n), b2(m);\r\n  vc<M3> a3(n), b3(m);\r\
+    \n  vc<M4> a4(n), b4(m);\r\n  FOR(i, n) { a0[i] = a[i], a1[i] = a[i], a2[i] =\
+    \ a[i], a3[i] = a[i], a4[i] = a[i]; }\r\n  FOR(i, m) { b0[i] = b[i], b1[i] = b[i],\
+    \ b2[i] = b[i], b3[i] = b[i], b4[i] = b[i]; }\r\n  a0 = convolution_ntt<M0>(a0,\
+    \ b0);\r\n  a1 = convolution_ntt<M1>(a1, b1);\r\n  a2 = convolution_ntt<M2>(a2,\
+    \ b2);\r\n  a3 = convolution_ntt<M3>(a3, b3);\r\n  a4 = convolution_ntt<M4>(a4,\
+    \ b4);\r\n  vc<T> c(n + m - 1);\r\n  FOR(i, n + m - 1)\r\n  c[i] = CRT5<T, p0,\
+    \ p1, p2, p3, p4>(a0[i].val, a1[i].val, a2[i].val, a3[i].val, a4[i].val);\r\n\
+    \  return c;\r\n}\r\n"
   code: "#include \"poly/convolution.hpp\"\r\n#include \"mod/crt3.hpp\"\r\n\r\ntemplate\
     \ <typename T = u64>\r\nvector<T> convolution_u64(const vector<u64>& a, const\
     \ vector<u64>& b) {\r\n  static_assert(is_same_v<T, u64> || is_same_v<T, u128>);\r\
@@ -331,8 +335,8 @@ data:
   isVerificationFile: false
   path: poly/convolution_u64.hpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-04-05 00:48:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
 documentation_of: poly/convolution_u64.hpp

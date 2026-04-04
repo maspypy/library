@@ -1,55 +1,55 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -555,26 +555,29 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 8 \"test/1_mytest/31bit_modint.test.cpp\"\n\ntemplate <typename mint>\n\
-    void test() {\n  const u32 mod = mint::get_mod();\n  auto check = [&](ll x, ll\
-    \ y) -> void {\n    mint mx = x, my = y;\n    assert((x + y) % mod == (mx + my).val);\n\
-    \    assert((x + mod - y) % mod == (mx - my).val);\n    assert((x * y) % mod ==\
-    \ (mx * my).val);\n    mint mz = mx / my;\n    ll z = mz.val;\n    assert(y *\
-    \ z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0, mint::get_mod());\n\
-    \    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n  }\n  FOR(i, 1, 100)\
-    \ FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\ntemplate <typename mint>\n\
-    void test_conv() {\n  int N = RNG(1000, 10000);\n  int M = RNG(1000, 10000);\n\
-    \  vc<mint> A(N), B(M);\n  FOR(i, N) A[i] = RNG(0, u32(-1));\n  FOR(i, M) B[i]\
-    \ = RNG(0, u32(-1));\n  vc<mint> S(N + M - 1);\n  FOR(i, N) FOR(j, M) { S[i +\
-    \ j] += A[i] * B[j]; }\n  auto f = convolution_ntt(A, B);\n  assert(S == f);\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  {\n    constexpr u32 mod = (u32(1) << 31) - 19;\n \
-    \   dmint::set_mod(mod);\n    test<modint<mod>>();\n    test<dmint>();\n  }\n\n\
-    \  const u32 mod = 2013265921;\n  dmint::set_mod(mod);\n  dmint::set_ntt_info();\n\
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 8 \"test/1_mytest/31bit_modint.test.cpp\"\
+    \n\ntemplate <typename mint>\nvoid test() {\n  const u32 mod = mint::get_mod();\n\
+    \  auto check = [&](ll x, ll y) -> void {\n    mint mx = x, my = y;\n    assert((x\
+    \ + y) % mod == (mx + my).val);\n    assert((x + mod - y) % mod == (mx - my).val);\n\
+    \    assert((x * y) % mod == (mx * my).val);\n    mint mz = mx / my;\n    ll z\
+    \ = mz.val;\n    assert(y * z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0,\
+    \ mint::get_mod());\n    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n \
+    \ }\n  FOR(i, 1, 100) FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\ntemplate\
+    \ <typename mint>\nvoid test_conv() {\n  int N = RNG(1000, 10000);\n  int M =\
+    \ RNG(1000, 10000);\n  vc<mint> A(N), B(M);\n  FOR(i, N) A[i] = RNG(0, u32(-1));\n\
+    \  FOR(i, M) B[i] = RNG(0, u32(-1));\n  vc<mint> S(N + M - 1);\n  FOR(i, N) FOR(j,\
+    \ M) { S[i + j] += A[i] * B[j]; }\n  auto f = convolution_ntt(A, B);\n  assert(S\
+    \ == f);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  {\n    constexpr u32 mod = (u32(1) << 31)\
+    \ - 19;\n    dmint::set_mod(mod);\n    test<modint<mod>>();\n    test<dmint>();\n\
+    \  }\n\n  const u32 mod = 2013265921;\n  dmint::set_mod(mod);\n  dmint::set_ntt_info();\n\
     \  FOR(10) test_conv<modint<2013265921>>();\n  FOR(10) test_conv<dmint>();\n\n\
     \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
@@ -617,7 +620,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/31bit_modint.test.cpp
   requiredBy: []
-  timestamp: '2026-03-14 08:28:15+09:00'
+  timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/31bit_modint.test.cpp

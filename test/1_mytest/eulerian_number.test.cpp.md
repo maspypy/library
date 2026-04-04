@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
   _extendedRequiredBy: []
@@ -417,26 +417,30 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 3 \"seq/famous/eulerian_number.hpp\"\n\n// Eulerian number, https://oeis.org/A123125\n\
-    // sum n^dx^n = A_d(x) / (1-x)^{d+1} \u3068\u306A\u308B d \u6B21\u591A\u9805\u5F0F\
-    \u306E\u4FC2\u6570\u5217\n// ascent \u306E\u500B\u6570\u3054\u3068\u306B\u9806\
-    \u5217\u3092\u6570\u3048\u305F\u3082\u306E\n// 1/n!, (1-y)/(1-y*exp((1-y)x))\n\
-    template <typename mint>\nvvc<mint> eulerian_number_2d(int N, int K) {\n  vv(mint,\
-    \ A, N + 1, K + 1);\n  A[0][0] = mint(1);\n  FOR(d, N) FOR(k, 1, K + 1) { A[d\
-    \ + 1][k] = mint(k) * A[d][k] + mint(d - k + 2) * A[d][k - 1]; }\n  return A;\n\
-    }\n\ntemplate <typename mint>\nvc<mint> eulerian_number_n(int n) {\n  vc<mint>\
-    \ f = powertable_2<mint>(n, n);\n  vc<mint> g(n + 1);\n  FOR(k, n + 1) g[k] =\
-    \ C<mint>(n + 1, k);\n  FOR(k, 1, n + 1, 2) g[k] = -g[k];\n  f = convolution(f,\
-    \ g);\n  f.resize(n + 1);\n  return f;\n}\n#line 5 \"test/1_mytest/eulerian_number.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  const int LIM = 100;\n  auto dp\
-    \ = eulerian_number_2d<mint>(LIM, LIM);\n\n  FOR(N, LIM + 1) {\n    auto f = eulerian_number_n<mint>(N);\n\
-    \    assert(len(f) == N + 1);\n    FOR(i, N + 1) assert(f[i] == dp[N][i]);\n \
-    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 3 \"seq/famous/eulerian_number.hpp\"\
+    \n\n// Eulerian number, https://oeis.org/A123125\n// sum n^dx^n = A_d(x) / (1-x)^{d+1}\
+    \ \u3068\u306A\u308B d \u6B21\u591A\u9805\u5F0F\u306E\u4FC2\u6570\u5217\n// ascent\
+    \ \u306E\u500B\u6570\u3054\u3068\u306B\u9806\u5217\u3092\u6570\u3048\u305F\u3082\
+    \u306E\n// 1/n!, (1-y)/(1-y*exp((1-y)x))\ntemplate <typename mint>\nvvc<mint>\
+    \ eulerian_number_2d(int N, int K) {\n  vv(mint, A, N + 1, K + 1);\n  A[0][0]\
+    \ = mint(1);\n  FOR(d, N) FOR(k, 1, K + 1) { A[d + 1][k] = mint(k) * A[d][k] +\
+    \ mint(d - k + 2) * A[d][k - 1]; }\n  return A;\n}\n\ntemplate <typename mint>\n\
+    vc<mint> eulerian_number_n(int n) {\n  vc<mint> f = powertable_2<mint>(n, n);\n\
+    \  vc<mint> g(n + 1);\n  FOR(k, n + 1) g[k] = C<mint>(n + 1, k);\n  FOR(k, 1,\
+    \ n + 1, 2) g[k] = -g[k];\n  f = convolution(f, g);\n  f.resize(n + 1);\n  return\
+    \ f;\n}\n#line 5 \"test/1_mytest/eulerian_number.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  const int LIM = 100;\n  auto dp = eulerian_number_2d<mint>(LIM,\
+    \ LIM);\n\n  FOR(N, LIM + 1) {\n    auto f = eulerian_number_n<mint>(N);\n   \
+    \ assert(len(f) == N + 1);\n    FOR(i, N + 1) assert(f[i] == dp[N][i]);\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"seq/famous/eulerian_number.hpp\"\n\n\
     using mint = modint998;\n\nvoid test() {\n  const int LIM = 100;\n  auto dp =\
@@ -460,7 +464,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/eulerian_number.test.cpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
+  timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/eulerian_number.test.cpp

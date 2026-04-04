@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
@@ -77,8 +77,8 @@ data:
   timestamp: '2025-06-20 11:41:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/655.test.cpp
   - test/3_yukicoder/1141.test.cpp
+  - test/3_yukicoder/655.test.cpp
 documentation_of: ds/cumsum_2d.hpp
 layout: document
 redirect_from:

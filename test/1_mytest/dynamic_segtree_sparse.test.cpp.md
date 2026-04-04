@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -196,25 +196,26 @@ data:
     \    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[1] = multiply_rec(node[c].ch[1], m, r, i, x);\n    }\n\
     \    update(c);\n    return c;\n  }\n\n  void prod_rec(int c, ll l, ll r, ll ql,\
-    \ ll qr, X &x) {\n    chmax(ql, l);\n    chmin(qr, r);\n    if (ql >= qr || c\
-    \ == NIL) return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, node[c].prod);\n\
+    \ ll qr, X &x) {\n    chmax(ql, l), chmin(qr, r);\n    if (ql >= qr || c == NIL)\
+    \ return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, node[c].prod);\n\
     \      return;\n    }\n    ll m = (l + r) / 2;\n    prod_rec(node[c].ch[0], l,\
     \ m, ql, qr, x);\n    if (ql <= (node[c].idx) && (node[c].idx) < qr) x = MX::op(x,\
     \ node[c].x);\n    prod_rec(node[c].ch[1], m, r, ql, qr, x);\n  }\n\n  template\
     \ <typename F>\n  ll max_right_rec(int c, const F &check, ll l, ll r, ll ql, X\
-    \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (check(MX::op(x, node[c].prod)))\
-    \ {\n      x = MX::op(x, node[c].prod);\n      return R0;\n    }\n    ll m = (l\
-    \ + r) / 2;\n    ll k = max_right_rec(node[c].ch[0], check, l, m, ql, x);\n  \
-    \  if (k != R0) return k;\n    if (ql <= node[c].idx) {\n      x = MX::op(x, node[c].x);\n\
-    \      if (!check(x)) return node[c].idx;\n    }\n    return max_right_rec(node[c].ch[1],\
-    \ check, m, r, ql, x);\n  }\n\n  template <typename F>\n  ll min_left_rec(int\
-    \ c, const F &check, ll l, ll r, ll qr, X &x) {\n    if (c == NIL || qr <= l)\
-    \ return L0;\n    if (check(MX::op(node[c].prod, x))) {\n      x = MX::op(node[c].prod,\
-    \ x);\n      return L0;\n    }\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1],\
-    \ check, m, r, qr, x);\n    if (k != L0) return k;\n    if (node[c].idx < qr)\
-    \ {\n      x = MX::op(node[c].x, x);\n      if (!check(x)) return node[c].idx\
-    \ + 1;\n    }\n    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n \
-    \ }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (ql <= l && check(MX::op(x,\
+    \ node[c].prod))) {\n      x = MX::op(x, node[c].prod);\n      return R0;\n  \
+    \  }\n    ll m = (l + r) / 2;\n    ll k = max_right_rec(node[c].ch[0], check,\
+    \ l, m, ql, x);\n    if (k != R0) return k;\n    if (ql <= node[c].idx) {\n  \
+    \    x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n   \
+    \ }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n  template\
+    \ <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r, ll qr, X\
+    \ &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (check(MX::op(node[c].prod,\
+    \ x))) {\n      x = MX::op(node[c].prod, x);\n      return L0;\n    }\n    ll\
+    \ m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);\n\
+    \    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
+    \ x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n    return min_left_rec(node[c].ch[0],\
+    \ check, l, m, qr, x);\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/dynamic_segtree_sparse.test.cpp\"\
@@ -264,7 +265,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
+  timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_segtree_sparse.test.cpp

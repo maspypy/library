@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
@@ -227,8 +227,8 @@ data:
   timestamp: '2025-11-18 00:27:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/splay_cm.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
+  - test/1_mytest/splay_cm.test.cpp
 documentation_of: ds/splaytree/splaytree_commutative_monoid.hpp
 layout: document
 redirect_from:

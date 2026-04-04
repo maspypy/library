@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -131,8 +131,8 @@ data:
   timestamp: '2026-02-03 22:59:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2602.test.cpp
   - test/3_yukicoder/3005.test.cpp
+  - test/3_yukicoder/2602.test.cpp
   - test/4_aoj/CGL_7_C.test.cpp
 documentation_of: geo/outcircle.hpp
 layout: document

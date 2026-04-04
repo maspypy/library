@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -336,38 +336,39 @@ data:
     \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
     \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
     \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
-    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0,\
-    \ 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int k) {\n    int idx =\
-    \ k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if\
-    \ (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx + 1);\n    if (idx\
-    \ == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n  }\n\
-    \n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n    k %= 64;\n\
-    \    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) - 1;\n    if\
-    \ (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto e) -> bool\
-    \ { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n    return 64\
-    \ * idx + topbit(dat[idx]);\n  }\n};\n#line 1 \"ds/offline_query/mo.hpp\"\n//\
-    \ Nsqrt(Q)\r\nstruct Mo {\r\n  vc<pair<int, int>> LR;\r\n  void add(int L, int\
-    \ R) { LR.emplace_back(L, R); }\r\n\r\n  static vc<int> get_mo_order(vc<pair<int,\
-    \ int>> LR) {\r\n    int N = 1;\r\n    for (auto &&[l, r]: LR) chmax(N, l), chmax(N,\
-    \ r);\r\n    int Q = len(LR);\r\n    if (Q == 0) return {};\r\n    int bs = sqrt(3)\
-    \ * N / sqrt(2 * Q);\r\n    chmax(bs, 1);\r\n    vc<int> I(Q);\r\n    iota(all(I),\
-    \ 0);\r\n    sort(all(I), [&](int a, int b) {\r\n      int aa = LR[a].fi / bs,\
-    \ bb = LR[b].fi / bs;\r\n      if (aa != bb) return aa < bb;\r\n      return (aa\
-    \ & 1) ? LR[a].se > LR[b].se : LR[a].se < LR[b].se;\r\n    });\r\n\r\n    auto\
-    \ cost = [&](int a, int b) -> int {\r\n      return abs(LR[I[a]].fi - LR[I[b]].fi)\
-    \ + abs(LR[I[a]].se - LR[I[b]].se);\r\n    };\r\n\r\n    // \u30E9\u30F3\u30C0\
-    \u30E0\u30B1\u30FC\u30B9\u3067\u6570\u30D1\u30FC\u30BB\u30F3\u30C8\r\n    FOR(k,\
-    \ Q - 5) {\r\n      if (cost(k, k + 2) + cost(k + 1, k + 3)\r\n          < cost(k,\
-    \ k + 1) + cost(k + 2, k + 3)) {\r\n        swap(I[k + 1], I[k + 2]);\r\n    \
-    \  }\r\n      if (cost(k, k + 3) + cost(k + 1, k + 4)\r\n          < cost(k, k\
-    \ + 1) + cost(k + 3, k + 4)) {\r\n        swap(I[k + 1], I[k + 3]);\r\n      }\r\
-    \n    }\r\n    return I;\r\n  }\r\n\r\n  template <typename F1, typename F2, typename\
-    \ F3, typename F4, typename F5>\r\n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4\
-    \ rm_r, F5 query) {\r\n    auto I = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\
-    \n    for (auto idx: I) {\r\n      while (l > LR[idx].fi) add_l(--l);\r\n    \
-    \  while (r < LR[idx].se) add_r(r++);\r\n      while (l < LR[idx].fi) rm_l(l++);\r\
-    \n      while (r > LR[idx].se) rm_r(--r);\r\n      query(idx);\r\n    }\r\n  }\r\
-    \n};\r\n#line 7 \"test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp\"\
+    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },\n\
+    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
+    \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
+    \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
+    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
+    \  }\n\n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n   \
+    \ k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) -\
+    \ 1;\n    if (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto\
+    \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
+    \  return 64 * idx + topbit(dat[idx]);\n  }\n\n  string to_string() {\n    string\
+    \ out;\n    FOR(i, N) out += '0' + (dat[i / 64] >> (i & 63) & 1);\n    return\
+    \ out;\n  }\n};\n#line 1 \"ds/offline_query/mo.hpp\"\n// Nsqrt(Q)\r\nstruct Mo\
+    \ {\r\n  vc<pair<int, int>> LR;\r\n  void add(int L, int R) { LR.emplace_back(L,\
+    \ R); }\r\n\r\n  static vc<int> get_mo_order(vc<pair<int, int>> LR) {\r\n    int\
+    \ N = 1;\r\n    for (auto &&[l, r]: LR) chmax(N, l), chmax(N, r);\r\n    int Q\
+    \ = len(LR);\r\n    if (Q == 0) return {};\r\n    int bs = sqrt(3) * N / sqrt(2\
+    \ * Q);\r\n    chmax(bs, 1);\r\n    vc<int> I(Q);\r\n    iota(all(I), 0);\r\n\
+    \    sort(all(I), [&](int a, int b) {\r\n      int aa = LR[a].fi / bs, bb = LR[b].fi\
+    \ / bs;\r\n      if (aa != bb) return aa < bb;\r\n      return (aa & 1) ? LR[a].se\
+    \ > LR[b].se : LR[a].se < LR[b].se;\r\n    });\r\n\r\n    auto cost = [&](int\
+    \ a, int b) -> int {\r\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se\
+    \ - LR[I[b]].se);\r\n    };\r\n\r\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\
+    \u30B9\u3067\u6570\u30D1\u30FC\u30BB\u30F3\u30C8\r\n    FOR(k, Q - 5) {\r\n  \
+    \    if (cost(k, k + 2) + cost(k + 1, k + 3)\r\n          < cost(k, k + 1) + cost(k\
+    \ + 2, k + 3)) {\r\n        swap(I[k + 1], I[k + 2]);\r\n      }\r\n      if (cost(k,\
+    \ k + 3) + cost(k + 1, k + 4)\r\n          < cost(k, k + 1) + cost(k + 3, k +\
+    \ 4)) {\r\n        swap(I[k + 1], I[k + 3]);\r\n      }\r\n    }\r\n    return\
+    \ I;\r\n  }\r\n\r\n  template <typename F1, typename F2, typename F3, typename\
+    \ F4, typename F5>\r\n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4 rm_r, F5 query)\
+    \ {\r\n    auto I = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\n    for (auto\
+    \ idx: I) {\r\n      while (l > LR[idx].fi) add_l(--l);\r\n      while (r < LR[idx].se)\
+    \ add_r(r++);\r\n      while (l < LR[idx].fi) rm_l(l++);\r\n      while (r > LR[idx].se)\
+    \ rm_r(--r);\r\n      query(idx);\r\n    }\r\n  }\r\n};\r\n#line 7 \"test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  auto I = argsort(A);\n \
     \ vc<int> B(N);\n  FOR(i, N) B[I[i]] = i;\n  swap(A, B);\n\n  FenwickTree_01 bit(N);\n\
     \n  Mo mo;\n  vi ANS(Q);\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L, R);\n  }\n\n\
@@ -404,8 +405,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-04-05 00:48:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
 layout: document

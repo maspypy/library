@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -279,25 +279,28 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"poly/sum_of_prefix_suffix_products.hpp\"\n\n/*\n\u591A\u9805\u5F0F\
-    \u306E\u5217 f0, f1, ..., f{N-1} \u304A\u3088\u3073 g0, g1, ..., g{N-1} \u3092\
-    \u4E0E\u3048\u308B\u3002\nf0f1f2f3 + f0f1f2g3 + f0f1g2g3 + f0g1g2g3 + g0g1g2g3\n\
-    \u306E\u3088\u3046\u306A\u7DCF\u548C\u3092\u6C42\u3081\u308B\u3002\u5206\u5272\
-    \u7D71\u6CBB\u3067 O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u7DCF\u548C\u3002\
-    \nhttps://atcoder.jp/contests/nadafes2022_day1/tasks/nadafes2022_day1_p\n*/\n\
-    template <typename mint>\nvc<mint> sum_of_prefix_suffix_products(vvc<mint> F,\
-    \ vvc<mint> G) {\n  int n = len(F);\n  using poly = vc<mint>;\n  auto add = [&](poly\
-    \ f, poly g) -> poly {\n    poly h(max(len(f), len(g)));\n    FOR(i, len(f)) h[i]\
-    \ += f[i];\n    FOR(i, len(g)) h[i] += g[i];\n    return h;\n  };\n\n  auto dfs\
-    \ = [&](auto& dfs, int l, int r) -> tuple<poly, poly, poly> {\n    if (r == l\
-    \ + 1) { return {add(F[l], G[l]), F[l], G[l]}; }\n    int m = (l + r) / 2;\n \
-    \   auto [pl, fl, gl] = dfs(dfs, l, m);\n    auto [pr, fr, gr] = dfs(dfs, m, r);\n\
-    \    poly p = convolution(pl, gr);\n    FOR(i, len(gr)) pr[i] -= gr[i];\n    p\
-    \ = add(p, convolution(fl, pr));\n    return {p, convolution(fl, fr), convolution(gl,\
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 2 \"poly/sum_of_prefix_suffix_products.hpp\"\
+    \n\n/*\n\u591A\u9805\u5F0F\u306E\u5217 f0, f1, ..., f{N-1} \u304A\u3088\u3073\
+    \ g0, g1, ..., g{N-1} \u3092\u4E0E\u3048\u308B\u3002\nf0f1f2f3 + f0f1f2g3 + f0f1g2g3\
+    \ + f0g1g2g3 + g0g1g2g3\n\u306E\u3088\u3046\u306A\u7DCF\u548C\u3092\u6C42\u3081\
+    \u308B\u3002\u5206\u5272\u7D71\u6CBB\u3067 O(Nlog^2N)\u3002N \u306F\u6B21\u6570\
+    \u306E\u7DCF\u548C\u3002\nhttps://atcoder.jp/contests/nadafes2022_day1/tasks/nadafes2022_day1_p\n\
+    */\ntemplate <typename mint>\nvc<mint> sum_of_prefix_suffix_products(vvc<mint>\
+    \ F, vvc<mint> G) {\n  int n = len(F);\n  using poly = vc<mint>;\n  auto add =\
+    \ [&](poly f, poly g) -> poly {\n    poly h(max(len(f), len(g)));\n    FOR(i,\
+    \ len(f)) h[i] += f[i];\n    FOR(i, len(g)) h[i] += g[i];\n    return h;\n  };\n\
+    \n  auto dfs = [&](auto& dfs, int l, int r) -> tuple<poly, poly, poly> {\n   \
+    \ if (r == l + 1) { return {add(F[l], G[l]), F[l], G[l]}; }\n    int m = (l +\
+    \ r) / 2;\n    auto [pl, fl, gl] = dfs(dfs, l, m);\n    auto [pr, fr, gr] = dfs(dfs,\
+    \ m, r);\n    poly p = convolution(pl, gr);\n    FOR(i, len(gr)) pr[i] -= gr[i];\n\
+    \    p = add(p, convolution(fl, pr));\n    return {p, convolution(fl, fr), convolution(gl,\
     \ gr)};\n  };\n  auto [p, f, g] = dfs(dfs, 0, n);\n  return p;\n}\n"
   code: "#include \"poly/convolution.hpp\"\n\n/*\n\u591A\u9805\u5F0F\u306E\u5217 f0,\
     \ f1, ..., f{N-1} \u304A\u3088\u3073 g0, g1, ..., g{N-1} \u3092\u4E0E\u3048\u308B\
@@ -326,7 +329,7 @@ data:
   isVerificationFile: false
   path: poly/sum_of_prefix_suffix_products.hpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
+  timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/sum_of_prefix_suffix_products.hpp

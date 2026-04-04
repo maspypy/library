@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -19,40 +19,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -606,56 +606,60 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 3 \"graph/count/count_independent_set.hpp\"\n\n// \u72EC\u7ACB\u96C6\
-    \u5408\u6570\u3048\u4E0A\u3052\u3002\u7A7A\u96C6\u5408\u3082\u8A8D\u3081\u308B\
-    \u3002N 1.381^N \u7A0B\u5EA6\u3002\ntemplate <typename GT>\nu64 count_independent_set(GT&\
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 3 \"graph/count/count_independent_set.hpp\"\
+    \n\n// \u72EC\u7ACB\u96C6\u5408\u6570\u3048\u4E0A\u3052\u3002\u7A7A\u96C6\u5408\
+    \u3082\u8A8D\u3081\u308B\u3002N 1.381^N \u7A0B\u5EA6\u3002\ntemplate <typename\
+    \ GT>\nu64 count_independent_set(GT& G) {\n  using U = u64;\n  const int N = G.N;\n\
+    \  assert(N < 64);\n  if (N == 0) return 1;\n  vc<U> nbd(N);\n  FOR(v, N) for\
+    \ (auto&& e: G[v]) nbd[v] |= U(1) << e.to;\n\n  vc<U> dp_path(N + 1), dp_cyc(N\
+    \ + 1);\n  dp_path[0] = 1, dp_path[1] = 2;\n  FOR(i, 2, N + 1) dp_path[i] = dp_path[i\
+    \ - 1] + dp_path[i - 2];\n  FOR(i, 3, N + 1) dp_cyc[i] = dp_path[i - 1] + dp_path[i\
+    \ - 3];\n\n  auto dfs = [&](auto& dfs, U s) -> U {\n    int deg0 = 0;\n    pair<int,\
+    \ int> p = {-1, -1}; // (v, d)\n    FOR(v, N) if (s >> v & 1) {\n      int d =\
+    \ popcnt(nbd[v] & s);\n      if (chmax(p.se, d)) p.fi = v;\n      if (d == 0)\
+    \ {\n        ++deg0;\n        s &= ~(U(1) << v);\n      }\n    }\n    if (s ==\
+    \ 0) return U(1) << deg0;\n    int v = p.fi;\n    if (p.se >= 3) {\n      s &=\
+    \ ~(U(1) << v);\n      return (dfs(dfs, s) + dfs(dfs, s & ~nbd[v])) << deg0;\n\
+    \    }\n    // d <= 2, path \u3068 cycle \u306E\u307F\n    vc<int> V;\n    FOR(v,\
+    \ N) if (s >> v & 1) V.eb(v);\n    int n = len(V);\n    Graph<bool, 0> G(n);\n\
+    \    FOR(i, n) {\n      U x = nbd[V[i]] & s;\n      while (x) {\n        int v\
+    \ = topbit(x);\n        x ^= U(1) << v;\n        int j = LB(V, v);\n        if\
+    \ (i < j) G.add(i, j);\n      }\n    }\n    G.build();\n    auto [paths, cycs]\
+    \ = path_cycle(G);\n    U res = 1;\n    for (auto&& P: paths) res *= dp_path[len(P)];\n\
+    \    for (auto&& C: cycs) res *= dp_cyc[len(C)];\n    return res << deg0;\n  };\n\
+    \  return dfs(dfs, (U(1) << N) - 1);\n}\n\n// \u72EC\u7ACB\u96C6\u5408\u6570\u3048\
+    \u4E0A\u3052\u3002\u7A7A\u96C6\u5408\u3082\u8A8D\u3081\u308B\u3002N 1.381^N \u7A0B\
+    \u5EA6\u3002\ntemplate <typename GT>\nvc<u64> count_independent_set_by_size(GT&\
     \ G) {\n  using U = u64;\n  const int N = G.N;\n  assert(N < 64);\n  if (N ==\
-    \ 0) return 1;\n  vc<U> nbd(N);\n  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= U(1)\
-    \ << e.to;\n\n  vc<U> dp_path(N + 1), dp_cyc(N + 1);\n  dp_path[0] = 1, dp_path[1]\
-    \ = 2;\n  FOR(i, 2, N + 1) dp_path[i] = dp_path[i - 1] + dp_path[i - 2];\n  FOR(i,\
-    \ 3, N + 1) dp_cyc[i] = dp_path[i - 1] + dp_path[i - 3];\n\n  auto dfs = [&](auto&\
-    \ dfs, U s) -> U {\n    int deg0 = 0;\n    pair<int, int> p = {-1, -1}; // (v,\
-    \ d)\n    FOR(v, N) if (s >> v & 1) {\n      int d = popcnt(nbd[v] & s);\n   \
-    \   if (chmax(p.se, d)) p.fi = v;\n      if (d == 0) {\n        ++deg0;\n    \
-    \    s &= ~(U(1) << v);\n      }\n    }\n    if (s == 0) return U(1) << deg0;\n\
-    \    int v = p.fi;\n    if (p.se >= 3) {\n      s &= ~(U(1) << v);\n      return\
-    \ (dfs(dfs, s) + dfs(dfs, s & ~nbd[v])) << deg0;\n    }\n    // d <= 2, path \u3068\
-    \ cycle \u306E\u307F\n    vc<int> V;\n    FOR(v, N) if (s >> v & 1) V.eb(v);\n\
-    \    int n = len(V);\n    Graph<bool, 0> G(n);\n    FOR(i, n) {\n      U x = nbd[V[i]]\
-    \ & s;\n      while (x) {\n        int v = topbit(x);\n        x ^= U(1) << v;\n\
-    \        int j = LB(V, v);\n        if (i < j) G.add(i, j);\n      }\n    }\n\
-    \    G.build();\n    auto [paths, cycs] = path_cycle(G);\n    U res = 1;\n   \
-    \ for (auto&& P: paths) res *= dp_path[len(P)];\n    for (auto&& C: cycs) res\
-    \ *= dp_cyc[len(C)];\n    return res << deg0;\n  };\n  return dfs(dfs, (U(1) <<\
-    \ N) - 1);\n}\n\n// \u72EC\u7ACB\u96C6\u5408\u6570\u3048\u4E0A\u3052\u3002\u7A7A\
-    \u96C6\u5408\u3082\u8A8D\u3081\u308B\u3002N 1.381^N \u7A0B\u5EA6\u3002\ntemplate\
-    \ <typename GT>\nvc<u64> count_independent_set_by_size(GT& G) {\n  using U = u64;\n\
-    \  const int N = G.N;\n  assert(N < 64);\n  if (N == 0) return {1};\n  vc<U> nbd(N);\n\
-    \  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= U(1) << e.to;\n\n  vvc<U> dp_path(N\
-    \ + 1), dp_cyc(N + 1);\n  dp_path[0] = {1}, dp_path[1] = {1, 1};\n  FOR(i, 2,\
-    \ N + 1) {\n    dp_path[i] = dp_path[i - 1];\n    dp_path[i].resize(ceil<int>(i,\
-    \ 2) + 1);\n    FOR(k, len(dp_path[i - 2])) { dp_path[i][k + 1] += dp_path[i -\
-    \ 2][k]; }\n  }\n  FOR(i, 3, N + 1) {\n    dp_cyc[i] = dp_path[i - 1];\n    FOR(k,\
-    \ len(dp_path[i - 3])) dp_cyc[i][k + 1] += dp_path[i - 3][k];\n  }\n\n  auto dfs\
-    \ = [&](auto& dfs, U s) -> vc<U> {\n    vc<U> res = {1};\n    pair<int, int> p\
-    \ = {-1, -1}; // (v, d)\n    FOR(v, N) if (s >> v & 1) {\n      int d = popcnt(nbd[v]\
-    \ & s);\n      if (chmax(p.se, d)) p.fi = v;\n      if (d == 0) {\n        res.eb(0);\n\
-    \        FOR_R(i, len(res) - 1) res[i + 1] += res[i];\n        s &= ~(U(1) <<\
-    \ v);\n      }\n    }\n    if (s == 0) return res;\n    int v = p.fi;\n    if\
-    \ (p.se >= 3) {\n      s &= ~(U(1) << v);\n      auto f = dfs(dfs, s), g = dfs(dfs,\
-    \ s & ~nbd[v]);\n      if (len(f) < len(g) + 1) f.resize(len(g) + 1);\n      FOR(i,\
-    \ len(g)) f[i + 1] += g[i];\n      return convolution_naive(f, res);\n    }\n\
-    \    // d <= 2, path \u3068 cycle \u306E\u307F\n    vc<int> V;\n    FOR(v, N)\
-    \ if (s >> v & 1) V.eb(v);\n    int n = len(V);\n    Graph<bool, 0> G(n);\n  \
-    \  FOR(i, n) {\n      U x = nbd[V[i]] & s;\n      while (x) {\n        int v =\
-    \ topbit(x);\n        x ^= U(1) << v;\n        int j = LB(V, v);\n        if (i\
-    \ < j) G.add(i, j);\n      }\n    }\n    G.build();\n    auto [paths, cycs] =\
-    \ path_cycle(G);\n    for (auto&& P: paths) res = convolution_naive(res, dp_path[len(P)]);\n\
-    \    for (auto&& C: cycs) res = convolution_naive(res, dp_cyc[len(C)]);\n    return\
+    \ 0) return {1};\n  vc<U> nbd(N);\n  FOR(v, N) for (auto&& e: G[v]) nbd[v] |=\
+    \ U(1) << e.to;\n\n  vvc<U> dp_path(N + 1), dp_cyc(N + 1);\n  dp_path[0] = {1},\
+    \ dp_path[1] = {1, 1};\n  FOR(i, 2, N + 1) {\n    dp_path[i] = dp_path[i - 1];\n\
+    \    dp_path[i].resize(ceil<int>(i, 2) + 1);\n    FOR(k, len(dp_path[i - 2]))\
+    \ { dp_path[i][k + 1] += dp_path[i - 2][k]; }\n  }\n  FOR(i, 3, N + 1) {\n   \
+    \ dp_cyc[i] = dp_path[i - 1];\n    FOR(k, len(dp_path[i - 3])) dp_cyc[i][k + 1]\
+    \ += dp_path[i - 3][k];\n  }\n\n  auto dfs = [&](auto& dfs, U s) -> vc<U> {\n\
+    \    vc<U> res = {1};\n    pair<int, int> p = {-1, -1}; // (v, d)\n    FOR(v,\
+    \ N) if (s >> v & 1) {\n      int d = popcnt(nbd[v] & s);\n      if (chmax(p.se,\
+    \ d)) p.fi = v;\n      if (d == 0) {\n        res.eb(0);\n        FOR_R(i, len(res)\
+    \ - 1) res[i + 1] += res[i];\n        s &= ~(U(1) << v);\n      }\n    }\n   \
+    \ if (s == 0) return res;\n    int v = p.fi;\n    if (p.se >= 3) {\n      s &=\
+    \ ~(U(1) << v);\n      auto f = dfs(dfs, s), g = dfs(dfs, s & ~nbd[v]);\n    \
+    \  if (len(f) < len(g) + 1) f.resize(len(g) + 1);\n      FOR(i, len(g)) f[i +\
+    \ 1] += g[i];\n      return convolution_naive(f, res);\n    }\n    // d <= 2,\
+    \ path \u3068 cycle \u306E\u307F\n    vc<int> V;\n    FOR(v, N) if (s >> v & 1)\
+    \ V.eb(v);\n    int n = len(V);\n    Graph<bool, 0> G(n);\n    FOR(i, n) {\n \
+    \     U x = nbd[V[i]] & s;\n      while (x) {\n        int v = topbit(x);\n  \
+    \      x ^= U(1) << v;\n        int j = LB(V, v);\n        if (i < j) G.add(i,\
+    \ j);\n      }\n    }\n    G.build();\n    auto [paths, cycs] = path_cycle(G);\n\
+    \    for (auto&& P: paths) res = convolution_naive(res, dp_path[len(P)]);\n  \
+    \  for (auto&& C: cycs) res = convolution_naive(res, dp_cyc[len(C)]);\n    return\
     \ res;\n  };\n  auto res = dfs(dfs, (U(1) << N) - 1);\n  res.resize(N + 1);\n\
     \  return res;\n}\n\n// \u91CD\u307F\u306F\u9802\u70B9\u91CD\u307F\u306E\u7A4D\
     \n// https://codeforces.com/contest/468/problem/E\ntemplate <typename T, typename\
@@ -751,7 +755,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_clique.test.cpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
+  timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_clique.test.cpp

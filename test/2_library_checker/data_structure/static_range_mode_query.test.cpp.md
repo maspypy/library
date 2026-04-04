@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/rollback_mo.hpp
     title: ds/offline_query/rollback_mo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_mode_query
@@ -245,11 +245,12 @@ data:
     \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/data_structure/static_range_mode_query.test.cpp\"\
     \n\n#line 1 \"ds/offline_query/rollback_mo.hpp\"\n// https://codeforces.com/contest/620/problem/F\n\
     // (10^5,3*10^5), mo+fastset 1300ms\n// https://codeforces.com/problemset/submission/765/240821486\n\
-    struct Rollback_Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) { LR.emplace_back(L,\
-    \ R); }\n\n  template <typename AL, typename AR, typename F1, typename F2, typename\
-    \ F3,\n            typename O>\n  void calc(AL add_left, AR add_right, F1 reset,\
-    \ F2 save, F3 rollback,\n            O query) {\n    const int Q = len(LR);\n\
-    \    if (Q == 0) return;\n    int N = 0;\n    for (auto &&[L, R]: LR) chmax(N,\
+    // https://codeforces.com/problemset/problem/2206/E\nstruct Rollback_Mo {\n  vc<pair<int,\
+    \ int>> LR;\n  void add(int L, int R) { LR.emplace_back(L, R); }\n\n  // reset\
+    \ \u56DE\u6570: O(sqrt)\n  template <typename AL, typename AR, typename F1, typename\
+    \ F2, typename F3,\n            typename O>\n  void calc(AL add_left, AR add_right,\
+    \ F1 reset, F2 save, F3 rollback,\n            O query) {\n    const int Q = len(LR);\n\
+    \    if (Q == 0) return;\n    int N = 0;\n    for (auto &&[L, R] : LR) chmax(N,\
     \ R);\n    const int b_num = sqrt(Q);\n    const int b_sz = ceil(N, b_num);\n\
     \    vvc<int> QID((N - 1) / b_sz + 1);\n    // \u5DE6\u7AEF\u306E\u5C5E\u3059\u308B\
     \u30D6\u30ED\u30C3\u30AF\u3067\u5206\u985E\n    // \u5DE6\u7AEF\u3068\u53F3\u7AEF\
@@ -262,9 +263,9 @@ data:
     \      }\n      QID[iL].eb(qid);\n    }\n\n    FOR(iL, len(QID)) {\n      auto\
     \ &I = QID[iL];\n      if (I.empty()) continue;\n      sort(all(I),\n        \
     \   [&](auto &a, auto &b) -> bool { return LR[a].se < LR[b].se; });\n      int\
-    \ LMAX = 0;\n      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n   \
-    \     chmax(LMAX, L);\n      }\n      reset();\n      int l = LMAX, r = LMAX;\n\
-    \      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n        while (r\
+    \ LMAX = 0;\n      for (auto &&qid : I) {\n        auto [L, R] = LR[qid];\n  \
+    \      chmax(LMAX, L);\n      }\n      reset();\n      int l = LMAX, r = LMAX;\n\
+    \      for (auto &&qid : I) {\n        auto [L, R] = LR[qid];\n        while (r\
     \ < R) add_right(r++);\n        save();\n        while (L < l) add_left(--l);\n\
     \        query(qid);\n        rollback();\n        l = LMAX;\n      }\n    }\n\
     \  }\n};\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -339,8 +340,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-04-05 00:48:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
 layout: document

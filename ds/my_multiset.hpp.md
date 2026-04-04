@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   _extendedRequiredBy: []
@@ -75,43 +75,43 @@ data:
     \    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[1] = multiply_rec(node[c].ch[1], m, r, i, x);\n    }\n\
     \    update(c);\n    return c;\n  }\n\n  void prod_rec(int c, ll l, ll r, ll ql,\
-    \ ll qr, X &x) {\n    chmax(ql, l);\n    chmin(qr, r);\n    if (ql >= qr || c\
-    \ == NIL) return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, node[c].prod);\n\
+    \ ll qr, X &x) {\n    chmax(ql, l), chmin(qr, r);\n    if (ql >= qr || c == NIL)\
+    \ return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, node[c].prod);\n\
     \      return;\n    }\n    ll m = (l + r) / 2;\n    prod_rec(node[c].ch[0], l,\
     \ m, ql, qr, x);\n    if (ql <= (node[c].idx) && (node[c].idx) < qr) x = MX::op(x,\
     \ node[c].x);\n    prod_rec(node[c].ch[1], m, r, ql, qr, x);\n  }\n\n  template\
     \ <typename F>\n  ll max_right_rec(int c, const F &check, ll l, ll r, ll ql, X\
-    \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (check(MX::op(x, node[c].prod)))\
-    \ {\n      x = MX::op(x, node[c].prod);\n      return R0;\n    }\n    ll m = (l\
-    \ + r) / 2;\n    ll k = max_right_rec(node[c].ch[0], check, l, m, ql, x);\n  \
-    \  if (k != R0) return k;\n    if (ql <= node[c].idx) {\n      x = MX::op(x, node[c].x);\n\
-    \      if (!check(x)) return node[c].idx;\n    }\n    return max_right_rec(node[c].ch[1],\
-    \ check, m, r, ql, x);\n  }\n\n  template <typename F>\n  ll min_left_rec(int\
-    \ c, const F &check, ll l, ll r, ll qr, X &x) {\n    if (c == NIL || qr <= l)\
-    \ return L0;\n    if (check(MX::op(node[c].prod, x))) {\n      x = MX::op(node[c].prod,\
-    \ x);\n      return L0;\n    }\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1],\
-    \ check, m, r, qr, x);\n    if (k != L0) return k;\n    if (node[c].idx < qr)\
-    \ {\n      x = MX::op(node[c].x, x);\n      if (!check(x)) return node[c].idx\
-    \ + 1;\n    }\n    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n \
-    \ }\n};\n#line 2 \"ds/my_multiset.hpp\"\n\n// key,cnt \u306F long long, sum \u306F\
-    \ i128\nstruct My_Multiset {\n  struct Mono {\n    using value_type = pair<ll,\
-    \ i128>;  // cnt, sum\n    using X = value_type;\n    static X op(X x, X y) {\
-    \ return {x.fi + y.fi, x.se + y.se}; }\n    static constexpr X unit() { return\
-    \ {0, 0}; }\n    static constexpr bool commute = 1;\n  };\n  Dynamic_SegTree_Sparse<Mono,\
-    \ false> seg;\n\n  My_Multiset(int NODES) : seg(NODES, -infty<ll>, infty<ll>)\
-    \ {}\n\n  void reset() { seg.reset(); }\n  int new_root() { return seg.new_root();\
-    \ }\n  int add(int c, ll k, ll cnt = 1) {\n    return seg.multiply(c, k, {cnt,\
-    \ i128(k) * cnt});\n  }\n\n  pair<ll, i128> get_range(int c, ll L, ll R) { return\
-    \ seg.prod(c, L, R); }\n  pair<ll, i128> get_all(int c) { return seg.prod_all(c);\
-    \ }\n\n  // (k-th val or infty), sum\n  pair<ll, i128> prefix_kth(int c, ll k)\
-    \ {\n    auto [cnt, sm] = seg.prod_all(c);\n    assert(k <= cnt);\n    if (k ==\
-    \ cnt) return {infty<ll>, sm};\n    ll key =\n        seg.max_right(c, [&](auto\
-    \ e) -> bool { return e.fi <= k; }, -infty<ll>);\n    tie(cnt, sm) = seg.prod(c,\
-    \ -infty<ll>, key);\n    return {key, sm + key * (k - cnt)};\n  }\n\n  // (k-th\
-    \ val or -infty), sum\n  pair<ll, i128> suffix_kth(int c, ll k) {\n    auto [cnt,\
-    \ sm] = seg.prod_all(c);\n    assert(k <= cnt);\n    if (k == cnt) return {-infty<ll>,\
-    \ sm};\n    auto [a, b] = prefix_kth(c, cnt - 1 - k);\n    return {a, sm - b -\
-    \ a};\n  }\n};\n"
+    \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (ql <= l && check(MX::op(x,\
+    \ node[c].prod))) {\n      x = MX::op(x, node[c].prod);\n      return R0;\n  \
+    \  }\n    ll m = (l + r) / 2;\n    ll k = max_right_rec(node[c].ch[0], check,\
+    \ l, m, ql, x);\n    if (k != R0) return k;\n    if (ql <= node[c].idx) {\n  \
+    \    x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n   \
+    \ }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n  template\
+    \ <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r, ll qr, X\
+    \ &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (check(MX::op(node[c].prod,\
+    \ x))) {\n      x = MX::op(node[c].prod, x);\n      return L0;\n    }\n    ll\
+    \ m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);\n\
+    \    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
+    \ x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n    return min_left_rec(node[c].ch[0],\
+    \ check, l, m, qr, x);\n  }\n};\n#line 2 \"ds/my_multiset.hpp\"\n\n// key,cnt\
+    \ \u306F long long, sum \u306F i128\nstruct My_Multiset {\n  struct Mono {\n \
+    \   using value_type = pair<ll, i128>;  // cnt, sum\n    using X = value_type;\n\
+    \    static X op(X x, X y) { return {x.fi + y.fi, x.se + y.se}; }\n    static\
+    \ constexpr X unit() { return {0, 0}; }\n    static constexpr bool commute = 1;\n\
+    \  };\n  Dynamic_SegTree_Sparse<Mono, false> seg;\n\n  My_Multiset(int NODES)\
+    \ : seg(NODES, -infty<ll>, infty<ll>) {}\n\n  void reset() { seg.reset(); }\n\
+    \  int new_root() { return seg.new_root(); }\n  int add(int c, ll k, ll cnt =\
+    \ 1) {\n    return seg.multiply(c, k, {cnt, i128(k) * cnt});\n  }\n\n  pair<ll,\
+    \ i128> get_range(int c, ll L, ll R) { return seg.prod(c, L, R); }\n  pair<ll,\
+    \ i128> get_all(int c) { return seg.prod_all(c); }\n\n  // (k-th val or infty),\
+    \ sum\n  pair<ll, i128> prefix_kth(int c, ll k) {\n    auto [cnt, sm] = seg.prod_all(c);\n\
+    \    assert(k <= cnt);\n    if (k == cnt) return {infty<ll>, sm};\n    ll key\
+    \ =\n        seg.max_right(c, [&](auto e) -> bool { return e.fi <= k; }, -infty<ll>);\n\
+    \    tie(cnt, sm) = seg.prod(c, -infty<ll>, key);\n    return {key, sm + key *\
+    \ (k - cnt)};\n  }\n\n  // (k-th val or -infty), sum\n  pair<ll, i128> suffix_kth(int\
+    \ c, ll k) {\n    auto [cnt, sm] = seg.prod_all(c);\n    assert(k <= cnt);\n \
+    \   if (k == cnt) return {-infty<ll>, sm};\n    auto [a, b] = prefix_kth(c, cnt\
+    \ - 1 - k);\n    return {a, sm - b - a};\n  }\n};\n"
   code: "#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// key,cnt \u306F long\
     \ long, sum \u306F i128\nstruct My_Multiset {\n  struct Mono {\n    using value_type\
     \ = pair<ll, i128>;  // cnt, sum\n    using X = value_type;\n    static X op(X\
@@ -136,7 +136,7 @@ data:
   isVerificationFile: false
   path: ds/my_multiset.hpp
   requiredBy: []
-  timestamp: '2026-03-14 22:08:09+09:00'
+  timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/my_multiset.hpp

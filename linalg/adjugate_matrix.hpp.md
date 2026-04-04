@@ -1,62 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/adjugate_matrix.hpp\"\n\n#line 2 \"random/base.hpp\"\
@@ -348,29 +348,33 @@ data:
     \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
     \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"linalg/basis.hpp\"\n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\
-    \u6210\u529F\u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\
-    \u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\n// rbasis: \u4E0A\u4E09\
-    \u89D2\u5316\u3055\u308C\u305F\u57FA\u5E95. [i][i]==1.\n// way[i][j]: rbasis[i]\
-    \ = sum way[i][j] basis[j]\ntemplate <typename mint>\nstruct Basis {\n  int n,\
-    \ rank;\n  vvc<mint> basis;\n  vvc<mint> rbasis;\n  vvc<mint> way;\n  Basis(int\
-    \ max_dim) : n(max_dim), rank(0), basis{} {\n    rbasis.assign(max_dim, vc<mint>(max_dim));\n\
-    \    way.assign(max_dim, vc<mint>(max_dim));\n  }\n\n  // return : (sum==X \u306B\
-    \u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5)\n  pair<bool, vc<mint>> solve(vc<mint>\
-    \ X) {\n    vc<mint> CF(n);\n    FOR(i, n) {\n      if (rbasis[i][i] == mint(1))\
-    \ {\n        CF[i] = X[i];\n        FOR(j, i, n) X[j] -= CF[i] * rbasis[i][j];\n\
-    \      }\n    }\n    for (auto& x: X) {\n      if (x != mint(0)) { return {false,\
-    \ {}}; }\n    }\n    vc<mint> ANS(rank);\n    FOR(i, n) { FOR(j, rank) ANS[j]\
-    \ += CF[i] * way[i][j]; }\n    return {true, ANS};\n  }\n\n  // return : (sum==x\
-    \ \u306B\u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5). false \u306E\u5834\
-    \u5408\u306B\u306F\u8FFD\u52A0\u3059\u308B\n  pair<bool, vc<mint>> solve_or_add(vc<mint>\
-    \ X) {\n    vc<mint> Y = X;\n    vc<mint> CF(n);\n    FOR(i, n) {\n      if (rbasis[i][i]\
-    \ == mint(1)) {\n        CF[i] = X[i];\n        FOR(j, i, n) X[j] -= CF[i] * rbasis[i][j];\n\
-    \      }\n    }\n    int p = [&]() -> int {\n      FOR(i, n) if (X[i] != mint(0))\
+    \ const vc<mint>& b) {\r\n  if (mint::get_mod() == 2) {\r\n    vc<modint998> aa,\
+    \ bb;\r\n    for (auto& x : a) aa.eb(x.val);\r\n    for (auto& x : b) bb.eb(x.val);\r\
+    \n    aa = convolution<modint998>(aa, bb);\r\n    vc<mint> ANS(len(aa));\r\n \
+    \   FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\r\n    return ANS;\r\n  }\r\n  int\
+    \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
+    \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
+    \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 2 \"linalg/basis.hpp\"\
+    \n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\u6210\u529F\u3057\u305F\u3082\
+    \u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\u308B\u306A\u3089\u5916\u3067\
+    \u7BA1\u7406\u3059\u308B.\n// rbasis: \u4E0A\u4E09\u89D2\u5316\u3055\u308C\u305F\
+    \u57FA\u5E95. [i][i]==1.\n// way[i][j]: rbasis[i] = sum way[i][j] basis[j]\ntemplate\
+    \ <typename mint>\nstruct Basis {\n  int n, rank;\n  vvc<mint> basis;\n  vvc<mint>\
+    \ rbasis;\n  vvc<mint> way;\n  Basis(int max_dim) : n(max_dim), rank(0), basis{}\
+    \ {\n    rbasis.assign(max_dim, vc<mint>(max_dim));\n    way.assign(max_dim, vc<mint>(max_dim));\n\
+    \  }\n\n  // return : (sum==X \u306B\u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\
+    \u6CD5)\n  pair<bool, vc<mint>> solve(vc<mint> X) {\n    vc<mint> CF(n);\n   \
+    \ FOR(i, n) {\n      if (rbasis[i][i] == mint(1)) {\n        CF[i] = X[i];\n \
+    \       FOR(j, i, n) X[j] -= CF[i] * rbasis[i][j];\n      }\n    }\n    for (auto&\
+    \ x: X) {\n      if (x != mint(0)) { return {false, {}}; }\n    }\n    vc<mint>\
+    \ ANS(rank);\n    FOR(i, n) { FOR(j, rank) ANS[j] += CF[i] * way[i][j]; }\n  \
+    \  return {true, ANS};\n  }\n\n  // return : (sum==x \u306B\u3067\u304D\u308B\u304B\
+    , \u305D\u306E\u65B9\u6CD5). false \u306E\u5834\u5408\u306B\u306F\u8FFD\u52A0\u3059\
+    \u308B\n  pair<bool, vc<mint>> solve_or_add(vc<mint> X) {\n    vc<mint> Y = X;\n\
+    \    vc<mint> CF(n);\n    FOR(i, n) {\n      if (rbasis[i][i] == mint(1)) {\n\
+    \        CF[i] = X[i];\n        FOR(j, i, n) X[j] -= CF[i] * rbasis[i][j];\n \
+    \     }\n    }\n    int p = [&]() -> int {\n      FOR(i, n) if (X[i] != mint(0))\
     \ return i;\n      return -1;\n    }();\n    if (p == -1) {\n      vc<mint> ANS(rank);\n\
     \      FOR(i, n) { FOR(j, rank) ANS[j] += CF[i] * way[i][j]; }\n      return {true,\
     \ ANS};\n    }\n    mint c = X[p].inverse();\n    FOR(j, p, n) X[j] *= c;\n  \
@@ -525,8 +529,8 @@ data:
   isVerificationFile: false
   path: linalg/adjugate_matrix.hpp
   requiredBy: []
-  timestamp: '2026-03-02 00:39:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-04-05 00:48:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
 documentation_of: linalg/adjugate_matrix.hpp
