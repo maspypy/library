@@ -105,6 +105,15 @@ vector<ll> convolution(vector<ll> a, vector<ll> b) {
 
 template <typename mint>
 vc<mint> convolution(const vc<mint>& a, const vc<mint>& b) {
+  if (mint::get_mod() == 2) {
+    vc<modint998> aa, bb;
+    for (auto& x : a) aa.eb(x.val);
+    for (auto& x : b) bb.eb(x.val);
+    aa = convolution<modint998>(aa, bb);
+    vc<mint> ANS(len(aa));
+    FOR(i, len(aa)) ANS[i] = aa[i].val & 1;
+    return ANS;
+  }
   int n = len(a), m = len(b);
   if (!n || !m) return {};
   if (mint::can_ntt()) {

@@ -1,12 +1,13 @@
 #include "string/suffix_array.hpp"
 
 // https://qoj.ac/contest/1803/problem/9406
-template <bool USE_SPARSE_TABLE>
+// SEG_TYPE=0: SegTree, 1: SparseTable, 2: StaticRangeProduct
+template <int SEG_TYPE>
 struct Many_String_Compare {
   int n;
   string ALL;
   vc<int> pos;
-  Suffix_Array<USE_SPARSE_TABLE> X;
+  Suffix_Array<SEG_TYPE> X;
 
   template <typename F>
   Many_String_Compare(int n, F f) : n(n) {
@@ -15,7 +16,7 @@ struct Many_String_Compare {
       ALL += f(i);
       pos.eb(len(ALL));
     }
-    X = Suffix_Array<USE_SPARSE_TABLE>(ALL);
+    X = Suffix_Array<SEG_TYPE>(ALL);
   }
 
   // S[a][la:lb), S[b][lb:rb)
@@ -32,7 +33,9 @@ struct Many_String_Compare {
     int na = ra - la, nb = rb - lb;
     if (na > nb) return -comp3(b, lb, rb, a, la, ra);
     int n = lcp(a, la, ra, b, lb, rb);
-    if (n == na) { return (na == nb ? 0 : -1); }
+    if (n == na) {
+      return (na == nb ? 0 : -1);
+    }
     return (ALL[pos[a] + la + n] < ALL[pos[b] + lb + n] ? -1 : 1);
   }
 
@@ -48,30 +51,32 @@ struct Many_String_Compare {
   }
 
   // [<]-1, [=]0, [>]1, vc of {idx, l, r}
-  int comp3(vc<tuple<int, int, int>> A, vc<tuple<int, int, int>> B) {
-    reverse(all(A));
-    reverse(all(B));
+  int comp3(const vc<tuple<int, int, int>> &A,
+            const vc<tuple<int, int, int>> &B) {
+    int pa = 0, pb = 0;
+    int ka = 0, kb = 0;
     while (1) {
-      while (!A.empty()) {
-        auto [i, l, r] = A.back();
-        if (l < r) break;
-        POP(A);
+      while (pa < len(A)) {
+        auto [i, l, r] = A[pa];
+        if (l + ka < r) break;
+        ++pa, ka = 0;
       }
-      while (!B.empty()) {
-        auto [i, l, r] = B.back();
-        if (l < r) break;
-        POP(B);
+      while (pb < len(B)) {
+        auto [i, l, r] = B[pb];
+        if (l + kb < r) break;
+        ++pb, kb = 0;
       }
-      if (A.empty() && B.empty()) return 0;
-      if (A.empty()) return -1;
-      if (B.empty()) return 1;
-      auto &[a, la, ra] = A.back();
-      auto &[b, lb, rb] = B.back();
+      if (pa == len(A) && pb == len(B)) return 0;
+      if (pa == len(A)) return -1;
+      if (pb == len(B)) return 1;
+      auto [a, la, ra] = A[pa];
+      auto [b, lb, rb] = B[pb];
+      la += ka, lb += kb;
       int k = lcp(a, la, ra, b, lb, rb);
       if (k == 0) return (ALL[pos[a] + la] < ALL[pos[b] + lb] ? -1 : 1);
-      la += k, lb += k;
+      ka += k, kb += k;
     }
-    return 0;
+    assert(0);
   }
 
   int length(int a) { return pos[a + 1] - pos[a]; }

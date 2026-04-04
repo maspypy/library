@@ -81,7 +81,8 @@ struct FenwickTree_01 {
     u64 x = dat[idx];
     int p = popcnt(x);
     if (p <= k) return N;
-    k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);
+    k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },
+                      0, 64, 0);
     return 64 * idx + k;
   }
 
@@ -105,5 +106,11 @@ struct FenwickTree_01 {
     idx = bit.min_left([&](auto e) -> bool { return e <= 0; }, idx) - 1;
     if (idx == -1) return -1;
     return 64 * idx + topbit(dat[idx]);
+  }
+
+  string to_string() {
+    string out;
+    FOR(i, N) out += '0' + (dat[i / 64] >> (i & 63) & 1);
+    return out;
   }
 };

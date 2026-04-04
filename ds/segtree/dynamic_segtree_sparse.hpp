@@ -165,8 +165,7 @@ struct Dynamic_SegTree_Sparse {
   }
 
   void prod_rec(int c, ll l, ll r, ll ql, ll qr, X &x) {
-    chmax(ql, l);
-    chmin(qr, r);
+    chmax(ql, l), chmin(qr, r);
     if (ql >= qr || c == NIL) return;
     if (l == ql && r == qr) {
       x = MX::op(x, node[c].prod);
@@ -181,7 +180,7 @@ struct Dynamic_SegTree_Sparse {
   template <typename F>
   ll max_right_rec(int c, const F &check, ll l, ll r, ll ql, X &x) {
     if (c == NIL || r <= ql) return R0;
-    if (check(MX::op(x, node[c].prod))) {
+    if (ql <= l && check(MX::op(x, node[c].prod))) {
       x = MX::op(x, node[c].prod);
       return R0;
     }

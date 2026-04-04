@@ -1,10 +1,12 @@
 // https://codeforces.com/contest/620/problem/F
 // (10^5,3*10^5), mo+fastset 1300ms
 // https://codeforces.com/problemset/submission/765/240821486
+// https://codeforces.com/problemset/problem/2206/E
 struct Rollback_Mo {
   vc<pair<int, int>> LR;
   void add(int L, int R) { LR.emplace_back(L, R); }
 
+  // reset 回数: O(sqrt)
   template <typename AL, typename AR, typename F1, typename F2, typename F3,
             typename O>
   void calc(AL add_left, AR add_right, F1 reset, F2 save, F3 rollback,
@@ -12,7 +14,7 @@ struct Rollback_Mo {
     const int Q = len(LR);
     if (Q == 0) return;
     int N = 0;
-    for (auto &&[L, R]: LR) chmax(N, R);
+    for (auto &&[L, R] : LR) chmax(N, R);
     const int b_num = sqrt(Q);
     const int b_sz = ceil(N, b_num);
     vvc<int> QID((N - 1) / b_sz + 1);
@@ -42,13 +44,13 @@ struct Rollback_Mo {
       sort(all(I),
            [&](auto &a, auto &b) -> bool { return LR[a].se < LR[b].se; });
       int LMAX = 0;
-      for (auto &&qid: I) {
+      for (auto &&qid : I) {
         auto [L, R] = LR[qid];
         chmax(LMAX, L);
       }
       reset();
       int l = LMAX, r = LMAX;
-      for (auto &&qid: I) {
+      for (auto &&qid : I) {
         auto [L, R] = LR[qid];
         while (r < R) add_right(r++);
         save();

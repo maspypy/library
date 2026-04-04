@@ -3,17 +3,24 @@
 #include "alg/monoid/min.hpp"
 #include "ds/sparse_table/sparse_table.hpp"
 #include "ds/segtree/segtree.hpp"
+#include "ds/static_range_product.hpp"
 
 // 辞書順 i 番目の suffix が j 文字目始まりであるとき、
 // SA[i] = j, ISA[j] = i
 // |S|>0 を前提（そうでない場合 dummy 文字を追加して利用せよ）
-template <bool USE_SPARSE_TABLE = true>
+// SEG_TYPE=0: SegTree, 1: SparseTable, 2: StaticRangeProduct
+template <int SEG_TYPE>
 struct Suffix_Array {
   vc<int> SA;
   vc<int> ISA;
   vc<int> LCP;
   using Mono = Monoid_Min<int>;
-  using SegType = conditional_t<USE_SPARSE_TABLE, Sparse_Table<Mono>, SegTree<Mono> >;
+  using SEG0 = SegTree<Mono>;
+  using SEG1 = Sparse_Table<Mono>;
+  using SEG2 = Static_Range_Product<Mono, Sparse_Table<Mono>, 4>;
+  static_assert(SEG_TYPE == 0 || SEG_TYPE == 1 || SEG_TYPE == 2);
+  using SegType = conditional_t<SEG_TYPE == 0, SEG0,
+                                conditional_t<SEG_TYPE == 1, SEG1, SEG2> >;
   SegType seg;
   bool build_seg;
 
@@ -22,7 +29,7 @@ struct Suffix_Array {
     build_seg = 0;
     assert(len(s) > 0);
     char first = 127, last = 0;
-    for (auto&& c: s) {
+    for (auto&& c : s) {
       chmin(first, c);
       chmax(last, c);
     }
@@ -75,24 +82,28 @@ struct Suffix_Array {
     return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);
   }
 
-private:
-  void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA, const vc<bool>& sl, const vc<int>& lms_idx) {
+ private:
+  void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA,
+                    const vc<bool>& sl, const vc<int>& lms_idx) {
     vc<int> l(val_range, 0), r(val_range, 0);
-    for (int c: vect) {
+    for (int c : vect) {
       if (c + 1 < val_range) ++l[c + 1];
       ++r[c];
     }
     partial_sum(l.begin(), l.end(), l.begin());
     partial_sum(r.begin(), r.end(), r.begin());
     fill(SA.begin(), SA.end(), -1);
-    for (int i = (int)lms_idx.size() - 1; i >= 0; --i) SA[--r[vect[lms_idx[i]]]] = lms_idx[i];
-    for (int i: SA)
+    for (int i = (int)lms_idx.size() - 1; i >= 0; --i)
+      SA[--r[vect[lms_idx[i]]]] = lms_idx[i];
+    for (int i : SA)
       if (i >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i - 1;
     fill(r.begin(), r.end(), 0);
-    for (int c: vect) ++r[c];
+    for (int c : vect) ++r[c];
     partial_sum(r.begin(), r.end(), r.begin());
     for (int k = (int)SA.size() - 1, i = SA[k]; k >= 1; --k, i = SA[k])
-      if (i >= 1 && !sl[i - 1]) { SA[--r[vect[i - 1]]] = i - 1; }
+      if (i >= 1 && !sl[i - 1]) {
+        SA[--r[vect[i - 1]]] = i - 1;
+      }
   }
 
   vc<int> SA_IS(const vc<int>& vect, int val_range) {
@@ -108,7 +119,9 @@ private:
     induced_sort(vect, val_range, SA, sl, lms_idx);
     vc<int> new_lms_idx(lms_idx.size()), lms_vec(lms_idx.size());
     for (int i = 0, k = 0; i < n; ++i)
-      if (!sl[SA[i]] && SA[i] >= 1 && sl[SA[i] - 1]) { new_lms_idx[k++] = SA[i]; }
+      if (!sl[SA[i]] && SA[i] >= 1 && sl[SA[i] - 1]) {
+        new_lms_idx[k++] = SA[i];
+      }
     int cur = 0;
     SA[n - 1] = cur;
     for (size_t k = 1; k < new_lms_idx.size(); ++k) {
@@ -133,16 +146,19 @@ private:
     for (size_t i = 0; i < lms_idx.size(); ++i) lms_vec[i] = SA[lms_idx[i]];
     if (cur + 1 < (int)lms_idx.size()) {
       auto lms_SA = SA_IS(lms_vec, cur + 1);
-      for (size_t i = 0; i < lms_idx.size(); ++i) { new_lms_idx[i] = lms_idx[lms_SA[i]]; }
+      for (size_t i = 0; i < lms_idx.size(); ++i) {
+        new_lms_idx[i] = lms_idx[lms_SA[i]];
+      }
     }
     induced_sort(vect, val_range, SA, sl, new_lms_idx);
     return SA;
   }
 
-  vc<int> calc_suffix_array(const string& s, const char first = 'a', const char last = 'z') {
+  vc<int> calc_suffix_array(const string& s, const char first = 'a',
+                            const char last = 'z') {
     vc<int> vect(s.size() + 1);
     copy(begin(s), end(s), begin(vect));
-    for (auto& x: vect) x -= (int)first - 1;
+    for (auto& x : vect) x -= (int)first - 1;
     vect.back() = 0;
     auto ret = SA_IS(vect, (int)last - (int)first + 2);
     ret.erase(ret.begin());
@@ -155,7 +171,7 @@ private:
 
     vc<int> vect(s.size() + 1);
     copy(all(s), vect.begin());
-    for (auto& x: vect) x = LB(ss, x) + 1;
+    for (auto& x : vect) x = LB(ss, x) + 1;
     vect.back() = 0;
     auto ret = SA_IS(vect, MAX(vect) + 2);
     ret.erase(ret.begin());
