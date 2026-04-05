@@ -21,12 +21,12 @@ data:
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://www.codechef.com/START137A/problems/CABABAA
@@ -168,7 +168,7 @@ data:
     \n// SA[i] = j, ISA[j] = i\n// |S|>0 \u3092\u524D\u63D0\uFF08\u305D\u3046\u3067\
     \u306A\u3044\u5834\u5408 dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\u3066\u5229\
     \u7528\u305B\u3088\uFF09\n// SEG_TYPE=0: SegTree, 1: SparseTable, 2: StaticRangeProduct\n\
-    template <int SEG_TYPE>\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n\
+    template <int SEG_TYPE = 0>\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n\
     \  vc<int> LCP;\n  using Mono = Monoid_Min<int>;\n  using SEG0 = SegTree<Mono>;\n\
     \  using SEG1 = Sparse_Table<Mono>;\n  using SEG2 = Static_Range_Product<Mono,\
     \ Sparse_Table<Mono>, 4>;\n  static_assert(SEG_TYPE == 0 || SEG_TYPE == 1 || SEG_TYPE\
@@ -281,8 +281,8 @@ data:
   isVerificationFile: false
   path: string/lex_max_suffix_for_all_prefix.hpp
   requiredBy: []
-  timestamp: '2026-04-05 00:48:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-04-05 22:17:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lex_minmax_suffix.test.cpp
 documentation_of: string/lex_max_suffix_for_all_prefix.hpp

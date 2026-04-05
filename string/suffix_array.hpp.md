@@ -20,10 +20,10 @@ data:
   - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':warning:'
@@ -45,10 +45,10 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
   - icon: ':heavy_check_mark:'
@@ -212,7 +212,7 @@ data:
     \n// SA[i] = j, ISA[j] = i\n// |S|>0 \u3092\u524D\u63D0\uFF08\u305D\u3046\u3067\
     \u306A\u3044\u5834\u5408 dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\u3066\u5229\
     \u7528\u305B\u3088\uFF09\n// SEG_TYPE=0: SegTree, 1: SparseTable, 2: StaticRangeProduct\n\
-    template <int SEG_TYPE>\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n\
+    template <int SEG_TYPE = 0>\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n\
     \  vc<int> LCP;\n  using Mono = Monoid_Min<int>;\n  using SEG0 = SegTree<Mono>;\n\
     \  using SEG1 = Sparse_Table<Mono>;\n  using SEG2 = Static_Range_Product<Mono,\
     \ Sparse_Table<Mono>, 4>;\n  static_assert(SEG_TYPE == 0 || SEG_TYPE == 1 || SEG_TYPE\
@@ -291,9 +291,9 @@ data:
     \ i\n// |S|>0 \u3092\u524D\u63D0\uFF08\u305D\u3046\u3067\u306A\u3044\u5834\u5408\
     \ dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\u3066\u5229\u7528\u305B\u3088\uFF09\
     \n// SEG_TYPE=0: SegTree, 1: SparseTable, 2: StaticRangeProduct\ntemplate <int\
-    \ SEG_TYPE>\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n\
-    \  using Mono = Monoid_Min<int>;\n  using SEG0 = SegTree<Mono>;\n  using SEG1\
-    \ = Sparse_Table<Mono>;\n  using SEG2 = Static_Range_Product<Mono, Sparse_Table<Mono>,\
+    \ SEG_TYPE = 0>\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int>\
+    \ LCP;\n  using Mono = Monoid_Min<int>;\n  using SEG0 = SegTree<Mono>;\n  using\
+    \ SEG1 = Sparse_Table<Mono>;\n  using SEG2 = Static_Range_Product<Mono, Sparse_Table<Mono>,\
     \ 4>;\n  static_assert(SEG_TYPE == 0 || SEG_TYPE == 1 || SEG_TYPE == 2);\n  using\
     \ SegType = conditional_t<SEG_TYPE == 0, SEG0,\n                             \
     \   conditional_t<SEG_TYPE == 1, SEG1, SEG2> >;\n  SegType seg;\n  bool build_seg;\n\
@@ -362,7 +362,7 @@ data:
     \ k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n        k = 0;\n        continue;\n\
     \      }\n      int j = SA[ISA[i] + 1];\n      while (i + k < n && j + k < n &&\
     \ s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n    }\n    LCP.resize(n\
-    \ - 1);\n  }\n};"
+    \ - 1);\n  }\n};\n"
   dependsOn:
   - alg/monoid/min.hpp
   - ds/sparse_table/sparse_table.hpp
@@ -381,7 +381,7 @@ data:
   - string/sort_substrings.hpp
   - string/suffix_tree.hpp
   - string/suffix_lcp_change.hpp
-  timestamp: '2026-04-05 00:48:27+09:00'
+  timestamp: '2026-04-05 22:17:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/string/longest_common_substring.test.cpp
