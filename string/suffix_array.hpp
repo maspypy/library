@@ -9,7 +9,7 @@
 // SA[i] = j, ISA[j] = i
 // |S|>0 を前提（そうでない場合 dummy 文字を追加して利用せよ）
 // SEG_TYPE=0: SegTree, 1: SparseTable, 2: StaticRangeProduct
-template <int SEG_TYPE>
+template <int SEG_TYPE = 0>
 struct Suffix_Array {
   vc<int> SA;
   vc<int> ISA;
