@@ -1866,7 +1866,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1796.test.cpp
     title: test/3_yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1881,28 +1881,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1818.test.cpp
     title: test/3_yukicoder/1818.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1821.test.cpp
     title: test/3_yukicoder/1821.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826.test.cpp
     title: test/3_yukicoder/1826.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826_2.test.cpp
     title: test/3_yukicoder/1826_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/184.test.cpp
     title: test/3_yukicoder/184.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1848.test.cpp
     title: test/3_yukicoder/1848.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1857.test.cpp
     title: test/3_yukicoder/1857.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1917,7 +1917,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1874.test.cpp
     title: test/3_yukicoder/1874.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1926,7 +1926,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1891.test.cpp
     title: test/3_yukicoder/1891.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1907.test.cpp
     title: test/3_yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1941,13 +1941,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1936.test.cpp
     title: test/3_yukicoder/1936.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1939.test.cpp
     title: test/3_yukicoder/1939.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1956.test.cpp
     title: test/3_yukicoder/1956.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1962.test.cpp
     title: test/3_yukicoder/1962.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1965,7 +1965,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2003.test.cpp
     title: test/3_yukicoder/2003.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2005.test.cpp
     title: test/3_yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1974,7 +1974,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2026.test.cpp
     title: test/3_yukicoder/2026.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2062.test.cpp
     title: test/3_yukicoder/2062.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1983,13 +1983,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2066.test.cpp
     title: test/3_yukicoder/2066.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2097.test.cpp
     title: test/3_yukicoder/2097.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2102.test.cpp
     title: test/3_yukicoder/2102.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2108.test.cpp
     title: test/3_yukicoder/2108.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2001,7 +2001,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2120.test.cpp
     title: test/3_yukicoder/2120.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2010,7 +2010,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2161.test.cpp
     title: test/3_yukicoder/2161.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2028,10 +2028,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2231.test.cpp
     title: test/3_yukicoder/2231.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2242.test.cpp
     title: test/3_yukicoder/2242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2073,7 +2073,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2296.test.cpp
     title: test/3_yukicoder/2296.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2094,7 +2094,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'

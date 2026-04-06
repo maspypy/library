@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':question:'
@@ -25,13 +25,13 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
   - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []

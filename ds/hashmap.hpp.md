@@ -83,7 +83,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition_old.hpp
     title: graph/centroid_decomposition_old.hpp
   - icon: ':question:'
@@ -209,7 +209,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_C4.hpp
     title: graph/find_C4.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_centroid.hpp
     title: graph/find_centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -227,7 +227,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -410,7 +410,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -837,7 +837,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1796.test.cpp
     title: test/3_yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'
@@ -864,7 +864,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2102.test.cpp
     title: test/3_yukicoder/2102.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -876,7 +876,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2264.test.cpp
     title: test/3_yukicoder/2264.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'
@@ -894,7 +894,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
