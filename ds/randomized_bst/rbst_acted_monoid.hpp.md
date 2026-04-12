@@ -315,10 +315,10 @@ data:
   verifiedWith:
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/3_yukicoder/686.test.cpp
-  - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/rbst_am_persistent.test.cpp
-  - test/1_mytest/ARC30D.test.cpp
   - test/1_mytest/rbst_am_2.test.cpp
+  - test/1_mytest/ARC30D.test.cpp
+  - test/1_mytest/rbst_am.test.cpp
 documentation_of: ds/randomized_bst/rbst_acted_monoid.hpp
 layout: document
 redirect_from:

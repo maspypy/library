@@ -42,8 +42,8 @@ data:
   path: alg/monoid/minmincnt.hpp
   requiredBy:
   - graph/count/count_connected_intervals.hpp
-  - ds/rectangle_union.hpp
   - alg/acted_monoid/minmincnt_add.hpp
+  - ds/rectangle_union.hpp
   timestamp: '2023-04-02 02:09:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

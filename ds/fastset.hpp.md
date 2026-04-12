@@ -164,35 +164,35 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - graph/all_cycle_common_vertex.hpp
-  - graph/toposort.hpp
-  - graph/ds/incremental_centroid.hpp
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - other/cuboid_union_volume.hpp
-  - bigint/redundant_binary_number.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
+  - graph/toposort.hpp
+  - graph/all_cycle_common_vertex.hpp
+  - graph/ds/incremental_centroid.hpp
   - string/suffix_tree.hpp
-  - ds/incremental_rectangle_union.hpp
-  - ds/intervals.hpp
-  - ds/sortable_array.hpp
   - ds/segtree/range_add_make_decreasing.hpp
   - ds/segtree/range_add_make_increasing.hpp
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
+  - ds/sortable_array.hpp
+  - ds/intervals.hpp
+  - ds/incremental_rectangle_union.hpp
+  - bigint/redundant_binary_number.hpp
   timestamp: '2025-12-07 20:35:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/3_yukicoder/2809.test.cpp
   - test/3_yukicoder/2361.test.cpp
-  - test/4_aoj/2636.test.cpp
   - test/4_aoj/2251_1.test.cpp
-  - test/1_mytest/sortable_array.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp
-  - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
+  - test/1_mytest/range_assign.test.cpp
+  - test/1_mytest/sortable_array.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:

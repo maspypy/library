@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   _extendedRequiredBy: []
@@ -17,18 +17,18 @@ data:
     \ i && i < n));\n    dat[i >> 6].fi |= u64(1) << (i & 63);\n  }\n  void reset()\
     \ {\n    fill(all(dat), pair<u64, u32>{0, 0});\n    prepared = 0;\n  }\n  void\
     \ build() {\n    prepared = 1;\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
-    \ + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n \
-    \ bool operator[](int i) { return dat[i >> 6].fi >> (i & 63) & 1; }\n  int count_prefix(int\
+    \ + popcnt(dat[i].fi);\n  }\n  bool operator[](int i) { return dat[i >> 6].fi\
+    \ >> (i & 63) & 1; }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int\
     \ k, bool f = true) {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n\
     \    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
-    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) { return count_prefix(R,\
-    \ f) - count_prefix(L, f); }\n  string to_string() {\n    string ans;\n    FOR(i,\
-    \ n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n\
-    #line 2 \"ds/wavelet_matrix/wavelet_matrix_old.hpp\"\n\n// \u5EA7\u5727\u3059\u308B\
-    \u304B\u3069\u3046\u304B\u3092 COMPRESS \u3067\u6307\u5B9A\u3059\u308B\n// xor\
-    \ \u7684\u306A\u4F7F\u3044\u65B9\u3092\u3059\u308B\u5834\u5408\u306B\u306F\u3001\
-    \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067 log \u3092\u6E21\u3059\u3053\u3068\
-    \ntemplate <typename T, bool COMPRESS, bool USE_SUM>\nstruct Wavelet_Matrix_Old\
+    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) {\n    return count_prefix(R,\
+    \ f) - count_prefix(L, f);\n  }\n  string to_string() {\n    string ans;\n   \
+    \ FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n\
+    \  }\n};\n#line 2 \"ds/wavelet_matrix/wavelet_matrix_old.hpp\"\n\n// \u5EA7\u5727\
+    \u3059\u308B\u304B\u3069\u3046\u304B\u3092 COMPRESS \u3067\u6307\u5B9A\u3059\u308B\
+    \n// xor \u7684\u306A\u4F7F\u3044\u65B9\u3092\u3059\u308B\u5834\u5408\u306B\u306F\
+    \u3001\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067 log \u3092\u6E21\u3059\u3053\
+    \u3068\ntemplate <typename T, bool COMPRESS, bool USE_SUM>\nstruct Wavelet_Matrix_Old\
     \ {\n  static_assert(is_same_v<T, int> || is_same_v<T, ll>);\n  int N, lg;\n \
     \ vector<int> mid;\n  vector<Bit_Vector> bv;\n  vc<T> key;\n  bool set_log;\n\
     \  vvc<T> cumsum;\n\n  Wavelet_Matrix_Old() {}\n\n  // \u548C\u3092\u4F7F\u308F\
@@ -227,7 +227,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_old.hpp
   requiredBy: []
-  timestamp: '2024-10-23 21:57:13+09:00'
+  timestamp: '2026-04-13 08:42:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/wavelet_matrix/wavelet_matrix_old.hpp

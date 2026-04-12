@@ -121,9 +121,9 @@ data:
   - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/1781.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
-  - test/1_mytest/prime_sum.test.cpp
   - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
+  - test/1_mytest/prime_sum.test.cpp
 documentation_of: nt/primesum.hpp
 layout: document
 redirect_from:

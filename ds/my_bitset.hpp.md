@@ -93,6 +93,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
+    - https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour
     - https://yukicoder.me/problems/no/142
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
     // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
@@ -238,7 +239,13 @@ data:
     \ precompute();\n    string S;\n    for (auto &x : dat) {\n      FOR(i, 8) S +=\
     \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n"
+    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
+    \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
+    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
+    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];\n"
   code: "#pragma once\n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
     // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
     \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
@@ -383,42 +390,48 @@ data:
     \ precompute();\n    string S;\n    for (auto &x : dat) {\n      FOR(i, 8) S +=\
     \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];"
+    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
+    \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
+    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
+    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];"
   dependsOn: []
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
   - nt/find_coprime_pair.hpp
-  - graph/bitset/transitive_closure.hpp
-  - graph/bitset/bfs_bitset.hpp
-  - graph/bitset/transitive_reduction.hpp
   - flow/bipartite_dense.hpp
-  - knapsack/subset_sum.hpp
-  - ds/sum_over_bit_positions.hpp
-  - linalg/bitset/det.hpp
+  - linalg/bitset/mat_inv.hpp
   - linalg/bitset/matrix_pow.hpp
+  - linalg/bitset/solve_linear.hpp
+  - linalg/bitset/det.hpp
   - linalg/bitset/matrix_mul_and_or.hpp
   - linalg/bitset/matrix_mul_mod_2.hpp
-  - linalg/bitset/solve_linear.hpp
-  - linalg/bitset/mat_inv.hpp
-  timestamp: '2026-02-12 20:42:31+09:00'
+  - graph/bitset/bfs_bitset.hpp
+  - graph/bitset/transitive_closure.hpp
+  - graph/bitset/transitive_reduction.hpp
+  - ds/sum_over_bit_positions.hpp
+  - knapsack/subset_sum.hpp
+  timestamp: '2026-04-13 08:42:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-  - test/3_yukicoder/2490.test.cpp
-  - test/3_yukicoder/421.test.cpp
   - test/3_yukicoder/2626_2.test.cpp
-  - test/3_yukicoder/1400.test.cpp
+  - test/3_yukicoder/421.test.cpp
+  - test/3_yukicoder/1421.test.cpp
   - test/3_yukicoder/421_2.test.cpp
   - test/3_yukicoder/1340.test.cpp
+  - test/3_yukicoder/2490.test.cpp
   - test/3_yukicoder/3229.test.cpp
-  - test/3_yukicoder/142.test.cpp
-  - test/3_yukicoder/1421.test.cpp
   - test/3_yukicoder/4_2.test.cpp
+  - test/3_yukicoder/1400.test.cpp
+  - test/3_yukicoder/142.test.cpp
   - test/1_mytest/mybitset.test.cpp
-  - test/1_mytest/sum_over_bit_positions.test.cpp
   - test/1_mytest/subset_sum.test.cpp
+  - test/1_mytest/sum_over_bit_positions.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
 redirect_from:

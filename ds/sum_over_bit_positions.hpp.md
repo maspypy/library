@@ -159,7 +159,13 @@ data:
     \ precompute();\n    string S;\n    for (auto &x : dat) {\n      FOR(i, 8) S +=\
     \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
+    \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
+    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
+    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
     #line 2 \"ds/sum_over_bit_positions.hpp\"\n\n// https://qoj.ac/contest/1784/problem/9244\n\
     // sum bitset[i]*wt[i]\n// T \u306F 11bit sum \u304C\u304A\u3055\u307E\u308C\u3070\
     \ ok\n// (N=Q=100000:0.9 sec)\ntemplate <typename T, int MAXSIZE>\nstruct Sum_Over_Bit_Positions\
@@ -207,7 +213,7 @@ data:
   isVerificationFile: false
   path: ds/sum_over_bit_positions.hpp
   requiredBy: []
-  timestamp: '2026-02-12 20:42:31+09:00'
+  timestamp: '2026-04-13 08:42:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/sum_over_bit_positions.test.cpp

@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -256,8 +256,8 @@ data:
   verifiedWith:
   - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
   - test/3_yukicoder/2120.test.cpp
-  - test/3_yukicoder/2181.test.cpp
   - test/3_yukicoder/2613.test.cpp
+  - test/3_yukicoder/2181.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document
 redirect_from:

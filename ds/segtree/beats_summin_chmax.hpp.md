@@ -136,8 +136,8 @@ data:
   timestamp: '2025-10-30 08:59:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1526.test.cpp
   - test/3_yukicoder/3314.test.cpp
+  - test/3_yukicoder/1526.test.cpp
 documentation_of: ds/segtree/beats_summin_chmax.hpp
 layout: document
 redirect_from:

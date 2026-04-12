@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -161,8 +161,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/two_edge_component.test.cpp
-  - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/529.test.cpp
+  - test/3_yukicoder/1983.test.cpp
   - test/4_aoj/GRL_3_B.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document

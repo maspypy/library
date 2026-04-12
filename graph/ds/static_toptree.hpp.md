@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -360,20 +360,20 @@ data:
   isVerificationFile: false
   path: graph/ds/static_toptree.hpp
   requiredBy:
-  - graph/tree_walk_generating_function.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/count_matching_on_tree.hpp
-  - graph/ds/distance_sum.hpp
-  - graph/ds/dynamic_tree_dp.hpp
+  - graph/tree_walk_generating_function.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
+  - graph/ds/dynamic_tree_dp.hpp
+  - graph/ds/distance_sum.hpp
   timestamp: '2026-02-03 22:59:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2258.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document

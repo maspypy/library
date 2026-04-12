@@ -46,7 +46,16 @@ data:
     \ min(n, cnt[d]);\n      for (int i = l; i < l + m; ++i) {\n        ANS.eb(V[i],\
     \ v), D[i]--;\n      }\n      tmp.eb(d, m);\n      n -= m, p = l;\n    }\n   \
     \ for (auto& [d, m] : tmp) cnt[d] -= m, cnt[d - 1] += m;\n    tmp.clear();\n \
-    \ }\n  return {true, ANS};\n}\n"
+    \ }\n  return {true, ANS};\n}\n\npair<bool, vc<pair<int, int>>> construct_from_degree_sequence_tree(\n\
+    \    vc<int> deg) {\n  int N = len(deg);\n  if (SUM<ll>(deg) != N + N - 2) return\
+    \ {false, {}};\n  if (N == 1) return {true, {}};\n  if (MIN(deg) == 0) return\
+    \ {false, {}};\n  vc<pair<int, int>> E;\n  vc<int> X, Y;\n  FOR(v, N)(deg[v] ==\
+    \ 1 ? X : Y).eb(v);\n  FOR(step, N - 1) {\n    while (len(Y) && deg[Y.back()]\
+    \ <= 1) X.eb(POP(Y));\n    while (len(X) && deg[X.back()] != 1) POP(X);\n    int\
+    \ v = POP(X);\n    while (len(X) && deg[X.back()] != 1) POP(X);\n    if (step\
+    \ == N - 2) {\n      E.eb(v, POP(X));\n    } else {\n      int w = POP(Y);\n \
+    \     E.eb(v, w);\n      deg[w]--, Y.eb(w);\n    }\n  }\n  return {true, E};\n\
+    }\n"
   code: "#include \"ds/csr.hpp\"\n\n// O(N). \u5358\u7D14\u30B0\u30E9\u30D5\u306E\u5B58\
     \u5728\u5224\u5B9A. Erdos-Gallai \u306E\u5B9A\u7406.\nbool check_degree_sequence(vc<int>\
     \ deg) {\n  int N = len(deg);\n  if (N == 0) return true;\n  ll sm = 0;\n  vc<int>\
@@ -69,13 +78,22 @@ data:
     \ min(n, cnt[d]);\n      for (int i = l; i < l + m; ++i) {\n        ANS.eb(V[i],\
     \ v), D[i]--;\n      }\n      tmp.eb(d, m);\n      n -= m, p = l;\n    }\n   \
     \ for (auto& [d, m] : tmp) cnt[d] -= m, cnt[d - 1] += m;\n    tmp.clear();\n \
-    \ }\n  return {true, ANS};\n}"
+    \ }\n  return {true, ANS};\n}\n\npair<bool, vc<pair<int, int>>> construct_from_degree_sequence_tree(\n\
+    \    vc<int> deg) {\n  int N = len(deg);\n  if (SUM<ll>(deg) != N + N - 2) return\
+    \ {false, {}};\n  if (N == 1) return {true, {}};\n  if (MIN(deg) == 0) return\
+    \ {false, {}};\n  vc<pair<int, int>> E;\n  vc<int> X, Y;\n  FOR(v, N)(deg[v] ==\
+    \ 1 ? X : Y).eb(v);\n  FOR(step, N - 1) {\n    while (len(Y) && deg[Y.back()]\
+    \ <= 1) X.eb(POP(Y));\n    while (len(X) && deg[X.back()] != 1) POP(X);\n    int\
+    \ v = POP(X);\n    while (len(X) && deg[X.back()] != 1) POP(X);\n    if (step\
+    \ == N - 2) {\n      E.eb(v, POP(X));\n    } else {\n      int w = POP(Y);\n \
+    \     E.eb(v, w);\n      deg[w]--, Y.eb(w);\n    }\n  }\n  return {true, E};\n\
+    }"
   dependsOn:
   - ds/csr.hpp
   isVerificationFile: false
   path: graph/degree_sequence.hpp
   requiredBy: []
-  timestamp: '2026-02-12 20:42:31+09:00'
+  timestamp: '2026-04-13 08:42:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/degree_sequence.hpp

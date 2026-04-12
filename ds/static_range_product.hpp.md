@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy:
@@ -63,15 +63,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/106668
@@ -198,29 +198,29 @@ data:
   isVerificationFile: false
   path: ds/static_range_product.hpp
   requiredBy:
-  - string/substring_count_in_substring.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
+  - string/basic_substring_structure.hpp
   - string/longest_common_substring.hpp
   - string/many_string_compare.hpp
-  - string/basic_substring_structure.hpp
-  - string/substring_shortest_border.hpp
-  - string/sort_substrings.hpp
   - string/suffix_tree.hpp
   - string/suffix_lcp_change.hpp
   - string/suffix_array.hpp
+  - string/substring_shortest_border.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
+  - string/substring_count_in_substring.hpp
+  - string/sort_substrings.hpp
   timestamp: '2025-01-16 21:29:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/2_library_checker/string/suffix_array.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
-  - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/data_structure/staticrmq.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/2361.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
-  - test/1_mytest/suffix_lcp_change.test.cpp
 documentation_of: ds/static_range_product.hpp
 layout: document
 redirect_from:
