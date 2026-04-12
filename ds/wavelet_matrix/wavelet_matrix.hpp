@@ -1,282 +1,256 @@
 #include "ds/bit_vector.hpp"
-#include "ds/index_compression.hpp"
-#include "alg/monoid/add.hpp"
+#include "ds/dummy_data_structure.hpp"
 
-// 静的メソッドinverseの存在をチェックするテンプレート
-template <typename, typename = std::void_t<>>
-struct has_inverse : std::false_type {};
-
-template <typename T>
-struct has_inverse<T, std::void_t<decltype(T::inverse(std::declval<typename T::value_type>()))>> : std::true_type {};
-
-struct Dummy_Data_Structure {
-  using MX = Monoid_Add<bool>;
-  void build(const vc<bool>& A) {}
-};
-
-template <typename Y, bool SMALL_Y, typename SEGTREE = Dummy_Data_Structure>
+template <typename Y, typename SEGTREE = Dummy_Data_Structure>
 struct Wavelet_Matrix {
   using Mono = typename SEGTREE::MX;
   using T = typename Mono::value_type;
   static_assert(Mono::commute);
-
-  int n, log, K;
-  Index_Compression<Y, true, SMALL_Y> IDX;
-  vc<Y> ItoY;
+  static_assert(is_same_v<Y, int> || is_same_v<Y, ll>);
+  int n = 0, log = 0;
   vc<int> mid;
   vc<Bit_Vector> bv;
   vc<SEGTREE> seg;
 
-  Wavelet_Matrix() {}
-  Wavelet_Matrix(const vc<Y>& A) { build(A); }
-  Wavelet_Matrix(const vc<Y>& A, vc<T>& SUM_Data) { build(A, SUM_Data); }
+  Wavelet_Matrix() = default;
+
+  // f(i) = {A[i], dat[i]}
   template <typename F>
-  Wavelet_Matrix(int n, F f) {
-    build(n, f);
+  Wavelet_Matrix(int n, F f, int log = -1) {
+    build(n, f, log);
+  }
+  Wavelet_Matrix(const vc<Y>& A, int log = -1) {
+    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);
+    build(
+        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::unit()}; }, log);
   }
 
   template <typename F>
-  void build(int m, F f) {
-    vc<Y> A(m);
-    vc<T> S(m);
-    for (int i = 0; i < m; ++i) {
-      auto p = f(i);
-      A[i] = p.fi, S[i] = p.se;
+  void build(int n, F f, int log) {
+    this->n = n;
+    vc<Y> A(n);
+    vc<T> S(n);
+    FOR(i, n) tie(A[i], S[i]) = f(i);
+    if (log == -1) {
+      log = (n == 0 ? 0 : topbit(MAX(A)) + 1);
+    } else {
+      for (auto& x : A) assert(0 <= x && topbit(x) < log);
     }
-    build(A, S);
-  }
-
-  void build(const vc<Y>& A) { build(A, vc<T>(len(A), Mono::unit())); }
-  void build(const vc<Y>& A, vc<T> S) {
-    n = len(A);
-    vc<int> B = IDX.build(A);
-    K = 0;
-    for (auto& x: B) chmax(K, x + 1);
-    ItoY.resize(K);
-    FOR(i, n) ItoY[B[i]] = A[i];
-    log = 0;
-    while ((1 << log) < K) ++log;
+    this->log = log;
+    if constexpr (is_same_v<Y, int>) assert(0 <= log && log <= 30);
+    if constexpr (is_same_v<Y, ll>) assert(0 <= log && log <= 62);
     mid.resize(log), bv.assign(log, Bit_Vector(n));
-    vc<int> B0(n), B1(n);
+    vc<Y> A0(n), A1(n);
     vc<T> S0(n), S1(n);
     seg.resize(log + 1);
     seg[log].build(S);
     for (int d = log - 1; d >= 0; --d) {
       int p0 = 0, p1 = 0;
       for (int i = 0; i < n; ++i) {
-        bool f = (B[i] >> d & 1);
-        if (!f) { B0[p0] = B[i], S0[p0] = S[i], p0++; }
-        if (f) { bv[d].set(i), B1[p1] = B[i], S1[p1] = S[i], p1++; }
+        if (A[i] >> d & 1) {
+          bv[d].set(i), A1[p1] = A[i], S1[p1] = S[i], p1++;
+        } else {
+          A0[p0] = A[i], S0[p0] = S[i], p0++;
+        }
       }
-      swap(B, B0), swap(S, S0);
-      move(B1.begin(), B1.begin() + p1, B.begin() + p0);
+      swap(A, A0), swap(S, S0);
+      move(A1.begin(), A1.begin() + p1, A.begin() + p0);
       move(S1.begin(), S1.begin() + p1, S.begin() + p0);
       mid[d] = p0, bv[d].build(), seg[d].build(S);
     }
   }
 
-  // [L,R) x [0,y)
-  int prefix_count(int L, int R, Y y) {
-    int p = IDX(y);
-    if (L == R || p == 0) return 0;
-    if (p == K) return R - L;
-    int cnt = 0;
-    for (int d = log - 1; d >= 0; --d) {
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (p >> d & 1) cnt += r0 - l0, L = l1, R = r1;
-      if (!(p >> d & 1)) L = l0, R = r0;
+  tuple<int, int, int, int> get_subtree(int d, int L, int R) const {
+    assert(1 <= d && d <= log);
+    int a = bv[d - 1].count_prefix(L), b = bv[d - 1].count_prefix(R);
+    return {L - a, R - b, mid[d - 1] + a, mid[d - 1] + b};
+  }
+
+  template <typename F>
+  void work_point(F f, int i) {
+    assert(0 <= i && i < n);
+    f(log, i);
+    FOR_R(d, log) {
+      int a = bv[d].count_prefix(i);
+      if (bv[d][i]) {
+        i = mid[d] + a;
+      } else {
+        i = i - a;
+      }
+      f(d, i);
     }
+  }
+
+  template <typename F>
+  void work_prefix(F f, int L, int R, Y y) const {
+    assert(0 <= y && y <= Y(1) << log);
+    if (y == 0) return;
+    if (y == Y(1) << log) {
+      f(log, L, R);
+      return;
+    }
+    FOR_R(d, log) {
+      auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
+      if (y >> d & 1) {
+        f(d, L0, R0);
+        L = L1, R = R1;
+      } else {
+        L = L0, R = R0;
+      }
+    }
+  }
+
+  template <typename F>
+  void work_range(F f, int L, int R, Y y1, Y y2) const {
+    assert(0 <= y1 && y1 <= y2 && y2 <= Y(1) << log);
+    if (y1 == 0) return work_prefix(f, L, R, y2);
+    auto dfs = [&](auto& dfs, int d, int L, int R, Y y1, Y y2) -> void {
+      if (y1 == y2) return;
+      if (y1 == 0 && y2 == Y(1) << d) {
+        f(d, L, R);
+        return;
+      }
+      assert(d > 0);
+      auto [L0, R0, L1, R1] = get_subtree(d, L, R);
+      Y m = (Y(1) << (d - 1));
+
+      if (y2 <= m) {
+        dfs(dfs, d - 1, L0, R0, y1, y2);
+      } else if (y1 >= m) {
+        dfs(dfs, d - 1, L1, R1, y1 - m, y2 - m);
+      } else {
+        dfs(dfs, d - 1, L0, R0, y1, m);
+        dfs(dfs, d - 1, L1, R1, 0, y2 - m);
+      }
+    };
+    dfs(dfs, log, L, R, y1, y2);
+  }
+
+  // [L,R) x [0,y)
+  int prefix_count(int L, int R, Y y) const {
+    int cnt = 0;
+    work_prefix([&](int d, int a, int b) { cnt += b - a; }, L, R, y);
     return cnt;
   }
 
   // [L,R) x [y1,y2)
-  int count(int L, int R, Y y1, Y y2) { return prefix_count(L, R, y2) - prefix_count(L, R, y1); }
+  int count(int L, int R, Y y1, Y y2) const {
+    return prefix_count(L, R, y2) - prefix_count(L, R, y1);
+  }
 
   // [L,R) x [0,y)
-  pair<int, T> prefix_count_and_prod(int L, int R, Y y) {
-    int p = IDX(y);
-    if (p == 0) return {0, Mono::unit()};
-    if (p == K) return {R - L, seg[log].prod(L, R)};
-    int cnt = 0;
-    T t = Mono::unit();
-    for (int d = log - 1; d >= 0; --d) {
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (p >> d & 1) { cnt += r0 - l0, t = Mono::op(t, seg[d].prod(l0, r0)), L = l1, R = r1; }
-      if (!(p >> d & 1)) L = l0, R = r0;
-    }
-    return {cnt, t};
+  T prefix_prod(int L, int R, Y y) const {
+    T ans = Mono::unit();
+    work_prefix(
+        [&](int d, int a, int b) { ans = Mono::op(ans, seg[d].prod(a, b)); }, L,
+        R, y);
+    return ans;
+  }
+  // [L,R) x [y1,y2)
+  T prod(int L, int R, Y y1, Y y2) const {
+    T ans = Mono::unit();
+    work_range(
+        [&](int d, int a, int b) { ans = Mono::op(ans, seg[d].prod(a, b)); }, L,
+        R, y1, y2);
+    return ans;
+  }
+  T prod_all(int L, int R) const { return seg[log].prod(L, R); }
+
+  // [L,R) x [0,y)
+  pair<int, T> prefix_count_and_prod(int L, int R, Y y) const {
+    pair<int, T> ans = {0, Mono::unit()};
+    work_prefix(
+        [&](int d, int a, int b) {
+          ans.fi += b - a;
+          ans.se = Mono::op(ans.se, seg[d].prod(a, b));
+        },
+        L, R, y);
+    return ans;
+  }
+  // [L,R) x [y1,y2)
+  pair<int, T> count_and_prod(int L, int R, Y y1, Y y2) const {
+    pair<int, T> ans = {0, Mono::unit()};
+    work_range(
+        [&](int d, int a, int b) {
+          ans.fi += b - a;
+          ans.se = Mono::op(ans.se, seg[d].prod(a, b));
+        },
+        L, R, y1, y2);
+    return ans;
   }
 
-  // [L,R) x [y1,y2)
-  pair<int, T> count_and_prod(int L, int R, Y y1, Y y2) {
-    if constexpr (has_inverse<Mono>::value) {
-      auto [c1, t1] = prefix_count_and_prod(L, R, y1);
-      auto [c2, t2] = prefix_count_and_prod(L, R, y2);
-      return {c2 - c1, Mono::op(Mono::inverse(t1), t2)};
-    }
-    int lo = IDX(y1), hi = IDX(y2), cnt = 0;
-    T t = Mono::unit();
-    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {
-      assert(b - a == (1 << d));
-      if (hi <= a || b <= lo) return;
-      if (lo <= a && b <= hi) {
-        cnt += R - L, t = Mono::op(t, seg[d].prod(L, R));
-        return;
-      }
-      --d;
-      int c = (a + b) / 2;
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);
-    };
-    dfs(dfs, log, L, R, 0, 1 << log);
-    return {cnt, t};
-  }
-
-  // [L,R) x [y1,y2)
-  T prefix_prod(int L, int R, Y y) { return prefix_count_and_prod(L, R, y).se; }
-  // [L,R) x [y1,y2)
-  T prod(int L, int R, Y y1, Y y2) { return count_and_prod(L, R, y1, y2).se; }
-  T prod_all(int L, int R) { return seg[log].prod(L, R); }
-
-  Y kth(int L, int R, int k) {
+  Y kth(int L, int R, int k) const {
     assert(0 <= k && k < R - L);
-    int p = 0;
+    Y ans = 0;
     for (int d = log - 1; d >= 0; --d) {
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (k < r0 - l0) {
-        L = l0, R = r0;
+      auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
+      if (k < R0 - L0) {
+        L = L0, R = R0;
       } else {
-        k -= r0 - l0, L = l1, R = r1, p |= 1 << d;
+        ans |= Y(1) << d;
+        k -= R0 - L0, L = L1, R = R1;
       }
     }
-    return ItoY[p];
+    return ans;
   }
 
-  // y 以上最小 OR infty<Y>
-  Y next(int L, int R, Y y) {
-    int k = IDX(y);
-    int p = K;
-
-    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {
-      if (p <= a || L == R || b <= k) return;
-      if (d == 0) {
-        chmin(p, a);
-        return;
-      }
-      --d;
-      int c = (a + b) / 2;
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);
-    };
-    dfs(dfs, log, L, R, 0, 1 << log);
-    return (p == K ? infty<Y> : ItoY[p]);
+  // y 以上最小 OR 1<<log
+  Y next(int L, int R, Y y) const {
+    assert(0 <= y && y <= (Y(1) << log));
+    int k = prefix_count(L, R, y);
+    return (k == R - L ? Y(1) << log : kth(L, R, k));
   }
 
-  // y 以下最大 OR -infty<T>
-  Y prev(int L, int R, Y y) {
-    int k = IDX(y + 1);
-    int p = -1;
-    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {
-      if (b - 1 <= p || L == R || k <= a) return;
-      if (d == 0) {
-        chmax(p, a);
-        return;
-      }
-      --d;
-      int c = (a + b) / 2;
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      dfs(dfs, d, l1, r1, c, b), dfs(dfs, d, l0, r0, a, c);
-    };
-    dfs(dfs, log, L, R, 0, 1 << log);
-    return (p == -1 ? -infty<Y> : ItoY[p]);
+  // y 以下最大 OR -1
+  Y prev(int L, int R, Y y) const {
+    assert(0 <= y && y <= (Y(1) << log));
+    if (y == Y(1) << log) --y;
+    int k = prefix_count(L, R, y + 1);
+    return (k == 0 ? -1 : kth(L, R, k - 1));
   }
 
-  Y median(bool UPPER, int L, int R) {
+  template <bool upper>
+  Y median(int L, int R) const {
     assert(0 <= L && L < R && R <= n);
-    int k = (UPPER ? (R - L) / 2 : (R - L - 1) / 2);
+    int k = (upper ? (R - L) / 2 : (R - L - 1) / 2);
     return kth(L, R, k);
-  }
-
-  pair<Y, T> kth_value_and_prod(int L, int R, int k) {
-    assert(0 <= k && k <= R - L);
-    if (k == R - L) return {infty<Y>, seg[log].prod(L, R)};
-    int p = 0;
-    T t = Mono::unit();
-    for (int d = log - 1; d >= 0; --d) {
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (k < r0 - l0) {
-        L = l0, R = r0;
-      } else {
-        t = Mono::op(t, seg[d].prod(l0, r0)), k -= r0 - l0, L = l1, R = r1, p |= 1 << d;
-      }
-    }
-    t = Mono::op(t, seg[0].prod(L, L + k));
-    return {ItoY[p], t};
-  }
-
-  T prod_index_range(int L, int R, int k1, int k2) {
-    static_assert(has_inverse<Mono>::value);
-    T t1 = kth_value_and_prod(L, R, k1).se;
-    T t2 = kth_value_and_prod(L, R, k2).se;
-    return Mono::op(Mono::inverse(t1), t2);
-  }
-
-  // [L,R) x [0,y) での check(y, cnt, prod) が true となる最大の (cnt,prod)
-  // ただし y はぴったりのところだけです
-  template <typename F>
-  tuple<Y, int, T> max_right(F check, int L, int R) {
-    int cnt = 0;
-    int p = 0;
-    T t = Mono::unit();
-    assert(check(-infty<Y>, 0, Mono::unit()));
-    if (check(infty<Y>, R - L, seg[log].prod(L, R))) { return {infty<Y>, R - L, seg[log].prod(L, R)}; }
-    for (int d = log - 1; d >= 0; --d) {
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      int cnt1 = cnt + r0 - l0;
-      int p1 = p | 1 << d;
-      T t1 = Mono::op(t, seg[d].prod(l0, r0));
-      int y1 = (p1 < len(ItoY) ? ItoY[p1] : infty<Y>);
-      if (check(y1, cnt1, t1)) {
-        p = p1, cnt = cnt1, t = t1, L = l1, R = r1;
-      } else {
-        L = l0, R = r0;
-      }
-    }
-    int y = (p < len(ItoY) ? ItoY[p] : infty<Y>);
-    return {y, cnt, t};
   }
 
   void set(int i, T t) {
     assert(0 <= i && i < n);
-    int L = i, R = i + 1;
-    seg[log].set(L, t);
-    for (int d = log - 1; d >= 0; --d) {
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (l0 < r0) L = l0, R = r0;
-      if (l0 == r0) L = l1, R = r1;
-      seg[d].set(L, t);
-    }
+    work_point([&](int d, int i) { seg[d].set(i, t); }, i);
   }
   void multiply(int i, T t) {
     assert(0 <= i && i < n);
-    int L = i, R = i + 1;
-    seg[log].multiply(L, t);
-    for (int d = log - 1; d >= 0; --d) {
-      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
-      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (l0 < r0) L = l0, R = r0;
-      if (l0 == r0) L = l1, R = r1;
-      seg[d].multiply(L, t);
-    }
+    work_point([&](int d, int i) { seg[d].multiply(i, t); }, i);
   }
-  void add(int i, T t) { multiply(i, t); }
+  void add(int i, T t) {
+    assert(0 <= i && i < n);
+    work_point([&](int d, int i) { seg[d].add(i, t); }, i);
+  }
+
+  // [L,R) x [0,y) での check(y, cnt, prod) が true となる最大の (Y,cnt,prod)
+  template <typename F>
+  tuple<Y, int, T> max_right(F check, int L, int R) const {
+    int cnt = 0;
+    Y y = 0;
+    T t = Mono::unit();
+    assert(check(0, 0, Mono::unit()));
+    T t_all = seg[log].prod(L, R);
+    if (check(Y(1) << log, R - L, t_all)) {
+      return {Y(1) << log, R - L, t_all};
+    }
+    for (int d = log - 1; d >= 0; --d) {
+      auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
+      Y y1 = y | Y(1) << d;
+      int cnt1 = cnt + R0 - L0;
+      T t1 = Mono::op(t, seg[d].prod(L0, R0));
+      if (check(y1, cnt1, t1)) {
+        y = y1, cnt = cnt1, t = t1, L = L1, R = R1;
+      } else {
+        L = L0, R = R0;
+      }
+    }
+    return {y, cnt, t};
+  }
 };

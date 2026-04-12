@@ -15,15 +15,17 @@ struct Bit_Vector {
     prepared = 1;
     FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);
   }
-  // [0, k) 内の 1 の個数
   bool operator[](int i) { return dat[i >> 6].fi >> (i & 63) & 1; }
+  // [0, k) 内の 1 の個数
   int count_prefix(int k, bool f = true) {
     assert(prepared);
     auto [a, b] = dat[k >> 6];
     int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));
     return (f ? ret : k - ret);
   }
-  int count(int L, int R, bool f = true) { return count_prefix(R, f) - count_prefix(L, f); }
+  int count(int L, int R, bool f = true) {
+    return count_prefix(R, f) - count_prefix(L, f);
+  }
   string to_string() {
     string ans;
     FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);
