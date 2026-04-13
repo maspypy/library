@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
