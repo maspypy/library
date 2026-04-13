@@ -74,27 +74,28 @@ data:
     \ i && i < n));\n    dat[i >> 6].fi |= u64(1) << (i & 63);\n  }\n  void reset()\
     \ {\n    fill(all(dat), pair<u64, u32>{0, 0});\n    prepared = 0;\n  }\n  void\
     \ build() {\n    prepared = 1;\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
-    \ + popcnt(dat[i].fi);\n  }\n  bool operator[](int i) { return dat[i >> 6].fi\
-    \ >> (i & 63) & 1; }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int\
-    \ k, bool f = true) {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n\
-    \    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
-    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) {\n    return count_prefix(R,\
-    \ f) - count_prefix(L, f);\n  }\n  string to_string() {\n    string ans;\n   \
-    \ FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n\
-    \  }\n};\n"
+    \ + popcnt(dat[i].fi);\n  }\n  bool operator[](int i) const { return dat[i >>\
+    \ 6].fi >> (i & 63) & 1; }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int\
+    \ count_prefix(int k, bool f = true) const {\n    assert(prepared);\n    auto\
+    \ [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) -\
+    \ 1));\n    return (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f\
+    \ = true) const {\n    return count_prefix(R, f) - count_prefix(L, f);\n  }\n\
+    \  string to_string() const {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i\
+    \ / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n"
   code: "struct Bit_Vector {\n  int n;\n  bool prepared = 0;\n  vc<pair<u64, u32>>\
     \ dat;\n  Bit_Vector(int n = 0) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n\
     \  void set(int i) {\n    assert(!prepared && (0 <= i && i < n));\n    dat[i >>\
     \ 6].fi |= u64(1) << (i & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64,\
     \ u32>{0, 0});\n    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n\
     \    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\
-    \  bool operator[](int i) { return dat[i >> 6].fi >> (i & 63) & 1; }\n  // [0,\
-    \ k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool f = true)\
-    \ {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n    int ret = b +\
-    \ popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n \
-    \ }\n  int count(int L, int R, bool f = true) {\n    return count_prefix(R, f)\
-    \ - count_prefix(L, f);\n  }\n  string to_string() {\n    string ans;\n    FOR(i,\
-    \ n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n"
+    \  bool operator[](int i) const { return dat[i >> 6].fi >> (i & 63) & 1; }\n \
+    \ // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool\
+    \ f = true) const {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n \
+    \   int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
+    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) const {\n    return\
+    \ count_prefix(R, f) - count_prefix(L, f);\n  }\n  string to_string() const {\n\
+    \    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n\
+    \    return ans;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/bit_vector.hpp
@@ -104,7 +105,7 @@ data:
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_old.hpp
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-13 09:20:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp

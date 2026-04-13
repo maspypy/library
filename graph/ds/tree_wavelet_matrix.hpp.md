@@ -38,27 +38,27 @@ data:
     \ |= u64(1) << (i & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64,\
     \ u32>{0, 0});\n    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n\
     \    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\
-    \  bool operator[](int i) { return dat[i >> 6].fi >> (i & 63) & 1; }\n  // [0,\
-    \ k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool f = true)\
-    \ {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n    int ret = b +\
-    \ popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n \
-    \ }\n  int count(int L, int R, bool f = true) {\n    return count_prefix(R, f)\
-    \ - count_prefix(L, f);\n  }\n  string to_string() {\n    string ans;\n    FOR(i,\
-    \ n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n\
-    #line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy {\n  using value_type =\
-    \ char;\n  static constexpr bool commute = true;\n  static value_type op(value_type,\
-    \ value_type) { return 0; }\n  static value_type unit() { return 0; }\n};\n#line\
-    \ 2 \"ds/dummy_data_structure.hpp\"\n\nstruct Dummy_Data_Structure {\n  using\
-    \ MX = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void build(const\
-    \ vc<T>& A) {}\n};\n#line 3 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n\r\ntemplate\
-    \ <typename Y, typename SEGTREE = Dummy_Data_Structure>\r\nstruct Wavelet_Matrix\
-    \ {\r\n  using Mono = typename SEGTREE::MX;\r\n  using T = typename Mono::value_type;\r\
-    \n  static_assert(Mono::commute);\r\n  static_assert(is_same_v<Y, int> || is_same_v<Y,\
-    \ ll>);\r\n  int n = 0, log = 0;\r\n  vc<int> mid;\r\n  vc<Bit_Vector> bv;\r\n\
-    \  vc<SEGTREE> seg;\r\n\r\n  Wavelet_Matrix() = default;\r\n\r\n  // f(i) = {A[i],\
-    \ dat[i]}\r\n  template <typename F>\r\n  Wavelet_Matrix(int n, F f, int log =\
-    \ -1) {\r\n    build(n, f, log);\r\n  }\r\n  Wavelet_Matrix(const vc<Y>& A, int\
-    \ log = -1) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\
+    \  bool operator[](int i) const { return dat[i >> 6].fi >> (i & 63) & 1; }\n \
+    \ // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool\
+    \ f = true) const {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n \
+    \   int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
+    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) const {\n    return\
+    \ count_prefix(R, f) - count_prefix(L, f);\n  }\n  string to_string() const {\n\
+    \    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n\
+    \    return ans;\n  }\n};\n#line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy\
+    \ {\n  using value_type = char;\n  static constexpr bool commute = true;\n  static\
+    \ value_type op(value_type, value_type) { return 0; }\n  static value_type unit()\
+    \ { return 0; }\n};\n#line 2 \"ds/dummy_data_structure.hpp\"\n\nstruct Dummy_Data_Structure\
+    \ {\n  using MX = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void\
+    \ build(const vc<T>& A) {}\n};\n#line 3 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
+    \n\r\ntemplate <typename Y, typename SEGTREE = Dummy_Data_Structure>\r\nstruct\
+    \ Wavelet_Matrix {\r\n  using Mono = typename SEGTREE::MX;\r\n  using T = typename\
+    \ Mono::value_type;\r\n  static_assert(Mono::commute);\r\n  static_assert(is_same_v<Y,\
+    \ int> || is_same_v<Y, ll>);\r\n  int n = 0, log = 0;\r\n  vc<int> mid;\r\n  vc<Bit_Vector>\
+    \ bv;\r\n  vc<SEGTREE> seg;\r\n\r\n  Wavelet_Matrix() = default;\r\n\r\n  // f(i)\
+    \ = {A[i], dat[i]}\r\n  template <typename F>\r\n  Wavelet_Matrix(int n, F f,\
+    \ int log = -1) {\r\n    build(n, f, log);\r\n  }\r\n  Wavelet_Matrix(const vc<Y>&\
+    \ A, int log = -1) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\
     \n    build(\r\n        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::unit()};\
     \ }, log);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(int n, F f, int\
     \ log) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n    FOR(i,\
@@ -469,7 +469,7 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-13 09:20:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/tree_wavelet_matrix.hpp
