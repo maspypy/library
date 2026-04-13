@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []

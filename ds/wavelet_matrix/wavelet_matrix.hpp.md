@@ -21,9 +21,6 @@ data:
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/wavelet_matrix.test.cpp
-    title: test/1_mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
@@ -48,16 +45,16 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
   - icon: ':x:'
@@ -372,7 +369,6 @@ data:
   - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/2859.test.cpp
-  - test/1_mytest/wavelet_matrix.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix.hpp
 layout: document
 redirect_from:

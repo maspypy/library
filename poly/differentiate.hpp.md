@@ -41,10 +41,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -183,7 +183,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1533.test.cpp
     title: test/3_yukicoder/1533.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1549.test.cpp
     title: test/3_yukicoder/1549.test.cpp
   - icon: ':heavy_check_mark:'
@@ -201,9 +201,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
@@ -242,7 +242,7 @@ data:
   - graph/count/count_labeled_forest.hpp
   - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2022-05-02 13:06:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/polynomial/exp_of_fps.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp

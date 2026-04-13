@@ -56,10 +56,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree_2d.hpp
     title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':heavy_check_mark:'
@@ -71,19 +71,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_point_sum.hpp
     title: ds/offline_query/rectangle_add_point_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -104,13 +104,13 @@ data:
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -128,7 +128,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':warning:'
@@ -201,9 +201,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/summin_add.test.cpp
     title: test/1_mytest/summin_add.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/wavelet_matrix.test.cpp
-    title: test/1_mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
     title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
@@ -372,25 +369,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1441.test.cpp
     title: test/3_yukicoder/1441.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1490.test.cpp
     title: test/3_yukicoder/1490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1874.test.cpp
     title: test/3_yukicoder/1874.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919.test.cpp
     title: test/3_yukicoder/1919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -405,7 +402,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2161.test.cpp
     title: test/3_yukicoder/2161.test.cpp
   - icon: ':heavy_check_mark:'
@@ -417,7 +414,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2296.test.cpp
     title: test/3_yukicoder/2296.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2338.test.cpp
     title: test/3_yukicoder/2338.test.cpp
   - icon: ':heavy_check_mark:'
@@ -435,7 +432,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
   - icon: ':heavy_check_mark:'
@@ -453,7 +450,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
   - icon: ':heavy_check_mark:'
@@ -462,19 +459,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842_2.test.cpp
     title: test/4_aoj/2842_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_1_B.test.cpp
     title: test/4_aoj/DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_E.test.cpp
     title: test/4_aoj/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_G.test.cpp
     title: test/4_aoj/DSL_2_G.test.cpp
   - icon: ':heavy_check_mark:'
@@ -657,7 +654,6 @@ data:
   - test/1_mytest/minmax_add.test.cpp
   - test/1_mytest/summax_add.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
-  - test/1_mytest/wavelet_matrix.test.cpp
   - test/1_mytest/rect_add_pt_sum.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/factorial_digit.test.cpp

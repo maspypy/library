@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

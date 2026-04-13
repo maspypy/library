@@ -657,9 +657,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/wavelet_matrix.test.cpp
-    title: test/1_mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/xor_transpose.test.cpp
     title: test/1_mytest/xor_transpose.test.cpp
@@ -933,9 +930,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
@@ -1013,7 +1010,7 @@ data:
   - string/rollinghash_2d.hpp
   - alg/monoid/rollinghash.hpp
   timestamp: '2024-10-18 02:58:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/polynomial/composition_dmint.test.cpp
   - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
@@ -1154,7 +1151,6 @@ data:
   - test/1_mytest/splay_monoid.test.cpp
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
-  - test/1_mytest/wavelet_matrix.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/non_adj.test.cpp
   - test/1_mytest/rect_add_pt_sum.test.cpp

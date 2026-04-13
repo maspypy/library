@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -56,13 +56,13 @@ data:
   - icon: ':warning:'
     path: string/substring_shortest_border.hpp
     title: string/substring_shortest_border.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -108,9 +108,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/wavelet_matrix.test.cpp
-    title: test/1_mytest/wavelet_matrix.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
@@ -171,7 +168,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
@@ -192,7 +189,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_H.test.cpp
     title: test/4_aoj/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   _isVerificationFailed: true
@@ -270,7 +267,6 @@ data:
   - test/1_mytest/min_max.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
-  - test/1_mytest/wavelet_matrix.test.cpp
   - test/1_mytest/rbst_am_persistent.test.cpp
   - test/1_mytest/seg2d.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
