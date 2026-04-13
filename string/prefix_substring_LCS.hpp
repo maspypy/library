@@ -3,7 +3,7 @@
 // https://codeforces.com/blog/entry/111625
 struct Prefix_Substring_LCS {
   int N, M;
-  vc<Wavelet_Matrix<int>> WM;
+  vc<Wavelet_Matrix<int, false>> WM;
 
   template <typename STRING>
   Prefix_Substring_LCS(STRING S, STRING T) {
@@ -22,7 +22,7 @@ struct Prefix_Substring_LCS {
       dph[i][j] = (same ? b : max(a, b));
       dpv[i][j] = (same ? a : min(a, b));
     }
-    FOR(i, N + 1) { WM.eb(Wavelet_Matrix<int>(dph[i])); }
+    FOR(i, N + 1) { WM.eb(Wavelet_Matrix<int, false>(dph[i])); }
   }
 
   // LCS(S[0:n], T[L:R])
