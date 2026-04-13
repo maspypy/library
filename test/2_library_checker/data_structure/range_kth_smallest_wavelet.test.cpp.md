@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -359,41 +359,78 @@ data:
     \      T t1 = Mono::op(t, seg[d].prod(L0, R0));\r\n      if (check(y1, cnt1, t1))\
     \ {\r\n        y = y1, cnt = cnt1, t = t1, L = L1, R = R1;\r\n      } else {\r\
     \n        L = L0, R = R0;\r\n      }\r\n    }\r\n    return {y, cnt, t};\r\n \
-    \ }\r\n};\r\n\r\ntemplate <typename Y, typename SEGTREE>\r\nstruct Compressed_Wavelet_Matrix\
-    \ {\r\n  using Mono = typename SEGTREE::MX;\r\n  using T = typename Mono::value_type;\r\
-    \n\r\n  int n = 0;\r\n  vc<Y> key;\r\n  Uncompressed_Wavelet_Matrix<int, SEGTREE>\
-    \ wm;\r\n\r\n  Compressed_Wavelet_Matrix() = default;\r\n\r\n  // f(i) = {A[i],\
-    \ dat[i]}\r\n  template <typename F>\r\n  Compressed_Wavelet_Matrix(int n, F f)\
-    \ {\r\n    build(n, f);\r\n  }\r\n\r\n  Compressed_Wavelet_Matrix(const vc<Y>&\
-    \ A) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\n   \
-    \ build(A);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(int n, F f)\
-    \ {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n    FOR(i, n)\
-    \ tie(A[i], S[i]) = f(i);\r\n\r\n    key = A;\r\n    UNIQUE(key);\r\n\r\n    wm.build(n,\
-    \ [&](int i) -> pair<int, T> {\r\n      int k = LB(key, A[i]);\r\n      return\
-    \ {k, S[i]};\r\n    });\r\n  }\r\n\r\n  void build(const vc<Y>& A) {\r\n    static_assert(is_same_v<SEGTREE,\
-    \ Dummy_Data_Structure>);\r\n    n = len(A);\r\n    key = A;\r\n    UNIQUE(key);\r\
-    \n\r\n    wm.build(n, [&](int i) -> pair<int, T> {\r\n      int k = LB(key, A[i]);\r\
-    \n      return {k, Mono::unit()};\r\n    });\r\n  }\r\n\r\n  Y kth(int L, int\
-    \ R, int k) const { return key[wm.kth(L, R, k)]; }\r\n\r\n  template <bool upper>\r\
-    \n  Y median(int L, int R) const {\r\n    return key[wm.template median<upper>(L,\
-    \ R)];\r\n  }\r\n\r\n  // [L,R) x [-inf,y)\r\n  int prefix_count(int L, int R,\
-    \ Y y) const {\r\n    return wm.prefix_count(L, R, LB(key, y));\r\n  }\r\n\r\n\
-    \  // [L,R) x [y1,y2)\r\n  int count(int L, int R, Y y1, Y y2) const {\r\n   \
-    \ return wm.count(L, R, LB(key, y1), LB(key, y2));\r\n  }\r\n\r\n  // [L,R) x\
-    \ [-inf,y)\r\n  T prefix_prod(int L, int R, Y y) const {\r\n    return wm.prefix_prod(L,\
-    \ R, LB(key, y));\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  T prod(int L, int R,\
-    \ Y y1, Y y2) const {\r\n    return wm.prod(L, R, LB(key, y1), LB(key, y2));\r\
-    \n  }\r\n\r\n  T prod_all(int L, int R) const { return wm.prod_all(L, R); }\r\n\
-    \r\n  // [L,R) x [-inf,y)\r\n  pair<int, T> prefix_count_and_prod(int L, int R,\
-    \ Y y) const {\r\n    return wm.prefix_count_and_prod(L, R, LB(key, y));\r\n \
-    \ }\r\n\r\n  // [L,R) x [y1,y2)\r\n  pair<int, T> count_and_prod(int L, int R,\
-    \ Y y1, Y y2) const {\r\n    return wm.count_and_prod(L, R, LB(key, y1), LB(key,\
-    \ y2));\r\n  }\r\n\r\n  void set(int i, T t) { wm.set(i, t); }\r\n\r\n  void multiply(int\
-    \ i, T t) { wm.multiply(i, t); }\r\n\r\n  void add(int i, T t) { wm.add(i, t);\
-    \ }\r\n};\r\n\r\ntemplate <typename Y, bool compress, typename SEGTREE = Dummy_Data_Structure>\r\
-    \nusing Wavelet_Matrix =\r\n    conditional_t<compress, Compressed_Wavelet_Matrix<Y,\
-    \ SEGTREE>,\r\n                  Uncompressed_Wavelet_Matrix<Y, SEGTREE>>;\r\n\
-    #line 5 \"test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp\"\
+    \ }\r\n\r\n  // [L,R) x [0,y) \u3067\u306E check(y, cnt, prod) \u304C true \u3068\
+    \u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\r\n  template <typename F>\r\n  tuple<Y,\
+    \ int, T> max_right_many(F check, vc<pair<int, int>> LR) const {\r\n    assert(limit\
+    \ < infty<Y>);\r\n    int cnt = 0;\r\n    Y y = 0;\r\n    T t = Mono::unit();\r\
+    \n    T t_all = Mono::unit();\r\n    int cnt_all = 0;\r\n    for (auto& [l, r]\
+    \ : LR)\r\n      t_all = Mono::op(t_all, prod_all(l, r)), cnt_all += r - l;\r\n\
+    \    assert(check(0, 0, Mono::unit()));\r\n    if (check(limit, cnt_all, t_all))\
+    \ {\r\n      y = binary_search([&](Y y) -> bool { return check(y, cnt_all, t_all);\
+    \ },\r\n                        limit, infty<Y> + 1);\r\n      return {y, cnt_all,\
+    \ t_all};\r\n    }\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      Y y1 =\
+    \ Y(1) << d;\r\n      T t1 = t;\r\n      int cnt1 = 0;\r\n      for (auto& [L,\
+    \ R] : LR) {\r\n        auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\r\n\
+    \        cnt1 += R0 - L0;\r\n        t1 = Mono::op(t1, seg[d].prod(L0, R0));\r\
+    \n      }\r\n      if (check(y1, cnt1, t1)) {\r\n        y = y1, cnt = cnt1, t\
+    \ = t1;\r\n        for (auto& [L, R] : LR) {\r\n          auto [L0, R0, L1, R1]\
+    \ = get_subtree(d + 1, L, R);\r\n          L = L1, R = R1;\r\n        }\r\n  \
+    \    } else {\r\n        for (auto& [L, R] : LR) {\r\n          auto [L0, R0,\
+    \ L1, R1] = get_subtree(d + 1, L, R);\r\n          L = L0, R = R0;\r\n       \
+    \ }\r\n      }\r\n    }\r\n    return {y, cnt, t};\r\n  }\r\n\r\n  // [L,R) x\
+    \ [y, inf) \u3067\u306E check(y, cnt, prod) \u304C true \u3068\u306A\u308B\u6700\
+    \u5C0F\u306E (y,cnt,prod)\r\n  // cnt==0 \u3060\u3068 true \u3067\u3042\u308B\u3053\
+    \u3068\u306F\u4EEE\u5B9A\u3059\u308B\r\n  // https://qoj.ac/contest/1047/problem/5094\r\
+    \n  template <typename F>\r\n  tuple<Y, int, T> min_left_many(F check, vc<pair<int,\
+    \ int>> LR) const {\r\n    assert(check(limit, 0, Mono::unit()));\r\n    int cnt\
+    \ = 0;\r\n    Y y = limit;\r\n    T t = Mono::unit();\r\n    T t_all = Mono::unit();\r\
+    \n    int cnt_all = 0;\r\n    for (auto& [l, r] : LR)\r\n      t_all = Mono::op(t_all,\
+    \ prod_all(l, r)), cnt_all += r - l;\r\n    if (check(0, cnt_all, t_all)) {\r\n\
+    \      return {0, cnt_all, t_all};\r\n    }\r\n    for (int d = log - 1; d >=\
+    \ 0; --d) {\r\n      Y y1 = y - (Y(1) << d);\r\n      T t1 = t;\r\n      int cnt1\
+    \ = cnt;\r\n      for (auto& [L, R] : LR) {\r\n        auto [L0, R0, L1, R1] =\
+    \ get_subtree(d + 1, L, R);\r\n        cnt1 += R1 - L1;\r\n        t1 = Mono::op(t1,\
+    \ seg[d].prod(L1, R1));\r\n      }\r\n      if (check(y1, cnt1, t1)) {\r\n   \
+    \     y = y1, cnt = cnt1, t = t1;\r\n        SHOW(y);\r\n        for (auto& [L,\
+    \ R] : LR) {\r\n          auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\r\n\
+    \          L = L0, R = R0;\r\n        }\r\n      } else {\r\n        for (auto&\
+    \ [L, R] : LR) {\r\n          auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\r\
+    \n          L = L1, R = R1;\r\n        }\r\n      }\r\n    }\r\n    SHOW(y, cnt,\
+    \ t);\r\n    return {y, cnt, t};\r\n  }\r\n};\r\n\r\ntemplate <typename Y, typename\
+    \ SEGTREE>\r\nstruct Compressed_Wavelet_Matrix {\r\n  using Mono = typename SEGTREE::MX;\r\
+    \n  using T = typename Mono::value_type;\r\n\r\n  int n = 0;\r\n  vc<Y> key;\r\
+    \n  Uncompressed_Wavelet_Matrix<int, SEGTREE> wm;\r\n\r\n  Compressed_Wavelet_Matrix()\
+    \ = default;\r\n\r\n  // f(i) = {A[i], dat[i]}\r\n  template <typename F>\r\n\
+    \  Compressed_Wavelet_Matrix(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n\
+    \  Compressed_Wavelet_Matrix(const vc<Y>& A) {\r\n    static_assert(is_same_v<SEGTREE,\
+    \ Dummy_Data_Structure>);\r\n    build(A);\r\n  }\r\n\r\n  template <typename\
+    \ F>\r\n  void build(int n, F f) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n\
+    \    vc<T> S(n);\r\n    FOR(i, n) tie(A[i], S[i]) = f(i);\r\n\r\n    key = A;\r\
+    \n    UNIQUE(key);\r\n\r\n    wm.build(n, [&](int i) -> pair<int, T> {\r\n   \
+    \   int k = LB(key, A[i]);\r\n      return {k, S[i]};\r\n    });\r\n  }\r\n\r\n\
+    \  void build(const vc<Y>& A) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\
+    \n    n = len(A);\r\n    key = A;\r\n    UNIQUE(key);\r\n\r\n    wm.build(n, [&](int\
+    \ i) -> pair<int, T> {\r\n      int k = LB(key, A[i]);\r\n      return {k, Mono::unit()};\r\
+    \n    });\r\n  }\r\n\r\n  Y kth(int L, int R, int k) const { return key[wm.kth(L,\
+    \ R, k)]; }\r\n\r\n  template <bool upper>\r\n  Y median(int L, int R) const {\r\
+    \n    return key[wm.template median<upper>(L, R)];\r\n  }\r\n\r\n  // [L,R) x\
+    \ [-inf,y)\r\n  int prefix_count(int L, int R, Y y) const {\r\n    return wm.prefix_count(L,\
+    \ R, LB(key, y));\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  int count(int L, int\
+    \ R, Y y1, Y y2) const {\r\n    return wm.count(L, R, LB(key, y1), LB(key, y2));\r\
+    \n  }\r\n\r\n  // [L,R) x [-inf,y)\r\n  T prefix_prod(int L, int R, Y y) const\
+    \ {\r\n    return wm.prefix_prod(L, R, LB(key, y));\r\n  }\r\n\r\n  // [L,R) x\
+    \ [y1,y2)\r\n  T prod(int L, int R, Y y1, Y y2) const {\r\n    return wm.prod(L,\
+    \ R, LB(key, y1), LB(key, y2));\r\n  }\r\n\r\n  T prod_all(int L, int R) const\
+    \ { return wm.prod_all(L, R); }\r\n\r\n  // [L,R) x [-inf,y)\r\n  pair<int, T>\
+    \ prefix_count_and_prod(int L, int R, Y y) const {\r\n    return wm.prefix_count_and_prod(L,\
+    \ R, LB(key, y));\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  pair<int, T> count_and_prod(int\
+    \ L, int R, Y y1, Y y2) const {\r\n    return wm.count_and_prod(L, R, LB(key,\
+    \ y1), LB(key, y2));\r\n  }\r\n\r\n  void set(int i, T t) { wm.set(i, t); }\r\n\
+    \r\n  void multiply(int i, T t) { wm.multiply(i, t); }\r\n\r\n  void add(int i,\
+    \ T t) { wm.add(i, t); }\r\n};\r\n\r\ntemplate <typename Y, bool compress, typename\
+    \ SEGTREE = Dummy_Data_Structure>\r\nusing Wavelet_Matrix =\r\n    conditional_t<compress,\
+    \ Compressed_Wavelet_Matrix<Y, SEGTREE>,\r\n                  Uncompressed_Wavelet_Matrix<Y,\
+    \ SEGTREE>>;\r\n#line 5 \"test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Wavelet_Matrix<int, false>\
     \ WM(A);\n  FOR(Q) {\n    LL(l, r, k);\n    print(WM.kth(l, r, k));\n  }\n}\n\n\
     signed main() {\n  solve();\n\n  return 0;\n}\n"
@@ -412,7 +449,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 20:15:05+09:00'
+  timestamp: '2026-04-13 21:44:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp

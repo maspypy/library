@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -285,21 +285,21 @@ data:
     \ + (1 << k) - 1]);\n        if (!check(t)) {\n          return k;\n        }\n\
     \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
     \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
-    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(t)) {\n        \
-    \  i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n  //\
-    \ check(i, x)\n  template <class F>\n  int max_right_with_index(const F check,\
-    \ int L = 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
-    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
-    \ {\n      while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
+    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i + (1 << k) <= L || check(t))\
+    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i,\
+    \ x)\n  template <class F>\n  int max_right_with_index(const F check, int L =\
+    \ 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n    int\
+    \ i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n   \
+    \   while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
     \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
     \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i\
     \ + (1 << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
     \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (check(i + (1 << k), t)) {\n          i += (1 << k), s =\
-    \ t;\n        }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n\
-    \  int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
+    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) { i += (1 <<\
+    \ k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n \
+    \ int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
     \    E s = G::unit();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
     \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
     \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
@@ -363,7 +363,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 18:20:34+09:00'
+  timestamp: '2026-04-13 22:17:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp

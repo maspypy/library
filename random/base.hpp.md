@@ -322,6 +322,9 @@ data:
     path: test/1_mytest/fenwick01.test.cpp
     title: test/1_mytest/fenwick01.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/fenwick_max_right.test.cpp
+    title: test/1_mytest/fenwick_max_right.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick_raq.test.cpp
     title: test/1_mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1113,6 +1116,7 @@ data:
   - test/1_mytest/poly_root_finding.test.cpp
   - test/1_mytest/chirp_z.test.cpp
   - test/1_mytest/minidx_add.test.cpp
+  - test/1_mytest/fenwick_max_right.test.cpp
   - test/1_mytest/min_min.test.cpp
   - test/1_mytest/is_substring.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp
