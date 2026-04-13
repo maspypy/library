@@ -245,6 +245,91 @@ struct Uncompressed_Wavelet_Matrix {
     }
     return {y, cnt, t};
   }
+
+  // [L,R) x [0,y) での check(y, cnt, prod) が true となる最大の (Y,cnt,prod)
+  template <typename F>
+  tuple<Y, int, T> max_right_many(F check, vc<pair<int, int>> LR) const {
+    assert(limit < infty<Y>);
+    int cnt = 0;
+    Y y = 0;
+    T t = Mono::unit();
+    T t_all = Mono::unit();
+    int cnt_all = 0;
+    for (auto& [l, r] : LR)
+      t_all = Mono::op(t_all, prod_all(l, r)), cnt_all += r - l;
+    assert(check(0, 0, Mono::unit()));
+    if (check(limit, cnt_all, t_all)) {
+      y = binary_search([&](Y y) -> bool { return check(y, cnt_all, t_all); },
+                        limit, infty<Y> + 1);
+      return {y, cnt_all, t_all};
+    }
+    for (int d = log - 1; d >= 0; --d) {
+      Y y1 = Y(1) << d;
+      T t1 = t;
+      int cnt1 = 0;
+      for (auto& [L, R] : LR) {
+        auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
+        cnt1 += R0 - L0;
+        t1 = Mono::op(t1, seg[d].prod(L0, R0));
+      }
+      if (check(y1, cnt1, t1)) {
+        y = y1, cnt = cnt1, t = t1;
+        for (auto& [L, R] : LR) {
+          auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
+          L = L1, R = R1;
+        }
+      } else {
+        for (auto& [L, R] : LR) {
+          auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
+          L = L0, R = R0;
+        }
+      }
+    }
+    return {y, cnt, t};
+  }
+
+  // [L,R) x [y, inf) での check(y, cnt, prod) が true となる最小の (y,cnt,prod)
+  // cnt==0 だと true であることは仮定する
+  // https://qoj.ac/contest/1047/problem/5094
+  template <typename F>
+  tuple<Y, int, T> min_left_many(F check, vc<pair<int, int>> LR) const {
+    assert(check(limit, 0, Mono::unit()));
+    int cnt = 0;
+    Y y = limit;
+    T t = Mono::unit();
+    T t_all = Mono::unit();
+    int cnt_all = 0;
+    for (auto& [l, r] : LR)
+      t_all = Mono::op(t_all, prod_all(l, r)), cnt_all += r - l;
+    if (check(0, cnt_all, t_all)) {
+      return {0, cnt_all, t_all};
+    }
+    for (int d = log - 1; d >= 0; --d) {
+      Y y1 = y - (Y(1) << d);
+      T t1 = t;
+      int cnt1 = cnt;
+      for (auto& [L, R] : LR) {
+        auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
+        cnt1 += R1 - L1;
+        t1 = Mono::op(t1, seg[d].prod(L1, R1));
+      }
+      if (check(y1, cnt1, t1)) {
+        y = y1, cnt = cnt1, t = t1;
+        SHOW(y);
+        for (auto& [L, R] : LR) {
+          auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
+          L = L0, R = R0;
+        }
+      } else {
+        for (auto& [L, R] : LR) {
+          auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
+          L = L1, R = R1;
+        }
+      }
+    }
+    SHOW(y, cnt, t);
+    return {y, cnt, t};
+  }
 };
 
 template <typename Y, typename SEGTREE>
