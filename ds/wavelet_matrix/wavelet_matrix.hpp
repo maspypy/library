@@ -85,7 +85,7 @@ struct Uncompressed_Wavelet_Matrix {
 
   template <typename F>
   void work_prefix(F f, int L, int R, Y y) const {
-    assert(0 <= y && y <= limit);
+    chmin(y, limit);
     if (y == 0) return;
     if (y == limit) {
       f(log, L, R);
@@ -104,6 +104,8 @@ struct Uncompressed_Wavelet_Matrix {
 
   template <typename F>
   void work_range(F f, int L, int R, Y y1, Y y2) const {
+    chmin(y2, limit);
+    if (y1 >= y2) return;
     assert(0 <= y1 && y1 <= y2 && y2 <= limit);
     if (y1 == 0) return work_prefix(f, L, R, y2);
     auto dfs = [&](auto& dfs, int d, int L, int R, Y y1, Y y2) -> void {
