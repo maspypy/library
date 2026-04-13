@@ -14,7 +14,7 @@ struct Static_Range_Product {
   using MX = Monoid;
   using X = typename MX::value_type;
   int N, b_num;
-  vc<X> A, pre, suf; // inclusive
+  vc<X> A, pre, suf;  // inclusive
   SPARSE_TABLE ST;
 
   Static_Range_Product() {}
@@ -45,7 +45,7 @@ struct Static_Range_Product {
   }
 
   // O(1) or O(R-L)
-  X prod(int L, int R) {
+  X prod(int L, int R) const {
     if (L == R) return MX::unit();
     R -= 1;
     int a = L >> LOG, b = R >> LOG;
@@ -61,7 +61,7 @@ struct Static_Range_Product {
   }
 
   template <class F>
-  int max_right(const F check, int L) {
+  int max_right(const F check, int L) const {
     assert(0 <= L && L <= N && check(MX::unit()));
     if (L == N) return N;
     int ok = L, ng = N + 1;
@@ -75,7 +75,7 @@ struct Static_Range_Product {
   }
 
   template <class F>
-  int min_left(const F check, int R) {
+  int min_left(const F check, int R) const {
     assert(0 <= R && R <= N && check(MX::unit()));
     if (R == 0) return 0;
     int ok = R, ng = -1;
