@@ -11,7 +11,7 @@ data:
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
@@ -27,7 +27,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':heavy_check_mark:'
@@ -100,9 +100,9 @@ data:
     \ vc<Y>& A, int log = -1) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\
     \n    build(\r\n        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::unit()};\
     \ }, log);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(int n, F f, int\
-    \ log) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n    FOR(i,\
-    \ n) tie(A[i], S[i]) = f(i);\r\n    if (log == -1) {\r\n      log = (n == 0 ?\
-    \ 0 : topbit(MAX(A)) + 1);\r\n    } else {\r\n      for (auto& x : A) assert(0\
+    \ log = -1) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n  \
+    \  FOR(i, n) tie(A[i], S[i]) = f(i);\r\n    if (log == -1) {\r\n      log = (n\
+    \ == 0 ? 0 : topbit(MAX(A)) + 1);\r\n    } else {\r\n      for (auto& x : A) assert(0\
     \ <= x && topbit(x) < log);\r\n    }\r\n    this->log = log;\r\n    limit = Y(1)\
     \ << log;\r\n    if constexpr (is_same_v<Y, int>) assert(0 <= log && log <= 30);\r\
     \n    if constexpr (is_same_v<Y, ll>) assert(0 <= log && log <= 62);\r\n    mid.resize(log),\
@@ -228,9 +228,9 @@ data:
     \ vc<Y>& A, int log = -1) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\
     \n    build(\r\n        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::unit()};\
     \ }, log);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(int n, F f, int\
-    \ log) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n    FOR(i,\
-    \ n) tie(A[i], S[i]) = f(i);\r\n    if (log == -1) {\r\n      log = (n == 0 ?\
-    \ 0 : topbit(MAX(A)) + 1);\r\n    } else {\r\n      for (auto& x : A) assert(0\
+    \ log = -1) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n  \
+    \  FOR(i, n) tie(A[i], S[i]) = f(i);\r\n    if (log == -1) {\r\n      log = (n\
+    \ == 0 ? 0 : topbit(MAX(A)) + 1);\r\n    } else {\r\n      for (auto& x : A) assert(0\
     \ <= x && topbit(x) < log);\r\n    }\r\n    this->log = log;\r\n    limit = Y(1)\
     \ << log;\r\n    if constexpr (is_same_v<Y, int>) assert(0 <= log && log <= 30);\r\
     \n    if constexpr (is_same_v<Y, ll>) assert(0 <= log && log <= 62);\r\n    mid.resize(log),\
@@ -355,7 +355,7 @@ data:
   - graph/ds/tree_wavelet_matrix.hpp
   - string/prefix_substring_LCS.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  timestamp: '2026-04-13 14:42:14+09:00'
+  timestamp: '2026-04-13 17:55:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp

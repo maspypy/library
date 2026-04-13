@@ -11,6 +11,9 @@ data:
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
   - icon: ':question:'
+    path: ds/index_compression.hpp
+    title: ds/index_compression.hpp
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   _extendedRequiredBy: []
@@ -18,7 +21,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':x:'
@@ -41,7 +44,7 @@ data:
     title: test/3_yukicoder/2859.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  bool\
@@ -73,9 +76,9 @@ data:
     \ vc<Y>& A, int log = -1) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\
     \n    build(\r\n        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::unit()};\
     \ }, log);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(int n, F f, int\
-    \ log) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n    FOR(i,\
-    \ n) tie(A[i], S[i]) = f(i);\r\n    if (log == -1) {\r\n      log = (n == 0 ?\
-    \ 0 : topbit(MAX(A)) + 1);\r\n    } else {\r\n      for (auto& x : A) assert(0\
+    \ log = -1) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n  \
+    \  FOR(i, n) tie(A[i], S[i]) = f(i);\r\n    if (log == -1) {\r\n      log = (n\
+    \ == 0 ? 0 : topbit(MAX(A)) + 1);\r\n    } else {\r\n      for (auto& x : A) assert(0\
     \ <= x && topbit(x) < log);\r\n    }\r\n    this->log = log;\r\n    limit = Y(1)\
     \ << log;\r\n    if constexpr (is_same_v<Y, int>) assert(0 <= log && log <= 30);\r\
     \n    if constexpr (is_same_v<Y, ll>) assert(0 <= log && log <= 62);\r\n    mid.resize(log),\
@@ -190,18 +193,53 @@ data:
     \ }\r\n};\r\n\r\ntemplate <typename Y, bool compress, typename SEGTREE = Dummy_Data_Structure>\r\
     \nusing Wavelet_Matrix =\r\n    conditional_t<compress, Compressed_Wavelet_Matrix<Y,\
     \ SEGTREE>,\r\n                  Uncompressed_Wavelet_Matrix<Y, SEGTREE>>;\r\n\
-    #line 2 \"ds/wavelet_matrix/wavelet_matrix_2d_range.hpp\"\n\ntemplate <typename\
-    \ XY, bool compress_X, bool compress_Y,\n          typename SEGTREE = Dummy_Data_Structure>\n\
-    struct Wavelet_Matrix_2D_Range {\n  // \u70B9\u7FA4\u3092 X \u6607\u9806\u306B\
-    \u4E26\u3079\u308B.\n  Wavelet_Matrix<XY, compress_Y, SEGTREE> WM;\n  using Mono\
-    \ = typename SEGTREE::MX;\n  using T = typename Mono::value_type;\n  static_assert(Mono::commute);\n\
-    \n  Index_Compression<XY, false, !compress_X> IDX_X;\n\n  int n;\n  vc<int> new_idx;\n\
-    \n  template <typename F>\n  Wavelet_Matrix_2D_Range(int n, F f) {\n    build(n,\
-    \ f);\n  }\n\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
-    \    vc<XY> X(n), Y(n);\n    vc<T> S(n);\n    FOR(i, n) {\n      auto tmp = f(i);\n\
-    \      X[i] = get<0>(tmp), Y[i] = get<1>(tmp), S[i] = get<2>(tmp);\n    }\n  \
-    \  new_idx = IDX_X.build(X);\n    vc<int> I(n);\n    FOR(i, n) I[new_idx[i]] =\
-    \ i;\n    Y = rearrange(Y, I);\n    S = rearrange(S, I);\n    WM.build(Y, S);\n\
+    #line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL\
+    \ {\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma =\
+    \ -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi +\
+    \ 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i\
+    \ + 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n\
+    \    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n\
+    \  }\n  int size() { return len(dat); }\n  int operator()(ll x) { return dat[clamp<ll>(x\
+    \ - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
+    \ {\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n\
+    \    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n\
+    \    for (auto& x : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i +\
+    \ 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return\
+    \ X;\n  }\n  int size() { return len(dat); }\n  int operator()(ll x) { return\
+    \ dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct\
+    \ Index_Compression_SAME_LARGE {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n \
+    \   vc<int> I = argsort(X);\n    vc<int> res(len(X));\n    for (auto& i : I) {\n\
+    \      if (!dat.empty() && dat.back() == X[i]) {\n        res[i] = len(dat) -\
+    \ 1;\n      } else {\n        res[i] = len(dat);\n        dat.eb(X[i]);\n    \
+    \  }\n    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size() { return\
+    \ len(dat); }\n  int operator()(T x) { return LB(dat, x); }\n};\n\ntemplate <typename\
+    \ T>\nstruct Index_Compression_DISTINCT_LARGE {\n  vc<T> dat;\n  vc<int> build(vc<T>\
+    \ X) {\n    vc<int> I = argsort(X);\n    vc<int> res(len(X));\n    for (auto&\
+    \ i : I) {\n      res[i] = len(dat), dat.eb(X[i]);\n    }\n    dat.shrink_to_fit();\n\
+    \    return res;\n  }\n  int size() { return len(dat); }\n  int operator()(T x)\
+    \ { return LB(dat, x); }\n};\n\ntemplate <typename T, bool SMALL>\nusing Index_Compression_DISTINCT\
+    \ =\n    typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,\n\
+    \                              Index_Compression_DISTINCT_LARGE<T>>::type;\ntemplate\
+    \ <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename std::conditional<SMALL,\
+    \ Index_Compression_SAME_SMALL<T>,\n                              Index_Compression_SAME_LARGE<T>>::type;\n\
+    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\
+    \u5217\u3092\u5727\u7E2E\u3057\u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\
+    \n// (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename T, bool\
+    \ SAME, bool SMALL>\nusing Index_Compression =\n    typename std::conditional<SAME,\
+    \ Index_Compression_SAME<T, SMALL>,\n                              Index_Compression_DISTINCT<T,\
+    \ SMALL>>::type;\n#line 3 \"ds/wavelet_matrix/wavelet_matrix_2d_range.hpp\"\n\n\
+    template <typename XY, bool compress_X, bool compress_Y,\n          typename SEGTREE\
+    \ = Dummy_Data_Structure>\nstruct Wavelet_Matrix_2D_Range {\n  // \u70B9\u7FA4\
+    \u3092 X \u6607\u9806\u306B\u4E26\u3079\u308B.\n  Wavelet_Matrix<XY, compress_Y,\
+    \ SEGTREE> WM;\n  using Mono = typename SEGTREE::MX;\n  using T = typename Mono::value_type;\n\
+    \  static_assert(Mono::commute);\n\n  Index_Compression<XY, false, !compress_X>\
+    \ IDX_X;\n\n  int n;\n  vc<int> new_idx;\n\n  template <typename F>\n  Wavelet_Matrix_2D_Range(int\
+    \ n, F f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m;\n    vc<XY> X(n), Y(n);\n    vc<T> S(n);\n    FOR(i, n)\
+    \ {\n      auto tmp = f(i);\n      X[i] = get<0>(tmp), Y[i] = get<1>(tmp), S[i]\
+    \ = get<2>(tmp);\n    }\n    new_idx = IDX_X.build(X);\n    vc<int> I(n);\n  \
+    \  FOR(i, n) I[new_idx[i]] = i;\n    Y = rearrange(Y, I);\n    S = rearrange(S,\
+    \ I);\n    WM.build(n, [&](int i) -> pair<XY, T> { return {Y[i], S[i]}; });\n\
     \  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    return WM.count(IDX_X(x1),\
     \ IDX_X(x2), y1, y2);\n  }\n\n  // [L,R) x [-inf,y)\n  pair<int, T> prefix_count_and_prod(XY\
     \ x1, XY x2, XY y) {\n    return WM.prefix_count_and_prod(IDX_X(x1), IDX_X(x2),\
@@ -216,18 +254,19 @@ data:
     \  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\
     \u30B9\n  void multiply(int i, T t) { WM.multiply(new_idx[i], t); }\n  void add(int\
     \ i, T t) { WM.multiply(new_idx[i], t); }\n};\n"
-  code: "#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n\ntemplate <typename XY,\
-    \ bool compress_X, bool compress_Y,\n          typename SEGTREE = Dummy_Data_Structure>\n\
-    struct Wavelet_Matrix_2D_Range {\n  // \u70B9\u7FA4\u3092 X \u6607\u9806\u306B\
-    \u4E26\u3079\u308B.\n  Wavelet_Matrix<XY, compress_Y, SEGTREE> WM;\n  using Mono\
-    \ = typename SEGTREE::MX;\n  using T = typename Mono::value_type;\n  static_assert(Mono::commute);\n\
-    \n  Index_Compression<XY, false, !compress_X> IDX_X;\n\n  int n;\n  vc<int> new_idx;\n\
-    \n  template <typename F>\n  Wavelet_Matrix_2D_Range(int n, F f) {\n    build(n,\
-    \ f);\n  }\n\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
-    \    vc<XY> X(n), Y(n);\n    vc<T> S(n);\n    FOR(i, n) {\n      auto tmp = f(i);\n\
-    \      X[i] = get<0>(tmp), Y[i] = get<1>(tmp), S[i] = get<2>(tmp);\n    }\n  \
-    \  new_idx = IDX_X.build(X);\n    vc<int> I(n);\n    FOR(i, n) I[new_idx[i]] =\
-    \ i;\n    Y = rearrange(Y, I);\n    S = rearrange(S, I);\n    WM.build(Y, S);\n\
+  code: "#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n#include \"ds/index_compression.hpp\"\
+    \n\ntemplate <typename XY, bool compress_X, bool compress_Y,\n          typename\
+    \ SEGTREE = Dummy_Data_Structure>\nstruct Wavelet_Matrix_2D_Range {\n  // \u70B9\
+    \u7FA4\u3092 X \u6607\u9806\u306B\u4E26\u3079\u308B.\n  Wavelet_Matrix<XY, compress_Y,\
+    \ SEGTREE> WM;\n  using Mono = typename SEGTREE::MX;\n  using T = typename Mono::value_type;\n\
+    \  static_assert(Mono::commute);\n\n  Index_Compression<XY, false, !compress_X>\
+    \ IDX_X;\n\n  int n;\n  vc<int> new_idx;\n\n  template <typename F>\n  Wavelet_Matrix_2D_Range(int\
+    \ n, F f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m;\n    vc<XY> X(n), Y(n);\n    vc<T> S(n);\n    FOR(i, n)\
+    \ {\n      auto tmp = f(i);\n      X[i] = get<0>(tmp), Y[i] = get<1>(tmp), S[i]\
+    \ = get<2>(tmp);\n    }\n    new_idx = IDX_X.build(X);\n    vc<int> I(n);\n  \
+    \  FOR(i, n) I[new_idx[i]] = i;\n    Y = rearrange(Y, I);\n    S = rearrange(S,\
+    \ I);\n    WM.build(n, [&](int i) -> pair<XY, T> { return {Y[i], S[i]}; });\n\
     \  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    return WM.count(IDX_X(x1),\
     \ IDX_X(x2), y1, y2);\n  }\n\n  // [L,R) x [-inf,y)\n  pair<int, T> prefix_count_and_prod(XY\
     \ x1, XY x2, XY y) {\n    return WM.prefix_count_and_prod(IDX_X(x1), IDX_X(x2),\
@@ -247,11 +286,12 @@ data:
   - ds/bit_vector.hpp
   - ds/dummy_data_structure.hpp
   - alg/monoid/dummy.hpp
+  - ds/index_compression.hpp
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   requiredBy: []
-  timestamp: '2026-04-13 14:42:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-04-13 17:55:57+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
