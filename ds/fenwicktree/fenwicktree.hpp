@@ -107,9 +107,7 @@ struct FenwickTree {
       --k;
       if (i + (1 << k) - 1 < len(dat)) {
         E t = G::op(s, dat[i + (1 << k) - 1]);
-        if (check(t)) {
-          i += (1 << k), s = t;
-        }
+        if (i + (1 << k) <= L || check(t)) { i += (1 << k), s = t; }
       }
     }
     return i;
@@ -143,9 +141,7 @@ struct FenwickTree {
       --k;
       if (i + (1 << k) - 1 < len(dat)) {
         E t = G::op(s, dat[i + (1 << k) - 1]);
-        if (check(i + (1 << k), t)) {
-          i += (1 << k), s = t;
-        }
+        if (i + (1 << k) <= L || check(i + (1 << k), t)) { i += (1 << k), s = t; }
       }
     }
     return i;
