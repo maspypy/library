@@ -375,8 +375,8 @@ data:
     \ M + 1) dph[0][j] = j;\n    FOR(i, 1, N + 1) FOR(j, 1, M + 1) {\n      bool same\
     \ = S[i - 1] == T[j - 1];\n      int a = dph[i - 1][j], b = dpv[i][j - 1];\n \
     \     dph[i][j] = (same ? b : max(a, b));\n      dpv[i][j] = (same ? a : min(a,\
-    \ b));\n    }\n    FOR(i, N + 1) { WM.eb(Wavelet_Matrix<int, true>(dph[i])); }\n\
-    \  }\n\n  // LCS(S[0:n], T[L:R])\n  int query(int n, int L, int R) { return WM[n].count(L\
+    \ b));\n    }\n    FOR(i, N + 1) { WM.eb(Wavelet_Matrix<int>(dph[i])); }\n  }\n\
+    \n  // LCS(S[0:n], T[L:R])\n  int query(int n, int L, int R) { return WM[n].count(L\
     \ + 1, R + 1, 0, L + 1); }\n};\n#line 6 \"test/2_library_checker/string/prefix_substring_lcs.test.cpp\"\
     \n\nvoid solve() {\n  INT(Q);\n  STR(S, T);\n  Prefix_Substring_LCS X(S, T);\n\
     \  FOR(Q) {\n    INT(a, b, c);\n    print(X.query(a, b, c));\n  }\n}\n\nsigned\
@@ -397,7 +397,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-13 09:03:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/prefix_substring_lcs.test.cpp
