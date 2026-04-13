@@ -7,7 +7,7 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  Wavelet_Matrix<int, false, Static_Range_Product_Group<Monoid_Add<ll>>> WM(
+  Wavelet_Matrix<int, true, Static_Range_Product_Group<Monoid_Add<ll>>> WM(
       N, [&](int i) -> pair<int, ll> { return {A[i], A[i]}; });
   FOR(Q) {
     LL(L, R);
