@@ -38,7 +38,7 @@ struct Sparse_Table {
     }
   }
 
-  X prod(int L, int R) {
+  X prod(int L, int R) const {
     if (L == R) return MX::unit();
     if (R == L + 1) return dat[0][L];
     int k = topbit(R - L - 1);
@@ -46,7 +46,7 @@ struct Sparse_Table {
   }
 
   template <class F>
-  int max_right(const F check, int L) {
+  int max_right(const F check, int L) const {
     assert(0 <= L && L <= n && check(MX::unit()));
     if (L == n) return n;
     int ok = L, ng = n + 1;
@@ -60,7 +60,7 @@ struct Sparse_Table {
   }
 
   template <class F>
-  int min_left(const F check, int R) {
+  int min_left(const F check, int R) const {
     assert(0 <= R && R <= n && check(MX::unit()));
     if (R == 0) return 0;
     int ok = R, ng = -1;
