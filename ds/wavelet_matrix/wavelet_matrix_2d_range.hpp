@@ -1,4 +1,5 @@
 #include "ds/wavelet_matrix/wavelet_matrix.hpp"
+#include "ds/index_compression.hpp"
 
 template <typename XY, bool compress_X, bool compress_Y,
           typename SEGTREE = Dummy_Data_Structure>
@@ -33,7 +34,7 @@ struct Wavelet_Matrix_2D_Range {
     FOR(i, n) I[new_idx[i]] = i;
     Y = rearrange(Y, I);
     S = rearrange(S, I);
-    WM.build(Y, S);
+    WM.build(n, [&](int i) -> pair<XY, T> { return {Y[i], S[i]}; });
   }
 
   int count(XY x1, XY x2, XY y1, XY y2) {

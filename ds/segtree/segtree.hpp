@@ -32,8 +32,8 @@ struct SegTree {
     FOR_R(i, 1, size) update(i);
   }
 
-  X get(int i) { return dat[size + i]; }
-  vc<X> get_all() { return {dat.begin() + size, dat.begin() + size + n}; }
+  X get(int i) const { return dat[size + i]; }
+  vc<X> get_all() const { return {dat.begin() + size, dat.begin() + size + n}; }
 
   void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }
   void set(int i, const X& x) {
@@ -49,7 +49,7 @@ struct SegTree {
     while (i >>= 1) update(i);
   }
 
-  X prod(int L, int R) {
+  X prod(int L, int R) const {
     assert(0 <= L && L <= R && R <= n);
     X vl = Monoid::unit(), vr = Monoid::unit();
     L += size, R += size;
@@ -61,7 +61,7 @@ struct SegTree {
     return Monoid::op(vl, vr);
   }
 
-  vc<int> prod_ids(int L, int R) {
+  vc<int> prod_ids(int L, int R) const {
     assert(0 <= L && L <= R && R <= n);
     vc<int> I, J;
     L += size, R += size;
@@ -75,10 +75,10 @@ struct SegTree {
     return I;
   }
 
-  X prod_all() { return dat[1]; }
+  X prod_all() const { return dat[1]; }
 
   template <class F>
-  int max_right(F check, int L) {
+  int max_right(F check, int L) const {
     assert(0 <= L && L <= n && check(Monoid::unit()));
     if (L == n) return n;
     L += size;
@@ -100,7 +100,7 @@ struct SegTree {
   }
 
   template <class F>
-  int min_left(F check, int R) {
+  int min_left(F check, int R) const {
     assert(0 <= R && R <= n && check(Monoid::unit()));
     if (R == 0) return 0;
     R += size;
@@ -123,7 +123,7 @@ struct SegTree {
   }
 
   // prod_{l<=i<r} A[i xor x]
-  X xor_prod(int l, int r, int xor_val) {
+  X xor_prod(int l, int r, int xor_val) const {
     static_assert(Monoid::commute);
     X x = Monoid::unit();
     for (int k = 0; k < log + 1; ++k) {

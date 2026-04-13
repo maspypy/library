@@ -27,7 +27,7 @@ struct Uncompressed_Wavelet_Matrix {
   }
 
   template <typename F>
-  void build(int n, F f, int log) {
+  void build(int n, F f, int log = -1) {
     this->n = n;
     vc<Y> A(n);
     vc<T> S(n);
