@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -311,34 +311,34 @@ data:
     \n\u524D\u8A08\u7B97\uFF1AO(Nlog(N)/2^LOG)\n\u30AF\u30A8\u30EA\uFF1AO(1) / worst\
     \ O(2^LOG)\n*/\ntemplate <typename Monoid, typename SPARSE_TABLE, int LOG = 4>\n\
     struct Static_Range_Product {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
-    \  int N, b_num;\n  vc<X> A, pre, suf; // inclusive\n  SPARSE_TABLE ST;\n\n  Static_Range_Product()\
-    \ {}\n  template <typename F>\n  Static_Range_Product(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  Static_Range_Product(const vc<X>& v) { build(v); }\n\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    N = m;\n    b_num = N >> LOG;\n\
-    \    A.resize(N);\n    FOR(i, N) A[i] = f(i);\n    pre = A, suf = A;\n    constexpr\
-    \ int mask = (1 << LOG) - 1;\n    FOR(i, 1, N) {\n      if (i & mask) pre[i] =\
-    \ MX::op(pre[i - 1], A[i]);\n    }\n    FOR_R(i, 1, N) {\n      if (i & mask)\
-    \ suf[i - 1] = MX::op(A[i - 1], suf[i]);\n    }\n    ST.build(b_num, [&](int i)\
-    \ -> X { return suf[i << LOG]; });\n  }\n\n  // O(1) or O(R-L)\n  X prod(int L,\
-    \ int R) {\n    if (L == R) return MX::unit();\n    R -= 1;\n    int a = L >>\
-    \ LOG, b = R >> LOG;\n    if (a < b) {\n      X x = ST.prod(a + 1, b);\n     \
-    \ x = MX::op(suf[L], x);\n      x = MX::op(x, pre[R]);\n      return x;\n    }\n\
-    \    X x = A[L];\n    FOR(i, L + 1, R + 1) x = MX::op(x, A[i]);\n    return x;\n\
-    \  }\n\n  template <class F>\n  int max_right(const F check, int L) {\n    assert(0\
-    \ <= L && L <= N && check(MX::unit()));\n    if (L == N) return N;\n    int ok\
-    \ = L, ng = N + 1;\n    while (ok + 1 < ng) {\n      int k = (ok + ng) / 2;\n\
-    \      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n      if (!bl) ng\
-    \ = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int min_left(const\
-    \ F check, int R) {\n    assert(0 <= R && R <= N && check(MX::unit()));\n    if\
-    \ (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok) {\n  \
-    \    int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl)\
-    \ ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line 7 \"\
-    test/2_library_checker/data_structure/staticrmq.test.cpp\"\n\nsigned main() {\n\
-    \  using Mono = Monoid_Min<u32>;\n  using ST = Sparse_Table<Mono>;\n  INT(N, Q);\n\
-    \  Static_Range_Product<Mono, ST> X(N, [&](int i) -> u32 {\n    u32 x;\n    read(x);\n\
-    \    return x;\n  });\n  FOR(Q) {\n    u32 L, R;\n    read(L, R);\n    print(X.prod(L,\
-    \ R));\n  }\n  return 0;\n}\n"
+    \  int N, b_num;\n  vc<X> A, pre, suf;  // inclusive\n  SPARSE_TABLE ST;\n\n \
+    \ Static_Range_Product() {}\n  template <typename F>\n  Static_Range_Product(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Static_Range_Product(const vc<X>& v) { build(v);\
+    \ }\n\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    N =\
+    \ m;\n    b_num = N >> LOG;\n    A.resize(N);\n    FOR(i, N) A[i] = f(i);\n  \
+    \  pre = A, suf = A;\n    constexpr int mask = (1 << LOG) - 1;\n    FOR(i, 1,\
+    \ N) {\n      if (i & mask) pre[i] = MX::op(pre[i - 1], A[i]);\n    }\n    FOR_R(i,\
+    \ 1, N) {\n      if (i & mask) suf[i - 1] = MX::op(A[i - 1], suf[i]);\n    }\n\
+    \    ST.build(b_num, [&](int i) -> X { return suf[i << LOG]; });\n  }\n\n  //\
+    \ O(1) or O(R-L)\n  X prod(int L, int R) const {\n    if (L == R) return MX::unit();\n\
+    \    R -= 1;\n    int a = L >> LOG, b = R >> LOG;\n    if (a < b) {\n      X x\
+    \ = ST.prod(a + 1, b);\n      x = MX::op(suf[L], x);\n      x = MX::op(x, pre[R]);\n\
+    \      return x;\n    }\n    X x = A[L];\n    FOR(i, L + 1, R + 1) x = MX::op(x,\
+    \ A[i]);\n    return x;\n  }\n\n  template <class F>\n  int max_right(const F\
+    \ check, int L) const {\n    assert(0 <= L && L <= N && check(MX::unit()));\n\
+    \    if (L == N) return N;\n    int ok = L, ng = N + 1;\n    while (ok + 1 < ng)\
+    \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if\
+    \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template\
+    \ <class F>\n  int min_left(const F check, int R) const {\n    assert(0 <= R &&\
+    \ R <= N && check(MX::unit()));\n    if (R == 0) return 0;\n    int ok = R, ng\
+    \ = -1;\n    while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl\
+    \ = check(prod(k, R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n\
+    \    return ok;\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/staticrmq.test.cpp\"\
+    \n\nsigned main() {\n  using Mono = Monoid_Min<u32>;\n  using ST = Sparse_Table<Mono>;\n\
+    \  INT(N, Q);\n  Static_Range_Product<Mono, ST> X(N, [&](int i) -> u32 {\n   \
+    \ u32 x;\n    read(x);\n    return x;\n  });\n  FOR(Q) {\n    u32 L, R;\n    read(L,\
+    \ R);\n    print(X.prod(L, R));\n  }\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/monoid/min.hpp\"\
     \n#include \"ds/static_range_product.hpp\"\n\nsigned main() {\n  using Mono =\
@@ -356,8 +356,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-04-13 18:43:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq.test.cpp
 layout: document

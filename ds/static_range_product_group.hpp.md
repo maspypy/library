@@ -9,10 +9,10 @@ data:
   - icon: ':x:'
     path: test/1_mytest/wavelet_matrix.test.cpp
     title: test/1_mytest/wavelet_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
     \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>&\
     \ A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n    for (int i =\
     \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int\
-    \ r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
+    \ r) const { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
     \ T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n"
   code: "#include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group\
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X>\
@@ -55,14 +55,14 @@ data:
     \    for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void\
     \ build(vc<X>& A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n   \
     \ for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int\
-    \ l, int r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
-    \ T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n"
+    \ l, int r) const { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate\
+    \ <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n"
   dependsOn:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/static_range_product_group.hpp
   requiredBy: []
-  timestamp: '2025-03-31 01:16:57+09:00'
+  timestamp: '2026-04-13 18:43:05+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/static_range_sum.test.cpp

@@ -33,9 +33,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -480,7 +480,7 @@ data:
     \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>&\
     \ A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n    for (int i =\
     \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int\
-    \ r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
+    \ r) const { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
     \ T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n#line 8 \"\
     test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp\"\n\nvoid\
     \ solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i],\
@@ -510,8 +510,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 17:55:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-04-13 18:43:05+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
 layout: document

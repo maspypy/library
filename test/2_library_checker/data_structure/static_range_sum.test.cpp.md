@@ -255,7 +255,7 @@ data:
     \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>&\
     \ A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n    for (int i =\
     \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int\
-    \ r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
+    \ r) const { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
     \ T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n#line 7 \"\
     test/2_library_checker/data_structure/static_range_sum.test.cpp\"\n\r\nvoid solve()\
     \ {\r\n  LL(N, Q);\r\n\r\n  Prefix_Sum<u64> seg(N, [&](int i) -> u32 {\r\n   \
@@ -275,7 +275,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
+  timestamp: '2026-04-13 18:43:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_sum.test.cpp
