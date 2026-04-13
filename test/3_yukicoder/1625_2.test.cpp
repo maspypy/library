@@ -33,7 +33,7 @@ void solve() {
     }
   }
   using Mono = Monoid_Max<ll>;
-  Wavelet_Matrix_2D_Range<int, false, false, SegTree<Mono>> WM(
+  Wavelet_Matrix_2D_Range<int, true, true, SegTree<Mono>> WM(
       N + Q, [&](int i) -> tuple<int, int, ll> {
         auto [a, b, c] = query[i];
         if (i < N) return {a, b, c};

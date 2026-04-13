@@ -27,10 +27,8 @@ void solve() {
     }
   }
 
-  Wavelet_Matrix_2D_Range<int, false, false, FenwickTree<Monoid_Add<ll>>> WM(
-      len(X), [&](int i) -> tuple<int, int, ll> {
-        return {X[i], Y[i], W[i]};
-      });
+  Wavelet_Matrix_2D_Range<int, true, true, FenwickTree<Monoid_Add<ll>>> WM(
+      len(X), [&](int i) -> tuple<int, int, ll> { return {X[i], Y[i], W[i]}; });
   int idx = N;
   FOR(q, Q) {
     auto [a, b, c, d] = query[q];

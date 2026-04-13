@@ -4,14 +4,16 @@
 #include "ds/segtree/segtree.hpp"
 
 struct Mono {
-  using value_type = tuple<int, int, int>; // max, min1, min2
+  using value_type = tuple<int, int, int>;  // max, min1, min2
   using X = value_type;
-  static X op(X& x, X& y) {
+  static X op(const X& x, const X& y) {
     auto& [xma, xmi1, xmi2] = x;
     auto& [yma, ymi1, ymi2] = y;
     if (xma == -1) return y;
     if (yma == -1) return x;
-    if (xmi1 < ymi1) { return {max(xma, yma), xmi1, min(xmi2, ymi1)}; }
+    if (xmi1 < ymi1) {
+      return {max(xma, yma), xmi1, min(xmi2, ymi1)};
+    }
     return {max(xma, yma), ymi1, min(ymi2, xmi1)};
   }
   static X from_element(int x) { return {x, x, 1 << 30}; }
@@ -39,11 +41,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

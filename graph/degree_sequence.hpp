@@ -66,3 +66,28 @@ pair<bool, vc<pair<int, int>>> construct_from_degree_sequence(vc<int> deg) {
   }
   return {true, ANS};
 }
+
+pair<bool, vc<pair<int, int>>> construct_from_degree_sequence_tree(
+    vc<int> deg) {
+  int N = len(deg);
+  if (SUM<ll>(deg) != N + N - 2) return {false, {}};
+  if (N == 1) return {true, {}};
+  if (MIN(deg) == 0) return {false, {}};
+  vc<pair<int, int>> E;
+  vc<int> X, Y;
+  FOR(v, N)(deg[v] == 1 ? X : Y).eb(v);
+  FOR(step, N - 1) {
+    while (len(Y) && deg[Y.back()] <= 1) X.eb(POP(Y));
+    while (len(X) && deg[X.back()] != 1) POP(X);
+    int v = POP(X);
+    while (len(X) && deg[X.back()] != 1) POP(X);
+    if (step == N - 2) {
+      E.eb(v, POP(X));
+    } else {
+      int w = POP(Y);
+      E.eb(v, w);
+      deg[w]--, Y.eb(w);
+    }
+  }
+  return {true, E};
+}

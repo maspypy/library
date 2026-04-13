@@ -21,7 +21,8 @@ void solve() {
   FOR(i, N) A[i] = X[i] + K * T[i];
   FOR(i, N) B[i] = K * T[i] - X[i];
 
-  Wavelet_Matrix_2D_Range<ll, 0, 0, SegTree<Monoid_Max<ll>>> seg(N, [&](int i) -> tuple<ll, ll, ll> { return {A[i], B[i], -infty<ll>}; });
+  Wavelet_Matrix_2D_Range<ll, 1, 1, SegTree<Monoid_Max<ll>>> seg(
+      N, [&](int i) -> tuple<ll, ll, ll> { return {A[i], B[i], -infty<ll>}; });
 
   ll ANS = 0;
   FOR(i, N) {

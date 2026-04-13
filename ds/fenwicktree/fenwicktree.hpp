@@ -40,29 +40,33 @@ struct FenwickTree {
     total = prefix_sum(m);
   }
 
-  E prod_all() { return total; }
-  E sum_all() { return total; }
-  E sum(int k) { return prefix_sum(k); }
-  E prod(int k) { return prefix_prod(k); }
-  E prefix_sum(int k) { return prefix_prod(k); }
-  E prefix_prod(int k) {
+  E prod_all() const { return total; }
+  E sum_all() const { return total; }
+  E sum(int k) const { return prefix_sum(k); }
+  E prod(int k) const { return prefix_prod(k); }
+  E prefix_sum(int k) const { return prefix_prod(k); }
+  E prefix_prod(int k) const {
     chmin(k, n);
     E ret = G::unit();
     for (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);
     return ret;
   }
-  E sum(int L, int R) { return prod(L, R); }
-  E prod(int L, int R) {
+  E sum(int L, int R) const { return prod(L, R); }
+  E prod(int L, int R) const {
     chmax(L, 0), chmin(R, n);
     if (L == 0) return prefix_prod(R);
     assert(0 <= L && L <= R && R <= n);
     E pos = G::unit(), neg = G::unit();
-    while (L < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }
-    while (R < L) { neg = G::op(neg, dat[L - 1]), L -= L & -L; }
+    while (L < R) {
+      pos = G::op(pos, dat[R - 1]), R -= R & -R;
+    }
+    while (R < L) {
+      neg = G::op(neg, dat[L - 1]), L -= L & -L;
+    }
     return G::op(pos, G::inverse(neg));
   }
 
-  vc<E> get_all() {
+  vc<E> get_all() const {
     vc<E> res(n);
     FOR(i, n) res[i] = prod(i, i + 1);
     return res;
@@ -77,19 +81,25 @@ struct FenwickTree {
   void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }
 
   template <class F>
-  int max_right(const F check, int L = 0) {
+  int max_right(const F check, int L = 0) const {
     assert(check(G::unit()));
     E s = G::unit();
     int i = L;
     // 2^k 進むとダメ
     int k = [&]() {
       while (1) {
-        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }
-        if (i == 0) { return topbit(n) + 1; }
+        if (i % 2 == 1) {
+          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;
+        }
+        if (i == 0) {
+          return topbit(n) + 1;
+        }
         int k = lowbit(i) - 1;
         if (i + (1 << k) > n) return k;
         E t = G::op(s, dat[i + (1 << k) - 1]);
-        if (!check(t)) { return k; }
+        if (!check(t)) {
+          return k;
+        }
         s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;
       }
     }();
@@ -105,19 +115,25 @@ struct FenwickTree {
 
   // check(i, x)
   template <class F>
-  int max_right_with_index(const F check, int L = 0) {
+  int max_right_with_index(const F check, int L = 0) const {
     assert(check(L, G::unit()));
     E s = G::unit();
     int i = L;
     // 2^k 進むとダメ
     int k = [&]() {
       while (1) {
-        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }
-        if (i == 0) { return topbit(n) + 1; }
+        if (i % 2 == 1) {
+          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;
+        }
+        if (i == 0) {
+          return topbit(n) + 1;
+        }
         int k = lowbit(i) - 1;
         if (i + (1 << k) > n) return k;
         E t = G::op(s, dat[i + (1 << k) - 1]);
-        if (!check(i + (1 << k), t)) { return k; }
+        if (!check(i + (1 << k), t)) {
+          return k;
+        }
         s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;
       }
     }();
@@ -132,7 +148,7 @@ struct FenwickTree {
   }
 
   template <class F>
-  int min_left(const F check, int R) {
+  int min_left(const F check, int R) const {
     assert(check(G::unit()));
     E s = G::unit();
     int i = R;
@@ -152,12 +168,14 @@ struct FenwickTree {
     while (k) {
       --k;
       E t = G::op(s, G::inverse(dat[i + (1 << k) - 1]));
-      if (!check(t)) { i += (1 << k), s = t; }
+      if (!check(t)) {
+        i += (1 << k), s = t;
+      }
     }
     return i + 1;
   }
 
-  int kth(E k, int L = 0) {
+  int kth(E k, int L = 0) const {
     return max_right([&k](E x) -> bool { return x <= k; }, L);
   }
 };
