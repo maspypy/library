@@ -132,7 +132,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/dihedral.hpp
       title: alg/monoid/dihedral.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/dummy.hpp
       title: alg/monoid/dummy.hpp
     - icon: ':heavy_check_mark:'
@@ -298,7 +298,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':warning:'
@@ -319,7 +319,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/dummy_data_structure.hpp
       title: ds/dummy_data_structure.hpp
     - icon: ':heavy_check_mark:'
@@ -667,7 +667,7 @@ data:
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/wavelet_matrix/wavelet_matrix.hpp
       title: ds/wavelet_matrix/wavelet_matrix.hpp
     - icon: ':x:'
@@ -3347,7 +3347,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
     - icon: ':heavy_check_mark:'

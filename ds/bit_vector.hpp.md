@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':x:'
@@ -27,7 +27,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     title: test/3_yukicoder/924.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  bool\
@@ -106,7 +106,7 @@ data:
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_old.hpp
   timestamp: '2026-04-13 09:20:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp

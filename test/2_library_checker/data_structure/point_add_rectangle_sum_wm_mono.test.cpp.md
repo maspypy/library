@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
   - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':x:'
@@ -274,147 +274,174 @@ data:
     \ value_type unit() { return 0; }\n};\n#line 2 \"ds/dummy_data_structure.hpp\"\
     \n\nstruct Dummy_Data_Structure {\n  using MX = Monoid_Dummy;\n  using T = typename\
     \ MX::value_type;\n  void build(const vc<T>& A) {}\n};\n#line 3 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
-    \n\r\ntemplate <typename Y, typename SEGTREE = Dummy_Data_Structure>\r\nstruct\
-    \ Wavelet_Matrix {\r\n  using Mono = typename SEGTREE::MX;\r\n  using T = typename\
-    \ Mono::value_type;\r\n  static_assert(Mono::commute);\r\n  static_assert(is_same_v<Y,\
-    \ int> || is_same_v<Y, ll>);\r\n  int n = 0, log = 0;\r\n  vc<int> mid;\r\n  vc<Bit_Vector>\
-    \ bv;\r\n  vc<SEGTREE> seg;\r\n\r\n  Wavelet_Matrix() = default;\r\n\r\n  // f(i)\
-    \ = {A[i], dat[i]}\r\n  template <typename F>\r\n  Wavelet_Matrix(int n, F f,\
-    \ int log = -1) {\r\n    build(n, f, log);\r\n  }\r\n  Wavelet_Matrix(const vc<Y>&\
-    \ A, int log = -1) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\
+    \n\r\ntemplate <typename Y, typename SEGTREE>\r\nstruct Uncompressed_Wavelet_Matrix\
+    \ {\r\n  using Mono = typename SEGTREE::MX;\r\n  using T = typename Mono::value_type;\r\
+    \n  static_assert(Mono::commute);\r\n  static_assert(is_same_v<Y, int> || is_same_v<Y,\
+    \ ll>);\r\n  int n = 0, log = 0;\r\n  vc<int> mid;\r\n  vc<Bit_Vector> bv;\r\n\
+    \  vc<SEGTREE> seg;\r\n  Y limit;\r\n\r\n  Uncompressed_Wavelet_Matrix() = default;\r\
+    \n\r\n  // f(i) = {A[i], dat[i]}\r\n  template <typename F>\r\n  Uncompressed_Wavelet_Matrix(int\
+    \ n, F f, int log = -1) {\r\n    build(n, f, log);\r\n  }\r\n  Uncompressed_Wavelet_Matrix(const\
+    \ vc<Y>& A, int log = -1) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\
     \n    build(\r\n        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::unit()};\
     \ }, log);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(int n, F f, int\
     \ log) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n    FOR(i,\
     \ n) tie(A[i], S[i]) = f(i);\r\n    if (log == -1) {\r\n      log = (n == 0 ?\
     \ 0 : topbit(MAX(A)) + 1);\r\n    } else {\r\n      for (auto& x : A) assert(0\
-    \ <= x && topbit(x) < log);\r\n    }\r\n    this->log = log;\r\n    if constexpr\
-    \ (is_same_v<Y, int>) assert(0 <= log && log <= 30);\r\n    if constexpr (is_same_v<Y,\
-    \ ll>) assert(0 <= log && log <= 62);\r\n    mid.resize(log), bv.assign(log, Bit_Vector(n));\r\
-    \n    vc<Y> A0(n), A1(n);\r\n    vc<T> S0(n), S1(n);\r\n    seg.resize(log + 1);\r\
-    \n    seg[log].build(S);\r\n    for (int d = log - 1; d >= 0; --d) {\r\n     \
-    \ int p0 = 0, p1 = 0;\r\n      for (int i = 0; i < n; ++i) {\r\n        if (A[i]\
-    \ >> d & 1) {\r\n          bv[d].set(i), A1[p1] = A[i], S1[p1] = S[i], p1++;\r\
-    \n        } else {\r\n          A0[p0] = A[i], S0[p0] = S[i], p0++;\r\n      \
-    \  }\r\n      }\r\n      swap(A, A0), swap(S, S0);\r\n      move(A1.begin(), A1.begin()\
-    \ + p1, A.begin() + p0);\r\n      move(S1.begin(), S1.begin() + p1, S.begin()\
-    \ + p0);\r\n      mid[d] = p0, bv[d].build(), seg[d].build(S);\r\n    }\r\n  }\r\
-    \n\r\n  tuple<int, int, int, int> get_subtree(int d, int L, int R) const {\r\n\
-    \    assert(1 <= d && d <= log);\r\n    int a = bv[d - 1].count_prefix(L), b =\
-    \ bv[d - 1].count_prefix(R);\r\n    return {L - a, R - b, mid[d - 1] + a, mid[d\
-    \ - 1] + b};\r\n  }\r\n\r\n  template <typename F>\r\n  void work_point(F f, int\
-    \ i) {\r\n    assert(0 <= i && i < n);\r\n    f(log, i);\r\n    FOR_R(d, log)\
-    \ {\r\n      int a = bv[d].count_prefix(i);\r\n      if (bv[d][i]) {\r\n     \
-    \   i = mid[d] + a;\r\n      } else {\r\n        i = i - a;\r\n      }\r\n   \
-    \   f(d, i);\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\n  void work_prefix(F\
-    \ f, int L, int R, Y y) const {\r\n    assert(0 <= y && y <= Y(1) << log);\r\n\
-    \    if (y == 0) return;\r\n    if (y == Y(1) << log) {\r\n      f(log, L, R);\r\
-    \n      return;\r\n    }\r\n    FOR_R(d, log) {\r\n      auto [L0, R0, L1, R1]\
-    \ = get_subtree(d + 1, L, R);\r\n      if (y >> d & 1) {\r\n        f(d, L0, R0);\r\
-    \n        L = L1, R = R1;\r\n      } else {\r\n        L = L0, R = R0;\r\n   \
-    \   }\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\n  void work_range(F f,\
-    \ int L, int R, Y y1, Y y2) const {\r\n    assert(0 <= y1 && y1 <= y2 && y2 <=\
-    \ Y(1) << log);\r\n    if (y1 == 0) return work_prefix(f, L, R, y2);\r\n    auto\
-    \ dfs = [&](auto& dfs, int d, int L, int R, Y y1, Y y2) -> void {\r\n      if\
-    \ (y1 == y2) return;\r\n      if (y1 == 0 && y2 == Y(1) << d) {\r\n        f(d,\
-    \ L, R);\r\n        return;\r\n      }\r\n      assert(d > 0);\r\n      auto [L0,\
-    \ R0, L1, R1] = get_subtree(d, L, R);\r\n      Y m = (Y(1) << (d - 1));\r\n\r\n\
-    \      if (y2 <= m) {\r\n        dfs(dfs, d - 1, L0, R0, y1, y2);\r\n      } else\
-    \ if (y1 >= m) {\r\n        dfs(dfs, d - 1, L1, R1, y1 - m, y2 - m);\r\n     \
-    \ } else {\r\n        dfs(dfs, d - 1, L0, R0, y1, m);\r\n        dfs(dfs, d -\
-    \ 1, L1, R1, 0, y2 - m);\r\n      }\r\n    };\r\n    dfs(dfs, log, L, R, y1, y2);\r\
-    \n  }\r\n\r\n  // [L,R) x [0,y)\r\n  int prefix_count(int L, int R, Y y) const\
-    \ {\r\n    int cnt = 0;\r\n    work_prefix([&](int d, int a, int b) { cnt += b\
-    \ - a; }, L, R, y);\r\n    return cnt;\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n\
-    \  int count(int L, int R, Y y1, Y y2) const {\r\n    return prefix_count(L, R,\
-    \ y2) - prefix_count(L, R, y1);\r\n  }\r\n\r\n  // [L,R) x [0,y)\r\n  T prefix_prod(int\
-    \ L, int R, Y y) const {\r\n    T ans = Mono::unit();\r\n    work_prefix(\r\n\
-    \        [&](int d, int a, int b) { ans = Mono::op(ans, seg[d].prod(a, b)); },\
-    \ L,\r\n        R, y);\r\n    return ans;\r\n  }\r\n  // [L,R) x [y1,y2)\r\n \
-    \ T prod(int L, int R, Y y1, Y y2) const {\r\n    T ans = Mono::unit();\r\n  \
-    \  work_range(\r\n        [&](int d, int a, int b) { ans = Mono::op(ans, seg[d].prod(a,\
-    \ b)); }, L,\r\n        R, y1, y2);\r\n    return ans;\r\n  }\r\n  T prod_all(int\
-    \ L, int R) const { return seg[log].prod(L, R); }\r\n\r\n  // [L,R) x [0,y)\r\n\
-    \  pair<int, T> prefix_count_and_prod(int L, int R, Y y) const {\r\n    pair<int,\
-    \ T> ans = {0, Mono::unit()};\r\n    work_prefix(\r\n        [&](int d, int a,\
-    \ int b) {\r\n          ans.fi += b - a;\r\n          ans.se = Mono::op(ans.se,\
-    \ seg[d].prod(a, b));\r\n        },\r\n        L, R, y);\r\n    return ans;\r\n\
-    \  }\r\n  // [L,R) x [y1,y2)\r\n  pair<int, T> count_and_prod(int L, int R, Y\
-    \ y1, Y y2) const {\r\n    pair<int, T> ans = {0, Mono::unit()};\r\n    work_range(\r\
-    \n        [&](int d, int a, int b) {\r\n          ans.fi += b - a;\r\n       \
-    \   ans.se = Mono::op(ans.se, seg[d].prod(a, b));\r\n        },\r\n        L,\
-    \ R, y1, y2);\r\n    return ans;\r\n  }\r\n\r\n  Y kth(int L, int R, int k) const\
-    \ {\r\n    assert(0 <= k && k < R - L);\r\n    Y ans = 0;\r\n    for (int d =\
-    \ log - 1; d >= 0; --d) {\r\n      auto [L0, R0, L1, R1] = get_subtree(d + 1,\
-    \ L, R);\r\n      if (k < R0 - L0) {\r\n        L = L0, R = R0;\r\n      } else\
-    \ {\r\n        ans |= Y(1) << d;\r\n        k -= R0 - L0, L = L1, R = R1;\r\n\
-    \      }\r\n    }\r\n    return ans;\r\n  }\r\n\r\n  // y \u4EE5\u4E0A\u6700\u5C0F\
-    \ OR 1<<log\r\n  Y next(int L, int R, Y y) const {\r\n    assert(0 <= y && y <=\
-    \ (Y(1) << log));\r\n    int k = prefix_count(L, R, y);\r\n    return (k == R\
-    \ - L ? Y(1) << log : kth(L, R, k));\r\n  }\r\n\r\n  // y \u4EE5\u4E0B\u6700\u5927\
-    \ OR -1\r\n  Y prev(int L, int R, Y y) const {\r\n    assert(0 <= y && y <= (Y(1)\
-    \ << log));\r\n    if (y == Y(1) << log) --y;\r\n    int k = prefix_count(L, R,\
-    \ y + 1);\r\n    return (k == 0 ? -1 : kth(L, R, k - 1));\r\n  }\r\n\r\n  template\
-    \ <bool upper>\r\n  Y median(int L, int R) const {\r\n    assert(0 <= L && L <\
-    \ R && R <= n);\r\n    int k = (upper ? (R - L) / 2 : (R - L - 1) / 2);\r\n  \
-    \  return kth(L, R, k);\r\n  }\r\n\r\n  void set(int i, T t) {\r\n    assert(0\
-    \ <= i && i < n);\r\n    work_point([&](int d, int i) { seg[d].set(i, t); }, i);\r\
-    \n  }\r\n  void multiply(int i, T t) {\r\n    assert(0 <= i && i < n);\r\n   \
-    \ work_point([&](int d, int i) { seg[d].multiply(i, t); }, i);\r\n  }\r\n  void\
-    \ add(int i, T t) {\r\n    assert(0 <= i && i < n);\r\n    work_point([&](int\
+    \ <= x && topbit(x) < log);\r\n    }\r\n    this->log = log;\r\n    limit = Y(1)\
+    \ << log;\r\n    if constexpr (is_same_v<Y, int>) assert(0 <= log && log <= 30);\r\
+    \n    if constexpr (is_same_v<Y, ll>) assert(0 <= log && log <= 62);\r\n    mid.resize(log),\
+    \ bv.assign(log, Bit_Vector(n));\r\n    vc<Y> A0(n), A1(n);\r\n    vc<T> S0(n),\
+    \ S1(n);\r\n    seg.resize(log + 1);\r\n    seg[log].build(S);\r\n    for (int\
+    \ d = log - 1; d >= 0; --d) {\r\n      int p0 = 0, p1 = 0;\r\n      for (int i\
+    \ = 0; i < n; ++i) {\r\n        if (A[i] >> d & 1) {\r\n          bv[d].set(i),\
+    \ A1[p1] = A[i], S1[p1] = S[i], p1++;\r\n        } else {\r\n          A0[p0]\
+    \ = A[i], S0[p0] = S[i], p0++;\r\n        }\r\n      }\r\n      swap(A, A0), swap(S,\
+    \ S0);\r\n      move(A1.begin(), A1.begin() + p1, A.begin() + p0);\r\n      move(S1.begin(),\
+    \ S1.begin() + p1, S.begin() + p0);\r\n      mid[d] = p0, bv[d].build(), seg[d].build(S);\r\
+    \n    }\r\n  }\r\n\r\n  tuple<int, int, int, int> get_subtree(int d, int L, int\
+    \ R) const {\r\n    assert(1 <= d && d <= log);\r\n    int a = bv[d - 1].count_prefix(L),\
+    \ b = bv[d - 1].count_prefix(R);\r\n    return {L - a, R - b, mid[d - 1] + a,\
+    \ mid[d - 1] + b};\r\n  }\r\n\r\n  template <typename F>\r\n  void work_point(F\
+    \ f, int i) {\r\n    assert(0 <= i && i < n);\r\n    f(log, i);\r\n    FOR_R(d,\
+    \ log) {\r\n      int a = bv[d].count_prefix(i);\r\n      if (bv[d][i]) {\r\n\
+    \        i = mid[d] + a;\r\n      } else {\r\n        i = i - a;\r\n      }\r\n\
+    \      f(d, i);\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\n  void work_prefix(F\
+    \ f, int L, int R, Y y) const {\r\n    assert(0 <= y && y <= limit);\r\n    if\
+    \ (y == 0) return;\r\n    if (y == limit) {\r\n      f(log, L, R);\r\n      return;\r\
+    \n    }\r\n    FOR_R(d, log) {\r\n      auto [L0, R0, L1, R1] = get_subtree(d\
+    \ + 1, L, R);\r\n      if (y >> d & 1) {\r\n        f(d, L0, R0);\r\n        L\
+    \ = L1, R = R1;\r\n      } else {\r\n        L = L0, R = R0;\r\n      }\r\n  \
+    \  }\r\n  }\r\n\r\n  template <typename F>\r\n  void work_range(F f, int L, int\
+    \ R, Y y1, Y y2) const {\r\n    assert(0 <= y1 && y1 <= y2 && y2 <= limit);\r\n\
+    \    if (y1 == 0) return work_prefix(f, L, R, y2);\r\n    auto dfs = [&](auto&\
+    \ dfs, int d, int L, int R, Y y1, Y y2) -> void {\r\n      if (y1 == y2) return;\r\
+    \n      if (y1 == 0 && y2 == Y(1) << d) {\r\n        f(d, L, R);\r\n        return;\r\
+    \n      }\r\n      assert(d > 0);\r\n      auto [L0, R0, L1, R1] = get_subtree(d,\
+    \ L, R);\r\n      Y m = (Y(1) << (d - 1));\r\n\r\n      if (y2 <= m) {\r\n   \
+    \     dfs(dfs, d - 1, L0, R0, y1, y2);\r\n      } else if (y1 >= m) {\r\n    \
+    \    dfs(dfs, d - 1, L1, R1, y1 - m, y2 - m);\r\n      } else {\r\n        dfs(dfs,\
+    \ d - 1, L0, R0, y1, m);\r\n        dfs(dfs, d - 1, L1, R1, 0, y2 - m);\r\n  \
+    \    }\r\n    };\r\n    dfs(dfs, log, L, R, y1, y2);\r\n  }\r\n\r\n  // [L,R)\
+    \ x [0,y)\r\n  int prefix_count(int L, int R, Y y) const {\r\n    int cnt = 0;\r\
+    \n    work_prefix([&](int d, int a, int b) { cnt += b - a; }, L, R, y);\r\n  \
+    \  return cnt;\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  int count(int L, int R,\
+    \ Y y1, Y y2) const {\r\n    return prefix_count(L, R, y2) - prefix_count(L, R,\
+    \ y1);\r\n  }\r\n\r\n  // [L,R) x [0,y)\r\n  T prefix_prod(int L, int R, Y y)\
+    \ const {\r\n    T ans = Mono::unit();\r\n    work_prefix(\r\n        [&](int\
+    \ d, int a, int b) { ans = Mono::op(ans, seg[d].prod(a, b)); }, L,\r\n       \
+    \ R, y);\r\n    return ans;\r\n  }\r\n  // [L,R) x [y1,y2)\r\n  T prod(int L,\
+    \ int R, Y y1, Y y2) const {\r\n    T ans = Mono::unit();\r\n    work_range(\r\
+    \n        [&](int d, int a, int b) { ans = Mono::op(ans, seg[d].prod(a, b)); },\
+    \ L,\r\n        R, y1, y2);\r\n    return ans;\r\n  }\r\n  T prod_all(int L, int\
+    \ R) const { return seg[log].prod(L, R); }\r\n\r\n  // [L,R) x [0,y)\r\n  pair<int,\
+    \ T> prefix_count_and_prod(int L, int R, Y y) const {\r\n    pair<int, T> ans\
+    \ = {0, Mono::unit()};\r\n    work_prefix(\r\n        [&](int d, int a, int b)\
+    \ {\r\n          ans.fi += b - a;\r\n          ans.se = Mono::op(ans.se, seg[d].prod(a,\
+    \ b));\r\n        },\r\n        L, R, y);\r\n    return ans;\r\n  }\r\n  // [L,R)\
+    \ x [y1,y2)\r\n  pair<int, T> count_and_prod(int L, int R, Y y1, Y y2) const {\r\
+    \n    pair<int, T> ans = {0, Mono::unit()};\r\n    work_range(\r\n        [&](int\
+    \ d, int a, int b) {\r\n          ans.fi += b - a;\r\n          ans.se = Mono::op(ans.se,\
+    \ seg[d].prod(a, b));\r\n        },\r\n        L, R, y1, y2);\r\n    return ans;\r\
+    \n  }\r\n\r\n  Y kth(int L, int R, int k) const {\r\n    assert(0 <= k && k <\
+    \ R - L);\r\n    Y ans = 0;\r\n    for (int d = log - 1; d >= 0; --d) {\r\n  \
+    \    auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\r\n      if (k < R0 - L0)\
+    \ {\r\n        L = L0, R = R0;\r\n      } else {\r\n        ans |= Y(1) << d;\r\
+    \n        k -= R0 - L0, L = L1, R = R1;\r\n      }\r\n    }\r\n    return ans;\r\
+    \n  }\r\n\r\n  template <bool upper>\r\n  Y median(int L, int R) const {\r\n \
+    \   assert(0 <= L && L < R && R <= n);\r\n    int k = (upper ? (R - L) / 2 : (R\
+    \ - L - 1) / 2);\r\n    return kth(L, R, k);\r\n  }\r\n\r\n  void set(int i, T\
+    \ t) {\r\n    assert(0 <= i && i < n);\r\n    work_point([&](int d, int i) { seg[d].set(i,\
+    \ t); }, i);\r\n  }\r\n  void multiply(int i, T t) {\r\n    assert(0 <= i && i\
+    \ < n);\r\n    work_point([&](int d, int i) { seg[d].multiply(i, t); }, i);\r\n\
+    \  }\r\n  void add(int i, T t) {\r\n    assert(0 <= i && i < n);\r\n    work_point([&](int\
     \ d, int i) { seg[d].add(i, t); }, i);\r\n  }\r\n\r\n  // [L,R) x [0,y) \u3067\
     \u306E check(y, cnt, prod) \u304C true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\r\
     \n  template <typename F>\r\n  tuple<Y, int, T> max_right(F check, int L, int\
-    \ R) const {\r\n    int cnt = 0;\r\n    Y y = 0;\r\n    T t = Mono::unit();\r\n\
-    \    assert(check(0, 0, Mono::unit()));\r\n    T t_all = seg[log].prod(L, R);\r\
-    \n    if (check(Y(1) << log, R - L, t_all)) {\r\n      return {Y(1) << log, R\
-    \ - L, t_all};\r\n    }\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      auto\
-    \ [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\r\n      Y y1 = y | Y(1) << d;\r\
-    \n      int cnt1 = cnt + R0 - L0;\r\n      T t1 = Mono::op(t, seg[d].prod(L0,\
-    \ R0));\r\n      if (check(y1, cnt1, t1)) {\r\n        y = y1, cnt = cnt1, t =\
-    \ t1, L = L1, R = R1;\r\n      } else {\r\n        L = L0, R = R0;\r\n      }\r\
-    \n    }\r\n    return {y, cnt, t};\r\n  }\r\n};\n#line 2 \"ds/wavelet_matrix/wavelet_matrix_2d_range.hpp\"\
-    \n\ntemplate <typename XY, bool SMALL_X, bool SMALL_Y, typename SEGTREE = Dummy_Data_Structure>\n\
+    \ R) const {\r\n    assert(limit < infty<Y>);\r\n    int cnt = 0;\r\n    Y y =\
+    \ 0;\r\n    T t = Mono::unit();\r\n    T t_all = seg[log].prod(L, R);\r\n    assert(check(0,\
+    \ 0, Mono::unit()));\r\n    if (check(limit, R - L, t_all)) {\r\n      y = binary_search([&](Y\
+    \ y) -> bool { return check(y, R - L, t_all); },\r\n                        limit,\
+    \ infty<Y> + 1);\r\n      return {y, R - L, t_all};\r\n    }\r\n    for (int d\
+    \ = log - 1; d >= 0; --d) {\r\n      auto [L0, R0, L1, R1] = get_subtree(d + 1,\
+    \ L, R);\r\n      Y y1 = y | Y(1) << d;\r\n      int cnt1 = cnt + R0 - L0;\r\n\
+    \      T t1 = Mono::op(t, seg[d].prod(L0, R0));\r\n      if (check(y1, cnt1, t1))\
+    \ {\r\n        y = y1, cnt = cnt1, t = t1, L = L1, R = R1;\r\n      } else {\r\
+    \n        L = L0, R = R0;\r\n      }\r\n    }\r\n    return {y, cnt, t};\r\n \
+    \ }\r\n};\r\n\r\ntemplate <typename Y, typename SEGTREE>\r\nstruct Compressed_Wavelet_Matrix\
+    \ {\r\n  using Mono = typename SEGTREE::MX;\r\n  using T = typename Mono::value_type;\r\
+    \n\r\n  int n = 0;\r\n  vc<Y> key;\r\n  Uncompressed_Wavelet_Matrix<int, SEGTREE>\
+    \ wm;\r\n\r\n  Compressed_Wavelet_Matrix() = default;\r\n\r\n  // f(i) = {A[i],\
+    \ dat[i]}\r\n  template <typename F>\r\n  Compressed_Wavelet_Matrix(int n, F f)\
+    \ {\r\n    build(n, f);\r\n  }\r\n\r\n  Compressed_Wavelet_Matrix(const vc<Y>&\
+    \ A) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\n   \
+    \ build(A);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(int n, F f)\
+    \ {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n    FOR(i, n)\
+    \ tie(A[i], S[i]) = f(i);\r\n\r\n    key = A;\r\n    UNIQUE(key);\r\n\r\n    wm.build(n,\
+    \ [&](int i) -> pair<int, T> {\r\n      int k = LB(key, A[i]);\r\n      return\
+    \ {k, S[i]};\r\n    });\r\n  }\r\n\r\n  void build(const vc<Y>& A) {\r\n    static_assert(is_same_v<SEGTREE,\
+    \ Dummy_Data_Structure>);\r\n    n = len(A);\r\n    key = A;\r\n    UNIQUE(key);\r\
+    \n\r\n    wm.build(n, [&](int i) -> pair<int, T> {\r\n      int k = LB(key, A[i]);\r\
+    \n      return {k, Mono::unit()};\r\n    });\r\n  }\r\n\r\n  Y kth(int L, int\
+    \ R, int k) const { return key[wm.kth(L, R, k)]; }\r\n\r\n  template <bool upper>\r\
+    \n  Y median(int L, int R) const {\r\n    return key[wm.template median<upper>(L,\
+    \ R)];\r\n  }\r\n\r\n  // [L,R) x [-inf,y)\r\n  int prefix_count(int L, int R,\
+    \ Y y) const {\r\n    return wm.prefix_count(L, R, LB(key, y));\r\n  }\r\n\r\n\
+    \  // [L,R) x [y1,y2)\r\n  int count(int L, int R, Y y1, Y y2) const {\r\n   \
+    \ return wm.count(L, R, LB(key, y1), LB(key, y2));\r\n  }\r\n\r\n  // [L,R) x\
+    \ [-inf,y)\r\n  T prefix_prod(int L, int R, Y y) const {\r\n    return wm.prefix_prod(L,\
+    \ R, LB(key, y));\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  T prod(int L, int R,\
+    \ Y y1, Y y2) const {\r\n    return wm.prod(L, R, LB(key, y1), LB(key, y2));\r\
+    \n  }\r\n\r\n  T prod_all(int L, int R) const { return wm.prod_all(L, R); }\r\n\
+    \r\n  // [L,R) x [-inf,y)\r\n  pair<int, T> prefix_count_and_prod(int L, int R,\
+    \ Y y) const {\r\n    return wm.prefix_count_and_prod(L, R, LB(key, y));\r\n \
+    \ }\r\n\r\n  // [L,R) x [y1,y2)\r\n  pair<int, T> count_and_prod(int L, int R,\
+    \ Y y1, Y y2) const {\r\n    return wm.count_and_prod(L, R, LB(key, y1), LB(key,\
+    \ y2));\r\n  }\r\n\r\n  void set(int i, T t) { wm.set(i, t); }\r\n\r\n  void multiply(int\
+    \ i, T t) { wm.multiply(i, t); }\r\n\r\n  void add(int i, T t) { wm.add(i, t);\
+    \ }\r\n};\r\n\r\ntemplate <typename Y, bool compress, typename SEGTREE = Dummy_Data_Structure>\r\
+    \nusing Wavelet_Matrix =\r\n    conditional_t<compress, Compressed_Wavelet_Matrix<Y,\
+    \ SEGTREE>,\r\n                  Uncompressed_Wavelet_Matrix<Y, SEGTREE>>;\r\n\
+    #line 2 \"ds/wavelet_matrix/wavelet_matrix_2d_range.hpp\"\n\ntemplate <typename\
+    \ XY, bool compress_X, bool compress_Y,\n          typename SEGTREE = Dummy_Data_Structure>\n\
     struct Wavelet_Matrix_2D_Range {\n  // \u70B9\u7FA4\u3092 X \u6607\u9806\u306B\
-    \u4E26\u3079\u308B.\n  Wavelet_Matrix<XY, SMALL_Y, SEGTREE> WM;\n  using Mono\
+    \u4E26\u3079\u308B.\n  Wavelet_Matrix<XY, compress_Y, SEGTREE> WM;\n  using Mono\
     \ = typename SEGTREE::MX;\n  using T = typename Mono::value_type;\n  static_assert(Mono::commute);\n\
-    \n  Index_Compression<XY, false, SMALL_X> IDX_X;\n\n  int n;\n  vc<int> new_idx;\n\
+    \n  Index_Compression<XY, false, !compress_X> IDX_X;\n\n  int n;\n  vc<int> new_idx;\n\
     \n  template <typename F>\n  Wavelet_Matrix_2D_Range(int n, F f) {\n    build(n,\
     \ f);\n  }\n\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
     \    vc<XY> X(n), Y(n);\n    vc<T> S(n);\n    FOR(i, n) {\n      auto tmp = f(i);\n\
     \      X[i] = get<0>(tmp), Y[i] = get<1>(tmp), S[i] = get<2>(tmp);\n    }\n  \
     \  new_idx = IDX_X.build(X);\n    vc<int> I(n);\n    FOR(i, n) I[new_idx[i]] =\
     \ i;\n    Y = rearrange(Y, I);\n    S = rearrange(S, I);\n    WM.build(Y, S);\n\
-    \  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) { return WM.count(IDX_X(x1), IDX_X(x2),\
-    \ y1, y2); }\n\n  // [L,R) x [-inf,y)\n  pair<int, T> prefix_count_and_prod(XY\
-    \ x1, XY x2, XY y) { return WM.prefix_count_and_prod(IDX_X(x1), IDX_X(x2), y);\
-    \ }\n\n  // [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(XY x1, XY x2, XY y1,\
-    \ XY y2) { return WM.count_and_prod(IDX_X(x1), IDX_X(x2), y1, y2); }\n\n  // [L,R)\
-    \ x [-inf,inf)\n  T prod_all(XY x1, XY x2) { return WM.prod_all(IDX_X(x1), IDX_X(x2));\
-    \ }\n  // [L,R) x [-inf,y)\n  T prefix_prod(XY x1, XY x2, XY y) { return WM.prefix_prod(IDX_X(x1),\
-    \ IDX_X(x2), y); }\n  // [L,R) x [y1,y2)\n  T prod(XY x1, XY x2, XY y1, XY y2)\
-    \ { return WM.prod(IDX_X(x1), IDX_X(x2), y1, y2); }\n\n  // [L,R) x [-inf,y) \u3067\
-    \u306E check(cnt, prod) \u304C true \u3068\u306A\u308B\u6700\u5927\u306E (cnt,prod)\n\
-    \  template <typename F>\n  pair<int, T> max_right(F check, XY x1, XY x2) {\n\
-    \    return WM.max_right(check, IDX_X(x1), IDX_X(x2));\n  }\n\n  // i \u306F\u6700\
-    \u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n  void set(int\
-    \ i, T t) { WM.set(new_idx[i], t); }\n  // i \u306F\u6700\u521D\u306B\u6E21\u3057\
-    \u305F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n  void multiply(int i, T t) { WM.multiply(new_idx[i],\
-    \ t); }\n  void add(int i, T t) { WM.multiply(new_idx[i], t); }\n};\n#line 2 \"\
-    ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n  using\
-    \ MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type = X;\n\
-    \  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n);\
-    \ }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n\
-    \  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m,\
-    \ [](int i) -> X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n\
-    \    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template <typename\
-    \ F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1 << log) <\
-    \ n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n  \
-    \  FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
-    \  X get(int i) { return dat[size + i]; }\n  vc<X> get_all() { return {dat.begin()\
-    \ + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2\
-    \ * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n\
-    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
-    \ i, const X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
+    \  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    return WM.count(IDX_X(x1),\
+    \ IDX_X(x2), y1, y2);\n  }\n\n  // [L,R) x [-inf,y)\n  pair<int, T> prefix_count_and_prod(XY\
+    \ x1, XY x2, XY y) {\n    return WM.prefix_count_and_prod(IDX_X(x1), IDX_X(x2),\
+    \ y);\n  }\n\n  // [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(XY x1, XY x2,\
+    \ XY y1, XY y2) {\n    return WM.count_and_prod(IDX_X(x1), IDX_X(x2), y1, y2);\n\
+    \  }\n\n  // [L,R) x [-inf,inf)\n  T prod_all(XY x1, XY x2) { return WM.prod_all(IDX_X(x1),\
+    \ IDX_X(x2)); }\n  // [L,R) x [-inf,y)\n  T prefix_prod(XY x1, XY x2, XY y) {\n\
+    \    return WM.prefix_prod(IDX_X(x1), IDX_X(x2), y);\n  }\n  // [L,R) x [y1,y2)\n\
+    \  T prod(XY x1, XY x2, XY y1, XY y2) {\n    return WM.prod(IDX_X(x1), IDX_X(x2),\
+    \ y1, y2);\n  }\n  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\
+    \u30C7\u30C3\u30AF\u30B9\n  void set(int i, T t) { WM.set(new_idx[i], t); }\n\
+    \  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\
+    \u30B9\n  void multiply(int i, T t) { WM.multiply(new_idx[i], t); }\n  void add(int\
+    \ i, T t) { WM.multiply(new_idx[i], t); }\n};\n#line 2 \"ds/segtree/segtree.hpp\"\
+    \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
+    \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
+    \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
+    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
+    \ MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
+    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ << log;\n    dat.assign(size << 1, MX::unit());\n    FOR(i, n) dat[size + i]\
+    \ = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) { return dat[size\
+    \ + i]; }\n  vc<X> get_all() { return {dat.begin() + size, dat.begin() + size\
+    \ + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i\
+    \ + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i +=\
+    \ size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i, const\
+    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
     \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(0\
     \ <= L && L <= R && R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
     \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
@@ -488,7 +515,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 09:20:45+09:00'
+  timestamp: '2026-04-13 14:42:14+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
