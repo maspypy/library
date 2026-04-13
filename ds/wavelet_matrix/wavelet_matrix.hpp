@@ -1,8 +1,8 @@
 #include "ds/bit_vector.hpp"
 #include "ds/dummy_data_structure.hpp"
 
-template <typename Y, typename SEGTREE = Dummy_Data_Structure>
-struct Wavelet_Matrix {
+template <typename Y, typename SEGTREE>
+struct Uncompressed_Wavelet_Matrix {
   using Mono = typename SEGTREE::MX;
   using T = typename Mono::value_type;
   static_assert(Mono::commute);
@@ -11,15 +11,16 @@ struct Wavelet_Matrix {
   vc<int> mid;
   vc<Bit_Vector> bv;
   vc<SEGTREE> seg;
+  Y limit;
 
-  Wavelet_Matrix() = default;
+  Uncompressed_Wavelet_Matrix() = default;
 
   // f(i) = {A[i], dat[i]}
   template <typename F>
-  Wavelet_Matrix(int n, F f, int log = -1) {
+  Uncompressed_Wavelet_Matrix(int n, F f, int log = -1) {
     build(n, f, log);
   }
-  Wavelet_Matrix(const vc<Y>& A, int log = -1) {
+  Uncompressed_Wavelet_Matrix(const vc<Y>& A, int log = -1) {
     static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);
     build(
         len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::unit()}; }, log);
@@ -37,6 +38,7 @@ struct Wavelet_Matrix {
       for (auto& x : A) assert(0 <= x && topbit(x) < log);
     }
     this->log = log;
+    limit = Y(1) << log;
     if constexpr (is_same_v<Y, int>) assert(0 <= log && log <= 30);
     if constexpr (is_same_v<Y, ll>) assert(0 <= log && log <= 62);
     mid.resize(log), bv.assign(log, Bit_Vector(n));
@@ -83,9 +85,9 @@ struct Wavelet_Matrix {
 
   template <typename F>
   void work_prefix(F f, int L, int R, Y y) const {
-    assert(0 <= y && y <= Y(1) << log);
+    assert(0 <= y && y <= limit);
     if (y == 0) return;
-    if (y == Y(1) << log) {
+    if (y == limit) {
       f(log, L, R);
       return;
     }
@@ -102,7 +104,7 @@ struct Wavelet_Matrix {
 
   template <typename F>
   void work_range(F f, int L, int R, Y y1, Y y2) const {
-    assert(0 <= y1 && y1 <= y2 && y2 <= Y(1) << log);
+    assert(0 <= y1 && y1 <= y2 && y2 <= limit);
     if (y1 == 0) return work_prefix(f, L, R, y2);
     auto dfs = [&](auto& dfs, int d, int L, int R, Y y1, Y y2) -> void {
       if (y1 == y2) return;
@@ -194,21 +196,6 @@ struct Wavelet_Matrix {
     return ans;
   }
 
-  // y 以上最小 OR 1<<log
-  Y next(int L, int R, Y y) const {
-    assert(0 <= y && y <= (Y(1) << log));
-    int k = prefix_count(L, R, y);
-    return (k == R - L ? Y(1) << log : kth(L, R, k));
-  }
-
-  // y 以下最大 OR -1
-  Y prev(int L, int R, Y y) const {
-    assert(0 <= y && y <= (Y(1) << log));
-    if (y == Y(1) << log) --y;
-    int k = prefix_count(L, R, y + 1);
-    return (k == 0 ? -1 : kth(L, R, k - 1));
-  }
-
   template <bool upper>
   Y median(int L, int R) const {
     assert(0 <= L && L < R && R <= n);
@@ -232,13 +219,16 @@ struct Wavelet_Matrix {
   // [L,R) x [0,y) での check(y, cnt, prod) が true となる最大の (Y,cnt,prod)
   template <typename F>
   tuple<Y, int, T> max_right(F check, int L, int R) const {
+    assert(limit < infty<Y>);
     int cnt = 0;
     Y y = 0;
     T t = Mono::unit();
-    assert(check(0, 0, Mono::unit()));
     T t_all = seg[log].prod(L, R);
-    if (check(Y(1) << log, R - L, t_all)) {
-      return {Y(1) << log, R - L, t_all};
+    assert(check(0, 0, Mono::unit()));
+    if (check(limit, R - L, t_all)) {
+      y = binary_search([&](Y y) -> bool { return check(y, R - L, t_all); },
+                        limit, infty<Y> + 1);
+      return {y, R - L, t_all};
     }
     for (int d = log - 1; d >= 0; --d) {
       auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
@@ -254,3 +244,104 @@ struct Wavelet_Matrix {
     return {y, cnt, t};
   }
 };
+
+template <typename Y, typename SEGTREE>
+struct Compressed_Wavelet_Matrix {
+  using Mono = typename SEGTREE::MX;
+  using T = typename Mono::value_type;
+
+  int n = 0;
+  vc<Y> key;
+  Uncompressed_Wavelet_Matrix<int, SEGTREE> wm;
+
+  Compressed_Wavelet_Matrix() = default;
+
+  // f(i) = {A[i], dat[i]}
+  template <typename F>
+  Compressed_Wavelet_Matrix(int n, F f) {
+    build(n, f);
+  }
+
+  Compressed_Wavelet_Matrix(const vc<Y>& A) {
+    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);
+    build(A);
+  }
+
+  template <typename F>
+  void build(int n, F f) {
+    this->n = n;
+    vc<Y> A(n);
+    vc<T> S(n);
+    FOR(i, n) tie(A[i], S[i]) = f(i);
+
+    key = A;
+    UNIQUE(key);
+
+    wm.build(n, [&](int i) -> pair<int, T> {
+      int k = LB(key, A[i]);
+      return {k, S[i]};
+    });
+  }
+
+  void build(const vc<Y>& A) {
+    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);
+    n = len(A);
+    key = A;
+    UNIQUE(key);
+
+    wm.build(n, [&](int i) -> pair<int, T> {
+      int k = LB(key, A[i]);
+      return {k, Mono::unit()};
+    });
+  }
+
+  Y kth(int L, int R, int k) const { return key[wm.kth(L, R, k)]; }
+
+  template <bool upper>
+  Y median(int L, int R) const {
+    return key[wm.template median<upper>(L, R)];
+  }
+
+  // [L,R) x [-inf,y)
+  int prefix_count(int L, int R, Y y) const {
+    return wm.prefix_count(L, R, LB(key, y));
+  }
+
+  // [L,R) x [y1,y2)
+  int count(int L, int R, Y y1, Y y2) const {
+    return wm.count(L, R, LB(key, y1), LB(key, y2));
+  }
+
+  // [L,R) x [-inf,y)
+  T prefix_prod(int L, int R, Y y) const {
+    return wm.prefix_prod(L, R, LB(key, y));
+  }
+
+  // [L,R) x [y1,y2)
+  T prod(int L, int R, Y y1, Y y2) const {
+    return wm.prod(L, R, LB(key, y1), LB(key, y2));
+  }
+
+  T prod_all(int L, int R) const { return wm.prod_all(L, R); }
+
+  // [L,R) x [-inf,y)
+  pair<int, T> prefix_count_and_prod(int L, int R, Y y) const {
+    return wm.prefix_count_and_prod(L, R, LB(key, y));
+  }
+
+  // [L,R) x [y1,y2)
+  pair<int, T> count_and_prod(int L, int R, Y y1, Y y2) const {
+    return wm.count_and_prod(L, R, LB(key, y1), LB(key, y2));
+  }
+
+  void set(int i, T t) { wm.set(i, t); }
+
+  void multiply(int i, T t) { wm.multiply(i, t); }
+
+  void add(int i, T t) { wm.add(i, t); }
+};
+
+template <typename Y, bool compress, typename SEGTREE = Dummy_Data_Structure>
+using Wavelet_Matrix =
+    conditional_t<compress, Compressed_Wavelet_Matrix<Y, SEGTREE>,
+                  Uncompressed_Wavelet_Matrix<Y, SEGTREE>>;

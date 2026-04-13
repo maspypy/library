@@ -44,10 +44,9 @@ void solve() {
 
   using Mono = Monoid_Min<int>;
   using ST = Sparse_Table<Mono>;
-  Wavelet_Matrix_2D_Range<int, true, true, Static_Range_Product<Mono, ST>> seg(
-      len(X), [&](int i) -> tuple<int, int, int> {
-        return {X[i], Y[i], W[i]};
-      });
+  Wavelet_Matrix_2D_Range<int, false, false, Static_Range_Product<Mono, ST>>
+      seg(len(X),
+          [&](int i) -> tuple<int, int, int> { return {X[i], Y[i], W[i]}; });
 
   LL(Q);
   FOR(Q) {

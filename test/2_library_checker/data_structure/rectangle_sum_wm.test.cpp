@@ -9,10 +9,8 @@ void solve() {
   LL(N, Q);
   vc<u32> X(N), Y(N), W(N);
   FOR(i, N) read(X[i], Y[i], W[i]);
-  Wavelet_Matrix_2D_Range<int, false, false, Prefix_Sum<ll>> WM(
-      N, [&](int i) -> tuple<int, int, ll> {
-        return {X[i], Y[i], W[i]};
-      });
+  Wavelet_Matrix_2D_Range<int, true, true, Prefix_Sum<ll>> WM(
+      N, [&](int i) -> tuple<int, int, ll> { return {X[i], Y[i], W[i]}; });
   FOR(q, Q) {
     LL(a, c, b, d);
     print(WM.prod(a, b, c, d));
