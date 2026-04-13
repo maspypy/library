@@ -302,18 +302,19 @@ data:
     \n      for (int m = b; m <= n; m += 2 * b) {\r\n        int L = m - b, R = min(n,\
     \ m + b);\r\n        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n\
     \        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n  \
-    \  }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n    if (L == R) return MX::unit();\r\
+    \  }\r\n  }\r\n\r\n  X prod(int L, int R) const {\r\n    if (L == R) return MX::unit();\r\
     \n    --R;\r\n    if (L == R) return dat[0][L];\r\n    int k = topbit(L ^ R);\r\
     \n    return MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\
-    \n  int max_right(const F check, int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\
-    \n    if (L == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok +\
-    \ 1 < ng) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\
+    \n  int max_right(const F check, int L) const {\r\n    assert(0 <= L && L <= n\
+    \ && check(MX::unit()));\r\n    if (L == n) return n;\r\n    int ok = L, ng =\
+    \ n + 1;\r\n    while (ok + 1 < ng) {\r\n      int k = (ok + ng) / 2;\r\n    \
+    \  bool bl = check(prod(L, k));\r\n      if (bl) ok = k;\r\n      if (!bl) ng\
+    \ = k;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template <class F>\r\n  int\
+    \ min_left(const F check, int R) const {\r\n    assert(0 <= R && R <= n && check(MX::unit()));\r\
+    \n    if (R == 0) return 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 <\
+    \ ok) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\
     \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n\
-    \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
-    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
-    \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
-    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 7 \"test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp\"\
+    \n  }\r\n};\n#line 7 \"test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp\"\
     \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  using Mono = Monoid_Rolling_Hash;\n\
     \  Disjoint_Sparse_Table<Mono> seg(\n      N, [&](int i) { return Mono::from_element(S[i]);\
     \ });\n  vi Z(N);\n  FOR(i, N) {\n    auto check = [&](int n) -> bool {\n    \
@@ -341,7 +342,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
+  timestamp: '2026-04-13 19:22:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp

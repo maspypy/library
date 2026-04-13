@@ -474,22 +474,22 @@ data:
     \ n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i, n) dat[0][i]\
     \ = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i]) - (1 <<\
     \ i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j] = MX::op(dat[i][j],\
-    \ dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int L, int R) {\n  \
-    \  if (L == R) return MX::unit();\n    if (R == L + 1) return dat[0][L];\n   \
-    \ int k = topbit(R - L - 1);\n    return MX::op(dat[k][L], dat[k][R - (1 << k)]);\n\
-    \  }\n\n  template <class F>\n  int max_right(const F check, int L) {\n    assert(0\
-    \ <= L && L <= n && check(MX::unit()));\n    if (L == n) return n;\n    int ok\
-    \ = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok + ng) / 2;\n\
-    \      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n      if (!bl) ng\
-    \ = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int min_left(const\
-    \ F check, int R) {\n    assert(0 <= R && R <= n && check(MX::unit()));\n    if\
-    \ (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok) {\n  \
-    \    int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl)\
-    \ ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line 4 \"\
-    graph/fast_lca.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_Lca {\n  TREE& tree;\n\
-    \  Sparse_Table<Monoid_Min<int>> seg;\n  vc<int> pos;\n\n  Fast_Lca(TREE& tree)\
-    \ : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n    vc<int> dat(2 *\
-    \ N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n      int b = tree.ERID(v);\n\
+    \ dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int L, int R) const\
+    \ {\n    if (L == R) return MX::unit();\n    if (R == L + 1) return dat[0][L];\n\
+    \    int k = topbit(R - L - 1);\n    return MX::op(dat[k][L], dat[k][R - (1 <<\
+    \ k)]);\n  }\n\n  template <class F>\n  int max_right(const F check, int L) const\
+    \ {\n    assert(0 <= L && L <= n && check(MX::unit()));\n    if (L == n) return\
+    \ n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok\
+    \ + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n    \
+    \  if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int\
+    \ min_left(const F check, int R) const {\n    assert(0 <= R && R <= n && check(MX::unit()));\n\
+    \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
+    \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
+    \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line\
+    \ 4 \"graph/fast_lca.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_Lca {\n  TREE&\
+    \ tree;\n  Sparse_Table<Monoid_Min<int>> seg;\n  vc<int> pos;\n\n  Fast_Lca(TREE&\
+    \ tree) : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n    vc<int> dat(2\
+    \ * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n      int b = tree.ERID(v);\n\
     \      pos[v] = a;\n      dat[a] = tree.LID[v];\n      dat[b] = (v == tree.V[0]\
     \ ? -1 : tree.LID[tree.parent[v]]);\n    }\n    seg.build(dat);\n  }\n\n  int\
     \ dist(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth[a] + tree.depth[b]\
@@ -520,7 +520,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/lca_fast.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
+  timestamp: '2026-04-13 19:22:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/lca_fast.test.cpp

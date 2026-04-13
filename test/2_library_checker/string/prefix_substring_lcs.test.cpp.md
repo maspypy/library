@@ -396,17 +396,17 @@ data:
     \nusing Wavelet_Matrix =\r\n    conditional_t<compress, Compressed_Wavelet_Matrix<Y,\
     \ SEGTREE>,\r\n                  Uncompressed_Wavelet_Matrix<Y, SEGTREE>>;\r\n\
     #line 2 \"string/prefix_substring_LCS.hpp\"\n\n// https://codeforces.com/blog/entry/111625\n\
-    struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int>> WM;\n\n\
-    \  template <typename STRING>\n  Prefix_Substring_LCS(STRING S, STRING T) {\n\
+    struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, false>> WM;\n\
+    \n  template <typename STRING>\n  Prefix_Substring_LCS(STRING S, STRING T) {\n\
     \    build(S, T);\n  }\n\n  template <typename STRING>\n  void build(STRING S,\
     \ STRING T) {\n    N = len(S), M = len(T);\n    vv(int, dph, N + 1, M + 1);\n\
     \    vv(int, dpv, N + 1, M + 1);\n    FOR(j, M + 1) dph[0][j] = j;\n    FOR(i,\
     \ 1, N + 1) FOR(j, 1, M + 1) {\n      bool same = S[i - 1] == T[j - 1];\n    \
     \  int a = dph[i - 1][j], b = dpv[i][j - 1];\n      dph[i][j] = (same ? b : max(a,\
     \ b));\n      dpv[i][j] = (same ? a : min(a, b));\n    }\n    FOR(i, N + 1) {\
-    \ WM.eb(Wavelet_Matrix<int>(dph[i])); }\n  }\n\n  // LCS(S[0:n], T[L:R])\n  int\
-    \ query(int n, int L, int R) const {\n    return WM[n].count(L + 1, R + 1, 0,\
-    \ L + 1);\n  }\n};\n#line 6 \"test/2_library_checker/string/prefix_substring_lcs.test.cpp\"\
+    \ WM.eb(Wavelet_Matrix<int, false>(dph[i])); }\n  }\n\n  // LCS(S[0:n], T[L:R])\n\
+    \  int query(int n, int L, int R) const {\n    return WM[n].count(L + 1, R + 1,\
+    \ 0, L + 1);\n  }\n};\n#line 6 \"test/2_library_checker/string/prefix_substring_lcs.test.cpp\"\
     \n\nvoid solve() {\n  INT(Q);\n  STR(S, T);\n  Prefix_Substring_LCS X(S, T);\n\
     \  FOR(Q) {\n    INT(a, b, c);\n    print(X.query(a, b, c));\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
@@ -426,7 +426,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 17:55:57+09:00'
+  timestamp: '2026-04-13 19:39:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/prefix_substring_lcs.test.cpp

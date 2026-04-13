@@ -253,22 +253,22 @@ data:
     \    dat[0].resize(n);\n    FOR(i, n) dat[0][i] = f(i);\n\n    FOR(i, log - 1)\
     \ {\n      dat[i + 1].resize(len(dat[i]) - (1 << i));\n      FOR(j, len(dat[i])\
     \ - (1 << i)) {\n        dat[i + 1][j] = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n\
-    \      }\n    }\n  }\n\n  X prod(int L, int R) {\n    if (L == R) return MX::unit();\n\
-    \    if (R == L + 1) return dat[0][L];\n    int k = topbit(R - L - 1);\n    return\
-    \ MX::op(dat[k][L], dat[k][R - (1 << k)]);\n  }\n\n  template <class F>\n  int\
-    \ max_right(const F check, int L) {\n    assert(0 <= L && L <= n && check(MX::unit()));\n\
-    \    if (L == n) return n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng)\
-    \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if\
-    \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template\
-    \ <class F>\n  int min_left(const F check, int R) {\n    assert(0 <= R && R <=\
-    \ n && check(MX::unit()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n\
-    \    while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
-    \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
-    };\r\n#line 6 \"test/2_library_checker/data_structure/staticrmq_sparse.test.cpp\"\
+    \      }\n    }\n  }\n\n  X prod(int L, int R) const {\n    if (L == R) return\
+    \ MX::unit();\n    if (R == L + 1) return dat[0][L];\n    int k = topbit(R - L\
+    \ - 1);\n    return MX::op(dat[k][L], dat[k][R - (1 << k)]);\n  }\n\n  template\
+    \ <class F>\n  int max_right(const F check, int L) const {\n    assert(0 <= L\
+    \ && L <= n && check(MX::unit()));\n    if (L == n) return n;\n    int ok = L,\
+    \ ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok + ng) / 2;\n     \
+    \ bool bl = check(prod(L, k));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n\
+    \    }\n    return ok;\n  }\n\n  template <class F>\n  int min_left(const F check,\
+    \ int R) const {\n    assert(0 <= R && R <= n && check(MX::unit()));\n    if (R\
+    \ == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok) {\n     \
+    \ int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl) ok\
+    \ = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line 2 \"alg/monoid/min.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return min(x, y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n\
+    \  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/2_library_checker/data_structure/staticrmq_sparse.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n\n  Sparse_Table<Monoid_Min<int>>\
     \ seg(A);\n\n  FOR(Q) {\n    LL(a, b);\n    print(seg.prod(a, b));\n  }\n}\n\n\
     signed main() {\n  solve();\n  return 0;\n}\n"
@@ -286,7 +286,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
+  timestamp: '2026-04-13 19:22:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
