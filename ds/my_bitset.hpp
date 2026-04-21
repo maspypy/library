@@ -448,8 +448,7 @@ struct My_Bitset {
 
   // return: xor_sum
   // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour
-  int prefix_xor_sum() {
-    int M = len(dat);
+  void prefix_xor_sum() {
     int carry = 0;
     for (u64 &a : dat) {
       a ^= carry;
@@ -462,7 +461,7 @@ struct My_Bitset {
       a ^= a << (1 << 5);
     }
     resize(N);
-    return carry;
+    return;
   }
 };
 string My_Bitset::TO_STR[256];

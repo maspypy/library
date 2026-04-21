@@ -5,7 +5,7 @@
 template <typename mint>
 vc<mint> prefix_sum_of_polynomial(vc<mint> f, bool include_right_end) {
   if (!include_right_end) {
-    auto F = prefix_sum_of_polynomial(f, false);
+    auto F = prefix_sum_of_polynomial(f, true);
     FOR(i, len(f)) F[i] -= f[i];
     return F;
   }

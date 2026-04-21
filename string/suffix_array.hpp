@@ -76,6 +76,8 @@ struct Suffix_Array {
   int compare(int L1, int R1, int L2, int R2) {
     int n1 = R1 - L1, n2 = R2 - L2;
     int n = lcp(L1, L2);
+    chmin(n, n1);
+    chmin(n, n2);
     if (n == n1 && n == n2) return 0;
     if (n == n1) return -1;
     if (n == n2) return 1;
