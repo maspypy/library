@@ -59,6 +59,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
+  - icon: ':warning:'
+    path: graph/ds/grid_decremental_connectivity.hpp
+    title: graph/ds/grid_decremental_connectivity.hpp
   - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
@@ -340,6 +343,7 @@ data:
   - graph/maximum_antichain.hpp
   - graph/unicyclic.hpp
   - graph/tree_walk_generating_function.hpp
+  - graph/ds/grid_decremental_connectivity.hpp
   - graph/bipartite_balanced_edge_coloring.hpp
   - graph/tutte_polynomial.hpp
   - graph/bipartite_edge_coloring.hpp

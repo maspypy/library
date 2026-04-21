@@ -386,22 +386,22 @@ data:
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
     \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
     \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
-    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
-    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
-    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
-    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
-    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 2 \"linalg/bitset/mat_inv.hpp\"\n\n// det = 0 \u306E\u5834\u5408\u306B\u306F\
-    \ empty \u3092\u304B\u3048\u3059\ntemplate <typename BS>\nvc<BS> mat_inv(vc<BS>\
-    \ A) {\n  int N = len(A);\n  vc<BS> B(N);\n  if constexpr (is_same_v<BS, My_Bitset>)\
-    \ { FOR(i, N) B[i] = BS(N); }\n  FOR(i, N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k,\
-    \ i + 1, N) if (A[k][i]) {\n      swap(A[k], A[i]);\n      swap(B[k], B[i]);\n\
-    \      break;\n    }\n    if (!A[i][i]) return {};\n    FOR(k, N) {\n      if\
-    \ (i == k) continue;\n      if (A[k][i]) {\n        if constexpr (is_same_v<BS,\
-    \ My_Bitset>) {\n          A[k].xor_suffix(i, A[i]);\n          B[k] ^= B[i];\n\
-    \        } else {\n          A[k] ^= A[i];\n          B[k] ^= B[i];\n        }\n\
-    \      }\n    }\n  }\n  return B;\n}\n#line 6 \"test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp\"\
-    \n\nusing BS = My_Bitset;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
+    \  void prefix_xor_sum() {\n    int carry = 0;\n    for (u64 &a : dat) {\n   \
+    \   a ^= carry;\n      carry = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n\
+    \      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n\
+    \      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n    }\n    resize(N);\n\
+    \    return;\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/mat_inv.hpp\"\
+    \n\n// det = 0 \u306E\u5834\u5408\u306B\u306F empty \u3092\u304B\u3048\u3059\n\
+    template <typename BS>\nvc<BS> mat_inv(vc<BS> A) {\n  int N = len(A);\n  vc<BS>\
+    \ B(N);\n  if constexpr (is_same_v<BS, My_Bitset>) { FOR(i, N) B[i] = BS(N); }\n\
+    \  FOR(i, N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n\
+    \      swap(A[k], A[i]);\n      swap(B[k], B[i]);\n      break;\n    }\n    if\
+    \ (!A[i][i]) return {};\n    FOR(k, N) {\n      if (i == k) continue;\n      if\
+    \ (A[k][i]) {\n        if constexpr (is_same_v<BS, My_Bitset>) {\n          A[k].xor_suffix(i,\
+    \ A[i]);\n          B[k] ^= B[i];\n        } else {\n          A[k] ^= A[i];\n\
+    \          B[k] ^= B[i];\n        }\n      }\n    }\n  }\n  return B;\n}\n#line\
+    \ 6 \"test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp\"\n\n\
+    using BS = My_Bitset;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
     \ N) {\n    STR(S);\n    mat[i].resize(N);\n    FOR(j, N) mat[i][j] = (S[j] ==\
     \ '1');\n  }\n  mat = mat_inv(mat);\n  if (mat.empty()) return print(-1);\n  FOR(i,\
     \ N) print(mat[i].to_string());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
@@ -421,7 +421,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp

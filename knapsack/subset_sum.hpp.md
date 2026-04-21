@@ -167,61 +167,60 @@ data:
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
     \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
     \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
-    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
-    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
-    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
-    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
-    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
-    \ b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L :\
-    \ b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n\
-    \  }\n}\n\ntemplate <typename UINT, typename F>\ninline void enumerate_all_bit(UINT\
-    \ s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  while (s) {\n   \
-    \ f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename UINT, bool inc_empty,\
-    \ typename F>\ninline void enumerate_all_subset(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  for (UINT t = s; t; t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n\
-    }\n#line 3 \"knapsack/subset_sum.hpp\"\n\n// O(N MAX(vals))\ntemplate <typename\
-    \ T>\nvc<int> subset_sum_solution_1(vc<T>& vals, int target) {\n  int n = len(vals);\n\
-    \  if (n == 0) return {};\n  int mx = MAX(vals);\n  int b = 0, sb = 0;\n  while\
-    \ (b < n && sb + vals[b] <= target) {\n    sb += vals[b++];\n  }\n  if (b == n\
-    \ && sb != target) return {};\n\n  int off = target - mx + 1;\n  vc<int> dp(2\
-    \ * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n  FOR(i, b,\
-    \ n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a = vals[i];\n\
-    \    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) {\n        par[j + a]\
-    \ = -2;\n      }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j],\
-    \ 0), newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]]\
-    \ = k;\n      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return\
-    \ {};\n  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n\
-    \    int p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n      j\
-    \ -= vals[i--];\n    }\n    elif (p == -1) { --i; }\n    else {\n      use[p]\
-    \ = !use[p];\n      j += vals[p];\n    }\n  }\n  while (i >= 0) {\n    use[i]\
-    \ = !use[i];\n    --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n\
-    \  ll sm = 0;\n  for (auto&& i : I) sm += vals[i];\n  assert(sm == target);\n\n\
-    \  return I;\n}\n\n// O(N target / w)\ntemplate <typename T>\nvc<int> subset_sum_solution_2(vc<T>&\
-    \ vals, int target) {\n  int n = len(vals);\n  auto I = argsort(vals);\n  My_Bitset\
-    \ dp(1, 1);\n  vc<int> last(target + 1, -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n\
-    \    if (v > target) continue;\n    My_Bitset newdp = dp;\n    int new_size =\
-    \ len(dp) + v;\n    newdp.resize(new_size);\n    newdp.or_to_range(v, new_size,\
-    \ dp);\n    if (len(newdp) > target + 1) newdp.resize(target + 1);\n    // update\
-    \ \u3057\u305F\u3068\u3053\u308D\u3092\u30E1\u30E2\n    FOR(i, len(newdp.dat))\
-    \ {\n      u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^ newdp.dat[i];\n\
-    \      enumerate_all_bit<u64>(upd,\n                             [&](int p) ->\
-    \ void { last[(i << 6) | p] = I[k]; });\n    }\n    swap(dp, newdp);\n  }\n  if\
-    \ (target >= len(dp) || !dp[target]) return {};\n  vc<int> ANS;\n  while (target\
-    \ > 0) {\n    int i = last[target];\n    ANS.eb(i);\n    target -= vals[i];\n\
-    \  }\n  return ANS;\n}\n\n// O(sum^{1.5} / w)\n// sum=10^6 \u3067 150ms\uFF1A\
-    https://codeforces.com/contest/755/problem/F\ntemplate <typename T>\nvc<int> subset_sum_solution_3(vc<T>&\
-    \ vals, int target) {\n  int SM = SUM<int>(vals);\n  int N = len(vals);\n  vvc<int>\
-    \ IDS(SM + 1);\n  FOR(i, N) IDS[vals[i]].eb(i);\n  vc<pair<int, int>> par(N, {-1,\
-    \ -1});\n  vc<int> grp_vals;\n  vc<int> raw_idx;\n  FOR(x, 1, SM + 1) {\n    auto&\
-    \ I = IDS[x];\n    while (len(I) >= 3) {\n      int a = POP(I), b = POP(I);\n\
-    \      int c = len(par);\n      par.eb(a, b);\n      IDS[2 * x].eb(c);\n    }\n\
-    \    for (auto& i : I) {\n      grp_vals.eb(x);\n      raw_idx.eb(i);\n    }\n\
-    \  }\n  auto I = subset_sum_solution_2<int>(grp_vals, target);\n  vc<int> ANS;\n\
-    \  for (auto& i : I) {\n    vc<int> st = {raw_idx[i]};\n    while (len(st)) {\n\
-    \      auto c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n        continue;\n\
-    \      }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n    }\n  }\n\
-    \  return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum_solution_4(vc<T>&\
+    \  void prefix_xor_sum() {\n    int carry = 0;\n    for (u64 &a : dat) {\n   \
+    \   a ^= carry;\n      carry = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n\
+    \      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n\
+    \      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n    }\n    resize(N);\n\
+    \    return;\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 1 \"enumerate/bits.hpp\"\
+    \ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L,\
+    \ int R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
+    \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
+    \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
+    \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
+    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
+    \n\n// O(N MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>&\
+    \ vals, int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx\
+    \ = MAX(vals);\n  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target)\
+    \ {\n    sb += vals[b++];\n  }\n  if (b == n && sb != target) return {};\n\n \
+    \ int off = target - mx + 1;\n  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 *\
+    \ mx, -1);\n  dp[sb - off] = b;\n  FOR(i, b, n) {\n    auto newdp = dp;\n    auto&\
+    \ par = PAR[i];\n    int a = vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j\
+    \ + a], dp[j])) {\n        par[j + a] = -2;\n      }\n    }\n    FOR3_R(j, mx,\
+    \ 2 * mx) {\n      FOR3_R(k, max(dp[j], 0), newdp[j]) {\n        if (chmax(newdp[j\
+    \ - vals[k]], k)) par[j - vals[k]] = k;\n      }\n    }\n    swap(dp, newdp);\n\
+    \  }\n  if (dp[mx - 1] == -1) return {};\n  vc<bool> use(n);\n  int i = n - 1,\
+    \ j = mx - 1;\n  while (i >= b) {\n    int p = PAR[i][j];\n    if (p == -2) {\n\
+    \      use[i] = !use[i];\n      j -= vals[i--];\n    }\n    elif (p == -1) { --i;\
+    \ }\n    else {\n      use[p] = !use[p];\n      j += vals[p];\n    }\n  }\n  while\
+    \ (i >= 0) {\n    use[i] = !use[i];\n    --i;\n  }\n  vc<int> I;\n  FOR(i, n)\
+    \ if (use[i]) I.eb(i);\n\n  ll sm = 0;\n  for (auto&& i : I) sm += vals[i];\n\
+    \  assert(sm == target);\n\n  return I;\n}\n\n// O(N target / w)\ntemplate <typename\
+    \ T>\nvc<int> subset_sum_solution_2(vc<T>& vals, int target) {\n  int n = len(vals);\n\
+    \  auto I = argsort(vals);\n  My_Bitset dp(1, 1);\n  vc<int> last(target + 1,\
+    \ -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n    if (v > target) continue;\n\
+    \    My_Bitset newdp = dp;\n    int new_size = len(dp) + v;\n    newdp.resize(new_size);\n\
+    \    newdp.or_to_range(v, new_size, dp);\n    if (len(newdp) > target + 1) newdp.resize(target\
+    \ + 1);\n    // update \u3057\u305F\u3068\u3053\u308D\u3092\u30E1\u30E2\n    FOR(i,\
+    \ len(newdp.dat)) {\n      u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^\
+    \ newdp.dat[i];\n      enumerate_all_bit<u64>(upd,\n                         \
+    \    [&](int p) -> void { last[(i << 6) | p] = I[k]; });\n    }\n    swap(dp,\
+    \ newdp);\n  }\n  if (target >= len(dp) || !dp[target]) return {};\n  vc<int>\
+    \ ANS;\n  while (target > 0) {\n    int i = last[target];\n    ANS.eb(i);\n  \
+    \  target -= vals[i];\n  }\n  return ANS;\n}\n\n// O(sum^{1.5} / w)\n// sum=10^6\
+    \ \u3067 150ms\uFF1Ahttps://codeforces.com/contest/755/problem/F\ntemplate <typename\
+    \ T>\nvc<int> subset_sum_solution_3(vc<T>& vals, int target) {\n  int SM = SUM<int>(vals);\n\
+    \  int N = len(vals);\n  vvc<int> IDS(SM + 1);\n  FOR(i, N) IDS[vals[i]].eb(i);\n\
+    \  vc<pair<int, int>> par(N, {-1, -1});\n  vc<int> grp_vals;\n  vc<int> raw_idx;\n\
+    \  FOR(x, 1, SM + 1) {\n    auto& I = IDS[x];\n    while (len(I) >= 3) {\n   \
+    \   int a = POP(I), b = POP(I);\n      int c = len(par);\n      par.eb(a, b);\n\
+    \      IDS[2 * x].eb(c);\n    }\n    for (auto& i : I) {\n      grp_vals.eb(x);\n\
+    \      raw_idx.eb(i);\n    }\n  }\n  auto I = subset_sum_solution_2<int>(grp_vals,\
+    \ target);\n  vc<int> ANS;\n  for (auto& i : I) {\n    vc<int> st = {raw_idx[i]};\n\
+    \    while (len(st)) {\n      auto c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n\
+    \        continue;\n      }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n\
+    \    }\n  }\n  return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum_solution_4(vc<T>&\
     \ vals, T target) {\n  if (target <= 0) return {};\n  int N = len(vals);\n  int\
     \ M = N / 2;\n\n  auto calc = [&](int L, int R) -> vc<T> {\n    int n = R - L;\n\
     \    vc<T> dp = {0};\n    FOR(i, n) {\n      T a = vals[L + i];\n      vc<T> dp1(len(dp));\n\
@@ -320,7 +319,7 @@ data:
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/4_2.test.cpp

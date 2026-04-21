@@ -275,12 +275,12 @@ data:
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
     \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
     \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
-    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
-    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
-    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
-    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
-    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \  void prefix_xor_sum() {\n    int carry = 0;\n    for (u64 &a : dat) {\n   \
+    \   a ^= carry;\n      carry = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n\
+    \      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n\
+    \      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n    }\n    resize(N);\n\
+    \    return;\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 2 \"ds/sum_over_bit_positions.hpp\"\n\n// https://qoj.ac/contest/1784/problem/9244\n\
@@ -333,7 +333,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sum_over_bit_positions.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sum_over_bit_positions.test.cpp

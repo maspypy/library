@@ -161,17 +161,17 @@ data:
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
     \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
     \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
-    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
-    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
-    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
-    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
-    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 2 \"graph/bitset/transitive_closure.hpp\"\n\n// https://codeforces.com/contest/641/problem/F\n\
-    // DAG \u304C\u3042\u308B\u3068\u304D reachability \u95A2\u4FC2\u306B\u3059\u3079\
-    \u3066\u8FBA\u3092\u5F35\u308B\nvc<My_Bitset> transitive_closure(vc<My_Bitset>\
-    \ G) {\n  int N = len(G);\n  FOR(i, N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k]\
-    \ and G[k][j]\n    FOR(i, N) {\n      if (!G[i][k]) continue;\n      G[i] |= G[k];\n\
-    \    }\n  }\n  return G;\n}\n"
+    \  void prefix_xor_sum() {\n    int carry = 0;\n    for (u64 &a : dat) {\n   \
+    \   a ^= carry;\n      carry = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n\
+    \      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n\
+    \      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n    }\n    resize(N);\n\
+    \    return;\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"graph/bitset/transitive_closure.hpp\"\
+    \n\n// https://codeforces.com/contest/641/problem/F\n// DAG \u304C\u3042\u308B\
+    \u3068\u304D reachability \u95A2\u4FC2\u306B\u3059\u3079\u3066\u8FBA\u3092\u5F35\
+    \u308B\nvc<My_Bitset> transitive_closure(vc<My_Bitset> G) {\n  int N = len(G);\n\
+    \  FOR(i, N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k] and G[k][j]\n    FOR(i,\
+    \ N) {\n      if (!G[i][k]) continue;\n      G[i] |= G[k];\n    }\n  }\n  return\
+    \ G;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/641/problem/F\n\
     // DAG \u304C\u3042\u308B\u3068\u304D reachability \u95A2\u4FC2\u306B\u3059\u3079\
     \u3066\u8FBA\u3092\u5F35\u308B\nvc<My_Bitset> transitive_closure(vc<My_Bitset>\
@@ -184,7 +184,7 @@ data:
   path: graph/bitset/transitive_closure.hpp
   requiredBy:
   - graph/bitset/transitive_reduction.hpp
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bitset/transitive_closure.hpp

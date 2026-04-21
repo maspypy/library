@@ -160,24 +160,23 @@ data:
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
     \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
     \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
-    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
-    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
-    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
-    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
-    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 2 \"graph/bitset/bfs_bitset.hpp\"\n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\
-    \u307F\u306A\u3057\u6700\u77ED\u8DEF\u554F\u984C\n// 01 \u884C\u5217\u3092 vc<bitset>\
-    \ \u306E\u5F62\u3067\u6E21\u3059\n// O(N^2/w)\n// \u53C2\u8003\uFF1A(4000,4000)\
-    \ \u3092 4000 \u56DE\u3067 2 \u79D2\u4EE5\u5185\uFF1F\ntemplate <typename BITSET>\n\
-    vc<int> bfs_bitset(vc<BITSET>& G, int s) {\n  const int N = len(G);\n  assert(0\
-    \ <= s && s < N);\n  vc<int> dist(N, infty<int>);\n  BITSET unused, que;\n  if\
-    \ constexpr (is_same_v<BITSET, My_Bitset>) {\n    unused = BITSET(N, 1);\n   \
-    \ que = BITSET(N, 0);\n  }\n  FOR(v, N) unused[v] = 1;\n  que[s] = 1;\n\n  int\
-    \ d = 0;\n  while (1) {\n    int p = que._Find_first();\n    if (p >= N) break;\n\
-    \    BITSET nxt;\n    if constexpr (is_same_v<BITSET, My_Bitset>) { nxt = BITSET(N);\
-    \ }\n    while (p < N) {\n      dist[p] = d;\n      unused[p] = 0;\n      nxt\
-    \ |= G[p];\n      p = que._Find_next(p);\n    }\n    que = nxt & unused;\n   \
-    \ ++d;\n  }\n  return dist;\n}\n"
+    \  void prefix_xor_sum() {\n    int carry = 0;\n    for (u64 &a : dat) {\n   \
+    \   a ^= carry;\n      carry = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n\
+    \      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n\
+    \      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n    }\n    resize(N);\n\
+    \    return;\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"graph/bitset/bfs_bitset.hpp\"\
+    \n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\u307F\u306A\u3057\u6700\u77ED\u8DEF\
+    \u554F\u984C\n// 01 \u884C\u5217\u3092 vc<bitset> \u306E\u5F62\u3067\u6E21\u3059\
+    \n// O(N^2/w)\n// \u53C2\u8003\uFF1A(4000,4000) \u3092 4000 \u56DE\u3067 2 \u79D2\
+    \u4EE5\u5185\uFF1F\ntemplate <typename BITSET>\nvc<int> bfs_bitset(vc<BITSET>&\
+    \ G, int s) {\n  const int N = len(G);\n  assert(0 <= s && s < N);\n  vc<int>\
+    \ dist(N, infty<int>);\n  BITSET unused, que;\n  if constexpr (is_same_v<BITSET,\
+    \ My_Bitset>) {\n    unused = BITSET(N, 1);\n    que = BITSET(N, 0);\n  }\n  FOR(v,\
+    \ N) unused[v] = 1;\n  que[s] = 1;\n\n  int d = 0;\n  while (1) {\n    int p =\
+    \ que._Find_first();\n    if (p >= N) break;\n    BITSET nxt;\n    if constexpr\
+    \ (is_same_v<BITSET, My_Bitset>) { nxt = BITSET(N); }\n    while (p < N) {\n \
+    \     dist[p] = d;\n      unused[p] = 0;\n      nxt |= G[p];\n      p = que._Find_next(p);\n\
+    \    }\n    que = nxt & unused;\n    ++d;\n  }\n  return dist;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\u307F\
     \u306A\u3057\u6700\u77ED\u8DEF\u554F\u984C\n// 01 \u884C\u5217\u3092 vc<bitset>\
     \ \u306E\u5F62\u3067\u6E21\u3059\n// O(N^2/w)\n// \u53C2\u8003\uFF1A(4000,4000)\
@@ -196,7 +195,7 @@ data:
   isVerificationFile: false
   path: graph/bitset/bfs_bitset.hpp
   requiredBy: []
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1400.test.cpp

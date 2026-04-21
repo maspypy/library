@@ -1083,6 +1083,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/scc_tounament_by_indegrees.hpp
       title: graph/scc_tounament_by_indegrees.hpp
+    - icon: ':warning:'
+      path: graph/series_parallel.hpp
+      title: graph/series_parallel.hpp
     - icon: ':heavy_check_mark:'
       path: graph/st_numbering.hpp
       title: graph/st_numbering.hpp
@@ -1289,6 +1292,9 @@ data:
     - icon: ':warning:'
       path: graph/ds/fundamental_cut.hpp
       title: graph/ds/fundamental_cut.hpp
+    - icon: ':warning:'
+      path: graph/ds/grid_decremental_connectivity.hpp
+      title: graph/ds/grid_decremental_connectivity.hpp
     - icon: ':heavy_check_mark:'
       path: graph/ds/incremental_centroid.hpp
       title: graph/ds/incremental_centroid.hpp
@@ -1392,6 +1398,11 @@ data:
     - icon: ':warning:'
       path: graph/tree_dp/tree_dp.hpp
       title: graph/tree_dp/tree_dp.hpp
+  - name: heuristic
+    pages:
+    - icon: ':warning:'
+      path: heuristic/beam_search.hpp
+      title: heuristic/beam_search.hpp
   - name: knapsack
     pages:
     - icon: ':heavy_check_mark:'

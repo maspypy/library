@@ -274,21 +274,21 @@ data:
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
     \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
     \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
-    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
-    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
-    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
-    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
-    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 6 \"test/1_mytest/mybitset.test.cpp\"\n\nvoid test() {\n  FOR(N, 2000) {\n\
-    \    int Q = 10 * N;\n    vc<int> A(N);\n    My_Bitset B(N);\n    FOR(Q) {\n \
-    \     int t = RNG(0, 4);\n      int i = RNG(0, N);\n      if (t == 0) {\n    \
-    \    A[i] = 0;\n        B[i] = 0;\n      }\n      if (t == 1) {\n        A[i]\
-    \ = 1;\n        B[i] = 1;\n      }\n      if (t == 2) {\n        int p = i;\n\
-    \        while (p < N && A[p] == 0) ++p;\n        assert(B.next(i) == p);\n  \
-    \    }\n      if (t == 3) {\n        int p = i;\n        while (p >= 0 && A[p]\
-    \ == 0) --p;\n        assert(B.prev(i) == p);\n      }\n    }\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \  void prefix_xor_sum() {\n    int carry = 0;\n    for (u64 &a : dat) {\n   \
+    \   a ^= carry;\n      carry = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n\
+    \      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n\
+    \      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n    }\n    resize(N);\n\
+    \    return;\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 6 \"test/1_mytest/mybitset.test.cpp\"\
+    \n\nvoid test() {\n  FOR(N, 2000) {\n    int Q = 10 * N;\n    vc<int> A(N);\n\
+    \    My_Bitset B(N);\n    FOR(Q) {\n      int t = RNG(0, 4);\n      int i = RNG(0,\
+    \ N);\n      if (t == 0) {\n        A[i] = 0;\n        B[i] = 0;\n      }\n  \
+    \    if (t == 1) {\n        A[i] = 1;\n        B[i] = 1;\n      }\n      if (t\
+    \ == 2) {\n        int p = i;\n        while (p < N && A[p] == 0) ++p;\n     \
+    \   assert(B.next(i) == p);\n      }\n      if (t == 3) {\n        int p = i;\n\
+    \        while (p >= 0 && A[p] == 0) --p;\n        assert(B.prev(i) == p);\n \
+    \     }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"ds/my_bitset.hpp\"\n\nvoid test()\
     \ {\n  FOR(N, 2000) {\n    int Q = 10 * N;\n    vc<int> A(N);\n    My_Bitset B(N);\n\
@@ -307,7 +307,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/mybitset.test.cpp
   requiredBy: []
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/mybitset.test.cpp

@@ -163,21 +163,21 @@ data:
     \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
     \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
     \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
-    \  int prefix_xor_sum() {\n    int M = len(dat);\n    int carry = 0;\n    for\
-    \ (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
-    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
-    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
-    \    }\n    resize(N);\n    return carry;\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\n\n// Method of Four Russians O(NMK/wlogN)\n\
-    // (N1/K+2^K)/K N2 N3 / w\nvc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>&\
-    \ B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1\
-    \ == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\
-    \  if (N1 < 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] ^= B[j];\n\
-    \    }\n    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1\
-    \ << K, BS(N3));\n\n  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K,\
-    \ N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s]\
-    \ ^ B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) &\
-    \ ((1 << K) - 1);\n      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}\n"
+    \  void prefix_xor_sum() {\n    int carry = 0;\n    for (u64 &a : dat) {\n   \
+    \   a ^= carry;\n      carry = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n\
+    \      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n\
+    \      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n    }\n    resize(N);\n\
+    \    return;\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\
+    \n\n// Method of Four Russians O(NMK/wlogN)\n// (N1/K+2^K)/K N2 N3 / w\nvc<My_Bitset>\
+    \ matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1,\
+    \ int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 =\
+    \ len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  if (N1 < 50) {\n    FOR(i,\
+    \ N1) FOR(j, N2) {\n      if (A[i][j]) C[i] ^= B[j];\n    }\n    return C;\n \
+    \ }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1 << K, BS(N3));\n\n \
+    \ for (int L = 0; L < N2; L += K) {\n    int R = min(L + K, N2);\n    int n =\
+    \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];\n\
+    \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n\
+    \      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// Method of Four Russians O(NMK/wlogN)\n\
     // (N1/K+2^K)/K N2 N3 / w\nvc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>&\
     \ B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1\
@@ -194,7 +194,7 @@ data:
   path: linalg/bitset/matrix_mul_mod_2.hpp
   requiredBy:
   - linalg/bitset/matrix_pow.hpp
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp

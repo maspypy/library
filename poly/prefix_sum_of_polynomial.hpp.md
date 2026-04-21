@@ -381,7 +381,7 @@ data:
     }\n#line 2 \"poly/prefix_sum_of_polynomial.hpp\"\n\n// f: polynomial.\n// sum_{k\
     \ in [0,n)}f(k)=g(n) \u3068\u306A\u308B g \u3092\u8FD4\u3059\ntemplate <typename\
     \ mint>\nvc<mint> prefix_sum_of_polynomial(vc<mint> f, bool include_right_end)\
-    \ {\n  if (!include_right_end) {\n    auto F = prefix_sum_of_polynomial(f, false);\n\
+    \ {\n  if (!include_right_end) {\n    auto F = prefix_sum_of_polynomial(f, true);\n\
     \    FOR(i, len(f)) F[i] -= f[i];\n    return F;\n  }\n  if (f.empty()) return\
     \ {0};\n  if (len(f) == 1) return {f[0], f[0]};\n  static vc<mint> B = {1};\n\
     \  ll d = len(f) - 1;\n  if (d >= len(B)) {\n    ll n = max(d, len(B) * 2);\n\
@@ -393,7 +393,7 @@ data:
   code: "#include \"seq/famous/bernoulli.hpp\"\n\n// f: polynomial.\n// sum_{k in\
     \ [0,n)}f(k)=g(n) \u3068\u306A\u308B g \u3092\u8FD4\u3059\ntemplate <typename\
     \ mint>\nvc<mint> prefix_sum_of_polynomial(vc<mint> f, bool include_right_end)\
-    \ {\n  if (!include_right_end) {\n    auto F = prefix_sum_of_polynomial(f, false);\n\
+    \ {\n  if (!include_right_end) {\n    auto F = prefix_sum_of_polynomial(f, true);\n\
     \    FOR(i, len(f)) F[i] -= f[i];\n    return F;\n  }\n  if (f.empty()) return\
     \ {0};\n  if (len(f) == 1) return {f[0], f[0]};\n  static vc<mint> B = {1};\n\
     \  ll d = len(f) - 1;\n  if (d >= len(B)) {\n    ll n = max(d, len(B) * 2);\n\
@@ -420,7 +420,7 @@ data:
   isVerificationFile: false
   path: poly/prefix_sum_of_polynomial.hpp
   requiredBy: []
-  timestamp: '2026-04-05 00:48:27+09:00'
+  timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2580.test.cpp
