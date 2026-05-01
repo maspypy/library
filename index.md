@@ -725,9 +725,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
-    - icon: ':warning:'
-      path: my_template_compiled.hpp
-      title: my_template_compiled.hpp
   - name: flow
     pages:
     - icon: ':heavy_check_mark:'
