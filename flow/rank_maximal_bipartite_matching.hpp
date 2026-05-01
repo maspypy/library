@@ -22,13 +22,13 @@ struct Rank_Maximal_Bipartite_Matching {
   vc<int> LID, MID, RID;
 
   Rank_Maximal_Bipartite_Matching(GT& G) : N(G.N), G(G) {
-    color = bipartite_vertex_coloring(G);
+    color = bipartite_vertex_coloring(G, true);
     if (N > 0) assert(!color.empty());
     dist.assign(N, -1), match.assign(N, -1);
     que.assign(N, -1), vis.assign(N, -1);
     vcover.assign(N, 0);
     K = 0;
-    for (auto& e: G.edges) chmax(K, e.cost);
+    for (auto& e : G.edges) chmax(K, e.cost);
     ++K;
     build();
     FOR_R(k, K) solve(k);
@@ -38,7 +38,9 @@ struct Rank_Maximal_Bipartite_Matching {
     FOR(v, N) {
       LID.eb(len(dat));
       if (color[v] == 0) {
-        for (auto& e: G[v]) { dat.eb(e.to, e.cost); }
+        for (auto& e : G[v]) {
+          dat.eb(e.to, e.cost);
+        }
       }
     }
     LID.eb(len(dat));
@@ -86,7 +88,9 @@ struct Rank_Maximal_Bipartite_Matching {
       }
       FOR_R(i, MID[v], RID[v]) {
         auto [to, cost] = dat[i];
-        if (vcover[to]) { swap(dat[i], dat[RID[v] - 1]), --RID[v]; }
+        if (vcover[to]) {
+          swap(dat[i], dat[RID[v] - 1]), --RID[v];
+        }
       }
     }
   }
@@ -122,7 +126,7 @@ struct Rank_Maximal_Bipartite_Matching {
   vc<int> get_matching_edges() {
     vc<int> match_wt(N, -1);
     vc<int> match_e(N, -1);
-    for (auto& e: G.edges) {
+    for (auto& e : G.edges) {
       int a = e.frm, b = e.to;
       if (color[a]) swap(a, b);
       if (match[a] == b && chmax(match_wt[a], e.cost)) match_e[a] = e.id;
