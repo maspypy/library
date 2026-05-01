@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1615.test.cpp
     title: test/3_yukicoder/1615.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://qoj.ac/contest/1388/problem/6546
@@ -156,46 +156,47 @@ data:
     \  vc<int> dist, match;\n  vc<int> que;\n  vc<bool> vis;\n  vc<bool> vcover;\n\
     \n  // edge \u306E\u7BA1\u7406\n  // [L,M) : active, [M,R) : inactive\n  vc<pair<int,\
     \ int>> dat;\n  vc<int> LID, MID, RID;\n\n  Rank_Maximal_Bipartite_Matching(GT&\
-    \ G) : N(G.N), G(G) {\n    color = bipartite_vertex_coloring(G);\n    if (N >\
-    \ 0) assert(!color.empty());\n    dist.assign(N, -1), match.assign(N, -1);\n \
-    \   que.assign(N, -1), vis.assign(N, -1);\n    vcover.assign(N, 0);\n    K = 0;\n\
-    \    for (auto& e: G.edges) chmax(K, e.cost);\n    ++K;\n    build();\n    FOR_R(k,\
-    \ K) solve(k);\n  }\n\n  void build() {\n    FOR(v, N) {\n      LID.eb(len(dat));\n\
-    \      if (color[v] == 0) {\n        for (auto& e: G[v]) { dat.eb(e.to, e.cost);\
-    \ }\n      }\n    }\n    LID.eb(len(dat));\n    MID.resize(N), RID.resize(N);\n\
-    \    FOR(v, N) MID[v] = LID[v], RID[v] = LID[v + 1];\n  }\n\n  void solve(int\
-    \ k) {\n    // weight k \u306E edge \u3092\u3000active \u306B\u3059\u308B\n  \
-    \  FOR(v, N) {\n      if (vcover[v]) continue;\n      FOR(i, MID[v], RID[v]) {\n\
-    \        auto [to, cost] = dat[i];\n        if (cost != k) continue;\n       \
-    \ swap(dat[MID[v]], dat[i]), ++MID[v];\n      }\n    }\n    while (1) {\n    \
-    \  bfs();\n      vis.assign(N, false);\n      int flow = 0;\n      FOR(v, N) if\
-    \ (!color[v] && match[v] == -1 && dfs(v))++ flow;\n      if (!flow) break;\n \
-    \   }\n\n    // update vertex cover\n    FOR(v, N) { vcover[v] = (color[v] ^ (dist[v]\
-    \ == -1)); }\n    // active \u306A\u8FBA\u306E\u3046\u3061\u4E21\u7AEF\u70B9\u304C\
+    \ G) : N(G.N), G(G) {\n    color = bipartite_vertex_coloring(G, true);\n    if\
+    \ (N > 0) assert(!color.empty());\n    dist.assign(N, -1), match.assign(N, -1);\n\
+    \    que.assign(N, -1), vis.assign(N, -1);\n    vcover.assign(N, 0);\n    K =\
+    \ 0;\n    for (auto& e : G.edges) chmax(K, e.cost);\n    ++K;\n    build();\n\
+    \    FOR_R(k, K) solve(k);\n  }\n\n  void build() {\n    FOR(v, N) {\n      LID.eb(len(dat));\n\
+    \      if (color[v] == 0) {\n        for (auto& e : G[v]) {\n          dat.eb(e.to,\
+    \ e.cost);\n        }\n      }\n    }\n    LID.eb(len(dat));\n    MID.resize(N),\
+    \ RID.resize(N);\n    FOR(v, N) MID[v] = LID[v], RID[v] = LID[v + 1];\n  }\n\n\
+    \  void solve(int k) {\n    // weight k \u306E edge \u3092\u3000active \u306B\u3059\
+    \u308B\n    FOR(v, N) {\n      if (vcover[v]) continue;\n      FOR(i, MID[v],\
+    \ RID[v]) {\n        auto [to, cost] = dat[i];\n        if (cost != k) continue;\n\
+    \        swap(dat[MID[v]], dat[i]), ++MID[v];\n      }\n    }\n    while (1) {\n\
+    \      bfs();\n      vis.assign(N, false);\n      int flow = 0;\n      FOR(v,\
+    \ N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\n      if (!flow) break;\n\
+    \    }\n\n    // update vertex cover\n    FOR(v, N) { vcover[v] = (color[v] ^\
+    \ (dist[v] == -1)); }\n    // active \u306A\u8FBA\u306E\u3046\u3061\u4E21\u7AEF\
+    \u70B9\u304C vcover \u306B\u89E6\u308C\u3066\u3044\u308B\u3082\u306E\u3092\u524A\
+    \u9664\n    FOR(v, N) {\n      if (!vcover[v]) continue;\n      FOR_R(i, LID[v],\
+    \ MID[v]) {\n        auto [to, cost] = dat[i];\n        if (vcover[to]) {\n  \
+    \        swap(dat[i], dat[MID[v] - 1]);\n          swap(dat[MID[v] - 1], dat[RID[v]\
+    \ - 1]);\n          --MID[v], --RID[v];\n        }\n      }\n    }\n    // inactive\
+    \ \u306A\u8FBA\u306E\u3046\u3061\u5C11\u306A\u304F\u3068\u3082\u4E00\u65B9\u304C\
     \ vcover \u306B\u89E6\u308C\u3066\u3044\u308B\u3082\u306E\u3092\u524A\u9664\n\
-    \    FOR(v, N) {\n      if (!vcover[v]) continue;\n      FOR_R(i, LID[v], MID[v])\
-    \ {\n        auto [to, cost] = dat[i];\n        if (vcover[to]) {\n          swap(dat[i],\
-    \ dat[MID[v] - 1]);\n          swap(dat[MID[v] - 1], dat[RID[v] - 1]);\n     \
-    \     --MID[v], --RID[v];\n        }\n      }\n    }\n    // inactive \u306A\u8FBA\
-    \u306E\u3046\u3061\u5C11\u306A\u304F\u3068\u3082\u4E00\u65B9\u304C vcover \u306B\
-    \u89E6\u308C\u3066\u3044\u308B\u3082\u306E\u3092\u524A\u9664\n    FOR(v, N) {\n\
-    \      if (vcover[v]) {\n        RID[v] = MID[v];\n        continue;\n      }\n\
-    \      FOR_R(i, MID[v], RID[v]) {\n        auto [to, cost] = dat[i];\n       \
-    \ if (vcover[to]) { swap(dat[i], dat[RID[v] - 1]), --RID[v]; }\n      }\n    }\n\
-    \  }\n\n  void bfs() {\n    dist.assign(N, -1);\n    int ql = 0, qr = 0;\n   \
-    \ FOR(v, N) if (!color[v] && match[v] == -1) que[qr++] = v, dist[v] = 0;\n   \
-    \ while (ql < qr) {\n      int v = que[ql++];\n      FOR(i, LID[v], MID[v]) {\n\
-    \        auto [to, cost] = dat[i];\n        dist[to] = 0;\n        int w = match[to];\n\
-    \        if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que[qr++] = w;\n\
-    \      }\n    }\n  }\n\n  bool dfs(int v) {\n    vis[v] = 1;\n    FOR(i, LID[v],\
-    \ MID[v]) {\n      auto [to, cost] = dat[i];\n      int w = match[to];\n     \
-    \ if (w == -1 || (!vis[w] && dist[w] == dist[v] + 1 && dfs(w))) {\n        match[to]\
-    \ = v, match[v] = to;\n        return true;\n      }\n    }\n    return false;\n\
-    \  }\n\n  vc<int> get_matching_edges() {\n    vc<int> match_wt(N, -1);\n    vc<int>\
-    \ match_e(N, -1);\n    for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n\
-    \      if (color[a]) swap(a, b);\n      if (match[a] == b && chmax(match_wt[a],\
-    \ e.cost)) match_e[a] = e.id;\n    }\n    vc<int> res;\n    FOR(v, N) if (match_e[v]\
-    \ != -1) res.eb(match_e[v]);\n    return res;\n  }\n};\n"
+    \    FOR(v, N) {\n      if (vcover[v]) {\n        RID[v] = MID[v];\n        continue;\n\
+    \      }\n      FOR_R(i, MID[v], RID[v]) {\n        auto [to, cost] = dat[i];\n\
+    \        if (vcover[to]) {\n          swap(dat[i], dat[RID[v] - 1]), --RID[v];\n\
+    \        }\n      }\n    }\n  }\n\n  void bfs() {\n    dist.assign(N, -1);\n \
+    \   int ql = 0, qr = 0;\n    FOR(v, N) if (!color[v] && match[v] == -1) que[qr++]\
+    \ = v, dist[v] = 0;\n    while (ql < qr) {\n      int v = que[ql++];\n      FOR(i,\
+    \ LID[v], MID[v]) {\n        auto [to, cost] = dat[i];\n        dist[to] = 0;\n\
+    \        int w = match[to];\n        if (w != -1 && dist[w] == -1) dist[w] = dist[v]\
+    \ + 1, que[qr++] = w;\n      }\n    }\n  }\n\n  bool dfs(int v) {\n    vis[v]\
+    \ = 1;\n    FOR(i, LID[v], MID[v]) {\n      auto [to, cost] = dat[i];\n      int\
+    \ w = match[to];\n      if (w == -1 || (!vis[w] && dist[w] == dist[v] + 1 && dfs(w)))\
+    \ {\n        match[to] = v, match[v] = to;\n        return true;\n      }\n  \
+    \  }\n    return false;\n  }\n\n  vc<int> get_matching_edges() {\n    vc<int>\
+    \ match_wt(N, -1);\n    vc<int> match_e(N, -1);\n    for (auto& e : G.edges) {\n\
+    \      int a = e.frm, b = e.to;\n      if (color[a]) swap(a, b);\n      if (match[a]\
+    \ == b && chmax(match_wt[a], e.cost)) match_e[a] = e.id;\n    }\n    vc<int> res;\n\
+    \    FOR(v, N) if (match_e[v] != -1) res.eb(match_e[v]);\n    return res;\n  }\n\
+    };\n"
   code: "\n#include \"graph/bipartite_vertex_coloring.hpp\"\n\n// (N1, N2) bipartite\
     \ graph with edge-weight 0, 1, ..., K - 1.\n// find a matching s.t. (# of K-1,\
     \ # of K-2, ...) is lex max.\n// https://yukicoder.me/problems/no/1615\n// https://qoj.ac/contest/1388/problem/6546\n\
@@ -203,46 +204,47 @@ data:
     \  GT& G;\n  vc<int> color;\n  vc<int> dist, match;\n  vc<int> que;\n  vc<bool>\
     \ vis;\n  vc<bool> vcover;\n\n  // edge \u306E\u7BA1\u7406\n  // [L,M) : active,\
     \ [M,R) : inactive\n  vc<pair<int, int>> dat;\n  vc<int> LID, MID, RID;\n\n  Rank_Maximal_Bipartite_Matching(GT&\
-    \ G) : N(G.N), G(G) {\n    color = bipartite_vertex_coloring(G);\n    if (N >\
-    \ 0) assert(!color.empty());\n    dist.assign(N, -1), match.assign(N, -1);\n \
-    \   que.assign(N, -1), vis.assign(N, -1);\n    vcover.assign(N, 0);\n    K = 0;\n\
-    \    for (auto& e: G.edges) chmax(K, e.cost);\n    ++K;\n    build();\n    FOR_R(k,\
-    \ K) solve(k);\n  }\n\n  void build() {\n    FOR(v, N) {\n      LID.eb(len(dat));\n\
-    \      if (color[v] == 0) {\n        for (auto& e: G[v]) { dat.eb(e.to, e.cost);\
-    \ }\n      }\n    }\n    LID.eb(len(dat));\n    MID.resize(N), RID.resize(N);\n\
-    \    FOR(v, N) MID[v] = LID[v], RID[v] = LID[v + 1];\n  }\n\n  void solve(int\
-    \ k) {\n    // weight k \u306E edge \u3092\u3000active \u306B\u3059\u308B\n  \
-    \  FOR(v, N) {\n      if (vcover[v]) continue;\n      FOR(i, MID[v], RID[v]) {\n\
-    \        auto [to, cost] = dat[i];\n        if (cost != k) continue;\n       \
-    \ swap(dat[MID[v]], dat[i]), ++MID[v];\n      }\n    }\n    while (1) {\n    \
-    \  bfs();\n      vis.assign(N, false);\n      int flow = 0;\n      FOR(v, N) if\
-    \ (!color[v] && match[v] == -1 && dfs(v))++ flow;\n      if (!flow) break;\n \
-    \   }\n\n    // update vertex cover\n    FOR(v, N) { vcover[v] = (color[v] ^ (dist[v]\
-    \ == -1)); }\n    // active \u306A\u8FBA\u306E\u3046\u3061\u4E21\u7AEF\u70B9\u304C\
+    \ G) : N(G.N), G(G) {\n    color = bipartite_vertex_coloring(G, true);\n    if\
+    \ (N > 0) assert(!color.empty());\n    dist.assign(N, -1), match.assign(N, -1);\n\
+    \    que.assign(N, -1), vis.assign(N, -1);\n    vcover.assign(N, 0);\n    K =\
+    \ 0;\n    for (auto& e : G.edges) chmax(K, e.cost);\n    ++K;\n    build();\n\
+    \    FOR_R(k, K) solve(k);\n  }\n\n  void build() {\n    FOR(v, N) {\n      LID.eb(len(dat));\n\
+    \      if (color[v] == 0) {\n        for (auto& e : G[v]) {\n          dat.eb(e.to,\
+    \ e.cost);\n        }\n      }\n    }\n    LID.eb(len(dat));\n    MID.resize(N),\
+    \ RID.resize(N);\n    FOR(v, N) MID[v] = LID[v], RID[v] = LID[v + 1];\n  }\n\n\
+    \  void solve(int k) {\n    // weight k \u306E edge \u3092\u3000active \u306B\u3059\
+    \u308B\n    FOR(v, N) {\n      if (vcover[v]) continue;\n      FOR(i, MID[v],\
+    \ RID[v]) {\n        auto [to, cost] = dat[i];\n        if (cost != k) continue;\n\
+    \        swap(dat[MID[v]], dat[i]), ++MID[v];\n      }\n    }\n    while (1) {\n\
+    \      bfs();\n      vis.assign(N, false);\n      int flow = 0;\n      FOR(v,\
+    \ N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\n      if (!flow) break;\n\
+    \    }\n\n    // update vertex cover\n    FOR(v, N) { vcover[v] = (color[v] ^\
+    \ (dist[v] == -1)); }\n    // active \u306A\u8FBA\u306E\u3046\u3061\u4E21\u7AEF\
+    \u70B9\u304C vcover \u306B\u89E6\u308C\u3066\u3044\u308B\u3082\u306E\u3092\u524A\
+    \u9664\n    FOR(v, N) {\n      if (!vcover[v]) continue;\n      FOR_R(i, LID[v],\
+    \ MID[v]) {\n        auto [to, cost] = dat[i];\n        if (vcover[to]) {\n  \
+    \        swap(dat[i], dat[MID[v] - 1]);\n          swap(dat[MID[v] - 1], dat[RID[v]\
+    \ - 1]);\n          --MID[v], --RID[v];\n        }\n      }\n    }\n    // inactive\
+    \ \u306A\u8FBA\u306E\u3046\u3061\u5C11\u306A\u304F\u3068\u3082\u4E00\u65B9\u304C\
     \ vcover \u306B\u89E6\u308C\u3066\u3044\u308B\u3082\u306E\u3092\u524A\u9664\n\
-    \    FOR(v, N) {\n      if (!vcover[v]) continue;\n      FOR_R(i, LID[v], MID[v])\
-    \ {\n        auto [to, cost] = dat[i];\n        if (vcover[to]) {\n          swap(dat[i],\
-    \ dat[MID[v] - 1]);\n          swap(dat[MID[v] - 1], dat[RID[v] - 1]);\n     \
-    \     --MID[v], --RID[v];\n        }\n      }\n    }\n    // inactive \u306A\u8FBA\
-    \u306E\u3046\u3061\u5C11\u306A\u304F\u3068\u3082\u4E00\u65B9\u304C vcover \u306B\
-    \u89E6\u308C\u3066\u3044\u308B\u3082\u306E\u3092\u524A\u9664\n    FOR(v, N) {\n\
-    \      if (vcover[v]) {\n        RID[v] = MID[v];\n        continue;\n      }\n\
-    \      FOR_R(i, MID[v], RID[v]) {\n        auto [to, cost] = dat[i];\n       \
-    \ if (vcover[to]) { swap(dat[i], dat[RID[v] - 1]), --RID[v]; }\n      }\n    }\n\
-    \  }\n\n  void bfs() {\n    dist.assign(N, -1);\n    int ql = 0, qr = 0;\n   \
-    \ FOR(v, N) if (!color[v] && match[v] == -1) que[qr++] = v, dist[v] = 0;\n   \
-    \ while (ql < qr) {\n      int v = que[ql++];\n      FOR(i, LID[v], MID[v]) {\n\
-    \        auto [to, cost] = dat[i];\n        dist[to] = 0;\n        int w = match[to];\n\
-    \        if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que[qr++] = w;\n\
-    \      }\n    }\n  }\n\n  bool dfs(int v) {\n    vis[v] = 1;\n    FOR(i, LID[v],\
-    \ MID[v]) {\n      auto [to, cost] = dat[i];\n      int w = match[to];\n     \
-    \ if (w == -1 || (!vis[w] && dist[w] == dist[v] + 1 && dfs(w))) {\n        match[to]\
-    \ = v, match[v] = to;\n        return true;\n      }\n    }\n    return false;\n\
-    \  }\n\n  vc<int> get_matching_edges() {\n    vc<int> match_wt(N, -1);\n    vc<int>\
-    \ match_e(N, -1);\n    for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n\
-    \      if (color[a]) swap(a, b);\n      if (match[a] == b && chmax(match_wt[a],\
-    \ e.cost)) match_e[a] = e.id;\n    }\n    vc<int> res;\n    FOR(v, N) if (match_e[v]\
-    \ != -1) res.eb(match_e[v]);\n    return res;\n  }\n};\n"
+    \    FOR(v, N) {\n      if (vcover[v]) {\n        RID[v] = MID[v];\n        continue;\n\
+    \      }\n      FOR_R(i, MID[v], RID[v]) {\n        auto [to, cost] = dat[i];\n\
+    \        if (vcover[to]) {\n          swap(dat[i], dat[RID[v] - 1]), --RID[v];\n\
+    \        }\n      }\n    }\n  }\n\n  void bfs() {\n    dist.assign(N, -1);\n \
+    \   int ql = 0, qr = 0;\n    FOR(v, N) if (!color[v] && match[v] == -1) que[qr++]\
+    \ = v, dist[v] = 0;\n    while (ql < qr) {\n      int v = que[ql++];\n      FOR(i,\
+    \ LID[v], MID[v]) {\n        auto [to, cost] = dat[i];\n        dist[to] = 0;\n\
+    \        int w = match[to];\n        if (w != -1 && dist[w] == -1) dist[w] = dist[v]\
+    \ + 1, que[qr++] = w;\n      }\n    }\n  }\n\n  bool dfs(int v) {\n    vis[v]\
+    \ = 1;\n    FOR(i, LID[v], MID[v]) {\n      auto [to, cost] = dat[i];\n      int\
+    \ w = match[to];\n      if (w == -1 || (!vis[w] && dist[w] == dist[v] + 1 && dfs(w)))\
+    \ {\n        match[to] = v, match[v] = to;\n        return true;\n      }\n  \
+    \  }\n    return false;\n  }\n\n  vc<int> get_matching_edges() {\n    vc<int>\
+    \ match_wt(N, -1);\n    vc<int> match_e(N, -1);\n    for (auto& e : G.edges) {\n\
+    \      int a = e.frm, b = e.to;\n      if (color[a]) swap(a, b);\n      if (match[a]\
+    \ == b && chmax(match_wt[a], e.cost)) match_e[a] = e.id;\n    }\n    vc<int> res;\n\
+    \    FOR(v, N) if (match_e[v] != -1) res.eb(match_e[v]);\n    return res;\n  }\n\
+    };\n"
   dependsOn:
   - graph/bipartite_vertex_coloring.hpp
   - graph/base.hpp
@@ -251,8 +253,8 @@ data:
   isVerificationFile: false
   path: flow/rank_maximal_bipartite_matching.hpp
   requiredBy: []
-  timestamp: '2026-05-01 13:47:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-05-01 14:04:15+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1615.test.cpp
 documentation_of: flow/rank_maximal_bipartite_matching.hpp
