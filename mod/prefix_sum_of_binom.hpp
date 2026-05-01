@@ -1,3 +1,5 @@
+#include "ds/offline_query/mo.hpp"
+
 template <typename mint>
 struct Prefix_Sum_Of_Binom {
   static constexpr u32 mod = mint::get_mod();
@@ -15,7 +17,7 @@ struct Prefix_Sum_Of_Binom {
     dat.resize(K);
     FOR(k, 0, K) {
       // [0, kB] での closed sum
-      vc<mint> &f = dat[k];
+      vc<mint>& f = dat[k];
       if (MAX_N + 1 - k * B <= 0) continue;
       f.resize(MAX_N + 1 - k * B);
       int m = k * B;
@@ -51,9 +53,45 @@ struct Prefix_Sum_Of_Binom {
     return 0;
   }
 
-private:
+ private:
   mint _get(int n, int k) {
     if (n <= k * B) return POW[n];
     return dat[k][n - k * B] * fact_inv<mint>(k * B);
+  }
+};
+
+template <typename mint>
+struct Prefix_Sum_Of_Binom_Offline {
+  vc<pair<int, int>> query;
+
+  void add(int n, int m) { query.eb(n, m); }
+
+  vc<mint> calc() {
+    int Q = len(query);
+    vc<mint> ANS(Q);
+    auto I = Mo::get_mo_order(query);
+    int n = 0, m = 0;
+    mint ans = 0;
+    mint inv2 = inv<mint>(2);
+    for (auto& i : I) {
+      auto [nn, mm] = query[i];
+      while (n < nn) {
+        ans = ans + ans - C<mint>(n, m - 1);
+        n++;
+      }
+      while (n > nn) {
+        ans += C<mint>(n - 1, m - 1);
+        ans *= inv2;
+        --n;
+      }
+      while (m < mm) {
+        ans += C<mint>(n, m++);
+      }
+      while (m > mm) {
+        ans -= C<mint>(n, --m);
+      }
+      ANS[i] = ans;
+    }
+    return ANS;
   }
 };
