@@ -1,15 +1,15 @@
 # shellcheck shell=bash
 
 # このファイル自身の場所から library dir を決める
-_COMPRO_SHELL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export MASPY_LIBRARY_DIR="$(cd "$_COMPRO_SHELL_DIR/.." && pwd)"
+SHELL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export LIBRARY_DIR="$(cd "$SHELL_DIR/.." && pwd)"
 
 alias python="python3"
 ulimit -s unlimited
 
-maspy_randomtest(){
-  python3 "$MASPY_LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
-  g++ -I "$MASPY_LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
+randomtest(){
+  python3 "$LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
+  g++ -I "$LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
 
   ac_count=0
   while true; do 
@@ -45,9 +45,9 @@ maspy_randomtest(){
   done
 }
 
-maspy_randomtest_noout(){
-  python3 "$MASPY_LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
-  g++ -I "$MASPY_LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
+randomtest_noout(){
+  python3 "$LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
+  g++ -I "$LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
 
   ac_count=0
   while true; do 
@@ -83,9 +83,9 @@ maspy_randomtest_noout(){
   done
 }
 
-maspy_randomtest_real(){
-  python3 "$MASPY_LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
-  g++ -I "$MASPY_LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
+randomtest_real(){
+  python3 "$LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
+  g++ -I "$LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
 
   ac_count=0
   while true; do 
@@ -158,7 +158,7 @@ copy_temp_cpp() {
 
 # main.cpp を展開して temp.cpp を作る
 expand_main() {
-  python3 "$MASPY_LIBRARY_DIR/expander.py" main.cpp > temp.cpp
+  python3 "$LIBRARY_DIR/expander.py" main.cpp > temp.cpp
 }
 
 cc() {
@@ -167,7 +167,7 @@ cc() {
   copy_temp_cpp
 
   g++ \
-    -I "$MASPY_LIBRARY_DIR" \
+    -I "$LIBRARY_DIR" \
     -DLOCAL \
     -std=c++2a \
     -O2 \
@@ -183,7 +183,7 @@ cc2() {
   copy_temp_cpp
 
   g++ \
-    -I "$MASPY_LIBRARY_DIR" \
+    -I "$LIBRARY_DIR" \
     -DLOCAL \
     -std=c++2a \
     -O2 \
@@ -198,7 +198,7 @@ ccf() {
   expand_main || return
 
   g++ \
-    -I "$MASPY_LIBRARY_DIR" \
+    -I "$LIBRARY_DIR" \
     -std=c++2a \
     -O2 \
     temp.cpp
@@ -206,13 +206,13 @@ ccf() {
 
 tt() {
   copy_temp_cpp
-  bash "$_MASPY_SHELL_DIR/sampletest.sh"
+  bash "$SHELL_DIR/sampletest.sh"
   rm -f a.out
 }
 
-maspy_precompile() {
+precompile() {
   (
-    cd "$MASPY_LIBRARY_DIR" || return
+    cd "$LIBRARY_DIR" || return
 
     local pch_src="my_template_compiled.hpp"
     local out_dir="my_template.hpp.gch"
@@ -271,5 +271,5 @@ maspy_precompile() {
   )
 }
 
-alias rt="maspy_randomtest"
+alias rt="randomtest"
 alias aa="./a.out"

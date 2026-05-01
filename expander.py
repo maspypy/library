@@ -2,8 +2,18 @@ import sys
 import os
 import re
 
-INCLUDE_PATHS = ['.', os.path.expanduser(
-    '~/compro/library'), os.path.expanduser('~/compro/other_library')]
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+LIBRARY_DIR = SCRIPT_DIR
+
+INCLUDE_PATHS = [
+    '.',
+    LIBRARY_DIR,
+]
+
+extra_paths = os.environ.get('MASPY_EXPANDER_INCLUDE_PATHS')
+if extra_paths:
+    INCLUDE_PATHS.extend(extra_paths.split(os.pathsep))
+
 visited = set()
 
 
@@ -25,7 +35,7 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
         display_name = os.path.basename(path)
 
     print(f'// BEGIN: {display_name}')
-    print(f'#line 1 "{display_name}"')  # ファイルの冒頭で `#line` を入れる
+    print(f'#line 1 "{display_name}"')
 
     with open(path) as f:
         for i, line in enumerate(f, start=1):
@@ -39,7 +49,7 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
                 if resolved:
                     if resolved not in visited:
                         expand_file(resolved, header, display_name, i + 1)
-                    print(f'#line {i + 1} "{display_name}"')  # ← 呼び出し元に戻る位置
+                    print(f'#line {i + 1} "{display_name}"')
                 else:
                     print(f'// [warning] include not found: {header}')
             elif re.match(r'#\s*include\s*<[^>]+>', line):
