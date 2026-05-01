@@ -322,14 +322,16 @@ data:
     \ N) label[i] = i;\n  shuffle(label);\n  FOR(i, N) E.eb(i, (i + 1) % N);\n  for\
     \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
     \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 2 \"graph/bipartite_vertex_coloring.hpp\"\
-    \n\r\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n// \u8FBA\u91CD\u307F\
-    \ 0, 1 \u3067\u4E8C\u90E8\u30B0\u30E9\u30D5\u9802\u70B9\u5F69\u8272, \u4E8C\u90E8\
-    \u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\ntemplate <typename\
-    \ GT>\r\nvc<int> bipartite_vertex_coloring(GT& G) {\r\n  assert(!GT::is_directed);\r\
-    \n  assert(G.is_prepared());\r\n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\
-    \n  for (auto&& e : G.edges) {\r\n    int u = e.frm, v = e.to;\r\n    if (e.cost\
-    \ == 1) {\r\n      uf.merge(u + n, v), uf.merge(u, v + n);\r\n    } else {\r\n\
-    \      uf.merge(u, v), uf.merge(u + n, v + n);\r\n    }\r\n  }\r\n\r\n  vc<int>\
+    \n\r\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n// \u73FE\u5728\u306E\
+    \u8FBA\u91CD\u307F\u5076\u5947\u3067\u4E8C\u90E8\u30B0\u30E9\u30D5\u9802\u70B9\
+    \u5F69\u8272, \u4E8C\u90E8\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
+    \ empty\r\n// weight_one=true: \u8FBA\u91CD\u307F\u3092 1 \u3068\u3059\u308B\r\
+    \ntemplate <typename GT>\r\nvc<int> bipartite_vertex_coloring(GT& G, bool weight_one\
+    \ = false) {\r\n  assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\n\r\
+    \n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e : G.edges) {\r\n\
+    \    int u = e.frm, v = e.to, c = (weight_one ? 1 : e.cost);\r\n    if (c % 2\
+    \ == 0) {\r\n      uf.merge(u, v), uf.merge(u + n, v + n);\r\n    } else {\r\n\
+    \      uf.merge(u + n, v), uf.merge(u, v + n);\r\n    }\r\n  }\r\n\r\n  vc<int>\
     \ color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n \
     \   color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v]\
     \ = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n])\
@@ -440,7 +442,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/find_odd_cycle.test.cpp
   requiredBy: []
-  timestamp: '2026-05-01 13:15:22+09:00'
+  timestamp: '2026-05-01 13:47:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/find_odd_cycle.test.cpp
