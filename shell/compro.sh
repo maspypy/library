@@ -210,7 +210,7 @@ tt() {
   rm -f a.out
 }
 
-make_gch() {
+maspy_precompile() {
   (
     cd "$MASPY_LIBRARY_DIR" || return
 
