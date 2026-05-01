@@ -211,35 +211,64 @@ tt() {
 }
 
 make_gch() {
-  g++ \
-    -o my_template_cc.hpp.gch \
-    -I "$MASPY_LIBRARY_DIR" \
-    -DLOCAL \
-    -std=c++2a \
-    -O2 \
-    -Wall \
-    -Wfatal-errors \
-    -D_GLIBCXX_DEBUG \
-    my_template_compiled.hpp
+  (
+    cd "$MASPY_LIBRARY_DIR" || return
 
-  g++ \
-    -o my_template_cc2.hpp.gch \
-    -I "$MASPY_LIBRARY_DIR" \
-    -DLOCAL \
-    -std=c++2a \
-    -O2 \
-    -fsanitize=address \
-    -fno-omit-frame-pointer \
-    -g \
-    -fsanitize=undefined \
-    my_template_compiled.hpp
+    local pch_src="my_template_compiled.hpp"
+    local out_dir="my_template.hpp.gch"
 
-  g++ \
-    -o my_template_ccfast.hpp.gch \
-    -I "$MASPY_LIBRARY_DIR" \
-    -std=c++2a \
-    -O2 \
-    my_template_compiled.hpp
+    # my_template.hpp から PCH 用ヘッダを生成する
+    # 前提:
+    #   1行目: #if defined(LOCAL)
+    #   2行目: #include <my_template_compiled.hpp>
+    #   3行目: #else
+    #   最終行: #endif
+    awk '
+      NR <= 3 { next }
+      { lines[++n] = $0 }
+      END {
+        for (i = 1; i < n; i++) print lines[i]
+      }
+    ' my_template.hpp > "$pch_src"
+
+    mkdir -p "$out_dir"
+
+    g++ \
+      -o my_template_cc.hpp.gch \
+      -I . \
+      -DLOCAL \
+      -std=c++2a \
+      -O2 \
+      -Wall \
+      -Wfatal-errors \
+      -D_GLIBCXX_DEBUG \
+      "$pch_src" || return
+
+    g++ \
+      -o my_template_cc2.hpp.gch \
+      -I . \
+      -DLOCAL \
+      -std=c++2a \
+      -O2 \
+      -fsanitize=address \
+      -fno-omit-frame-pointer \
+      -g \
+      -fsanitize=undefined \
+      "$pch_src" || return
+
+    g++ \
+      -o my_template_ccfast.hpp.gch \
+      -I . \
+      -std=c++2a \
+      -O2 \
+      "$pch_src" || return
+
+    mv \
+      my_template_cc.hpp.gch \
+      my_template_cc2.hpp.gch \
+      my_template_ccfast.hpp.gch \
+      "$out_dir"/
+  )
 }
 
 alias rt="maspy_randomtest"
