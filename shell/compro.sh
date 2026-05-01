@@ -1,144 +1,8 @@
 # shellcheck shell=bash
 
 # このファイル自身の場所から library dir を決める
-SHELL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export LIBRARY_DIR="$(cd "$SHELL_DIR/.." && pwd)"
-
-alias python="python3"
-ulimit -s unlimited
-
-randomtest(){
-  python3 "$LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
-  g++ -I "$LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
-
-  ac_count=0
-  while true; do 
-      python3 generate.py > test/sample-9.in
-
-      ./ac.out < test/sample-9.in > test/sample-9.out
-      if [ $? -ne 0 ]; then
-          echo -e "\e[31mRE (ac.out crashed)\e[0m"
-          cat test/sample-9.in
-          break
-      fi
-
-      out1=$(./a.out < test/sample-9.in)
-      if [ $? -ne 0 ]; then
-          echo -e "\e[31mRE (a.out crashed)\e[0m"
-          cat test/sample-9.in
-          break
-      fi
-
-      out2=$(cat test/sample-9.out)
-
-      if [ "$out1" != "$out2" ]; then
-          echo -e "\e[31mWA\e[0m"
-          echo "case: " $(cat test/sample-9.in)
-          echo "x: " "$out1"
-          echo "o: " "$out2"
-          break
-      else
-          ((ac_count++))
-          echo -e "\e[32mAC\e[0m $ac_count"
-          echo "$out1"
-      fi
-  done
-}
-
-randomtest_noout(){
-  python3 "$LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
-  g++ -I "$LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
-
-  ac_count=0
-  while true; do 
-      python3 generate.py > test/sample-9.in
-
-      ./ac.out < test/sample-9.in > test/sample-9.out
-      if [ $? -ne 0 ]; then
-          echo -e "\e[31mRE (ac.out crashed)\e[0m"
-          cat test/sample-9.in
-          break
-      fi
-
-      out1=$(./a.out < test/sample-9.in)
-      if [ $? -ne 0 ]; then
-          echo -e "\e[31mRE (a.out crashed)\e[0m"
-          cat test/sample-9.in
-          break
-      fi
-
-      out2=$(cat test/sample-9.out)
-
-      if [ "$out1" != "$out2" ]; then
-          echo -e "\e[31mWA\e[0m"
-          echo "case: " $(cat test/sample-9.in)
-          echo "x: " "$out1"
-          echo "o: " "$out2"
-          break
-      else
-          ((ac_count++))
-          echo -e "\e[32mAC\e[0m $ac_count"
-          # echo "$out1"
-      fi
-  done
-}
-
-randomtest_real(){
-  python3 "$LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
-  g++ -I "$LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
-
-  ac_count=0
-  while true; do 
-      python3 generate.py > test/sample-9.in
-
-      start_ac=$(date +%s%3N)
-      ./ac.out < test/sample-9.in > test/sample-9.out
-      status_ac=$?
-      end_ac=$(date +%s%3N)
-      time_ac=$((end_ac - start_ac))
-
-      if [ $status_ac -ne 0 ]; then
-          echo -e "\e[31mRE (ac.out crashed)\e[0m"
-          cat test/sample-9.in
-          break
-      fi
-
-      start_a=$(date +%s%3N)
-      out1=$(./a.out < test/sample-9.in)
-      status_a=$?
-      end_a=$(date +%s%3N)
-      time_a=$((end_a - start_a))
-
-      if [ $status_a -ne 0 ]; then
-          echo -e "\e[31mRE (a.out crashed)\e[0m"
-          cat test/sample-9.in
-          break
-      fi
-
-      out2=$(cat test/sample-9.out)
-
-      diff=$(echo "scale=10; $out1 - $out2" | bc)
-      abs_diff=$(echo "scale=10; if ($diff < 0) -1 * $diff else $diff" | bc)
-      eps="0.000001"
-
-      if (( $(echo "$abs_diff > $eps" | bc -l) )); then
-          echo -e "\e[31mWA\e[0m"
-          echo "case: " $(cat test/sample-9.in)
-          echo "x: " "$out1"
-          echo "o: " "$out2"
-          echo "abs_diff: $abs_diff"
-          echo "a.out time: ${time_a}ms"
-          echo "ac.out time: ${time_ac}ms"
-          break
-      else
-          ((ac_count++))
-          echo -e "\e[32mAC\e[0m $ac_count"
-          echo "out: $out1"
-          echo "ac.out time: ${time_ac}ms"
-          echo "a.out time: ${time_a}ms"
-      fi
-  done
-}
+COMPRO_SHELL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export COMPRO_LIBRARY_DIR="$(cd "$COMPRO_SHELL_DIR/.." && pwd)"
 
 # temp.cpp をクリップボードにコピーする
 copy_temp_cpp() {
@@ -158,16 +22,16 @@ copy_temp_cpp() {
 
 # main.cpp を展開して temp.cpp を作る
 expand_main() {
-  python3 "$LIBRARY_DIR/expander.py" main.cpp > temp.cpp
+  python3 "$COMPRO_LIBRARY_DIR/expander.py" main.cpp > temp.cpp
 }
 
-cc() {
+compile_debug() {
   expand_main || return
 
   copy_temp_cpp
 
   g++ \
-    -I "$LIBRARY_DIR" \
+    -I "$COMPRO_LIBRARY_DIR" \
     -DLOCAL \
     -std=c++2a \
     -O2 \
@@ -177,13 +41,13 @@ cc() {
     temp.cpp
 }
 
-cc2() {
+compile_sanitize() {
   expand_main || return
 
   copy_temp_cpp
 
   g++ \
-    -I "$LIBRARY_DIR" \
+    -I "$COMPRO_LIBRARY_DIR" \
     -DLOCAL \
     -std=c++2a \
     -O2 \
@@ -194,25 +58,26 @@ cc2() {
     temp.cpp
 }
 
-ccf() {
+compile_fast() {
   expand_main || return
 
   g++ \
-    -I "$LIBRARY_DIR" \
+    -I "$COMPRO_LIBRARY_DIR" \
     -std=c++2a \
     -O2 \
     temp.cpp
 }
 
-tt() {
+
+test_samples() {
   copy_temp_cpp
-  bash "$SHELL_DIR/sampletest.sh"
+  bash "$COMPRO_SHELL_DIR/sampletest.sh"
   rm -f a.out
 }
 
 precompile() {
   (
-    cd "$LIBRARY_DIR" || return
+    cd "$COMPRO_LIBRARY_DIR" || return
 
     local pch_src="my_template_compiled.hpp"
     local out_dir="my_template.hpp.gch"
@@ -271,5 +136,14 @@ precompile() {
   )
 }
 
-alias rt="randomtest"
+source "$COMPRO_SHELL_DIR/randomtest.sh"
+
+alias python="python3"
+ulimit -s unlimited
+
 alias aa="./a.out"
+alias cc="compile_debug"
+alias cc2="compile_sanitize"
+alias ccf="compile_fast"
+alias tt="test_samples"
+alias rt="randomtest"
