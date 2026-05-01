@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -136,8 +136,52 @@ data:
     \ 1;\n    }\n  }\n\n  void add_range_to_range(int frm_l, int frm_r, int to_l,\
     \ int to_r, T wt) {\n    int new_node = n_node++;\n    add_frm_range(frm_l, frm_r,\
     \ new_node, wt);\n    add_to_range(new_node, to_l, to_r, T(0));\n  }\n\n  Graph<T,\
-    \ 1> build() {\n    Graph<T, 1> G(n_node);\n    for (auto&& [a, b, c]: edges)\
-    \ G.add(a, b, c);\n    G.build();\n    return G;\n  }\n};\n"
+    \ 1> build() {\n    Graph<T, 1> G(n_node);\n    for (auto&& [a, b, c] : edges)\
+    \ G.add(a, b, c);\n    G.build();\n    return G;\n  }\n};\n\n// DST \u65B9\u5F0F\
+    \n// template <typename T>\n// struct Range_to_Range_Graph {\n//   int n;\n//\
+    \   int n_node;\n//   vc<tuple<int, int, T>> edges;\n//   vc<tuple<int, int, int,\
+    \ T>> FRM, TO;\n//   vc<int> A;\n\n//   const int K = 16;\n\n//   Range_to_Range_Graph(int\
+    \ n) : n(n), n_node(n), A(n) {}\n\n//   void add(int frm, int to, T wt = 1) {\
+    \ edges.eb(frm, to, wt); }\n//   void add_frm_range(int frm_l, int frm_r, int\
+    \ to, T wt = 1) {\n//     assert(0 <= frm_l && frm_l <= frm_r && frm_r <= n);\n\
+    //     if (frm_l == frm_r) return;\n//     if (frm_r == frm_l + 1) return add(frm_l,\
+    \ to, wt);\n//     FRM.eb(frm_l, frm_r, to, wt);\n//   }\n\n//   void add_to_range(int\
+    \ frm, int to_l, int to_r, T wt = 1) {\n//     assert(0 <= to_l && to_l <= to_r\
+    \ && to_r <= n);\n//     if (to_l == to_r) return;\n//     if (to_r == to_l +\
+    \ 1) return add(frm, to_l, wt);\n//     TO.eb(frm, to_l, to_r, wt);\n//   }\n\n\
+    //   // n_node, edges \u304C\u3044\u3044\u611F\u3058\u306B\u306A\u308B\n//   void\
+    \ build() {\n//     int blk = ceil<int>(N, K);\n//     vvc<int> SI(blk);\n// \
+    \    if (len(FRM)) {\n//       vc<int> A(N), B(N);\n\n//       FOR(i, len(FRM))\
+    \ { auto [a, b, c, w] = FRM[i]; }\n//       int Q = len(FRM);\n//       vc<int>\
+    \ I(Q);\n//       FOR(i, Q) I[i] = i;\n//       rec_frm(0, n, I);\n//       FRM.clear(),\
+    \ FRM.shrink_to_fit();\n//     }\n\n//     Q = len(TO);\n//     I.resize(Q);\n\
+    //     FOR(i, Q) I[i] = i;\n//     rec_to(0, n, I);\n//     TO.clear(), TO.shrink_to_fit();\n\
+    //     // Graph<T, 1> G(n_node);\n//     // for (auto& [a, b, w] : edges) G.add(a,\
+    \ b, w);\n//     // G.build();\n//     // return G;\n//   }\n\n//  private:\n\
+    //   void rec_frm_small(int L, int R, vc<int>& I) {\n//     if (I.empty()) return;\n\
+    //     int M = (L + R) / 2;\n//     vc<int> I1, I2, J;\n//     int s = M, t =\
+    \ M;\n//     for (int i : I) {\n//       auto [a, b, c, w] = FRM[i];\n//     \
+    \  if (b <= M) {\n//         I1.eb(i);\n//       }\n//       elif (M <= a) { I2.eb(i);\
+    \ }\n//       else {\n//         chmin(s, a), chmax(t, b);\n//         J.eb(i);\n\
+    //       }\n//     }\n//     rec_frm_small(L, M, I1), rec_frm_small(M, R, I2);\n\
+    //     if (J.empty()) return;\n//     A[M - 1] = M - 1, A[M] = M;\n//     FOR_R(i,\
+    \ s, M - 1) {\n//       A[i] = n_node++;\n//       add(i, A[i], 0), add(A[i +\
+    \ 1], A[i], 0);\n//     }\n//     FOR(i, M + 1, t) {\n//       A[i] = n_node++;\n\
+    //       add(i, A[i], 0), add(A[i - 1], A[i], 0);\n//     }\n//     for (int i\
+    \ : J) {\n//       auto [a, b, c, w] = FRM[i];\n//       add(A[a], c, w), add(A[b\
+    \ - 1], c, w);\n//     }\n//   }\n\n//   void rec_to(int L, int R, vc<int>& I)\
+    \ {\n//     if (I.empty()) return;\n//     int M = (L + R) / 2;\n//     vc<int>\
+    \ I1, I2, J;\n//     int s = M, t = M;\n//     for (int i : I) {\n//       auto\
+    \ [c, a, b, w] = TO[i];\n//       if (b <= M) {\n//         I1.eb(i);\n//    \
+    \   }\n//       elif (M <= a) { I2.eb(i); }\n//       else {\n//         chmin(s,\
+    \ a), chmax(t, b);\n//         J.eb(i);\n//       }\n//     }\n//     rec_to(L,\
+    \ M, I1), rec_to(M, R, I2);\n//     if (J.empty()) return;\n//     A[M - 1] =\
+    \ M - 1, A[M] = M;\n//     FOR_R(i, s, M - 1) {\n//       A[i] = n_node++;\n//\
+    \       add(A[i], i, 0), add(A[i], A[i + 1], 0);\n//     }\n//     FOR(i, M +\
+    \ 1, t) {\n//       A[i] = n_node++;\n//       add(A[i], i, 0), add(A[i], A[i\
+    \ - 1], 0);\n//     }\n//     for (int i : J) {\n//       auto [c, a, b, w] =\
+    \ TO[i];\n//       add(c, A[a], w), add(c, A[b - 1], w);\n//     }\n//   }\n//\
+    \ };\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
     \ Range_to_Range_Graph {\n  int n;\n  int n_node;\n  vc<tuple<int, int, T>> edges;\n\
     \n  Range_to_Range_Graph(int n) : n(n), n_node(n * 3) {\n    FOR3(i, 2, n + n)\
@@ -155,15 +199,59 @@ data:
     \ wt);\n      l >>= 1, r >>= 1;\n    }\n  }\n\n  void add_range_to_range(int frm_l,\
     \ int frm_r, int to_l, int to_r, T wt) {\n    int new_node = n_node++;\n    add_frm_range(frm_l,\
     \ frm_r, new_node, wt);\n    add_to_range(new_node, to_l, to_r, T(0));\n  }\n\n\
-    \  Graph<T, 1> build() {\n    Graph<T, 1> G(n_node);\n    for (auto&& [a, b, c]:\
-    \ edges) G.add(a, b, c);\n    G.build();\n    return G;\n  }\n};"
+    \  Graph<T, 1> build() {\n    Graph<T, 1> G(n_node);\n    for (auto&& [a, b, c]\
+    \ : edges) G.add(a, b, c);\n    G.build();\n    return G;\n  }\n};\n\n// DST \u65B9\
+    \u5F0F\n// template <typename T>\n// struct Range_to_Range_Graph {\n//   int n;\n\
+    //   int n_node;\n//   vc<tuple<int, int, T>> edges;\n//   vc<tuple<int, int,\
+    \ int, T>> FRM, TO;\n//   vc<int> A;\n\n//   const int K = 16;\n\n//   Range_to_Range_Graph(int\
+    \ n) : n(n), n_node(n), A(n) {}\n\n//   void add(int frm, int to, T wt = 1) {\
+    \ edges.eb(frm, to, wt); }\n//   void add_frm_range(int frm_l, int frm_r, int\
+    \ to, T wt = 1) {\n//     assert(0 <= frm_l && frm_l <= frm_r && frm_r <= n);\n\
+    //     if (frm_l == frm_r) return;\n//     if (frm_r == frm_l + 1) return add(frm_l,\
+    \ to, wt);\n//     FRM.eb(frm_l, frm_r, to, wt);\n//   }\n\n//   void add_to_range(int\
+    \ frm, int to_l, int to_r, T wt = 1) {\n//     assert(0 <= to_l && to_l <= to_r\
+    \ && to_r <= n);\n//     if (to_l == to_r) return;\n//     if (to_r == to_l +\
+    \ 1) return add(frm, to_l, wt);\n//     TO.eb(frm, to_l, to_r, wt);\n//   }\n\n\
+    //   // n_node, edges \u304C\u3044\u3044\u611F\u3058\u306B\u306A\u308B\n//   void\
+    \ build() {\n//     int blk = ceil<int>(N, K);\n//     vvc<int> SI(blk);\n// \
+    \    if (len(FRM)) {\n//       vc<int> A(N), B(N);\n\n//       FOR(i, len(FRM))\
+    \ { auto [a, b, c, w] = FRM[i]; }\n//       int Q = len(FRM);\n//       vc<int>\
+    \ I(Q);\n//       FOR(i, Q) I[i] = i;\n//       rec_frm(0, n, I);\n//       FRM.clear(),\
+    \ FRM.shrink_to_fit();\n//     }\n\n//     Q = len(TO);\n//     I.resize(Q);\n\
+    //     FOR(i, Q) I[i] = i;\n//     rec_to(0, n, I);\n//     TO.clear(), TO.shrink_to_fit();\n\
+    //     // Graph<T, 1> G(n_node);\n//     // for (auto& [a, b, w] : edges) G.add(a,\
+    \ b, w);\n//     // G.build();\n//     // return G;\n//   }\n\n//  private:\n\
+    //   void rec_frm_small(int L, int R, vc<int>& I) {\n//     if (I.empty()) return;\n\
+    //     int M = (L + R) / 2;\n//     vc<int> I1, I2, J;\n//     int s = M, t =\
+    \ M;\n//     for (int i : I) {\n//       auto [a, b, c, w] = FRM[i];\n//     \
+    \  if (b <= M) {\n//         I1.eb(i);\n//       }\n//       elif (M <= a) { I2.eb(i);\
+    \ }\n//       else {\n//         chmin(s, a), chmax(t, b);\n//         J.eb(i);\n\
+    //       }\n//     }\n//     rec_frm_small(L, M, I1), rec_frm_small(M, R, I2);\n\
+    //     if (J.empty()) return;\n//     A[M - 1] = M - 1, A[M] = M;\n//     FOR_R(i,\
+    \ s, M - 1) {\n//       A[i] = n_node++;\n//       add(i, A[i], 0), add(A[i +\
+    \ 1], A[i], 0);\n//     }\n//     FOR(i, M + 1, t) {\n//       A[i] = n_node++;\n\
+    //       add(i, A[i], 0), add(A[i - 1], A[i], 0);\n//     }\n//     for (int i\
+    \ : J) {\n//       auto [a, b, c, w] = FRM[i];\n//       add(A[a], c, w), add(A[b\
+    \ - 1], c, w);\n//     }\n//   }\n\n//   void rec_to(int L, int R, vc<int>& I)\
+    \ {\n//     if (I.empty()) return;\n//     int M = (L + R) / 2;\n//     vc<int>\
+    \ I1, I2, J;\n//     int s = M, t = M;\n//     for (int i : I) {\n//       auto\
+    \ [c, a, b, w] = TO[i];\n//       if (b <= M) {\n//         I1.eb(i);\n//    \
+    \   }\n//       elif (M <= a) { I2.eb(i); }\n//       else {\n//         chmin(s,\
+    \ a), chmax(t, b);\n//         J.eb(i);\n//       }\n//     }\n//     rec_to(L,\
+    \ M, I1), rec_to(M, R, I2);\n//     if (J.empty()) return;\n//     A[M - 1] =\
+    \ M - 1, A[M] = M;\n//     FOR_R(i, s, M - 1) {\n//       A[i] = n_node++;\n//\
+    \       add(A[i], i, 0), add(A[i], A[i + 1], 0);\n//     }\n//     FOR(i, M +\
+    \ 1, t) {\n//       A[i] = n_node++;\n//       add(A[i], i, 0), add(A[i], A[i\
+    \ - 1], 0);\n//     }\n//     for (int i : J) {\n//       auto [c, a, b, w] =\
+    \ TO[i];\n//       add(c, A[a], w), add(c, A[b - 1], w);\n//     }\n//   }\n//\
+    \ };"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/range_to_range_graph.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
+  timestamp: '2026-05-01 13:15:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1170.test.cpp

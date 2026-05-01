@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':heavy_check_mark:'
@@ -139,64 +139,67 @@ data:
     \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
     \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\
-    \n\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\
-    \u306B\u306F empty\r\ntemplate <typename GT>\r\nvc<int> bipartite_vertex_coloring(GT&\
-    \ G) {\r\n  assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\n\r\n  int\
-    \ n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\n    int\
-    \ u = e.frm, v = e.to;\r\n    uf.merge(u + n, v), uf.merge(u, v + n);\r\n  }\r\
-    \n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
-    \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
-    \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
-    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 3 \"graph/strongly_connected_component.hpp\"\
-    \n\ntemplate <typename GT>\npair<int, vc<int>> strongly_connected_component(GT&\
-    \ G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N\
-    \ = G.N;\n  int C = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  int now\
-    \ = 0;\n\n  auto dfs = [&](auto& dfs, int v) -> void {\n    low[v] = ord[v] =\
-    \ now++;\n    path.eb(v);\n    for (auto&& [frm, to, cost, id]: G[v]) {\n    \
-    \  if (ord[to] == -1) {\n        dfs(dfs, to), chmin(low[v], low[to]);\n     \
-    \ } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] ==\
-    \ ord[v]) {\n      while (1) {\n        int u = POP(path);\n        ord[u] = N,\
-    \ comp[u] = C;\n        if (u == v) break;\n      }\n      ++C;\n    }\n  };\n\
-    \  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] =\
-    \ C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int,\
-    \ 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int>\
-    \ edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n\
-    \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
-    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}\n#line 4 \"flow/bipartite.hpp\"\n\r\ntemplate <typename GT>\r\nstruct\
-    \ BipartiteMatching {\r\n  int N;\r\n  GT& G;\r\n  vc<int> color;\r\n  vc<int>\
-    \ dist, match;\r\n  vc<int> vis;\r\n\r\n  BipartiteMatching(GT& G) : N(G.N), G(G),\
-    \ dist(G.N, -1), match(G.N, -1) {\r\n    color = bipartite_vertex_coloring(G);\r\
-    \n    if (N > 0) assert(!color.empty());\r\n    while (1) {\r\n      bfs();\r\n\
-    \      vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
-    \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
-    \  }\r\n\r\n  BipartiteMatching(GT& G, vc<int> color)\r\n      : N(G.N), G(G),\
-    \ color(color), dist(G.N, -1), match(G.N, -1) {\r\n    while (1) {\r\n      bfs();\r\
-    \n      vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
-    \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
-    \  }\r\n\r\n  void bfs() {\r\n    dist.assign(N, -1);\r\n    queue<int> que;\r\
-    \n    FOR(v, N) if (!color[v] && match[v] == -1) que.emplace(v), dist[v] = 0;\r\
-    \n    while (!que.empty()) {\r\n      int v = que.front();\r\n      que.pop();\r\
-    \n      for (auto&& e : G[v]) {\r\n        dist[e.to] = 0;\r\n        int w =\
-    \ match[e.to];\r\n        if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1,\
-    \ que.emplace(w);\r\n      }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n  \
-    \  vis[v] = 1;\r\n    for (auto&& e : G[v]) {\r\n      int w = match[e.to];\r\n\
-    \      if (w == -1 || (!vis[w] && dist[w] == dist[v] + 1 && dfs(w))) {\r\n   \
-    \     match[e.to] = v, match[v] = e.to;\r\n        return true;\r\n      }\r\n\
-    \    }\r\n    return false;\r\n  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n\
-    \    vc<pair<int, int>> res;\r\n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\
-    \n    return res;\r\n  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\
-    \n    FOR(v, N) if (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N)\
-    \ if (!(color[v] ^ (dist[v] == -1))) { res.eb(v); }\r\n    return res;\r\n  }\r\
-    \n\r\n  vc<int> edge_cover() {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n\
-    \    for (auto&& e : G.edges) {\r\n      if (done[e.frm] || done[e.to]) continue;\r\
-    \n      if (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm]\
-    \ = done[e.to] = 1;\r\n      }\r\n    }\r\n    for (auto&& e : G.edges) {\r\n\
-    \      if (!done[e.frm]) {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\
-    \n      }\r\n      if (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to]\
-    \ = 1;\r\n      }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\
-    \r\n  /* Dulmage\u2013Mendelsohn decomposition\r\n  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition\r\
+    \n\r\n// \u8FBA\u91CD\u307F 0, 1 \u3067\u4E8C\u90E8\u30B0\u30E9\u30D5\u9802\u70B9\
+    \u5F69\u8272, \u4E8C\u90E8\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
+    \ empty\r\ntemplate <typename GT>\r\nvc<int> bipartite_vertex_coloring(GT& G)\
+    \ {\r\n  assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\n\r\n  int\
+    \ n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e : G.edges) {\r\n    int\
+    \ u = e.frm, v = e.to;\r\n    if (e.cost == 1) {\r\n      uf.merge(u + n, v),\
+    \ uf.merge(u, v + n);\r\n    } else {\r\n      uf.merge(u, v), uf.merge(u + n,\
+    \ v + n);\r\n    }\r\n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if\
+    \ (uf[v] == v && color[uf[v]] < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v\
+    \ + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\
+    \n  FOR(v, n) if (uf[v] == uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line\
+    \ 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate <typename GT>\npair<int,\
+    \ vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
+    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
+    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
+    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
+    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
+    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
+    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
+    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
+    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
+    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
+    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
+    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
+    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
+    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 4 \"flow/bipartite.hpp\"\n\
+    \r\ntemplate <typename GT>\r\nstruct BipartiteMatching {\r\n  int N;\r\n  GT&\
+    \ G;\r\n  vc<int> color;\r\n  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n \
+    \ BipartiteMatching(GT& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n\
+    \    color = bipartite_vertex_coloring(G);\r\n    if (N > 0) assert(!color.empty());\r\
+    \n    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n      int\
+    \ flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\r\
+    \n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  BipartiteMatching(GT& G, vc<int>\
+    \ color)\r\n      : N(G.N), G(G), color(color), dist(G.N, -1), match(G.N, -1)\
+    \ {\r\n    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n    \
+    \  int flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++\
+    \ flow;\r\n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  void bfs() {\r\n \
+    \   dist.assign(N, -1);\r\n    queue<int> que;\r\n    FOR(v, N) if (!color[v]\
+    \ && match[v] == -1) que.emplace(v), dist[v] = 0;\r\n    while (!que.empty())\
+    \ {\r\n      int v = que.front();\r\n      que.pop();\r\n      for (auto&& e :\
+    \ G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\n     \
+    \   if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\n \
+    \     }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n    for\
+    \ (auto&& e : G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 || (!vis[w]\
+    \ && dist[w] == dist[v] + 1 && dfs(w))) {\r\n        match[e.to] = v, match[v]\
+    \ = e.to;\r\n        return true;\r\n      }\r\n    }\r\n    return false;\r\n\
+    \  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
+    \n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\n    return res;\r\n\
+    \  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\n    FOR(v, N) if\
+    \ (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n\
+    \  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v]\
+    \ ^ (dist[v] == -1))) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n  vc<int>\
+    \ edge_cover() {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&&\
+    \ e : G.edges) {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if\
+    \ (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to]\
+    \ = 1;\r\n      }\r\n    }\r\n    for (auto&& e : G.edges) {\r\n      if (!done[e.frm])\
+    \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
+    \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
+    \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  /* Dulmage\u2013\
+    Mendelsohn decomposition\r\n  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition\r\
     \n  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf\r\
     \n  https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html\r\
     \n  - \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3068\u3057\u3066\u3042\u308A\
@@ -259,7 +262,7 @@ data:
   isVerificationFile: false
   path: graph/maximum_antichain.hpp
   requiredBy: []
-  timestamp: '2025-08-10 00:04:02+09:00'
+  timestamp: '2026-05-01 13:15:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2251_2.test.cpp

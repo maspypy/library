@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1615.test.cpp
     title: test/3_yukicoder/1615.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://qoj.ac/contest/1388/problem/6546
@@ -136,15 +136,17 @@ data:
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
     \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
     \    return A;\n  }\n};\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n\
-    // \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\
-    \u306F empty\r\ntemplate <typename GT>\r\nvc<int> bipartite_vertex_coloring(GT&\
-    \ G) {\r\n  assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\n\r\n  int\
-    \ n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\n    int\
-    \ u = e.frm, v = e.to;\r\n    uf.merge(u + n, v), uf.merge(u, v + n);\r\n  }\r\
-    \n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
-    \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
-    \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
-    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 3 \"flow/rank_maximal_bipartite_matching.hpp\"\
+    // \u8FBA\u91CD\u307F 0, 1 \u3067\u4E8C\u90E8\u30B0\u30E9\u30D5\u9802\u70B9\u5F69\
+    \u8272, \u4E8C\u90E8\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\
+    \ntemplate <typename GT>\r\nvc<int> bipartite_vertex_coloring(GT& G) {\r\n  assert(!GT::is_directed);\r\
+    \n  assert(G.is_prepared());\r\n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\
+    \n  for (auto&& e : G.edges) {\r\n    int u = e.frm, v = e.to;\r\n    if (e.cost\
+    \ == 1) {\r\n      uf.merge(u + n, v), uf.merge(u, v + n);\r\n    } else {\r\n\
+    \      uf.merge(u, v), uf.merge(u + n, v + n);\r\n    }\r\n  }\r\n\r\n  vc<int>\
+    \ color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n \
+    \   color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v]\
+    \ = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n])\
+    \ return {};\r\n  return color;\r\n}\r\n#line 3 \"flow/rank_maximal_bipartite_matching.hpp\"\
     \n\n// (N1, N2) bipartite graph with edge-weight 0, 1, ..., K - 1.\n// find a\
     \ matching s.t. (# of K-1, # of K-2, ...) is lex max.\n// https://yukicoder.me/problems/no/1615\n\
     // https://qoj.ac/contest/1388/problem/6546\n\ntemplate <typename GT>\nstruct\
@@ -247,8 +249,8 @@ data:
   isVerificationFile: false
   path: flow/rank_maximal_bipartite_matching.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-05-01 13:15:22+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1615.test.cpp
 documentation_of: flow/rank_maximal_bipartite_matching.hpp

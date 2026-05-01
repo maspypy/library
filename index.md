@@ -328,7 +328,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -662,7 +662,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
@@ -722,7 +722,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -772,7 +772,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/mincostflow.hpp
       title: flow/mincostflow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: flow/rank_maximal_bipartite_matching.hpp
       title: flow/rank_maximal_bipartite_matching.hpp
     - icon: ':warning:'
@@ -918,7 +918,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/all_cycle_common_vertex.hpp
       title: graph/all_cycle_common_vertex.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':warning:'
@@ -927,7 +927,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bipartite_edge_coloring.hpp
       title: graph/bipartite_edge_coloring.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/bipartite_vertex_coloring.hpp
       title: graph/bipartite_vertex_coloring.hpp
     - icon: ':warning:'
@@ -1857,7 +1857,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2350,6 +2350,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
+    - icon: ':warning:'
+      path: setfunc/sperner.hpp
+      title: setfunc/sperner.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_composition.hpp
       title: setfunc/sps_composition.hpp
@@ -4302,7 +4305,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1602.test.cpp
       title: test/3_yukicoder/1602.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/1615.test.cpp
       title: test/3_yukicoder/1615.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4569,6 +4572,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2206.test.cpp
       title: test/3_yukicoder/2206.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/3_yukicoder/2206_2.test.cpp
+      title: test/3_yukicoder/2206_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2230.test.cpp
       title: test/3_yukicoder/2230.test.cpp

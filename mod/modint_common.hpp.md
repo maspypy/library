@@ -1240,6 +1240,9 @@ data:
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2206_2.test.cpp
+    title: test/3_yukicoder/2206_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2230.test.cpp
     title: test/3_yukicoder/2230.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1731,6 +1734,7 @@ data:
   - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+  - test/3_yukicoder/2206_2.test.cpp
   - test/3_yukicoder/1080.test.cpp
   - test/3_yukicoder/2305.test.cpp
   - test/3_yukicoder/2206.test.cpp

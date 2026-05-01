@@ -169,6 +169,9 @@ data:
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2206_2.test.cpp
+    title: test/3_yukicoder/2206_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
@@ -252,6 +255,7 @@ data:
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/3_yukicoder/2206_2.test.cpp
   - test/3_yukicoder/2206.test.cpp
   - test/3_yukicoder/2005.test.cpp
   - test/3_yukicoder/1760.test.cpp

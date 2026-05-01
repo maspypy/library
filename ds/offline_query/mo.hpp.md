@@ -5,10 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/prefix_sum_of_binom.hpp
+    title: mod/prefix_sum_of_binom.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/prefix_sum_of_binom.test.cpp
+    title: test/1_mytest/prefix_sum_of_binom.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
@@ -18,6 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2206.test.cpp
+    title: test/3_yukicoder/2206.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2206_2.test.cpp
+    title: test/3_yukicoder/2206_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -71,14 +83,18 @@ data:
   isVerificationFile: false
   path: ds/offline_query/mo.hpp
   requiredBy:
+  - mod/prefix_sum_of_binom.hpp
   - graph/ds/mo_on_tree.hpp
   timestamp: '2023-10-29 16:22:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
+  - test/3_yukicoder/2206_2.test.cpp
+  - test/3_yukicoder/2206.test.cpp
   - test/3_yukicoder/1270.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/prefix_sum_of_binom.test.cpp
 documentation_of: ds/offline_query/mo.hpp
 layout: document
 redirect_from:
