@@ -1821,6 +1821,9 @@ data:
       title: nt/nimber/solve_quadratic.hpp
   - name: other
     pages:
+    - icon: ':warning:'
+      path: other/DFA.hpp
+      title: other/DFA.hpp
     - icon: ':heavy_check_mark:'
       path: other/all_but_one_products.hpp
       title: other/all_but_one_products.hpp
