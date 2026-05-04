@@ -369,6 +369,9 @@ data:
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':heavy_check_mark:'
+    path: knapsack/independent_set_knapsack.hpp
+    title: knapsack/independent_set_knapsack.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
   - icon: ':heavy_check_mark:'
@@ -450,6 +453,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_scc.test.cpp
     title: test/1_mytest/incremental_scc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/independent_set_knapsack.test.cpp
+    title: test/1_mytest/independent_set_knapsack.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching.test.cpp
     title: test/1_mytest/matching.test.cpp
@@ -1206,6 +1212,7 @@ data:
   - ds/static_range_frequency.hpp
   - enumerate/triangle.hpp
   - enumerate/labeled_tree.hpp
+  - knapsack/independent_set_knapsack.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -1394,6 +1401,7 @@ data:
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/count_clique.test.cpp
+  - test/1_mytest/independent_set_knapsack.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
   - test/1_mytest/tdpc_grid_dp.test.cpp
   - test/1_mytest/count_K4.test.cpp

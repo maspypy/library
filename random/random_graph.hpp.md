@@ -46,6 +46,9 @@ data:
     path: test/1_mytest/incremental_scc.test.cpp
     title: test/1_mytest/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/independent_set_knapsack.test.cpp
+    title: test/1_mytest/independent_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching_line_graph.test.cpp
     title: test/1_mytest/matching_line_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -332,6 +335,7 @@ data:
   - test/1_mytest/find_cycle_minimum.test.cpp
   - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/count_clique.test.cpp
+  - test/1_mytest/independent_set_knapsack.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
   - test/1_mytest/count_K4.test.cpp
   - test/1_mytest/count_P3P4P5.test.cpp

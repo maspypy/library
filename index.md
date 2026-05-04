@@ -1403,6 +1403,9 @@ data:
   - name: knapsack
     pages:
     - icon: ':heavy_check_mark:'
+      path: knapsack/independent_set_knapsack.hpp
+      title: knapsack/independent_set_knapsack.hpp
+    - icon: ':heavy_check_mark:'
       path: knapsack/knapsack01.hpp
       title: knapsack/knapsack01.hpp
     - icon: ':heavy_check_mark:'
@@ -2809,6 +2812,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/incremental_scc.test.cpp
       title: test/1_mytest/incremental_scc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/independent_set_knapsack.test.cpp
+      title: test/1_mytest/independent_set_knapsack.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/index_compression.test.cpp
       title: test/1_mytest/index_compression.test.cpp

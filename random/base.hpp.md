@@ -355,6 +355,9 @@ data:
     path: test/1_mytest/incremental_scc.test.cpp
     title: test/1_mytest/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/independent_set_knapsack.test.cpp
+    title: test/1_mytest/independent_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/index_compression.test.cpp
     title: test/1_mytest/index_compression.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1168,6 +1171,7 @@ data:
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/nimber.test.cpp
+  - test/1_mytest/independent_set_knapsack.test.cpp
   - test/1_mytest/typical_dc.test.cpp
   - test/1_mytest/coprime_factorization.test.cpp
   - test/1_mytest/all_inverse.test.cpp
