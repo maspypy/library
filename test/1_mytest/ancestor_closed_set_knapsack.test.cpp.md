@@ -14,8 +14,8 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
-    path: knapsack/independent_set_knapsack.hpp
-    title: knapsack/independent_set_knapsack.hpp
+    path: knapsack/ancestor_closed_set_knapsack.hpp
+    title: knapsack/ancestor_closed_set_knapsack.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
@@ -38,8 +38,8 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/independent_set_knapsack.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\
+  bundledCode: "#line 1 \"test/1_mytest/ancestor_closed_set_knapsack.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
     #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing namespace\
@@ -143,27 +143,26 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 4 \"test/1_mytest/independent_set_knapsack.test.cpp\"\
-    \n\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\
-    \nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32 n) {\r\
-    \n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k\
-    \ - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n\
-    \  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\
-    \u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used),\
-    \ 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) /\
-    \ 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i\
-    \ = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\
-    \n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\
-    \n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1, key[i] = k, val[i]\
-    \ = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k,\
-    \ Val default_value) {\r\n    int i = index(k);\r\n    return (used[i] ? val[i]\
-    \ : default_value);\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i =\
-    \ index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\
-    \n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\
-    \n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x)\
-    \ {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \ others.end()), ...);\n}\n#endif\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
+    \ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\
+    \u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n);\
+    \ }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\
+    \n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\
+    \u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear()\
+    \ {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n\
+    \  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const u64& k)\
+    \ {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i\
+    \ + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64&\
+    \ k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i])\
+    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
+    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
+    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
+    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
+    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
+    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
+    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
+    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
     \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
     \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
@@ -319,100 +318,100 @@ data:
     \ ok = 0;\n    }\n    if (ok) E.eb(a, b);\n  }\n  vc<int> label(N);\n  FOR(i,\
     \ N) label[i] = i;\n  shuffle(label);\n  FOR(i, N) E.eb(i, (i + 1) % N);\n  for\
     \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
-    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 2 \"graph/tree.hpp\"\n\r\n#line\
-    \ 4 \"graph/tree.hpp\"\n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\
-    \u3044\u308D\u3002\r\ntemplate <typename GT>\r\nstruct Tree {\r\n  using Graph_type\
-    \ = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\n  int N;\r\n  vector<int>\
-    \ LID, RID, head, V, parent, VtoE;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\
-    \n\r\n  Tree(GT &G, int r = 0, bool hld = 1) : G(G) { build(r, hld); }\r\n\r\n\
-    \  void build(int r = 0, bool hld = 1) {\r\n    if (r == -1) return; // build\
-    \ \u3092\u9045\u5EF6\u3057\u305F\u3044\u3068\u304D\r\n    N = G.N;\r\n    LID.assign(N,\
-    \ -1), RID.assign(N, -1), head.assign(N, r);\r\n    V.assign(N, -1), parent.assign(N,\
-    \ -1), VtoE.assign(N, -1);\r\n    depth.assign(N, -1), depth_weighted.assign(N,\
-    \ 0);\r\n    assert(G.is_prepared());\r\n    int t1 = 0;\r\n    dfs_sz(r, -1,\
-    \ hld);\r\n    dfs_hld(r, t1);\r\n  }\r\n\r\n  void dfs_sz(int v, int p, bool\
-    \ hld) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p ==\
-    \ -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r = G.indptr[v\
-    \ + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\u304C\u3042\
-    \u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r - 2; i >= l;\
-    \ --i) {\r\n      if (hld && depth[csr[i + 1].to] == -1) swap(csr[i], csr[i +\
-    \ 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n\
-    \      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      depth_weighted[e.to]\
-    \ = depth_weighted[v] + e.cost;\r\n      VtoE[e.to] = e.id;\r\n      dfs_sz(e.to,\
-    \ v, hld);\r\n      sz[v] += sz[e.to];\r\n      if (hld && chmax(hld_sz, sz[e.to])\
-    \ && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void dfs_hld(int\
-    \ v, int &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\n    V[LID[v]]\
-    \ = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\n      if (depth[e.to]\
-    \ <= depth[v]) continue;\r\n      head[e.to] = (heavy ? head[v] : e.to);\r\n \
-    \     heavy = false;\r\n      dfs_hld(e.to, times);\r\n    }\r\n  }\r\n\r\n  vc<int>\
-    \ heavy_path_at(int v) {\r\n    vc<int> P = {v};\r\n    while (1) {\r\n      int\
-    \ a = P.back();\r\n      for (auto &&e: G[a]) {\r\n        if (e.to != parent[a]\
-    \ && head[e.to] == v) {\r\n          P.eb(e.to);\r\n          break;\r\n     \
-    \   }\r\n      }\r\n      if (P.back() == a) break;\r\n    }\r\n    return P;\r\
-    \n  }\r\n\r\n  int heavy_child(int v) {\r\n    int k = LID[v] + 1;\r\n    if (k\
-    \ == N) return -1;\r\n    int w = V[k];\r\n    return (parent[w] == v ? w : -1);\r\
-    \n  }\r\n\r\n  vc<int> memo_tail;\r\n\r\n  int tail(int v) {\r\n    if (memo_tail.empty())\
-    \ {\r\n      memo_tail.assign(N, -1);\r\n      FOR_R(i, N) {\r\n        int v\
-    \ = V[i];\r\n        int w = heavy_child(v);\r\n        memo_tail[v] = (w == -1\
-    \ ? v : memo_tail[w]);\r\n      }\r\n    }\r\n    return memo_tail[v];\r\n  }\r\
-    \n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return (parent[e.frm]\
-    \ == e.to ? e.frm : e.to);\r\n  }\r\n  int v_to_e(int v) { return VtoE[v]; }\r\
-    \n  int get_eid(int u, int v) {\r\n    if (parent[u] != v) swap(u, v);\r\n   \
-    \ assert(parent[u] == v);\r\n    return VtoE[u];\r\n  }\r\n\r\n  int ELID(int\
-    \ v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v]\
-    \ - depth[v] - 1; }\r\n\r\n  // \u76EE\u6A19\u5730\u70B9\u3078\u9032\u3080\u500B\
-    \u6570\u304C k\r\n  int LA(int v, int k) {\r\n    assert(k <= depth[v]);\r\n \
-    \   while (1) {\r\n      int u = head[v];\r\n      if (LID[v] - k >= LID[u]) return\
-    \ V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\n\
-    \    }\r\n  }\r\n  int la(int u, int v) { return LA(u, v); }\r\n\r\n  int LCA(int\
-    \ u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v])\
-    \ swap(u, v);\r\n      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\
-    \n  int meet(int a, int b, int c) { return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c);\
-    \ }\r\n  int lca(int u, int v) { return LCA(u, v); }\r\n\r\n  int subtree_size(int\
-    \ v, int root = -1) {\r\n    if (root == -1) return RID[v] - LID[v];\r\n    if\
-    \ (v == root) return N;\r\n    int x = jump(v, root, 1);\r\n    if (in_subtree(v,\
-    \ x)) return RID[v] - LID[v];\r\n    return N - RID[x] + LID[x];\r\n  }\r\n\r\n\
-    \  int dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] +\
-    \ depth[b] - 2 * depth[c];\r\n  }\r\n\r\n  WT dist_weighted(int a, int b) {\r\n\
-    \    int c = LCA(a, b);\r\n    return depth_weighted[a] + depth_weighted[b] -\
-    \ WT(2) * depth_weighted[c];\r\n  }\r\n\r\n  // a is in b\r\n  bool in_subtree(int\
-    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int jump(int\
-    \ a, int b, ll k) {\r\n    if (k == 1) {\r\n      if (a == b) return -1;\r\n \
-    \     return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\
-    \n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a] - depth[c];\r\n \
-    \   int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc) return -1;\r\n\
-    \    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac + d_bc - k);\r\n\
-    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
-    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<int> collect_subtree(int v) { return {V.begin() + LID[v], V.begin()\
-    \ + RID[v]}; }\r\n\r\n  vc<int> collect_light(int v) {\r\n    vc<int> res;\r\n\
-    \    bool skip = true;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v])\
-    \ {\r\n        if (!skip) res.eb(e.to);\r\n        skip = false;\r\n      }\r\n\
-    \    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
-    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
-    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
-    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
-    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
-    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
-    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
-    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  // \u8FBA\
-    \u306E\u5217\u306E\u60C5\u5831 (frm,to,str)\r\n  // str = \"heavy_up\", \"heavy_down\"\
-    , \"light_up\", \"light_down\"\r\n  vc<tuple<int, int, string>> get_path_decomposition_detail(int\
-    \ u, int v) {\r\n    vc<tuple<int, int, string>> up, down;\r\n    while (1) {\r\
-    \n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n   \
-    \     if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\r\n\
-    \        down.eb(parent[v], v, \"light_down\"), v = parent[v];\r\n      } else\
-    \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
-    \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
-    \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    concat(up,\
-    \ down);\r\n    return up;\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v)\
-    \ {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v,\
-    \ 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n   \
-    \   } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n\
-    \    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A\
-    . \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 1 \"knapsack/ancestor_closed_set_knapsack.hpp\"\
+    \n\n#line 2 \"graph/tree.hpp\"\n\r\n#line 4 \"graph/tree.hpp\"\n\r\n// HLD euler\
+    \ tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\r\ntemplate <typename\
+    \ GT>\r\nstruct Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT =\
+    \ typename GT::cost_type;\r\n  int N;\r\n  vector<int> LID, RID, head, V, parent,\
+    \ VtoE;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  Tree(GT &G, int\
+    \ r = 0, bool hld = 1) : G(G) { build(r, hld); }\r\n\r\n  void build(int r = 0,\
+    \ bool hld = 1) {\r\n    if (r == -1) return; // build \u3092\u9045\u5EF6\u3057\
+    \u305F\u3044\u3068\u304D\r\n    N = G.N;\r\n    LID.assign(N, -1), RID.assign(N,\
+    \ -1), head.assign(N, r);\r\n    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N,\
+    \ -1);\r\n    depth.assign(N, -1), depth_weighted.assign(N, 0);\r\n    assert(G.is_prepared());\r\
+    \n    int t1 = 0;\r\n    dfs_sz(r, -1, hld);\r\n    dfs_hld(r, t1);\r\n  }\r\n\
+    \r\n  void dfs_sz(int v, int p, bool hld) {\r\n    auto &sz = RID;\r\n    parent[v]\
+    \ = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n \
+    \   int l = G.indptr[v], r = G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\
+    \n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\
+    \r\n    for (int i = r - 2; i >= l; --i) {\r\n      if (hld && depth[csr[i + 1].to]\
+    \ == -1) swap(csr[i], csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for\
+    \ (int i = l; i < r; ++i) {\r\n      auto e = csr[i];\r\n      if (depth[e.to]\
+    \ != -1) continue;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\
+    \n      VtoE[e.to] = e.id;\r\n      dfs_sz(e.to, v, hld);\r\n      sz[v] += sz[e.to];\r\
+    \n      if (hld && chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }\r\
+    \n    }\r\n  }\r\n\r\n  void dfs_hld(int v, int &times) {\r\n    LID[v] = times++;\r\
+    \n    RID[v] += LID[v];\r\n    V[LID[v]] = v;\r\n    bool heavy = true;\r\n  \
+    \  for (auto &&e: G[v]) {\r\n      if (depth[e.to] <= depth[v]) continue;\r\n\
+    \      head[e.to] = (heavy ? head[v] : e.to);\r\n      heavy = false;\r\n    \
+    \  dfs_hld(e.to, times);\r\n    }\r\n  }\r\n\r\n  vc<int> heavy_path_at(int v)\
+    \ {\r\n    vc<int> P = {v};\r\n    while (1) {\r\n      int a = P.back();\r\n\
+    \      for (auto &&e: G[a]) {\r\n        if (e.to != parent[a] && head[e.to] ==\
+    \ v) {\r\n          P.eb(e.to);\r\n          break;\r\n        }\r\n      }\r\n\
+    \      if (P.back() == a) break;\r\n    }\r\n    return P;\r\n  }\r\n\r\n  int\
+    \ heavy_child(int v) {\r\n    int k = LID[v] + 1;\r\n    if (k == N) return -1;\r\
+    \n    int w = V[k];\r\n    return (parent[w] == v ? w : -1);\r\n  }\r\n\r\n  vc<int>\
+    \ memo_tail;\r\n\r\n  int tail(int v) {\r\n    if (memo_tail.empty()) {\r\n  \
+    \    memo_tail.assign(N, -1);\r\n      FOR_R(i, N) {\r\n        int v = V[i];\r\
+    \n        int w = heavy_child(v);\r\n        memo_tail[v] = (w == -1 ? v : memo_tail[w]);\r\
+    \n      }\r\n    }\r\n    return memo_tail[v];\r\n  }\r\n\r\n  int e_to_v(int\
+    \ eid) {\r\n    auto e = G.edges[eid];\r\n    return (parent[e.frm] == e.to ?\
+    \ e.frm : e.to);\r\n  }\r\n  int v_to_e(int v) { return VtoE[v]; }\r\n  int get_eid(int\
+    \ u, int v) {\r\n    if (parent[u] != v) swap(u, v);\r\n    assert(parent[u] ==\
+    \ v);\r\n    return VtoE[u];\r\n  }\r\n\r\n  int ELID(int v) { return 2 * LID[v]\
+    \ - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v] - depth[v] - 1; }\r\n\
+    \r\n  // \u76EE\u6A19\u5730\u70B9\u3078\u9032\u3080\u500B\u6570\u304C k\r\n  int\
+    \ LA(int v, int k) {\r\n    assert(k <= depth[v]);\r\n    while (1) {\r\n    \
+    \  int u = head[v];\r\n      if (LID[v] - k >= LID[u]) return V[LID[v] - k];\r\
+    \n      k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\n    }\r\n  }\r\n\
+    \  int la(int u, int v) { return LA(u, v); }\r\n\r\n  int LCA(int u, int v) {\r\
+    \n    for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\
+    \n      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\n  int meet(int\
+    \ a, int b, int c) { return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c); }\r\n  int lca(int\
+    \ u, int v) { return LCA(u, v); }\r\n\r\n  int subtree_size(int v, int root =\
+    \ -1) {\r\n    if (root == -1) return RID[v] - LID[v];\r\n    if (v == root) return\
+    \ N;\r\n    int x = jump(v, root, 1);\r\n    if (in_subtree(v, x)) return RID[v]\
+    \ - LID[v];\r\n    return N - RID[x] + LID[x];\r\n  }\r\n\r\n  int dist(int a,\
+    \ int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] + depth[b] - 2 * depth[c];\r\
+    \n  }\r\n\r\n  WT dist_weighted(int a, int b) {\r\n    int c = LCA(a, b);\r\n\
+    \    return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\r\
+    \n  }\r\n\r\n  // a is in b\r\n  bool in_subtree(int a, int b) { return LID[b]\
+    \ <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int jump(int a, int b, ll k) {\r\n\
+    \    if (k == 1) {\r\n      if (a == b) return -1;\r\n      return (in_subtree(b,\
+    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a,\
+    \ b);\r\n    int d_ac = depth[a] - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\
+    \n    if (k > d_ac + d_bc) return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\
+    \n    return LA(b, d_ac + d_bc - k);\r\n  }\r\n\r\n  vc<int> collect_child(int\
+    \ v) {\r\n    vc<int> res;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v])\
+    \ res.eb(e.to);\r\n    return res;\r\n  }\r\n\r\n  vc<int> collect_subtree(int\
+    \ v) { return {V.begin() + LID[v], V.begin() + RID[v]}; }\r\n\r\n  vc<int> collect_light(int\
+    \ v) {\r\n    vc<int> res;\r\n    bool skip = true;\r\n    for (auto &&e: G[v])\r\
+    \n      if (e.to != parent[v]) {\r\n        if (!skip) res.eb(e.to);\r\n     \
+    \   skip = false;\r\n      }\r\n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>>\
+    \ get_path_decomposition(int u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\
+    \u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up,\
+    \ down;\r\n    while (1) {\r\n      if (head[u] == head[v]) break;\r\n      if\
+    \ (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]], LID[v]);\r\n        v =\
+    \ parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\
+    \n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if (LID[u] < LID[v])\
+    \ down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u],\
+    \ LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(), all(down));\r\
+    \n    return up;\r\n  }\r\n\r\n  // \u8FBA\u306E\u5217\u306E\u60C5\u5831 (frm,to,str)\r\
+    \n  // str = \"heavy_up\", \"heavy_down\", \"light_up\", \"light_down\"\r\n  vc<tuple<int,\
+    \ int, string>> get_path_decomposition_detail(int u, int v) {\r\n    vc<tuple<int,\
+    \ int, string>> up, down;\r\n    while (1) {\r\n      if (head[u] == head[v])\
+    \ break;\r\n      if (LID[u] < LID[v]) {\r\n        if (v != head[v]) down.eb(head[v],\
+    \ v, \"heavy_down\"), v = head[v];\r\n        down.eb(parent[v], v, \"light_down\"\
+    ), v = parent[v];\r\n      } else {\r\n        if (u != head[u]) up.eb(u, head[u],\
+    \ \"heavy_up\"), u = head[u];\r\n        up.eb(u, parent[u], \"light_up\"), u\
+    \ = parent[u];\r\n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"\
+    heavy_down\");\r\n    elif (LID[v] < LID[u]) up.eb(u, v, \"heavy_up\");\r\n  \
+    \  reverse(all(down));\r\n    concat(up, down);\r\n    return up;\r\n  }\r\n\r\
+    \n  vc<int> restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a,\
+    \ b]: get_path_decomposition(u, v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i,\
+    \ a, b + 1) P.eb(V[i]);\r\n      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\
+    \n      }\r\n    }\r\n    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d]\
+    \ \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
     \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
     \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
     \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
@@ -426,51 +425,47 @@ data:
     \ u;\r\n      if (check(V[b])) {\r\n        u = V[b];\r\n        continue;\r\n\
     \      }\r\n      int c = binary_search([&](int c) -> bool { return check(V[c]);\
     \ }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n  }\r\n};\r\n\
-    #line 2 \"knapsack/independent_set_knapsack.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n\
-    // Example 1.\n// O(LIM n^{1.59})\ntemplate <typename TREE, typename VAL>\nvc<VAL>\
-    \ independent_set_knapsack(TREE& tree, vc<int> weight, vc<VAL> val,\n        \
-    \                         int LIM) {\n  using V = vc<VAL>;\n  // return: ng, ok\n\
-    \  auto dfs = [&](auto& dfs, int v, const V& X) -> array<V, 2> {\n    assert(len(X)\
-    \ == LIM + 1);\n    int heavy = tree.heavy_child(v);\n    array<V, 2> Y = {V(LIM\
-    \ + 1, -infty<VAL>), V(LIM + 1, -infty<VAL>)};\n    if (heavy == -1) {\n     \
-    \ FOR(i, LIM + 1) {\n        chmax(Y[0][i], X[i]);\n        chmax(Y[1][i], X[i]);\n\
-    \      }\n      FOR(i, LIM - weight[v] + 1) chmax(Y[1][i + weight[v]], X[i] +\
-    \ val[v]);\n      return Y;\n    }\n    auto Z = dfs(dfs, heavy, X);\n    auto\
-    \ ch = tree.collect_light(v);\n\n    // not take v.\n    {\n      V cur = Z[1];\n\
-    \      for (int w : ch) {\n        array<V, 2> T = dfs(dfs, w, cur);\n       \
-    \ cur = move(T[1]);\n      }\n      FOR(i, LIM + 1) chmax(Y[0][i], cur[i]), chmax(Y[1][i],\
-    \ cur[i]);\n    }\n\n    // take v.\n    {\n      V cur = Z[0];\n      for (int\
-    \ w : ch) {\n        array<V, 2> T = dfs(dfs, w, cur);\n        cur = move(T[0]);\n\
-    \      }\n      FOR(i, LIM - weight[v] + 1) chmax(Y[1][i + weight[v]], cur[i]\
-    \ + val[v]);\n    }\n    return Y;\n  };\n\n  V X(LIM + 1, -infty<VAL>);\n  X[0]\
-    \ = 0;\n  V ANS = dfs(dfs, 0, X)[1];\n  for (auto& x : ANS)\n    if (x < 0) x\
-    \ = -infty<VAL>;\n  return ANS;\n}\n#line 7 \"test/1_mytest/independent_set_knapsack.test.cpp\"\
+    #line 3 \"knapsack/ancestor_closed_set_knapsack.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n\
+    // Example 2. v \u3092\u9078\u3076\u306A\u3089\u3070 par[v] \u3082\u9078\u3076\
+    \n// // O(LIM n})\ntemplate <typename TREE, typename VAL>\nvc<VAL> ancestor_closed_set_knapsack(TREE&\
+    \ tree, vc<int> weight, vc<VAL> val,\n                                     int\
+    \ LIM) {\n  using V = vc<VAL>;\n\n  auto dfs = [&](auto& dfs, int v, const V&\
+    \ X) -> V {\n    assert(len(X) == LIM + 1);\n    int heavy = tree.heavy_child(v);\n\
+    \    V Y(LIM + 1, -infty<VAL>);\n    if (heavy == -1) {\n      FOR(i, LIM + 1)\
+    \ { chmax(Y[i], X[i]); }\n      FOR(i, LIM - weight[v] + 1) chmax(Y[i + weight[v]],\
+    \ X[i] + val[v]);\n      return Y;\n    }\n    auto Z = dfs(dfs, heavy, X);\n\
+    \    auto ch = tree.collect_light(v);\n\n    // not take v.\n    FOR(i, LIM +\
+    \ 1) chmax(Y[i], X[i]);\n\n    // take v.\n    V cur = move(Z);\n    for (int\
+    \ w : ch) {\n      cur = dfs(dfs, w, cur);\n    }\n    FOR(i, LIM - weight[v]\
+    \ + 1) chmax(Y[i + weight[v]], cur[i] + val[v]);\n    return Y;\n  };\n\n  V X(LIM\
+    \ + 1, -infty<VAL>);\n  X[0] = 0;\n  V ANS = dfs(dfs, 0, X);\n  for (auto& x :\
+    \ ANS)\n    if (x < 0) x = -infty<VAL>;\n  return ANS;\n}\n#line 6 \"test/1_mytest/ancestor_closed_set_knapsack.test.cpp\"\
     \n\nvoid test(int N) {\n  FOR(1000) {\n    auto E = random_tree(N);\n    Graph<int,\
     \ 0> G(N);\n    for (auto& [a, b] : E) G.add(a, b);\n    G.build();\n    Tree<decltype(G)>\
     \ tree(G);\n    vc<int> weight, val;\n    FOR(N) {\n      weight.eb(RNG(1, 10));\n\
     \      val.eb(RNG(1, 10));\n    }\n    int LIM = RNG(1, 100);\n    auto ANS =\
-    \ independent_set_knapsack(tree, weight, val, LIM);\n    vc<int> god(LIM + 1,\
-    \ -infty<int>);\n    FOR(s, 1 << N) {\n      bool ok = 1;\n      for (auto& [a,\
-    \ b] : E) {\n        if ((s >> a & 1) && (s >> b & 1)) ok = 0;\n      }\n    \
-    \  if (!ok) continue;\n      int a = 0, b = 0;\n      FOR(v, N) if (s >> v & 1)\
-    \ a += weight[v], b += val[v];\n      if (a <= LIM) chmax(god[a], b);\n    }\n\
-    \    assert(god == ANS);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  FOR(N, 1, 11) test(N);\n\
-    \  solve();\n  return 0;\n}\n"
+    \ ancestor_closed_set_knapsack(tree, weight, val, LIM);\n    vc<int> god(LIM +\
+    \ 1, -infty<int>);\n    FOR(s, 1 << N) {\n      bool ok = 1;\n      FOR(v, 1,\
+    \ N) {\n        if (has_kth_bit(s, v) && !has_kth_bit(s, tree.parent[v])) ok =\
+    \ 0;\n      }\n      if (!ok) continue;\n      int a = 0, b = 0;\n      FOR(v,\
+    \ N) if (s >> v & 1) a += weight[v], b += val[v];\n      if (a <= LIM) chmax(god[a],\
+    \ b);\n    }\n    assert(god == ANS);\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  FOR(N, 1,\
+    \ 11) test(N);\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n\n#include \"random/random_graph.hpp\"\n#include \"knapsack/independent_set_knapsack.hpp\"\
+    my_template.hpp\"\n#include \"random/random_graph.hpp\"\n#include \"knapsack/ancestor_closed_set_knapsack.hpp\"\
     \n\nvoid test(int N) {\n  FOR(1000) {\n    auto E = random_tree(N);\n    Graph<int,\
     \ 0> G(N);\n    for (auto& [a, b] : E) G.add(a, b);\n    G.build();\n    Tree<decltype(G)>\
     \ tree(G);\n    vc<int> weight, val;\n    FOR(N) {\n      weight.eb(RNG(1, 10));\n\
     \      val.eb(RNG(1, 10));\n    }\n    int LIM = RNG(1, 100);\n    auto ANS =\
-    \ independent_set_knapsack(tree, weight, val, LIM);\n    vc<int> god(LIM + 1,\
-    \ -infty<int>);\n    FOR(s, 1 << N) {\n      bool ok = 1;\n      for (auto& [a,\
-    \ b] : E) {\n        if ((s >> a & 1) && (s >> b & 1)) ok = 0;\n      }\n    \
-    \  if (!ok) continue;\n      int a = 0, b = 0;\n      FOR(v, N) if (s >> v & 1)\
-    \ a += weight[v], b += val[v];\n      if (a <= LIM) chmax(god[a], b);\n    }\n\
-    \    assert(god == ANS);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  FOR(N, 1, 11) test(N);\n\
-    \  solve();\n  return 0;\n}"
+    \ ancestor_closed_set_knapsack(tree, weight, val, LIM);\n    vc<int> god(LIM +\
+    \ 1, -infty<int>);\n    FOR(s, 1 << N) {\n      bool ok = 1;\n      FOR(v, 1,\
+    \ N) {\n        if (has_kth_bit(s, v) && !has_kth_bit(s, tree.parent[v])) ok =\
+    \ 0;\n      }\n      if (!ok) continue;\n      int a = 0, b = 0;\n      FOR(v,\
+    \ N) if (s >> v & 1) a += weight[v], b += val[v];\n      if (a <= LIM) chmax(god[a],\
+    \ b);\n    }\n    assert(god == ANS);\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  FOR(N, 1,\
+    \ 11) test(N);\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -479,18 +474,18 @@ data:
   - random/base.hpp
   - random/shuffle.hpp
   - ds/unionfind/unionfind.hpp
-  - knapsack/independent_set_knapsack.hpp
+  - knapsack/ancestor_closed_set_knapsack.hpp
   - graph/tree.hpp
   isVerificationFile: true
-  path: test/1_mytest/independent_set_knapsack.test.cpp
+  path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   requiredBy: []
   timestamp: '2026-05-05 03:38:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/1_mytest/independent_set_knapsack.test.cpp
+documentation_of: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
 layout: document
 redirect_from:
-- /verify/test/1_mytest/independent_set_knapsack.test.cpp
-- /verify/test/1_mytest/independent_set_knapsack.test.cpp.html
-title: test/1_mytest/independent_set_knapsack.test.cpp
+- /verify/test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+- /verify/test/1_mytest/ancestor_closed_set_knapsack.test.cpp.html
+title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
 ---

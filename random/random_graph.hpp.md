@@ -19,6 +19,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+    title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_K4.test.cpp
     title: test/1_mytest/count_K4.test.cpp
   - icon: ':heavy_check_mark:'
@@ -327,6 +330,7 @@ data:
   timestamp: '2026-02-27 23:10:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/incremental_scc.test.cpp
   - test/1_mytest/count_indep_set.test.cpp

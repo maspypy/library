@@ -1403,6 +1403,9 @@ data:
   - name: knapsack
     pages:
     - icon: ':heavy_check_mark:'
+      path: knapsack/ancestor_closed_set_knapsack.hpp
+      title: knapsack/ancestor_closed_set_knapsack.hpp
+    - icon: ':heavy_check_mark:'
       path: knapsack/independent_set_knapsack.hpp
       title: knapsack/independent_set_knapsack.hpp
     - icon: ':heavy_check_mark:'
@@ -2560,6 +2563,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/all_inverse.test.cpp
       title: test/1_mytest/all_inverse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+      title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/bell.test.cpp
       title: test/1_mytest/bell.test.cpp

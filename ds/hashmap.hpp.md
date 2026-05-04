@@ -369,6 +369,9 @@ data:
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':heavy_check_mark:'
+    path: knapsack/ancestor_closed_set_knapsack.hpp
+    title: knapsack/ancestor_closed_set_knapsack.hpp
+  - icon: ':heavy_check_mark:'
     path: knapsack/independent_set_knapsack.hpp
     title: knapsack/independent_set_knapsack.hpp
   - icon: ':heavy_check_mark:'
@@ -420,6 +423,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_cycle_common_vertex.test.cpp
     title: test/1_mytest/all_cycle_common_vertex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+    title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_K4.test.cpp
     title: test/1_mytest/count_K4.test.cpp
@@ -1213,6 +1219,7 @@ data:
   - enumerate/triangle.hpp
   - enumerate/labeled_tree.hpp
   - knapsack/independent_set_knapsack.hpp
+  - knapsack/ancestor_closed_set_knapsack.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -1387,6 +1394,7 @@ data:
   - test/1_mytest/range_closest_pair.test.cpp
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/enumerate_labeled_tree.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/incremental_scc.test.cpp

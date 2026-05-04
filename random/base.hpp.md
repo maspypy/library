@@ -208,6 +208,9 @@ data:
     path: test/1_mytest/all_inverse.test.cpp
     title: test/1_mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+    title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bigint.test.cpp
     title: test/1_mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1122,6 +1125,7 @@ data:
   - test/1_mytest/fenwick_max_right.test.cpp
   - test/1_mytest/min_min.test.cpp
   - test/1_mytest/is_substring.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp
   - test/1_mytest/digit_sum.test.cpp
   - test/1_mytest/first_mod_range_of_linear.test.cpp

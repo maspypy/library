@@ -25,6 +25,9 @@ data:
     title: setfunc/submask_range_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+    title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_K4.test.cpp
     title: test/1_mytest/count_K4.test.cpp
   - icon: ':heavy_check_mark:'
@@ -137,6 +140,7 @@ data:
   - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/4_aoj/CGL_5_A.test.cpp
   - test/1_mytest/slope_super.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/incremental_scc.test.cpp

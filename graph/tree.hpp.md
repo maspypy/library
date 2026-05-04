@@ -93,9 +93,15 @@ data:
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   - icon: ':heavy_check_mark:'
+    path: knapsack/ancestor_closed_set_knapsack.hpp
+    title: knapsack/ancestor_closed_set_knapsack.hpp
+  - icon: ':heavy_check_mark:'
     path: knapsack/independent_set_knapsack.hpp
     title: knapsack/independent_set_knapsack.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+    title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
@@ -622,6 +628,7 @@ data:
   - graph/tree_dp/subtree_hash.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
   - knapsack/independent_set_knapsack.hpp
+  - knapsack/ancestor_closed_set_knapsack.hpp
   timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -678,6 +685,7 @@ data:
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/2677.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp

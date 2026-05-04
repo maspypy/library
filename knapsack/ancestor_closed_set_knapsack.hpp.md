@@ -13,55 +13,56 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/independent_set_knapsack.test.cpp
-    title: test/1_mytest/independent_set_knapsack.test.cpp
+    path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+    title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://arxiv.org/pdf/1807.04942
-  bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n//\
-    \ u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\
-    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n =\
-    \ 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k\
-    \ < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k),\
-    \ used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E\
-    . size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\
-    \n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) /\
-    \ 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if\
-    \ (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return\
-    \ val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int\
-    \ i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\
-    \n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return used[i]\
-    \ && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n\
-    \  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\
-    \n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\
-    \n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x += FIXED_RANDOM;\r\
-    \n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\
-    \n    return (x ^ (x >> 31)) & mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64,\
-    \ Val>> dat;\r\n    dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used))\
-    \ {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\
-    \n    for (auto& [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
-    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool\
-    \ prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph*\
-    \ G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const\
-    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n    int l, r;\n\
-    \  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph() : N(0), M(0),\
-    \ prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void build(int\
-    \ n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n    indptr.clear();\n\
-    \    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n\
-    \  }\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
+  bundledCode: "#line 1 \"knapsack/ancestor_closed_set_knapsack.hpp\"\n\n#line 2 \"\
+    graph/tree.hpp\"\n\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate\
+    \ <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\
+    \u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void\
+    \ build(u32 n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap\
+    \ = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\
+    \n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\
+    \n    used.assign(len(used), 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int\
+    \ size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n\
+    \    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) &\
+    \ mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n\
+    \    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i]\
+    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\
+    \n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n  \
+    \  return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
+    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
+    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
+    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
+    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
+    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate\
+    \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
+    \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
+    \ bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type\
+    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
+    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
+    \ N) : N(N), M(0), prepared(0) {}\n\n  void build(int n) {\n    N = n, M = 0;\n\
+    \    prepared = 0;\n    edges.clear();\n    indptr.clear();\n    csr_edges.clear();\n\
+    \    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n  }\n\n \
+    \ void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
     \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
     \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n#ifdef\
     \ FASTIO\n  // wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N\
@@ -226,59 +227,51 @@ data:
     \ u;\r\n      if (check(V[b])) {\r\n        u = V[b];\r\n        continue;\r\n\
     \      }\r\n      int c = binary_search([&](int c) -> bool { return check(V[c]);\
     \ }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n  }\r\n};\r\n\
-    #line 2 \"knapsack/independent_set_knapsack.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n\
-    // Example 1.\n// O(LIM n^{1.59})\ntemplate <typename TREE, typename VAL>\nvc<VAL>\
-    \ independent_set_knapsack(TREE& tree, vc<int> weight, vc<VAL> val,\n        \
-    \                         int LIM) {\n  using V = vc<VAL>;\n  // return: ng, ok\n\
-    \  auto dfs = [&](auto& dfs, int v, const V& X) -> array<V, 2> {\n    assert(len(X)\
-    \ == LIM + 1);\n    int heavy = tree.heavy_child(v);\n    array<V, 2> Y = {V(LIM\
-    \ + 1, -infty<VAL>), V(LIM + 1, -infty<VAL>)};\n    if (heavy == -1) {\n     \
-    \ FOR(i, LIM + 1) {\n        chmax(Y[0][i], X[i]);\n        chmax(Y[1][i], X[i]);\n\
-    \      }\n      FOR(i, LIM - weight[v] + 1) chmax(Y[1][i + weight[v]], X[i] +\
-    \ val[v]);\n      return Y;\n    }\n    auto Z = dfs(dfs, heavy, X);\n    auto\
-    \ ch = tree.collect_light(v);\n\n    // not take v.\n    {\n      V cur = Z[1];\n\
-    \      for (int w : ch) {\n        array<V, 2> T = dfs(dfs, w, cur);\n       \
-    \ cur = move(T[1]);\n      }\n      FOR(i, LIM + 1) chmax(Y[0][i], cur[i]), chmax(Y[1][i],\
-    \ cur[i]);\n    }\n\n    // take v.\n    {\n      V cur = Z[0];\n      for (int\
-    \ w : ch) {\n        array<V, 2> T = dfs(dfs, w, cur);\n        cur = move(T[0]);\n\
-    \      }\n      FOR(i, LIM - weight[v] + 1) chmax(Y[1][i + weight[v]], cur[i]\
-    \ + val[v]);\n    }\n    return Y;\n  };\n\n  V X(LIM + 1, -infty<VAL>);\n  X[0]\
-    \ = 0;\n  V ANS = dfs(dfs, 0, X)[1];\n  for (auto& x : ANS)\n    if (x < 0) x\
-    \ = -infty<VAL>;\n  return ANS;\n}\n"
-  code: "#include \"graph/tree.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n// Example\
-    \ 1.\n// O(LIM n^{1.59})\ntemplate <typename TREE, typename VAL>\nvc<VAL> independent_set_knapsack(TREE&\
-    \ tree, vc<int> weight, vc<VAL> val,\n                                 int LIM)\
-    \ {\n  using V = vc<VAL>;\n  // return: ng, ok\n  auto dfs = [&](auto& dfs, int\
-    \ v, const V& X) -> array<V, 2> {\n    assert(len(X) == LIM + 1);\n    int heavy\
-    \ = tree.heavy_child(v);\n    array<V, 2> Y = {V(LIM + 1, -infty<VAL>), V(LIM\
-    \ + 1, -infty<VAL>)};\n    if (heavy == -1) {\n      FOR(i, LIM + 1) {\n     \
-    \   chmax(Y[0][i], X[i]);\n        chmax(Y[1][i], X[i]);\n      }\n      FOR(i,\
-    \ LIM - weight[v] + 1) chmax(Y[1][i + weight[v]], X[i] + val[v]);\n      return\
-    \ Y;\n    }\n    auto Z = dfs(dfs, heavy, X);\n    auto ch = tree.collect_light(v);\n\
-    \n    // not take v.\n    {\n      V cur = Z[1];\n      for (int w : ch) {\n \
-    \       array<V, 2> T = dfs(dfs, w, cur);\n        cur = move(T[1]);\n      }\n\
-    \      FOR(i, LIM + 1) chmax(Y[0][i], cur[i]), chmax(Y[1][i], cur[i]);\n    }\n\
-    \n    // take v.\n    {\n      V cur = Z[0];\n      for (int w : ch) {\n     \
-    \   array<V, 2> T = dfs(dfs, w, cur);\n        cur = move(T[0]);\n      }\n  \
-    \    FOR(i, LIM - weight[v] + 1) chmax(Y[1][i + weight[v]], cur[i] + val[v]);\n\
-    \    }\n    return Y;\n  };\n\n  V X(LIM + 1, -infty<VAL>);\n  X[0] = 0;\n  V\
-    \ ANS = dfs(dfs, 0, X)[1];\n  for (auto& x : ANS)\n    if (x < 0) x = -infty<VAL>;\n\
-    \  return ANS;\n}"
+    #line 3 \"knapsack/ancestor_closed_set_knapsack.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n\
+    // Example 2. v \u3092\u9078\u3076\u306A\u3089\u3070 par[v] \u3082\u9078\u3076\
+    \n// // O(LIM n})\ntemplate <typename TREE, typename VAL>\nvc<VAL> ancestor_closed_set_knapsack(TREE&\
+    \ tree, vc<int> weight, vc<VAL> val,\n                                     int\
+    \ LIM) {\n  using V = vc<VAL>;\n\n  auto dfs = [&](auto& dfs, int v, const V&\
+    \ X) -> V {\n    assert(len(X) == LIM + 1);\n    int heavy = tree.heavy_child(v);\n\
+    \    V Y(LIM + 1, -infty<VAL>);\n    if (heavy == -1) {\n      FOR(i, LIM + 1)\
+    \ { chmax(Y[i], X[i]); }\n      FOR(i, LIM - weight[v] + 1) chmax(Y[i + weight[v]],\
+    \ X[i] + val[v]);\n      return Y;\n    }\n    auto Z = dfs(dfs, heavy, X);\n\
+    \    auto ch = tree.collect_light(v);\n\n    // not take v.\n    FOR(i, LIM +\
+    \ 1) chmax(Y[i], X[i]);\n\n    // take v.\n    V cur = move(Z);\n    for (int\
+    \ w : ch) {\n      cur = dfs(dfs, w, cur);\n    }\n    FOR(i, LIM - weight[v]\
+    \ + 1) chmax(Y[i + weight[v]], cur[i] + val[v]);\n    return Y;\n  };\n\n  V X(LIM\
+    \ + 1, -infty<VAL>);\n  X[0] = 0;\n  V ANS = dfs(dfs, 0, X);\n  for (auto& x :\
+    \ ANS)\n    if (x < 0) x = -infty<VAL>;\n  return ANS;\n}\n"
+  code: "\n#include \"graph/tree.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n//\
+    \ Example 2. v \u3092\u9078\u3076\u306A\u3089\u3070 par[v] \u3082\u9078\u3076\n\
+    // // O(LIM n})\ntemplate <typename TREE, typename VAL>\nvc<VAL> ancestor_closed_set_knapsack(TREE&\
+    \ tree, vc<int> weight, vc<VAL> val,\n                                     int\
+    \ LIM) {\n  using V = vc<VAL>;\n\n  auto dfs = [&](auto& dfs, int v, const V&\
+    \ X) -> V {\n    assert(len(X) == LIM + 1);\n    int heavy = tree.heavy_child(v);\n\
+    \    V Y(LIM + 1, -infty<VAL>);\n    if (heavy == -1) {\n      FOR(i, LIM + 1)\
+    \ { chmax(Y[i], X[i]); }\n      FOR(i, LIM - weight[v] + 1) chmax(Y[i + weight[v]],\
+    \ X[i] + val[v]);\n      return Y;\n    }\n    auto Z = dfs(dfs, heavy, X);\n\
+    \    auto ch = tree.collect_light(v);\n\n    // not take v.\n    FOR(i, LIM +\
+    \ 1) chmax(Y[i], X[i]);\n\n    // take v.\n    V cur = move(Z);\n    for (int\
+    \ w : ch) {\n      cur = dfs(dfs, w, cur);\n    }\n    FOR(i, LIM - weight[v]\
+    \ + 1) chmax(Y[i + weight[v]], cur[i] + val[v]);\n    return Y;\n  };\n\n  V X(LIM\
+    \ + 1, -infty<VAL>);\n  X[0] = 0;\n  V ANS = dfs(dfs, 0, X);\n  for (auto& x :\
+    \ ANS)\n    if (x < 0) x = -infty<VAL>;\n  return ANS;\n}"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
-  path: knapsack/independent_set_knapsack.hpp
+  path: knapsack/ancestor_closed_set_knapsack.hpp
   requiredBy: []
   timestamp: '2026-05-05 03:38:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/independent_set_knapsack.test.cpp
-documentation_of: knapsack/independent_set_knapsack.hpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+documentation_of: knapsack/ancestor_closed_set_knapsack.hpp
 layout: document
 redirect_from:
-- /library/knapsack/independent_set_knapsack.hpp
-- /library/knapsack/independent_set_knapsack.hpp.html
-title: knapsack/independent_set_knapsack.hpp
+- /library/knapsack/ancestor_closed_set_knapsack.hpp
+- /library/knapsack/ancestor_closed_set_knapsack.hpp.html
+title: knapsack/ancestor_closed_set_knapsack.hpp
 ---

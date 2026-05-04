@@ -103,6 +103,9 @@ data:
     title: string/inverse_manacher.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+    title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_K4.test.cpp
     title: test/1_mytest/count_K4.test.cpp
   - icon: ':heavy_check_mark:'
@@ -403,6 +406,7 @@ data:
   - test/4_aoj/1566.test.cpp
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/enumerate_labeled_tree.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/incremental_scc.test.cpp
