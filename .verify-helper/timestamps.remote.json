@@ -91,6 +91,7 @@
 "test/1_mytest/gray_code.test.cpp": "2025-11-18 00:27:27 +0900",
 "test/1_mytest/incremental_ch.test.cpp": "2026-02-03 22:59:09 +0900",
 "test/1_mytest/incremental_scc.test.cpp": "2026-02-27 23:10:36 +0900",
+"test/1_mytest/independent_set_knapsack.test.cpp": "2026-05-05 03:15:57 +0900",
 "test/1_mytest/index_compression.test.cpp": "2025-11-18 00:27:27 +0900",
 "test/1_mytest/is_substring.test.cpp": "2025-11-18 00:27:27 +0900",
 "test/1_mytest/kdtree_am.test.cpp": "2025-11-18 00:27:27 +0900",
