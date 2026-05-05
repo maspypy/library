@@ -3,7 +3,7 @@
 
 // https://arxiv.org/pdf/1807.04942
 // Example 2. v を選ぶならば par[v] も選ぶ
-// // O(LIM n})
+// // O(LIM n)
 template <typename TREE, typename VAL>
 vc<VAL> ancestor_closed_set_knapsack(TREE& tree, vc<int> weight, vc<VAL> val,
                                      int LIM) {
