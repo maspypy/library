@@ -94,6 +94,9 @@ data:
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/connected_set_knapsack.test.cpp
+    title: test/1_mytest/connected_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/conv2d.test.cpp
     title: test/1_mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3565,6 +3568,7 @@ data:
   - test/1_mytest/count_labeled_undirected.test.cpp
   - test/1_mytest/dyadic_rational.test.cpp
   - test/1_mytest/kdtree_monoid.test.cpp
+  - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/tournament.test.cpp
   - test/1_mytest/knight_distance.test.cpp
   - test/1_mytest/xor_transpose.test.cpp

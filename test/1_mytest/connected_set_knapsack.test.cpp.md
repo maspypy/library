@@ -14,8 +14,8 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
-    path: knapsack/ancestor_closed_set_knapsack.hpp
-    title: knapsack/ancestor_closed_set_knapsack.hpp
+    path: knapsack/connected_set_knapsack.hpp
+    title: knapsack/connected_set_knapsack.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
@@ -38,8 +38,8 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/ancestor_closed_set_knapsack.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\
+  bundledCode: "#line 1 \"test/1_mytest/connected_set_knapsack.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
     #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing namespace\
@@ -318,7 +318,7 @@ data:
     \ ok = 0;\n    }\n    if (ok) E.eb(a, b);\n  }\n  vc<int> label(N);\n  FOR(i,\
     \ N) label[i] = i;\n  shuffle(label);\n  FOR(i, N) E.eb(i, (i + 1) % N);\n  for\
     \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
-    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 1 \"knapsack/ancestor_closed_set_knapsack.hpp\"\
+    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 5 \"test/1_mytest/connected_set_knapsack.test.cpp\"\
     \n\n#line 2 \"graph/tree.hpp\"\n\r\n#line 4 \"graph/tree.hpp\"\n\r\n// HLD euler\
     \ tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\r\ntemplate <typename\
     \ GT>\r\nstruct Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT =\
@@ -425,47 +425,53 @@ data:
     \ u;\r\n      if (check(V[b])) {\r\n        u = V[b];\r\n        continue;\r\n\
     \      }\r\n      int c = binary_search([&](int c) -> bool { return check(V[c]);\
     \ }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n  }\r\n};\r\n\
-    #line 3 \"knapsack/ancestor_closed_set_knapsack.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n\
-    // Example 2. v \u3092\u9078\u3076\u306A\u3089\u3070 par[v] \u3082\u9078\u3076\
-    \n// // O(LIM n)\ntemplate <typename TREE, typename VAL>\nvc<VAL> ancestor_closed_set_knapsack(TREE&\
-    \ tree, vc<int> weight, vc<VAL> val,\n                                     int\
-    \ LIM) {\n  using V = vc<VAL>;\n\n  auto dfs = [&](auto& dfs, int v, const V&\
-    \ X) -> V {\n    assert(len(X) == LIM + 1);\n    int heavy = tree.heavy_child(v);\n\
-    \    V Y(LIM + 1, -infty<VAL>);\n    if (heavy == -1) {\n      FOR(i, LIM + 1)\
-    \ { chmax(Y[i], X[i]); }\n      FOR(i, LIM - weight[v] + 1) chmax(Y[i + weight[v]],\
-    \ X[i] + val[v]);\n      return Y;\n    }\n    auto Z = dfs(dfs, heavy, X);\n\
+    #line 1 \"knapsack/connected_set_knapsack.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n\
+    // Example 5.\n// O(LIM n log n)\ntemplate <typename TREE, typename VAL>\nvc<VAL>\
+    \ connected_set_knapsack(TREE& tree, vc<int> weight, vc<VAL> val,\n          \
+    \                     int LIM) {\n  // \u3059\u3079\u3066\u306E rooted subtree\
+    \ \u3067 ancestor_closed \u3092\u89E3\u304F\u611F\u3058\u306E\u30A2\u30EB\u30B4\
+    \u30EA\u30BA\u30E0\n  using V = vc<VAL>;\n\n  V ANS(LIM + 1, -infty<VAL>);\n\n\
+    \  auto dfs = [&](auto& dfs, int v, const V& X, bool upd_ans) -> V {\n    assert(len(X)\
+    \ == LIM + 1);\n    int heavy = tree.heavy_child(v);\n    V Y(LIM + 1, -infty<VAL>);\n\
+    \    if (heavy == -1) {\n      FOR(i, LIM + 1) { chmax(Y[i], X[i]); }\n      FOR(i,\
+    \ LIM - weight[v] + 1) chmax(Y[i + weight[v]], X[i] + val[v]);\n      if (upd_ans)\
+    \ {\n        FOR(i, LIM - weight[v] + 1) chmax(ANS[i + weight[v]], X[i] + val[v]);\n\
+    \      }\n      return Y;\n    }\n    auto Z = dfs(dfs, heavy, X, upd_ans);\n\
     \    auto ch = tree.collect_light(v);\n\n    // not take v.\n    FOR(i, LIM +\
     \ 1) chmax(Y[i], X[i]);\n\n    // take v.\n    V cur = move(Z);\n    for (int\
-    \ w : ch) {\n      cur = dfs(dfs, w, cur);\n    }\n    FOR(i, LIM - weight[v]\
-    \ + 1) chmax(Y[i + weight[v]], cur[i] + val[v]);\n    return Y;\n  };\n\n  V X(LIM\
-    \ + 1, -infty<VAL>);\n  X[0] = 0;\n  V ANS = dfs(dfs, 0, X);\n  for (auto& x :\
-    \ ANS)\n    if (x < 0) x = -infty<VAL>;\n  return ANS;\n}\n#line 6 \"test/1_mytest/ancestor_closed_set_knapsack.test.cpp\"\
-    \n\nvoid test(int N) {\n  FOR(1000) {\n    auto E = random_tree(N);\n    Graph<int,\
-    \ 0> G(N);\n    for (auto& [a, b] : E) G.add(a, b);\n    G.build();\n    Tree<decltype(G)>\
+    \ w : ch) {\n      cur = dfs(dfs, w, cur, false);\n    }\n    FOR(i, LIM - weight[v]\
+    \ + 1) chmax(Y[i + weight[v]], cur[i] + val[v]);\n    if (upd_ans) {\n      FOR(i,\
+    \ LIM - weight[v] + 1) chmax(ANS[i + weight[v]], cur[i] + val[v]);\n    }\n  \
+    \  return Y;\n  };\n\n  FOR(v, tree.N) {\n    if (tree.head[v] == v) {\n     \
+    \ V X(LIM + 1, -infty<VAL>);\n      X[0] = 0;\n      dfs(dfs, v, X, true);\n \
+    \   }\n  }\n\n  for (auto& x : ANS)\n    if (x < 0) x = -infty<VAL>;\n  return\
+    \ ANS;\n}\n#line 8 \"test/1_mytest/connected_set_knapsack.test.cpp\"\n\nvoid test(int\
+    \ N) {\n  FOR(1000) {\n    auto E = random_tree(N);\n    Graph<int, 0> G(N);\n\
+    \    for (auto& [a, b] : E) G.add(a, b);\n    G.build();\n    Tree<decltype(G)>\
     \ tree(G);\n    vc<int> weight, val;\n    FOR(N) {\n      weight.eb(RNG(1, 10));\n\
     \      val.eb(RNG(1, 10));\n    }\n    int LIM = RNG(1, 100);\n    auto ANS =\
-    \ ancestor_closed_set_knapsack(tree, weight, val, LIM);\n    vc<int> god(LIM +\
-    \ 1, -infty<int>);\n    FOR(s, 1 << N) {\n      bool ok = 1;\n      FOR(v, 1,\
-    \ N) {\n        if (has_kth_bit(s, v) && !has_kth_bit(s, tree.parent[v])) ok =\
-    \ 0;\n      }\n      if (!ok) continue;\n      int a = 0, b = 0;\n      FOR(v,\
-    \ N) if (s >> v & 1) a += weight[v], b += val[v];\n      if (a <= LIM) chmax(god[a],\
-    \ b);\n    }\n    assert(god == ANS);\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  FOR(N, 1,\
-    \ 11) test(N);\n  solve();\n  return 0;\n}\n"
+    \ connected_set_knapsack(tree, weight, val, LIM);\n    vc<int> god(LIM + 1, -infty<int>);\n\
+    \    FOR(s, 1, 1 << N) {\n      int e = 0;\n      for (auto& [a, b] : E)\n   \
+    \     if (has_kth_bit(s, a) && has_kth_bit(s, b)) e++;\n      if (popcnt(s) !=\
+    \ e + 1) continue;\n      int a = 0, b = 0;\n      FOR(v, N) if (s >> v & 1) a\
+    \ += weight[v], b += val[v];\n      if (a <= LIM) chmax(god[a], b);\n    }\n \
+    \   assert(god == ANS);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
+    \ b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  FOR(N, 1, 11) test(N);\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n#include \"random/random_graph.hpp\"\n#include \"knapsack/ancestor_closed_set_knapsack.hpp\"\
-    \n\nvoid test(int N) {\n  FOR(1000) {\n    auto E = random_tree(N);\n    Graph<int,\
-    \ 0> G(N);\n    for (auto& [a, b] : E) G.add(a, b);\n    G.build();\n    Tree<decltype(G)>\
-    \ tree(G);\n    vc<int> weight, val;\n    FOR(N) {\n      weight.eb(RNG(1, 10));\n\
-    \      val.eb(RNG(1, 10));\n    }\n    int LIM = RNG(1, 100);\n    auto ANS =\
-    \ ancestor_closed_set_knapsack(tree, weight, val, LIM);\n    vc<int> god(LIM +\
-    \ 1, -infty<int>);\n    FOR(s, 1 << N) {\n      bool ok = 1;\n      FOR(v, 1,\
-    \ N) {\n        if (has_kth_bit(s, v) && !has_kth_bit(s, tree.parent[v])) ok =\
-    \ 0;\n      }\n      if (!ok) continue;\n      int a = 0, b = 0;\n      FOR(v,\
-    \ N) if (s >> v & 1) a += weight[v], b += val[v];\n      if (a <= LIM) chmax(god[a],\
-    \ b);\n    }\n    assert(god == ANS);\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  FOR(N, 1,\
-    \ 11) test(N);\n  solve();\n  return 0;\n}"
+    my_template.hpp\"\n#include \"random/random_graph.hpp\"\n\n#include \"graph/tree.hpp\"\
+    \n#include \"knapsack/connected_set_knapsack.hpp\"\n\nvoid test(int N) {\n  FOR(1000)\
+    \ {\n    auto E = random_tree(N);\n    Graph<int, 0> G(N);\n    for (auto& [a,\
+    \ b] : E) G.add(a, b);\n    G.build();\n    Tree<decltype(G)> tree(G);\n    vc<int>\
+    \ weight, val;\n    FOR(N) {\n      weight.eb(RNG(1, 10));\n      val.eb(RNG(1,\
+    \ 10));\n    }\n    int LIM = RNG(1, 100);\n    auto ANS = connected_set_knapsack(tree,\
+    \ weight, val, LIM);\n    vc<int> god(LIM + 1, -infty<int>);\n    FOR(s, 1, 1\
+    \ << N) {\n      int e = 0;\n      for (auto& [a, b] : E)\n        if (has_kth_bit(s,\
+    \ a) && has_kth_bit(s, b)) e++;\n      if (popcnt(s) != e + 1) continue;\n   \
+    \   int a = 0, b = 0;\n      FOR(v, N) if (s >> v & 1) a += weight[v], b += val[v];\n\
+    \      if (a <= LIM) chmax(god[a], b);\n    }\n    assert(god == ANS);\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nint main() {\n  FOR(N, 1, 11) test(N);\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -474,18 +480,18 @@ data:
   - random/base.hpp
   - random/shuffle.hpp
   - ds/unionfind/unionfind.hpp
-  - knapsack/ancestor_closed_set_knapsack.hpp
   - graph/tree.hpp
+  - knapsack/connected_set_knapsack.hpp
   isVerificationFile: true
-  path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  path: test/1_mytest/connected_set_knapsack.test.cpp
   requiredBy: []
   timestamp: '2026-05-06 04:02:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+documentation_of: test/1_mytest/connected_set_knapsack.test.cpp
 layout: document
 redirect_from:
-- /verify/test/1_mytest/ancestor_closed_set_knapsack.test.cpp
-- /verify/test/1_mytest/ancestor_closed_set_knapsack.test.cpp.html
-title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+- /verify/test/1_mytest/connected_set_knapsack.test.cpp
+- /verify/test/1_mytest/connected_set_knapsack.test.cpp.html
+title: test/1_mytest/connected_set_knapsack.test.cpp
 ---

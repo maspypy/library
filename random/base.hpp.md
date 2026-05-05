@@ -244,6 +244,9 @@ data:
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/connected_set_knapsack.test.cpp
+    title: test/1_mytest/connected_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/conv2d.test.cpp
     title: test/1_mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1227,6 +1230,7 @@ data:
   - test/1_mytest/prefix_max_segtree.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/1_mytest/kdtree_monoid.test.cpp
+  - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/tournament.test.cpp
   - test/1_mytest/xor_transpose.test.cpp
   - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp

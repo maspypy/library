@@ -22,6 +22,9 @@ data:
     path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
     title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/connected_set_knapsack.test.cpp
+    title: test/1_mytest/connected_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_K4.test.cpp
     title: test/1_mytest/count_K4.test.cpp
   - icon: ':heavy_check_mark:'
@@ -344,6 +347,7 @@ data:
   - test/1_mytest/count_K4.test.cpp
   - test/1_mytest/count_P3P4P5.test.cpp
   - test/1_mytest/find_C4.test.cpp
+  - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp

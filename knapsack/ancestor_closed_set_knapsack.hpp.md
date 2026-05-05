@@ -229,7 +229,7 @@ data:
     \ }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n  }\r\n};\r\n\
     #line 3 \"knapsack/ancestor_closed_set_knapsack.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n\
     // Example 2. v \u3092\u9078\u3076\u306A\u3089\u3070 par[v] \u3082\u9078\u3076\
-    \n// // O(LIM n})\ntemplate <typename TREE, typename VAL>\nvc<VAL> ancestor_closed_set_knapsack(TREE&\
+    \n// // O(LIM n)\ntemplate <typename TREE, typename VAL>\nvc<VAL> ancestor_closed_set_knapsack(TREE&\
     \ tree, vc<int> weight, vc<VAL> val,\n                                     int\
     \ LIM) {\n  using V = vc<VAL>;\n\n  auto dfs = [&](auto& dfs, int v, const V&\
     \ X) -> V {\n    assert(len(X) == LIM + 1);\n    int heavy = tree.heavy_child(v);\n\
@@ -244,7 +244,7 @@ data:
     \ ANS)\n    if (x < 0) x = -infty<VAL>;\n  return ANS;\n}\n"
   code: "\n#include \"graph/tree.hpp\"\n\n// https://arxiv.org/pdf/1807.04942\n//\
     \ Example 2. v \u3092\u9078\u3076\u306A\u3089\u3070 par[v] \u3082\u9078\u3076\n\
-    // // O(LIM n})\ntemplate <typename TREE, typename VAL>\nvc<VAL> ancestor_closed_set_knapsack(TREE&\
+    // // O(LIM n)\ntemplate <typename TREE, typename VAL>\nvc<VAL> ancestor_closed_set_knapsack(TREE&\
     \ tree, vc<int> weight, vc<VAL> val,\n                                     int\
     \ LIM) {\n  using V = vc<VAL>;\n\n  auto dfs = [&](auto& dfs, int v, const V&\
     \ X) -> V {\n    assert(len(X) == LIM + 1);\n    int heavy = tree.heavy_child(v);\n\
@@ -264,7 +264,7 @@ data:
   isVerificationFile: false
   path: knapsack/ancestor_closed_set_knapsack.hpp
   requiredBy: []
-  timestamp: '2026-05-05 03:38:05+09:00'
+  timestamp: '2026-05-06 04:02:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp

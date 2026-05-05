@@ -48,67 +48,64 @@ data:
     \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
     \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
     \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 5 \"setfunc/submask_range_query.hpp\"\
-    \n\n// O((4/3)^LOG) per query\ntemplate <typename Monoid>\nstruct SubMask_Range_Query\
-    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  const int LOG;\n\
-    \  vc<X> S;\n  array<u32, 3> mask;\n  /*\n  0: [x0,x1] -> [x0,x1] -> [x0,x0+x1]\n\
-    \  1: [x0,x1] -> [x0+x1,x0] -> [x0,x0+x1]\n  2: [x0,x1] -> [x0+x1,x1] -> [x0,x0+x1]\n\
-    \  */\n\n  SubMask_Range_Query(int LOG) : LOG(LOG), mask{} {\n    S.assign(1 <<\
-    \ LOG, MX::unit());\n    init_by_random();\n  }\n\n  void init_by_random() {\n\
-    \    FOR(i, LOG) { mask[RNG(0, 3)] |= 1 << i; }\n  }\n\n  void init_by_query(vc<u32>&\
-    \ ADD, vc<u32>& GET) {\n    mask[0] = mask[1] = mask[2] = 0;\n    auto eval =\
-    \ [&]() -> ll {\n      ll ans = 0;\n      for (u32 x : ADD) {\n        u32 s =\
-    \ 0;\n        s ^= (~x) & mask[1];\n        s ^= x & mask[2];\n        ans +=\
-    \ 1 << popcnt(s);\n      }\n      for (auto& x : GET) {\n        u32 s = 0;\n\
-    \        s ^= x & mask[0];\n        s ^= (~x) & mask[2];\n        ans += 1 <<\
-    \ popcnt(s);\n      }\n      return ans;\n    };\n    vc<int> I(LOG);\n    FOR(i,\
-    \ LOG) I[i] = i;\n    shuffle(I);\n    array<ll, 3> c;\n    for (int i : I) {\n\
-    \      FOR(k, 3) { mask[k] |= 1 << i, c[k] = eval(), mask[k] &= ~(1 << i); }\n\
-    \      int k = min_element(all(c)) - c.begin();\n      mask[k] |= 1 << i;\n  \
-    \  }\n  }\n\n  void add(u32 i, X x) {\n    u32 base = i & mask[0];\n    u32 s\
-    \ = ((~i) & mask[1]) | (i & mask[2]);\n    enumerate_all_subset<u32, true>(\n\
-    \        s, [&](u32 t) -> void { S[base | t] = MX::op(S[base | t], x); });\n \
-    \ }\n\n  X get_sum(u32 i) {\n    u32 base = (~i) & mask[1];\n    u32 s = (i &\
-    \ mask[0]) | ((~i) & mask[2]);\n    if constexpr (is_same_v<Monoid_Add<X>, MX>)\
-    \ {\n      X ANS = 0;\n      enumerate_all_subset<u32, true>(s, [&](u32 t) ->\
-    \ void {\n        ANS += S[base | t] * popcnt_sgn(t & mask[2]);\n      });\n \
-    \     return ANS;\n    } else if constexpr (is_same_v<Monoid_Xor<X>, MX>) {\n\
-    \      X ANS = 0;\n      enumerate_all_subset<u32, true>(\n          s, [&](u32\
-    \ t) -> void { ANS ^= S[base | t]; });\n      return ANS;\n    } else {\n    \
-    \  X a[] = {MX::unit(), MX::unit()};\n      enumerate_all_subset<u32, true>(s,\
-    \ [&](u32 t) -> void {\n        int k = __builtin_parity(t & mask[2]);\n     \
-    \   a[k] = MX::op(a[k], S[base | t]);\n      });\n      return MX::op(a[0], MX::inverse(a[1]));\n\
-    \    }\n  }\n};\n"
+    \n\n// O((4/3)^LOG) per query\ntemplate <typename Monoid>\nstruct Boolean_Range_Add_Point_Get\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\n  const int\
+    \ LOG;\n  vc<X> S;\n  array<u32, 3> mask;\n\n  /*\n  0: [x0,x1]\n  1: [x0+x1,x0]\n\
+    \  2: [x0+x1,x1]\n  */\n\n  Boolean_Range_Add_Point_Get(int LOG) : LOG(LOG), mask{}\
+    \ {\n    S.assign(1 << LOG, MX::unit());\n    init_by_random();\n  }\n\n  void\
+    \ init_by_random() {\n    mask[0] = mask[1] = mask[2] = 0;\n    FOR(i, LOG) {\
+    \ mask[RNG(0, 3)] |= u32(1) << i; }\n  }\n\n  void init_by_query(const vc<pair<u32,\
+    \ u32>>& ADD, const vc<u32>& GET) {\n    for (auto& [lo, hi] : ADD) assert((lo\
+    \ & ~hi) == 0);\n    mask[0] = mask[1] = mask[2] = 0;\n\n    auto eval = [&]()\
+    \ -> ll {\n      ll ans = 0;\n\n      for (auto& [lo, hi] : ADD) {\n        u32\
+    \ s = 0;\n        s ^= (lo ^ hi) & mask[0];\n        s ^= lo & mask[1];\n    \
+    \    s ^= (~hi) & mask[2];\n        ans += 1 << popcnt(s);\n      }\n\n      for\
+    \ (u32 i : GET) {\n        u32 s = 0;\n        s ^= (~i) & mask[1];\n        s\
+    \ ^= i & mask[2];\n        ans += 1 << popcnt(s);\n      }\n\n      return ans;\n\
+    \    };\n\n    vc<int> I(LOG);\n    FOR(i, LOG) I[i] = i;\n    shuffle(I);\n\n\
+    \    array<ll, 3> c;\n    for (int i : I) {\n      FOR(k, 3) {\n        mask[k]\
+    \ |= u32(1) << i, c[k] = eval(), mask[k] &= ~(u32(1) << i);\n      }\n      int\
+    \ k = min_element(all(c)) - c.begin();\n      mask[k] |= u32(1) << i;\n    }\n\
+    \  }\n\n  void add(u32 lo, u32 hi, X x) {\n    assert((lo & ~hi) == 0);\n\n  \
+    \  u32 a = 0;\n    u32 s = 0;\n    u32 b = 0;\n\n    a ^= lo & mask[0];\n    s\
+    \ ^= (lo ^ hi) & mask[0];\n\n    a ^= (~hi) & mask[1];\n    s ^= lo & mask[1];\n\
+    \    b ^= lo & mask[1];\n\n    a ^= lo & mask[2];\n    s ^= (~hi) & mask[2];\n\
+    \    b ^= (~hi) & mask[2];\n\n    enumerate_all_subset<u32, true>(s, [&](u32 t)\
+    \ -> void {\n      X y = (__builtin_parity(t & b) ? MX::inverse(x) : x);\n   \
+    \   S[a | t] = MX::op(S[a | t], y);\n    });\n  }\n\n  X get(u32 i) {\n    u32\
+    \ a = i & mask[0];\n    u32 s = 0;\n\n    s ^= (~i) & mask[1];\n    s ^= i & mask[2];\n\
+    \n    X ANS = MX::unit();\n    enumerate_all_subset<u32, true>(\n        s, [&](u32\
+    \ t) -> void { ANS = MX::op(ANS, S[a | t]); });\n    return ANS;\n  }\n};\n"
   code: "#include \"random/shuffle.hpp\"\n#include \"alg/monoid/add.hpp\"\n#include\
     \ \"alg/monoid/xor.hpp\"\n#include \"enumerate/bits.hpp\"\n\n// O((4/3)^LOG) per\
-    \ query\ntemplate <typename Monoid>\nstruct SubMask_Range_Query {\n  using MX\
-    \ = Monoid;\n  using X = typename MX::value_type;\n  const int LOG;\n  vc<X> S;\n\
-    \  array<u32, 3> mask;\n  /*\n  0: [x0,x1] -> [x0,x1] -> [x0,x0+x1]\n  1: [x0,x1]\
-    \ -> [x0+x1,x0] -> [x0,x0+x1]\n  2: [x0,x1] -> [x0+x1,x1] -> [x0,x0+x1]\n  */\n\
-    \n  SubMask_Range_Query(int LOG) : LOG(LOG), mask{} {\n    S.assign(1 << LOG,\
-    \ MX::unit());\n    init_by_random();\n  }\n\n  void init_by_random() {\n    FOR(i,\
-    \ LOG) { mask[RNG(0, 3)] |= 1 << i; }\n  }\n\n  void init_by_query(vc<u32>& ADD,\
-    \ vc<u32>& GET) {\n    mask[0] = mask[1] = mask[2] = 0;\n    auto eval = [&]()\
-    \ -> ll {\n      ll ans = 0;\n      for (u32 x : ADD) {\n        u32 s = 0;\n\
-    \        s ^= (~x) & mask[1];\n        s ^= x & mask[2];\n        ans += 1 <<\
-    \ popcnt(s);\n      }\n      for (auto& x : GET) {\n        u32 s = 0;\n     \
-    \   s ^= x & mask[0];\n        s ^= (~x) & mask[2];\n        ans += 1 << popcnt(s);\n\
-    \      }\n      return ans;\n    };\n    vc<int> I(LOG);\n    FOR(i, LOG) I[i]\
-    \ = i;\n    shuffle(I);\n    array<ll, 3> c;\n    for (int i : I) {\n      FOR(k,\
-    \ 3) { mask[k] |= 1 << i, c[k] = eval(), mask[k] &= ~(1 << i); }\n      int k\
-    \ = min_element(all(c)) - c.begin();\n      mask[k] |= 1 << i;\n    }\n  }\n\n\
-    \  void add(u32 i, X x) {\n    u32 base = i & mask[0];\n    u32 s = ((~i) & mask[1])\
-    \ | (i & mask[2]);\n    enumerate_all_subset<u32, true>(\n        s, [&](u32 t)\
-    \ -> void { S[base | t] = MX::op(S[base | t], x); });\n  }\n\n  X get_sum(u32\
-    \ i) {\n    u32 base = (~i) & mask[1];\n    u32 s = (i & mask[0]) | ((~i) & mask[2]);\n\
-    \    if constexpr (is_same_v<Monoid_Add<X>, MX>) {\n      X ANS = 0;\n      enumerate_all_subset<u32,\
-    \ true>(s, [&](u32 t) -> void {\n        ANS += S[base | t] * popcnt_sgn(t & mask[2]);\n\
-    \      });\n      return ANS;\n    } else if constexpr (is_same_v<Monoid_Xor<X>,\
-    \ MX>) {\n      X ANS = 0;\n      enumerate_all_subset<u32, true>(\n         \
-    \ s, [&](u32 t) -> void { ANS ^= S[base | t]; });\n      return ANS;\n    } else\
-    \ {\n      X a[] = {MX::unit(), MX::unit()};\n      enumerate_all_subset<u32,\
-    \ true>(s, [&](u32 t) -> void {\n        int k = __builtin_parity(t & mask[2]);\n\
-    \        a[k] = MX::op(a[k], S[base | t]);\n      });\n      return MX::op(a[0],\
-    \ MX::inverse(a[1]));\n    }\n  }\n};\n"
+    \ query\ntemplate <typename Monoid>\nstruct Boolean_Range_Add_Point_Get {\n  using\
+    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  const int LOG;\n  vc<X>\
+    \ S;\n  array<u32, 3> mask;\n\n  /*\n  0: [x0,x1]\n  1: [x0+x1,x0]\n  2: [x0+x1,x1]\n\
+    \  */\n\n  Boolean_Range_Add_Point_Get(int LOG) : LOG(LOG), mask{} {\n    S.assign(1\
+    \ << LOG, MX::unit());\n    init_by_random();\n  }\n\n  void init_by_random()\
+    \ {\n    mask[0] = mask[1] = mask[2] = 0;\n    FOR(i, LOG) { mask[RNG(0, 3)] |=\
+    \ u32(1) << i; }\n  }\n\n  void init_by_query(const vc<pair<u32, u32>>& ADD, const\
+    \ vc<u32>& GET) {\n    for (auto& [lo, hi] : ADD) assert((lo & ~hi) == 0);\n \
+    \   mask[0] = mask[1] = mask[2] = 0;\n\n    auto eval = [&]() -> ll {\n      ll\
+    \ ans = 0;\n\n      for (auto& [lo, hi] : ADD) {\n        u32 s = 0;\n       \
+    \ s ^= (lo ^ hi) & mask[0];\n        s ^= lo & mask[1];\n        s ^= (~hi) &\
+    \ mask[2];\n        ans += 1 << popcnt(s);\n      }\n\n      for (u32 i : GET)\
+    \ {\n        u32 s = 0;\n        s ^= (~i) & mask[1];\n        s ^= i & mask[2];\n\
+    \        ans += 1 << popcnt(s);\n      }\n\n      return ans;\n    };\n\n    vc<int>\
+    \ I(LOG);\n    FOR(i, LOG) I[i] = i;\n    shuffle(I);\n\n    array<ll, 3> c;\n\
+    \    for (int i : I) {\n      FOR(k, 3) {\n        mask[k] |= u32(1) << i, c[k]\
+    \ = eval(), mask[k] &= ~(u32(1) << i);\n      }\n      int k = min_element(all(c))\
+    \ - c.begin();\n      mask[k] |= u32(1) << i;\n    }\n  }\n\n  void add(u32 lo,\
+    \ u32 hi, X x) {\n    assert((lo & ~hi) == 0);\n\n    u32 a = 0;\n    u32 s =\
+    \ 0;\n    u32 b = 0;\n\n    a ^= lo & mask[0];\n    s ^= (lo ^ hi) & mask[0];\n\
+    \n    a ^= (~hi) & mask[1];\n    s ^= lo & mask[1];\n    b ^= lo & mask[1];\n\n\
+    \    a ^= lo & mask[2];\n    s ^= (~hi) & mask[2];\n    b ^= (~hi) & mask[2];\n\
+    \n    enumerate_all_subset<u32, true>(s, [&](u32 t) -> void {\n      X y = (__builtin_parity(t\
+    \ & b) ? MX::inverse(x) : x);\n      S[a | t] = MX::op(S[a | t], y);\n    });\n\
+    \  }\n\n  X get(u32 i) {\n    u32 a = i & mask[0];\n    u32 s = 0;\n\n    s ^=\
+    \ (~i) & mask[1];\n    s ^= i & mask[2];\n\n    X ANS = MX::unit();\n    enumerate_all_subset<u32,\
+    \ true>(\n        s, [&](u32 t) -> void { ANS = MX::op(ANS, S[a | t]); });\n \
+    \   return ANS;\n  }\n};"
   dependsOn:
   - random/shuffle.hpp
   - random/base.hpp
@@ -118,7 +115,7 @@ data:
   isVerificationFile: false
   path: setfunc/submask_range_query.hpp
   requiredBy: []
-  timestamp: '2025-12-16 20:51:20+09:00'
+  timestamp: '2026-05-06 04:02:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/submask_range_query.hpp

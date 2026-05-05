@@ -103,6 +103,9 @@ data:
     path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
     title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/connected_set_knapsack.test.cpp
+    title: test/1_mytest/connected_set_knapsack.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -689,6 +692,7 @@ data:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
+  - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/tree.hpp

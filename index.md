@@ -1406,6 +1406,9 @@ data:
       path: knapsack/ancestor_closed_set_knapsack.hpp
       title: knapsack/ancestor_closed_set_knapsack.hpp
     - icon: ':heavy_check_mark:'
+      path: knapsack/connected_set_knapsack.hpp
+      title: knapsack/connected_set_knapsack.hpp
+    - icon: ':heavy_check_mark:'
       path: knapsack/independent_set_knapsack.hpp
       title: knapsack/independent_set_knapsack.hpp
     - icon: ':heavy_check_mark:'
@@ -2617,6 +2620,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/compositional_inverset.test.cpp
       title: test/1_mytest/compositional_inverset.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/connected_set_knapsack.test.cpp
+      title: test/1_mytest/connected_set_knapsack.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/conv2d.test.cpp
       title: test/1_mytest/conv2d.test.cpp
