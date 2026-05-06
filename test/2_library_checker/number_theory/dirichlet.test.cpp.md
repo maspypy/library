@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/dirichlet.hpp
     title: nt/dirichlet.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
   - icon: ':question:'
