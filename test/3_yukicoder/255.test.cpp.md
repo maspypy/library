@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'

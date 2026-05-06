@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
   - icon: ':question:'

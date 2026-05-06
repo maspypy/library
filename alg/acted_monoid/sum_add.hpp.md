@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/ARC30D.test.cpp
     title: test/1_mytest/ARC30D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick_raq.test.cpp
     title: test/1_mytest/fenwick_raq.test.cpp
   - icon: ':x:'

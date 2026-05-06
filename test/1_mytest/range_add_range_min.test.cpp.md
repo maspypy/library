@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: ds/rmq/range_add_range_min.hpp
     title: ds/rmq/range_add_range_min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':x:'

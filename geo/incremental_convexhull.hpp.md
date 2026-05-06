@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_ch.test.cpp
     title: test/1_mytest/incremental_ch.test.cpp
   - icon: ':x:'
