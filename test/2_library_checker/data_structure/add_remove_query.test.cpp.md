@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/add_remove_query.hpp
     title: ds/offline_query/add_remove_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -30,8 +30,10 @@ data:
     \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
-    Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
+    Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
+    \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
+    \n// #pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\n\
+    using namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
     \ = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\n\
     using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
     constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
@@ -357,8 +359,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2025-11-20 15:04:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-05-06 12:56:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/add_remove_query.test.cpp
 layout: document
