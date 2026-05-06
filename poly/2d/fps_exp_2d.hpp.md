@@ -13,13 +13,13 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/2d/convolution2d.hpp
     title: poly/2d/convolution2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/2d/fps_inv_2d.hpp
     title: poly/2d/fps_inv_2d.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/2d/fps_log_2d.hpp
     title: poly/2d/fps_log_2d.hpp
   - icon: ':question:'
@@ -54,30 +54,30 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/fps_exp_2d.test.cpp
     title: test/1_mytest/fps_exp_2d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
-    \ <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  if (len(dat) <= n)\
-    \ {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n  \
-    \  dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  if\
-    \ (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int now = len(dat);\n \
-    \   int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1]\
-    \ = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1]\
-    \ * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+  bundledCode: "#line 2 \"poly/2d/fps_exp_2d.hpp\"\n\n#line 2 \"poly/convolution.hpp\"\
+    \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
     }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
     }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
@@ -369,30 +369,31 @@ data:
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
     \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
-    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"poly/2d/convolution2d.hpp\"\n\r\
-    \n#line 4 \"poly/2d/convolution2d.hpp\"\n\r\ntemplate <typename T>\r\nvc<vc<T>>\
-    \ convolution2d(vc<vc<T>>& f, vc<vc<T>>& g, bool truncate = false) {\r\n  auto\
-    \ shape = [&](vc<vc<T>>& f) -> pi {\r\n    ll H = len(f);\r\n    ll W = (H ==\
-    \ 0 ? 0 : len(f[0]));\r\n    return {H, W};\r\n  };\r\n  auto [H1, W1] = shape(f);\r\
-    \n  auto [H2, W2] = shape(g);\r\n  ll H = H1 + H2 - 1;\r\n  ll W = W1 + W2 - 1;\r\
-    \n\r\n  vc<T> ff(H1 * W);\r\n  vc<T> gg(H2 * W);\r\n  FOR(x, H1) FOR(y, W1) ff[W\
-    \ * x + y] = f[x][y];\r\n  FOR(x, H2) FOR(y, W2) gg[W * x + y] = g[x][y];\r\n\
-    \  auto hh = convolution(ff, gg);\r\n  int N = H, M = W;\r\n  if (truncate) {\r\
-    \n    assert(H1 == H2 && W1 == W2);\r\n    N = H1, M = W1;\r\n  }\r\n  vc<vc<T>>\
-    \ h(N, vc<T>(M));\r\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W * x + y];\r\n  return\
-    \ h;\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ fps_inv_sparse(const vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int, mint>>\
-    \ dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\
-    \n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint\
-    \ rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\n \
-    \     rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
-    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense_ntt(const\
-    \ vc<mint>& F) {\r\n  vc<mint> G = {mint(1) / F[0]};\r\n  ll N = len(F), n = 1;\r\
-    \n  G.reserve(N);\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n\
-    \    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f,\
-    \ false), ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
-    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
-    \n    ntt(f, true);\r\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"poly/2d/fps_log_2d.hpp\"\n\n#line\
+    \ 2 \"poly/2d/convolution2d.hpp\"\n\r\n#line 4 \"poly/2d/convolution2d.hpp\"\n\
+    \r\ntemplate <typename T>\r\nvc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>&\
+    \ g, bool truncate = false) {\r\n  auto shape = [&](vc<vc<T>>& f) -> pi {\r\n\
+    \    ll H = len(f);\r\n    ll W = (H == 0 ? 0 : len(f[0]));\r\n    return {H,\
+    \ W};\r\n  };\r\n  auto [H1, W1] = shape(f);\r\n  auto [H2, W2] = shape(g);\r\n\
+    \  ll H = H1 + H2 - 1;\r\n  ll W = W1 + W2 - 1;\r\n\r\n  vc<T> ff(H1 * W);\r\n\
+    \  vc<T> gg(H2 * W);\r\n  FOR(x, H1) FOR(y, W1) ff[W * x + y] = f[x][y];\r\n \
+    \ FOR(x, H2) FOR(y, W2) gg[W * x + y] = g[x][y];\r\n  auto hh = convolution(ff,\
+    \ gg);\r\n  int N = H, M = W;\r\n  if (truncate) {\r\n    assert(H1 == H2 && W1\
+    \ == W2);\r\n    N = H1, M = W1;\r\n  }\r\n  vc<vc<T>> h(N, vc<T>(M));\r\n  FOR(x,\
+    \ N) FOR(y, M) h[x][y] = hh[W * x + y];\r\n  return h;\r\n}\r\n#line 2 \"poly/2d/fps_inv_2d.hpp\"\
+    \n\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const\
+    \ vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
+    \ 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0\
+    \ = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\
+    \n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk\
+    \ * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\
+    \ntemplate <typename mint>\r\nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\r\
+    \n  vc<mint> G = {mint(1) / F[0]};\r\n  ll N = len(F), n = 1;\r\n  G.reserve(N);\r\
+    \n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2\
+    \ * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false), ntt(g,\
+    \ false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i,\
+    \ n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n  \
+    \  ntt(f, true);\r\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\
     \n  }\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const\
     \ vc<mint>& F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const\
     \ int N = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int\
@@ -403,7 +404,7 @@ data:
     \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0]\
     \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
     \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 2 \"poly/2d/fps_inv_2d.hpp\"\n\ntemplate <typename mint>\nvvc<mint>\
+    \n}\r\n#line 4 \"poly/2d/fps_inv_2d.hpp\"\n\ntemplate <typename mint>\nvvc<mint>\
     \ fps_inv_2d(vvc<mint> F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0]\
     \ != mint(0));\n\n  auto ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n \
     \   FOR(j, len(F[0])) {\n      vc<mint> f(len(F));\n      FOR(i, len(F)) f[i]\
@@ -436,13 +437,13 @@ data:
     \n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_log(const\
     \ vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int n = count_terms(f);\r\n\
     \  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return (n <= t ? fps_log_sparse<mint>(f)\
-    \ : fps_log_dense<mint>(f));\r\n}\r\n#line 4 \"poly/2d/fps_log_2d.hpp\"\n\ntemplate\
+    \ : fps_log_dense<mint>(f));\r\n}\r\n#line 6 \"poly/2d/fps_log_2d.hpp\"\n\ntemplate\
     \ <typename T>\nvvc<T> fps_log_2d(vvc<T> F) {\n  assert(F[0][0] == 1);\n  // G\
     \ = log F, G'=F'/F.\n  int N = len(F), M = len(F[0]);\n  vvc<T> DF(N, vc<T>(M));\n\
     \  FOR(i, N - 1) FOR(j, M) DF[i][j] = F[i + 1][j] * (i + 1);\n  auto IF = fps_inv_2d(F);\n\
     \  vvc<T> DG = convolution2d(DF, IF, true);\n  vv(T, G, N, M);\n  FOR(i, 1, N)\
     \ FOR(j, M) G[i][j] = DG[i - 1][j] / i;\n  G[0] = fps_log<T>(F[0]);\n  return\
-    \ G;\n}\n#line 4 \"poly/2d/fps_exp_2d.hpp\"\n\n// \u6CE8\u610F (H+W)^2log(H+W)\
+    \ G;\n}\n#line 6 \"poly/2d/fps_exp_2d.hpp\"\n\n// \u6CE8\u610F (H+W)^2log(H+W)\
     \ \u6642\u9593\u306B\u306A\u3063\u3066\u3044\u308B\u306E\u3067\u6B63\u65B9\u5F62\
     \u3058\u3083\u306A\u3044\u3068\u30C0\u30E1\u306A\u3055\u307C\u308A\u5B9F\u88C5\
     \n// template <typename mint>\n// vvc<mint> fps_exp_2d(vvc<mint> F) {\n//   int\
@@ -463,10 +464,10 @@ data:
     \ e[i][j] = f[i][j] - lg[i][j];\n    e[0][0] += mint(1);\n\n    g = convolution2d<mint>(g,\
     \ e, true);\n    FOR(i, H, H2) FOR(j, M) G[i][j] = g[i][j];\n    H *= 2;\n  }\n\
     \  return G;\n}\n"
-  code: "#include \"poly/fps_exp.hpp\"\n#include \"poly/2d/fps_log_2d.hpp\"\n#include\
-    \ \"poly/2d/convolution2d.hpp\"\n\n// \u6CE8\u610F (H+W)^2log(H+W) \u6642\u9593\
-    \u306B\u306A\u3063\u3066\u3044\u308B\u306E\u3067\u6B63\u65B9\u5F62\u3058\u3083\
-    \u306A\u3044\u3068\u30C0\u30E1\u306A\u3055\u307C\u308A\u5B9F\u88C5\n// template\
+  code: "#pragma once\n\n#include \"poly/fps_exp.hpp\"\n#include \"poly/2d/fps_log_2d.hpp\"\
+    \n#include \"poly/2d/convolution2d.hpp\"\n\n// \u6CE8\u610F (H+W)^2log(H+W) \u6642\
+    \u9593\u306B\u306A\u3063\u3066\u3044\u308B\u306E\u3067\u6B63\u65B9\u5F62\u3058\
+    \u3083\u306A\u3044\u3068\u30C0\u30E1\u306A\u3055\u307C\u308A\u5B9F\u88C5\n// template\
     \ <typename mint>\n// vvc<mint> fps_exp_2d(vvc<mint> F) {\n//   int N = len(F)\
     \ - 1, M = len(F[0]) - 1;\n//   int L = 1;\n//   while (L < N + M + 1) L *= 2;\n\
     \n//   vv(mint, F1, L, N + M + 1);\n//   FOR(i, N + 1) FOR(j, M + 1) F1[i][i +\
@@ -506,8 +507,8 @@ data:
   isVerificationFile: false
   path: poly/2d/fps_exp_2d.hpp
   requiredBy: []
-  timestamp: '2026-05-06 14:39:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-05-06 19:44:12+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/fps_exp_2d.test.cpp
 documentation_of: poly/2d/fps_exp_2d.hpp

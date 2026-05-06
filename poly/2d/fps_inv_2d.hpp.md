@@ -32,42 +32,42 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/2d/fps_exp_2d.hpp
     title: poly/2d/fps_exp_2d.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/2d/fps_log_2d.hpp
     title: poly/2d/fps_log_2d.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/fps_exp_2d.test.cpp
     title: test/1_mytest/fps_exp_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/fps_inv_2d.test.cpp
     title: test/1_mytest/fps_inv_2d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
-    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
-    \ <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  if (len(dat) <= n)\
-    \ {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n  \
-    \  dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  if\
-    \ (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int now = len(dat);\n \
-    \   int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1]\
-    \ = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1]\
-    \ * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+  bundledCode: "#line 2 \"poly/2d/fps_inv_2d.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
+    \ \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
     }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
     }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
@@ -328,7 +328,7 @@ data:
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
-    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 4\
     \ \"poly/2d/fps_inv_2d.hpp\"\n\ntemplate <typename mint>\nvvc<mint> fps_inv_2d(vvc<mint>\
     \ F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0] != mint(0));\n\n  auto\
     \ ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n    FOR(j, len(F[0])) {\n\
@@ -348,24 +348,24 @@ data:
     \ = 0;\n      ntt(f[i], false);\n      FOR(j, W) G[i][j] -= f[i][j];\n    }\n\
     \    H *= 2;\n  }\n\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n\
     \  return G;\n}\n"
-  code: "#include \"poly/fps_inv.hpp\"\n\ntemplate <typename mint>\nvvc<mint> fps_inv_2d(vvc<mint>\
-    \ F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0] != mint(0));\n\n  auto\
-    \ ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n    FOR(j, len(F[0])) {\n\
-    \      vc<mint> f(len(F));\n      FOR(i, len(F)) f[i] = F[i][j];\n      ntt(f,\
-    \ inverse);\n      FOR(i, len(F)) F[i][j] = f[i];\n    }\n  };\n\n  int W = 1;\n\
-    \  while (W < 2 * len(F[0])) W *= 2;\n\n  FOR(i, n) F[i].resize(W);\n  vv(mint,\
-    \ G, n, W);\n\n  G[0] = fps_inv(F[0]);\n  G[0].resize(W);\n  FOR(j, m, W) G[0][j]\
-    \ = 0;\n\n  FOR(i, n) ntt(F[i], false);\n  ntt(G[0], false);\n\n  int H = 1;\n\
-    \  while (H < n) {\n    vv(mint, f, 2 * H, W);\n    vv(mint, g, 2 * H, W);\n \
-    \   FOR(i, min(n, 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n    FOR(i, H) FOR(j, W)\
-    \ g[i][j] = G[i][j];\n\n    ntt_x(f, false), ntt_x(g, false);\n    FOR(i, 2 *\
-    \ H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\n    FOR(i, H, 2 * H)\
-    \ ntt(f[i], true);\n    FOR(i, H) FOR(j, W) f[i][j] = 0;\n    FOR(i, H, 2 * H)\
-    \ FOR(j, m, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i], false);\n\n    ntt_x(f,\
-    \ false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\
-    \n    FOR(i, H, min(n, 2 * H)) {\n      ntt(f[i], true);\n      FOR(j, m, W) f[i][j]\
-    \ = 0;\n      ntt(f[i], false);\n      FOR(j, W) G[i][j] -= f[i][j];\n    }\n\
-    \    H *= 2;\n  }\n\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n\
+  code: "#pragma once\n\n#include \"poly/fps_inv.hpp\"\n\ntemplate <typename mint>\n\
+    vvc<mint> fps_inv_2d(vvc<mint> F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0]\
+    \ != mint(0));\n\n  auto ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n \
+    \   FOR(j, len(F[0])) {\n      vc<mint> f(len(F));\n      FOR(i, len(F)) f[i]\
+    \ = F[i][j];\n      ntt(f, inverse);\n      FOR(i, len(F)) F[i][j] = f[i];\n \
+    \   }\n  };\n\n  int W = 1;\n  while (W < 2 * len(F[0])) W *= 2;\n\n  FOR(i, n)\
+    \ F[i].resize(W);\n  vv(mint, G, n, W);\n\n  G[0] = fps_inv(F[0]);\n  G[0].resize(W);\n\
+    \  FOR(j, m, W) G[0][j] = 0;\n\n  FOR(i, n) ntt(F[i], false);\n  ntt(G[0], false);\n\
+    \n  int H = 1;\n  while (H < n) {\n    vv(mint, f, 2 * H, W);\n    vv(mint, g,\
+    \ 2 * H, W);\n    FOR(i, min(n, 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n    FOR(i,\
+    \ H) FOR(j, W) g[i][j] = G[i][j];\n\n    ntt_x(f, false), ntt_x(g, false);\n \
+    \   FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\n    FOR(i,\
+    \ H, 2 * H) ntt(f[i], true);\n    FOR(i, H) FOR(j, W) f[i][j] = 0;\n    FOR(i,\
+    \ H, 2 * H) FOR(j, m, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i], false);\n\
+    \n    ntt_x(f, false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f,\
+    \ true);\n\n    FOR(i, H, min(n, 2 * H)) {\n      ntt(f[i], true);\n      FOR(j,\
+    \ m, W) f[i][j] = 0;\n      ntt(f[i], false);\n      FOR(j, W) G[i][j] -= f[i][j];\n\
+    \    }\n    H *= 2;\n  }\n\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n\
     \  return G;\n}"
   dependsOn:
   - poly/fps_inv.hpp
@@ -383,8 +383,8 @@ data:
   requiredBy:
   - poly/2d/fps_exp_2d.hpp
   - poly/2d/fps_log_2d.hpp
-  timestamp: '2026-05-06 14:14:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-05-06 19:44:12+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/fps_inv_2d.test.cpp
