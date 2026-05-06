@@ -57,6 +57,12 @@ data:
     path: poly/2d/compositional_inverse_2d.hpp
     title: poly/2d/compositional_inverse_2d.hpp
   - icon: ':x:'
+    path: poly/2d/fps_exp_2d.hpp
+    title: poly/2d/fps_exp_2d.hpp
+  - icon: ':x:'
+    path: poly/2d/fps_log_2d.hpp
+    title: poly/2d/fps_log_2d.hpp
+  - icon: ':x:'
     path: poly/2d/fps_pow_1_2d.hpp
     title: poly/2d/fps_pow_1_2d.hpp
   - icon: ':x:'
@@ -117,6 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_strong.test.cpp
     title: test/1_mytest/count_labeled_strong.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/fps_exp_2d.test.cpp
+    title: test/1_mytest/fps_exp_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
@@ -553,7 +562,9 @@ data:
   - poly/fps_sqrt.hpp
   - poly/fps_pow.hpp
   - poly/2d/compositional_inverse_2d.hpp
+  - poly/2d/fps_exp_2d.hpp
   - poly/2d/fps_pow_1_2d.hpp
+  - poly/2d/fps_log_2d.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/compositional_inverse.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
@@ -596,6 +607,7 @@ data:
   - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/count_labeled_strong.test.cpp
   - test/1_mytest/count_bipartite.test.cpp

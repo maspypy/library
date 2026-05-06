@@ -17,6 +17,12 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: poly/2d/convolution2d.hpp
+    title: poly/2d/convolution2d.hpp
+  - icon: ':question:'
+    path: poly/2d/fps_inv_2d.hpp
+    title: poly/2d/fps_inv_2d.hpp
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':question:'
@@ -37,9 +43,6 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/geometric_sequence_sum_formula.hpp
-    title: seq/geometric_sequence_sum_formula.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -50,32 +53,31 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/geometric_sequence_sum_formula.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n//\
-    \ \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\
-    \u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\n// #pragma GCC target(\"\
-    avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
-    \ <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
-    \ = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\n\
-    template <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128\
-    \ infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr\
-    \ double infty<double> = numeric_limits<double>::infinity();\ntemplate <>\nconstexpr\
-    \ long double infty<long double> =\n    numeric_limits<long double>::infinity();\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+  bundledCode: "#line 1 \"test/1_mytest/fps_inv_2d.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\
+    \u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\
+    \u6642\u30A8\u30E9\u30FC\n// #pragma GCC target(\"avx2,popcnt\")\n#endif\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 =\
+    \ uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
+    using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ numeric_limits<double>::infinity();\ntemplate <>\nconstexpr long double infty<long\
+    \ double> =\n    numeric_limits<long double>::infinity();\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -157,11 +159,14 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 4 \"test/1_mytest/geometric_sequence_sum_formula.test.cpp\"\
-    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/fps_inv_2d.test.cpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
     \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
     \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
@@ -237,52 +242,48 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\
-    \nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i]\
-    \ != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"poly/convolution.hpp\"\n\r\n\
-    #line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n//\
-    \ (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\
-    \u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\
-    \r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
-    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
-    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
-    #line 2 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32\
-    \ mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res = res *\
-    \ a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename\
-    \ T, u32 p0, u32 p1>\nT CRT2(u64 a0, u64 a1) {\n  static_assert(p0 < p1);\n  static\
-    \ constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  u64 c = (a1 - a0\
-    \ + p1) * x0_1 % p1;\n  return a0 + c * p0;\n}\n\ntemplate <typename T, u32 p0,\
-    \ u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0 < p1 &&\
-    \ p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n\
-    \  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n\
-    \  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n\
-    \  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  return\
-    \ T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2,\
-    \ u32 p3>\nT CRT4(u64 a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0 < p1 &&\
-    \ p1 < p2 && p2 < p3);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
-    \ 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2\
-    \ - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 *\
-    \ p2 % p3, p3 - 2, p3);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c =\
-    \ (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2\
-    \ + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c =\
-    \ (a3 - ans_2 % p3 + p3) * x3 % p3;\n  return T(ans_2) + T(c) * T(p01) * T(p2);\n\
-    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64\
-    \ a0, u64 a1, u64 a2, u64 a3, u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 &&\
-    \ p2 < p3 && p3 < p4);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
-    \ 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2\
-    \ - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 *\
-    \ p2 % p3, p3 - 2, p3);\n  static constexpr u64 x4 = mod_pow_constexpr(u64(p0)\
-    \ * p1 % p4 * p2 % p4 * p3 % p4, p4 - 2, p4);\n  static constexpr u64 p01 = u64(p0)\
-    \ * p1;\n  static constexpr u64 p23 = u64(p2) * p3;\n  u64 c = (a1 - a0 + p1)\
-    \ * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 %\
-    \ p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3\
-    \ - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c *\
-    \ p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 + p4) * x4 % p4;\n  return\
-    \ T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 2 \"poly/convolution_naive.hpp\"\
+    #line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
+    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
+    \n  return t;\r\n}\n#line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/mod_inv.hpp\"\
+    \n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\
+    \u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B\
+    \ mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod)\
+    \ {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if\
+    \ (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while\
+    \ (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\
+    \n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"mod/crt3.hpp\"\
+    \n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n  u64\
+    \ res = 1;\n  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a * a %\
+    \ mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32 p1>\n\
+    T CRT2(u64 a0, u64 a1) {\n  static_assert(p0 < p1);\n  static constexpr u64 x0_1\
+    \ = mod_pow_constexpr(p0, p1 - 2, p1);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n\
+    \  return a0 + c * p0;\n}\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2>\nT\
+    \ CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0 < p1 && p1 < p2);\n  static\
+    \ constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr u64\
+    \ x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr u64\
+    \ p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 +\
+    \ c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  return T(ans_1) + T(c) *\
+    \ T(p01);\n}\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2, u32 p3>\nT CRT4(u64\
+    \ a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0 < p1 && p1 < p2 && p2 < p3);\n\
+    \  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr\
+    \ u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr\
+    \ u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 * p2 % p3, p3 - 2, p3);\n  static\
+    \ constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n  u64\
+    \ ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  u128 ans_2\
+    \ = ans_1 + c * static_cast<u128>(p01);\n  c = (a3 - ans_2 % p3 + p3) * x3 % p3;\n\
+    \  return T(ans_2) + T(c) * T(p01) * T(p2);\n}\n\ntemplate <typename T, u32 p0,\
+    \ u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64 a0, u64 a1, u64 a2, u64 a3, u64\
+    \ a4) {\n  static_assert(p0 < p1 && p1 < p2 && p2 < p3 && p3 < p4);\n  static\
+    \ constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr u64\
+    \ x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr u64\
+    \ x3 = mod_pow_constexpr(u64(p0) * p1 % p3 * p2 % p3, p3 - 2, p3);\n  static constexpr\
+    \ u64 x4 = mod_pow_constexpr(u64(p0) * p1 % p4 * p2 % p4 * p3 % p4, p4 - 2, p4);\n\
+    \  static constexpr u64 p01 = u64(p0) * p1;\n  static constexpr u64 p23 = u64(p2)\
+    \ * p3;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c\
+    \ = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n\
+    \  c = static_cast<u64>(a3 - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2\
+    \ + static_cast<u128>(c * p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 +\
+    \ p4) * x4 % p4;\n  return T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 2 \"poly/convolution_naive.hpp\"\
     \n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
     \nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()),\
     \ m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b, a);\r\n  if\
@@ -440,37 +441,66 @@ data:
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
-    \ \"seq/geometric_sequence_sum_formula.hpp\"\n\n// r != 1 \u3068\u3059\u308B.\
-    \ sum_{i=0}^{n-1}i^kr^i = c + r^n f(n) \u3068\u66F8\u3051\u308B. return : c, f\n\
-    // https://codeforces.com/contest/1677/problem/F\ntemplate <typename mint>\npair<mint,\
-    \ vc<mint>> geometric_sequence_sum_formula(mint r, int K) {\n  assert(r != 1);\n\
-    \  vc<mint> F(K + 1);\n  F[0] = 1;\n  FOR(i, K + 1) F[i] -= r * fact_inv<mint>(i);\n\
-    \  F = fps_inv<mint>(F);\n  mint c = F[K] * fact<mint>(K);\n  reverse(all(F));\n\
-    \  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k) * fact<mint>(K);\n  return {c, F};\n\
-    }\n#line 8 \"test/1_mytest/geometric_sequence_sum_formula.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid test(int K) {\n  FOR(r, 1000) {\n    if (r == 1) continue;\n\
-    \    auto [c, f] = geometric_sequence_sum_formula<mint>(r, K);\n    mint god =\
-    \ 0;\n    FOR(N, 1000) {\n      mint ans = 0;\n      FOR(i, len(f)) ans += f[i]\
-    \ * mint(N).pow(i);\n      ans *= mint(r).pow(N);\n      ans += c;\n      assert(god\
-    \ == ans);\n      god += mint(r).pow(N) * mint(N).pow(K);\n    }\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(K, 10) test(K);\n  solve();\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\
-    \n#include \"seq/geometric_sequence_sum_formula.hpp\"\n\nusing mint = modint998;\n\
-    \nvoid test(int K) {\n  FOR(r, 1000) {\n    if (r == 1) continue;\n    auto [c,\
-    \ f] = geometric_sequence_sum_formula<mint>(r, K);\n    mint god = 0;\n    FOR(N,\
-    \ 1000) {\n      mint ans = 0;\n      FOR(i, len(f)) ans += f[i] * mint(N).pow(i);\n\
-    \      ans *= mint(r).pow(N);\n      ans += c;\n      assert(god == ans);\n  \
-    \    god += mint(r).pow(N) * mint(N).pow(K);\n    }\n  }\n}\n\nvoid solve() {\n\
-    \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(K, 10) test(K);\n  solve();\n}\n"
+    \ \"poly/2d/fps_inv_2d.hpp\"\n\ntemplate <typename mint>\nvvc<mint> fps_inv_2d(vvc<mint>\
+    \ F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0] != mint(0));\n\n  auto\
+    \ ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n    FOR(j, len(F[0])) {\n\
+    \      vc<mint> f(len(F));\n      FOR(i, len(F)) f[i] = F[i][j];\n      ntt(f,\
+    \ inverse);\n      FOR(i, len(F)) F[i][j] = f[i];\n    }\n  };\n\n  int W = 1;\n\
+    \  while (W < 2 * len(F[0])) W *= 2;\n\n  FOR(i, n) F[i].resize(W);\n  vv(mint,\
+    \ G, n, W);\n\n  G[0] = fps_inv(F[0]);\n  G[0].resize(W);\n  FOR(j, m, W) G[0][j]\
+    \ = 0;\n\n  FOR(i, n) ntt(F[i], false);\n  ntt(G[0], false);\n\n  int H = 1;\n\
+    \  while (H < n) {\n    vv(mint, f, 2 * H, W);\n    vv(mint, g, 2 * H, W);\n \
+    \   FOR(i, min(n, 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n    FOR(i, H) FOR(j, W)\
+    \ g[i][j] = G[i][j];\n\n    ntt_x(f, false), ntt_x(g, false);\n    FOR(i, 2 *\
+    \ H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\n    FOR(i, H, 2 * H)\
+    \ ntt(f[i], true);\n    FOR(i, H) FOR(j, W) f[i][j] = 0;\n    FOR(i, H, 2 * H)\
+    \ FOR(j, m, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i], false);\n\n    ntt_x(f,\
+    \ false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\
+    \n    FOR(i, H, min(n, 2 * H)) {\n      ntt(f[i], true);\n      FOR(j, m, W) f[i][j]\
+    \ = 0;\n      ntt(f[i], false);\n      FOR(j, W) G[i][j] -= f[i][j];\n    }\n\
+    \    H *= 2;\n  }\n\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n\
+    \  return G;\n}\n#line 2 \"poly/2d/convolution2d.hpp\"\n\r\n#line 4 \"poly/2d/convolution2d.hpp\"\
+    \n\r\ntemplate <typename T>\r\nvc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>&\
+    \ g, bool truncate = false) {\r\n  auto shape = [&](vc<vc<T>>& f) -> pi {\r\n\
+    \    ll H = len(f);\r\n    ll W = (H == 0 ? 0 : len(f[0]));\r\n    return {H,\
+    \ W};\r\n  };\r\n  auto [H1, W1] = shape(f);\r\n  auto [H2, W2] = shape(g);\r\n\
+    \  ll H = H1 + H2 - 1;\r\n  ll W = W1 + W2 - 1;\r\n\r\n  vc<T> ff(H1 * W);\r\n\
+    \  vc<T> gg(H2 * W);\r\n  FOR(x, H1) FOR(y, W1) ff[W * x + y] = f[x][y];\r\n \
+    \ FOR(x, H2) FOR(y, W2) gg[W * x + y] = g[x][y];\r\n  auto hh = convolution(ff,\
+    \ gg);\r\n  int N = H, M = W;\r\n  if (truncate) {\r\n    assert(H1 == H2 && W1\
+    \ == W2);\r\n    N = H1, M = W1;\r\n  }\r\n  vc<vc<T>> h(N, vc<T>(M));\r\n  FOR(x,\
+    \ N) FOR(y, M) h[x][y] = hh[W * x + y];\r\n  return h;\r\n}\r\n#line 8 \"test/1_mytest/fps_inv_2d.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  auto gen = [&](ll H, ll W) ->\
+    \ vvc<mint> {\n    vv(mint, F, H, W);\n    FOR(i, H) FOR(j, W) F[i][j] = RNG(mint::get_mod());\n\
+    \    if (F[0][0] == mint(0)) F[0][0] = mint(1);\n    return F;\n  };\n\n  auto\
+    \ check = [&](ll H, ll W) -> void {\n    auto F = gen(H, W);\n    auto G = fps_inv_2d<mint>(F);\n\
+    \    auto C = convolution2d<mint>(F, G, true);\n\n    FOR(i, H) FOR(j, W) {\n\
+    \      mint expected = (i == 0 && j == 0 ? mint(1) : mint(0));\n      assert(C[i][j]\
+    \ == expected);\n    }\n  };\n\n  FOR(H, 1, 20) FOR(W, 1, 20) { FOR(100) check(H,\
+    \ W); }\n\n  FOR(100) {\n    ll H = RNG(1, 500);\n    ll W = RNG(1, 500);\n  \
+    \  check(H, W);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\n#include \"poly/2d/fps_inv_2d.hpp\"\
+    \n#include \"poly/2d/convolution2d.hpp\"\n\nusing mint = modint998;\n\nvoid test()\
+    \ {\n  auto gen = [&](ll H, ll W) -> vvc<mint> {\n    vv(mint, F, H, W);\n   \
+    \ FOR(i, H) FOR(j, W) F[i][j] = RNG(mint::get_mod());\n    if (F[0][0] == mint(0))\
+    \ F[0][0] = mint(1);\n    return F;\n  };\n\n  auto check = [&](ll H, ll W) ->\
+    \ void {\n    auto F = gen(H, W);\n    auto G = fps_inv_2d<mint>(F);\n    auto\
+    \ C = convolution2d<mint>(F, G, true);\n\n    FOR(i, H) FOR(j, W) {\n      mint\
+    \ expected = (i == 0 && j == 0 ? mint(1) : mint(0));\n      assert(C[i][j] ==\
+    \ expected);\n    }\n  };\n\n  FOR(H, 1, 20) FOR(W, 1, 20) { FOR(100) check(H,\
+    \ W); }\n\n  FOR(100) {\n    ll H = RNG(1, 500);\n    ll W = RNG(1, 500);\n  \
+    \  check(H, W);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
+  - random/base.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - random/base.hpp
-  - seq/geometric_sequence_sum_formula.hpp
+  - poly/2d/fps_inv_2d.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
   - poly/convolution.hpp
@@ -479,16 +509,17 @@ data:
   - poly/convolution_naive.hpp
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
+  - poly/2d/convolution2d.hpp
   isVerificationFile: true
-  path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
+  path: test/1_mytest/fps_inv_2d.test.cpp
   requiredBy: []
-  timestamp: '2026-05-06 12:56:05+09:00'
+  timestamp: '2026-05-06 14:14:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/1_mytest/geometric_sequence_sum_formula.test.cpp
+documentation_of: test/1_mytest/fps_inv_2d.test.cpp
 layout: document
 redirect_from:
-- /verify/test/1_mytest/geometric_sequence_sum_formula.test.cpp
-- /verify/test/1_mytest/geometric_sequence_sum_formula.test.cpp.html
-title: test/1_mytest/geometric_sequence_sum_formula.test.cpp
+- /verify/test/1_mytest/fps_inv_2d.test.cpp
+- /verify/test/1_mytest/fps_inv_2d.test.cpp.html
+title: test/1_mytest/fps_inv_2d.test.cpp
 ---

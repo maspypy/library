@@ -8,10 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: bigint/binary.hpp
     title: bigint/binary.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial.hpp
     title: convex/lattice_point_sum_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
   - icon: ':x:'
@@ -131,16 +131,16 @@ data:
   - icon: ':warning:'
     path: poly/2d/compositional_inverse_2d.hpp
     title: poly/2d/compositional_inverse_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/2d/convolution2d.hpp
     title: poly/2d/convolution2d.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: poly/2d/fps_exp_2d.hpp
     title: poly/2d/fps_exp_2d.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: poly/2d/fps_inv_2d.hpp
     title: poly/2d/fps_inv_2d.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: poly/2d/fps_log_2d.hpp
     title: poly/2d/fps_log_2d.hpp
   - icon: ':x:'
@@ -350,7 +350,7 @@ data:
   - icon: ':question:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/faulhaber.hpp
     title: seq/famous/faulhaber.hpp
   - icon: ':x:'
@@ -374,7 +374,7 @@ data:
   - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/geometric_sequence_sum_formula.hpp
     title: seq/geometric_sequence_sum_formula.hpp
   - icon: ':x:'
@@ -531,6 +531,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
     title: test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/fps_exp_2d.test.cpp
+    title: test/1_mytest/fps_exp_2d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/fps_inv_2d.test.cpp
+    title: test/1_mytest/fps_inv_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum.test.cpp
     title: test/1_mytest/geometric_sequence_sum.test.cpp
@@ -540,10 +546,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - icon: ':x:'
@@ -1870,11 +1876,13 @@ data:
   - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/rbst_monoid_2.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
+  - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
   - test/1_mytest/count_unbordered_string.test.cpp
   - test/1_mytest/factorial_998.test.cpp
   - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/bell.test.cpp
+  - test/1_mytest/fps_inv_2d.test.cpp
   - test/1_mytest/splay_monoid.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/rect_add_pt_sum.test.cpp

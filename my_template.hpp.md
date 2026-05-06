@@ -279,6 +279,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/four_square.test.cpp
     title: test/1_mytest/four_square.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/fps_exp_2d.test.cpp
+    title: test/1_mytest/fps_exp_2d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/fps_inv_2d.test.cpp
+    title: test/1_mytest/fps_inv_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum.test.cpp
     title: test/1_mytest/geometric_sequence_sum.test.cpp
@@ -303,31 +309,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/index_compression.test.cpp
     title: test/1_mytest/index_compression.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/is_substring.test.cpp
     title: test/1_mytest/is_substring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_am.test.cpp
     title: test/1_mytest/kdtree_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_monoid.test.cpp
     title: test/1_mytest/kdtree_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_nns.test.cpp
     title: test/1_mytest/kdtree_nns.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/kinetic.test.cpp
     title: test/1_mytest/kinetic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/knight_distance.test.cpp
     title: test/1_mytest/knight_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
   - icon: ':x:'
@@ -3463,6 +3469,7 @@ data:
   - test/1_mytest/31bit_modint.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
+  - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
   - test/1_mytest/three_square.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
@@ -3480,6 +3487,7 @@ data:
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
+  - test/1_mytest/fps_inv_2d.test.cpp
   - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/splay_monoid.test.cpp

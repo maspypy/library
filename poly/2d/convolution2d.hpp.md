@@ -26,16 +26,25 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: poly/2d/fps_exp_2d.hpp
+    title: poly/2d/fps_exp_2d.hpp
+  - icon: ':x:'
     path: poly/2d/fps_log_2d.hpp
     title: poly/2d/fps_log_2d.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/conv2d.test.cpp
     title: test/1_mytest/conv2d.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/1_mytest/fps_exp_2d.test.cpp
+    title: test/1_mytest/fps_exp_2d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/fps_inv_2d.test.cpp
+    title: test/1_mytest/fps_inv_2d.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/2d/convolution2d.hpp\"\n\r\n#line 2 \"poly/convolution.hpp\"\
@@ -325,11 +334,14 @@ data:
   isVerificationFile: false
   path: poly/2d/convolution2d.hpp
   requiredBy:
+  - poly/2d/fps_exp_2d.hpp
   - poly/2d/fps_log_2d.hpp
   timestamp: '2026-04-05 00:48:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/conv2d.test.cpp
+  - test/1_mytest/fps_inv_2d.test.cpp
 documentation_of: poly/2d/convolution2d.hpp
 layout: document
 redirect_from:

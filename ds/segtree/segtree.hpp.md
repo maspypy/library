@@ -38,7 +38,7 @@ data:
   - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
   - icon: ':x:'
@@ -56,7 +56,7 @@ data:
   - icon: ':warning:'
     path: string/substring_shortest_border.hpp
     title: string/substring_shortest_border.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':x:'
@@ -66,7 +66,7 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
   - icon: ':x:'
@@ -191,7 +191,7 @@ data:
     title: test/4_aoj/ITP2_3_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -310,7 +310,7 @@ data:
   - ds/rmq/range_add_range_maxidx.hpp
   - ds/rmq/range_add_range_min.hpp
   timestamp: '2026-04-13 17:55:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/2_library_checker/string/suffix_array.test.cpp

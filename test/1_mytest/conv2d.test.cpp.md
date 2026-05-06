@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/2d/convolution2d.hpp
     title: poly/2d/convolution2d.hpp
   - icon: ':question:'

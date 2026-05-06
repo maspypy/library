@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/2d/convolution2d.hpp
     title: poly/2d/convolution2d.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: poly/2d/fps_inv_2d.hpp
     title: poly/2d/fps_inv_2d.hpp
   - icon: ':question:'
@@ -35,13 +35,22 @@ data:
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
+    path: poly/fps_log.hpp
+    title: poly/fps_log.hpp
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: poly/2d/fps_exp_2d.hpp
+    title: poly/2d/fps_exp_2d.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/1_mytest/fps_exp_2d.test.cpp
+    title: test/1_mytest/fps_exp_2d.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/2d/convolution2d.hpp\"\n\r\n#line 2 \"poly/convolution.hpp\"\
@@ -333,51 +342,53 @@ data:
     \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0]\
     \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
     \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 2 \"poly/2d/fps_inv_2d.hpp\"\n\n// \u6CE8\u610F (H+W)^2log(H+W) \u6642\
-    \u9593\u306B\u306A\u3063\u3066\u3044\u308B\u306E\u3067\u6B63\u65B9\u5F62\u3058\
-    \u3083\u306A\u3044\u3068\u30C0\u30E1\u306A\u3055\u307C\u308A\u5B9F\u88C5\ntemplate\
-    \ <typename mint>\nvvc<mint> fps_inv_2d(vvc<mint> F) {\n  int N = len(F) - 1,\
-    \ M = len(F[0]) - 1;\n  int L = 1;\n  while (L < N + M + 1) L *= 2;\n\n  vv(mint,\
-    \ F1, L, N + M + 1);\n  FOR(i, N + 1) FOR(j, M + 1) F1[i][i + j] = F[i][j];\n\n\
-    \  FOR(j, N + M + 1) {\n    vc<mint> f(L);\n    FOR(i, L) f[i] = F1[i][j];\n \
-    \   ntt(f, false);\n    FOR(i, L) F1[i][j] = f[i];\n  }\n  FOR(i, L) F1[i] = fps_inv<mint>(F1[i]);\n\
-    \  FOR(j, N + M + 1) {\n    vc<mint> f(L);\n    FOR(i, L) f[i] = F1[i][j];\n \
-    \   ntt(f, true);\n    FOR(i, L) F1[i][j] = f[i];\n  }\n  FOR(i, N + 1) FOR(j,\
-    \ M + 1) F[i][j] = F1[i][i + j];\n  return F;\n}\n\n// template <typename mint>\n\
-    // vvc<mint> fps_inv_2d(vvc<mint> F) {\n//   // \u3068\u308A\u3042\u3048\u305A\
-    \u3053\u308C\u306F\u30D0\u30B0\u3063\u3066\u308B\u3063\u307D\u3044\uFF57\uFF57\
-    \uFF57\n//   int n = len(F), m = len(F[0]);\n//   assert(F[0][0] != mint(0));\n\
-    \n//   auto ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n//     // FOR(i,\
-    \ len(F)) ntt(F[i], inverse);\n//     FOR(j, len(F[0])) {\n//       vc<mint> f(len(F));\n\
-    //       FOR(i, len(F)) f[i] = F[i][j];\n//       ntt(f, inverse);\n//       FOR(i,\
-    \ len(F)) F[i][j] = f[i];\n//     }\n//     return;\n//   };\n\n//   int W = 1;\n\
-    //   while (W < 2 * len(F[0])) W *= 2;\n\n//   FOR(i, n) F[i].resize(W);\n// \
-    \  vv(mint, G, n, W);\n//   G[0] = fps_inv(F[0]);\n\n//   FOR(i, n) ntt(F[i],\
-    \ false);\n//   ntt(G[0], false);\n\n//   int H = 1;\n//   while (H < n) {\n//\
-    \     vv(mint, f, 2 * H, W);\n//     vv(mint, g, 2 * H, W);\n//     FOR(i, min(n,\
-    \ 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n//     FOR(i, H) FOR(j, W) g[i][j] = G[i][j];\n\
-    //     ntt_x(f, false), ntt_x(g, false);\n//     FOR(i, 2 * H) FOR(j, W) f[i][j]\
-    \ *= g[i][j];\n//     ntt_x(f, true);\n//     FOR(i, H, 2 * H) ntt(f[i], true);\n\
-    //     FOR(i, H) FOR(j, W) f[i][j] = 0;\n//     FOR(i, H, 2 * H) FOR(j, m, W)\
-    \ f[i][j] = 0;\n//     FOR(i, H, 2 * H) ntt(f[i], false);\n//     ntt_x(f, false);\n\
-    //     FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n//     ntt_x(f, true);\n//\
-    \     FOR(i, H, min(n, 2 * H)) {\n//       ntt(f[i], true);\n//       FOR(j, m,\
-    \ W) f[i][j] = 0;\n//       ntt(f[i], false);\n//       FOR(j, W) { G[i][j] -=\
-    \ f[i][j]; }\n//     }\n//     H *= 2;\n//   }\n//   FOR(i, n) ntt(G[i], true);\n\
-    //   FOR(i, n) G[i].resize(m);\n//   return G;\n// }\n#line 3 \"poly/2d/fps_log_2d.hpp\"\
-    \n\ntemplate <typename T>\nvvc<T> fps_log_2d(vvc<T> F) {\n  assert(F[0][0] ==\
-    \ 1);\n  // G = log F, G'=F'/F.\n  int N = len(F), M = len(F[0]);\n  vvc<T> DF(N,\
-    \ vc<T>(M));\n  FOR(i, N - 1) FOR(j, M) DF[i][j] = F[i + 1][j] * (i + 1);\n  auto\
-    \ IF = fps_inv_2d(F);\n  vvc<T> DG = convolution2d(DF, IF, true);\n  vv(T, G,\
-    \ N, M);\n  FOR(i, 1, N) FOR(j, M) G[i][j] = DG[i - 1][j] / i;\n  G[0] = fps_log<T>(F[0]);\n\
-    \  return G;\n}\n"
+    \n}\r\n#line 2 \"poly/2d/fps_inv_2d.hpp\"\n\ntemplate <typename mint>\nvvc<mint>\
+    \ fps_inv_2d(vvc<mint> F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0]\
+    \ != mint(0));\n\n  auto ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n \
+    \   FOR(j, len(F[0])) {\n      vc<mint> f(len(F));\n      FOR(i, len(F)) f[i]\
+    \ = F[i][j];\n      ntt(f, inverse);\n      FOR(i, len(F)) F[i][j] = f[i];\n \
+    \   }\n  };\n\n  int W = 1;\n  while (W < 2 * len(F[0])) W *= 2;\n\n  FOR(i, n)\
+    \ F[i].resize(W);\n  vv(mint, G, n, W);\n\n  G[0] = fps_inv(F[0]);\n  G[0].resize(W);\n\
+    \  FOR(j, m, W) G[0][j] = 0;\n\n  FOR(i, n) ntt(F[i], false);\n  ntt(G[0], false);\n\
+    \n  int H = 1;\n  while (H < n) {\n    vv(mint, f, 2 * H, W);\n    vv(mint, g,\
+    \ 2 * H, W);\n    FOR(i, min(n, 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n    FOR(i,\
+    \ H) FOR(j, W) g[i][j] = G[i][j];\n\n    ntt_x(f, false), ntt_x(g, false);\n \
+    \   FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\n    FOR(i,\
+    \ H, 2 * H) ntt(f[i], true);\n    FOR(i, H) FOR(j, W) f[i][j] = 0;\n    FOR(i,\
+    \ H, 2 * H) FOR(j, m, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i], false);\n\
+    \n    ntt_x(f, false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f,\
+    \ true);\n\n    FOR(i, H, min(n, 2 * H)) {\n      ntt(f[i], true);\n      FOR(j,\
+    \ m, W) f[i][j] = 0;\n      ntt(f[i], false);\n      FOR(j, W) G[i][j] -= f[i][j];\n\
+    \    }\n    H *= 2;\n  }\n\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n\
+    \  return G;\n}\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 5 \"poly/fps_log.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_log_dense(const vc<mint>& f) {\r\
+    \n  assert(f[0] == mint(1));\r\n  ll N = len(f);\r\n  vc<mint> df = f;\r\n  FOR(i,\
+    \ N) df[i] *= mint(i);\r\n  df.erase(df.begin());\r\n  auto f_inv = fps_inv(f);\r\
+    \n  auto g = convolution(df, f_inv);\r\n  g.resize(N - 1);\r\n  g.insert(g.begin(),\
+    \ 0);\r\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\r\n  return g;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_log_sparse(const vc<mint>& f) {\r\n  int N =\
+    \ f.size();\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0))\
+    \ dat.eb(i, f[i]);\r\n  vc<mint> F(N);\r\n  vc<mint> g(N - 1);\r\n  for (int n\
+    \ = 0; n < N - 1; ++n) {\r\n    mint rhs = mint(n + 1) * f[n + 1];\r\n    for\
+    \ (auto&& [i, fi] : dat) {\r\n      if (i > n) break;\r\n      rhs -= fi * g[n\
+    \ - i];\r\n    }\r\n    g[n] = rhs;\r\n    F[n + 1] = rhs * inv<mint>(n + 1);\r\
+    \n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_log(const\
+    \ vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int n = count_terms(f);\r\n\
+    \  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return (n <= t ? fps_log_sparse<mint>(f)\
+    \ : fps_log_dense<mint>(f));\r\n}\r\n#line 4 \"poly/2d/fps_log_2d.hpp\"\n\ntemplate\
+    \ <typename T>\nvvc<T> fps_log_2d(vvc<T> F) {\n  assert(F[0][0] == 1);\n  // G\
+    \ = log F, G'=F'/F.\n  int N = len(F), M = len(F[0]);\n  vvc<T> DF(N, vc<T>(M));\n\
+    \  FOR(i, N - 1) FOR(j, M) DF[i][j] = F[i + 1][j] * (i + 1);\n  auto IF = fps_inv_2d(F);\n\
+    \  vvc<T> DG = convolution2d(DF, IF, true);\n  vv(T, G, N, M);\n  FOR(i, 1, N)\
+    \ FOR(j, M) G[i][j] = DG[i - 1][j] / i;\n  G[0] = fps_log<T>(F[0]);\n  return\
+    \ G;\n}\n"
   code: "#include \"poly/2d/convolution2d.hpp\"\n#include \"poly/2d/fps_inv_2d.hpp\"\
-    \n\ntemplate <typename T>\nvvc<T> fps_log_2d(vvc<T> F) {\n  assert(F[0][0] ==\
-    \ 1);\n  // G = log F, G'=F'/F.\n  int N = len(F), M = len(F[0]);\n  vvc<T> DF(N,\
-    \ vc<T>(M));\n  FOR(i, N - 1) FOR(j, M) DF[i][j] = F[i + 1][j] * (i + 1);\n  auto\
-    \ IF = fps_inv_2d(F);\n  vvc<T> DG = convolution2d(DF, IF, true);\n  vv(T, G,\
-    \ N, M);\n  FOR(i, 1, N) FOR(j, M) G[i][j] = DG[i - 1][j] / i;\n  G[0] = fps_log<T>(F[0]);\n\
-    \  return G;\n}\n"
+    \n#include \"poly/fps_log.hpp\"\n\ntemplate <typename T>\nvvc<T> fps_log_2d(vvc<T>\
+    \ F) {\n  assert(F[0][0] == 1);\n  // G = log F, G'=F'/F.\n  int N = len(F), M\
+    \ = len(F[0]);\n  vvc<T> DF(N, vc<T>(M));\n  FOR(i, N - 1) FOR(j, M) DF[i][j]\
+    \ = F[i + 1][j] * (i + 1);\n  auto IF = fps_inv_2d(F);\n  vvc<T> DG = convolution2d(DF,\
+    \ IF, true);\n  vv(T, G, N, M);\n  FOR(i, 1, N) FOR(j, M) G[i][j] = DG[i - 1][j]\
+    \ / i;\n  G[0] = fps_log<T>(F[0]);\n  return G;\n}\n"
   dependsOn:
   - poly/2d/convolution2d.hpp
   - poly/convolution.hpp
@@ -391,12 +402,15 @@ data:
   - poly/2d/fps_inv_2d.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
+  - poly/fps_log.hpp
   isVerificationFile: false
   path: poly/2d/fps_log_2d.hpp
-  requiredBy: []
-  timestamp: '2026-04-05 00:48:27+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - poly/2d/fps_exp_2d.hpp
+  timestamp: '2026-05-06 14:39:10+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/1_mytest/fps_exp_2d.test.cpp
 documentation_of: poly/2d/fps_log_2d.hpp
 layout: document
 redirect_from:

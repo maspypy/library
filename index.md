@@ -60,7 +60,7 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/sum_mul.hpp
       title: alg/acted_monoid/sum_mul.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_monoid/summax_add.hpp
       title: alg/acted_monoid/summax_add.hpp
     - icon: ':question:'
@@ -171,7 +171,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/monoid_for_floor_sum.hpp
       title: alg/monoid/monoid_for_floor_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/monoid_for_floor_sum_pq.hpp
       title: alg/monoid/monoid_for_floor_sum_pq.hpp
     - icon: ':x:'
@@ -235,16 +235,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/lattice_point_count.hpp
       title: convex/lattice_point_count.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convex/lattice_point_sum_polynomial.hpp
       title: convex/lattice_point_sum_polynomial.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convex/lattice_point_sum_polynomial_pq.hpp
       title: convex/lattice_point_sum_polynomial_pq.hpp
     - icon: ':x:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convex/line_min_function.hpp
       title: convex/line_min_function.hpp
     - icon: ':warning:'
@@ -391,7 +391,7 @@ data:
     - icon: ':x:'
       path: ds/static_range_frequency.hpp
       title: ds/static_range_frequency.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/static_range_product.hpp
       title: ds/static_range_product.hpp
     - icon: ':x:'
@@ -431,13 +431,13 @@ data:
     - icon: ':x:'
       path: ds/kdtree/dual_kdtree_monoid.hpp
       title: ds/kdtree/dual_kdtree_monoid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/kdtree/kdtree.hpp
       title: ds/kdtree/kdtree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/kdtree/kdtree_acted_monoid.hpp
       title: ds/kdtree/kdtree_acted_monoid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/kdtree/kdtree_monoid.hpp
       title: ds/kdtree/kdtree_monoid.hpp
   - name: ds/monotone
@@ -539,7 +539,7 @@ data:
       title: ds/rmq/suffix_min.hpp
   - name: ds/segtree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_kinetic.hpp
       title: ds/segtree/beats_kinetic.hpp
     - icon: ':warning:'
@@ -593,7 +593,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
     - icon: ':x:'
@@ -602,7 +602,7 @@ data:
     - icon: ':x:'
       path: ds/segtree/segtree_2d_dense.hpp
       title: ds/segtree/segtree_2d_dense.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/segtree/segtree_beats.hpp
       title: ds/segtree/segtree_beats.hpp
     - icon: ':x:'
@@ -613,10 +613,10 @@ data:
       title: ds/segtree/xor_segtree.hpp
   - name: ds/sparse_table
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/sparse_table/disjoint_sparse_table.hpp
       title: ds/sparse_table/disjoint_sparse_table.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/sparse_table/sparse_table.hpp
       title: ds/sparse_table/sparse_table.hpp
     - icon: ':x:'
@@ -1597,7 +1597,7 @@ data:
     - icon: ':question:'
       path: mod/floor_sum_of_linear_polynomial.hpp
       title: mod/floor_sum_of_linear_polynomial.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/floor_sum_of_linear_polynomial_pq.hpp
       title: mod/floor_sum_of_linear_polynomial_pq.hpp
     - icon: ':x:'
@@ -1878,7 +1878,7 @@ data:
     - icon: ':warning:'
       path: other/io_old.hpp
       title: other/io_old.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/knight_distance.hpp
       title: other/knight_distance.hpp
     - icon: ':x:'
@@ -1930,16 +1930,16 @@ data:
     - icon: ':warning:'
       path: poly/2d/compositional_inverse_2d.hpp
       title: poly/2d/compositional_inverse_2d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/2d/convolution2d.hpp
       title: poly/2d/convolution2d.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: poly/2d/fps_exp_2d.hpp
       title: poly/2d/fps_exp_2d.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: poly/2d/fps_inv_2d.hpp
       title: poly/2d/fps_inv_2d.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: poly/2d/fps_log_2d.hpp
       title: poly/2d/fps_log_2d.hpp
     - icon: ':x:'
@@ -2226,7 +2226,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/geometric_sequence_sum.hpp
       title: seq/geometric_sequence_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/geometric_sequence_sum_formula.hpp
       title: seq/geometric_sequence_sum_formula.hpp
     - icon: ':x:'
@@ -2294,7 +2294,7 @@ data:
     - icon: ':question:'
       path: seq/famous/eulerian_number.hpp
       title: seq/famous/eulerian_number.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/faulhaber.hpp
       title: seq/famous/faulhaber.hpp
     - icon: ':x:'
@@ -2435,16 +2435,16 @@ data:
     - icon: ':x:'
       path: string/is_subseq.hpp
       title: string/is_subseq.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/is_substring.hpp
       title: string/is_substring.hpp
     - icon: ':warning:'
       path: string/kmp.hpp
       title: string/kmp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/lex_max_suffix_for_all_prefix.hpp
       title: string/lex_max_suffix_for_all_prefix.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/lex_min_suffix_for_all_prefix.hpp
       title: string/lex_min_suffix_for_all_prefix.hpp
     - icon: ':x:'
@@ -2453,7 +2453,7 @@ data:
     - icon: ':x:'
       path: string/longest_common_substring.hpp
       title: string/longest_common_substring.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/lyndon.hpp
       title: string/lyndon.hpp
     - icon: ':x:'
@@ -2510,7 +2510,7 @@ data:
     - icon: ':warning:'
       path: string/substring_shortest_border.hpp
       title: string/substring_shortest_border.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
     - icon: ':x:'
@@ -2531,7 +2531,7 @@ data:
     - icon: ':x:'
       path: string/wildcard_pattern_matching.hpp
       title: string/wildcard_pattern_matching.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
   - name: test/2_library_checker/convolution
@@ -2806,6 +2806,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/four_square.test.cpp
       title: test/1_mytest/four_square.test.cpp
+    - icon: ':x:'
+      path: test/1_mytest/fps_exp_2d.test.cpp
+      title: test/1_mytest/fps_exp_2d.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/fps_inv_2d.test.cpp
+      title: test/1_mytest/fps_inv_2d.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/geometric_sequence_sum.test.cpp
       title: test/1_mytest/geometric_sequence_sum.test.cpp
@@ -2830,31 +2836,31 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/index_compression.test.cpp
       title: test/1_mytest/index_compression.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/is_substring.test.cpp
       title: test/1_mytest/is_substring.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/kdtree_am.test.cpp
       title: test/1_mytest/kdtree_am.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/kdtree_monoid.test.cpp
       title: test/1_mytest/kdtree_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/kdtree_nns.test.cpp
       title: test/1_mytest/kdtree_nns.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/kinetic.test.cpp
       title: test/1_mytest/kinetic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/knight_distance.test.cpp
       title: test/1_mytest/knight_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
       title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
       title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/lex_minmax_suffix.test.cpp
       title: test/1_mytest/lex_minmax_suffix.test.cpp
     - icon: ':x:'

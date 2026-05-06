@@ -10,16 +10,16 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':question:'
@@ -28,7 +28,7 @@ data:
   - icon: ':x:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []

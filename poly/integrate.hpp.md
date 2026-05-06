@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: poly/2d/compositional_inverse_2d.hpp
     title: poly/2d/compositional_inverse_2d.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: poly/2d/fps_exp_2d.hpp
     title: poly/2d/fps_exp_2d.hpp
   - icon: ':x:'
@@ -96,6 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_forest.test.cpp
     title: test/1_mytest/count_labeled_forest.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/fps_exp_2d.test.cpp
+    title: test/1_mytest/fps_exp_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
@@ -280,6 +283,7 @@ data:
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/bell_number.test.cpp
+  - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/online_exp.test.cpp
   - test/1_mytest/count_bipartite.test.cpp

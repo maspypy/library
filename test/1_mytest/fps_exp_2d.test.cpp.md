@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: ds/segtree/segtree.hpp
-    title: ds/segtree/segtree.hpp
-  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
@@ -20,8 +17,17 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
+    path: poly/2d/convolution2d.hpp
+    title: poly/2d/convolution2d.hpp
+  - icon: ':x:'
+    path: poly/2d/fps_exp_2d.hpp
+    title: poly/2d/fps_exp_2d.hpp
+  - icon: ':question:'
+    path: poly/2d/fps_inv_2d.hpp
+    title: poly/2d/fps_inv_2d.hpp
+  - icon: ':x:'
+    path: poly/2d/fps_log_2d.hpp
+    title: poly/2d/fps_log_2d.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -47,14 +53,14 @@ data:
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':question:'
-    path: poly/fps_pow.hpp
-    title: poly/fps_pow.hpp
-  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -62,34 +68,34 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1549
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/1549
-  bundledCode: "#line 1 \"test/3_yukicoder/1549.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1549\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
-    Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
-    \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
-    \n// #pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\n\
-    using namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
-    \ = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
-    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
-    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
-    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
-    template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
-    \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/1_mytest/fps_exp_2d.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\
+    \u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\
+    \u6642\u30A8\u30E9\u30FC\n// #pragma GCC target(\"avx2,popcnt\")\n#endif\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 =\
+    \ uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
+    using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ numeric_limits<double>::infinity();\ntemplate <>\nconstexpr long double infty<long\
+    \ double> =\n    numeric_limits<long double>::infinity();\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -171,122 +177,14 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n\
-    \r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio {\r\nstatic\
-    \ constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar\
-    \ out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por = 0;\r\
-    \n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n\
-    \    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j\
-    \ = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\
-    \n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n\
-    \  memmove(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf + pir\
-    \ - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\
-    \n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n    if (pil + 1 > pir)\
-    \ load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n}\r\n\r\nvoid\
-    \ rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n    if (pil + 1 >\
-    \ pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n  do {\r\n\
-    \    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\n  } while\
-    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
-    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
-    \ do c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-') {\r\n   \
-    \   minus = 1, c = ibuf[pil++];\r\n    }\r\n  }\r\n  x = 0;\r\n  while ('0' <=\
-    \ c) {\r\n    x = x * 10 + (c & 15), c = ibuf[pil++];\r\n  }\r\n  if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n\
-    \  }\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_integral_v<T> || is_same_v<T,\
-    \ i128> || is_same_v<T, u128>> rd(\r\n    T &x) {\r\n  rd_integer(x);\r\n}\r\n\
-    \r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>>\
-    \ rd(T &x) {\r\n  rd_real(x);\r\n}\r\n\r\ntemplate <class T, class U>\r\nvoid\
-    \ rd(pair<T, U> &p) {\r\n  rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t\
-    \ N = 0, typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < tuple_size<T>::value)\
-    \ {\r\n    auto &x = get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n \
-    \ }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
-    \  for (auto &d : x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
-    \n  for (auto &d : x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H,\
-    \ class... T>\r\nvoid read(H &h, T &...t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\
-    \ninline void wt_range(const char *s, size_t n) {\r\n  size_t i = 0;\r\n  while\
-    \ (i < n) {\r\n    if (por == SZ) flush();\r\n    size_t chunk = min(n - i, (size_t)(SZ\
-    \ - por));\r\n    memcpy(obuf + por, s + i, chunk);\r\n    por += chunk;\r\n \
-    \   i += chunk;\r\n  }\r\n}\r\n\r\nvoid wt(const char c) {\r\n  if (por == SZ)\
-    \ flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const char *s) { wt_range(s,\
-    \ strlen(s)); }\r\nvoid wt(const string &s) { wt_range(s.data(), s.size()); }\r\
-    \n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
-    \ flush();\r\n  if (x < 0) {\r\n    obuf[por++] = '-', x = -x;\r\n  }\r\n  int\
-    \ outi;\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi,\
-    \ pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n\
-    \    memcpy(obuf + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >=\
-    \ 100) {\r\n    memcpy(obuf + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  }\
-    \ else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\
-    \n    obuf[por + 1] = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n   \
-    \ obuf[por++] = x | '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\
-    \n  por += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\ninline void wt_real(T\
-    \ x) {\r\n  static char buf[1000];\r\n  int n = std::snprintf(buf, sizeof(buf),\
-    \ \"%.15f\", (double)x);\r\n  wt_range(buf, (size_t)n);\r\n}\r\n\r\ntemplate <class\
-    \ T>\r\nenable_if_t<is_integral_v<T> || is_same_v<T, i128> || is_same_v<T, u128>>\
-    \ wt(\r\n    T x) {\r\n  wt_integer(x);\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T>\
-    \ || is_same_v<T, f128>> wt(T x) {\r\n  wt_real(x);\r\n}\r\n\r\ninline void wt(bool\
-    \ b) { wt(static_cast<char>('0' + (b ? 1 : 0))); }\r\n\r\ntemplate <class T, class\
-    \ U>\r\nvoid wt(const pair<T, U> &val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
-    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
-    \ T &t) {\r\n  if constexpr (N < tuple_size<T>::value) {\r\n    if constexpr (N\
-    \ > 0) wt(' ');\r\n    wt(get<N>(t));\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\
-    \ntemplate <class... T>\r\nvoid wt(const tuple<T...> &tpl) {\r\n  wt_tuple(tpl);\r\
-    \n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T, S> &val) {\r\n \
-    \ auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt('\
-    \ ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
-    \ &val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
-    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&...tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
-    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n}  // namespace fastio\r\nusing fastio::flush;\r\nusing\
-    \ fastio::print;\r\nusing fastio::read;\r\n\r\n#if defined(LOCAL)\r\n#define HDR\
-    \ \"[DEBUG:\", __func__, __LINE__, \"]\"\r\n#define SHOW(...)                \
-    \                                         \\\r\n  SHOW_IMPL(__VA_ARGS__, SHOW8,\
-    \ SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, \\\r\n            SHOW1)         \
-    \                                               \\\r\n  (__VA_ARGS__)\r\n#define\
-    \ SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME\r\n#define SHOW1(x)\
-    \ print(HDR, #x, \"=\", (x)), flush()\r\n#define SHOW2(x, y) print(HDR, #x, \"\
-    =\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x, y, z) \\\r\n  print(HDR,\
-    \ #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define SHOW4(x,\
-    \ y, z, w) \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
-    \ #w, \"=\", (w)), flush()\r\n#define SHOW5(x, y, z, w, v)                   \
-    \                               \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\",\
-    \ (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n        (v)),        \
-    \                                                         \\\r\n      flush()\r\
-    \n#define SHOW6(x, y, z, w, v, u)                                            \
-    \   \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"\
-    =\", (w), #v, \"=\", \\\r\n        (v), #u, \"=\", (u)),                     \
-    \                              \\\r\n      flush()\r\n#define SHOW7(x, y, z, w,\
-    \ v, u, t)                                            \\\r\n  print(HDR, #x, \"\
-    =\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n  \
-    \      (v), #u, \"=\", (u), #t, \"=\", (t)),                                 \
-    \    \\\r\n      flush()\r\n#define SHOW8(x, y, z, w, v, u, t, s)            \
-    \                             \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y),\
-    \ #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n        (v), #u, \"=\", (u),\
-    \ #t, \"=\", (t), #s, \"=\", (s)),                       \\\r\n      flush()\r\
-    \n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)\
-    \      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/3_yukicoder/1549.test.cpp\"\n\
-    \n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/fps_exp_2d.test.cpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
     \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
     \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
@@ -362,78 +260,33 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
-    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
-    \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n)\
-    \ { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
-    \  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all() const { return\
-    \ {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i]\
-    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n\
-    \    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
-    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
-    \  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n   \
-    \ X vl = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n   \
-    \ while (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R\
-    \ & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return\
-    \ Monoid::op(vl, vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0\
-    \ <= L && L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n \
-    \   while (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n\
-    \      L >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n   \
-    \ return I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class\
-    \ F>\n  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n &&\
-    \ check(Monoid::unit()));\n    if (L == n) return n;\n    L += size;\n    X sm\
-    \ = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm,\
-    \ dat[L]))) {\n        while (L < size) {\n          L = 2 * L;\n          if\
-    \ (check(Monoid::op(sm, dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n\
-    \          }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
-    \ dat[L++]);\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
-    \ F>\n  int min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
-    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
-    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
-    \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
-    \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
-    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r}\
-    \ A[i xor x]\n  X xor_prod(int l, int r, int xor_val) const {\n    static_assert(Monoid::commute);\n\
-    \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
-    \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
-    \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
-    \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 2 \"poly/convolution.hpp\"\n\r\n\
-    #line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n//\
-    \ (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\
-    \u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\
-    \r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
-    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
-    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
-    #line 2 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32\
-    \ mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res = res *\
-    \ a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename\
-    \ T, u32 p0, u32 p1>\nT CRT2(u64 a0, u64 a1) {\n  static_assert(p0 < p1);\n  static\
-    \ constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  u64 c = (a1 - a0\
-    \ + p1) * x0_1 % p1;\n  return a0 + c * p0;\n}\n\ntemplate <typename T, u32 p0,\
-    \ u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0 < p1 &&\
-    \ p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n\
-    \  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n\
-    \  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n\
-    \  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  return\
-    \ T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2,\
-    \ u32 p3>\nT CRT4(u64 a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0 < p1 &&\
-    \ p1 < p2 && p2 < p3);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
-    \ 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2\
-    \ - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 *\
-    \ p2 % p3, p3 - 2, p3);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c =\
-    \ (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2\
-    \ + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c =\
-    \ (a3 - ans_2 % p3 + p3) * x3 % p3;\n  return T(ans_2) + T(c) * T(p01) * T(p2);\n\
+    #line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long\
+    \ \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\
+    \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\
+    \u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod\
+    \ == 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val\
+    \ += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n\
+    \    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if\
+    \ (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"mod/crt3.hpp\"\n\nconstexpr\
+    \ u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n\
+    \  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a * a % mod, n /= 2;\n\
+    \  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32 p1>\nT CRT2(u64 a0,\
+    \ u64 a1) {\n  static_assert(p0 < p1);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  return a0 + c * p0;\n\
+    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64\
+    \ a2) {\n  static_assert(p0 < p1 && p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
+    \ p2 - 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0\
+    \ + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) *\
+    \ x2 % p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32\
+    \ p0, u32 p1, u32 p2, u32 p3>\nT CRT4(u64 a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0\
+    \ < p1 && p1 < p2 && p2 < p3);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
+    \ p2 - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3\
+    \ * p2 % p3, p3 - 2, p3);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c\
+    \ = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 %\
+    \ p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c\
+    \ = (a3 - ans_2 % p3 + p3) * x3 % p3;\n  return T(ans_2) + T(c) * T(p01) * T(p2);\n\
     }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64\
     \ a0, u64 a1, u64 a2, u64 a3, u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 &&\
     \ p2 < p3 && p3 < p4);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
@@ -580,20 +433,20 @@ data:
     \ n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt())\
     \ {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n\
     \    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 2 \"poly/count_terms.hpp\"\
-    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
-    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
-    \ \"poly/integrate.hpp\"\n\n// \u4E0D\u5B9A\u7A4D\u5206\uFF1Aintegrate(f)\n//\
-    \ \u5B9A\u7A4D\u5206\uFF1Aintegrate(f, L, R)\ntemplate <typename mint>\nvc<mint>\
-    \ integrate(const vc<mint>& f) {\n  vc<mint> g(len(f) + 1);\n  FOR3(i, 1, len(g))\
-    \ g[i] = f[i - 1] * inv<mint>(i);\n  return g;\n}\n\n// \u4E0D\u5B9A\u7A4D\u5206\
-    \uFF1Aintegrate(f)\n// \u5B9A\u7A4D\u5206\uFF1Aintegrate(f, L, R)\ntemplate <typename\
-    \ mint>\nmint integrate(const vc<mint>& f, mint L, mint R) {\n  mint I = 0;\n\
-    \  mint pow_L = 1, pow_R = 1;\n  FOR(i, len(f)) {\n    pow_L *= L, pow_R *= R;\n\
-    \    I += inv<mint>(i + 1) * f[i] * (pow_R - pow_L);\n  }\n  return I;\n}\n#line\
-    \ 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint> differentiate(const\
-    \ vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n \
-    \ FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 6 \"poly/fps_exp.hpp\"\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\n#line 2 \"poly/integrate.hpp\"\
+    \n\n// \u4E0D\u5B9A\u7A4D\u5206\uFF1Aintegrate(f)\n// \u5B9A\u7A4D\u5206\uFF1A\
+    integrate(f, L, R)\ntemplate <typename mint>\nvc<mint> integrate(const vc<mint>&\
+    \ f) {\n  vc<mint> g(len(f) + 1);\n  FOR3(i, 1, len(g)) g[i] = f[i - 1] * inv<mint>(i);\n\
+    \  return g;\n}\n\n// \u4E0D\u5B9A\u7A4D\u5206\uFF1Aintegrate(f)\n// \u5B9A\u7A4D\
+    \u5206\uFF1Aintegrate(f, L, R)\ntemplate <typename mint>\nmint integrate(const\
+    \ vc<mint>& f, mint L, mint R) {\n  mint I = 0;\n  mint pow_L = 1, pow_R = 1;\n\
+    \  FOR(i, len(f)) {\n    pow_L *= L, pow_R *= R;\n    I += inv<mint>(i + 1) *\
+    \ f[i] * (pow_R - pow_L);\n  }\n  return I;\n}\n#line 2 \"poly/differentiate.hpp\"\
+    \n\ntemplate <typename mint>\nvc<mint> differentiate(const vc<mint>& f) {\n  if\
+    \ (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n  FOR(i, len(g)) g[i] =\
+    \ f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 2 \"poly/count_terms.hpp\"\n\
+    template<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\
+    \n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 6 \"poly/fps_exp.hpp\"\
     \n\r\ntemplate <typename mint>\r\nvc<mint> fps_exp_sparse(vc<mint>& f) {\r\n \
     \ if (len(f) == 0) return {mint(1)};\r\n  assert(f[0] == 0);\r\n  int N = len(f);\r\
     \n  // df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
@@ -634,20 +487,30 @@ data:
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
     \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
-    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 4\
-    \ \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const\
-    \ vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
-    \ 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0\
-    \ = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\
-    \n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk\
-    \ * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\
-    \ntemplate <typename mint>\r\nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\r\
-    \n  vc<mint> G = {mint(1) / F[0]};\r\n  ll N = len(F), n = 1;\r\n  G.reserve(N);\r\
-    \n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2\
-    \ * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false), ntt(g,\
-    \ false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i,\
-    \ n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n  \
-    \  ntt(f, true);\r\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"poly/2d/convolution2d.hpp\"\n\r\
+    \n#line 4 \"poly/2d/convolution2d.hpp\"\n\r\ntemplate <typename T>\r\nvc<vc<T>>\
+    \ convolution2d(vc<vc<T>>& f, vc<vc<T>>& g, bool truncate = false) {\r\n  auto\
+    \ shape = [&](vc<vc<T>>& f) -> pi {\r\n    ll H = len(f);\r\n    ll W = (H ==\
+    \ 0 ? 0 : len(f[0]));\r\n    return {H, W};\r\n  };\r\n  auto [H1, W1] = shape(f);\r\
+    \n  auto [H2, W2] = shape(g);\r\n  ll H = H1 + H2 - 1;\r\n  ll W = W1 + W2 - 1;\r\
+    \n\r\n  vc<T> ff(H1 * W);\r\n  vc<T> gg(H2 * W);\r\n  FOR(x, H1) FOR(y, W1) ff[W\
+    \ * x + y] = f[x][y];\r\n  FOR(x, H2) FOR(y, W2) gg[W * x + y] = g[x][y];\r\n\
+    \  auto hh = convolution(ff, gg);\r\n  int N = H, M = W;\r\n  if (truncate) {\r\
+    \n    assert(H1 == H2 && W1 == W2);\r\n    N = H1, M = W1;\r\n  }\r\n  vc<vc<T>>\
+    \ h(N, vc<T>(M));\r\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W * x + y];\r\n  return\
+    \ h;\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ fps_inv_sparse(const vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int, mint>>\
+    \ dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\
+    \n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint\
+    \ rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\n \
+    \     rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
+    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense_ntt(const\
+    \ vc<mint>& F) {\r\n  vc<mint> G = {mint(1) / F[0]};\r\n  ll N = len(F), n = 1;\r\
+    \n  G.reserve(N);\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n\
+    \    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f,\
+    \ false), ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
+    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
+    \n    ntt(f, true);\r\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\
     \n  }\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const\
     \ vc<mint>& F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const\
     \ int N = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int\
@@ -658,110 +521,152 @@ data:
     \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0]\
     \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
     \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 5 \"poly/fps_log.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ fps_log_dense(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  ll N =\
-    \ len(f);\r\n  vc<mint> df = f;\r\n  FOR(i, N) df[i] *= mint(i);\r\n  df.erase(df.begin());\r\
-    \n  auto f_inv = fps_inv(f);\r\n  auto g = convolution(df, f_inv);\r\n  g.resize(N\
-    \ - 1);\r\n  g.insert(g.begin(), 0);\r\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\r\
-    \n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_log_sparse(const\
-    \ vc<mint>& f) {\r\n  int N = f.size();\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
-    \ 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> F(N);\r\n  vc<mint>\
-    \ g(N - 1);\r\n  for (int n = 0; n < N - 1; ++n) {\r\n    mint rhs = mint(n +\
-    \ 1) * f[n + 1];\r\n    for (auto&& [i, fi] : dat) {\r\n      if (i > n) break;\r\
-    \n      rhs -= fi * g[n - i];\r\n    }\r\n    g[n] = rhs;\r\n    F[n + 1] = rhs\
-    \ * inv<mint>(n + 1);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename mint>\r\
-    \nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int\
-    \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return\
-    \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\n}\r\n#line 5\
-    \ \"poly/fps_pow.hpp\"\n\r\n// fps \u306E k \u4E57\u3092\u6C42\u3081\u308B\u3002\
-    k >= 0 \u306E\u524D\u63D0\u3067\u3042\u308B\u3002\r\n// \u5B9A\u6570\u9805\u304C\
-    \ 1 \u3067\u3001k \u304C mint \u306E\u5834\u5408\u306B\u306F\u3001fps_pow_1 \u3092\
-    \u4F7F\u3046\u3053\u3068\u3002\r\n// \u30FBdense \u306A\u5834\u5408\uFF1A log,\
-    \ exp \u3092\u4F7F\u3046 O(NlogN)\r\n// \u30FBsparse \u306A\u5834\u5408\uFF1A\
-    \ O(NK)\r\ntemplate <typename mint>\r\nvc<mint> fps_pow(const vc<mint>& f, ll\
-    \ k) {\r\n  assert(0 <= k);\r\n  int n = len(f);\r\n  if (k == 0) {\r\n    vc<mint>\
-    \ g(n);\r\n    g[0] = mint(1);\r\n    return g;\r\n  }\r\n  int d = n;\r\n  FOR_R(i,\
-    \ n) if (f[i] != 0) d = i;\r\n  // d * k >= n\r\n  if (d >= ceil<ll>(n, k)) {\r\
-    \n    vc<mint> g(n);\r\n    return g;\r\n  }\r\n  ll off = d * k;\r\n  mint c\
-    \ = f[d];\r\n  mint c_inv = mint(1) / mint(c);\r\n  vc<mint> g(n - off);\r\n \
-    \ FOR(i, n - off) g[i] = f[d + i] * c_inv;\r\n  g = fps_pow_1(g, mint(k));\r\n\
-    \  vc<mint> h(n);\r\n  c = c.pow(k);\r\n  FOR(i, len(g)) h[off + i] = g[i] * c;\r\
-    \n  return h;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_sparse(const\
-    \ vc<mint>& f, mint K) {\r\n  int N = len(f);\r\n  assert(N == 0 || f[0] == mint(1));\r\
-    \n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i,\
-    \ f[i]);\r\n  vc<mint> g(N);\r\n  g[0] = 1;\r\n  FOR(n, N - 1) {\r\n    mint&\
-    \ x = g[n + 1];\r\n    for (auto&& [d, cf] : dat) {\r\n      if (d > n + 1) break;\r\
-    \n      mint t = cf * g[n - d + 1];\r\n      x += t * (K * mint(d) - mint(n -\
-    \ d + 1));\r\n    }\r\n    x *= inv<mint>(n + 1);\r\n  }\r\n  return g;\r\n}\r\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1_dense(const vc<mint>& f,\
-    \ mint K) {\r\n  assert(f[0] == mint(1));\r\n  auto log_f = fps_log(f);\r\n  FOR(i,\
-    \ len(f)) log_f[i] *= K;\r\n  return fps_exp_dense(log_f);\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint K) {\r\n  int\
-    \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 100 : 1300);\r\n  return\
-    \ (n <= t ? fps_pow_1_sparse(f, K) : fps_pow_1_dense(f, K));\r\n}\r\n#line 10\
-    \ \"test/3_yukicoder/1549.test.cpp\"\n\nusing mint = modint998;\n\nconst int LIM\
-    \ = 3000;\n\nstruct Mono {\n  using value_type = vc<mint>;\n  using X = value_type;\n\
-    \  static X op(X x, X y) {\n    X z = convolution(x, y);\n    if (len(z) > LIM\
-    \ + 1) z.resize(LIM + 1);\n    return z;\n  }\n  static X unit() { return {1};\
-    \ }\n  static constexpr bool commute = 1;\n};\n\nvoid solve() {\n  LL(N, Q);\n\
-    \  const int LIM = 3000;\n  using T = tuple<ll, int, int, int, int>;\n  vc<T>\
-    \ query;\n  vi I;\n  FOR(q, Q) {\n    LL(k, a, b, s, t);\n    query.eb(k, a, b,\
-    \ s, t);\n    I.eb(k);\n  }\n  UNIQUE(I);\n  for (auto&& [k, a, b, s, t]: query)\
-    \ k = LB(I, k);\n\n  ll K = len(I);\n  vv(mint, F, K, LIM + 1, mint(1));\n  SegTree<Mono>\
-    \ seg(F);\n\n  vc<mint> F0(LIM + 1);\n  F0[0] = mint(1), F0[1] = mint(-1);\n \
-    \ F0 = fps_pow_1<mint>(F0, K - N);\n\n  for (auto&& [k, a, b, s, t]: query) {\n\
-    \    FOR(i, a, b + 1) F[k][i] = mint(0);\n    seg.set(k, F[k]);\n    auto f =\
-    \ seg.prod_all();\n    f = convolution(F0, f);\n    mint ANS = 0;\n    FOR(i,\
-    \ s, t + 1) ANS += f[i];\n    print(ANS);\n  }\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1549\"\n\n#include \"\
-    my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\n\
-    #include \"ds/segtree/segtree.hpp\"\n#include \"poly/convolution.hpp\"\n#include\
-    \ \"poly/fps_pow.hpp\"\n\nusing mint = modint998;\n\nconst int LIM = 3000;\n\n\
-    struct Mono {\n  using value_type = vc<mint>;\n  using X = value_type;\n  static\
-    \ X op(X x, X y) {\n    X z = convolution(x, y);\n    if (len(z) > LIM + 1) z.resize(LIM\
-    \ + 1);\n    return z;\n  }\n  static X unit() { return {1}; }\n  static constexpr\
-    \ bool commute = 1;\n};\n\nvoid solve() {\n  LL(N, Q);\n  const int LIM = 3000;\n\
-    \  using T = tuple<ll, int, int, int, int>;\n  vc<T> query;\n  vi I;\n  FOR(q,\
-    \ Q) {\n    LL(k, a, b, s, t);\n    query.eb(k, a, b, s, t);\n    I.eb(k);\n \
-    \ }\n  UNIQUE(I);\n  for (auto&& [k, a, b, s, t]: query) k = LB(I, k);\n\n  ll\
-    \ K = len(I);\n  vv(mint, F, K, LIM + 1, mint(1));\n  SegTree<Mono> seg(F);\n\n\
-    \  vc<mint> F0(LIM + 1);\n  F0[0] = mint(1), F0[1] = mint(-1);\n  F0 = fps_pow_1<mint>(F0,\
-    \ K - N);\n\n  for (auto&& [k, a, b, s, t]: query) {\n    FOR(i, a, b + 1) F[k][i]\
-    \ = mint(0);\n    seg.set(k, F[k]);\n    auto f = seg.prod_all();\n    f = convolution(F0,\
-    \ f);\n    mint ANS = 0;\n    FOR(i, s, t + 1) ANS += f[i];\n    print(ANS);\n\
-    \  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n}\r\n#line 2 \"poly/2d/fps_inv_2d.hpp\"\n\ntemplate <typename mint>\nvvc<mint>\
+    \ fps_inv_2d(vvc<mint> F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0]\
+    \ != mint(0));\n\n  auto ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n \
+    \   FOR(j, len(F[0])) {\n      vc<mint> f(len(F));\n      FOR(i, len(F)) f[i]\
+    \ = F[i][j];\n      ntt(f, inverse);\n      FOR(i, len(F)) F[i][j] = f[i];\n \
+    \   }\n  };\n\n  int W = 1;\n  while (W < 2 * len(F[0])) W *= 2;\n\n  FOR(i, n)\
+    \ F[i].resize(W);\n  vv(mint, G, n, W);\n\n  G[0] = fps_inv(F[0]);\n  G[0].resize(W);\n\
+    \  FOR(j, m, W) G[0][j] = 0;\n\n  FOR(i, n) ntt(F[i], false);\n  ntt(G[0], false);\n\
+    \n  int H = 1;\n  while (H < n) {\n    vv(mint, f, 2 * H, W);\n    vv(mint, g,\
+    \ 2 * H, W);\n    FOR(i, min(n, 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n    FOR(i,\
+    \ H) FOR(j, W) g[i][j] = G[i][j];\n\n    ntt_x(f, false), ntt_x(g, false);\n \
+    \   FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\n    FOR(i,\
+    \ H, 2 * H) ntt(f[i], true);\n    FOR(i, H) FOR(j, W) f[i][j] = 0;\n    FOR(i,\
+    \ H, 2 * H) FOR(j, m, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i], false);\n\
+    \n    ntt_x(f, false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f,\
+    \ true);\n\n    FOR(i, H, min(n, 2 * H)) {\n      ntt(f[i], true);\n      FOR(j,\
+    \ m, W) f[i][j] = 0;\n      ntt(f[i], false);\n      FOR(j, W) G[i][j] -= f[i][j];\n\
+    \    }\n    H *= 2;\n  }\n\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n\
+    \  return G;\n}\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line 5 \"poly/fps_log.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_log_dense(const vc<mint>& f) {\r\
+    \n  assert(f[0] == mint(1));\r\n  ll N = len(f);\r\n  vc<mint> df = f;\r\n  FOR(i,\
+    \ N) df[i] *= mint(i);\r\n  df.erase(df.begin());\r\n  auto f_inv = fps_inv(f);\r\
+    \n  auto g = convolution(df, f_inv);\r\n  g.resize(N - 1);\r\n  g.insert(g.begin(),\
+    \ 0);\r\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\r\n  return g;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_log_sparse(const vc<mint>& f) {\r\n  int N =\
+    \ f.size();\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0))\
+    \ dat.eb(i, f[i]);\r\n  vc<mint> F(N);\r\n  vc<mint> g(N - 1);\r\n  for (int n\
+    \ = 0; n < N - 1; ++n) {\r\n    mint rhs = mint(n + 1) * f[n + 1];\r\n    for\
+    \ (auto&& [i, fi] : dat) {\r\n      if (i > n) break;\r\n      rhs -= fi * g[n\
+    \ - i];\r\n    }\r\n    g[n] = rhs;\r\n    F[n + 1] = rhs * inv<mint>(n + 1);\r\
+    \n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_log(const\
+    \ vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int n = count_terms(f);\r\n\
+    \  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return (n <= t ? fps_log_sparse<mint>(f)\
+    \ : fps_log_dense<mint>(f));\r\n}\r\n#line 4 \"poly/2d/fps_log_2d.hpp\"\n\ntemplate\
+    \ <typename T>\nvvc<T> fps_log_2d(vvc<T> F) {\n  assert(F[0][0] == 1);\n  // G\
+    \ = log F, G'=F'/F.\n  int N = len(F), M = len(F[0]);\n  vvc<T> DF(N, vc<T>(M));\n\
+    \  FOR(i, N - 1) FOR(j, M) DF[i][j] = F[i + 1][j] * (i + 1);\n  auto IF = fps_inv_2d(F);\n\
+    \  vvc<T> DG = convolution2d(DF, IF, true);\n  vv(T, G, N, M);\n  FOR(i, 1, N)\
+    \ FOR(j, M) G[i][j] = DG[i - 1][j] / i;\n  G[0] = fps_log<T>(F[0]);\n  return\
+    \ G;\n}\n#line 4 \"poly/2d/fps_exp_2d.hpp\"\n\n// \u6CE8\u610F (H+W)^2log(H+W)\
+    \ \u6642\u9593\u306B\u306A\u3063\u3066\u3044\u308B\u306E\u3067\u6B63\u65B9\u5F62\
+    \u3058\u3083\u306A\u3044\u3068\u30C0\u30E1\u306A\u3055\u307C\u308A\u5B9F\u88C5\
+    \n// template <typename mint>\n// vvc<mint> fps_exp_2d(vvc<mint> F) {\n//   int\
+    \ N = len(F) - 1, M = len(F[0]) - 1;\n//   int L = 1;\n//   while (L < N + M +\
+    \ 1) L *= 2;\n\n//   vv(mint, F1, L, N + M + 1);\n//   FOR(i, N + 1) FOR(j, M\
+    \ + 1) F1[i][i + j] = F[i][j];\n\n//   FOR(j, N + M + 1) {\n//     vc<mint> f(L);\n\
+    //     FOR(i, L) f[i] = F1[i][j];\n//     ntt(f, false);\n//     FOR(i, L) F1[i][j]\
+    \ = f[i];\n//   }\n//   FOR(i, L) { F1[i] = fps_exp<mint>(F1[i]); }\n//   FOR(j,\
+    \ N + M + 1) {\n//     vc<mint> f(L);\n//     FOR(i, L) f[i] = F1[i][j];\n// \
+    \    ntt(f, true);\n//     FOR(i, L) F1[i][j] = f[i];\n//   }\n//   FOR(i, N +\
+    \ 1) FOR(j, M + 1) F[i][j] = F1[i][i + j];\n//   return F;\n// }\n\ntemplate <typename\
+    \ mint>\nvvc<mint> fps_exp_2d(vvc<mint> F) {\n  int N = len(F), M = len(F[0]);\n\
+    \  assert(F[0][0] == mint(0));\n\n  vv(mint, G, N, M);\n  G[0] = fps_exp<mint>(F[0]);\n\
+    \n  int H = 1;\n  while (H < N) {\n    int H2 = min(2 * H, N);\n\n    vv(mint,\
+    \ f, H2, M);\n    vv(mint, g, H2, M);\n    FOR(i, H2) FOR(j, M) f[i][j] = F[i][j];\n\
+    \    FOR(i, H) FOR(j, M) g[i][j] = G[i][j];\n\n    auto lg = fps_log_2d<mint>(g);\n\
+    \n    // e = 1 + f - log(g)\n    vv(mint, e, H2, M);\n    FOR(i, H2) FOR(j, M)\
+    \ e[i][j] = f[i][j] - lg[i][j];\n    e[0][0] += mint(1);\n\n    g = convolution2d<mint>(g,\
+    \ e, true);\n    FOR(i, H, H2) FOR(j, M) G[i][j] = g[i][j];\n    H *= 2;\n  }\n\
+    \  return G;\n}\n#line 2 \"poly/2d/fps_inv_2d.hpp\"\n\ntemplate <typename mint>\n\
+    vvc<mint> fps_inv_2d(vvc<mint> F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0]\
+    \ != mint(0));\n\n  auto ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n \
+    \   FOR(j, len(F[0])) {\n      vc<mint> f(len(F));\n      FOR(i, len(F)) f[i]\
+    \ = F[i][j];\n      ntt(f, inverse);\n      FOR(i, len(F)) F[i][j] = f[i];\n \
+    \   }\n  };\n\n  int W = 1;\n  while (W < 2 * len(F[0])) W *= 2;\n\n  FOR(i, n)\
+    \ F[i].resize(W);\n  vv(mint, G, n, W);\n\n  G[0] = fps_inv(F[0]);\n  G[0].resize(W);\n\
+    \  FOR(j, m, W) G[0][j] = 0;\n\n  FOR(i, n) ntt(F[i], false);\n  ntt(G[0], false);\n\
+    \n  int H = 1;\n  while (H < n) {\n    vv(mint, f, 2 * H, W);\n    vv(mint, g,\
+    \ 2 * H, W);\n    FOR(i, min(n, 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n    FOR(i,\
+    \ H) FOR(j, W) g[i][j] = G[i][j];\n\n    ntt_x(f, false), ntt_x(g, false);\n \
+    \   FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\n    FOR(i,\
+    \ H, 2 * H) ntt(f[i], true);\n    FOR(i, H) FOR(j, W) f[i][j] = 0;\n    FOR(i,\
+    \ H, 2 * H) FOR(j, m, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i], false);\n\
+    \n    ntt_x(f, false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f,\
+    \ true);\n\n    FOR(i, H, min(n, 2 * H)) {\n      ntt(f[i], true);\n      FOR(j,\
+    \ m, W) f[i][j] = 0;\n      ntt(f[i], false);\n      FOR(j, W) G[i][j] -= f[i][j];\n\
+    \    }\n    H *= 2;\n  }\n\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n\
+    \  return G;\n}\n#line 4 \"poly/2d/fps_log_2d.hpp\"\n\ntemplate <typename T>\n\
+    vvc<T> fps_log_2d(vvc<T> F) {\n  assert(F[0][0] == 1);\n  // G = log F, G'=F'/F.\n\
+    \  int N = len(F), M = len(F[0]);\n  vvc<T> DF(N, vc<T>(M));\n  FOR(i, N - 1)\
+    \ FOR(j, M) DF[i][j] = F[i + 1][j] * (i + 1);\n  auto IF = fps_inv_2d(F);\n  vvc<T>\
+    \ DG = convolution2d(DF, IF, true);\n  vv(T, G, N, M);\n  FOR(i, 1, N) FOR(j,\
+    \ M) G[i][j] = DG[i - 1][j] / i;\n  G[0] = fps_log<T>(F[0]);\n  return G;\n}\n\
+    #line 9 \"test/1_mytest/fps_exp_2d.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
+    \ test() {\n  auto gen = [&](ll H, ll W) -> vvc<mint> {\n    vv(mint, F, H, W);\n\
+    \    FOR(i, H) FOR(j, W) F[i][j] = RNG(mint::get_mod());\n    F[0][0] = mint(0);\n\
+    \    return F;\n  };\n\n  auto check = [&](ll H, ll W) -> void {\n    {\n    \
+    \  auto F = gen(H, W);\n      auto G = fps_exp_2d<mint>(F);\n      auto L = fps_log_2d<mint>(G);\n\
+    \      assert(L == F);\n    }\n    {\n      auto F = gen(H, W);\n      auto G\
+    \ = fps_exp_2d<mint>(F);\n\n      vv(mint, DF, H - 1, W);\n      vv(mint, DG,\
+    \ H - 1, W);\n      FOR(i, H - 1) FOR(j, W) {\n        DF[i][j] = F[i + 1][j]\
+    \ * mint(i + 1);\n        DG[i][j] = G[i + 1][j] * mint(i + 1);\n      }\n   \
+    \   G.resize(H - 1);\n      auto RHS = convolution2d<mint>(G, DF, true);\n   \
+    \   assert(DG == RHS);\n    }\n  };\n\n  FOR(H, 1, 20) FOR(W, 1, 20) { FOR(10)\
+    \ check(H, W); }\n\n  FOR(10) {\n    ll H = RNG(1, 500);\n    ll W = RNG(1, 500);\n\
+    \    check(H, W);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n \
+    \ cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\n#include \"poly/2d/fps_exp_2d.hpp\"\
+    \n#include \"poly/2d/fps_log_2d.hpp\"\n#include \"poly/2d/convolution2d.hpp\"\n\
+    \nusing mint = modint998;\n\nvoid test() {\n  auto gen = [&](ll H, ll W) -> vvc<mint>\
+    \ {\n    vv(mint, F, H, W);\n    FOR(i, H) FOR(j, W) F[i][j] = RNG(mint::get_mod());\n\
+    \    F[0][0] = mint(0);\n    return F;\n  };\n\n  auto check = [&](ll H, ll W)\
+    \ -> void {\n    {\n      auto F = gen(H, W);\n      auto G = fps_exp_2d<mint>(F);\n\
+    \      auto L = fps_log_2d<mint>(G);\n      assert(L == F);\n    }\n    {\n  \
+    \    auto F = gen(H, W);\n      auto G = fps_exp_2d<mint>(F);\n\n      vv(mint,\
+    \ DF, H - 1, W);\n      vv(mint, DG, H - 1, W);\n      FOR(i, H - 1) FOR(j, W)\
+    \ {\n        DF[i][j] = F[i + 1][j] * mint(i + 1);\n        DG[i][j] = G[i + 1][j]\
+    \ * mint(i + 1);\n      }\n      G.resize(H - 1);\n      auto RHS = convolution2d<mint>(G,\
+    \ DF, true);\n      assert(DG == RHS);\n    }\n  };\n\n  FOR(H, 1, 20) FOR(W,\
+    \ 1, 20) { FOR(10) check(H, W); }\n\n  FOR(10) {\n    ll H = RNG(1, 500);\n  \
+    \  ll W = RNG(1, 500);\n    check(H, W);\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
+  - random/base.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - ds/segtree/segtree.hpp
+  - poly/2d/fps_exp_2d.hpp
+  - poly/fps_exp.hpp
   - poly/convolution.hpp
   - mod/mod_inv.hpp
   - mod/crt3.hpp
   - poly/convolution_naive.hpp
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
-  - poly/fps_pow.hpp
-  - poly/count_terms.hpp
-  - poly/fps_exp.hpp
   - poly/integrate.hpp
   - poly/differentiate.hpp
-  - poly/fps_log.hpp
+  - poly/count_terms.hpp
+  - poly/2d/fps_log_2d.hpp
+  - poly/2d/convolution2d.hpp
+  - poly/2d/fps_inv_2d.hpp
   - poly/fps_inv.hpp
+  - poly/fps_log.hpp
   isVerificationFile: true
-  path: test/3_yukicoder/1549.test.cpp
+  path: test/1_mytest/fps_exp_2d.test.cpp
   requiredBy: []
-  timestamp: '2026-05-06 12:56:05+09:00'
+  timestamp: '2026-05-06 14:39:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/3_yukicoder/1549.test.cpp
+documentation_of: test/1_mytest/fps_exp_2d.test.cpp
 layout: document
 redirect_from:
-- /verify/test/3_yukicoder/1549.test.cpp
-- /verify/test/3_yukicoder/1549.test.cpp.html
-title: test/3_yukicoder/1549.test.cpp
+- /verify/test/1_mytest/fps_exp_2d.test.cpp
+- /verify/test/1_mytest/fps_exp_2d.test.cpp.html
+title: test/1_mytest/fps_exp_2d.test.cpp
 ---

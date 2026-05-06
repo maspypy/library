@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lattice_point_count.hpp
     title: convex/lattice_point_count.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':question:'
