@@ -1,5 +1,6 @@
 #include "poly/2d/convolution2d.hpp"
 #include "poly/2d/fps_inv_2d.hpp"
+#include "poly/fps_log.hpp"
 
 template <typename T>
 vvc<T> fps_log_2d(vvc<T> F) {
