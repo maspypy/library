@@ -4,7 +4,7 @@
 #if defined(__GNUC__)
 #include <bits/allocator.h>
 #pragma GCC optimize("Ofast,unroll-loops")
-#pragma GCC target("avx2,popcnt")
+// #pragma GCC target("avx2,popcnt")
 #endif
 #include <bits/stdc++.h>
 
