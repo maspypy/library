@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1297.test.cpp
     title: test/3_yukicoder/1297.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2012.test.cpp
     title: test/3_yukicoder/2012.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/cht.hpp\"\nnamespace CHT {\r\ntemplate <typename\
@@ -119,7 +119,7 @@ data:
   path: convex/cht.hpp
   requiredBy: []
   timestamp: '2025-05-05 02:10:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/line_add_get_min.test.cpp
   - test/3_yukicoder/2012.test.cpp
