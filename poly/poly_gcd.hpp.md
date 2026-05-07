@@ -35,19 +35,100 @@ data:
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   _extendedRequiredBy:
+  - icon: ':question:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
+  - icon: ':question:'
+    path: graph/count/count_spanning_tree.hpp
+    title: graph/count/count_spanning_tree.hpp
+  - icon: ':question:'
+    path: linalg/blackbox/det.hpp
+    title: linalg/blackbox/det.hpp
+  - icon: ':question:'
+    path: linalg/blackbox/min_poly.hpp
+    title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
+  - icon: ':question:'
+    path: seq/find_linear_rec.hpp
+    title: seq/find_linear_rec.hpp
+  - icon: ':x:'
+    path: seq/interpolate_linear_rec.hpp
+    title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/1_mytest/min_poly.test.cpp
+    title: test/1_mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
+    title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/other/find_linear_recurrence.test.cpp
+    title: test/2_library_checker/other/find_linear_recurrence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/3_yukicoder/1500.test.cpp
+    title: test/3_yukicoder/1500.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1516.test.cpp
+    title: test/3_yukicoder/1516.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1547.test.cpp
+    title: test/3_yukicoder/1547.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1561.test.cpp
+    title: test/3_yukicoder/1561.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1755.test.cpp
+    title: test/3_yukicoder/1755.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1844.test.cpp
+    title: test/3_yukicoder/1844.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2305.test.cpp
+    title: test/3_yukicoder/2305.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2877.test.cpp
+    title: test/3_yukicoder/2877.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/310.test.cpp
+    title: test/3_yukicoder/310.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/541.test.cpp
+    title: test/3_yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/578.test.cpp
+    title: test/3_yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/579.test.cpp
+    title: test/3_yukicoder/579.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf
@@ -436,12 +517,39 @@ data:
   isVerificationFile: false
   path: poly/poly_gcd.hpp
   requiredBy:
+  - seq/interpolate_linear_rec.hpp
+  - seq/find_linear_rec.hpp
   - poly/finding_root_of_polynomial.hpp
+  - linalg/blackbox/det.hpp
+  - linalg/blackbox/min_poly.hpp
+  - graph/count/count_spanning_tree.hpp
+  - graph/count/BEST.hpp
   timestamp: '2026-04-05 00:48:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/2_library_checker/other/find_linear_recurrence.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
+  - test/3_yukicoder/2305.test.cpp
+  - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/310.test.cpp
+  - test/3_yukicoder/1755.test.cpp
+  - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/2877.test.cpp
+  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/1500.test.cpp
   - test/1_mytest/poly_root_finding.test.cpp
+  - test/1_mytest/min_poly.test.cpp
 documentation_of: poly/poly_gcd.hpp
 layout: document
 redirect_from:

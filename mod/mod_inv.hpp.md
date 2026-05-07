@@ -20,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
+  - icon: ':question:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
@@ -56,6 +59,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
+  - icon: ':question:'
+    path: graph/count/count_spanning_tree.hpp
+    title: graph/count/count_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
@@ -71,6 +77,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
+  - icon: ':question:'
+    path: linalg/blackbox/det.hpp
+    title: linalg/blackbox/det.hpp
+  - icon: ':question:'
+    path: linalg/blackbox/min_poly.hpp
+    title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/pascal.hpp
     title: linalg/blackbox/pascal.hpp
@@ -98,7 +110,7 @@ data:
   - icon: ':warning:'
     path: new_poly/base.hpp
     title: new_poly/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':warning:'
@@ -203,10 +215,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -224,7 +236,7 @@ data:
   - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
   - icon: ':heavy_check_mark:'
@@ -236,7 +248,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -296,7 +308,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':heavy_check_mark:'
@@ -311,16 +323,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
+  - icon: ':question:'
+    path: seq/find_linear_rec.hpp
+    title: seq/find_linear_rec.hpp
   - icon: ':heavy_check_mark:'
     path: seq/geometric_sequence_sum_formula.hpp
     title: seq/geometric_sequence_sum_formula.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   - icon: ':heavy_check_mark:'
@@ -444,6 +459,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/min_poly.test.cpp
+    title: test/1_mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
@@ -565,17 +583,41 @@ data:
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
+    title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/bernoulli.test.cpp
     title: test/2_library_checker/number_theory/bernoulli.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
     title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/other/find_linear_recurrence.test.cpp
+    title: test/2_library_checker/other/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -723,22 +765,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1500.test.cpp
     title: test/3_yukicoder/1500.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1533.test.cpp
     title: test/3_yukicoder/1533.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1547.test.cpp
     title: test/3_yukicoder/1547.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1549.test.cpp
     title: test/3_yukicoder/1549.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
@@ -753,7 +795,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1755.test.cpp
     title: test/3_yukicoder/1755.test.cpp
   - icon: ':heavy_check_mark:'
@@ -765,7 +807,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1821.test.cpp
     title: test/3_yukicoder/1821.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
   - icon: ':heavy_check_mark:'
@@ -819,7 +861,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'
@@ -861,16 +903,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2801.test.cpp
     title: test/3_yukicoder/2801.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2944.test.cpp
     title: test/3_yukicoder/2944.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/303.test.cpp
     title: test/3_yukicoder/303.test.cpp
   - icon: ':x:'
+    path: test/3_yukicoder/310.test.cpp
+    title: test/3_yukicoder/310.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
   - icon: ':x:'
@@ -882,7 +927,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
   - icon: ':x:'
@@ -922,6 +967,7 @@ data:
   - setfunc/power_projection_of_sps.hpp
   - nt/crt.hpp
   - seq/interpolate_linear_rec.hpp
+  - seq/find_linear_rec.hpp
   - seq/p_recursive.hpp
   - seq/count_grid_path.hpp
   - seq/sum_of_powers.hpp
@@ -1003,7 +1049,9 @@ data:
   - linalg/adjugate_matrix.hpp
   - linalg/frobenius.hpp
   - linalg/det_A_plus_xB.hpp
+  - linalg/blackbox/det.hpp
   - linalg/blackbox/pascal.hpp
+  - linalg/blackbox/min_poly.hpp
   - linalg/blackbox/vandermonde.hpp
   - graph/chromatic.hpp
   - graph/count/count_unlabeled_tree.hpp
@@ -1015,6 +1063,8 @@ data:
   - graph/count/count_labeled_strong_tournament.hpp
   - graph/count/count_labeled_eulerian.hpp
   - graph/count/count_labeled_forest.hpp
+  - graph/count/count_spanning_tree.hpp
+  - graph/count/BEST.hpp
   - graph/count/count_independent_set.hpp
   - graph/count/count_labeled_dag.hpp
   - graph/count/count_labeled_connected.hpp
@@ -1079,11 +1129,19 @@ data:
   - test/2_library_checker/sample/aplusb128.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/2_library_checker/other/find_linear_recurrence.test.cpp
   - test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
   - test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+  - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
   - test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
@@ -1127,6 +1185,7 @@ data:
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1549.test.cpp
+  - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/303.test.cpp
   - test/3_yukicoder/1857.test.cpp
   - test/3_yukicoder/1796.test.cpp
@@ -1188,6 +1247,7 @@ data:
   - test/1_mytest/online_exp.test.cpp
   - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/typical_dc.test.cpp
+  - test/1_mytest/min_poly.test.cpp
   - test/1_mytest/simple_perm.test.cpp
   - test/1_mytest/convolution_all_1.test.cpp
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
