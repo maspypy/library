@@ -7,7 +7,7 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  using SP = Vector_Space<u64, 60>;
+  using SP = Vector_Space<u64, 61>;
   SP X;
   for (auto&& a : A) {
     X.add_element(a);
