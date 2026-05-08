@@ -1,125 +1,125 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
     title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/find_linear_recurrence.test.cpp
     title: test/2_library_checker/other/find_linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1500.test.cpp
     title: test/3_yukicoder/1500.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1547.test.cpp
     title: test/3_yukicoder/1547.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1755.test.cpp
     title: test/3_yukicoder/1755.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\n#line 2 \"poly/poly_divmod.hpp\"\
@@ -460,14 +460,14 @@ data:
     \ C[j + m] -= q * B[j];\r\n//     if (l + l <= i) {\r\n//       B = tmp;\r\n//\
     \       l = i + 1 - l, m = 1;\r\n//       p = d;\r\n//     } else {\r\n//    \
     \   ++m;\r\n//     }\r\n//   }\r\n//   return C;\r\n// }\r\n\r\nnamespace half_gcd\
-    \ {\r\ntemplate <typename T>\r\nvector<T> find_linear_rec(vc<T> f) {\r\n  int\
-    \ d = len(f);\r\n  reverse(all(f));\r\n  while (len(f) && f.back() == T(0)) POP(f);\r\
-    \n  if (f.empty()) return {vc<T>{}, vc<T>{T(1)}};\r\n  vc<T> g(d + 1);\r\n  g.back()\
-    \ = T(1);\r\n  auto m = hgcd(arr<T>{g, f});\r\n  auto a = m * arr<T>{g, f};\r\n\
-    \  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0], a[1]).fi) * m;\r\
-    \n  vc<T> Q = m[3];\r\n  T v = Q.back().inverse();\r\n  for (auto& x : Q) x *=\
-    \ v;\r\n  reverse(all(Q));\r\n  return Q;\r\n}\r\n};  // namespace half_gcd\r\n\
-    using half_gcd::find_linear_rec;\n"
+    \ {\r\ntemplate <typename T>\r\nvector<T> find_linear_rec(vc<T>& F) {\r\n  vc<T>\
+    \ f = F;\r\n  int d = len(f);\r\n  reverse(all(f));\r\n  while (len(f) && f.back()\
+    \ == T(0)) POP(f);\r\n  if (f.empty()) return vc<T>{T(1)};\r\n  vc<T> g(d + 1);\r\
+    \n  g.back() = T(1);\r\n  auto m = hgcd(arr<T>{g, f});\r\n  auto a = m * arr<T>{g,\
+    \ f};\r\n  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0], a[1]).fi)\
+    \ * m;\r\n  vc<T> Q = m[3];\r\n  T v = Q.back().inverse();\r\n  for (auto& x :\
+    \ Q) x *= v;\r\n  reverse(all(Q));\r\n  return Q;\r\n}\r\n};  // namespace half_gcd\r\
+    \nusing half_gcd::find_linear_rec;\n"
   code: "#pragma once\r\n\r\n#include \"poly/poly_gcd.hpp\"\r\n\r\n// template <typename\
     \ mint>\r\n// vector<mint> find_linear_rec(vector<mint>& A) {\r\n//   int N =\
     \ len(A);\r\n//   vc<mint> B = {1}, C = {1};\r\n//   int l = 0, m = 1;\r\n// \
@@ -478,11 +478,11 @@ data:
     \ 0);\r\n//     FOR(j, len(B)) C[j + m] -= q * B[j];\r\n//     if (l + l <= i)\
     \ {\r\n//       B = tmp;\r\n//       l = i + 1 - l, m = 1;\r\n//       p = d;\r\
     \n//     } else {\r\n//       ++m;\r\n//     }\r\n//   }\r\n//   return C;\r\n\
-    // }\r\n\r\nnamespace half_gcd {\r\ntemplate <typename T>\r\nvector<T> find_linear_rec(vc<T>\
-    \ f) {\r\n  int d = len(f);\r\n  reverse(all(f));\r\n  while (len(f) && f.back()\
-    \ == T(0)) POP(f);\r\n  if (f.empty()) return {vc<T>{}, vc<T>{T(1)}};\r\n  vc<T>\
-    \ g(d + 1);\r\n  g.back() = T(1);\r\n  auto m = hgcd(arr<T>{g, f});\r\n  auto\
-    \ a = m * arr<T>{g, f};\r\n  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0],\
+    // }\r\n\r\nnamespace half_gcd {\r\ntemplate <typename T>\r\nvector<T> find_linear_rec(vc<T>&\
+    \ F) {\r\n  vc<T> f = F;\r\n  int d = len(f);\r\n  reverse(all(f));\r\n  while\
+    \ (len(f) && f.back() == T(0)) POP(f);\r\n  if (f.empty()) return vc<T>{T(1)};\r\
+    \n  vc<T> g(d + 1);\r\n  g.back() = T(1);\r\n  auto m = hgcd(arr<T>{g, f});\r\n\
+    \  auto a = m * arr<T>{g, f};\r\n  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0],\
     \ a[1]).fi) * m;\r\n  vc<T> Q = m[3];\r\n  T v = Q.back().inverse();\r\n  for\
     \ (auto& x : Q) x *= v;\r\n  reverse(all(Q));\r\n  return Q;\r\n}\r\n};  // namespace\
     \ half_gcd\r\nusing half_gcd::find_linear_rec;"
@@ -507,8 +507,8 @@ data:
   - linalg/blackbox/min_poly.hpp
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
-  timestamp: '2026-05-09 05:54:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-05-09 07:11:35+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/other/find_linear_recurrence.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp

@@ -1,73 +1,73 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
@@ -766,14 +766,14 @@ data:
     \ C[j + m] -= q * B[j];\r\n//     if (l + l <= i) {\r\n//       B = tmp;\r\n//\
     \       l = i + 1 - l, m = 1;\r\n//       p = d;\r\n//     } else {\r\n//    \
     \   ++m;\r\n//     }\r\n//   }\r\n//   return C;\r\n// }\r\n\r\nnamespace half_gcd\
-    \ {\r\ntemplate <typename T>\r\nvector<T> find_linear_rec(vc<T> f) {\r\n  int\
-    \ d = len(f);\r\n  reverse(all(f));\r\n  while (len(f) && f.back() == T(0)) POP(f);\r\
-    \n  if (f.empty()) return {vc<T>{}, vc<T>{T(1)}};\r\n  vc<T> g(d + 1);\r\n  g.back()\
-    \ = T(1);\r\n  auto m = hgcd(arr<T>{g, f});\r\n  auto a = m * arr<T>{g, f};\r\n\
-    \  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0], a[1]).fi) * m;\r\
-    \n  vc<T> Q = m[3];\r\n  T v = Q.back().inverse();\r\n  for (auto& x : Q) x *=\
-    \ v;\r\n  reverse(all(Q));\r\n  return Q;\r\n}\r\n};  // namespace half_gcd\r\n\
-    using half_gcd::find_linear_rec;\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\r\ntemplate <typename T>\r\nvector<T> find_linear_rec(vc<T>& F) {\r\n  vc<T>\
+    \ f = F;\r\n  int d = len(f);\r\n  reverse(all(f));\r\n  while (len(f) && f.back()\
+    \ == T(0)) POP(f);\r\n  if (f.empty()) return vc<T>{T(1)};\r\n  vc<T> g(d + 1);\r\
+    \n  g.back() = T(1);\r\n  auto m = hgcd(arr<T>{g, f});\r\n  auto a = m * arr<T>{g,\
+    \ f};\r\n  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0], a[1]).fi)\
+    \ * m;\r\n  vc<T> Q = m[3];\r\n  T v = Q.back().inverse();\r\n  for (auto& x :\
+    \ Q) x *= v;\r\n  reverse(all(Q));\r\n  return Q;\r\n}\r\n};  // namespace half_gcd\r\
+    \nusing half_gcd::find_linear_rec;\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
     \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -847,7 +847,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   requiredBy: []
-  timestamp: '2026-05-09 05:54:41+09:00'
+  timestamp: '2026-05-09 07:11:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
