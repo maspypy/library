@@ -32,11 +32,12 @@
 
 namespace half_gcd {
 template <typename T>
-vector<T> find_linear_rec(vc<T> f) {
+vector<T> find_linear_rec(vc<T>& F) {
+  vc<T> f = F;
   int d = len(f);
   reverse(all(f));
   while (len(f) && f.back() == T(0)) POP(f);
-  if (f.empty()) return {vc<T>{}, vc<T>{T(1)}};
+  if (f.empty()) return vc<T>{T(1)};
   vc<T> g(d + 1);
   g.back() = T(1);
   auto m = hgcd(arr<T>{g, f});
