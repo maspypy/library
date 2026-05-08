@@ -32,8 +32,7 @@
 
 namespace half_gcd {
 template <typename T>
-pair<vc<T>, vc<T>> find_linear_rec(vc<T> F) {
-  vc<T> f = F;
+vector<T> find_linear_rec(vc<T> f) {
   int d = len(f);
   reverse(all(f));
   while (len(f) && f.back() == T(0)) POP(f);
