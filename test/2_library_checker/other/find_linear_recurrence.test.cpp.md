@@ -612,14 +612,14 @@ data:
     \ C[j + m] -= q * B[j];\r\n//     if (l + l <= i) {\r\n//       B = tmp;\r\n//\
     \       l = i + 1 - l, m = 1;\r\n//       p = d;\r\n//     } else {\r\n//    \
     \   ++m;\r\n//     }\r\n//   }\r\n//   return C;\r\n// }\r\n\r\nnamespace half_gcd\
-    \ {\r\ntemplate <typename T>\r\npair<vc<T>, vc<T>> find_linear_rec(vc<T> F) {\r\
-    \n  vc<T> f = F;\r\n  int d = len(f);\r\n  reverse(all(f));\r\n  while (len(f)\
-    \ && f.back() == T(0)) POP(f);\r\n  if (f.empty()) return {vc<T>{}, vc<T>{T(1)}};\r\
-    \n  vc<T> g(d + 1);\r\n  g.back() = T(1);\r\n  auto m = hgcd(arr<T>{g, f});\r\n\
-    \  auto a = m * arr<T>{g, f};\r\n  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0],\
-    \ a[1]).fi) * m;\r\n  vc<T> Q = m[3];\r\n  T v = Q.back().inverse();\r\n  for\
-    \ (auto& x : Q) x *= v;\r\n  reverse(all(Q));\r\n  return Q;\r\n}\r\n};  // namespace\
-    \ half_gcd\r\nusing half_gcd::find_linear_rec;\n#line 7 \"test/2_library_checker/other/find_linear_recurrence.test.cpp\"\
+    \ {\r\ntemplate <typename T>\r\nvector<T> find_linear_rec(vc<T> f) {\r\n  int\
+    \ d = len(f);\r\n  reverse(all(f));\r\n  while (len(f) && f.back() == T(0)) POP(f);\r\
+    \n  if (f.empty()) return {vc<T>{}, vc<T>{T(1)}};\r\n  vc<T> g(d + 1);\r\n  g.back()\
+    \ = T(1);\r\n  auto m = hgcd(arr<T>{g, f});\r\n  auto a = m * arr<T>{g, f};\r\n\
+    \  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0], a[1]).fi) * m;\r\
+    \n  vc<T> Q = m[3];\r\n  T v = Q.back().inverse();\r\n  for (auto& x : Q) x *=\
+    \ v;\r\n  reverse(all(Q));\r\n  return Q;\r\n}\r\n};  // namespace half_gcd\r\n\
+    using half_gcd::find_linear_rec;\n#line 7 \"test/2_library_checker/other/find_linear_recurrence.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, A,\
     \ N);\r\n  auto g = find_linear_rec(A);\r\n  g.erase(g.begin());\r\n  for (auto&&\
     \ x: g) x = -x;\r\n  print(len(g));\r\n  print(g);\r\n}\r\n\r\nsigned main() {\r\
@@ -652,7 +652,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/other/find_linear_recurrence.test.cpp
   requiredBy: []
-  timestamp: '2026-05-08 22:46:31+09:00'
+  timestamp: '2026-05-09 05:54:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/other/find_linear_recurrence.test.cpp
