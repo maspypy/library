@@ -32,7 +32,7 @@
 
 namespace half_gcd {
 template <typename T>
-pair<vc<T>, vc<T>> find_liner_rec(vc<T> F) {
+pair<vc<T>, vc<T>> find_linear_rec(vc<T> F) {
   vc<T> f = F;
   int d = len(f);
   reverse(all(f));
@@ -50,4 +50,4 @@ pair<vc<T>, vc<T>> find_liner_rec(vc<T> F) {
   return Q;
 }
 };  // namespace half_gcd
-using half_gcd::find_liner_rec;
+using half_gcd::find_linear_rec;
