@@ -291,7 +291,7 @@ data:
     - icon: ':warning:'
       path: convex/monge/monge_matrix_product.hpp
       title: convex/monge/monge_matrix_product.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convex/monge/monge_shortest_path.hpp
       title: convex/monge/monge_shortest_path.hpp
     - icon: ':warning:'
@@ -745,7 +745,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: flow
@@ -1895,7 +1895,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -4922,7 +4922,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/694.test.cpp
       title: test/3_yukicoder/694.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/705.test.cpp
       title: test/3_yukicoder/705.test.cpp
     - icon: ':heavy_check_mark:'
