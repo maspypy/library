@@ -132,6 +132,7 @@
 "test/1_mytest/mo_on_tree.test.cpp": "2026-05-06 12:56:05 +0900",
 "test/1_mytest/mod_sum_of_linear.test.cpp": "2026-05-06 12:56:05 +0900",
 "test/1_mytest/modfast.test.cpp": "2026-05-06 12:56:05 +0900",
+"test/1_mytest/monotone_minima.test.cpp": "2026-05-31 17:47:53 +0900",
 "test/1_mytest/multinomial.test.cpp": "2026-05-06 12:56:05 +0900",
 "test/1_mytest/multipoint_prefix.test.cpp": "2026-05-06 12:56:05 +0900",
 "test/1_mytest/mybitset.test.cpp": "2026-05-06 12:56:05 +0900",
