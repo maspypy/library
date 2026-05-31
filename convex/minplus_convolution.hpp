@@ -1,9 +1,9 @@
-#include "convex/monotone_minima.hpp"
+#pragma once
 
 template <typename T>
 vc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {
   int n = len(A), m = len(B);
-  if (n == 0 && m == 0) return {};
+  if (n == 0 || m == 0) return {};
   vc<T> C(n + m - 1, infty<T>);
   while (n > 0 && A[n - 1] == infty<T>) --n;
   while (m > 0 && B[m - 1] == infty<T>) --m;
@@ -24,23 +24,34 @@ vc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {
 
 template <typename T>
 vc<T> minplus_convolution_arbitrary_convex(vc<T>& A, vc<T>& B) {
-  int n = len(A), m = len(B);
-  if (n == 0 && m == 0) return {};
-  vc<T> C(n + m - 1, infty<T>);
+  int n = len(A), m0 = len(B);
+  if (n == 0 || m0 == 0) return {};
+  vc<T> C(n + m0 - 1, infty<T>);
+  int m = m0;
   while (m > 0 && B[m - 1] == infty<T>) --m;
   if (m == 0) return C;
   int b = 0;
   while (b < m && B[b] == infty<T>) ++b;
 
-  auto select = [&](int i, int j, int k) -> bool {
-    if (i < k) return false;
-    if (i - j >= m - b) return true;
-    return A[j] + B[b + i - j] >= A[k] + B[b + i - k];
-  };
-  vc<int> J = monotone_minima(n + m - b - 1, n, select);
-  FOR(i, n + m - b - 1) {
-    T x = A[J[i]], y = B[b + i - J[i]];
-    if (x < infty<T> && y < infty<T>) C[b + i] = x + y;
+  int z = n + m - b - 1;
+  vc<int> idx(z + 1);
+  C[b] = A[0] + B[b];
+  idx[0] = 0, idx[z] = n - 1;
+
+  int d = 1;
+  while (d < z) d <<= 1;
+  for (int q = d >> 1; q > 0; q >>= 1) {
+    for (int h = q; h < z; h += q << 1) {
+      int l = h - q;
+      int r = min(h + q, z);
+      idx[h] = idx[l];
+      for (int j = idx[l]; j <= idx[r]; ++j) {
+        if (j <= h && h - j < m - b && C[b + h] >= A[j] + B[b + h - j]) {
+          C[b + h] = A[j] + B[b + h - j];
+          idx[h] = j;
+        }
+      }
+    }
   }
   return C;
 }
