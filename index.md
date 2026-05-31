@@ -276,6 +276,9 @@ data:
       title: convex/smawk.hpp
   - name: convex/monge
     pages:
+    - icon: ':warning:'
+      path: convex/monge/alien.hpp
+      title: convex/monge/alien.hpp
     - icon: ':heavy_check_mark:'
       path: convex/monge/check_monge.hpp
       title: convex/monge/check_monge.hpp
