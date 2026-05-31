@@ -1,35 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convex/maxplus_convolution.hpp
-    title: convex/maxplus_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/minplus_convolution.hpp
-    title: convex/minplus_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/minplus_convolution_of_triples.hpp
-    title: convex/minplus_convolution_of_triples.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/maxplus_concave.test.cpp
-    title: test/1_mytest/maxplus_concave.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/minplus_conv_triple.test.cpp
-    title: test/1_mytest/minplus_conv_triple.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/minplus_convex.test.cpp
-    title: test/1_mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/monotone_minima.test.cpp
     title: test/1_mytest/monotone_minima.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-    title: test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-    title: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -66,19 +42,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: convex/monotone_minima.hpp
-  requiredBy:
-  - convex/minplus_convolution.hpp
-  - convex/minplus_convolution_of_triples.hpp
-  - convex/maxplus_convolution.hpp
+  requiredBy: []
   timestamp: '2026-05-31 17:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/maxplus_concave.test.cpp
-  - test/1_mytest/minplus_conv_triple.test.cpp
-  - test/1_mytest/minplus_convex.test.cpp
   - test/1_mytest/monotone_minima.test.cpp
-  - test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
 documentation_of: convex/monotone_minima.hpp
 layout: document
 redirect_from:
