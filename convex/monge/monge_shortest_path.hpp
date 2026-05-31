@@ -25,6 +25,8 @@ pair<vc<T>, vc<int>> monge_shortest_path(int N, F f, bool minimize_cnt = true) {
       cnt[r] = c;
     }
   };
+
+  // simple larsch, https://noshi91.hatenablog.com/entry/2023/02/18/005856
   auto dfs = [&](auto& dfs, int l, int r) -> void {
     if (r - l == 1) return;
     int m = (l + r) / 2;
