@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/check_monge.test.cpp
     title: test/1_mytest/check_monge.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/monotone_minima.test.cpp
+    title: test/1_mytest/monotone_minima.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -44,6 +47,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/check_monge.test.cpp
+  - test/1_mytest/monotone_minima.test.cpp
 documentation_of: random/random_monge.hpp
 layout: document
 redirect_from:

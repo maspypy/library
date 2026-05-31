@@ -22,6 +22,9 @@ data:
     path: test/1_mytest/minplus_convex.test.cpp
     title: test/1_mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/monotone_minima.test.cpp
+    title: test/1_mytest/monotone_minima.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
     title: test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
   - icon: ':heavy_check_mark:'
@@ -73,6 +76,7 @@ data:
   - test/1_mytest/maxplus_concave.test.cpp
   - test/1_mytest/minplus_conv_triple.test.cpp
   - test/1_mytest/minplus_convex.test.cpp
+  - test/1_mytest/monotone_minima.test.cpp
   - test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
   - test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
 documentation_of: convex/monotone_minima.hpp

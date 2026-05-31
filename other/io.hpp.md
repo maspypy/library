@@ -37,6 +37,9 @@ data:
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/monotone_minima.test.cpp
+    title: test/1_mytest/monotone_minima.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/palindrome_decomposition_dp.test.cpp
     title: test/1_mytest/palindrome_decomposition_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2175,6 +2178,7 @@ data:
   - test/1_mytest/count_labeled_strong.test.cpp
   - test/1_mytest/count_labeled_forest.test.cpp
   - test/1_mytest/check_monge.test.cpp
+  - test/1_mytest/monotone_minima.test.cpp
   - test/4_aoj/2677.test.cpp
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp

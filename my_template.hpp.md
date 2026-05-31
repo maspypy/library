@@ -415,6 +415,9 @@ data:
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/monotone_minima.test.cpp
+    title: test/1_mytest/monotone_minima.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/multinomial.test.cpp
     title: test/1_mytest/multinomial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2962,6 +2965,7 @@ data:
   - test/1_mytest/online_inv.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/coprime_factorization.test.cpp
+  - test/1_mytest/monotone_minima.test.cpp
   - test/1_mytest/ARC30D.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp

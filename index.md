@@ -2974,6 +2974,9 @@ data:
       path: test/1_mytest/modfast.test.cpp
       title: test/1_mytest/modfast.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/1_mytest/monotone_minima.test.cpp
+      title: test/1_mytest/monotone_minima.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/multinomial.test.cpp
       title: test/1_mytest/multinomial.test.cpp
     - icon: ':heavy_check_mark:'
