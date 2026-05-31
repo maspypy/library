@@ -2,12 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convex/monge.hpp
-    title: convex/monge.hpp
   - icon: ':warning:'
     path: convex/monge/monge.hpp
     title: convex/monge/monge.hpp
+  - icon: ':heavy_check_mark:'
+    path: convex/monge/monge_shortest_path.hpp
+    title: convex/monge/monge_shortest_path.hpp
+  - icon: ':warning:'
+    path: convex/monge/monge_shortest_path_d_edge.hpp
+    title: convex/monge/monge_shortest_path_d_edge.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/705.test.cpp
@@ -100,8 +103,9 @@ data:
   isVerificationFile: false
   path: convex/larsch.hpp
   requiredBy:
+  - convex/monge/monge_shortest_path.hpp
+  - convex/monge/monge_shortest_path_d_edge.hpp
   - convex/monge/monge.hpp
-  - convex/monge.hpp
   timestamp: '2026-03-14 22:08:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

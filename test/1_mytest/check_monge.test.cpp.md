@@ -2,17 +2,20 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: convex/minplus_convolution.hpp
-    title: convex/minplus_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/monotone_minima.hpp
-    title: convex/monotone_minima.hpp
+    path: convex/monge/check_monge.hpp
+    title: convex/monge/check_monge.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/random_monge.hpp
+    title: random/random_monge.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,35 +23,34 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/min_plus_convolution_convex_convex
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/min_plus_convolution_convex_convex
-  bundledCode: "#line 1 \"test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_convex\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
-    Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
-    \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
-    \n// #pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\n\
-    using namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
-    \ = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
-    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
-    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
-    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
-    template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
-    \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/1_mytest/check_monge.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\
+    \u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\
+    \u6642\u30A8\u30E9\u30FC\n// #pragma GCC target(\"avx2,popcnt\")\n#endif\n#include\
+    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 =\
+    \ uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
+    using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ numeric_limits<double>::infinity();\ntemplate <>\nconstexpr long double infty<long\
+    \ double> =\n    numeric_limits<long double>::infinity();\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -241,65 +243,54 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp\"\
-    \n\n#line 2 \"convex/monotone_minima.hpp\"\n\n// \u5404\u884C\u306E\u6700\u9069\
-    \u5217\u3092\u6C42\u3081\u308B\n// better(i,j,k): \u884C i \u306B\u304A\u3044\u3066\
-    \u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\u3068\u304D true\n// \u9069\u7528\
-    \u6761\u4EF6\uFF1Abetter \u306B\u3088\u3063\u3066\u9078\u3070\u308C\u308B\u6700\
-    \u9069\u5217 opt[i] \u304C i \u306B\u3064\u3044\u3066\u5E83\u7FA9\u5358\u8ABF\u5897\
-    \u52A0\ntemplate <typename F>\nvc<int> monotone_minima(int H, int W, F better)\
-    \ {\n  if (H == 0) return {};\n  assert(H > 0 && W > 0);\n\n  vc<int> idx(H +\
-    \ 1);\n  idx[0] = 0;\n  FOR(y, 1, W) {\n    if (better(0, idx[0], y)) idx[0] =\
-    \ y;\n  }\n  idx[H] = W - 1;\n\n  int d = 1;\n  while (d < H) d <<= 1;\n  for\
-    \ (int q = d >> 1; q > 0; q >>= 1) {\n    for (int h = q; h < H; h += q << 1)\
-    \ {\n      int l = h - q;\n      int r = min(h + q, H);\n      int best = idx[l];\n\
-    \      for (int y = idx[l] + 1; y <= idx[r]; ++y) {\n        if (better(h, best,\
-    \ y)) best = y;\n      }\n      idx[h] = best;\n    }\n  }\n  idx.pop_back();\n\
-    \  return idx;\n}\n#line 2 \"convex/minplus_convolution.hpp\"\n\ntemplate <typename\
-    \ T>\nvc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n  int n =\
-    \ len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1,\
-    \ infty<T>);\n  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m > 0 &&\
-    \ B[m - 1] == infty<T>) --m;\n  if (n == 0 || m == 0) return C;\n  int a = 0,\
-    \ b = 0;\n  while (a < n && A[a] == infty<T>) ++a;\n  while (b < m && B[b] ==\
-    \ infty<T>) ++b;\n  C[a + b] = A[a] + B[b];\n  for (int i = a + b + 1; i < n +\
-    \ m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a] +\
-    \ B[b + 1])) {\n      chmin(C[i], A[++a] + B[b]);\n    } else {\n      chmin(C[i],\
-    \ A[a] + B[++b]);\n    }\n  }\n  return C;\n}\n\ntemplate <typename T>\nvc<T>\
-    \ minplus_convolution_arbitrary_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A),\
-    \ m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
-    \  while (m > 0 && B[m - 1] == infty<T>) --m;\n  if (m == 0) return C;\n  int\
-    \ b = 0;\n  while (b < m && B[b] == infty<T>) ++b;\n\n  auto select = [&](int\
-    \ i, int j, int k) -> bool {\n    if (i < k) return false;\n    if (i - j >= m\
-    \ - b) return true;\n    return A[j] + B[b + i - j] >= A[k] + B[b + i - k];\n\
-    \  };\n  vc<int> J = monotone_minima(n + m - b - 1, n, select);\n  FOR(i, n +\
-    \ m - b - 1) {\n    T x = A[J[i]], y = B[b + i - J[i]];\n    if (x < infty<T>\
-    \ && y < infty<T>) C[b + i] = x + y;\n  }\n  return C;\n}\n\ntemplate <typename\
-    \ T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>& B) {\n\
-    \  static_assert(convA || convB);\n  if constexpr (convA && convB) return minplus_convolution_convex_convex(A,\
-    \ B);\n  if constexpr (convA && !convB)\n    return minplus_convolution_arbitrary_convex(B,\
-    \ A);\n  if constexpr (convB && !convA)\n    return minplus_convolution_arbitrary_convex(A,\
-    \ B);\n  return {};\n}\n#line 7 \"test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, A, N);\n  VEC(ll, B, M);\n  print(minplus_convolution<ll,\
-    \ 1, 1>(A, B));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_convex\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"convex/minplus_convolution.hpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, A, N);\n  VEC(ll, B, M);\n  print(minplus_convolution<ll,\
-    \ 1, 1>(A, B));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/1_mytest/check_monge.test.cpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 3 \"random/random_monge.hpp\"\n\n// A[i1][j1] +\
+    \ A[i2][j2] <= A[i1][j2] + A[i2][j1] for i1 < i2, j1 < j2.\nvvc<ll> random_monge_matrix(int\
+    \ H, int W) {\n  ll LIM = 10;\n  vv(ll, D, H, W);\n  FOR(i, H) FOR(j, W) D[i][j]\
+    \ = RNG(0, LIM + 1);\n\n  vv(ll, A, H, W);\n  FOR(i, H) FOR(j, W) {\n    ll x\
+    \ = D[i][j];\n    if (i) x += A[i - 1][j];\n    if (j) x += A[i][j - 1];\n   \
+    \ if (i && j) x -= A[i - 1][j - 1];\n    A[i][j] = x;\n  }\n\n  vc<ll> row(H),\
+    \ col(W);\n  FOR(i, H) row[i] = RNG(-LIM * W, LIM * W + 1);\n  FOR(j, W) col[j]\
+    \ = RNG(-LIM * H, LIM * H + 1);\n\n  FOR(i, H) FOR(j, W) A[i][j] = -A[i][j] +\
+    \ row[i] + col[j];\n  return A;\n}\n#line 2 \"convex/monge/check_monge.hpp\"\n\
+    \n// check Monge property on [0, N]:\n// f(a,d) + f(b,c) >= f(a,c) + f(b,d) for\
+    \ a < b < c < d\ntemplate <typename T, typename F>\nbool check_monge(int N, F\
+    \ f) {\n  FOR(d, N + 1) FOR(c, d) FOR(b, c) FOR(a, b) {\n    T lhs = f(a, d) +\
+    \ f(b, c);\n    T rhs = f(a, c) + f(b, d);\n    if (lhs < rhs) {\n      print(\"\
+    monge ng\");\n      print(\"a,b,c,d = \", a, b, c, d);\n      print(\"f(a, d)=\"\
+    , f(a, d));\n      print(\"f(b, c)=\", f(b, c));\n      print(\"f(a, c)=\", f(a,\
+    \ c));\n      print(\"f(b, d)=\", f(b, d));\n      return false;\n    }\n  }\n\
+    \  return true;\n}\n#line 7 \"test/1_mytest/check_monge.test.cpp\"\n\nvoid test()\
+    \ {\n  FOR(N, 1, 10) {\n    FOR(1000) {\n      auto A = random_monge_matrix(N\
+    \ + 1, N + 1);\n      assert(check_monge<ll>(N, [&](int i, int j) -> ll { return\
+    \ A[i][j]; }));\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n\
+    }\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"random/random_monge.hpp\"\n#include\
+    \ \"convex/monge/check_monge.hpp\"\n\nvoid test() {\n  FOR(N, 1, 10) {\n    FOR(1000)\
+    \ {\n      auto A = random_monge_matrix(N + 1, N + 1);\n      assert(check_monge<ll>(N,\
+    \ [&](int i, int j) -> ll { return A[i][j]; }));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  INT(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - convex/minplus_convolution.hpp
-  - convex/monotone_minima.hpp
+  - random/random_monge.hpp
+  - random/base.hpp
+  - convex/monge/check_monge.hpp
   isVerificationFile: true
-  path: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+  path: test/1_mytest/check_monge.test.cpp
   requiredBy: []
   timestamp: '2026-05-31 17:32:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+documentation_of: test/1_mytest/check_monge.test.cpp
 layout: document
 redirect_from:
-- /verify/test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-- /verify/test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp.html
-title: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+- /verify/test/1_mytest/check_monge.test.cpp
+- /verify/test/1_mytest/check_monge.test.cpp.html
+title: test/1_mytest/check_monge.test.cpp
 ---

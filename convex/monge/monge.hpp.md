@@ -87,26 +87,7 @@ data:
     \ = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc = get(c);\n    }\n  }\n\
     \  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n  if (chmin(y, yc)) x =\
     \ c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return {y, x};\n  return {-y,\
-    \ x};\n}\n#line 4 \"convex/monge/monge.hpp\"\n\r\n// \u5B9A\u7FA9\u57DF [0, N]\
-    \ \u306E\u7BC4\u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\u8A8D\r\ntemplate\
-    \ <typename T, typename F>\r\nbool check_monge(int N, F f) {\r\n  FOR(l, N + 1)\
-    \ FOR(k, l) FOR(j, k) FOR(i, j) {\r\n    T lhs = f(i, l) + f(j, k);\r\n    T rhs\
-    \ = f(i, k) + f(j, l);\r\n    if (lhs < rhs) {\r\n      print(\"monge ng\");\r\
-    \n      print(i, j, k, l, f(i, k), f(i, l), f(j, k), f(j, l), lhs, rhs);\r\n \
-    \     return false;\r\n    }\r\n  }\r\n  print(\"monge ok\");\r\n  return true;\r\
-    \n}\r\n\r\n// newdp[j] = min (dp[i] + f(i,j))\r\ntemplate <typename T, typename\
-    \ F>\r\nvc<T> monge_dp_update(int N, vc<T>& dp, F f) {\r\n  assert(len(dp) ==\
-    \ N + 1);\r\n  auto select = [&](int i, int j, int k) -> int {\r\n    if (i <=\
-    \ k) return j;\r\n    return (dp[j] + f(j, i) > dp[k] + f(k, i) ? k : j);\r\n\
-    \  };\r\n  vc<int> I = SMAWK(N + 1, N + 1, select);\r\n  vc<T> newdp(N + 1, infty<T>);\r\
-    \n  FOR(j, N + 1) {\r\n    int i = I[j];\r\n    chmin(newdp[j], dp[i] + f(i, j));\r\
-    \n  }\r\n  return newdp;\r\n}\r\n\r\n// \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\
-    \u306A\u3044\u5834\u5408\r\ntemplate <typename T, typename F>\r\nvc<T> monge_shortest_path(int\
-    \ N, F f) {\r\n  vc<T> dp(N + 1, infty<T>);\r\n  dp[0] = 0;\r\n  auto g = [&](int\
-    \ i, int j) -> T {\r\n    ++i;\r\n    if (i <= j) return infty<T>;\r\n    return\
-    \ dp[j] + f(j, i);\r\n  };\r\n  LARSCH<T, decltype(g)> larsch(N, g);\r\n  FOR(r,\
-    \ 1, N + 1) {\r\n    int l = larsch.get_argmin();\r\n    dp[r] = dp[l] + f(l,\
-    \ r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n// https://codeforces.com/contest/2183/problem/H\r\
+    \ x};\n}\n#line 4 \"convex/monge/monge.hpp\"\n\r\n// https://codeforces.com/contest/2183/problem/H\r\
     \ntemplate <typename T, typename F>\r\nT monge_shortest_path_d_edge(int N, int\
     \ d, T flim, F f) {\r\n  assert(1 <= d && d <= N);\r\n  if (d == 1) return f(0,\
     \ N);\r\n  if (d == N) {\r\n    T ans = 0;\r\n    FOR(i, N) ans += f(i, i + 1);\r\
@@ -133,26 +114,7 @@ data:
     \ A(i, k) + B(k, j))) newK[i] = k;\r\n    }\r\n    swap(K, newK);\r\n  }\r\n \
     \ return C;\r\n}\r\n"
   code: "#include \"convex/larsch.hpp\"\r\n#include \"convex/smawk.hpp\"\r\n#include\
-    \ \"other/fibonacci_search.hpp\"\r\n\r\n// \u5B9A\u7FA9\u57DF [0, N] \u306E\u7BC4\
-    \u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\u8A8D\r\ntemplate <typename T,\
-    \ typename F>\r\nbool check_monge(int N, F f) {\r\n  FOR(l, N + 1) FOR(k, l) FOR(j,\
-    \ k) FOR(i, j) {\r\n    T lhs = f(i, l) + f(j, k);\r\n    T rhs = f(i, k) + f(j,\
-    \ l);\r\n    if (lhs < rhs) {\r\n      print(\"monge ng\");\r\n      print(i,\
-    \ j, k, l, f(i, k), f(i, l), f(j, k), f(j, l), lhs, rhs);\r\n      return false;\r\
-    \n    }\r\n  }\r\n  print(\"monge ok\");\r\n  return true;\r\n}\r\n\r\n// newdp[j]\
-    \ = min (dp[i] + f(i,j))\r\ntemplate <typename T, typename F>\r\nvc<T> monge_dp_update(int\
-    \ N, vc<T>& dp, F f) {\r\n  assert(len(dp) == N + 1);\r\n  auto select = [&](int\
-    \ i, int j, int k) -> int {\r\n    if (i <= k) return j;\r\n    return (dp[j]\
-    \ + f(j, i) > dp[k] + f(k, i) ? k : j);\r\n  };\r\n  vc<int> I = SMAWK(N + 1,\
-    \ N + 1, select);\r\n  vc<T> newdp(N + 1, infty<T>);\r\n  FOR(j, N + 1) {\r\n\
-    \    int i = I[j];\r\n    chmin(newdp[j], dp[i] + f(i, j));\r\n  }\r\n  return\
-    \ newdp;\r\n}\r\n\r\n// \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\
-    \u5834\u5408\r\ntemplate <typename T, typename F>\r\nvc<T> monge_shortest_path(int\
-    \ N, F f) {\r\n  vc<T> dp(N + 1, infty<T>);\r\n  dp[0] = 0;\r\n  auto g = [&](int\
-    \ i, int j) -> T {\r\n    ++i;\r\n    if (i <= j) return infty<T>;\r\n    return\
-    \ dp[j] + f(j, i);\r\n  };\r\n  LARSCH<T, decltype(g)> larsch(N, g);\r\n  FOR(r,\
-    \ 1, N + 1) {\r\n    int l = larsch.get_argmin();\r\n    dp[r] = dp[l] + f(l,\
-    \ r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n// https://codeforces.com/contest/2183/problem/H\r\
+    \ \"other/fibonacci_search.hpp\"\r\n\r\n// https://codeforces.com/contest/2183/problem/H\r\
     \ntemplate <typename T, typename F>\r\nT monge_shortest_path_d_edge(int N, int\
     \ d, T flim, F f) {\r\n  assert(1 <= d && d <= N);\r\n  if (d == 1) return f(0,\
     \ N);\r\n  if (d == N) {\r\n    T ans = 0;\r\n    FOR(i, N) ans += f(i, i + 1);\r\
@@ -185,7 +147,7 @@ data:
   isVerificationFile: false
   path: convex/monge/monge.hpp
   requiredBy: []
-  timestamp: '2026-05-31 16:46:06+09:00'
+  timestamp: '2026-05-31 16:57:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/monge/monge.hpp

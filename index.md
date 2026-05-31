@@ -260,9 +260,6 @@ data:
       path: convex/minplus_convolution_of_triples.hpp
       title: convex/minplus_convolution_of_triples.hpp
     - icon: ':heavy_check_mark:'
-      path: convex/monge.hpp
-      title: convex/monge.hpp
-    - icon: ':heavy_check_mark:'
       path: convex/monotone_minima.hpp
       title: convex/monotone_minima.hpp
     - icon: ':heavy_check_mark:'
@@ -279,12 +276,24 @@ data:
       title: convex/smawk.hpp
   - name: convex/monge
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convex/monge/check_monge.hpp
       title: convex/monge/check_monge.hpp
     - icon: ':warning:'
       path: convex/monge/monge.hpp
       title: convex/monge/monge.hpp
+    - icon: ':warning:'
+      path: convex/monge/monge_dp_update.hpp
+      title: convex/monge/monge_dp_update.hpp
+    - icon: ':warning:'
+      path: convex/monge/monge_matrix_product.hpp
+      title: convex/monge/monge_matrix_product.hpp
+    - icon: ':heavy_check_mark:'
+      path: convex/monge/monge_shortest_path.hpp
+      title: convex/monge/monge_shortest_path.hpp
+    - icon: ':warning:'
+      path: convex/monge/monge_shortest_path_d_edge.hpp
+      title: convex/monge/monge_shortest_path_d_edge.hpp
   - name: convex/slope_trick
     pages:
     - icon: ':heavy_check_mark:'
@@ -2209,6 +2218,9 @@ data:
       path: random/random_matrix.hpp
       title: random/random_matrix.hpp
     - icon: ':heavy_check_mark:'
+      path: random/random_monge.hpp
+      title: random/random_monge.hpp
+    - icon: ':heavy_check_mark:'
       path: random/random_polygon.hpp
       title: random/random_polygon.hpp
     - icon: ':warning:'
@@ -2619,6 +2631,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/cf940f.test.cpp
       title: test/1_mytest/cf940f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/check_monge.test.cpp
+      title: test/1_mytest/check_monge.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/chirp_z.test.cpp
       title: test/1_mytest/chirp_z.test.cpp

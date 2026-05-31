@@ -159,6 +159,9 @@ data:
     path: random/random_matrix.hpp
     title: random/random_matrix.hpp
   - icon: ':heavy_check_mark:'
+    path: random/random_monge.hpp
+    title: random/random_monge.hpp
+  - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   - icon: ':warning:'
@@ -222,6 +225,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/blackbox_solve_linear.test.cpp
     title: test/1_mytest/blackbox_solve_linear.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/check_monge.test.cpp
+    title: test/1_mytest/check_monge.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/chirp_z.test.cpp
     title: test/1_mytest/chirp_z.test.cpp
@@ -988,6 +994,7 @@ data:
   - linalg/blackbox/solve_linear.hpp
   - linalg/det_A_plus_xB.hpp
   - random/shuffle.hpp
+  - random/random_monge.hpp
   - random/hash_vector.hpp
   - random/hash_pair.hpp
   - random/random_graph.hpp
@@ -1137,6 +1144,7 @@ data:
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/online_exp.test.cpp
   - test/1_mytest/add_chmin_chmax.test.cpp
+  - test/1_mytest/check_monge.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
   - test/1_mytest/fps_inv_2d.test.cpp
   - test/1_mytest/outer_planar.test.cpp

@@ -26,38 +26,43 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"convex/monotone_minima.hpp\"\n\n// select(i,j,k) : (i,j)\
-    \ -> (i,k) \u3092\u884C\u3046\u304B\u3069\u3046\u304B\ntemplate <typename F>\n\
-    vc<int> monotone_minima(int H, int W, F select) {\n  vc<int> min_col(H);\n  auto\
-    \ dfs = [&](auto& dfs, int x1, int x2, int y1, int y2) -> void {\n    if (x1 ==\
-    \ x2) return;\n    int x = (x1 + x2) / 2;\n    int best_y = y1;\n    for (int\
-    \ y = y1 + 1; y < y2; ++y) {\n      if (select(x, best_y, y)) best_y = y;\n  \
-    \  }\n    min_col[x] = best_y;\n    dfs(dfs, x1, x, y1, best_y + 1);\n    dfs(dfs,\
-    \ x + 1, x2, best_y, y2);\n  };\n  dfs(dfs, 0, H, 0, W);\n  return min_col;\n\
-    }\n#line 2 \"convex/minplus_convolution.hpp\"\n\ntemplate <typename T>\nvc<T>\
-    \ minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A), m\
-    \ = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
-    \  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m > 0 && B[m - 1] == infty<T>)\
-    \ --m;\n  if (n == 0 || m == 0) return C;\n  int a = 0, b = 0;\n  while (a < n\
-    \ && A[a] == infty<T>) ++a;\n  while (b < m && B[b] == infty<T>) ++b;\n  C[a +\
-    \ b] = A[a] + B[b];\n  for (int i = a + b + 1; i < n + m - 1; ++i) {\n    if (b\
-    \ == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a] + B[b + 1])) {\n      chmin(C[i],\
-    \ A[++a] + B[b]);\n    } else {\n      chmin(C[i], A[a] + B[++b]);\n    }\n  }\n\
-    \  return C;\n}\n\ntemplate <typename T>\nvc<T> minplus_convolution_arbitrary_convex(vc<T>&\
-    \ A, vc<T>& B) {\n  int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return\
-    \ {};\n  vc<T> C(n + m - 1, infty<T>);\n  while (m > 0 && B[m - 1] == infty<T>)\
-    \ --m;\n  if (m == 0) return C;\n  int b = 0;\n  while (b < m && B[b] == infty<T>)\
-    \ ++b;\n\n  auto select = [&](int i, int j, int k) -> bool {\n    if (i < k) return\
-    \ false;\n    if (i - j >= m - b) return true;\n    return A[j] + B[b + i - j]\
-    \ >= A[k] + B[b + i - k];\n  };\n  vc<int> J = monotone_minima(n + m - b - 1,\
-    \ n, select);\n  FOR(i, n + m - b - 1) {\n    T x = A[J[i]], y = B[b + i - J[i]];\n\
-    \    if (x < infty<T> && y < infty<T>) C[b + i] = x + y;\n  }\n  return C;\n}\n\
-    \ntemplate <typename T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>&\
-    \ A, vc<T>& B) {\n  static_assert(convA || convB);\n  if constexpr (convA && convB)\
-    \ return minplus_convolution_convex_convex(A, B);\n  if constexpr (convA && !convB)\n\
-    \    return minplus_convolution_arbitrary_convex(B, A);\n  if constexpr (convB\
-    \ && !convA)\n    return minplus_convolution_arbitrary_convex(A, B);\n  return\
-    \ {};\n}\n"
+  bundledCode: "#line 2 \"convex/monotone_minima.hpp\"\n\n// \u5404\u884C\u306E\u6700\
+    \u9069\u5217\u3092\u6C42\u3081\u308B\n// better(i,j,k): \u884C i \u306B\u304A\u3044\
+    \u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\u3068\u304D true\n// \u9069\
+    \u7528\u6761\u4EF6\uFF1Abetter \u306B\u3088\u3063\u3066\u9078\u3070\u308C\u308B\
+    \u6700\u9069\u5217 opt[i] \u304C i \u306B\u3064\u3044\u3066\u5E83\u7FA9\u5358\u8ABF\
+    \u5897\u52A0\ntemplate <typename F>\nvc<int> monotone_minima(int H, int W, F better)\
+    \ {\n  if (H == 0) return {};\n  assert(H > 0 && W > 0);\n\n  vc<int> idx(H +\
+    \ 1);\n  idx[0] = 0;\n  FOR(y, 1, W) {\n    if (better(0, idx[0], y)) idx[0] =\
+    \ y;\n  }\n  idx[H] = W - 1;\n\n  int d = 1;\n  while (d < H) d <<= 1;\n  for\
+    \ (int q = d >> 1; q > 0; q >>= 1) {\n    for (int h = q; h < H; h += q << 1)\
+    \ {\n      int l = h - q;\n      int r = min(h + q, H);\n      int best = idx[l];\n\
+    \      for (int y = idx[l] + 1; y <= idx[r]; ++y) {\n        if (better(h, best,\
+    \ y)) best = y;\n      }\n      idx[h] = best;\n    }\n  }\n  idx.pop_back();\n\
+    \  return idx;\n}\n#line 2 \"convex/minplus_convolution.hpp\"\n\ntemplate <typename\
+    \ T>\nvc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n  int n =\
+    \ len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1,\
+    \ infty<T>);\n  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m > 0 &&\
+    \ B[m - 1] == infty<T>) --m;\n  if (n == 0 || m == 0) return C;\n  int a = 0,\
+    \ b = 0;\n  while (a < n && A[a] == infty<T>) ++a;\n  while (b < m && B[b] ==\
+    \ infty<T>) ++b;\n  C[a + b] = A[a] + B[b];\n  for (int i = a + b + 1; i < n +\
+    \ m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a] +\
+    \ B[b + 1])) {\n      chmin(C[i], A[++a] + B[b]);\n    } else {\n      chmin(C[i],\
+    \ A[a] + B[++b]);\n    }\n  }\n  return C;\n}\n\ntemplate <typename T>\nvc<T>\
+    \ minplus_convolution_arbitrary_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A),\
+    \ m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
+    \  while (m > 0 && B[m - 1] == infty<T>) --m;\n  if (m == 0) return C;\n  int\
+    \ b = 0;\n  while (b < m && B[b] == infty<T>) ++b;\n\n  auto select = [&](int\
+    \ i, int j, int k) -> bool {\n    if (i < k) return false;\n    if (i - j >= m\
+    \ - b) return true;\n    return A[j] + B[b + i - j] >= A[k] + B[b + i - k];\n\
+    \  };\n  vc<int> J = monotone_minima(n + m - b - 1, n, select);\n  FOR(i, n +\
+    \ m - b - 1) {\n    T x = A[J[i]], y = B[b + i - J[i]];\n    if (x < infty<T>\
+    \ && y < infty<T>) C[b + i] = x + y;\n  }\n  return C;\n}\n\ntemplate <typename\
+    \ T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>& B) {\n\
+    \  static_assert(convA || convB);\n  if constexpr (convA && convB) return minplus_convolution_convex_convex(A,\
+    \ B);\n  if constexpr (convA && !convB)\n    return minplus_convolution_arbitrary_convex(B,\
+    \ A);\n  if constexpr (convB && !convA)\n    return minplus_convolution_arbitrary_convex(A,\
+    \ B);\n  return {};\n}\n"
   code: "#include \"convex/monotone_minima.hpp\"\n\ntemplate <typename T>\nvc<T> minplus_convolution_convex_convex(vc<T>&\
     \ A, vc<T>& B) {\n  int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return\
     \ {};\n  vc<T> C(n + m - 1, infty<T>);\n  while (n > 0 && A[n - 1] == infty<T>)\
@@ -88,7 +93,7 @@ data:
   path: convex/minplus_convolution.hpp
   requiredBy:
   - convex/minplus_convolution_of_triples.hpp
-  timestamp: '2024-05-15 14:09:29+09:00'
+  timestamp: '2026-05-31 17:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/minplus_conv_triple.test.cpp

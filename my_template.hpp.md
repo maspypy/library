@@ -73,6 +73,9 @@ data:
     path: test/1_mytest/cf940f.test.cpp
     title: test/1_mytest/cf940f.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/check_monge.test.cpp
+    title: test/1_mytest/check_monge.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/chirp_z.test.cpp
     title: test/1_mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2939,6 +2942,7 @@ data:
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/online_exp.test.cpp
   - test/1_mytest/add_chmin_chmax.test.cpp
+  - test/1_mytest/check_monge.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
   - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/fps_inv_2d.test.cpp

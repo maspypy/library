@@ -19,6 +19,9 @@ data:
     path: test/1_mytest/bell_number.test.cpp
     title: test/1_mytest/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/check_monge.test.cpp
+    title: test/1_mytest/check_monge.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_forest.test.cpp
     title: test/1_mytest/count_labeled_forest.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2171,6 +2174,7 @@ data:
   - test/1_mytest/kinetic.test.cpp
   - test/1_mytest/count_labeled_strong.test.cpp
   - test/1_mytest/count_labeled_forest.test.cpp
+  - test/1_mytest/check_monge.test.cpp
   - test/4_aoj/2677.test.cpp
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp

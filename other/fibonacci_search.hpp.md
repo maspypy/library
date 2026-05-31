@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convex/monge.hpp
-    title: convex/monge.hpp
   - icon: ':warning:'
     path: convex/monge/monge.hpp
     title: convex/monge/monge.hpp
@@ -18,9 +15,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2627.test.cpp
     title: test/3_yukicoder/2627.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/705.test.cpp
-    title: test/3_yukicoder/705.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -60,13 +54,11 @@ data:
   path: other/fibonacci_search.hpp
   requiredBy:
   - convex/monge/monge.hpp
-  - convex/monge.hpp
   timestamp: '2024-01-01 07:01:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/fibonacci_search.test.cpp
   - test/3_yukicoder/2276.test.cpp
-  - test/3_yukicoder/705.test.cpp
   - test/3_yukicoder/2627.test.cpp
 documentation_of: other/fibonacci_search.hpp
 layout: document
