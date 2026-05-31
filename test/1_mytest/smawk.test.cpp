@@ -1,24 +1,37 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
+#include "other/io.hpp"
+
+#include "random/random_monge.hpp"
 #include "convex/smawk.hpp"
 
 void test() {
-  vv(int, A, 4, 5);
-  A[0] = {0, 1, 3, 2, 4};
-  A[1] = {0, 2, 4, 3, 1};
-  A[2] = {1, 3, 4, 2, 0};
-  A[3] = {4, 2, 3, 1, 0};
-  auto f = [&](int i, int j, int k) -> int { return A[i][j] > A[i][k]; };
+  FOR(H, 0, 30) FOR(W, 1, 30) {
+    FOR(1000) {
+      auto A = random_monge_matrix(H, W);
 
-  vc<int> I = smawk(4, 5, f);
-  vc<int> J = {0, 0, 4, 4};
-  assert(I == J);
+      auto better = [&](int i, int j, int k) -> bool {
+        return A[i][j] > A[i][k];
+      };
+
+      vc<int> got = smawk(H, W, better);
+
+      vc<int> expected(H);
+      FOR(i, H) {
+        expected[i] = 0;
+        FOR(j, 1, W) {
+          if (A[i][expected[i]] > A[i][j]) expected[i] = j;
+        }
+      }
+
+      assert(got == expected);
+    }
+  }
 }
 
 void solve() {
-  int a, b;
-  cin >> a >> b;
-  cout << a + b << "\n";
+  INT(a, b);
+  print(a + b);
 }
 
 signed main() {
