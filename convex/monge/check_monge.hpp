@@ -17,6 +17,5 @@ bool check_monge(int N, F f) {
       return false;
     }
   }
-  print("monge ok");
   return true;
 }
