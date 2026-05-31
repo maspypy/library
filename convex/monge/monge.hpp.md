@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: convex/larsch.hpp
     title: convex/larsch.hpp
   - icon: ':heavy_check_mark:'

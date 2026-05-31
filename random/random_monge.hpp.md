@@ -10,6 +10,9 @@ data:
     path: test/1_mytest/check_monge.test.cpp
     title: test/1_mytest/check_monge.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/monge_shortest_path.test.cpp
+    title: test/1_mytest/monge_shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/monotone_minima.test.cpp
     title: test/1_mytest/monotone_minima.test.cpp
   - icon: ':heavy_check_mark:'
@@ -49,6 +52,7 @@ data:
   timestamp: '2026-05-31 17:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/monge_shortest_path.test.cpp
   - test/1_mytest/check_monge.test.cpp
   - test/1_mytest/monotone_minima.test.cpp
   - test/1_mytest/smawk.test.cpp

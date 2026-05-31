@@ -229,7 +229,7 @@ data:
     - icon: ':warning:'
       path: convex/fenchel.hpp
       title: convex/fenchel.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: convex/larsch.hpp
       title: convex/larsch.hpp
     - icon: ':heavy_check_mark:'
@@ -288,7 +288,7 @@ data:
     - icon: ':warning:'
       path: convex/monge/monge_matrix_product.hpp
       title: convex/monge/monge_matrix_product.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convex/monge/monge_shortest_path.hpp
       title: convex/monge/monge_shortest_path.hpp
     - icon: ':warning:'
@@ -742,7 +742,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: flow
@@ -1892,7 +1892,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2973,6 +2973,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/modfast.test.cpp
       title: test/1_mytest/modfast.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/monge_shortest_path.test.cpp
+      title: test/1_mytest/monge_shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/monotone_minima.test.cpp
       title: test/1_mytest/monotone_minima.test.cpp
@@ -4916,7 +4919,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/694.test.cpp
       title: test/3_yukicoder/694.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/705.test.cpp
       title: test/3_yukicoder/705.test.cpp
     - icon: ':heavy_check_mark:'

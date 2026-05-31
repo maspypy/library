@@ -472,6 +472,9 @@ data:
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/monge_shortest_path.test.cpp
+    title: test/1_mytest/monge_shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/monotone_minima.test.cpp
     title: test/1_mytest/monotone_minima.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1062,6 +1065,7 @@ data:
   - test/1_mytest/tdpc_grid_dp.test.cpp
   - test/1_mytest/factorial_998.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
+  - test/1_mytest/monge_shortest_path.test.cpp
   - test/1_mytest/extended_lichao_2.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/power_projection.test.cpp

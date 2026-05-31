@@ -37,6 +37,9 @@ data:
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/monge_shortest_path.test.cpp
+    title: test/1_mytest/monge_shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/monotone_minima.test.cpp
     title: test/1_mytest/monotone_minima.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1689,7 +1692,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/705.test.cpp
     title: test/3_yukicoder/705.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1932,9 +1935,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/21623
@@ -2169,11 +2172,12 @@ data:
   - other/mhc_template_directory/para2.cpp
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
   timestamp: '2025-11-20 15:04:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/palindrome_decomposition_dp.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
   - test/1_mytest/bell_number.test.cpp
+  - test/1_mytest/monge_shortest_path.test.cpp
   - test/1_mytest/count_labeled_tournament.test.cpp
   - test/1_mytest/min_min.test.cpp
   - test/1_mytest/typical_dc.test.cpp

@@ -5,19 +5,13 @@ data:
   - icon: ':warning:'
     path: convex/monge/monge.hpp
     title: convex/monge/monge.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/monge/monge_shortest_path.hpp
-    title: convex/monge/monge_shortest_path.hpp
   - icon: ':warning:'
     path: convex/monge/monge_shortest_path_d_edge.hpp
     title: convex/monge/monge_shortest_path_d_edge.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/705.test.cpp
-    title: test/3_yukicoder/705.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://codeforces.com/contest/2183/problem/H
@@ -103,13 +97,11 @@ data:
   isVerificationFile: false
   path: convex/larsch.hpp
   requiredBy:
-  - convex/monge/monge_shortest_path.hpp
   - convex/monge/monge_shortest_path_d_edge.hpp
   - convex/monge/monge.hpp
   timestamp: '2026-03-14 22:08:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/3_yukicoder/705.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: convex/larsch.hpp
 layout: document
 redirect_from:
