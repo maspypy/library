@@ -7,6 +7,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/io.hpp
+    title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/random_monge.hpp
+    title: random/random_monge.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -123,43 +132,176 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 2 \"convex/smawk.hpp\"\n\n// select(i,j,k)\
-    \ \u306F (i,j) -> (i,k) \u3092\u884C\u3046\u304B\u3069\u3046\u304B\n// \u6B8B\u5FF5\
-    \u306A\u304C\u3089 monotone minima \u3088\u308A\u9AD8\u901F\u306A\u5834\u5408\u304C\
-    \u5B58\u5728\u3057\u306A\u3044\u8AAC\u304C\u3042\u308B\n// https://codeforces.com/contest/1423/problem/M\n\
-    template <typename F>\nvc<int> smawk(int H, int W, F select) {\n  auto dfs = [&](auto&\
-    \ dfs, vc<int> X, vc<int> Y) -> vc<int> {\n    int N = len(X);\n    if (N == 0)\
-    \ return {};\n    vc<int> YY;\n    for (auto&& y: Y) {\n      while (len(YY))\
-    \ {\n        int py = YY.back(), x = X[len(YY) - 1];\n        if (!select(x, py,\
-    \ y)) break;\n        YY.pop_back();\n      }\n      if (len(YY) < len(X)) YY.eb(y);\n\
-    \    }\n    vc<int> XX;\n    FOR(i, 1, len(X), 2) XX.eb(X[i]);\n    vc<int> II\
-    \ = dfs(dfs, XX, YY);\n    vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n\
-    \    int p = 0;\n    FOR(i, 0, N, 2) {\n      int LIM = (i + 1 == N ? Y.back()\
-    \ : I[i + 1]);\n      int best = Y[p];\n      while (Y[p] < LIM) {\n        ++p;\n\
-    \        if (select(X[i], best, Y[p])) best = Y[p];\n      }\n      I[i] = best;\n\
-    \    }\n    return I;\n  };\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y),\
-    \ 0);\n  return dfs(dfs, X, Y);\n}\n#line 4 \"test/1_mytest/smawk.test.cpp\"\n\
-    \nvoid test() {\n  vv(int, A, 4, 5);\n  A[0] = {0, 1, 3, 2, 4};\n  A[1] = {0,\
-    \ 2, 4, 3, 1};\n  A[2] = {1, 3, 4, 2, 0};\n  A[3] = {4, 2, 3, 1, 0};\n  auto f\
-    \ = [&](int i, int j, int k) -> int { return A[i][j] > A[i][k]; };\n\n  vc<int>\
-    \ I = smawk(4, 5, f);\n  vc<int> J = {0, 0, 4, 4};\n  assert(I == J);\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ others.end()), ...);\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n\
+    \r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio {\r\nstatic\
+    \ constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar\
+    \ out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por = 0;\r\
+    \n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n\
+    \    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j\
+    \ = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\
+    \n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n\
+    \  memmove(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf + pir\
+    \ - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir < SZ) ibuf[pir++]\
+    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\
+    \n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n    if (pil + 1 > pir)\
+    \ load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n}\r\n\r\nvoid\
+    \ rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n    if (pil + 1 >\
+    \ pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n  do {\r\n\
+    \    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\n  } while\
+    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
+    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
+    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
+    \ do c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr\
+    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-') {\r\n   \
+    \   minus = 1, c = ibuf[pil++];\r\n    }\r\n  }\r\n  x = 0;\r\n  while ('0' <=\
+    \ c) {\r\n    x = x * 10 + (c & 15), c = ibuf[pil++];\r\n  }\r\n  if constexpr\
+    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n\
+    \  }\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_integral_v<T> || is_same_v<T,\
+    \ i128> || is_same_v<T, u128>> rd(\r\n    T &x) {\r\n  rd_integer(x);\r\n}\r\n\
+    \r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>>\
+    \ rd(T &x) {\r\n  rd_real(x);\r\n}\r\n\r\ntemplate <class T, class U>\r\nvoid\
+    \ rd(pair<T, U> &p) {\r\n  rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t\
+    \ N = 0, typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < tuple_size<T>::value)\
+    \ {\r\n    auto &x = get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n \
+    \ }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
+    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
+    \  for (auto &d : x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
+    \n  for (auto &d : x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H,\
+    \ class... T>\r\nvoid read(H &h, T &...t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\
+    \ninline void wt_range(const char *s, size_t n) {\r\n  size_t i = 0;\r\n  while\
+    \ (i < n) {\r\n    if (por == SZ) flush();\r\n    size_t chunk = min(n - i, (size_t)(SZ\
+    \ - por));\r\n    memcpy(obuf + por, s + i, chunk);\r\n    por += chunk;\r\n \
+    \   i += chunk;\r\n  }\r\n}\r\n\r\nvoid wt(const char c) {\r\n  if (por == SZ)\
+    \ flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const char *s) { wt_range(s,\
+    \ strlen(s)); }\r\nvoid wt(const string &s) { wt_range(s.data(), s.size()); }\r\
+    \n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
+    \ flush();\r\n  if (x < 0) {\r\n    obuf[por++] = '-', x = -x;\r\n  }\r\n  int\
+    \ outi;\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi,\
+    \ pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n\
+    \    memcpy(obuf + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >=\
+    \ 100) {\r\n    memcpy(obuf + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  }\
+    \ else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\
+    \n    obuf[por + 1] = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n   \
+    \ obuf[por++] = x | '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\
+    \n  por += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\ninline void wt_real(T\
+    \ x) {\r\n  static char buf[1000];\r\n  int n = std::snprintf(buf, sizeof(buf),\
+    \ \"%.15f\", (double)x);\r\n  wt_range(buf, (size_t)n);\r\n}\r\n\r\ntemplate <class\
+    \ T>\r\nenable_if_t<is_integral_v<T> || is_same_v<T, i128> || is_same_v<T, u128>>\
+    \ wt(\r\n    T x) {\r\n  wt_integer(x);\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T>\
+    \ || is_same_v<T, f128>> wt(T x) {\r\n  wt_real(x);\r\n}\r\n\r\ninline void wt(bool\
+    \ b) { wt(static_cast<char>('0' + (b ? 1 : 0))); }\r\n\r\ntemplate <class T, class\
+    \ U>\r\nvoid wt(const pair<T, U> &val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
+    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
+    \ T &t) {\r\n  if constexpr (N < tuple_size<T>::value) {\r\n    if constexpr (N\
+    \ > 0) wt(' ');\r\n    wt(get<N>(t));\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\
+    \ntemplate <class... T>\r\nvoid wt(const tuple<T...> &tpl) {\r\n  wt_tuple(tpl);\r\
+    \n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T, S> &val) {\r\n \
+    \ auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt('\
+    \ ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
+    \ &val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
+    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
+    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&...tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n}  // namespace fastio\r\nusing fastio::flush;\r\nusing\
+    \ fastio::print;\r\nusing fastio::read;\r\n\r\n#if defined(LOCAL)\r\n#define HDR\
+    \ \"[DEBUG:\", __func__, __LINE__, \"]\"\r\n#define SHOW(...)                \
+    \                                         \\\r\n  SHOW_IMPL(__VA_ARGS__, SHOW8,\
+    \ SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, \\\r\n            SHOW1)         \
+    \                                               \\\r\n  (__VA_ARGS__)\r\n#define\
+    \ SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME\r\n#define SHOW1(x)\
+    \ print(HDR, #x, \"=\", (x)), flush()\r\n#define SHOW2(x, y) print(HDR, #x, \"\
+    =\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x, y, z) \\\r\n  print(HDR,\
+    \ #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define SHOW4(x,\
+    \ y, z, w) \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#define SHOW5(x, y, z, w, v)                   \
+    \                               \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\",\
+    \ (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n        (v)),        \
+    \                                                         \\\r\n      flush()\r\
+    \n#define SHOW6(x, y, z, w, v, u)                                            \
+    \   \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"\
+    =\", (w), #v, \"=\", \\\r\n        (v), #u, \"=\", (u)),                     \
+    \                              \\\r\n      flush()\r\n#define SHOW7(x, y, z, w,\
+    \ v, u, t)                                            \\\r\n  print(HDR, #x, \"\
+    =\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n  \
+    \      (v), #u, \"=\", (u), #t, \"=\", (t)),                                 \
+    \    \\\r\n      flush()\r\n#define SHOW8(x, y, z, w, v, u, t, s)            \
+    \                             \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y),\
+    \ #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n        (v), #u, \"=\", (u),\
+    \ #t, \"=\", (t), #s, \"=\", (s)),                       \\\r\n      flush()\r\
+    \n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n\
+    \  read(__VA_ARGS__)\r\n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)\
+    \      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/1_mytest/smawk.test.cpp\"\n\n\
+    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 3 \"random/random_monge.hpp\"\n\n// A[i1][j1] +\
+    \ A[i2][j2] <= A[i1][j2] + A[i2][j1] for i1 < i2, j1 < j2.\nvvc<ll> random_monge_matrix(int\
+    \ H, int W) {\n  ll LIM = 10;\n  vv(ll, D, H, W);\n  FOR(i, H) FOR(j, W) D[i][j]\
+    \ = RNG(0, LIM + 1);\n\n  vv(ll, A, H, W);\n  FOR(i, H) FOR(j, W) {\n    ll x\
+    \ = D[i][j];\n    if (i) x += A[i - 1][j];\n    if (j) x += A[i][j - 1];\n   \
+    \ if (i && j) x -= A[i - 1][j - 1];\n    A[i][j] = x;\n  }\n\n  vc<ll> row(H),\
+    \ col(W);\n  FOR(i, H) row[i] = RNG(-LIM * W, LIM * W + 1);\n  FOR(j, W) col[j]\
+    \ = RNG(-LIM * H, LIM * H + 1);\n\n  FOR(i, H) FOR(j, W) A[i][j] = -A[i][j] +\
+    \ row[i] + col[j];\n  return A;\n}\n#line 2 \"convex/smawk.hpp\"\n\n// \u5404\u884C\
+    \u306E\u6700\u9069\u5217\u3092\u6C42\u3081\u308B.\n// better(i,j,k): \u884C i\
+    \ \u306B\u304A\u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\u3068\
+    \u304D true.\n// \u9069\u7528\u6761\u4EF6\uFF1Atotally monotone matrix.\n// \u6B8B\
+    \u5FF5\u306A\u304C\u3089 monotone minima \u3088\u308A\u9AD8\u901F\u306A\u5834\u5408\
+    \u304C\u5B58\u5728\u3057\u306A\u3044\u8AAC\u304C\u3042\u308B\n// https://codeforces.com/contest/1423/problem/M\n\
+    template <typename F>\nvc<int> smawk(int H, int W, F better) {\n  if (H == 0)\
+    \ return {};\n  assert(W > 0);\n\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int>\
+    \ Y) -> vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n\n    vc<int>\
+    \ YY;\n    for (auto&& y : Y) {\n      while (len(YY)) {\n        int py = YY.back(),\
+    \ x = X[len(YY) - 1];\n        if (!better(x, py, y)) break;\n        YY.pop_back();\n\
+    \      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n\n    vc<int> XX;\n  \
+    \  FOR(i, 1, len(X), 2) XX.eb(X[i]);\n\n    vc<int> II = dfs(dfs, XX, YY);\n \
+    \   vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n\n    int p = 0;\n\
+    \    FOR(i, 0, N, 2) {\n      int lim = (i + 1 == N ? Y.back() : I[i + 1]);\n\
+    \      int best = Y[p];\n      while (Y[p] < lim) {\n        ++p;\n        if\
+    \ (better(X[i], best, Y[p])) best = Y[p];\n      }\n      I[i] = best;\n    }\n\
+    \    return I;\n  };\n\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y),\
+    \ 0);\n  return dfs(dfs, X, Y);\n}\n#line 7 \"test/1_mytest/smawk.test.cpp\"\n\
+    \nvoid test() {\n  FOR(H, 0, 30) FOR(W, 1, 30) {\n    FOR(1000) {\n      auto\
+    \ A = random_monge_matrix(H, W);\n\n      auto better = [&](int i, int j, int\
+    \ k) -> bool {\n        return A[i][j] > A[i][k];\n      };\n\n      vc<int> got\
+    \ = smawk(H, W, better);\n\n      vc<int> expected(H);\n      FOR(i, H) {\n  \
+    \      expected[i] = 0;\n        FOR(j, 1, W) {\n          if (A[i][expected[i]]\
+    \ > A[i][j]) expected[i] = j;\n        }\n      }\n\n      assert(got == expected);\n\
+    \    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"convex/smawk.hpp\"\n\nvoid test() {\n  vv(int, A, 4, 5);\n  A[0]\
-    \ = {0, 1, 3, 2, 4};\n  A[1] = {0, 2, 4, 3, 1};\n  A[2] = {1, 3, 4, 2, 0};\n \
-    \ A[3] = {4, 2, 3, 1, 0};\n  auto f = [&](int i, int j, int k) -> int { return\
-    \ A[i][j] > A[i][k]; };\n\n  vc<int> I = smawk(4, 5, f);\n  vc<int> J = {0, 0,\
-    \ 4, 4};\n  assert(I == J);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}"
+    \n#include \"other/io.hpp\"\n\n#include \"random/random_monge.hpp\"\n#include\
+    \ \"convex/smawk.hpp\"\n\nvoid test() {\n  FOR(H, 0, 30) FOR(W, 1, 30) {\n   \
+    \ FOR(1000) {\n      auto A = random_monge_matrix(H, W);\n\n      auto better\
+    \ = [&](int i, int j, int k) -> bool {\n        return A[i][j] > A[i][k];\n  \
+    \    };\n\n      vc<int> got = smawk(H, W, better);\n\n      vc<int> expected(H);\n\
+    \      FOR(i, H) {\n        expected[i] = 0;\n        FOR(j, 1, W) {\n       \
+    \   if (A[i][expected[i]] > A[i][j]) expected[i] = j;\n        }\n      }\n\n\
+    \      assert(got == expected);\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
+  - other/io.hpp
+  - random/random_monge.hpp
+  - random/base.hpp
   - convex/smawk.hpp
   isVerificationFile: true
   path: test/1_mytest/smawk.test.cpp
   requiredBy: []
-  timestamp: '2026-05-06 12:56:05+09:00'
+  timestamp: '2026-05-31 18:13:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/smawk.test.cpp

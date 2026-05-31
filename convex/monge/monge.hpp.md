@@ -58,36 +58,38 @@ data:
     \        root_eval_{&f_, 1, 0, &root_cm_} {\n    base_ = std::make_unique<reduce_row>(n,\
     \ root_eval_);\n  }\n\n  inline void reset() { base_->reset(); }\n  inline int\
     \ get_argmin() { return base_->get_argmin(); }\n};\n#line 2 \"convex/smawk.hpp\"\
-    \n\n// select(i,j,k) \u306F (i,j) -> (i,k) \u3092\u884C\u3046\u304B\u3069\u3046\
-    \u304B\n// \u6B8B\u5FF5\u306A\u304C\u3089 monotone minima \u3088\u308A\u9AD8\u901F\
-    \u306A\u5834\u5408\u304C\u5B58\u5728\u3057\u306A\u3044\u8AAC\u304C\u3042\u308B\
-    \n// https://codeforces.com/contest/1423/problem/M\ntemplate <typename F>\nvc<int>\
-    \ smawk(int H, int W, F select) {\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int>\
-    \ Y) -> vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n    vc<int>\
-    \ YY;\n    for (auto&& y: Y) {\n      while (len(YY)) {\n        int py = YY.back(),\
-    \ x = X[len(YY) - 1];\n        if (!select(x, py, y)) break;\n        YY.pop_back();\n\
-    \      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n    vc<int> XX;\n    FOR(i,\
-    \ 1, len(X), 2) XX.eb(X[i]);\n    vc<int> II = dfs(dfs, XX, YY);\n    vc<int>\
-    \ I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n    int p = 0;\n    FOR(i,\
-    \ 0, N, 2) {\n      int LIM = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best\
-    \ = Y[p];\n      while (Y[p] < LIM) {\n        ++p;\n        if (select(X[i],\
-    \ best, Y[p])) best = Y[p];\n      }\n      I[i] = best;\n    }\n    return I;\n\
-    \  };\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs,\
-    \ X, Y);\n}\n#line 1 \"other/fibonacci_search.hpp\"\n// returns: {fx, x}\n// [L,\
-    \ R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\u3068\u3064\u6C42\u3081\u308B\u3001\
-    \u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename T, bool MINIMIZE, typename\
-    \ F>\npair<T, ll> fibonacci_search(F f, ll L, ll R) {\n  assert(L < R);\n  --R;\n\
-    \  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n  int n = 0;\n  while (d < R) {\
-    \ b = c, c = d, d = b + c - a, ++n; }\n  auto get = [&](ll x) -> T {\n    if (R\
-    \ < x) return infty<T>;\n    return (MINIMIZE ? f(x) : -f(x));\n  };\n  T ya =\
-    \ get(a), yb = get(b), yc = get(c), yd = get(d);\n  // \u3053\u306E\u4E2D\u3067\
-    \u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\u3082\u6975\u5C0F\u3001\u3092\
-    \u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb <= yc) {\n      d = c, c = b,\
-    \ b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n    } else {\n      a\
-    \ = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc = get(c);\n    }\n  }\n\
-    \  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n  if (chmin(y, yc)) x =\
-    \ c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return {y, x};\n  return {-y,\
-    \ x};\n}\n#line 4 \"convex/monge/monge.hpp\"\n\r\n// https://codeforces.com/contest/2183/problem/H\r\
+    \n\n// \u5404\u884C\u306E\u6700\u9069\u5217\u3092\u6C42\u3081\u308B.\n// better(i,j,k):\
+    \ \u884C i \u306B\u304A\u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\
+    \u3068\u304D true.\n// \u9069\u7528\u6761\u4EF6\uFF1Atotally monotone matrix.\n\
+    // \u6B8B\u5FF5\u306A\u304C\u3089 monotone minima \u3088\u308A\u9AD8\u901F\u306A\
+    \u5834\u5408\u304C\u5B58\u5728\u3057\u306A\u3044\u8AAC\u304C\u3042\u308B\n// https://codeforces.com/contest/1423/problem/M\n\
+    template <typename F>\nvc<int> smawk(int H, int W, F better) {\n  if (H == 0)\
+    \ return {};\n  assert(W > 0);\n\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int>\
+    \ Y) -> vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n\n    vc<int>\
+    \ YY;\n    for (auto&& y : Y) {\n      while (len(YY)) {\n        int py = YY.back(),\
+    \ x = X[len(YY) - 1];\n        if (!better(x, py, y)) break;\n        YY.pop_back();\n\
+    \      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n\n    vc<int> XX;\n  \
+    \  FOR(i, 1, len(X), 2) XX.eb(X[i]);\n\n    vc<int> II = dfs(dfs, XX, YY);\n \
+    \   vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n\n    int p = 0;\n\
+    \    FOR(i, 0, N, 2) {\n      int lim = (i + 1 == N ? Y.back() : I[i + 1]);\n\
+    \      int best = Y[p];\n      while (Y[p] < lim) {\n        ++p;\n        if\
+    \ (better(X[i], best, Y[p])) best = Y[p];\n      }\n      I[i] = best;\n    }\n\
+    \    return I;\n  };\n\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y),\
+    \ 0);\n  return dfs(dfs, X, Y);\n}\n#line 1 \"other/fibonacci_search.hpp\"\n//\
+    \ returns: {fx, x}\n// [L, R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\u3068\
+    \u3064\u6C42\u3081\u308B\u3001\u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename\
+    \ T, bool MINIMIZE, typename F>\npair<T, ll> fibonacci_search(F f, ll L, ll R)\
+    \ {\n  assert(L < R);\n  --R;\n  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n\
+    \  int n = 0;\n  while (d < R) { b = c, c = d, d = b + c - a, ++n; }\n  auto get\
+    \ = [&](ll x) -> T {\n    if (R < x) return infty<T>;\n    return (MINIMIZE ?\
+    \ f(x) : -f(x));\n  };\n  T ya = get(a), yb = get(b), yc = get(c), yd = get(d);\n\
+    \  // \u3053\u306E\u4E2D\u3067\u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\
+    \u3082\u6975\u5C0F\u3001\u3092\u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb\
+    \ <= yc) {\n      d = c, c = b, b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n\
+    \    } else {\n      a = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc\
+    \ = get(c);\n    }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n\
+    \  if (chmin(y, yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return\
+    \ {y, x};\n  return {-y, x};\n}\n#line 4 \"convex/monge/monge.hpp\"\n\r\n// https://codeforces.com/contest/2183/problem/H\r\
     \ntemplate <typename T, typename F>\r\nT monge_shortest_path_d_edge(int N, int\
     \ d, T flim, F f) {\r\n  assert(1 <= d && d <= N);\r\n  if (d == 1) return f(0,\
     \ N);\r\n  if (d == N) {\r\n    T ans = 0;\r\n    FOR(i, N) ans += f(i, i + 1);\r\
@@ -147,7 +149,7 @@ data:
   isVerificationFile: false
   path: convex/monge/monge.hpp
   requiredBy: []
-  timestamp: '2026-05-31 16:57:43+09:00'
+  timestamp: '2026-05-31 18:13:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/monge/monge.hpp

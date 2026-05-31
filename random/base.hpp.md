@@ -619,6 +619,9 @@ data:
     path: test/1_mytest/slope_super.test.cpp
     title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/smawk.test.cpp
+    title: test/1_mytest/smawk.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1192,6 +1195,7 @@ data:
   - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
   - test/1_mytest/slope_super.test.cpp
+  - test/1_mytest/smawk.test.cpp
   - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/rbst.test.cpp
   - test/1_mytest/rect_add_pt_sum.test.cpp

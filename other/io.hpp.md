@@ -46,6 +46,9 @@ data:
     path: test/1_mytest/primesum_mod4.test.cpp
     title: test/1_mytest/primesum_mod4.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/smawk.test.cpp
+    title: test/1_mytest/smawk.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2179,6 +2182,7 @@ data:
   - test/1_mytest/count_labeled_forest.test.cpp
   - test/1_mytest/check_monge.test.cpp
   - test/1_mytest/monotone_minima.test.cpp
+  - test/1_mytest/smawk.test.cpp
   - test/4_aoj/2677.test.cpp
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp
