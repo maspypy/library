@@ -35,6 +35,36 @@ vc<pair<int, int>> random_graph(int n, bool simple) {
   return G;
 }
 
+template <int DIRECTED>
+vc<pair<int, int>> random_connected_graph(int n, bool simple) {
+  while (1) {
+    vc<pair<int, int>> G, cand;
+    FOR(a, n) FOR(b, n) {
+      if (simple && a == b) continue;
+      if (!DIRECTED && a > b) continue;
+      cand.eb(a, b);
+    }
+    int m = RNG(0, len(cand) + 1);
+    set<int> ss;
+    FOR(m) {
+      while (1) {
+        int i = RNG(0, len(cand));
+        if (simple && ss.count(i)) continue;
+        ss.insert(i);
+        auto [a, b] = cand[i];
+        G.eb(a, b);
+        break;
+      }
+    }
+    UnionFind uf(n);
+    for (auto& [a, b] : G) uf.merge(a, b);
+    if (uf.n_comp != 1) continue;
+    random_relabel(n, G);
+    return G;
+  }
+  assert(0);
+}
+
 vc<pair<int, int>> random_tree(int n) {
   vc<pair<int, int>> G;
   FOR(i, 1, n) { G.eb(RNG(0, i), i); }

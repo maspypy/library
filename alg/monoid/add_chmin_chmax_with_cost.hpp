@@ -1,14 +1,15 @@
-
 template <typename T>
 struct Monoid_Add_Chmin_Chmax_With_Cost {
-  // x をうつしたとき, add による変化量が a
-  // chmax による増加量が b + max(x1-x,0)
-  // chmin による減少量が c + max(x-x2,0)
+  // clamp(x+a,l,r) は (a,0,0,l-a,r-a) とする
+  // eval_cost(f,x) すると、add, chmax, chmin による x の変化量が入る
   struct F {
     T a, b, c, x1, x2;
-    F(T a = 0, T b = 0, T c = 0, T x1 = -infty<T>, T x2 = infty<T>) : a(a), b(b), c(c), x1(x1), x2(x2) {}
+    F(T a = 0, T b = 0, T c = 0, T x1 = -infty<T>, T x2 = infty<T>)
+        : a(a), b(b), c(c), x1(x1), x2(x2) {}
     // add, chmax, chmin
-    tuple<T, T, T> eval_cost(T x) { return {a, b + max<T>(x1 - x, 0), c + max<T>(x - x2, 0)}; }
+    tuple<T, T, T> eval_cost(T x) {
+      return {a, b + max<T>(x1 - x, 0), c + max<T>(x - x2, 0)};
+    }
     T eval(T x) {
       auto [add, ma, mi] = eval_cost(x);
       return x + add + ma - mi;

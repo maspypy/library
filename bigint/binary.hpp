@@ -28,7 +28,10 @@ struct BigInteger_Binary {
       s.erase(s.begin());
       assert(!s.empty());
     }
-    if (s[0] == '0') {
+    int p = 0;
+    while (p < len(s) && s[p] == '0') ++p;
+    s = s.substr(p);
+    if (s.empty()) {
       sgn = 0;
       return;
     }
@@ -61,8 +64,12 @@ struct BigInteger_Binary {
   bool operator<=(const bint &p) const { return !(*this > p); }
   bool operator>=(const bint &p) const { return !(*this < p); }
   bint &operator+=(const bint p) {
-    if (sgn == 0) { return *this = p; }
-    if (p.sgn == 0) { return *this; }
+    if (sgn == 0) {
+      return *this = p;
+    }
+    if (p.sgn == 0) {
+      return *this;
+    }
     if (sgn != p.sgn) {
       *this -= (-p);
       return *this;
@@ -92,7 +99,9 @@ struct BigInteger_Binary {
     FOR(i, len(dat) - 1) {
       if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -= 1;
     }
-    while (len(dat) && dat.back() == 0) { dat.pop_back(); }
+    while (len(dat) && dat.back() == 0) {
+      dat.pop_back();
+    }
     if (dat.empty()) sgn = 0;
     return *this;
   }
@@ -129,7 +138,9 @@ struct BigInteger_Binary {
         FOR(i, s, t + 1) { x += u64(a[i]) * b[k - i]; }
         c[k] = x % MOD, x = x / MOD;
       }
-      while (x > 0) { c.eb(x % MOD), x = x / MOD; }
+      while (x > 0) {
+        c.eb(x % MOD), x = x / MOD;
+      }
       return c;
     }
     static constexpr int p0 = 167772161;
@@ -150,22 +161,24 @@ struct BigInteger_Binary {
       x += CRT3<u128, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);
       c[i] = x % MOD, x = x / MOD;
     }
-    while (x) { c.eb(x % MOD), x = x / MOD; }
+    while (x) {
+      c.eb(x % MOD), x = x / MOD;
+    }
     return c;
   }
 
   string to_string() {
     if (dat.empty()) return "0";
     string s;
-    for (int x: dat) {
+    for (int x : dat) {
       FOR(LOG) {
         s += '0' + (x & 1);
         x /= 2;
       }
     }
     while (s.back() == '0') s.pop_back();
-    if (sgn == -1) s += '-';
     reverse(all(s));
+    if (sgn == -1) s += '-';
     return s;
   }
 
@@ -233,7 +246,72 @@ struct BigInteger_Binary {
     }
   }
 
-  void substract_power_of_2(int k) {}
+  void substract_power_of_2(int k) { assert(0); }
+
+  int topbit() {
+    if (dat.empty()) return -1;
+    int k = len(dat) - 1;
+    return LOG * k + ::topbit(dat[k]);
+  }
+  int lowbit() {
+    FOR(i, len(dat)) {
+      if (dat[i] == 0) continue;
+      return LOG * i + ::lowbit(dat[i]);
+    }
+    return -1;
+  }
+
+  // if k>0:2^kx
+  // if k<0:floor(x/(2^{-k}))
+  void shift(int k) {
+    assert(sgn >= 0);
+    if (sgn == 0 || k == 0) return;
+
+    if (k > 0) {
+      int q = k / LOG;
+      int r = k % LOG;
+
+      if (q > 0) {
+        dat.insert(dat.begin(), q, 0);
+      }
+
+      if (r > 0) {
+        int carry = 0;
+        FOR(i, len(dat)) {
+          ll x = (ll(dat[i]) << r) + carry;
+          dat[i] = x & (MOD - 1);
+          carry = x >> LOG;
+        }
+        if (carry) dat.eb(carry);
+      }
+    } else {
+      k = -k;
+      int q = k / LOG;
+      int r = k % LOG;
+
+      if (q >= len(dat)) {
+        dat.clear();
+        sgn = 0;
+        return;
+      }
+
+      if (q > 0) {
+        dat.erase(dat.begin(), dat.begin() + q);
+      }
+
+      if (r > 0) {
+        int carry = 0;
+        FOR_R(i, len(dat)) {
+          int new_carry = dat[i] & ((1 << r) - 1);
+          dat[i] = (dat[i] >> r) | (carry << (LOG - r));
+          carry = new_carry;
+        }
+      }
+
+      while (len(dat) && dat.back() == 0) dat.pop_back();
+      if (dat.empty()) sgn = 0;
+    }
+  }
 };
 
 #ifdef FASTIO
