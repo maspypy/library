@@ -6,6 +6,12 @@ struct Common_Inverval_Decomposition {
     vc<Node*> ch;
     bool inc, dec;
     int l, r, lo, hi;
+    string type() {
+      if (r == l + 1) return "leaf";
+      if (inc) return "inc";
+      if (dec) return "dec";
+      return "prime";
+    }
   };
 
   Node* pool;
