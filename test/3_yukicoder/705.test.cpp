@@ -15,7 +15,8 @@ void solve() {
     ll dy = abs(y);
     return dx * dx * dx + dy * dy * dy;
   };
-  print(monge_shortest_path<ll>(N, f).back());
+  auto [dp, frm] = monge_shortest_path<ll>(N, f);
+  print(dp[N]);
 }
 
 signed main() {
