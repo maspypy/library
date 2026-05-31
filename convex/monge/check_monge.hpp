@@ -1,12 +1,19 @@
-// 定義域 [0, N] の範囲で f の monge 性を確認
+#pragma once
+
+// check Monge property on [0, N]:
+// f(a,d) + f(b,c) >= f(a,c) + f(b,d) for a < b < c < d
 template <typename T, typename F>
 bool check_monge(int N, F f) {
-  FOR(l, N + 1) FOR(k, l) FOR(j, k) FOR(i, j) {
-    T lhs = f(i, l) + f(j, k);
-    T rhs = f(i, k) + f(j, l);
+  FOR(d, N + 1) FOR(c, d) FOR(b, c) FOR(a, b) {
+    T lhs = f(a, d) + f(b, c);
+    T rhs = f(a, c) + f(b, d);
     if (lhs < rhs) {
       print("monge ng");
-      print(i, j, k, l, f(i, k), f(i, l), f(j, k), f(j, l), lhs, rhs);
+      print("a,b,c,d = ", a, b, c, d);
+      print("f(a, d)=", f(a, d));
+      print("f(b, c)=", f(b, c));
+      print("f(a, c)=", f(a, c));
+      print("f(b, d)=", f(b, d));
       return false;
     }
   }
