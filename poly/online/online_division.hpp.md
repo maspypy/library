@@ -221,8 +221,8 @@ data:
   timestamp: '2026-03-03 00:45:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/online_log.test.cpp
   - test/1_mytest/online_division.test.cpp
+  - test/1_mytest/online_log.test.cpp
   - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/online_inv.test.cpp
 documentation_of: poly/online/online_division.hpp

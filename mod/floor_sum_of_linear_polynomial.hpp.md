@@ -136,16 +136,16 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear_polynomial.hpp
   requiredBy:
-  - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/lattice_point_sum_polynomial.hpp
   timestamp: '2026-02-27 23:10:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - test/3_yukicoder/2362.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
+  - test/3_yukicoder/2362.test.cpp
 documentation_of: mod/floor_sum_of_linear_polynomial.hpp
 layout: document
 redirect_from:

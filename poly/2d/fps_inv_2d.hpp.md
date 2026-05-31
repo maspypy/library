@@ -381,8 +381,8 @@ data:
   isVerificationFile: false
   path: poly/2d/fps_inv_2d.hpp
   requiredBy:
-  - poly/2d/fps_exp_2d.hpp
   - poly/2d/fps_log_2d.hpp
+  - poly/2d/fps_exp_2d.hpp
   timestamp: '2026-05-06 19:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

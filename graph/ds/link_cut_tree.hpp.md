@@ -287,9 +287,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp
-  - test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
-  - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
+  - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
+  - test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/3_yukicoder/772.test.cpp
   - test/3_yukicoder/902.test.cpp
   - test/3_yukicoder/2296.test.cpp

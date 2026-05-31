@@ -517,39 +517,39 @@ data:
   isVerificationFile: false
   path: poly/poly_gcd.hpp
   requiredBy:
-  - seq/interpolate_linear_rec.hpp
-  - seq/find_linear_rec.hpp
-  - poly/finding_root_of_polynomial.hpp
-  - linalg/blackbox/det.hpp
-  - linalg/blackbox/min_poly.hpp
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
+  - linalg/blackbox/det.hpp
+  - linalg/blackbox/min_poly.hpp
+  - poly/finding_root_of_polynomial.hpp
+  - seq/find_linear_rec.hpp
+  - seq/interpolate_linear_rec.hpp
   timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/2_library_checker/other/find_linear_recurrence.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/1_mytest/min_poly.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/other/find_linear_recurrence.test.cpp
+  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-  - test/3_yukicoder/2305.test.cpp
-  - test/3_yukicoder/1516.test.cpp
-  - test/3_yukicoder/1561.test.cpp
-  - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/541.test.cpp
-  - test/3_yukicoder/578.test.cpp
-  - test/3_yukicoder/310.test.cpp
-  - test/3_yukicoder/1755.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/2877.test.cpp
-  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/1547.test.cpp
   - test/3_yukicoder/1500.test.cpp
-  - test/1_mytest/poly_root_finding.test.cpp
-  - test/1_mytest/min_poly.test.cpp
+  - test/3_yukicoder/310.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/1755.test.cpp
+  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/2305.test.cpp
+  - test/3_yukicoder/541.test.cpp
 documentation_of: poly/poly_gcd.hpp
 layout: document
 redirect_from:

@@ -277,6 +277,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/smawk.hpp
       title: convex/smawk.hpp
+  - name: convex/monge
+    pages:
+    - icon: ':warning:'
+      path: convex/monge/check_monge.hpp
+      title: convex/monge/check_monge.hpp
+    - icon: ':warning:'
+      path: convex/monge/monge.hpp
+      title: convex/monge/monge.hpp
   - name: convex/slope_trick
     pages:
     - icon: ':heavy_check_mark:'
@@ -355,6 +363,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/node_pool.hpp
       title: ds/node_pool.hpp
+    - icon: ':warning:'
+      path: ds/offset_vector.hpp
+      title: ds/offset_vector.hpp
     - icon: ':heavy_check_mark:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
@@ -1380,6 +1391,9 @@ data:
       title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree_dp
     pages:
+    - icon: ':warning:'
+      path: graph/tree_dp/O_NK_rerooting_tree_dp.hpp
+      title: graph/tree_dp/O_NK_rerooting_tree_dp.hpp
     - icon: ':heavy_check_mark:'
       path: graph/tree_dp/rerooting_dp.hpp
       title: graph/tree_dp/rerooting_dp.hpp
@@ -2353,6 +2367,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/hadamard.hpp
       title: setfunc/hadamard.hpp
+    - icon: ':warning:'
+      path: setfunc/maxmin_patrition.hpp
+      title: setfunc/maxmin_patrition.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp

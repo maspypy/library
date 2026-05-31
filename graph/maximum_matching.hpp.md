@@ -216,8 +216,8 @@ data:
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/general_matching.test.cpp
   - test/1_mytest/matching.test.cpp
+  - test/2_library_checker/graph/general_matching.test.cpp
 documentation_of: graph/maximum_matching.hpp
 layout: document
 redirect_from:

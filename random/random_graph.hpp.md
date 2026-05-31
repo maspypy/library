@@ -207,18 +207,27 @@ data:
     \ FOR(m) {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple\
     \ && ss.count(i)) continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n\
     \      G.eb(a, b);\n      break;\n    }\n  }\n  random_relabel(n, G);\n  return\
-    \ G;\n}\n\nvc<pair<int, int>> random_tree(int n) {\n  vc<pair<int, int>> G;\n\
-    \  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n, G);\n  return G;\n\
-    }\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\u30A4\u30AF\u30EB\
-    \uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\u8FBA\
-    \uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\u4E00\u306E\u30B5\
-    \u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\
-    \u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE) {\n  if (!EDGE)\
-    \ {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\u4E0A\u306B\u5206\
-    \u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int> S(n, 1);\n  \
-    \  int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0, n);\n     \
-    \ if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest = 0;\n \
-    \       } else {\n          S[k] += 2, rest -= 2;\n        }\n      } else {\n\
+    \ G;\n}\n\ntemplate <int DIRECTED>\nvc<pair<int, int>> random_connected_graph(int\
+    \ n, bool simple) {\n  while (1) {\n    vc<pair<int, int>> G, cand;\n    FOR(a,\
+    \ n) FOR(b, n) {\n      if (simple && a == b) continue;\n      if (!DIRECTED &&\
+    \ a > b) continue;\n      cand.eb(a, b);\n    }\n    int m = RNG(0, len(cand)\
+    \ + 1);\n    set<int> ss;\n    FOR(m) {\n      while (1) {\n        int i = RNG(0,\
+    \ len(cand));\n        if (simple && ss.count(i)) continue;\n        ss.insert(i);\n\
+    \        auto [a, b] = cand[i];\n        G.eb(a, b);\n        break;\n      }\n\
+    \    }\n    UnionFind uf(n);\n    for (auto& [a, b] : G) uf.merge(a, b);\n   \
+    \ if (uf.n_comp != 1) continue;\n    random_relabel(n, G);\n    return G;\n  }\n\
+    \  assert(0);\n}\n\nvc<pair<int, int>> random_tree(int n) {\n  vc<pair<int, int>>\
+    \ G;\n  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n, G);\n  return\
+    \ G;\n}\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\u30A4\u30AF\
+    \u30EB\uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\
+    \u8FBA\uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\u4E00\u306E\
+    \u30B5\u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\
+    \u306F\u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE) {\n  if\
+    \ (!EDGE) {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\u4E0A\u306B\
+    \u5206\u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int> S(n, 1);\n\
+    \    int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0, n);\n   \
+    \   if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest = 0;\n\
+    \        } else {\n          S[k] += 2, rest -= 2;\n        }\n      } else {\n\
     \        S[k]++, rest--;\n      }\n    }\n    n = len(S);\n    int p = 0;\n  \
     \  FOR(i, n) {\n      vc<int> C;\n      FOR(v, p, p + S[i]) C.eb(v);\n      A.eb(C);\n\
     \      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
@@ -269,17 +278,26 @@ data:
     \ + 1);\n  set<int> ss;\n  FOR(m) {\n    while (1) {\n      int i = RNG(0, len(cand));\n\
     \      if (simple && ss.count(i)) continue;\n      ss.insert(i);\n      auto [a,\
     \ b] = cand[i];\n      G.eb(a, b);\n      break;\n    }\n  }\n  random_relabel(n,\
-    \ G);\n  return G;\n}\n\nvc<pair<int, int>> random_tree(int n) {\n  vc<pair<int,\
-    \ int>> G;\n  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n, G);\n\
-    \  return G;\n}\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\u30A4\
-    \u30AF\u30EB\uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\
-    \u306F\u8FBA\uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\u4E00\
-    \u306E\u30B5\u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\u307E\
-    \u305F\u306F\u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE) {\n\
-    \  if (!EDGE) {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\u4E0A\
-    \u306B\u5206\u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int> S(n,\
-    \ 1);\n    int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0, n);\n\
-    \      if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest = 0;\n\
+    \ G);\n  return G;\n}\n\ntemplate <int DIRECTED>\nvc<pair<int, int>> random_connected_graph(int\
+    \ n, bool simple) {\n  while (1) {\n    vc<pair<int, int>> G, cand;\n    FOR(a,\
+    \ n) FOR(b, n) {\n      if (simple && a == b) continue;\n      if (!DIRECTED &&\
+    \ a > b) continue;\n      cand.eb(a, b);\n    }\n    int m = RNG(0, len(cand)\
+    \ + 1);\n    set<int> ss;\n    FOR(m) {\n      while (1) {\n        int i = RNG(0,\
+    \ len(cand));\n        if (simple && ss.count(i)) continue;\n        ss.insert(i);\n\
+    \        auto [a, b] = cand[i];\n        G.eb(a, b);\n        break;\n      }\n\
+    \    }\n    UnionFind uf(n);\n    for (auto& [a, b] : G) uf.merge(a, b);\n   \
+    \ if (uf.n_comp != 1) continue;\n    random_relabel(n, G);\n    return G;\n  }\n\
+    \  assert(0);\n}\n\nvc<pair<int, int>> random_tree(int n) {\n  vc<pair<int, int>>\
+    \ G;\n  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n, G);\n  return\
+    \ G;\n}\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\u30A4\u30AF\
+    \u30EB\uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\
+    \u8FBA\uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\u4E00\u306E\
+    \u30B5\u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\
+    \u306F\u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE) {\n  if\
+    \ (!EDGE) {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\u4E0A\u306B\
+    \u5206\u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int> S(n, 1);\n\
+    \    int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0, n);\n   \
+    \   if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest = 0;\n\
     \        } else {\n          S[k] += 2, rest -= 2;\n        }\n      } else {\n\
     \        S[k]++, rest--;\n      }\n    }\n    n = len(S);\n    int p = 0;\n  \
     \  FOR(i, n) {\n      vc<int> C;\n      FOR(v, p, p + S[i]) C.eb(v);\n      A.eb(C);\n\
@@ -330,29 +348,29 @@ data:
   isVerificationFile: false
   path: random/random_graph.hpp
   requiredBy: []
-  timestamp: '2026-02-27 23:10:36+09:00'
+  timestamp: '2026-05-31 16:42:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
-  - test/1_mytest/matching_ve.test.cpp
-  - test/1_mytest/incremental_scc.test.cpp
-  - test/1_mytest/count_indep_set.test.cpp
-  - test/1_mytest/remove_one_vertex.test.cpp
-  - test/1_mytest/st_numbering.test.cpp
-  - test/1_mytest/find_cycle_minimum.test.cpp
-  - test/1_mytest/outer_planar.test.cpp
-  - test/1_mytest/count_clique.test.cpp
-  - test/1_mytest/independent_set_knapsack.test.cpp
-  - test/1_mytest/remove_one_edge.test.cpp
-  - test/1_mytest/count_K4.test.cpp
-  - test/1_mytest/count_P3P4P5.test.cpp
-  - test/1_mytest/find_C4.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
-  - test/1_mytest/find_odd_cycle.test.cpp
-  - test/1_mytest/rolling_hash_on_tree.test.cpp
-  - test/1_mytest/matching_line_graph.test.cpp
-  - test/1_mytest/find_even_cycle.test.cpp
+  - test/1_mytest/independent_set_knapsack.test.cpp
+  - test/1_mytest/matching_ve.test.cpp
+  - test/1_mytest/remove_one_vertex.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
+  - test/1_mytest/st_numbering.test.cpp
+  - test/1_mytest/find_even_cycle.test.cpp
+  - test/1_mytest/find_cycle_minimum.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - test/1_mytest/count_indep_set.test.cpp
+  - test/1_mytest/find_C4.test.cpp
+  - test/1_mytest/count_K4.test.cpp
+  - test/1_mytest/remove_one_edge.test.cpp
+  - test/1_mytest/outer_planar.test.cpp
+  - test/1_mytest/incremental_scc.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
+  - test/1_mytest/count_clique.test.cpp
+  - test/1_mytest/count_P3P4P5.test.cpp
+  - test/1_mytest/rolling_hash_on_tree.test.cpp
+  - test/1_mytest/find_odd_cycle.test.cpp
 documentation_of: random/random_graph.hpp
 layout: document
 redirect_from:

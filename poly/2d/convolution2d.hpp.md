@@ -334,13 +334,13 @@ data:
   isVerificationFile: false
   path: poly/2d/convolution2d.hpp
   requiredBy:
-  - poly/2d/fps_exp_2d.hpp
   - poly/2d/fps_log_2d.hpp
+  - poly/2d/fps_exp_2d.hpp
   timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/conv2d.test.cpp
+  - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/fps_inv_2d.test.cpp
 documentation_of: poly/2d/convolution2d.hpp
 layout: document

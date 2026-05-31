@@ -68,8 +68,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/totient_sum.test.cpp
-  - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/1781.test.cpp
+  - test/3_yukicoder/1276.test.cpp
 documentation_of: nt/multiplicative_sum.hpp
 layout: document
 redirect_from:

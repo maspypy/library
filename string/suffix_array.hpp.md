@@ -376,26 +376,26 @@ data:
   isVerificationFile: false
   path: string/suffix_array.hpp
   requiredBy:
-  - string/basic_substring_structure.hpp
-  - string/longest_common_substring.hpp
-  - string/many_string_compare.hpp
-  - string/suffix_tree.hpp
-  - string/suffix_lcp_change.hpp
   - string/substring_shortest_border.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
-  - string/substring_count_in_substring.hpp
+  - string/suffix_lcp_change.hpp
+  - string/suffix_tree.hpp
+  - string/many_string_compare.hpp
+  - string/basic_substring_structure.hpp
+  - string/longest_common_substring.hpp
   - string/sort_substrings.hpp
+  - string/substring_count_in_substring.hpp
   timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/string/suffix_array_vec.test.cpp
-  - test/2_library_checker/string/suffix_array.test.cpp
-  - test/2_library_checker/string/number_of_substrings.test.cpp
-  - test/2_library_checker/string/longest_common_substring.test.cpp
-  - test/3_yukicoder/2361.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/2_library_checker/string/suffix_array.test.cpp
+  - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/string/number_of_substrings.test.cpp
+  - test/3_yukicoder/2361.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:

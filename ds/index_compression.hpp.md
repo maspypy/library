@@ -133,18 +133,18 @@ data:
   timestamp: '2025-11-18 00:27:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/1919_2.test.cpp
-  - test/3_yukicoder/1490.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/2859.test.cpp
   - test/1_mytest/index_compression.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/1490.test.cpp
+  - test/3_yukicoder/2859.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
 documentation_of: ds/index_compression.hpp
 layout: document
 redirect_from:
