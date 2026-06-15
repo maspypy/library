@@ -71,7 +71,7 @@ struct My_Bitset {
     return Proxy(dat, i);
   }
 
-  bool operator==(const T &p) {
+  bool operator==(const T &p) const {
     assert(N == p.N);
     FOR(i, len(dat)) if (dat[i] != p.dat[i]) return false;
     return true;

@@ -16,11 +16,11 @@ struct Array_On_Divisors {
     if (!pf.empty() && pf == pfs) return;
     pf = pfs;
     ll n = 1;
-    for (auto&& [p, e]: pf) n *= (e + 1);
+    for (auto&& [p, e] : pf) n *= (e + 1);
     divs.assign(n, 1);
     dat.assign(n, T{});
     int nxt = 1;
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       int L = nxt;
       ll q = p;
       FOR(e) {
@@ -39,7 +39,7 @@ struct Array_On_Divisors {
   void set_multiplicative(F f) {
     dat.reserve(len(divs));
     dat = {T(1)};
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       int n = len(divs);
       FOR(k, 1, e + 1) { FOR(i, n) dat.eb(dat[i] * f(p, k)); }
     }
@@ -60,7 +60,7 @@ struct Array_On_Divisors {
 
   void multiplier_zeta() {
     ll k = 1;
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
         FOR_R(j, mod - k) { dat[mod * i + j] += dat[mod * i + j + k]; }
@@ -71,7 +71,7 @@ struct Array_On_Divisors {
 
   void multiplier_mobius() {
     ll k = 1;
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
         FOR(j, mod - k) { dat[mod * i + j] -= dat[mod * i + j + k]; }
@@ -82,7 +82,7 @@ struct Array_On_Divisors {
 
   void divisor_zeta() {
     ll k = 1;
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
         FOR(j, mod - k) { dat[mod * i + j + k] += dat[mod * i + j]; }
@@ -93,7 +93,7 @@ struct Array_On_Divisors {
 
   void divisor_mobius() {
     ll k = 1;
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
         FOR_R(j, mod - k) { dat[mod * i + j + k] -= dat[mod * i + j]; }
@@ -106,10 +106,12 @@ struct Array_On_Divisors {
   template <typename F>
   void divisor_mobius(F SUB) {
     ll k = 1;
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
-        FOR_R(j, mod - k) { dat[mod * i + j + k] = SUB(dat[mod * i + j + k], dat[mod * i + j]); }
+        FOR_R(j, mod - k) {
+          dat[mod * i + j + k] = SUB(dat[mod * i + j + k], dat[mod * i + j]);
+        }
       }
       k *= (e + 1);
     }
@@ -119,10 +121,12 @@ struct Array_On_Divisors {
   template <typename F>
   void multiplier_zeta(F ADD) {
     ll k = 1;
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
-        FOR_R(j, mod - k) { dat[mod * i + j] = ADD(dat[mod * i + j], dat[mod * i + j + k]); }
+        FOR_R(j, mod - k) {
+          dat[mod * i + j] = ADD(dat[mod * i + j], dat[mod * i + j + k]);
+        }
       }
       k *= (e + 1);
     }
@@ -132,10 +136,12 @@ struct Array_On_Divisors {
   template <typename F>
   void multiplier_mobius(F SUB) {
     ll k = 1;
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
-        FOR(j, mod - k) { dat[mod * i + j] = SUB(dat[mod * i + j], dat[mod * i + j + k]); }
+        FOR(j, mod - k) {
+          dat[mod * i + j] = SUB(dat[mod * i + j], dat[mod * i + j + k]);
+        }
       }
       k *= (e + 1);
     }
@@ -145,10 +151,12 @@ struct Array_On_Divisors {
   template <typename F>
   void divisor_zeta(F ADD) {
     ll k = 1;
-    for (auto&& [p, e]: pf) {
+    for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
-        FOR(j, mod - k) { dat[mod * i + j + k] = ADD(dat[mod * i + j + k], dat[mod * i + j]); }
+        FOR(j, mod - k) {
+          dat[mod * i + j + k] = ADD(dat[mod * i + j + k], dat[mod * i + j]);
+        }
       }
       k *= (e + 1);
     }
@@ -164,5 +172,21 @@ struct Array_On_Divisors {
   template <typename F>
   void enumerate(F f) {
     FOR(i, len(divs)) { f(divs[i], dat[i]); }
+  }
+
+  // n の約数全体
+  vi get_divisors(ll n) {
+    assert(divs.back() % n == 0);
+    vi dp = {1};
+    for (auto& [p, f] : pf) {
+      ll e = 0;
+      while (n % p == 0) n /= p, ++e;
+      ll m = len(dp);
+      FOR(i, m) {
+        ll x = dp[i];
+        FOR(j, 1, e + 1) x *= p, dp.eb(x);
+      }
+    }
+    return dp;
   }
 };

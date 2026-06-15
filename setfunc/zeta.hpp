@@ -1,33 +1,23 @@
 #pragma once
 
+#include "setfunc/bitwise_transform.hpp"
+
 template <typename T>
 void superset_zeta(vc<T>& a) {
-  int n = len(a);
-  for (int i = 1; i != n; i <<= 1)
-    for (int j = 0; j != n; j += i << 1)
-      for (int k = 0; k != i; k++) a[j + k] += a[i + j + k];
+  bitwise::bitwise_transform<bitwise::trans_type::superset_zeta>(a);
 }
 
 template <typename T>
 void superset_mobius(vc<T>& a) {
-  int n = len(a);
-  for (int i = 1; i != n; i <<= 1)
-    for (int j = 0; j != n; j += i << 1)
-      for (int k = 0; k != i; k++) a[j + k] -= a[i + j + k];
+  bitwise::bitwise_transform<bitwise::trans_type::superset_mobius>(a);
 }
 
 template <typename T>
 void subset_zeta(vc<T>& a) {
-  int n = len(a);
-  for (int i = 1; i != n; i <<= 1)
-    for (int j = 0; j != n; j += i << 1)
-      for (int k = 0; k != i; k++) a[i + j + k] += a[j + k];
+  bitwise::bitwise_transform<bitwise::trans_type::subset_zeta>(a);
 }
 
 template <typename T>
 void subset_mobius(vc<T>& a) {
-  int n = len(a);
-  for (int i = 1; i != n; i <<= 1)
-    for (int j = 0; j != n; j += i << 1)
-      for (int k = 0; k != i; k++) a[i + j + k] -= a[j + k];
+  bitwise::bitwise_transform<bitwise::trans_type::subset_mobius>(a);
 }

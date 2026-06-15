@@ -11,7 +11,7 @@ void solve() {
   LL(N, K);
   VEC(mint, A, N);
   VEC(mint, g, N);
-  for (auto&& x: g) x = -x;
+  for (auto&& x : g) x = -x;
   g.insert(g.begin(), 1);
   auto f = convolution(A, g);
   f.resize(N);

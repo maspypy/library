@@ -3,8 +3,6 @@
 // 各行の最適列を求める.
 // better(i,j,k): 行 i において列 k が列 j より良いとき true.
 // 適用条件：totally monotone matrix.
-// 残念ながら monotone minima より高速な場合が存在しない説がある
-// https://codeforces.com/contest/1423/problem/M
 template <typename F>
 vc<int> smawk(int H, int W, F better) {
   if (H == 0) return {};

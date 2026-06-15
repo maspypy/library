@@ -5,7 +5,7 @@
 #include <bits/allocator.h>
 #pragma GCC optimize("Ofast,unroll-loops")
 // 環境によってはコンパイル成功かつ実行時エラー
-// #pragma GCC target("avx2,popcnt")
+#pragma GCC target("avx2,popcnt")
 #endif
 #include <bits/stdc++.h>
 

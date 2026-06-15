@@ -42,6 +42,7 @@ pair<vc<T>, vc<int>> monge_shortest_path(int N, F f, bool minimize_cnt = true) {
   return {dp, frm};
 }
 
+// yuki705 では simple larsch より低速だったし使わない想定でいく
 // #include "convex/larsch.hpp"
 // // dp[r] = min_{0 <= l < r} dp[l] + f(l, r)
 // // 遷移回数を問わない

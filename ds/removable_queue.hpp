@@ -27,13 +27,26 @@ struct Removable_Queue {
 
   vc<T> get_all() {
     vc<T> ANS;
-    while (!empty()) { ANS.eb(pop()); }
-    for (auto& x: ANS) push(x);
+    while (!empty()) {
+      ANS.eb(pop());
+    }
+    for (auto& x : ANS) push(x);
     return ANS;
   }
 
-private:
+  void rebuild() {
+    vc<T> tmp;
+    while (!empty()) {
+      tmp.eb(pop());
+    }
+    que = QUE{all(tmp)};
+    rm_que = QUE{};
+  }
+
+ private:
   void refresh() {
-    while (len(rm_que) && rm_que.top() == que.top()) { rm_que.pop(), que.pop(); }
+    while (len(rm_que) && rm_que.top() == que.top()) {
+      rm_que.pop(), que.pop();
+    }
   }
 };

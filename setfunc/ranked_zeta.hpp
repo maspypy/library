@@ -1,5 +1,7 @@
 #pragma once
 
+#include "setfunc/bitwise_transform.hpp"
+
 template <typename T, int LIM>
 vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {
   int n = topbit(len(f));
@@ -7,32 +9,14 @@ vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {
   assert(len(f) == 1 << n);
   vc<array<T, LIM + 1>> Rf(1 << n);
   for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];
-  for (int i = 0; i < n; ++i) {
-    int w = 1 << i;
-    for (int p = 0; p < (1 << n); p += 2 * w) {
-      for (int s = p; s < p + w; ++s) {
-        int t = s | 1 << i;
-        for (int d = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];
-      }
-    }
-  }
+  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);
   return Rf;
 }
 
 template <typename T, int LIM>
 vc<T> ranked_mobius(vc<array<T, LIM + 1>>& Rf) {
-  int n = topbit(len(Rf));
-  assert(len(Rf) == 1 << n);
-  for (int i = 0; i < n; ++i) {
-    int w = 1 << i;
-    for (int p = 0; p < (1 << n); p += 2 * w) {
-      for (int s = p; s < p + w; ++s) {
-        int t = s | 1 << i;
-        for (int d = 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];
-      }
-    }
-  }
-  vc<T> f(1 << n);
-  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];
+  bitwise::bitwise_transform<bitwise::trans_type::ranked_mobius>(Rf);
+  vc<T> f(len(Rf));
+  for (int s = 0; s < len(f); ++s) f[s] = Rf[s][popcnt(s)];
   return f;
 }
