@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/monge/check_monge.hpp
     title: convex/monge/check_monge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_monge.hpp
     title: random/random_monge.hpp
   _extendedRequiredBy: []
@@ -31,7 +31,7 @@ data:
     #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\
     \u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\
-    \u6642\u30A8\u30E9\u30FC\n// #pragma GCC target(\"avx2,popcnt\")\n#endif\n#include\
+    \u6642\u30A8\u30E9\u30FC\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include\
     \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 =\
     \ uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
     using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
@@ -284,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/check_monge.test.cpp
   requiredBy: []
-  timestamp: '2026-05-31 17:32:53+09:00'
+  timestamp: '2026-06-15 22:08:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/check_monge.test.cpp

@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: convex/monge/monge_dp_update.hpp
+    title: convex/monge/monge_dp_update.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/1_mytest/alien.test.cpp
+    title: test/1_mytest/alien.test.cpp
+  - icon: ':x:'
     path: test/1_mytest/monotone_minima.test.cpp
     title: test/1_mytest/monotone_minima.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convex/monotone_minima.hpp\"\n\n// \u5404\u884C\u306E\u6700\
@@ -42,11 +48,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: convex/monotone_minima.hpp
-  requiredBy: []
+  requiredBy:
+  - convex/monge/monge_dp_update.hpp
   timestamp: '2026-05-31 17:32:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/monotone_minima.test.cpp
+  - test/1_mytest/alien.test.cpp
 documentation_of: convex/monotone_minima.hpp
 layout: document
 redirect_from:

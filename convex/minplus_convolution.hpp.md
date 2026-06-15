@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/minplus_convolution_of_triples.hpp
     title: convex/minplus_convolution_of_triples.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/minplus_conv_triple.test.cpp
     title: test/1_mytest/minplus_conv_triple.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/minplus_convex.test.cpp
     title: test/1_mytest/minplus_convex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
     title: test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     title: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convex/minplus_convolution.hpp\"\n\ntemplate <typename T>\n\
@@ -81,12 +81,12 @@ data:
   requiredBy:
   - convex/minplus_convolution_of_triples.hpp
   timestamp: '2026-05-31 18:02:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/1_mytest/minplus_conv_triple.test.cpp
-  - test/1_mytest/minplus_convex.test.cpp
-  - test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
   - test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+  - test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  - test/1_mytest/minplus_convex.test.cpp
+  - test/1_mytest/minplus_conv_triple.test.cpp
 documentation_of: convex/minplus_convolution.hpp
 layout: document
 redirect_from:

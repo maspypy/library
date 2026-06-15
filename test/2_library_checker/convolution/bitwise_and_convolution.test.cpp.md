@@ -1,29 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/and_convolution.hpp
     title: setfunc/and_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: setfunc/bitwise_transform.hpp
+    title: setfunc/bitwise_transform.hpp
+  - icon: ':x:'
     path: setfunc/zeta.hpp
     title: setfunc/zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -35,14 +38,14 @@ data:
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
     \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
-    \n// #pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\n\
-    using namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
-    \ = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing\
+    \ namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
     template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
     \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
@@ -327,33 +330,53 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"setfunc/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid superset_zeta(vc<T>&\
-    \ a) {\r\n  int n = len(a);\r\n  for (int i = 1; i != n; i <<= 1)\r\n    for (int\
-    \ j = 0; j != n; j += i << 1)\r\n      for (int k = 0; k != i; k++) a[j + k] +=\
-    \ a[i + j + k];\r\n}\r\n\r\ntemplate <typename T>\r\nvoid superset_mobius(vc<T>&\
-    \ a) {\r\n  int n = len(a);\r\n  for (int i = 1; i != n; i <<= 1)\r\n    for (int\
-    \ j = 0; j != n; j += i << 1)\r\n      for (int k = 0; k != i; k++) a[j + k] -=\
-    \ a[i + j + k];\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_zeta(vc<T>& a)\
-    \ {\r\n  int n = len(a);\r\n  for (int i = 1; i != n; i <<= 1)\r\n    for (int\
-    \ j = 0; j != n; j += i << 1)\r\n      for (int k = 0; k != i; k++) a[i + j +\
-    \ k] += a[j + k];\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_mobius(vc<T>&\
-    \ a) {\r\n  int n = len(a);\r\n  for (int i = 1; i != n; i <<= 1)\r\n    for (int\
-    \ j = 0; j != n; j += i << 1)\r\n      for (int k = 0; k != i; k++) a[i + j +\
-    \ k] -= a[j + k];\r\n}\n#line 2 \"setfunc/and_convolution.hpp\"\ntemplate <typename\
-    \ T>\r\nvc<T> and_convolution(vc<T> A, vc<T> B) {\r\n  superset_zeta(A);\r\n \
-    \ superset_zeta(B);\r\n  FOR(i, len(A)) A[i] *= B[i];\r\n  superset_mobius(A);\r\
-    \n  return A;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/bitwise_and_convolution.test.cpp\"\
+    #line 2 \"setfunc/zeta.hpp\"\n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\n\n\
+    namespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
+    \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius\n\
+    };\n\ntemplate <typename ARR>\ninline void ranked_add(ARR& a, const ARR& b) {\n\
+    \  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n}\n\ntemplate <typename\
+    \ ARR>\ninline void ranked_sub(ARR& a, const ARR& b) {\n  for (int d = 0; d <\
+    \ int(a.size()); ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type type, int N, typename\
+    \ T>\ninline void bitwise_transform_fixed(T* a) {\n  static_assert(N >= 1 && (N\
+    \ & (N - 1)) == 0);\n  if constexpr (N == 1) {\n    return;\n  } else {\n    constexpr\
+    \ int H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n    bitwise_transform_fixed<type,\
+    \ H>(a + H);\n    if constexpr (type == trans_type::hadamard) {\n      for (int\
+    \ i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n        a[i] = x\
+    \ + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type == trans_type::superset_zeta)\
+    \ {\n      for (int i = 0; i < H; ++i) a[i] += a[H + i];\n    }\n    if constexpr\
+    \ (type == trans_type::superset_mobius) {\n      for (int i = 0; i < H; ++i) a[i]\
+    \ -= a[H + i];\n    }\n    if constexpr (type == trans_type::subset_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) a[H + i] += a[i];\n    }\n    if constexpr\
+    \ (type == trans_type::subset_mobius) {\n      for (int i = 0; i < H; ++i) a[H\
+    \ + i] -= a[i];\n    }\n    if constexpr (type == trans_type::ranked_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) ranked_add(a[H + i], a[i]);\n    }\n    if\
+    \ constexpr (type == trans_type::ranked_mobius) {\n      for (int i = 0; i < H;\
+    \ ++i) ranked_sub(a[H + i], a[i]);\n    }\n  }\n}\n\ntemplate <trans_type type,\
+    \ int N, typename T>\ninline void bitwise_transform_dispatch(vc<T>& a) {\n  if\
+    \ (len(a) == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n  }\n\
+    \  if constexpr (N > 1) {\n    return bitwise_transform_dispatch<type, N / 2>(a);\n\
+    \  }\n}\n\ntemplate <trans_type type, typename T>\ninline void bitwise_transform(vc<T>&\
+    \ a) {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n\
+    \  assert(n <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n\
+    }\n}  // namespace bitwise\n#line 4 \"setfunc/zeta.hpp\"\n\r\ntemplate <typename\
+    \ T>\r\nvoid superset_zeta(vc<T>& a) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::superset_zeta>(a);\r\
+    \n}\r\n\r\ntemplate <typename T>\r\nvoid superset_mobius(vc<T>& a) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::superset_mobius>(a);\r\
+    \n}\r\n\r\ntemplate <typename T>\r\nvoid subset_zeta(vc<T>& a) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::subset_zeta>(a);\r\
+    \n}\r\n\r\ntemplate <typename T>\r\nvoid subset_mobius(vc<T>& a) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::subset_mobius>(a);\r\
+    \n}\r\n#line 2 \"setfunc/and_convolution.hpp\"\ntemplate <typename T>\r\nvc<T>\
+    \ and_convolution(vc<T> A, vc<T> B) {\r\n  superset_zeta(A);\r\n  superset_zeta(B);\r\
+    \n  FOR(i, len(A)) A[i] *= B[i];\r\n  superset_mobius(A);\r\n  return A;\r\n}\r\
+    \n#line 7 \"test/2_library_checker/convolution/bitwise_and_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto ANS = and_convolution(A, B);\r\
-    \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
+    \n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"mod/modint.hpp\"\r\n#include \"setfunc/and_convolution.hpp\"\r\n\r\nusing\
     \ mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, A, 1 << N);\r\
     \n  VEC(mint, B, 1 << N);\r\n  auto ANS = and_convolution(A, B);\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -361,11 +384,12 @@ data:
   - mod/modint_common.hpp
   - setfunc/and_convolution.hpp
   - setfunc/zeta.hpp
+  - setfunc/bitwise_transform.hpp
   isVerificationFile: true
   path: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-05-06 12:56:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-15 22:08:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
 layout: document

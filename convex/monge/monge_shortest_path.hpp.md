@@ -3,15 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/1_mytest/alien.test.cpp
+    title: test/1_mytest/alien.test.cpp
+  - icon: ':x:'
     path: test/1_mytest/monge_shortest_path.test.cpp
     title: test/1_mytest/monge_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/705.test.cpp
     title: test/3_yukicoder/705.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2023/02/18/005856
@@ -30,12 +33,14 @@ data:
     \    int m = (l + r) / 2;\n    FOR(k, frm[l], frm[r] + 1) check(m, k);\n    dfs(dfs,\
     \ l, m);\n    FOR(k, l + 1, m + 1) check(r, k);\n    dfs(dfs, m, r);\n  };\n\n\
     \  if (N > 0) {\n    check(N, 0), dfs(dfs, 0, N);\n  }\n  return {dp, frm};\n\
-    }\n\n// #include \"convex/larsch.hpp\"\n// // dp[r] = min_{0 <= l < r} dp[l] +\
-    \ f(l, r)\n// // \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\n// template\
-    \ <typename T, typename F>\n// vc<T> monge_shortest_path_larsch(int N, F f) {\n\
-    //   vc<T> dp(N + 1, infty<T>);\n//   dp[0] = 0;\n\n//   auto g = [&](int i, int\
-    \ j) -> T {\n//     ++i;\n//     if (i <= j) return infty<T>;\n//     return dp[j]\
-    \ + f(j, i);\n//   };\n\n//   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r,\
+    }\n\n// yuki705 \u3067\u306F simple larsch \u3088\u308A\u4F4E\u901F\u3060\u3063\
+    \u305F\u3057\u4F7F\u308F\u306A\u3044\u60F3\u5B9A\u3067\u3044\u304F\n// #include\
+    \ \"convex/larsch.hpp\"\n// // dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n// //\
+    \ \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\n// template <typename\
+    \ T, typename F>\n// vc<T> monge_shortest_path_larsch(int N, F f) {\n//   vc<T>\
+    \ dp(N + 1, infty<T>);\n//   dp[0] = 0;\n\n//   auto g = [&](int i, int j) ->\
+    \ T {\n//     ++i;\n//     if (i <= j) return infty<T>;\n//     return dp[j] +\
+    \ f(j, i);\n//   };\n\n//   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r,\
     \ 1, N + 1) {\n//     int l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l,\
     \ r);\n//   }\n//   return dp;\n// }\n"
   code: "#pragma once\n\n// dp[0] = 0\n// dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n\
@@ -52,24 +57,27 @@ data:
     \ dfs, int l, int r) -> void {\n    if (r - l == 1) return;\n    int m = (l +\
     \ r) / 2;\n    FOR(k, frm[l], frm[r] + 1) check(m, k);\n    dfs(dfs, l, m);\n\
     \    FOR(k, l + 1, m + 1) check(r, k);\n    dfs(dfs, m, r);\n  };\n\n  if (N >\
-    \ 0) {\n    check(N, 0), dfs(dfs, 0, N);\n  }\n  return {dp, frm};\n}\n\n// #include\
-    \ \"convex/larsch.hpp\"\n// // dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n// //\
-    \ \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\n// template <typename\
-    \ T, typename F>\n// vc<T> monge_shortest_path_larsch(int N, F f) {\n//   vc<T>\
-    \ dp(N + 1, infty<T>);\n//   dp[0] = 0;\n\n//   auto g = [&](int i, int j) ->\
-    \ T {\n//     ++i;\n//     if (i <= j) return infty<T>;\n//     return dp[j] +\
-    \ f(j, i);\n//   };\n\n//   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r,\
-    \ 1, N + 1) {\n//     int l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l,\
-    \ r);\n//   }\n//   return dp;\n// }\n"
+    \ 0) {\n    check(N, 0), dfs(dfs, 0, N);\n  }\n  return {dp, frm};\n}\n\n// yuki705\
+    \ \u3067\u306F simple larsch \u3088\u308A\u4F4E\u901F\u3060\u3063\u305F\u3057\u4F7F\
+    \u308F\u306A\u3044\u60F3\u5B9A\u3067\u3044\u304F\n// #include \"convex/larsch.hpp\"\
+    \n// // dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n// // \u9077\u79FB\u56DE\u6570\
+    \u3092\u554F\u308F\u306A\u3044\n// template <typename T, typename F>\n// vc<T>\
+    \ monge_shortest_path_larsch(int N, F f) {\n//   vc<T> dp(N + 1, infty<T>);\n\
+    //   dp[0] = 0;\n\n//   auto g = [&](int i, int j) -> T {\n//     ++i;\n//   \
+    \  if (i <= j) return infty<T>;\n//     return dp[j] + f(j, i);\n//   };\n\n//\
+    \   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r, 1, N + 1) {\n//     int\
+    \ l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l, r);\n//   }\n//   return\
+    \ dp;\n// }\n"
   dependsOn: []
   isVerificationFile: false
   path: convex/monge/monge_shortest_path.hpp
   requiredBy: []
-  timestamp: '2026-05-31 19:36:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-06-15 22:08:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/1_mytest/monge_shortest_path.test.cpp
   - test/3_yukicoder/705.test.cpp
+  - test/1_mytest/monge_shortest_path.test.cpp
+  - test/1_mytest/alien.test.cpp
 documentation_of: convex/monge/monge_shortest_path.hpp
 layout: document
 redirect_from:

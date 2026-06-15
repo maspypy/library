@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_monge.hpp
     title: random/random_monge.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -31,7 +31,7 @@ data:
     \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
     #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n//\
     \ \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\
-    \u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\n// #pragma GCC target(\"\
+    \u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\n#pragma GCC target(\"\
     avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing\
     \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
     using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
@@ -271,12 +271,14 @@ data:
     \    int m = (l + r) / 2;\n    FOR(k, frm[l], frm[r] + 1) check(m, k);\n    dfs(dfs,\
     \ l, m);\n    FOR(k, l + 1, m + 1) check(r, k);\n    dfs(dfs, m, r);\n  };\n\n\
     \  if (N > 0) {\n    check(N, 0), dfs(dfs, 0, N);\n  }\n  return {dp, frm};\n\
-    }\n\n// #include \"convex/larsch.hpp\"\n// // dp[r] = min_{0 <= l < r} dp[l] +\
-    \ f(l, r)\n// // \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\n// template\
-    \ <typename T, typename F>\n// vc<T> monge_shortest_path_larsch(int N, F f) {\n\
-    //   vc<T> dp(N + 1, infty<T>);\n//   dp[0] = 0;\n\n//   auto g = [&](int i, int\
-    \ j) -> T {\n//     ++i;\n//     if (i <= j) return infty<T>;\n//     return dp[j]\
-    \ + f(j, i);\n//   };\n\n//   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r,\
+    }\n\n// yuki705 \u3067\u306F simple larsch \u3088\u308A\u4F4E\u901F\u3060\u3063\
+    \u305F\u3057\u4F7F\u308F\u306A\u3044\u60F3\u5B9A\u3067\u3044\u304F\n// #include\
+    \ \"convex/larsch.hpp\"\n// // dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n// //\
+    \ \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\n// template <typename\
+    \ T, typename F>\n// vc<T> monge_shortest_path_larsch(int N, F f) {\n//   vc<T>\
+    \ dp(N + 1, infty<T>);\n//   dp[0] = 0;\n\n//   auto g = [&](int i, int j) ->\
+    \ T {\n//     ++i;\n//     if (i <= j) return infty<T>;\n//     return dp[j] +\
+    \ f(j, i);\n//   };\n\n//   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r,\
     \ 1, N + 1) {\n//     int l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l,\
     \ r);\n//   }\n//   return dp;\n// }\n#line 7 \"test/1_mytest/monge_shortest_path.test.cpp\"\
     \n\nvoid test() {\n  FOR(N, 1, 100) {\n    FOR(1000) {\n      auto A = random_monge_matrix(N\
@@ -318,8 +320,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/monge_shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2026-05-31 19:38:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-15 22:08:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/monge_shortest_path.test.cpp
 layout: document

@@ -1,29 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: setfunc/bitwise_transform.hpp
+    title: setfunc/bitwise_transform.hpp
+  - icon: ':x:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_xor_convolution
@@ -35,14 +38,14 @@ data:
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
     \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
-    \n// #pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\n\
-    using namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
-    \ = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing\
+    \ namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
     template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
     \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
@@ -327,16 +330,44 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"setfunc/hadamard.hpp\"\n\r\n// B[j] = sum_i (-1)^{popcnt(i&j)A[i]}\r\
-    \n// 2^n \u3067\u5272\u308B\u3053\u3068\u306F\u3057\u3066\u3044\u306A\u3044\r\n\
-    template <typename T>\r\nvoid hadamard(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s < t) tie(A[s], A[t]) = mp(A[s] + A[t], A[s] -\
-    \ A[t]);\r\n  }\r\n}\n#line 2 \"setfunc/xor_convolution.hpp\"\n\r\ntemplate <typename\
-    \ T>\r\nvc<T> xor_convolution(vc<T> A, vc<T> B) {\r\n  hadamard(A);\r\n  hadamard(B);\r\
-    \n  FOR(i, len(A)) A[i] *= B[i];\r\n  hadamard(A);\r\n\r\n  T c = T(1) / T(len(A));\r\
-    \n  if (c != T(0)) {\r\n    FOR(i, len(A)) A[i] *= c;\r\n  } else {\r\n    FOR(i,\
-    \ len(A)) A[i] /= len(A);\r\n  }\r\n  return A;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
+    #line 2 \"setfunc/hadamard.hpp\"\n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\
+    \n\nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
+    \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius\n\
+    };\n\ntemplate <typename ARR>\ninline void ranked_add(ARR& a, const ARR& b) {\n\
+    \  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n}\n\ntemplate <typename\
+    \ ARR>\ninline void ranked_sub(ARR& a, const ARR& b) {\n  for (int d = 0; d <\
+    \ int(a.size()); ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type type, int N, typename\
+    \ T>\ninline void bitwise_transform_fixed(T* a) {\n  static_assert(N >= 1 && (N\
+    \ & (N - 1)) == 0);\n  if constexpr (N == 1) {\n    return;\n  } else {\n    constexpr\
+    \ int H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n    bitwise_transform_fixed<type,\
+    \ H>(a + H);\n    if constexpr (type == trans_type::hadamard) {\n      for (int\
+    \ i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n        a[i] = x\
+    \ + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type == trans_type::superset_zeta)\
+    \ {\n      for (int i = 0; i < H; ++i) a[i] += a[H + i];\n    }\n    if constexpr\
+    \ (type == trans_type::superset_mobius) {\n      for (int i = 0; i < H; ++i) a[i]\
+    \ -= a[H + i];\n    }\n    if constexpr (type == trans_type::subset_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) a[H + i] += a[i];\n    }\n    if constexpr\
+    \ (type == trans_type::subset_mobius) {\n      for (int i = 0; i < H; ++i) a[H\
+    \ + i] -= a[i];\n    }\n    if constexpr (type == trans_type::ranked_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) ranked_add(a[H + i], a[i]);\n    }\n    if\
+    \ constexpr (type == trans_type::ranked_mobius) {\n      for (int i = 0; i < H;\
+    \ ++i) ranked_sub(a[H + i], a[i]);\n    }\n  }\n}\n\ntemplate <trans_type type,\
+    \ int N, typename T>\ninline void bitwise_transform_dispatch(vc<T>& a) {\n  if\
+    \ (len(a) == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n  }\n\
+    \  if constexpr (N > 1) {\n    return bitwise_transform_dispatch<type, N / 2>(a);\n\
+    \  }\n}\n\ntemplate <trans_type type, typename T>\ninline void bitwise_transform(vc<T>&\
+    \ a) {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n\
+    \  assert(n <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n\
+    }\n}  // namespace bitwise\n#line 4 \"setfunc/hadamard.hpp\"\n\r\n// B[j] = sum_i\
+    \ (-1)^{popcnt(i&j)} A[i]\r\n// len(A) \u306F 2^25 \u4EE5\u4E0B\u306E 2 \u51AA\
+    \u3092\u4EEE\u5B9A\u30022^k \u3067\u5272\u308B\u3053\u3068\u306F\u3057\u3066\u3044\
+    \u306A\u3044\u3002\r\ntemplate <typename T>\r\nvoid hadamard(vc<T>& A) {\r\n \
+    \ bitwise::bitwise_transform<bitwise::trans_type::hadamard>(A);\r\n}\r\n#line\
+    \ 2 \"setfunc/xor_convolution.hpp\"\n\r\ntemplate <typename T>\r\nvc<T> xor_convolution(vc<T>\
+    \ A, vc<T> B) {\r\n  hadamard(A);\r\n  hadamard(B);\r\n  FOR(i, len(A)) A[i] *=\
+    \ B[i];\r\n  hadamard(A);\r\n\r\n  T c = T(1) / T(len(A));\r\n  if (c != T(0))\
+    \ {\r\n    FOR(i, len(A)) A[i] *= c;\r\n  } else {\r\n    FOR(i, len(A)) A[i]\
+    \ /= len(A);\r\n  }\r\n  return A;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = xor_convolution(A, B);\r\
     \n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -355,11 +386,12 @@ data:
   - mod/modint_common.hpp
   - setfunc/xor_convolution.hpp
   - setfunc/hadamard.hpp
+  - setfunc/bitwise_transform.hpp
   isVerificationFile: true
   path: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-05-06 12:56:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-15 22:08:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
 layout: document

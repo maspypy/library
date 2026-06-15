@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: convex/larsch.hpp
     title: convex/larsch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/fibonacci_search.hpp
     title: other/fibonacci_search.hpp
   _extendedRequiredBy: []
@@ -61,8 +61,6 @@ data:
     \n\n// \u5404\u884C\u306E\u6700\u9069\u5217\u3092\u6C42\u3081\u308B.\n// better(i,j,k):\
     \ \u884C i \u306B\u304A\u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\
     \u3068\u304D true.\n// \u9069\u7528\u6761\u4EF6\uFF1Atotally monotone matrix.\n\
-    // \u6B8B\u5FF5\u306A\u304C\u3089 monotone minima \u3088\u308A\u9AD8\u901F\u306A\
-    \u5834\u5408\u304C\u5B58\u5728\u3057\u306A\u3044\u8AAC\u304C\u3042\u308B\n// https://codeforces.com/contest/1423/problem/M\n\
     template <typename F>\nvc<int> smawk(int H, int W, F better) {\n  if (H == 0)\
     \ return {};\n  assert(W > 0);\n\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int>\
     \ Y) -> vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n\n    vc<int>\
@@ -149,7 +147,7 @@ data:
   isVerificationFile: false
   path: convex/monge/monge.hpp
   requiredBy: []
-  timestamp: '2026-05-31 18:13:57+09:00'
+  timestamp: '2026-06-15 22:08:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/monge/monge.hpp
