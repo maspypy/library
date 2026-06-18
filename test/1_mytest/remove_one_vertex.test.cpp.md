@@ -41,24 +41,24 @@ data:
     #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n//\
     \ \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\
     \u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\n#pragma GCC target(\"\
-    avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
-    \ <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
-    \ = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\n\
-    template <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128\
-    \ infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr\
-    \ double infty<double> = numeric_limits<double>::infinity();\ntemplate <>\nconstexpr\
-    \ long double infty<long double> =\n    numeric_limits<long double>::infinity();\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing\
+    \ namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
+    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
+    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
+    template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
+    \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
     \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
     \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
@@ -401,7 +401,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/remove_one_vertex.test.cpp
   requiredBy: []
-  timestamp: '2026-06-15 22:08:56+09:00'
+  timestamp: '2026-06-18 17:02:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/remove_one_vertex.test.cpp
