@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
   - icon: ':question:'
