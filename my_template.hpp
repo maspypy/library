@@ -8,6 +8,7 @@
 #pragma GCC target("avx2,popcnt")
 #endif
 #include <bits/stdc++.h>
+#include <cassert>
 
 using namespace std;
 
