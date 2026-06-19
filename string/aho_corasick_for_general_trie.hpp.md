@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   - icon: ':question:'
