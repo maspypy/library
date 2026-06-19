@@ -12,10 +12,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/check_monge.test.cpp
     title: test/1_mytest/check_monge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/monge_shortest_path.test.cpp
     title: test/1_mytest/monge_shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/monotone_minima.test.cpp
     title: test/1_mytest/monotone_minima.test.cpp
   - icon: ':x:'

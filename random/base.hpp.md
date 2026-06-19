@@ -74,7 +74,7 @@ data:
   - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
   - icon: ':x:'
@@ -462,49 +462,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/minplus_conv_triple.test.cpp
     title: test/1_mytest/minplus_conv_triple.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/minplus_convex.test.cpp
     title: test/1_mytest/minplus_convex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mod_sum_of_linear.test.cpp
     title: test/1_mytest/mod_sum_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/monge_shortest_path.test.cpp
     title: test/1_mytest/monge_shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/monotone_minima.test.cpp
     title: test/1_mytest/monotone_minima.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/non_adj.test.cpp
     title: test/1_mytest/non_adj.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
     title: test/1_mytest/nth_element_from_sorted_lists.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
     title: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_division.test.cpp
     title: test/1_mytest/online_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_exp.test.cpp
     title: test/1_mytest/online_exp.test.cpp
   - icon: ':x:'

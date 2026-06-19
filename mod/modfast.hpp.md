@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
   - icon: ':question:'
@@ -33,12 +33,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\
@@ -302,7 +302,7 @@ data:
   path: mod/modfast.hpp
   requiredBy: []
   timestamp: '2026-03-14 08:28:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/modfast.test.cpp
 documentation_of: mod/modfast.hpp

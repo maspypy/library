@@ -38,7 +38,7 @@ data:
   - icon: ':x:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint_evaluation_for_prefix_product.hpp
     title: poly/multipoint_evaluation_for_prefix_product.hpp
   - icon: ':x:'
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convolution_all_1.test.cpp
     title: test/1_mytest/convolution_all_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
   - icon: ':x:'

@@ -7,10 +7,10 @@ data:
   - icon: ':x:'
     path: convex/monge/monge_dp_update.hpp
     title: convex/monge/monge_dp_update.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   - icon: ':x:'
