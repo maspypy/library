@@ -47,13 +47,13 @@ data:
   - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
   - icon: ':question:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
   - icon: ':x:'
@@ -78,7 +78,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
   - icon: ':x:'

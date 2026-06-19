@@ -153,10 +153,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching_ve.test.cpp
     title: test/1_mytest/matching_ve.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/outer_planar.test.cpp
     title: test/1_mytest/outer_planar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prufer.test.cpp
     title: test/1_mytest/prufer.test.cpp
   - icon: ':x:'

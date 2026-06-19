@@ -68,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
   - icon: ':x:'
@@ -80,7 +80,7 @@ data:
   - icon: ':x:'
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
   - icon: ':x:'
@@ -111,7 +111,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
     title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':x:'

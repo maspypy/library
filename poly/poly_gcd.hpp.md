@@ -47,7 +47,7 @@ data:
   - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
   - icon: ':question:'
@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
   - icon: ':x:'

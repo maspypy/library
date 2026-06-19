@@ -8,19 +8,19 @@ data:
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
   - icon: ':warning:'
     path: seq/cycle_decomposition.hpp
     title: seq/cycle_decomposition.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
@@ -221,7 +221,7 @@ data:
   - geo/polygon_triangulation.hpp
   - seq/cycle_decomposition.hpp
   timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: ds/splaytree/splaytree_basic.hpp
