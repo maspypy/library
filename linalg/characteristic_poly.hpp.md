@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/3_yukicoder/1907.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\
@@ -84,7 +84,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - linalg/adjugate_matrix.hpp
   timestamp: '2026-02-03 22:59:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp

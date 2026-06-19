@@ -8,13 +8,13 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
   - icon: ':x:'
@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - icon: ':x:'

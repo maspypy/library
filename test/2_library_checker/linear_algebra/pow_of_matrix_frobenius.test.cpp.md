@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
   - icon: ':question:'
