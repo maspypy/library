@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
   _extendedRequiredBy: []
