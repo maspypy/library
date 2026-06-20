@@ -5,9 +5,6 @@ data:
   - icon: ':warning:'
     path: convex/monge/monge.hpp
     title: convex/monge/monge.hpp
-  - icon: ':warning:'
-    path: convex/monge/monge_shortest_path_d_edge.hpp
-    title: convex/monge/monge_shortest_path_d_edge.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -98,7 +95,6 @@ data:
   path: convex/larsch.hpp
   requiredBy:
   - convex/monge/monge.hpp
-  - convex/monge/monge_shortest_path_d_edge.hpp
   timestamp: '2026-03-14 22:08:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

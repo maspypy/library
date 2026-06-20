@@ -18,7 +18,6 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/2183/problem/H
-    - https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html
   bundledCode: "#line 1 \"convex/larsch.hpp\"\n// \u5236\u7D04\u304D\u3064\u3044 https://codeforces.com/contest/2183/problem/H\n\
     template <class T, class F>\nclass LARSCH {\n  struct reduce_row;\n  struct reduce_col;\n\
     \  struct ColMap {\n    const ColMap* parent = nullptr;\n    const std::vector<int>*\
@@ -103,16 +102,7 @@ data:
     \    chmax(ANS, dp[N].fi - lambda * d);\r\n    return MP[lambda] = dp[N];\r\n\
     \  };\r\n\r\n  T lo = -3 * flim - 10, hi = 3 * flim + 10;\r\n  while (lo + 1 <\
     \ hi) {\r\n    T mi = (lo + hi) / 2;\r\n    int k = calc(mi).se;\r\n    if (k\
-    \ == d) break;\r\n    (k > d ? lo : hi) = mi;\r\n  }\r\n  return ANS;\r\n}\r\n\
-    \r\n// https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html\r\
-    \n// Prop 1\r\n// \u4E0A\u4E09\u89D2 monge A, B\r\n// C[i][j] = min_k (A[i][k]\
-    \ + B[k][j])\r\ntemplate <typename T, typename F1, typename F2>\r\nvvc<T> monge_matrix_product(int\
-    \ N, F1 A, F2 B) {\r\n  vv(T, C, N + 1, N + 1, infty<T>);\r\n  vc<int> K(N + 1);\r\
-    \n  FOR(i, N + 1) C[i][i] = A(i, i) + B(i, i), K[i] = i;\r\n  FOR(s, 1, N + 1)\
-    \ {\r\n    vc<int> newK(N + 1 - s);\r\n    FOR(i, N + 1 - s) {\r\n      int j\
-    \ = i + s;\r\n      int p = K[i], q = K[i + 1];\r\n      FOR(k, p, q + 1) if (chmin(C[i][j],\
-    \ A(i, k) + B(k, j))) newK[i] = k;\r\n    }\r\n    swap(K, newK);\r\n  }\r\n \
-    \ return C;\r\n}\r\n"
+    \ == d) break;\r\n    (k > d ? lo : hi) = mi;\r\n  }\r\n  return ANS;\r\n}\r\n"
   code: "#include \"convex/larsch.hpp\"\r\n#include \"convex/smawk.hpp\"\r\n#include\
     \ \"other/fibonacci_search.hpp\"\r\n\r\n// https://codeforces.com/contest/2183/problem/H\r\
     \ntemplate <typename T, typename F>\r\nT monge_shortest_path_d_edge(int N, int\
@@ -130,16 +120,7 @@ data:
     \    chmax(ANS, dp[N].fi - lambda * d);\r\n    return MP[lambda] = dp[N];\r\n\
     \  };\r\n\r\n  T lo = -3 * flim - 10, hi = 3 * flim + 10;\r\n  while (lo + 1 <\
     \ hi) {\r\n    T mi = (lo + hi) / 2;\r\n    int k = calc(mi).se;\r\n    if (k\
-    \ == d) break;\r\n    (k > d ? lo : hi) = mi;\r\n  }\r\n  return ANS;\r\n}\r\n\
-    \r\n// https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html\r\
-    \n// Prop 1\r\n// \u4E0A\u4E09\u89D2 monge A, B\r\n// C[i][j] = min_k (A[i][k]\
-    \ + B[k][j])\r\ntemplate <typename T, typename F1, typename F2>\r\nvvc<T> monge_matrix_product(int\
-    \ N, F1 A, F2 B) {\r\n  vv(T, C, N + 1, N + 1, infty<T>);\r\n  vc<int> K(N + 1);\r\
-    \n  FOR(i, N + 1) C[i][i] = A(i, i) + B(i, i), K[i] = i;\r\n  FOR(s, 1, N + 1)\
-    \ {\r\n    vc<int> newK(N + 1 - s);\r\n    FOR(i, N + 1 - s) {\r\n      int j\
-    \ = i + s;\r\n      int p = K[i], q = K[i + 1];\r\n      FOR(k, p, q + 1) if (chmin(C[i][j],\
-    \ A(i, k) + B(k, j))) newK[i] = k;\r\n    }\r\n    swap(K, newK);\r\n  }\r\n \
-    \ return C;\r\n}\r\n"
+    \ == d) break;\r\n    (k > d ? lo : hi) = mi;\r\n  }\r\n  return ANS;\r\n}\r\n"
   dependsOn:
   - convex/larsch.hpp
   - convex/smawk.hpp
@@ -147,7 +128,7 @@ data:
   isVerificationFile: false
   path: convex/monge/monge.hpp
   requiredBy: []
-  timestamp: '2026-06-15 22:08:56+09:00'
+  timestamp: '2026-06-20 11:40:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/monge/monge.hpp

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: convex/monge/monge_shortest_path_d_edge.hpp
+    title: convex/monge/monge_shortest_path_d_edge.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/1_mytest/alien.test.cpp
@@ -38,7 +41,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: convex/alien.hpp
-  requiredBy: []
+  requiredBy:
+  - convex/monge/monge_shortest_path_d_edge.hpp
   timestamp: '2026-06-20 11:11:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

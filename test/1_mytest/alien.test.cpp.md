@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: convex/monge/monge_dp_update.hpp
     title: convex/monge/monge_dp_update.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
   - icon: ':question:'
@@ -316,50 +316,53 @@ data:
     \ + 1, better);\n  // vc<int> I = smawk(N + 1, N + 1, better);\n\n  vc<T> newdp(N\
     \ + 1, infty<T>);\n  FOR(j, N + 1) {\n    int i = I[j];\n    if (i < j) newdp[j]\
     \ = dp[i] + f(i, j);\n  }\n  return newdp;\n}\n#line 2 \"convex/monge/monge_shortest_path.hpp\"\
-    \n\n// dp[0] = 0\n// dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n// return: {dp,\
-    \ frm}\n// minimize_cnt: Alien \u306E\u5FA9\u5143\u306B\u4F7F\u3046\ntemplate\
-    \ <typename T, typename F>\npair<vc<T>, vc<int>> monge_shortest_path(int N, F\
-    \ f, bool minimize_cnt = true) {\n  vc<T> dp(N + 1, infty<T>);\n  vc<int> frm(N\
-    \ + 1, 0);\n  vc<int> cnt(N + 1, infty<int>);\n\n  dp[0] = 0;\n  cnt[0] = 0;\n\
-    \n  auto better_tie = [&](int new_cnt, int old_cnt) -> bool {\n    return minimize_cnt\
-    \ ? new_cnt < old_cnt : new_cnt > old_cnt;\n  };\n  auto check = [&](int r, int\
-    \ l) -> void {\n    T x = dp[l] + f(l, r);\n    int c = cnt[l] + 1;\n    if (dp[r]\
-    \ > x || (dp[r] == x && better_tie(c, cnt[r]))) {\n      dp[r] = x;\n      frm[r]\
-    \ = l;\n      cnt[r] = c;\n    }\n  };\n\n  // simple larsch, https://noshi91.hatenablog.com/entry/2023/02/18/005856\n\
-    \  auto dfs = [&](auto& dfs, int l, int r) -> void {\n    if (r - l == 1) return;\n\
-    \    int m = (l + r) / 2;\n    FOR(k, frm[l], frm[r] + 1) check(m, k);\n    dfs(dfs,\
-    \ l, m);\n    FOR(k, l + 1, m + 1) check(r, k);\n    dfs(dfs, m, r);\n  };\n\n\
-    \  if (N > 0) {\n    check(N, 0), dfs(dfs, 0, N);\n  }\n  return {dp, frm};\n\
-    }\n\n// yuki705 \u3067\u306F simple larsch \u3088\u308A\u4F4E\u901F\u3060\u3063\
-    \u305F\u3057\u4F7F\u308F\u306A\u3044\u60F3\u5B9A\u3067\u3044\u304F\n// #include\
-    \ \"convex/larsch.hpp\"\n// // dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n// //\
-    \ \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\n// template <typename\
-    \ T, typename F>\n// vc<T> monge_shortest_path_larsch(int N, F f) {\n//   vc<T>\
-    \ dp(N + 1, infty<T>);\n//   dp[0] = 0;\n\n//   auto g = [&](int i, int j) ->\
-    \ T {\n//     ++i;\n//     if (i <= j) return infty<T>;\n//     return dp[j] +\
-    \ f(j, i);\n//   };\n\n//   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r,\
-    \ 1, N + 1) {\n//     int l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l,\
-    \ r);\n//   }\n//   return dp;\n// }\n#line 9 \"test/1_mytest/alien.test.cpp\"\
-    \n\nll path_cost(const vc<int>& path, const vvc<ll>& A) {\n  ll res = 0;\n  FOR(i,\
-    \ len(path) - 1) {\n    int l = path[i], r = path[i + 1];\n    assert(l < r);\n\
-    \    res += A[l][r];\n  }\n  return res;\n}\n\nvoid test_one(int N) {\n  vvc<ll>\
-    \ A = random_monge_matrix(N + 1, N + 1);\n\n  auto cost = [&](int l, int r) ->\
-    \ ll {\n    assert(0 <= l && l < r && r <= N);\n    return A[l][r];\n  };\n\n\
-    \  auto solve = [&](ll penalty, bool minimize_cnt) -> pair<vc<ll>, vc<int>> {\n\
-    \    return monge_shortest_path<ll>(\n        N, [&](int l, int r) -> ll { return\
-    \ cost(l, r) + penalty; },\n        minimize_cnt);\n  };\n\n  vc<ll> dp(N + 1,\
-    \ infty<ll>);\n  dp[0] = 0;\n\n  FOR(K, 1, N + 1) {\n    dp = monge_dp_update<ll>(N,\
-    \ dp, cost);\n    ll expected = dp[N];\n    // alien_trick requires lo: cnt >\
-    \ K, hi: cnt <= K.\n    // Since max path length is N, K == N has no cnt > K side.\n\
-    \    if (K == N) continue;\n\n    ll lo = -1000000;\n    ll hi = 1000000;\n\n\
-    \    ll got = alien_trick<ll>(N, K, lo, hi, solve);\n    assert(got == expected);\n\
-    \n    auto [got_restore, path] =\n        alien_trick_restore<ll>(N, K, lo, hi,\
-    \ solve, cost);\n    assert(got_restore == expected);\n    assert(len(path) ==\
-    \ K + 1);\n    assert(path[0] == 0);\n    assert(path.back() == N);\n    FOR(i,\
-    \ len(path) - 1) assert(path[i] < path[i + 1]);\n\n    ll restored_cost = path_cost(path,\
-    \ A);\n    assert(restored_cost == expected);\n  }\n}\n\nvoid test() {\n  FOR(N,\
-    \ 1, 40) { FOR(500) test_one(N); }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
-    \ + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \n\ntemplate <typename T>\nstruct Monge_Shortest_Path {\n  int N;\n  vc<T> dp;\n\
+    \  vc<int> cnt, frm;\n\n  Monge_Shortest_Path(int N) : N(N) {}\n\n  template <typename\
+    \ F>\n  pair<T, int> solve(F f, bool minimize_cnt = true) {\n    dp.assign(N +\
+    \ 1, infty<T>);\n    cnt.assign(N + 1, infty<int>);\n    frm.assign(N + 1, 0);\n\
+    \n    dp[0] = 0;\n    cnt[0] = 0;\n\n    auto better_tie = [&](int new_cnt, int\
+    \ old_cnt) -> bool {\n      return minimize_cnt ? new_cnt < old_cnt : new_cnt\
+    \ > old_cnt;\n    };\n\n    auto check = [&](int r, int l) -> void {\n      T\
+    \ x = dp[l] + f(l, r);\n      int c = cnt[l] + 1;\n      if (dp[r] > x || (dp[r]\
+    \ == x && better_tie(c, cnt[r]))) {\n        dp[r] = x;\n        cnt[r] = c;\n\
+    \        frm[r] = l;\n      }\n    };\n\n    // simple larsch, https://noshi91.hatenablog.com/entry/2023/02/18/005856\n\
+    \    auto dfs = [&](auto& dfs, int l, int r) -> void {\n      if (r - l == 1)\
+    \ return;\n      int m = (l + r) / 2;\n\n      FOR(k, frm[l], frm[r] + 1) check(m,\
+    \ k);\n      dfs(dfs, l, m);\n\n      FOR(k, l + 1, m + 1) check(r, k);\n    \
+    \  dfs(dfs, m, r);\n    };\n\n    if (N > 0) {\n      check(N, 0);\n      dfs(dfs,\
+    \ 0, N);\n    }\n\n    return {dp[N], cnt[N]};\n  }\n\n  vc<int> restore_path()\
+    \ {\n    vc<int> path;\n    for (int v = N; v > 0; v = frm[v]) path.eb(v);\n \
+    \   path.eb(0);\n    reverse(all(path));\n    return path;\n  }\n};\n\n// yuki705\
+    \ \u3067\u306F simple larsch \u3088\u308A\u4F4E\u901F\u3060\u3063\u305F\u3057\u4F7F\
+    \u308F\u306A\u3044\u60F3\u5B9A\u3067\u3044\u304F\n// #include \"convex/larsch.hpp\"\
+    \n// // dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n// // \u9077\u79FB\u56DE\u6570\
+    \u3092\u554F\u308F\u306A\u3044\n// template <typename T, typename F>\n// vc<T>\
+    \ monge_shortest_path_larsch(int N, F f) {\n//   vc<T> dp(N + 1, infty<T>);\n\
+    //   dp[0] = 0;\n\n//   auto g = [&](int i, int j) -> T {\n//     ++i;\n//   \
+    \  if (i <= j) return infty<T>;\n//     return dp[j] + f(j, i);\n//   };\n\n//\
+    \   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r, 1, N + 1) {\n//     int\
+    \ l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l, r);\n//   }\n//   return\
+    \ dp;\n// }\n#line 9 \"test/1_mytest/alien.test.cpp\"\n\nll path_cost(const vc<int>&\
+    \ path, const vvc<ll>& A) {\n  ll res = 0;\n  FOR(i, len(path) - 1) {\n    int\
+    \ l = path[i], r = path[i + 1];\n    assert(l < r);\n    res += A[l][r];\n  }\n\
+    \  return res;\n}\n\nvoid test_one(int N) {\n  vvc<ll> A = random_monge_matrix(N\
+    \ + 1, N + 1);\n\n  auto cost = [&](int l, int r) -> ll {\n    assert(0 <= l &&\
+    \ l < r && r <= N);\n    return A[l][r];\n  };\n\n  auto solve = [&](ll penalty,\
+    \ bool minimize_cnt) -> pair<vc<ll>, vc<int>> {\n    return monge_shortest_path<ll>(\n\
+    \        N, [&](int l, int r) -> ll { return cost(l, r) + penalty; },\n      \
+    \  minimize_cnt);\n  };\n\n  vc<ll> dp(N + 1, infty<ll>);\n  dp[0] = 0;\n\n  FOR(K,\
+    \ 1, N + 1) {\n    dp = monge_dp_update<ll>(N, dp, cost);\n    ll expected = dp[N];\n\
+    \    // alien_trick requires lo: cnt > K, hi: cnt <= K.\n    // Since max path\
+    \ length is N, K == N has no cnt > K side.\n    if (K == N) continue;\n\n    ll\
+    \ lo = -1000000;\n    ll hi = 1000000;\n\n    ll got = alien_trick<ll>(N, K, lo,\
+    \ hi, solve);\n    assert(got == expected);\n\n    auto [got_restore, path] =\n\
+    \        alien_trick_restore<ll>(N, K, lo, hi, solve, cost);\n    assert(got_restore\
+    \ == expected);\n    assert(len(path) == K + 1);\n    assert(path[0] == 0);\n\
+    \    assert(path.back() == N);\n    FOR(i, len(path) - 1) assert(path[i] < path[i\
+    \ + 1]);\n\n    ll restored_cost = path_cost(path, A);\n    assert(restored_cost\
+    \ == expected);\n  }\n}\n\nvoid test() {\n  FOR(N, 1, 40) { FOR(500) test_one(N);\
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/random_monge.hpp\"\n#include\
     \ \"convex/alien.hpp\"\n#include \"convex/monge/monge_dp_update.hpp\"\n#include\
@@ -397,7 +400,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/alien.test.cpp
   requiredBy: []
-  timestamp: '2026-06-20 11:11:08+09:00'
+  timestamp: '2026-06-20 11:40:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/alien.test.cpp
