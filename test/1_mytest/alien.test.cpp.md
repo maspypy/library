@@ -268,41 +268,30 @@ data:
     \ col(W);\n  FOR(i, H) row[i] = RNG(-LIM * W, LIM * W + 1);\n  FOR(j, W) col[j]\
     \ = RNG(-LIM * H, LIM * H + 1);\n\n  FOR(i, H) FOR(j, W) A[i][j] = -A[i][j] +\
     \ row[i] + col[j];\n  return A;\n}\n#line 2 \"convex/alien.hpp\"\n\n// T \u306F\
-    \u6574\u6570\u578B\u3092\u4EEE\u5B9A\n// solve(penalty, minimize_cnt) -> {dp,\
-    \ frm}\n// lo: cnt > K, hi: cnt <= K\ntemplate <typename T, typename F>\nT alien_trick(int\
-    \ N, int K, T lo, T hi, F solve) {\n  while (lo + 1 < hi) {\n    T mid = lo +\
-    \ (hi - lo) / 2;\n\n    auto [dp, frm] = solve(mid, true);\n    int cnt = 0, v\
-    \ = N;\n    while (v) ++cnt, v = frm[v];\n\n    if (cnt <= K) {\n      hi = mid;\n\
-    \    } else {\n      lo = mid;\n    }\n  }\n\n  auto [dp, frm] = solve(hi, true);\n\
-    \  return dp[N] - hi * K;\n}\n\n// T \u306F\u6574\u6570\u578B\u3092\u4EEE\u5B9A\
-    \n// solve(penalty, minimize_cnt) -> {dp, frm}\n// lo: cnt > K, hi: cnt <= K\n\
-    template <typename T, typename F, typename G>\npair<T, vc<int>> alien_trick_restore(int\
-    \ N, int K, type_identity_t<T> lo,\n                                     type_identity_t<T>\
-    \ hi, F solve, G cost) {\n  while (lo + 1 < hi) {\n    T mid = lo + (hi - lo)\
-    \ / 2;\n    auto [dp, frm] = solve(mid, true);\n    int cnt = 0, v = N;\n    while\
-    \ (v) ++cnt, v = frm[v];\n\n    if (cnt <= K) {\n      hi = mid;\n    } else {\n\
-    \      lo = mid;\n    }\n  }\n\n  auto [dp, frm1] = solve(hi, true);\n  auto [dp2,\
-    \ frm2] = solve(hi, false);\n  assert(dp2 == dp);\n  vc<int> cnt_min(N + 1), cnt_max(N\
-    \ + 1);\n  T ANS = dp[N] - hi * K;\n  FOR(i, 1, N + 1) cnt_min[i] = cnt_min[frm1[i]]\
-    \ + 1;\n  FOR(i, 1, N + 1) cnt_max[i] = cnt_max[frm2[i]] + 1;\n  assert(cnt_min[N]\
-    \ <= K && K <= cnt_max[N]);\n  vc<int> path;\n  path.eb(N);\n  int rest = K;\n\
-    \  int j = N;\n  FOR_R(i, N) {\n    if (dp[j] == dp[i] + cost(i, j) + hi && cnt_min[i]\
-    \ <= rest - 1 &&\n        rest - 1 <= cnt_max[i]) {\n      path.eb(i);\n     \
-    \ --rest;\n      j = i;\n    }\n  }\n  assert(j == 0 && rest == 0);\n  reverse(all(path));\n\
-    \  return {ANS, path};\n}\n#line 1 \"convex/monge/monge_dp_update.hpp\"\n\n#line\
-    \ 2 \"convex/monotone_minima.hpp\"\n\n// \u5404\u884C\u306E\u6700\u9069\u5217\u3092\
-    \u6C42\u3081\u308B\n// better(i,j,k): \u884C i \u306B\u304A\u3044\u3066\u5217\
-    \ k \u304C\u5217 j \u3088\u308A\u826F\u3044\u3068\u304D true\n// \u9069\u7528\u6761\
-    \u4EF6\uFF1Abetter \u306B\u3088\u3063\u3066\u9078\u3070\u308C\u308B\u6700\u9069\
-    \u5217 opt[i] \u304C i \u306B\u3064\u3044\u3066\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\
-    \ntemplate <typename F>\nvc<int> monotone_minima(int H, int W, F better) {\n \
-    \ if (H == 0) return {};\n  assert(H > 0 && W > 0);\n\n  vc<int> idx(H + 1);\n\
-    \  idx[0] = 0;\n  FOR(y, 1, W) {\n    if (better(0, idx[0], y)) idx[0] = y;\n\
-    \  }\n  idx[H] = W - 1;\n\n  int d = 1;\n  while (d < H) d <<= 1;\n  for (int\
-    \ q = d >> 1; q > 0; q >>= 1) {\n    for (int h = q; h < H; h += q << 1) {\n \
-    \     int l = h - q;\n      int r = min(h + q, H);\n      int best = idx[l];\n\
-    \      for (int y = idx[l] + 1; y <= idx[r]; ++y) {\n        if (better(h, best,\
-    \ y)) best = y;\n      }\n      idx[h] = best;\n    }\n  }\n  idx.pop_back();\n\
+    \u6574\u6570\u578B\u3092\u4EEE\u5B9A\n// solve(penalty) -> {val, cnt}\n// lo:\
+    \ cnt > K, hi: cnt <= K\n// return: ans, pena\ntemplate <typename T, typename\
+    \ F>\npair<T, T> alien_trick(int N, int K, T lo, T hi, F solve) {\n  while (lo\
+    \ + 1 < hi) {\n    T mid = lo + (hi - lo) / 2;\n    auto [val, cnt] = solve(mid);\n\
+    \    (cnt <= K ? hi : lo) = mid;\n  }\n  auto [val, cnt] = solve(hi);\n  return\
+    \ {val - hi * K, hi};\n}\n\ntemplate <typename T, typename F>\npair<T, T> alien_trick_auto_search_range(int\
+    \ N, int K, F solve) {\n  T lo = 0, hi = 0;\n  int c0 = solve(0).se;\n  if (c0\
+    \ <= K) {\n    lo = -1, hi = 0;\n    while (solve(lo).se < K) {\n      T d = hi\
+    \ - lo;\n      lo -= 2 * d, hi -= d;\n    }\n  } else {\n    lo = 0, hi = 1;\n\
+    \    while (solve(hi).se > K) {\n      T d = hi - lo;\n      lo += d, hi += 2\
+    \ * d;\n    }\n  }\n  return alien_trick(N, K, lo, hi, solve);\n}\n#line 1 \"\
+    convex/monge/monge_dp_update.hpp\"\n\n#line 2 \"convex/monotone_minima.hpp\"\n\
+    \n// \u5404\u884C\u306E\u6700\u9069\u5217\u3092\u6C42\u3081\u308B\n// better(i,j,k):\
+    \ \u884C i \u306B\u304A\u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\
+    \u3068\u304D true\n// \u9069\u7528\u6761\u4EF6\uFF1Abetter \u306B\u3088\u3063\u3066\
+    \u9078\u3070\u308C\u308B\u6700\u9069\u5217 opt[i] \u304C i \u306B\u3064\u3044\u3066\
+    \u5E83\u7FA9\u5358\u8ABF\u5897\u52A0\ntemplate <typename F>\nvc<int> monotone_minima(int\
+    \ H, int W, F better) {\n  if (H == 0) return {};\n  assert(H > 0 && W > 0);\n\
+    \n  vc<int> idx(H + 1);\n  idx[0] = 0;\n  FOR(y, 1, W) {\n    if (better(0, idx[0],\
+    \ y)) idx[0] = y;\n  }\n  idx[H] = W - 1;\n\n  int d = 1;\n  while (d < H) d <<=\
+    \ 1;\n  for (int q = d >> 1; q > 0; q >>= 1) {\n    for (int h = q; h < H; h +=\
+    \ q << 1) {\n      int l = h - q;\n      int r = min(h + q, H);\n      int best\
+    \ = idx[l];\n      for (int y = idx[l] + 1; y <= idx[r]; ++y) {\n        if (better(h,\
+    \ best, y)) best = y;\n      }\n      idx[h] = best;\n    }\n  }\n  idx.pop_back();\n\
     \  return idx;\n}\n#line 2 \"convex/smawk.hpp\"\n\n// \u5404\u884C\u306E\u6700\
     \u9069\u5217\u3092\u6C42\u3081\u308B.\n// better(i,j,k): \u884C i \u306B\u304A\
     \u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\u3068\u304D true.\n\
@@ -408,7 +397,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/alien.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
+  timestamp: '2026-06-20 11:11:08+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/alien.test.cpp
