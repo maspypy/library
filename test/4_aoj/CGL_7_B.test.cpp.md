@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   - icon: ':question:'
