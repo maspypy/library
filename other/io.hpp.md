@@ -52,6 +52,9 @@ data:
     path: test/1_mytest/primesum_mod4.test.cpp
     title: test/1_mytest/primesum_mod4.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/smawk.test.cpp
     title: test/1_mytest/smawk.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1770,88 +1773,88 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2835.test.cpp
     title: test/4_aoj/2835.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842.test.cpp
     title: test/4_aoj/2842.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842_2.test.cpp
     title: test/4_aoj/2842_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2995.test.cpp
     title: test/4_aoj/2995.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_10_C.test.cpp
     title: test/4_aoj/ALDS1_10_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_12_B.test.cpp
     title: test/4_aoj/ALDS1_12_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_1_C.test.cpp
     title: test/4_aoj/ALDS1_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_1_A.test.cpp
     title: test/4_aoj/CGL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_1_B.test.cpp
     title: test/4_aoj/CGL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_A.test.cpp
     title: test/4_aoj/CGL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_B.test.cpp
     title: test/4_aoj/CGL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_C.test.cpp
     title: test/4_aoj/CGL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_1_B.test.cpp
     title: test/4_aoj/DPL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_1_D.test.cpp
     title: test/4_aoj/DPL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_1_F.test.cpp
     title: test/4_aoj/DPL_1_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_1_H.test.cpp
     title: test/4_aoj/DPL_1_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_2_A.test.cpp
     title: test/4_aoj/DPL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_3_B.test.cpp
     title: test/4_aoj/DPL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_3_C.test.cpp
     title: test/4_aoj/DPL_3_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_4_B.test.cpp
     title: test/4_aoj/DPL_4_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_5_C.test.cpp
     title: test/4_aoj/DPL_5_C.test.cpp
   - icon: ':x:'
@@ -2741,6 +2744,7 @@ data:
   - test/3_yukicoder/1311.test.cpp
   - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/2102.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/monge_shortest_path.test.cpp
   - test/1_mytest/typical_dc.test.cpp
   - test/1_mytest/min_min.test.cpp

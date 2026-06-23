@@ -100,6 +100,9 @@ data:
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_square.test.cpp
     title: test/1_mytest/three_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -374,6 +377,7 @@ data:
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1783.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
   - test/1_mytest/count_bipartite.test.cpp

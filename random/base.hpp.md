@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':heavy_check_mark:'
@@ -143,7 +143,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
   - icon: ':heavy_check_mark:'
@@ -167,9 +167,12 @@ data:
   - icon: ':warning:'
     path: random/random_real.hpp
     title: random/random_real.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
@@ -182,7 +185,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   - icon: ':warning:'
@@ -601,6 +604,9 @@ data:
     path: test/1_mytest/reduce_intervals.test.cpp
     title: test/1_mytest/reduce_intervals.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_edge.test.cpp
     title: test/1_mytest/remove_one_edge.test.cpp
   - icon: ':heavy_check_mark:'
@@ -954,10 +960,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
   - icon: ':x:'
@@ -1045,6 +1051,7 @@ data:
   - graph/count/BEST.hpp
   - graph/count/count_spanning_tree.hpp
   - graph/maximum_matching_size.hpp
+  - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2024-10-18 02:58:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -1139,6 +1146,7 @@ data:
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/rbst_monoid_2.test.cpp
   - test/1_mytest/monge_shortest_path.test.cpp
   - test/1_mytest/find_even_cycle.test.cpp

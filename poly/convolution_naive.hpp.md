@@ -493,6 +493,9 @@ data:
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1199,6 +1202,7 @@ data:
   - test/3_yukicoder/1516.test.cpp
   - test/1_mytest/catalan_convolution.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/typical_dc.test.cpp
   - test/1_mytest/online_log.test.cpp
   - test/1_mytest/convolution_all_1.test.cpp

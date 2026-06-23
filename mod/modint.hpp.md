@@ -643,6 +643,9 @@ data:
     path: test/1_mytest/rect_add_pt_sum.test.cpp
     title: test/1_mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1374,7 +1377,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/749.test.cpp
     title: test/3_yukicoder/749.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_5_C.test.cpp
     title: test/4_aoj/DPL_5_C.test.cpp
   - icon: ':x:'
@@ -1889,6 +1892,7 @@ data:
   - test/1_mytest/catalan_convolution.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/rbst_monoid_2.test.cpp
   - test/1_mytest/count_labeled_undirected.test.cpp
   - test/1_mytest/typical_dc.test.cpp

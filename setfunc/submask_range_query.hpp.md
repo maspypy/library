@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/xor.hpp
     title: alg/monoid/xor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []

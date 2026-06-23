@@ -74,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
@@ -96,6 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_square.test.cpp
     title: test/1_mytest/three_square.test.cpp
@@ -356,6 +362,7 @@ data:
   - nt/euler_phi.hpp
   - nt/three_square.hpp
   - nt/four_square.hpp
+  - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2024-10-18 02:58:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -405,6 +412,7 @@ data:
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1783.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp

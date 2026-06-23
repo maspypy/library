@@ -77,6 +77,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
@@ -99,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_square.test.cpp
     title: test/1_mytest/three_square.test.cpp
@@ -252,7 +258,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_1_C.test.cpp
     title: test/4_aoj/ALDS1_1_C.test.cpp
   - icon: ':x:'
@@ -340,6 +346,7 @@ data:
   - nt/three_square.hpp
   - nt/four_square.hpp
   - graph/chromatic.hpp
+  - seq/reeds_sloane.hpp
   - seq/famous/stirling_number_query.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2023-11-02 05:00:07+09:00'
@@ -395,6 +402,7 @@ data:
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1783.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
