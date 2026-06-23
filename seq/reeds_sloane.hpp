@@ -1,4 +1,5 @@
 #include "nt/factor.hpp"
+#include "mod/mod_inv.hpp"
 
 vc<int> Reeds_Sloane_Prime_Power(vc<int> S, int p, int e) {
   int N = len(S);
@@ -18,29 +19,29 @@ vc<int> Reeds_Sloane_Prime_Power(vc<int> S, int p, int e) {
   };
 
   using poly = vc<mint>;
-  struct Current {
+  struct Cur {
     int L;
     poly Q;
   };
   struct Old {
     int L, r;
-    poly B;
+    poly Q;
     mint theta;
   };
 
   vc<int> pw(e + 1);
   pw[0] = 1;
   FOR(i, e) pw[i + 1] = pw[i] * p;
-  vc<Current> cur(e);
+  vc<Cur> cur(e);
   vc<Old> old(e);
   FOR(i, e) {
     cur[i].L = 0, cur[i].Q = {pw[i]};
     old[i].r = -1;
   }
 
+  vc<mint> theta(e);
+  vc<int> u(e);
   FOR(n, N) {
-    vc<mint> theta(e);
-    vc<int> u(e);
     FOR(i, e) {
       mint delta = 0;
       assert(len(cur[i].Q) <= 1 + n);
@@ -48,33 +49,33 @@ vc<int> Reeds_Sloane_Prime_Power(vc<int> S, int p, int e) {
       tie(theta[i], u[i]) = decompose(delta);
     }
 
-    vc<Current> cur_nxt = cur;
-    vc<Old> old_nxt = old;
+    vc<Cur> nxt = cur;
     FOR(i, e) {
       if (u[i] == e) continue;
       int j = e - 1 - u[i];
       if (old[j].r == -1) {
         poly Q = cur[i].Q;
         Q.resize(n + 2);
-        cur_nxt[i] = Current{int(n) + 1, Q};
+        nxt[i] = Current{int(n) + 1, Q};
       } else {
         poly Q = cur[i].Q;
         int Lnxt = max<int>(cur[i].L, old[j].L + n - old[j].r);
         Q.resize(Lnxt + 1);
         mint c = theta[i] / old[j].theta;
-        FOR(k, len(old[j].B)) Q[k + n - old[j].r] -= c * old[j].B[k];
-        cur_nxt[i] = Current{Lnxt, Q};
-      }
-
-      if (cur[i].L < cur_nxt[i].L) {
-        old_nxt[i].B = cur[j].Q;
-        old_nxt[i].L = cur[j].L;
-        old_nxt[i].r = n;
-        old_nxt[i].theta = theta[j];
+        FOR(k, len(old[j].Q)) Q[k + n - old[j].r] -= c * old[j].Q[k];
+        nxt[i] = Cur{Lnxt, Q};
       }
     }
-    swap(cur, cur_nxt);
-    swap(old, old_nxt);
+    FOR(i, e) {
+      if (cur[i].L < nxt[i].L) {
+        int j = e - 1 - u[i];
+        old[i].Q = cur[j].Q;
+        old[i].L = cur[j].L;
+        old[i].r = n;
+        old[i].theta = theta[j];
+      }
+    }
+    swap(cur, nxt);
   }
   vc<int> res;
   for (auto& x : cur[0].Q) res.eb(x.val);
@@ -126,7 +127,7 @@ pair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S, vc<pair<ll, int>> pfs = {}) {
     if (len(Q) < len(Qk)) Q.resize(len(Qk));
     FOR(i, len(Qk)) Q[i] += Qk[i] * coef[k];
   }
-  vc<mint> P = convolution<mint>(S, Q);
-  P.resize(len(Q) - 1);
+  vc<mint> P(len(Q) - 1);
+  FOR(i, len(P)) FOR(j, i + 1) P[i] += Q[j] * S[i - j];
   return {P, Q};
 }
