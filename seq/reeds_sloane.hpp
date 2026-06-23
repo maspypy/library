@@ -56,7 +56,7 @@ vc<int> Reeds_Sloane_Prime_Power(vc<int> S, int p, int e) {
       if (old[j].r == -1) {
         poly Q = cur[i].Q;
         Q.resize(n + 2);
-        nxt[i] = Current{int(n) + 1, Q};
+        nxt[i] = Cur{int(n) + 1, Q};
       } else {
         poly Q = cur[i].Q;
         int Lnxt = max<int>(cur[i].L, old[j].L + n - old[j].r);
