@@ -19,67 +19,64 @@ vc<int> Reeds_Sloane_Prime_Power(vc<int> S, int p, int e) {
   };
 
   using poly = vc<mint>;
-  struct Cur {
-    int L;
-    poly Q;
-  };
-  struct Old {
-    int L, r;
-    poly Q;
-    mint theta;
-  };
+  vc<poly> Q(e);
+  vc<int> L(e);
 
-  vc<int> pw(e + 1);
-  pw[0] = 1;
-  FOR(i, e) pw[i + 1] = pw[i] * p;
-  vc<Cur> cur(e);
-  vc<Old> old(e);
-  FOR(i, e) {
-    cur[i].L = 0, cur[i].Q = {pw[i]};
-    old[i].r = -1;
+  vc<poly> B(e);
+  vc<int> LB(e);
+  vc<int> nB(e);
+  vc<mint> tB(e);
+
+  mint pw = 1;
+  for (int i = 0; i < e; ++i, pw *= p) {
+    Q[i] = {pw};
+    L[i] = 0;
+    nB[i] = -1;
   }
 
-  vc<mint> theta(e);
-  vc<int> u(e);
-  FOR(n, N) {
+  for (int n = 0; n < N; ++n) {
+    // delta=tp^u
+    vc<mint> t(e);
+    vc<int> u(e);
     FOR(i, e) {
       mint delta = 0;
-      assert(len(cur[i].Q) <= 1 + n);
-      FOR(k, len(cur[i].Q)) delta += cur[i].Q[k] * S[n - k];
-      tie(theta[i], u[i]) = decompose(delta);
+      assert(len(Q[i]) <= 1 + n);
+      FOR(k, len(Q[i])) delta += Q[i][k] * S[n - k];
+      tie(t[i], u[i]) = decompose(delta);
     }
 
-    vc<Cur> nxt = cur;
+    vc<poly> Q_next = Q;
+    vc<int> L_next = L;
+
     FOR(i, e) {
       if (u[i] == e) continue;
+
       int j = e - 1 - u[i];
-      if (old[j].r == -1) {
-        poly Q = cur[i].Q;
-        Q.resize(n + 2);
-        nxt[i] = Cur{int(n) + 1, Q};
+      if (nB[j] == -1) {
+        Q_next[i].resize(n + 2);
+        L_next[i] = n + 1;
       } else {
-        poly Q = cur[i].Q;
-        int Lnxt = max<int>(cur[i].L, old[j].L + n - old[j].r);
-        Q.resize(Lnxt + 1);
-        mint c = theta[i] / old[j].theta;
-        FOR(k, len(old[j].Q)) Q[k + n - old[j].r] -= c * old[j].Q[k];
-        nxt[i] = Cur{Lnxt, Q};
+        L_next[i] = max(L[i], LB[j] + n - nB[j]);
+        Q_next[i].resize(L_next[i] + 1);
+        mint c = t[i] / tB[j];
+        FOR(k, len(B[j])) Q_next[i][k + n - nB[j]] -= c * B[j][k];
       }
     }
     FOR(i, e) {
-      if (cur[i].L < nxt[i].L) {
+      if (L[i] < L_next[i]) {
         int j = e - 1 - u[i];
-        old[i].Q = cur[j].Q;
-        old[i].L = cur[j].L;
-        old[i].r = n;
-        old[i].theta = theta[j];
+        B[i] = Q[j];
+        LB[i] = L[j];
+        nB[i] = n;
+        tB[i] = t[j];
       }
     }
-    swap(cur, nxt);
+    swap(Q, Q_next);
+    swap(L, L_next);
   }
   vc<int> res;
-  for (auto& x : cur[0].Q) res.eb(x.val);
-  assert(len(res) == cur[0].L + 1);
+  for (auto& x : Q[0]) res.eb(x.val);
+  assert(len(res) == L[0] + 1);
   return res;
 }
 
