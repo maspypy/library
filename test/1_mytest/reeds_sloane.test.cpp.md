@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -31,25 +31,25 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
@@ -681,32 +681,31 @@ data:
     \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
     \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
     \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
-    #line 2 \"seq/reeds_sloane.hpp\"\n\nvc<int> Reeds_Sloane_Prime_Power(vc<int> S,\
+    #line 3 \"seq/reeds_sloane.hpp\"\n\nvc<int> Reeds_Sloane_Prime_Power(vc<int> S,\
     \ int p, int e) {\n  int N = len(S);\n  if (N == 0) return {1};\n  int M = 1;\n\
     \  FOR(e) M *= p;\n\n  using mint = Dynamic_Modint<20260623>;\n  mint::set_mod(M);\n\
     \n  auto decompose = [&](mint x) -> pair<mint, int> {\n    // x = tp^u\n    int\
     \ t = x.val, u = 0;\n    if (t == 0) return {1, e};\n    while (t % p == 0) t\
-    \ /= p, ++u;\n    return {t, u};\n  };\n\n  using poly = vc<mint>;\n  struct Current\
-    \ {\n    int L;\n    poly Q;\n  };\n  struct Old {\n    int L, r;\n    poly B;\n\
+    \ /= p, ++u;\n    return {t, u};\n  };\n\n  using poly = vc<mint>;\n  struct Cur\
+    \ {\n    int L;\n    poly Q;\n  };\n  struct Old {\n    int L, r;\n    poly Q;\n\
     \    mint theta;\n  };\n\n  vc<int> pw(e + 1);\n  pw[0] = 1;\n  FOR(i, e) pw[i\
-    \ + 1] = pw[i] * p;\n  vc<Current> cur(e);\n  vc<Old> old(e);\n  FOR(i, e) {\n\
-    \    cur[i].L = 0, cur[i].Q = {pw[i]};\n    old[i].r = -1;\n  }\n\n  FOR(n, N)\
-    \ {\n    vc<mint> theta(e);\n    vc<int> u(e);\n    FOR(i, e) {\n      mint delta\
-    \ = 0;\n      assert(len(cur[i].Q) <= 1 + n);\n      FOR(k, len(cur[i].Q)) delta\
-    \ += cur[i].Q[k] * S[n - k];\n      tie(theta[i], u[i]) = decompose(delta);\n\
-    \    }\n\n    vc<Current> cur_nxt = cur;\n    vc<Old> old_nxt = old;\n    FOR(i,\
-    \ e) {\n      if (u[i] == e) continue;\n      int j = e - 1 - u[i];\n      if\
-    \ (old[j].r == -1) {\n        poly Q = cur[i].Q;\n        Q.resize(n + 2);\n \
-    \       cur_nxt[i] = Current{int(n) + 1, Q};\n      } else {\n        poly Q =\
-    \ cur[i].Q;\n        int Lnxt = max<int>(cur[i].L, old[j].L + n - old[j].r);\n\
-    \        Q.resize(Lnxt + 1);\n        mint c = theta[i] / old[j].theta;\n    \
-    \    FOR(k, len(old[j].B)) Q[k + n - old[j].r] -= c * old[j].B[k];\n        cur_nxt[i]\
-    \ = Current{Lnxt, Q};\n      }\n\n      if (cur[i].L < cur_nxt[i].L) {\n     \
-    \   old_nxt[i].B = cur[j].Q;\n        old_nxt[i].L = cur[j].L;\n        old_nxt[i].r\
-    \ = n;\n        old_nxt[i].theta = theta[j];\n      }\n    }\n    swap(cur, cur_nxt);\n\
-    \    swap(old, old_nxt);\n  }\n  vc<int> res;\n  for (auto& x : cur[0].Q) res.eb(x.val);\n\
-    \  assert(len(res) == cur[0].L + 1);\n  return res;\n}\n\n/*\nreturn {P(x),Q(x)}\
-    \ such that\nS(x)=P(x)/Q(x) mod x^N, [x^0]Q=1\nminimize L=max(deg(P)+1,deg(Q))\n\
+    \ + 1] = pw[i] * p;\n  vc<Cur> cur(e);\n  vc<Old> old(e);\n  FOR(i, e) {\n   \
+    \ cur[i].L = 0, cur[i].Q = {pw[i]};\n    old[i].r = -1;\n  }\n\n  vc<mint> theta(e);\n\
+    \  vc<int> u(e);\n  FOR(n, N) {\n    FOR(i, e) {\n      mint delta = 0;\n    \
+    \  assert(len(cur[i].Q) <= 1 + n);\n      FOR(k, len(cur[i].Q)) delta += cur[i].Q[k]\
+    \ * S[n - k];\n      tie(theta[i], u[i]) = decompose(delta);\n    }\n\n    vc<Cur>\
+    \ nxt = cur;\n    FOR(i, e) {\n      if (u[i] == e) continue;\n      int j = e\
+    \ - 1 - u[i];\n      if (old[j].r == -1) {\n        poly Q = cur[i].Q;\n     \
+    \   Q.resize(n + 2);\n        nxt[i] = Cur{int(n) + 1, Q};\n      } else {\n \
+    \       poly Q = cur[i].Q;\n        int Lnxt = max<int>(cur[i].L, old[j].L + n\
+    \ - old[j].r);\n        Q.resize(Lnxt + 1);\n        mint c = theta[i] / old[j].theta;\n\
+    \        FOR(k, len(old[j].Q)) Q[k + n - old[j].r] -= c * old[j].Q[k];\n     \
+    \   nxt[i] = Cur{Lnxt, Q};\n      }\n    }\n    FOR(i, e) {\n      if (cur[i].L\
+    \ < nxt[i].L) {\n        int j = e - 1 - u[i];\n        old[i].Q = cur[j].Q;\n\
+    \        old[i].L = cur[j].L;\n        old[i].r = n;\n        old[i].theta = theta[j];\n\
+    \      }\n    }\n    swap(cur, nxt);\n  }\n  vc<int> res;\n  for (auto& x : cur[0].Q)\
+    \ res.eb(x.val);\n  assert(len(res) == cur[0].L + 1);\n  return res;\n}\n\n/*\n\
+    return {P(x),Q(x)} such that\nS(x)=P(x)/Q(x) mod x^N, [x^0]Q=1\nminimize L=max(deg(P)+1,deg(Q))\n\
     */\ntemplate <typename mint>\npair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S,\
     \ vc<pair<ll, int>> pfs = {}) {\n  int mod = mint::get_mod();\n  if (mod > 1 &&\
     \ pfs.empty()) {\n    pfs = factor(mod);\n  }\n  {\n    int check = mod;\n   \
@@ -718,23 +717,24 @@ data:
     \ FOR(k, n) {\n    auto [p, e] = pfs[k];\n    int a = 1;\n    FOR(e) a *= p;\n\
     \    vc<int> T(len(S));\n    FOR(i, len(S)) T[i] = (S[i].val) % a;\n    auto Qk\
     \ = Reeds_Sloane_Prime_Power(T, p, e);\n    if (len(Q) < len(Qk)) Q.resize(len(Qk));\n\
-    \    FOR(i, len(Qk)) Q[i] += Qk[i] * coef[k];\n  }\n  vc<mint> P = convolution<mint>(S,\
-    \ Q);\n  P.resize(len(Q) - 1);\n  return {P, Q};\n}\n#line 10 \"test/1_mytest/reeds_sloane.test.cpp\"\
-    \n\ntemplate <typename mint>\nvc<mint> from_PQ(int N, vc<mint> P, vc<mint> Q)\
-    \ {\n  P.resize(N), Q.resize(N);\n  vc<mint> S(N);\n  FOR(i, N) {\n    S[i] +=\
-    \ P[i];\n    FOR(j, 1, len(Q)) {\n      int k = i - j;\n      if (0 <= k) S[i]\
-    \ -= S[k] * Q[j];\n    }\n  }\n  return S;\n}\n\ntemplate <int mod>\nvoid test(int\
-    \ T) {\n  using mint = modint<mod>;\n  auto pfs = factor(mod);\n\n  FOR(T) {\n\
-    \    int N = RNG(1, 20);\n    int L = RNG(0, N + 1);\n    vc<mint> QQ(L + 1);\n\
-    \    vc<mint> PP(L);\n    QQ[0] = 1;\n    FOR(i, L) PP[i] = RNG(0, mod), QQ[1\
-    \ + i] = RNG(0, mod);\n    auto S = from_PQ(N, PP, QQ);\n    auto [P, Q] = Reeds_Sloane<mint>(S,\
-    \ pfs);\n    assert(len(P) <= L);\n    assert(len(Q) - 1 <= L);\n    assert(Q[0]\
-    \ == 1);\n    assert(S == from_PQ(N, P, Q));\n  }\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  int T = 1 << 13;\n  test<1>(T);\n  test<2>(T);\n  test<3>(T);\n  test<4>(T);\n\
-    \  test<5>(T);\n  test<6>(T);\n  test<7>(T);\n  test<8>(T);\n  test<9>(T);\n \
-    \ test<10>(T);\n  test<12>(T);\n  test<16>(T);\n  test<32>(T);\n  test<64>(T);\n\
-    \  test<60>(T);\n  test<100>(T);\n  test<210>(T);\n  solve();\n  return 0;\n}\n"
+    \    FOR(i, len(Qk)) Q[i] += Qk[i] * coef[k];\n  }\n  vc<mint> P(len(Q) - 1);\n\
+    \  FOR(i, len(P)) FOR(j, i + 1) P[i] += Q[j] * S[i - j];\n  return {P, Q};\n}\n\
+    #line 10 \"test/1_mytest/reeds_sloane.test.cpp\"\n\ntemplate <typename mint>\n\
+    vc<mint> from_PQ(int N, vc<mint> P, vc<mint> Q) {\n  P.resize(N), Q.resize(N);\n\
+    \  vc<mint> S(N);\n  FOR(i, N) {\n    S[i] += P[i];\n    FOR(j, 1, len(Q)) {\n\
+    \      int k = i - j;\n      if (0 <= k) S[i] -= S[k] * Q[j];\n    }\n  }\n  return\
+    \ S;\n}\n\ntemplate <int mod>\nvoid test(int T) {\n  using mint = modint<mod>;\n\
+    \  auto pfs = factor(mod);\n\n  FOR(T) {\n    int N = RNG(1, 20);\n    int L =\
+    \ RNG(0, N + 1);\n    vc<mint> QQ(L + 1);\n    vc<mint> PP(L);\n    QQ[0] = 1;\n\
+    \    FOR(i, L) PP[i] = RNG(0, mod), QQ[1 + i] = RNG(0, mod);\n    auto S = from_PQ(N,\
+    \ PP, QQ);\n    auto [P, Q] = Reeds_Sloane<mint>(S, pfs);\n    assert(len(P) <=\
+    \ L);\n    assert(len(Q) - 1 <= L);\n    assert(Q[0] == 1);\n    assert(S == from_PQ(N,\
+    \ P, Q));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
+    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  int T = 1 << 13;\n  test<1>(T);\n\
+    \  test<2>(T);\n  test<3>(T);\n  test<4>(T);\n  test<5>(T);\n  test<6>(T);\n \
+    \ test<7>(T);\n  test<8>(T);\n  test<9>(T);\n  test<10>(T);\n  test<12>(T);\n\
+    \  test<16>(T);\n  test<32>(T);\n  test<64>(T);\n  test<60>(T);\n  test<100>(T);\n\
+    \  test<210>(T);\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\
     \n#include \"poly/convolution.hpp\"\n#include \"mod/dynamic_modint.hpp\"\n#include\
@@ -777,7 +777,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/reeds_sloane.test.cpp
   requiredBy: []
-  timestamp: '2026-06-23 21:26:58+09:00'
+  timestamp: '2026-06-23 22:25:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/reeds_sloane.test.cpp

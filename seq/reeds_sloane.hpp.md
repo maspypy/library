@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_inv.hpp
+    title: mod/mod_inv.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -82,72 +85,38 @@ data:
     \  }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll\
     \ n, vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p =\
     \ lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
-    \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"seq/reeds_sloane.hpp\"\
+    \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"mod/mod_inv.hpp\"\n\
+    \r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\
+    \u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B\
+    \ mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod)\
+    \ {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if\
+    \ (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while\
+    \ (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\
+    \n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 3 \"seq/reeds_sloane.hpp\"\
     \n\nvc<int> Reeds_Sloane_Prime_Power(vc<int> S, int p, int e) {\n  int N = len(S);\n\
     \  if (N == 0) return {1};\n  int M = 1;\n  FOR(e) M *= p;\n\n  using mint = Dynamic_Modint<20260623>;\n\
     \  mint::set_mod(M);\n\n  auto decompose = [&](mint x) -> pair<mint, int> {\n\
     \    // x = tp^u\n    int t = x.val, u = 0;\n    if (t == 0) return {1, e};\n\
     \    while (t % p == 0) t /= p, ++u;\n    return {t, u};\n  };\n\n  using poly\
-    \ = vc<mint>;\n  struct Current {\n    int L;\n    poly Q;\n  };\n  struct Old\
-    \ {\n    int L, r;\n    poly B;\n    mint theta;\n  };\n\n  vc<int> pw(e + 1);\n\
-    \  pw[0] = 1;\n  FOR(i, e) pw[i + 1] = pw[i] * p;\n  vc<Current> cur(e);\n  vc<Old>\
+    \ = vc<mint>;\n  struct Cur {\n    int L;\n    poly Q;\n  };\n  struct Old {\n\
+    \    int L, r;\n    poly Q;\n    mint theta;\n  };\n\n  vc<int> pw(e + 1);\n \
+    \ pw[0] = 1;\n  FOR(i, e) pw[i + 1] = pw[i] * p;\n  vc<Cur> cur(e);\n  vc<Old>\
     \ old(e);\n  FOR(i, e) {\n    cur[i].L = 0, cur[i].Q = {pw[i]};\n    old[i].r\
-    \ = -1;\n  }\n\n  FOR(n, N) {\n    vc<mint> theta(e);\n    vc<int> u(e);\n   \
-    \ FOR(i, e) {\n      mint delta = 0;\n      assert(len(cur[i].Q) <= 1 + n);\n\
-    \      FOR(k, len(cur[i].Q)) delta += cur[i].Q[k] * S[n - k];\n      tie(theta[i],\
-    \ u[i]) = decompose(delta);\n    }\n\n    vc<Current> cur_nxt = cur;\n    vc<Old>\
-    \ old_nxt = old;\n    FOR(i, e) {\n      if (u[i] == e) continue;\n      int j\
-    \ = e - 1 - u[i];\n      if (old[j].r == -1) {\n        poly Q = cur[i].Q;\n \
-    \       Q.resize(n + 2);\n        cur_nxt[i] = Current{int(n) + 1, Q};\n     \
-    \ } else {\n        poly Q = cur[i].Q;\n        int Lnxt = max<int>(cur[i].L,\
+    \ = -1;\n  }\n\n  vc<mint> theta(e);\n  vc<int> u(e);\n  FOR(n, N) {\n    FOR(i,\
+    \ e) {\n      mint delta = 0;\n      assert(len(cur[i].Q) <= 1 + n);\n      FOR(k,\
+    \ len(cur[i].Q)) delta += cur[i].Q[k] * S[n - k];\n      tie(theta[i], u[i]) =\
+    \ decompose(delta);\n    }\n\n    vc<Cur> nxt = cur;\n    FOR(i, e) {\n      if\
+    \ (u[i] == e) continue;\n      int j = e - 1 - u[i];\n      if (old[j].r == -1)\
+    \ {\n        poly Q = cur[i].Q;\n        Q.resize(n + 2);\n        nxt[i] = Cur{int(n)\
+    \ + 1, Q};\n      } else {\n        poly Q = cur[i].Q;\n        int Lnxt = max<int>(cur[i].L,\
     \ old[j].L + n - old[j].r);\n        Q.resize(Lnxt + 1);\n        mint c = theta[i]\
-    \ / old[j].theta;\n        FOR(k, len(old[j].B)) Q[k + n - old[j].r] -= c * old[j].B[k];\n\
-    \        cur_nxt[i] = Current{Lnxt, Q};\n      }\n\n      if (cur[i].L < cur_nxt[i].L)\
-    \ {\n        old_nxt[i].B = cur[j].Q;\n        old_nxt[i].L = cur[j].L;\n    \
-    \    old_nxt[i].r = n;\n        old_nxt[i].theta = theta[j];\n      }\n    }\n\
-    \    swap(cur, cur_nxt);\n    swap(old, old_nxt);\n  }\n  vc<int> res;\n  for\
-    \ (auto& x : cur[0].Q) res.eb(x.val);\n  assert(len(res) == cur[0].L + 1);\n \
-    \ return res;\n}\n\n/*\nreturn {P(x),Q(x)} such that\nS(x)=P(x)/Q(x) mod x^N,\
-    \ [x^0]Q=1\nminimize L=max(deg(P)+1,deg(Q))\n*/\ntemplate <typename mint>\npair<vc<mint>,\
-    \ vc<mint>> Reeds_Sloane(vc<mint> S, vc<pair<ll, int>> pfs = {}) {\n  int mod\
-    \ = mint::get_mod();\n  if (mod > 1 && pfs.empty()) {\n    pfs = factor(mod);\n\
-    \  }\n  {\n    int check = mod;\n    for (auto [p, e] : pfs) {\n      FOR(e) {\n\
-    \        assert(check % p == 0);\n        check /= p;\n      }\n    }\n    assert(check\
-    \ == 1);\n  }\n\n  if (mod == 1) return {{}, {1}};\n\n  int n = len(pfs);\n  vi\
-    \ coef(n);\n  FOR(i, n) {\n    auto [p, e] = pfs[i];\n    int a = 1, b = mod;\n\
-    \    FOR(e) a *= p, b /= p;\n    ll c = mod_inv(b, a);\n    coef[i] = c * b %\
-    \ mod;\n  }\n  vc<mint> Q;\n  FOR(k, n) {\n    auto [p, e] = pfs[k];\n    int\
-    \ a = 1;\n    FOR(e) a *= p;\n    vc<int> T(len(S));\n    FOR(i, len(S)) T[i]\
-    \ = (S[i].val) % a;\n    auto Qk = Reeds_Sloane_Prime_Power(T, p, e);\n    if\
-    \ (len(Q) < len(Qk)) Q.resize(len(Qk));\n    FOR(i, len(Qk)) Q[i] += Qk[i] * coef[k];\n\
-    \  }\n  vc<mint> P = convolution<mint>(S, Q);\n  P.resize(len(Q) - 1);\n  return\
-    \ {P, Q};\n}\n"
-  code: "#include \"nt/factor.hpp\"\n\nvc<int> Reeds_Sloane_Prime_Power(vc<int> S,\
-    \ int p, int e) {\n  int N = len(S);\n  if (N == 0) return {1};\n  int M = 1;\n\
-    \  FOR(e) M *= p;\n\n  using mint = Dynamic_Modint<20260623>;\n  mint::set_mod(M);\n\
-    \n  auto decompose = [&](mint x) -> pair<mint, int> {\n    // x = tp^u\n    int\
-    \ t = x.val, u = 0;\n    if (t == 0) return {1, e};\n    while (t % p == 0) t\
-    \ /= p, ++u;\n    return {t, u};\n  };\n\n  using poly = vc<mint>;\n  struct Current\
-    \ {\n    int L;\n    poly Q;\n  };\n  struct Old {\n    int L, r;\n    poly B;\n\
-    \    mint theta;\n  };\n\n  vc<int> pw(e + 1);\n  pw[0] = 1;\n  FOR(i, e) pw[i\
-    \ + 1] = pw[i] * p;\n  vc<Current> cur(e);\n  vc<Old> old(e);\n  FOR(i, e) {\n\
-    \    cur[i].L = 0, cur[i].Q = {pw[i]};\n    old[i].r = -1;\n  }\n\n  FOR(n, N)\
-    \ {\n    vc<mint> theta(e);\n    vc<int> u(e);\n    FOR(i, e) {\n      mint delta\
-    \ = 0;\n      assert(len(cur[i].Q) <= 1 + n);\n      FOR(k, len(cur[i].Q)) delta\
-    \ += cur[i].Q[k] * S[n - k];\n      tie(theta[i], u[i]) = decompose(delta);\n\
-    \    }\n\n    vc<Current> cur_nxt = cur;\n    vc<Old> old_nxt = old;\n    FOR(i,\
-    \ e) {\n      if (u[i] == e) continue;\n      int j = e - 1 - u[i];\n      if\
-    \ (old[j].r == -1) {\n        poly Q = cur[i].Q;\n        Q.resize(n + 2);\n \
-    \       cur_nxt[i] = Current{int(n) + 1, Q};\n      } else {\n        poly Q =\
-    \ cur[i].Q;\n        int Lnxt = max<int>(cur[i].L, old[j].L + n - old[j].r);\n\
-    \        Q.resize(Lnxt + 1);\n        mint c = theta[i] / old[j].theta;\n    \
-    \    FOR(k, len(old[j].B)) Q[k + n - old[j].r] -= c * old[j].B[k];\n        cur_nxt[i]\
-    \ = Current{Lnxt, Q};\n      }\n\n      if (cur[i].L < cur_nxt[i].L) {\n     \
-    \   old_nxt[i].B = cur[j].Q;\n        old_nxt[i].L = cur[j].L;\n        old_nxt[i].r\
-    \ = n;\n        old_nxt[i].theta = theta[j];\n      }\n    }\n    swap(cur, cur_nxt);\n\
-    \    swap(old, old_nxt);\n  }\n  vc<int> res;\n  for (auto& x : cur[0].Q) res.eb(x.val);\n\
-    \  assert(len(res) == cur[0].L + 1);\n  return res;\n}\n\n/*\nreturn {P(x),Q(x)}\
-    \ such that\nS(x)=P(x)/Q(x) mod x^N, [x^0]Q=1\nminimize L=max(deg(P)+1,deg(Q))\n\
+    \ / old[j].theta;\n        FOR(k, len(old[j].Q)) Q[k + n - old[j].r] -= c * old[j].Q[k];\n\
+    \        nxt[i] = Cur{Lnxt, Q};\n      }\n    }\n    FOR(i, e) {\n      if (cur[i].L\
+    \ < nxt[i].L) {\n        int j = e - 1 - u[i];\n        old[i].Q = cur[j].Q;\n\
+    \        old[i].L = cur[j].L;\n        old[i].r = n;\n        old[i].theta = theta[j];\n\
+    \      }\n    }\n    swap(cur, nxt);\n  }\n  vc<int> res;\n  for (auto& x : cur[0].Q)\
+    \ res.eb(x.val);\n  assert(len(res) == cur[0].L + 1);\n  return res;\n}\n\n/*\n\
+    return {P(x),Q(x)} such that\nS(x)=P(x)/Q(x) mod x^N, [x^0]Q=1\nminimize L=max(deg(P)+1,deg(Q))\n\
     */\ntemplate <typename mint>\npair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S,\
     \ vc<pair<ll, int>> pfs = {}) {\n  int mod = mint::get_mod();\n  if (mod > 1 &&\
     \ pfs.empty()) {\n    pfs = factor(mod);\n  }\n  {\n    int check = mod;\n   \
@@ -159,17 +128,56 @@ data:
     \ FOR(k, n) {\n    auto [p, e] = pfs[k];\n    int a = 1;\n    FOR(e) a *= p;\n\
     \    vc<int> T(len(S));\n    FOR(i, len(S)) T[i] = (S[i].val) % a;\n    auto Qk\
     \ = Reeds_Sloane_Prime_Power(T, p, e);\n    if (len(Q) < len(Qk)) Q.resize(len(Qk));\n\
-    \    FOR(i, len(Qk)) Q[i] += Qk[i] * coef[k];\n  }\n  vc<mint> P = convolution<mint>(S,\
-    \ Q);\n  P.resize(len(Q) - 1);\n  return {P, Q};\n}\n"
+    \    FOR(i, len(Qk)) Q[i] += Qk[i] * coef[k];\n  }\n  vc<mint> P(len(Q) - 1);\n\
+    \  FOR(i, len(P)) FOR(j, i + 1) P[i] += Q[j] * S[i - j];\n  return {P, Q};\n}\n"
+  code: "#include \"nt/factor.hpp\"\n#include \"mod/mod_inv.hpp\"\n\nvc<int> Reeds_Sloane_Prime_Power(vc<int>\
+    \ S, int p, int e) {\n  int N = len(S);\n  if (N == 0) return {1};\n  int M =\
+    \ 1;\n  FOR(e) M *= p;\n\n  using mint = Dynamic_Modint<20260623>;\n  mint::set_mod(M);\n\
+    \n  auto decompose = [&](mint x) -> pair<mint, int> {\n    // x = tp^u\n    int\
+    \ t = x.val, u = 0;\n    if (t == 0) return {1, e};\n    while (t % p == 0) t\
+    \ /= p, ++u;\n    return {t, u};\n  };\n\n  using poly = vc<mint>;\n  struct Cur\
+    \ {\n    int L;\n    poly Q;\n  };\n  struct Old {\n    int L, r;\n    poly Q;\n\
+    \    mint theta;\n  };\n\n  vc<int> pw(e + 1);\n  pw[0] = 1;\n  FOR(i, e) pw[i\
+    \ + 1] = pw[i] * p;\n  vc<Cur> cur(e);\n  vc<Old> old(e);\n  FOR(i, e) {\n   \
+    \ cur[i].L = 0, cur[i].Q = {pw[i]};\n    old[i].r = -1;\n  }\n\n  vc<mint> theta(e);\n\
+    \  vc<int> u(e);\n  FOR(n, N) {\n    FOR(i, e) {\n      mint delta = 0;\n    \
+    \  assert(len(cur[i].Q) <= 1 + n);\n      FOR(k, len(cur[i].Q)) delta += cur[i].Q[k]\
+    \ * S[n - k];\n      tie(theta[i], u[i]) = decompose(delta);\n    }\n\n    vc<Cur>\
+    \ nxt = cur;\n    FOR(i, e) {\n      if (u[i] == e) continue;\n      int j = e\
+    \ - 1 - u[i];\n      if (old[j].r == -1) {\n        poly Q = cur[i].Q;\n     \
+    \   Q.resize(n + 2);\n        nxt[i] = Cur{int(n) + 1, Q};\n      } else {\n \
+    \       poly Q = cur[i].Q;\n        int Lnxt = max<int>(cur[i].L, old[j].L + n\
+    \ - old[j].r);\n        Q.resize(Lnxt + 1);\n        mint c = theta[i] / old[j].theta;\n\
+    \        FOR(k, len(old[j].Q)) Q[k + n - old[j].r] -= c * old[j].Q[k];\n     \
+    \   nxt[i] = Cur{Lnxt, Q};\n      }\n    }\n    FOR(i, e) {\n      if (cur[i].L\
+    \ < nxt[i].L) {\n        int j = e - 1 - u[i];\n        old[i].Q = cur[j].Q;\n\
+    \        old[i].L = cur[j].L;\n        old[i].r = n;\n        old[i].theta = theta[j];\n\
+    \      }\n    }\n    swap(cur, nxt);\n  }\n  vc<int> res;\n  for (auto& x : cur[0].Q)\
+    \ res.eb(x.val);\n  assert(len(res) == cur[0].L + 1);\n  return res;\n}\n\n/*\n\
+    return {P(x),Q(x)} such that\nS(x)=P(x)/Q(x) mod x^N, [x^0]Q=1\nminimize L=max(deg(P)+1,deg(Q))\n\
+    */\ntemplate <typename mint>\npair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S,\
+    \ vc<pair<ll, int>> pfs = {}) {\n  int mod = mint::get_mod();\n  if (mod > 1 &&\
+    \ pfs.empty()) {\n    pfs = factor(mod);\n  }\n  {\n    int check = mod;\n   \
+    \ for (auto [p, e] : pfs) {\n      FOR(e) {\n        assert(check % p == 0);\n\
+    \        check /= p;\n      }\n    }\n    assert(check == 1);\n  }\n\n  if (mod\
+    \ == 1) return {{}, {1}};\n\n  int n = len(pfs);\n  vi coef(n);\n  FOR(i, n) {\n\
+    \    auto [p, e] = pfs[i];\n    int a = 1, b = mod;\n    FOR(e) a *= p, b /= p;\n\
+    \    ll c = mod_inv(b, a);\n    coef[i] = c * b % mod;\n  }\n  vc<mint> Q;\n \
+    \ FOR(k, n) {\n    auto [p, e] = pfs[k];\n    int a = 1;\n    FOR(e) a *= p;\n\
+    \    vc<int> T(len(S));\n    FOR(i, len(S)) T[i] = (S[i].val) % a;\n    auto Qk\
+    \ = Reeds_Sloane_Prime_Power(T, p, e);\n    if (len(Q) < len(Qk)) Q.resize(len(Qk));\n\
+    \    FOR(i, len(Qk)) Q[i] += Qk[i] * coef[k];\n  }\n  vc<mint> P(len(Q) - 1);\n\
+    \  FOR(i, len(P)) FOR(j, i + 1) P[i] += Q[j] * S[i - j];\n  return {P, Q};\n}\n"
   dependsOn:
   - nt/factor.hpp
   - random/base.hpp
   - nt/primetest.hpp
   - mod/mongomery_modint.hpp
+  - mod/mod_inv.hpp
   isVerificationFile: false
   path: seq/reeds_sloane.hpp
   requiredBy: []
-  timestamp: '2026-06-23 21:26:58+09:00'
+  timestamp: '2026-06-23 22:25:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/reeds_sloane.test.cpp
