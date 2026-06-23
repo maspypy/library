@@ -1,3 +1,4 @@
+#include "nt/factor.hpp"
 
 vc<int> Reeds_Sloane_Prime_Power(vc<int> S, int p, int e) {
   int N = len(S);
@@ -87,8 +88,11 @@ S(x)=P(x)/Q(x) mod x^N, [x^0]Q=1
 minimize L=max(deg(P)+1,deg(Q))
 */
 template <typename mint>
-pair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S, vc<pair<ll, int>> pfs) {
+pair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S, vc<pair<ll, int>> pfs = {}) {
   int mod = mint::get_mod();
+  if (mod > 1 && pfs.empty()) {
+    pfs = factor(mod);
+  }
   {
     int check = mod;
     for (auto [p, e] : pfs) {
