@@ -1,83 +1,111 @@
 #include "nt/factor.hpp"
 #include "mod/mod_inv.hpp"
+#include "mod/dynamic_modint.hpp"
 
-vc<int> Reeds_Sloane_Prime_Power(vc<int> S, int p, int e) {
+template <bool EVEN>
+vc<u32> Reeds_Sloane_Prime_Power(vc<u32> S, int p, int e) {
+  using T = std::conditional_t<EVEN, u32, Dynamic_Modint<20260623>>;
+  u32 M = 1;
+  FOR(e) M *= p;
+  if constexpr (EVEN) {
+    assert(p == 2);
+  } else {
+    assert(p != 2);
+    T::set_mod(M);
+  }
   int N = len(S);
   if (N == 0) return {1};
-  int M = 1;
-  FOR(e) M *= p;
 
-  using mint = Dynamic_Modint<20260623>;
-  mint::set_mod(M);
-
-  auto decompose = [&](mint x) -> pair<mint, int> {
-    // x = tp^u
-    int t = x.val, u = 0;
-    if (t == 0) return {1, e};
-    while (t % p == 0) t /= p, ++u;
-    return {t, u};
+  auto decompose = [&](T x) -> pair<T, int> {
+    if constexpr (EVEN) {
+      int k = lowbit(x);
+      if (k == -1 || k >= e) return {1, e};
+      return {x >> k, k};
+    } else {
+      // x = tp^u
+      int t = x.val, u = 0;
+      if (t == 0) return {1, e};
+      while (t % p == 0) t /= p, ++u;
+      return {t, u};
+    }
+  };
+  auto inv = [&](T a) -> T {
+    if constexpr (EVEN) {
+      T x = 1;
+      x = x * (2U - a * x);
+      x = x * (2U - a * x);
+      x = x * (2U - a * x);
+      x = x * (2U - a * x);
+      x = x * (2U - a * x);
+      return x;
+    } else {
+      return a.pow(M - M / p - 1);
+    }
   };
 
-  using poly = vc<mint>;
+  using poly = vc<T>;
   vc<poly> Q(e);
   vc<int> L(e);
 
   vc<poly> B(e);
   vc<int> LB(e);
   vc<int> nB(e);
-  vc<mint> tB(e);
+  vc<T> tB(e);
 
-  mint pw = 1;
-  for (int i = 0; i < e; ++i, pw *= p) {
-    Q[i] = {pw};
-    L[i] = 0;
-    nB[i] = -1;
+  T pw = 1;
+  for (int j = 0; j < e; ++j, pw *= p) {
+    Q[j] = {pw};
+    L[j] = 0;
+    nB[j] = -1;
   }
 
   for (int n = 0; n < N; ++n) {
     // delta=tp^u
-    vc<mint> t(e);
+    vc<T> t(e);
     vc<int> u(e);
-    FOR(i, e) {
-      mint delta = 0;
-      assert(len(Q[i]) <= 1 + n);
-      FOR(k, len(Q[i])) delta += Q[i][k] * S[n - k];
-      tie(t[i], u[i]) = decompose(delta);
+    FOR(j, e) {
+      T delta = 0;
+      assert(len(Q[j]) <= 1 + n);
+      FOR(k, len(Q[j])) delta += Q[j][k] * S[n - k];
+      tie(t[j], u[j]) = decompose(delta);
     }
 
     vc<poly> Q_next = Q;
     vc<int> L_next = L;
 
-    FOR(i, e) {
-      if (u[i] == e) continue;
+    FOR(j, e) {
+      if (u[j] == e) continue;
 
-      int j = e - 1 - u[i];
-      if (nB[j] == -1) {
-        Q_next[i].resize(n + 2);
-        L_next[i] = n + 1;
+      int k = e - 1 - u[j];
+      if (nB[k] == -1) {
+        Q_next[j].resize(n + 2);
+        L_next[j] = n + 1;
       } else {
-        L_next[i] = max(L[i], LB[j] + n - nB[j]);
-        Q_next[i].resize(L_next[i] + 1);
-        mint c = t[i] / tB[j];
-        FOR(k, len(B[j])) Q_next[i][k + n - nB[j]] -= c * B[j][k];
+        L_next[j] = max(L[j], LB[k] + n - nB[k]);
+        Q_next[j].resize(L_next[j] + 1);
+        T c = t[j] * inv(tB[k]);
+        FOR(i, len(B[k])) Q_next[j][i + n - nB[k]] -= c * B[k][i];
       }
     }
-    FOR(i, e) {
-      if (L[i] < L_next[i]) {
-        int j = e - 1 - u[i];
-        B[i] = Q[j];
-        LB[i] = L[j];
-        nB[i] = n;
-        tB[i] = t[j];
+    FOR(j, e) {
+      if (L[j] < L_next[j]) {
+        int k = e - 1 - u[j];
+        B[j] = Q[k];
+        LB[j] = L[k];
+        nB[j] = n;
+        tB[j] = t[k];
       }
     }
-    swap(Q, Q_next);
-    swap(L, L_next);
+    swap(Q, Q_next), swap(L, L_next);
   }
-  vc<int> res;
-  for (auto& x : Q[0]) res.eb(x.val);
-  assert(len(res) == L[0] + 1);
-  return res;
+  if constexpr (EVEN) {
+    return Q[0];
+  } else {
+    vc<u32> res;
+    for (auto& x : Q[0]) res.eb(x.val);
+    assert(len(res) == L[0] + 1);
+    return res;
+  }
 }
 
 /*
@@ -87,12 +115,12 @@ minimize L=max(deg(P)+1,deg(Q))
 */
 template <typename mint>
 pair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S, vc<pair<ll, int>> pfs = {}) {
-  int mod = mint::get_mod();
+  u32 mod = mint::get_mod();
   if (mod > 1 && pfs.empty()) {
     pfs = factor(mod);
   }
   {
-    int check = mod;
+    u32 check = mod;
     for (auto [p, e] : pfs) {
       FOR(e) {
         assert(check % p == 0);
@@ -118,11 +146,12 @@ pair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S, vc<pair<ll, int>> pfs = {}) {
     auto [p, e] = pfs[k];
     int a = 1;
     FOR(e) a *= p;
-    vc<int> T(len(S));
+    vc<u32> T(len(S));
     FOR(i, len(S)) T[i] = (S[i].val) % a;
-    auto Qk = Reeds_Sloane_Prime_Power(T, p, e);
+    auto Qk = (p == 2 ? Reeds_Sloane_Prime_Power<1>(T, p, e)
+                      : Reeds_Sloane_Prime_Power<0>(T, p, e));
     if (len(Q) < len(Qk)) Q.resize(len(Qk));
-    FOR(i, len(Qk)) Q[i] += Qk[i] * coef[k];
+    FOR(i, len(Qk)) Q[i] += ll(Qk[i]) * coef[k];
   }
   vc<mint> P(len(Q) - 1);
   FOR(i, len(P)) FOR(j, i + 1) P[i] += Q[j] * S[i - j];
