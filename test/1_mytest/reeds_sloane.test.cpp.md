@@ -681,58 +681,66 @@ data:
     \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
     \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
     \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
-    #line 3 \"seq/reeds_sloane.hpp\"\n\nvc<int> Reeds_Sloane_Prime_Power(vc<int> S,\
-    \ int p, int e) {\n  int N = len(S);\n  if (N == 0) return {1};\n  int M = 1;\n\
-    \  FOR(e) M *= p;\n\n  using mint = Dynamic_Modint<20260623>;\n  mint::set_mod(M);\n\
-    \n  auto decompose = [&](mint x) -> pair<mint, int> {\n    // x = tp^u\n    int\
-    \ t = x.val, u = 0;\n    if (t == 0) return {1, e};\n    while (t % p == 0) t\
-    \ /= p, ++u;\n    return {t, u};\n  };\n\n  using poly = vc<mint>;\n  vc<poly>\
+    #line 4 \"seq/reeds_sloane.hpp\"\n\ntemplate <bool EVEN>\nvc<u32> Reeds_Sloane_Prime_Power(vc<u32>\
+    \ S, int p, int e) {\n  using T = std::conditional_t<EVEN, u32, Dynamic_Modint<20260623>>;\n\
+    \  u32 M = 1;\n  FOR(e) M *= p;\n  if constexpr (EVEN) {\n    assert(p == 2);\n\
+    \  } else {\n    assert(p != 2);\n    T::set_mod(M);\n  }\n  int N = len(S);\n\
+    \  if (N == 0) return {1};\n\n  auto decompose = [&](T x) -> pair<T, int> {\n\
+    \    if constexpr (EVEN) {\n      int k = lowbit(x);\n      if (k == -1 || k >=\
+    \ e) return {1, e};\n      return {x >> k, k};\n    } else {\n      // x = tp^u\n\
+    \      int t = x.val, u = 0;\n      if (t == 0) return {1, e};\n      while (t\
+    \ % p == 0) t /= p, ++u;\n      return {t, u};\n    }\n  };\n  auto inv = [&](T\
+    \ a) -> T {\n    if constexpr (EVEN) {\n      T x = 1;\n      x = x * (2U - a\
+    \ * x);\n      x = x * (2U - a * x);\n      x = x * (2U - a * x);\n      x = x\
+    \ * (2U - a * x);\n      x = x * (2U - a * x);\n      return x;\n    } else {\n\
+    \      return a.pow(M - M / p - 1);\n    }\n  };\n\n  using poly = vc<T>;\n  vc<poly>\
     \ Q(e);\n  vc<int> L(e);\n\n  vc<poly> B(e);\n  vc<int> LB(e);\n  vc<int> nB(e);\n\
-    \  vc<mint> tB(e);\n\n  mint pw = 1;\n  for (int i = 0; i < e; ++i, pw *= p) {\n\
-    \    Q[i] = {pw};\n    L[i] = 0;\n    nB[i] = -1;\n  }\n\n  for (int n = 0; n\
-    \ < N; ++n) {\n    // delta=tp^u\n    vc<mint> t(e);\n    vc<int> u(e);\n    FOR(i,\
-    \ e) {\n      mint delta = 0;\n      assert(len(Q[i]) <= 1 + n);\n      FOR(k,\
-    \ len(Q[i])) delta += Q[i][k] * S[n - k];\n      tie(t[i], u[i]) = decompose(delta);\n\
-    \    }\n\n    vc<poly> Q_next = Q;\n    vc<int> L_next = L;\n\n    FOR(i, e) {\n\
-    \      if (u[i] == e) continue;\n\n      int j = e - 1 - u[i];\n      if (nB[j]\
-    \ == -1) {\n        Q_next[i].resize(n + 2);\n        L_next[i] = n + 1;\n   \
-    \   } else {\n        L_next[i] = max(L[i], LB[j] + n - nB[j]);\n        Q_next[i].resize(L_next[i]\
-    \ + 1);\n        mint c = t[i] / tB[j];\n        FOR(k, len(B[j])) Q_next[i][k\
-    \ + n - nB[j]] -= c * B[j][k];\n      }\n    }\n    FOR(i, e) {\n      if (L[i]\
-    \ < L_next[i]) {\n        int j = e - 1 - u[i];\n        B[i] = Q[j];\n      \
-    \  LB[i] = L[j];\n        nB[i] = n;\n        tB[i] = t[j];\n      }\n    }\n\
-    \    swap(Q, Q_next);\n    swap(L, L_next);\n  }\n  vc<int> res;\n  for (auto&\
-    \ x : Q[0]) res.eb(x.val);\n  assert(len(res) == L[0] + 1);\n  return res;\n}\n\
-    \n/*\nreturn {P(x),Q(x)} such that\nS(x)=P(x)/Q(x) mod x^N, [x^0]Q=1\nminimize\
-    \ L=max(deg(P)+1,deg(Q))\n*/\ntemplate <typename mint>\npair<vc<mint>, vc<mint>>\
-    \ Reeds_Sloane(vc<mint> S, vc<pair<ll, int>> pfs = {}) {\n  int mod = mint::get_mod();\n\
-    \  if (mod > 1 && pfs.empty()) {\n    pfs = factor(mod);\n  }\n  {\n    int check\
-    \ = mod;\n    for (auto [p, e] : pfs) {\n      FOR(e) {\n        assert(check\
-    \ % p == 0);\n        check /= p;\n      }\n    }\n    assert(check == 1);\n \
-    \ }\n\n  if (mod == 1) return {{}, {1}};\n\n  int n = len(pfs);\n  vi coef(n);\n\
-    \  FOR(i, n) {\n    auto [p, e] = pfs[i];\n    int a = 1, b = mod;\n    FOR(e)\
-    \ a *= p, b /= p;\n    ll c = mod_inv(b, a);\n    coef[i] = c * b % mod;\n  }\n\
-    \  vc<mint> Q;\n  FOR(k, n) {\n    auto [p, e] = pfs[k];\n    int a = 1;\n   \
-    \ FOR(e) a *= p;\n    vc<int> T(len(S));\n    FOR(i, len(S)) T[i] = (S[i].val)\
-    \ % a;\n    auto Qk = Reeds_Sloane_Prime_Power(T, p, e);\n    if (len(Q) < len(Qk))\
-    \ Q.resize(len(Qk));\n    FOR(i, len(Qk)) Q[i] += Qk[i] * coef[k];\n  }\n  vc<mint>\
-    \ P(len(Q) - 1);\n  FOR(i, len(P)) FOR(j, i + 1) P[i] += Q[j] * S[i - j];\n  return\
-    \ {P, Q};\n}\n#line 10 \"test/1_mytest/reeds_sloane.test.cpp\"\n\ntemplate <typename\
-    \ mint>\nvc<mint> from_PQ(int N, vc<mint> P, vc<mint> Q) {\n  P.resize(N), Q.resize(N);\n\
-    \  vc<mint> S(N);\n  FOR(i, N) {\n    S[i] += P[i];\n    FOR(j, 1, len(Q)) {\n\
-    \      int k = i - j;\n      if (0 <= k) S[i] -= S[k] * Q[j];\n    }\n  }\n  return\
-    \ S;\n}\n\ntemplate <int mod>\nvoid test(int T) {\n  using mint = modint<mod>;\n\
-    \  auto pfs = factor(mod);\n\n  FOR(T) {\n    int N = RNG(1, 20);\n    int L =\
-    \ RNG(0, N + 1);\n    vc<mint> QQ(L + 1);\n    vc<mint> PP(L);\n    QQ[0] = 1;\n\
-    \    FOR(i, L) PP[i] = RNG(0, mod), QQ[1 + i] = RNG(0, mod);\n    auto S = from_PQ(N,\
-    \ PP, QQ);\n    auto [P, Q] = Reeds_Sloane<mint>(S, pfs);\n    assert(len(P) <=\
-    \ L);\n    assert(len(Q) - 1 <= L);\n    assert(Q[0] == 1);\n    assert(S == from_PQ(N,\
-    \ P, Q));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
-    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  int T = 1 << 13;\n  test<1>(T);\n\
-    \  test<2>(T);\n  test<3>(T);\n  test<4>(T);\n  test<5>(T);\n  test<6>(T);\n \
-    \ test<7>(T);\n  test<8>(T);\n  test<9>(T);\n  test<10>(T);\n  test<12>(T);\n\
-    \  test<16>(T);\n  test<32>(T);\n  test<64>(T);\n  test<60>(T);\n  test<100>(T);\n\
-    \  test<210>(T);\n  solve();\n  return 0;\n}\n"
+    \  vc<T> tB(e);\n\n  T pw = 1;\n  for (int j = 0; j < e; ++j, pw *= p) {\n   \
+    \ Q[j] = {pw};\n    L[j] = 0;\n    nB[j] = -1;\n  }\n\n  for (int n = 0; n < N;\
+    \ ++n) {\n    // delta=tp^u\n    vc<T> t(e);\n    vc<int> u(e);\n    FOR(j, e)\
+    \ {\n      T delta = 0;\n      assert(len(Q[j]) <= 1 + n);\n      FOR(k, len(Q[j]))\
+    \ delta += Q[j][k] * S[n - k];\n      tie(t[j], u[j]) = decompose(delta);\n  \
+    \  }\n\n    vc<poly> Q_next = Q;\n    vc<int> L_next = L;\n\n    FOR(j, e) {\n\
+    \      if (u[j] == e) continue;\n\n      int k = e - 1 - u[j];\n      if (nB[k]\
+    \ == -1) {\n        Q_next[j].resize(n + 2);\n        L_next[j] = n + 1;\n   \
+    \   } else {\n        L_next[j] = max(L[j], LB[k] + n - nB[k]);\n        Q_next[j].resize(L_next[j]\
+    \ + 1);\n        T c = t[j] * inv(tB[k]);\n        FOR(i, len(B[k])) Q_next[j][i\
+    \ + n - nB[k]] -= c * B[k][i];\n      }\n    }\n    FOR(j, e) {\n      if (L[j]\
+    \ < L_next[j]) {\n        int k = e - 1 - u[j];\n        B[j] = Q[k];\n      \
+    \  LB[j] = L[k];\n        nB[j] = n;\n        tB[j] = t[k];\n      }\n    }\n\
+    \    swap(Q, Q_next), swap(L, L_next);\n  }\n  if constexpr (EVEN) {\n    return\
+    \ Q[0];\n  } else {\n    vc<u32> res;\n    for (auto& x : Q[0]) res.eb(x.val);\n\
+    \    assert(len(res) == L[0] + 1);\n    return res;\n  }\n}\n\n/*\nreturn {P(x),Q(x)}\
+    \ such that\nS(x)=P(x)/Q(x) mod x^N, [x^0]Q=1\nminimize L=max(deg(P)+1,deg(Q))\n\
+    */\ntemplate <typename mint>\npair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S,\
+    \ vc<pair<ll, int>> pfs = {}) {\n  u32 mod = mint::get_mod();\n  if (mod > 1 &&\
+    \ pfs.empty()) {\n    pfs = factor(mod);\n  }\n  {\n    u32 check = mod;\n   \
+    \ for (auto [p, e] : pfs) {\n      FOR(e) {\n        assert(check % p == 0);\n\
+    \        check /= p;\n      }\n    }\n    assert(check == 1);\n  }\n\n  if (mod\
+    \ == 1) return {{}, {1}};\n\n  int n = len(pfs);\n  vi coef(n);\n  FOR(i, n) {\n\
+    \    auto [p, e] = pfs[i];\n    int a = 1, b = mod;\n    FOR(e) a *= p, b /= p;\n\
+    \    ll c = mod_inv(b, a);\n    coef[i] = c * b % mod;\n  }\n  vc<mint> Q;\n \
+    \ FOR(k, n) {\n    auto [p, e] = pfs[k];\n    int a = 1;\n    FOR(e) a *= p;\n\
+    \    vc<u32> T(len(S));\n    FOR(i, len(S)) T[i] = (S[i].val) % a;\n    auto Qk\
+    \ = (p == 2 ? Reeds_Sloane_Prime_Power<1>(T, p, e)\n                      : Reeds_Sloane_Prime_Power<0>(T,\
+    \ p, e));\n    if (len(Q) < len(Qk)) Q.resize(len(Qk));\n    FOR(i, len(Qk)) Q[i]\
+    \ += ll(Qk[i]) * coef[k];\n  }\n  vc<mint> P(len(Q) - 1);\n  FOR(i, len(P)) FOR(j,\
+    \ i + 1) P[i] += Q[j] * S[i - j];\n  return {P, Q};\n}\n#line 10 \"test/1_mytest/reeds_sloane.test.cpp\"\
+    \n\ntemplate <typename mint>\nvc<mint> from_PQ(int N, vc<mint> P, vc<mint> Q)\
+    \ {\n  P.resize(N), Q.resize(N);\n  vc<mint> S(N);\n  FOR(i, N) {\n    S[i] +=\
+    \ P[i];\n    FOR(j, 1, len(Q)) {\n      int k = i - j;\n      if (0 <= k) S[i]\
+    \ -= S[k] * Q[j];\n    }\n  }\n  return S;\n}\n\ntemplate <int mod>\nvoid test(int\
+    \ T) {\n  using mint = modint<mod>;\n  auto pfs = factor(mod);\n\n  FOR(T) {\n\
+    \    int N = RNG(1, 20);\n    int L = RNG(0, N + 1);\n    vc<mint> QQ(L + 1);\n\
+    \    vc<mint> PP(L);\n    QQ[0] = 1;\n    FOR(i, L) PP[i] = RNG(0, mod), QQ[1\
+    \ + i] = RNG(0, mod);\n    auto S = from_PQ(N, PP, QQ);\n    auto [P, Q] = Reeds_Sloane<mint>(S,\
+    \ pfs);\n    assert(len(P) <= L);\n    assert(len(Q) - 1 <= L);\n    assert(Q[0]\
+    \ == 1);\n    assert(S == from_PQ(N, P, Q));\n  }\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  int T = 1 << 13;\n  test<1>(T);\n  test<2>(T);\n  test<3>(T);\n  test<4>(T);\n\
+    \  test<5>(T);\n  test<6>(T);\n  test<7>(T);\n  test<8>(T);\n  test<9>(T);\n \
+    \ test<10>(T);\n  test<12>(T);\n  test<16>(T);\n  test<32>(T);\n  test<64>(T);\n\
+    \  test<60>(T);\n  test<100>(T);\n  test<210>(T);\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\
     \n#include \"poly/convolution.hpp\"\n#include \"mod/dynamic_modint.hpp\"\n#include\
@@ -775,7 +783,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/reeds_sloane.test.cpp
   requiredBy: []
-  timestamp: '2026-06-23 23:59:02+09:00'
+  timestamp: '2026-06-26 10:35:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/reeds_sloane.test.cpp

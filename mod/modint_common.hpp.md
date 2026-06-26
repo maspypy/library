@@ -408,6 +408,9 @@ data:
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   - icon: ':heavy_check_mark:'
@@ -1618,6 +1621,7 @@ data:
   - seq/count_grid_path.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/limit_poly_exp_sum.hpp
+  - seq/reeds_sloane.hpp
   - seq/domino_standard_tableaux.hpp
   - seq/famous/eulerian_number.hpp
   - seq/famous/stirling_number_1.hpp

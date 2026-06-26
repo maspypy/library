@@ -74,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_matrix.hpp
     title: random/random_matrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
@@ -323,6 +326,7 @@ data:
   - graph/count/count_labeled_bipartite.hpp
   - graph/count/BEST.hpp
   - graph/count/count_spanning_tree.hpp
+  - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2023-10-17 07:10:25+09:00'
   verificationStatus: LIBRARY_ALL_AC

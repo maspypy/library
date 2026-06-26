@@ -56,6 +56,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
@@ -282,6 +285,7 @@ data:
   - nt/three_square.hpp
   - nt/four_square.hpp
   - graph/count/count_labeled_bipartite.hpp
+  - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2025-01-20 22:41:37+09:00'
   verificationStatus: LIBRARY_ALL_AC

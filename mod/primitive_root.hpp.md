@@ -41,6 +41,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
@@ -285,6 +288,7 @@ data:
   - mod/dynamic_modint.hpp
   - mod/multiplicative_convolution_mod_p.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2026-03-14 08:28:15+09:00'
   verificationStatus: LIBRARY_ALL_AC

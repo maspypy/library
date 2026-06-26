@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/31bit_modint.test.cpp
@@ -336,6 +339,7 @@ data:
   path: mod/dynamic_modint.hpp
   requiredBy:
   - mod/mod_log.hpp
+  - seq/reeds_sloane.hpp
   timestamp: '2026-03-14 08:28:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
