@@ -1,12 +1,14 @@
 
 // https://atcoder.jp/contests/joisc2018/tasks/joisc2018_j
+// https://atcoder.jp/contests/abc464/tasks/abc464_g
+// 隣接するものは選べない, k 個選んだときの最適解を全 k で列挙
 template <typename T, bool MINIMIZE>
-struct Non_Adjacent_Selection {
+struct Path_Independent_Set {
   int N;
   vc<T> ANS;
   vc<pair<int, int>> history;
 
-  Non_Adjacent_Selection(vc<T>& A) { calc(A); }
+  Path_Independent_Set(vc<T>& A) { calc(A); }
 
   void calc(vc<T> A) {
     if (MINIMIZE) {
@@ -53,6 +55,7 @@ struct Non_Adjacent_Selection {
     }
   }
 
+  vc<T> get_ANS() { return ANS; }
   vc<int> restore(int n) {
     vc<int> F(N + 1);
     FOR(i, n) {

@@ -312,3 +312,5 @@ void yes(bool t = 1) { print(t ? "yes" : "no"); }
 void no(bool t = 1) { yes(!t); }
 void YA(bool t = 1) { print(t ? "YA" : "TIDAK"); }
 void TIDAK(bool t = 1) { YA(!t); }
+void Alice(bool t = 1) { print(t ? "Alice" : "Bob"); }
+void Bob(bool t = 1) { Alice(!t); }
