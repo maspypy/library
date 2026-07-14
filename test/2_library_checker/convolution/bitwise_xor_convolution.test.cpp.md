@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -13,13 +13,13 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
   _extendedRequiredBy: []
@@ -250,7 +250,8 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 4 \"test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
     \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -390,7 +391,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
+  timestamp: '2026-07-14 09:59:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp

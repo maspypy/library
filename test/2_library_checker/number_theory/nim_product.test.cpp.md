@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/nimber/base.hpp
     title: nt/nimber/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/nim_product_64
@@ -241,8 +241,9 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"nt/nimber/nimber_impl.hpp\"\nnamespace\
-    \ NIM_PRODUCT {\r\nu16 E[65535 * 2 + 7];\r\nu16 L[65536];\r\nu64 S[4][65536];\r\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 2 \"nt/nimber/nimber_impl.hpp\"\
+    \nnamespace NIM_PRODUCT {\r\nu16 E[65535 * 2 + 7];\r\nu16 L[65536];\r\nu64 S[4][65536];\r\
     \nu64 SR[4][65536];\r\n\r\nu16 p16_15(u16 a, u16 b) { return (a && b ? E[u32(L[a])\
     \ + L[b] + 3] : 0); }\r\nu16 p16_15_15(u16 a, u16 b) { return (a && b ? E[u32(L[a])\
     \ + L[b] + 6] : 0); }\r\nu16 mul_15(u16 a) { return (a ? E[3 + L[a]] : 0); }\r\
@@ -323,8 +324,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/nim_product.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/nim_product.test.cpp
 layout: document

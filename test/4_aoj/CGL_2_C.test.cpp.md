@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.00000001'
@@ -242,24 +242,25 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"geo/cross_point.hpp\"\n\n#line 2\
-    \ \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point()\
-    \ : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A x, B y) :\
-    \ x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B> p)\
-    \ : x(p.fi), y(p.se) {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x),\
-    \ y(p.y) {}\n\n  Point operator+=(const Point p) {\n    x += p.x, y += p.y;\n\
-    \    return *this;\n  }\n  Point operator-=(const Point p) {\n    x -= p.x, y\
-    \ -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const { return {x\
-    \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
-    \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
-    \  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n  Point operator-()\
-    \ const { return {-x, -y}; }\n  Point operator*(T t) const { return {x * t, y\
-    \ * t}; }\n  Point operator/(T t) const { return {x / t, y / t}; }\n\n  bool operator<(Point\
-    \ p) const {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T\
-    \ dot(const Point& other) const { return x * other.x + y * other.y; }\n  T det(const\
-    \ Point& other) const { return x * other.y - y * other.x; }\n\n  double norm()\
-    \ { return sqrtl(x * x + y * y); }\n  double angle() { return atan2(y, x); }\n\
-    \n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 2 \"geo/cross_point.hpp\"\
+    \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
+    \n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
+    \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
+    \ B> p) : x(p.fi), y(p.se) {}\n\n  template <typename U>\n  Point(Point<U> p)\
+    \ : x(p.x), y(p.y) {}\n\n  Point operator+=(const Point p) {\n    x += p.x, y\
+    \ += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n    x\
+    \ -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
+    \ { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x\
+    \ - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x == p.x && y\
+    \ == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n\
+    \  Point operator-() const { return {-x, -y}; }\n  Point operator*(T t) const\
+    \ { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x / t, y\
+    \ / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
+    \    return y < p.y;\n  }\n  T dot(const Point& other) const { return x * other.x\
+    \ + y * other.y; }\n  T det(const Point& other) const { return x * other.y - y\
+    \ * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double angle()\
+    \ { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
     \ * x + c * y};\n  }\n  Point rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y,\
     \ -x}); }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n\
@@ -358,8 +359,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_C.test.cpp
 layout: document

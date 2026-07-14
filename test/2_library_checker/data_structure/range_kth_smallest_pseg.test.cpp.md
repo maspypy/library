@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -244,28 +244,30 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
-    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
-    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n#line 1 \"\
-    ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\
-    \u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate\
-    \ <class Node>\nstruct Node_Pool {\n  struct Slot {\n    union alignas(Node) {\n\
-    \      Slot* next;\n      unsigned char storage[sizeof(Node)];\n    };\n  };\n\
-    \  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
-    \ chunks;\n  Slot* cur = nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\
-    \n  Node_Pool() { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&...\
-    \ args) {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
-    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
-    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
-    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
-    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
-    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
-    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\
+    \n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\
+    \u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\
+    \u3068\ntemplate <class Node>\nstruct Node_Pool {\n  struct Slot {\n    union\
+    \ alignas(Node) {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n\
+    \    };\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 <<\
+    \ 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n \
+    \ template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
+    \    return ::new (s) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np\
+    \ x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (s) Node(*x);\
+    \  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u547C\u3073\
+    \u51FA\u3057\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
+    \    auto s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
+    \ = s;\n  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty())\
+    \ {\n      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
+    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
@@ -373,8 +375,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
 layout: document

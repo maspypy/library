@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_D
@@ -256,30 +256,32 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename\
-    \ T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static\
-    \ int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM)\
-    \ {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int\
-    \ R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int,\
-    \ int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n \
-    \       cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i)\
-    \ sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n     \
-    \ array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int i\
-    \ = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R -\
-    \ L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"nt/zeta.hpp\"\
-    \n\r\ntemplate <typename T>\r\nvoid divisor_zeta(vc<T>& A) {\r\n  assert(A[0]\
-    \ == 0);\r\n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\n  for (auto&&\
-    \ p: P) { FOR3(x, 1, N / p + 1) A[p * x] += A[x]; }\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid divisor_mobius(vc<T>& A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A)\
-    \ - 1;\r\n  auto P = primetable(N);\r\n  for (auto&& p: P) { FOR3_R(x, 1, N /\
-    \ p + 1) A[p * x] -= A[x]; }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid multiplier_zeta(vc<T>&\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 2 \"nt/primetable.hpp\"\
+    \n\ntemplate <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]:\
+    \ cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
+    \ + k};\n}\n#line 3 \"nt/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid divisor_zeta(vc<T>&\
     \ A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\
-    \n  for (auto&& p: P) { FOR3_R(x, 1, N / p + 1) A[x] += A[p * x]; }\r\n}\r\n\r\
-    \ntemplate <typename T>\r\nvoid multiplier_mobius(vc<T>& A) {\r\n  assert(A[0]\
-    \ == 0);\r\n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\n  for (auto&&\
-    \ p: P) { FOR3(x, 1, N / p + 1) A[x] -= A[p * x]; }\r\n}\r\n#line 2 \"nt/factor.hpp\"\
-    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \n  for (auto&& p: P) { FOR3(x, 1, N / p + 1) A[p * x] += A[x]; }\r\n}\r\n\r\n\
+    template <typename T>\r\nvoid divisor_mobius(vc<T>& A) {\r\n  assert(A[0] == 0);\r\
+    \n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\n  for (auto&& p: P) {\
+    \ FOR3_R(x, 1, N / p + 1) A[p * x] -= A[x]; }\r\n}\r\n\r\ntemplate <typename T>\r\
+    \nvoid multiplier_zeta(vc<T>& A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A)\
+    \ - 1;\r\n  auto P = primetable(N);\r\n  for (auto&& p: P) { FOR3_R(x, 1, N /\
+    \ p + 1) A[x] += A[p * x]; }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid multiplier_mobius(vc<T>&\
+    \ A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\
+    \n  for (auto&& p: P) { FOR3(x, 1, N / p + 1) A[x] -= A[p * x]; }\r\n}\r\n#line\
+    \ 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
@@ -363,8 +365,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/NTL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/NTL_1_D.test.cpp
 layout: document

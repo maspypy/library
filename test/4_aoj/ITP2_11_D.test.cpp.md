@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/all_k_subset.hpp
     title: setfunc/all_k_subset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D
@@ -237,9 +237,10 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 1 \"setfunc/all_k_subset.hpp\"\n\n#ifdef\
-    \ _MSC_VER\n#include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\ntemplate\
-    \ <typename UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 1 \"setfunc/all_k_subset.hpp\"\
+    \n\n#ifdef _MSC_VER\n#include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\
+    \ntemplate <typename UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT\
     \ k) : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}\n    __attribute__((target(\"\
     bmi2\"))) auto operator*() const { return _pdep_u64(t, s); }\n    auto operator++()\
@@ -265,8 +266,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP2_11_D.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_11_D.test.cpp
 layout: document

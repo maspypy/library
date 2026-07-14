@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cartesian_tree
@@ -238,14 +238,15 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"seq/cartesian_tree.hpp\"\n/*\r\n\u8F9E\
-    \u66F8\u9806\u3067\u9AD8\u3055\u3092 unique \u3057\u3066\u3001\u6728\u306B\u3057\
-    \u3066\u3044\u308B\u3002\r\n\u6975\u5927\u9577\u65B9\u5F62\u30A2\u30EB\u30B4\u30EA\
-    \u30BA\u30E0\u3067\u7DDA\u5F62\u6642\u9593\u69CB\u7BC9\u3002\r\n*/\r\ntemplate\
-    \ <typename T, bool IS_MIN>\r\nstruct CartesianTree {\r\n  int n;\r\n  vc<T>&\
-    \ A;\r\n  vc<pair<int, int>> range;\r\n  vc<int> lch, rch, par;\r\n  int root;\r\
-    \n\r\n  CartesianTree(vc<T>& A) : n(len(A)), A(A) {\r\n    range.assign(n, {-1,\
-    \ -1});\r\n    lch.assign(n, -1);\r\n    rch.assign(n, -1);\r\n    par.assign(n,\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 2 \"seq/cartesian_tree.hpp\"\
+    \n/*\r\n\u8F9E\u66F8\u9806\u3067\u9AD8\u3055\u3092 unique \u3057\u3066\u3001\u6728\
+    \u306B\u3057\u3066\u3044\u308B\u3002\r\n\u6975\u5927\u9577\u65B9\u5F62\u30A2\u30EB\
+    \u30B4\u30EA\u30BA\u30E0\u3067\u7DDA\u5F62\u6642\u9593\u69CB\u7BC9\u3002\r\n*/\r\
+    \ntemplate <typename T, bool IS_MIN>\r\nstruct CartesianTree {\r\n  int n;\r\n\
+    \  vc<T>& A;\r\n  vc<pair<int, int>> range;\r\n  vc<int> lch, rch, par;\r\n  int\
+    \ root;\r\n\r\n  CartesianTree(vc<T>& A) : n(len(A)), A(A) {\r\n    range.assign(n,\
+    \ {-1, -1});\r\n    lch.assign(n, -1);\r\n    rch.assign(n, -1);\r\n    par.assign(n,\
     \ -1);\r\n    if (n == 1) {\r\n      range[0] = {0, 1};\r\n      root = 0;\r\n\
     \      return;\r\n    }\r\n    auto is_sm = [&](int i, int j) -> bool {\r\n  \
     \    if (IS_MIN) return (A[i] < A[j]) || (A[i] == A[j] && i < j);\r\n      return\
@@ -283,8 +284,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/cartesian_tree.test.cpp
 layout: document

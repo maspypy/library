@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/subset_sum_count.hpp
     title: knapsack/subset_sum_count.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B
@@ -238,8 +238,9 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"knapsack/subset_sum_count.hpp\"\n\
-    \n/*\nO(2^{N/2})\nsubset sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi)\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 2 \"knapsack/subset_sum_count.hpp\"\
+    \n\n/*\nO(2^{N/2})\nsubset sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi)\
     \ \u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\n*/\ntemplate <typename T =\
     \ ll>\nll subset_sum_count(vc<T> A, T lo, T hi) {\n  int n = len(A);\n  auto gen\
     \ = [&](vc<T> A) -> vc<T> {\n    vc<T> dp = {0};\n    for (auto&& a: A) {\n  \
@@ -284,8 +285,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DPL_4_B.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DPL_4_B.test.cpp
 layout: document

@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -259,7 +259,8 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 5 \"test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp\"\
     \n\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  bool prepared\
     \ = 0;\n  vc<pair<u64, u32>> dat;\n  Bit_Vector(int n = 0) : n(n) { dat.assign((n\
     \ + 127) >> 6, {0, 0}); }\n  void set(int i) {\n    assert(!prepared && (0 <=\
@@ -610,8 +611,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
 layout: document

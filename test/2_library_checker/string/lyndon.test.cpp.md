@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/lyndon.hpp
     title: string/lyndon.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lyndon_factorization
@@ -238,7 +238,8 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/string/lyndon.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 5 \"test/2_library_checker/string/lyndon.test.cpp\"\
     \n\n#line 2 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct Incremental_Lyndon_Factorization\
     \ {\n  vc<CHAR> S;\n  int i = 0, j = 0, k = 0;\n  vc<int> minimum_suffix_len =\
     \ {0};\n\n  int add(CHAR c) {\n    S.eb(c);\n    // [j, j+(i-k)) simple\n    while\
@@ -266,8 +267,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/lyndon.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/lyndon.test.cpp
 layout: document

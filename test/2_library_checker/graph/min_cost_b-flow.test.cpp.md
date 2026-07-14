@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/bflow.hpp
     title: flow/bflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
@@ -238,23 +238,24 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\
-    \u304C\u3042\u3063\u3066\u3082\u52D5\u4F5C\u3059\u308B\u3088\n// INF \u8FBA\u304C\
-    \u5927\u304D\u3059\u304E\u308B\u3068\u58CA\u308C\u305F\u308A\u3059\u308B\u307F\
-    \u305F\u3044\u306A\u306E\u3067\u306E\u3067\u6CE8\u610F\ntemplate <class Flow =\
-    \ ll, class Cost = ll>\nstruct MinCostFlow {\n private:\n  static constexpr int\
-    \ SCALING_FACTOR = 2;\n  using V_id = uint32_t;\n  using E_id = uint32_t;\n\n\
-    \  struct Edge {\n    friend struct MinCostFlow;\n\n   private:\n    V_id frm,\
-    \ to;\n    Flow flow, cap;\n    Cost cost;\n    E_id rev;\n\n   public:\n    Edge()\
-    \ = default;\n\n    Edge(const V_id frm, const V_id to, const Flow cap, const\
-    \ Cost cost,\n         const E_id rev)\n        : frm(frm), to(to), flow(0), cap(cap),\
-    \ cost(cost), rev(rev) {}\n\n    [[nodiscard]] Flow residual_cap() const { return\
-    \ cap - flow; }\n  };\n\n public:\n  struct EdgePtr {\n    friend struct MinCostFlow;\n\
-    \n   private:\n    const MinCostFlow *instance;\n    const V_id v;\n    const\
-    \ E_id e;\n\n    EdgePtr(const MinCostFlow *instance, const V_id v, const E_id\
-    \ e)\n        : instance(instance), v(v), e(e) {}\n\n    [[nodiscard]] const Edge\
-    \ &edge() const { return instance->g[v][e]; }\n    [[nodiscard]] const Edge &rev()\
-    \ const {\n      const Edge &e = edge();\n      return instance->g[e.to][e.rev];\n\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 2 \"flow/bflow.hpp\"\
+    \n\n// \u8CA0\u8FBA\u304C\u3042\u3063\u3066\u3082\u52D5\u4F5C\u3059\u308B\u3088\
+    \n// INF \u8FBA\u304C\u5927\u304D\u3059\u304E\u308B\u3068\u58CA\u308C\u305F\u308A\
+    \u3059\u308B\u307F\u305F\u3044\u306A\u306E\u3067\u306E\u3067\u6CE8\u610F\ntemplate\
+    \ <class Flow = ll, class Cost = ll>\nstruct MinCostFlow {\n private:\n  static\
+    \ constexpr int SCALING_FACTOR = 2;\n  using V_id = uint32_t;\n  using E_id =\
+    \ uint32_t;\n\n  struct Edge {\n    friend struct MinCostFlow;\n\n   private:\n\
+    \    V_id frm, to;\n    Flow flow, cap;\n    Cost cost;\n    E_id rev;\n\n   public:\n\
+    \    Edge() = default;\n\n    Edge(const V_id frm, const V_id to, const Flow cap,\
+    \ const Cost cost,\n         const E_id rev)\n        : frm(frm), to(to), flow(0),\
+    \ cap(cap), cost(cost), rev(rev) {}\n\n    [[nodiscard]] Flow residual_cap() const\
+    \ { return cap - flow; }\n  };\n\n public:\n  struct EdgePtr {\n    friend struct\
+    \ MinCostFlow;\n\n   private:\n    const MinCostFlow *instance;\n    const V_id\
+    \ v;\n    const E_id e;\n\n    EdgePtr(const MinCostFlow *instance, const V_id\
+    \ v, const E_id e)\n        : instance(instance), v(v), e(e) {}\n\n    [[nodiscard]]\
+    \ const Edge &edge() const { return instance->g[v][e]; }\n    [[nodiscard]] const\
+    \ Edge &rev() const {\n      const Edge &e = edge();\n      return instance->g[e.to][e.rev];\n\
     \    }\n\n   public:\n    [[nodiscard]] V_id frm() const { return rev().to; }\n\
     \    [[nodiscard]] V_id to() const { return edge().to; }\n    [[nodiscard]] Flow\
     \ flow() const { return edge().flow; }\n    [[nodiscard]] Flow lower() const {\
@@ -350,8 +351,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/min_cost_b-flow.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/min_cost_b-flow.test.cpp
 layout: document

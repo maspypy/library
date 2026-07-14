@@ -230,7 +230,8 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 3 \"other/mhc_template_directory/para.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 3 \"other/mhc_template_directory/para.cpp\"\
     \n\nusing TestCase = tuple<ll, ll, ll, vvc<int>>;\nusing Result = ll;\n\n// \u30C6\
     \u30B9\u30C8\u30B1\u30FC\u30B9\u306E\u5165\u529B\u3092\u8AAD\u307F\u8FBC\u3080\
     \u95A2\u6570\nTestCase read_input(int i) {}\n\nResult solve(const TestCase& tc)\
@@ -272,7 +273,7 @@ data:
   isVerificationFile: false
   path: other/mhc_template_directory/para.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
+  timestamp: '2026-07-14 09:59:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/mhc_template_directory/para.cpp

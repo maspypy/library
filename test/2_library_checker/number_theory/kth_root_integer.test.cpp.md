@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
@@ -238,19 +238,20 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 1 \"nt/integer_kth_root.hpp\"\nu64 integer_kth_root(u64\
-    \ k, u64 a) {\r\n  assert(k >= 1);\r\n  if (a == 0 || a == 1 || k == 1) return\
-    \ a;\r\n  if (k >= 64) return 1;\r\n  if (k == 2) return sqrtl(a);\r\n  if (a\
-    \ == u64(-1)) --a;\r\n  struct S {\r\n    u64 v;\r\n    S& operator*=(const S&\
-    \ o) {\r\n      v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\r\n      return *this;\r\
-    \n    }\r\n  };\r\n  auto power = [&](S x, ll n) -> S {\r\n    S v{1};\r\n   \
-    \ while (n) {\r\n      if (n & 1) v *= x;\r\n      x *= x;\r\n      n /= 2;\r\n\
-    \    }\r\n    return v;\r\n  };\r\n  u64 res = pow(a, nextafter(1 / double(k),\
-    \ 0));\r\n  while (power(S{res + 1}, k).v <= a) ++res;\r\n  return res;\r\n}\r\
-    \n#line 5 \"test/2_library_checker/number_theory/kth_root_integer.test.cpp\"\n\
-    \r\nvoid solve() {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n}\r\n\
-    \r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\
-    \n"
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 1 \"nt/integer_kth_root.hpp\"\
+    \nu64 integer_kth_root(u64 k, u64 a) {\r\n  assert(k >= 1);\r\n  if (a == 0 ||\
+    \ a == 1 || k == 1) return a;\r\n  if (k >= 64) return 1;\r\n  if (k == 2) return\
+    \ sqrtl(a);\r\n  if (a == u64(-1)) --a;\r\n  struct S {\r\n    u64 v;\r\n    S&\
+    \ operator*=(const S& o) {\r\n      v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\r\
+    \n      return *this;\r\n    }\r\n  };\r\n  auto power = [&](S x, ll n) -> S {\r\
+    \n    S v{1};\r\n    while (n) {\r\n      if (n & 1) v *= x;\r\n      x *= x;\r\
+    \n      n /= 2;\r\n    }\r\n    return v;\r\n  };\r\n  u64 res = pow(a, nextafter(1\
+    \ / double(k), 0));\r\n  while (power(S{res + 1}, k).v <= a) ++res;\r\n  return\
+    \ res;\r\n}\r\n#line 5 \"test/2_library_checker/number_theory/kth_root_integer.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n}\r\
+    \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n\
+    }\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"nt/integer_kth_root.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n\
@@ -263,8 +264,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/kth_root_integer.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/kth_root_integer.test.cpp
 layout: document

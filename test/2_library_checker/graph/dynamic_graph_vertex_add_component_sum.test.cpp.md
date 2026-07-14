@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/add_remove_query.hpp
     title: ds/offline_query/add_remove_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -244,18 +244,19 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate\
-    \ <typename T>\r\nstruct Rollback_Array {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int,\
-    \ T>> history;\r\n\r\n  Rollback_Array() {}\r\n  Rollback_Array(vc<T> x) : N(len(x)),\
-    \ dat(x) {}\r\n  Rollback_Array(int N) : N(N), dat(N) {}\r\n  template <typename\
-    \ F>\r\n  Rollback_Array(int N, F f) : N(N) {\r\n    dat.reserve(N);\r\n    FOR(i,\
-    \ N) dat.eb(f(i));\r\n  }\r\n\r\n  int time() { return len(history); }\r\n  void\
-    \ rollback(int t) {\r\n    FOR_R(i, t, time()) {\r\n      auto& [idx, v] = history[i];\r\
-    \n      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\n  }\r\n  T get(int\
-    \ idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\n    history.eb(idx,\
-    \ dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T>\
-    \ res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\n  }\r\n};\r\n\
-    #line 2 \"ds/unionfind/rollback_unionfind.hpp\"\n\r\nstruct Rollback_UnionFind\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 2 \"ds/rollback_array.hpp\"\
+    \n\r\ntemplate <typename T>\r\nstruct Rollback_Array {\r\n  int N;\r\n  vc<T>\
+    \ dat;\r\n  vc<pair<int, T>> history;\r\n\r\n  Rollback_Array() {}\r\n  Rollback_Array(vc<T>\
+    \ x) : N(len(x)), dat(x) {}\r\n  Rollback_Array(int N) : N(N), dat(N) {}\r\n \
+    \ template <typename F>\r\n  Rollback_Array(int N, F f) : N(N) {\r\n    dat.reserve(N);\r\
+    \n    FOR(i, N) dat.eb(f(i));\r\n  }\r\n\r\n  int time() { return len(history);\
+    \ }\r\n  void rollback(int t) {\r\n    FOR_R(i, t, time()) {\r\n      auto& [idx,\
+    \ v] = history[i];\r\n      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\
+    \n  }\r\n  T get(int idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\
+    \n    history.eb(idx, dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all()\
+    \ {\r\n    vc<T> res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\
+    \n  }\r\n};\r\n#line 2 \"ds/unionfind/rollback_unionfind.hpp\"\n\r\nstruct Rollback_UnionFind\
     \ {\r\n  int n;\r\n  Rollback_Array<int> dat; // parent or size\r\n\r\n  Rollback_UnionFind(int\
     \ n) : n(n), dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int v) {\r\n    while\
     \ (dat.get(v) >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\n\r\n  ll size(int\
@@ -355,8 +356,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
 layout: document

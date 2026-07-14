@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -259,28 +259,29 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector\
-    \ {\n  int n;\n  bool prepared = 0;\n  vc<pair<u64, u32>> dat;\n  Bit_Vector(int\
-    \ n = 0) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void set(int i) {\n\
-    \    assert(!prepared && (0 <= i && i < n));\n    dat[i >> 6].fi |= u64(1) <<\
-    \ (i & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64, u32>{0, 0});\n\
-    \    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n    FOR(i, len(dat)\
-    \ - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  bool operator[](int\
-    \ i) const { return dat[i >> 6].fi >> (i & 63) & 1; }\n  // [0, k) \u5185\u306E\
-    \ 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool f = true) const {\n   \
-    \ assert(prepared);\n    auto [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a\
-    \ & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n  }\n  int\
-    \ count(int L, int R, bool f = true) const {\n    return count_prefix(R, f) -\
-    \ count_prefix(L, f);\n  }\n  string to_string() const {\n    string ans;\n  \
-    \  FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n\
-    \  }\n};\n#line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy {\n  using value_type\
-    \ = char;\n  static constexpr bool commute = true;\n  static value_type op(value_type,\
-    \ value_type) { return 0; }\n  static value_type unit() { return 0; }\n};\n#line\
-    \ 2 \"ds/dummy_data_structure.hpp\"\n\nstruct Dummy_Data_Structure {\n  using\
-    \ MX = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void build(const\
-    \ vc<T>& A) {}\n};\n#line 3 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n\r\ntemplate\
-    \ <typename Y, typename SEGTREE>\r\nstruct Uncompressed_Wavelet_Matrix {\r\n \
-    \ using Mono = typename SEGTREE::MX;\r\n  using T = typename Mono::value_type;\r\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 1 \"ds/bit_vector.hpp\"\
+    \nstruct Bit_Vector {\n  int n;\n  bool prepared = 0;\n  vc<pair<u64, u32>> dat;\n\
+    \  Bit_Vector(int n = 0) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void\
+    \ set(int i) {\n    assert(!prepared && (0 <= i && i < n));\n    dat[i >> 6].fi\
+    \ |= u64(1) << (i & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64,\
+    \ u32>{0, 0});\n    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n\
+    \    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\
+    \  bool operator[](int i) const { return dat[i >> 6].fi >> (i & 63) & 1; }\n \
+    \ // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool\
+    \ f = true) const {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n \
+    \   int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
+    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) const {\n    return\
+    \ count_prefix(R, f) - count_prefix(L, f);\n  }\n  string to_string() const {\n\
+    \    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n\
+    \    return ans;\n  }\n};\n#line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy\
+    \ {\n  using value_type = char;\n  static constexpr bool commute = true;\n  static\
+    \ value_type op(value_type, value_type) { return 0; }\n  static value_type unit()\
+    \ { return 0; }\n};\n#line 2 \"ds/dummy_data_structure.hpp\"\n\nstruct Dummy_Data_Structure\
+    \ {\n  using MX = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void\
+    \ build(const vc<T>& A) {}\n};\n#line 3 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
+    \n\r\ntemplate <typename Y, typename SEGTREE>\r\nstruct Uncompressed_Wavelet_Matrix\
+    \ {\r\n  using Mono = typename SEGTREE::MX;\r\n  using T = typename Mono::value_type;\r\
     \n  static_assert(Mono::commute);\r\n  static_assert(is_same_v<Y, int> || is_same_v<Y,\
     \ ll>);\r\n  int n = 0, log = 0;\r\n  vc<int> mid;\r\n  vc<Bit_Vector> bv;\r\n\
     \  vc<SEGTREE> seg;\r\n  Y limit;\r\n\r\n  Uncompressed_Wavelet_Matrix() = default;\r\
@@ -551,8 +552,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2026-06-18 17:02:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-14 09:59:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
 layout: document
