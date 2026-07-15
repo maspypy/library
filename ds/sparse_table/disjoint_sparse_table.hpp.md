@@ -60,13 +60,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/number_of_substrings.test.cpp
     title: test/2_library_checker/string/number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array.test.cpp
     title: test/2_library_checker/string/suffix_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':x:'
@@ -149,35 +149,35 @@ data:
   path: ds/sparse_table/disjoint_sparse_table.hpp
   requiredBy:
   - ds/static_range_product.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
-  - string/substring_count_in_substring.hpp
-  - string/substring_shortest_border.hpp
-  - string/basic_substring_structure.hpp
-  - string/suffix_tree.hpp
-  - string/suffix_lcp_change.hpp
-  - string/longest_common_substring.hpp
-  - string/many_string_compare.hpp
-  - string/suffix_array.hpp
-  - string/sort_substrings.hpp
   - graph/ds/static_tree_monoid.hpp
+  - string/substring_count_in_substring.hpp
+  - string/sort_substrings.hpp
+  - string/substring_shortest_border.hpp
+  - string/many_string_compare.hpp
+  - string/suffix_lcp_change.hpp
+  - string/suffix_tree.hpp
+  - string/longest_common_substring.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
+  - string/suffix_array.hpp
+  - string/basic_substring_structure.hpp
   timestamp: '2026-04-13 19:22:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
-  - test/2_library_checker/data_structure/staticrmq.test.cpp
-  - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
-  - test/2_library_checker/string/number_of_substrings.test.cpp
-  - test/2_library_checker/string/suffix_array_vec.test.cpp
-  - test/2_library_checker/string/suffix_array.test.cpp
-  - test/2_library_checker/string/longest_common_substring.test.cpp
-  - test/3_yukicoder/2361.test.cpp
-  - test/3_yukicoder/1216_2.test.cpp
-  - test/3_yukicoder/2005.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/1216.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
+  - test/3_yukicoder/1216.test.cpp
+  - test/3_yukicoder/2005.test.cpp
+  - test/3_yukicoder/1216_2.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/2361.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
+  - test/2_library_checker/data_structure/staticrmq.test.cpp
+  - test/2_library_checker/string/number_of_substrings.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/string/suffix_array.test.cpp
+  - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
 documentation_of: ds/sparse_table/disjoint_sparse_table.hpp
 layout: document
 redirect_from:

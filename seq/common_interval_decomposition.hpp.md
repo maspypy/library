@@ -196,8 +196,8 @@ data:
   timestamp: '2026-06-01 00:35:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - test/3_yukicoder/1720.test.cpp
+  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
 documentation_of: seq/common_interval_decomposition.hpp
 layout: document
 redirect_from:

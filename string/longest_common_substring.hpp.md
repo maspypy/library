@@ -277,8 +277,8 @@ data:
   timestamp: '2026-04-22 03:33:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
 documentation_of: string/longest_common_substring.hpp
 layout: document
 redirect_from:

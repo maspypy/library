@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: string/non_dominated_suffix.hpp
     title: string/non_dominated_suffix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
   _extendedVerifiedWith:
@@ -21,10 +21,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/run_enumerate.test.cpp
     title: test/2_library_checker/string/run_enumerate.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/run_enumerate_vec.test.cpp
     title: test/2_library_checker/string/run_enumerate_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm.test.cpp
     title: test/2_library_checker/string/zalgorithm.test.cpp
   - icon: ':x:'
@@ -58,20 +58,20 @@ data:
   isVerificationFile: false
   path: string/zalgorithm.hpp
   requiredBy:
+  - seq/interpolate_periodic_sequence.hpp
+  - string/is_substring.hpp
   - string/run_enumerate.hpp
   - string/non_dominated_suffix.hpp
-  - string/is_substring.hpp
-  - seq/interpolate_periodic_sequence.hpp
   timestamp: '2024-09-03 08:13:21+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/1_mytest/is_substring.test.cpp
+  - test/3_yukicoder/1848.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
+  - test/3_yukicoder/2858.test.cpp
   - test/2_library_checker/string/zalgorithm.test.cpp
   - test/2_library_checker/string/run_enumerate.test.cpp
   - test/2_library_checker/string/run_enumerate_vec.test.cpp
-  - test/3_yukicoder/2858.test.cpp
-  - test/3_yukicoder/2626_2.test.cpp
-  - test/3_yukicoder/1848.test.cpp
-  - test/1_mytest/is_substring.test.cpp
 documentation_of: string/zalgorithm.hpp
 layout: document
 redirect_from:

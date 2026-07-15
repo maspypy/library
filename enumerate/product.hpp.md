@@ -42,9 +42,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/enumerate_labeled_tree.test.cpp
-  - test/1_mytest/enumerate_products.test.cpp
-  - test/1_mytest/prufer.test.cpp
   - test/1_mytest/fibonacci_search.test.cpp
+  - test/1_mytest/prufer.test.cpp
+  - test/1_mytest/enumerate_products.test.cpp
 documentation_of: enumerate/product.hpp
 layout: document
 redirect_from:

@@ -20,10 +20,10 @@ data:
   - icon: ':warning:'
     path: graph/ds/distance_sum.hpp
     title: graph/ds/distance_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':question:'
@@ -33,10 +33,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - icon: ':x:'
@@ -361,20 +361,20 @@ data:
   path: graph/ds/static_toptree.hpp
   requiredBy:
   - graph/tree_walk_generating_function.hpp
+  - graph/count_matching_on_tree.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - graph/ds/distance_sum.hpp
   - graph/ds/dynamic_tree_dp.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
-  - graph/count_matching_on_tree.hpp
+  - graph/ds/distance_sum.hpp
   timestamp: '2026-02-03 22:59:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/1_mytest/tree_walk_gf.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2258.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2258.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
 redirect_from:

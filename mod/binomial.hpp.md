@@ -254,10 +254,10 @@ data:
   timestamp: '2026-03-14 08:28:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
-  - test/3_yukicoder/2181.test.cpp
   - test/3_yukicoder/2120.test.cpp
+  - test/3_yukicoder/2181.test.cpp
   - test/3_yukicoder/2613.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document
 redirect_from:

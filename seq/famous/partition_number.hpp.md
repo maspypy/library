@@ -363,9 +363,9 @@ data:
   timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-  - test/3_yukicoder/2944.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
+  - test/3_yukicoder/2944.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/partition.test.cpp
 documentation_of: seq/famous/partition_number.hpp
 layout: document
 redirect_from:

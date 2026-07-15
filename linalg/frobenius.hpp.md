@@ -548,8 +548,8 @@ data:
   timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+  - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
 documentation_of: linalg/frobenius.hpp
 layout: document
 redirect_from:
