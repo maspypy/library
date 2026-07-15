@@ -156,16 +156,16 @@ data:
   requiredBy:
   - game/graph_path_game.hpp
   - game/graph_game.hpp
-  - graph/dominator_tree.hpp
   - graph/shortest_path/K_shortest_walk.hpp
+  - graph/dominator_tree.hpp
   - graph/reachability.hpp
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/4_aoj/0275.test.cpp
-  - test/3_yukicoder/1601.test.cpp
-  - test/2_library_checker/graph/domninator_tree.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
+  - test/2_library_checker/graph/domninator_tree.test.cpp
+  - test/3_yukicoder/1601.test.cpp
+  - test/4_aoj/0275.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document
 redirect_from:

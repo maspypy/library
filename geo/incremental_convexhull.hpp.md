@@ -191,10 +191,10 @@ data:
   timestamp: '2026-02-03 22:59:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/incremental_ch.test.cpp
-  - test/1_mytest/convex_polygon_visible_range.test.cpp
 documentation_of: geo/incremental_convexhull.hpp
 layout: document
 redirect_from:

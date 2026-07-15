@@ -58,8 +58,8 @@ data:
   timestamp: '2022-12-01 18:20:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/3314.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
+  - test/3_yukicoder/3314.test.cpp
 documentation_of: ds/offline_query/parallel_binary_search.hpp
 layout: document
 redirect_from:

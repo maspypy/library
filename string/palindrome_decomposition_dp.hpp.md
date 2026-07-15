@@ -128,8 +128,8 @@ data:
   timestamp: '2026-03-14 08:28:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/palindrome_decomposition_dp.test.cpp
   - test/3_yukicoder/465.test.cpp
+  - test/1_mytest/palindrome_decomposition_dp.test.cpp
 documentation_of: string/palindrome_decomposition_dp.hpp
 layout: document
 redirect_from:

@@ -212,8 +212,8 @@ data:
   timestamp: '2025-12-07 20:35:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/4_aoj/2251_1.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
+  - test/4_aoj/2251_1.test.cpp
 documentation_of: graph/toposort.hpp
 layout: document
 redirect_from:

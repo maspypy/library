@@ -51,8 +51,8 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/summax_add.test.cpp
   - test/1_mytest/kdtree_am.test.cpp
+  - test/1_mytest/summax_add.test.cpp
 documentation_of: alg/acted_monoid/summax_add.hpp
 layout: document
 redirect_from:

@@ -283,10 +283,10 @@ data:
   isVerificationFile: false
   path: convex/line_min_function.hpp
   requiredBy:
-  - convex/lower_integer_hull.hpp
-  - convex/lattice_point_count.hpp
   - convex/lattice_point_sum_polynomial.hpp
+  - convex/lower_integer_hull.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/lattice_point_count.hpp
   timestamp: '2026-02-03 22:59:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

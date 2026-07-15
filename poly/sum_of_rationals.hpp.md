@@ -460,26 +460,26 @@ data:
   isVerificationFile: false
   path: poly/sum_of_rationals.hpp
   requiredBy:
-  - seq/sum_of_powers.hpp
-  - linalg/blackbox/vandermonde.hpp
-  - poly/sum_of_exp_bx.hpp
-  - poly/composition_f_1_minus_ex.hpp
-  - poly/product_of_pow_of_linear.hpp
   - poly/composition_f_ex.hpp
   - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/sum_of_exp_bx.hpp
+  - poly/product_of_pow_of_linear.hpp
+  - linalg/blackbox/vandermonde.hpp
+  - seq/sum_of_powers.hpp
   timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/composition_ex_minus_1.test.cpp
-  - test/1_mytest/partial_frac.test.cpp
-  - test/1_mytest/vandermonde.test.cpp
-  - test/1_mytest/composition_1_minus_ex.test.cpp
-  - test/3_yukicoder/1875.test.cpp
-  - test/3_yukicoder/2459.test.cpp
-  - test/3_yukicoder/1962.test.cpp
-  - test/3_yukicoder/2747.test.cpp
-  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/1145.test.cpp
+  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/1875.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/2459.test.cpp
+  - test/1_mytest/composition_1_minus_ex.test.cpp
+  - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/vandermonde.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document
 redirect_from:

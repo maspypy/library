@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
   _extendedRequiredBy: []
@@ -278,8 +278,8 @@ data:
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/st_numbering.test.cpp
   - test/2_library_checker/graph/st_numbering.test.cpp
+  - test/1_mytest/st_numbering.test.cpp
 documentation_of: graph/st_numbering.hpp
 layout: document
 redirect_from:

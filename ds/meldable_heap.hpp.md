@@ -152,9 +152,9 @@ data:
   timestamp: '2025-11-18 00:27:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/2_library_checker/graph/K_shortest_walk.test.cpp
   - test/3_yukicoder/1154.test.cpp
   - test/3_yukicoder/1752.test.cpp
-  - test/2_library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: ds/meldable_heap.hpp
 layout: document
 redirect_from:

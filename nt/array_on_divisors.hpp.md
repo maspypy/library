@@ -246,8 +246,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2264.test.cpp
-  - test/3_yukicoder/1728.test.cpp
   - test/3_yukicoder/2578.test.cpp
+  - test/3_yukicoder/1728.test.cpp
 documentation_of: nt/array_on_divisors.hpp
 layout: document
 redirect_from:

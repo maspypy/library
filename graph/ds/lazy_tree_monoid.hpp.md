@@ -483,10 +483,10 @@ data:
   timestamp: '2026-02-27 23:10:36+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/4_aoj/GRL_5_E.test.cpp
   - test/3_yukicoder/1197.test.cpp
   - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/1790.test.cpp
+  - test/4_aoj/GRL_5_E.test.cpp
 documentation_of: graph/ds/lazy_tree_monoid.hpp
 layout: document
 redirect_from:

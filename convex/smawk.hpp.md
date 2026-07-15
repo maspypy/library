@@ -56,13 +56,13 @@ data:
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
-  - convex/monge/monge_dp_update.hpp
   - convex/monge/monge.hpp
+  - convex/monge/monge_dp_update.hpp
   timestamp: '2026-06-15 22:08:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/alien.test.cpp
   - test/1_mytest/smawk.test.cpp
+  - test/1_mytest/alien.test.cpp
 documentation_of: convex/smawk.hpp
 layout: document
 redirect_from:

@@ -402,37 +402,37 @@ data:
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
-  - nt/find_coprime_pair.hpp
-  - flow/bipartite_dense.hpp
-  - linalg/bitset/mat_inv.hpp
-  - linalg/bitset/matrix_mul_mod_2.hpp
-  - linalg/bitset/det.hpp
-  - linalg/bitset/matrix_pow.hpp
-  - linalg/bitset/matrix_mul_and_or.hpp
-  - linalg/bitset/solve_linear.hpp
   - knapsack/subset_sum.hpp
+  - linalg/bitset/matrix_mul_and_or.hpp
+  - linalg/bitset/matrix_mul_mod_2.hpp
+  - linalg/bitset/mat_inv.hpp
+  - linalg/bitset/solve_linear.hpp
+  - linalg/bitset/matrix_pow.hpp
+  - linalg/bitset/det.hpp
   - ds/sum_over_bit_positions.hpp
-  - graph/bitset/bfs_bitset.hpp
+  - nt/find_coprime_pair.hpp
   - graph/bitset/transitive_reduction.hpp
+  - graph/bitset/bfs_bitset.hpp
   - graph/bitset/transitive_closure.hpp
+  - flow/bipartite_dense.hpp
   timestamp: '2026-06-15 22:08:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/mybitset.test.cpp
-  - test/1_mytest/subset_sum.test.cpp
-  - test/1_mytest/sum_over_bit_positions.test.cpp
-  - test/3_yukicoder/2626_2.test.cpp
-  - test/3_yukicoder/142.test.cpp
-  - test/3_yukicoder/2490.test.cpp
-  - test/3_yukicoder/421_2.test.cpp
-  - test/3_yukicoder/421.test.cpp
-  - test/3_yukicoder/1421.test.cpp
-  - test/3_yukicoder/1400.test.cpp
-  - test/3_yukicoder/1340.test.cpp
-  - test/3_yukicoder/3229.test.cpp
-  - test/3_yukicoder/4_2.test.cpp
-  - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
+  - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
+  - test/3_yukicoder/2490.test.cpp
+  - test/3_yukicoder/4_2.test.cpp
+  - test/3_yukicoder/142.test.cpp
+  - test/3_yukicoder/421.test.cpp
+  - test/3_yukicoder/1400.test.cpp
+  - test/3_yukicoder/3229.test.cpp
+  - test/3_yukicoder/1421.test.cpp
+  - test/3_yukicoder/1340.test.cpp
+  - test/3_yukicoder/421_2.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
+  - test/1_mytest/mybitset.test.cpp
+  - test/1_mytest/sum_over_bit_positions.test.cpp
+  - test/1_mytest/subset_sum.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
 redirect_from:

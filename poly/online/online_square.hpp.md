@@ -107,8 +107,8 @@ data:
   timestamp: '2025-09-02 02:05:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/online_square.test.cpp
   - test/3_yukicoder/2801.test.cpp
+  - test/1_mytest/online_square.test.cpp
 documentation_of: poly/online/online_square.hpp
 layout: document
 redirect_from:
