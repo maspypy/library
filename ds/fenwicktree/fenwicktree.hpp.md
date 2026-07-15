@@ -129,13 +129,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1038.test.cpp
     title: test/3_yukicoder/1038.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1311.test.cpp
     title: test/3_yukicoder/1311.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1326.test.cpp
     title: test/3_yukicoder/1326.test.cpp
   - icon: ':x:'

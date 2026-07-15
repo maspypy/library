@@ -113,7 +113,7 @@ data:
   - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':warning:'
@@ -342,31 +342,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1141.test.cpp
     title: test/3_yukicoder/1141.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1234.test.cpp
     title: test/3_yukicoder/1234.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1311.test.cpp
     title: test/3_yukicoder/1311.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1326.test.cpp
     title: test/3_yukicoder/1326.test.cpp
   - icon: ':x:'
