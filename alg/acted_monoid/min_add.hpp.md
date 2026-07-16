@@ -8,7 +8,7 @@ data:
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':x:'
@@ -66,12 +66,12 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
+  - test/4_aoj/DSL_2_H.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/3_yukicoder/1234.test.cpp
   - test/3_yukicoder/1720.test.cpp
   - test/3_yukicoder/1270.test.cpp
-  - test/1_mytest/range_add_range_min.test.cpp
-  - test/4_aoj/DSL_2_H.test.cpp
+  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp
 layout: document
 redirect_from:

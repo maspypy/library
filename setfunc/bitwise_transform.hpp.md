@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/and_convolution.hpp
     title: setfunc/and_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
   - icon: ':heavy_check_mark:'
@@ -96,7 +96,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1142.test.cpp
     title: test/3_yukicoder/1142.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1753.test.cpp
     title: test/3_yukicoder/1753.test.cpp
   - icon: ':x:'
@@ -169,41 +169,41 @@ data:
   path: setfunc/bitwise_transform.hpp
   requiredBy:
   - linalg/hafnian.hpp
-  - setfunc/zeta.hpp
-  - setfunc/sps_log.hpp
-  - setfunc/xor_convolution.hpp
-  - setfunc/or_convolution.hpp
-  - setfunc/ranked_zeta.hpp
-  - setfunc/and_convolution.hpp
-  - setfunc/hadamard.hpp
-  - setfunc/sps_exp.hpp
-  - setfunc/subset_convolution.hpp
-  - setfunc/power_projection_of_sps.hpp
-  - setfunc/sps_composition.hpp
-  - setfunc/sps_inv.hpp
-  - graph/chromatic.hpp
-  - graph/tutte_polynomial.hpp
-  - graph/count/count_biconnected_subgraph.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
   - graph/count/count_connected_subgraph.hpp
   - graph/count/count_tree_subgraph.hpp
-  - graph/count/count_bridgeless_subgraph.hpp
+  - graph/count/count_biconnected_subgraph.hpp
+  - graph/tutte_polynomial.hpp
+  - graph/chromatic.hpp
+  - setfunc/zeta.hpp
+  - setfunc/subset_convolution.hpp
+  - setfunc/sps_inv.hpp
+  - setfunc/hadamard.hpp
+  - setfunc/ranked_zeta.hpp
+  - setfunc/sps_exp.hpp
+  - setfunc/xor_convolution.hpp
+  - setfunc/sps_log.hpp
+  - setfunc/power_projection_of_sps.hpp
+  - setfunc/sps_composition.hpp
+  - setfunc/and_convolution.hpp
+  - setfunc/or_convolution.hpp
   timestamp: '2026-06-15 22:08:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - test/2_library_checker/set_power_series/powproj_sps.test.cpp
-  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
-  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-  - test/2_library_checker/set_power_series/composition_sps.test.cpp
-  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
-  - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
-  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/3_yukicoder/2507.test.cpp
   - test/3_yukicoder/1753.test.cpp
   - test/3_yukicoder/1142.test.cpp
-  - test/3_yukicoder/2507.test.cpp
+  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/2_library_checker/set_power_series/sps_exp.test.cpp
+  - test/2_library_checker/set_power_series/powproj_sps.test.cpp
+  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
+  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
+  - test/2_library_checker/set_power_series/composition_sps.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
+  - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
+  - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
 documentation_of: setfunc/bitwise_transform.hpp
 layout: document
 redirect_from:

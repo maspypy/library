@@ -275,8 +275,8 @@ data:
   timestamp: '2026-02-03 22:59:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1777.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
+  - test/3_yukicoder/1777.test.cpp
 documentation_of: graph/planar_graph.hpp
 layout: document
 redirect_from:

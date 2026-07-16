@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1750.test.cpp
     title: test/3_yukicoder/1750.test.cpp
   - icon: ':x:'
@@ -165,10 +165,10 @@ data:
   timestamp: '2026-03-02 00:39:21+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/3_yukicoder/1750.test.cpp
-  - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/1810.test.cpp
+  - test/3_yukicoder/2810.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
 documentation_of: linalg/matrix_pow.hpp
 layout: document
 redirect_from:

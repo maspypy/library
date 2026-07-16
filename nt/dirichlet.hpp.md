@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
   _extendedRequiredBy: []
@@ -139,9 +139,9 @@ data:
   timestamp: '2025-09-01 16:03:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/number_theory/dirichlet.test.cpp
-  - test/2_library_checker/number_theory/dirichlet_inv.test.cpp
   - test/1_mytest/dirichlet.test.cpp
+  - test/2_library_checker/number_theory/dirichlet_inv.test.cpp
+  - test/2_library_checker/number_theory/dirichlet.test.cpp
 documentation_of: nt/dirichlet.hpp
 layout: document
 redirect_from:

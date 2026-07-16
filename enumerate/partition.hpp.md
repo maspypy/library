@@ -81,9 +81,9 @@ data:
   timestamp: '2025-12-16 20:51:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1263.test.cpp
-  - test/3_yukicoder/1881.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
+  - test/3_yukicoder/1881.test.cpp
+  - test/3_yukicoder/1263.test.cpp
 documentation_of: enumerate/partition.hpp
 layout: document
 redirect_from:

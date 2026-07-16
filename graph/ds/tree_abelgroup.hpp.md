@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1326.test.cpp
     title: test/3_yukicoder/1326.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
   - icon: ':x:'
@@ -384,10 +384,10 @@ data:
   timestamp: '2026-04-13 22:17:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/3_yukicoder/1326.test.cpp
   - test/3_yukicoder/1641.test.cpp
-  - test/4_aoj/2636.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
 documentation_of: graph/ds/tree_abelgroup.hpp
 layout: document
 redirect_from:

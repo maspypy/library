@@ -130,11 +130,11 @@ data:
   timestamp: '2023-01-31 23:12:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - test/3_yukicoder/1526.test.cpp
-  - test/3_yukicoder/3314.test.cpp
-  - test/3_yukicoder/1526_2.test.cpp
   - test/1_mytest/kinetic.test.cpp
+  - test/3_yukicoder/1526.test.cpp
+  - test/3_yukicoder/1526_2.test.cpp
+  - test/3_yukicoder/3314.test.cpp
+  - test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: ds/segtree/segtree_beats.hpp
 layout: document
 redirect_from:

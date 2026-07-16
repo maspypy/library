@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036.test.cpp
     title: test/3_yukicoder/1036.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1649.test.cpp
     title: test/3_yukicoder/1649.test.cpp
   - icon: ':x:'
@@ -217,13 +217,13 @@ data:
   timestamp: '2025-12-02 17:14:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   - test/3_yukicoder/2935.test.cpp
   - test/3_yukicoder/1649.test.cpp
-  - test/3_yukicoder/1826.test.cpp
-  - test/3_yukicoder/789.test.cpp
   - test/3_yukicoder/1036.test.cpp
+  - test/3_yukicoder/789.test.cpp
+  - test/3_yukicoder/1826.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
+  - test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
 documentation_of: ds/segtree/dynamic_segtree.hpp
 layout: document
 redirect_from:

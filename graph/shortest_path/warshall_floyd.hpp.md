@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1344.test.cpp
     title: test/3_yukicoder/1344.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/17.test.cpp
     title: test/3_yukicoder/17.test.cpp
   - icon: ':x:'
@@ -155,10 +155,10 @@ data:
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/4_aoj/GRL_1_C.test.cpp
+  - test/3_yukicoder/1344.test.cpp
   - test/3_yukicoder/1789.test.cpp
   - test/3_yukicoder/17.test.cpp
-  - test/3_yukicoder/1344.test.cpp
-  - test/4_aoj/GRL_1_C.test.cpp
 documentation_of: graph/shortest_path/warshall_floyd.hpp
 layout: document
 redirect_from:

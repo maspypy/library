@@ -113,11 +113,11 @@ data:
   timestamp: '2026-03-14 08:28:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/string/eertree.test.cpp
-  - test/3_yukicoder/465.test.cpp
-  - test/3_yukicoder/263.test.cpp
-  - test/3_yukicoder/2606.test.cpp
   - test/1_mytest/palindrome_decomposition_dp.test.cpp
+  - test/3_yukicoder/465.test.cpp
+  - test/3_yukicoder/2606.test.cpp
+  - test/3_yukicoder/263.test.cpp
+  - test/2_library_checker/string/eertree.test.cpp
 documentation_of: string/palindromic_tree.hpp
 layout: document
 redirect_from:
