@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/datetime.test.cpp
     title: test/1_mytest/datetime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2109.test.cpp
     title: test/3_yukicoder/2109.test.cpp
   - icon: ':x:'
