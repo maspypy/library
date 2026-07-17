@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/tree_dp/O_NK_rerooting_tree_dp.hpp
+    title: graph/tree_dp/O_NK_rerooting_tree_dp.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -25,7 +28,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/offset_vector.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/tree_dp/O_NK_rerooting_tree_dp.hpp
   timestamp: '2026-05-31 16:42:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

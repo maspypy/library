@@ -47,7 +47,8 @@ data:
     \ sigma) { new_nxt[b][c] = cls[nxt[rep][c]]; }\n    }\n\n    int new_q0 = cls[q0];\n\
     \    return DFA(M, sigma, new_q0, new_nxt, new_output);\n  }\n};\n\n// https://qoj.ac/problem/12010\n\
     // out[0], ..., out[A+B+1]\n// |out[i]|=sigma^i, \u8F9E\u66F8\u9806\u306B\u3059\
-    \u3079\u3066\u306E\u7D50\u679C\u3092\u5165\u308C\u3066\u304A\u304F\nDFA infer_DFA(int\
+    \u3079\u3066\u306E\u7D50\u679C\u3092\u5165\u308C\u3066\u304A\u304F\n// A, B \u304C\
+    \u63A8\u6E2C\u306E\u305F\u3081\u306B\u7528\u3044\u308B\u9577\u3055\nDFA infer_DFA(int\
     \ sigma, int A, int B, const vvc<int>& out, bool check = true) {\n  vc<int> pw(A\
     \ + B + 2, 1);\n  FOR(i, len(pw) - 1) pw[i + 1] = pw[i] * sigma;\n\n  assert(len(out)\
     \ == A + B + 2);\n  FOR(i, A + B + 2) assert(len(out[i]) == pw[i]);\n\n  vc<pair<int,\
@@ -110,7 +111,8 @@ data:
     \ }\n    }\n\n    int new_q0 = cls[q0];\n    return DFA(M, sigma, new_q0, new_nxt,\
     \ new_output);\n  }\n};\n\n// https://qoj.ac/problem/12010\n// out[0], ..., out[A+B+1]\n\
     // |out[i]|=sigma^i, \u8F9E\u66F8\u9806\u306B\u3059\u3079\u3066\u306E\u7D50\u679C\
-    \u3092\u5165\u308C\u3066\u304A\u304F\nDFA infer_DFA(int sigma, int A, int B, const\
+    \u3092\u5165\u308C\u3066\u304A\u304F\n// A, B \u304C\u63A8\u6E2C\u306E\u305F\u3081\
+    \u306B\u7528\u3044\u308B\u9577\u3055\nDFA infer_DFA(int sigma, int A, int B, const\
     \ vvc<int>& out, bool check = true) {\n  vc<int> pw(A + B + 2, 1);\n  FOR(i, len(pw)\
     \ - 1) pw[i + 1] = pw[i] * sigma;\n\n  assert(len(out) == A + B + 2);\n  FOR(i,\
     \ A + B + 2) assert(len(out[i]) == pw[i]);\n\n  vc<pair<int, int>> prefix, test;\n\
@@ -140,7 +142,7 @@ data:
   isVerificationFile: false
   path: other/DFA.hpp
   requiredBy: []
-  timestamp: '2026-05-04 20:30:54+09:00'
+  timestamp: '2026-07-18 00:22:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/DFA.hpp

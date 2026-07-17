@@ -91,8 +91,9 @@ data:
     \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 2 \"geo/minkowski_sum.hpp\"\
     \n\n// https://codeforces.com/contest/87/problem/E\n// https://atcoder.jp/contests/stpc2025_1/tasks/stpc2025_1_l\n\
     // \u5165\u529B\u306F ccw \u51F8\u591A\u89D2\u5F62\u3067\u3042\u308B\u3053\u3068\
-    \u3092\u4EEE\u5B9A.\ntemplate <typename T>\nvc<Point<T>> minkowski_sum(vc<Point<T>>\
-    \ A, vc<Point<T>> B) {\n  rotate(A.begin(), min_element(all(A)), A.end());\n \
+    \u3092\u4EEE\u5B9A.\n// return \u306F strict (180\u5EA6\u306A\u3057)\ntemplate\
+    \ <typename T>\nvc<Point<T>> minkowski_sum(vc<Point<T>> A, vc<Point<T>> B) {\n\
+    \  using P = Point<T>;\n  rotate(A.begin(), min_element(all(A)), A.end());\n \
     \ rotate(B.begin(), min_element(all(B)), B.end());\n  if (len(A) > len(B)) swap(A,\
     \ B);\n  if (len(A) == 1) {\n    for (auto &p : B) {\n      p += A[0];\n    }\n\
     \    return B;\n  }\n\n  P p0 = A[0] + B[0];\n  int NA = len(A), NB = len(B);\n\
@@ -105,33 +106,41 @@ data:
     \ NA + NB) {\n    if (a == NA || (b < NB && comp(DB[b], DA[a]))) {\n      C[i\
     \ + 1] = C[i] + DB[b++];\n    } else {\n      C[i + 1] = C[i] + DA[a++];\n   \
     \ }\n  }\n  assert(C[NA + NB] == P(0, 0));\n  POP(C);\n  rotate(C.begin(), min_element(all(C)),\
-    \ C.end());\n\n  P add = p0 - C[0];\n  for (auto &x : C) x += add;\n  return C;\n\
-    }\n"
+    \ C.end());\n\n  P add = p0 - C[0];\n  for (auto &x : C) x += add;\n\n  C.eb(C[0]);\n\
+    \  vc<P> ANS;\n  for (P p : C) {\n    while (len(ANS) >= 2) {\n      P a = ANS[len(ANS)\
+    \ - 2];\n      P b = ANS[len(ANS) - 1];\n      if ((b - a).det(p - a) != 0) break;\n\
+    \      if ((b - a).dot(p - b) < 0) break;\n      ANS.pop_back();\n    }\n    ANS.eb(p);\n\
+    \  }\n  assert(ANS[0] == ANS.back());\n  ANS.pop_back();\n  return ANS;\n}\n"
   code: "#include \"geo/convex_hull.hpp\"\n\n// https://codeforces.com/contest/87/problem/E\n\
     // https://atcoder.jp/contests/stpc2025_1/tasks/stpc2025_1_l\n// \u5165\u529B\u306F\
     \ ccw \u51F8\u591A\u89D2\u5F62\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
-    .\ntemplate <typename T>\nvc<Point<T>> minkowski_sum(vc<Point<T>> A, vc<Point<T>>\
-    \ B) {\n  rotate(A.begin(), min_element(all(A)), A.end());\n  rotate(B.begin(),\
-    \ min_element(all(B)), B.end());\n  if (len(A) > len(B)) swap(A, B);\n  if (len(A)\
-    \ == 1) {\n    for (auto &p : B) {\n      p += A[0];\n    }\n    return B;\n \
-    \ }\n\n  P p0 = A[0] + B[0];\n  int NA = len(A), NB = len(B);\n  A.eb(A[0]), B.eb(B[0]);\n\
-    \  vc<P> DA(NA), DB(NB);\n  FOR(i, NA) DA[i] = A[i + 1] - A[i];\n  FOR(i, NB)\
-    \ DB[i] = B[i + 1] - B[i];\n  POP(A), POP(B);\n\n  auto comp = [&](P L, P R) ->\
-    \ bool {\n    int a = lower_or_upper(L), b = lower_or_upper(R);\n    if (a !=\
-    \ b) return a < b;\n    return L.det(R) > 0;\n  };\n  rotate(DA.begin(), min_element(all(DA),\
-    \ comp), DA.end());\n  rotate(DB.begin(), min_element(all(DB), comp), DB.end());\n\
-    \n  int a = 0, b = 0;\n  vc<P> C(NA + NB + 1);\n  FOR(i, NA + NB) {\n    if (a\
-    \ == NA || (b < NB && comp(DB[b], DA[a]))) {\n      C[i + 1] = C[i] + DB[b++];\n\
-    \    } else {\n      C[i + 1] = C[i] + DA[a++];\n    }\n  }\n  assert(C[NA + NB]\
-    \ == P(0, 0));\n  POP(C);\n  rotate(C.begin(), min_element(all(C)), C.end());\n\
-    \n  P add = p0 - C[0];\n  for (auto &x : C) x += add;\n  return C;\n}"
+    .\n// return \u306F strict (180\u5EA6\u306A\u3057)\ntemplate <typename T>\nvc<Point<T>>\
+    \ minkowski_sum(vc<Point<T>> A, vc<Point<T>> B) {\n  using P = Point<T>;\n  rotate(A.begin(),\
+    \ min_element(all(A)), A.end());\n  rotate(B.begin(), min_element(all(B)), B.end());\n\
+    \  if (len(A) > len(B)) swap(A, B);\n  if (len(A) == 1) {\n    for (auto &p :\
+    \ B) {\n      p += A[0];\n    }\n    return B;\n  }\n\n  P p0 = A[0] + B[0];\n\
+    \  int NA = len(A), NB = len(B);\n  A.eb(A[0]), B.eb(B[0]);\n  vc<P> DA(NA), DB(NB);\n\
+    \  FOR(i, NA) DA[i] = A[i + 1] - A[i];\n  FOR(i, NB) DB[i] = B[i + 1] - B[i];\n\
+    \  POP(A), POP(B);\n\n  auto comp = [&](P L, P R) -> bool {\n    int a = lower_or_upper(L),\
+    \ b = lower_or_upper(R);\n    if (a != b) return a < b;\n    return L.det(R) >\
+    \ 0;\n  };\n  rotate(DA.begin(), min_element(all(DA), comp), DA.end());\n  rotate(DB.begin(),\
+    \ min_element(all(DB), comp), DB.end());\n\n  int a = 0, b = 0;\n  vc<P> C(NA\
+    \ + NB + 1);\n  FOR(i, NA + NB) {\n    if (a == NA || (b < NB && comp(DB[b], DA[a])))\
+    \ {\n      C[i + 1] = C[i] + DB[b++];\n    } else {\n      C[i + 1] = C[i] + DA[a++];\n\
+    \    }\n  }\n  assert(C[NA + NB] == P(0, 0));\n  POP(C);\n  rotate(C.begin(),\
+    \ min_element(all(C)), C.end());\n\n  P add = p0 - C[0];\n  for (auto &x : C)\
+    \ x += add;\n\n  C.eb(C[0]);\n  vc<P> ANS;\n  for (P p : C) {\n    while (len(ANS)\
+    \ >= 2) {\n      P a = ANS[len(ANS) - 2];\n      P b = ANS[len(ANS) - 1];\n  \
+    \    if ((b - a).det(p - a) != 0) break;\n      if ((b - a).dot(p - b) < 0) break;\n\
+    \      ANS.pop_back();\n    }\n    ANS.eb(p);\n  }\n  assert(ANS[0] == ANS.back());\n\
+    \  ANS.pop_back();\n  return ANS;\n}"
   dependsOn:
   - geo/convex_hull.hpp
   - geo/base.hpp
   isVerificationFile: false
   path: geo/minkowski_sum.hpp
   requiredBy: []
-  timestamp: '2026-02-03 22:59:09+09:00'
+  timestamp: '2026-07-18 00:22:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minkowski_sum.hpp

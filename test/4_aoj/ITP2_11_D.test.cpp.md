@@ -242,15 +242,16 @@ data:
     \n\n#ifdef _MSC_VER\n#include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\
     \ntemplate <typename UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT\
-    \ k) : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}\n    __attribute__((target(\"\
-    bmi2\"))) auto operator*() const { return _pdep_u64(t, s); }\n    auto operator++()\
-    \ {\n      if (k == 0) {\n        t = UINT(-1);\n      } else {\n        UINT\
-    \ y = t + (-t & t);\n        t = y | ((y ^ t) >> lowbit(t << 2));\n      }\n \
-    \   }\n    auto operator!=(const iter) const { return t < n; }\n  };\n  UINT s,\
-    \ k;\n  all_k_subset(UINT s, UINT k) : s(s), k(k) { assert(s != UINT(-1)); }\n\
-    \  auto begin() { return iter(s, k); }\n  auto end() { return iter(0, 0); }\n\
-    };\n\n// all_nCk\u95A2\u6570\u306E\u5B9F\u88C5\nauto all_nCk(int n, int k) { return\
-    \ all_k_subset<u32>((u32(1) << n) - 1, k); }\n#line 5 \"test/4_aoj/ITP2_11_D.test.cpp\"\
+    \ k)\n        : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}\n\
+    \    __attribute__((target(\"bmi2\"))) auto operator*() const {\n      return\
+    \ _pdep_u64(t, s);\n    }\n    auto operator++() {\n      if (k == 0) {\n    \
+    \    t = UINT(-1);\n      } else {\n        UINT y = t + (-t & t);\n        t\
+    \ = y | ((y ^ t) >> lowbit(t << 2));\n      }\n    }\n    auto operator!=(const\
+    \ iter) const { return t < n; }\n  };\n  UINT s, k;\n  all_k_subset(UINT s, UINT\
+    \ k) : s(s), k(k) { assert(s != UINT(-1)); }\n  auto begin() { return iter(s,\
+    \ k); }\n  auto end() { return iter(0, 0); }\n};\n\n// all_nCk\u95A2\u6570\u306E\
+    \u5B9F\u88C5\ntemplate <typename UINT>\nauto all_nCk(int n, int k) {\n  return\
+    \ all_k_subset<UINT>((UINT(1) << n) - 1, k);\n}\n#line 5 \"test/4_aoj/ITP2_11_D.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s: all_nCk(N, K)) {\n    vi I;\n \
     \   for (int i: all_bit<u32>(s)) I.eb(i);\n    print(to_string(s) + \":\", I);\n\
     \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
@@ -266,7 +267,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP2_11_D.test.cpp
   requiredBy: []
-  timestamp: '2026-07-14 09:59:38+09:00'
+  timestamp: '2026-07-18 00:22:18+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_11_D.test.cpp
