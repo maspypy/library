@@ -116,6 +116,7 @@ struct DFA {
 // https://qoj.ac/problem/12010
 // out[0], ..., out[A+B+1]
 // |out[i]|=sigma^i, 辞書順にすべての結果を入れておく
+// A, B が推測のために用いる長さ
 DFA infer_DFA(int sigma, int A, int B, const vvc<int>& out, bool check = true) {
   vc<int> pw(A + B + 2, 1);
   FOR(i, len(pw) - 1) pw[i + 1] = pw[i] * sigma;

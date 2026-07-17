@@ -3,8 +3,10 @@
 // https://codeforces.com/contest/87/problem/E
 // https://atcoder.jp/contests/stpc2025_1/tasks/stpc2025_1_l
 // 入力は ccw 凸多角形であることを仮定.
+// return は strict (180度なし)
 template <typename T>
 vc<Point<T>> minkowski_sum(vc<Point<T>> A, vc<Point<T>> B) {
+  using P = Point<T>;
   rotate(A.begin(), min_element(all(A)), A.end());
   rotate(B.begin(), min_element(all(B)), B.end());
   if (len(A) > len(B)) swap(A, B);
@@ -46,5 +48,20 @@ vc<Point<T>> minkowski_sum(vc<Point<T>> A, vc<Point<T>> B) {
 
   P add = p0 - C[0];
   for (auto &x : C) x += add;
-  return C;
+
+  C.eb(C[0]);
+  vc<P> ANS;
+  for (P p : C) {
+    while (len(ANS) >= 2) {
+      P a = ANS[len(ANS) - 2];
+      P b = ANS[len(ANS) - 1];
+      if ((b - a).det(p - a) != 0) break;
+      if ((b - a).dot(p - b) < 0) break;
+      ANS.pop_back();
+    }
+    ANS.eb(p);
+  }
+  assert(ANS[0] == ANS.back());
+  ANS.pop_back();
+  return ANS;
 }

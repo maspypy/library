@@ -1,3 +1,5 @@
+#include "graph/base.hpp"
+#include "ds/offset_vector.hpp"
 
 // 2乗の木DP型のO(NK)全方位.
 // 各頂点 v を根としたときのサイズ K の DP 値だけが最終的に必要である場合

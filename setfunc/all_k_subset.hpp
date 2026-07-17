@@ -11,8 +11,11 @@ struct all_k_subset {
   struct iter {
     const UINT n, k, s;
     UINT t;
-    iter(UINT s, UINT k) : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}
-    __attribute__((target("bmi2"))) auto operator*() const { return _pdep_u64(t, s); }
+    iter(UINT s, UINT k)
+        : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}
+    __attribute__((target("bmi2"))) auto operator*() const {
+      return _pdep_u64(t, s);
+    }
     auto operator++() {
       if (k == 0) {
         t = UINT(-1);
@@ -30,4 +33,7 @@ struct all_k_subset {
 };
 
 // all_nCk関数の実装
-auto all_nCk(int n, int k) { return all_k_subset<u32>((u32(1) << n) - 1, k); }
+template <typename UINT>
+auto all_nCk(int n, int k) {
+  return all_k_subset<UINT>((UINT(1) << n) - 1, k);
+}

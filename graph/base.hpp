@@ -21,20 +21,24 @@ struct Graph {
   bool prepared;
 
   class OutgoingEdges {
-  public:
+   public:
     OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}
 
     const edge_type* begin() const {
-      if (l == r) { return 0; }
+      if (l == r) {
+        return 0;
+      }
       return &G->csr_edges[l];
     }
 
     const edge_type* end() const {
-      if (l == r) { return 0; }
+      if (l == r) {
+        return 0;
+      }
       return &G->csr_edges[r];
     }
 
-  private:
+   private:
     const Graph* G;
     int l, r;
   };
@@ -88,16 +92,19 @@ struct Graph {
     assert(!prepared);
     prepared = true;
     indptr.assign(N + 1, 0);
-    for (auto&& e: edges) {
+    for (auto&& e : edges) {
       indptr[e.frm + 1]++;
       if (!directed) indptr[e.to + 1]++;
     }
-    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }
+    for (int v = 0; v < N; ++v) {
+      indptr[v + 1] += indptr[v];
+    }
     auto counter = indptr;
     csr_edges.resize(indptr.back() + 1);
-    for (auto&& e: edges) {
+    for (auto&& e : edges) {
       csr_edges[counter[e.frm]++] = e;
-      if (!directed) csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});
+      if (!directed)
+        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});
     }
   }
 
@@ -137,12 +144,13 @@ struct Graph {
     print("Graph");
     if (!prepared) {
       print("frm to cost id");
-      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);
+      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);
     } else {
       print("indptr", indptr);
       print("frm to cost id");
-      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);
+      FOR(v, N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);
     }
+    flush();
 #endif
   }
 #endif
@@ -161,7 +169,7 @@ struct Graph {
     Graph<T, directed> G(n);
     vc<int> history;
     FOR(i, n) {
-      for (auto&& e: (*this)[V[i]]) {
+      for (auto&& e : (*this)[V[i]]) {
         if (len(used_e) <= e.id) used_e.resize(e.id + 1);
         if (used_e[e.id]) continue;
         int a = e.frm, b = e.to;
@@ -174,7 +182,7 @@ struct Graph {
       }
     }
     FOR(i, n) new_idx[V[i]] = -1;
-    for (auto&& eid: history) used_e[eid] = 0;
+    for (auto&& eid : history) used_e[eid] = 0;
     G.build();
     return G;
   }
@@ -185,13 +193,13 @@ struct Graph {
     Graph<T, true> G1(N);
     vc<int> par(N, -1);
     auto dfs = [&](auto& dfs, int v) -> void {
-      for (auto& e: (*this)[v]) {
+      for (auto& e : (*this)[v]) {
         if (e.to == par[v]) continue;
         par[e.to] = v, dfs(dfs, e.to);
       }
     };
     dfs(dfs, root);
-    for (auto& e: edges) {
+    for (auto& e : edges) {
       int a = e.frm, b = e.to;
       if (par[a] == b) swap(a, b);
       assert(par[b] == a);
@@ -206,7 +214,7 @@ struct Graph {
   int get_eid(u64 a, u64 b) {
     if (len(MP_FOR_EID) == 0) {
       MP_FOR_EID.build(N - 1);
-      for (auto& e: edges) {
+      for (auto& e : edges) {
         u64 a = e.frm, b = e.to;
         u64 k = to_eid_key(a, b);
         MP_FOR_EID[k] = e.id;
@@ -220,17 +228,19 @@ struct Graph {
     return N * a + b;
   }
 
-private:
+ private:
   void calc_deg() {
     assert(vc_deg.empty());
     vc_deg.resize(N);
-    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;
+    for (auto&& e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;
   }
 
   void calc_deg_inout() {
     assert(vc_indeg.empty());
     vc_indeg.resize(N);
     vc_outdeg.resize(N);
-    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }
+    for (auto&& e : edges) {
+      vc_indeg[e.to]++, vc_outdeg[e.frm]++;
+    }
   }
 };
