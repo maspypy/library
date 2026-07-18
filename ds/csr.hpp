@@ -34,6 +34,8 @@ struct CSR {
     T *first, *last;
     T* begin() const { return first; }
     T* end() const { return last; }
+    bool empty() const { return first == last; }
+    int size() const { return last - first; }
   };
 
   range operator[](int i) {
