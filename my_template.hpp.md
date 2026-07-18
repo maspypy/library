@@ -441,6 +441,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/non_adj.test.cpp
+    title: test/1_mytest/non_adj.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
     title: test/1_mytest/nth_element_from_sorted_lists.test.cpp
@@ -2373,7 +2376,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2559,7 +2562,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_D_D.test.cpp
     title: test/4_aoj/ITP1_D_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_11_D.test.cpp
     title: test/4_aoj/ITP2_11_D.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2905,6 +2908,7 @@ data:
   - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/non_adj.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp

@@ -271,7 +271,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/nth_element_from_sorted_matrix.hpp
       title: convex/nth_element_from_sorted_matrix.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: convex/path_independent_set.hpp
       title: convex/path_independent_set.hpp
     - icon: ':question:'
@@ -285,7 +285,7 @@ data:
     - icon: ':warning:'
       path: convex/monge/monge.hpp
       title: convex/monge/monge.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/monge/monge_dp_update.hpp
       title: convex/monge/monge_dp_update.hpp
     - icon: ':warning:'
@@ -2388,7 +2388,7 @@ data:
       title: seq/famous/surjection.hpp
   - name: setfunc
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/all_k_subset.hpp
       title: setfunc/all_k_subset.hpp
     - icon: ':heavy_check_mark:'
@@ -4994,7 +4994,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/924.test.cpp
       title: test/3_yukicoder/924.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/952.test.cpp
       title: test/3_yukicoder/952.test.cpp
   - name: test/4_aoj
@@ -5182,7 +5182,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/ITP1_D_D.test.cpp
       title: test/4_aoj/ITP1_D_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/ITP2_11_D.test.cpp
       title: test/4_aoj/ITP2_11_D.test.cpp
     - icon: ':heavy_check_mark:'

@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/all_k_subset.hpp
     title: setfunc/all_k_subset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D
@@ -252,14 +252,14 @@ data:
     \ k); }\n  auto end() { return iter(0, 0); }\n};\n\n// all_nCk\u95A2\u6570\u306E\
     \u5B9F\u88C5\ntemplate <typename UINT>\nauto all_nCk(int n, int k) {\n  return\
     \ all_k_subset<UINT>((UINT(1) << n) - 1, k);\n}\n#line 5 \"test/4_aoj/ITP2_11_D.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s: all_nCk(N, K)) {\n    vi I;\n \
-    \   for (int i: all_bit<u32>(s)) I.eb(i);\n    print(to_string(s) + \":\", I);\n\
+    \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s: all_nCk<u32>(N, K)) {\n    vi I;\n\
+    \    for (int i: all_bit<u32>(s)) I.eb(i);\n    print(to_string(s) + \":\", I);\n\
     \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"setfunc/all_k_subset.hpp\"\
-    \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s: all_nCk(N, K)) {\n    vi I;\n \
-    \   for (int i: all_bit<u32>(s)) I.eb(i);\n    print(to_string(s) + \":\", I);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s: all_nCk<u32>(N, K)) {\n    vi I;\n\
+    \    for (int i: all_bit<u32>(s)) I.eb(i);\n    print(to_string(s) + \":\", I);\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -267,8 +267,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP2_11_D.test.cpp
   requiredBy: []
-  timestamp: '2026-07-18 00:22:18+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-19 02:48:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_11_D.test.cpp
 layout: document
