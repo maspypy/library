@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'

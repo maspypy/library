@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'

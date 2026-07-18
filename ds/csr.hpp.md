@@ -21,8 +21,10 @@ data:
     \ tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n \
     \   ptr.insert(ptr.begin(), 0);\n    I.clear(), I.shrink_to_fit();\n  }\n\n  struct\
     \ range {\n    T *first, *last;\n    T* begin() const { return first; }\n    T*\
-    \ end() const { return last; }\n  };\n\n  range operator[](int i) {\n    assert(prepared);\n\
-    \    return range{dat.data() + ptr[i], dat.data() + ptr[i + 1]};\n  }\n};\n"
+    \ end() const { return last; }\n    bool empty() const { return first == last;\
+    \ }\n    int size() const { return last - first; }\n  };\n\n  range operator[](int\
+    \ i) {\n    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data()\
+    \ + ptr[i + 1]};\n  }\n};\n"
   code: "\ntemplate <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int>\
     \ ptr;\n  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false)\
     \ {}\n  void add(int i, const T& x) {\n    assert(0 <= i && i < n && !prepared);\n\
@@ -33,14 +35,15 @@ data:
     \  }\n    swap(dat, tmp);\n    ptr.pop_back();\n    ptr.insert(ptr.begin(), 0);\n\
     \    I.clear(), I.shrink_to_fit();\n  }\n\n  struct range {\n    T *first, *last;\n\
     \    T* begin() const { return first; }\n    T* end() const { return last; }\n\
-    \  };\n\n  range operator[](int i) {\n    assert(prepared);\n    return range{dat.data()\
-    \ + ptr[i], dat.data() + ptr[i + 1]};\n  }\n};"
+    \    bool empty() const { return first == last; }\n    int size() const { return\
+    \ last - first; }\n  };\n\n  range operator[](int i) {\n    assert(prepared);\n\
+    \    return range{dat.data() + ptr[i], dat.data() + ptr[i + 1]};\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/csr.hpp
   requiredBy:
   - graph/degree_sequence.hpp
-  timestamp: '2025-12-02 17:14:38+09:00'
+  timestamp: '2026-07-19 04:28:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/csr.hpp

@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
