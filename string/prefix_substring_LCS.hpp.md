@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
     title: test/2_library_checker/string/prefix_substring_lcs.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/111625
@@ -125,20 +125,23 @@ data:
     \ d, int i) { seg[d].multiply(i, t); }, i);\r\n  }\r\n  void add(int i, T t) {\r\
     \n    assert(0 <= i && i < n);\r\n    work_point([&](int d, int i) { seg[d].add(i,\
     \ t); }, i);\r\n  }\r\n\r\n  // [L,R) x [0,y) \u3067\u306E check(y, cnt, prod)\
-    \ \u304C true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\r\n  template\
-    \ <typename F>\r\n  tuple<Y, int, T> max_right(F check, int L, int R) const {\r\
-    \n    assert(limit < infty<Y>);\r\n    int cnt = 0;\r\n    Y y = 0;\r\n    T t\
-    \ = Mono::unit();\r\n    T t_all = seg[log].prod(L, R);\r\n    assert(check(0,\
-    \ 0, Mono::unit()));\r\n    if (check(limit, R - L, t_all)) {\r\n      y = binary_search([&](Y\
-    \ y) -> bool { return check(y, R - L, t_all); },\r\n                        limit,\
-    \ infty<Y> + 1);\r\n      return {y, R - L, t_all};\r\n    }\r\n    for (int d\
-    \ = log - 1; d >= 0; --d) {\r\n      auto [L0, R0, L1, R1] = get_subtree(d + 1,\
-    \ L, R);\r\n      Y y1 = y | Y(1) << d;\r\n      int cnt1 = cnt + R0 - L0;\r\n\
-    \      T t1 = Mono::op(t, seg[d].prod(L0, R0));\r\n      if (check(y1, cnt1, t1))\
-    \ {\r\n        y = y1, cnt = cnt1, t = t1, L = L1, R = R1;\r\n      } else {\r\
-    \n        L = L0, R = R0;\r\n      }\r\n    }\r\n    return {y, cnt, t};\r\n \
-    \ }\r\n\r\n  // [L,R) x [0,y) \u3067\u306E check(y, cnt, prod) \u304C true \u3068\
-    \u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\r\n  template <typename F>\r\n  tuple<Y,\
+    \ \u304C true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\r\n  // cnt \u306F\
+    \u30C7\u30FC\u30BF\u4EF6\u6570\u5168\u4F53\u3067\u3042\u3063\u3066, activate/deactivate\
+    \ \u3092\u8003\u616E\u3059\u308B\u5834\u5408\u306B\u306F\r\n  // prod \u306E\u65B9\
+    \u3092\u898B\u308B\u5FC5\u8981\u304C\u3042\u308B\r\n  template <typename F>\r\n\
+    \  tuple<Y, int, T> max_right(F check, int L, int R) const {\r\n    assert(limit\
+    \ < infty<Y>);\r\n    int cnt = 0;\r\n    Y y = 0;\r\n    T t = Mono::unit();\r\
+    \n    T t_all = seg[log].prod(L, R);\r\n    assert(check(0, 0, Mono::unit()));\r\
+    \n    if (check(limit, R - L, t_all)) {\r\n      y = binary_search([&](Y y) ->\
+    \ bool { return check(y, R - L, t_all); },\r\n                        limit, infty<Y>\
+    \ + 1);\r\n      return {y, R - L, t_all};\r\n    }\r\n    for (int d = log -\
+    \ 1; d >= 0; --d) {\r\n      auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\r\
+    \n      Y y1 = y | Y(1) << d;\r\n      int cnt1 = cnt + R0 - L0;\r\n      T t1\
+    \ = Mono::op(t, seg[d].prod(L0, R0));\r\n      if (check(y1, cnt1, t1)) {\r\n\
+    \        y = y1, cnt = cnt1, t = t1, L = L1, R = R1;\r\n      } else {\r\n   \
+    \     L = L0, R = R0;\r\n      }\r\n    }\r\n    return {y, cnt, t};\r\n  }\r\n\
+    \r\n  // [L,R) x [0,y) \u3067\u306E check(y, cnt, prod) \u304C true \u3068\u306A\
+    \u308B\u6700\u5927\u306E (Y,cnt,prod)\r\n  template <typename F>\r\n  tuple<Y,\
     \ int, T> max_right_many(F check, vc<pair<int, int>> LR) const {\r\n    assert(limit\
     \ < infty<Y>);\r\n    int cnt = 0;\r\n    Y y = 0;\r\n    T t = Mono::unit();\r\
     \n    T t_all = Mono::unit();\r\n    int cnt_all = 0;\r\n    for (auto& [l, r]\
@@ -240,8 +243,8 @@ data:
   isVerificationFile: false
   path: string/prefix_substring_LCS.hpp
   requiredBy: []
-  timestamp: '2026-04-13 21:44:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-07-19 03:14:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
 documentation_of: string/prefix_substring_LCS.hpp

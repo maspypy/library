@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
@@ -282,21 +282,24 @@ data:
     \    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b, c = -c;\n    }\n  }\n\
     \n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\
     \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
-    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
-    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
-    \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
-    \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
-    \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
-    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
-    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 8 \"test/4_aoj/CGL_2_A.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d);\n    Line<ll> A(a, b, c, d);\n\
-    \    LL(e, f, g, h);\n    Line<ll> B(e, f, g, h);\n    bool p = A.is_parallel(B);\n\
-    \    bool o = A.is_orthogonal(B);\n    if (p) print(2);\n    elif (o) print(1);\n\
-    \    else print(0);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
+    \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
+    \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
+    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
+    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
+    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
+    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 8 \"test/4_aoj/CGL_2_A.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n\
+    \    LL(a, b, c, d);\n    Line<ll> A(a, b, c, d);\n    LL(e, f, g, h);\n    Line<ll>\
+    \ B(e, f, g, h);\n    bool p = A.is_parallel(B);\n    bool o = A.is_orthogonal(B);\n\
+    \    if (p) print(2);\n    elif (o) print(1);\n    else print(0);\n  }\n}\n\n\
+    signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/base.hpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d);\n    Line<ll> A(a,\
@@ -311,8 +314,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2026-07-14 09:59:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-19 03:14:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_A.test.cpp
 layout: document

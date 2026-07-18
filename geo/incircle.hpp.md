@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -59,24 +59,26 @@ data:
     \    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b, c = -c;\n    }\n  }\n\
     \n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\
     \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
-    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
-    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
-    \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
-    \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
-    \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
-    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
-    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL,\
-    \ typename T>\nREAL triangle_area(Point<T> A, Point<T> B, Point<T> C) {\n  return\
-    \ abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/incircle.hpp\"\n\ntemplate\
-    \ <typename REAL, typename T>\nCircle<REAL> incircle(Point<T> A, Point<T> B, Point<T>\
-    \ C) {\n  REAL a = distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL, T, T>(C,\
-    \ A);\n  REAL c = distance<REAL, T, T>(A, B);\n  REAL x = (a * A.x + b * B.x +\
-    \ c * C.x) / (a + b + c);\n  REAL y = (a * A.y + b * B.y + c * C.y) / (a + b +\
-    \ c);\n  REAL r = 2 * triangle_area<REAL>(A, B, C) / (a + b + c);\n  return Circle<REAL>(x,\
-    \ y, r);\n}\n"
+    \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
+    \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
+    \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
+    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
+    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
+    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
+    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL, typename T>\nREAL triangle_area(Point<T>\
+    \ A, Point<T> B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line\
+    \ 3 \"geo/incircle.hpp\"\n\ntemplate <typename REAL, typename T>\nCircle<REAL>\
+    \ incircle(Point<T> A, Point<T> B, Point<T> C) {\n  REAL a = distance<REAL, T,\
+    \ T>(B, C);\n  REAL b = distance<REAL, T, T>(C, A);\n  REAL c = distance<REAL,\
+    \ T, T>(A, B);\n  REAL x = (a * A.x + b * B.x + c * C.x) / (a + b + c);\n  REAL\
+    \ y = (a * A.y + b * B.y + c * C.y) / (a + b + c);\n  REAL r = 2 * triangle_area<REAL>(A,\
+    \ B, C) / (a + b + c);\n  return Circle<REAL>(x, y, r);\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/triangle_area.hpp\"\n\ntemplate\
     \ <typename REAL, typename T>\nCircle<REAL> incircle(Point<T> A, Point<T> B, Point<T>\
     \ C) {\n  REAL a = distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL, T, T>(C,\
@@ -90,8 +92,8 @@ data:
   isVerificationFile: false
   path: geo/incircle.hpp
   requiredBy: []
-  timestamp: '2026-02-03 22:59:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-07-19 03:14:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/CGL_7_B.test.cpp
 documentation_of: geo/incircle.hpp

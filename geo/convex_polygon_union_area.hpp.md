@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -54,64 +54,66 @@ data:
     \    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b, c = -c;\n    }\n  }\n\
     \n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\
     \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
-    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
-    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
-    \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
-    \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
-    \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
-    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
-    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 2 \"geo/convex_polygon_union_area.hpp\"\n\n// \u305D\
-    \u308C\u305E\u308C\u304C ccw order \u306E strict convex polygon\n// O(N^2logN)\n\
-    // 6\u89D2\u5F62784\u500B: 840ms\n// https://ac.nowcoder.com/acm/contest/133876/K\n\
-    template <typename Re>\nRe convex_polygon_union_area(vvc<Point<ll>> dat) {\n \
-    \ using P = Point<ll>;\n  /*\n  \u7DDA\u5206\u306E\u5BC4\u4E0E\u306B\u5206\u89E3\
-    \n  \u5883\u754C\u306B\u73FE\u308C\u308B\u3068\u3053\u308D\u3092\u8DB3\u3059\n\
-    \n  \u5404\u8FBA\u306B\u3064\u3044\u3066\u3001\u4ED6\u306E\u591A\u89D2\u5F62\u306E\
-    \u5185\u90E8\u306B\u3042\u308B\u3068\u3053\u308D\u3092\u6D88\u3059\u3068\u3044\
-    \u3046\u611F\u3058\n\n  \u30BF\u30A4\u30D6\u30EC\u30A4\u30AF\u3092\u614E\u91CD\
-    \u306B\u3084\u308B\n  \u540C\u3058\u8FBA\uFF1A\u5C0F\u3055\u3044\u756A\u53F7\u306E\
-    \u8FBA\u3092\u512A\u5148\u3059\u308B\u3053\u3068\u306B\u3059\u308B\n  */\n\n \
-    \ // strict ?\n  for (auto &X : dat) {\n    int n = len(X);\n    if (n <= 2) continue;\n\
-    \    FOR(i, n) {\n      P A = X[i], B = X[(i + 1) % n], C = X[(i + 2) % n];\n\
-    \      assert(ccw(A, B, C) == 1);\n    }\n  }\n\n  ll N = len(dat);\n  Re ANS\
-    \ = 0.0;\n  FOR(i, N) {\n    FOR(k, len(dat[i])) {\n      P A = dat[i][k];\n \
-    \     P B = dat[i][(k + 1) % len(dat[i])];\n      vc<pair<Re, Re>> ng;\n\n   \
-    \   FOR(j, N) {\n        if (j == i) continue;\n        Re L = 0.0, R = 1.0;\n\
-    \        FOR(kk, len(dat[j])) {\n          P C = dat[j][kk];\n          P D =\
-    \ dat[j][(kk + 1) % len(dat[j])];\n\n          P norm = (D - C).rot90(true);\n\
-    \          ll d = norm.dot(C);\n          // left of CD: norm v > d\n\n      \
-    \    if ((A - B).det(C - D) == 0) {\n            // \u5E73\u884C\u3067\u3059\n\
-    \            ll sgn = A.dot(norm) - d;\n            if (sgn > 0) {\n         \
-    \     continue;\n            }\n            elif (sgn == 0) {\n              if\
-    \ ((B - A).dot(D - C) < 0) {\n                // \u9006\u5411\u304D\n        \
-    \        continue;\n              }\n              // \u540C\u3058\u5411\u304D\
-    \n              // \u5C0F\u3055\u3044\u756A\u53F7\u304B\u3089\u304F\u308B\u90E8\
-    \u5206\u3092\u6D88\u3059\n              if (j < i) {\n                Re c = Re((C\
-    \ - A).dot(B - A)) / Re((B - A).dot(B - A));\n                Re d = Re((D - A).dot(B\
-    \ - A)) / Re((B - A).dot(B - A));\n                chmax(L, c), chmin(R, d);\n\
-    \                // [c,d)]\n              } else {\n                // \u4E00\u5207\
-    \u6D88\u3055\u306A\u3044\u3088\u3046\u306B\u3059\u308B\n                L = 1.0,\
-    \ R = 0.0;\n              }\n            }\n            elif (sgn < 0) {\n   \
-    \           // \u5185\u90E8\u306B\u306A\u3089\u306A\u3044\n              L = 1.0,\
-    \ R = 0.0;\n              break;\n            }\n            else {\n        \
-    \      assert(0);\n            }\n          } else {\n            // \u5E73\u884C\
-    \u3067\u306F\u306A\u3044\n            // 0 \u4EE5\u4E0A\u306B\u306A\u3063\u3066\
-    \u3044\u308B\u90E8\u5206\u304C\u5207\u308A\u53D6\u3089\u308C\u308B\n         \
-    \   ll a = A.dot(norm) - d;\n            ll b = B.dot(norm) - d;\n           \
-    \ Re t = Re(0 - a) / Re(b - a);\n            if (a < b) {\n              chmax(L,\
-    \ t);\n            }\n            elif (a > b) { chmin(R, t); }\n            else\
-    \ {\n              assert(0);\n            }\n          }\n        }\n       \
-    \ if (L < R) ng.eb(L, R);\n      }\n      vc<pair<Re, int>> event;\n      for\
-    \ (auto &[a, b] : ng) {\n        if (a >= b) continue;\n        event.eb(a, 1);\n\
-    \        event.eb(b, -1);\n      }\n\n      Re prv = 0.0;\n      int cnt = 0;\n\
-    \      sort(all(event));\n      Re ans = 0.0;\n      for (auto &[x, t] : event)\
-    \ {\n        Re dx = x - prv;\n        prv = x;\n        if (cnt == 0) ans +=\
-    \ dx;\n        cnt += t;\n      }\n      Re dx = 1.0 - prv;\n      ans += dx;\n\
-    \      ll det = A.det(B);\n      ANS += det * ans;\n    }\n  }\n  ANS /= 2;\n\
-    \  return ANS;\n}\n"
+    \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
+    \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
+    \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
+    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
+    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
+    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
+    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 2 \"geo/convex_polygon_union_area.hpp\"\n\n// \u305D\u308C\u305E\u308C\u304C\
+    \ ccw order \u306E strict convex polygon\n// O(N^2logN)\n// 6\u89D2\u5F62784\u500B\
+    : 840ms\n// https://ac.nowcoder.com/acm/contest/133876/K\ntemplate <typename Re>\n\
+    Re convex_polygon_union_area(vvc<Point<ll>> dat) {\n  using P = Point<ll>;\n \
+    \ /*\n  \u7DDA\u5206\u306E\u5BC4\u4E0E\u306B\u5206\u89E3\n  \u5883\u754C\u306B\
+    \u73FE\u308C\u308B\u3068\u3053\u308D\u3092\u8DB3\u3059\n\n  \u5404\u8FBA\u306B\
+    \u3064\u3044\u3066\u3001\u4ED6\u306E\u591A\u89D2\u5F62\u306E\u5185\u90E8\u306B\
+    \u3042\u308B\u3068\u3053\u308D\u3092\u6D88\u3059\u3068\u3044\u3046\u611F\u3058\
+    \n\n  \u30BF\u30A4\u30D6\u30EC\u30A4\u30AF\u3092\u614E\u91CD\u306B\u3084\u308B\
+    \n  \u540C\u3058\u8FBA\uFF1A\u5C0F\u3055\u3044\u756A\u53F7\u306E\u8FBA\u3092\u512A\
+    \u5148\u3059\u308B\u3053\u3068\u306B\u3059\u308B\n  */\n\n  // strict ?\n  for\
+    \ (auto &X : dat) {\n    int n = len(X);\n    if (n <= 2) continue;\n    FOR(i,\
+    \ n) {\n      P A = X[i], B = X[(i + 1) % n], C = X[(i + 2) % n];\n      assert(ccw(A,\
+    \ B, C) == 1);\n    }\n  }\n\n  ll N = len(dat);\n  Re ANS = 0.0;\n  FOR(i, N)\
+    \ {\n    FOR(k, len(dat[i])) {\n      P A = dat[i][k];\n      P B = dat[i][(k\
+    \ + 1) % len(dat[i])];\n      vc<pair<Re, Re>> ng;\n\n      FOR(j, N) {\n    \
+    \    if (j == i) continue;\n        Re L = 0.0, R = 1.0;\n        FOR(kk, len(dat[j]))\
+    \ {\n          P C = dat[j][kk];\n          P D = dat[j][(kk + 1) % len(dat[j])];\n\
+    \n          P norm = (D - C).rot90(true);\n          ll d = norm.dot(C);\n   \
+    \       // left of CD: norm v > d\n\n          if ((A - B).det(C - D) == 0) {\n\
+    \            // \u5E73\u884C\u3067\u3059\n            ll sgn = A.dot(norm) - d;\n\
+    \            if (sgn > 0) {\n              continue;\n            }\n        \
+    \    elif (sgn == 0) {\n              if ((B - A).dot(D - C) < 0) {\n        \
+    \        // \u9006\u5411\u304D\n                continue;\n              }\n \
+    \             // \u540C\u3058\u5411\u304D\n              // \u5C0F\u3055\u3044\
+    \u756A\u53F7\u304B\u3089\u304F\u308B\u90E8\u5206\u3092\u6D88\u3059\n         \
+    \     if (j < i) {\n                Re c = Re((C - A).dot(B - A)) / Re((B - A).dot(B\
+    \ - A));\n                Re d = Re((D - A).dot(B - A)) / Re((B - A).dot(B - A));\n\
+    \                chmax(L, c), chmin(R, d);\n                // [c,d)]\n      \
+    \        } else {\n                // \u4E00\u5207\u6D88\u3055\u306A\u3044\u3088\
+    \u3046\u306B\u3059\u308B\n                L = 1.0, R = 0.0;\n              }\n\
+    \            }\n            elif (sgn < 0) {\n              // \u5185\u90E8\u306B\
+    \u306A\u3089\u306A\u3044\n              L = 1.0, R = 0.0;\n              break;\n\
+    \            }\n            else {\n              assert(0);\n            }\n\
+    \          } else {\n            // \u5E73\u884C\u3067\u306F\u306A\u3044\n   \
+    \         // 0 \u4EE5\u4E0A\u306B\u306A\u3063\u3066\u3044\u308B\u90E8\u5206\u304C\
+    \u5207\u308A\u53D6\u3089\u308C\u308B\n            ll a = A.dot(norm) - d;\n  \
+    \          ll b = B.dot(norm) - d;\n            Re t = Re(0 - a) / Re(b - a);\n\
+    \            if (a < b) {\n              chmax(L, t);\n            }\n       \
+    \     elif (a > b) { chmin(R, t); }\n            else {\n              assert(0);\n\
+    \            }\n          }\n        }\n        if (L < R) ng.eb(L, R);\n    \
+    \  }\n      vc<pair<Re, int>> event;\n      for (auto &[a, b] : ng) {\n      \
+    \  if (a >= b) continue;\n        event.eb(a, 1);\n        event.eb(b, -1);\n\
+    \      }\n\n      Re prv = 0.0;\n      int cnt = 0;\n      sort(all(event));\n\
+    \      Re ans = 0.0;\n      for (auto &[x, t] : event) {\n        Re dx = x -\
+    \ prv;\n        prv = x;\n        if (cnt == 0) ans += dx;\n        cnt += t;\n\
+    \      }\n      Re dx = 1.0 - prv;\n      ans += dx;\n      ll det = A.det(B);\n\
+    \      ANS += det * ans;\n    }\n  }\n  ANS /= 2;\n  return ANS;\n}\n"
   code: "#include \"geo/base.hpp\"\n\n// \u305D\u308C\u305E\u308C\u304C ccw order\
     \ \u306E strict convex polygon\n// O(N^2logN)\n// 6\u89D2\u5F62784\u500B: 840ms\n\
     // https://ac.nowcoder.com/acm/contest/133876/K\ntemplate <typename Re>\nRe convex_polygon_union_area(vvc<Point<ll>>\
@@ -165,7 +167,7 @@ data:
   isVerificationFile: false
   path: geo/convex_polygon_union_area.hpp
   requiredBy: []
-  timestamp: '2026-07-18 00:22:18+09:00'
+  timestamp: '2026-07-19 03:14:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/convex_polygon_union_area.hpp

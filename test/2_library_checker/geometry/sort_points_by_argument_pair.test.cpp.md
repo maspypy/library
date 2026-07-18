@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
@@ -284,32 +284,35 @@ data:
     \ -a, b = -b, c = -c;\n    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b,\
     \ c = -c;\n    }\n  }\n\n  bool is_parallel(Line other) { return a * other.b -\
     \ b * other.a == 0; }\n  bool is_orthogonal(Line other) { return a * other.a +\
-    \ b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T>\
-    \ A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1,\
-    \ T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n\
-    \  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// lower:\
-    \ -1, origin: 0, upper: 1, (-pi,pi]\r\ntemplate <typename T> int lower_or_upper(const\
-    \ Point<T> &p) {\r\n  if (p.y != 0)\r\n    return (p.y > 0 ? 1 : -1);\r\n  if\
-    \ (p.x > 0)\r\n    return -1;\r\n  if (p.x < 0)\r\n    return 1;\r\n  return 0;\r\
-    \n}\r\n\r\n// L<R:-1, L==R:0, L>R:1, (-pi,pi]\r\ntemplate <typename T> int angle_comp_3(const\
-    \ Point<T> &L, const Point<T> &R) {\r\n  int a = lower_or_upper(L), b = lower_or_upper(R);\r\
-    \n  if (a != b)\r\n    return (a < b ? -1 : +1);\r\n  T det = L.det(R);\r\n  if\
-    \ (det > 0)\r\n    return -1;\r\n  if (det < 0)\r\n    return 1;\r\n  return 0;\r\
-    \n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<Point<T>> &P)\
-    \ {\r\n  vc<int> I(len(P));\r\n  FOR(i, len(P)) I[i] = i;\r\n  sort(all(I), [&](auto\
-    \ &L, auto &R) -> bool {\r\n    return angle_comp_3(P[L], P[R]) == -1;\r\n  });\r\
-    \n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
-    \ argsort, (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<pair<T,\
-    \ T>> &P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 6 \"test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
+    \ b * other.b == 0; }\n  bool is_same(Line other) {\n    if (a * other.b != b\
+    \ * other.a) return 0;\n    if (a * other.c != c * other.a) return 0;\n    if\
+    \ (b * other.c != c * other.b) return 0;\n    return 1;\n  }\n};\n\ntemplate <typename\
+    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
+    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
+    \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
+    \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
+    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\
+    \n\r\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\r\ntemplate <typename T> int\
+    \ lower_or_upper(const Point<T> &p) {\r\n  if (p.y != 0)\r\n    return (p.y >\
+    \ 0 ? 1 : -1);\r\n  if (p.x > 0)\r\n    return -1;\r\n  if (p.x < 0)\r\n    return\
+    \ 1;\r\n  return 0;\r\n}\r\n\r\n// L<R:-1, L==R:0, L>R:1, (-pi,pi]\r\ntemplate\
+    \ <typename T> int angle_comp_3(const Point<T> &L, const Point<T> &R) {\r\n  int\
+    \ a = lower_or_upper(L), b = lower_or_upper(R);\r\n  if (a != b)\r\n    return\
+    \ (a < b ? -1 : +1);\r\n  T det = L.det(R);\r\n  if (det > 0)\r\n    return -1;\r\
+    \n  if (det < 0)\r\n    return 1;\r\n  return 0;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\
+    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\r\ntemplate <typename T>\
+    \ vector<int> angle_sort(vector<Point<T>> &P) {\r\n  vc<int> I(len(P));\r\n  FOR(i,\
+    \ len(P)) I[i] = i;\r\n  sort(all(I), [&](auto &L, auto &R) -> bool {\r\n    return\
+    \ angle_comp_3(P[L], P[R]) == -1;\r\n  });\r\n  return I;\r\n}\r\n\r\n// \u504F\
+    \u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\r\ntemplate\
+    \ <typename T> vector<int> angle_sort(vector<pair<T, T>> &P) {\r\n  vc<Point<T>>\
+    \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\
+    \n}\r\n#line 6 \"test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n  auto I = angle_sort(P);\n  P\
     \ = rearrange(P, I);\n  FOR(i, N) print(P[i]);\n}\n\nsigned main() {\n  solve();\n\
     \n  return 0;\n}\n"
@@ -326,8 +329,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
   requiredBy: []
-  timestamp: '2026-07-14 09:59:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-19 03:14:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
 layout: document

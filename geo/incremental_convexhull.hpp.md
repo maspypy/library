@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -65,35 +65,37 @@ data:
     \    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b, c = -c;\n    }\n  }\n\
     \n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\
     \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
-    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
-    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
-    \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
-    \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
-    \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
-    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
-    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\
-    \u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct IncrementalConvexHull_Lower\
-    \ {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\
-    \n  int size() { return len(S); }\n\n  template <typename ADD_V, typename RM_V,\
-    \ typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V rm_v,\
-    \ ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >= 0) return;\n\
-    \    if (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n    add_v(p);\n\
-    \    S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n    \
-    \  while (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n   \
-    \       left.eb(*it);\n          continue;\n        }\n        auto a = *it;\n\
-    \        auto b = left.back();\n        T det = (b - a).det(p - a);\n        if\
-    \ (strict && det > 0) break;\n        if (!strict && det >= 0) break;\n      \
-    \  left.eb(a);\n      }\n    }\n\n    vc<P> right;\n    {\n      auto it = S.find(p);\n\
-    \      while (1) {\n        ++it;\n        if (it == S.end()) break;\n       \
-    \ if (right.empty()) {\n          right.eb(*it);\n          continue;\n      \
-    \  }\n        auto a = right.back();\n        auto b = *it;\n        T det = (a\
-    \ - p).det(b - p);\n        if (strict && det > 0) break;\n        if (!strict\
-    \ && det >= 0) break;\n        right.eb(b);\n      }\n    }\n\n    // \u70B9\u524A\
-    \u9664\n    if (len(left) > 1) { S.erase(next(S.find(left.back())), S.find(p));\
-    \ }\n    if (len(right) > 1) { S.erase(next(S.find(p)), S.find(right.back()));\
+    \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
+    \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
+    \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
+    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
+    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
+    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
+    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\u51F8\u5305\ntemplate\
+    \ <typename T, bool strict = true>\nstruct IncrementalConvexHull_Lower {\n  using\
+    \ P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\n  int size()\
+    \ { return len(S); }\n\n  template <typename ADD_V, typename RM_V, typename ADD_E,\
+    \ typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V rm_v, ADD_E add_e,\
+    \ RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >= 0) return;\n    if\
+    \ (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n    add_v(p);\n   \
+    \ S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n      while\
+    \ (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n          left.eb(*it);\n\
+    \          continue;\n        }\n        auto a = *it;\n        auto b = left.back();\n\
+    \        T det = (b - a).det(p - a);\n        if (strict && det > 0) break;\n\
+    \        if (!strict && det >= 0) break;\n        left.eb(a);\n      }\n    }\n\
+    \n    vc<P> right;\n    {\n      auto it = S.find(p);\n      while (1) {\n   \
+    \     ++it;\n        if (it == S.end()) break;\n        if (right.empty()) {\n\
+    \          right.eb(*it);\n          continue;\n        }\n        auto a = right.back();\n\
+    \        auto b = *it;\n        T det = (a - p).det(b - p);\n        if (strict\
+    \ && det > 0) break;\n        if (!strict && det >= 0) break;\n        right.eb(b);\n\
+    \      }\n    }\n\n    // \u70B9\u524A\u9664\n    if (len(left) > 1) { S.erase(next(S.find(left.back())),\
+    \ S.find(p)); }\n    if (len(right) > 1) { S.erase(next(S.find(p)), S.find(right.back()));\
     \ }\n    FOR(i, len(left) - 1) rm_v(left[i]);\n    FOR(i, len(right) - 1) rm_v(right[i]);\n\
     \n    // \u8FBA\u524A\u9664\n    if (len(left) && len(right)) {\n      auto a\
     \ = left[0], b = right[0];\n      rm_e(a, b);\n    }\n    FOR(i, len(left) - 1)\
@@ -188,7 +190,7 @@ data:
   isVerificationFile: false
   path: geo/incremental_convexhull.hpp
   requiredBy: []
-  timestamp: '2026-02-03 22:59:09+09:00'
+  timestamp: '2026-07-19 03:14:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/max_dot.test.cpp

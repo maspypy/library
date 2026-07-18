@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
   - icon: ':question:'
@@ -321,26 +321,27 @@ data:
     \    dat.assign(ma - mi + 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n \
     \   FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n    for (auto& x : X) {\n    \
     \  x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n\
-    \    dat[0] = 0;\n    return X;\n  }\n  int size() { return len(dat); }\n  int\
-    \ operator()(ll x) { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n};\n\n\
-    template <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int mi, ma;\n\
-    \  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
-    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
-    \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
-    \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
-    \  int size() { return len(dat); }\n  int operator()(ll x) { return dat[clamp<ll>(x\
-    \ - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE\
-    \ {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    vc<int> I = argsort(X);\n \
-    \   vc<int> res(len(X));\n    for (auto& i : I) {\n      if (!dat.empty() && dat.back()\
-    \ == X[i]) {\n        res[i] = len(dat) - 1;\n      } else {\n        res[i] =\
-    \ len(dat);\n        dat.eb(X[i]);\n      }\n    }\n    dat.shrink_to_fit();\n\
-    \    return res;\n  }\n  int size() { return len(dat); }\n  int operator()(T x)\
-    \ { return LB(dat, x); }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE\
-    \ {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    vc<int> I = argsort(X);\n \
-    \   vc<int> res(len(X));\n    for (auto& i : I) {\n      res[i] = len(dat), dat.eb(X[i]);\n\
-    \    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size() { return\
-    \ len(dat); }\n  int operator()(T x) { return LB(dat, x); }\n};\n\ntemplate <typename\
-    \ T, bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
+    \    dat[0] = 0;\n    return X;\n  }\n  int size() const { return len(dat); }\n\
+    \  int operator()(ll x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
+    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int\
+    \ mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if\
+    \ (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n  \
+    \  for (auto& x : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1]\
+    \ += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return\
+    \ X;\n  }\n  int size() const { return len(dat); }\n  int operator()(ll x) const\
+    \ { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename\
+    \ T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T> dat;\n  vc<int> build(vc<T>\
+    \ X) {\n    vc<int> I = argsort(X);\n    vc<int> res(len(X));\n    for (auto&\
+    \ i : I) {\n      if (!dat.empty() && dat.back() == X[i]) {\n        res[i] =\
+    \ len(dat) - 1;\n      } else {\n        res[i] = len(dat);\n        dat.eb(X[i]);\n\
+    \      }\n    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size()\
+    \ const { return len(dat); }\n  int operator()(T x) const { return LB(dat, x);\
+    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE {\n\
+    \  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    vc<int> I = argsort(X);\n    vc<int>\
+    \ res(len(X));\n    for (auto& i : I) {\n      res[i] = len(dat), dat.eb(X[i]);\n\
+    \    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size() const { return\
+    \ len(dat); }\n  int operator()(T x) const { return LB(dat, x); }\n};\n\ntemplate\
+    \ <typename T, bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
     \ Index_Compression_DISTINCT_SMALL<T>,\n                              Index_Compression_DISTINCT_LARGE<T>>::type;\n\
     template <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename\
     \ std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,\n                 \
@@ -425,7 +426,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   requiredBy: []
-  timestamp: '2026-07-14 09:59:38+09:00'
+  timestamp: '2026-07-19 03:14:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
