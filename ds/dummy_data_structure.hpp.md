@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -54,15 +54,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/919.test.cpp
     title: test/3_yukicoder/919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy {\n  using value_type\
@@ -84,7 +84,7 @@ data:
   - graph/ds/tree_wavelet_matrix.hpp
   - string/prefix_substring_LCS.hpp
   timestamp: '2026-04-13 08:42:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/919.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
