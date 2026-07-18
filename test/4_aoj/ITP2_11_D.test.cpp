@@ -5,7 +5,7 @@
 
 void solve() {
   LL(N, K);
-  for (u32 s: all_nCk(N, K)) {
+  for (u32 s: all_nCk<u32>(N, K)) {
     vi I;
     for (int i: all_bit<u32>(s)) I.eb(i);
     print(to_string(s) + ":", I);

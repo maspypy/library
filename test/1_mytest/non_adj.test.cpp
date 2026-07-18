@@ -2,7 +2,7 @@
 
 #include "my_template.hpp"
 
-#include "convex/non_adjecent_selection.hpp"
+#include "convex/path_independent_set.hpp"
 #include "random/base.hpp"
 
 void test() {
@@ -11,8 +11,8 @@ void test() {
       vi A(N);
       FOR(i, N) A[i] = RNG(0, 1000000000);
 
-      Non_Adjacent_Selection<ll, true> MI(A);
-      Non_Adjacent_Selection<ll, false> MA(A);
+      Path_Independent_Set<ll, true> MI(A);
+      Path_Independent_Set<ll, true> MA(A);
       FOR(cnt, ceil<int>(N, 2) + 1) {
         ll mi = infty<ll>, ma = -infty<ll>;
         FOR(s, 1 << N) {
@@ -29,14 +29,14 @@ void test() {
           vc<int> I = MI.restore(cnt);
           FOR(k, len(I) - 1) assert(I[k + 1] >= I[k] + 2);
           ll sm = 0;
-          for (auto& i: I) sm += A[i];
+          for (auto& i : I) sm += A[i];
           assert(mi == sm);
         }
         {
           vc<int> I = MA.restore(cnt);
           FOR(k, len(I) - 1) assert(I[k + 1] >= I[k] + 2);
           ll sm = 0;
-          for (auto& i: I) sm += A[i];
+          for (auto& i : I) sm += A[i];
           assert(ma == sm);
         }
       }
