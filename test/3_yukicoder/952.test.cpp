@@ -2,6 +2,7 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
+#include "convex/monge/monge_dp_update.hpp"
 
 void solve() {
   LL(N);
