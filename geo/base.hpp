@@ -113,6 +113,12 @@ struct Line {
 
   bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }
   bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }
+  bool is_same(Line other) {
+    if (a * other.b != b * other.a) return 0;
+    if (a * other.c != c * other.a) return 0;
+    if (b * other.c != c * other.b) return 0;
+    return 1;
+  }
 };
 
 template <typename T>

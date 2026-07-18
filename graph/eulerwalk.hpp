@@ -8,11 +8,11 @@ pair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {
   const int N = G.N, M = G.M;
   assert(G.is_prepared());
   assert(N > 0);
-  assert((s == -1) || (0 < s && s < N));
+  assert((s == -1) || (0 <= s && s < N));
 
   if (s == -1) {
     vc<int> deg(N);
-    for (auto&& e: G.edges) {
+    for (auto&& e : G.edges) {
       if constexpr (GT::is_directed) {
         deg[e.frm]++, deg[e.to]--;
       } else {
@@ -49,7 +49,7 @@ pair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {
       st.eb(y);
     }
   }
-  for (auto&& x: D)
+  for (auto&& x : D)
     if (x < 0) return {{}, {}};
   if (len(vs) != M + 1) return {{}, {}};
   reverse(all(vs));
@@ -63,16 +63,16 @@ bool has_euler_walk(GT& G, int s = -1) {
   if (M == 0) return true;
   if constexpr (!GT::is_directed) {
     vc<int> odd(N);
-    for (auto& e: G.edges) odd[e.frm] ^= 1, odd[e.to] ^= 1;
+    for (auto& e : G.edges) odd[e.frm] ^= 1, odd[e.to] ^= 1;
     int n_odd = 0;
-    for (auto x: odd) n_odd += x;
+    for (auto x : odd) n_odd += x;
 
     if (n_odd >= 4) return false;
     if (s != -1 && n_odd == 2 && !odd[s]) return false;
     UnionFind uf(N);
-    for (auto& e: G.edges) uf.merge(e.frm, e.to);
+    for (auto& e : G.edges) uf.merge(e.frm, e.to);
     vector<int> cnt_edge(N);
-    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;
+    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;
     if (s != -1 && cnt_edge[uf[s]] == 0) return false;
     // 辺がある成分を数える
     int nc = 0;
@@ -83,7 +83,7 @@ bool has_euler_walk(GT& G, int s = -1) {
   } else {
     int N = G.N;
     vc<int> in(N), out(N);
-    for (auto& e: G.edges) out[e.frm]++, in[e.to]++;
+    for (auto& e : G.edges) out[e.frm]++, in[e.to]++;
 
     int ng = 0;
     FOR(v, N) ng += abs(out[v] - in[v]);
@@ -91,9 +91,9 @@ bool has_euler_walk(GT& G, int s = -1) {
     if (s != -1 && ng == 2 && out[s] != in[s] + 1) return false;
 
     UnionFind uf(N);
-    for (auto& e: G.edges) uf.merge(e.frm, e.to);
+    for (auto& e : G.edges) uf.merge(e.frm, e.to);
     vector<int> cnt_edge(N);
-    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;
+    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;
     if (s != -1 && cnt_edge[uf[s]] == 0) return false;
     // 辺がある成分を数える
     int nc = 0;

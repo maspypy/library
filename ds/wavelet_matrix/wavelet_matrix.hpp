@@ -219,6 +219,8 @@ struct Uncompressed_Wavelet_Matrix {
   }
 
   // [L,R) x [0,y) での check(y, cnt, prod) が true となる最大の (Y,cnt,prod)
+  // cnt はデータ件数全体であって, activate/deactivate を考慮する場合には
+  // prod の方を見る必要がある
   template <typename F>
   tuple<Y, int, T> max_right(F check, int L, int R) const {
     assert(limit < infty<Y>);

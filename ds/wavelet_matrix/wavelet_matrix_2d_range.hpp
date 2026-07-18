@@ -66,4 +66,12 @@ struct Wavelet_Matrix_2D_Range {
   // i は最初に渡したインデックス
   void multiply(int i, T t) { WM.multiply(new_idx[i], t); }
   void add(int i, T t) { WM.multiply(new_idx[i], t); }
+
+  // [L,R) x [0,y) での check(y, cnt, prod) が true となる最大の (Y,cnt,prod)
+  // cnt はデータ件数全体であって, activate/deactivate を考慮する場合には
+  // prod の方を見る必要がある
+  template <typename F>
+  tuple<XY, int, T> max_right(F check, XY x1, XY x2) const {
+    return WM.max_right(check, IDX_X(x1), IDX_X(x2));
+  }
 };
