@@ -12,7 +12,7 @@ struct F {
 // 直線追加かつ非永続なら空間 Q でよい。
 // 関数は ll -> T。[L, R) 上 f が overflow しないように注意。
 // evaluate を書き変えると、totally monotone な関数群にも使える
-template <typename FUNC, bool PERSISTENT, int NODES, bool MINIMIZE>
+template <typename FUNC, bool PERSISTENT, bool MINIMIZE>
 struct Dynamic_LiChao_Tree {
   using T = typename FUNC::value_type;
   vc<FUNC> funcs;

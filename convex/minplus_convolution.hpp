@@ -26,33 +26,51 @@ template <typename T>
 vc<T> minplus_convolution_arbitrary_convex(vc<T>& A, vc<T>& B) {
   int n = len(A), m0 = len(B);
   if (n == 0 || m0 == 0) return {};
-  vc<T> C(n + m0 - 1, infty<T>);
+  const T INF = infty<T>;
+  const T BIG = INF + INF + 1;
+
+  vc<T> C(n + m0 - 1, INF);
+
   int m = m0;
-  while (m > 0 && B[m - 1] == infty<T>) --m;
+  while (m > 0 && B[m - 1] == INF) --m;
   if (m == 0) return C;
   int b = 0;
-  while (b < m && B[b] == infty<T>) ++b;
+  while (b < m && B[b] == INF) ++b;
 
   int z = n + m - b - 1;
   vc<int> idx(z + 1);
-  C[b] = A[0] + B[b];
-  idx[0] = 0, idx[z] = n - 1;
+
+  // 実際に最小値探索する部分だけ BIG にする。
+  fill(C.begin() + b, C.begin() + n + m - 1, BIG);
+
+  idx[0] = 0;
+  idx[z] = n - 1;
 
   int d = 1;
   while (d < z) d <<= 1;
+
   for (int q = d >> 1; q > 0; q >>= 1) {
     for (int h = q; h < z; h += q << 1) {
       int l = h - q;
       int r = min(h + q, z);
+
       idx[h] = idx[l];
       for (int j = idx[l]; j <= idx[r]; ++j) {
-        if (j <= h && h - j < m - b && C[b + h] >= A[j] + B[b + h - j]) {
-          C[b + h] = A[j] + B[b + h - j];
+        int k = b + h - j;
+        if (j <= h && k < m && C[b + h] >= A[j] + B[k]) {
+          C[b + h] = A[j] + B[k];
           idx[h] = j;
         }
       }
     }
   }
+
+  FOR(h, z) {
+    int j = idx[h];
+    int k = b + h - j;
+    C[b + h] = (A[j] == INF || B[k] == INF ? INF : A[j] + B[k]);
+  }
+
   return C;
 }
 
