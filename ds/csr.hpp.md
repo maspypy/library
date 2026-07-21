@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: ds/offline_query/offline_set_intersection.hpp
+    title: ds/offline_query/offline_set_intersection.hpp
+  - icon: ':warning:'
     path: graph/degree_sequence.hpp
     title: graph/degree_sequence.hpp
   _extendedVerifiedWith: []
@@ -42,6 +45,7 @@ data:
   isVerificationFile: false
   path: ds/csr.hpp
   requiredBy:
+  - ds/offline_query/offline_set_intersection.hpp
   - graph/degree_sequence.hpp
   timestamp: '2026-07-19 04:28:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS

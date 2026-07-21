@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':heavy_check_mark:'
@@ -165,7 +165,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,7 +186,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -243,9 +243,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
@@ -322,7 +322,7 @@ data:
   - graph/shortest_path/K_shortest_walk.hpp
   - string/aho_corasick_for_general_trie.hpp
   timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/1508.test.cpp
   - test/4_aoj/1508_2.test.cpp

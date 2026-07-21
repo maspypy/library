@@ -792,7 +792,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
   - icon: ':heavy_check_mark:'
@@ -897,7 +897,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2007,7 +2007,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2062.test.cpp
     title: test/3_yukicoder/2062.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2181,7 +2181,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2602.test.cpp
     title: test/3_yukicoder/2602.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2229,7 +2229,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2262,7 +2262,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2944.test.cpp
     title: test/3_yukicoder/2944.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3005.test.cpp
     title: test/3_yukicoder/3005.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2370,10 +2370,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/913.test.cpp
     title: test/3_yukicoder/913.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/919.test.cpp
     title: test/3_yukicoder/919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2439,31 +2439,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_1_A.test.cpp
     title: test/4_aoj/CGL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_1_B.test.cpp
     title: test/4_aoj/CGL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_A.test.cpp
     title: test/4_aoj/CGL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_B.test.cpp
     title: test/4_aoj/CGL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_C.test.cpp
     title: test/4_aoj/CGL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
   - icon: ':heavy_check_mark:'

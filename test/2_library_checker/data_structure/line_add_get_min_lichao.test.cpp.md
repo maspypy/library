@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -269,12 +269,12 @@ data:
     \ overflow \u3057\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3002\n// evaluate\
     \ \u3092\u66F8\u304D\u5909\u3048\u308B\u3068\u3001totally monotone \u306A\u95A2\
     \u6570\u7FA4\u306B\u3082\u4F7F\u3048\u308B\ntemplate <typename FUNC, bool PERSISTENT,\
-    \ int NODES, bool MINIMIZE>\nstruct Dynamic_LiChao_Tree {\n  using T = typename\
-    \ FUNC::value_type;\n  vc<FUNC> funcs;\n\n  static inline T evaluate(FUNC &f,\
-    \ ll x) { return f(x); }\n\n  struct Node {\n    int fid;\n    Node *l, *r;\n\
-    \  };\n  Node_Pool<Node> pool;\n  ll L, R;\n\n  using np = Node *;\n\n  Dynamic_LiChao_Tree(ll\
-    \ L, ll R) : L(L), R(R) {}\n\n  void reset() { funcs.clear(), pool.reset(); }\n\
-    \n  np new_root() { return nullptr; }\n\n  np new_node() {\n    np c = pool.create();\n\
+    \ bool MINIMIZE>\nstruct Dynamic_LiChao_Tree {\n  using T = typename FUNC::value_type;\n\
+    \  vc<FUNC> funcs;\n\n  static inline T evaluate(FUNC &f, ll x) { return f(x);\
+    \ }\n\n  struct Node {\n    int fid;\n    Node *l, *r;\n  };\n  Node_Pool<Node>\
+    \ pool;\n  ll L, R;\n\n  using np = Node *;\n\n  Dynamic_LiChao_Tree(ll L, ll\
+    \ R) : L(L), R(R) {}\n\n  void reset() { funcs.clear(), pool.reset(); }\n\n  np\
+    \ new_root() { return nullptr; }\n\n  np new_node() {\n    np c = pool.create();\n\
     \    c->fid = -1, c->l = c->r = nullptr;\n    return c;\n  }\n\n  np chmin_line(np\
     \ root, FUNC f) {\n    static_assert(MINIMIZE);\n    int fid = len(funcs);\n \
     \   funcs.eb(f);\n    if (!root) root = new_node();\n    return add_line_rec(root,\
@@ -348,8 +348,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
   requiredBy: []
-  timestamp: '2026-07-14 09:59:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-21 19:37:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
 layout: document

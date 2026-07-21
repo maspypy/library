@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/offline_query/offline_set_intersection.hpp
+    title: ds/offline_query/offline_set_intersection.hpp
   - icon: ':heavy_check_mark:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
@@ -38,7 +41,7 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':heavy_check_mark:'
@@ -987,7 +990,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_12_B.test.cpp
     title: test/4_aoj/ALDS1_12_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1026,9 +1029,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -1114,6 +1117,7 @@ data:
   - other/connected_dp.hpp
   - other/dice.hpp
   - ds/static_range_frequency.hpp
+  - ds/offline_query/offline_set_intersection.hpp
   - ds/to_small_key.hpp
   - graph/twosat.hpp
   - graph/optimal_product_on_tree.hpp
@@ -1228,7 +1232,7 @@ data:
   - string/suffix_automaton.hpp
   - string/basic_substring_structure.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/ITP1_11_C.test.cpp
   - test/4_aoj/2636.test.cpp
