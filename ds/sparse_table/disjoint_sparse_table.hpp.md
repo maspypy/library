@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':x:'
@@ -75,7 +75,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'

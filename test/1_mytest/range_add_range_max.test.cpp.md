@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
   - icon: ':question:'
@@ -26,13 +26,16 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -134,9 +137,35 @@ data:
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    if (x == -infty<E>) return x;\r\n\
-    \    return x + a;\r\n  }\r\n};\r\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\n\
-    template <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
-    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
+    \    return x + a;\r\n  }\r\n};\r\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate\
+    \ <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n \
+    \ using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
     \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int\
     \ n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n  \
@@ -436,6 +465,7 @@ data:
   - alg/monoid/add.hpp
   - alg/monoid/max.hpp
   - ds/segtree/lazy_segtree.hpp
+  - other/bit.hpp
   - ds/rmq/range_add_range_max.hpp
   - ds/segtree/dynamic_segtree_sparse.hpp
   - ds/segtree/segtree.hpp
@@ -443,8 +473,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_max.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:24:28+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_max.test.cpp
 layout: document

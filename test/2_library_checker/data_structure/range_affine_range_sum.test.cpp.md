@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':question:'
@@ -375,7 +375,7 @@ data:
     \ Monoid_A = Monoid_Affine<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    return x * a.fi + E(size) * a.se;\r\
-    \n  }\r\n};\r\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
+    \n  }\r\n};\r\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
     struct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
     \  using MA = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n \
     \ using A = typename MA::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A>\
@@ -470,7 +470,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 21:01:29+09:00'
+  timestamp: '2026-07-26 21:24:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp

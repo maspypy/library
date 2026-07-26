@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -25,13 +25,13 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -49,50 +49,50 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/chromatic_number
@@ -415,42 +415,8 @@ data:
     \ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
-    // x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename\
-    \ U1, typename U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n\
-    \  inline static U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\
-    \n  static void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W -\
-    \ 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n   \
-    \ r = -r;\n    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return\
-    \ (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n\
-    \  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n   \
-    \ U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
-    \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
-    \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
-    \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
-    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
-    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
-    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
-    \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
-    \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
-    \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
-    \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
-    \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
-    \ = Mongomery_modint<id, u64, u128>;\n#line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const\
-    \ u64 x) {\r\n  assert(x < u64(1) << 62);\r\n  if (x == 2 or x == 3 or x == 5\
-    \ or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x\
-    \ % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x\
-    \ - 1) >> lowbit(x - 1);\r\n\r\n  using mint = Mongomery_modint_64<202311020>;\r\
-    \n\r\n  mint::set_mod(x);\r\n  const mint one(u64(1)), minus_one(x - 1);\r\n \
-    \ auto ok = [&](u64 a) -> bool {\r\n    auto y = mint(a).pow(d);\r\n    u64 t\
-    \ = d;\r\n    while (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;\r\
-    \n    if (y != minus_one && t % 2 == 0) return false;\r\n    return true;\r\n\
-    \  };\r\n  if (x < (u64(1) << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if\
-    \ (!ok(a)) return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178,\
-    \ 450775, 9780504, 1795265022}) {\r\n      if (!ok(a)) return false;\r\n    }\r\
-    \n  }\r\n  return true;\r\n}\n#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"\
-    poly/middle_product.hpp\"\n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) {\
-    \ return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ RNG_64() % (r - l); }\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
@@ -475,7 +441,41 @@ data:
     \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
     \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
     \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
-    \ -1ULL : (1ULL << n) - 1; }\n#line 3 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
+    // x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename\
+    \ U1, typename U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n\
+    \  inline static U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\
+    \n  static void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W -\
+    \ 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n   \
+    \ r = -r;\n    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return\
+    \ (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n\
+    \  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n   \
+    \ U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
+    \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
+    \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
+    \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
+    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
+    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
+    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
+    \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
+    \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
+    \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
+    \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
+    \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
+    \ = Mongomery_modint<id, u64, u128>;\n#line 4 \"nt/primetest.hpp\"\n\r\nbool primetest(const\
+    \ u64 x) {\r\n  assert(x < u64(1) << 62);\r\n  if (x == 2 or x == 3 or x == 5\
+    \ or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x\
+    \ % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x\
+    \ - 1) >> lowbit(x - 1);\r\n\r\n  using mint = Mongomery_modint_64<202311020>;\r\
+    \n\r\n  mint::set_mod(x);\r\n  const mint one(u64(1)), minus_one(x - 1);\r\n \
+    \ auto ok = [&](u64 a) -> bool {\r\n    auto y = mint(a).pow(d);\r\n    u64 t\
+    \ = d;\r\n    while (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;\r\
+    \n    if (y != minus_one && t % 2 == 0) return false;\r\n    return true;\r\n\
+    \  };\r\n  if (x < (u64(1) << 32)) {\r\n    for (u64 a : {2, 7, 61})\r\n     \
+    \ if (!ok(a)) return false;\r\n  } else {\r\n    for (u64 a : {2, 325, 9375, 28178,\
+    \ 450775, 9780504, 1795265022}) {\r\n      if (!ok(a)) return false;\r\n    }\r\
+    \n  }\r\n  return true;\r\n}\n#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"\
+    poly/middle_product.hpp\"\n\n#line 3 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\
     \nvoid ntt(vector<mint>& a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n\
     \  const int rank2 = mint::ntt_info().fi;\r\n  const u32 mod = mint::get_mod();\r\
     \n  static array<mint, 30> root, iroot;\r\n  static array<mint, 30> rate2, irate2;\r\
@@ -1050,11 +1050,11 @@ data:
   - graph/chromatic.hpp
   - random/base.hpp
   - nt/primetest.hpp
+  - other/bit.hpp
   - mod/mongomery_modint.hpp
   - poly/multipoint.hpp
   - poly/middle_product.hpp
   - poly/ntt.hpp
-  - other/bit.hpp
   - mod/crt3.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
@@ -1075,8 +1075,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 21:01:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:24:28+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/chromatic_number.test.cpp
 layout: document

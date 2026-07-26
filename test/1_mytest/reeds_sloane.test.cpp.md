@@ -523,7 +523,7 @@ data:
     \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
     \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
     \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
-    \ u64, u128>;\n#line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\
+    \ u64, u128>;\n#line 4 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\
     \n  assert(x < u64(1) << 62);\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
     \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
     \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x\
@@ -532,8 +532,8 @@ data:
     \ {\r\n    auto y = mint(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one &&\
     \ y != minus_one && t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one &&\
     \ t % 2 == 0) return false;\r\n    return true;\r\n  };\r\n  if (x < (u64(1) <<\
-    \ 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n\
-    \  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022})\
+    \ 32)) {\r\n    for (u64 a : {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n\
+    \  } else {\r\n    for (u64 a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022})\
     \ {\r\n      if (!ok(a)) return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n\
     #line 5 \"nt/factor.hpp\"\n\ntemplate <typename mint>\nll rho(ll n, ll c) {\n\
     \  assert(n > 1);\n  const mint cc(c);\n  auto f = [&](mint x) { return x * x\

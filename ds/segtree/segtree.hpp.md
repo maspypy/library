@@ -8,13 +8,13 @@ data:
   - icon: ':warning:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
   - icon: ':warning:'
     path: ds/rmq/range_add_range_maxidx.hpp
     title: ds/rmq/range_add_range_maxidx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_min.hpp
     title: ds/rmq/range_add_range_min.hpp
   - icon: ':warning:'
@@ -29,10 +29,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -81,10 +81,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,7 +99,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':heavy_check_mark:'
@@ -159,7 +159,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1549.test.cpp
     title: test/3_yukicoder/1549.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
   - icon: ':x:'
@@ -168,7 +168,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
   - icon: ':heavy_check_mark:'
@@ -180,16 +180,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_3_B.test.cpp
     title: test/4_aoj/ITP2_3_B.test.cpp
   _isVerificationFailed: true

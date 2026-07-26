@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':question:'
@@ -270,7 +270,7 @@ data:
     \ });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));\n\
     \  }\n\n  vc<X> get_all() {\n    vc<X> ANS(n);\n    int p = 0;\n    while (p <\
     \ n) {\n      int q = cut.next(p + 1);\n      FOR(i, p, q) ANS[i] = dat[p];\n\
-    \      p = q;\n    }\n    return ANS;\n  }\n};\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
+    \      p = q;\n    }\n    return ANS;\n  }\n};\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
     \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
@@ -411,7 +411,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 20:34:09+09:00'
+  timestamp: '2026-07-26 21:24:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_assign.test.cpp

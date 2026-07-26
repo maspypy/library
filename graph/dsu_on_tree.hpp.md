@@ -12,12 +12,12 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2995.test.cpp
     title: test/4_aoj/2995.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n//\
@@ -258,7 +258,7 @@ data:
   path: graph/dsu_on_tree.hpp
   requiredBy: []
   timestamp: '2026-07-18 00:22:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2995.test.cpp
 documentation_of: graph/dsu_on_tree.hpp

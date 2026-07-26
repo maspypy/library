@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -22,6 +22,9 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -31,17 +34,43 @@ data:
     links:
     - https://atcoder.jp/contests/pakencamp-2022-day1/tasks/pakencamp_2022_day1_j
     - https://atcoder.jp/contests/utpc2011/tasks/utpc2011_12
-  bundledCode: "#line 1 \"graph/ds/tree_wavelet_matrix.hpp\"\n\n#line 1 \"ds/bit_vector.hpp\"\
-    \nstruct Bit_Vector {\n  int n;\n  bool prepared = 0;\n  vc<pair<u64, u32>> dat;\n\
-    \  Bit_Vector(int n = 0) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void\
-    \ set(int i) {\n    assert(!prepared && (0 <= i && i < n));\n    dat[i >> 6].fi\
-    \ |= u64(1) << (i & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64,\
-    \ u32>{0, 0});\n    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n\
-    \    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\
-    \  bool operator[](int i) const { return dat[i >> 6].fi >> (i & 63) & 1; }\n \
-    \ // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool\
-    \ f = true) const {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n \
-    \   int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
+  bundledCode: "#line 1 \"graph/ds/tree_wavelet_matrix.hpp\"\n\n#line 2 \"other/bit.hpp\"\
+    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
+    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
+    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
+    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
+    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
+    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
+    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
+    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
+    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
+    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
+    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
+    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  struct iter {\n    UINT s;\n\
+    \    int operator*() const { return lowbit(s); }\n    void operator++() { s &=\
+    \ s - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  struct iter {\n    UINT s,\
+    \ t;\n    bool done = false;\n    UINT operator*() const { return t; }\n    void\
+    \ operator++() {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool\
+    \ operator!=(nullptr_t) const { return !done; }\n  };\n  iter begin() const {\
+    \ return {s, s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\nconstexpr\
+    \ u64 full_mask(int n) { return n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2\
+    \ \"ds/bit_vector.hpp\"\n\nstruct Bit_Vector {\n  int n;\n  bool prepared = 0;\n\
+    \  vc<pair<u64, u32>> dat;\n  Bit_Vector(int n = 0) : n(n) { dat.assign((n + 127)\
+    \ >> 6, {0, 0}); }\n  void set(int i) {\n    assert(!prepared && (0 <= i && i\
+    \ < n));\n    dat[i >> 6].fi |= u64(1) << (i & 63);\n  }\n  void reset() {\n \
+    \   fill(all(dat), pair<u64, u32>{0, 0});\n    prepared = 0;\n  }\n  void build()\
+    \ {\n    prepared = 1;\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n\
+    \  }\n  bool operator[](int i) const { return dat[i >> 6].fi >> (i & 63) & 1;\
+    \ }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k,\
+    \ bool f = true) const {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n\
+    \    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
     \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) const {\n    return\
     \ count_prefix(R, f) - count_prefix(L, f);\n  }\n  string to_string() const {\n\
     \    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n\
@@ -532,6 +561,7 @@ data:
   dependsOn:
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/bit_vector.hpp
+  - other/bit.hpp
   - ds/dummy_data_structure.hpp
   - alg/monoid/dummy.hpp
   - graph/tree.hpp
@@ -540,7 +570,7 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2026-07-19 03:14:38+09:00'
+  timestamp: '2026-07-26 21:24:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/tree_wavelet_matrix.hpp

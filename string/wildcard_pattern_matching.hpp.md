@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
   - icon: ':question:'

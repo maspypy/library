@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: convex/monge/monge.hpp
     title: convex/monge/monge.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/monge/monge_dp_update.hpp
     title: convex/monge/monge_dp_update.hpp
   _extendedVerifiedWith:
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/smawk.test.cpp
     title: test/1_mytest/smawk.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
   _isVerificationFailed: true

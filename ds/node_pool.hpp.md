@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_super.hpp
     title: convex/slope_trick/slope_super.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -96,7 +96,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/ARC30D.test.cpp
     title: test/1_mytest/ARC30D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/binary_trie.test.cpp
     title: test/1_mytest/binary_trie.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,7 +186,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -222,7 +222,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
   - icon: ':heavy_check_mark:'

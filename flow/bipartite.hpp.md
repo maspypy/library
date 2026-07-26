@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':question:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
@@ -51,12 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1566.test.cpp
     title: test/4_aoj/1566.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_2.test.cpp
     title: test/4_aoj/2251_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf
@@ -352,7 +352,7 @@ data:
   - graph/maximum_antichain.hpp
   - graph/bipartite_edge_coloring.hpp
   timestamp: '2026-07-18 00:22:18+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1745.test.cpp
   - test/3_yukicoder/1744.test.cpp

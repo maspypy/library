@@ -8,17 +8,17 @@ data:
   - icon: ':warning:'
     path: ds/segtree/range_add_make_increasing.hpp
     title: ds/segtree/range_add_make_increasing.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,21 +30,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1524.test.cpp
     title: test/3_yukicoder/1524.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2498.test.cpp
     title: test/3_yukicoder/2498.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/913.test.cpp
     title: test/3_yukicoder/913.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_D.test.cpp
     title: test/4_aoj/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
@@ -101,7 +101,7 @@ data:
   - ds/segtree/range_add_make_decreasing.hpp
   - ds/segtree/range_add_make_increasing.hpp
   timestamp: '2024-10-12 22:46:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/913.test.cpp
   - test/3_yukicoder/2498.test.cpp

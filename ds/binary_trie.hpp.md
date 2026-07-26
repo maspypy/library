@@ -4,39 +4,68 @@ data:
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/binary_trie.test.cpp
     title: test/1_mytest/binary_trie.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
-    \u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\
-    \u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  struct Slot {\n\
-    \    union alignas(Node) {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n\
-    \    };\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 <<\
-    \ 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used\
-    \ = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n \
-    \ template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
-    \    return ::new (s) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np\
-    \ x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (s) Node(*x);\
-    \  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u547C\u3073\
-    \u51FA\u3057\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
-    \    auto s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
-    \ = s;\n  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty())\
-    \ {\n      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+  bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\
+    \u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\
+    \u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool\
+    \ {\n  struct Slot {\n    union alignas(Node) {\n      Slot* next;\n      unsigned\
+    \ char storage[sizeof(Node)];\n    };\n  };\n  using np = Node*;\n\n  static constexpr\
+    \ int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur =\
+    \ nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool()\
+    \ { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&... args)\
+    \ {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
+    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
+    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
+    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
+    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/binary_trie.hpp\"\n\n// \u975E\u6C38\
+    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/binary_trie.hpp\"\n\n// \u975E\u6C38\
     \u7D9A\u306A\u3089\u3070\u30012 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\
     \ntemplate <int LOG, bool PERSISTENT, typename UINT = u64,\n          typename\
     \ SIZE_TYPE = u32>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n  static_assert(is_same_v<T,\
@@ -97,11 +126,11 @@ data:
     \ root->r);\n      if (c) {\n        int w = c->width;\n        res += prefix_count_rec(c,\
     \ ht - w, LIM, xor_val, val << w | c->val);\n      }\n    }\n    return res;\n\
     \  }\n};\n"
-  code: "#include \"ds/node_pool.hpp\"\n\n// \u975E\u6C38\u7D9A\u306A\u3089\u3070\u3001\
-    2 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\ntemplate <int LOG, bool\
-    \ PERSISTENT, typename UINT = u64,\n          typename SIZE_TYPE = u32>\nstruct\
-    \ Binary_Trie {\n  using T = SIZE_TYPE;\n  static_assert(is_same_v<T, u32> ||\
-    \ is_same_v<T, u64>);\n  static_assert(0 < LOG && LOG <= numeric_limits<UINT>::digits);\n\
+  code: "#include \"other/bit.hpp\"\n#include \"ds/node_pool.hpp\"\n\n// \u975E\u6C38\
+    \u7D9A\u306A\u3089\u3070\u30012 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\
+    \ntemplate <int LOG, bool PERSISTENT, typename UINT = u64,\n          typename\
+    \ SIZE_TYPE = u32>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n  static_assert(is_same_v<T,\
+    \ u32> || is_same_v<T, u64>);\n  static_assert(0 < LOG && LOG <= numeric_limits<UINT>::digits);\n\
     \n  struct Node {\n    int width;\n    UINT val;\n    T cnt;\n    Node *l, *r;\n\
     \  };\n\n  Node_Pool<Node> pool;\n  using np = Node *;\n\n  void reset() { pool.reset();\
     \ }\n\n  np new_root() { return nullptr; }\n\n  np add(np root, UINT val, T cnt\
@@ -159,12 +188,13 @@ data:
     \ ht - w, LIM, xor_val, val << w | c->val);\n      }\n    }\n    return res;\n\
     \  }\n};"
   dependsOn:
+  - other/bit.hpp
   - ds/node_pool.hpp
   isVerificationFile: false
   path: ds/binary_trie.hpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-07-26 21:24:28+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/binary_trie.test.cpp
   - test/2_library_checker/data_structure/set_xor_min.test.cpp

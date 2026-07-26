@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_3_A.test.cpp
     title: test/4_aoj/GRL_3_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg
@@ -187,7 +187,7 @@ data:
   requiredBy:
   - graph/st_numbering.hpp
   timestamp: '2026-07-18 00:22:18+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/GRL_3_A.test.cpp
   - test/1_mytest/st_numbering.test.cpp

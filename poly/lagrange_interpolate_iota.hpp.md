@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
   - icon: ':question:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   _extendedVerifiedWith:
@@ -69,15 +69,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -489,7 +489,7 @@ data:
   - seq/p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2026-07-26 21:01:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2166.test.cpp

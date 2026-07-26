@@ -1,71 +1,74 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':warning:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':warning:'
     path: nt/find_coprime_pair.hpp
     title: nt/find_coprime_pair.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/two_square.hpp
     title: nt/two_square.hpp
   - icon: ':warning:'
@@ -84,22 +87,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_by_factor_type.test.cpp
     title: test/1_mytest/count_by_factor_type.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/four_square.test.cpp
     title: test/1_mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum.test.cpp
     title: test/1_mytest/geometric_sequence_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_square.test.cpp
     title: test/1_mytest/three_square.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_triangular.test.cpp
     title: test/1_mytest/three_triangular.test.cpp
   - icon: ':heavy_check_mark:'
@@ -117,28 +120,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/factorize.test.cpp
     title: test/2_library_checker/number_theory/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/gaussian_integers.test.cpp
     title: test/2_library_checker/number_theory/gaussian_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
     title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/primitive_root.test.cpp
     title: test/2_library_checker/number_theory/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/tetration.test.cpp
     title: test/2_library_checker/number_theory/tetration.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/two_square.test.cpp
     title: test/2_library_checker/number_theory/two_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -177,7 +180,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1262.test.cpp
     title: test/3_yukicoder/1262.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,70 +189,96 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1593.test.cpp
     title: test/3_yukicoder/1593.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1667.test.cpp
     title: test/3_yukicoder/1667.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1783.test.cpp
     title: test/3_yukicoder/1783.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/187.test.cpp
     title: test/3_yukicoder/187.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1956.test.cpp
     title: test/3_yukicoder/1956.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2119.test.cpp
     title: test/3_yukicoder/2119.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2120.test.cpp
     title: test/3_yukicoder/2120.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2181.test.cpp
     title: test/3_yukicoder/2181.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2264.test.cpp
     title: test/3_yukicoder/2264.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_D_D.test.cpp
     title: test/4_aoj/ITP1_D_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
     \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
+    \ RNG_64() % (r - l); }\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
     // x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename\
     \ U1, typename U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n\
     \  inline static U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\
@@ -270,7 +299,7 @@ data:
     \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
     \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
     \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
-    \ = Mongomery_modint<id, u64, u128>;\n#line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const\
+    \ = Mongomery_modint<id, u64, u128>;\n#line 4 \"nt/primetest.hpp\"\n\r\nbool primetest(const\
     \ u64 x) {\r\n  assert(x < u64(1) << 62);\r\n  if (x == 2 or x == 3 or x == 5\
     \ or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x\
     \ % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x\
@@ -279,8 +308,8 @@ data:
     \ auto ok = [&](u64 a) -> bool {\r\n    auto y = mint(a).pow(d);\r\n    u64 t\
     \ = d;\r\n    while (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;\r\
     \n    if (y != minus_one && t % 2 == 0) return false;\r\n    return true;\r\n\
-    \  };\r\n  if (x < (u64(1) << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if\
-    \ (!ok(a)) return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178,\
+    \  };\r\n  if (x < (u64(1) << 32)) {\r\n    for (u64 a : {2, 7, 61})\r\n     \
+    \ if (!ok(a)) return false;\r\n  } else {\r\n    for (u64 a : {2, 325, 9375, 28178,\
     \ 450775, 9780504, 1795265022}) {\r\n      if (!ok(a)) return false;\r\n    }\r\
     \n  }\r\n  return true;\r\n}\n#line 5 \"nt/factor.hpp\"\n\ntemplate <typename\
     \ mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n  auto f\
@@ -331,6 +360,7 @@ data:
   dependsOn:
   - random/base.hpp
   - nt/primetest.hpp
+  - other/bit.hpp
   - mod/mongomery_modint.hpp
   isVerificationFile: false
   path: nt/factor.hpp
@@ -357,8 +387,8 @@ data:
   - nt/gaussian_integers.hpp
   - nt/three_square.hpp
   - nt/array_on_divisors.hpp
-  timestamp: '2024-10-18 02:58:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-07-26 21:24:28+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1025.test.cpp
   - test/3_yukicoder/1262.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: convex/alien.hpp
     title: convex/alien.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/monge/monge_dp_update.hpp
     title: convex/monge/monge_dp_update.hpp
   - icon: ':x:'

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2498.test.cpp
     title: test/3_yukicoder/2498.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/bitwise_function.hpp\"\n\n// composition of bitwise\
@@ -34,7 +34,7 @@ data:
   path: alg/monoid/bitwise_function.hpp
   requiredBy: []
   timestamp: '2023-11-08 21:49:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2498.test.cpp
 documentation_of: alg/monoid/bitwise_function.hpp

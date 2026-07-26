@@ -2,34 +2,34 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
   - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':warning:'
@@ -72,19 +72,19 @@ data:
   - icon: ':x:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/max_min.test.cpp
     title: test/1_mytest/max_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_max.test.cpp
     title: test/1_mytest/min_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,7 +108,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
   - icon: ':x:'
@@ -126,7 +126,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':x:'
@@ -150,25 +150,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1212.test.cpp
     title: test/3_yukicoder/1212.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1234.test.cpp
     title: test/3_yukicoder/1234.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/913.test.cpp
     title: test/3_yukicoder/913.test.cpp
   - icon: ':heavy_check_mark:'
@@ -177,13 +177,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_F.test.cpp
     title: test/4_aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_H.test.cpp
     title: test/4_aoj/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   _isVerificationFailed: true

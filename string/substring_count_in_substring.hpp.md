@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':question:'
@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':x:'

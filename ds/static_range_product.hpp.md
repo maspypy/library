@@ -63,7 +63,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':x:'
@@ -71,7 +71,7 @@ data:
     title: test/3_yukicoder/2361.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/106668
@@ -212,7 +212,7 @@ data:
   - string/substring_shortest_border.hpp
   - string/sort_substrings.hpp
   timestamp: '2026-04-13 19:22:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
