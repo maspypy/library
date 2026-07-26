@@ -1,21 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':x:'
-    path: ds/fenwicktree/fenwicktree.hpp
-    title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
-    path: ds/fenwicktree/fenwicktree_01.hpp
-    title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
-    path: linalg/transpose.hpp
-    title: linalg/transpose.hpp
-  - icon: ':x:'
-    path: seq/inversion.hpp
-    title: seq/inversion.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -27,12 +12,13 @@ data:
     \ vc<VC>& A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A)\
     \ == 0 ? 0 : len(A[0])); }\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
     \ = A[x][y];\n  return B;\n}\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n\
-    #line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    #line 2 \"ds/fenwicktree/fenwicktree.hpp\"\n#include \"other/bit.hpp\n#line 2\
+    \ \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n\
+    \  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 4 \"ds/fenwicktree/fenwicktree.hpp\"\
     \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
     \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
     \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
@@ -70,20 +56,20 @@ data:
     \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
     \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
     \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i + (1 << k) <= L || check(t))\
-    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i,\
-    \ x)\n  template <class F>\n  int max_right_with_index(const F check, int L =\
-    \ 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n    int\
-    \ i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n   \
-    \   while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
+    \ {\n          i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n\
+    \  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
     \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
     \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i\
     \ + (1 << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
     \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) { i += (1 <<\
-    \ k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n \
-    \ int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
+    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
+    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
+    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
     \    E s = G::unit();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
     \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
     \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
@@ -311,16 +297,11 @@ data:
     \ 1, py);\n      ope(px, py + 1), ope(px + 1, py), ope(px + 1, py);\n      ope(px,\
     \ py - 1), ope(px - 1, py);\n    }\n    FOR(y, W) assert(A[H - 1][y] == (pair<int,\
     \ int>{H - 1, y}));\n    POP(A);\n    solve_sort(A, ANS, tr);\n  }\n};\n"
-  dependsOn:
-  - linalg/transpose.hpp
-  - seq/inversion.hpp
-  - ds/fenwicktree/fenwicktree_01.hpp
-  - ds/fenwicktree/fenwicktree.hpp
-  - alg/monoid/add.hpp
+  dependsOn: []
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2026-07-26 16:27:27+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp

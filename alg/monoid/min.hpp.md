@@ -23,13 +23,10 @@ data:
   - icon: ':x:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':warning:'
-    path: graph/ds/range_edge_connected_component_query.hpp
-    title: graph/ds/range_edge_connected_component_query.hpp
   - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -126,7 +123,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
   - icon: ':x:'
@@ -147,18 +144,15 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1212.test.cpp
     title: test/3_yukicoder/1212.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1234.test.cpp
     title: test/3_yukicoder/1234.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/1270.test.cpp
-    title: test/3_yukicoder/1270.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
@@ -177,10 +171,10 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/913.test.cpp
     title: test/3_yukicoder/913.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
   - icon: ':x:'
@@ -210,7 +204,6 @@ data:
   isVerificationFile: false
   path: alg/monoid/min.hpp
   requiredBy:
-  - graph/ds/range_edge_connected_component_query.hpp
   - graph/fast_lca.hpp
   - graph/minimum_spanning_tree.hpp
   - geo/range_closest_pair_query.hpp
@@ -236,7 +229,6 @@ data:
   verifiedWith:
   - test/3_yukicoder/1600.test.cpp
   - test/3_yukicoder/1720.test.cpp
-  - test/3_yukicoder/1270.test.cpp
   - test/3_yukicoder/2935.test.cpp
   - test/3_yukicoder/913.test.cpp
   - test/3_yukicoder/1212.test.cpp

@@ -11,7 +11,7 @@ data:
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
   - icon: ':x:'
@@ -27,15 +27,6 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - icon: ':x:'
-    path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
-    path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/1038.test.cpp
-    title: test/3_yukicoder/1038.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1796_1.test.cpp
     title: test/3_yukicoder/1796_1.test.cpp
@@ -344,12 +335,9 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1796_1.test.cpp
-  - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/2892.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
 documentation_of: graph/centroid_decomposition.hpp
 layout: document

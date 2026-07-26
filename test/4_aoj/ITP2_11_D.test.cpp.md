@@ -5,6 +5,9 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':x:'
@@ -231,23 +234,49 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"setfunc/all_k_subset.hpp\"\n\n\
-    #ifdef _MSC_VER\n#include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\n\
-    template <typename UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT\
-    \ k)\n        : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}\n\
-    \    __attribute__((target(\"bmi2\"))) auto operator*() const {\n      return\
-    \ _pdep_u64(t, s);\n    }\n    auto operator++() {\n      if (k == 0) {\n    \
-    \    t = UINT(-1);\n      } else {\n        UINT y = t + (-t & t);\n        t\
-    \ = y | ((y ^ t) >> lowbit(t << 2));\n      }\n    }\n    auto operator!=(const\
-    \ iter) const { return t < n; }\n  };\n  UINT s, k;\n  all_k_subset(UINT s, UINT\
-    \ k) : s(s), k(k) { assert(s != UINT(-1)); }\n  auto begin() { return iter(s,\
-    \ k); }\n  auto end() { return iter(0, 0); }\n};\n\n// all_nCk\u95A2\u6570\u306E\
-    \u5B9F\u88C5\ntemplate <typename UINT>\nauto all_nCk(int n, int k) {\n  return\
-    \ all_k_subset<UINT>((UINT(1) << n) - 1, k);\n}\n#line 5 \"test/4_aoj/ITP2_11_D.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s: all_nCk<u32>(N, K)) {\n    vi I;\n\
-    \    for (int i: all_bit<u32>(s)) I.eb(i);\n    print(to_string(s) + \":\", I);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"setfunc/all_k_subset.hpp\"\n\n#ifdef _MSC_VER\n\
+    #include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\ntemplate <typename\
+    \ UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n \
+    \ struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT k)\n\
+    \        : n(UINT(1) << popcnt(s)), k(k), s(s), t(full_mask(k)) {}\n    __attribute__((target(\"\
+    bmi2\"))) auto operator*() const {\n      return _pdep_u64(t, s);\n    }\n   \
+    \ auto operator++() {\n      if (k == 0) {\n        t = UINT(-1);\n      } else\
+    \ {\n        UINT y = t + (-t & t);\n        t = y | ((y ^ t) >> lowbit(t << 2));\n\
+    \      }\n    }\n    auto operator!=(const iter) const { return t < n; }\n  };\n\
+    \  UINT s, k;\n  all_k_subset(UINT s, UINT k) : s(s), k(k) { assert(s != UINT(-1));\
+    \ }\n  auto begin() { return iter(s, k); }\n  auto end() { return iter(0, 0);\
+    \ }\n};\n\n// all_nCk\u95A2\u6570\u306E\u5B9F\u88C5\ntemplate <typename UINT>\n\
+    auto all_nCk(int n, int k) {\n  return all_k_subset<UINT>(full_mask(n), k);\n\
+    }\n#line 5 \"test/4_aoj/ITP2_11_D.test.cpp\"\n\nvoid solve() {\n  LL(N, K);\n\
+    \  for (u32 s: all_nCk<u32>(N, K)) {\n    vi I;\n    for (int i: all_bit<u32>(s))\
+    \ I.eb(i);\n    print(to_string(s) + \":\", I);\n  }\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"setfunc/all_k_subset.hpp\"\
     \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s: all_nCk<u32>(N, K)) {\n    vi I;\n\
@@ -257,10 +286,11 @@ data:
   - my_template.hpp
   - other/io.hpp
   - setfunc/all_k_subset.hpp
+  - other/bit.hpp
   isVerificationFile: true
   path: test/4_aoj/ITP2_11_D.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-07-26 20:34:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_11_D.test.cpp

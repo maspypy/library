@@ -1,48 +1,16 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/barrett.hpp
-    title: mod/barrett.hpp
-  - icon: ':x:'
-    path: mod/dynamic_modint.hpp
-    title: mod/dynamic_modint.hpp
-  - icon: ':x:'
-    path: mod/mod_inv.hpp
-    title: mod/mod_inv.hpp
-  - icon: ':x:'
-    path: mod/mod_pow.hpp
-    title: mod/mod_pow.hpp
-  - icon: ':x:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
-  - icon: ':question:'
-    path: mod/mongomery_modint.hpp
-    title: mod/mongomery_modint.hpp
-  - icon: ':x:'
-    path: mod/primitive_root.hpp
-    title: mod/primitive_root.hpp
-  - icon: ':x:'
-    path: nt/factor.hpp
-    title: nt/factor.hpp
-  - icon: ':x:'
-    path: nt/primetest.hpp
-    title: nt/primetest.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/reeds_sloane.test.cpp
-    title: test/1_mytest/reeds_sloane.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+  bundledCode: "#line 1 \"seq/reeds_sloane.hpp\"\n#include \"other/bit.hpp\n#line\
+    \ 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
@@ -108,10 +76,36 @@ data:
     \ (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while\
     \ (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\
     \n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"mod/dynamic_modint.hpp\"\
-    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
     \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
     \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
@@ -190,7 +184,7 @@ data:
     \nll primitive_root_prime_power_64(ll p, ll e) {\r\n  assert(p >= 3);\r\n  ll\
     \ g = primitive_root_64(p);\r\n  ll q = p;\r\n  ll phi = p - 1;\r\n  FOR(e - 1)\
     \ {\r\n    q *= p;\r\n    phi *= p;\r\n    if (mod_pow_64(g, phi / p, q) == 1)\
-    \ g += q / p;\r\n  }\r\n  return g;\r\n}\r\n#line 6 \"mod/dynamic_modint.hpp\"\
+    \ g += q / p;\r\n  }\r\n  return g;\r\n}\r\n#line 7 \"mod/dynamic_modint.hpp\"\
     \n\ntemplate <int id>\nstruct Dynamic_Modint {\n  static constexpr bool is_modint\
     \ = true;\n  using mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n\
     \  static u32 umod() { return bt.umod(); }\n\n  static int get_mod() { return\
@@ -230,7 +224,7 @@ data:
     \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
     \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
     \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
-    #line 4 \"seq/reeds_sloane.hpp\"\n\ntemplate <bool EVEN>\nvc<u32> Reeds_Sloane_Prime_Power(vc<u32>\
+    #line 5 \"seq/reeds_sloane.hpp\"\n\ntemplate <bool EVEN>\nvc<u32> Reeds_Sloane_Prime_Power(vc<u32>\
     \ S, int p, int e) {\n  using T = std::conditional_t<EVEN, u32, Dynamic_Modint<20260623>>;\n\
     \  u32 M = 1;\n  FOR(e) M *= p;\n  if constexpr (EVEN) {\n    assert(p == 2);\n\
     \  } else {\n    assert(p != 2);\n    T::set_mod(M);\n  }\n  int N = len(S);\n\
@@ -275,9 +269,9 @@ data:
     \ p, e));\n    if (len(Q) < len(Qk)) Q.resize(len(Qk));\n    FOR(i, len(Qk)) Q[i]\
     \ += ll(Qk[i]) * coef[k];\n  }\n  vc<mint> P(len(Q) - 1);\n  FOR(i, len(P)) FOR(j,\
     \ i + 1) P[i] += Q[j] * S[i - j];\n  return {P, Q};\n}\n"
-  code: "#include \"nt/factor.hpp\"\n#include \"mod/mod_inv.hpp\"\n#include \"mod/dynamic_modint.hpp\"\
-    \n\ntemplate <bool EVEN>\nvc<u32> Reeds_Sloane_Prime_Power(vc<u32> S, int p, int\
-    \ e) {\n  using T = std::conditional_t<EVEN, u32, Dynamic_Modint<20260623>>;\n\
+  code: "#include \"other/bit.hpp\n#include \"nt/factor.hpp\"\n#include \"mod/mod_inv.hpp\"\
+    \n#include \"mod/dynamic_modint.hpp\"\n\ntemplate <bool EVEN>\nvc<u32> Reeds_Sloane_Prime_Power(vc<u32>\
+    \ S, int p, int e) {\n  using T = std::conditional_t<EVEN, u32, Dynamic_Modint<20260623>>;\n\
     \  u32 M = 1;\n  FOR(e) M *= p;\n  if constexpr (EVEN) {\n    assert(p == 2);\n\
     \  } else {\n    assert(p != 2);\n    T::set_mod(M);\n  }\n  int N = len(S);\n\
     \  if (N == 0) return {1};\n\n  auto decompose = [&](T x) -> pair<T, int> {\n\
@@ -321,24 +315,13 @@ data:
     \ p, e));\n    if (len(Q) < len(Qk)) Q.resize(len(Qk));\n    FOR(i, len(Qk)) Q[i]\
     \ += ll(Qk[i]) * coef[k];\n  }\n  vc<mint> P(len(Q) - 1);\n  FOR(i, len(P)) FOR(j,\
     \ i + 1) P[i] += Q[j] * S[i - j];\n  return {P, Q};\n}\n"
-  dependsOn:
-  - nt/factor.hpp
-  - random/base.hpp
-  - nt/primetest.hpp
-  - mod/mongomery_modint.hpp
-  - mod/mod_inv.hpp
-  - mod/dynamic_modint.hpp
-  - mod/modint_common.hpp
-  - mod/primitive_root.hpp
-  - mod/mod_pow.hpp
-  - mod/barrett.hpp
+  dependsOn: []
   isVerificationFile: false
   path: seq/reeds_sloane.hpp
   requiredBy: []
-  timestamp: '2026-06-26 10:35:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/1_mytest/reeds_sloane.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: seq/reeds_sloane.hpp
 layout: document
 redirect_from:

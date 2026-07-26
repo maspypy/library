@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/xor/basis.hpp
     title: linalg/xor/basis.hpp
   - icon: ':question:'
@@ -10,14 +10,17 @@ data:
   - icon: ':question:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/nimber/nimber_impl.hpp\"\nnamespace NIM_PRODUCT {\r\n\
@@ -85,34 +88,61 @@ data:
     \ <typename T>\nvoid rd(Nimber<T> &x) {\n  fastio::rd(x.val);\n}\ntemplate <typename\
     \ T>\nvoid wt(Nimber<T> &x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing Nimber16\
     \ = Nimber<u16>;\nusing Nimber32 = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n\
-    #line 1 \"linalg/xor/basis.hpp\"\n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\
-    \u6210\u529F\u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\
-    \u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\n// array<UINT, MAX_DIM>\
-    \ rbasis: \u4E0A\u4E09\u89D2\u5316\u3055\u308C\u305F\u57FA\u5E95. [i][i]==1.\n\
-    // way<UINT,UINT> rbasis[i] \u3092 basis[j] \u3067\u4F5C\u308B\u65B9\u6CD5\ntemplate\
-    \ <int MAX_DIM>\nstruct Basis {\n  static_assert(MAX_DIM <= 128);\n  using UINT\
-    \ = conditional_t<(MAX_DIM <= 32), u32, conditional_t<(MAX_DIM <= 64), u64, u128>>;\n\
-    \  int rank;\n  array<UINT, MAX_DIM> basis;\n  array<UINT, MAX_DIM> rbasis;\n\
-    \  array<UINT, MAX_DIM> way;\n  Basis() : rank(0), basis{}, rbasis{}, way{} {}\n\
-    \n  // return : (sum==x \u306B\u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5\
-    )\n  pair<bool, UINT> solve(UINT x) {\n    UINT c = 0;\n    FOR(i, MAX_DIM) {\n\
-    \      if ((x >> i & 1) && (rbasis[i] != 0)) { c ^= way[i], x ^= rbasis[i]; }\n\
-    \    }\n    if (x == 0) return {true, c};\n    return {false, 0};\n  }\n\n  //\
-    \ return : (sum==x \u306B\u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5).\
-    \ false \u306E\u5834\u5408\u306B\u306F\u8FFD\u52A0\u3059\u308B\n  pair<bool, UINT>\
-    \ solve_or_add(UINT x) {\n    UINT y = x, c = 0;\n    FOR(i, MAX_DIM) {\n    \
-    \  if ((x >> i & 1) && (rbasis[i] != 0)) { c ^= way[i], x ^= rbasis[i]; }\n  \
-    \  }\n    if (x == 0) return {true, c};\n    int k = lowbit(x);\n    basis[rank]\
-    \ = y, rbasis[k] = x, way[k] = c | UINT(1) << rank, ++rank;\n    return {false,\
-    \ 0};\n  }\n};\n#line 3 \"nt/nimber/solve_quadratic.hpp\"\n\nnamespace NIMBER_QUADRATIC\
-    \ {\n// x^2+x==a \u3092\u89E3\u304F. Trace(a)==0 \u304C\u5FC5\u8981.\n// Nimber\
-    \ \u3067\u306F Trace \u306F topbit.\n// topbit==0 \u3067\u3042\u308B\u7A7A\u9593\
-    \u304B\u3089\u5076\u6570\u5168\u4F53\u3078\u306E\u5168\u5358\u5C04\u304C\u3042\
-    \u308B.\n// \u3053\u308C\u3092\u524D\u8A08\u7B97\u3057\u305F\u3044. \u7DDA\u5F62\
-    \u5199\u50CF\u306A\u306E\u3067\u9023\u7ACB\u65B9\u7A0B\u5F0F\u3092\u89E3\u3044\
-    \u3066\u57CB\u3081\u8FBC\u3080\u3060\u3051\u3067\u3088\u3044.\n\nu64 Q[4][65536];\n\
-    \nvoid __attribute__((constructor)) precalc() {\n  Basis<63> B;\n  FOR(i, 63)\
-    \ {\n    Nimber64 x(u64(1) << (i + 1));\n    x = x.square() + x;\n    assert(!B.solve_or_add(x.val).fi);\n\
+    #line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"linalg/xor/basis.hpp\"\n\n// basis[i]:\
+    \ i \u756A\u76EE\u306B\u8FFD\u52A0\u6210\u529F\u3057\u305F\u3082\u306E. \u5225\
+    \u306E\u30E9\u30D9\u30EB\u304C\u3042\u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\
+    \u3059\u308B.\n// array<UINT, MAX_DIM> rbasis: \u4E0A\u4E09\u89D2\u5316\u3055\u308C\
+    \u305F\u57FA\u5E95. [i][i]==1.\n// way<UINT,UINT> rbasis[i] \u3092 basis[j] \u3067\
+    \u4F5C\u308B\u65B9\u6CD5\ntemplate <int MAX_DIM>\nstruct Basis {\n  static_assert(MAX_DIM\
+    \ <= 128);\n  using UINT = conditional_t<(MAX_DIM <= 32), u32,\n             \
+    \                conditional_t<(MAX_DIM <= 64), u64, u128>>;\n  int rank;\n  array<UINT,\
+    \ MAX_DIM> basis;\n  array<UINT, MAX_DIM> rbasis;\n  array<UINT, MAX_DIM> way;\n\
+    \  Basis() : rank(0), basis{}, rbasis{}, way{} {}\n\n  // return : (sum==x \u306B\
+    \u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5)\n  pair<bool, UINT> solve(UINT\
+    \ x) {\n    UINT c = 0;\n    FOR(i, MAX_DIM) {\n      if ((x >> i & 1) && (rbasis[i]\
+    \ != 0)) {\n        c ^= way[i], x ^= rbasis[i];\n      }\n    }\n    if (x ==\
+    \ 0) return {true, c};\n    return {false, 0};\n  }\n\n  // return : (sum==x \u306B\
+    \u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5). false \u306E\u5834\u5408\u306B\
+    \u306F\u8FFD\u52A0\u3059\u308B\n  pair<bool, UINT> solve_or_add(UINT x) {\n  \
+    \  UINT y = x, c = 0;\n    FOR(i, MAX_DIM) {\n      if ((x >> i & 1) && (rbasis[i]\
+    \ != 0)) {\n        c ^= way[i], x ^= rbasis[i];\n      }\n    }\n    if (x ==\
+    \ 0) return {true, c};\n    int k = lowbit(x);\n    basis[rank] = y, rbasis[k]\
+    \ = x, way[k] = c | UINT(1) << rank, ++rank;\n    return {false, 0};\n  }\n};\n\
+    #line 3 \"nt/nimber/solve_quadratic.hpp\"\n\nnamespace NIMBER_QUADRATIC {\n//\
+    \ x^2+x==a \u3092\u89E3\u304F. Trace(a)==0 \u304C\u5FC5\u8981.\n// Nimber \u3067\
+    \u306F Trace \u306F topbit.\n// topbit==0 \u3067\u3042\u308B\u7A7A\u9593\u304B\
+    \u3089\u5076\u6570\u5168\u4F53\u3078\u306E\u5168\u5358\u5C04\u304C\u3042\u308B\
+    .\n// \u3053\u308C\u3092\u524D\u8A08\u7B97\u3057\u305F\u3044. \u7DDA\u5F62\u5199\
+    \u50CF\u306A\u306E\u3067\u9023\u7ACB\u65B9\u7A0B\u5F0F\u3092\u89E3\u3044\u3066\
+    \u57CB\u3081\u8FBC\u3080\u3060\u3051\u3067\u3088\u3044.\n\nu64 Q[4][65536];\n\n\
+    void __attribute__((constructor)) precalc() {\n  Basis<63> B;\n  FOR(i, 63) {\n\
+    \    Nimber64 x(u64(1) << (i + 1));\n    x = x.square() + x;\n    assert(!B.solve_or_add(x.val).fi);\n\
     \  }\n  FOR(k, 63) {\n    int t = k / 16, i = k % 16;\n    u64 X = B.way[k] *\
     \ 2;\n    FOR(s, 1 << i) Q[t][s | 1 << i] = Q[t][s] ^ X;\n  }\n}\n\nu16 f(u16\
     \ a) { return Q[0][a]; }\nu32 f(u32 a) { return Q[0][a & 65535] ^ Q[1][a >> 16];\
@@ -147,11 +177,12 @@ data:
   - nt/nimber/base.hpp
   - nt/nimber/nimber_impl.hpp
   - linalg/xor/basis.hpp
+  - other/bit.hpp
   isVerificationFile: false
   path: nt/nimber/solve_quadratic.hpp
   requiredBy: []
-  timestamp: '2024-10-16 04:41:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-07-26 20:34:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/nimber.test.cpp
 documentation_of: nt/nimber/solve_quadratic.hpp

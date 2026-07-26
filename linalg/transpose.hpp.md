@@ -6,9 +6,6 @@ data:
     path: linalg/diagonalize_triangular_matrix.hpp
     title: linalg/diagonalize_triangular_matrix.hpp
   - icon: ':warning:'
-    path: other/sliding_puzzle_solver.hpp
-    title: other/sliding_puzzle_solver.hpp
-  - icon: ':warning:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
   _extendedVerifiedWith:
@@ -40,7 +37,6 @@ data:
   requiredBy:
   - poly/coef_of_rational_fps_2d.hpp
   - linalg/diagonalize_triangular_matrix.hpp
-  - other/sliding_puzzle_solver.hpp
   timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

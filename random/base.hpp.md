@@ -5,12 +5,9 @@ data:
   - icon: ':x:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':x:'
-    path: geo/count_points_in_triangles.hpp
-    title: geo/count_points_in_triangles.hpp
   - icon: ':warning:'
     path: geo/delaunay_triangulation_of_convex_polygon.hpp
     title: geo/delaunay_triangulation_of_convex_polygon.hpp
@@ -32,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
   - icon: ':heavy_check_mark:'
@@ -62,16 +59,16 @@ data:
   - icon: ':x:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':x:'
@@ -83,7 +80,7 @@ data:
   - icon: ':x:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':x:'
@@ -104,7 +101,7 @@ data:
   - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':warning:'
@@ -143,7 +140,7 @@ data:
   - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
   - icon: ':x:'
@@ -161,18 +158,12 @@ data:
   - icon: ':question:'
     path: random/random_monge.hpp
     title: random/random_monge.hpp
-  - icon: ':x:'
-    path: random/random_polygon.hpp
-    title: random/random_polygon.hpp
   - icon: ':warning:'
     path: random/random_real.hpp
     title: random/random_real.hpp
   - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
-  - icon: ':x:'
-    path: seq/reeds_sloane.hpp
-    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
@@ -182,10 +173,10 @@ data:
   - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   - icon: ':warning:'
@@ -210,7 +201,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/alien.test.cpp
     title: test/1_mytest/alien.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_cycle_common_vertex.test.cpp
     title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':x:'
@@ -297,10 +288,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/count_points_in_triangles.test.cpp
-    title: test/1_mytest/count_points_in_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/decremental_fastset.test.cpp
     title: test/1_mytest/decremental_fastset.test.cpp
   - icon: ':heavy_check_mark:'
@@ -321,7 +309,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_segtree_sparse.test.cpp
     title: test/1_mytest/dynamic_segtree_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enum_partitions.test.cpp
     title: test/1_mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -336,15 +324,6 @@ data:
   - icon: ':x:'
     path: test/1_mytest/factorial_998.test.cpp
     title: test/1_mytest/factorial_998.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/fenwick01.test.cpp
-    title: test/1_mytest/fenwick01.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/fenwick_max_right.test.cpp
-    title: test/1_mytest/fenwick_max_right.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/fenwick_raq.test.cpp
-    title: test/1_mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_C4.test.cpp
     title: test/1_mytest/find_C4.test.cpp
@@ -369,7 +348,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/fps_inv_2d.test.cpp
     title: test/1_mytest/fps_inv_2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum.test.cpp
     title: test/1_mytest/geometric_sequence_sum.test.cpp
   - icon: ':x:'
@@ -486,10 +465,10 @@ data:
   - icon: ':x:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
   - icon: ':heavy_check_mark:'
@@ -538,9 +517,6 @@ data:
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
   - icon: ':x:'
-    path: test/1_mytest/polygon_triangulation.test.cpp
-    title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
     path: test/1_mytest/power_projection.test.cpp
     title: test/1_mytest/power_projection.test.cpp
   - icon: ':x:'
@@ -558,7 +534,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':x:'
@@ -597,15 +573,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_test.test.cpp
     title: test/1_mytest/rbst_test.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/rect_add_pt_sum.test.cpp
-    title: test/1_mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/reduce_intervals.test.cpp
     title: test/1_mytest/reduce_intervals.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/reeds_sloane.test.cpp
-    title: test/1_mytest/reeds_sloane.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_edge.test.cpp
     title: test/1_mytest/remove_one_edge.test.cpp
@@ -633,7 +603,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/smawk.test.cpp
     title: test/1_mytest/smawk.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
   - icon: ':x:'
@@ -654,13 +624,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/stern_brocot.test.cpp
     title: test/1_mytest/stern_brocot.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
   - icon: ':x:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sum_over_bit_positions.test.cpp
     title: test/1_mytest/sum_over_bit_positions.test.cpp
   - icon: ':x:'
@@ -702,13 +672,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/xor_transpose.test.cpp
     title: test/1_mytest/xor_transpose.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':x:'
@@ -726,9 +696,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
     title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
-  - icon: ':x:'
-    path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-    title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
@@ -768,7 +735,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
     title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
@@ -783,7 +750,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/number_theory/primitive_root.test.cpp
     title: test/2_library_checker/number_theory/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/sqrt_mod.test.cpp
     title: test/2_library_checker/number_theory/sqrt_mod.test.cpp
   - icon: ':x:'
@@ -792,10 +759,10 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/number_theory/two_square.test.cpp
     title: test/2_library_checker/number_theory/two_square.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_dmint.test.cpp
     title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - icon: ':x:'
@@ -810,16 +777,16 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - icon: ':x:'
@@ -831,7 +798,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':x:'
@@ -852,7 +819,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
   - icon: ':x:'
@@ -870,7 +837,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1593.test.cpp
     title: test/3_yukicoder/1593.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1667.test.cpp
     title: test/3_yukicoder/1667.test.cpp
   - icon: ':x:'
@@ -879,10 +846,10 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1774.test.cpp
     title: test/3_yukicoder/1774.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1775.test.cpp
     title: test/3_yukicoder/1775.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1776.test.cpp
     title: test/3_yukicoder/1776.test.cpp
   - icon: ':x:'
@@ -900,7 +867,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1956.test.cpp
     title: test/3_yukicoder/1956.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2102.test.cpp
     title: test/3_yukicoder/2102.test.cpp
   - icon: ':x:'
@@ -909,7 +876,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2120.test.cpp
     title: test/3_yukicoder/2120.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2167.test.cpp
     title: test/3_yukicoder/2167.test.cpp
   - icon: ':x:'
@@ -933,7 +900,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2626.test.cpp
     title: test/3_yukicoder/2626.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
   - icon: ':x:'
@@ -960,10 +927,10 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
   - icon: ':x:'
@@ -993,7 +960,6 @@ data:
   - random/random_bracket.hpp
   - random/random_real.hpp
   - random/shuffle.hpp
-  - random/random_polygon.hpp
   - random/hash_vector.hpp
   - random/hash_pair.hpp
   - random/random_monge.hpp
@@ -1011,7 +977,6 @@ data:
   - graph/maximum_matching_size.hpp
   - graph/chromatic.hpp
   - setfunc/submask_range_query.hpp
-  - geo/count_points_in_triangles.hpp
   - geo/closest_pair.hpp
   - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/minimum_enclosing_circle.hpp
@@ -1038,7 +1003,6 @@ data:
   - linalg/det_A_plus_xB.hpp
   - alg/monoid/rollinghash.hpp
   - seq/sidon_sequence.hpp
-  - seq/reeds_sloane.hpp
   - nt/divisors.hpp
   - nt/crt.hpp
   - nt/two_square.hpp
@@ -1107,7 +1071,6 @@ data:
   - test/1_mytest/minmax_add.test.cpp
   - test/1_mytest/palindrome_decomposition_dp.test.cpp
   - test/1_mytest/subset_sum.test.cpp
-  - test/1_mytest/fenwick_max_right.test.cpp
   - test/1_mytest/stern_brocot.test.cpp
   - test/1_mytest/matching.test.cpp
   - test/1_mytest/poly_root_finding.test.cpp
@@ -1178,7 +1141,6 @@ data:
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/max_min.test.cpp
   - test/1_mytest/minplus_convex.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/minplus_conv_triple.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp
@@ -1198,7 +1160,6 @@ data:
   - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/find_cycle_minimum.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
-  - test/1_mytest/rect_add_pt_sum.test.cpp
   - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/max_max.test.cpp
   - test/1_mytest/add_chmin_chmax.test.cpp
@@ -1220,7 +1181,6 @@ data:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/vandermonde.test.cpp
-  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/powerquery.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/min_max.test.cpp
@@ -1244,7 +1204,6 @@ data:
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/range_mex.test.cpp
-  - test/1_mytest/count_points_in_triangles.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/is_substring.test.cpp
   - test/1_mytest/summin_add.test.cpp
@@ -1258,10 +1217,8 @@ data:
   - test/1_mytest/first_mod_range_of_linear.test.cpp
   - test/1_mytest/summin_assign.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
-  - test/1_mytest/fenwick01.test.cpp
   - test/1_mytest/bigint.test.cpp
   - test/1_mytest/find_C4.test.cpp
-  - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/kdtree_am.test.cpp
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
@@ -1309,7 +1266,6 @@ data:
   - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/2_library_checker/geometry/closest_pair_dc.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp

@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -104,51 +107,78 @@ data:
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
     \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/sum_over_bit_positions.test.cpp\"\n\n#line 2 \"ds/my_bitset.hpp\"\
-    \n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
-    // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
-    \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
-    \u3057\u305F\u304F\u306A\u3044\u3068\u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\
-    \u8981\u306A\u3068\u304D\u306B\u4F7F\u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n\
-    \  int N;\n  vc<u64> dat;\n\n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int\
-    \ N = 0, int x = 0) : N(N) {\n    assert(x == 0 || x == 1);\n    u64 v = (x ==\
-    \ 0 ? 0 : -1);\n    dat.assign((N + 63) >> 6, v);\n    if (N) dat.back() >>= (64\
-    \ * len(dat) - N);\n  }\n\n  int size() { return N; }\n\n  void resize(int size)\
-    \ {\n    dat.resize((size + 63) >> 6);\n    int remainingBits = size & 63;\n \
-    \   if (remainingBits != 0) {\n      u64 mask = (u64(1) << remainingBits) - 1;\n\
-    \      dat.back() &= mask;\n    }\n    N = size;\n  }\n\n  void fill0() { fill(all(dat),\
-    \ u64(0)); }\n  void fill1() {\n    fill(all(dat), u64(-1));\n    resize(N);\n\
-    \  }\n\n  void append(int idx, bool b) {\n    assert(N == idx);\n    resize(idx\
-    \ + 1), (*this)[idx] = b;\n  }\n\n  static T from_string(string &S) {\n    int\
-    \ N = len(S);\n    T ANS(N);\n    FOR(i, N) ANS[i] = (S[i] == '1');\n    return\
-    \ ANS;\n  }\n\n  class Proxy {\n   public:\n    Proxy(vc<u64> &d, int i) : dat(d),\
-    \ index(i) {}\n    operator bool() const { return (dat[index >> 6] >> (index &\
-    \ 63)) & 1; }\n\n    Proxy &operator=(u64 value) {\n      dat[index >> 6] &= ~(u64(1)\
-    \ << (index & 63));\n      dat[index >> 6] |= (value & 1) << (index & 63);\n \
-    \     return *this;\n    }\n    void flip() {\n      dat[index >> 6] ^= (u64(1)\
-    \ << (index & 63));  // XOR to flip the bit\n    }\n\n   private:\n    vc<u64>\
-    \ &dat;\n    int index;\n  };\n\n  Proxy operator[](int i) {\n    assert(0 <=\
-    \ i && i < N);\n    return Proxy(dat, i);\n  }\n\n  bool operator==(const T &p)\
-    \ const {\n    assert(N == p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i])\
-    \ return false;\n    return true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N\
-    \ == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n\
-    \  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i]\
-    \ |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N\
-    \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
-    \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
-    \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
-    \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
-    \ N);\n    return p;\n  }\n\n  void set_minus_inplace(T &other) {\n    assert(N\
-    \ == other.N);\n    FOR(i, len(dat)) dat[i] = dat[i] & (~other.dat[i]);\n  }\n\
-    \n  T set_minus(T other) {\n    assert(N == other.N);\n    FOR(i, len(dat)) other.dat[i]\
-    \ = dat[i] & (~other.dat[i]);\n    return other;\n  }\n\n  int count() {\n   \
-    \ int ans = 0;\n    for (u64 val : dat) ans += popcnt(val);\n    return ans;\n\
-    \  }\n\n  int dot(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n    FOR(i,\
-    \ len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n    return ans;\n  }\n\n  int next(int\
-    \ i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n   \
-    \ {\n      u64 x = dat[k];\n      int s = i & 63;\n      x = (x >> s) << s;\n\
-    \      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat))\
-    \ {\n      if (dat[idx] == 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n\
+    #line 3 \"test/1_mytest/sum_over_bit_positions.test.cpp\"\n\n#line 2 \"other/bit.hpp\"\
+    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
+    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
+    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
+    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
+    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
+    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
+    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
+    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
+    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
+    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
+    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
+    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  struct iter {\n    UINT s;\n\
+    \    int operator*() const { return lowbit(s); }\n    void operator++() { s &=\
+    \ s - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  struct iter {\n    UINT s,\
+    \ t;\n    bool done = false;\n    UINT operator*() const { return t; }\n    void\
+    \ operator++() {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool\
+    \ operator!=(nullptr_t) const { return !done; }\n  };\n  iter begin() const {\
+    \ return {s, s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\nconstexpr\
+    \ u64 full_mask(int n) { return n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3\
+    \ \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n//\
+    \ https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
+    \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
+    \u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\u3057\u305F\u304F\u306A\u3044\u3068\
+    \u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\u8981\u306A\u3068\u304D\u306B\u4F7F\
+    \u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n  int N;\n  vc<u64> dat;\n\
+    \n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int N = 0, int x = 0) : N(N) {\n\
+    \    assert(x == 0 || x == 1);\n    u64 v = (x == 0 ? 0 : -1);\n    dat.assign((N\
+    \ + 63) >> 6, v);\n    if (N) dat.back() >>= (64 * len(dat) - N);\n  }\n\n  int\
+    \ size() { return N; }\n\n  void resize(int size) {\n    dat.resize((size + 63)\
+    \ >> 6);\n    int remainingBits = size & 63;\n    if (remainingBits != 0) {\n\
+    \      u64 mask = (u64(1) << remainingBits) - 1;\n      dat.back() &= mask;\n\
+    \    }\n    N = size;\n  }\n\n  void fill0() { fill(all(dat), u64(0)); }\n  void\
+    \ fill1() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n\n  void append(int\
+    \ idx, bool b) {\n    assert(N == idx);\n    resize(idx + 1), (*this)[idx] = b;\n\
+    \  }\n\n  static T from_string(string &S) {\n    int N = len(S);\n    T ANS(N);\n\
+    \    FOR(i, N) ANS[i] = (S[i] == '1');\n    return ANS;\n  }\n\n  class Proxy\
+    \ {\n   public:\n    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}\n    operator\
+    \ bool() const { return (dat[index >> 6] >> (index & 63)) & 1; }\n\n    Proxy\
+    \ &operator=(u64 value) {\n      dat[index >> 6] &= ~(u64(1) << (index & 63));\n\
+    \      dat[index >> 6] |= (value & 1) << (index & 63);\n      return *this;\n\
+    \    }\n    void flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63));\
+    \  // XOR to flip the bit\n    }\n\n   private:\n    vc<u64> &dat;\n    int index;\n\
+    \  };\n\n  Proxy operator[](int i) {\n    assert(0 <= i && i < N);\n    return\
+    \ Proxy(dat, i);\n  }\n\n  bool operator==(const T &p) const {\n    assert(N ==\
+    \ p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return false;\n    return\
+    \ true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N == p.N);\n    FOR(i,\
+    \ len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n  T &operator|=(const\
+    \ T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] |= p.dat[i];\n \
+    \   return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N == p.N);\n\
+    \    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n  T operator&(const\
+    \ T &p) const { return T(*this) &= p; }\n  T operator|(const T &p) const { return\
+    \ T(*this) |= p; }\n  T operator^(const T &p) const { return T(*this) ^= p; }\n\
+    \  T operator~() const {\n    T p = (*this);\n    p.flip_range(0, N);\n    return\
+    \ p;\n  }\n\n  void set_minus_inplace(T &other) {\n    assert(N == other.N);\n\
+    \    FOR(i, len(dat)) dat[i] = dat[i] & (~other.dat[i]);\n  }\n\n  T set_minus(T\
+    \ other) {\n    assert(N == other.N);\n    FOR(i, len(dat)) other.dat[i] = dat[i]\
+    \ & (~other.dat[i]);\n    return other;\n  }\n\n  int count() {\n    int ans =\
+    \ 0;\n    for (u64 val : dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int\
+    \ dot(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n    FOR(i, len(dat)) ans\
+    \ += popcnt(dat[i] & p.dat[i]);\n    return ans;\n  }\n\n  int next(int i) {\n\
+    \    chmax(i, 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n    {\n   \
+    \   u64 x = dat[k];\n      int s = i & 63;\n      x = (x >> s) << s;\n      if\
+    \ (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat)) {\n \
+    \     if (dat[idx] == 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n\
     \    }\n    return N;\n  }\n\n  int prev(int i) {\n    chmin(i, N - 1);\n    if\
     \ (i <= -1) return -1;\n    int k = i >> 6;\n    if ((i & 63) < 63) {\n      u64\
     \ x = dat[k];\n      x &= (u64(1) << ((i & 63) + 1)) - 1;\n      if (x) return\
@@ -304,13 +334,14 @@ data:
   dependsOn:
   - my_template.hpp
   - ds/my_bitset.hpp
+  - other/bit.hpp
   - random/base.hpp
   - ds/sum_over_bit_positions.hpp
   isVerificationFile: true
   path: test/1_mytest/sum_over_bit_positions.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 20:34:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sum_over_bit_positions.test.cpp
 layout: document

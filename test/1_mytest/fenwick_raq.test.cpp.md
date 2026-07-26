@@ -1,37 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/acted_monoid/sum_add.hpp
-    title: alg/acted_monoid/sum_add.hpp
-  - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':x:'
-    path: ds/fenwicktree/fenwicktree.hpp
-    title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
-    path: ds/fenwicktree/fenwicktree_range_add.hpp
-    title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':x:'
-    path: ds/segtree/lazy_segtree.hpp
-    title: ds/segtree/lazy_segtree.hpp
-  - icon: ':question:'
-    path: my_template.hpp
-    title: my_template.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
-    links:
-    - https://judge.yosupo.jp/problem/aplusb
+  attributes: {}
   bundledCode: "#line 1 \"test/1_mytest/fenwick_raq.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
     #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
@@ -189,11 +164,12 @@ data:
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    return x + a * E(size);\r\n  }\r\n\
-    };\r\n#line 1 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
-    \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
-    \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
-    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
+    };\r\n#line 1 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n#line 2 \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n#include \"other/bit.hpp\n#line 4 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate\
+    \ <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n\
+    \  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\
+    \n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
     \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
     \ G::unit());\n    total = G::unit();\n  }\n  void build(const vc<E>& v) {\n \
     \   build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template <typename\
@@ -227,20 +203,20 @@ data:
     \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
     \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
     \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i + (1 << k) <= L || check(t))\
-    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i,\
-    \ x)\n  template <class F>\n  int max_right_with_index(const F check, int L =\
-    \ 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n    int\
-    \ i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n   \
-    \   while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
+    \ {\n          i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n\
+    \  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
     \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
     \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i\
     \ + (1 << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
     \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) { i += (1 <<\
-    \ k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n \
-    \ int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
+    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
+    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
+    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
     \    E s = G::unit();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
     \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
     \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
@@ -312,18 +288,11 @@ data:
     \u3046\u3053\u3068\u306B\n  */\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
     \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
     \  return 0;\n}"
-  dependsOn:
-  - my_template.hpp
-  - ds/segtree/lazy_segtree.hpp
-  - alg/acted_monoid/sum_add.hpp
-  - alg/monoid/add.hpp
-  - ds/fenwicktree/fenwicktree_range_add.hpp
-  - ds/fenwicktree/fenwicktree.hpp
-  - random/base.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/1_mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/fenwick_raq.test.cpp

@@ -1,41 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':x:'
-    path: ds/fenwicktree/fenwicktree.hpp
-    title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
-    path: ds/fenwicktree/fenwicktree_01.hpp
-    title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
-    path: geo/angle_sort.hpp
-    title: geo/angle_sort.hpp
-  - icon: ':question:'
-    path: geo/base.hpp
-    title: geo/base.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: random/random_polygon.hpp
-    title: random/random_polygon.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/count_points_in_triangles.test.cpp
-    title: test/1_mytest/count_points_in_triangles.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/polygon_triangulation.test.cpp
-    title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
-    path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-    title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  _isVerificationFailed: true
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://codeforces.com/contest/13/problem/D
@@ -115,13 +85,14 @@ data:
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line\
-    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\
-    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ 2 \"ds/fenwicktree/fenwicktree.hpp\"\n#include \"other/bit.hpp\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 4 \"ds/fenwicktree/fenwicktree.hpp\"\n\n\
+    template <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
     \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
     \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
     \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
@@ -158,20 +129,20 @@ data:
     \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
     \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
     \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i + (1 << k) <= L || check(t))\
-    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i,\
-    \ x)\n  template <class F>\n  int max_right_with_index(const F check, int L =\
-    \ 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n    int\
-    \ i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n   \
-    \   while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
+    \ {\n          i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n\
+    \  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
     \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
     \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i\
     \ + (1 << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
     \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) { i += (1 <<\
-    \ k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n \
-    \ int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
+    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
+    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
+    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
     \    E s = G::unit();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
     \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
     \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
@@ -306,23 +277,13 @@ data:
     \ int ub = binary_search([&](int n) -> bool { return (n == 0 ? true : C[n - 1].det(p)\
     \ >= 0); }, 0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
     \      }\n    }\n  }\n};"
-  dependsOn:
-  - geo/angle_sort.hpp
-  - geo/base.hpp
-  - random/base.hpp
-  - ds/fenwicktree/fenwicktree_01.hpp
-  - ds/fenwicktree/fenwicktree.hpp
-  - alg/monoid/add.hpp
+  dependsOn: []
   isVerificationFile: false
   path: geo/count_points_in_triangles.hpp
-  requiredBy:
-  - random/random_polygon.hpp
-  timestamp: '2026-07-26 16:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/1_mytest/polygon_triangulation.test.cpp
-  - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

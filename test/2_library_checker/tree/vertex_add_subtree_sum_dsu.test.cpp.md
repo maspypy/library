@@ -1,40 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':x:'
-    path: ds/fenwicktree/fenwicktree.hpp
-    title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
-  - icon: ':question:'
-    path: graph/base.hpp
-    title: graph/base.hpp
-  - icon: ':x:'
-    path: graph/dsu_on_tree.hpp
-    title: graph/dsu_on_tree.hpp
-  - icon: ':question:'
-    path: graph/tree.hpp
-    title: graph/tree.hpp
-  - icon: ':question:'
-    path: my_template.hpp
-    title: my_template.hpp
-  - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
-    links:
-    - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
+  attributes: {}
   bundledCode: "#line 1 \"test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
@@ -466,13 +438,14 @@ data:
     \ {\n      if (e.to == tree.parent[v]) continue;\n      if (tree.head[e.to] !=\
     \ e.to) continue;\n      FOR(idx, tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]);\
     \ }\n    }\n    query(v);\n\n    if (tree.head[v] == v) reset();\n  }\n}\n#line\
-    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\
-    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ 2 \"ds/fenwicktree/fenwicktree.hpp\"\n#include \"other/bit.hpp\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 4 \"ds/fenwicktree/fenwicktree.hpp\"\n\n\
+    template <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
     \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
     \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
     \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
@@ -509,20 +482,20 @@ data:
     \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
     \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
     \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i + (1 << k) <= L || check(t))\
-    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i,\
-    \ x)\n  template <class F>\n  int max_right_with_index(const F check, int L =\
-    \ 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n    int\
-    \ i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n   \
-    \   while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
+    \ {\n          i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n\
+    \  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
     \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
     \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i\
     \ + (1 << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
     \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) { i += (1 <<\
-    \ k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n \
-    \ int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
+    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
+    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
+    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::unit()));\n\
     \    E s = G::unit();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
     \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
     \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
@@ -564,19 +537,11 @@ data:
     \ history.clear();\n  };\n  DSU_on_Tree(tree, ADD, QUERY, RESET);\n  for (auto&&\
     \ ans: ANS)\n    if (ans != -1) print(ans);\n}\n\nsigned main() {\n  solve();\n\
     \n  return 0;\n}\n"
-  dependsOn:
-  - my_template.hpp
-  - other/io.hpp
-  - graph/dsu_on_tree.hpp
-  - graph/tree.hpp
-  - graph/base.hpp
-  - ds/hashmap.hpp
-  - ds/fenwicktree/fenwicktree.hpp
-  - alg/monoid/add.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp

@@ -14,13 +14,10 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/polygon_triangulation.test.cpp
-    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
@@ -279,7 +276,6 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1777.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: graph/planar_graph.hpp
 layout: document
 redirect_from:

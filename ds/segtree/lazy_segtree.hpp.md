@@ -16,9 +16,6 @@ data:
     title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/1_mytest/fenwick_raq.test.cpp
-    title: test/1_mytest/fenwick_raq.test.cpp
-  - icon: ':x:'
     path: test/1_mytest/max_assign.test.cpp
     title: test/1_mytest/max_assign.test.cpp
   - icon: ':x:'
@@ -48,7 +45,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':x:'
@@ -78,9 +75,6 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1234.test.cpp
     title: test/3_yukicoder/1234.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/1270.test.cpp
-    title: test/3_yukicoder/1270.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1548.test.cpp
     title: test/3_yukicoder/1548.test.cpp
@@ -119,7 +113,7 @@ data:
     title: test/4_aoj/GRL_5_E.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -265,10 +259,9 @@ data:
   - ds/rectangle_union.hpp
   - seq/common_interval_decomposition.hpp
   timestamp: '2026-02-27 23:10:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1720.test.cpp
-  - test/3_yukicoder/1270.test.cpp
   - test/3_yukicoder/1548.test.cpp
   - test/3_yukicoder/749.test.cpp
   - test/3_yukicoder/899.test.cpp
@@ -296,7 +289,6 @@ data:
   - test/1_mytest/summin_add.test.cpp
   - test/1_mytest/maxidx_add.test.cpp
   - test/1_mytest/summin_assign.test.cpp
-  - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
