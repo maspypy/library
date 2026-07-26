@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []

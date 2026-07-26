@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':x:'
@@ -45,24 +45,24 @@ data:
     \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
     using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
     \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>, \"\
-    infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int>\
-    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ numeric_limits<double>::infinity();\ntemplate <>\nconstexpr long double infty<long\
-    \ double> =\n    numeric_limits<long double>::infinity();\ntemplate <class>\n\
-    constexpr bool dependent_false = false;\n\nusing pi = pair<ll, ll>;\nusing vi\
-    \ = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\n\
-    using vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
+    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
+    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
+    template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
+    \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -91,31 +91,27 @@ data:
     \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
     T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
     \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  static_assert(is_unsigned_v<UINT>);\n  struct iter {\n    UINT s;\n   \
-    \ iter(UINT s) : s(s) {}\n    int operator*() const { return lowbit(s); }\n  \
-    \  iter &operator++() {\n      s &= s - 1;\n      return *this;\n    }\n    bool\
-    \ operator!=(const iter) const { return s != 0; }\n  };\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  iter begin() const { return iter(s); }\n  iter end() const {\
-    \ return iter(0); }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  struct iter {\n    UINT s, t;\n    bool ed;\n    iter(UINT s) : s(s), t(s),\
-    \ ed(0) {}\n    UINT operator*() const { return s ^ t; }\n    iter &operator++()\
-    \ {\n      (t == 0 ? ed = 1 : t = (t - 1) & s);\n      return *this;\n    }\n\
-    \    bool operator!=(const iter) const { return !ed; }\n  };\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  iter begin() const { return iter(s); }\n  iter end() const {\
-    \ return iter(0); }\n};\n\n// require y > 0\ntemplate <typename T>\nT floor(T\
-    \ x, T y) {\n  T q = x / y, r = x % y;\n  return q - (r < 0);\n}\n\n// require\
-    \ y > 0\ntemplate <typename T>\nT ceil(T x, T y) {\n  T q = x / y, r = x % y;\n\
-    \  return q + (r > 0);\n}\n\n// require y > 0\ntemplate <typename T>\nT bmod(T\
-    \ x, T y) {\n  T r = x % y;\n  return (r < 0 ? r + y : r);\n}\n\n// require y\
-    \ > 0\ntemplate <typename T>\npair<T, T> divmod(T x, T y) {\n  T q = x / y, r\
-    \ = x % y;\n  if (r < 0) --q, r += y;\n  return {q, r};\n}\n\nconstexpr auto TEN\
-    \ = [] {\n  array<ll, 19> A{};\n  A[0] = 1;\n  for (int i = 1; i < 19; ++i) A[i]\
-    \ = 10 * A[i - 1];\n  return A;\n}();\n\ntemplate <typename T, typename U>\nT\
-    \ SUM(const U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n}\n\n\
-    #define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\ntemplate\
-    \ <class C, class T>\ninline long long LB(const C &c, const T &x) {\n  return\
-    \ lower_bound(c.begin(), c.end(), x) - c.begin();\n}\ntemplate <class C, class\
-    \ T>\ninline long long UB(const C &c, const T &x) {\n  return upper_bound(c.begin(),\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\n// require y > 0\ntemplate <typename T>\nT floor(T\
+    \ x, T y) {\n  return x / y - (x % y < 0);\n}\n\n// require y > 0\ntemplate <typename\
+    \ T>\nT ceil(T x, T y) {\n  return (x / y) + (x % y > 0);\n}\n\n// require y >\
+    \ 0\ntemplate <typename T>\nT bmod(T x, T y) {\n  T r = x % y;\n  return (r <\
+    \ 0 ? r + y : r);\n}\n\n// require y > 0\ntemplate <typename T>\npair<T, T> divmod(T\
+    \ x, T y) {\n  T q = x / y, r = x % y;\n  if (r < 0) --q, r += y;\n  return {q,\
+    \ r};\n}\n\nconstexpr auto TEN = [] {\n  array<u64, 20> A{};\n  A[0] = 1;\n  for\
+    \ (int i = 1; i < 20; ++i) A[i] = 10 * A[i - 1];\n  return A;\n}();\n\ntemplate\
+    \ <typename T, typename U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(),\
+    \ A.end(), T{});\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
+    template <class C, class T>\ninline long long LB(const C &c, const T &x) {\n \
+    \ return lower_bound(c.begin(), c.end(), x) - c.begin();\n}\ntemplate <class C,\
+    \ class T>\ninline long long UB(const C &c, const T &x) {\n  return upper_bound(c.begin(),\
     \ c.end(), x) - c.begin();\n}\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
     \ x.end())\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n\
     \  que.pop_front();\n  return a;\n}\ntemplate <class T, class Container, class\
@@ -433,7 +429,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/set_power_series/sps_exp.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 17:04:27+09:00'
+  timestamp: '2026-07-26 19:21:39+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/set_power_series/sps_exp.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: ds/decremental_fastset.hpp
     title: ds/decremental_fastset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
