@@ -1,6 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1634"
 #include "my_template.hpp"
 #include "other/io.hpp"
+#include "other/bit.hpp"
 #include "ds/hashmap.hpp"
 
 void solve() {
@@ -42,8 +43,8 @@ void solve() {
       swap(dp, newdp);
     }
     vvc<int> res(1 << N);
-    int full = (1 << N) - 1;
-    for (auto&& [s, x]: dp) {
+    int full = full_mask(N);
+    for (auto&& [s, x] : dp) {
       if (bl) {
         s = full - s;
         if (x) x = mod - x;
@@ -61,8 +62,8 @@ void solve() {
     if (X[s].empty() || Y[s].empty()) continue;
     auto &P = X[s], &Q = Y[s];
     HashMap<int> MP(len(P));
-    for (auto&& x: P) MP[x]++;
-    for (auto&& x: Q)
+    for (auto&& x : P) MP[x]++;
+    for (auto&& x : Q)
       if (MP.count(x)) ANS += MP[x];
   }
   ANS /= cf;

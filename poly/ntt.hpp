@@ -1,4 +1,5 @@
 #pragma once
+#include "other/bit.hpp"
 
 template <class mint>
 void ntt(vector<mint>& a, bool inverse) {

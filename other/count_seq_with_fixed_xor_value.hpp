@@ -1,10 +1,11 @@
+#include "other/bit.hpp"
 #include "mod/modint.hpp"
 
 // [0, LIM)^N のうちで、xor = X となるものの個数
 template <typename mint>
 mint count_seq_with_fixed_xor(ll N, ll LIM, ll X) {
   assert(LIM >= 1);
-  --LIM; // closed
+  --LIM;  // closed
   if (LIM == 0) return (X == 0 ? 1 : 0);
   int LOG = topbit(LIM) + 1;
   if (X >> LOG) return 0;
@@ -38,7 +39,7 @@ mint count_seq_with_fixed_xor(ll N, ll LIM, ll X) {
 template <typename mint>
 vc<mint> count_seq_with_fixed_xor_iota(ll nmax, ll LIM, ll X) {
   assert(LIM >= 1);
-  --LIM; // closed
+  --LIM;  // closed
   vc<mint> res(nmax + 1);
   if (LIM == 0) {
     if (X == 0) fill(all(res), mint(1));
@@ -68,7 +69,9 @@ vc<mint> count_seq_with_fixed_xor_iota(ll nmax, ll LIM, ll X) {
       }
     }
     FOR(n, nmax + 1) {
-      if (LIM1 * (n & 1) != X1) { ok[n] = 0; }
+      if (LIM1 * (n & 1) != X1) {
+        ok[n] = 0;
+      }
     }
   }
   FOR(n, nmax + 1) if (ok[n]) res[n] += mint(1);

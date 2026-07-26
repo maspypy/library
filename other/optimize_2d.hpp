@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "ds/hashmap.hpp"
 #include "random/base.hpp"
 

@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "ds/unionfind/unionfind.hpp"
 
 // same(L1,R1,L2,R2) みたいなことは出来ないと思う(必要なら rolling hash かな)

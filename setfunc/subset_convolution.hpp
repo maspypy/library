@@ -1,5 +1,5 @@
 #pragma once
-
+#include "other/bit.hpp"
 #include "setfunc/ranked_zeta.hpp"
 
 template <typename T, int LIM = 20>

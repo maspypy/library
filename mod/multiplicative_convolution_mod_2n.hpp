@@ -1,12 +1,11 @@
+#include "other/bit.hpp"
 #include "poly/convolution.hpp"
 
 template <typename mint>
-vc<mint> multiplicative_convolution_mod_2n(vc<mint>& A, vc<mint>& B){
+vc<mint> multiplicative_convolution_mod_2n(vc<mint> &A, vc<mint> &B) {
   int N = 0;
-  while((1<<N) < len(A)) ++N;
-  assert((1<<N) == len(A) && (1<<N) == len(B));
-  
-  int mask = (1 << N) - 1;
+  while ((1 << N) < len(A)) ++N;
+  assert((1 << N) == len(A) && (1 << N) == len(B));
 
   vc<vc<vc<mint>>> AA(N + 1);
   vc<vc<vc<mint>>> BB(N + 1);
@@ -24,7 +23,7 @@ vc<mint> multiplicative_convolution_mod_2n(vc<mint>& A, vc<mint>& B){
     AA[n].assign(H, vc<mint>(W));
     BB[n].assign(H, vc<mint>(W));
     CC[n].assign(H, vc<mint>(W));
-    int x = (1 << n) & mask;
+    int x = (1 << n) & full_mask(N);
     auto &a = AA[n], &b = BB[n];
     FOR(j, W) {
       a[0][j] = A[x];
@@ -33,7 +32,7 @@ vc<mint> multiplicative_convolution_mod_2n(vc<mint>& A, vc<mint>& B){
         a[1][j] = A[(1 << N) - x];
         b[1][j] = B[(1 << N) - x];
       }
-      x = (5 * x) & mask;
+      x = (5 * x) & full_mask(N);
     }
   }
   // n を固定して各軸方向に fft。合計 O(N2^N)
@@ -69,18 +68,20 @@ vc<mint> multiplicative_convolution_mod_2n(vc<mint>& A, vc<mint>& B){
       }
     }
     mint coef = mint(1) / mint(H);
-    FOR(i, H) FOR(j, W) c[i][j] *= coef;  
+    FOR(i, H) FOR(j, W) c[i][j] *= coef;
   }
 
   vc<mint> C(1 << N);
   FOR(n, N + 1) {
     auto [H, W] = shape(n);
-    int x = (1 << n) & mask;
+    int x = (1 << n) & full_mask(N);
     auto &c = CC[n];
     FOR(j, W) {
       C[x] = c[0][j];
-      if (H == 2) { C[(1 << N) - x] = c[1][j]; }
-      x = (5 * x) & mask;
+      if (H == 2) {
+        C[(1 << N) - x] = c[1][j];
+      }
+      x = (5 * x) & full_mask(N);
     }
   }
   return C;

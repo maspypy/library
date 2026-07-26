@@ -1,5 +1,7 @@
 #pragma once
 
+#include "other/bit.hpp"
+
 struct has_mod_impl {
   template <class T>
   static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});
