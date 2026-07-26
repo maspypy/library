@@ -30,6 +30,9 @@ data:
     path: ds/decremental_fastset.hpp
     title: ds/decremental_fastset.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/doubling.hpp
+    title: ds/doubling.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':heavy_check_mark:'
@@ -167,6 +170,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_K4.hpp
+    title: graph/count/count_K4.hpp
   - icon: ':warning:'
     path: graph/count/count_biconnected_subgraph.hpp
     title: graph/count/count_biconnected_subgraph.hpp
@@ -359,6 +365,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/modular_subset_sum.hpp
+    title: mod/modular_subset_sum.hpp
   - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
@@ -779,6 +788,9 @@ data:
   - icon: ':warning:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/substring_abundant_string.hpp
+    title: string/substring_abundant_string.hpp
   - icon: ':warning:'
     path: string/substring_count_in_substring.hpp
     title: string/substring_count_in_substring.hpp
@@ -867,6 +879,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convolution_all_1.test.cpp
     title: test/1_mytest/convolution_all_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_K4.test.cpp
+    title: test/1_mytest/count_K4.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
@@ -1161,6 +1176,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/substring_abundant.test.cpp
+    title: test/1_mytest/substring_abundant.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
@@ -1729,6 +1747,9 @@ data:
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1097.test.cpp
+    title: test/3_yukicoder/1097.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/114.test.cpp
     title: test/3_yukicoder/114.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1903,6 +1924,9 @@ data:
     path: test/3_yukicoder/1774.test.cpp
     title: test/3_yukicoder/1774.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1777.test.cpp
+    title: test/3_yukicoder/1777.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1781.test.cpp
     title: test/3_yukicoder/1781.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1972,6 +1996,9 @@ data:
     path: test/3_yukicoder/1962.test.cpp
     title: test/3_yukicoder/1962.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1977.test.cpp
+    title: test/3_yukicoder/1977.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1989.test.cpp
     title: test/3_yukicoder/1989.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2028,6 +2055,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2231.test.cpp
     title: test/3_yukicoder/2231.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2242.test.cpp
+    title: test/3_yukicoder/2242.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
@@ -2169,6 +2199,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/4_1.test.cpp
+    title: test/3_yukicoder/4_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
@@ -2424,6 +2457,7 @@ data:
   - graph/count/count_bridgeless_subgraph.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_unlabeled_tree.hpp
+  - graph/count/count_K4.hpp
   - graph/count/count_labeled_eulerian.hpp
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_unicyclic.hpp
@@ -2474,6 +2508,7 @@ data:
   - mod/multiplicative_convolution_mod_2n.hpp
   - mod/modfast.hpp
   - mod/modint.hpp
+  - mod/modular_subset_sum.hpp
   - mod/mod_log.hpp
   - mod/dynamic_modint.hpp
   - bigint/base.hpp
@@ -2506,6 +2541,7 @@ data:
   - ds/offline_query/coeffient_query_2d.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
+  - ds/doubling.hpp
   - ds/unionfind/parallel_unionfind.hpp
   - ds/decremental_fastset.hpp
   - ds/sparse_table/sparse_table.hpp
@@ -2517,6 +2553,7 @@ data:
   - string/longest_common_substring.hpp
   - string/suffix_lcp_change.hpp
   - string/substring_count_in_substring.hpp
+  - string/substring_abundant_string.hpp
   - string/suffix_tree.hpp
   - string/basic_substring_structure.hpp
   - string/prefix_substring_LCS.hpp
@@ -2636,11 +2673,13 @@ data:
   - test/3_yukicoder/2626.test.cpp
   - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/2649.test.cpp
+  - test/3_yukicoder/4_1.test.cpp
   - test/3_yukicoder/1821.test.cpp
   - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/1216.test.cpp
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/2230.test.cpp
+  - test/3_yukicoder/1097.test.cpp
   - test/3_yukicoder/1269.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/1641.test.cpp
@@ -2659,6 +2698,7 @@ data:
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1502.test.cpp
   - test/3_yukicoder/1321.test.cpp
+  - test/3_yukicoder/1977.test.cpp
   - test/3_yukicoder/255.test.cpp
   - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/2206.test.cpp
@@ -2704,6 +2744,7 @@ data:
   - test/3_yukicoder/2206_2.test.cpp
   - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/2242.test.cpp
   - test/3_yukicoder/1939.test.cpp
   - test/3_yukicoder/2525.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
@@ -2720,6 +2761,7 @@ data:
   - test/3_yukicoder/1260.test.cpp
   - test/3_yukicoder/1728.test.cpp
   - test/3_yukicoder/187.test.cpp
+  - test/3_yukicoder/1777.test.cpp
   - test/3_yukicoder/1036_4.test.cpp
   - test/3_yukicoder/1493.test.cpp
   - test/3_yukicoder/2243.test.cpp
@@ -2836,6 +2878,7 @@ data:
   - test/1_mytest/dyadic_rational.test.cpp
   - test/1_mytest/online_inv.test.cpp
   - test/1_mytest/catalan_convolution.test.cpp
+  - test/1_mytest/substring_abundant.test.cpp
   - test/1_mytest/power_projection.test.cpp
   - test/1_mytest/summax_assign.test.cpp
   - test/1_mytest/simple_perm.test.cpp
@@ -2857,6 +2900,7 @@ data:
   - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/enumerate_products.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
+  - test/1_mytest/count_K4.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp
   - test/1_mytest/count_P3P4P5.test.cpp
   - test/1_mytest/count_labeled_undirected.test.cpp
