@@ -22,7 +22,10 @@ using u128 = unsigned __int128;
 using f128 = __float128;
 
 template <class T>
-constexpr T infty = 0;
+constexpr T infty = [] {
+  static_assert(dependent_false<T>, "infty<T> is not defined");
+  return T{};
+}();
 template <>
 constexpr int infty<int> = 1'010'000'000;
 template <>
@@ -38,6 +41,8 @@ constexpr double infty<double> = numeric_limits<double>::infinity();
 template <>
 constexpr long double infty<long double> =
     numeric_limits<long double>::infinity();
+template <class>
+constexpr bool dependent_false = false;
 
 using pi = pair<ll, ll>;
 using vi = vector<ll>;
@@ -69,9 +74,9 @@ using pq_min = priority_queue<T, vector<T>, greater<T>>;
 #define FOR2(i, a) for (ll i = 0; i < ll(a); ++i)
 #define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)
 #define FOR4(i, a, b, c) for (ll i = a; i < ll(b); i += (c))
-#define FOR1_R(a) for (ll i = (a) - 1; i >= ll(0); --i)
-#define FOR2_R(i, a) for (ll i = (a) - 1; i >= ll(0); --i)
-#define FOR3_R(i, a, b) for (ll i = (b) - 1; i >= ll(a); --i)
+#define FOR1_R(a) for (ll i = ll(a) - 1; i >= ll(0); --i)
+#define FOR2_R(i, a) for (ll i = ll(a) - 1; i >= ll(0); --i)
+#define FOR3_R(i, a, b) for (ll i = ll(b) - 1; i >= ll(a); --i)
 #define overload4(a, b, c, d, e, ...) e
 #define overload3(a, b, c, d, ...) d
 #define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)
@@ -119,6 +124,7 @@ bool has_kth_bit(T x, int k) {
 
 template <typename UINT>
 struct all_bit {
+  static_assert(is_unsigned_v<UINT>);
   struct iter {
     UINT s;
     iter(UINT s) : s(s) {}
@@ -155,45 +161,41 @@ struct all_subset {
   iter end() const { return iter(0); }
 };
 
+// require y > 0
 template <typename T>
-T floor(T a, T b) {
-  return a / b - (a % b && (a ^ b) < 0);
-}
-template <typename T>
-T ceil(T x, T y) {
-  return floor(x + y - 1, y);
-}
-template <typename T>
-T bmod(T x, T y) {
-  return x - y * floor(x, y);
-}
-template <typename T>
-pair<T, T> divmod(T x, T y) {
-  T q = floor(x, y);
-  return {q, x - q * y};
+T floor(T x, T y) {
+  T q = x / y, r = x % y;
+  return q - (r < 0);
 }
 
-constexpr ll TEN[] = {
-    1LL,
-    10LL,
-    100LL,
-    1000LL,
-    10000LL,
-    100000LL,
-    1000000LL,
-    10000000LL,
-    100000000LL,
-    1000000000LL,
-    10000000000LL,
-    100000000000LL,
-    1000000000000LL,
-    10000000000000LL,
-    100000000000000LL,
-    1000000000000000LL,
-    10000000000000000LL,
-    100000000000000000LL,
-    1000000000000000000LL,
-};
+// require y > 0
+template <typename T>
+T ceil(T x, T y) {
+  T q = x / y, r = x % y;
+  return q + (r > 0);
+}
+
+// require y > 0
+template <typename T>
+T bmod(T x, T y) {
+  T r = x % y;
+  return (r < 0 ? r + y : r);
+}
+
+// require y > 0
+template <typename T>
+pair<T, T> divmod(T x, T y) {
+  T q = x / y, r = x % y;
+  if (r < 0) --q, r += y;
+  return {q, r};
+}
+
+constexpr auto TEN = [] {
+  array<ll, 19> A{};
+  A[0] = 1;
+  for (int i = 1; i < 19; ++i) A[i] = 10 * A[i - 1];
+  return A;
+}();
 
 template <typename T, typename U>
 T SUM(const U &A) {
@@ -210,8 +212,7 @@ template <class C, class T>
 inline long long UB(const C &c, const T &x) {
   return upper_bound(c.begin(), c.end(), x) - c.begin();
 }
-#define UNIQUE(x) \
-  sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()
+#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end())
 
 template <typename T>
 T POP(deque<T> &que) {
@@ -301,7 +302,7 @@ vc<T> rearrange(const vc<T> &A, const vc<int> &I) {
 
 template <typename T, typename... Vectors>
 void concat(vc<T> &first, const Vectors &...others) {
-  vc<T> &res = first;
-  (res.insert(res.end(), others.begin(), others.end()), ...);
+  first.reserve(first.size() + (others.size() + ... + 0));
+  (first.insert(first.end(), others.begin(), others.end()), ...);
 }
 #endif
