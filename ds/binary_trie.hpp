@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "ds/node_pool.hpp"
 
 // 非永続ならば、2 * 要素数 のノード数

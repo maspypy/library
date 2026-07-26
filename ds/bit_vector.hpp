@@ -1,3 +1,5 @@
+#include "other/bit.hpp"
+
 struct Bit_Vector {
   int n;
   bool prepared = 0;

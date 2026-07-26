@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "ds/hashmap.hpp"
 #include "ds/segtree/dual_segtree.hpp"
 #include "alg/monoid/min.hpp"
@@ -53,7 +54,9 @@ struct Range_Closest_Pair_Query {
         int x = point[i].fi >> (k);
         int y = point[i].se >> (k);
         u64 key = to_64(x, y);
-        if (!MP.count(key)) { MP[key] = p++; }
+        if (!MP.count(key)) {
+          MP[key] = p++;
+        }
         IDX[k][i] = MP[key];
       }
       nbd.resize(p);
@@ -72,7 +75,7 @@ struct Range_Closest_Pair_Query {
     vc<array<int, 8>> dat(len(nbd), {-1, -1, -1, -1, -1, -1, -1, -1});
     auto add = [&](int k, int i) -> void {
       int idx = IDX[k][i];
-      for (auto&& j: dat[idx]) {
+      for (auto&& j : dat[idx]) {
         if (j == -1) {
           j = i;
           return;
@@ -81,7 +84,7 @@ struct Range_Closest_Pair_Query {
     };
     auto rm = [&](int k, int i) -> void {
       int idx = IDX[k][i];
-      for (auto&& j: dat[idx]) {
+      for (auto&& j : dat[idx]) {
         if (j == i) {
           j = -1;
           return;
@@ -93,9 +96,9 @@ struct Range_Closest_Pair_Query {
       // レベル k の点群に対する答の計算
       vc<pair<int, ll>> res;
       int me = IDX[k][i];
-      for (auto&& idx: nbd[me]) {
+      for (auto&& idx : nbd[me]) {
         if (idx == -1) continue;
-        for (auto&& j: dat[idx]) {
+        for (auto&& j : dat[idx]) {
           if (j == -1) continue;
           res.eb(j, dist(i, j));
         }
@@ -127,7 +130,7 @@ struct Range_Closest_Pair_Query {
         upd.insert(upd.end(), all(res));
       }
 
-      for (auto [i, d]: upd) {
+      for (auto [i, d] : upd) {
         int lv = get_lv(d);
         if (seg.get(i) < d) continue;
         // 答えの更新
@@ -142,7 +145,9 @@ struct Range_Closest_Pair_Query {
       }
       LEVEL[R] = K - 1;
       add(K - 1, R);
-      for (auto&& qid: query_at[R]) { ANS[qid] = seg.get(left[qid]); }
+      for (auto&& qid : query_at[R]) {
+        ANS[qid] = seg.get(left[qid]);
+      }
     }
     return ANS;
   }

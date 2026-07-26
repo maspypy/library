@@ -1,4 +1,5 @@
 #pragma once
+#include "other/bit.hpp"
 #include "mod/mongomery_modint.hpp"
 
 bool primetest(const u64 x) {
@@ -20,10 +21,10 @@ bool primetest(const u64 x) {
     return true;
   };
   if (x < (u64(1) << 32)) {
-    for (u64 a: {2, 7, 61})
+    for (u64 a : {2, 7, 61})
       if (!ok(a)) return false;
   } else {
-    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
+    for (u64 a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
       if (!ok(a)) return false;
     }
   }
