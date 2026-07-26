@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "linalg/xor/transpose.hpp"
 
 template <typename UINT, int MAX_DIM>

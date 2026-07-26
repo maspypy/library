@@ -1,4 +1,5 @@
 #pragma once
+#include "other/bit.hpp"
 #include "graph/strongly_connected_component.hpp"
 #include "graph/reverse_graph.hpp"
 
@@ -11,13 +12,13 @@ vc<int> reachability(GT& G, vc<P> query) {
   auto [C, comp] = strongly_connected_component(G);
 
   vc<pair<int, int>> edges;
-  for (auto&& e: G.edges) {
+  for (auto&& e : G.edges) {
     auto a = comp[e.frm], b = comp[e.to];
     assert(a <= b);
     if (a < b) edges.eb(a, b);
   }
   UNIQUE(edges);
-  for (auto& [a, b]: query) a = comp[a], b = comp[b];
+  for (auto& [a, b] : query) a = comp[a], b = comp[b];
 
   int Q = len(query);
   vc<int> ANS(Q);
@@ -45,7 +46,7 @@ vc<int> reachability(GT& G, vc<P> query) {
     FOR(i, p, len(edges)) { dp[edges[i].se] |= dp[edges[i].fi]; }
     FOR(i, r - l) {
       int s = S[l + i];
-      for (auto& qid: QID[s]) {
+      for (auto& qid : QID[s]) {
         int t = query[qid].se;
         ANS[qid] = dp[t] >> i & 1;
       }
@@ -66,7 +67,7 @@ vc<int> count_reachable(Graph<int, 1> G) {
 
   // sorted pairs
   vc<pair<int, int>> E;
-  for (auto& e: G.edges) {
+  for (auto& e : G.edges) {
     int a = comp[e.frm], b = comp[e.to];
     if (a != b) E.eb(a, b);
   }

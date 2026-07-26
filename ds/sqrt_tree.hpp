@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 
 // 折角なので作ってみたが，使わなさそう
 template <typename Monoid>

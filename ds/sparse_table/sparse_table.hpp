@@ -1,5 +1,5 @@
 #pragma once
-#include "bit.hpp"
+#include "other/bit.hpp"
 
 // 冪等なモノイドであることを仮定。disjoint sparse table より x 倍高速
 template <class Monoid>

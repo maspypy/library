@@ -13,7 +13,7 @@ void solve() {
   Suffix_Array X(S);
 
   VEC(pi, query, Q);
-  for (auto&& [a, b]: query) --a;
+  for (auto&& [a, b] : query) --a;
 
   // 場所 -> 長さ, クエリ番号
   vvc<pi> dat(N);
@@ -58,11 +58,11 @@ void solve() {
       ANS[qid] = ans;
     }
     vis += (R - L) * (b - a);
-    for (auto&& e: G[v]) dfs(dfs, e.to);
+    for (auto&& e : G[v]) dfs(dfs, e.to);
   };
   dfs(dfs, 0);
 
-  for (auto&& x: ANS) print(x - N);
+  for (auto&& x : ANS) print(x - N);
 }
 
 signed main() {

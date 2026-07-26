@@ -6,7 +6,7 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  for (auto&& x: A) --x;
+  for (auto&& x : A) --x;
 
   // dp[L] := mex[L,R)>=k となる R の min
   vi dp(N);

@@ -1,4 +1,5 @@
 #pragma once
+#include "bit.hpp"
 
 template <typename ActedMonoid>
 struct SegTree_Beats {
@@ -107,7 +108,7 @@ struct SegTree_Beats {
     }
   }
 
-private:
+ private:
   void apply_at(int k, A a) {
     int sz = 1 << (log - topbit(k));
     dat[k] = AM::act(dat[k], a, sz);

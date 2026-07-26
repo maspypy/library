@@ -45,12 +45,14 @@ void solve() {
         query.eb(-1, LID[w], t + dist[v]);
       }
     }
-    if (tp == 1) { query.eb(0, v, t); }
+    if (tp == 1) {
+      query.eb(0, v, t);
+    }
   }
 
   FenwickTree_2D<Monoid_Add<int>, ll, true> bit(X, Y);
 
-  for (auto&& [tp, x, t]: query) {
+  for (auto&& [tp, x, t] : query) {
     if (tp == 0) {
       int v = x;
       int l = tree.LID[v], r = tree.RID[v];
@@ -58,8 +60,12 @@ void solve() {
       ll ANS = bit.sum(l, r, 0, t + 1);
       print(ANS);
     }
-    if (tp == 1) { bit.add(x, t, 1); }
-    if (tp == -1) { bit.add(x, t, -1); }
+    if (tp == 1) {
+      bit.add(x, t, 1);
+    }
+    if (tp == -1) {
+      bit.add(x, t, -1);
+    }
   }
 }
 
