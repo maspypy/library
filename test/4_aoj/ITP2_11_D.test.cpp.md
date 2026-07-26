@@ -276,13 +276,13 @@ data:
     auto all_nCk(int n, int k) {\n  return all_k_subset<UINT>(full_mask(n), k);\n\
     }\n#line 6 \"test/4_aoj/ITP2_11_D.test.cpp\"\n\nvoid solve() {\n  LL(N, K);\n\
     \  for (u32 s : all_nCk<u32>(N, K)) {\n    vi I;\n    for (int i : all_bit<u32>(s))\
-    \ I.eb(s ^ i);\n    print(to_string(s) + \":\", I);\n  }\n}\n\nsigned main() {\n\
-    \  solve();\n  return 0;\n}\n"
+    \ I.eb(i);\n    print(to_string(s) + \":\", I);\n  }\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"setfunc/all_k_subset.hpp\"\
     \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s : all_nCk<u32>(N, K)) {\n    vi\
-    \ I;\n    for (int i : all_bit<u32>(s)) I.eb(s ^ i);\n    print(to_string(s) +\
-    \ \":\", I);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ I;\n    for (int i : all_bit<u32>(s)) I.eb(i);\n    print(to_string(s) + \"\
+    :\", I);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -291,7 +291,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP2_11_D.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 21:55:46+09:00'
+  timestamp: '2026-07-26 22:41:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_11_D.test.cpp
