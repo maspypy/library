@@ -80,10 +80,10 @@ data:
     \ operator!=(nullptr_t) const { return !done; }\n  };\n  iter begin() const {\
     \ return {s, s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\nconstexpr\
     \ u64 full_mask(int n) { return n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2\
-    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
-    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ \"mod/modint_common.hpp\"\n\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
     \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
     \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
@@ -346,7 +346,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2026-07-26 20:34:09+09:00'
+  timestamp: '2026-07-26 21:01:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp

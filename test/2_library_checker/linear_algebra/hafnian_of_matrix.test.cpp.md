@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   - icon: ':question:'
@@ -22,23 +22,23 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -256,8 +256,35 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
-    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"mod/modint_common.hpp\"\n\n#line\
+    \ 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
+    int popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
@@ -335,43 +362,42 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"setfunc/sps_exp.hpp\"\n\n#line 2 \"setfunc/subset_convolution.hpp\"\n\
-    \r\n#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\
-    \n\nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
-    \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
-    \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
-    \ a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n\
-    }\n\ntemplate <typename ARR>\ninline void ranked_sub(ARR& a, const ARR& b) {\n\
-    \  for (int d = 0; d < int(a.size()); ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type\
-    \ type, int N, typename T>\ninline void bitwise_transform_fixed(T* a) {\n  static_assert(N\
-    \ >= 1 && (N & (N - 1)) == 0);\n  if constexpr (N == 1) {\n    return;\n  } else\
-    \ {\n    constexpr int H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n\
-    \    bitwise_transform_fixed<type, H>(a + H);\n    if constexpr (type == trans_type::hadamard)\
-    \ {\n      for (int i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n\
-    \        a[i] = x + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type\
-    \ == trans_type::superset_zeta) {\n      for (int i = 0; i < H; ++i) a[i] += a[H\
-    \ + i];\n    }\n    if constexpr (type == trans_type::superset_mobius) {\n   \
-    \   for (int i = 0; i < H; ++i) a[i] -= a[H + i];\n    }\n    if constexpr (type\
-    \ == trans_type::subset_zeta) {\n      for (int i = 0; i < H; ++i) a[H + i] +=\
-    \ a[i];\n    }\n    if constexpr (type == trans_type::subset_mobius) {\n     \
-    \ for (int i = 0; i < H; ++i) a[H + i] -= a[i];\n    }\n    if constexpr (type\
-    \ == trans_type::ranked_zeta) {\n      for (int i = 0; i < H; ++i) ranked_add(a[H\
-    \ + i], a[i]);\n    }\n    if constexpr (type == trans_type::ranked_mobius) {\n\
-    \      for (int i = 0; i < H; ++i) ranked_sub(a[H + i], a[i]);\n    }\n    if\
-    \ constexpr (type == trans_type::superset_zeta_or) {\n      for (int i = 0; i\
-    \ < H; ++i) a[i] |= a[H + i];\n    }\n  }\n}\n\ntemplate <trans_type type, int\
-    \ N, typename T>\ninline void bitwise_transform_dispatch(vc<T>& a) {\n  if (len(a)\
-    \ == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n  }\n  if constexpr\
-    \ (N > 1) {\n    return bitwise_transform_dispatch<type, N / 2>(a);\n  }\n}\n\n\
-    template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
-    \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
-    \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
-    \ bitwise\n#line 4 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int\
-    \ LIM>\r\nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\r\n  int n = topbit(len(f));\r\
-    \n  assert(n <= LIM);\r\n  assert(len(f) == 1 << n);\r\n  vc<array<T, LIM + 1>>\
-    \ Rf(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\r\
-    \n  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);\r\n  return\
-    \ Rf;\r\n}\r\n\r\ntemplate <typename T, int LIM>\r\nvc<T> ranked_mobius(vc<array<T,\
+    #line 2 \"setfunc/sps_exp.hpp\"\n\n#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\n#line\
+    \ 2 \"setfunc/bitwise_transform.hpp\"\n\nnamespace bitwise {\n\nenum class trans_type\
+    \ {\n  hadamard,\n  superset_zeta,\n  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n\
+    \  ranked_zeta,\n  ranked_mobius,\n  superset_zeta_or\n};\n\ntemplate <typename\
+    \ ARR>\ninline void ranked_add(ARR& a, const ARR& b) {\n  for (int d = 0; d <\
+    \ int(a.size()); ++d) a[d] += b[d];\n}\n\ntemplate <typename ARR>\ninline void\
+    \ ranked_sub(ARR& a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d)\
+    \ a[d] -= b[d];\n}\n\ntemplate <trans_type type, int N, typename T>\ninline void\
+    \ bitwise_transform_fixed(T* a) {\n  static_assert(N >= 1 && (N & (N - 1)) ==\
+    \ 0);\n  if constexpr (N == 1) {\n    return;\n  } else {\n    constexpr int H\
+    \ = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n    bitwise_transform_fixed<type,\
+    \ H>(a + H);\n    if constexpr (type == trans_type::hadamard) {\n      for (int\
+    \ i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n        a[i] = x\
+    \ + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type == trans_type::superset_zeta)\
+    \ {\n      for (int i = 0; i < H; ++i) a[i] += a[H + i];\n    }\n    if constexpr\
+    \ (type == trans_type::superset_mobius) {\n      for (int i = 0; i < H; ++i) a[i]\
+    \ -= a[H + i];\n    }\n    if constexpr (type == trans_type::subset_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) a[H + i] += a[i];\n    }\n    if constexpr\
+    \ (type == trans_type::subset_mobius) {\n      for (int i = 0; i < H; ++i) a[H\
+    \ + i] -= a[i];\n    }\n    if constexpr (type == trans_type::ranked_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) ranked_add(a[H + i], a[i]);\n    }\n    if\
+    \ constexpr (type == trans_type::ranked_mobius) {\n      for (int i = 0; i < H;\
+    \ ++i) ranked_sub(a[H + i], a[i]);\n    }\n    if constexpr (type == trans_type::superset_zeta_or)\
+    \ {\n      for (int i = 0; i < H; ++i) a[i] |= a[H + i];\n    }\n  }\n}\n\ntemplate\
+    \ <trans_type type, int N, typename T>\ninline void bitwise_transform_dispatch(vc<T>&\
+    \ a) {\n  if (len(a) == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n\
+    \  }\n  if constexpr (N > 1) {\n    return bitwise_transform_dispatch<type, N\
+    \ / 2>(a);\n  }\n}\n\ntemplate <trans_type type, typename T>\ninline void bitwise_transform(vc<T>&\
+    \ a) {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n\
+    \  assert(n <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n\
+    }\n}  // namespace bitwise\n#line 4 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate\
+    \ <typename T, int LIM>\r\nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\r\
+    \n  int n = topbit(len(f));\r\n  assert(n <= LIM);\r\n  assert(len(f) == 1 <<\
+    \ n);\r\n  vc<array<T, LIM + 1>> Rf(1 << n);\r\n  for (int s = 0; s < (1 << n);\
+    \ ++s) Rf[s][popcnt(s)] = f[s];\r\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);\r\
+    \n  return Rf;\r\n}\r\n\r\ntemplate <typename T, int LIM>\r\nvc<T> ranked_mobius(vc<array<T,\
     \ LIM + 1>>& Rf) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_mobius>(Rf);\r\
     \n  vc<T> f(len(Rf));\r\n  for (int s = 0; s < len(f); ++s) f[s] = Rf[s][popcnt(s)];\r\
     \n  return f;\r\n}\n#line 4 \"setfunc/subset_convolution.hpp\"\n\r\ntemplate <typename\
@@ -392,59 +418,33 @@ data:
     \ dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint> a = {s.begin()\
     \ + (1 << i), s.begin() + (2 << i)};\n    vc<mint> b = {dp.begin(), dp.begin()\
     \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
-    \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 2 \"other/bit.hpp\"\n\n\
-    int popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
-    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
-    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
-    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
-    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
-    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
-    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
-    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
-    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
-    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
-    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
-    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
-    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  struct iter {\n    UINT s;\n\
-    \    int operator*() const { return lowbit(s); }\n    void operator++() { s &=\
-    \ s - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  struct iter {\n    UINT s,\
-    \ t;\n    bool done = false;\n    UINT operator*() const { return t; }\n    void\
-    \ operator++() {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool\
-    \ operator!=(nullptr_t) const { return !done; }\n  };\n  iter begin() const {\
-    \ return {s, s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\nconstexpr\
-    \ u64 full_mask(int n) { return n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2\
-    \ \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
-    \ b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L :\
-    \ b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n\
-    \  }\n}\n\ntemplate <typename UINT, typename F>\ninline void enumerate_all_bit(UINT\
-    \ s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  while (s) {\n   \
-    \ f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename UINT, bool inc_empty,\
-    \ typename F>\ninline void enumerate_all_subset(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  for (UINT t = s; t; t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n\
-    }\n#line 3 \"linalg/hafnian.hpp\"\n\r\n// \u96A3\u63A5\u884C\u5217\u306B\u5BFE\
-    \u3057\u3066\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u3092\u6570\u3048\u308B\
-    \u3002\r\ntemplate <typename mint, int LIM = 20>\r\nmint Hufnian(vc<vc<mint>>&\
-    \ mat) {\r\n  int N = len(mat);\r\n  int n = N / 2;\r\n  assert(n <= LIM);\r\n\
-    \  vc<mint> cyc(1 << n);\r\n\r\n  FOR(i, N / 2) {\r\n    int A = 2 * i + 0, B\
-    \ = 2 * i + 1;\r\n    int K = 2 * i;\r\n    cyc[1 << i] += mat[A][B];\r\n    vc<mint>\
-    \ dp(K << i);\r\n    for (int j = 0; j < i; ++j) {\r\n      int j0 = 2 * j + 0,\
-    \ j1 = 2 * j + 1;\r\n      dp[(K << j) + j0] += mat[A][j1], dp[(K << j) + j1]\
-    \ += mat[A][j0];\r\n    }\r\n    for (int s = 0; s < (1 << i); ++s) {\r\n    \
-    \  for (int j = 0; j < i; ++j) {\r\n        int j0 = 2 * j + 0, j1 = 2 * j + 1;\r\
-    \n        cyc[s | 1 << i] += dp[K * s + j0] * mat[B][j0];\r\n        cyc[s | 1\
-    \ << i] += dp[K * s + j1] * mat[B][j1];\r\n        enumerate_all_bit<u32>((1 <<\
-    \ i) - 1 - s, [&](int k) -> void {\r\n          int k0 = 2 * k + 0, k1 = 2 * k\
-    \ + 1;\r\n          int t = s | 1 << k;\r\n          dp[K * t + k0] += dp[K *\
-    \ s + j0] * mat[j0][k1];\r\n          dp[K * t + k0] += dp[K * s + j1] * mat[j1][k1];\r\
-    \n          dp[K * t + k1] += dp[K * s + j0] * mat[j0][k0];\r\n          dp[K\
-    \ * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\n        });\r\n      }\r\n   \
-    \ }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\n}\r\n#line 6 \"test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp\"\
+    \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 2 \"enumerate/bits.hpp\"\
+    \ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L,\
+    \ int R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
+    \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
+    \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
+    \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
+    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 3 \"linalg/hafnian.hpp\"\
+    \n\r\n// \u96A3\u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\u30C3\
+    \u30C1\u30F3\u30B0\u3092\u6570\u3048\u308B\u3002\r\ntemplate <typename mint, int\
+    \ LIM = 20>\r\nmint Hufnian(vc<vc<mint>>& mat) {\r\n  int N = len(mat);\r\n  int\
+    \ n = N / 2;\r\n  assert(n <= LIM);\r\n  vc<mint> cyc(1 << n);\r\n\r\n  FOR(i,\
+    \ N / 2) {\r\n    int A = 2 * i + 0, B = 2 * i + 1;\r\n    int K = 2 * i;\r\n\
+    \    cyc[1 << i] += mat[A][B];\r\n    vc<mint> dp(K << i);\r\n    for (int j =\
+    \ 0; j < i; ++j) {\r\n      int j0 = 2 * j + 0, j1 = 2 * j + 1;\r\n      dp[(K\
+    \ << j) + j0] += mat[A][j1], dp[(K << j) + j1] += mat[A][j0];\r\n    }\r\n   \
+    \ for (int s = 0; s < (1 << i); ++s) {\r\n      for (int j = 0; j < i; ++j) {\r\
+    \n        int j0 = 2 * j + 0, j1 = 2 * j + 1;\r\n        cyc[s | 1 << i] += dp[K\
+    \ * s + j0] * mat[B][j0];\r\n        cyc[s | 1 << i] += dp[K * s + j1] * mat[B][j1];\r\
+    \n        enumerate_all_bit<u32>((1 << i) - 1 - s, [&](int k) -> void {\r\n  \
+    \        int k0 = 2 * k + 0, k1 = 2 * k + 1;\r\n          int t = s | 1 << k;\r\
+    \n          dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K\
+    \ * t + k0] += dp[K * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K\
+    \ * s + j0] * mat[j0][k0];\r\n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\
+    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\
+    \n}\r\n#line 6 \"test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, B, N,\
     \ N);\r\n  auto ANS = Hufnian(B);\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\
     \n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
@@ -460,18 +460,18 @@ data:
   - other/io.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
+  - other/bit.hpp
   - linalg/hafnian.hpp
   - setfunc/sps_exp.hpp
   - setfunc/subset_convolution.hpp
   - setfunc/ranked_zeta.hpp
   - setfunc/bitwise_transform.hpp
   - enumerate/bits.hpp
-  - other/bit.hpp
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 20:34:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:01:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
 layout: document

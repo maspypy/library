@@ -17,6 +17,9 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
@@ -31,23 +34,23 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/power_projection_of_set_power_series
@@ -266,17 +269,43 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 6 \"test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp\"\
-    \n\n#line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
-    \n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\n\nnamespace bitwise {\n\nenum\
-    \ class trans_type {\n  hadamard,\n  superset_zeta,\n  superset_mobius,\n  subset_zeta,\n\
-    \  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n  superset_zeta_or\n};\n\n\
-    template <typename ARR>\ninline void ranked_add(ARR& a, const ARR& b) {\n  for\
-    \ (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n}\n\ntemplate <typename ARR>\n\
-    inline void ranked_sub(ARR& a, const ARR& b) {\n  for (int d = 0; d < int(a.size());\
-    \ ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type type, int N, typename T>\ninline\
-    \ void bitwise_transform_fixed(T* a) {\n  static_assert(N >= 1 && (N & (N - 1))\
-    \ == 0);\n  if constexpr (N == 1) {\n    return;\n  } else {\n    constexpr int\
-    \ H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n    bitwise_transform_fixed<type,\
+    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\n#line 2\
+    \ \"setfunc/bitwise_transform.hpp\"\n\nnamespace bitwise {\n\nenum class trans_type\
+    \ {\n  hadamard,\n  superset_zeta,\n  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n\
+    \  ranked_zeta,\n  ranked_mobius,\n  superset_zeta_or\n};\n\ntemplate <typename\
+    \ ARR>\ninline void ranked_add(ARR& a, const ARR& b) {\n  for (int d = 0; d <\
+    \ int(a.size()); ++d) a[d] += b[d];\n}\n\ntemplate <typename ARR>\ninline void\
+    \ ranked_sub(ARR& a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d)\
+    \ a[d] -= b[d];\n}\n\ntemplate <trans_type type, int N, typename T>\ninline void\
+    \ bitwise_transform_fixed(T* a) {\n  static_assert(N >= 1 && (N & (N - 1)) ==\
+    \ 0);\n  if constexpr (N == 1) {\n    return;\n  } else {\n    constexpr int H\
+    \ = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n    bitwise_transform_fixed<type,\
     \ H>(a + H);\n    if constexpr (type == trans_type::hadamard) {\n      for (int\
     \ i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n        a[i] = x\
     \ + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type == trans_type::superset_zeta)\
@@ -316,10 +345,11 @@ data:
     \n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], &g = RB[s];\r\n    FOR_R(d, n +\
     \ 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x += f[i] * g[d - i];\r\n    \
     \  f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\r\n#line\
-    \ 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
-    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\n\n#line 4\
+    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
+    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
     \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
     \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
@@ -464,7 +494,7 @@ data:
     \ c = convolution_karatsuba(f1, g1);\n  vc<T> F(len(f) + len(g) - 1);\n  assert(2\
     \ * m + len(b) <= len(F));\n  FOR(i, len(a)) F[i] += a[i], c[i] -= a[i];\n  FOR(i,\
     \ len(b)) F[2 * m + i] += b[i], c[i] -= b[i];\n  if (c.back() == T(0)) c.pop_back();\n\
-    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 2\
+    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 3\
     \ \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool\
     \ inverse) {\r\n  assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\
     \n  const u32 mod = mint::get_mod();\r\n  static array<mint, 30> root, iroot;\r\
@@ -606,6 +636,7 @@ data:
   - other/io.hpp
   - setfunc/power_projection_of_sps.hpp
   - setfunc/subset_convolution.hpp
+  - other/bit.hpp
   - setfunc/ranked_zeta.hpp
   - setfunc/bitwise_transform.hpp
   - poly/convolution.hpp
@@ -619,8 +650,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:01:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
 layout: document

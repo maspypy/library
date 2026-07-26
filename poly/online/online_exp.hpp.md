@@ -8,87 +8,117 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_unlabeled_tree.test.cpp
     title: test/1_mytest/count_unlabeled_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_exp.test.cpp
     title: test/1_mytest/online_exp.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
-    \ a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\
-    \n  const u32 mod = mint::get_mod();\r\n  static array<mint, 30> root, iroot;\r\
-    \n  static array<mint, 30> rate2, irate2;\r\n  static array<mint, 30> rate3, irate3;\r\
-    \n\r\n  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\r\n\r\n  static\
-    \ bool prepared = 0;\r\n  if (!prepared) {\r\n    prepared = 1;\r\n    root[rank2]\
-    \ = mint::ntt_info().se;\r\n    iroot[rank2] = mint(1) / root[rank2];\r\n    FOR_R(i,\
-    \ rank2) {\r\n      root[i] = root[i + 1] * root[i + 1];\r\n      iroot[i] = iroot[i\
-    \ + 1] * iroot[i + 1];\r\n    }\r\n    mint prod = 1, iprod = 1;\r\n    for (int\
-    \ i = 0; i <= rank2 - 2; i++) {\r\n      rate2[i] = root[i + 2] * prod;\r\n  \
-    \    irate2[i] = iroot[i + 2] * iprod;\r\n      prod *= iroot[i + 2];\r\n    \
-    \  iprod *= root[i + 2];\r\n    }\r\n    prod = 1, iprod = 1;\r\n    for (int\
-    \ i = 0; i <= rank2 - 3; i++) {\r\n      rate3[i] = root[i + 3] * prod;\r\n  \
-    \    irate3[i] = iroot[i + 3] * iprod;\r\n      prod *= iroot[i + 3];\r\n    \
-    \  iprod *= root[i + 3];\r\n    }\r\n  }\r\n\r\n  int n = int(a.size());\r\n \
-    \ int h = topbit(n);\r\n  assert(n == 1 << h);\r\n  if (!inverse) {\r\n    int\
-    \ len = 0;\r\n    while (len < h) {\r\n      if (h - len == 1) {\r\n        int\
-    \ p = 1 << (h - len - 1);\r\n        mint rot = 1;\r\n        FOR(s, 1 << len)\
-    \ {\r\n          int offset = s << (h - len);\r\n          FOR(i, p) {\r\n   \
-    \         auto l = a[i + offset];\r\n            auto r = a[i + offset + p] *\
-    \ rot;\r\n            a[i + offset] = l + r;\r\n            a[i + offset + p]\
-    \ = l - r;\r\n          }\r\n          rot *= rate2[topbit(~s & -~s)];\r\n   \
-    \     }\r\n        len++;\r\n      } else {\r\n        int p = 1 << (h - len -\
-    \ 2);\r\n        mint rot = 1, imag = root[2];\r\n        for (int s = 0; s <\
-    \ (1 << len); s++) {\r\n          mint rot2 = rot * rot;\r\n          mint rot3\
-    \ = rot2 * rot;\r\n          int offset = s << (h - len);\r\n          for (int\
-    \ i = 0; i < p; i++) {\r\n            u64 mod2 = u64(mod) * mod;\r\n         \
-    \   u64 a0 = a[i + offset].val;\r\n            u64 a1 = u64(a[i + offset + p].val)\
-    \ * rot.val;\r\n            u64 a2 = u64(a[i + offset + 2 * p].val) * rot2.val;\r\
-    \n            u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\r\n        \
-    \    u64 a1na3imag = (a1 + mod2 - a3) % mod * imag.val;\r\n            u64 na2\
-    \ = mod2 - a2;\r\n            a[i + offset] = a0 + a2 + a1 + a3;\r\n         \
-    \   a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\r\n            a[i\
-    \ + offset + 2 * p] = a0 + na2 + a1na3imag;\r\n            a[i + offset + 3 *\
-    \ p] = a0 + na2 + (mod2 - a1na3imag);\r\n          }\r\n          rot *= rate3[topbit(~s\
-    \ & -~s)];\r\n        }\r\n        len += 2;\r\n      }\r\n    }\r\n  } else {\r\
-    \n    mint coef = mint(1) / mint(len(a));\r\n    FOR(i, len(a)) a[i] *= coef;\r\
-    \n    int len = h;\r\n    while (len) {\r\n      if (len == 1) {\r\n        int\
-    \ p = 1 << (h - len);\r\n        mint irot = 1;\r\n        FOR(s, 1 << (len -\
-    \ 1)) {\r\n          int offset = s << (h - len + 1);\r\n          FOR(i, p) {\r\
-    \n            u64 l = a[i + offset].val;\r\n            u64 r = a[i + offset +\
-    \ p].val;\r\n            a[i + offset] = l + r;\r\n            a[i + offset +\
-    \ p] = (mod + l - r) * irot.val;\r\n          }\r\n          irot *= irate2[topbit(~s\
-    \ & -~s)];\r\n        }\r\n        len--;\r\n      } else {\r\n        int p =\
-    \ 1 << (h - len);\r\n        mint irot = 1, iimag = iroot[2];\r\n        FOR(s,\
-    \ (1 << (len - 2))) {\r\n          mint irot2 = irot * irot;\r\n          mint\
-    \ irot3 = irot2 * irot;\r\n          int offset = s << (h - len + 2);\r\n    \
-    \      for (int i = 0; i < p; i++) {\r\n            u64 a0 = a[i + offset + 0\
-    \ * p].val;\r\n            u64 a1 = a[i + offset + 1 * p].val;\r\n           \
-    \ u64 a2 = a[i + offset + 2 * p].val;\r\n            u64 a3 = a[i + offset + 3\
-    \ * p].val;\r\n            u64 x = (mod + a2 - a3) * iimag.val % mod;\r\n    \
-    \        a[i + offset] = a0 + a1 + a2 + a3;\r\n            a[i + offset + 1 *\
-    \ p] = (a0 + mod - a1 + x) * irot.val;\r\n            a[i + offset + 2 * p] =\
-    \ (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\n            a[i + offset + 3 *\
-    \ p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n          }\r\n          irot *=\
-    \ irate3[topbit(~s & -~s)];\r\n        }\r\n        len -= 2;\r\n      }\r\n \
-    \   }\r\n  }\r\n}\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+  bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 3 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\
+    \nvoid ntt(vector<mint>& a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n\
+    \  const int rank2 = mint::ntt_info().fi;\r\n  const u32 mod = mint::get_mod();\r\
+    \n  static array<mint, 30> root, iroot;\r\n  static array<mint, 30> rate2, irate2;\r\
+    \n  static array<mint, 30> rate3, irate3;\r\n\r\n  assert(rank2 != -1 && len(a)\
+    \ <= (1 << max(0, rank2)));\r\n\r\n  static bool prepared = 0;\r\n  if (!prepared)\
+    \ {\r\n    prepared = 1;\r\n    root[rank2] = mint::ntt_info().se;\r\n    iroot[rank2]\
+    \ = mint(1) / root[rank2];\r\n    FOR_R(i, rank2) {\r\n      root[i] = root[i\
+    \ + 1] * root[i + 1];\r\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n   \
+    \ }\r\n    mint prod = 1, iprod = 1;\r\n    for (int i = 0; i <= rank2 - 2; i++)\
+    \ {\r\n      rate2[i] = root[i + 2] * prod;\r\n      irate2[i] = iroot[i + 2]\
+    \ * iprod;\r\n      prod *= iroot[i + 2];\r\n      iprod *= root[i + 2];\r\n \
+    \   }\r\n    prod = 1, iprod = 1;\r\n    for (int i = 0; i <= rank2 - 3; i++)\
+    \ {\r\n      rate3[i] = root[i + 3] * prod;\r\n      irate3[i] = iroot[i + 3]\
+    \ * iprod;\r\n      prod *= iroot[i + 3];\r\n      iprod *= root[i + 3];\r\n \
+    \   }\r\n  }\r\n\r\n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n\
+    \ == 1 << h);\r\n  if (!inverse) {\r\n    int len = 0;\r\n    while (len < h)\
+    \ {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\n  \
+    \      mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset = s\
+    \ << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
+    \n            auto r = a[i + offset + p] * rot;\r\n            a[i + offset] =\
+    \ l + r;\r\n            a[i + offset + p] = l - r;\r\n          }\r\n        \
+    \  rot *= rate2[topbit(~s & -~s)];\r\n        }\r\n        len++;\r\n      } else\
+    \ {\r\n        int p = 1 << (h - len - 2);\r\n        mint rot = 1, imag = root[2];\r\
+    \n        for (int s = 0; s < (1 << len); s++) {\r\n          mint rot2 = rot\
+    \ * rot;\r\n          mint rot3 = rot2 * rot;\r\n          int offset = s << (h\
+    \ - len);\r\n          for (int i = 0; i < p; i++) {\r\n            u64 mod2 =\
+    \ u64(mod) * mod;\r\n            u64 a0 = a[i + offset].val;\r\n            u64\
+    \ a1 = u64(a[i + offset + p].val) * rot.val;\r\n            u64 a2 = u64(a[i +\
+    \ offset + 2 * p].val) * rot2.val;\r\n            u64 a3 = u64(a[i + offset +\
+    \ 3 * p].val) * rot3.val;\r\n            u64 a1na3imag = (a1 + mod2 - a3) % mod\
+    \ * imag.val;\r\n            u64 na2 = mod2 - a2;\r\n            a[i + offset]\
+    \ = a0 + a2 + a1 + a3;\r\n            a[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
+    \ - (a1 + a3));\r\n            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\r\
+    \n            a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\r\n     \
+    \     }\r\n          rot *= rate3[topbit(~s & -~s)];\r\n        }\r\n        len\
+    \ += 2;\r\n      }\r\n    }\r\n  } else {\r\n    mint coef = mint(1) / mint(len(a));\r\
+    \n    FOR(i, len(a)) a[i] *= coef;\r\n    int len = h;\r\n    while (len) {\r\n\
+    \      if (len == 1) {\r\n        int p = 1 << (h - len);\r\n        mint irot\
+    \ = 1;\r\n        FOR(s, 1 << (len - 1)) {\r\n          int offset = s << (h -\
+    \ len + 1);\r\n          FOR(i, p) {\r\n            u64 l = a[i + offset].val;\r\
+    \n            u64 r = a[i + offset + p].val;\r\n            a[i + offset] = l\
+    \ + r;\r\n            a[i + offset + p] = (mod + l - r) * irot.val;\r\n      \
+    \    }\r\n          irot *= irate2[topbit(~s & -~s)];\r\n        }\r\n       \
+    \ len--;\r\n      } else {\r\n        int p = 1 << (h - len);\r\n        mint\
+    \ irot = 1, iimag = iroot[2];\r\n        FOR(s, (1 << (len - 2))) {\r\n      \
+    \    mint irot2 = irot * irot;\r\n          mint irot3 = irot2 * irot;\r\n   \
+    \       int offset = s << (h - len + 2);\r\n          for (int i = 0; i < p; i++)\
+    \ {\r\n            u64 a0 = a[i + offset + 0 * p].val;\r\n            u64 a1 =\
+    \ a[i + offset + 1 * p].val;\r\n            u64 a2 = a[i + offset + 2 * p].val;\r\
+    \n            u64 a3 = a[i + offset + 3 * p].val;\r\n            u64 x = (mod\
+    \ + a2 - a3) * iimag.val % mod;\r\n            a[i + offset] = a0 + a1 + a2 +\
+    \ a3;\r\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x) * irot.val;\r\
+    \n            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\
+    \n            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n\
+    \          }\r\n          irot *= irate3[topbit(~s & -~s)];\r\n        }\r\n \
+    \       len -= 2;\r\n      }\r\n    }\r\n  }\r\n}\r\n#line 2 \"mod/modint_common.hpp\"\
+    \n\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
     \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
     \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
@@ -196,14 +226,15 @@ data:
   dependsOn:
   - poly/online/online_convolution.hpp
   - poly/ntt.hpp
+  - other/bit.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
   isVerificationFile: false
   path: poly/online/online_exp.hpp
   requiredBy:
   - graph/count/count_unlabeled_tree.hpp
-  timestamp: '2026-03-02 00:39:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-07-26 21:01:29+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_unlabeled_tree.test.cpp
   - test/1_mytest/online_exp.test.cpp

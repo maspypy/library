@@ -4,27 +4,56 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
     title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
-    \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
-    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
-    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
-    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
-    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
-    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
-    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
-    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
-    \ true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] =\
-    \ (*this)[i];\n    return A;\n  }\n};\n#line 2 \"ds/unionfind/parallel_unionfind.hpp\"\
+  bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct\
+    \ UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"ds/unionfind/parallel_unionfind.hpp\"\
     \n\n// same(L1,R1,L2,R2) \u307F\u305F\u3044\u306A\u3053\u3068\u306F\u51FA\u6765\
     \u306A\u3044\u3068\u601D\u3046(\u5FC5\u8981\u306A\u3089 rolling hash \u304B\u306A\
     )\nstruct Range_Parallel_UnionFind {\n  int N;\n  int log;\n  int n_comp;\n  //\
@@ -48,36 +77,37 @@ data:
     \      --n_comp;\n      return f(c, a ^ b ^ c);\n    }\n    if (!ufs[k].merge(L1,\
     \ L2)) return;\n    merge_inner(k - 1, L1, L2, f);\n    merge_inner(k - 1, L1\
     \ + (1 << (k - 1)), L2 + (1 << (k - 1)), f);\n  }\n};\n"
-  code: "#include \"ds/unionfind/unionfind.hpp\"\n\n// same(L1,R1,L2,R2) \u307F\u305F\
-    \u3044\u306A\u3053\u3068\u306F\u51FA\u6765\u306A\u3044\u3068\u601D\u3046(\u5FC5\
-    \u8981\u306A\u3089 rolling hash \u304B\u306A)\nstruct Range_Parallel_UnionFind\
-    \ {\n  int N;\n  int log;\n  int n_comp;\n  // ufs[i][a]==ufs[i][b] iff [a,...,a+2^i)\
-    \ == [b,...,b+2^i)\n  vc<UnionFind> ufs;\n  Range_Parallel_UnionFind(int n) :\
-    \ N(n), n_comp(n) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    ufs.resize(log);\n\
-    \    FOR(i, log) {\n      ll n = 1 << i;\n      ufs[i].build(N - n + 1);\n   \
-    \ }\n  }\n\n  int operator[](int i) { return ufs[0][i]; }\n\n  // f(r1,r2) : \u6210\
-    \u5206 r2 \u3092 r1 \u306B\u30DE\u30FC\u30B8\n  template <typename F>\n  void\
-    \ merge(int L1, int R1, int L2, int R2, F f) {\n    assert(R1 - L1 == R2 - L2);\n\
-    \    int n = R1 - L1;\n    if (n == 0) return;\n    if (n == 1) return merge_inner(0,\
-    \ L1, L2, f);\n    int k = topbit(n - 1);\n    merge_inner(k, L1, L2, f);\n  \
-    \  merge_inner(k, R1 - (1 << k), R2 - (1 << k), f);\n  }\n\n  // f(r1,r2) : \u6210\
-    \u5206 r2 \u3092 r1 \u306B\u30DE\u30FC\u30B8\n  template <typename F>\n  void\
-    \ merge(int i, int j, F f) {\n    merge_inner(0, i, j, f);\n  }\n\n  void merge(int\
-    \ L1, int R1, int L2, int R2) {\n    merge(L1, R1, L2, R2, [&](int i, int j) ->\
-    \ void {});\n  }\n  void merge(int i, int j) {\n    merge(i, j, [&](int i, int\
-    \ j) -> void {});\n  }\n\n  template <typename F>\n  void merge_inner(int k, int\
-    \ L1, int L2, const F& f) {\n    if (k == 0) {\n      int a = ufs[0][L1], b =\
-    \ ufs[0][L2];\n      if (a == b) return;\n      ufs[0].merge(a, b);\n      int\
-    \ c = ufs[0][a];\n      --n_comp;\n      return f(c, a ^ b ^ c);\n    }\n    if\
-    \ (!ufs[k].merge(L1, L2)) return;\n    merge_inner(k - 1, L1, L2, f);\n    merge_inner(k\
-    \ - 1, L1 + (1 << (k - 1)), L2 + (1 << (k - 1)), f);\n  }\n};\n"
+  code: "#include \"other/bit.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n\n//\
+    \ same(L1,R1,L2,R2) \u307F\u305F\u3044\u306A\u3053\u3068\u306F\u51FA\u6765\u306A\
+    \u3044\u3068\u601D\u3046(\u5FC5\u8981\u306A\u3089 rolling hash \u304B\u306A)\n\
+    struct Range_Parallel_UnionFind {\n  int N;\n  int log;\n  int n_comp;\n  // ufs[i][a]==ufs[i][b]\
+    \ iff [a,...,a+2^i) == [b,...,b+2^i)\n  vc<UnionFind> ufs;\n  Range_Parallel_UnionFind(int\
+    \ n) : N(n), n_comp(n) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n  \
+    \  ufs.resize(log);\n    FOR(i, log) {\n      ll n = 1 << i;\n      ufs[i].build(N\
+    \ - n + 1);\n    }\n  }\n\n  int operator[](int i) { return ufs[0][i]; }\n\n \
+    \ // f(r1,r2) : \u6210\u5206 r2 \u3092 r1 \u306B\u30DE\u30FC\u30B8\n  template\
+    \ <typename F>\n  void merge(int L1, int R1, int L2, int R2, F f) {\n    assert(R1\
+    \ - L1 == R2 - L2);\n    int n = R1 - L1;\n    if (n == 0) return;\n    if (n\
+    \ == 1) return merge_inner(0, L1, L2, f);\n    int k = topbit(n - 1);\n    merge_inner(k,\
+    \ L1, L2, f);\n    merge_inner(k, R1 - (1 << k), R2 - (1 << k), f);\n  }\n\n \
+    \ // f(r1,r2) : \u6210\u5206 r2 \u3092 r1 \u306B\u30DE\u30FC\u30B8\n  template\
+    \ <typename F>\n  void merge(int i, int j, F f) {\n    merge_inner(0, i, j, f);\n\
+    \  }\n\n  void merge(int L1, int R1, int L2, int R2) {\n    merge(L1, R1, L2,\
+    \ R2, [&](int i, int j) -> void {});\n  }\n  void merge(int i, int j) {\n    merge(i,\
+    \ j, [&](int i, int j) -> void {});\n  }\n\n  template <typename F>\n  void merge_inner(int\
+    \ k, int L1, int L2, const F& f) {\n    if (k == 0) {\n      int a = ufs[0][L1],\
+    \ b = ufs[0][L2];\n      if (a == b) return;\n      ufs[0].merge(a, b);\n    \
+    \  int c = ufs[0][a];\n      --n_comp;\n      return f(c, a ^ b ^ c);\n    }\n\
+    \    if (!ufs[k].merge(L1, L2)) return;\n    merge_inner(k - 1, L1, L2, f);\n\
+    \    merge_inner(k - 1, L1 + (1 << (k - 1)), L2 + (1 << (k - 1)), f);\n  }\n};\n"
   dependsOn:
+  - other/bit.hpp
   - ds/unionfind/unionfind.hpp
   isVerificationFile: false
   path: ds/unionfind/parallel_unionfind.hpp
   requiredBy: []
-  timestamp: '2024-09-10 04:34:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-07-26 21:01:29+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/range_parallel_uf.test.cpp
 documentation_of: ds/unionfind/parallel_unionfind.hpp

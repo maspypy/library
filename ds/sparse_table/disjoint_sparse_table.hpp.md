@@ -78,7 +78,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2005.test.cpp
     title: test/3_yukicoder/2005.test.cpp
   - icon: ':x:'
@@ -86,7 +86,7 @@ data:
     title: test/3_yukicoder/2361.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\ntemplate\
@@ -161,7 +161,7 @@ data:
   - string/substring_shortest_border.hpp
   - string/sort_substrings.hpp
   timestamp: '2026-04-13 19:22:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1216_2.test.cpp
   - test/3_yukicoder/2005.test.cpp

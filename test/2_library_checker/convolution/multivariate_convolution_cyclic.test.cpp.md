@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -64,19 +64,19 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   - icon: ':question:'
@@ -87,9 +87,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution_cyclic
@@ -308,9 +308,35 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"poly/multipoint.hpp\"\n\r\n#line\
-    \ 2 \"poly/middle_product.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class\
-    \ mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\n  assert(mint::can_ntt());\r\
-    \n  const int rank2 = mint::ntt_info().fi;\r\n  const u32 mod = mint::get_mod();\r\
+    \ 2 \"poly/middle_product.hpp\"\n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 3 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\
+    \nvoid ntt(vector<mint>& a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n\
+    \  const int rank2 = mint::ntt_info().fi;\r\n  const u32 mod = mint::get_mod();\r\
     \n  static array<mint, 30> root, iroot;\r\n  static array<mint, 30> rate2, irate2;\r\
     \n  static array<mint, 30> rate3, irate3;\r\n\r\n  assert(rank2 != -1 && len(a)\
     \ <= (1 << max(0, rank2)));\r\n\r\n  static bool prepared = 0;\r\n  if (!prepared)\
@@ -397,21 +423,21 @@ data:
     \  c = static_cast<u64>(a3 - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2\
     \ + static_cast<u128>(c * p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 +\
     \ p4) * x4 % p4;\n  return T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 2 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
-    \ <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  if (len(dat) <= n)\
-    \ {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n  \
-    \  dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  if\
-    \ (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int now = len(dat);\n \
-    \   int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1]\
-    \ = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1]\
-    \ * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    \n\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
     }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
     }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
@@ -897,53 +923,26 @@ data:
     \ H) FOR(y, W) F[x + H * y] = f[x][y];\n  FOR(x, H) FOR(y, W) G[x + H * y] = g[x][y];\n\
     \  F = multivar_convolution_cyclic(vc<int>({H, W}), F, G);\n  vv(mint, h, H, W);\n\
     \  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\n  return h;\n}\n#line 2 \"mod/dynamic_modint.hpp\"\
-    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
-    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
-    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
-    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
-    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
-    \ -1ULL : (1ULL << n) - 1; }\n#line 7 \"mod/dynamic_modint.hpp\"\n\ntemplate <int\
-    \ id>\nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
-    \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
-    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
-    \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
-    \ }\n\n  static Dynamic_Modint raw(u32 v) {\n    Dynamic_Modint x;\n    x.val\
-    \ = v;\n    return x;\n  }\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32\
-    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n\
-    \  Dynamic_Modint(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
-    \  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n \
-    \ Dynamic_Modint(i128 x) : val((x %= get_mod()) < 0 ? x + get_mod() : x){};\n\n\
-    \  bool operator<(const mint& other) const { return val < other.val; }\n  mint&\
-    \ operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ? val : val\
-    \ - umod();\n    return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n \
-    \   val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n    return\
-    \ *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n\
-    \    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return *this =\
-    \ *this * rhs.inverse(); }\n  mint operator-() const { return mint() - *this;\
-    \ }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this, r = 1;\n\
-    \    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n    }\n  \
-    \  return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
+    \n\n#line 7 \"mod/dynamic_modint.hpp\"\n\ntemplate <int id>\nstruct Dynamic_Modint\
+    \ {\n  static constexpr bool is_modint = true;\n  using mint = Dynamic_Modint;\n\
+    \  u32 val;\n  static Barrett bt;\n  static u32 umod() { return bt.umod(); }\n\
+    \n  static int get_mod() { return (int)(bt.umod()); }\n  static void set_mod(int\
+    \ m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n  }\n\n  static Dynamic_Modint\
+    \ raw(u32 v) {\n    Dynamic_Modint x;\n    x.val = v;\n    return x;\n  }\n  Dynamic_Modint()\
+    \ : val(0) {}\n  Dynamic_Modint(u32 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64\
+    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x) : val((x %= get_mod()) <\
+    \ 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0\
+    \ ? x + get_mod() : x) {}\n  Dynamic_Modint(i128 x) : val((x %= get_mod()) < 0\
+    \ ? x + get_mod() : x){};\n\n  bool operator<(const mint& other) const { return\
+    \ val < other.val; }\n  mint& operator+=(const mint& rhs) {\n    val = (val +=\
+    \ rhs.val) < umod() ? val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const\
+    \ mint& rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
+    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
+    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
+    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
+    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
+    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
+    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
     \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
     \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
     \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
@@ -981,6 +980,7 @@ data:
   - poly/multipoint.hpp
   - poly/middle_product.hpp
   - poly/ntt.hpp
+  - other/bit.hpp
   - mod/crt3.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
@@ -1002,12 +1002,11 @@ data:
   - mod/mod_pow.hpp
   - mod/barrett.hpp
   - mod/dynamic_modint.hpp
-  - other/bit.hpp
   isVerificationFile: true
   path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 20:34:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:01:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
 layout: document
