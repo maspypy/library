@@ -10,6 +10,24 @@ char out[100];
 uint32_t pil = 0, pir = 0, por = 0;
 bool input_eof = false;
 
+template <class T>
+constexpr bool is_signed_integer_v = is_signed_v<T> || is_same_v<T, i128>;
+
+template <class T>
+struct unsigned_integer {
+  using type = make_unsigned_t<T>;
+};
+template <>
+struct unsigned_integer<i128> {
+  using type = u128;
+};
+template <>
+struct unsigned_integer<u128> {
+  using type = u128;
+};
+template <class T>
+using unsigned_integer_t = typename unsigned_integer<T>::type;
+
 [[noreturn]] inline void input_error(const char *message) {
   fputs(message, stderr);
   fputc('\n', stderr);
@@ -88,7 +106,7 @@ void rd_integer_slow(T &x) {
   do c = get_char();
   while (c < '-');
   bool minus = 0;
-  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+  if constexpr (is_signed_integer_v<T>) {
     if (c == '-') {
       minus = 1, c = get_char();
     }
@@ -97,7 +115,7 @@ void rd_integer_slow(T &x) {
   while ('0' <= c) {
     x = x * 10 + (c & 15), c = get_char();
   }
-  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+  if constexpr (is_signed_integer_v<T>) {
     if (minus) x = -x;
   }
 }
@@ -115,7 +133,7 @@ void rd_integer(T &x) {
   do c = ibuf[pil++];
   while (c < '-');
   bool minus = 0;
-  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+  if constexpr (is_signed_integer_v<T>) {
     if (c == '-') {
       minus = 1, c = ibuf[pil++];
     }
@@ -124,7 +142,7 @@ void rd_integer(T &x) {
   while ('0' <= c) {
     x = x * 10 + (c & 15), c = ibuf[pil++];
   }
-  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+  if constexpr (is_signed_integer_v<T>) {
     if (minus) x = -x;
   }
 }
@@ -157,7 +175,7 @@ void rd(tuple<T...> &tpl) {
   rd_tuple(tpl);
 }
 
-template <size_t N = 0, typename T>
+template <class T, size_t N>
 void rd(array<T, N> &x) {
   for (auto &d : x) rd(d);
 }
@@ -166,10 +184,9 @@ void rd(vc<T> &x) {
   for (auto &d : x) rd(d);
 }
 
-void read() {}
-template <class H, class... T>
-void read(H &h, T &...t) {
-  rd(h), read(t...);
+template <class... T>
+void read(T &...x) {
+  (rd(x), ...);
 }
 
 inline void wt_range(const char *s, size_t n) {
@@ -193,27 +210,32 @@ void wt(const string &s) { wt_range(s.data(), s.size()); }
 template <typename T>
 void wt_integer(T x) {
   if (por > SZ - 100) flush();
-  if (x < 0) {
-    obuf[por++] = '-', x = -x;
+  using U = unsigned_integer_t<T>;
+  U y = static_cast<U>(x);
+  if constexpr (is_signed_integer_v<T>) {
+    if (x < 0) {
+      obuf[por++] = '-';
+      y = U(0) - y;
+    }
   }
   int outi;
-  for (outi = 96; x >= 10000; outi -= 4) {
-    memcpy(out + outi, pre.num[x % 10000], 4);
-    x /= 10000;
+  for (outi = 96; y >= 10000; outi -= 4) {
+    memcpy(out + outi, pre.num[y % 10000], 4);
+    y /= 10000;
   }
-  if (x >= 1000) {
-    memcpy(obuf + por, pre.num[x], 4);
+  if (y >= 1000) {
+    memcpy(obuf + por, pre.num[y], 4);
     por += 4;
-  } else if (x >= 100) {
-    memcpy(obuf + por, pre.num[x] + 1, 3);
+  } else if (y >= 100) {
+    memcpy(obuf + por, pre.num[y] + 1, 3);
     por += 3;
-  } else if (x >= 10) {
-    int q = (x * 103) >> 10;
+  } else if (y >= 10) {
+    int q = (y * 103) >> 10;
     obuf[por] = q | '0';
-    obuf[por + 1] = (x - q * 10) | '0';
+    obuf[por + 1] = (y - q * 10) | '0';
     por += 2;
   } else
-    obuf[por++] = x | '0';
+    obuf[por++] = y | '0';
   memcpy(obuf + por, out + outi + 4, 96 - outi);
   por += 96 - outi;
 }
@@ -276,9 +298,9 @@ void wt(const vector<T> &val) {
 void print() { wt('\n'); }
 template <class Head, class... Tail>
 void print(Head &&head, Tail &&...tail) {
-  wt(head);
-  if (sizeof...(Tail)) wt(' ');
-  print(forward<Tail>(tail)...);
+  wt(forward<Head>(head));
+  ((wt(' '), wt(forward<Tail>(tail))), ...);
+  wt('\n');
 }
 
 // gcc expansion. called automaticall after main.
