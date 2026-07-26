@@ -21,6 +21,9 @@ using i128 = __int128;
 using u128 = unsigned __int128;
 using f128 = __float128;
 
+template <class>
+constexpr bool dependent_false = false;
+
 template <class T>
 constexpr T infty = [] {
   static_assert(dependent_false<T>, "infty<T> is not defined");
@@ -41,8 +44,6 @@ constexpr double infty<double> = numeric_limits<double>::infinity();
 template <>
 constexpr long double infty<long double> =
     numeric_limits<long double>::infinity();
-template <class>
-constexpr bool dependent_false = false;
 
 using pi = pair<ll, ll>;
 using vi = vector<ll>;
@@ -124,55 +125,44 @@ bool has_kth_bit(T x, int k) {
 
 template <typename UINT>
 struct all_bit {
-  static_assert(is_unsigned_v<UINT>);
+  UINT s;
   struct iter {
     UINT s;
-    iter(UINT s) : s(s) {}
     int operator*() const { return lowbit(s); }
-    iter &operator++() {
-      s &= s - 1;
-      return *this;
-    }
-    bool operator!=(const iter) const { return s != 0; }
+    void operator++() { s &= s - 1; }
+    bool operator!=(nullptr_t) const { return s; }
   };
-  UINT s;
-  all_bit(UINT s) : s(s) {}
-  iter begin() const { return iter(s); }
-  iter end() const { return iter(0); }
+  iter begin() const { return {s}; }
+  nullptr_t end() const { return nullptr; }
 };
 
 template <typename UINT>
 struct all_subset {
-  static_assert(is_unsigned<UINT>::value);
+  UINT s;
   struct iter {
     UINT s, t;
-    bool ed;
-    iter(UINT s) : s(s), t(s), ed(0) {}
-    UINT operator*() const { return s ^ t; }
-    iter &operator++() {
-      (t == 0 ? ed = 1 : t = (t - 1) & s);
-      return *this;
+    bool done = false;
+    UINT operator*() const { return t; }
+    void operator++() {
+      done = (t == 0);
+      t = (t - 1) & s;
     }
-    bool operator!=(const iter) const { return !ed; }
+    bool operator!=(nullptr_t) const { return !done; }
   };
-  UINT s;
-  all_subset(UINT s) : s(s) {}
-  iter begin() const { return iter(s); }
-  iter end() const { return iter(0); }
+  iter begin() const { return {s, s}; }
+  nullptr_t end() const { return nullptr; }
 };
 
 // require y > 0
 template <typename T>
 T floor(T x, T y) {
-  T q = x / y, r = x % y;
-  return q - (r < 0);
+  return x / y - (x % y < 0);
 }
 
 // require y > 0
 template <typename T>
 T ceil(T x, T y) {
-  T q = x / y, r = x % y;
-  return q + (r > 0);
+  return (x / y) + (x % y > 0);
 }
 
 // require y > 0
@@ -191,9 +181,9 @@ pair<T, T> divmod(T x, T y) {
 }
 
 constexpr auto TEN = [] {
-  array<ll, 19> A{};
+  array<u64, 20> A{};
   A[0] = 1;
-  for (int i = 1; i < 19; ++i) A[i] = 10 * A[i - 1];
+  for (int i = 1; i < 20; ++i) A[i] = 10 * A[i - 1];
   return A;
 }();
 
