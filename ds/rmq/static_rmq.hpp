@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "ds/sparse_table/sparse_table.hpp"
 
 // 構築 O(N), クエリ O(1)
@@ -8,7 +9,7 @@ struct Static_RMQ {
   using X = typename MX::value_type;
   static constexpr int LOG = 4;
   int N, b_num;
-  vc<X> A, pre, suf; // inclusive
+  vc<X> A, pre, suf;  // inclusive
   Sparse_Table<Monoid> ST;
 
   using u16 = unsigned short;

@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "ds/unionfind/unionfind.hpp"
 
 // amortized linear

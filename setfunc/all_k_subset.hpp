@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 
 #ifdef _MSC_VER
 #include <intrin.h>
@@ -12,7 +13,7 @@ struct all_k_subset {
     const UINT n, k, s;
     UINT t;
     iter(UINT s, UINT k)
-        : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}
+        : n(UINT(1) << popcnt(s)), k(k), s(s), t(full_mask(k)) {}
     __attribute__((target("bmi2"))) auto operator*() const {
       return _pdep_u64(t, s);
     }
@@ -35,5 +36,5 @@ struct all_k_subset {
 // all_nCk関数の実装
 template <typename UINT>
 auto all_nCk(int n, int k) {
-  return all_k_subset<UINT>((UINT(1) << n) - 1, k);
+  return all_k_subset<UINT>(full_mask(n), k);
 }

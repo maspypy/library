@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 
 // https://codeforces.com/blog/entry/153948?#comment-1367191
 // O(n 2^n)
@@ -10,7 +11,7 @@ WT maxmin_partition(int K, vc<WT> A) {
   FOR(i, N) FOR(s, 1 << i) S[s | 1 << i] = S[s] + A[i];
 
   WT ANS = 0;
-  int full = (1 << N) - 1;
+  int full = full_mask(N);
   using P = pair<int, WT>;
   vc<P> dp(1 << N);
   for (int s = 0; s < (1 << N); ++s) {

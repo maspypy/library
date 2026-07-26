@@ -1,5 +1,6 @@
 #pragma once
 
+#include "other/bit.hpp"
 #include "mod/modint_common.hpp"
 #include "mod/primitive_root.hpp"
 #include "mod/barrett.hpp"

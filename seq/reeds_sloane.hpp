@@ -1,3 +1,4 @@
+#include "other/bit.hpp
 #include "nt/factor.hpp"
 #include "mod/mod_inv.hpp"
 #include "mod/dynamic_modint.hpp"

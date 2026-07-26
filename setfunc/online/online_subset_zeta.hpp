@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "enumerate/bits.hpp"
 
 /*

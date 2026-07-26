@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "poly/convolution.hpp"
 
 struct BigInteger_Binary {
