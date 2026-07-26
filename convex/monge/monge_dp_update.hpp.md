@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   _extendedRequiredBy: []

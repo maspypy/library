@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
   - icon: ':x:'

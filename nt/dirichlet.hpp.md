@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/dirichlet.test.cpp
     title: test/1_mytest/dirichlet.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/integer_kth_root.hpp\"\nu64 integer_kth_root(u64 k, u64\
@@ -137,7 +137,7 @@ data:
   path: nt/dirichlet.hpp
   requiredBy: []
   timestamp: '2025-09-01 16:03:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/dirichlet.test.cpp
   - test/2_library_checker/number_theory/dirichlet_inv.test.cpp

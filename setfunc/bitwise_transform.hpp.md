@@ -23,13 +23,13 @@ data:
   - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/and_convolution.hpp
     title: setfunc/and_convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/or_convolution.hpp
     title: setfunc/or_convolution.hpp
   - icon: ':x:'
@@ -53,20 +53,20 @@ data:
   - icon: ':x:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/zeta.hpp
     title: setfunc/zeta.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
     title: test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
   - icon: ':x:'
@@ -104,7 +104,7 @@ data:
     title: test/3_yukicoder/2507.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/bitwise_transform.hpp\"\n\nnamespace bitwise {\n\
@@ -191,7 +191,7 @@ data:
   - setfunc/sps_log.hpp
   - linalg/hafnian.hpp
   timestamp: '2026-07-26 16:27:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
   - test/3_yukicoder/1753.test.cpp

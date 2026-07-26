@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: graph/bitset/transitive_reduction.hpp
     title: graph/bitset/transitive_reduction.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
@@ -42,13 +42,13 @@ data:
     path: nt/find_coprime_pair.hpp
     title: nt/find_coprime_pair.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/sum_over_bit_positions.test.cpp
     title: test/1_mytest/sum_over_bit_positions.test.cpp
   - icon: ':x:'
@@ -89,7 +89,7 @@ data:
     title: test/3_yukicoder/4_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -416,7 +416,7 @@ data:
   - nt/find_coprime_pair.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-06-15 22:08:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1400.test.cpp
   - test/3_yukicoder/421.test.cpp
