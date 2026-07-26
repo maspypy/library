@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/monge/monge_dp_update.hpp
     title: convex/monge/monge_dp_update.hpp
   _extendedVerifiedWith:
@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/monotone_minima.test.cpp
     title: test/1_mytest/monotone_minima.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
   _isVerificationFailed: true
@@ -56,9 +56,9 @@ data:
   timestamp: '2026-05-31 17:32:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/952.test.cpp
   - test/1_mytest/monotone_minima.test.cpp
   - test/1_mytest/alien.test.cpp
-  - test/3_yukicoder/952.test.cpp
 documentation_of: convex/monotone_minima.hpp
 layout: document
 redirect_from:

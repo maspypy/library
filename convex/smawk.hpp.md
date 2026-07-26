@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: convex/monge/monge.hpp
     title: convex/monge/monge.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/monge/monge_dp_update.hpp
     title: convex/monge/monge_dp_update.hpp
   _extendedVerifiedWith:
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/smawk.test.cpp
     title: test/1_mytest/smawk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
   _isVerificationFailed: true
@@ -59,14 +59,14 @@ data:
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
-  - convex/monge/monge_dp_update.hpp
   - convex/monge/monge.hpp
+  - convex/monge/monge_dp_update.hpp
   timestamp: '2026-06-15 22:08:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/alien.test.cpp
-  - test/1_mytest/smawk.test.cpp
   - test/3_yukicoder/952.test.cpp
+  - test/1_mytest/smawk.test.cpp
+  - test/1_mytest/alien.test.cpp
 documentation_of: convex/smawk.hpp
 layout: document
 redirect_from:

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':warning:'
@@ -20,68 +20,70 @@ data:
   - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
     title: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/powproj_sps.test.cpp
     title: test/2_library_checker/set_power_series/powproj_sps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/sps_exp.test.cpp
     title: test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/subset_convolution.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
     \n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\n\nnamespace bitwise {\n\nenum\
     \ class trans_type {\n  hadamard,\n  superset_zeta,\n  superset_mobius,\n  subset_zeta,\n\
-    \  subset_mobius,\n  ranked_zeta,\n  ranked_mobius\n};\n\ntemplate <typename ARR>\n\
-    inline void ranked_add(ARR& a, const ARR& b) {\n  for (int d = 0; d < int(a.size());\
-    \ ++d) a[d] += b[d];\n}\n\ntemplate <typename ARR>\ninline void ranked_sub(ARR&\
-    \ a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d) a[d] -= b[d];\n\
-    }\n\ntemplate <trans_type type, int N, typename T>\ninline void bitwise_transform_fixed(T*\
-    \ a) {\n  static_assert(N >= 1 && (N & (N - 1)) == 0);\n  if constexpr (N == 1)\
-    \ {\n    return;\n  } else {\n    constexpr int H = N / 2;\n    bitwise_transform_fixed<type,\
-    \ H>(a);\n    bitwise_transform_fixed<type, H>(a + H);\n    if constexpr (type\
-    \ == trans_type::hadamard) {\n      for (int i = 0; i < H; ++i) {\n        auto\
-    \ x = a[i], y = a[H + i];\n        a[i] = x + y, a[H + i] = x - y;\n      }\n\
-    \    }\n    if constexpr (type == trans_type::superset_zeta) {\n      for (int\
-    \ i = 0; i < H; ++i) a[i] += a[H + i];\n    }\n    if constexpr (type == trans_type::superset_mobius)\
-    \ {\n      for (int i = 0; i < H; ++i) a[i] -= a[H + i];\n    }\n    if constexpr\
-    \ (type == trans_type::subset_zeta) {\n      for (int i = 0; i < H; ++i) a[H +\
-    \ i] += a[i];\n    }\n    if constexpr (type == trans_type::subset_mobius) {\n\
-    \      for (int i = 0; i < H; ++i) a[H + i] -= a[i];\n    }\n    if constexpr\
-    \ (type == trans_type::ranked_zeta) {\n      for (int i = 0; i < H; ++i) ranked_add(a[H\
-    \ + i], a[i]);\n    }\n    if constexpr (type == trans_type::ranked_mobius) {\n\
-    \      for (int i = 0; i < H; ++i) ranked_sub(a[H + i], a[i]);\n    }\n  }\n}\n\
-    \ntemplate <trans_type type, int N, typename T>\ninline void bitwise_transform_dispatch(vc<T>&\
+    \  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n  superset_zeta_or\n};\n\n\
+    template <typename ARR>\ninline void ranked_add(ARR& a, const ARR& b) {\n  for\
+    \ (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n}\n\ntemplate <typename ARR>\n\
+    inline void ranked_sub(ARR& a, const ARR& b) {\n  for (int d = 0; d < int(a.size());\
+    \ ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type type, int N, typename T>\ninline\
+    \ void bitwise_transform_fixed(T* a) {\n  static_assert(N >= 1 && (N & (N - 1))\
+    \ == 0);\n  if constexpr (N == 1) {\n    return;\n  } else {\n    constexpr int\
+    \ H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n    bitwise_transform_fixed<type,\
+    \ H>(a + H);\n    if constexpr (type == trans_type::hadamard) {\n      for (int\
+    \ i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n        a[i] = x\
+    \ + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type == trans_type::superset_zeta)\
+    \ {\n      for (int i = 0; i < H; ++i) a[i] += a[H + i];\n    }\n    if constexpr\
+    \ (type == trans_type::superset_mobius) {\n      for (int i = 0; i < H; ++i) a[i]\
+    \ -= a[H + i];\n    }\n    if constexpr (type == trans_type::subset_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) a[H + i] += a[i];\n    }\n    if constexpr\
+    \ (type == trans_type::subset_mobius) {\n      for (int i = 0; i < H; ++i) a[H\
+    \ + i] -= a[i];\n    }\n    if constexpr (type == trans_type::ranked_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) ranked_add(a[H + i], a[i]);\n    }\n    if\
+    \ constexpr (type == trans_type::ranked_mobius) {\n      for (int i = 0; i < H;\
+    \ ++i) ranked_sub(a[H + i], a[i]);\n    }\n    if constexpr (type == trans_type::superset_zeta_or)\
+    \ {\n      for (int i = 0; i < H; ++i) a[i] |= a[H + i];\n    }\n  }\n}\n\ntemplate\
+    \ <trans_type type, int N, typename T>\ninline void bitwise_transform_dispatch(vc<T>&\
     \ a) {\n  if (len(a) == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n\
     \  }\n  if constexpr (N > 1) {\n    return bitwise_transform_dispatch<type, N\
     \ / 2>(a);\n  }\n}\n\ntemplate <trans_type type, typename T>\ninline void bitwise_transform(vc<T>&\
@@ -125,24 +127,24 @@ data:
   isVerificationFile: false
   path: setfunc/subset_convolution.hpp
   requiredBy:
-  - linalg/hafnian.hpp
   - graph/count/count_bridgeless_subgraph.hpp
   - graph/count/count_tree_subgraph.hpp
-  - graph/tutte_polynomial.hpp
   - graph/chromatic.hpp
+  - graph/tutte_polynomial.hpp
   - setfunc/sps_exp.hpp
   - setfunc/power_projection_of_sps.hpp
-  timestamp: '2026-06-15 22:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - linalg/hafnian.hpp
+  timestamp: '2026-07-26 16:27:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
   - test/2_library_checker/set_power_series/sps_exp.test.cpp
   - test/2_library_checker/set_power_series/powproj_sps.test.cpp
-  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
   - test/2_library_checker/set_power_series/subset_convolution.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
-  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
 documentation_of: setfunc/subset_convolution.hpp
 layout: document
 redirect_from:

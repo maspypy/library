@@ -84,9 +84,9 @@ data:
   timestamp: '2026-06-20 11:40:52+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/1_mytest/alien.test.cpp
-  - test/1_mytest/monge_shortest_path.test.cpp
   - test/3_yukicoder/705.test.cpp
+  - test/1_mytest/monge_shortest_path.test.cpp
+  - test/1_mytest/alien.test.cpp
 documentation_of: convex/monge/monge_shortest_path.hpp
 layout: document
 redirect_from:

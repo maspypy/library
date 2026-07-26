@@ -45,8 +45,8 @@ data:
   isVerificationFile: false
   path: ds/csr.hpp
   requiredBy:
-  - ds/offline_query/offline_set_intersection.hpp
   - graph/degree_sequence.hpp
+  - ds/offline_query/offline_set_intersection.hpp
   timestamp: '2026-07-19 04:28:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

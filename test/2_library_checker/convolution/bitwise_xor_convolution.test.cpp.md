@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -13,13 +13,13 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
   _extendedRequiredBy: []
@@ -143,22 +143,36 @@ data:
     \r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio {\r\nstatic\
     \ constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\nchar\
     \ out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por = 0;\r\
-    \n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n\
-    \    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j\
-    \ = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\
-    \n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n\
-    \  memmove(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf + pir\
-    \ - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\
-    \n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n    if (pil + 1 > pir)\
-    \ load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n}\r\n\r\nvoid\
-    \ rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n    if (pil + 1 >\
-    \ pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n  do {\r\n\
-    \    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\n  } while\
-    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
-    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
-    \ do c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr\
+    \nbool input_eof = false;\r\n\r\n[[noreturn]] inline void input_error(const char\
+    \ *message) {\r\n  fputs(message, stderr);\r\n  fputc('\\n', stderr);\r\n  exit(EXIT_FAILURE);\r\
+    \n}\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
+    \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
+    \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
+    \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
+    \ {\r\n  uint32_t n = pir - pil;\r\n  memmove(ibuf, ibuf + pil, n);\r\n  pil =\
+    \ 0;\r\n  pir = n;\r\n  if (input_eof) return;\r\n\r\n  pir += fread(ibuf + pir,\
+    \ 1, SZ - pir, stdin);\r\n  if (ferror(stdin)) input_error(\"fastio: input error\"\
+    );\r\n  if (feof(stdin)) {\r\n    input_eof = true;\r\n    // Allows the last\
+    \ token to end exactly at EOF without a trailing\r\n    // whitespace.\r\n   \
+    \ if (pir < SZ) ibuf[pir++] = '\\n';\r\n  }\r\n}\r\n\r\ninline char get_char()\
+    \ {\r\n  if (pil == pir) {\r\n    load();\r\n    if (pil == pir) input_error(\"\
+    fastio: unexpected EOF\");\r\n  }\r\n  return ibuf[pil++];\r\n}\r\n\r\ninline\
+    \ void flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\n  por = 0;\r\n}\r\n\r\n\
+    void rd(char &c) {\r\n  do c = get_char();\r\n  while (isspace(static_cast<unsigned\
+    \ char>(c)));\r\n}\r\n\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n\
+    \  do c = get_char();\r\n  while (isspace(static_cast<unsigned char>(c)));\r\n\
+    \  do {\r\n    x += c;\r\n    c = get_char();\r\n  } while (!isspace(static_cast<unsigned\
+    \ char>(c)));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n  string\
+    \ s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer_slow(T\
+    \ &x) {\r\n  char c;\r\n  do c = get_char();\r\n  while (c < '-');\r\n  bool minus\
+    \ = 0;\r\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n   \
+    \ if (c == '-') {\r\n      minus = 1, c = get_char();\r\n    }\r\n  }\r\n  x =\
+    \ 0;\r\n  while ('0' <= c) {\r\n    x = x * 10 + (c & 15), c = get_char();\r\n\
+    \  }\r\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if\
+    \ (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer(T\
+    \ &x) {\r\n  if (pil + 100 > pir) {\r\n    load();\r\n    if (pil + 100 > pir)\
+    \ {\r\n      rd_integer_slow(x);\r\n      return;\r\n    }\r\n  }\r\n  char c;\r\
+    \n  do c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr\
     \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-') {\r\n   \
     \   minus = 1, c = ibuf[pil++];\r\n    }\r\n  }\r\n  x = 0;\r\n  while ('0' <=\
     \ c) {\r\n    x = x * 10 + (c & 15), c = ibuf[pil++];\r\n  }\r\n  if constexpr\
@@ -251,7 +265,7 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
     \ TIDAK(bool t = 1) { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\"\
-    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\r\n#line 4 \"test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
+    \ : \"Bob\"); }\r\nvoid Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
     \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -333,42 +347,43 @@ data:
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"setfunc/hadamard.hpp\"\n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\
     \n\nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
-    \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius\n\
-    };\n\ntemplate <typename ARR>\ninline void ranked_add(ARR& a, const ARR& b) {\n\
-    \  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n}\n\ntemplate <typename\
-    \ ARR>\ninline void ranked_sub(ARR& a, const ARR& b) {\n  for (int d = 0; d <\
-    \ int(a.size()); ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type type, int N, typename\
-    \ T>\ninline void bitwise_transform_fixed(T* a) {\n  static_assert(N >= 1 && (N\
-    \ & (N - 1)) == 0);\n  if constexpr (N == 1) {\n    return;\n  } else {\n    constexpr\
-    \ int H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n    bitwise_transform_fixed<type,\
-    \ H>(a + H);\n    if constexpr (type == trans_type::hadamard) {\n      for (int\
-    \ i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n        a[i] = x\
-    \ + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type == trans_type::superset_zeta)\
-    \ {\n      for (int i = 0; i < H; ++i) a[i] += a[H + i];\n    }\n    if constexpr\
-    \ (type == trans_type::superset_mobius) {\n      for (int i = 0; i < H; ++i) a[i]\
-    \ -= a[H + i];\n    }\n    if constexpr (type == trans_type::subset_zeta) {\n\
-    \      for (int i = 0; i < H; ++i) a[H + i] += a[i];\n    }\n    if constexpr\
-    \ (type == trans_type::subset_mobius) {\n      for (int i = 0; i < H; ++i) a[H\
-    \ + i] -= a[i];\n    }\n    if constexpr (type == trans_type::ranked_zeta) {\n\
-    \      for (int i = 0; i < H; ++i) ranked_add(a[H + i], a[i]);\n    }\n    if\
-    \ constexpr (type == trans_type::ranked_mobius) {\n      for (int i = 0; i < H;\
-    \ ++i) ranked_sub(a[H + i], a[i]);\n    }\n  }\n}\n\ntemplate <trans_type type,\
-    \ int N, typename T>\ninline void bitwise_transform_dispatch(vc<T>& a) {\n  if\
-    \ (len(a) == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n  }\n\
-    \  if constexpr (N > 1) {\n    return bitwise_transform_dispatch<type, N / 2>(a);\n\
-    \  }\n}\n\ntemplate <trans_type type, typename T>\ninline void bitwise_transform(vc<T>&\
-    \ a) {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n\
-    \  assert(n <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n\
-    }\n}  // namespace bitwise\n#line 4 \"setfunc/hadamard.hpp\"\n\r\n// B[j] = sum_i\
-    \ (-1)^{popcnt(i&j)} A[i]\r\n// len(A) \u306F 2^25 \u4EE5\u4E0B\u306E 2 \u51AA\
-    \u3092\u4EEE\u5B9A\u30022^k \u3067\u5272\u308B\u3053\u3068\u306F\u3057\u3066\u3044\
-    \u306A\u3044\u3002\r\ntemplate <typename T>\r\nvoid hadamard(vc<T>& A) {\r\n \
-    \ bitwise::bitwise_transform<bitwise::trans_type::hadamard>(A);\r\n}\r\n#line\
-    \ 2 \"setfunc/xor_convolution.hpp\"\n\r\ntemplate <typename T>\r\nvc<T> xor_convolution(vc<T>\
-    \ A, vc<T> B) {\r\n  hadamard(A);\r\n  hadamard(B);\r\n  FOR(i, len(A)) A[i] *=\
-    \ B[i];\r\n  hadamard(A);\r\n\r\n  T c = T(1) / T(len(A));\r\n  if (c != T(0))\
-    \ {\r\n    FOR(i, len(A)) A[i] *= c;\r\n  } else {\r\n    FOR(i, len(A)) A[i]\
-    \ /= len(A);\r\n  }\r\n  return A;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
+    \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
+    \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
+    \ a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n\
+    }\n\ntemplate <typename ARR>\ninline void ranked_sub(ARR& a, const ARR& b) {\n\
+    \  for (int d = 0; d < int(a.size()); ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type\
+    \ type, int N, typename T>\ninline void bitwise_transform_fixed(T* a) {\n  static_assert(N\
+    \ >= 1 && (N & (N - 1)) == 0);\n  if constexpr (N == 1) {\n    return;\n  } else\
+    \ {\n    constexpr int H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n\
+    \    bitwise_transform_fixed<type, H>(a + H);\n    if constexpr (type == trans_type::hadamard)\
+    \ {\n      for (int i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n\
+    \        a[i] = x + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type\
+    \ == trans_type::superset_zeta) {\n      for (int i = 0; i < H; ++i) a[i] += a[H\
+    \ + i];\n    }\n    if constexpr (type == trans_type::superset_mobius) {\n   \
+    \   for (int i = 0; i < H; ++i) a[i] -= a[H + i];\n    }\n    if constexpr (type\
+    \ == trans_type::subset_zeta) {\n      for (int i = 0; i < H; ++i) a[H + i] +=\
+    \ a[i];\n    }\n    if constexpr (type == trans_type::subset_mobius) {\n     \
+    \ for (int i = 0; i < H; ++i) a[H + i] -= a[i];\n    }\n    if constexpr (type\
+    \ == trans_type::ranked_zeta) {\n      for (int i = 0; i < H; ++i) ranked_add(a[H\
+    \ + i], a[i]);\n    }\n    if constexpr (type == trans_type::ranked_mobius) {\n\
+    \      for (int i = 0; i < H; ++i) ranked_sub(a[H + i], a[i]);\n    }\n    if\
+    \ constexpr (type == trans_type::superset_zeta_or) {\n      for (int i = 0; i\
+    \ < H; ++i) a[i] |= a[H + i];\n    }\n  }\n}\n\ntemplate <trans_type type, int\
+    \ N, typename T>\ninline void bitwise_transform_dispatch(vc<T>& a) {\n  if (len(a)\
+    \ == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n  }\n  if constexpr\
+    \ (N > 1) {\n    return bitwise_transform_dispatch<type, N / 2>(a);\n  }\n}\n\n\
+    template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
+    \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
+    \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
+    \ bitwise\n#line 4 \"setfunc/hadamard.hpp\"\n\r\n// B[j] = sum_i (-1)^{popcnt(i&j)}\
+    \ A[i]\r\n// len(A) \u306F 2^25 \u4EE5\u4E0B\u306E 2 \u51AA\u3092\u4EEE\u5B9A\u3002\
+    2^k \u3067\u5272\u308B\u3053\u3068\u306F\u3057\u3066\u3044\u306A\u3044\u3002\r\
+    \ntemplate <typename T>\r\nvoid hadamard(vc<T>& A) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::hadamard>(A);\r\
+    \n}\r\n#line 2 \"setfunc/xor_convolution.hpp\"\n\r\ntemplate <typename T>\r\n\
+    vc<T> xor_convolution(vc<T> A, vc<T> B) {\r\n  hadamard(A);\r\n  hadamard(B);\r\
+    \n  FOR(i, len(A)) A[i] *= B[i];\r\n  hadamard(A);\r\n\r\n  T c = T(1) / T(len(A));\r\
+    \n  if (c != T(0)) {\r\n    FOR(i, len(A)) A[i] *= c;\r\n  } else {\r\n    FOR(i,\
+    \ len(A)) A[i] /= len(A);\r\n  }\r\n  return A;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = xor_convolution(A, B);\r\
     \n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -391,7 +406,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-07-14 09:59:38+09:00'
+  timestamp: '2026-07-26 16:27:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp

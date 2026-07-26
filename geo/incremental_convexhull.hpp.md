@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -193,9 +193,9 @@ data:
   timestamp: '2026-07-19 03:14:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/incremental_ch.test.cpp
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
-  - test/1_mytest/incremental_ch.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
 documentation_of: geo/incremental_convexhull.hpp
 layout: document

@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/minplus_convex.test.cpp
     title: test/1_mytest/minplus_convex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
     title: test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     title: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convex/minplus_convolution.hpp\"\n\ntemplate <typename T>\n\
@@ -89,10 +89,10 @@ data:
   requiredBy:
   - convex/minplus_convolution_of_triples.hpp
   timestamp: '2026-07-21 19:37:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/minplus_conv_triple.test.cpp
   - test/1_mytest/minplus_convex.test.cpp
+  - test/1_mytest/minplus_conv_triple.test.cpp
   - test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
 documentation_of: convex/minplus_convolution.hpp

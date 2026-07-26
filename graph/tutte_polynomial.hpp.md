@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
@@ -40,26 +40,28 @@ data:
     \ 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
     \n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\n\nnamespace bitwise {\n\nenum\
     \ class trans_type {\n  hadamard,\n  superset_zeta,\n  superset_mobius,\n  subset_zeta,\n\
-    \  subset_mobius,\n  ranked_zeta,\n  ranked_mobius\n};\n\ntemplate <typename ARR>\n\
-    inline void ranked_add(ARR& a, const ARR& b) {\n  for (int d = 0; d < int(a.size());\
-    \ ++d) a[d] += b[d];\n}\n\ntemplate <typename ARR>\ninline void ranked_sub(ARR&\
-    \ a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d) a[d] -= b[d];\n\
-    }\n\ntemplate <trans_type type, int N, typename T>\ninline void bitwise_transform_fixed(T*\
-    \ a) {\n  static_assert(N >= 1 && (N & (N - 1)) == 0);\n  if constexpr (N == 1)\
-    \ {\n    return;\n  } else {\n    constexpr int H = N / 2;\n    bitwise_transform_fixed<type,\
-    \ H>(a);\n    bitwise_transform_fixed<type, H>(a + H);\n    if constexpr (type\
-    \ == trans_type::hadamard) {\n      for (int i = 0; i < H; ++i) {\n        auto\
-    \ x = a[i], y = a[H + i];\n        a[i] = x + y, a[H + i] = x - y;\n      }\n\
-    \    }\n    if constexpr (type == trans_type::superset_zeta) {\n      for (int\
-    \ i = 0; i < H; ++i) a[i] += a[H + i];\n    }\n    if constexpr (type == trans_type::superset_mobius)\
-    \ {\n      for (int i = 0; i < H; ++i) a[i] -= a[H + i];\n    }\n    if constexpr\
-    \ (type == trans_type::subset_zeta) {\n      for (int i = 0; i < H; ++i) a[H +\
-    \ i] += a[i];\n    }\n    if constexpr (type == trans_type::subset_mobius) {\n\
-    \      for (int i = 0; i < H; ++i) a[H + i] -= a[i];\n    }\n    if constexpr\
-    \ (type == trans_type::ranked_zeta) {\n      for (int i = 0; i < H; ++i) ranked_add(a[H\
-    \ + i], a[i]);\n    }\n    if constexpr (type == trans_type::ranked_mobius) {\n\
-    \      for (int i = 0; i < H; ++i) ranked_sub(a[H + i], a[i]);\n    }\n  }\n}\n\
-    \ntemplate <trans_type type, int N, typename T>\ninline void bitwise_transform_dispatch(vc<T>&\
+    \  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n  superset_zeta_or\n};\n\n\
+    template <typename ARR>\ninline void ranked_add(ARR& a, const ARR& b) {\n  for\
+    \ (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n}\n\ntemplate <typename ARR>\n\
+    inline void ranked_sub(ARR& a, const ARR& b) {\n  for (int d = 0; d < int(a.size());\
+    \ ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type type, int N, typename T>\ninline\
+    \ void bitwise_transform_fixed(T* a) {\n  static_assert(N >= 1 && (N & (N - 1))\
+    \ == 0);\n  if constexpr (N == 1) {\n    return;\n  } else {\n    constexpr int\
+    \ H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n    bitwise_transform_fixed<type,\
+    \ H>(a + H);\n    if constexpr (type == trans_type::hadamard) {\n      for (int\
+    \ i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n        a[i] = x\
+    \ + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type == trans_type::superset_zeta)\
+    \ {\n      for (int i = 0; i < H; ++i) a[i] += a[H + i];\n    }\n    if constexpr\
+    \ (type == trans_type::superset_mobius) {\n      for (int i = 0; i < H; ++i) a[i]\
+    \ -= a[H + i];\n    }\n    if constexpr (type == trans_type::subset_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) a[H + i] += a[i];\n    }\n    if constexpr\
+    \ (type == trans_type::subset_mobius) {\n      for (int i = 0; i < H; ++i) a[H\
+    \ + i] -= a[i];\n    }\n    if constexpr (type == trans_type::ranked_zeta) {\n\
+    \      for (int i = 0; i < H; ++i) ranked_add(a[H + i], a[i]);\n    }\n    if\
+    \ constexpr (type == trans_type::ranked_mobius) {\n      for (int i = 0; i < H;\
+    \ ++i) ranked_sub(a[H + i], a[i]);\n    }\n    if constexpr (type == trans_type::superset_zeta_or)\
+    \ {\n      for (int i = 0; i < H; ++i) a[i] |= a[H + i];\n    }\n  }\n}\n\ntemplate\
+    \ <trans_type type, int N, typename T>\ninline void bitwise_transform_dispatch(vc<T>&\
     \ a) {\n  if (len(a) == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n\
     \  }\n  if constexpr (N > 1) {\n    return bitwise_transform_dispatch<type, N\
     \ / 2>(a);\n  }\n}\n\ntemplate <trans_type type, typename T>\ninline void bitwise_transform(vc<T>&\
@@ -183,7 +185,7 @@ data:
   isVerificationFile: false
   path: graph/tutte_polynomial.hpp
   requiredBy: []
-  timestamp: '2026-06-15 22:08:56+09:00'
+  timestamp: '2026-07-26 16:27:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tutte_polynomial.hpp

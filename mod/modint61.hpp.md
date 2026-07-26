@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':warning:'
@@ -29,10 +29,10 @@ data:
   - icon: ':warning:'
     path: string/deque_rolling_hash.hpp
     title: string/deque_rolling_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   - icon: ':warning:'
@@ -57,57 +57,57 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/general_matching.test.cpp
     title: test/2_library_checker/graph/general_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1397.test.cpp
     title: test/3_yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2102.test.cpp
     title: test/3_yukicoder/2102.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2231.test.cpp
     title: test/3_yukicoder/2231.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2626.test.cpp
     title: test/3_yukicoder/2626.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/4_1.test.cpp
     title: test/3_yukicoder/4_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static constexpr\
@@ -174,43 +174,43 @@ data:
   isVerificationFile: false
   path: mod/modint61.hpp
   requiredBy:
-  - alg/monoid/rollinghash.hpp
-  - mod/modular_subset_sum.hpp
   - random/hash_vector.hpp
-  - other/connected_dp.hpp
-  - graph/maximum_matching_size.hpp
-  - graph/ds/rolling_hash_on_tree.hpp
   - graph/tree_dp/subtree_hash.hpp
-  - string/substring_count_in_substring.hpp
+  - graph/ds/rolling_hash_on_tree.hpp
+  - graph/maximum_matching_size.hpp
+  - mod/modular_subset_sum.hpp
   - string/rollinghash.hpp
+  - string/substring_count_in_substring.hpp
   - string/rollinghash_2d.hpp
   - string/basic_substring_structure.hpp
   - string/deque_rolling_hash.hpp
+  - alg/monoid/rollinghash.hpp
+  - other/connected_dp.hpp
   timestamp: '2024-08-27 05:16:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/4_aoj/ALDS1_14_C.test.cpp
-  - test/1_mytest/matching_line_graph.test.cpp
-  - test/1_mytest/tdpc_grid_dp.test.cpp
-  - test/1_mytest/matching.test.cpp
-  - test/1_mytest/rolling_hash_on_tree.test.cpp
-  - test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - test/1_mytest/tutte.test.cpp
-  - test/3_yukicoder/578.test.cpp
-  - test/3_yukicoder/1881.test.cpp
-  - test/3_yukicoder/2626.test.cpp
-  - test/3_yukicoder/2102.test.cpp
-  - test/3_yukicoder/1397.test.cpp
-  - test/3_yukicoder/263.test.cpp
   - test/3_yukicoder/2231.test.cpp
-  - test/3_yukicoder/4_1.test.cpp
   - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/2626.test.cpp
+  - test/3_yukicoder/4_1.test.cpp
+  - test/3_yukicoder/2102.test.cpp
+  - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/263.test.cpp
+  - test/3_yukicoder/1397.test.cpp
+  - test/4_aoj/ALDS1_14_C.test.cpp
+  - test/1_mytest/matching.test.cpp
+  - test/1_mytest/enumerate_unlabeled_tree.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
+  - test/1_mytest/tdpc_grid_dp.test.cpp
+  - test/1_mytest/rolling_hash_on_tree.test.cpp
+  - test/1_mytest/tutte.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp
   - test/2_library_checker/graph/general_matching.test.cpp
-  - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: mod/modint61.hpp
 layout: document
 redirect_from:

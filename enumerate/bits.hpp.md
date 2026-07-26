@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_cycle.hpp
     title: graph/count/count_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   - icon: ':warning:'
@@ -39,30 +39,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/114.test.cpp
     title: test/3_yukicoder/114.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1263.test.cpp
     title: test/3_yukicoder/1263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DPL_2_A.test.cpp
     title: test/4_aoj/DPL_2_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\n\
@@ -86,27 +86,27 @@ data:
   isVerificationFile: false
   path: enumerate/bits.hpp
   requiredBy:
-  - enumerate/partition.hpp
-  - linalg/hafnian.hpp
-  - knapsack/subset_sum.hpp
-  - graph/count/count_cycle.hpp
-  - graph/steiner_tree.hpp
   - graph/minimum_hamiltonian_cycle.hpp
-  - setfunc/online/online_subset_mobius.hpp
-  - setfunc/online/online_or_convolution.hpp
-  - setfunc/online/online_subset_zeta.hpp
+  - graph/steiner_tree.hpp
+  - graph/count/count_cycle.hpp
   - setfunc/submask_range_query.hpp
+  - setfunc/online/online_subset_mobius.hpp
+  - setfunc/online/online_subset_zeta.hpp
+  - setfunc/online/online_or_convolution.hpp
+  - linalg/hafnian.hpp
+  - enumerate/partition.hpp
+  - knapsack/subset_sum.hpp
   timestamp: '2025-12-16 20:51:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/4_aoj/DPL_2_A.test.cpp
-  - test/1_mytest/enum_partitions.test.cpp
-  - test/1_mytest/subset_sum.test.cpp
-  - test/3_yukicoder/114.test.cpp
-  - test/3_yukicoder/2507.test.cpp
   - test/3_yukicoder/1881.test.cpp
+  - test/3_yukicoder/2507.test.cpp
   - test/3_yukicoder/1263.test.cpp
   - test/3_yukicoder/4_2.test.cpp
+  - test/3_yukicoder/114.test.cpp
+  - test/4_aoj/DPL_2_A.test.cpp
+  - test/1_mytest/subset_sum.test.cpp
+  - test/1_mytest/enum_partitions.test.cpp
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document
