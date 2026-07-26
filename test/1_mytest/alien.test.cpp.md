@@ -10,10 +10,10 @@ data:
   - icon: ':x:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   - icon: ':question:'

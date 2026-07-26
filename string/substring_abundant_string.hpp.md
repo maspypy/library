@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/run_length.hpp
     title: string/run_length.hpp
   _extendedRequiredBy: []

@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/offline_query/rollback_mo.hpp
     title: ds/offline_query/rollback_mo.hpp
   - icon: ':question:'

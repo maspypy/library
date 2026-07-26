@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':x:'

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':x:'

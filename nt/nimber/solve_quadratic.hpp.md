@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: linalg/xor/basis.hpp
     title: linalg/xor/basis.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/nimber/base.hpp
     title: nt/nimber/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
   _extendedRequiredBy: []
