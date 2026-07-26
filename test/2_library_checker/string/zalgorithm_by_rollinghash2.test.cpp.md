@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
   - icon: ':question:'
@@ -14,6 +14,9 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
@@ -21,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -283,34 +286,60 @@ data:
     \  while (get_param() == 0) set_param(RNG_64());\r\n    return {get_param(), x};\r\
     \n  }\r\n  static X op(X x, X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\
     \n  static constexpr X unit() { return {1, 0}; }\r\n  static constexpr bool commute\
-    \ = false;\r\n};\n#line 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\n\
-    template <class Monoid>\r\nstruct Disjoint_Sparse_Table {\r\n  using MX = Monoid;\r\
-    \n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\
-    \n  Disjoint_Sparse_Table() {}\r\n  Disjoint_Sparse_Table(int n) { build(n); }\r\
-    \n  template <typename F>\r\n  Disjoint_Sparse_Table(int n, F f) {\r\n    build(n,\
-    \ f);\r\n  }\r\n  Disjoint_Sparse_Table(const vc<X>& v) { build(v); }\r\n\r\n\
-    \  void build(int m) {\r\n    build(m, [](int i) -> X { return MX::unit(); });\r\
-    \n  }\r\n  void build(const vc<X>& v) {\r\n    build(len(v), [&](int i) -> X {\
-    \ return v[i]; });\r\n  }\r\n  template <typename F>\r\n  void build(int m, F\
-    \ f) {\r\n    n = m, log = 1;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(log);\r\
-    \n    dat[0].reserve(n);\r\n    FOR(i, n) dat[0].eb(f(i));\r\n    FOR(i, 1, log)\
-    \ {\r\n      auto& v = dat[i];\r\n      v = dat[0];\r\n      int b = 1 << i;\r\
-    \n      for (int m = b; m <= n; m += 2 * b) {\r\n        int L = m - b, R = min(n,\
-    \ m + b);\r\n        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n\
-    \        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n  \
-    \  }\r\n  }\r\n\r\n  X prod(int L, int R) const {\r\n    if (L == R) return MX::unit();\r\
-    \n    --R;\r\n    if (L == R) return dat[0][L];\r\n    int k = topbit(L ^ R);\r\
-    \n    return MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\
-    \n  int max_right(const F check, int L) const {\r\n    assert(0 <= L && L <= n\
-    \ && check(MX::unit()));\r\n    if (L == n) return n;\r\n    int ok = L, ng =\
-    \ n + 1;\r\n    while (ok + 1 < ng) {\r\n      int k = (ok + ng) / 2;\r\n    \
-    \  bool bl = check(prod(L, k));\r\n      if (bl) ok = k;\r\n      if (!bl) ng\
-    \ = k;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template <class F>\r\n  int\
-    \ min_left(const F check, int R) const {\r\n    assert(0 <= R && R <= n && check(MX::unit()));\r\
-    \n    if (R == 0) return 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 <\
-    \ ok) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\
-    \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
-    \n  }\r\n};\n#line 7 \"test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp\"\
+    \ = false;\r\n};\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 3 \"ds/sparse_table/disjoint_sparse_table.hpp\"\
+    \n\r\ntemplate <class Monoid>\r\nstruct Disjoint_Sparse_Table {\r\n  using MX\
+    \ = Monoid;\r\n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X>\
+    \ dat;\r\n\r\n  Disjoint_Sparse_Table() {}\r\n  Disjoint_Sparse_Table(int n) {\
+    \ build(n); }\r\n  template <typename F>\r\n  Disjoint_Sparse_Table(int n, F f)\
+    \ {\r\n    build(n, f);\r\n  }\r\n  Disjoint_Sparse_Table(const vc<X>& v) { build(v);\
+    \ }\r\n\r\n  void build(int m) {\r\n    build(m, [](int i) -> X { return MX::unit();\
+    \ });\r\n  }\r\n  void build(const vc<X>& v) {\r\n    build(len(v), [&](int i)\
+    \ -> X { return v[i]; });\r\n  }\r\n  template <typename F>\r\n  void build(int\
+    \ m, F f) {\r\n    n = m, log = 1;\r\n    while ((1 << log) < n) ++log;\r\n  \
+    \  dat.resize(log);\r\n    dat[0].reserve(n);\r\n    FOR(i, n) dat[0].eb(f(i));\r\
+    \n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\n      v = dat[0];\r\n   \
+    \   int b = 1 << i;\r\n      for (int m = b; m <= n; m += 2 * b) {\r\n       \
+    \ int L = m - b, R = min(n, m + b);\r\n        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j\
+    \ - 1], v[j]);\r\n        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\r\
+    \n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) const {\r\n    if (L ==\
+    \ R) return MX::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\n \
+    \   int k = topbit(L ^ R);\r\n    return MX::op(dat[k][L], dat[k][R]);\r\n  }\r\
+    \n\r\n  template <class F>\r\n  int max_right(const F check, int L) const {\r\n\
+    \    assert(0 <= L && L <= n && check(MX::unit()));\r\n    if (L == n) return\
+    \ n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\n      int\
+    \ k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\n      if (bl) ok\
+    \ = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template\
+    \ <class F>\r\n  int min_left(const F check, int R) const {\r\n    assert(0 <=\
+    \ R && R <= n && check(MX::unit()));\r\n    if (R == 0) return 0;\r\n    int ok\
+    \ = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k = (ok + ng) / 2;\r\
+    \n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\n      if (!bl)\
+    \ ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 7 \"test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp\"\
     \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  using Mono = Monoid_Rolling_Hash;\n\
     \  Disjoint_Sparse_Table<Mono> seg(\n      N, [&](int i) { return Mono::from_element(S[i]);\
     \ });\n  vi Z(N);\n  FOR(i, N) {\n    auto check = [&](int n) -> bool {\n    \
@@ -335,11 +364,12 @@ data:
   - random/base.hpp
   - mod/modint61.hpp
   - ds/sparse_table/disjoint_sparse_table.hpp
+  - other/bit.hpp
   isVerificationFile: true
   path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:55:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
 layout: document

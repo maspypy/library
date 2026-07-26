@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
+  - icon: ':warning:'
+    path: string/substring_count_in_substring.hpp
+    title: string/substring_count_in_substring.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/cartesian_tree.test.cpp
     title: test/2_library_checker/tree/cartesian_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2574.test.cpp
     title: test/3_yukicoder/2574.test.cpp
@@ -79,10 +91,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: seq/cartesian_tree.hpp
-  requiredBy: []
+  requiredBy:
+  - string/substring_count_in_substring.hpp
+  - string/suffix_tree.hpp
+  - string/basic_substring_structure.hpp
   timestamp: '2025-02-11 00:32:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2574.test.cpp
   - test/4_aoj/DPL_3_B.test.cpp
   - test/4_aoj/DPL_3_C.test.cpp

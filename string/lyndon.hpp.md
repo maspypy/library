@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/lex_min_suffix_for_all_prefix.hpp
     title: string/lex_min_suffix_for_all_prefix.hpp
   - icon: ':warning:'
     path: string/non_dominated_suffix.hpp
     title: string/non_dominated_suffix.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lex_minmax_suffix.test.cpp
+    title: test/1_mytest/lex_minmax_suffix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/lyndon.test.cpp
     title: test/2_library_checker/string/lyndon.test.cpp
@@ -50,6 +53,7 @@ data:
   timestamp: '2025-05-18 18:12:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/2_library_checker/string/lyndon.test.cpp
 documentation_of: string/lyndon.hpp
 layout: document

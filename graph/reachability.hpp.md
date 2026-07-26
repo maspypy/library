@@ -7,38 +7,67 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/2041/problem/K
-  bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
-    \ Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\
-    \u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32\
-    \ n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap = k / 2,\
-    \ mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\
-    \n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\
-    \u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\n   \
-    \ used.assign(len(used), 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int size()\
-    \ { return len(used) / 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int\
-    \ i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask)\
-    \ {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if\
-    \ (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i]\
-    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\
-    \n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n  \
-    \  return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
+  bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\n\
+    template <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\
+    \u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n);\
+    \ }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\
+    \n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\
+    \u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear()\
+    \ {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n\
+    \  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const u64& k)\
+    \ {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i\
+    \ + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64&\
+    \ k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i])\
+    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
+    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
+    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
     \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
     \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
     \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
@@ -142,14 +171,14 @@ data:
     \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/reverse_graph.hpp\"\
     \n\r\ntemplate <typename GT>\r\nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\
     \n  GT G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id);\
-    \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/reachability.hpp\"\
+    \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 5 \"graph/reachability.hpp\"\
     \n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\
     \u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int>\
     \ reachability(GT& G, vc<P> query) {\n  using U = u64;\n  constexpr int W = 64;\n\
     \n  auto [C, comp] = strongly_connected_component(G);\n\n  vc<pair<int, int>>\
-    \ edges;\n  for (auto&& e: G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n\
+    \ edges;\n  for (auto&& e : G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n\
     \    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n  UNIQUE(edges);\n\
-    \  for (auto& [a, b]: query) a = comp[a], b = comp[b];\n\n  int Q = len(query);\n\
+    \  for (auto& [a, b] : query) a = comp[a], b = comp[b];\n\n  int Q = len(query);\n\
     \  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n  FOR(q, Q) {\n    auto\
     \ [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] = (a == b);\n      continue;\n\
     \    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n  UNIQUE(S);\n  vc<U> dp(C);\n\
@@ -157,7 +186,7 @@ data:
     \ + W, len(S));\n    fill(dp.begin() + S[l], dp.end(), U(0));\n    FOR(i, r -\
     \ l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges) && edges[p].fi\
     \ < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |= dp[edges[i].fi];\
-    \ }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for (auto& qid: QID[s])\
+    \ }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for (auto& qid : QID[s])\
     \ {\n        int t = query[qid].se;\n        ANS[qid] = dp[t] >> i & 1;\n    \
     \  }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable from v).\n\
     // (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\u69CB\u5B9F\
@@ -165,7 +194,7 @@ data:
     vc<int> count_reachable(Graph<int, 1> G) {\n  G = reverse_graph(G);\n  int N =\
     \ G.N;\n  auto [nc, comp] = strongly_connected_component(G);\n  vc<int> sz(nc);\n\
     \  FOR(v, N) sz[comp[v]]++;\n\n  // sorted pairs\n  vc<pair<int, int>> E;\n  for\
-    \ (auto& e: G.edges) {\n    int a = comp[e.frm], b = comp[e.to];\n    if (a !=\
+    \ (auto& e : G.edges) {\n    int a = comp[e.frm], b = comp[e.to];\n    if (a !=\
     \ b) E.eb(a, b);\n  }\n  UNIQUE(E);\n\n  vc<int> ANS(nc);\n  int p = 0;\n  int\
     \ idx = 0;\n  vc<u128> dp(nc);\n  while (p < nc) {\n    int k = 0;\n    int s\
     \ = p;\n    memset(dp.data() + s, 0, (nc - s) * sizeof(u128));\n    while (k <\
@@ -175,15 +204,15 @@ data:
     \ && E[idx].fi < s) ++idx;\n    FOR(i, idx, len(E)) { dp[E[i].se] |= dp[E[i].fi];\
     \ }\n    FOR(v, s, nc) { ANS[v] += popcnt(u64(dp[v] >> 64)) + popcnt(u64(dp[v]));\
     \ }\n  }\n  ANS = rearrange(ANS, comp);\n  return ANS;\n}\n"
-  code: "#pragma once\n#include \"graph/strongly_connected_component.hpp\"\n#include\
-    \ \"graph/reverse_graph.hpp\"\n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\
-    \u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename\
-    \ GT, typename P>\nvc<int> reachability(GT& G, vc<P> query) {\n  using U = u64;\n\
-    \  constexpr int W = 64;\n\n  auto [C, comp] = strongly_connected_component(G);\n\
-    \n  vc<pair<int, int>> edges;\n  for (auto&& e: G.edges) {\n    auto a = comp[e.frm],\
+  code: "#pragma once\n#include \"other/bit.hpp\"\n#include \"graph/strongly_connected_component.hpp\"\
+    \n#include \"graph/reverse_graph.hpp\"\n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\
+    \u5230\u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate\
+    \ <typename GT, typename P>\nvc<int> reachability(GT& G, vc<P> query) {\n  using\
+    \ U = u64;\n  constexpr int W = 64;\n\n  auto [C, comp] = strongly_connected_component(G);\n\
+    \n  vc<pair<int, int>> edges;\n  for (auto&& e : G.edges) {\n    auto a = comp[e.frm],\
     \ b = comp[e.to];\n    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n\
-    \  UNIQUE(edges);\n  for (auto& [a, b]: query) a = comp[a], b = comp[b];\n\n \
-    \ int Q = len(query);\n  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n\
+    \  UNIQUE(edges);\n  for (auto& [a, b] : query) a = comp[a], b = comp[b];\n\n\
+    \  int Q = len(query);\n  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n\
     \  FOR(q, Q) {\n    auto [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] =\
     \ (a == b);\n      continue;\n    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n\
     \  UNIQUE(S);\n  vc<U> dp(C);\n  int p = 0;\n  for (int l = 0; l < len(S); l +=\
@@ -191,14 +220,14 @@ data:
     \ U(0));\n    FOR(i, r - l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges)\
     \ && edges[p].fi < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |=\
     \ dp[edges[i].fi]; }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for\
-    \ (auto& qid: QID[s]) {\n        int t = query[qid].se;\n        ANS[qid] = dp[t]\
+    \ (auto& qid : QID[s]) {\n        int t = query[qid].se;\n        ANS[qid] = dp[t]\
     \ >> i & 1;\n      }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable\
     \ from v).\n// (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\
     \u69CB\u5B9F\u884C\u6642\u9593\u304C\u3076\u308C\u308B.\n// https://codeforces.com/contest/2041/problem/K\n\
     vc<int> count_reachable(Graph<int, 1> G) {\n  G = reverse_graph(G);\n  int N =\
     \ G.N;\n  auto [nc, comp] = strongly_connected_component(G);\n  vc<int> sz(nc);\n\
     \  FOR(v, N) sz[comp[v]]++;\n\n  // sorted pairs\n  vc<pair<int, int>> E;\n  for\
-    \ (auto& e: G.edges) {\n    int a = comp[e.frm], b = comp[e.to];\n    if (a !=\
+    \ (auto& e : G.edges) {\n    int a = comp[e.frm], b = comp[e.to];\n    if (a !=\
     \ b) E.eb(a, b);\n  }\n  UNIQUE(E);\n\n  vc<int> ANS(nc);\n  int p = 0;\n  int\
     \ idx = 0;\n  vc<u128> dp(nc);\n  while (p < nc) {\n    int k = 0;\n    int s\
     \ = p;\n    memset(dp.data() + s, 0, (nc - s) * sizeof(u128));\n    while (k <\
@@ -209,6 +238,7 @@ data:
     \ }\n    FOR(v, s, nc) { ANS[v] += popcnt(u64(dp[v] >> 64)) + popcnt(u64(dp[v]));\
     \ }\n  }\n  ANS = rearrange(ANS, comp);\n  return ANS;\n}\n"
   dependsOn:
+  - other/bit.hpp
   - graph/strongly_connected_component.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -216,8 +246,8 @@ data:
   isVerificationFile: false
   path: graph/reachability.hpp
   requiredBy: []
-  timestamp: '2026-07-18 00:22:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-07-26 21:55:46+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/0275.test.cpp
 documentation_of: graph/reachability.hpp

@@ -188,7 +188,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -206,6 +206,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/fast_lca.hpp
+    title: graph/fast_lca.hpp
   - icon: ':heavy_check_mark:'
     path: graph/find_C4.hpp
     title: graph/find_C4.hpp
@@ -275,10 +278,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -296,7 +299,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -314,7 +317,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':warning:'
@@ -410,9 +413,18 @@ data:
   - icon: ':warning:'
     path: string/aho_corasick_for_general_trie.hpp
     title: string/aho_corasick_for_general_trie.hpp
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
+  - icon: ':warning:'
+    path: string/substring_count_in_substring.hpp
+    title: string/substring_count_in_substring.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_cycle_common_vertex.test.cpp
@@ -658,6 +670,9 @@ data:
     path: test/2_library_checker/tree/lca_directed.test.cpp
     title: test/2_library_checker/tree/lca_directed.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/lca_fast.test.cpp
+    title: test/2_library_checker/tree/lca_fast.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -720,10 +735,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1212.test.cpp
     title: test/3_yukicoder/1212.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -780,6 +795,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1600_2.test.cpp
+    title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1601.test.cpp
     title: test/3_yukicoder/1601.test.cpp
@@ -898,6 +916,9 @@ data:
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
   - icon: ':heavy_check_mark:'
@@ -942,7 +963,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1135,6 +1156,7 @@ data:
   - graph/tree.hpp
   - graph/all_cycle_common_vertex.hpp
   - graph/compress_tree.hpp
+  - graph/fast_lca.hpp
   - graph/maximum_matching_of_line_graph.hpp
   - graph/bracket_graph.hpp
   - graph/bipartite_edge_coloring.hpp
@@ -1194,6 +1216,9 @@ data:
   - ds/to_small_key.hpp
   - ds/static_range_frequency.hpp
   - ds/offline_query/offline_set_intersection.hpp
+  - string/substring_count_in_substring.hpp
+  - string/suffix_tree.hpp
+  - string/basic_substring_structure.hpp
   - string/suffix_automaton.hpp
   - string/aho_corasick_for_general_trie.hpp
   - enumerate/labeled_tree.hpp
@@ -1248,6 +1273,7 @@ data:
   - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/1197.test.cpp
   - test/3_yukicoder/1295.test.cpp
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2654.test.cpp
   - test/3_yukicoder/1494.test.cpp
   - test/3_yukicoder/1154.test.cpp
@@ -1281,6 +1307,7 @@ data:
   - test/3_yukicoder/1254.test.cpp
   - test/3_yukicoder/1326.test.cpp
   - test/3_yukicoder/590.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/1769.test.cpp
   - test/3_yukicoder/2578.test.cpp
   - test/3_yukicoder/2258.test.cpp
@@ -1393,6 +1420,7 @@ data:
   - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
+  - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp

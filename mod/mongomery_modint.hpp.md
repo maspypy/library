@@ -89,6 +89,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
@@ -114,6 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_square.test.cpp
     title: test/1_mytest/three_square.test.cpp
@@ -360,6 +366,7 @@ data:
   - mod/mod_log.hpp
   - mod/dynamic_modint.hpp
   - seq/sidon_sequence.hpp
+  - seq/reeds_sloane.hpp
   - seq/famous/stirling_number_query.hpp
   - nt/divisors.hpp
   - nt/crt.hpp
@@ -407,6 +414,7 @@ data:
   - test/1_mytest/modfast.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/O1_inv.test.cpp

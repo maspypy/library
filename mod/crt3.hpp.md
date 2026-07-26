@@ -508,6 +508,9 @@ data:
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1237,6 +1240,7 @@ data:
   - test/1_mytest/count_labeled_forest.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/vandermonde.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/graph_count.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp

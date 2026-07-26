@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -59,6 +59,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/fast_lca.hpp
+    title: graph/fast_lca.hpp
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
@@ -127,6 +130,9 @@ data:
     path: test/2_library_checker/tree/lca_directed.test.cpp
     title: test/2_library_checker/tree/lca_directed.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/lca_fast.test.cpp
+    title: test/2_library_checker/tree/lca_fast.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -165,10 +171,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1212.test.cpp
     title: test/3_yukicoder/1212.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,6 +204,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1600_2.test.cpp
+    title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
@@ -615,6 +624,7 @@ data:
   - graph/ds/rolling_hash_on_tree.hpp
   - graph/optimal_product_on_tree.hpp
   - graph/compress_tree.hpp
+  - graph/fast_lca.hpp
   - graph/functional.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/count_matching_on_tree.hpp
@@ -653,6 +663,7 @@ data:
   - test/3_yukicoder/1254.test.cpp
   - test/3_yukicoder/1326.test.cpp
   - test/3_yukicoder/590.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/1769.test.cpp
   - test/3_yukicoder/2258.test.cpp
   - test/3_yukicoder/1718.test.cpp
@@ -677,6 +688,7 @@ data:
   - test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
+  - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - test/2_library_checker/tree/lca.test.cpp
   - test/2_library_checker/tree/mst.test.cpp

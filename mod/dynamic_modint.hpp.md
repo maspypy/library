@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/31bit_modint.test.cpp
@@ -42,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum.test.cpp
     title: test/1_mytest/geometric_sequence_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
@@ -364,12 +370,14 @@ data:
   path: mod/dynamic_modint.hpp
   requiredBy:
   - mod/mod_log.hpp
+  - seq/reeds_sloane.hpp
   timestamp: '2026-07-26 21:24:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1339.test.cpp
   - test/3_yukicoder/1667.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/O1_inv.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp

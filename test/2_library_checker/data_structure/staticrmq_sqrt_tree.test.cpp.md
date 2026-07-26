@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/sqrt_tree.hpp
     title: ds/sqrt_tree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -240,49 +243,76 @@ data:
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
     \ { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 1 \"ds/sqrt_tree.hpp\"\n\n// \u6298\u89D2\u306A\u306E\u3067\u4F5C\u3063\u3066\
-    \u307F\u305F\u304C\uFF0C\u4F7F\u308F\u306A\u3055\u305D\u3046\ntemplate <typename\
-    \ Monoid>\nstruct SQRT_Tree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
-    \n  static constexpr int K = 3;\n  static constexpr u32 SZ[] = {8, 64, 4096};\n\
-    \  static constexpr u32 MASK[] = {7, 63, 4095};\n\n  int N;\n  // \u5143\u3068\
-    \u306A\u308B\u9759\u7684\u306A\u5217\n  vc<X> A;\n  // \u5404\u968E\u5C64\u306B\
-    \u5BFE\u3057\u3066\uFF0C\u30D6\u30ED\u30C3\u30AF\u5148\u982D\u304B\u3089\u3042\
-    \u308B\u8981\u7D20\u307E\u3067 [s,i]\n  // \u5404\u968E\u5C64\u306B\u5BFE\u3057\
-    \u3066\uFF0C\u3042\u308B\u8981\u7D20\u304B\u3089\u30D6\u30ED\u30C3\u30AF\u672B\
-    \u5C3E\u307E\u3067 [i,t]\n  vvc<X> PREF, SUFF;\n  // \u5404\u968E\u5C64\u306B\u5BFE\
-    \u3057\u3066\uFF0C\u3042\u308B\u30D6\u30ED\u30C3\u30AF\u304B\u3089\u3042\u308B\
-    \u30D6\u30ED\u30C3\u30AF\u307E\u3067\n  vvc<X> BETWEEN;\n\n  SQRT_Tree() {}\n\
-    \  template <typename F>\n  SQRT_Tree(int n, F f) {\n    build(n, f);\n  }\n \
-    \ SQRT_Tree(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i];\
-    \ });\n  }\n\n  template <typename F>\n  void build(int n_, F f) {\n    N = n_;\n\
-    \    assert(N <= (1 << 24));\n    A.reserve(N);\n    FOR(i, N) A.eb(f(i));\n \
-    \   // \u307E\u305A prefix, suffix \u306E\u69CB\u7BC9\n    PREF.assign(K, A),\
-    \ SUFF.assign(K, A);\n    FOR(k, K) {\n      FOR(i, N) {\n        if (i & MASK[k])\
-    \ PREF[k][i] = MX::op(PREF[k][i - 1], A[i]);\n      }\n      FOR_R(i, N) {\n \
-    \       if (i & MASK[k]) SUFF[k][i - 1] = MX::op(A[i - 1], SUFF[k][i]);\n    \
-    \  }\n    }\n    // between \u306E\u69CB\u7BC9\n    BETWEEN.resize(K);\n    FOR(k,\
-    \ K) {\n      // n : \u5168\u4F53\u306E\u5C0F\u30D6\u30ED\u30C3\u30AF\u306E\u500B\
-    \u6570\n      auto get = [&](int i) -> X { return SUFF[k][SZ[k] * i]; };\n   \
-    \   int n = N / SZ[k];\n      int s = 0;\n      FOR(r, n) {\n        if (r % SZ[k]\
-    \ == 0) s = r;\n        BETWEEN[k].eb(get(r));\n        FOR_R(l, s, r) { BETWEEN[k].eb(MX::op(get(l),\
-    \ BETWEEN[k].back())); }\n      }\n    }\n  }\n\n  static constexpr int BIT_TO_LAYER[]\
-    \ = {0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2,\n                                   \
-    \      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3};\n\n  X prod(int L, int R) {\n    assert(0\
-    \ <= L && L <= R && R <= N);\n    if (L == R) return MX::unit();\n    if (L +\
-    \ 1 == R) return A[L];\n    --R;\n    int k = BIT_TO_LAYER[topbit(L ^ R)];\n \
-    \   if (k == 0) {\n      // \u9577\u3055 SZ[0] \u306E\u30D6\u30ED\u30C3\u30AF\u306B\
-    \u30AF\u30A8\u30EA\u304C\u53CE\u307E\u3063\u3066\u3044\u308B. \u611A\u76F4\u306B\
-    .\n      X x = A[L];\n      FOR(i, L + 1, R + 1) x = MX::op(x, A[i]);\n      return\
-    \ x;\n    }\n    --k;\n    // \u540C\u3058\u9577\u3055 SZ[k+1] \u306E\u30D6\u30ED\
-    \u30C3\u30AF\u5185\u306B\u3042\u308B. \u9055\u3046 SZ[k] \u30D6\u30ED\u30C3\u30AF\
-    \u5185\u306B\u3042\u308B.\n    u32 a = L / SZ[k], b = R / SZ[k];\n    assert(a\
-    \ < b);\n    X &x1 = SUFF[k][L], &x2 = PREF[k][R];\n    if (a + 1 == b) return\
-    \ MX::op(x1, x2);\n    ++a, --b;\n    // [a,b] \u756A\u76EE\u306E SZ[k]-block\
-    \ \u306E\u9593\u3092\u53D6\u5F97\u3059\u308B\n    // BETWEEN \u306E\u3069\u3053\
-    \u306B\u30C7\u30FC\u30BF\u304C\u7F6E\u3044\u3066\u3042\u308B\u304B\u8ABF\u3079\
-    \u308B\n    u32 m = a / SZ[k];\n    a &= MASK[k], b &= MASK[k];\n    u32 idx =\
-    \ m * (SZ[k] / 2) * (SZ[k] + 1);\n    idx += (b + 1) * (b + 2) / 2 - 1 - a;\n\
-    \    return MX::op(x1, MX::op(BETWEEN[k][idx], x2));\n  }\n};\n#line 8 \"test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp\"\
+    \ 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
+    int popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"ds/sqrt_tree.hpp\"\n\n// \u6298\u89D2\u306A\
+    \u306E\u3067\u4F5C\u3063\u3066\u307F\u305F\u304C\uFF0C\u4F7F\u308F\u306A\u3055\
+    \u305D\u3046\ntemplate <typename Monoid>\nstruct SQRT_Tree {\n  using MX = Monoid;\n\
+    \  using X = typename MX::value_type;\n\n  static constexpr int K = 3;\n  static\
+    \ constexpr u32 SZ[] = {8, 64, 4096};\n  static constexpr u32 MASK[] = {7, 63,\
+    \ 4095};\n\n  int N;\n  // \u5143\u3068\u306A\u308B\u9759\u7684\u306A\u5217\n\
+    \  vc<X> A;\n  // \u5404\u968E\u5C64\u306B\u5BFE\u3057\u3066\uFF0C\u30D6\u30ED\
+    \u30C3\u30AF\u5148\u982D\u304B\u3089\u3042\u308B\u8981\u7D20\u307E\u3067 [s,i]\n\
+    \  // \u5404\u968E\u5C64\u306B\u5BFE\u3057\u3066\uFF0C\u3042\u308B\u8981\u7D20\
+    \u304B\u3089\u30D6\u30ED\u30C3\u30AF\u672B\u5C3E\u307E\u3067 [i,t]\n  vvc<X> PREF,\
+    \ SUFF;\n  // \u5404\u968E\u5C64\u306B\u5BFE\u3057\u3066\uFF0C\u3042\u308B\u30D6\
+    \u30ED\u30C3\u30AF\u304B\u3089\u3042\u308B\u30D6\u30ED\u30C3\u30AF\u307E\u3067\
+    \n  vvc<X> BETWEEN;\n\n  SQRT_Tree() {}\n  template <typename F>\n  SQRT_Tree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  SQRT_Tree(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n\n  template <typename F>\n  void build(int\
+    \ n_, F f) {\n    N = n_;\n    assert(N <= (1 << 24));\n    A.reserve(N);\n  \
+    \  FOR(i, N) A.eb(f(i));\n    // \u307E\u305A prefix, suffix \u306E\u69CB\u7BC9\
+    \n    PREF.assign(K, A), SUFF.assign(K, A);\n    FOR(k, K) {\n      FOR(i, N)\
+    \ {\n        if (i & MASK[k]) PREF[k][i] = MX::op(PREF[k][i - 1], A[i]);\n   \
+    \   }\n      FOR_R(i, N) {\n        if (i & MASK[k]) SUFF[k][i - 1] = MX::op(A[i\
+    \ - 1], SUFF[k][i]);\n      }\n    }\n    // between \u306E\u69CB\u7BC9\n    BETWEEN.resize(K);\n\
+    \    FOR(k, K) {\n      // n : \u5168\u4F53\u306E\u5C0F\u30D6\u30ED\u30C3\u30AF\
+    \u306E\u500B\u6570\n      auto get = [&](int i) -> X { return SUFF[k][SZ[k] *\
+    \ i]; };\n      int n = N / SZ[k];\n      int s = 0;\n      FOR(r, n) {\n    \
+    \    if (r % SZ[k] == 0) s = r;\n        BETWEEN[k].eb(get(r));\n        FOR_R(l,\
+    \ s, r) { BETWEEN[k].eb(MX::op(get(l), BETWEEN[k].back())); }\n      }\n    }\n\
+    \  }\n\n  static constexpr int BIT_TO_LAYER[] = {0, 0, 0, 1, 1, 1, 2, 2, 2, 2,\
+    \ 2, 2,\n                                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3,\
+    \ 3, 3};\n\n  X prod(int L, int R) {\n    assert(0 <= L && L <= R && R <= N);\n\
+    \    if (L == R) return MX::unit();\n    if (L + 1 == R) return A[L];\n    --R;\n\
+    \    int k = BIT_TO_LAYER[topbit(L ^ R)];\n    if (k == 0) {\n      // \u9577\u3055\
+    \ SZ[0] \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u30AF\u30A8\u30EA\u304C\u53CE\u307E\
+    \u3063\u3066\u3044\u308B. \u611A\u76F4\u306B.\n      X x = A[L];\n      FOR(i,\
+    \ L + 1, R + 1) x = MX::op(x, A[i]);\n      return x;\n    }\n    --k;\n    //\
+    \ \u540C\u3058\u9577\u3055 SZ[k+1] \u306E\u30D6\u30ED\u30C3\u30AF\u5185\u306B\u3042\
+    \u308B. \u9055\u3046 SZ[k] \u30D6\u30ED\u30C3\u30AF\u5185\u306B\u3042\u308B.\n\
+    \    u32 a = L / SZ[k], b = R / SZ[k];\n    assert(a < b);\n    X &x1 = SUFF[k][L],\
+    \ &x2 = PREF[k][R];\n    if (a + 1 == b) return MX::op(x1, x2);\n    ++a, --b;\n\
+    \    // [a,b] \u756A\u76EE\u306E SZ[k]-block \u306E\u9593\u3092\u53D6\u5F97\u3059\
+    \u308B\n    // BETWEEN \u306E\u3069\u3053\u306B\u30C7\u30FC\u30BF\u304C\u7F6E\u3044\
+    \u3066\u3042\u308B\u304B\u8ABF\u3079\u308B\n    u32 m = a / SZ[k];\n    a &= MASK[k],\
+    \ b &= MASK[k];\n    u32 idx = m * (SZ[k] / 2) * (SZ[k] + 1);\n    idx += (b +\
+    \ 1) * (b + 2) / 2 - 1 - a;\n    return MX::op(x1, MX::op(BETWEEN[k][idx], x2));\n\
+    \  }\n};\n#line 8 \"test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  VEC(int, A, N);\n  SQRT_Tree<Monoid_Min<int>>\
     \ seg(A);\n  FOR(Q) {\n    INT(L, R);\n    print(seg.prod(L, R));\n  }\n}\n\n\
     signed main() {\n  solve();\n  return 0;\n}\n"
@@ -296,11 +326,12 @@ data:
   - other/io.hpp
   - alg/monoid/min.hpp
   - ds/sqrt_tree.hpp
+  - other/bit.hpp
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:55:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
 layout: document

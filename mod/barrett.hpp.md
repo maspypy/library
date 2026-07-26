@@ -74,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_matrix.hpp
     title: random/random_matrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
@@ -99,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_square.test.cpp
     title: test/1_mytest/three_square.test.cpp
@@ -315,6 +321,7 @@ data:
   - mod/dynamic_modint.hpp
   - linalg/det.hpp
   - seq/sidon_sequence.hpp
+  - seq/reeds_sloane.hpp
   - nt/crt.hpp
   - nt/two_square.hpp
   - nt/three_triangular.hpp
@@ -345,6 +352,7 @@ data:
   - test/1_mytest/modfast.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp
   - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/O1_inv.test.cpp

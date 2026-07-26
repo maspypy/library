@@ -44,6 +44,9 @@ data:
   - icon: ':warning:'
     path: other/cuboid_union_volume.hpp
     title: other/cuboid_union_volume.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_cycle_common_vertex.test.cpp
@@ -69,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
@@ -201,10 +207,12 @@ data:
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
   - ds/segtree/range_add_make_increasing.hpp
+  - string/suffix_tree.hpp
   - other/cuboid_union_volume.hpp
   timestamp: '2026-07-26 20:34:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2809.test.cpp
   - test/4_aoj/2636.test.cpp
   - test/4_aoj/2251_1.test.cpp

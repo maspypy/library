@@ -339,6 +339,9 @@ data:
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   - icon: ':heavy_check_mark:'
@@ -498,6 +501,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
@@ -1063,6 +1069,7 @@ data:
   - seq/interpolate_linear_rec.hpp
   - seq/p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/reeds_sloane.hpp
   - seq/sum_of_powers.hpp
   - seq/count_grid_path.hpp
   - seq/find_linear_rec.hpp
@@ -1193,6 +1200,7 @@ data:
   - test/1_mytest/count_labeled_forest.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/vandermonde.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/graph_count.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp

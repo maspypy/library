@@ -23,8 +23,9 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D
-  bundledCode: "#line 1 \"test/4_aoj/ITP2_11_D.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/4_aoj/ITP2_11_D.test.cpp\"\n#define PROBLEM \\\n  \"\
+    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D\"\n#line 1\
+    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
     \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
@@ -273,15 +274,15 @@ data:
     \ }\n  auto begin() { return iter(s, k); }\n  auto end() { return iter(0, 0);\
     \ }\n};\n\n// all_nCk\u95A2\u6570\u306E\u5B9F\u88C5\ntemplate <typename UINT>\n\
     auto all_nCk(int n, int k) {\n  return all_k_subset<UINT>(full_mask(n), k);\n\
-    }\n#line 5 \"test/4_aoj/ITP2_11_D.test.cpp\"\n\nvoid solve() {\n  LL(N, K);\n\
-    \  for (u32 s: all_nCk<u32>(N, K)) {\n    vi I;\n    for (int i: all_bit<u32>(s))\
-    \ I.eb(i);\n    print(to_string(s) + \":\", I);\n  }\n}\n\nsigned main() {\n \
-    \ solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D\"\
+    }\n#line 6 \"test/4_aoj/ITP2_11_D.test.cpp\"\n\nvoid solve() {\n  LL(N, K);\n\
+    \  for (u32 s : all_nCk<u32>(N, K)) {\n    vi I;\n    for (int i : all_bit<u32>(s))\
+    \ I.eb(s ^ i);\n    print(to_string(s) + \":\", I);\n  }\n}\n\nsigned main() {\n\
+    \  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"setfunc/all_k_subset.hpp\"\
-    \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s: all_nCk<u32>(N, K)) {\n    vi I;\n\
-    \    for (int i: all_bit<u32>(s)) I.eb(i);\n    print(to_string(s) + \":\", I);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N, K);\n  for (u32 s : all_nCk<u32>(N, K)) {\n    vi\
+    \ I;\n    for (int i : all_bit<u32>(s)) I.eb(s ^ i);\n    print(to_string(s) +\
+    \ \":\", I);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -290,7 +291,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP2_11_D.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 20:34:09+09:00'
+  timestamp: '2026-07-26 21:55:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_11_D.test.cpp

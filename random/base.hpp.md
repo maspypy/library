@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -170,18 +170,27 @@ data:
   - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   - icon: ':warning:'
     path: seq/sidon_sequence.hpp
     title: seq/sidon_sequence.hpp
   - icon: ':warning:'
     path: setfunc/submask_range_query.hpp
     title: setfunc/submask_range_query.hpp
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
   - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
+  - icon: ':warning:'
+    path: string/substring_count_in_substring.hpp
+    title: string/substring_count_in_substring.hpp
   - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
@@ -387,15 +396,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_nns.test.cpp
     title: test/1_mytest/kdtree_nns.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/kinetic.test.cpp
-    title: test/1_mytest/kinetic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lex_minmax_suffix.test.cpp
+    title: test/1_mytest/lex_minmax_suffix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/longest_common_substr.test.cpp
+    title: test/1_mytest/longest_common_substr.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/manhattan_nns.test.cpp
     title: test/1_mytest/manhattan_nns.test.cpp
@@ -589,6 +601,9 @@ data:
     path: test/1_mytest/reduce_intervals.test.cpp
     title: test/1_mytest/reduce_intervals.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_edge.test.cpp
     title: test/1_mytest/remove_one_edge.test.cpp
   - icon: ':heavy_check_mark:'
@@ -639,6 +654,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/suffix_lcp_change.test.cpp
+    title: test/1_mytest/suffix_lcp_change.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/sum_over_bit_positions.test.cpp
     title: test/1_mytest/sum_over_bit_positions.test.cpp
@@ -813,7 +831,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1005,7 +1023,9 @@ data:
   - mod/mod_log.hpp
   - mod/dynamic_modint.hpp
   - string/rollinghash.hpp
+  - string/substring_count_in_substring.hpp
   - string/rollinghash_2d.hpp
+  - string/basic_substring_structure.hpp
   - string/wildcard_pattern_matching.hpp
   - linalg/frobenius.hpp
   - linalg/adjugate_matrix.hpp
@@ -1015,6 +1035,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - alg/monoid/rollinghash.hpp
   - seq/sidon_sequence.hpp
+  - seq/reeds_sloane.hpp
   - nt/divisors.hpp
   - nt/crt.hpp
   - nt/two_square.hpp
@@ -1114,6 +1135,7 @@ data:
   - test/1_mytest/factorial_998.test.cpp
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/outer_planar.test.cpp
+  - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/seg2d.test.cpp
   - test/1_mytest/nth_element_from_sorted_lists.test.cpp
   - test/1_mytest/count_clique.test.cpp
@@ -1124,7 +1146,6 @@ data:
   - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
-  - test/1_mytest/kinetic.test.cpp
   - test/1_mytest/three_square.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/typical_dc.test.cpp
@@ -1146,6 +1167,7 @@ data:
   - test/1_mytest/min_poly.test.cpp
   - test/1_mytest/xor_transpose.test.cpp
   - test/1_mytest/dual_fenwick.test.cpp
+  - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/max_assign.test.cpp
   - test/1_mytest/summax_add.test.cpp
@@ -1180,6 +1202,7 @@ data:
   - test/1_mytest/min_of_linear_segments.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/prefix_max_segtree.test.cpp
+  - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
   - test/1_mytest/monotone_minima.test.cpp
   - test/1_mytest/max_of_linear_segments.test.cpp
@@ -1193,6 +1216,7 @@ data:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/vandermonde.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/powerquery.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/min_max.test.cpp

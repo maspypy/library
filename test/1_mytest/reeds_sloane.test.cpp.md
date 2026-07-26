@@ -1,12 +1,76 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: mod/barrett.hpp
+    title: mod/barrett.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/crt3.hpp
+    title: mod/crt3.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_inv.hpp
+    title: mod/mod_inv.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_pow.hpp
+    title: mod/mod_pow.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/modint_common.hpp
+    title: mod/modint_common.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mongomery_modint.hpp
+    title: mod/mongomery_modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':question:'
+    path: my_template.hpp
+    title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/factor.hpp
+    title: nt/factor.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/primetest.hpp
+    title: nt/primetest.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
+    path: other/io.hpp
+    title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/convolution.hpp
+    title: poly/convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/convolution_karatsuba.hpp
+    title: poly/convolution_karatsuba.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/convolution_naive.hpp
+    title: poly/convolution_naive.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/ntt.hpp
+    title: poly/ntt.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    links:
+    - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/reeds_sloane.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
     #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
@@ -639,9 +703,8 @@ data:
     \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
     \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
     \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
-    #line 1 \"seq/reeds_sloane.hpp\"\n#include \"other/bit.hpp\n#line 5 \"seq/reeds_sloane.hpp\"\
-    \n\ntemplate <bool EVEN>\nvc<u32> Reeds_Sloane_Prime_Power(vc<u32> S, int p, int\
-    \ e) {\n  using T = std::conditional_t<EVEN, u32, Dynamic_Modint<20260623>>;\n\
+    #line 5 \"seq/reeds_sloane.hpp\"\n\ntemplate <bool EVEN>\nvc<u32> Reeds_Sloane_Prime_Power(vc<u32>\
+    \ S, int p, int e) {\n  using T = std::conditional_t<EVEN, u32, Dynamic_Modint<20260623>>;\n\
     \  u32 M = 1;\n  FOR(e) M *= p;\n  if constexpr (EVEN) {\n    assert(p == 2);\n\
     \  } else {\n    assert(p != 2);\n    T::set_mod(M);\n  }\n  int N = len(S);\n\
     \  if (N == 0) return {1};\n\n  auto decompose = [&](T x) -> pair<T, int> {\n\
@@ -719,12 +782,32 @@ data:
     \ test<9>(T);\n  test<10>(T);\n  test<12>(T);\n  test<16>(T);\n  test<32>(T);\n\
     \  test<64>(T);\n  test<60>(T);\n  test<100>(T);\n  test<210>(T);\n  solve();\n\
     \  return 0;\n}"
-  dependsOn: []
+  dependsOn:
+  - my_template.hpp
+  - other/io.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
+  - other/bit.hpp
+  - random/base.hpp
+  - poly/convolution.hpp
+  - mod/mod_inv.hpp
+  - mod/crt3.hpp
+  - poly/convolution_naive.hpp
+  - poly/convolution_karatsuba.hpp
+  - poly/ntt.hpp
+  - mod/dynamic_modint.hpp
+  - mod/primitive_root.hpp
+  - nt/factor.hpp
+  - nt/primetest.hpp
+  - mod/mongomery_modint.hpp
+  - mod/mod_pow.hpp
+  - mod/barrett.hpp
+  - seq/reeds_sloane.hpp
   isVerificationFile: true
   path: test/1_mytest/reeds_sloane.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:55:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/reeds_sloane.test.cpp
 layout: document
