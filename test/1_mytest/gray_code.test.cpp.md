@@ -4,14 +4,17 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/gray_code.hpp
     title: seq/famous/gray_code.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -97,33 +100,60 @@ data:
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
     \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 1 \"seq/famous/gray_code.hpp\"\n// 0, ..., 2^{LOG}-1 \u306E\u9806\u5217\u3067\
-    \u3042\u3063\u3066\u30011 bit \u305A\u3064\u5909\u5316\u3059\u308B\u3082\u306E\
-    \u3092\u8FD4\u3059\r\nvc<int> gray_code(int LOG) {\r\n  vc<int> res(1 << LOG);\r\
-    \n  FOR(v, 1 << LOG) res[v] = v ^ (v >> 1);\r\n  return res;\r\n}\r\n#line 4 \"\
-    test/1_mytest/gray_code.test.cpp\"\n\nvoid test() {\n  FOR(LOG, 10) {\n    auto\
-    \ G = gray_code(LOG);\n    FOR(i, len(G) - 1) {\n      int j = (i + 1 == len(G)\
-    \ ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n      assert(popcnt(x) == 1);\n \
-    \   }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n    assert(len(G) == 1\
-    \ << LOG);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
-    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
-    }\n"
+    #line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 1 \"seq/famous/gray_code.hpp\"\n// 0, ...,\
+    \ 2^{LOG}-1 \u306E\u9806\u5217\u3067\u3042\u3063\u3066\u30011 bit \u305A\u3064\
+    \u5909\u5316\u3059\u308B\u3082\u306E\u3092\u8FD4\u3059\r\nvc<int> gray_code(int\
+    \ LOG) {\r\n  vc<int> res(1 << LOG);\r\n  FOR(v, 1 << LOG) res[v] = v ^ (v >>\
+    \ 1);\r\n  return res;\r\n}\r\n#line 5 \"test/1_mytest/gray_code.test.cpp\"\n\n\
+    void test() {\n  FOR(LOG, 10) {\n    auto G = gray_code(LOG);\n    FOR(i, len(G)\
+    \ - 1) {\n      int j = (i + 1 == len(G) ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n\
+    \      assert(popcnt(x) == 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n\
+    \    assert(len(G) == 1 << LOG);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"seq/famous/gray_code.hpp\"\n\nvoid test() {\n  FOR(LOG, 10) {\n \
-    \   auto G = gray_code(LOG);\n    FOR(i, len(G) - 1) {\n      int j = (i + 1 ==\
-    \ len(G) ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n      assert(popcnt(x) ==\
-    \ 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n    assert(len(G)\
-    \ == 1 << LOG);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \n#include \"other/bit.hpp\"\n#include \"seq/famous/gray_code.hpp\"\n\nvoid test()\
+    \ {\n  FOR(LOG, 10) {\n    auto G = gray_code(LOG);\n    FOR(i, len(G) - 1) {\n\
+    \      int j = (i + 1 == len(G) ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n  \
+    \    assert(popcnt(x) == 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n\
+    \    assert(len(G) == 1 << LOG);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
+    \ solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
+  - other/bit.hpp
   - seq/famous/gray_code.hpp
   isVerificationFile: true
   path: test/1_mytest/gray_code.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:45:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/gray_code.test.cpp
 layout: document

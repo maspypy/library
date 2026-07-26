@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':heavy_check_mark:'
     path: other/mex.hpp
     title: other/mex.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -107,28 +110,55 @@ data:
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
     \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
     #line 4 \"test/1_mytest/partizan.test.cpp\"\n\n#line 1 \"game/solve_partizan_game.hpp\"\
-    \n\n#line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\u5F62\u3067\u6301\u3064\
-    \ntemplate <typename INTEGER>\nstruct Dyadic_Rational {\n  using X = Dyadic_Rational;\n\
-    \  INTEGER a, b;\n  static constexpr int M = std::numeric_limits<INTEGER>::digits\
-    \ - 2;\n\n  Dyadic_Rational(INTEGER a = 0) : a(a), b(0) {}\n\n  // x + y / z\n\
-    \  Dyadic_Rational(INTEGER x, INTEGER y, INTEGER z) : a(x), b(y) {\n    auto [q,\
-    \ r] = divmod(b, z);\n    a += q;\n    b = r;\n    b *= (INTEGER(1) << M) / z;\n\
-    \  }\n\n  // x/y\n  Dyadic_Rational(INTEGER x, INTEGER y) : Dyadic_Rational(0,\
-    \ x, y) {}\n\n  static X from_ab(INTEGER a, INTEGER b) {\n    X x(a);\n    x.b\
-    \ = b;\n    return x;\n  }\n\n  // \u6BD4\u8F03\n  bool operator==(X const& rhs)\
-    \ const { return (a == rhs.a && b == rhs.b); }\n  bool operator!=(X const& rhs)\
-    \ const { return !(*this == rhs); }\n  bool operator<(X const& rhs) const { return\
-    \ (a < rhs.a) || (a == rhs.a && b < rhs.b); }\n  bool operator<=(X const& rhs)\
-    \ const { return (a < rhs.a) || (a == rhs.a && b <= rhs.b); }\n  bool operator>(X\
-    \ const& rhs) const { return (a > rhs.a) || (a == rhs.a && b > rhs.b); }\n  bool\
-    \ operator>=(X const& rhs) const { return (a > rhs.a) || (a == rhs.a && b >= rhs.b);\
-    \ }\n\n  // \u52A0\u6CD5\n  friend X operator+(const X& x, const X& y) {\n   \
-    \ INTEGER a = x.a + y.a, b = x.b + y.b;\n    while (b >= INTEGER(1) << M) {\n\
-    \      ++a;\n      b -= INTEGER(1) << M;\n    }\n    return from_ab(a, b);\n \
-    \ }\n  friend X operator-(const X& x, const X& y) {\n    INTEGER a = x.a - y.a,\
-    \ b = x.b - y.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1) << M;\n\
-    \    }\n    return from_ab(a, b);\n  }\n  friend X operator-(const X& x) {\n \
-    \   INTEGER a = -x.a, b = -x.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1)\
+    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"game/dyadic_rational.hpp\"\n\n// a+b/2^M\
+    \ \u306E\u5F62\u3067\u6301\u3064\ntemplate <typename INTEGER>\nstruct Dyadic_Rational\
+    \ {\n  using X = Dyadic_Rational;\n  INTEGER a, b;\n  static constexpr int M =\
+    \ std::numeric_limits<INTEGER>::digits - 2;\n\n  Dyadic_Rational(INTEGER a = 0)\
+    \ : a(a), b(0) {}\n\n  // x + y / z\n  Dyadic_Rational(INTEGER x, INTEGER y, INTEGER\
+    \ z) : a(x), b(y) {\n    auto [q, r] = divmod(b, z);\n    a += q;\n    b = r;\n\
+    \    b *= (INTEGER(1) << M) / z;\n  }\n\n  // x/y\n  Dyadic_Rational(INTEGER x,\
+    \ INTEGER y) : Dyadic_Rational(0, x, y) {}\n\n  static X from_ab(INTEGER a, INTEGER\
+    \ b) {\n    X x(a);\n    x.b = b;\n    return x;\n  }\n\n  // \u6BD4\u8F03\n \
+    \ bool operator==(X const& rhs) const { return (a == rhs.a && b == rhs.b); }\n\
+    \  bool operator!=(X const& rhs) const { return !(*this == rhs); }\n  bool operator<(X\
+    \ const& rhs) const {\n    return (a < rhs.a) || (a == rhs.a && b < rhs.b);\n\
+    \  }\n  bool operator<=(X const& rhs) const {\n    return (a < rhs.a) || (a ==\
+    \ rhs.a && b <= rhs.b);\n  }\n  bool operator>(X const& rhs) const {\n    return\
+    \ (a > rhs.a) || (a == rhs.a && b > rhs.b);\n  }\n  bool operator>=(X const& rhs)\
+    \ const {\n    return (a > rhs.a) || (a == rhs.a && b >= rhs.b);\n  }\n\n  //\
+    \ \u52A0\u6CD5\n  friend X operator+(const X& x, const X& y) {\n    INTEGER a\
+    \ = x.a + y.a, b = x.b + y.b;\n    while (b >= INTEGER(1) << M) {\n      ++a;\n\
+    \      b -= INTEGER(1) << M;\n    }\n    return from_ab(a, b);\n  }\n  friend\
+    \ X operator-(const X& x, const X& y) {\n    INTEGER a = x.a - y.a, b = x.b -\
+    \ y.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1) << M;\n    }\n\
+    \    return from_ab(a, b);\n  }\n  friend X operator-(const X& x) {\n    INTEGER\
+    \ a = -x.a, b = -x.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1)\
     \ << M;\n    }\n    return from_ab(a, b);\n  }\n  X& operator+=(const X& x) {\
     \ return (*this) = (*this) + x; }\n  X& operator-=(const X& x) { return (*this)\
     \ = (*this) - x; }\n\n  static X simplest(X x, X y, bool include_x = false, bool\
@@ -145,44 +175,44 @@ data:
     \ ^ r);\n    r &= ~((INTEGER(1) << k) - 1);\n    return from_ab(x.a, r);\n  }\n\
     \n  static constexpr X infinity() { return from_ab(INTEGER(1) << M, 0); }\n\n\
     \  string to_string() {\n    ll x = a, y = b, z = INTEGER(1) << M;\n    while\
-    \ (y % 2 == 0 && z % 2 == 0) { y /= 2, z /= 2; }\n    y += x * z;\n    return\
-    \ std::to_string(y) + \"/\" + std::to_string(z);\n  }\n};\n#line 1 \"other/mex.hpp\"\
-    \nint mex(const vc<int>& A) {\n  int n = len(A);\n  vc<bool> aru(n + 1);\n  for\
-    \ (auto& x: A)\n    if (x < n) aru[x] = 1;\n  int mex = 0;\n  while (aru[mex])\
-    \ ++mex;\n  return mex;\n}\n#line 3 \"game/number_and_star.hpp\"\n\nstruct Number_And_Star\
-    \ {\n  using A = Dyadic_Rational<ll>;\n  // a + *b\n  A a;\n  int b;\n  using\
-    \ T = Number_And_Star;\n\n  Number_And_Star(A a = 0, ll b = 0) : a(a), b(b) {}\n\
-    \  T& operator+=(const T& p) {\n    a += p.a, b ^= p.b;\n    return *this;\n \
-    \ }\n  T& operator-=(const T& p) {\n    a -= p.a, b ^= p.b;\n    return *this;\n\
-    \  }\n  T operator-() const { return T(-a, b); }\n  bool operator==(const T& p)\
-    \ const { return (a == p.a && b == p.b); }\n\n  // {\u8A08\u7B97\u3067\u304D\u305F\
-    \u304B, \u5024}\n  static pair<bool, T> from_options(vc<T> left_ops, vc<T> right_ops)\
-    \ {\n    A xl = -A::infinity(), xr = A::infinity();\n    vc<int> Lb, Rb;\n   \
-    \ for (auto&& t: left_ops) {\n      if (chmax(xl, t.a)) Lb.clear();\n      if\
-    \ (xl == t.a) Lb.eb(t.b);\n    }\n    for (auto&& t: right_ops) {\n      if (chmin(xr,\
-    \ t.a)) Rb.clear();\n      if (xr == t.a) Rb.eb(t.b);\n    }\n    int Lm = mex(Lb),\
-    \ Rm = mex(Rb);\n    if (xl < xr) {\n      A a = A::simplest(xl, xr, Lm == 0,\
-    \ Rm == 0);\n      return {true, T(a, 0)};\n    }\n    if (xl == xr) {\n     \
-    \ if (Lm == Rm) return {true, T(xl, Lm)};\n    }\n    return {false, T(0, 0)};\n\
-    \  }\n\n  string to_string() {\n    string x = a.to_string();\n    x += \" + *\"\
-    ;\n    x += ::to_string(b);\n    return x;\n  }\n\n  // L, R \u306F\u305D\u308C\
-    \u305E\u308C\u81EA\u5206\u624B\u756A\u306E\u3068\u304D\u306B\u52DD\u3066\u308B\
-    \u304B\uFF1F\n  pair<bool, bool> outcome() {\n    if (a > 0) return {1, 0};\n\
-    \    if (a < 0) return {0, 1};\n    if (b == 0) return {0, 0};\n    return {1,\
-    \ 1};\n  }\n};\n#line 3 \"game/solve_partizan_game.hpp\"\n\n// number, star \u3067\
-    \u3044\u3044\u611F\u3058\u306B\u8A08\u7B97\u3067\u304D\u305F\u3068\u304D\u3060\
-    \u3051\u6210\u529F\n// \u5931\u6557\u3057\u305F\u3068\u304D\u306F\u3001empty map\
-    \ \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B state\
-    \ \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE), left\
-    \ ops / right ops\n// https://qoj.ac/contest/1828/problem/9567\ntemplate <typename\
-    \ STATE, typename F>\nmap<STATE, Number_And_Star> solve_partizan_game(const vector<STATE>&\
-    \ states, F get_options) {\n  using X = Number_And_Star;\n  map<STATE, X> MP;\n\
-    \n  bool success = 1;\n\n  auto dfs = [&](auto& dfs, const STATE& s) -> X {\n\
-    \    if (!success) return X();\n    if (MP.count(s)) return MP[s];\n    vc<X>\
-    \ left, right;\n    auto [lop, rop] = get_options(s);\n    for (auto&& t: lop)\
-    \ left.eb(dfs(dfs, t));\n    for (auto&& t: rop) right.eb(dfs(dfs, t));\n    auto\
-    \ [ok, t] = X::from_options(left, right);\n    if (!success) return X{};\n   \
-    \ if (!ok) {\n      // print(\"FAILED\");\n      // print(s);\n      // print(\"\
+    \ (y % 2 == 0 && z % 2 == 0) {\n      y /= 2, z /= 2;\n    }\n    y += x * z;\n\
+    \    return std::to_string(y) + \"/\" + std::to_string(z);\n  }\n};\n#line 1 \"\
+    other/mex.hpp\"\nint mex(const vc<int>& A) {\n  int n = len(A);\n  vc<bool> aru(n\
+    \ + 1);\n  for (auto& x: A)\n    if (x < n) aru[x] = 1;\n  int mex = 0;\n  while\
+    \ (aru[mex]) ++mex;\n  return mex;\n}\n#line 3 \"game/number_and_star.hpp\"\n\n\
+    struct Number_And_Star {\n  using A = Dyadic_Rational<ll>;\n  // a + *b\n  A a;\n\
+    \  int b;\n  using T = Number_And_Star;\n\n  Number_And_Star(A a = 0, ll b = 0)\
+    \ : a(a), b(b) {}\n  T& operator+=(const T& p) {\n    a += p.a, b ^= p.b;\n  \
+    \  return *this;\n  }\n  T& operator-=(const T& p) {\n    a -= p.a, b ^= p.b;\n\
+    \    return *this;\n  }\n  T operator-() const { return T(-a, b); }\n  bool operator==(const\
+    \ T& p) const { return (a == p.a && b == p.b); }\n\n  // {\u8A08\u7B97\u3067\u304D\
+    \u305F\u304B, \u5024}\n  static pair<bool, T> from_options(vc<T> left_ops, vc<T>\
+    \ right_ops) {\n    A xl = -A::infinity(), xr = A::infinity();\n    vc<int> Lb,\
+    \ Rb;\n    for (auto&& t: left_ops) {\n      if (chmax(xl, t.a)) Lb.clear();\n\
+    \      if (xl == t.a) Lb.eb(t.b);\n    }\n    for (auto&& t: right_ops) {\n  \
+    \    if (chmin(xr, t.a)) Rb.clear();\n      if (xr == t.a) Rb.eb(t.b);\n    }\n\
+    \    int Lm = mex(Lb), Rm = mex(Rb);\n    if (xl < xr) {\n      A a = A::simplest(xl,\
+    \ xr, Lm == 0, Rm == 0);\n      return {true, T(a, 0)};\n    }\n    if (xl ==\
+    \ xr) {\n      if (Lm == Rm) return {true, T(xl, Lm)};\n    }\n    return {false,\
+    \ T(0, 0)};\n  }\n\n  string to_string() {\n    string x = a.to_string();\n  \
+    \  x += \" + *\";\n    x += ::to_string(b);\n    return x;\n  }\n\n  // L, R \u306F\
+    \u305D\u308C\u305E\u308C\u81EA\u5206\u624B\u756A\u306E\u3068\u304D\u306B\u52DD\
+    \u3066\u308B\u304B\uFF1F\n  pair<bool, bool> outcome() {\n    if (a > 0) return\
+    \ {1, 0};\n    if (a < 0) return {0, 1};\n    if (b == 0) return {0, 0};\n   \
+    \ return {1, 1};\n  }\n};\n#line 3 \"game/solve_partizan_game.hpp\"\n\n// number,\
+    \ star \u3067\u3044\u3044\u611F\u3058\u306B\u8A08\u7B97\u3067\u304D\u305F\u3068\
+    \u304D\u3060\u3051\u6210\u529F\n// \u5931\u6557\u3057\u305F\u3068\u304D\u306F\u3001\
+    empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B\
+    \ state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE),\
+    \ left ops / right ops\n// https://qoj.ac/contest/1828/problem/9567\ntemplate\
+    \ <typename STATE, typename F>\nmap<STATE, Number_And_Star> solve_partizan_game(const\
+    \ vector<STATE>& states, F get_options) {\n  using X = Number_And_Star;\n  map<STATE,\
+    \ X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto& dfs, const STATE& s)\
+    \ -> X {\n    if (!success) return X();\n    if (MP.count(s)) return MP[s];\n\
+    \    vc<X> left, right;\n    auto [lop, rop] = get_options(s);\n    for (auto&&\
+    \ t: lop) left.eb(dfs(dfs, t));\n    for (auto&& t: rop) right.eb(dfs(dfs, t));\n\
+    \    auto [ok, t] = X::from_options(left, right);\n    if (!success) return X{};\n\
+    \    if (!ok) {\n      // print(\"FAILED\");\n      // print(s);\n      // print(\"\
     LEFT\");\n      // for (auto& t: lop) {\n      //   X x = dfs(dfs, t);\n     \
     \ //   print(t, x.to_string());\n      // }\n      // print(\"RIGHT\");\n    \
     \  // for (auto& t: rop) {\n      //   X x = dfs(dfs, t);\n      //   print(t,\
@@ -297,12 +327,13 @@ data:
   - game/solve_partizan_game.hpp
   - game/number_and_star.hpp
   - game/dyadic_rational.hpp
+  - other/bit.hpp
   - other/mex.hpp
   isVerificationFile: true
   path: test/1_mytest/partizan.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:45:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/partizan.test.cpp
 layout: document

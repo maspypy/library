@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +54,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/tree_diameter.test.cpp
     title: test/2_library_checker/tree/tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1038.test.cpp
+    title: test/3_yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
@@ -238,6 +247,7 @@ data:
   - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1868.test.cpp
+  - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/2892.test.cpp
   - test/3_yukicoder/1718.test.cpp
   - test/1_mytest/st_numbering.test.cpp
@@ -245,6 +255,8 @@ data:
   - test/2_library_checker/graph/st_numbering.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/2_library_checker/tree/tree_diameter.test.cpp
 documentation_of: graph/shortest_path/bfs01.hpp

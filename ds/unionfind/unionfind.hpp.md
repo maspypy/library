@@ -105,13 +105,13 @@ data:
   - icon: ':x:'
     path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
     title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/connected_set_knapsack.test.cpp
     title: test/1_mytest/connected_set_knapsack.test.cpp
   - icon: ':x:'
     path: test/1_mytest/count_K4.test.cpp
     title: test/1_mytest/count_K4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
   - icon: ':heavy_check_mark:'
@@ -246,9 +246,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1600_2.test.cpp
-    title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1615.test.cpp
     title: test/3_yukicoder/1615.test.cpp
@@ -387,7 +384,6 @@ data:
   - test/3_yukicoder/1911.test.cpp
   - test/3_yukicoder/1254.test.cpp
   - test/3_yukicoder/590.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/1451.test.cpp
   - test/4_aoj/1566.test.cpp
   - test/4_aoj/2251_1.test.cpp

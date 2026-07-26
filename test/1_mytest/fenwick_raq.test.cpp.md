@@ -1,12 +1,40 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/sum_add.hpp
+    title: alg/acted_monoid/sum_add.hpp
+  - icon: ':question:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/fenwicktree/fenwicktree.hpp
+    title: ds/fenwicktree/fenwicktree.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/fenwicktree/fenwicktree_range_add.hpp
+    title: ds/fenwicktree/fenwicktree_range_add.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/segtree/lazy_segtree.hpp
+    title: ds/segtree/lazy_segtree.hpp
+  - icon: ':question:'
+    path: my_template.hpp
+    title: my_template.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    links:
+    - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/fenwick_raq.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
     #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
@@ -191,12 +219,11 @@ data:
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    return x + a * E(size);\r\n  }\r\n\
-    };\r\n#line 1 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n#line 2 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n#include \"other/bit.hpp\n#line 4 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate\
-    \ <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n\
-    \  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\
-    \n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template <typename\
-    \ F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
+    };\r\n#line 1 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n#line 4 \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
+    \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
     \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
     \ G::unit());\n    total = G::unit();\n  }\n  void build(const vc<E>& v) {\n \
     \   build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template <typename\
@@ -315,12 +342,20 @@ data:
     \u3046\u3053\u3068\u306B\n  */\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
     \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
     \  return 0;\n}"
-  dependsOn: []
+  dependsOn:
+  - my_template.hpp
+  - ds/segtree/lazy_segtree.hpp
+  - other/bit.hpp
+  - alg/acted_monoid/sum_add.hpp
+  - alg/monoid/add.hpp
+  - ds/fenwicktree/fenwicktree_range_add.hpp
+  - ds/fenwicktree/fenwicktree.hpp
+  - random/base.hpp
   isVerificationFile: true
   path: test/1_mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:45:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/fenwick_raq.test.cpp
 layout: document

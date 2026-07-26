@@ -36,14 +36,14 @@ data:
     path: graph/all_cycle_common_vertex.hpp
     title: graph/all_cycle_common_vertex.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':warning:'
     path: other/cuboid_union_volume.hpp
     title: other/cuboid_union_volume.hpp
-  - icon: ':x:'
-    path: string/suffix_tree.hpp
-    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_cycle_common_vertex.test.cpp
@@ -69,18 +69,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/2361.test.cpp
-    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -189,6 +189,7 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
+  - graph/ds/incremental_centroid.hpp
   - graph/all_cycle_common_vertex.hpp
   - graph/toposort.hpp
   - geo/delaunay_triangulation_of_convex_polygon.hpp
@@ -200,13 +201,12 @@ data:
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
   - ds/segtree/range_add_make_increasing.hpp
-  - string/suffix_tree.hpp
   - other/cuboid_union_volume.hpp
   timestamp: '2026-07-26 20:34:09+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2809.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/4_aoj/2251_1.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp

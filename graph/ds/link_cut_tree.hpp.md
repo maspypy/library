@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/ds/range_edge_connected_component_query.hpp
+    title: graph/ds/range_edge_connected_component_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp
@@ -278,7 +281,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: graph/ds/link_cut_tree.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/ds/range_edge_connected_component_query.hpp
   timestamp: '2025-05-25 23:45:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

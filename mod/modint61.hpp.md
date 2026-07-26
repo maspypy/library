@@ -24,9 +24,6 @@ data:
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':warning:'
-    path: string/basic_substring_structure.hpp
-    title: string/basic_substring_structure.hpp
-  - icon: ':warning:'
     path: string/deque_rolling_hash.hpp
     title: string/deque_rolling_hash.hpp
   - icon: ':heavy_check_mark:'
@@ -35,9 +32,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
-  - icon: ':warning:'
-    path: string/substring_count_in_substring.hpp
-    title: string/substring_count_in_substring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
@@ -180,9 +174,7 @@ data:
   - graph/maximum_matching_size.hpp
   - mod/modular_subset_sum.hpp
   - string/rollinghash.hpp
-  - string/substring_count_in_substring.hpp
   - string/rollinghash_2d.hpp
-  - string/basic_substring_structure.hpp
   - string/deque_rolling_hash.hpp
   - alg/monoid/rollinghash.hpp
   - other/connected_dp.hpp

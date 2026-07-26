@@ -38,43 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':warning:'
-    path: string/basic_substring_structure.hpp
-    title: string/basic_substring_structure.hpp
-  - icon: ':x:'
-    path: string/lex_max_suffix_for_all_prefix.hpp
-    title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':x:'
-    path: string/longest_common_substring.hpp
-    title: string/longest_common_substring.hpp
-  - icon: ':warning:'
-    path: string/many_string_compare.hpp
-    title: string/many_string_compare.hpp
-  - icon: ':warning:'
-    path: string/sort_substrings.hpp
-    title: string/sort_substrings.hpp
-  - icon: ':warning:'
-    path: string/substring_count_in_substring.hpp
-    title: string/substring_count_in_substring.hpp
-  - icon: ':warning:'
-    path: string/substring_shortest_border.hpp
-    title: string/substring_shortest_border.hpp
-  - icon: ':x:'
-    path: string/suffix_array.hpp
-    title: string/suffix_array.hpp
-  - icon: ':x:'
-    path: string/suffix_lcp_change.hpp
-    title: string/suffix_lcp_change.hpp
-  - icon: ':x:'
-    path: string/suffix_tree.hpp
-    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/lex_minmax_suffix.test.cpp
-    title: test/1_mytest/lex_minmax_suffix.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/longest_common_substr.test.cpp
-    title: test/1_mytest/longest_common_substr.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/manhattan_nns.test.cpp
     title: test/1_mytest/manhattan_nns.test.cpp
@@ -96,9 +60,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/segtree_xor_prod.test.cpp
     title: test/1_mytest/segtree_xor_prod.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/suffix_lcp_change.test.cpp
-    title: test/1_mytest/suffix_lcp_change.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
@@ -120,18 +81,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
-  - icon: ':x:'
-    path: test/2_library_checker/string/longest_common_substring.test.cpp
-    title: test/2_library_checker/string/longest_common_substring.test.cpp
-  - icon: ':x:'
-    path: test/2_library_checker/string/number_of_substrings.test.cpp
-    title: test/2_library_checker/string/number_of_substrings.test.cpp
-  - icon: ':x:'
-    path: test/2_library_checker/string/suffix_array.test.cpp
-    title: test/2_library_checker/string/suffix_array.test.cpp
-  - icon: ':x:'
-    path: test/2_library_checker/string/suffix_array_vec.test.cpp
-    title: test/2_library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
@@ -162,9 +111,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/2361.test.cpp
-    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
@@ -192,9 +138,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_3_B.test.cpp
     title: test/4_aoj/ITP2_3_B.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -303,25 +249,14 @@ data:
   - ds/segtree/sortable_segtree.hpp
   - ds/offline_query/range_mex_query.hpp
   - ds/offline_query/uniqueproductquery.hpp
-  - string/suffix_array.hpp
-  - string/many_string_compare.hpp
-  - string/longest_common_substring.hpp
-  - string/suffix_lcp_change.hpp
-  - string/substring_count_in_substring.hpp
-  - string/suffix_tree.hpp
-  - string/basic_substring_structure.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
-  - string/substring_shortest_border.hpp
-  - string/sort_substrings.hpp
   timestamp: '2026-04-13 17:55:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1435.test.cpp
   - test/3_yukicoder/3148.test.cpp
   - test/3_yukicoder/2890.test.cpp
   - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/1212.test.cpp
-  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2859.test.cpp
   - test/3_yukicoder/1625_2.test.cpp
   - test/3_yukicoder/2897.test.cpp
@@ -331,20 +266,13 @@ data:
   - test/3_yukicoder/1549.test.cpp
   - test/4_aoj/ITP2_3_B.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
-  - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/manhattan_nns.test.cpp
-  - test/1_mytest/lex_minmax_suffix.test.cpp
-  - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/range_mex.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
-  - test/2_library_checker/string/suffix_array_vec.test.cpp
-  - test/2_library_checker/string/suffix_array.test.cpp
-  - test/2_library_checker/string/number_of_substrings.test.cpp
-  - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp

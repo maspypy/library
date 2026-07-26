@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
+    title: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
     title: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
   _isVerificationFailed: false
@@ -72,6 +75,7 @@ data:
   timestamp: '2026-04-05 00:48:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
   - test/2_library_checker/data_structure/static_range_mode_query.test.cpp
 documentation_of: ds/offline_query/rollback_mo.hpp
 layout: document

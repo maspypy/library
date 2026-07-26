@@ -30,6 +30,9 @@ data:
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,9 @@ data:
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/ds/tree_abelgroup.hpp
+    title: graph/ds/tree_abelgroup.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
@@ -53,9 +59,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':x:'
-    path: graph/fast_lca.hpp
-    title: graph/fast_lca.hpp
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
@@ -96,7 +99,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
     title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/connected_set_knapsack.test.cpp
     title: test/1_mytest/connected_set_knapsack.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,9 +126,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_directed.test.cpp
     title: test/2_library_checker/tree/lca_directed.test.cpp
-  - icon: ':x:'
-    path: test/2_library_checker/tree/lca_fast.test.cpp
-    title: test/2_library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
@@ -142,8 +142,14 @@ data:
     path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
     title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
@@ -175,6 +181,9 @@ data:
     path: test/3_yukicoder/1295.test.cpp
     title: test/3_yukicoder/1295.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1326.test.cpp
+    title: test/3_yukicoder/1326.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1418.test.cpp
     title: test/3_yukicoder/1418.test.cpp
   - icon: ':heavy_check_mark:'
@@ -190,8 +199,8 @@ data:
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1600_2.test.cpp
-    title: test/3_yukicoder/1600_2.test.cpp
+    path: test/3_yukicoder/1641.test.cpp
+    title: test/3_yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
@@ -246,6 +255,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
@@ -590,10 +602,12 @@ data:
   - graph/tree_dp/subtree_hash.hpp
   - graph/ds/dynamic_tree_dp.hpp
   - graph/ds/distance_sum.hpp
+  - graph/ds/tree_abelgroup.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/static_toptree.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/tree_monoid.hpp
+  - graph/ds/incremental_centroid.hpp
   - graph/ds/dual_tree_monoid.hpp
   - graph/ds/mo_on_tree.hpp
   - graph/ds/lazy_tree_monoid.hpp
@@ -601,7 +615,6 @@ data:
   - graph/ds/rolling_hash_on_tree.hpp
   - graph/optimal_product_on_tree.hpp
   - graph/compress_tree.hpp
-  - graph/fast_lca.hpp
   - graph/functional.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/count_matching_on_tree.hpp
@@ -621,6 +634,7 @@ data:
   - test/3_yukicoder/1418.test.cpp
   - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/1216.test.cpp
+  - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/1211.test.cpp
   - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/1778.test.cpp
@@ -637,14 +651,15 @@ data:
   - test/3_yukicoder/2360.test.cpp
   - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/1254.test.cpp
+  - test/3_yukicoder/1326.test.cpp
   - test/3_yukicoder/590.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/1769.test.cpp
   - test/3_yukicoder/2258.test.cpp
   - test/3_yukicoder/1718.test.cpp
   - test/3_yukicoder/1789.test.cpp
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/1524.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/4_aoj/2677.test.cpp
   - test/4_aoj/2995.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
@@ -659,8 +674,9 @@ data:
   - test/2_library_checker/graph/classify_tree.test.cpp
   - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
+  - test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
-  - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - test/2_library_checker/tree/lca.test.cpp
   - test/2_library_checker/tree/mst.test.cpp

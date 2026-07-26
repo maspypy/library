@@ -13,12 +13,15 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: knapsack/connected_set_knapsack.hpp
     title: knapsack/connected_set_knapsack.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
@@ -30,9 +33,9 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -305,7 +308,33 @@ data:
     \ ok = 0;\n    }\n    if (ok) E.eb(a, b);\n  }\n  vc<int> label(N);\n  FOR(i,\
     \ N) label[i] = i;\n  shuffle(label);\n  FOR(i, N) E.eb(i, (i + 1) % N);\n  for\
     \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
-    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 5 \"test/1_mytest/connected_set_knapsack.test.cpp\"\
+    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 6 \"test/1_mytest/connected_set_knapsack.test.cpp\"\
     \n\n#line 2 \"graph/tree.hpp\"\n\r\n#line 4 \"graph/tree.hpp\"\n\r\n// HLD euler\
     \ tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\r\ntemplate <typename\
     \ GT>\r\nstruct Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT =\
@@ -432,7 +461,7 @@ data:
     \  return Y;\n  };\n\n  FOR(v, tree.N) {\n    if (tree.head[v] == v) {\n     \
     \ V X(LIM + 1, -infty<VAL>);\n      X[0] = 0;\n      dfs(dfs, v, X, true);\n \
     \   }\n  }\n\n  for (auto& x : ANS)\n    if (x < 0) x = -infty<VAL>;\n  return\
-    \ ANS;\n}\n#line 8 \"test/1_mytest/connected_set_knapsack.test.cpp\"\n\nvoid test(int\
+    \ ANS;\n}\n#line 9 \"test/1_mytest/connected_set_knapsack.test.cpp\"\n\nvoid test(int\
     \ N) {\n  FOR(1000) {\n    auto E = random_tree(N);\n    Graph<int, 0> G(N);\n\
     \    for (auto& [a, b] : E) G.add(a, b);\n    G.build();\n    Tree<decltype(G)>\
     \ tree(G);\n    vc<int> weight, val;\n    FOR(N) {\n      weight.eb(RNG(1, 10));\n\
@@ -446,19 +475,20 @@ data:
     \ b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  FOR(N, 1, 11) test(N);\n\
     \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n#include \"random/random_graph.hpp\"\n\n#include \"graph/tree.hpp\"\
-    \n#include \"knapsack/connected_set_knapsack.hpp\"\n\nvoid test(int N) {\n  FOR(1000)\
-    \ {\n    auto E = random_tree(N);\n    Graph<int, 0> G(N);\n    for (auto& [a,\
-    \ b] : E) G.add(a, b);\n    G.build();\n    Tree<decltype(G)> tree(G);\n    vc<int>\
-    \ weight, val;\n    FOR(N) {\n      weight.eb(RNG(1, 10));\n      val.eb(RNG(1,\
-    \ 10));\n    }\n    int LIM = RNG(1, 100);\n    auto ANS = connected_set_knapsack(tree,\
-    \ weight, val, LIM);\n    vc<int> god(LIM + 1, -infty<int>);\n    FOR(s, 1, 1\
-    \ << N) {\n      int e = 0;\n      for (auto& [a, b] : E)\n        if (has_kth_bit(s,\
-    \ a) && has_kth_bit(s, b)) e++;\n      if (popcnt(s) != e + 1) continue;\n   \
-    \   int a = 0, b = 0;\n      FOR(v, N) if (s >> v & 1) a += weight[v], b += val[v];\n\
-    \      if (a <= LIM) chmax(god[a], b);\n    }\n    assert(god == ANS);\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nint main() {\n  FOR(N, 1, 11) test(N);\n  solve();\n  return 0;\n}"
+    my_template.hpp\"\n#include \"random/random_graph.hpp\"\n#include \"other/bit.hpp\"\
+    \n\n#include \"graph/tree.hpp\"\n#include \"knapsack/connected_set_knapsack.hpp\"\
+    \n\nvoid test(int N) {\n  FOR(1000) {\n    auto E = random_tree(N);\n    Graph<int,\
+    \ 0> G(N);\n    for (auto& [a, b] : E) G.add(a, b);\n    G.build();\n    Tree<decltype(G)>\
+    \ tree(G);\n    vc<int> weight, val;\n    FOR(N) {\n      weight.eb(RNG(1, 10));\n\
+    \      val.eb(RNG(1, 10));\n    }\n    int LIM = RNG(1, 100);\n    auto ANS =\
+    \ connected_set_knapsack(tree, weight, val, LIM);\n    vc<int> god(LIM + 1, -infty<int>);\n\
+    \    FOR(s, 1, 1 << N) {\n      int e = 0;\n      for (auto& [a, b] : E)\n   \
+    \     if (has_kth_bit(s, a) && has_kth_bit(s, b)) e++;\n      if (popcnt(s) !=\
+    \ e + 1) continue;\n      int a = 0, b = 0;\n      FOR(v, N) if (s >> v & 1) a\
+    \ += weight[v], b += val[v];\n      if (a <= LIM) chmax(god[a], b);\n    }\n \
+    \   assert(god == ANS);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
+    \ b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  FOR(N, 1, 11) test(N);\n\
+    \  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -467,13 +497,14 @@ data:
   - random/base.hpp
   - random/shuffle.hpp
   - ds/unionfind/unionfind.hpp
+  - other/bit.hpp
   - graph/tree.hpp
   - knapsack/connected_set_knapsack.hpp
   isVerificationFile: true
   path: test/1_mytest/connected_set_knapsack.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:45:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/connected_set_knapsack.test.cpp
 layout: document

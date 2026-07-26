@@ -13,6 +13,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2995.test.cpp
     title: test/4_aoj/2995.test.cpp
   _isVerificationFailed: false
@@ -261,6 +264,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2995.test.cpp
+  - test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
 documentation_of: graph/dsu_on_tree.hpp
 layout: document
 redirect_from:

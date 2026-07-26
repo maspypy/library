@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/lyndon.hpp
     title: string/lyndon.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/lex_minmax_suffix.test.cpp
-    title: test/1_mytest/lex_minmax_suffix.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct\
@@ -39,9 +36,8 @@ data:
   path: string/lex_min_suffix_for_all_prefix.hpp
   requiredBy: []
   timestamp: '2025-05-18 18:12:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/1_mytest/lex_minmax_suffix.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: string/lex_min_suffix_for_all_prefix.hpp
 layout: document
 redirect_from:

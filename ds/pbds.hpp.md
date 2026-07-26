@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/kth_next_permutation.hpp
     title: seq/kth_next_permutation.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1311.test.cpp
+    title: test/3_yukicoder/1311.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/0343.test.cpp
     title: test/4_aoj/0343.test.cpp
@@ -34,6 +37,7 @@ data:
   timestamp: '2022-08-27 23:26:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1311.test.cpp
   - test/4_aoj/0343.test.cpp
 documentation_of: ds/pbds.hpp
 layout: document

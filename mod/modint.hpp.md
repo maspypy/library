@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'
@@ -194,7 +194,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -643,6 +643,9 @@ data:
     path: test/1_mytest/rbst_monoid_persistent.test.cpp
     title: test/1_mytest/rbst_monoid_persistent.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/rect_add_pt_sum.test.cpp
+    title: test/1_mytest/rect_add_pt_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -777,6 +780,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
     title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
     title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
@@ -1120,9 +1126,6 @@ data:
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1600_2.test.cpp
-    title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1618.test.cpp
     title: test/3_yukicoder/1618.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1197,6 +1200,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919.test.cpp
     title: test/3_yukicoder/1919.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1919_2.test.cpp
+    title: test/3_yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1939.test.cpp
     title: test/3_yukicoder/1939.test.cpp
@@ -1377,12 +1383,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_B.test.cpp
     title: test/4_aoj/NTL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"other/bit.hpp\"\n\n\
@@ -1674,7 +1680,7 @@ data:
   - seq/famous/surjection.hpp
   - other/count_seq_with_fixed_xor_value.hpp
   timestamp: '2026-07-26 21:01:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2342_2.test.cpp
   - test/3_yukicoder/1750.test.cpp
@@ -1719,6 +1725,7 @@ data:
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1502.test.cpp
   - test/3_yukicoder/1321.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/2206.test.cpp
   - test/3_yukicoder/1649.test.cpp
   - test/3_yukicoder/1500.test.cpp
@@ -1773,7 +1780,6 @@ data:
   - test/3_yukicoder/1549.test.cpp
   - test/3_yukicoder/1760.test.cpp
   - test/3_yukicoder/1533.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/2578.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/1080.test.cpp
@@ -1847,6 +1853,7 @@ data:
   - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
+  - test/1_mytest/rect_add_pt_sum.test.cpp
   - test/1_mytest/qbinom.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
@@ -1928,6 +1935,7 @@ data:
   - test/2_library_checker/data_structure/range_parallel_uf.test.cpp
   - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
   - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
+  - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
   - test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
   - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp

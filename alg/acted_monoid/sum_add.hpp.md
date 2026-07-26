@@ -10,6 +10,9 @@ data:
     path: test/1_mytest/ARC30D.test.cpp
     title: test/1_mytest/ARC30D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/fenwick_raq.test.cpp
+    title: test/1_mytest/fenwick_raq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_am_2.test.cpp
     title: test/1_mytest/rbst_am_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -59,6 +62,7 @@ data:
   - test/1_mytest/ARC30D.test.cpp
   - test/1_mytest/rbst_am_2.test.cpp
   - test/1_mytest/splay_am.test.cpp
+  - test/1_mytest/fenwick_raq.test.cpp
 documentation_of: alg/acted_monoid/sum_add.hpp
 layout: document
 redirect_from:

@@ -10,15 +10,18 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_C3_C4.hpp
     title: graph/count/count_C3_C4.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_P3_P4_P5.hpp
     title: graph/count/count_P3_P4_P5.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
@@ -30,9 +33,9 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -118,27 +121,53 @@ data:
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
     \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/count_P3P4P5.test.cpp\"\n\n#line 2 \"ds/hashmap.hpp\"\n\
-    \r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
-    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
-    \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
-    \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
-    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
-    \u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap\
-    \ = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\
-    \r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i]\
-    \ && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val&\
-    \ operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\
-    \n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n  \
-    \  return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\
-    \n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n\
-    \  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
-    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
-    \ F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i],\
-    \ val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val>\
-    \ val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64\
-    \ FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    #line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 4 \"test/1_mytest/count_P3P4P5.test.cpp\"\n\
+    \n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\n\
+    struct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
+    \u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32 n) {\r\
+    \n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k\
+    \ - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n\
+    \  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\
+    \u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used),\
+    \ 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) /\
+    \ 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i\
+    \ = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\
+    \n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\
+    \n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1, key[i] = k, val[i]\
+    \ = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k,\
+    \ Val default_value) {\r\n    int i = index(k);\r\n    return (used[i] ? val[i]\
+    \ : default_value);\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i =\
+    \ index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\
+    \n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\
+    \n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x)\
+    \ {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
     \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
     \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
@@ -344,10 +373,10 @@ data:
     \  FOR(v, N) {\n    for (auto&& e: G[v]) {\n      if (e.frm == e.to) continue;\n\
     \      P5[v] += P4[e.to];\n    }\n    P5[v] -= C4[v] * 2;\n    P5[v] -= C3[v]\
     \ * 2 * (deg[v] - 3);\n    P5[v] -= P3[v] * (deg[v] - 1);\n  }\n  return {P3,\
-    \ P4, P5};\n}\n#line 6 \"test/1_mytest/count_P3P4P5.test.cpp\"\n\nvoid test()\
+    \ P4, P5};\n}\n#line 7 \"test/1_mytest/count_P3P4P5.test.cpp\"\n\nvoid test()\
     \ {\n  FOR(N, 20) {\n    FOR(50) {\n      Graph<int, 0> G(N);\n      for (auto&\
-    \ [a, b]: random_graph<false>(N, true)) G.add(a, b);\n      G.build();\n     \
-    \ vv(int, adj, N, N);\n      for (auto& e: G.edges) adj[e.frm][e.to] += 1, adj[e.to][e.frm]\
+    \ [a, b] : random_graph<false>(N, true)) G.add(a, b);\n      G.build();\n    \
+    \  vv(int, adj, N, N);\n      for (auto& e : G.edges) adj[e.frm][e.to] += 1, adj[e.to][e.frm]\
     \ += 1;\n      vi A(N), B(N), C(N);\n      FOR(a, N) FOR(b, N) FOR(c, N) {\n \
     \       int s = (1 << a) | (1 << b) | (1 << c);\n        if (popcnt(s) != 3) continue;\n\
     \        A[a] += adj[a][b] * adj[b][c];\n      }\n      FOR(a, N) FOR(b, N) FOR(c,\
@@ -361,24 +390,26 @@ data:
     \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
     \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"random/random_graph.hpp\"\n#include \"graph/count/count_P3_P4_P5.hpp\"\
-    \n\nvoid test() {\n  FOR(N, 20) {\n    FOR(50) {\n      Graph<int, 0> G(N);\n\
-    \      for (auto& [a, b]: random_graph<false>(N, true)) G.add(a, b);\n      G.build();\n\
-    \      vv(int, adj, N, N);\n      for (auto& e: G.edges) adj[e.frm][e.to] += 1,\
-    \ adj[e.to][e.frm] += 1;\n      vi A(N), B(N), C(N);\n      FOR(a, N) FOR(b, N)\
-    \ FOR(c, N) {\n        int s = (1 << a) | (1 << b) | (1 << c);\n        if (popcnt(s)\
-    \ != 3) continue;\n        A[a] += adj[a][b] * adj[b][c];\n      }\n      FOR(a,\
-    \ N) FOR(b, N) FOR(c, N) FOR(d, N) {\n        int s = (1 << a) | (1 << b) | (1\
-    \ << c) | (1 << d);\n        if (popcnt(s) != 4) continue;\n        B[a] += adj[a][b]\
-    \ * adj[b][c] * adj[c][d];\n      }\n      FOR(a, N) FOR(b, N) FOR(c, N) FOR(d,\
-    \ N) FOR(e, N) {\n        int s = (1 << a) | (1 << b) | (1 << c) | (1 << d) |\
-    \ (1 << e);\n        if (popcnt(s) != 5) continue;\n        C[a] += adj[a][b]\
-    \ * adj[b][c] * adj[c][d] * adj[d][e];\n      }\n      auto [X, Y, Z] = count_P3_P4_P5_pointwise(G);\n\
+    \n#include \"other/bit.hpp\"\n\n#include \"random/random_graph.hpp\"\n#include\
+    \ \"graph/count/count_P3_P4_P5.hpp\"\n\nvoid test() {\n  FOR(N, 20) {\n    FOR(50)\
+    \ {\n      Graph<int, 0> G(N);\n      for (auto& [a, b] : random_graph<false>(N,\
+    \ true)) G.add(a, b);\n      G.build();\n      vv(int, adj, N, N);\n      for\
+    \ (auto& e : G.edges) adj[e.frm][e.to] += 1, adj[e.to][e.frm] += 1;\n      vi\
+    \ A(N), B(N), C(N);\n      FOR(a, N) FOR(b, N) FOR(c, N) {\n        int s = (1\
+    \ << a) | (1 << b) | (1 << c);\n        if (popcnt(s) != 3) continue;\n      \
+    \  A[a] += adj[a][b] * adj[b][c];\n      }\n      FOR(a, N) FOR(b, N) FOR(c, N)\
+    \ FOR(d, N) {\n        int s = (1 << a) | (1 << b) | (1 << c) | (1 << d);\n  \
+    \      if (popcnt(s) != 4) continue;\n        B[a] += adj[a][b] * adj[b][c] *\
+    \ adj[c][d];\n      }\n      FOR(a, N) FOR(b, N) FOR(c, N) FOR(d, N) FOR(e, N)\
+    \ {\n        int s = (1 << a) | (1 << b) | (1 << c) | (1 << d) | (1 << e);\n \
+    \       if (popcnt(s) != 5) continue;\n        C[a] += adj[a][b] * adj[b][c] *\
+    \ adj[c][d] * adj[d][e];\n      }\n      auto [X, Y, Z] = count_P3_P4_P5_pointwise(G);\n\
     \      assert(A == X);\n      assert(B == Y);\n      assert(C == Z);\n    }\n\
     \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
     \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
+  - other/bit.hpp
   - random/random_graph.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -390,8 +421,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_P3P4P5.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:45:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_P3P4P5.test.cpp
 layout: document

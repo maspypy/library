@@ -1,17 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -98,28 +101,55 @@ data:
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
     \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\u5F62\u3067\u6301\u3064\
-    \ntemplate <typename INTEGER>\nstruct Dyadic_Rational {\n  using X = Dyadic_Rational;\n\
-    \  INTEGER a, b;\n  static constexpr int M = std::numeric_limits<INTEGER>::digits\
-    \ - 2;\n\n  Dyadic_Rational(INTEGER a = 0) : a(a), b(0) {}\n\n  // x + y / z\n\
-    \  Dyadic_Rational(INTEGER x, INTEGER y, INTEGER z) : a(x), b(y) {\n    auto [q,\
-    \ r] = divmod(b, z);\n    a += q;\n    b = r;\n    b *= (INTEGER(1) << M) / z;\n\
-    \  }\n\n  // x/y\n  Dyadic_Rational(INTEGER x, INTEGER y) : Dyadic_Rational(0,\
-    \ x, y) {}\n\n  static X from_ab(INTEGER a, INTEGER b) {\n    X x(a);\n    x.b\
-    \ = b;\n    return x;\n  }\n\n  // \u6BD4\u8F03\n  bool operator==(X const& rhs)\
-    \ const { return (a == rhs.a && b == rhs.b); }\n  bool operator!=(X const& rhs)\
-    \ const { return !(*this == rhs); }\n  bool operator<(X const& rhs) const { return\
-    \ (a < rhs.a) || (a == rhs.a && b < rhs.b); }\n  bool operator<=(X const& rhs)\
-    \ const { return (a < rhs.a) || (a == rhs.a && b <= rhs.b); }\n  bool operator>(X\
-    \ const& rhs) const { return (a > rhs.a) || (a == rhs.a && b > rhs.b); }\n  bool\
-    \ operator>=(X const& rhs) const { return (a > rhs.a) || (a == rhs.a && b >= rhs.b);\
-    \ }\n\n  // \u52A0\u6CD5\n  friend X operator+(const X& x, const X& y) {\n   \
-    \ INTEGER a = x.a + y.a, b = x.b + y.b;\n    while (b >= INTEGER(1) << M) {\n\
-    \      ++a;\n      b -= INTEGER(1) << M;\n    }\n    return from_ab(a, b);\n \
-    \ }\n  friend X operator-(const X& x, const X& y) {\n    INTEGER a = x.a - y.a,\
-    \ b = x.b - y.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1) << M;\n\
-    \    }\n    return from_ab(a, b);\n  }\n  friend X operator-(const X& x) {\n \
-    \   INTEGER a = -x.a, b = -x.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1)\
+    #line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
+    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
+    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
+    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
+    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"game/dyadic_rational.hpp\"\n\n// a+b/2^M\
+    \ \u306E\u5F62\u3067\u6301\u3064\ntemplate <typename INTEGER>\nstruct Dyadic_Rational\
+    \ {\n  using X = Dyadic_Rational;\n  INTEGER a, b;\n  static constexpr int M =\
+    \ std::numeric_limits<INTEGER>::digits - 2;\n\n  Dyadic_Rational(INTEGER a = 0)\
+    \ : a(a), b(0) {}\n\n  // x + y / z\n  Dyadic_Rational(INTEGER x, INTEGER y, INTEGER\
+    \ z) : a(x), b(y) {\n    auto [q, r] = divmod(b, z);\n    a += q;\n    b = r;\n\
+    \    b *= (INTEGER(1) << M) / z;\n  }\n\n  // x/y\n  Dyadic_Rational(INTEGER x,\
+    \ INTEGER y) : Dyadic_Rational(0, x, y) {}\n\n  static X from_ab(INTEGER a, INTEGER\
+    \ b) {\n    X x(a);\n    x.b = b;\n    return x;\n  }\n\n  // \u6BD4\u8F03\n \
+    \ bool operator==(X const& rhs) const { return (a == rhs.a && b == rhs.b); }\n\
+    \  bool operator!=(X const& rhs) const { return !(*this == rhs); }\n  bool operator<(X\
+    \ const& rhs) const {\n    return (a < rhs.a) || (a == rhs.a && b < rhs.b);\n\
+    \  }\n  bool operator<=(X const& rhs) const {\n    return (a < rhs.a) || (a ==\
+    \ rhs.a && b <= rhs.b);\n  }\n  bool operator>(X const& rhs) const {\n    return\
+    \ (a > rhs.a) || (a == rhs.a && b > rhs.b);\n  }\n  bool operator>=(X const& rhs)\
+    \ const {\n    return (a > rhs.a) || (a == rhs.a && b >= rhs.b);\n  }\n\n  //\
+    \ \u52A0\u6CD5\n  friend X operator+(const X& x, const X& y) {\n    INTEGER a\
+    \ = x.a + y.a, b = x.b + y.b;\n    while (b >= INTEGER(1) << M) {\n      ++a;\n\
+    \      b -= INTEGER(1) << M;\n    }\n    return from_ab(a, b);\n  }\n  friend\
+    \ X operator-(const X& x, const X& y) {\n    INTEGER a = x.a - y.a, b = x.b -\
+    \ y.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1) << M;\n    }\n\
+    \    return from_ab(a, b);\n  }\n  friend X operator-(const X& x) {\n    INTEGER\
+    \ a = -x.a, b = -x.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1)\
     \ << M;\n    }\n    return from_ab(a, b);\n  }\n  X& operator+=(const X& x) {\
     \ return (*this) = (*this) + x; }\n  X& operator-=(const X& x) { return (*this)\
     \ = (*this) - x; }\n\n  static X simplest(X x, X y, bool include_x = false, bool\
@@ -136,16 +166,16 @@ data:
     \ ^ r);\n    r &= ~((INTEGER(1) << k) - 1);\n    return from_ab(x.a, r);\n  }\n\
     \n  static constexpr X infinity() { return from_ab(INTEGER(1) << M, 0); }\n\n\
     \  string to_string() {\n    ll x = a, y = b, z = INTEGER(1) << M;\n    while\
-    \ (y % 2 == 0 && z % 2 == 0) { y /= 2, z /= 2; }\n    y += x * z;\n    return\
-    \ std::to_string(y) + \"/\" + std::to_string(z);\n  }\n};\n#line 4 \"test/1_mytest/dyadic_rational.test.cpp\"\
-    \n\nvoid test() {\n  using X = Dyadic_Rational<ll>;\n  // \u8DB3\u3057\n  assert(X(1)\
-    \ + X(2) == X(3));\n  assert(X(-3) + X(2) == X(-1));\n  assert(X(-3) + X(3) ==\
-    \ X(0));\n  assert(X(3, 8) + X(1, 2) == X(7, 8));\n  assert(X(3, 8) + X(3, 8)\
-    \ == X(3, 4));\n  assert(X(3, 8) + X(-3, 8) == X(0));\n  assert(X(2, 8) + X(-1,\
-    \ 4) == X(0));\n  // \u5F15\u304D\n  assert(X(1) - X(2) == X(-1));\n  assert(X(-3)\
-    \ - X(2) == X(-5));\n  assert(X(-3) - X(3) == X(-6));\n  assert(X(3, 8) - X(1,\
-    \ 2) == X(-1, 8));\n  assert(X(3, 8) - X(3, 8) == X(0, 1));\n  assert(X(3, 8)\
-    \ - X(-3, 8) == X(3, 4));\n  assert(X(2, 8) - X(-1, 4) == X(1, 2));\n  // \u4E0D\
+    \ (y % 2 == 0 && z % 2 == 0) {\n      y /= 2, z /= 2;\n    }\n    y += x * z;\n\
+    \    return std::to_string(y) + \"/\" + std::to_string(z);\n  }\n};\n#line 4 \"\
+    test/1_mytest/dyadic_rational.test.cpp\"\n\nvoid test() {\n  using X = Dyadic_Rational<ll>;\n\
+    \  // \u8DB3\u3057\n  assert(X(1) + X(2) == X(3));\n  assert(X(-3) + X(2) == X(-1));\n\
+    \  assert(X(-3) + X(3) == X(0));\n  assert(X(3, 8) + X(1, 2) == X(7, 8));\n  assert(X(3,\
+    \ 8) + X(3, 8) == X(3, 4));\n  assert(X(3, 8) + X(-3, 8) == X(0));\n  assert(X(2,\
+    \ 8) + X(-1, 4) == X(0));\n  // \u5F15\u304D\n  assert(X(1) - X(2) == X(-1));\n\
+    \  assert(X(-3) - X(2) == X(-5));\n  assert(X(-3) - X(3) == X(-6));\n  assert(X(3,\
+    \ 8) - X(1, 2) == X(-1, 8));\n  assert(X(3, 8) - X(3, 8) == X(0, 1));\n  assert(X(3,\
+    \ 8) - X(-3, 8) == X(3, 4));\n  assert(X(2, 8) - X(-1, 4) == X(1, 2));\n  // \u4E0D\
     \u7B49\u53F7\n  assert(X(1) < X(2));\n  assert(X(-3) < X(2));\n  assert(X(-3)\
     \ < X(3));\n  assert(X(3, 8) < X(1, 2));\n  assert(X(3, 8) == X(3, 8));\n  assert(X(3,\
     \ 8) > X(-3, 8));\n  assert(X(2, 8) > X(-1, 4));\n  // {x|y}\n  assert(X::simplest(X(1),\
@@ -179,11 +209,12 @@ data:
   dependsOn:
   - my_template.hpp
   - game/dyadic_rational.hpp
+  - other/bit.hpp
   isVerificationFile: true
   path: test/1_mytest/dyadic_rational.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 21:45:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dyadic_rational.test.cpp
 layout: document
