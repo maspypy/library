@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "random/base.hpp"
 #include "mod/modint61.hpp"
 
@@ -100,7 +101,7 @@ struct Modular_Subset_Sum {
   vc<int> par;
 
   Modular_Subset_Sum(int mod, vc<INT>& vals) : mod(mod), vals(vals) {
-    for (auto&& x: vals) assert(0 <= x && x < mod);
+    for (auto&& x : vals) assert(0 <= x && x < mod);
     par.assign(mod, -1);
 
     const ll base = RNG(0, (1LL << 61) - 1);
@@ -133,9 +134,9 @@ struct Modular_Subset_Sum {
       int x = bit_rev(i);
       if (len(IDS[x]) == 0) continue;
       T2.shift(x - T2.delta);
-      for (auto&& idx: IDS[x]) {
+      for (auto&& idx : IDS[x]) {
         auto diff = ShiftTree::diff(T1, T2, 0, mod);
-        for (auto&& d: diff) {
+        for (auto&& d : diff) {
           if (can(d)) continue;
           par[d] = idx;
           T1.set(d, 1);

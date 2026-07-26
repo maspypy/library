@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 
 // M^{1.5} + M^2/w
 // simple graph を仮定
@@ -12,7 +13,7 @@ ll count_K4(GT& G) {
     auto comp = [&](int a, int b) -> bool {
       return (deg[a] == deg[b] ? a < b : deg[a] < deg[b]);
     };
-    for (auto&& e: G.edges) {
+    for (auto&& e : G.edges) {
       int a = e.frm, b = e.to;
       if (!comp(a, b)) swap(a, b);
       DAG.add(a, b);
@@ -24,12 +25,12 @@ ll count_K4(GT& G) {
   ll ANS = 0;
   FOR(a, N) {
     vc<int> V;
-    for (auto&& e: DAG[a]) V.eb(e.to);
+    for (auto&& e : DAG[a]) V.eb(e.to);
     FOR(i, len(V)) new_idx[V[i]] = i;
     int n = len(V);
     Graph<bool, 1> H(n);
     FOR(i, n) {
-      for (auto&& e: DAG[V[i]]) {
+      for (auto&& e : DAG[V[i]]) {
         int j = new_idx[e.to];
         if (j == -1) continue;
         H.add(i, j);
@@ -42,9 +43,13 @@ ll count_K4(GT& G) {
       chmin(R, n);
       vc<u64> dp(n);
       FOR(i, L, R) {
-        for (auto&& e: H[i]) { dp[e.to] |= u64(1) << (i - L); }
+        for (auto&& e : H[i]) {
+          dp[e.to] |= u64(1) << (i - L);
+        }
       }
-      for (auto&& e: H.edges) { ANS += popcnt(dp[e.frm] & dp[e.to]); }
+      for (auto&& e : H.edges) {
+        ANS += popcnt(dp[e.frm] & dp[e.to]);
+      }
     }
     FOR(i, len(V)) new_idx[V[i]] = -1;
   }

@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "alg/monoid/add.hpp"
 
 // 状態 a から 1 回操作すると、状態 b に遷移し、モノイドの元 x を加える。
