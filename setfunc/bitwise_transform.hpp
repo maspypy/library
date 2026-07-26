@@ -9,7 +9,8 @@ enum class trans_type {
   subset_zeta,
   subset_mobius,
   ranked_zeta,
-  ranked_mobius
+  ranked_mobius,
+  superset_zeta_or
 };
 
 template <typename ARR>
@@ -54,6 +55,9 @@ inline void bitwise_transform_fixed(T* a) {
     }
     if constexpr (type == trans_type::ranked_mobius) {
       for (int i = 0; i < H; ++i) ranked_sub(a[H + i], a[i]);
+    }
+    if constexpr (type == trans_type::superset_zeta_or) {
+      for (int i = 0; i < H; ++i) a[i] |= a[H + i];
     }
   }
 }

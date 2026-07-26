@@ -48,11 +48,22 @@ struct FenwickTree_01 {
     ans += bit.sum(L / 64, R / 64);
     return ans;
   }
+  int get(int i) {
+    assert(0 <= i && i < N);
+    return sum(i, i + 1);
+  }
   int prod(int L, int R) { return sum(L, R); }
 
   void add(int k, int x) {
-    if (x == 1) add(k);
-    elif (x == -1) remove(k);
+    assert(0 <= k && k < N);
+    if (x == 1) {
+      assert(sum(k, k + 1) == 0);
+      add(k);
+    }
+    elif (x == -1) {
+      assert(sum(k, k + 1) == 1);
+      remove(k);
+    }
     else assert(0);
   }
   void multiply(int k, int x) { add(k, x); }

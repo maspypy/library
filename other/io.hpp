@@ -8,6 +8,13 @@ char obuf[SZ];
 char out[100];
 // pointer of ibuf, obuf
 uint32_t pil = 0, pir = 0, por = 0;
+bool input_eof = false;
+
+[[noreturn]] inline void input_error(const char *message) {
+  fputs(message, stderr);
+  fputc('\n', stderr);
+  exit(EXIT_FAILURE);
+}
 
 struct Pre {
   char num[10000][4];
@@ -23,10 +30,28 @@ struct Pre {
 } constexpr pre;
 
 inline void load() {
-  memmove(ibuf, ibuf + pil, pir - pil);
-  pir = pir - pil + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);
+  uint32_t n = pir - pil;
+  memmove(ibuf, ibuf + pil, n);
   pil = 0;
-  if (pir < SZ) ibuf[pir++] = '\n';
+  pir = n;
+  if (input_eof) return;
+
+  pir += fread(ibuf + pir, 1, SZ - pir, stdin);
+  if (ferror(stdin)) input_error("fastio: input error");
+  if (feof(stdin)) {
+    input_eof = true;
+    // Allows the last token to end exactly at EOF without a trailing
+    // whitespace.
+    if (pir < SZ) ibuf[pir++] = '\n';
+  }
+}
+
+inline char get_char() {
+  if (pil == pir) {
+    load();
+    if (pil == pir) input_error("fastio: unexpected EOF");
+  }
+  return ibuf[pil++];
 }
 
 inline void flush() {
@@ -35,24 +60,19 @@ inline void flush() {
 }
 
 void rd(char &c) {
-  do {
-    if (pil + 1 > pir) load();
-    c = ibuf[pil++];
-  } while (isspace(c));
+  do c = get_char();
+  while (isspace(static_cast<unsigned char>(c)));
 }
 
 void rd(string &x) {
   x.clear();
   char c;
-  do {
-    if (pil + 1 > pir) load();
-    c = ibuf[pil++];
-  } while (isspace(c));
+  do c = get_char();
+  while (isspace(static_cast<unsigned char>(c)));
   do {
     x += c;
-    if (pil == pir) load();
-    c = ibuf[pil++];
-  } while (!isspace(c));
+    c = get_char();
+  } while (!isspace(static_cast<unsigned char>(c)));
 }
 
 template <typename T>
@@ -63,8 +83,34 @@ void rd_real(T &x) {
 }
 
 template <typename T>
+void rd_integer_slow(T &x) {
+  char c;
+  do c = get_char();
+  while (c < '-');
+  bool minus = 0;
+  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+    if (c == '-') {
+      minus = 1, c = get_char();
+    }
+  }
+  x = 0;
+  while ('0' <= c) {
+    x = x * 10 + (c & 15), c = get_char();
+  }
+  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+    if (minus) x = -x;
+  }
+}
+
+template <typename T>
 void rd_integer(T &x) {
-  if (pil + 100 > pir) load();
+  if (pil + 100 > pir) {
+    load();
+    if (pil + 100 > pir) {
+      rd_integer_slow(x);
+      return;
+    }
+  }
   char c;
   do c = ibuf[pil++];
   while (c < '-');
