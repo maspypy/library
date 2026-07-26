@@ -1,6 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2109"
 #include "my_template.hpp"
 #include "other/io.hpp"
+#include "other/bit.hpp"
 #include "datetime/datetime.hpp"
 
 void solve() {
@@ -14,7 +15,7 @@ void solve() {
     ++x;
   }
   int a = 0;
-  for (auto&& x: s) {
+  for (auto&& x : s) {
     if (x == '-') continue;
     a |= 1 << (x - '0');
   }

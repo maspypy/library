@@ -6,7 +6,7 @@
 #include "convex/dynamic_lichao.hpp"
 
 struct F {
-  using value_type = ll; // operator() の戻り値
+  using value_type = ll;  // operator() の戻り値
   int a;
   ll b;
   ll operator()(ll x) { return a * x + b; }
@@ -14,7 +14,7 @@ struct F {
 
 void solve() {
   LL(N, Q);
-  Dynamic_LiChao_Tree<F, 0, 20'000'000, 1> X(-infty<int>, infty<int>);
+  Dynamic_LiChao_Tree<F, 0, 1> X(-infty<int>, infty<int>);
   using np = decltype(X)::np;
   np root = X.new_root();
   FOR(N) {

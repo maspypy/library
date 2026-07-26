@@ -1,3 +1,5 @@
+#include "other/bit.hpp"
+
 // a+b/2^M の形で持つ
 template <typename INTEGER>
 struct Dyadic_Rational {
@@ -27,10 +29,18 @@ struct Dyadic_Rational {
   // 比較
   bool operator==(X const& rhs) const { return (a == rhs.a && b == rhs.b); }
   bool operator!=(X const& rhs) const { return !(*this == rhs); }
-  bool operator<(X const& rhs) const { return (a < rhs.a) || (a == rhs.a && b < rhs.b); }
-  bool operator<=(X const& rhs) const { return (a < rhs.a) || (a == rhs.a && b <= rhs.b); }
-  bool operator>(X const& rhs) const { return (a > rhs.a) || (a == rhs.a && b > rhs.b); }
-  bool operator>=(X const& rhs) const { return (a > rhs.a) || (a == rhs.a && b >= rhs.b); }
+  bool operator<(X const& rhs) const {
+    return (a < rhs.a) || (a == rhs.a && b < rhs.b);
+  }
+  bool operator<=(X const& rhs) const {
+    return (a < rhs.a) || (a == rhs.a && b <= rhs.b);
+  }
+  bool operator>(X const& rhs) const {
+    return (a > rhs.a) || (a == rhs.a && b > rhs.b);
+  }
+  bool operator>=(X const& rhs) const {
+    return (a > rhs.a) || (a == rhs.a && b >= rhs.b);
+  }
 
   // 加法
   friend X operator+(const X& x, const X& y) {
@@ -91,7 +101,9 @@ struct Dyadic_Rational {
 
   string to_string() {
     ll x = a, y = b, z = INTEGER(1) << M;
-    while (y % 2 == 0 && z % 2 == 0) { y /= 2, z /= 2; }
+    while (y % 2 == 0 && z % 2 == 0) {
+      y /= 2, z /= 2;
+    }
     y += x * z;
     return std::to_string(y) + "/" + std::to_string(z);
   }

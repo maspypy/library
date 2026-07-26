@@ -2,6 +2,7 @@
 
 #include "my_template.hpp"
 #include "random/random_graph.hpp"
+#include "other/bit.hpp"
 
 #include "graph/tree.hpp"
 #include "knapsack/connected_set_knapsack.hpp"
