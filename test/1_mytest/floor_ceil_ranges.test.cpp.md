@@ -59,88 +59,64 @@ data:
     #define FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\
     \n#define all(x) (x).begin(), (x).end()\n#define len(x) ll(x.size())\n#define\
     \ elif else if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
-    #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
-    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\n// require y > 0\ntemplate <typename T>\nT floor(T\
-    \ x, T y) {\n  return x / y - (x % y < 0);\n}\n\n// require y > 0\ntemplate <typename\
-    \ T>\nT ceil(T x, T y) {\n  return (x / y) + (x % y > 0);\n}\n\n// require y >\
-    \ 0\ntemplate <typename T>\nT bmod(T x, T y) {\n  T r = x % y;\n  return (r <\
-    \ 0 ? r + y : r);\n}\n\n// require y > 0\ntemplate <typename T>\npair<T, T> divmod(T\
-    \ x, T y) {\n  T q = x / y, r = x % y;\n  if (r < 0) --q, r += y;\n  return {q,\
-    \ r};\n}\n\nconstexpr auto TEN = [] {\n  array<u64, 20> A{};\n  A[0] = 1;\n  for\
-    \ (int i = 1; i < 20; ++i) A[i] = 10 * A[i - 1];\n  return A;\n}();\n\ntemplate\
-    \ <typename T, typename U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(),\
-    \ A.end(), T{});\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
-    template <class C, class T>\ninline long long LB(const C &c, const T &x) {\n \
-    \ return lower_bound(c.begin(), c.end(), x) - c.begin();\n}\ntemplate <class C,\
-    \ class T>\ninline long long UB(const C &c, const T &x) {\n  return upper_bound(c.begin(),\
-    \ c.end(), x) - c.begin();\n}\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
-    \ x.end())\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n\
-    \  que.pop_front();\n  return a;\n}\ntemplate <class T, class Container, class\
-    \ Compare>\nT POP(priority_queue<T, Container, Compare> &que) {\n  T a = que.top();\n\
-    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T\
-    \ a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\n\
-    ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {\n  if (check_ok)\
-    \ assert(check(ok));\n  while (llabs(ok - ng) > 1) {\n    auto x = (ng + ok) /\
-    \ 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename\
-    \ F>\ndouble binary_search_real(F check, double ok, double ng, int iter = 100)\
-    \ {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x) ? ok : ng) =\
-    \ x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline bool\
-    \ chmax(T &a, const S &b) {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n\
-    \  a = c;\n  return changed;\n}\ntemplate <class T, class S>\ninline bool chmin(T\
-    \ &a, const S &b) {\n  T c = min<T>(a, b);\n  bool changed = (c != a);\n  a =\
-    \ c;\n  return changed;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S,\
-    \ char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i]\
-    \ != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate <typename T,\
-    \ typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int N = A.size();\n\
-    \  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n\
-    \  return B;\n}\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const\
-    \ vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n\
-    \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
-    \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
-    \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
-    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
-    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
-    }\n#endif\n#line 1 \"enumerate/ceil_range.hpp\"\n// \u5546\u304C q \u306E\u533A\
-    \u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\ntemplate <typename\
-    \ F>\nvoid ceil_range(ll N, F f) {\n  assert(N <= (1LL << 50));\n  ll sq = sqrtl(N);\n\
-    \  ll prev = infty<ll>;\n  for (int q = 1; q <= sq; ++q) {\n    ll x = (N + q\
-    \ - 1) / q;\n    f(q, x, prev), prev = x;\n  }\n  int n = (N <= sq * sq + sq ?\
-    \ sq : sq + 1);\n  if (N == sq * sq) --n;\n  for (int l = n; l >= 1; --l) { f((N\
-    \ + l - 1) / l, l, l + 1); }\n}\n#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\
-    \u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\
-    \r\ntemplate <typename F>\r\nvoid floor_range(u64 N, F f, bool Q_ASC = true, bool\
-    \ INCLUDE_Q_IS_0 = false) {\r\n  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq\
-    \ <= N ? sq : sq - 1);\r\n  if (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1,\
-    \ infty<ll>);\r\n    for (u32 q = 1; q <= n; ++q) { f(q, N / (q + 1) + 1, N /\
-    \ q + 1); }\r\n    for (u32 l = sq; l >= 1; --l) { f(N / l, l, l + 1); }\r\n \
-    \ } else {\r\n    for (u32 l = 1; l <= sq; ++l) { f(N / l, l, l + 1); }\r\n  \
-    \  for (u32 q = n; q >= 1; --q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\n    if\
-    \ (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n  }\r\n}\r\n#line 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\
+    #define fi first\n#define se second\n\n#define stoi stoll\n\n// require y > 0\n\
+    template <typename T>\nT floor(T x, T y) {\n  return x / y - (x % y < 0);\n}\n\
+    \n// require y > 0\ntemplate <typename T>\nT ceil(T x, T y) {\n  return (x / y)\
+    \ + (x % y > 0);\n}\n\n// require y > 0\ntemplate <typename T>\nT bmod(T x, T\
+    \ y) {\n  T r = x % y;\n  return (r < 0 ? r + y : r);\n}\n\n// require y > 0\n\
+    template <typename T>\npair<T, T> divmod(T x, T y) {\n  T q = x / y, r = x % y;\n\
+    \  if (r < 0) --q, r += y;\n  return {q, r};\n}\n\nconstexpr auto TEN = [] {\n\
+    \  array<u64, 20> A{};\n  A[0] = 1;\n  for (int i = 1; i < 20; ++i) A[i] = 10\
+    \ * A[i - 1];\n  return A;\n}();\n\ntemplate <typename T, typename U>\nT SUM(const\
+    \ U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n}\n\n#define MIN(v)\
+    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\ntemplate <class C,\
+    \ class T>\ninline long long LB(const C &c, const T &x) {\n  return lower_bound(c.begin(),\
+    \ c.end(), x) - c.begin();\n}\ntemplate <class C, class T>\ninline long long UB(const\
+    \ C &c, const T &x) {\n  return upper_bound(c.begin(), c.end(), x) - c.begin();\n\
+    }\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end())\n\ntemplate\
+    \ <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
+    \  return a;\n}\ntemplate <class T, class Container, class Compare>\nT POP(priority_queue<T,\
+    \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
+    }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
+    \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
+    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok\
+    \ - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n \
+    \ }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check,\
+    \ double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok +\
+    \ ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\n\
+    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a,\
+    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class\
+    \ T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n\
+    \  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F -1\n\
+    vc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
+    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
+    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
+    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
+    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
+    #line 1 \"enumerate/ceil_range.hpp\"\n// \u5546\u304C q \u306E\u533A\u9593 [l,r)\
+    \ \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\ntemplate <typename F>\nvoid ceil_range(ll\
+    \ N, F f) {\n  assert(N <= (1LL << 50));\n  ll sq = sqrtl(N);\n  ll prev = infty<ll>;\n\
+    \  for (int q = 1; q <= sq; ++q) {\n    ll x = (N + q - 1) / q;\n    f(q, x, prev),\
+    \ prev = x;\n  }\n  int n = (N <= sq * sq + sq ? sq : sq + 1);\n  if (N == sq\
+    \ * sq) --n;\n  for (int l = n; l >= 1; --l) { f((N + l - 1) / l, l, l + 1); }\n\
+    }\n#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\u9593\
+    \ [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\r\ntemplate <typename F>\r\
+    \nvoid floor_range(u64 N, F f, bool Q_ASC = true, bool INCLUDE_Q_IS_0 = false)\
+    \ {\r\n  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\r\n\
+    \  if (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n    for\
+    \ (u32 q = 1; q <= n; ++q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\n    for (u32\
+    \ l = sq; l >= 1; --l) { f(N / l, l, l + 1); }\r\n  } else {\r\n    for (u32 l\
+    \ = 1; l <= sq; ++l) { f(N / l, l, l + 1); }\r\n    for (u32 q = n; q >= 1; --q)\
+    \ { f(q, N / (q + 1) + 1, N / q + 1); }\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1,\
+    \ infty<ll>);\r\n  }\r\n}\r\n#line 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
     \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
     \ l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll\
@@ -186,7 +162,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:21:39+09:00'
+  timestamp: '2026-07-26 19:43:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/floor_ceil_ranges.test.cpp

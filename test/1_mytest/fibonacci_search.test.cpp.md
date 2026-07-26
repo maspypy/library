@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
@@ -59,99 +59,75 @@ data:
     #define FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\
     \n#define all(x) (x).begin(), (x).end()\n#define len(x) ll(x.size())\n#define\
     \ elif else if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
-    #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
-    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\n// require y > 0\ntemplate <typename T>\nT floor(T\
-    \ x, T y) {\n  return x / y - (x % y < 0);\n}\n\n// require y > 0\ntemplate <typename\
-    \ T>\nT ceil(T x, T y) {\n  return (x / y) + (x % y > 0);\n}\n\n// require y >\
-    \ 0\ntemplate <typename T>\nT bmod(T x, T y) {\n  T r = x % y;\n  return (r <\
-    \ 0 ? r + y : r);\n}\n\n// require y > 0\ntemplate <typename T>\npair<T, T> divmod(T\
-    \ x, T y) {\n  T q = x / y, r = x % y;\n  if (r < 0) --q, r += y;\n  return {q,\
-    \ r};\n}\n\nconstexpr auto TEN = [] {\n  array<u64, 20> A{};\n  A[0] = 1;\n  for\
-    \ (int i = 1; i < 20; ++i) A[i] = 10 * A[i - 1];\n  return A;\n}();\n\ntemplate\
-    \ <typename T, typename U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(),\
-    \ A.end(), T{});\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
-    template <class C, class T>\ninline long long LB(const C &c, const T &x) {\n \
-    \ return lower_bound(c.begin(), c.end(), x) - c.begin();\n}\ntemplate <class C,\
-    \ class T>\ninline long long UB(const C &c, const T &x) {\n  return upper_bound(c.begin(),\
-    \ c.end(), x) - c.begin();\n}\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
-    \ x.end())\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n\
-    \  que.pop_front();\n  return a;\n}\ntemplate <class T, class Container, class\
-    \ Compare>\nT POP(priority_queue<T, Container, Compare> &que) {\n  T a = que.top();\n\
-    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T\
-    \ a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\n\
-    ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {\n  if (check_ok)\
-    \ assert(check(ok));\n  while (llabs(ok - ng) > 1) {\n    auto x = (ng + ok) /\
-    \ 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename\
-    \ F>\ndouble binary_search_real(F check, double ok, double ng, int iter = 100)\
-    \ {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x) ? ok : ng) =\
-    \ x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline bool\
-    \ chmax(T &a, const S &b) {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n\
-    \  a = c;\n  return changed;\n}\ntemplate <class T, class S>\ninline bool chmin(T\
-    \ &a, const S &b) {\n  T c = min<T>(a, b);\n  bool changed = (c != a);\n  a =\
-    \ c;\n  return changed;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S,\
-    \ char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i]\
-    \ != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate <typename T,\
-    \ typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int N = A.size();\n\
-    \  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n\
-    \  return B;\n}\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const\
-    \ vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n\
-    \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
-    \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
-    \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
-    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
-    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
-    }\n#endif\n#line 1 \"other/fibonacci_search.hpp\"\n// returns: {fx, x}\n// [L,\
-    \ R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\u3068\u3064\u6C42\u3081\u308B\u3001\
-    \u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename T, bool MINIMIZE, typename\
-    \ F>\npair<T, ll> fibonacci_search(F f, ll L, ll R) {\n  assert(L < R);\n  --R;\n\
-    \  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n  int n = 0;\n  while (d < R) {\
-    \ b = c, c = d, d = b + c - a, ++n; }\n  auto get = [&](ll x) -> T {\n    if (R\
-    \ < x) return infty<T>;\n    return (MINIMIZE ? f(x) : -f(x));\n  };\n  T ya =\
-    \ get(a), yb = get(b), yc = get(c), yd = get(d);\n  // \u3053\u306E\u4E2D\u3067\
-    \u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\u3082\u6975\u5C0F\u3001\u3092\
-    \u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb <= yc) {\n      d = c, c = b,\
-    \ b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n    } else {\n      a\
-    \ = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc = get(c);\n    }\n  }\n\
-    \  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n  if (chmin(y, yc)) x =\
-    \ c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return {y, x};\n  return {-y,\
-    \ x};\n}\n#line 2 \"enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\ntemplate\
-    \ <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n\
-    \  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if\
-    \ (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
-    \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
-    \ 5 \"test/1_mytest/fibonacci_search.test.cpp\"\n\nvoid test() {\n  // permutation\n\
-    \  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A), 0);\n    do {\n      auto\
-    \ f = [&](int i) -> int { return A[i]; };\n      auto [y, i] = fibonacci_search<int,\
-    \ true>(f, 0, N);\n      assert(0 <= i && i < N);\n      if (0 < i) assert(A[i]\
-    \ < A[i - 1]);\n      if (i + 1 < N) assert(A[i] < A[i + 1]);\n    } while (next_permutation(all(A)));\n\
-    \  }\n  // [0,1]\n  FOR(N, 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n\
-    \      FOR(i, N) A[i] = s >> i & 1;\n      auto f = [&](int i) -> int { return\
-    \ A[i]; };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
+    #define fi first\n#define se second\n\n#define stoi stoll\n\n// require y > 0\n\
+    template <typename T>\nT floor(T x, T y) {\n  return x / y - (x % y < 0);\n}\n\
+    \n// require y > 0\ntemplate <typename T>\nT ceil(T x, T y) {\n  return (x / y)\
+    \ + (x % y > 0);\n}\n\n// require y > 0\ntemplate <typename T>\nT bmod(T x, T\
+    \ y) {\n  T r = x % y;\n  return (r < 0 ? r + y : r);\n}\n\n// require y > 0\n\
+    template <typename T>\npair<T, T> divmod(T x, T y) {\n  T q = x / y, r = x % y;\n\
+    \  if (r < 0) --q, r += y;\n  return {q, r};\n}\n\nconstexpr auto TEN = [] {\n\
+    \  array<u64, 20> A{};\n  A[0] = 1;\n  for (int i = 1; i < 20; ++i) A[i] = 10\
+    \ * A[i - 1];\n  return A;\n}();\n\ntemplate <typename T, typename U>\nT SUM(const\
+    \ U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n}\n\n#define MIN(v)\
+    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\ntemplate <class C,\
+    \ class T>\ninline long long LB(const C &c, const T &x) {\n  return lower_bound(c.begin(),\
+    \ c.end(), x) - c.begin();\n}\ntemplate <class C, class T>\ninline long long UB(const\
+    \ C &c, const T &x) {\n  return upper_bound(c.begin(), c.end(), x) - c.begin();\n\
+    }\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end())\n\ntemplate\
+    \ <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
+    \  return a;\n}\ntemplate <class T, class Container, class Compare>\nT POP(priority_queue<T,\
+    \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
+    }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
+    \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
+    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok\
+    \ - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n \
+    \ }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check,\
+    \ double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok +\
+    \ ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\n\
+    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a,\
+    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class\
+    \ T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n\
+    \  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F -1\n\
+    vc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
+    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
+    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
+    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
+    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
+    #line 1 \"other/fibonacci_search.hpp\"\n// returns: {fx, x}\n// [L, R) \u3067\u306E\
+    \u6975\u5C0F\u5024\u3092\u3072\u3068\u3064\u6C42\u3081\u308B\u3001\u5358\u5CF0\
+    \u306F\u4E0D\u8981\ntemplate <typename T, bool MINIMIZE, typename F>\npair<T,\
+    \ ll> fibonacci_search(F f, ll L, ll R) {\n  assert(L < R);\n  --R;\n  ll a =\
+    \ L, b = L + 1, c = L + 2, d = L + 3;\n  int n = 0;\n  while (d < R) { b = c,\
+    \ c = d, d = b + c - a, ++n; }\n  auto get = [&](ll x) -> T {\n    if (R < x)\
+    \ return infty<T>;\n    return (MINIMIZE ? f(x) : -f(x));\n  };\n  T ya = get(a),\
+    \ yb = get(b), yc = get(c), yd = get(d);\n  // \u3053\u306E\u4E2D\u3067\u6975\u5C0F\
+    \u306A\u3089\u3070\u5168\u4F53\u3067\u3082\u6975\u5C0F\u3001\u3092\u7DAD\u6301\
+    \u3059\u308B\n  FOR(n) {\n    if (yb <= yc) {\n      d = c, c = b, b = a + d -\
+    \ c;\n      yd = yc, yc = yb, yb = get(b);\n    } else {\n      a = b, b = c,\
+    \ c = a + d - b;\n      ya = yb, yb = yc, yc = get(c);\n    }\n  }\n  ll x = a;\n\
+    \  T y = ya;\n  if (chmin(y, yb)) x = b;\n  if (chmin(y, yc)) x = c;\n  if (chmin(y,\
+    \ yd)) x = d;\n  if (MINIMIZE) return {y, x};\n  return {-y, x};\n}\n#line 2 \"\
+    enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\n\
+    void enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n  auto dfs =\
+    \ [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n == N) return\
+    \ query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n\
+    \    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line 5 \"test/1_mytest/fibonacci_search.test.cpp\"\
+    \n\nvoid test() {\n  // permutation\n  FOR(N, 1, 10) {\n    vc<int> A(N);\n  \
+    \  iota(all(A), 0);\n    do {\n      auto f = [&](int i) -> int { return A[i];\
+    \ };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
+    \ <= i && i < N);\n      if (0 < i) assert(A[i] < A[i - 1]);\n      if (i + 1\
+    \ < N) assert(A[i] < A[i + 1]);\n    } while (next_permutation(all(A)));\n  }\n\
+    \  // [0,1]\n  FOR(N, 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n  \
+    \    FOR(i, N) A[i] = s >> i & 1;\n      auto f = [&](int i) -> int { return A[i];\
+    \ };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
     \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
     \ < N) assert(A[i] <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n\
     \    enumerate_product(vc<int>(N, 3), [&](vc<int> A) -> void {\n      auto f =\
@@ -185,7 +161,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fibonacci_search.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:21:39+09:00'
+  timestamp: '2026-07-26 19:43:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/fibonacci_search.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/equal_4square_sum_grid.hpp
     title: other/equal_4square_sum_grid.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -59,109 +59,85 @@ data:
     #define FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\
     \n#define all(x) (x).begin(), (x).end()\n#define len(x) ll(x.size())\n#define\
     \ elif else if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
-    #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
-    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\n// require y > 0\ntemplate <typename T>\nT floor(T\
-    \ x, T y) {\n  return x / y - (x % y < 0);\n}\n\n// require y > 0\ntemplate <typename\
-    \ T>\nT ceil(T x, T y) {\n  return (x / y) + (x % y > 0);\n}\n\n// require y >\
-    \ 0\ntemplate <typename T>\nT bmod(T x, T y) {\n  T r = x % y;\n  return (r <\
-    \ 0 ? r + y : r);\n}\n\n// require y > 0\ntemplate <typename T>\npair<T, T> divmod(T\
-    \ x, T y) {\n  T q = x / y, r = x % y;\n  if (r < 0) --q, r += y;\n  return {q,\
-    \ r};\n}\n\nconstexpr auto TEN = [] {\n  array<u64, 20> A{};\n  A[0] = 1;\n  for\
-    \ (int i = 1; i < 20; ++i) A[i] = 10 * A[i - 1];\n  return A;\n}();\n\ntemplate\
-    \ <typename T, typename U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(),\
-    \ A.end(), T{});\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
-    template <class C, class T>\ninline long long LB(const C &c, const T &x) {\n \
-    \ return lower_bound(c.begin(), c.end(), x) - c.begin();\n}\ntemplate <class C,\
-    \ class T>\ninline long long UB(const C &c, const T &x) {\n  return upper_bound(c.begin(),\
-    \ c.end(), x) - c.begin();\n}\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
-    \ x.end())\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n\
-    \  que.pop_front();\n  return a;\n}\ntemplate <class T, class Container, class\
-    \ Compare>\nT POP(priority_queue<T, Container, Compare> &que) {\n  T a = que.top();\n\
-    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T\
-    \ a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\n\
-    ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {\n  if (check_ok)\
-    \ assert(check(ok));\n  while (llabs(ok - ng) > 1) {\n    auto x = (ng + ok) /\
-    \ 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename\
-    \ F>\ndouble binary_search_real(F check, double ok, double ng, int iter = 100)\
-    \ {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x) ? ok : ng) =\
-    \ x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline bool\
-    \ chmax(T &a, const S &b) {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n\
-    \  a = c;\n  return changed;\n}\ntemplate <class T, class S>\ninline bool chmin(T\
-    \ &a, const S &b) {\n  T c = min<T>(a, b);\n  bool changed = (c != a);\n  a =\
-    \ c;\n  return changed;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S,\
-    \ char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i]\
-    \ != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate <typename T,\
-    \ typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int N = A.size();\n\
-    \  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n\
-    \  return B;\n}\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const\
-    \ vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n\
-    \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
-    \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
-    \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
-    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
-    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
-    }\n#endif\n#line 3 \"test/1_mytest/equal_4square_sum_grid.test.cpp\"\n\n#line\
-    \ 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const vc<VC>&\
-    \ A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0\
-    \ ? 0 : len(A[0])); }\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
-    \ = A[x][y];\n  return B;\n}\n#line 1 \"other/equal_4square_sum_grid.hpp\"\n\n\
-    // https://atcoder.jp/contests/tupc2023/tasks/tupc2023_k\n// [0,HW-1]\u306E\u9806\
-    \u5217\u3067\u3059\u3079\u3066\u306E(2,2)\u6B63\u65B9\u5F62\u306E\u548C\u304C\
-    S, \u89E3\u3044\u305F\u5834\u5408.\n// \u4E00\u822C\u306B\u89E3\u3044\u305F\u308F\
-    \u3051\u3067\u306F\u306A\u3044. mod HW \u3067\u306F\u89E3\u3051\u3066\u3044\u308B\
-    .\n// (even,even) \u306F S \u304C\u78BA\u5B9A. \u4ED6\u306F\u5FAE\u8ABF\u6574\u306F\
-    \u3067\u304D\u308B\u3068\u3044\u3046\u611F\u3058.\nvvc<int> equal_4square_sum_grid(int\
-    \ H, int W, int S) {\n  assert(H >= 2 && W >= 2);\n  int S0 = (H * W - 1) * 2;\n\
-    \  if (H % 2 == 1 && W % 2 == 0) {\n    vvc<int> A = equal_4square_sum_grid(W,\
-    \ H, S);\n    A = transpose(A);\n    return A;\n  }\n  // \u89E3\u3044\u3066\u3044\
-    \u306A\u3044\u5834\u5408\n  if (H % 2 == 0 && W % 2 == 0) assert(S0 - 3 <= S &&\
-    \ S <= S0 + 3);\n  if (W % 2 == 1 && H % 4 == 2) { assert(S0 - 1 <= S && S <=\
-    \ S0 + 1); }\n  if (W % 2 == 1 && H % 4 == 0) { assert(S0 - 2 <= S && S <= S0\
-    \ + 2); }\n\n  if (S == S0 + 1 || S == S0 - 2) {\n    vvc<int> A = equal_4square_sum_grid(H,\
-    \ W, 2 * S0 - S);\n    FOR(x, H) FOR(y, W) A[x][y] = H * W - 1 - A[x][y];\n  \
-    \  return A;\n  }\n\n  if (S == S0) {\n    vv(int, A, H, W);\n    FOR(j, W) A[j\
-    \ % 2][j] = j, A[(j + 1) % 2][j] = H * W - 1 - j;\n    FOR(i, 2, H) FOR(j, W)\
-    \ {\n      if ((i + j) % 2 == 0) A[i][j] = A[i - 2][j] + W;\n      if ((i + j)\
-    \ % 2 == 1) A[i][j] = A[i - 2][j] - W;\n    }\n    return A;\n  }\n  if (H % 2\
-    \ == 0 && W % 2 == 0) return {}; // \u89E3\u306A\u3057\n  if (S == S0 - 1) {\n\
-    \    vv(int, A, H, W);\n    auto nxt = [&](int p) -> int { return (p >= H * W\
-    \ / 2 ? H * W - 1 - p : H * W - 2 - p); };\n    int p = H * W - 1;\n    FOR(x,\
-    \ H) FOR(y, W) { A[x][y] = p, p = nxt(p); }\n    return A;\n  }\n  assert(W %\
-    \ 2 == 1 && H % 4 == 0 && S == S0 + 2);\n  int n = H / 4;\n  vc<int> tmp;\n  FOR(i,\
-    \ 2 * n * W) {\n    if (i % 2 == 0) tmp.eb(2 * i);\n    if (i % 2 == 1) tmp.eb(H\
-    \ * W - 2 * i);\n  }\n  FOR(i, n * W) {\n    if (i % 2 == 0) tmp.eb(2 * i + 1);\n\
-    \    if (i % 2 == 1) tmp.eb(H * W - 2 * i - 1);\n  }\n  FOR(i, 3 * n * W, 4 *\
-    \ n * W) { tmp.eb(H * W - tmp[i - n * W]); }\n  int p = 0;\n  vv(int, A, H, W);\n\
-    \  FOR(x, H) FOR(y, W) A[x][y] = tmp[p++];\n  if (n % 2 == 0) { FOR(x, 3 * n,\
-    \ 4 * n) reverse(all(A[x])); }\n  return A;\n}\n#line 6 \"test/1_mytest/equal_4square_sum_grid.test.cpp\"\
-    \n\nvoid test() {\n  FOR(H, 2, 20) {\n    FOR(W, 2, 20) {\n      if (H % 2 ==\
-    \ 1 && W % 2 == 0) continue;\n      int S0 = 2 * (H * W - 1);\n      int L = S0,\
-    \ R = S0;\n      if (H % 2 == 0 && W % 2 == 0) { L = S0, R = S0; }\n      if (H\
+    #define fi first\n#define se second\n\n#define stoi stoll\n\n// require y > 0\n\
+    template <typename T>\nT floor(T x, T y) {\n  return x / y - (x % y < 0);\n}\n\
+    \n// require y > 0\ntemplate <typename T>\nT ceil(T x, T y) {\n  return (x / y)\
+    \ + (x % y > 0);\n}\n\n// require y > 0\ntemplate <typename T>\nT bmod(T x, T\
+    \ y) {\n  T r = x % y;\n  return (r < 0 ? r + y : r);\n}\n\n// require y > 0\n\
+    template <typename T>\npair<T, T> divmod(T x, T y) {\n  T q = x / y, r = x % y;\n\
+    \  if (r < 0) --q, r += y;\n  return {q, r};\n}\n\nconstexpr auto TEN = [] {\n\
+    \  array<u64, 20> A{};\n  A[0] = 1;\n  for (int i = 1; i < 20; ++i) A[i] = 10\
+    \ * A[i - 1];\n  return A;\n}();\n\ntemplate <typename T, typename U>\nT SUM(const\
+    \ U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n}\n\n#define MIN(v)\
+    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\ntemplate <class C,\
+    \ class T>\ninline long long LB(const C &c, const T &x) {\n  return lower_bound(c.begin(),\
+    \ c.end(), x) - c.begin();\n}\ntemplate <class C, class T>\ninline long long UB(const\
+    \ C &c, const T &x) {\n  return upper_bound(c.begin(), c.end(), x) - c.begin();\n\
+    }\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end())\n\ntemplate\
+    \ <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
+    \  return a;\n}\ntemplate <class T, class Container, class Compare>\nT POP(priority_queue<T,\
+    \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
+    }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
+    \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
+    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok\
+    \ - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n \
+    \ }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check,\
+    \ double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok +\
+    \ ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\n\
+    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a,\
+    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class\
+    \ T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n\
+    \  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F -1\n\
+    vc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
+    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
+    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
+    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
+    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
+    #line 3 \"test/1_mytest/equal_4square_sum_grid.test.cpp\"\n\n#line 1 \"linalg/transpose.hpp\"\
+    \ntemplate <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W\
+    \ = -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n\
+    \  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return\
+    \ B;\n}\n#line 1 \"other/equal_4square_sum_grid.hpp\"\n\n// https://atcoder.jp/contests/tupc2023/tasks/tupc2023_k\n\
+    // [0,HW-1]\u306E\u9806\u5217\u3067\u3059\u3079\u3066\u306E(2,2)\u6B63\u65B9\u5F62\
+    \u306E\u548C\u304CS, \u89E3\u3044\u305F\u5834\u5408.\n// \u4E00\u822C\u306B\u89E3\
+    \u3044\u305F\u308F\u3051\u3067\u306F\u306A\u3044. mod HW \u3067\u306F\u89E3\u3051\
+    \u3066\u3044\u308B.\n// (even,even) \u306F S \u304C\u78BA\u5B9A. \u4ED6\u306F\u5FAE\
+    \u8ABF\u6574\u306F\u3067\u304D\u308B\u3068\u3044\u3046\u611F\u3058.\nvvc<int>\
+    \ equal_4square_sum_grid(int H, int W, int S) {\n  assert(H >= 2 && W >= 2);\n\
+    \  int S0 = (H * W - 1) * 2;\n  if (H % 2 == 1 && W % 2 == 0) {\n    vvc<int>\
+    \ A = equal_4square_sum_grid(W, H, S);\n    A = transpose(A);\n    return A;\n\
+    \  }\n  // \u89E3\u3044\u3066\u3044\u306A\u3044\u5834\u5408\n  if (H % 2 == 0\
+    \ && W % 2 == 0) assert(S0 - 3 <= S && S <= S0 + 3);\n  if (W % 2 == 1 && H %\
+    \ 4 == 2) { assert(S0 - 1 <= S && S <= S0 + 1); }\n  if (W % 2 == 1 && H % 4 ==\
+    \ 0) { assert(S0 - 2 <= S && S <= S0 + 2); }\n\n  if (S == S0 + 1 || S == S0 -\
+    \ 2) {\n    vvc<int> A = equal_4square_sum_grid(H, W, 2 * S0 - S);\n    FOR(x,\
+    \ H) FOR(y, W) A[x][y] = H * W - 1 - A[x][y];\n    return A;\n  }\n\n  if (S ==\
+    \ S0) {\n    vv(int, A, H, W);\n    FOR(j, W) A[j % 2][j] = j, A[(j + 1) % 2][j]\
+    \ = H * W - 1 - j;\n    FOR(i, 2, H) FOR(j, W) {\n      if ((i + j) % 2 == 0)\
+    \ A[i][j] = A[i - 2][j] + W;\n      if ((i + j) % 2 == 1) A[i][j] = A[i - 2][j]\
+    \ - W;\n    }\n    return A;\n  }\n  if (H % 2 == 0 && W % 2 == 0) return {};\
+    \ // \u89E3\u306A\u3057\n  if (S == S0 - 1) {\n    vv(int, A, H, W);\n    auto\
+    \ nxt = [&](int p) -> int { return (p >= H * W / 2 ? H * W - 1 - p : H * W - 2\
+    \ - p); };\n    int p = H * W - 1;\n    FOR(x, H) FOR(y, W) { A[x][y] = p, p =\
+    \ nxt(p); }\n    return A;\n  }\n  assert(W % 2 == 1 && H % 4 == 0 && S == S0\
+    \ + 2);\n  int n = H / 4;\n  vc<int> tmp;\n  FOR(i, 2 * n * W) {\n    if (i %\
+    \ 2 == 0) tmp.eb(2 * i);\n    if (i % 2 == 1) tmp.eb(H * W - 2 * i);\n  }\n  FOR(i,\
+    \ n * W) {\n    if (i % 2 == 0) tmp.eb(2 * i + 1);\n    if (i % 2 == 1) tmp.eb(H\
+    \ * W - 2 * i - 1);\n  }\n  FOR(i, 3 * n * W, 4 * n * W) { tmp.eb(H * W - tmp[i\
+    \ - n * W]); }\n  int p = 0;\n  vv(int, A, H, W);\n  FOR(x, H) FOR(y, W) A[x][y]\
+    \ = tmp[p++];\n  if (n % 2 == 0) { FOR(x, 3 * n, 4 * n) reverse(all(A[x])); }\n\
+    \  return A;\n}\n#line 6 \"test/1_mytest/equal_4square_sum_grid.test.cpp\"\n\n\
+    void test() {\n  FOR(H, 2, 20) {\n    FOR(W, 2, 20) {\n      if (H % 2 == 1 &&\
+    \ W % 2 == 0) continue;\n      int S0 = 2 * (H * W - 1);\n      int L = S0, R\
+    \ = S0;\n      if (H % 2 == 0 && W % 2 == 0) { L = S0, R = S0; }\n      if (H\
     \ % 4 == 2 && W % 2 == 1) { L = S0 - 1, R = S0 + 1; }\n      if (H % 4 == 0 &&\
     \ W % 2 == 1) { L = S0 - 2, R = S0 + 2; }\n      FOR(S, L, R + 1) {\n        vvc<int>\
     \ A = equal_4square_sum_grid(H, W, S);\n        assert(len(A) == H && len(A[0])\
@@ -190,8 +166,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/equal_4square_sum_grid.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:21:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-26 19:43:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/equal_4square_sum_grid.test.cpp
 layout: document
