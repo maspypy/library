@@ -116,7 +116,7 @@ void rd_integer_slow(T &x) {
   while ('0' <= c && c <= '9') {
     x = x * 10 + (c & 15), c = get_char();
   }
-  assert(isspace(c));
+  assert(isspace(static_cast<unsigned char>(c)));
   if constexpr (is_signed_integer_v<T>) {
     if (minus) x = -x;
   }
@@ -142,10 +142,10 @@ void rd_integer(T &x) {
   }
   x = 0;
   assert('0' <= c && c <= '9');
-  while ('0' <= c && x <= '9') {
+  while ('0' <= c && c <= '9') {
     x = x * 10 + (c & 15), c = ibuf[pil++];
   }
-  assert(isspace(c));
+  assert(isspace(static_cast<unsigned char>(c)));
   if constexpr (is_signed_integer_v<T>) {
     if (minus) x = -x;
   }
