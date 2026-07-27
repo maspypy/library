@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
   - icon: ':question:'

@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: nt/rational_binary_search.hpp
     title: nt/rational_binary_search.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

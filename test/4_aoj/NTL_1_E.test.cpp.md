@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: nt/extgcd.hpp
     title: nt/extgcd.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

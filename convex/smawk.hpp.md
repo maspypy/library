@@ -12,7 +12,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/alien.test.cpp
     title: test/1_mytest/alien.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/smawk.test.cpp
     title: test/1_mytest/smawk.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/3_yukicoder/952.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convex/smawk.hpp\"\n\n// \u5404\u884C\u306E\u6700\u9069\u5217\
@@ -62,7 +62,7 @@ data:
   - convex/monge/monge.hpp
   - convex/monge/monge_dp_update.hpp
   timestamp: '2026-06-15 22:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/952.test.cpp
   - test/1_mytest/smawk.test.cpp

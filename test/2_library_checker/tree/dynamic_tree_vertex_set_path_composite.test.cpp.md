@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/ds/lct_node_monoid.hpp
     title: graph/ds/lct_node_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

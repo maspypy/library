@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_periodic_sequence.hpp
     title: seq/interpolate_periodic_sequence.hpp
   - icon: ':heavy_check_mark:'
@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: string/non_dominated_suffix.hpp
     title: string/non_dominated_suffix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
   _extendedVerifiedWith:
@@ -21,19 +21,19 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/string/run_enumerate.test.cpp
     title: test/2_library_checker/string/run_enumerate.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/run_enumerate_vec.test.cpp
     title: test/2_library_checker/string/run_enumerate_vec.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm.test.cpp
     title: test/2_library_checker/string/zalgorithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1848.test.cpp
     title: test/3_yukicoder/1848.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
   _isVerificationFailed: true

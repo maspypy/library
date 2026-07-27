@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/palindromic_tree.hpp
     title: string/palindromic_tree.hpp
   _extendedRequiredBy: []
