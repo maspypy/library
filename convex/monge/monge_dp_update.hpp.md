@@ -12,12 +12,12 @@ data:
   - icon: ':x:'
     path: test/1_mytest/alien.test.cpp
     title: test/1_mytest/alien.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monge/monge_dp_update.hpp\"\n\n#line 2 \"convex/monotone_minima.hpp\"\
@@ -72,7 +72,7 @@ data:
   path: convex/monge/monge_dp_update.hpp
   requiredBy: []
   timestamp: '2026-06-15 22:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/952.test.cpp
   - test/1_mytest/alien.test.cpp
