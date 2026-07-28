@@ -31,6 +31,7 @@ bool has_kth_bit(T x, int k) {
 template <typename UINT>
 struct all_bit {
   UINT s;
+  all_bit(UINT s) : s(s) {}
   struct iter {
     UINT s;
     int operator*() const { return lowbit(s); }
@@ -44,6 +45,7 @@ struct all_bit {
 template <typename UINT>
 struct all_subset {
   UINT s;
+  all_subset(UINT s) : s(s) {}
   struct iter {
     UINT s, t;
     bool done = false;
