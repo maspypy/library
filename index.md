@@ -282,16 +282,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/monge/check_monge.hpp
       title: convex/monge/check_monge.hpp
-    - icon: ':warning:'
-      path: convex/monge/monge.hpp
-      title: convex/monge/monge.hpp
     - icon: ':question:'
       path: convex/monge/monge_dp_update.hpp
       title: convex/monge/monge_dp_update.hpp
     - icon: ':warning:'
       path: convex/monge/monge_matrix_product.hpp
       title: convex/monge/monge_matrix_product.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/monge/monge_shortest_path.hpp
       title: convex/monge/monge_shortest_path.hpp
     - icon: ':warning:'
@@ -4961,7 +4958,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/694.test.cpp
       title: test/3_yukicoder/694.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/705.test.cpp
       title: test/3_yukicoder/705.test.cpp
     - icon: ':heavy_check_mark:'

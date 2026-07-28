@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
   - icon: ':question:'
@@ -253,34 +253,33 @@ data:
     \ col(W);\n  FOR(i, H) row[i] = RNG(-LIM * W, LIM * W + 1);\n  FOR(j, W) col[j]\
     \ = RNG(-LIM * H, LIM * H + 1);\n\n  FOR(i, H) FOR(j, W) A[i][j] = -A[i][j] +\
     \ row[i] + col[j];\n  return A;\n}\n#line 2 \"convex/monge/monge_shortest_path.hpp\"\
-    \n\ntemplate <typename T>\nstruct Monge_Shortest_Path {\n  int N;\n  vc<T> dp;\n\
-    \  vc<int> cnt, frm;\n\n  Monge_Shortest_Path(int N) : N(N) {}\n\n  template <typename\
-    \ F>\n  pair<T, int> solve(F f, bool minimize_cnt = true) {\n    dp.assign(N +\
-    \ 1, infty<T>);\n    cnt.assign(N + 1, infty<int>);\n    frm.assign(N + 1, 0);\n\
-    \n    dp[0] = 0;\n    cnt[0] = 0;\n\n    auto better_tie = [&](int new_cnt, int\
-    \ old_cnt) -> bool {\n      return minimize_cnt ? new_cnt < old_cnt : new_cnt\
-    \ > old_cnt;\n    };\n\n    auto check = [&](int r, int l) -> void {\n      T\
-    \ x = dp[l] + f(l, r);\n      int c = cnt[l] + 1;\n      if (dp[r] > x || (dp[r]\
-    \ == x && better_tie(c, cnt[r]))) {\n        dp[r] = x;\n        cnt[r] = c;\n\
-    \        frm[r] = l;\n      }\n    };\n\n    // simple larsch, https://noshi91.hatenablog.com/entry/2023/02/18/005856\n\
-    \    auto dfs = [&](auto& dfs, int l, int r) -> void {\n      if (r - l == 1)\
-    \ return;\n      int m = (l + r) / 2;\n\n      FOR(k, frm[l], frm[r] + 1) check(m,\
-    \ k);\n      dfs(dfs, l, m);\n\n      FOR(k, l + 1, m + 1) check(r, k);\n    \
-    \  dfs(dfs, m, r);\n    };\n\n    if (N > 0) {\n      check(N, 0);\n      dfs(dfs,\
-    \ 0, N);\n    }\n\n    return {dp[N], cnt[N]};\n  }\n\n  vc<int> restore_path()\
-    \ {\n    vc<int> path;\n    for (int v = N; v > 0; v = frm[v]) path.eb(v);\n \
-    \   path.eb(0);\n    reverse(all(path));\n    return path;\n  }\n};\n\n// yuki705\
-    \ \u3067\u306F simple larsch \u3088\u308A\u4F4E\u901F\u3060\u3063\u305F\u3057\u4F7F\
-    \u308F\u306A\u3044\u60F3\u5B9A\u3067\u3044\u304F\n// #include \"convex/larsch.hpp\"\
-    \n// // dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n// // \u9077\u79FB\u56DE\u6570\
-    \u3092\u554F\u308F\u306A\u3044\n// template <typename T, typename F>\n// vc<T>\
-    \ monge_shortest_path_larsch(int N, F f) {\n//   vc<T> dp(N + 1, infty<T>);\n\
-    //   dp[0] = 0;\n\n//   auto g = [&](int i, int j) -> T {\n//     ++i;\n//   \
-    \  if (i <= j) return infty<T>;\n//     return dp[j] + f(j, i);\n//   };\n\n//\
-    \   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r, 1, N + 1) {\n//     int\
-    \ l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l, r);\n//   }\n//   return\
-    \ dp;\n// }\n#line 7 \"test/1_mytest/monge_shortest_path.test.cpp\"\n\nvoid test()\
-    \ {\n  FOR(N, 1, 100) {\n    FOR(1000) {\n      auto A = random_monge_matrix(N\
+    \n\ntemplate <typename T>\nstruct Monge_Shortest_Path {\n  vc<T> dp;\n  vc<int>\
+    \ cnt, frm;\n\n  template <typename F>\n  T solve(int N, F f, bool minimize_cnt\
+    \ = true) {\n    dp.assign(N + 1, infty<T>);\n    cnt.assign(N + 1, infty<int>);\n\
+    \    frm.assign(N + 1, 0);\n\n    dp[0] = 0;\n    cnt[0] = 0;\n\n    auto better_tie\
+    \ = [&](int new_cnt, int old_cnt) -> bool {\n      return minimize_cnt ? new_cnt\
+    \ < old_cnt : new_cnt > old_cnt;\n    };\n\n    auto check = [&](int r, int l)\
+    \ -> void {\n      T x = dp[l] + f(l, r);\n      int c = cnt[l] + 1;\n      if\
+    \ (dp[r] > x || (dp[r] == x && better_tie(c, cnt[r]))) {\n        dp[r] = x;\n\
+    \        cnt[r] = c;\n        frm[r] = l;\n      }\n    };\n\n    // simple larsch,\
+    \ https://noshi91.hatenablog.com/entry/2023/02/18/005856\n    auto dfs = [&](auto&\
+    \ dfs, int l, int r) -> void {\n      if (r - l == 1) return;\n      int m = (l\
+    \ + r) / 2;\n\n      FOR(k, frm[l], frm[r] + 1) check(m, k);\n      dfs(dfs, l,\
+    \ m);\n\n      FOR(k, l + 1, m + 1) check(r, k);\n      dfs(dfs, m, r);\n    };\n\
+    \n    if (N > 0) {\n      check(N, 0);\n      dfs(dfs, 0, N);\n    }\n\n    return\
+    \ dp[N];\n  }\n\n  vc<int> restore_path() {\n    int N = len(dp) - 1;\n    vc<int>\
+    \ path;\n    for (int v = N; v > 0; v = frm[v]) path.eb(v);\n    path.eb(0);\n\
+    \    reverse(all(path));\n    return path;\n  }\n};\n\n// yuki705 \u3067\u306F\
+    \ simple larsch \u3088\u308A\u4F4E\u901F\u3060\u3063\u305F\u3057\u4F7F\u308F\u306A\
+    \u3044\u60F3\u5B9A\u3067\u3044\u304F\n// #include \"convex/larsch.hpp\"\n// //\
+    \ dp[r] = min_{0 <= l < r} dp[l] + f(l, r)\n// // \u9077\u79FB\u56DE\u6570\u3092\
+    \u554F\u308F\u306A\u3044\n// template <typename T, typename F>\n// vc<T> monge_shortest_path_larsch(int\
+    \ N, F f) {\n//   vc<T> dp(N + 1, infty<T>);\n//   dp[0] = 0;\n\n//   auto g =\
+    \ [&](int i, int j) -> T {\n//     ++i;\n//     if (i <= j) return infty<T>;\n\
+    //     return dp[j] + f(j, i);\n//   };\n\n//   LARSCH<T, decltype(g)> larsch(N,\
+    \ g);\n//   FOR(r, 1, N + 1) {\n//     int l = larsch.get_argmin();\n//     dp[r]\
+    \ = dp[l] + f(l, r);\n//   }\n//   return dp;\n// }\n#line 7 \"test/1_mytest/monge_shortest_path.test.cpp\"\
+    \n\nvoid test() {\n  FOR(N, 1, 100) {\n    FOR(1000) {\n      auto A = random_monge_matrix(N\
     \ + 1, N + 1);\n\n      auto f = [&](int l, int r) -> ll {\n        assert(l <\
     \ r);\n        return A[l][r];\n      };\n\n      FOR(minimize_cnt, 2) {\n   \
     \     auto [dp, frm] = monge_shortest_path<ll>(N, f, minimize_cnt);\n\n      \
@@ -319,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/monge_shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2026-07-27 12:37:12+09:00'
+  timestamp: '2026-07-28 11:49:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/monge_shortest_path.test.cpp

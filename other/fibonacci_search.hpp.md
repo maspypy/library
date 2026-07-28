@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: convex/monge/monge.hpp
-    title: convex/monge/monge.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/fibonacci_search.test.cpp
@@ -52,8 +49,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: other/fibonacci_search.hpp
-  requiredBy:
-  - convex/monge/monge.hpp
+  requiredBy: []
   timestamp: '2024-01-01 07:01:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

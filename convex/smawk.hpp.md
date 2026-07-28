@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: convex/monge/monge.hpp
-    title: convex/monge/monge.hpp
   - icon: ':question:'
     path: convex/monge/monge_dp_update.hpp
     title: convex/monge/monge_dp_update.hpp
@@ -59,7 +56,6 @@ data:
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
-  - convex/monge/monge.hpp
   - convex/monge/monge_dp_update.hpp
   timestamp: '2026-06-15 22:08:56+09:00'
   verificationStatus: LIBRARY_SOME_WA

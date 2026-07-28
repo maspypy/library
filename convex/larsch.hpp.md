@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: convex/monge/monge.hpp
-    title: convex/monge/monge.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -93,8 +90,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: convex/larsch.hpp
-  requiredBy:
-  - convex/monge/monge.hpp
+  requiredBy: []
   timestamp: '2026-03-14 22:08:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
