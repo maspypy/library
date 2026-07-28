@@ -271,7 +271,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/nth_element_from_sorted_matrix.hpp
       title: convex/nth_element_from_sorted_matrix.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convex/path_independent_set.hpp
       title: convex/path_independent_set.hpp
     - icon: ':heavy_check_mark:'
@@ -751,7 +751,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: flow
@@ -1883,7 +1883,7 @@ data:
     - icon: ':warning:'
       path: other/anulus_scheduling.hpp
       title: other/anulus_scheduling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/bit.hpp
       title: other/bit.hpp
     - icon: ':heavy_check_mark:'
@@ -2226,7 +2226,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -3030,7 +3030,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/nimber_log.test.cpp
       title: test/1_mytest/nimber_log.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/non_adj.test.cpp
       title: test/1_mytest/non_adj.test.cpp
     - icon: ':heavy_check_mark:'

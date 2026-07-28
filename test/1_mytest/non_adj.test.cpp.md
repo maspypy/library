@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/path_independent_set.hpp
     title: convex/path_independent_set.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -160,7 +160,7 @@ data:
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/non_adj.test.cpp\"\n\nvoid test()\
     \ {\n  FOR(100) {\n    FOR(N, 10) {\n      vi A(N);\n      FOR(i, N) A[i] = RNG(0,\
     \ 1000000000);\n\n      Path_Independent_Set<ll, true> MI(A);\n      Path_Independent_Set<ll,\
-    \ true> MA(A);\n      FOR(cnt, ceil<int>(N, 2) + 1) {\n        ll mi = infty<ll>,\
+    \ false> MA(A);\n      FOR(cnt, ceil<int>(N, 2) + 1) {\n        ll mi = infty<ll>,\
     \ ma = -infty<ll>;\n        FOR(s, 1 << N) {\n          if (s & (s >> 1)) continue;\n\
     \          if (popcnt(s) != cnt) continue;\n          ll sm = 0;\n          FOR(i,\
     \ N) if (s >> i & 1) sm += A[i];\n          chmin(mi, sm), chmax(ma, sm);\n  \
@@ -177,7 +177,7 @@ data:
     my_template.hpp\"\n#include \"other/bit.hpp\"\n#include \"convex/path_independent_set.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  FOR(100) {\n    FOR(N, 10)\
     \ {\n      vi A(N);\n      FOR(i, N) A[i] = RNG(0, 1000000000);\n\n      Path_Independent_Set<ll,\
-    \ true> MI(A);\n      Path_Independent_Set<ll, true> MA(A);\n      FOR(cnt, ceil<int>(N,\
+    \ true> MI(A);\n      Path_Independent_Set<ll, false> MA(A);\n      FOR(cnt, ceil<int>(N,\
     \ 2) + 1) {\n        ll mi = infty<ll>, ma = -infty<ll>;\n        FOR(s, 1 <<\
     \ N) {\n          if (s & (s >> 1)) continue;\n          if (popcnt(s) != cnt)\
     \ continue;\n          ll sm = 0;\n          FOR(i, N) if (s >> i & 1) sm += A[i];\n\
@@ -199,8 +199,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/non_adj.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 15:20:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-28 17:43:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/non_adj.test.cpp
 layout: document
