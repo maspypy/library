@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -51,37 +51,38 @@ data:
     \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
     \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
     \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
-    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  struct iter {\n    UINT s;\n\
-    \    int operator*() const { return lowbit(s); }\n    void operator++() { s &=\
-    \ s - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  struct iter {\n    UINT s,\
-    \ t;\n    bool done = false;\n    UINT operator*() const { return t; }\n    void\
-    \ operator++() {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool\
-    \ operator!=(nullptr_t) const { return !done; }\n  };\n  iter begin() const {\
-    \ return {s, s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\nconstexpr\
-    \ u64 full_mask(int n) { return n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2\
-    \ \"ds/bit_vector.hpp\"\n\nstruct Bit_Vector {\n  int n;\n  bool prepared = 0;\n\
-    \  vc<pair<u64, u32>> dat;\n  Bit_Vector(int n = 0) : n(n) { dat.assign((n + 127)\
-    \ >> 6, {0, 0}); }\n  void set(int i) {\n    assert(!prepared && (0 <= i && i\
-    \ < n));\n    dat[i >> 6].fi |= u64(1) << (i & 63);\n  }\n  void reset() {\n \
-    \   fill(all(dat), pair<u64, u32>{0, 0});\n    prepared = 0;\n  }\n  void build()\
-    \ {\n    prepared = 1;\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n\
-    \  }\n  bool operator[](int i) const { return dat[i >> 6].fi >> (i & 63) & 1;\
-    \ }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k,\
-    \ bool f = true) const {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n\
-    \    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
-    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) const {\n    return\
-    \ count_prefix(R, f) - count_prefix(L, f);\n  }\n  string to_string() const {\n\
-    \    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n\
-    \    return ans;\n  }\n};\n#line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy\
-    \ {\n  using value_type = char;\n  static constexpr bool commute = true;\n  static\
-    \ value_type op(value_type, value_type) { return 0; }\n  static value_type unit()\
-    \ { return 0; }\n};\n#line 2 \"ds/dummy_data_structure.hpp\"\n\nstruct Dummy_Data_Structure\
-    \ {\n  using MX = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void\
-    \ build(const vc<T>& A) {}\n};\n#line 3 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
-    \n\r\ntemplate <typename Y, typename SEGTREE>\r\nstruct Uncompressed_Wavelet_Matrix\
-    \ {\r\n  using Mono = typename SEGTREE::MX;\r\n  using T = typename Mono::value_type;\r\
+    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
+    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
+    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
+    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
+    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
+    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2 \"ds/bit_vector.hpp\"\n\nstruct\
+    \ Bit_Vector {\n  int n;\n  bool prepared = 0;\n  vc<pair<u64, u32>> dat;\n  Bit_Vector(int\
+    \ n = 0) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void set(int i) {\n\
+    \    assert(!prepared && (0 <= i && i < n));\n    dat[i >> 6].fi |= u64(1) <<\
+    \ (i & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64, u32>{0, 0});\n\
+    \    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n    FOR(i, len(dat)\
+    \ - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  bool operator[](int\
+    \ i) const { return dat[i >> 6].fi >> (i & 63) & 1; }\n  // [0, k) \u5185\u306E\
+    \ 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool f = true) const {\n   \
+    \ assert(prepared);\n    auto [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a\
+    \ & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n  }\n  int\
+    \ count(int L, int R, bool f = true) const {\n    return count_prefix(R, f) -\
+    \ count_prefix(L, f);\n  }\n  string to_string() const {\n    string ans;\n  \
+    \  FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n\
+    \  }\n};\n#line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy {\n  using value_type\
+    \ = char;\n  static constexpr bool commute = true;\n  static value_type op(value_type,\
+    \ value_type) { return 0; }\n  static value_type unit() { return 0; }\n};\n#line\
+    \ 2 \"ds/dummy_data_structure.hpp\"\n\nstruct Dummy_Data_Structure {\n  using\
+    \ MX = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void build(const\
+    \ vc<T>& A) {}\n};\n#line 3 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n\r\ntemplate\
+    \ <typename Y, typename SEGTREE>\r\nstruct Uncompressed_Wavelet_Matrix {\r\n \
+    \ using Mono = typename SEGTREE::MX;\r\n  using T = typename Mono::value_type;\r\
     \n  static_assert(Mono::commute);\r\n  static_assert(is_same_v<Y, int> || is_same_v<Y,\
     \ ll>);\r\n  int n = 0, log = 0;\r\n  vc<int> mid;\r\n  vc<Bit_Vector> bv;\r\n\
     \  vc<SEGTREE> seg;\r\n  Y limit;\r\n\r\n  Uncompressed_Wavelet_Matrix() = default;\r\
@@ -570,7 +571,7 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2026-07-26 21:24:28+09:00'
+  timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/tree_wavelet_matrix.hpp

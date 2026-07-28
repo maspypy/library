@@ -31,24 +31,25 @@ data:
     \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
     \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
     \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s);\
-    \ }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const\
-    \ { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end()\
-    \ const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  UINT s;\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ?\
-    \ -1ULL : (1ULL << n) - 1; }\n#line 2 \"graph/count/count_K4.hpp\"\n\n// M^{1.5}\
-    \ + M^2/w\n// simple graph \u3092\u4EEE\u5B9A\ntemplate <typename GT>\nll count_K4(GT&\
-    \ G) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const\
-    \ int N = G.N;\n  Graph<int, 1> DAG(N);\n  {\n    auto deg = G.deg_array();\n\
-    \    auto comp = [&](int a, int b) -> bool {\n      return (deg[a] == deg[b] ?\
-    \ a < b : deg[a] < deg[b]);\n    };\n    for (auto&& e : G.edges) {\n      int\
-    \ a = e.frm, b = e.to;\n      if (!comp(a, b)) swap(a, b);\n      DAG.add(a, b);\n\
-    \    }\n    DAG.build();\n  }\n\n  vc<int> new_idx(N, -1);\n  ll ANS = 0;\n  FOR(a,\
-    \ N) {\n    vc<int> V;\n    for (auto&& e : DAG[a]) V.eb(e.to);\n    FOR(i, len(V))\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 2 \"graph/count/count_K4.hpp\"\n\n// M^{1.5} + M^2/w\n\
+    // simple graph \u3092\u4EEE\u5B9A\ntemplate <typename GT>\nll count_K4(GT& G)\
+    \ {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const int\
+    \ N = G.N;\n  Graph<int, 1> DAG(N);\n  {\n    auto deg = G.deg_array();\n    auto\
+    \ comp = [&](int a, int b) -> bool {\n      return (deg[a] == deg[b] ? a < b :\
+    \ deg[a] < deg[b]);\n    };\n    for (auto&& e : G.edges) {\n      int a = e.frm,\
+    \ b = e.to;\n      if (!comp(a, b)) swap(a, b);\n      DAG.add(a, b);\n    }\n\
+    \    DAG.build();\n  }\n\n  vc<int> new_idx(N, -1);\n  ll ANS = 0;\n  FOR(a, N)\
+    \ {\n    vc<int> V;\n    for (auto&& e : DAG[a]) V.eb(e.to);\n    FOR(i, len(V))\
     \ new_idx[V[i]] = i;\n    int n = len(V);\n    Graph<bool, 1> H(n);\n    FOR(i,\
     \ n) {\n      for (auto&& e : DAG[V[i]]) {\n        int j = new_idx[e.to];\n \
     \       if (j == -1) continue;\n        H.add(i, j);\n      }\n    }\n    H.build();\n\
@@ -80,7 +81,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_K4.hpp
   requiredBy: []
-  timestamp: '2026-07-26 22:20:09+09:00'
+  timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_K4.test.cpp
