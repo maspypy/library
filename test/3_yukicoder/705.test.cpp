@@ -15,8 +15,18 @@ void solve() {
     ll dy = abs(y);
     return dx * dx * dx + dy * dy * dy;
   };
-  auto [dp, frm] = monge_shortest_path<ll>(N, f);
-  print(dp[N]);
+  Monge_Shortest_Path<ll> solver;
+  ll ANS = solver.solve(N, f);
+
+  {
+    vc<int> path = solver.restore_path();
+    int n = len(path) - 1;
+    assert(path[0] == 0 && path[n] == N);
+    ll check = 0;
+    FOR(i, n) check += f(path[i], path[i + 1]);
+    assert(ANS == check);
+  }
+  print(ANS);
 }
 
 signed main() {

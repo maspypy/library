@@ -2,14 +2,11 @@
 
 template <typename T>
 struct Monge_Shortest_Path {
-  int N;
   vc<T> dp;
   vc<int> cnt, frm;
 
-  Monge_Shortest_Path(int N) : N(N) {}
-
   template <typename F>
-  pair<T, int> solve(F f, bool minimize_cnt = true) {
+  T solve(int N, F f, bool minimize_cnt = true) {
     dp.assign(N + 1, infty<T>);
     cnt.assign(N + 1, infty<int>);
     frm.assign(N + 1, 0);
@@ -48,10 +45,11 @@ struct Monge_Shortest_Path {
       dfs(dfs, 0, N);
     }
 
-    return {dp[N], cnt[N]};
+    return dp[N];
   }
 
   vc<int> restore_path() {
+    int N = len(dp) - 1;
     vc<int> path;
     for (int v = N; v > 0; v = frm[v]) path.eb(v);
     path.eb(0);
