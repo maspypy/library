@@ -8,6 +8,9 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -100,32 +103,58 @@ data:
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
     \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 4 \"test/1_mytest/non_adj.test.cpp\"\n\n#line 1 \"convex/path_independent_set.hpp\"\
-    \n\n// https://atcoder.jp/contests/joisc2018/tasks/joisc2018_j\n// https://atcoder.jp/contests/abc464/tasks/abc464_g\n\
-    // \u96A3\u63A5\u3059\u308B\u3082\u306E\u306F\u9078\u3079\u306A\u3044, k \u500B\
-    \u9078\u3093\u3060\u3068\u304D\u306E\u6700\u9069\u89E3\u3092\u5168 k \u3067\u5217\
-    \u6319\ntemplate <typename T, bool MINIMIZE>\nstruct Path_Independent_Set {\n\
-    \  int N;\n  vc<T> ANS;\n  vc<pair<int, int>> history;\n\n  Path_Independent_Set(vc<T>&\
-    \ A) { calc(A); }\n\n  void calc(vc<T> A) {\n    if (MINIMIZE) {\n      for (auto&\
-    \ x : A) x = -x;\n    }\n    N = len(A);\n    vc<bool> rest(N + 2, 1);\n    rest[0]\
-    \ = rest[N + 1] = 0;\n    vc<pair<int, int>> range(N + 2);\n    vc<int> left(N\
-    \ + 2), right(N + 2);\n    vc<T> val(N + 2);\n    pq_max<pair<T, int>> que;\n\
-    \    FOR(i, N + 2) { left[i] = i - 1, right[i] = i + 1; }\n    FOR(i, N) {\n \
-    \     val[i + 1] = A[i], range[i + 1] = {i, i + 1};\n      que.emplace(val[i +\
-    \ 1], i + 1);\n    }\n\n    ANS = {0};\n    while (len(que)) {\n      auto [add,\
-    \ i] = POP(que);\n      if (!rest[i]) continue;\n      ANS.eb(ANS.back() + add);\n\
-    \      int L = left[i], R = right[i];\n      history.eb(range[i]);\n      if (1\
-    \ <= L) {\n        right[left[L]] = i, left[i] = left[L];\n      }\n      if (R\
-    \ <= N) {\n        left[right[R]] = i, right[i] = right[R];\n      }\n      if\
-    \ (rest[L] && rest[R]) {\n        val[i] = val[L] + val[R] - val[i];\n       \
-    \ que.emplace(val[i], i);\n        range[i] = {range[L].fi, range[R].se};\n  \
-    \    } else {\n        rest[i] = 0;\n      }\n      rest[L] = rest[R] = 0;\n \
-    \   }\n\n    if (MINIMIZE) {\n      for (auto& x : ANS) x = -x;\n    }\n  }\n\n\
-    \  vc<T> get_ANS() { return ANS; }\n  vc<int> restore(int n) {\n    vc<int> F(N\
-    \ + 1);\n    FOR(i, n) {\n      auto [a, b] = history[i];\n      F[a]++, F[b]--;\n\
-    \    }\n    F = cumsum<int>(F, 0);\n    vc<int> I;\n    FOR(i, N) if (F[i] & 1)\
-    \ I.eb(i);\n    return I;\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    #line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 1 \"convex/path_independent_set.hpp\"\n\n// https://atcoder.jp/contests/joisc2018/tasks/joisc2018_j\n\
+    // https://atcoder.jp/contests/abc464/tasks/abc464_g\n// \u96A3\u63A5\u3059\u308B\
+    \u3082\u306E\u306F\u9078\u3079\u306A\u3044, k \u500B\u9078\u3093\u3060\u3068\u304D\
+    \u306E\u6700\u9069\u89E3\u3092\u5168 k \u3067\u5217\u6319\ntemplate <typename\
+    \ T, bool MINIMIZE>\nstruct Path_Independent_Set {\n  int N;\n  vc<T> ANS;\n \
+    \ vc<pair<int, int>> history;\n\n  Path_Independent_Set(vc<T>& A) { calc(A); }\n\
+    \n  void calc(vc<T> A) {\n    if (MINIMIZE) {\n      for (auto& x : A) x = -x;\n\
+    \    }\n    N = len(A);\n    vc<bool> rest(N + 2, 1);\n    rest[0] = rest[N +\
+    \ 1] = 0;\n    vc<pair<int, int>> range(N + 2);\n    vc<int> left(N + 2), right(N\
+    \ + 2);\n    vc<T> val(N + 2);\n    pq_max<pair<T, int>> que;\n    FOR(i, N +\
+    \ 2) { left[i] = i - 1, right[i] = i + 1; }\n    FOR(i, N) {\n      val[i + 1]\
+    \ = A[i], range[i + 1] = {i, i + 1};\n      que.emplace(val[i + 1], i + 1);\n\
+    \    }\n\n    ANS = {0};\n    while (len(que)) {\n      auto [add, i] = POP(que);\n\
+    \      if (!rest[i]) continue;\n      ANS.eb(ANS.back() + add);\n      int L =\
+    \ left[i], R = right[i];\n      history.eb(range[i]);\n      if (1 <= L) {\n \
+    \       right[left[L]] = i, left[i] = left[L];\n      }\n      if (R <= N) {\n\
+    \        left[right[R]] = i, right[i] = right[R];\n      }\n      if (rest[L]\
+    \ && rest[R]) {\n        val[i] = val[L] + val[R] - val[i];\n        que.emplace(val[i],\
+    \ i);\n        range[i] = {range[L].fi, range[R].se};\n      } else {\n      \
+    \  rest[i] = 0;\n      }\n      rest[L] = rest[R] = 0;\n    }\n\n    if (MINIMIZE)\
+    \ {\n      for (auto& x : ANS) x = -x;\n    }\n  }\n\n  vc<T> get_ANS() { return\
+    \ ANS; }\n  vc<int> restore(int n) {\n    vc<int> F(N + 1);\n    FOR(i, n) {\n\
+    \      auto [a, b] = history[i];\n      F[a]++, F[b]--;\n    }\n    F = cumsum<int>(F,\
+    \ 0);\n    vc<int> I;\n    FOR(i, N) if (F[i] & 1) I.eb(i);\n    return I;\n \
+    \ }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/non_adj.test.cpp\"\n\nvoid test()\
@@ -145,9 +174,9 @@ data:
     \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
     \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n\n#include \"convex/path_independent_set.hpp\"\n#include \"\
-    random/base.hpp\"\n\nvoid test() {\n  FOR(100) {\n    FOR(N, 10) {\n      vi A(N);\n\
-    \      FOR(i, N) A[i] = RNG(0, 1000000000);\n\n      Path_Independent_Set<ll,\
+    my_template.hpp\"\n#include \"other/bit.hpp\"\n#include \"convex/path_independent_set.hpp\"\
+    \n#include \"random/base.hpp\"\n\nvoid test() {\n  FOR(100) {\n    FOR(N, 10)\
+    \ {\n      vi A(N);\n      FOR(i, N) A[i] = RNG(0, 1000000000);\n\n      Path_Independent_Set<ll,\
     \ true> MI(A);\n      Path_Independent_Set<ll, true> MA(A);\n      FOR(cnt, ceil<int>(N,\
     \ 2) + 1) {\n        ll mi = infty<ll>, ma = -infty<ll>;\n        FOR(s, 1 <<\
     \ N) {\n          if (s & (s >> 1)) continue;\n          if (popcnt(s) != cnt)\
@@ -164,12 +193,13 @@ data:
     \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
+  - other/bit.hpp
   - convex/path_independent_set.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/1_mytest/non_adj.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-07-28 15:20:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/non_adj.test.cpp

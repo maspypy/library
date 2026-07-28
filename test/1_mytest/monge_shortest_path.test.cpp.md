@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_monge.hpp
     title: random/random_monge.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -282,33 +282,32 @@ data:
     \n\nvoid test() {\n  FOR(N, 1, 100) {\n    FOR(1000) {\n      auto A = random_monge_matrix(N\
     \ + 1, N + 1);\n\n      auto f = [&](int l, int r) -> ll {\n        assert(l <\
     \ r);\n        return A[l][r];\n      };\n\n      FOR(minimize_cnt, 2) {\n   \
-    \     auto [dp, frm] = monge_shortest_path<ll>(N, f, minimize_cnt);\n\n      \
-    \  vc<ll> dp2(N + 1, infty<ll>);\n        vc<int> cnt2(N + 1, infty<int>);\n \
-    \       dp2[0] = 0;\n        cnt2[0] = 0;\n\n        FOR(r, 1, N + 1) {\n    \
-    \      FOR(l, r) {\n            ll x = dp2[l] + f(l, r);\n            int c =\
+    \     Monge_Shortest_Path<ll> solver;\n        solver.solve(N, f, minimize_cnt);\n\
+    \n        vc<ll> dp2(N + 1, infty<ll>);\n        vc<int> cnt2(N + 1, infty<int>);\n\
+    \        dp2[0] = 0;\n        cnt2[0] = 0;\n\n        FOR(r, 1, N + 1) {\n   \
+    \       FOR(l, r) {\n            ll x = dp2[l] + f(l, r);\n            int c =\
     \ cnt2[l] + 1;\n            bool tie = minimize_cnt ? c < cnt2[r] : c > cnt2[r];\n\
     \            if (dp2[r] > x || (dp2[r] == x && tie)) {\n              dp2[r] =\
     \ x;\n              cnt2[r] = c;\n            }\n          }\n        }\n\n  \
-    \      assert(dp == dp2);\n\n        int c = 0;\n        for (int v = N; v > 0;\
-    \ v = frm[v]) ++c;\n        assert(c == cnt2[N]);\n      }\n    }\n  }\n}\n\n\
-    void solve() {\n  INT(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \      assert(solver.dp == dp2);\n        assert(solver.cnt[N] == cnt2[N]);\n\
+    \      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/random_monge.hpp\"\n#include\
     \ \"convex/monge/monge_shortest_path.hpp\"\n\nvoid test() {\n  FOR(N, 1, 100)\
     \ {\n    FOR(1000) {\n      auto A = random_monge_matrix(N + 1, N + 1);\n\n  \
     \    auto f = [&](int l, int r) -> ll {\n        assert(l < r);\n        return\
-    \ A[l][r];\n      };\n\n      FOR(minimize_cnt, 2) {\n        auto [dp, frm] =\
-    \ monge_shortest_path<ll>(N, f, minimize_cnt);\n\n        vc<ll> dp2(N + 1, infty<ll>);\n\
-    \        vc<int> cnt2(N + 1, infty<int>);\n        dp2[0] = 0;\n        cnt2[0]\
-    \ = 0;\n\n        FOR(r, 1, N + 1) {\n          FOR(l, r) {\n            ll x\
-    \ = dp2[l] + f(l, r);\n            int c = cnt2[l] + 1;\n            bool tie\
-    \ = minimize_cnt ? c < cnt2[r] : c > cnt2[r];\n            if (dp2[r] > x || (dp2[r]\
-    \ == x && tie)) {\n              dp2[r] = x;\n              cnt2[r] = c;\n   \
-    \         }\n          }\n        }\n\n        assert(dp == dp2);\n\n        int\
-    \ c = 0;\n        for (int v = N; v > 0; v = frm[v]) ++c;\n        assert(c ==\
-    \ cnt2[N]);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a\
-    \ + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ A[l][r];\n      };\n\n      FOR(minimize_cnt, 2) {\n        Monge_Shortest_Path<ll>\
+    \ solver;\n        solver.solve(N, f, minimize_cnt);\n\n        vc<ll> dp2(N +\
+    \ 1, infty<ll>);\n        vc<int> cnt2(N + 1, infty<int>);\n        dp2[0] = 0;\n\
+    \        cnt2[0] = 0;\n\n        FOR(r, 1, N + 1) {\n          FOR(l, r) {\n \
+    \           ll x = dp2[l] + f(l, r);\n            int c = cnt2[l] + 1;\n     \
+    \       bool tie = minimize_cnt ? c < cnt2[r] : c > cnt2[r];\n            if (dp2[r]\
+    \ > x || (dp2[r] == x && tie)) {\n              dp2[r] = x;\n              cnt2[r]\
+    \ = c;\n            }\n          }\n        }\n\n        assert(solver.dp == dp2);\n\
+    \        assert(solver.cnt[N] == cnt2[N]);\n      }\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  INT(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -318,8 +317,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/monge_shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 11:49:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-28 15:20:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/monge_shortest_path.test.cpp
 layout: document

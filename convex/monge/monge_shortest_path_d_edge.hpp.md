@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: convex/alien.hpp
     title: convex/alien.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
   _extendedRequiredBy: []

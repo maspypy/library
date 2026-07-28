@@ -5,13 +5,10 @@ data:
   - icon: ':warning:'
     path: convex/monge/monge_shortest_path_d_edge.hpp
     title: convex/monge/monge_shortest_path_d_edge.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/alien.test.cpp
-    title: test/1_mytest/alien.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convex/alien.hpp\"\n\n// T \u306F\u6574\u6570\u578B\u3092\
@@ -44,9 +41,8 @@ data:
   requiredBy:
   - convex/monge/monge_shortest_path_d_edge.hpp
   timestamp: '2026-06-20 11:11:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/1_mytest/alien.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: convex/alien.hpp
 layout: document
 redirect_from:
