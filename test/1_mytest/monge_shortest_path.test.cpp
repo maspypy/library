@@ -16,7 +16,8 @@ void test() {
       };
 
       FOR(minimize_cnt, 2) {
-        auto [dp, frm] = monge_shortest_path<ll>(N, f, minimize_cnt);
+        Monge_Shortest_Path<ll> solver;
+        solver.solve(N, f, minimize_cnt);
 
         vc<ll> dp2(N + 1, infty<ll>);
         vc<int> cnt2(N + 1, infty<int>);
@@ -35,11 +36,8 @@ void test() {
           }
         }
 
-        assert(dp == dp2);
-
-        int c = 0;
-        for (int v = N; v > 0; v = frm[v]) ++c;
-        assert(c == cnt2[N]);
+        assert(solver.dp == dp2);
+        assert(solver.cnt[N] == cnt2[N]);
       }
     }
   }

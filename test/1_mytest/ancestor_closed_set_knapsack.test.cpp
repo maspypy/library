@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "my_template.hpp"
+#include "other/bit.hpp"
 #include "random/random_graph.hpp"
 #include "knapsack/ancestor_closed_set_knapsack.hpp"
 
