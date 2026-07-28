@@ -12,7 +12,7 @@ void test() {
       FOR(i, N) A[i] = RNG(0, 1000000000);
 
       Path_Independent_Set<ll, true> MI(A);
-      Path_Independent_Set<ll, true> MA(A);
+      Path_Independent_Set<ll, false> MA(A);
       FOR(cnt, ceil<int>(N, 2) + 1) {
         ll mi = infty<ll>, ma = -infty<ll>;
         FOR(s, 1 << N) {
