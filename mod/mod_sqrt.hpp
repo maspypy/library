@@ -43,6 +43,7 @@ ll mod_sqrt_64(ll a, ll p) {
     while (1) {
       i128 b = RNG(2, p);
       i128 D = b * b - a;
+      D %= p;
       if (D == 0) return {b, D};
       if (mod_pow_64(D, k, p) != 1) return {b, D};
     }

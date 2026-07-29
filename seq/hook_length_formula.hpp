@@ -5,13 +5,13 @@
 template <typename mint>
 mint hook_length_formula(vc<int> A) {
   if (len(A) == 0) return 1;
-  int H = len(A), W = A[0];
+  int H = len(A);
   FOR(i, H - 1) assert(A[i] >= A[i + 1]);
-  vc<int> B(W);
-  reverse(all(A));
-  mint ANS = fact<mint>(SUM<int>(A));
-  for (auto&& a: A) {
-    FOR(j, a) { ANS *= inv<mint>(B[j] + a - j), ++B[j]; }
-  }
+  int N = SUM<int>(A);
+
+  FOR(i, H) A[i] += H - 1 - i;
+  mint ANS = fact<mint>(N);
+  FOR(j, H) FOR(i, j) ANS *= A[i] - A[j];
+  FOR(i, H) ANS *= fact_inv<mint>(A[i]);
   return ANS;
 }
