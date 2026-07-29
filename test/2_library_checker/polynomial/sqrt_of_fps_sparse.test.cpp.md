@@ -765,31 +765,32 @@ data:
     \ mod_sqrt_64(ll a, ll p) {\r\n  if (p == 2) return a;\r\n  if (a == 0) return\
     \ 0;\r\n  ll k = (p - 1) / 2;\r\n  if (mod_pow_64(a, k, p) != 1) return -1;\r\n\
     \  auto find = [&]() -> pair<i128, i128> {\r\n    while (1) {\r\n      i128 b\
-    \ = RNG(2, p);\r\n      i128 D = b * b - a;\r\n      if (D == 0) return {b, D};\r\
-    \n      if (mod_pow_64(D, k, p) != 1) return {b, D};\r\n    }\r\n  };\r\n  auto\
-    \ [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\
-    \n  i128 f0 = b, f1 = 1, g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) {\r\
-    \n      tie(g0, g1) = mp(f0 * g0 + D * f1 % p * g1, f1 * g0 + f0 * g1);\r\n  \
-    \    g0 %= p, g1 %= p;\r\n    }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 % p *\
-    \ f1, 2 * f0 * f1);\r\n    f0 %= p, f1 %= p;\r\n    k >>= 1;\r\n  }\r\n  return\
-    \ g0;\r\n}\r\n#line 5 \"poly/fps_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\n\
-    vc<mint> fps_sqrt_dense(vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int\
-    \ n = len(f);\r\n  vc<mint> R = {1};\r\n  while (len(R) < n) {\r\n    int m =\
-    \ min(2 * int(len(R)), n);\r\n    R.resize(m);\r\n    vc<mint> tmp = {f.begin(),\
-    \ f.begin() + m};\r\n    tmp = convolution(tmp, fps_inv(R));\r\n    tmp.resize(m);\r\
-    \n    FOR(i, m) R[i] += tmp[i];\r\n    mint c = mint(1) / mint(2);\r\n    FOR(i,\
-    \ len(R)) R[i] *= c;\r\n  }\r\n  R.resize(n);\r\n  return R;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_sqrt_sparse(vc<mint>& f) {\r\n  return fps_pow_1_sparse(f,\
-    \ inv<mint>(2));\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt(vc<mint>&\
-    \ f) {\r\n  if (count_terms(f) <= 200) return fps_sqrt_sparse(f);\r\n  return\
-    \ fps_sqrt_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_any(vc<mint>&\
-    \ f) {\r\n  int n = len(f);\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d\
-    \ = i;\r\n  if (d == n) return f;\r\n  if (d & 1) return {};\r\n  mint y = f[d];\r\
-    \n  mint x = mod_sqrt(y.val, mint::get_mod());\r\n  if (x * x != y) return {};\r\
-    \n  mint c = mint(1) / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d\
-    \ + i] * c;\r\n  g = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\
-    \n  FOR_R(i, n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n   \
-    \ else\r\n      g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n#line 6 \"test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp\"\
+    \ = RNG(2, p);\r\n      i128 D = b * b - a;\r\n      D %= p;\r\n      if (D ==\
+    \ 0) return {b, D};\r\n      if (mod_pow_64(D, k, p) != 1) return {b, D};\r\n\
+    \    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\
+    \n  // (b + sqrt(D))^k\r\n  i128 f0 = b, f1 = 1, g0 = 1, g1 = 0;\r\n  while (k)\
+    \ {\r\n    if (k & 1) {\r\n      tie(g0, g1) = mp(f0 * g0 + D * f1 % p * g1, f1\
+    \ * g0 + f0 * g1);\r\n      g0 %= p, g1 %= p;\r\n    }\r\n    tie(f0, f1) = mp(f0\
+    \ * f0 + D * f1 % p * f1, 2 * f0 * f1);\r\n    f0 %= p, f1 %= p;\r\n    k >>=\
+    \ 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5 \"poly/fps_sqrt.hpp\"\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_sqrt_dense(vc<mint>& f) {\r\n  assert(f[0] ==\
+    \ mint(1));\r\n  int n = len(f);\r\n  vc<mint> R = {1};\r\n  while (len(R) < n)\
+    \ {\r\n    int m = min(2 * int(len(R)), n);\r\n    R.resize(m);\r\n    vc<mint>\
+    \ tmp = {f.begin(), f.begin() + m};\r\n    tmp = convolution(tmp, fps_inv(R));\r\
+    \n    tmp.resize(m);\r\n    FOR(i, m) R[i] += tmp[i];\r\n    mint c = mint(1)\
+    \ / mint(2);\r\n    FOR(i, len(R)) R[i] *= c;\r\n  }\r\n  R.resize(n);\r\n  return\
+    \ R;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_sparse(vc<mint>&\
+    \ f) {\r\n  return fps_pow_1_sparse(f, inv<mint>(2));\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_sqrt(vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return\
+    \ fps_sqrt_sparse(f);\r\n  return fps_sqrt_dense(f);\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_sqrt_any(vc<mint>& f) {\r\n  int n = len(f);\r\n  int\
+    \ d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\n  if (d == n) return f;\r\n\
+    \  if (d & 1) return {};\r\n  mint y = f[d];\r\n  mint x = mod_sqrt(y.val, mint::get_mod());\r\
+    \n  if (x * x != y) return {};\r\n  mint c = mint(1) / y;\r\n  vc<mint> g(n -\
+    \ d);\r\n  FOR(i, n - d) g[i] = f[d + i] * c;\r\n  g = fps_sqrt(g);\r\n  FOR(i,\
+    \ len(g)) g[i] *= x;\r\n  g.resize(n);\r\n  FOR_R(i, n) {\r\n    if (i >= d /\
+    \ 2)\r\n      g[i] = g[i - d / 2];\r\n    else\r\n      g[i] = 0;\r\n  }\r\n \
+    \ return g;\r\n}\r\n#line 6 \"test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K);\r\n  vc<mint>\
     \ f(N);\r\n  FOR(K) {\r\n    LL(i, a);\r\n    f[i] = a;\r\n  }\r\n  f = fps_sqrt_any(f);\r\
     \n  if (len(f) == 0) return print(-1);\r\n  print(f);\r\n}\r\n\r\nsigned main()\
@@ -830,7 +831,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-07-29 18:58:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp

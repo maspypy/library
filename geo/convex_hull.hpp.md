@@ -29,9 +29,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
-  - icon: ':warning:'
-    path: geo/minkowski_sum.hpp
-    title: geo/minkowski_sum.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
@@ -171,7 +168,6 @@ data:
   requiredBy:
   - random/random_polygon.hpp
   - geo/furthest_pair.hpp
-  - geo/minkowski_sum.hpp
   - geo/convex_polygon.hpp
   - convex/line_min_function.hpp
   - convex/fenchel.hpp

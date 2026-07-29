@@ -637,51 +637,52 @@ data:
     \ mod_sqrt_64(ll a, ll p) {\r\n  if (p == 2) return a;\r\n  if (a == 0) return\
     \ 0;\r\n  ll k = (p - 1) / 2;\r\n  if (mod_pow_64(a, k, p) != 1) return -1;\r\n\
     \  auto find = [&]() -> pair<i128, i128> {\r\n    while (1) {\r\n      i128 b\
-    \ = RNG(2, p);\r\n      i128 D = b * b - a;\r\n      if (D == 0) return {b, D};\r\
-    \n      if (mod_pow_64(D, k, p) != 1) return {b, D};\r\n    }\r\n  };\r\n  auto\
-    \ [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\
-    \n  i128 f0 = b, f1 = 1, g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) {\r\
-    \n      tie(g0, g1) = mp(f0 * g0 + D * f1 % p * g1, f1 * g0 + f0 * g1);\r\n  \
-    \    g0 %= p, g1 %= p;\r\n    }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 % p *\
-    \ f1, 2 * f0 * f1);\r\n    f0 %= p, f1 %= p;\r\n    k >>= 1;\r\n  }\r\n  return\
-    \ g0;\r\n}\r\n#line 5 \"poly/fps_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\n\
-    vc<mint> fps_sqrt_dense(vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int\
-    \ n = len(f);\r\n  vc<mint> R = {1};\r\n  while (len(R) < n) {\r\n    int m =\
-    \ min(2 * int(len(R)), n);\r\n    R.resize(m);\r\n    vc<mint> tmp = {f.begin(),\
-    \ f.begin() + m};\r\n    tmp = convolution(tmp, fps_inv(R));\r\n    tmp.resize(m);\r\
-    \n    FOR(i, m) R[i] += tmp[i];\r\n    mint c = mint(1) / mint(2);\r\n    FOR(i,\
-    \ len(R)) R[i] *= c;\r\n  }\r\n  R.resize(n);\r\n  return R;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_sqrt_sparse(vc<mint>& f) {\r\n  return fps_pow_1_sparse(f,\
-    \ inv<mint>(2));\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt(vc<mint>&\
-    \ f) {\r\n  if (count_terms(f) <= 200) return fps_sqrt_sparse(f);\r\n  return\
-    \ fps_sqrt_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_any(vc<mint>&\
-    \ f) {\r\n  int n = len(f);\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d\
-    \ = i;\r\n  if (d == n) return f;\r\n  if (d & 1) return {};\r\n  mint y = f[d];\r\
-    \n  mint x = mod_sqrt(y.val, mint::get_mod());\r\n  if (x * x != y) return {};\r\
-    \n  mint c = mint(1) / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d\
-    \ + i] * c;\r\n  g = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\
-    \n  FOR_R(i, n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n   \
-    \ else\r\n      g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n#line 2 \"alg/monoid/mul.hpp\"\
-    \n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n\
-    \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
-    \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 2 \"ds/power_query.hpp\"\n\n// \u5B9A\u6570\
-    \u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002 B \u4E57\u5206\u305A\
-    \u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono, int B = 1024>\nstruct\
-    \ Power_Query {\n  using X = typename Mono::value_type;\n  vvc<X> dat;\n\n  Power_Query(X\
-    \ a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll n) {\n    X res = Mono::unit();\n\
-    \    int k = 0;\n    while (n) {\n      int r = n % B;\n      n /= B;\n      if\
-    \ (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }\n      res = Mono::op(res,\
-    \ dat[k][r]);\n      ++k;\n    }\n    return res;\n  }\n\n  // n \u4E57\u8A08\u7B97\
-    \u306E\u3068\u304D\u306B\u304B\u3051\u308B\u3082\u306E\u3092\u5217\u6319. \u884C\
-    \u5217\u30D9\u30AF\u30C8\u30EB\u7A4D\u3068\u304B\u3067\u4F7F\u7528\u53EF.\n  vc<X>\
-    \ get_list(ll n) {\n    vc<X> lst;\n    int k = 0;\n    while (n) {\n      int\
-    \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
-    \ - 1].back())); }\n      lst.eb(dat[k][r]);\n      ++k;\n    }\n    return lst;\n\
-    \  }\n\n  X operator[](ll n) { return (*this)(n); }\n\nprivate:\n  vc<X> make_pow(X\
-    \ a) {\n    vc<X> res = {Mono::unit()};\n    FOR(B) { res.eb(Mono::op(res.back(),\
-    \ a)); }\n    return res;\n  }\n};\n#line 4 \"graph/count/count_labeled_bipartite.hpp\"\
+    \ = RNG(2, p);\r\n      i128 D = b * b - a;\r\n      D %= p;\r\n      if (D ==\
+    \ 0) return {b, D};\r\n      if (mod_pow_64(D, k, p) != 1) return {b, D};\r\n\
+    \    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\
+    \n  // (b + sqrt(D))^k\r\n  i128 f0 = b, f1 = 1, g0 = 1, g1 = 0;\r\n  while (k)\
+    \ {\r\n    if (k & 1) {\r\n      tie(g0, g1) = mp(f0 * g0 + D * f1 % p * g1, f1\
+    \ * g0 + f0 * g1);\r\n      g0 %= p, g1 %= p;\r\n    }\r\n    tie(f0, f1) = mp(f0\
+    \ * f0 + D * f1 % p * f1, 2 * f0 * f1);\r\n    f0 %= p, f1 %= p;\r\n    k >>=\
+    \ 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5 \"poly/fps_sqrt.hpp\"\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_sqrt_dense(vc<mint>& f) {\r\n  assert(f[0] ==\
+    \ mint(1));\r\n  int n = len(f);\r\n  vc<mint> R = {1};\r\n  while (len(R) < n)\
+    \ {\r\n    int m = min(2 * int(len(R)), n);\r\n    R.resize(m);\r\n    vc<mint>\
+    \ tmp = {f.begin(), f.begin() + m};\r\n    tmp = convolution(tmp, fps_inv(R));\r\
+    \n    tmp.resize(m);\r\n    FOR(i, m) R[i] += tmp[i];\r\n    mint c = mint(1)\
+    \ / mint(2);\r\n    FOR(i, len(R)) R[i] *= c;\r\n  }\r\n  R.resize(n);\r\n  return\
+    \ R;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_sparse(vc<mint>&\
+    \ f) {\r\n  return fps_pow_1_sparse(f, inv<mint>(2));\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_sqrt(vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return\
+    \ fps_sqrt_sparse(f);\r\n  return fps_sqrt_dense(f);\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_sqrt_any(vc<mint>& f) {\r\n  int n = len(f);\r\n  int\
+    \ d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\n  if (d == n) return f;\r\n\
+    \  if (d & 1) return {};\r\n  mint y = f[d];\r\n  mint x = mod_sqrt(y.val, mint::get_mod());\r\
+    \n  if (x * x != y) return {};\r\n  mint c = mint(1) / y;\r\n  vc<mint> g(n -\
+    \ d);\r\n  FOR(i, n - d) g[i] = f[d + i] * c;\r\n  g = fps_sqrt(g);\r\n  FOR(i,\
+    \ len(g)) g[i] *= x;\r\n  g.resize(n);\r\n  FOR_R(i, n) {\r\n    if (i >= d /\
+    \ 2)\r\n      g[i] = g[i - d / 2];\r\n    else\r\n      g[i] = 0;\r\n  }\r\n \
+    \ return g;\r\n}\r\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\n\
+    struct Monoid_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr X\
+    \ unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n\
+    #line 2 \"ds/power_query.hpp\"\n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\u3059\
+    \u308B\u30AF\u30A8\u30EA\u3002 B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\u3002\
+    \ntemplate <typename Mono, int B = 1024>\nstruct Power_Query {\n  using X = typename\
+    \ Mono::value_type;\n  vvc<X> dat;\n\n  Power_Query(X a) { dat.eb(make_pow(a));\
+    \ }\n\n  X operator()(ll n) {\n    X res = Mono::unit();\n    int k = 0;\n   \
+    \ while (n) {\n      int r = n % B;\n      n /= B;\n      if (len(dat) == k) {\
+    \ dat.eb(make_pow(dat[k - 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n\
+    \      ++k;\n    }\n    return res;\n  }\n\n  // n \u4E57\u8A08\u7B97\u306E\u3068\
+    \u304D\u306B\u304B\u3051\u308B\u3082\u306E\u3092\u5217\u6319. \u884C\u5217\u30D9\
+    \u30AF\u30C8\u30EB\u7A4D\u3068\u304B\u3067\u4F7F\u7528\u53EF.\n  vc<X> get_list(ll\
+    \ n) {\n    vc<X> lst;\n    int k = 0;\n    while (n) {\n      int r = n % B;\n\
+    \      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back()));\
+    \ }\n      lst.eb(dat[k][r]);\n      ++k;\n    }\n    return lst;\n  }\n\n  X\
+    \ operator[](ll n) { return (*this)(n); }\n\nprivate:\n  vc<X> make_pow(X a) {\n\
+    \    vc<X> res = {Mono::unit()};\n    FOR(B) { res.eb(Mono::op(res.back(), a));\
+    \ }\n    return res;\n  }\n};\n#line 4 \"graph/count/count_labeled_bipartite.hpp\"\
     \n\n// connected = false: https://oeis.org/A047864\n// connected = true: https://oeis.org/A001832\n\
     template <typename mint>\nvc<mint> count_labeled_bipartite(int N, bool connected)\
     \ {\n  // colored bipartite\n  vc<mint> F(N + 1);\n  mint ipow = 1;\n  F[0] =\
@@ -739,7 +740,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_bipartite.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-07-29 18:58:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_bipartite.test.cpp

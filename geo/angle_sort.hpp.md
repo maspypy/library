@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
+  - icon: ':warning:'
+    path: geo/minkowski_sum.hpp
+    title: geo/minkowski_sum.hpp
   - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
@@ -147,6 +150,7 @@ data:
   - geo/count_points_in_triangles.hpp
   - geo/max_norm_sum.hpp
   - geo/rotating_swaps.hpp
+  - geo/minkowski_sum.hpp
   timestamp: '2026-07-19 03:14:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

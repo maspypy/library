@@ -131,10 +131,10 @@ data:
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 4 \"seq/hook_length_formula.hpp\"\n\ntemplate <typename mint>\nmint hook_length_formula(vc<int>\
-    \ A) {\n  if (len(A) == 0) return 1;\n  int H = len(A), W = A[0];\n  FOR(i, H\
-    \ - 1) assert(A[i] >= A[i + 1]);\n  vc<int> B(W);\n  reverse(all(A));\n  mint\
-    \ ANS = fact<mint>(SUM<int>(A));\n  for (auto&& a: A) {\n    FOR(j, a) { ANS *=\
-    \ inv<mint>(B[j] + a - j), ++B[j]; }\n  }\n  return ANS;\n}\n#line 2 \"seq/domino_standard_tableaux.hpp\"\
+    \ A) {\n  if (len(A) == 0) return 1;\n  int H = len(A);\n  FOR(i, H - 1) assert(A[i]\
+    \ >= A[i + 1]);\n  int N = SUM<int>(A);\n\n  FOR(i, H) A[i] += H - 1 - i;\n  mint\
+    \ ANS = fact<mint>(N);\n  FOR(j, H) FOR(i, j) ANS *= A[i] - A[j];\n  FOR(i, H)\
+    \ ANS *= fact_inv<mint>(A[i]);\n  return ANS;\n}\n#line 2 \"seq/domino_standard_tableaux.hpp\"\
     \n\ntemplate <typename mint>\nmint domino_standard_tableaux(vc<int> A) {\n  int\
     \ N = len(A);\n  if (N == 0) return mint(1);\n  FOR(i, N - 1) assert(A[i] >= A[i\
     \ + 1]);\n  int x = 0;\n  FOR(i, N) {\n    if (A[i] % 2 == 1) { x += (i % 2 ==\
@@ -162,7 +162,7 @@ data:
   isVerificationFile: false
   path: seq/domino_standard_tableaux.hpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-07-29 18:58:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2149.test.cpp
