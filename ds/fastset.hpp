@@ -13,6 +13,16 @@ struct FastSet {
 
   int size() { return n; }
 
+  void fillone() {
+    int cur = n;
+    for (auto& vs : seg) {
+      int p = cur / B, q = cur % B;
+      FOR(i, p) vs[i] = -1ull;
+      if (q) vs[p] = full_mask(q);
+      cur = (cur + B - 1) / B;
+    }
+  }
+
   template <typename F>
   FastSet(int n, F f) {
     build(n, f);

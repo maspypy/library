@@ -237,4 +237,18 @@ void concat(vc<T> &first, const Vectors &...others) {
   first.reserve(first.size() + (others.size() + ... + 0));
   (first.insert(first.end(), others.begin(), others.end()), ...);
 }
+
+// i128
+template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>
+constexpr i128 abs(T x) {
+  return x < 0 ? -x : x;
+}
+
+constexpr i128 gcd(i128 a, i128 b) {
+  while (b != 0) {
+    i128 c = a % b;
+    a = b, b = c;
+  }
+  return abs(a);
+}
 #endif

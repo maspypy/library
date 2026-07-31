@@ -8,6 +8,8 @@ struct CSR {
   vc<T> dat;
 
   CSR(int n = 0) : n(n), prepared(false) {}
+  void reserve(int n) { dat.reserve(n); }
+
   void add(int i, const T& x) {
     assert(0 <= i && i < n && !prepared);
     I.eb(i), dat.eb(x);
@@ -27,7 +29,7 @@ struct CSR {
     swap(dat, tmp);
     ptr.pop_back();
     ptr.insert(ptr.begin(), 0);
-    I.clear(), I.shrink_to_fit();
+    I.clear();
   }
 
   struct range {

@@ -16,7 +16,8 @@ struct Index_Compression_DISTINCT_SMALL {
     return X;
   }
   int size() const { return len(dat); }
-  int operator()(ll x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }
+  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }
+  int idx_to_val(int i) const { return dat[i]; }
 };
 
 template <typename T>
@@ -35,44 +36,48 @@ struct Index_Compression_SAME_SMALL {
     return X;
   }
   int size() const { return len(dat); }
-  int operator()(ll x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }
+  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }
+  int idx_to_val(int i) const { return dat[i]; }
 };
 
 template <typename T>
 struct Index_Compression_SAME_LARGE {
   vc<T> dat;
-  vc<int> build(vc<T> X) {
-    vc<int> I = argsort(X);
-    vc<int> res(len(X));
-    for (auto& i : I) {
-      if (!dat.empty() && dat.back() == X[i]) {
-        res[i] = len(dat) - 1;
-      } else {
-        res[i] = len(dat);
-        dat.eb(X[i]);
-      }
+  vc<int> build(const vc<T>& X) {
+    dat.reserve(len(X));
+    vc<pair<T, int>> tmp(len(X));
+    FOR(i, len(X)) tmp[i] = {X[i], i};
+    sort(all(tmp));
+    vc<int> ANS(len(X));
+    for (auto [x, j] : tmp) {
+      if (dat.empty() || dat.back() != x) dat.eb(x);
+      ANS[j] = len(dat) - 1;
     }
-    dat.shrink_to_fit();
-    return res;
+    return ANS;
   }
   int size() const { return len(dat); }
-  int operator()(T x) const { return LB(dat, x); }
+  int val_to_idx(T x) const { return LB(dat, x); }
+  int idx_to_val(int i) const { return dat[i]; }
 };
 
 template <typename T>
 struct Index_Compression_DISTINCT_LARGE {
   vc<T> dat;
   vc<int> build(vc<T> X) {
-    vc<int> I = argsort(X);
-    vc<int> res(len(X));
-    for (auto& i : I) {
-      res[i] = len(dat), dat.eb(X[i]);
+    dat.reserve(len(X));
+    vc<pair<T, int>> tmp(len(X));
+    FOR(i, len(X)) tmp[i] = {X[i], i};
+    sort(all(tmp));
+    vc<int> ANS(len(X));
+    for (auto [x, j] : tmp) {
+      dat.eb(x);
+      ANS[j] = len(dat) - 1;
     }
-    dat.shrink_to_fit();
-    return res;
+    return ANS;
   }
   int size() const { return len(dat); }
-  int operator()(T x) const { return LB(dat, x); }
+  int val_to_idx(T x) const { return LB(dat, x); }
+  int idx_to_val(int i) const { return dat[i]; }
 };
 
 template <typename T, bool SMALL>
