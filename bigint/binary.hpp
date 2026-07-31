@@ -179,13 +179,40 @@ struct BigInteger_Binary {
     }
     while (s.back() == '0') s.pop_back();
     reverse(all(s));
-    if (sgn == -1) s += '-';
+    if (sgn == -1) s = "-" + s;
     return s;
   }
 
   string to_decimal_string() {
-    assert(0);
-    return "";
+    string ANS;
+    vc<u64> A;
+    auto carry = [&]() -> void {
+      A.eb(0), A.eb(0);
+      FOR(i, len(A) - 1) {
+        A[i + 1] += A[i] / TEN[9];
+        A[i] = A[i] % TEN[9];
+      }
+      while (len(A) && A.back() == 0) A.pop_back();
+    };
+    auto mul = [&]() -> void {
+      FOR(i, len(A)) { A[i] *= MOD; }
+      carry();
+    };
+    FOR_R(i, len(dat)) {
+      mul();
+      if (A.empty()) A.eb(0);
+      A[0] += dat[i];
+      carry();
+    }
+    FOR_R(i, len(A)) {
+      string S = ::to_string(A[i]);
+      while (len(S) < 9) S = "0" + S;
+      ANS += S;
+    }
+    while (len(ANS) && ANS[0] == '0') ANS.erase(ANS.begin());
+    if (ANS.empty()) ANS = "0";
+    if (sgn == -1) ANS = "-" + ANS;
+    return ANS;
   }
 
   // https://codeforces.com/contest/477/problem/D
