@@ -382,8 +382,17 @@ data:
     \ to_string() {\n    if (dat.empty()) return \"0\";\n    string s;\n    for (int\
     \ x : dat) {\n      FOR(LOG) {\n        s += '0' + (x & 1);\n        x /= 2;\n\
     \      }\n    }\n    while (s.back() == '0') s.pop_back();\n    reverse(all(s));\n\
-    \    if (sgn == -1) s += '-';\n    return s;\n  }\n\n  string to_decimal_string()\
-    \ {\n    assert(0);\n    return \"\";\n  }\n\n  // https://codeforces.com/contest/477/problem/D\n\
+    \    if (sgn == -1) s = \"-\" + s;\n    return s;\n  }\n\n  string to_decimal_string()\
+    \ {\n    string ANS;\n    vc<u64> A;\n    auto carry = [&]() -> void {\n     \
+    \ A.eb(0), A.eb(0);\n      FOR(i, len(A) - 1) {\n        A[i + 1] += A[i] / TEN[9];\n\
+    \        A[i] = A[i] % TEN[9];\n      }\n      while (len(A) && A.back() == 0)\
+    \ A.pop_back();\n    };\n    auto mul = [&]() -> void {\n      FOR(i, len(A))\
+    \ { A[i] *= MOD; }\n      carry();\n    };\n    FOR_R(i, len(dat)) {\n      mul();\n\
+    \      if (A.empty()) A.eb(0);\n      A[0] += dat[i];\n      carry();\n    }\n\
+    \    FOR_R(i, len(A)) {\n      string S = ::to_string(A[i]);\n      while (len(S)\
+    \ < 9) S = \"0\" + S;\n      ANS += S;\n    }\n    while (len(ANS) && ANS[0] ==\
+    \ '0') ANS.erase(ANS.begin());\n    if (ANS.empty()) ANS = \"0\";\n    if (sgn\
+    \ == -1) ANS = \"-\" + ANS;\n    return ANS;\n  }\n\n  // https://codeforces.com/contest/477/problem/D\n\
     \  pair<bint, int> divmod(int p) {\n    assert(dat.empty() || sgn == 1);\n   \
     \ vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD\
     \ + dat[i];\n      after.eb(rm / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n\
@@ -482,8 +491,17 @@ data:
     \ to_string() {\n    if (dat.empty()) return \"0\";\n    string s;\n    for (int\
     \ x : dat) {\n      FOR(LOG) {\n        s += '0' + (x & 1);\n        x /= 2;\n\
     \      }\n    }\n    while (s.back() == '0') s.pop_back();\n    reverse(all(s));\n\
-    \    if (sgn == -1) s += '-';\n    return s;\n  }\n\n  string to_decimal_string()\
-    \ {\n    assert(0);\n    return \"\";\n  }\n\n  // https://codeforces.com/contest/477/problem/D\n\
+    \    if (sgn == -1) s = \"-\" + s;\n    return s;\n  }\n\n  string to_decimal_string()\
+    \ {\n    string ANS;\n    vc<u64> A;\n    auto carry = [&]() -> void {\n     \
+    \ A.eb(0), A.eb(0);\n      FOR(i, len(A) - 1) {\n        A[i + 1] += A[i] / TEN[9];\n\
+    \        A[i] = A[i] % TEN[9];\n      }\n      while (len(A) && A.back() == 0)\
+    \ A.pop_back();\n    };\n    auto mul = [&]() -> void {\n      FOR(i, len(A))\
+    \ { A[i] *= MOD; }\n      carry();\n    };\n    FOR_R(i, len(dat)) {\n      mul();\n\
+    \      if (A.empty()) A.eb(0);\n      A[0] += dat[i];\n      carry();\n    }\n\
+    \    FOR_R(i, len(A)) {\n      string S = ::to_string(A[i]);\n      while (len(S)\
+    \ < 9) S = \"0\" + S;\n      ANS += S;\n    }\n    while (len(ANS) && ANS[0] ==\
+    \ '0') ANS.erase(ANS.begin());\n    if (ANS.empty()) ANS = \"0\";\n    if (sgn\
+    \ == -1) ANS = \"-\" + ANS;\n    return ANS;\n  }\n\n  // https://codeforces.com/contest/477/problem/D\n\
     \  pair<bint, int> divmod(int p) {\n    assert(dat.empty() || sgn == 1);\n   \
     \ vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD\
     \ + dat[i];\n      after.eb(rm / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n\
@@ -533,7 +551,7 @@ data:
   isVerificationFile: false
   path: bigint/binary.hpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-07-31 12:20:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/bigint.test.cpp
