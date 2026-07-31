@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -121,19 +121,22 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/range_add_range_max.test.cpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
-    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n \
-    \ static constexpr X op(const X &x, const X &y) noexcept { return max(x, y); }\r\
-    \n  static constexpr X unit() { return -infty<E>; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/max_add.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct ActedMonoid_Max_Add {\r\n  using Monoid_X = Monoid_Max<E>;\r\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/range_add_range_max.test.cpp\"\n\n#line 2 \"\
+    alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using\
+    \ X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const\
+    \ X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x)\
+    \ noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept\
+    \ { return X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static\
+    \ constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\n\r\n\
+    template <typename E>\r\nstruct Monoid_Max {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return max(x,\
+    \ y); }\r\n  static constexpr X unit() { return -infty<E>; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/max_add.hpp\"\n\r\n\
+    template <typename E>\r\nstruct ActedMonoid_Max_Add {\r\n  using Monoid_X = Monoid_Max<E>;\r\
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    if (x == -infty<E>) return x;\r\n\
@@ -474,7 +477,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_max.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_max.test.cpp

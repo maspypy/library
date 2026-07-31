@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_acted_monoid.hpp
     title: ds/kdtree/kdtree_acted_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -108,8 +108,11 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/kdtree_am.test.cpp\"\n\n#line 1 \"ds/kdtree/kdtree_acted_monoid.hpp\"\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/kdtree_am.test.cpp\"\n\n#line 1 \"ds/kdtree/kdtree_acted_monoid.hpp\"\
     \ntemplate <class ActedMonoid, typename XY>\r\nstruct KDTree_ActedMonoid {\r\n\
     \  using AM = ActedMonoid;\r\n  using MX = typename AM::Monoid_X;\r\n  using MA\
     \ = typename AM::Monoid_A;\r\n  using X = typename AM::X;\r\n  using A = typename\
@@ -248,7 +251,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_am.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_am.test.cpp

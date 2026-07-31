@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: datetime/datetime.hpp
     title: datetime/datetime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -96,8 +96,11 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 1 \"datetime/datetime.hpp\"\n// https://codeforces.com/problemset/problem/698/E\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 1 \"datetime/datetime.hpp\"\n// https://codeforces.com/problemset/problem/698/E\n\
     struct DateTime {\n  static constexpr int month_days[13] = {0, 31, 28, 31, 30,\
     \ 31, 30, 31, 31, 30, 31, 30, 31};\n  ll year;\n  int month, day;\n  DateTime(ll\
     \ y, int m, int d) : year(y), month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\
@@ -155,7 +158,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/datetime.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/datetime.test.cpp

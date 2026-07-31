@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
@@ -106,36 +106,40 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/count_unbordered_string.test.cpp\"\n\n#line 1 \"string/count_unborderd_string.hpp\"\
-    \n\n// O(N) time\n// https://oeis.org/A003000\ntemplate <typename mint>\nvc<mint>\
-    \ count_unbordered_string(int N, int sigma) {\n  // \u5168\u4F53\u304B\u3089 border\
-    \ \u3092\u6301\u3064\u3082\u306E\u3092\u5F15\u304F, minimum border = unbordered\n\
-    \  // vc<mint> dp(N + 1);\n  // FOR(n, N + 1) {\n  //   dp[n] = mint(sigma).pow(n);\n\
-    \  //   FOR(i, 1, n / 2 + 1) dp[n] -= dp[i] * mint(sigma).pow(n - 2 * i);\n  //\
-    \ }\n  // \u3053\u308C\u3092 O(N) \u306B\n\n  vc<mint> dp(N + 1);\n  dp[0] = 1;\n\
-    \  FOR(n, 1, N + 1) {\n    if (n % 2 == 0) dp[n] = mint(sigma) * dp[n - 1] - dp[n\
-    \ / 2];\n    if (n % 2 == 1) dp[n] = mint(sigma) * dp[n - 1];\n  }\n  return dp;\n\
-    }\n#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
-    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
-    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
-    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/count_unbordered_string.test.cpp\"\n\n#line\
+    \ 1 \"string/count_unborderd_string.hpp\"\n\n// O(N) time\n// https://oeis.org/A003000\n\
+    template <typename mint>\nvc<mint> count_unbordered_string(int N, int sigma) {\n\
+    \  // \u5168\u4F53\u304B\u3089 border \u3092\u6301\u3064\u3082\u306E\u3092\u5F15\
+    \u304F, minimum border = unbordered\n  // vc<mint> dp(N + 1);\n  // FOR(n, N +\
+    \ 1) {\n  //   dp[n] = mint(sigma).pow(n);\n  //   FOR(i, 1, n / 2 + 1) dp[n]\
+    \ -= dp[i] * mint(sigma).pow(n - 2 * i);\n  // }\n  // \u3053\u308C\u3092 O(N)\
+    \ \u306B\n\n  vc<mint> dp(N + 1);\n  dp[0] = 1;\n  FOR(n, 1, N + 1) {\n    if\
+    \ (n % 2 == 0) dp[n] = mint(sigma) * dp[n - 1] - dp[n / 2];\n    if (n % 2 ==\
+    \ 1) dp[n] = mint(sigma) * dp[n - 1];\n  }\n  return dp;\n}\n#line 2 \"mod/modint_common.hpp\"\
+    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
     \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
     \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
     \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
@@ -252,7 +256,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_unbordered_string.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_unbordered_string.test.cpp

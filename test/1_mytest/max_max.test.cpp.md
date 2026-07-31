@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_max.hpp
     title: alg/acted_monoid/max_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -108,17 +108,20 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Max\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit()\
-    \ { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 2 \"alg/acted_monoid/max_max.hpp\"\n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Max_Max\
-    \ {\r\n  using Monoid_X = Monoid_Max<E>;\r\n  using Monoid_A = Monoid_Max<E>;\r\
-    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return\
-    \ max(x, a);\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n \
-    \ static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr\
+    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n#line 2 \"alg/acted_monoid/max_max.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct ActedMonoid_Max_Max {\r\n  using Monoid_X = Monoid_Max<E>;\r\n  using Monoid_A\
+    \ = Monoid_Max<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
+    \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
+    \ A &a, const ll &size) {\r\n    return max(x, a);\r\n  }\r\n};\r\n#line 2 \"\
+    random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
@@ -246,7 +249,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/max_max.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/max_max.test.cpp

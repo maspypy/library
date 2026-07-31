@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -93,17 +93,20 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/floor_ceil.test.cpp\"\n\ntemplate <typename T>\nvoid test()\
-    \ {\n  vc<T> X;\n  T mi = numeric_limits<T>::min();\n  T ma = numeric_limits<T>::max();\n\
-    \  for (int x = -100; x <= 100; ++x) X.eb(T(x));\n  for (int x = 0; x <= 100;\
-    \ ++x) X.eb(mi + T(x));\n  for (int x = 0; x <= 100; ++x) X.eb(ma - T(x));\n \
-    \ for (auto& x: X) {\n    for (auto& y: X) {\n      if (y <= 0) continue;\n  \
-    \    T k = floor(x, y);\n      assert(0 <= x - k * y && x - k * y < y);\n    \
-    \  k = ceil(x, y);\n      assert(0 <= k * y - x && k * y - x < y);\n    }\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test<int>();\n  test<u32>();\n  test<ll>();\n  test<u64>();\n\
-    \  solve();\n  return 0;\n}\n"
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/floor_ceil.test.cpp\"\n\ntemplate <typename\
+    \ T>\nvoid test() {\n  vc<T> X;\n  T mi = numeric_limits<T>::min();\n  T ma =\
+    \ numeric_limits<T>::max();\n  for (int x = -100; x <= 100; ++x) X.eb(T(x));\n\
+    \  for (int x = 0; x <= 100; ++x) X.eb(mi + T(x));\n  for (int x = 0; x <= 100;\
+    \ ++x) X.eb(ma - T(x));\n  for (auto& x: X) {\n    for (auto& y: X) {\n      if\
+    \ (y <= 0) continue;\n      T k = floor(x, y);\n      assert(0 <= x - k * y &&\
+    \ x - k * y < y);\n      k = ceil(x, y);\n      assert(0 <= k * y - x && k * y\
+    \ - x < y);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<int>();\n  test<u32>();\n\
+    \  test<ll>();\n  test<u64>();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\ntemplate <typename T>\nvoid test() {\n  vc<T> X;\n  T mi = numeric_limits<T>::min();\n\
     \  T ma = numeric_limits<T>::max();\n  for (int x = -100; x <= 100; ++x) X.eb(T(x));\n\
@@ -119,7 +122,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/floor_ceil.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/floor_ceil.test.cpp

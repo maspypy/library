@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/slope_trick/slope_trick_0.hpp
     title: convex/slope_trick/slope_trick_0.hpp
   - icon: ':heavy_check_mark:'
     path: flow/min_cost_matching_on_line.hpp
     title: flow/min_cost_matching_on_line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -101,21 +101,24 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 1 \"convex/slope_trick/slope_trick_0.hpp\"\n// \u6700\u521D\u306B\u4F5C\u3063\
-    \u305F\u6700\u3082\u30B7\u30F3\u30D7\u30EB\u306A\u3084\u3064\u3092\u4E00\u5FDC\
-    \u6B8B\u3057\u3066\u304A\u304F\r\nstruct Slope_Trick_0 {\r\n  static constexpr\
-    \ ll LMIN = -infty<ll>;\r\n  static constexpr ll RMAX = infty<ll>;\r\n  pq_max<ll>\
-    \ que_l;\r\n  pq_min<ll> que_r;\r\n\r\n  ll add_l, add_r;\r\n  i128 min_f;  //\
-    \ infty \u3092\u8DB3\u3057\u5F15\u304D\u3057\u3066\u3082\u58CA\u308C\u306A\u3044\
-    \u3088\u3046\u306B i128 \u306B\u3059\u308B\r\n\r\n  Slope_Trick_0() : add_l(0),\
-    \ add_r(0), min_f(0) {}\r\n\r\n  int size() { return len(que_l) + len(que_r);\
-    \ }\r\n  tuple<ll, ll, i128> get_min() { return {top_L(), top_R(), min_f}; }\r\
-    \n\r\n  void add_const(ll a) { min_f += a; }\r\n\r\n  // O(|a| log N)\r\n  void\
-    \ add_linear(ll a, ll b) {\r\n    min_f += b;\r\n    FOR(max<int>(a, 0)) {\r\n\
-    \      ll x = pop_L();\r\n      min_f += x;\r\n      push_R(x);\r\n    }\r\n \
-    \   FOR(max<int>(-a, 0)) {\r\n      ll x = pop_R();\r\n      min_f -= x;\r\n \
-    \     push_L(x);\r\n    }\r\n  }\r\n\r\n  // (a-x)+\r\n  void add_a_minus_x(ll\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 1 \"convex/slope_trick/slope_trick_0.hpp\"\n// \u6700\u521D\u306B\
+    \u4F5C\u3063\u305F\u6700\u3082\u30B7\u30F3\u30D7\u30EB\u306A\u3084\u3064\u3092\
+    \u4E00\u5FDC\u6B8B\u3057\u3066\u304A\u304F\r\nstruct Slope_Trick_0 {\r\n  static\
+    \ constexpr ll LMIN = -infty<ll>;\r\n  static constexpr ll RMAX = infty<ll>;\r\
+    \n  pq_max<ll> que_l;\r\n  pq_min<ll> que_r;\r\n\r\n  ll add_l, add_r;\r\n  i128\
+    \ min_f;  // infty \u3092\u8DB3\u3057\u5F15\u304D\u3057\u3066\u3082\u58CA\u308C\
+    \u306A\u3044\u3088\u3046\u306B i128 \u306B\u3059\u308B\r\n\r\n  Slope_Trick_0()\
+    \ : add_l(0), add_r(0), min_f(0) {}\r\n\r\n  int size() { return len(que_l) +\
+    \ len(que_r); }\r\n  tuple<ll, ll, i128> get_min() { return {top_L(), top_R(),\
+    \ min_f}; }\r\n\r\n  void add_const(ll a) { min_f += a; }\r\n\r\n  // O(|a| log\
+    \ N)\r\n  void add_linear(ll a, ll b) {\r\n    min_f += b;\r\n    FOR(max<int>(a,\
+    \ 0)) {\r\n      ll x = pop_L();\r\n      min_f += x;\r\n      push_R(x);\r\n\
+    \    }\r\n    FOR(max<int>(-a, 0)) {\r\n      ll x = pop_R();\r\n      min_f -=\
+    \ x;\r\n      push_L(x);\r\n    }\r\n  }\r\n\r\n  // (a-x)+\r\n  void add_a_minus_x(ll\
     \ a) {\r\n    min_f += max<ll>(0, a - top_R());\r\n    push_R(a), push_L(pop_R());\r\
     \n  }\r\n  // (x-a)+\r\n  void add_x_minus_a(ll a) {\r\n    min_f += max<ll>(0,\
     \ top_L() - a);\r\n    push_L(a), push_R(pop_L());\r\n  }\r\n\r\n  // |x-a|\r\n\
@@ -188,7 +191,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/min_cost_matching_on_line.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/min_cost_matching_on_line.test.cpp

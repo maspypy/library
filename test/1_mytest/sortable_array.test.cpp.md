@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -109,8 +109,11 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 4 \"test/1_mytest/sortable_array.test.cpp\"\n\n#line 2 \"other/bit.hpp\"\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 4 \"test/1_mytest/sortable_array.test.cpp\"\n\n#line 2 \"other/bit.hpp\"\
     \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
     \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
@@ -140,9 +143,12 @@ data:
     \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"ds/fastset.hpp\"\n\r\n// 64-ary\
     \ tree\r\n// space: (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32\
     \ B = 64;\r\n  int n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int\
-    \ n) { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  template <typename\
-    \ F>\r\n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int\
-    \ m) {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
+    \ n) { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  void fillone() {\r\
+    \n    int cur = n;\r\n    for (auto& vs : seg) {\r\n      int p = cur / B, q =\
+    \ cur % B;\r\n      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p] = full_mask(q);\r\
+    \n      cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\
+    \n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
+    \ {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
     \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
     \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
     \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
@@ -300,7 +306,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sortable_array.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sortable_array.test.cpp

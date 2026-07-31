@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -112,35 +112,39 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
-    \ { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\nstruct\
-    \ Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return\
-    \ (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return X(none_val);\
-    \ }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/min_assign.hpp\"\
-    \n\r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Min_Assign {\r\n\
-    \  using Monoid_X = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
-    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return\
-    \ (a == none_val ? x : a);\r\n  }\r\n};\r\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\
-    \u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067\
-    \ static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct\
-    \ Node_Pool {\n  struct Slot {\n    union alignas(Node) {\n      Slot* next;\n\
-    \      unsigned char storage[sizeof(Node)];\n    };\n  };\n  using np = Node*;\n\
-    \n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n\
-    \  Slot* cur = nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n\
-    \  Node_Pool() { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&...\
-    \ args) {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
-    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
-    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
-    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
-    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
-    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
-    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
+    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\
+    \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
+    \ { return (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return\
+    \ X(none_val); }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3\
+    \ \"alg/acted_monoid/min_assign.hpp\"\n\r\ntemplate <typename E, E none_val>\r\
+    \nstruct ActedMonoid_Min_Assign {\r\n  using Monoid_X = Monoid_Min<E>;\r\n  using\
+    \ Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X &x, const A &a, const ll &size) {\r\n    return (a == none_val ? x : a);\r\
+    \n  }\r\n};\r\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\
+    \u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\
+    \u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  struct\
+    \ Slot {\n    union alignas(Node) {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n\
+    \    };\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 <<\
+    \ 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n \
+    \ template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
+    \    return ::new (s) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np\
+    \ x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (s) Node(*x);\
+    \  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u547C\u3073\
+    \u51FA\u3057\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
+    \    auto s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
+    \ = s;\n  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty())\
+    \ {\n      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
+    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
@@ -339,7 +343,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_am_persistent.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_am_persistent.test.cpp

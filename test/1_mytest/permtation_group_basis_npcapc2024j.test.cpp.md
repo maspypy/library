@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
     path: seq/permutation_group_basis.hpp
     title: seq/permutation_group_basis.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []
@@ -109,9 +109,12 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\n\n#line\
-    \ 1 \"seq/permutation_group_basis.hpp\"\n\n// https://codeforces.com/blog/entry/111290\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\
+    \n\n#line 1 \"seq/permutation_group_basis.hpp\"\n\n// https://codeforces.com/blog/entry/111290\n\
     // https://codeforces.com/gym/421334/problem/A\n// https://atcoder.jp/contests/npcapc_2024/tasks/npcapc_2024_j\n\
     template <int NMAX>\nstruct Permutation_Group_Basis {\n  using A = array<u8, NMAX>;\n\
     \  int n;\n  // Basis[i]: i \u672A\u6E80\u306F\u56FA\u5B9A\u3057\u3066 i \u3092\
@@ -346,7 +349,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp

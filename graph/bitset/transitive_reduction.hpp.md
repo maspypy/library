@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   - icon: ':warning:'
     path: graph/bitset/transitive_closure.hpp
     title: graph/bitset/transitive_closure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/multiset.hpp
     title: enumerate/multiset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -97,14 +97,18 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/enumerate_multisets.test.cpp\"\n\n#line 1 \"enumerate/multiset.hpp\"\
-    \n// N \u5143 K \u7A2E\u985E\u306E\u591A\u91CD\u96C6\u5408\u306E\u983B\u5EA6\u5217\
-    \u3064\u307E\u308A\r\n// a[0]+...+a[K-1]==N\r\ntemplate <typename F>\r\nvoid enumerate_multiset(int\
-    \ N, int K, F query) {\r\n  vc<int> A(K);\r\n  auto dfs = [&](auto& dfs, int p,\
-    \ int s) -> void {\r\n    if (p == K) {\r\n      if (s == 0) query(A);\r\n   \
-    \   return;\r\n    }\r\n    FOR(x, s + 1) {\r\n      A[p] = x;\r\n      dfs(dfs,\
-    \ p + 1, s - x);\r\n    }\r\n  };\r\n  dfs(dfs, 0, N);\r\n}\r\n#line 5 \"test/1_mytest/enumerate_multisets.test.cpp\"\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/enumerate_multisets.test.cpp\"\n\n#line 1 \"\
+    enumerate/multiset.hpp\"\n// N \u5143 K \u7A2E\u985E\u306E\u591A\u91CD\u96C6\u5408\
+    \u306E\u983B\u5EA6\u5217\u3064\u307E\u308A\r\n// a[0]+...+a[K-1]==N\r\ntemplate\
+    \ <typename F>\r\nvoid enumerate_multiset(int N, int K, F query) {\r\n  vc<int>\
+    \ A(K);\r\n  auto dfs = [&](auto& dfs, int p, int s) -> void {\r\n    if (p ==\
+    \ K) {\r\n      if (s == 0) query(A);\r\n      return;\r\n    }\r\n    FOR(x,\
+    \ s + 1) {\r\n      A[p] = x;\r\n      dfs(dfs, p + 1, s - x);\r\n    }\r\n  };\r\
+    \n  dfs(dfs, 0, N);\r\n}\r\n#line 5 \"test/1_mytest/enumerate_multisets.test.cpp\"\
     \n\nvoid test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int> A) -> void\
     \ { res.eb(A); };\n    enumerate_multiset(2, 3, f);\n    assert(len(res) == 6);\n\
     \    assert(res[0] == vc<int>({0, 0, 2}));\n    assert(res[1] == vc<int>({0, 1,\
@@ -131,7 +135,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_multisets.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_multisets.test.cpp

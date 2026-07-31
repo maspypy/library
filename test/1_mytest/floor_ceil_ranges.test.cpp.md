@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/ceil_range.hpp
     title: enumerate/ceil_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -100,23 +100,26 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 1 \"enumerate/ceil_range.hpp\"\n// \u5546\u304C q \u306E\u533A\u9593 [l,r)\
-    \ \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\ntemplate <typename F>\nvoid ceil_range(ll\
-    \ N, F f) {\n  assert(N <= (1LL << 50));\n  ll sq = sqrtl(N);\n  ll prev = infty<ll>;\n\
-    \  for (int q = 1; q <= sq; ++q) {\n    ll x = (N + q - 1) / q;\n    f(q, x, prev),\
-    \ prev = x;\n  }\n  int n = (N <= sq * sq + sq ? sq : sq + 1);\n  if (N == sq\
-    \ * sq) --n;\n  for (int l = n; l >= 1; --l) { f((N + l - 1) / l, l, l + 1); }\n\
-    }\n#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\u9593\
-    \ [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\r\ntemplate <typename F>\r\
-    \nvoid floor_range(u64 N, F f, bool Q_ASC = true, bool INCLUDE_Q_IS_0 = false)\
-    \ {\r\n  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\r\n\
-    \  if (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n    for\
-    \ (u32 q = 1; q <= n; ++q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\n    for (u32\
-    \ l = sq; l >= 1; --l) { f(N / l, l, l + 1); }\r\n  } else {\r\n    for (u32 l\
-    \ = 1; l <= sq; ++l) { f(N / l, l, l + 1); }\r\n    for (u32 q = n; q >= 1; --q)\
-    \ { f(q, N / (q + 1) + 1, N / q + 1); }\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1,\
-    \ infty<ll>);\r\n  }\r\n}\r\n#line 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 1 \"enumerate/ceil_range.hpp\"\n// \u5546\u304C q \u306E\u533A\
+    \u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\ntemplate <typename\
+    \ F>\nvoid ceil_range(ll N, F f) {\n  assert(N <= (1LL << 50));\n  ll sq = sqrtl(N);\n\
+    \  ll prev = infty<ll>;\n  for (int q = 1; q <= sq; ++q) {\n    ll x = (N + q\
+    \ - 1) / q;\n    f(q, x, prev), prev = x;\n  }\n  int n = (N <= sq * sq + sq ?\
+    \ sq : sq + 1);\n  if (N == sq * sq) --n;\n  for (int l = n; l >= 1; --l) { f((N\
+    \ + l - 1) / l, l, l + 1); }\n}\n#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\
+    \u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\
+    \r\ntemplate <typename F>\r\nvoid floor_range(u64 N, F f, bool Q_ASC = true, bool\
+    \ INCLUDE_Q_IS_0 = false) {\r\n  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq\
+    \ <= N ? sq : sq - 1);\r\n  if (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1,\
+    \ infty<ll>);\r\n    for (u32 q = 1; q <= n; ++q) { f(q, N / (q + 1) + 1, N /\
+    \ q + 1); }\r\n    for (u32 l = sq; l >= 1; --l) { f(N / l, l, l + 1); }\r\n \
+    \ } else {\r\n    for (u32 l = 1; l <= sq; ++l) { f(N / l, l, l + 1); }\r\n  \
+    \  for (u32 q = n; q >= 1; --q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\n    if\
+    \ (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n  }\r\n}\r\n#line 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
     \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
     \ l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll\
@@ -162,7 +165,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/floor_ceil_ranges.test.cpp

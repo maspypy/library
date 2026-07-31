@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -112,8 +112,11 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 1 \"other/io.hpp\"\n#define FASTIO\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\
     \nnamespace fastio {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\
     \nchar obuf[SZ];\r\nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil\
     \ = 0, pir = 0, por = 0;\r\nbool input_eof = false;\r\n\r\ntemplate <class T>\r\
@@ -348,41 +351,44 @@ data:
     \   FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n    for (auto& x : X) {\n    \
     \  x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n\
     \    dat[0] = 0;\n    return X;\n  }\n  int size() const { return len(dat); }\n\
-    \  int operator()(ll x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
-    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int\
-    \ mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if\
-    \ (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n  \
-    \  for (auto& x : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1]\
-    \ += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return\
-    \ X;\n  }\n  int size() const { return len(dat); }\n  int operator()(ll x) const\
-    \ { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename\
-    \ T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T> dat;\n  vc<int> build(vc<T>\
-    \ X) {\n    vc<int> I = argsort(X);\n    vc<int> res(len(X));\n    for (auto&\
-    \ i : I) {\n      if (!dat.empty() && dat.back() == X[i]) {\n        res[i] =\
-    \ len(dat) - 1;\n      } else {\n        res[i] = len(dat);\n        dat.eb(X[i]);\n\
-    \      }\n    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size()\
-    \ const { return len(dat); }\n  int operator()(T x) const { return LB(dat, x);\
-    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE {\n\
-    \  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    vc<int> I = argsort(X);\n    vc<int>\
-    \ res(len(X));\n    for (auto& i : I) {\n      res[i] = len(dat), dat.eb(X[i]);\n\
-    \    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size() const { return\
-    \ len(dat); }\n  int operator()(T x) const { return LB(dat, x); }\n};\n\ntemplate\
-    \ <typename T, bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
-    \ Index_Compression_DISTINCT_SMALL<T>,\n                              Index_Compression_DISTINCT_LARGE<T>>::type;\n\
-    template <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename\
-    \ std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,\n                 \
-    \             Index_Compression_SAME_LARGE<T>>::type;\n\n// SAME: [2,3,2] -> [0,1,0]\n\
-    // DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\u5217\u3092\u5727\u7E2E\u3057\
-    \u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\n// (x): lower_bound(X,x) \u3092\
-    \u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing Index_Compression\
-    \ =\n    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,\n \
-    \                             Index_Compression_DISTINCT<T, SMALL>>::type;\n#line\
-    \ 3 \"ds/offline_query/coeffient_query_2d.hpp\"\n\n// A, B\uFF1A\u5B9A\u6570\n\
-    // \u5EA7\u6A19\u306F ll \u3067\u4FC2\u6570\u306F T\n// Sparse Laurent Polynomial\
-    \ f(x,y) \u3092\u4E0E\u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B \u3092\u305F\
-    \u304F\u3055\u3093\u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\ntemplate <int\
-    \ A, int B, typename T, bool STATIC>\nstruct Coefficient_Query_2D {\n  struct\
-    \ Mono {\n    using value_type = array<T, A * B>;\n    using X = value_type;\n\
+    \  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
+    \ }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename\
+    \ T>\nstruct Index_Compression_SAME_SMALL {\n  int mi, ma;\n  vc<T> dat;\n  vc<T>\
+    \ build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma\
+    \ = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x : X) dat[x - mi\
+    \ + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n    for (auto& x\
+    \ : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x -\
+    \ mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T> dat;\n\
+    \  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n    vc<pair<T, int>>\
+    \ tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n\
+    \    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n      if (dat.empty()\
+    \ || dat.back() != x) dat.eb(x);\n      ANS[j] = len(dat) - 1;\n    }\n    return\
+    \ ANS;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T x) const\
+    \ { return LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\
+    \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE {\n  vc<T> dat;\n\
+    \  vc<int> build(vc<T> X) {\n    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n\
+    \    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n\
+    \    for (auto [x, j] : tmp) {\n      dat.eb(x);\n      ANS[j] = len(dat) - 1;\n\
+    \    }\n    return ANS;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T\
+    \ x) const { return LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i];\
+    \ }\n};\n\ntemplate <typename T, bool SMALL>\nusing Index_Compression_DISTINCT\
+    \ =\n    typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,\n\
+    \                              Index_Compression_DISTINCT_LARGE<T>>::type;\ntemplate\
+    \ <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename std::conditional<SMALL,\
+    \ Index_Compression_SAME_SMALL<T>,\n                              Index_Compression_SAME_LARGE<T>>::type;\n\
+    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\
+    \u5217\u3092\u5727\u7E2E\u3057\u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\
+    \n// (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename T, bool\
+    \ SAME, bool SMALL>\nusing Index_Compression =\n    typename std::conditional<SAME,\
+    \ Index_Compression_SAME<T, SMALL>,\n                              Index_Compression_DISTINCT<T,\
+    \ SMALL>>::type;\n#line 3 \"ds/offline_query/coeffient_query_2d.hpp\"\n\n// A,\
+    \ B\uFF1A\u5B9A\u6570\n// \u5EA7\u6A19\u306F ll \u3067\u4FC2\u6570\u306F T\n//\
+    \ Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B\
+    \ \u3092\u305F\u304F\u3055\u3093\u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\
+    \ntemplate <int A, int B, typename T, bool STATIC>\nstruct Coefficient_Query_2D\
+    \ {\n  struct Mono {\n    using value_type = array<T, A * B>;\n    using X = value_type;\n\
     \    static X op(X x, X y) {\n      FOR(i, A * B) x[i] += y[i];\n      return\
     \ x;\n    }\n    static constexpr X unit() { return X{}; }\n    static constexpr\
     \ bool commute = 1;\n  };\n  vc<tuple<ll, ll, T, int>> query;\n\n  int nsum =\
@@ -453,8 +459,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-01 03:11:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
 layout: document

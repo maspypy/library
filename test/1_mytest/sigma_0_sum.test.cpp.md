@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -100,8 +100,11 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/sigma_0_sum.test.cpp\"\n\n#line 1 \"nt/convex_floor_sum.hpp\"\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/sigma_0_sum.test.cpp\"\n\n#line 1 \"nt/convex_floor_sum.hpp\"\
     \n\n// f: \u51F8, \u975E\u8CA0, \u5358\u8ABF\u5897\u52A0\u3092\u4EEE\u5B9A\n//\
     \ above(x,y) : y > f(x)\n// slope(x,a,b) : f'(x) >= a/b\n// return : sum_[0,N)\
     \ floor(f(x))\n// https://qoj.ac/contest/1195/problem/6188\ntemplate <typename\
@@ -158,7 +161,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sigma_0_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sigma_0_sum.test.cpp

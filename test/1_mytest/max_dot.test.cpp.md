@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -108,28 +108,31 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 3 \"test/1_mytest/max_dot.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
-    \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
-    \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
-    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {}\n\n  Point operator+=(const Point\
-    \ p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
-    \ Point p) {\n    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point\
-    \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
-    \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
-    \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
-    \ != p.y; }\n  Point operator-() const { return {-x, -y}; }\n  Point operator*(T\
-    \ t) const { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x\
-    \ / t, y / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return\
-    \ x < p.x;\n    return y < p.y;\n  }\n  T dot(const Point& other) const { return\
-    \ x * other.x + y * other.y; }\n  T det(const Point& other) const { return x *\
-    \ other.y - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n\
-    \  double angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n\
-    \    static_assert(!is_integral<T>::value);\n    double c = cos(theta), s = sin(theta);\n\
-    \    return Point{c * x - s * y, s * x + c * y};\n  }\n  Point rot90(bool ccw)\
-    \ { return (ccw ? Point{-y, x} : Point{y, -x}); }\n};\n\n#ifdef FASTIO\ntemplate\
-    \ <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/max_dot.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
+    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {}\n\n \
+    \ Point operator+=(const Point p) {\n    x += p.x, y += p.y;\n    return *this;\n\
+    \  }\n  Point operator-=(const Point p) {\n    x -= p.x, y -= p.y;\n    return\
+    \ *this;\n  }\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n\
+    \  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
+    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
+    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
+    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
+    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
+    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(const Point&\
+    \ other) const { return x * other.x + y * other.y; }\n  T det(const Point& other)\
+    \ const { return x * other.y - y * other.x; }\n\n  double norm() { return sqrtl(x\
+    \ * x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double\
+    \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
+    \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n  Point\
+    \ rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y, -x}); }\n};\n\n#ifdef\
+    \ FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n\
     }\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n  fastio::wt('\
     \ ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\u3080\u3068\
     \u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 +1\u3001\u53F3\
@@ -349,7 +352,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/max_dot.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/max_dot.test.cpp

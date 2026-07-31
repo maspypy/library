@@ -14,22 +14,22 @@ data:
     - https://codeforces.com/contest/134/problem/C
   bundledCode: "#line 1 \"ds/csr.hpp\"\n\ntemplate <typename T>\nstruct CSR {\n  int\
     \ n;\n  bool prepared;\n  vc<int> ptr;\n  vc<int> I;\n  vc<T> dat;\n\n  CSR(int\
-    \ n = 0) : n(n), prepared(false) {}\n  void add(int i, const T& x) {\n    assert(0\
-    \ <= i && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n  }\n\n  void build()\
-    \ {\n    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n + 1, 0);\n  \
-    \  for (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i + 1] += ptr[i];\n\
-    \    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int i = I[k];\n     \
-    \ tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n \
-    \   ptr.insert(ptr.begin(), 0);\n    I.clear(), I.shrink_to_fit();\n  }\n\n  struct\
-    \ range {\n    T *first, *last;\n    T* begin() const { return first; }\n    T*\
-    \ end() const { return last; }\n    bool empty() const { return first == last;\
-    \ }\n    int size() const { return last - first; }\n  };\n\n  range operator[](int\
-    \ i) {\n    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data()\
-    \ + ptr[i + 1]};\n  }\n};\n#line 2 \"graph/degree_sequence.hpp\"\n\n// O(N). \u5358\
-    \u7D14\u30B0\u30E9\u30D5\u306E\u5B58\u5728\u5224\u5B9A. Erdos-Gallai \u306E\u5B9A\
-    \u7406.\nbool check_degree_sequence(vc<int> deg) {\n  int N = len(deg);\n  if\
-    \ (N == 0) return true;\n  ll sm = 0;\n  vc<int> freq(N, 0);\n  FOR(i, N) {\n\
-    \    int d = deg[i];\n    if (!(0 <= d && d < N)) return false;\n    freq[d]++,\
+    \ n = 0) : n(n), prepared(false) {}\n  void reserve(int n) { dat.reserve(n); }\n\
+    \n  void add(int i, const T& x) {\n    assert(0 <= i && i < n && !prepared);\n\
+    \    I.eb(i), dat.eb(x);\n  }\n\n  void build() {\n    assert(!prepared);\n  \
+    \  prepared = 1;\n    ptr.assign(n + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n\
+    \    FOR(i, len(ptr) - 1) ptr[i + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n  \
+    \  FOR(k, len(dat)) {\n      int i = I[k];\n      tmp[ptr[i]++] = dat[k];\n  \
+    \  }\n    swap(dat, tmp);\n    ptr.pop_back();\n    ptr.insert(ptr.begin(), 0);\n\
+    \    I.clear();\n  }\n\n  struct range {\n    T *first, *last;\n    T* begin()\
+    \ const { return first; }\n    T* end() const { return last; }\n    bool empty()\
+    \ const { return first == last; }\n    int size() const { return last - first;\
+    \ }\n  };\n\n  range operator[](int i) {\n    assert(prepared);\n    return range{dat.data()\
+    \ + ptr[i], dat.data() + ptr[i + 1]};\n  }\n};\n#line 2 \"graph/degree_sequence.hpp\"\
+    \n\n// O(N). \u5358\u7D14\u30B0\u30E9\u30D5\u306E\u5B58\u5728\u5224\u5B9A. Erdos-Gallai\
+    \ \u306E\u5B9A\u7406.\nbool check_degree_sequence(vc<int> deg) {\n  int N = len(deg);\n\
+    \  if (N == 0) return true;\n  ll sm = 0;\n  vc<int> freq(N, 0);\n  FOR(i, N)\
+    \ {\n    int d = deg[i];\n    if (!(0 <= d && d < N)) return false;\n    freq[d]++,\
     \ sm += d;\n  }\n  if (sm & 1) return false;\n  int p = 0;\n  FOR_R(x, N) FOR(freq[x])\
     \ deg[p++] = x;\n\n  vi S = cumsum<ll>(deg);\n  ll m = 0;  // # of d_i s.t. d_i>=k\n\
     \  FOR_R(k, N + 1) {\n    while (m < N && deg[m] >= k) ++m;\n    ll lhs = S[k];\n\
@@ -94,7 +94,7 @@ data:
   isVerificationFile: false
   path: graph/degree_sequence.hpp
   requiredBy: []
-  timestamp: '2026-07-19 04:28:22+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/degree_sequence.hpp

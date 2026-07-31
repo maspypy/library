@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -368,9 +368,12 @@ data:
     };\r\n#line 3 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63) * u64\r\
     \nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int n, log;\r\n  vvc<u64>\
     \ seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n); }\r\n\r\n  int size()\
-    \ { return n; }\r\n\r\n  template <typename F>\r\n  FastSet(int n, F f) {\r\n\
-    \    build(n, f);\r\n  }\r\n\r\n  void build(int m) {\r\n    seg.clear();\r\n\
-    \    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m + B - 1) / B));\r\n\
+    \ { return n; }\r\n\r\n  void fillone() {\r\n    int cur = n;\r\n    for (auto&\
+    \ vs : seg) {\r\n      int p = cur / B, q = cur % B;\r\n      FOR(i, p) vs[i]\
+    \ = -1ull;\r\n      if (q) vs[p] = full_mask(q);\r\n      cur = (cur + B - 1)\
+    \ / B;\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\n  FastSet(int n, F f)\
+    \ {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m) {\r\n    seg.clear();\r\
+    \n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m + B - 1) / B));\r\n\
     \      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n    log = len(seg);\r\n\
     \  }\r\n  template <typename F>\r\n  void build(int n, F f) {\r\n    build(n);\r\
     \n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i % B); }\r\n    FOR(h, log -\
@@ -465,8 +468,8 @@ data:
   isVerificationFile: false
   path: graph/ds/incremental_centroid.hpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-01 03:11:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/2636.test.cpp
 documentation_of: graph/ds/incremental_centroid.hpp

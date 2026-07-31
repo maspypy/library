@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monge/monge_dp_update.hpp\"\n\n#line 2 \"convex/monotone_minima.hpp\"\
@@ -69,7 +69,7 @@ data:
   path: convex/monge/monge_dp_update.hpp
   requiredBy: []
   timestamp: '2026-06-15 22:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/952.test.cpp
 documentation_of: convex/monge/monge_dp_update.hpp

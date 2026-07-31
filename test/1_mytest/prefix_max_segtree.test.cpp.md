@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/prefix_max_segtree.hpp
     title: ds/segtree/prefix_max_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -112,12 +112,15 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 4 \"test/1_mytest/prefix_max_segtree.test.cpp\"\n\n#line 1 \"ds/segtree/prefix_max_segtree.hpp\"\
-    \n\n/*\nkey[0],...,key[n-1] \u304C\u3042\u308B\n\u30E2\u30CE\u30A4\u30C9\u306E\
-    \u5217 x[0],...,x[n-1] \u304C\u3042\u308B\nquery(l,r): l \u304B\u3089\u898B\u3048\
-    \u308B\u3068\u3053\u308D\u306B\u5BFE\u3059\u308B monoid product\n\u898B\u3048\u308B\
-    : key[i]==max(key[0]...key[i])\nQlog^2n\nhttps://qoj.ac/contest/1540/problem/8338\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 4 \"test/1_mytest/prefix_max_segtree.test.cpp\"\n\n#line 1 \"\
+    ds/segtree/prefix_max_segtree.hpp\"\n\n/*\nkey[0],...,key[n-1] \u304C\u3042\u308B\
+    \n\u30E2\u30CE\u30A4\u30C9\u306E\u5217 x[0],...,x[n-1] \u304C\u3042\u308B\nquery(l,r):\
+    \ l \u304B\u3089\u898B\u3048\u308B\u3068\u3053\u308D\u306B\u5BFE\u3059\u308B monoid\
+    \ product\n\u898B\u3048\u308B: key[i]==max(key[0]...key[i])\nQlog^2n\nhttps://qoj.ac/contest/1540/problem/8338\n\
     */\ntemplate <typename KEY_TYPE, typename Monoid>\nstruct Prefix_Max_SegTree {\n\
     \  using MX = Monoid;\n  using KEY = KEY_TYPE;\n  using X = typename MX::value_type;\n\
     \  int n, size, log;\n  struct Data {\n    KEY max;\n    X prod, rprod; // rprod\
@@ -324,7 +327,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_max_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_max_segtree.test.cpp

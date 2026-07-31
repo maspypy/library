@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -272,54 +272,57 @@ data:
     \ + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n    for (auto& x :\
     \ X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i\
     \ - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int size() const { return len(dat);\
-    \ }\n  int operator()(ll x) const { return dat[clamp<ll>(x - mi, 0, ma - mi +\
-    \ 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n\
-    \  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n\
-    \    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n\
-    \    for (auto& x : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i +\
-    \ 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return\
-    \ X;\n  }\n  int size() const { return len(dat); }\n  int operator()(ll x) const\
-    \ { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename\
-    \ T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T> dat;\n  vc<int> build(vc<T>\
-    \ X) {\n    vc<int> I = argsort(X);\n    vc<int> res(len(X));\n    for (auto&\
-    \ i : I) {\n      if (!dat.empty() && dat.back() == X[i]) {\n        res[i] =\
-    \ len(dat) - 1;\n      } else {\n        res[i] = len(dat);\n        dat.eb(X[i]);\n\
-    \      }\n    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size()\
-    \ const { return len(dat); }\n  int operator()(T x) const { return LB(dat, x);\
-    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE {\n\
-    \  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    vc<int> I = argsort(X);\n    vc<int>\
-    \ res(len(X));\n    for (auto& i : I) {\n      res[i] = len(dat), dat.eb(X[i]);\n\
-    \    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size() const { return\
-    \ len(dat); }\n  int operator()(T x) const { return LB(dat, x); }\n};\n\ntemplate\
-    \ <typename T, bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
-    \ Index_Compression_DISTINCT_SMALL<T>,\n                              Index_Compression_DISTINCT_LARGE<T>>::type;\n\
-    template <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename\
-    \ std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,\n                 \
-    \             Index_Compression_SAME_LARGE<T>>::type;\n\n// SAME: [2,3,2] -> [0,1,0]\n\
-    // DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\u5217\u3092\u5727\u7E2E\u3057\
-    \u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\n// (x): lower_bound(X,x) \u3092\
-    \u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing Index_Compression\
-    \ =\n    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,\n \
-    \                             Index_Compression_DISTINCT<T, SMALL>>::type;\n#line\
-    \ 3 \"ds/wavelet_matrix/wavelet_matrix_2d_range.hpp\"\n\ntemplate <typename XY,\
-    \ bool compress_X, bool compress_Y,\n          typename SEGTREE = Dummy_Data_Structure>\n\
-    struct Wavelet_Matrix_2D_Range {\n  // \u70B9\u7FA4\u3092 X \u6607\u9806\u306B\
-    \u4E26\u3079\u308B.\n  Wavelet_Matrix<XY, compress_Y, SEGTREE> WM;\n  using Mono\
-    \ = typename SEGTREE::MX;\n  using T = typename Mono::value_type;\n  static_assert(Mono::commute);\n\
-    \n  Index_Compression<XY, false, !compress_X> IDX_X;\n\n  int n;\n  vc<int> new_idx;\n\
-    \n  template <typename F>\n  Wavelet_Matrix_2D_Range(int n, F f) {\n    build(n,\
-    \ f);\n  }\n\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
-    \    vc<XY> X(n), Y(n);\n    vc<T> S(n);\n    FOR(i, n) {\n      auto tmp = f(i);\n\
-    \      X[i] = get<0>(tmp), Y[i] = get<1>(tmp), S[i] = get<2>(tmp);\n    }\n  \
-    \  new_idx = IDX_X.build(X);\n    vc<int> I(n);\n    FOR(i, n) I[new_idx[i]] =\
-    \ i;\n    Y = rearrange(Y, I);\n    S = rearrange(S, I);\n    WM.build(n, [&](int\
-    \ i) -> pair<XY, T> { return {Y[i], S[i]}; });\n  }\n\n  int count(XY x1, XY x2,\
-    \ XY y1, XY y2) {\n    return WM.count(IDX_X(x1), IDX_X(x2), y1, y2);\n  }\n\n\
-    \  // [L,R) x [-inf,y)\n  pair<int, T> prefix_count_and_prod(XY x1, XY x2, XY\
-    \ y) {\n    return WM.prefix_count_and_prod(IDX_X(x1), IDX_X(x2), y);\n  }\n\n\
-    \  // [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(XY x1, XY x2, XY y1, XY y2)\
-    \ {\n    return WM.count_and_prod(IDX_X(x1), IDX_X(x2), y1, y2);\n  }\n\n  //\
-    \ [L,R) x [-inf,inf)\n  T prod_all(XY x1, XY x2) { return WM.prod_all(IDX_X(x1),\
+    \ }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
+    \ }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename\
+    \ T>\nstruct Index_Compression_SAME_SMALL {\n  int mi, ma;\n  vc<T> dat;\n  vc<T>\
+    \ build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma\
+    \ = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x : X) dat[x - mi\
+    \ + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n    for (auto& x\
+    \ : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x -\
+    \ mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T> dat;\n\
+    \  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n    vc<pair<T, int>>\
+    \ tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n\
+    \    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n      if (dat.empty()\
+    \ || dat.back() != x) dat.eb(x);\n      ANS[j] = len(dat) - 1;\n    }\n    return\
+    \ ANS;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T x) const\
+    \ { return LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\
+    \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE {\n  vc<T> dat;\n\
+    \  vc<int> build(vc<T> X) {\n    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n\
+    \    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n\
+    \    for (auto [x, j] : tmp) {\n      dat.eb(x);\n      ANS[j] = len(dat) - 1;\n\
+    \    }\n    return ANS;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T\
+    \ x) const { return LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i];\
+    \ }\n};\n\ntemplate <typename T, bool SMALL>\nusing Index_Compression_DISTINCT\
+    \ =\n    typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,\n\
+    \                              Index_Compression_DISTINCT_LARGE<T>>::type;\ntemplate\
+    \ <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename std::conditional<SMALL,\
+    \ Index_Compression_SAME_SMALL<T>,\n                              Index_Compression_SAME_LARGE<T>>::type;\n\
+    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\
+    \u5217\u3092\u5727\u7E2E\u3057\u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\
+    \n// (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename T, bool\
+    \ SAME, bool SMALL>\nusing Index_Compression =\n    typename std::conditional<SAME,\
+    \ Index_Compression_SAME<T, SMALL>,\n                              Index_Compression_DISTINCT<T,\
+    \ SMALL>>::type;\n#line 3 \"ds/wavelet_matrix/wavelet_matrix_2d_range.hpp\"\n\n\
+    template <typename XY, bool compress_X, bool compress_Y,\n          typename SEGTREE\
+    \ = Dummy_Data_Structure>\nstruct Wavelet_Matrix_2D_Range {\n  // \u70B9\u7FA4\
+    \u3092 X \u6607\u9806\u306B\u4E26\u3079\u308B.\n  Wavelet_Matrix<XY, compress_Y,\
+    \ SEGTREE> WM;\n  using Mono = typename SEGTREE::MX;\n  using T = typename Mono::value_type;\n\
+    \  static_assert(Mono::commute);\n\n  Index_Compression<XY, false, !compress_X>\
+    \ IDX_X;\n\n  int n;\n  vc<int> new_idx;\n\n  template <typename F>\n  Wavelet_Matrix_2D_Range(int\
+    \ n, F f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m;\n    vc<XY> X(n), Y(n);\n    vc<T> S(n);\n    FOR(i, n)\
+    \ {\n      auto tmp = f(i);\n      X[i] = get<0>(tmp), Y[i] = get<1>(tmp), S[i]\
+    \ = get<2>(tmp);\n    }\n    new_idx = IDX_X.build(X);\n    vc<int> I(n);\n  \
+    \  FOR(i, n) I[new_idx[i]] = i;\n    Y = rearrange(Y, I);\n    S = rearrange(S,\
+    \ I);\n    WM.build(n, [&](int i) -> pair<XY, T> { return {Y[i], S[i]}; });\n\
+    \  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    return WM.count(IDX_X(x1),\
+    \ IDX_X(x2), y1, y2);\n  }\n\n  // [L,R) x [-inf,y)\n  pair<int, T> prefix_count_and_prod(XY\
+    \ x1, XY x2, XY y) {\n    return WM.prefix_count_and_prod(IDX_X(x1), IDX_X(x2),\
+    \ y);\n  }\n\n  // [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(XY x1, XY x2,\
+    \ XY y1, XY y2) {\n    return WM.count_and_prod(IDX_X(x1), IDX_X(x2), y1, y2);\n\
+    \  }\n\n  // [L,R) x [-inf,inf)\n  T prod_all(XY x1, XY x2) { return WM.prod_all(IDX_X(x1),\
     \ IDX_X(x2)); }\n  // [L,R) x [-inf,y)\n  T prefix_prod(XY x1, XY x2, XY y) {\n\
     \    return WM.prefix_prod(IDX_X(x1), IDX_X(x2), y);\n  }\n  // [L,R) x [y1,y2)\n\
     \  T prod(XY x1, XY x2, XY y1, XY y2) {\n    return WM.prod(IDX_X(x1), IDX_X(x2),\
@@ -377,8 +380,8 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-01 03:11:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/2859.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -100,34 +100,41 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 4 \"test/1_mytest/index_compression.test.cpp\"\n\n#line 1 \"ds/index_compression.hpp\"\
-    \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi,\
-    \ ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if\
-    \ (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n  \
-    \  for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] +=\
-    \ dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i,\
-    \ 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int\
-    \ size() const { return len(dat); }\n  int operator()(ll x) const { return dat[clamp<ll>(x\
-    \ - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 4 \"test/1_mytest/index_compression.test.cpp\"\n\n#line 1 \"\
+    ds/index_compression.hpp\"\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL\
+    \ {\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma =\
+    \ -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi +\
+    \ 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i\
+    \ + 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n\
+    \    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n\
+    \  }\n  int size() const { return len(dat); }\n  int val_to_idx(T x) const { return\
+    \ dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return\
+    \ dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
     \ {\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n\
     \    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n\
     \    for (auto& x : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i +\
     \ 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return\
-    \ X;\n  }\n  int size() const { return len(dat); }\n  int operator()(ll x) const\
-    \ { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename\
-    \ T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T> dat;\n  vc<int> build(vc<T>\
-    \ X) {\n    vc<int> I = argsort(X);\n    vc<int> res(len(X));\n    for (auto&\
-    \ i : I) {\n      if (!dat.empty() && dat.back() == X[i]) {\n        res[i] =\
-    \ len(dat) - 1;\n      } else {\n        res[i] = len(dat);\n        dat.eb(X[i]);\n\
-    \      }\n    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size()\
-    \ const { return len(dat); }\n  int operator()(T x) const { return LB(dat, x);\
-    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE {\n\
-    \  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    vc<int> I = argsort(X);\n    vc<int>\
-    \ res(len(X));\n    for (auto& i : I) {\n      res[i] = len(dat), dat.eb(X[i]);\n\
-    \    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int size() const { return\
-    \ len(dat); }\n  int operator()(T x) const { return LB(dat, x); }\n};\n\ntemplate\
-    \ <typename T, bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
+    \ X;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T x) const\
+    \ { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i)\
+    \ const { return dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE\
+    \ {\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n\
+    \    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n \
+    \   sort(all(tmp));\n    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n\
+    \      if (dat.empty() || dat.back() != x) dat.eb(x);\n      ANS[j] = len(dat)\
+    \ - 1;\n    }\n    return ANS;\n  }\n  int size() const { return len(dat); }\n\
+    \  int val_to_idx(T x) const { return LB(dat, x); }\n  int idx_to_val(int i) const\
+    \ { return dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE\
+    \ {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    dat.reserve(len(X));\n    vc<pair<T,\
+    \ int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n\
+    \    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n      dat.eb(x);\n \
+    \     ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
+    \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T,\
+    \ bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
     \ Index_Compression_DISTINCT_SMALL<T>,\n                              Index_Compression_DISTINCT_LARGE<T>>::type;\n\
     template <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename\
     \ std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,\n                 \
@@ -192,8 +199,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/index_compression.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-01 03:11:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/index_compression.test.cpp
 layout: document

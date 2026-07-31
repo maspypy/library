@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -96,19 +96,22 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 1 \"other/magic_square.hpp\"\n// \u3068\u308A\u3042\u3048\u305A\u5947\u6570\
-    \u306E\u307F\u5BFE\u5FDC\u3059\u308B\nvvc<int> magic_square(int N) {\n  assert(N\
-    \ % 2 == 1);\n  vv(int, A, N, N);\n  int x = 0, y = N / 2;\n  FOR(i, N * N) {\n\
-    \    A[x][y] = i + 1;\n    int nx = (x == 0 ? N - 1 : x - 1);\n    int ny = (y\
-    \ == N - 1 ? 0 : y + 1);\n    if (A[nx][ny] != 0) { nx = (x == N - 1 ? 0 : x +\
-    \ 1), ny = y; }\n    tie(x, y) = mp(nx, ny);\n  }\n  return A;\n}\n#line 4 \"\
-    test/1_mytest/magic_square.test.cpp\"\n\nvoid test() {\n  vc<int> ns = {1, 3,\
-    \ 5, 7, 9};\n\n  for (auto&& N: ns) {\n    auto A = magic_square(N);\n    vc<int>\
-    \ SM;\n    FOR(i, N) {\n      ll sm = 0;\n      FOR(j, N) sm += A[i][j];\n   \
-    \   SM.eb(sm);\n    }\n    FOR(j, N) {\n      ll sm = 0;\n      FOR(i, N) sm +=\
-    \ A[i][j];\n      SM.eb(sm);\n    }\n    ll sm1 = 0, sm2 = 0;\n    FOR(i, N) {\n\
-    \      sm1 += A[i][i];\n      sm2 += A[i][N - 1 - i];\n    }\n    SM.eb(sm1);\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 1 \"other/magic_square.hpp\"\n// \u3068\u308A\u3042\u3048\u305A\
+    \u5947\u6570\u306E\u307F\u5BFE\u5FDC\u3059\u308B\nvvc<int> magic_square(int N)\
+    \ {\n  assert(N % 2 == 1);\n  vv(int, A, N, N);\n  int x = 0, y = N / 2;\n  FOR(i,\
+    \ N * N) {\n    A[x][y] = i + 1;\n    int nx = (x == 0 ? N - 1 : x - 1);\n   \
+    \ int ny = (y == N - 1 ? 0 : y + 1);\n    if (A[nx][ny] != 0) { nx = (x == N -\
+    \ 1 ? 0 : x + 1), ny = y; }\n    tie(x, y) = mp(nx, ny);\n  }\n  return A;\n}\n\
+    #line 4 \"test/1_mytest/magic_square.test.cpp\"\n\nvoid test() {\n  vc<int> ns\
+    \ = {1, 3, 5, 7, 9};\n\n  for (auto&& N: ns) {\n    auto A = magic_square(N);\n\
+    \    vc<int> SM;\n    FOR(i, N) {\n      ll sm = 0;\n      FOR(j, N) sm += A[i][j];\n\
+    \      SM.eb(sm);\n    }\n    FOR(j, N) {\n      ll sm = 0;\n      FOR(i, N) sm\
+    \ += A[i][j];\n      SM.eb(sm);\n    }\n    ll sm1 = 0, sm2 = 0;\n    FOR(i, N)\
+    \ {\n      sm1 += A[i][i];\n      sm2 += A[i][N - 1 - i];\n    }\n    SM.eb(sm1);\n\
     \    SM.eb(sm2);\n    assert(MIN(SM) == MAX(SM));\n    vc<int> done(N * N + 1);\n\
     \    FOR(i, N) FOR(j, N) done[A[i][j]] = 1;\n    assert(SUM<int>(done) == N *\
     \ N);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
@@ -131,7 +134,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/magic_square.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/magic_square.test.cpp

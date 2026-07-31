@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -96,26 +96,29 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n#endif\n\
-    #line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string>\nvc<pair<typename\
-    \ STRING::value_type, ll>> run_length(STRING& S) {\n  vc<pair<typename STRING::value_type,\
-    \ ll>> res;\n  for (auto&& x: S) {\n    if (res.empty() || res.back().fi != x)\
-    \ { res.emplace_back(x, 0); }\n    res.back().se++;\n  }\n  return res;\n}\n#line\
-    \ 4 \"test/1_mytest/run_length.test.cpp\"\n\nvoid test() {\n  {\n    string A\
-    \ = \"aabbcaaab\";\n    auto res = run_length(A);\n    assert(len(res) == 5);\n\
-    \    assert(res[0].fi == 'a' && res[0].se == 2);\n    assert(res[1].fi == 'b'\
-    \ && res[1].se == 2);\n    assert(res[2].fi == 'c' && res[2].se == 1);\n    assert(res[3].fi\
-    \ == 'a' && res[3].se == 3);\n    assert(res[4].fi == 'b' && res[4].se == 1);\n\
-    \  }\n  {\n    string A = \"aaaaaa\";\n    auto res = run_length(A);\n    assert(len(res)\
-    \ == 1);\n    assert(res[0].fi == 'a' && res[0].se == 6);\n  }\n  {\n    string\
-    \ A = \"\";\n    auto res = run_length(A);\n    assert(len(res) == 0);\n  }\n\
-    \  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1, 2};\n    auto res = run_length(A);\n\
-    \    assert(len(res) == 5);\n    assert(res[0].fi == 1 && res[0].se == 2);\n \
-    \   assert(res[1].fi == 2 && res[1].se == 2);\n    assert(res[2].fi == 3 && res[2].se\
-    \ == 1);\n    assert(res[3].fi == 1 && res[3].se == 3);\n    assert(res[4].fi\
-    \ == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a\
-    \ >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string>\n\
+    vc<pair<typename STRING::value_type, ll>> run_length(STRING& S) {\n  vc<pair<typename\
+    \ STRING::value_type, ll>> res;\n  for (auto&& x: S) {\n    if (res.empty() ||\
+    \ res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n  }\n\
+    \  return res;\n}\n#line 4 \"test/1_mytest/run_length.test.cpp\"\n\nvoid test()\
+    \ {\n  {\n    string A = \"aabbcaaab\";\n    auto res = run_length(A);\n    assert(len(res)\
+    \ == 5);\n    assert(res[0].fi == 'a' && res[0].se == 2);\n    assert(res[1].fi\
+    \ == 'b' && res[1].se == 2);\n    assert(res[2].fi == 'c' && res[2].se == 1);\n\
+    \    assert(res[3].fi == 'a' && res[3].se == 3);\n    assert(res[4].fi == 'b'\
+    \ && res[4].se == 1);\n  }\n  {\n    string A = \"aaaaaa\";\n    auto res = run_length(A);\n\
+    \    assert(len(res) == 1);\n    assert(res[0].fi == 'a' && res[0].se == 6);\n\
+    \  }\n  {\n    string A = \"\";\n    auto res = run_length(A);\n    assert(len(res)\
+    \ == 0);\n  }\n  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1, 2};\n    auto res\
+    \ = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi == 1 && res[0].se\
+    \ == 2);\n    assert(res[1].fi == 2 && res[1].se == 2);\n    assert(res[2].fi\
+    \ == 3 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se == 3);\n  \
+    \  assert(res[4].fi == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"string/run_length.hpp\"\n\nvoid test() {\n  {\n    string A = \"\
     aabbcaaab\";\n    auto res = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi\
@@ -138,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/run_length.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 19:43:20+09:00'
+  timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/run_length.test.cpp
