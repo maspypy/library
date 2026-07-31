@@ -12,6 +12,17 @@ Point<REAL> cross_point(const Line<T> L1, const Line<T> L2) {
   return Point<REAL>(x / det, y / det);
 }
 
+// return: x,y,D. point=(x/D,y/D)
+template <typename T>
+tuple<T, T, T> cross_point_strict(const Line<T> L1, const Line<T> L2) {
+  T det = L1.a * L2.b - L1.b * L2.a;
+  assert(det != 0);
+  T x = -L1.c * L2.b + L1.b * L2.c;
+  T y = -L1.a * L2.c + L1.c * L2.a;
+  if (det < 0) x = -x, y = -y, det = -det;
+  return {x, y, det};
+}
+
 // 浮動小数点数はエラー
 // 0: 交点なし
 // 1: 一意な交点

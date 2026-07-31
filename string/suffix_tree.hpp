@@ -8,6 +8,7 @@
 // 各ノードは、suffix array での長方形領域と見なして、
 // グラフおよび、領域データを作る。
 // sample: test/my_test/suffix_tree.test.cpp
+// 各始点に対する長さ 0 の部分文字列も入れてある！！
 template <typename STRING, typename SUFFIX>
 struct Suffix_Tree {
   STRING& S;
@@ -67,17 +68,18 @@ struct Suffix_Tree {
     } else {
       dfs(dfs, 0, r, 0);
     }
-    for (auto& [a, b, c, d]: dat) ++c, ++d;
+    for (auto& [a, b, c, d] : dat) ++c, ++d;
 
     Graph<int, 1> G(len(dat));
-    for (auto&& [a, b, c]: edges) G.add(a, b, c);
+    for (auto&& [a, b, c] : edges) G.add(a, b, c);
     G.build();
     return {G, dat};
   }
 
   // S[i:N) に対応するノード番号を返す
   // https://codeforces.com/problemset/problem/1098/F
-  vc<int> get_suffix_positions(Graph<int, 1>& G, vc<tuple<int, int, int, int>>& dat) {
+  vc<int> get_suffix_positions(Graph<int, 1>& G,
+                               vc<tuple<int, int, int, int>>& dat) {
     int N = len(S);
     FastSet FS(N);
     FOR(i, N) FS.insert(i);
@@ -95,7 +97,8 @@ struct Suffix_Tree {
   // trie の要領ですすむ（failure link はない）
   // (node, length)
   // 行き過ぎ：(-1,0)
-  pair<int, int> next(Graph<int, 1>& G, vc<tuple<int, int, int, int>>& dat, pair<int, int> p, int ch) {
+  pair<int, int> next(Graph<int, 1>& G, vc<tuple<int, int, int, int>>& dat,
+                      pair<int, int> p, int ch) {
     auto [node, length] = p;
     if (node == -1) return {-1, 0};
     auto [l, r, a, b] = dat[node];
@@ -105,7 +108,7 @@ struct Suffix_Tree {
       if (ch != S[i + length]) return {-1, 0};
       return {node, length + 1};
     }
-    for (auto& e: G[node]) {
+    for (auto& e : G[node]) {
       int n = e.to;
       auto [l, r, a, b] = dat[n];
       assert(a == length + 1);
