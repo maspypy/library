@@ -11,9 +11,12 @@ void test_distinct() {
   Index_Compression<int, false, SMALL> IDX;
   vc<int> Y = IDX.build(X);
   assert(Y == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));
-  assert(IDX(1) == 0 && IDX(2) == 0 && IDX(3) == 0);
-  assert(IDX(4) == 3 && IDX(5) == 5 && IDX(6) == 5);
-  assert(IDX(7) == 7 && IDX(8) == 9 && IDX(9) == 9);
+  assert(IDX.val_to_idx(1) == 0 && IDX.val_to_idx(2) == 0 &&
+         IDX.val_to_idx(3) == 0);
+  assert(IDX.val_to_idx(4) == 3 && IDX.val_to_idx(5) == 5 &&
+         IDX.val_to_idx(6) == 5);
+  assert(IDX.val_to_idx(7) == 7 && IDX.val_to_idx(8) == 9 &&
+         IDX.val_to_idx(9) == 9);
 
   FOR(100) {
     FOR(N, 0, 300) {
@@ -24,7 +27,7 @@ void test_distinct() {
       auto I = argsort(X);
       FOR(i, N) assert(Y[I[i]] == i);
       X = rearrange(X, I);
-      FOR(x, -100, 100) assert(IDX(x) == LB(X, x));
+      FOR(x, -100, 100) assert(IDX.val_to_idx(x) == LB(X, x));
     }
   }
 }
@@ -35,9 +38,12 @@ void test_same() {
   Index_Compression<int, true, SMALL> IDX;
   vc<int> Y = IDX.build(X);
   assert(Y == vc<int>({0, 1, 3, 1, 0, 2, 2, 3, 0}));
-  assert(IDX(1) == 0 && IDX(2) == 0 && IDX(3) == 0);
-  assert(IDX(4) == 1 && IDX(5) == 2 && IDX(6) == 2);
-  assert(IDX(7) == 3 && IDX(8) == 4 && IDX(9) == 4);
+  assert(IDX.val_to_idx(1) == 0 && IDX.val_to_idx(2) == 0 &&
+         IDX.val_to_idx(3) == 0);
+  assert(IDX.val_to_idx(4) == 1 && IDX.val_to_idx(5) == 2 &&
+         IDX.val_to_idx(6) == 2);
+  assert(IDX.val_to_idx(7) == 3 && IDX.val_to_idx(8) == 4 &&
+         IDX.val_to_idx(9) == 4);
 
   FOR(100) {
     FOR(N, 0, 300) {
@@ -48,7 +54,7 @@ void test_same() {
       vc<int> key = X;
       UNIQUE(key);
       FOR(i, N) assert(LB(key, X[i]) == Y[i]);
-      FOR(x, -100, 100) assert(IDX(x) == LB(key, x));
+      FOR(x, -100, 100) assert(IDX.val_to_idx(x) == LB(key, x));
     }
   }
 }

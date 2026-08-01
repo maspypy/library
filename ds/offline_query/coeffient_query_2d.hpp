@@ -73,12 +73,12 @@ struct Coefficient_Query_2D {
         coef_array<A>(a, CX);
         coef_array<B>(b, CY);
         FOR(i, A) FOR(j, B) tmp[B * i + j] = CX[i] * CY[j] * w;
-        bit.add(IY(b), tmp);
+        bit.add(IY.val_to_idx(b), tmp);
       }
       comb_array<A>(a, CX);
       comb_array<B>(b, CY);
       // calc query
-      tmp = bit.prod(IY(b + 1));
+      tmp = bit.prod(IY.val_to_idx(b + 1));
       T ans = 0;
       FOR(i, A) FOR(j, B) ans += tmp[B * i + j] * CX[i] * CY[j];
       ANS[qid] += ans;
