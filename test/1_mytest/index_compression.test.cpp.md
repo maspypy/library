@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -150,48 +150,54 @@ data:
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/index_compression.test.cpp\"\n\
     \ntemplate <bool SMALL>\nvoid test_distinct() {\n  vc<int> X = {3, 4, 7, 4, 3,\
     \ 6, 6, 7, 3};\n  Index_Compression<int, false, SMALL> IDX;\n  vc<int> Y = IDX.build(X);\n\
-    \  assert(Y == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX(1) == 0 &&\
-    \ IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 3 && IDX(5) == 5 && IDX(6)\
-    \ == 5);\n  assert(IDX(7) == 7 && IDX(8) == 9 && IDX(9) == 9);\n\n  FOR(100) {\n\
-    \    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100, 100);\n\
-    \      Index_Compression<int, false, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
-    \      auto I = argsort(X);\n      FOR(i, N) assert(Y[I[i]] == i);\n      X =\
-    \ rearrange(X, I);\n      FOR(x, -100, 100) assert(IDX(x) == LB(X, x));\n    }\n\
-    \  }\n}\n\ntemplate <bool SMALL>\nvoid test_same() {\n  vc<int> X = {3, 4, 7,\
-    \ 4, 3, 6, 6, 7, 3};\n  Index_Compression<int, true, SMALL> IDX;\n  vc<int> Y\
-    \ = IDX.build(X);\n  assert(Y == vc<int>({0, 1, 3, 1, 0, 2, 2, 3, 0}));\n  assert(IDX(1)\
-    \ == 0 && IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 1 && IDX(5) == 2 &&\
-    \ IDX(6) == 2);\n  assert(IDX(7) == 3 && IDX(8) == 4 && IDX(9) == 4);\n\n  FOR(100)\
+    \  assert(Y == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX.val_to_idx(1)\
+    \ == 0 && IDX.val_to_idx(2) == 0 &&\n         IDX.val_to_idx(3) == 0);\n  assert(IDX.val_to_idx(4)\
+    \ == 3 && IDX.val_to_idx(5) == 5 &&\n         IDX.val_to_idx(6) == 5);\n  assert(IDX.val_to_idx(7)\
+    \ == 7 && IDX.val_to_idx(8) == 9 &&\n         IDX.val_to_idx(9) == 9);\n\n  FOR(100)\
     \ {\n    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100,\
-    \ 100);\n      Index_Compression<int, true, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
-    \      vc<int> key = X;\n      UNIQUE(key);\n      FOR(i, N) assert(LB(key, X[i])\
-    \ == Y[i]);\n      FOR(x, -100, 100) assert(IDX(x) == LB(key, x));\n    }\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test_distinct<false>();\n  test_distinct<true>();\n\
-    \  test_same<false>();\n  test_same<true>();\n  solve();\n}\n"
+    \ 100);\n      Index_Compression<int, false, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
+    \      auto I = argsort(X);\n      FOR(i, N) assert(Y[I[i]] == i);\n      X =\
+    \ rearrange(X, I);\n      FOR(x, -100, 100) assert(IDX.val_to_idx(x) == LB(X,\
+    \ x));\n    }\n  }\n}\n\ntemplate <bool SMALL>\nvoid test_same() {\n  vc<int>\
+    \ X = {3, 4, 7, 4, 3, 6, 6, 7, 3};\n  Index_Compression<int, true, SMALL> IDX;\n\
+    \  vc<int> Y = IDX.build(X);\n  assert(Y == vc<int>({0, 1, 3, 1, 0, 2, 2, 3, 0}));\n\
+    \  assert(IDX.val_to_idx(1) == 0 && IDX.val_to_idx(2) == 0 &&\n         IDX.val_to_idx(3)\
+    \ == 0);\n  assert(IDX.val_to_idx(4) == 1 && IDX.val_to_idx(5) == 2 &&\n     \
+    \    IDX.val_to_idx(6) == 2);\n  assert(IDX.val_to_idx(7) == 3 && IDX.val_to_idx(8)\
+    \ == 4 &&\n         IDX.val_to_idx(9) == 4);\n\n  FOR(100) {\n    FOR(N, 0, 300)\
+    \ {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100, 100);\n      Index_Compression<int,\
+    \ true, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n      vc<int> key = X;\n\
+    \      UNIQUE(key);\n      FOR(i, N) assert(LB(key, X[i]) == Y[i]);\n      FOR(x,\
+    \ -100, 100) assert(IDX.val_to_idx(x) == LB(key, x));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test_distinct<false>();\n  test_distinct<true>();\n  test_same<false>();\n\
+    \  test_same<true>();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"ds/index_compression.hpp\"\n#include \"random/base.hpp\"\
     \n\ntemplate <bool SMALL>\nvoid test_distinct() {\n  vc<int> X = {3, 4, 7, 4,\
     \ 3, 6, 6, 7, 3};\n  Index_Compression<int, false, SMALL> IDX;\n  vc<int> Y =\
-    \ IDX.build(X);\n  assert(Y == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX(1)\
-    \ == 0 && IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 3 && IDX(5) == 5 &&\
-    \ IDX(6) == 5);\n  assert(IDX(7) == 7 && IDX(8) == 9 && IDX(9) == 9);\n\n  FOR(100)\
+    \ IDX.build(X);\n  assert(Y == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX.val_to_idx(1)\
+    \ == 0 && IDX.val_to_idx(2) == 0 &&\n         IDX.val_to_idx(3) == 0);\n  assert(IDX.val_to_idx(4)\
+    \ == 3 && IDX.val_to_idx(5) == 5 &&\n         IDX.val_to_idx(6) == 5);\n  assert(IDX.val_to_idx(7)\
+    \ == 7 && IDX.val_to_idx(8) == 9 &&\n         IDX.val_to_idx(9) == 9);\n\n  FOR(100)\
     \ {\n    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100,\
     \ 100);\n      Index_Compression<int, false, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
     \      auto I = argsort(X);\n      FOR(i, N) assert(Y[I[i]] == i);\n      X =\
-    \ rearrange(X, I);\n      FOR(x, -100, 100) assert(IDX(x) == LB(X, x));\n    }\n\
-    \  }\n}\n\ntemplate <bool SMALL>\nvoid test_same() {\n  vc<int> X = {3, 4, 7,\
-    \ 4, 3, 6, 6, 7, 3};\n  Index_Compression<int, true, SMALL> IDX;\n  vc<int> Y\
-    \ = IDX.build(X);\n  assert(Y == vc<int>({0, 1, 3, 1, 0, 2, 2, 3, 0}));\n  assert(IDX(1)\
-    \ == 0 && IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 1 && IDX(5) == 2 &&\
-    \ IDX(6) == 2);\n  assert(IDX(7) == 3 && IDX(8) == 4 && IDX(9) == 4);\n\n  FOR(100)\
-    \ {\n    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100,\
-    \ 100);\n      Index_Compression<int, true, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
-    \      vc<int> key = X;\n      UNIQUE(key);\n      FOR(i, N) assert(LB(key, X[i])\
-    \ == Y[i]);\n      FOR(x, -100, 100) assert(IDX(x) == LB(key, x));\n    }\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test_distinct<false>();\n  test_distinct<true>();\n\
-    \  test_same<false>();\n  test_same<true>();\n  solve();\n}"
+    \ rearrange(X, I);\n      FOR(x, -100, 100) assert(IDX.val_to_idx(x) == LB(X,\
+    \ x));\n    }\n  }\n}\n\ntemplate <bool SMALL>\nvoid test_same() {\n  vc<int>\
+    \ X = {3, 4, 7, 4, 3, 6, 6, 7, 3};\n  Index_Compression<int, true, SMALL> IDX;\n\
+    \  vc<int> Y = IDX.build(X);\n  assert(Y == vc<int>({0, 1, 3, 1, 0, 2, 2, 3, 0}));\n\
+    \  assert(IDX.val_to_idx(1) == 0 && IDX.val_to_idx(2) == 0 &&\n         IDX.val_to_idx(3)\
+    \ == 0);\n  assert(IDX.val_to_idx(4) == 1 && IDX.val_to_idx(5) == 2 &&\n     \
+    \    IDX.val_to_idx(6) == 2);\n  assert(IDX.val_to_idx(7) == 3 && IDX.val_to_idx(8)\
+    \ == 4 &&\n         IDX.val_to_idx(9) == 4);\n\n  FOR(100) {\n    FOR(N, 0, 300)\
+    \ {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100, 100);\n      Index_Compression<int,\
+    \ true, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n      vc<int> key = X;\n\
+    \      UNIQUE(key);\n      FOR(i, N) assert(LB(key, X[i]) == Y[i]);\n      FOR(x,\
+    \ -100, 100) assert(IDX.val_to_idx(x) == LB(key, x));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test_distinct<false>();\n  test_distinct<true>();\n  test_same<false>();\n\
+    \  test_same<true>();\n  solve();\n}"
   dependsOn:
   - my_template.hpp
   - ds/index_compression.hpp
@@ -199,8 +205,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/index_compression.test.cpp
   requiredBy: []
-  timestamp: '2026-08-01 03:11:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-02 08:19:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/index_compression.test.cpp
 layout: document

@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
   - icon: ':question:'
@@ -18,15 +18,15 @@ data:
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1490.test.cpp
     title: test/3_yukicoder/1490.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct\
@@ -192,18 +192,18 @@ data:
     \ {\n      auto [a, b, w, qid] = query[q];\n      while (ptr < len(ADD_I) && (get<0>(query[ADD_I[ptr]]))\
     \ <= a) {\n        int q = ADD_I[ptr++];\n        auto [a, b, w, qid] = query[q];\n\
     \        coef_array<A>(a, CX);\n        coef_array<B>(b, CY);\n        FOR(i,\
-    \ A) FOR(j, B) tmp[B * i + j] = CX[i] * CY[j] * w;\n        bit.add(IY(b), tmp);\n\
-    \      }\n      comb_array<A>(a, CX);\n      comb_array<B>(b, CY);\n      // calc\
-    \ query\n      tmp = bit.prod(IY(b + 1));\n      T ans = 0;\n      FOR(i, A) FOR(j,\
-    \ B) ans += tmp[B * i + j] * CX[i] * CY[j];\n      ANS[qid] += ans;\n    }\n \
-    \ }\n\n  vc<T> calc() {\n    assert(!done);\n    done = 1;\n    ANS.assign(nsum,\
-    \ 0);\n    int Q = len(query);\n    auto comp = [&](int i, int j) -> bool {\n\
-    \      return (get<0>(query[i])) < (get<0>(query[j]));\n    };\n    if (STATIC)\
-    \ {\n      vc<int> ADD, GET;\n      FOR(i, Q) { (get<3>(query[i]) == -1 ? ADD\
-    \ : GET).eb(i); }\n      sort(all(ADD), comp);\n      sort(all(GET), comp);\n\
-    \      calc_static(ADD, GET);\n      return ANS;\n    }\n    auto dfs = [&](auto&\
-    \ dfs, int L, int R) -> pair<vc<int>, vc<int>> {\n      vc<int> ADD, GET;\n  \
-    \    if (R == L + 1) {\n        (get<3>(query[L]) == -1 ? ADD : GET).eb(L);\n\
+    \ A) FOR(j, B) tmp[B * i + j] = CX[i] * CY[j] * w;\n        bit.add(IY.val_to_idx(b),\
+    \ tmp);\n      }\n      comb_array<A>(a, CX);\n      comb_array<B>(b, CY);\n \
+    \     // calc query\n      tmp = bit.prod(IY.val_to_idx(b + 1));\n      T ans\
+    \ = 0;\n      FOR(i, A) FOR(j, B) ans += tmp[B * i + j] * CX[i] * CY[j];\n   \
+    \   ANS[qid] += ans;\n    }\n  }\n\n  vc<T> calc() {\n    assert(!done);\n   \
+    \ done = 1;\n    ANS.assign(nsum, 0);\n    int Q = len(query);\n    auto comp\
+    \ = [&](int i, int j) -> bool {\n      return (get<0>(query[i])) < (get<0>(query[j]));\n\
+    \    };\n    if (STATIC) {\n      vc<int> ADD, GET;\n      FOR(i, Q) { (get<3>(query[i])\
+    \ == -1 ? ADD : GET).eb(i); }\n      sort(all(ADD), comp);\n      sort(all(GET),\
+    \ comp);\n      calc_static(ADD, GET);\n      return ANS;\n    }\n    auto dfs\
+    \ = [&](auto& dfs, int L, int R) -> pair<vc<int>, vc<int>> {\n      vc<int> ADD,\
+    \ GET;\n      if (R == L + 1) {\n        (get<3>(query[L]) == -1 ? ADD : GET).eb(L);\n\
     \        return {ADD, GET};\n      }\n      int M = (L + R) / 2;\n      auto [ADD1,\
     \ GET1] = dfs(dfs, L, M);\n      auto [ADD2, GET2] = dfs(dfs, M, R);\n      calc_static(ADD1,\
     \ GET2);\n      ADD.resize(len(ADD1) + len(ADD2));\n      GET.resize(len(GET1)\
@@ -238,8 +238,8 @@ data:
   isVerificationFile: false
   path: ds/offline_query/rectangle_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2026-08-01 03:11:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-02 08:19:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1490.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
