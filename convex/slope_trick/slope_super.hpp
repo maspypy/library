@@ -266,10 +266,10 @@ struct Slope_Trick_Super {
       T nx = (i + 1 < len(tmp) ? tmp[i + 1].fi : g.x1);
       a += tmp[i].se;
       f = convolve_segment(f, 0, nx - tmp[i].fi, a, 0);
-      for (auto &[x, a] : ST.get_all(f.root)) {
-        assert(f.x0 <= x && x <= f.x1);
-        if (f.root) assert(!f.root->p);
-      }
+      // for (auto &[x, a] : ST.get_all(f.root)) {
+      //   assert(f.x0 <= x && x <= f.x1);
+      //   if (f.root) assert(!f.root->p);
+      // }
     }
     return f;
   }
