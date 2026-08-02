@@ -72,6 +72,6 @@ struct Wavelet_Matrix_2D_Range {
   // prod の方を見る必要がある
   template <typename F>
   tuple<XY, int, T> max_right(F check, XY x1, XY x2) const {
-    return WM.max_right(check, IDX_X(x1), IDX_X(x2));
+    return WM.max_right(check, IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2));
   }
 };
