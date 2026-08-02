@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -529,15 +529,17 @@ data:
     \ = get<2>(tmp);\n    }\n    new_idx = IDX_X.build(X);\n    vc<int> I(n);\n  \
     \  FOR(i, n) I[new_idx[i]] = i;\n    Y = rearrange(Y, I);\n    S = rearrange(S,\
     \ I);\n    WM.build(n, [&](int i) -> pair<XY, T> { return {Y[i], S[i]}; });\n\
-    \  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    return WM.count(IDX_X(x1),\
-    \ IDX_X(x2), y1, y2);\n  }\n\n  // [L,R) x [-inf,y)\n  pair<int, T> prefix_count_and_prod(XY\
-    \ x1, XY x2, XY y) {\n    return WM.prefix_count_and_prod(IDX_X(x1), IDX_X(x2),\
-    \ y);\n  }\n\n  // [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(XY x1, XY x2,\
-    \ XY y1, XY y2) {\n    return WM.count_and_prod(IDX_X(x1), IDX_X(x2), y1, y2);\n\
-    \  }\n\n  // [L,R) x [-inf,inf)\n  T prod_all(XY x1, XY x2) { return WM.prod_all(IDX_X(x1),\
-    \ IDX_X(x2)); }\n  // [L,R) x [-inf,y)\n  T prefix_prod(XY x1, XY x2, XY y) {\n\
-    \    return WM.prefix_prod(IDX_X(x1), IDX_X(x2), y);\n  }\n  // [L,R) x [y1,y2)\n\
-    \  T prod(XY x1, XY x2, XY y1, XY y2) {\n    return WM.prod(IDX_X(x1), IDX_X(x2),\
+    \  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    return WM.count(IDX_X.val_to_idx(x1),\
+    \ IDX_X.val_to_idx(x2), y1, y2);\n  }\n\n  // [L,R) x [-inf,y)\n  pair<int, T>\
+    \ prefix_count_and_prod(XY x1, XY x2, XY y) {\n    return WM.prefix_count_and_prod(IDX_X.val_to_idx(x1),\
+    \ IDX_X.val_to_idx(x2),\n                                    y);\n  }\n\n  //\
+    \ [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(XY x1, XY x2, XY y1, XY y2) {\n\
+    \    return WM.count_and_prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y1,\n\
+    \                             y2);\n  }\n\n  // [L,R) x [-inf,inf)\n  T prod_all(XY\
+    \ x1, XY x2) { return WM.prod_all(IDX_X(x1), IDX_X(x2)); }\n  // [L,R) x [-inf,y)\n\
+    \  T prefix_prod(XY x1, XY x2, XY y) {\n    return WM.prefix_prod(IDX_X.val_to_idx(x1),\
+    \ IDX_X.val_to_idx(x2), y);\n  }\n  // [L,R) x [y1,y2)\n  T prod(XY x1, XY x2,\
+    \ XY y1, XY y2) {\n    return WM.prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2),\
     \ y1, y2);\n  }\n  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\
     \u30C7\u30C3\u30AF\u30B9\n  void set(int i, T t) { WM.set(new_idx[i], t); }\n\
     \  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\
@@ -639,8 +641,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   requiredBy: []
-  timestamp: '2026-08-02 12:43:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-02 14:15:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
 layout: document
