@@ -288,17 +288,17 @@ data:
     \    f = convolve_segment(f, 0, tmp[0].fi, g.a0, 0);\n    T a = g.a0;\n    FOR(i,\
     \ len(tmp)) {\n      T nx = (i + 1 < len(tmp) ? tmp[i + 1].fi : g.x1);\n     \
     \ a += tmp[i].se;\n      f = convolve_segment(f, 0, nx - tmp[i].fi, a, 0);\n \
-    \     for (auto &[x, a] : ST.get_all(f.root)) {\n        assert(f.x0 <= x && x\
-    \ <= f.x1);\n        if (f.root) assert(!f.root->p);\n      }\n    }\n    return\
-    \ f;\n  }\n\n  // [x0,x1], y=ax+b\n  FUNC convolve_segment(FUNC &f, T x0, T x1,\
-    \ T a, T b) {\n    assert(x0 <= x1);\n    if (f.x0 > f.x1) {\n      return {nullptr,\
-    \ infty<T>, -infty<T>, 0, 0};\n    }\n    f = shift(f, x0, a * x0 + b);\n    T\
-    \ d = x1 - x0;\n    if (d == 0) return f;\n    // (0,0) \u304B\u3089 (x1,ax1)\
-    \ \u3078\u306E\u7DDA\u5206\u3092\u3069\u3053\u304B\u306B\u633F\u5165\u3059\u308B\
-    \n    // \u7279\u306B x0, y0 \u306F\u3053\u306E\u307E\u307E\u3067\u3088\u3044\n\
-    \    if (f.x0 == f.x1) {\n      return {nullptr, f.x0, f.x0 + d, a, f.y0};\n \
-    \   }\n    // \u5148\u982D\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n \
-    \   if (a <= f.a0) {\n      ST.apply(f.root, d);\n      f.root = ST.merge(ST.new_node({f.x0\
+    \     // for (auto &[x, a] : ST.get_all(f.root)) {\n      //   assert(f.x0 <=\
+    \ x && x <= f.x1);\n      //   if (f.root) assert(!f.root->p);\n      // }\n \
+    \   }\n    return f;\n  }\n\n  // [x0,x1], y=ax+b\n  FUNC convolve_segment(FUNC\
+    \ &f, T x0, T x1, T a, T b) {\n    assert(x0 <= x1);\n    if (f.x0 > f.x1) {\n\
+    \      return {nullptr, infty<T>, -infty<T>, 0, 0};\n    }\n    f = shift(f, x0,\
+    \ a * x0 + b);\n    T d = x1 - x0;\n    if (d == 0) return f;\n    // (0,0) \u304B\
+    \u3089 (x1,ax1) \u3078\u306E\u7DDA\u5206\u3092\u3069\u3053\u304B\u306B\u633F\u5165\
+    \u3059\u308B\n    // \u7279\u306B x0, y0 \u306F\u3053\u306E\u307E\u307E\u3067\u3088\
+    \u3044\n    if (f.x0 == f.x1) {\n      return {nullptr, f.x0, f.x0 + d, a, f.y0};\n\
+    \    }\n    // \u5148\u982D\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n\
+    \    if (a <= f.a0) {\n      ST.apply(f.root, d);\n      f.root = ST.merge(ST.new_node({f.x0\
     \ + d, f.a0 - a}), f.root);\n      f.x1 += d, f.a0 = a;\n      return f;\n   \
     \ }\n    // \u672B\u5C3E\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n   \
     \ T a_last = f.a0 + ST.prod(f.root).fi;\n    if (a_last <= a) {\n      f.root\
@@ -452,17 +452,17 @@ data:
     \    f = convolve_segment(f, 0, tmp[0].fi, g.a0, 0);\n    T a = g.a0;\n    FOR(i,\
     \ len(tmp)) {\n      T nx = (i + 1 < len(tmp) ? tmp[i + 1].fi : g.x1);\n     \
     \ a += tmp[i].se;\n      f = convolve_segment(f, 0, nx - tmp[i].fi, a, 0);\n \
-    \     for (auto &[x, a] : ST.get_all(f.root)) {\n        assert(f.x0 <= x && x\
-    \ <= f.x1);\n        if (f.root) assert(!f.root->p);\n      }\n    }\n    return\
-    \ f;\n  }\n\n  // [x0,x1], y=ax+b\n  FUNC convolve_segment(FUNC &f, T x0, T x1,\
-    \ T a, T b) {\n    assert(x0 <= x1);\n    if (f.x0 > f.x1) {\n      return {nullptr,\
-    \ infty<T>, -infty<T>, 0, 0};\n    }\n    f = shift(f, x0, a * x0 + b);\n    T\
-    \ d = x1 - x0;\n    if (d == 0) return f;\n    // (0,0) \u304B\u3089 (x1,ax1)\
-    \ \u3078\u306E\u7DDA\u5206\u3092\u3069\u3053\u304B\u306B\u633F\u5165\u3059\u308B\
-    \n    // \u7279\u306B x0, y0 \u306F\u3053\u306E\u307E\u307E\u3067\u3088\u3044\n\
-    \    if (f.x0 == f.x1) {\n      return {nullptr, f.x0, f.x0 + d, a, f.y0};\n \
-    \   }\n    // \u5148\u982D\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n \
-    \   if (a <= f.a0) {\n      ST.apply(f.root, d);\n      f.root = ST.merge(ST.new_node({f.x0\
+    \     // for (auto &[x, a] : ST.get_all(f.root)) {\n      //   assert(f.x0 <=\
+    \ x && x <= f.x1);\n      //   if (f.root) assert(!f.root->p);\n      // }\n \
+    \   }\n    return f;\n  }\n\n  // [x0,x1], y=ax+b\n  FUNC convolve_segment(FUNC\
+    \ &f, T x0, T x1, T a, T b) {\n    assert(x0 <= x1);\n    if (f.x0 > f.x1) {\n\
+    \      return {nullptr, infty<T>, -infty<T>, 0, 0};\n    }\n    f = shift(f, x0,\
+    \ a * x0 + b);\n    T d = x1 - x0;\n    if (d == 0) return f;\n    // (0,0) \u304B\
+    \u3089 (x1,ax1) \u3078\u306E\u7DDA\u5206\u3092\u3069\u3053\u304B\u306B\u633F\u5165\
+    \u3059\u308B\n    // \u7279\u306B x0, y0 \u306F\u3053\u306E\u307E\u307E\u3067\u3088\
+    \u3044\n    if (f.x0 == f.x1) {\n      return {nullptr, f.x0, f.x0 + d, a, f.y0};\n\
+    \    }\n    // \u5148\u982D\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n\
+    \    if (a <= f.a0) {\n      ST.apply(f.root, d);\n      f.root = ST.merge(ST.new_node({f.x0\
     \ + d, f.a0 - a}), f.root);\n      f.x1 += d, f.a0 = a;\n      return f;\n   \
     \ }\n    // \u672B\u5C3E\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n   \
     \ T a_last = f.a0 + ST.prod(f.root).fi;\n    if (a_last <= a) {\n      f.root\
@@ -515,7 +515,7 @@ data:
   isVerificationFile: false
   path: convex/slope_trick/slope_super.hpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
+  timestamp: '2026-08-02 12:49:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/slope_super.test.cpp
