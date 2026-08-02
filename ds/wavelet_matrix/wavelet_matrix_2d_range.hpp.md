@@ -336,7 +336,8 @@ data:
     , activate/deactivate \u3092\u8003\u616E\u3059\u308B\u5834\u5408\u306B\u306F\n\
     \  // prod \u306E\u65B9\u3092\u898B\u308B\u5FC5\u8981\u304C\u3042\u308B\n  template\
     \ <typename F>\n  tuple<XY, int, T> max_right(F check, XY x1, XY x2) const {\n\
-    \    return WM.max_right(check, IDX_X(x1), IDX_X(x2));\n  }\n};\n"
+    \    return WM.max_right(check, IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2));\n\
+    \  }\n};\n"
   code: "#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n#include \"ds/index_compression.hpp\"\
     \n\ntemplate <typename XY, bool compress_X, bool compress_Y,\n          typename\
     \ SEGTREE = Dummy_Data_Structure>\nstruct Wavelet_Matrix_2D_Range {\n  // \u70B9\
@@ -369,7 +370,8 @@ data:
     , activate/deactivate \u3092\u8003\u616E\u3059\u308B\u5834\u5408\u306B\u306F\n\
     \  // prod \u306E\u65B9\u3092\u898B\u308B\u5FC5\u8981\u304C\u3042\u308B\n  template\
     \ <typename F>\n  tuple<XY, int, T> max_right(F check, XY x1, XY x2) const {\n\
-    \    return WM.max_right(check, IDX_X(x1), IDX_X(x2));\n  }\n};"
+    \    return WM.max_right(check, IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2));\n\
+    \  }\n};"
   dependsOn:
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/bit_vector.hpp
@@ -380,7 +382,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   requiredBy: []
-  timestamp: '2026-08-01 03:11:36+09:00'
+  timestamp: '2026-08-02 12:43:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1919_2.test.cpp
