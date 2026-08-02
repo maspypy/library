@@ -38,28 +38,30 @@ struct Wavelet_Matrix_2D_Range {
   }
 
   int count(XY x1, XY x2, XY y1, XY y2) {
-    return WM.count(IDX_X(x1), IDX_X(x2), y1, y2);
+    return WM.count(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y1, y2);
   }
 
   // [L,R) x [-inf,y)
   pair<int, T> prefix_count_and_prod(XY x1, XY x2, XY y) {
-    return WM.prefix_count_and_prod(IDX_X(x1), IDX_X(x2), y);
+    return WM.prefix_count_and_prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2),
+                                    y);
   }
 
   // [L,R) x [y1,y2)
   pair<int, T> count_and_prod(XY x1, XY x2, XY y1, XY y2) {
-    return WM.count_and_prod(IDX_X(x1), IDX_X(x2), y1, y2);
+    return WM.count_and_prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y1,
+                             y2);
   }
 
   // [L,R) x [-inf,inf)
   T prod_all(XY x1, XY x2) { return WM.prod_all(IDX_X(x1), IDX_X(x2)); }
   // [L,R) x [-inf,y)
   T prefix_prod(XY x1, XY x2, XY y) {
-    return WM.prefix_prod(IDX_X(x1), IDX_X(x2), y);
+    return WM.prefix_prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y);
   }
   // [L,R) x [y1,y2)
   T prod(XY x1, XY x2, XY y1, XY y2) {
-    return WM.prod(IDX_X(x1), IDX_X(x2), y1, y2);
+    return WM.prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y1, y2);
   }
   // i は最初に渡したインデックス
   void set(int i, T t) { WM.set(new_idx[i], t); }
