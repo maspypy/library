@@ -3,6 +3,7 @@
 // https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c
 template <typename F>
 vc<pair<int, int>> manacher(int n, F match) {
+  if (n == 0) return {};
   assert(n > 0);
   auto f = [&](int i, int j) -> bool {
     if (i > j) return 0;
@@ -16,7 +17,9 @@ vc<pair<int, int>> manacher(int n, F match) {
     while (i - j >= 0 && i + j < 2 * n - 1 && f(i - j, i + j)) ++j;
     dp[i] = j;
     int k = 1;
-    while (i - k >= 0 && i + k < 2 * n - 1 && k < j && dp[i - k] != j - k) { dp[i + k] = min(j - k, dp[i - k]), ++k; }
+    while (i - k >= 0 && i + k < 2 * n - 1 && k < j && dp[i - k] != j - k) {
+      dp[i + k] = min(j - k, dp[i - k]), ++k;
+    }
     i += k, j = max(j - k, 0);
   }
   vc<pair<int, int>> res;
@@ -33,6 +36,6 @@ vc<pair<int, int>> manacher(int n, F match) {
 template <typename STRING>
 vc<pair<int, int>> manacher(STRING s) {
   int n = len(s);
-  assert(n > 0);
+  if (n == 0) return {};
   return manacher(n, [&](int i, int j) -> bool { return s[i] == s[j]; });
 }
