@@ -253,10 +253,10 @@ data:
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/online_division.test.cpp
   - test/1_mytest/online_inv.test.cpp
-  - test/1_mytest/online_log.test.cpp
   - test/1_mytest/online_pow.test.cpp
+  - test/1_mytest/online_log.test.cpp
+  - test/1_mytest/online_division.test.cpp
 documentation_of: poly/online/online_division.hpp
 layout: document
 redirect_from:

@@ -199,16 +199,16 @@ data:
   requiredBy:
   - random/random_polygon.hpp
   - geo/distance.hpp
-  - geo/minimum_three_distance_sum.hpp
   - geo/polygon.hpp
+  - geo/minimum_three_distance_sum.hpp
   timestamp: '2026-08-01 05:28:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/CGL_2_B.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/4_aoj/CGL_2_C.test.cpp
   - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/4_aoj/CGL_2_B.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document
 redirect_from:

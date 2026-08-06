@@ -160,8 +160,8 @@ data:
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
 documentation_of: seq/famous/stirling_number_query.hpp
 layout: document
 redirect_from:

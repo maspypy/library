@@ -92,9 +92,9 @@ data:
   isVerificationFile: false
   path: seq/cartesian_tree.hpp
   requiredBy:
-  - string/substring_count_in_substring.hpp
   - string/suffix_tree.hpp
   - string/basic_substring_structure.hpp
+  - string/substring_count_in_substring.hpp
   timestamp: '2025-02-11 00:32:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

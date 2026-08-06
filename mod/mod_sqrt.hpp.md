@@ -149,9 +149,9 @@ data:
   isVerificationFile: false
   path: mod/mod_sqrt.hpp
   requiredBy:
-  - poly/fps_sqrt.hpp
   - graph/count/count_labeled_bipartite.hpp
   - seq/sidon_sequence.hpp
+  - poly/fps_sqrt.hpp
   timestamp: '2026-07-29 18:58:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -73,9 +73,9 @@ data:
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
+  - string/aho_corasick_for_general_trie.hpp
   - ds/static_range_frequency.hpp
   - ds/offline_query/offline_set_intersection.hpp
-  - string/aho_corasick_for_general_trie.hpp
   timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

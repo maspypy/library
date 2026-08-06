@@ -673,6 +673,9 @@ data:
       title: ds/splaytree/splaytree_monoid.hpp
   - name: ds/unionfind
     pages:
+    - icon: ':warning:'
+      path: ds/unionfind/dual_unionfind.hpp
+      title: ds/unionfind/dual_unionfind.hpp
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/dynamic_unionfind.hpp
       title: ds/unionfind/dynamic_unionfind.hpp
@@ -2491,6 +2494,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/edit_distance.hpp
       title: string/edit_distance.hpp
+    - icon: ':warning:'
+      path: string/enumerate_occurrence.hpp
+      title: string/enumerate_occurrence.hpp
     - icon: ':warning:'
       path: string/inverse_manacher.hpp
       title: string/inverse_manacher.hpp

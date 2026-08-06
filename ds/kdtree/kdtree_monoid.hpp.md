@@ -112,8 +112,8 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1625.test.cpp
   - test/1_mytest/kdtree_monoid.test.cpp
+  - test/3_yukicoder/1625.test.cpp
 documentation_of: ds/kdtree/kdtree_monoid.hpp
 layout: document
 redirect_from:

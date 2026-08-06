@@ -39,14 +39,14 @@ data:
   path: linalg/transpose.hpp
   requiredBy:
   - poly/coef_of_rational_fps_2d.hpp
-  - linalg/diagonalize_triangular_matrix.hpp
   - other/sliding_puzzle_solver.hpp
+  - linalg/diagonalize_triangular_matrix.hpp
   timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2108.test.cpp
-  - test/3_yukicoder/2907.test.cpp
   - test/1_mytest/equal_4square_sum_grid.test.cpp
+  - test/3_yukicoder/2907.test.cpp
+  - test/3_yukicoder/2108.test.cpp
 documentation_of: linalg/transpose.hpp
 layout: document
 redirect_from:

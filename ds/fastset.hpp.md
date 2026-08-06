@@ -44,6 +44,9 @@ data:
   - icon: ':warning:'
     path: other/cuboid_union_volume.hpp
     title: other/cuboid_union_volume.hpp
+  - icon: ':warning:'
+    path: string/enumerate_occurrence.hpp
+    title: string/enumerate_occurrence.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
@@ -203,33 +206,34 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
+  - string/suffix_tree.hpp
+  - string/enumerate_occurrence.hpp
+  - graph/toposort.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/all_cycle_common_vertex.hpp
-  - graph/toposort.hpp
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - bigint/redundant_binary_number.hpp
-  - ds/sortable_array.hpp
-  - ds/incremental_rectangle_union.hpp
   - ds/intervals.hpp
+  - ds/segtree/range_add_make_increasing.hpp
+  - ds/segtree/sortable_segtree.hpp
   - ds/segtree/range_add_make_decreasing.hpp
   - ds/segtree/range_assignment_segtree.hpp
-  - ds/segtree/sortable_segtree.hpp
-  - ds/segtree/range_add_make_increasing.hpp
-  - string/suffix_tree.hpp
+  - ds/incremental_rectangle_union.hpp
+  - ds/sortable_array.hpp
   - other/cuboid_union_volume.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/decremental_fastset.test.cpp
+  - test/1_mytest/sortable_array.test.cpp
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2809.test.cpp
   - test/4_aoj/2636.test.cpp
   - test/4_aoj/2251_1.test.cpp
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
-  - test/1_mytest/decremental_fastset.test.cpp
-  - test/1_mytest/sortable_array.test.cpp
-  - test/1_mytest/range_assign.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem.test.cpp
   - test/2_library_checker/data_structure/sort_segtree.test.cpp
 documentation_of: ds/fastset.hpp
