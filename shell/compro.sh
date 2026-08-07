@@ -33,11 +33,14 @@ compile_debug() {
   g++ \
     -I "$COMPRO_LIBRARY_DIR" \
     -DLOCAL \
+    -DUSE_PCH \
     -std=c++2a \
     -O2 \
     -Wall \
     -Wfatal-errors \
     -D_GLIBCXX_DEBUG \
+    -mavx2 \
+    -mpopcnt \
     temp.cpp
 }
 
@@ -49,6 +52,9 @@ compile_sanitize() {
   g++ \
     -I "$COMPRO_LIBRARY_DIR" \
     -DLOCAL \
+    -DUSE_PCH \
+    -mavx2 \
+    -mpopcnt \
     -std=c++2a \
     -O2 \
     -fsanitize=address \
@@ -63,11 +69,23 @@ compile_fast() {
 
   g++ \
     -I "$COMPRO_LIBRARY_DIR" \
+    -DUSE_PCH \
+    -std=c++2a \
+    -O2 \
+    -mavx2 \
+    -mpopcnt \
+    temp.cpp
+}
+
+compile_fast_no_pch() {
+  expand_main || return
+
+  g++ \
+    -I "$COMPRO_LIBRARY_DIR" \
     -std=c++2a \
     -O2 \
     temp.cpp
 }
-
 
 test_samples() {
   copy_temp_cpp
@@ -80,11 +98,11 @@ precompile() {
     cd "$COMPRO_LIBRARY_DIR" || return
 
     local pch_src="my_template_compiled.hpp"
-    local out_dir="my_template.hpp.gch"
+    local out_dir="my_template_compiled.hpp.gch"
 
     # my_template.hpp から PCH 用ヘッダを生成する
     # 前提:
-    #   1行目: #if defined(LOCAL)
+    #   1行目: #if defined(USE_PCH)
     #   2行目: #include <my_template_compiled.hpp>
     #   3行目: #else
     #   最終行: #endif
@@ -96,43 +114,50 @@ precompile() {
       }
     ' my_template.hpp > "$pch_src"
 
+    rm -rf "$out_dir"
     mkdir -p "$out_dir"
 
     g++ \
-      -o my_template_cc.hpp.gch \
+      -o "$out_dir/debug.gch" \
       -I . \
       -DLOCAL \
+      -DUSE_PCH \
       -std=c++2a \
       -O2 \
       -Wall \
       -Wfatal-errors \
       -D_GLIBCXX_DEBUG \
+      -mavx2 \
+      -mpopcnt \
+      -x c++-header \
       "$pch_src" || return
 
     g++ \
-      -o my_template_cc2.hpp.gch \
+      -o "$out_dir/sanitize.gch" \
       -I . \
       -DLOCAL \
+      -DUSE_PCH \
       -std=c++2a \
       -O2 \
       -fsanitize=address \
       -fno-omit-frame-pointer \
       -g \
       -fsanitize=undefined \
+      -mavx2 \
+      -mpopcnt \
+      -x c++-header \
       "$pch_src" || return
 
     g++ \
-      -o my_template_ccfast.hpp.gch \
+      -o "$out_dir/fast.gch" \
       -I . \
+      -DUSE_PCH \
       -std=c++2a \
       -O2 \
+      -mavx2 \
+      -mpopcnt \
+      -x c++-header \
       "$pch_src" || return
-
-    mv \
-      my_template_cc.hpp.gch \
-      my_template_cc2.hpp.gch \
-      my_template_ccfast.hpp.gch \
-      "$out_dir"/
   )
 }
 
@@ -145,5 +170,6 @@ alias aa="./a.out"
 alias cc="compile_debug"
 alias cc2="compile_sanitize"
 alias ccf="compile_fast"
+alias ccf_no_pch="compile_fast_no_pch"
 alias tt="test_samples"
 alias rt="randomtest"

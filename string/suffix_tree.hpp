@@ -73,7 +73,7 @@ struct Suffix_Tree {
     Graph<int, 1> G(len(dat));
     for (auto&& [a, b, c] : edges) G.add(a, b, c);
     G.build();
-    return {G, dat};
+    return {move(G), move(dat)};
   }
 
   // S[i:N) に対応するノード番号を返す
