@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
@@ -481,8 +481,8 @@ data:
     \  dfs(dfs, 1, r, LCP[r]);\n    } else {\n      dfs(dfs, 0, r, 0);\n    }\n  \
     \  for (auto& [a, b, c, d] : dat) ++c, ++d;\n\n    Graph<int, 1> G(len(dat));\n\
     \    for (auto&& [a, b, c] : edges) G.add(a, b, c);\n    G.build();\n    return\
-    \ {G, dat};\n  }\n\n  // S[i:N) \u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\u30C9\
-    \u756A\u53F7\u3092\u8FD4\u3059\n  // https://codeforces.com/problemset/problem/1098/F\n\
+    \ {move(G), move(dat)};\n  }\n\n  // S[i:N) \u306B\u5BFE\u5FDC\u3059\u308B\u30CE\
+    \u30FC\u30C9\u756A\u53F7\u3092\u8FD4\u3059\n  // https://codeforces.com/problemset/problem/1098/F\n\
     \  vc<int> get_suffix_positions(Graph<int, 1>& G,\n                          \
     \     vc<tuple<int, int, int, int>>& dat) {\n    int N = len(S);\n    FastSet\
     \ FS(N);\n    FOR(i, N) FS.insert(i);\n    vc<int> ANS(N);\n    FOR_R(v, len(dat))\
@@ -528,8 +528,8 @@ data:
     \  dfs(dfs, 1, r, LCP[r]);\n    } else {\n      dfs(dfs, 0, r, 0);\n    }\n  \
     \  for (auto& [a, b, c, d] : dat) ++c, ++d;\n\n    Graph<int, 1> G(len(dat));\n\
     \    for (auto&& [a, b, c] : edges) G.add(a, b, c);\n    G.build();\n    return\
-    \ {G, dat};\n  }\n\n  // S[i:N) \u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\u30C9\
-    \u756A\u53F7\u3092\u8FD4\u3059\n  // https://codeforces.com/problemset/problem/1098/F\n\
+    \ {move(G), move(dat)};\n  }\n\n  // S[i:N) \u306B\u5BFE\u5FDC\u3059\u308B\u30CE\
+    \u30FC\u30C9\u756A\u53F7\u3092\u8FD4\u3059\n  // https://codeforces.com/problemset/problem/1098/F\n\
     \  vc<int> get_suffix_positions(Graph<int, 1>& G,\n                          \
     \     vc<tuple<int, int, int, int>>& dat) {\n    int N = len(S);\n    FastSet\
     \ FS(N);\n    FOR(i, N) FS.insert(i);\n    vc<int> ANS(N);\n    FOR_R(v, len(dat))\
@@ -561,7 +561,7 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-08 03:36:12+09:00'
+  timestamp: '2026-08-08 05:13:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2361.test.cpp

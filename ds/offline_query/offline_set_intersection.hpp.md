@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: ds/csr.hpp
     title: ds/csr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'

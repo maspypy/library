@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n//\
@@ -300,9 +300,9 @@ data:
     \  }\n\n  int dist(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth[a]\
     \ + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  using WT = typename TREE::WT;\n\
     \  WT dist_weighted(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth_weighted[a]\
-    \ + tree.depth_weighted[b] - 2 * tree.depth_weighted[c];\n  }\n\n  int lca(int\
-    \ a, int b) {\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n \
-    \   return tree.V[seg.prod(p, q + 1)];\n  }\n};\n"
+    \ + tree.depth_weighted[b] -\n           2 * tree.depth_weighted[c];\n  }\n\n\
+    \  int lca(int a, int b) {\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p,\
+    \ q);\n    return tree.V[seg.prod(p, q + 1)];\n  }\n};\n"
   code: "#include \"graph/tree.hpp\"\n#include \"alg/monoid/min.hpp\"\n#include \"\
     ds/sparse_table/sparse_table.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_Lca\
     \ {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>> seg;\n  vc<int> pos;\n\n \
@@ -313,9 +313,9 @@ data:
     \  }\n\n  int dist(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth[a]\
     \ + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  using WT = typename TREE::WT;\n\
     \  WT dist_weighted(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth_weighted[a]\
-    \ + tree.depth_weighted[b] - 2 * tree.depth_weighted[c];\n  }\n\n  int lca(int\
-    \ a, int b) {\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n \
-    \   return tree.V[seg.prod(p, q + 1)];\n  }\n};\n"
+    \ + tree.depth_weighted[b] -\n           2 * tree.depth_weighted[c];\n  }\n\n\
+    \  int lca(int a, int b) {\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p,\
+    \ q);\n    return tree.V[seg.prod(p, q + 1)];\n  }\n};\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -326,8 +326,8 @@ data:
   isVerificationFile: false
   path: graph/fast_lca.hpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-08 05:13:48+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/tree/lca_fast.test.cpp
 documentation_of: graph/fast_lca.hpp

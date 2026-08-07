@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/double_ended_palindromic_tree.hpp
     title: string/double_ended_palindromic_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/palindromes_in_deque
@@ -22,7 +22,7 @@ data:
     - https://judge.yosupo.jp/problem/palindromes_in_deque
   bundledCode: "#line 1 \"test/2_library_checker/string/palindromes_in_deque.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/palindromes_in_deque\"\n#line\
-    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \ 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
     \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
@@ -349,8 +349,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/palindromes_in_deque.test.cpp
   requiredBy: []
-  timestamp: '2026-08-01 03:11:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-08 05:13:48+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/palindromes_in_deque.test.cpp
 layout: document
