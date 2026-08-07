@@ -5,7 +5,7 @@
 // space: (N/63) * u64
 struct FastSet {
   static constexpr u32 B = 64;
-  int n, log;
+  int n = 0, log = 0;
   vvc<u64> seg;
 
   FastSet() {}
