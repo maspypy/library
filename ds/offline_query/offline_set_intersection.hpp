@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "ds/csr.hpp"
 #include "ds/to_small_key.hpp"
 

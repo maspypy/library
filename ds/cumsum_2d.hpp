@@ -18,7 +18,7 @@ struct Cumsum_2D {
   }
 
   void build(vvc<X> &A) {
-    build(len(A), len(A[0]), [&](int x, int y) -> int { return A[x][y]; });
+    build(len(A), len(A[0]), [&](int x, int y) -> X { return A[x][y]; });
   }
   template <typename F>
   void build(int H0, int W0, F f) {
@@ -49,5 +49,7 @@ struct Cumsum_2D {
     return MX::op(MX::op(a, d), MX::inverse(MX::op(b, c)));
   }
 
-  X prefix_sum(int x, int y) { return (x == 0 || y == 0) ? MX::unit() : dat[W * x + y - (W + 1)]; }
+  X prefix_sum(int x, int y) {
+    return (x == 0 || y == 0) ? MX::unit() : dat[W * x + y - (W + 1)];
+  }
 };

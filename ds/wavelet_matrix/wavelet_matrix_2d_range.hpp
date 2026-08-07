@@ -54,7 +54,9 @@ struct Wavelet_Matrix_2D_Range {
   }
 
   // [L,R) x [-inf,inf)
-  T prod_all(XY x1, XY x2) { return WM.prod_all(IDX_X(x1), IDX_X(x2)); }
+  T prod_all(XY x1, XY x2) {
+    return WM.prod_all(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2));
+  }
   // [L,R) x [-inf,y)
   T prefix_prod(XY x1, XY x2, XY y) {
     return WM.prefix_prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y);
