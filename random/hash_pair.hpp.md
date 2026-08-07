@@ -46,8 +46,8 @@ data:
   verifiedWith:
   - test/3_yukicoder/2167.test.cpp
   - test/4_aoj/CGL_5_A.test.cpp
-  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp
+  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
 documentation_of: random/hash_pair.hpp
 layout: document
 redirect_from:

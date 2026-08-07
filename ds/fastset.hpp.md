@@ -121,12 +121,12 @@ data:
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
     \ : (1ULL << n) - 1; }\n#line 3 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space:\
     \ (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int\
-    \ n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n);\
-    \ }\r\n\r\n  int size() { return n; }\r\n\r\n  void fillone() {\r\n    int cur\
-    \ = n;\r\n    for (auto& vs : seg) {\r\n      int p = cur / B, q = cur % B;\r\n\
-    \      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p] = full_mask(q);\r\n    \
-    \  cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\n\
-    \  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
+    \ n = 0, log = 0;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n)\
+    \ { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  void fillone() {\r\n\
+    \    int cur = n;\r\n    for (auto& vs : seg) {\r\n      int p = cur / B, q =\
+    \ cur % B;\r\n      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p] = full_mask(q);\r\
+    \n      cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\
+    \n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
     \ {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
     \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
     \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
@@ -162,12 +162,12 @@ data:
     };\n"
   code: "#pragma once\r\n#include \"other/bit.hpp\"\r\n\r\n// 64-ary tree\r\n// space:\
     \ (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int\
-    \ n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n);\
-    \ }\r\n\r\n  int size() { return n; }\r\n\r\n  void fillone() {\r\n    int cur\
-    \ = n;\r\n    for (auto& vs : seg) {\r\n      int p = cur / B, q = cur % B;\r\n\
-    \      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p] = full_mask(q);\r\n    \
-    \  cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\n\
-    \  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
+    \ n = 0, log = 0;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n)\
+    \ { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  void fillone() {\r\n\
+    \    int cur = n;\r\n    for (auto& vs : seg) {\r\n      int p = cur / B, q =\
+    \ cur % B;\r\n      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p] = full_mask(q);\r\
+    \n      cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\
+    \n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
     \ {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
     \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
     \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
@@ -206,34 +206,34 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - string/suffix_tree.hpp
-  - string/enumerate_occurrence.hpp
-  - graph/toposort.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/all_cycle_common_vertex.hpp
+  - graph/toposort.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - bigint/redundant_binary_number.hpp
+  - ds/sortable_array.hpp
+  - ds/incremental_rectangle_union.hpp
   - ds/intervals.hpp
-  - ds/segtree/range_add_make_increasing.hpp
-  - ds/segtree/sortable_segtree.hpp
   - ds/segtree/range_add_make_decreasing.hpp
   - ds/segtree/range_assignment_segtree.hpp
-  - ds/incremental_rectangle_union.hpp
-  - ds/sortable_array.hpp
+  - ds/segtree/sortable_segtree.hpp
+  - ds/segtree/range_add_make_increasing.hpp
+  - string/enumerate_occurrence.hpp
+  - string/suffix_tree.hpp
   - other/cuboid_union_volume.hpp
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
-  timestamp: '2026-08-01 03:11:36+09:00'
+  timestamp: '2026-08-08 03:36:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/decremental_fastset.test.cpp
-  - test/1_mytest/sortable_array.test.cpp
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
-  - test/1_mytest/range_assign.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2809.test.cpp
   - test/4_aoj/2636.test.cpp
   - test/4_aoj/2251_1.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
+  - test/1_mytest/decremental_fastset.test.cpp
+  - test/1_mytest/sortable_array.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem.test.cpp
   - test/2_library_checker/data_structure/sort_segtree.test.cpp
 documentation_of: ds/fastset.hpp

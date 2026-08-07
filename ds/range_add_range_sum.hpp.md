@@ -161,8 +161,8 @@ data:
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/DSL_2_E.test.cpp
   - test/4_aoj/DSL_2_G.test.cpp
+  - test/4_aoj/DSL_2_E.test.cpp
 documentation_of: ds/range_add_range_sum.hpp
 layout: document
 redirect_from:

@@ -161,8 +161,8 @@ data:
   timestamp: '2026-07-18 00:22:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1769.test.cpp
   - test/3_yukicoder/1796.test.cpp
+  - test/3_yukicoder/1769.test.cpp
 documentation_of: graph/find_centroid.hpp
 layout: document
 redirect_from:

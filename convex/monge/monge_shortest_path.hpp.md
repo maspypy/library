@@ -80,8 +80,8 @@ data:
   timestamp: '2026-07-28 11:49:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/monge_shortest_path.test.cpp
   - test/3_yukicoder/705.test.cpp
+  - test/1_mytest/monge_shortest_path.test.cpp
 documentation_of: convex/monge/monge_shortest_path.hpp
 layout: document
 redirect_from:

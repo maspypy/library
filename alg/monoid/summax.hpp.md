@@ -52,11 +52,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/kdtree_monoid.test.cpp
-  - test/1_mytest/kdtree_am.test.cpp
-  - test/1_mytest/dynamic_lazy_segtree.test.cpp
   - test/1_mytest/summax_assign.test.cpp
-  - test/1_mytest/summax_add.test.cpp
   - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/1_mytest/summax_add.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/kdtree_am.test.cpp
 documentation_of: alg/monoid/summax.hpp
 layout: document
 redirect_from:

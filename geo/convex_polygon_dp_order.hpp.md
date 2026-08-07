@@ -2,58 +2,16 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: geo/angle_sort.hpp
+    title: geo/angle_sort.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: geo/convex_polygon_dp_order.hpp
-    title: geo/convex_polygon_dp_order.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/count_points_in_triangles.hpp
-    title: geo/count_points_in_triangles.hpp
-  - icon: ':warning:'
-    path: geo/max_norm_sum.hpp
-    title: geo/max_norm_sum.hpp
-  - icon: ':warning:'
-    path: geo/minkowski_sum.hpp
-    title: geo/minkowski_sum.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/polygon_triangulation.hpp
-    title: geo/polygon_triangulation.hpp
-  - icon: ':warning:'
-    path: geo/rotating_swaps.hpp
-    title: geo/rotating_swaps.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/planar_graph.hpp
-    title: graph/planar_graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: random/random_polygon.hpp
-    title: random/random_polygon.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_points_in_triangles.test.cpp
-    title: test/1_mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/polygon_triangulation.test.cpp
-    title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/qoj5443.test.cpp
-    title: test/1_mytest/qoj5443.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-    title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
-    title: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-    title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1777.test.cpp
-    title: test/3_yukicoder/1777.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -125,50 +83,49 @@ data:
     \n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
     \ argsort, (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<pair<T,\
     \ T>> &P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_sort<T>(tmp);\r\n}\r\n"
-  code: "#pragma once\r\n\r\n#include \"geo/base.hpp\"\r\n\r\n// lower: -1, origin:\
-    \ 0, upper: 1, (-pi,pi]\r\ntemplate <typename T> int lower_or_upper(const Point<T>\
-    \ &p) {\r\n  if (p.y != 0)\r\n    return (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0)\r\
-    \n    return -1;\r\n  if (p.x < 0)\r\n    return 1;\r\n  return 0;\r\n}\r\n\r\n\
-    // L<R:-1, L==R:0, L>R:1, (-pi,pi]\r\ntemplate <typename T> int angle_comp_3(const\
-    \ Point<T> &L, const Point<T> &R) {\r\n  int a = lower_or_upper(L), b = lower_or_upper(R);\r\
-    \n  if (a != b)\r\n    return (a < b ? -1 : +1);\r\n  T det = L.det(R);\r\n  if\
-    \ (det > 0)\r\n    return -1;\r\n  if (det < 0)\r\n    return 1;\r\n  return 0;\r\
-    \n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<Point<T>> &P)\
-    \ {\r\n  vc<int> I(len(P));\r\n  FOR(i, len(P)) I[i] = i;\r\n  sort(all(I), [&](auto\
-    \ &L, auto &R) -> bool {\r\n    return angle_comp_3(P[L], P[R]) == -1;\r\n  });\r\
-    \n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
-    \ argsort, (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<pair<T,\
-    \ T>> &P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_sort<T>(tmp);\r\n}\r\n"
+    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 2 \"geo/convex_polygon_dp_order.hpp\"\
+    \n\n/*\n\u70B9\u7FA4\u306F distinct\nedge(i,j): i->j \u3067\u9077\u79FB\u3057\u3066\
+    \u3044\u304F\u3068\u504F\u89D2\u6607\u9806\uFF08strict\uFF09\u306A\u8FBA\u306E\
+    \u5217\u306B\u306A\u308B\u9806\n\u5178\u578B\u7684\u306B\u306F v \u3092\u56FA\u5B9A\
+    \u3057\u3066 v->v \u3092\u4F5C\u308B\u3068\u51F8\u591A\u89D2\u5F62\u306B\u306A\
+    \u308B\n\u901A\u5E38\u306F\u9000\u5316\u30B1\u30FC\u30B9\u306F\u5225\u9014\u51E6\
+    \u7406\u3057\uFF0C\u975E\u9000\u5316\u3092\u4FDD\u8A3C\u3059\u308B\u305F\u3081\
+    \u306B\u4F7F\u3063\u305F\u8FBA\u304C3\u500B\u4EE5\u4E0A\u304B\u306E\u30D5\u30E9\
+    \u30B0\u3092\u6301\u3064\n*/\ntemplate <typename P>\nvc<pair<int, int>> convex_polygon_dp_order(vc<P>\
+    \ A) {\n  int N = len(A);\n  vc<pair<int, int>> E;\n  FOR(i, N) FOR(j, N) {\n\
+    \    if (i == j) continue;\n    assert(A[i] != A[j]);\n    E.eb(i, j);\n  }\n\n\
+    \  sort(all(E), [&](auto& X, auto& Y) -> bool {\n    auto [a, b] = X;\n    auto\
+    \ [c, d] = Y;\n    int k = angle_comp_3(A[b] - A[a], A[d] - A[c]);\n    if (k\
+    \ == -1) return true;\n    if (k == 1) return false;\n    P dir = A[b] - A[a];\n\
+    \    return dir.dot(A[b] - A[d]) > 0;\n  });\n  return E;\n}\n"
+  code: "#include \"geo/angle_sort.hpp\"\n\n/*\n\u70B9\u7FA4\u306F distinct\nedge(i,j):\
+    \ i->j \u3067\u9077\u79FB\u3057\u3066\u3044\u304F\u3068\u504F\u89D2\u6607\u9806\
+    \uFF08strict\uFF09\u306A\u8FBA\u306E\u5217\u306B\u306A\u308B\u9806\n\u5178\u578B\
+    \u7684\u306B\u306F v \u3092\u56FA\u5B9A\u3057\u3066 v->v \u3092\u4F5C\u308B\u3068\
+    \u51F8\u591A\u89D2\u5F62\u306B\u306A\u308B\n\u901A\u5E38\u306F\u9000\u5316\u30B1\
+    \u30FC\u30B9\u306F\u5225\u9014\u51E6\u7406\u3057\uFF0C\u975E\u9000\u5316\u3092\
+    \u4FDD\u8A3C\u3059\u308B\u305F\u3081\u306B\u4F7F\u3063\u305F\u8FBA\u304C3\u500B\
+    \u4EE5\u4E0A\u304B\u306E\u30D5\u30E9\u30B0\u3092\u6301\u3064\n*/\ntemplate <typename\
+    \ P>\nvc<pair<int, int>> convex_polygon_dp_order(vc<P> A) {\n  int N = len(A);\n\
+    \  vc<pair<int, int>> E;\n  FOR(i, N) FOR(j, N) {\n    if (i == j) continue;\n\
+    \    assert(A[i] != A[j]);\n    E.eb(i, j);\n  }\n\n  sort(all(E), [&](auto& X,\
+    \ auto& Y) -> bool {\n    auto [a, b] = X;\n    auto [c, d] = Y;\n    int k =\
+    \ angle_comp_3(A[b] - A[a], A[d] - A[c]);\n    if (k == -1) return true;\n   \
+    \ if (k == 1) return false;\n    P dir = A[b] - A[a];\n    return dir.dot(A[b]\
+    \ - A[d]) > 0;\n  });\n  return E;\n}"
   dependsOn:
+  - geo/angle_sort.hpp
   - geo/base.hpp
   isVerificationFile: false
-  path: geo/angle_sort.hpp
-  requiredBy:
-  - random/random_polygon.hpp
-  - graph/planar_graph.hpp
-  - geo/polygon_triangulation.hpp
-  - geo/count_points_in_triangles.hpp
-  - geo/max_norm_sum.hpp
-  - geo/convex_polygon_dp_order.hpp
-  - geo/rotating_swaps.hpp
-  - geo/minkowski_sum.hpp
-  timestamp: '2026-07-19 03:14:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/3_yukicoder/1777.test.cpp
-  - test/1_mytest/qoj5443.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
-  - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-documentation_of: geo/angle_sort.hpp
+  path: geo/convex_polygon_dp_order.hpp
+  requiredBy: []
+  timestamp: '2026-08-08 03:36:12+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: geo/convex_polygon_dp_order.hpp
 layout: document
 redirect_from:
-- /library/geo/angle_sort.hpp
-- /library/geo/angle_sort.hpp.html
-title: geo/angle_sort.hpp
+- /library/geo/convex_polygon_dp_order.hpp
+- /library/geo/convex_polygon_dp_order.hpp.html
+title: geo/convex_polygon_dp_order.hpp
 ---

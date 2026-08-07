@@ -49,9 +49,9 @@ data:
   isVerificationFile: false
   path: ds/csr.hpp
   requiredBy:
-  - string/enumerate_occurrence.hpp
   - graph/degree_sequence.hpp
   - ds/offline_query/offline_set_intersection.hpp
+  - string/enumerate_occurrence.hpp
   timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

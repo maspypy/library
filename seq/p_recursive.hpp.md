@@ -596,8 +596,8 @@ data:
   isVerificationFile: false
   path: seq/p_recursive.hpp
   requiredBy:
-  - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
+  - poly/sparse_exp_of_div.hpp
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
