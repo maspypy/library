@@ -61,7 +61,7 @@ struct Graph {
 
   void add(int frm, int to, T cost = 1, int i = -1) {
     assert(!prepared);
-    assert(0 <= frm && 0 <= to && to < N);
+    assert(0 <= frm && frm < N && 0 <= to && to < N);
     if (i == -1) i = M;
     auto e = edge_type({frm, to, cost, i});
     edges.eb(e);
