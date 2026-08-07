@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
@@ -29,7 +29,7 @@ data:
     \  Cumsum_2D() {}\r\n  Cumsum_2D(vvc<X> &A) { build(A); }\r\n  template <typename\
     \ F>\r\n  Cumsum_2D(int H, int W, F f) {\r\n    build(H, W, f);\r\n  }\r\n\r\n\
     \  void build(vvc<X> &A) {\r\n    build(len(A), len(A[0]), [&](int x, int y) ->\
-    \ int { return A[x][y]; });\r\n  }\r\n  template <typename F>\r\n  void build(int\
+    \ X { return A[x][y]; });\r\n  }\r\n  template <typename F>\r\n  void build(int\
     \ H0, int W0, F f) {\r\n    H = H0, W = W0;\r\n    dat.assign(H * W, MX::unit());\r\
     \n    FOR(x, H) FOR(y, W) {\r\n      int k = W * x + y;\r\n      dat[k] = (y ==\
     \ 0 ? f(x, y) : MX::op(dat[k - 1], f(x, y)));\r\n    }\r\n    FOR(i, W, H * W)\
@@ -44,15 +44,15 @@ data:
     \ x1 + y2] : MX::unit());\r\n    X c = (x2 >= 0 && y1 >= 0 ? dat[W * x2 + y1]\
     \ : MX::unit());\r\n    X d = (x2 >= 0 && y2 >= 0 ? dat[W * x2 + y2] : MX::unit());\r\
     \n    return MX::op(MX::op(a, d), MX::inverse(MX::op(b, c)));\r\n  }\r\n\r\n \
-    \ X prefix_sum(int x, int y) { return (x == 0 || y == 0) ? MX::unit() : dat[W\
-    \ * x + y - (W + 1)]; }\r\n};\r\n"
+    \ X prefix_sum(int x, int y) {\r\n    return (x == 0 || y == 0) ? MX::unit() :\
+    \ dat[W * x + y - (W + 1)];\r\n  }\r\n};\r\n"
   code: "#pragma once\r\n\r\n#include \"alg/monoid/add.hpp\"\r\n\r\ntemplate <typename\
     \ Monoid>\r\nstruct Cumsum_2D {\r\n  using MX = Monoid;\r\n  static_assert(MX::commute);\r\
     \n  using X = typename MX::value_type;\r\n  int H, W;\r\n  vc<X> dat;\r\n\r\n\
     \  Cumsum_2D() {}\r\n  Cumsum_2D(vvc<X> &A) { build(A); }\r\n  template <typename\
     \ F>\r\n  Cumsum_2D(int H, int W, F f) {\r\n    build(H, W, f);\r\n  }\r\n\r\n\
     \  void build(vvc<X> &A) {\r\n    build(len(A), len(A[0]), [&](int x, int y) ->\
-    \ int { return A[x][y]; });\r\n  }\r\n  template <typename F>\r\n  void build(int\
+    \ X { return A[x][y]; });\r\n  }\r\n  template <typename F>\r\n  void build(int\
     \ H0, int W0, F f) {\r\n    H = H0, W = W0;\r\n    dat.assign(H * W, MX::unit());\r\
     \n    FOR(x, H) FOR(y, W) {\r\n      int k = W * x + y;\r\n      dat[k] = (y ==\
     \ 0 ? f(x, y) : MX::op(dat[k - 1], f(x, y)));\r\n    }\r\n    FOR(i, W, H * W)\
@@ -67,14 +67,14 @@ data:
     \ x1 + y2] : MX::unit());\r\n    X c = (x2 >= 0 && y1 >= 0 ? dat[W * x2 + y1]\
     \ : MX::unit());\r\n    X d = (x2 >= 0 && y2 >= 0 ? dat[W * x2 + y2] : MX::unit());\r\
     \n    return MX::op(MX::op(a, d), MX::inverse(MX::op(b, c)));\r\n  }\r\n\r\n \
-    \ X prefix_sum(int x, int y) { return (x == 0 || y == 0) ? MX::unit() : dat[W\
-    \ * x + y - (W + 1)]; }\r\n};\r\n"
+    \ X prefix_sum(int x, int y) {\r\n    return (x == 0 || y == 0) ? MX::unit() :\
+    \ dat[W * x + y - (W + 1)];\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/cumsum_2d.hpp
   requiredBy: []
-  timestamp: '2025-06-20 11:41:11+09:00'
+  timestamp: '2026-08-08 07:07:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1141.test.cpp

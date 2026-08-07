@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []

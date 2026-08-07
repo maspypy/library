@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: enumerate/unlabeled_tree.hpp
     title: enumerate/unlabeled_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -25,10 +25,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -379,43 +379,43 @@ data:
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 4 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\ntemplate\
     \ <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  static_assert(!TREE::Graph_type::is_directed);\r\
-    \n  TREE& tree;\r\n  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\
-    \u90E8\u5206\u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\
-    \u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;   // full tree\r\n\r\n  template\
+    \n  TREE& tree;\r\n  vc<Data> dp_1;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\
+    \u90E8\u5206\u6728 v\r\n  vc<Data> dp_2;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\
+    \u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;    // full tree\r\n\r\n  template\
     \ <typename F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee,\
-    \ F2 f_ev, F3 f_ve, const Data unit) : tree(tree) {\r\n    build(f_ee, f_ev, f_ve,\
-    \ unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\
-    \ full tree\r\n  Data operator[](int v) { return dp[v]; }\r\n\r\n  // root \u3092\
-    \u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\n  Data get(int\
-    \ v, int root) {\r\n    if (root == v) return dp[v];\r\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\r\n    int w = tree.jump(v, root, 1);\r\n    return\
-    \ dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename F2, typename F3>\r\n\
-    \  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n    int N = tree.N;\r\
-    \n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\n    FOR_R(i, N) {\r\n  \
-    \    int v = tree.V[i];\r\n      for (auto&& e: tree.G[v]) {\r\n        if (e.to\
-    \ == tree.parent[v]) continue;\r\n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to],\
-    \ e));\r\n      }\r\n      dp_1[v] = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    //\
-    \ dp2[v]: subtree of p, rooted at v\r\n    dp_2.assign(N, unit);\r\n    // dp[v]:\
-    \ fulltree, rooted at v\r\n    dp.assign(N, unit);\r\n    FOR(i, N) {\r\n    \
-    \  int p = tree.V[i];\r\n      vc<int> ch;\r\n      vc<Data> ch_data;\r\n    \
-    \  Data x = unit;\r\n      for (auto&& e: tree.G[p]) {\r\n        if (e.to ==\
-    \ tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\n\
-    \          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n    \
-    \    }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n        dp[p]\
-    \ = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data> prod_left(n,\
-    \ x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);\r\
-    \n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]]\
-    \ = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right = f_ee(prod_right,\
-    \ ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n \
-    \   }\r\n  }\r\n};\r\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\n// \u8907\u6570\
-    \u306E\u6728\u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate <typename TREE>\n\
-    struct SubTree_Hash {\n  using mint = modint61;\n  TREE& tree;\n  vc<u64> dp,\
-    \ dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
-    \    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\n    auto f_ee =\
-    \ [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n    auto f_ev\
-    \ = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](T\
-    \ A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n   \
-    \ };\n\n    Rerooting_dp<TREE, T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N),\
+    \ F2 f_ev, F3 f_ve, const Data unit)\r\n      : tree(tree) {\r\n    build(f_ee,\
+    \ f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\
+    \u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v]; }\r\n\r\n \
+    \ // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\
+    \n  Data get(int v, int root) {\r\n    if (root == v) return dp[v];\r\n    if\
+    \ (!tree.in_subtree(root, v)) {\r\n      return dp_1[v];\r\n    }\r\n    int w\
+    \ = tree.jump(v, root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename\
+    \ F1, typename F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const\
+    \ Data unit) {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N,\
+    \ unit);\r\n    FOR_R(i, N) {\r\n      int v = tree.V[i];\r\n      for (auto&&\
+    \ e : tree.G[v]) {\r\n        if (e.to == tree.parent[v]) continue;\r\n      \
+    \  dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));\r\n      }\r\n      dp_1[v] =\
+    \ f_ev(dp_1[v], v);\r\n    }\r\n\r\n    // dp2[v]: subtree of p, rooted at v\r\
+    \n    dp_2.assign(N, unit);\r\n    // dp[v]: fulltree, rooted at v\r\n    dp.assign(N,\
+    \ unit);\r\n    FOR(i, N) {\r\n      int p = tree.V[i];\r\n      vc<int> ch;\r\
+    \n      vc<Data> ch_data;\r\n      Data x = unit;\r\n      for (auto&& e : tree.G[p])\
+    \ {\r\n        if (e.to == tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\
+    \n        } else {\r\n          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to],\
+    \ e));\r\n        }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n\
+    \        dp[p] = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data>\
+    \ prod_left(n, x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i],\
+    \ ch_data[i]);\r\n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n   \
+    \     dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right\
+    \ = f_ee(prod_right, ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right),\
+    \ p);\r\n    }\r\n  }\r\n};\r\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\n\
+    // \u8907\u6570\u306E\u6728\u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate\
+    \ <typename TREE>\nstruct SubTree_Hash {\n  using mint = modint61;\n  TREE& tree;\n\
+    \  vc<u64> dp, dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n    int\
+    \ N = tree.N;\n    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\n\
+    \    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n\
+    \    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto\
+    \ f_ve = [&](T A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
+    \    };\n\n    Rerooting_dp<TREE, T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N),\
     \ dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n  \
     \  FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
     \  }\n\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  u64\
@@ -512,7 +512,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-08 05:13:48+09:00'
+  timestamp: '2026-08-08 07:07:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_unlabeled_tree.test.cpp

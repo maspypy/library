@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -465,37 +465,37 @@ data:
     \ }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n  }\r\n};\r\n\
     #line 4 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\ntemplate <typename TREE, typename\
     \ Data>\r\nstruct Rerooting_dp {\r\n  static_assert(!TREE::Graph_type::is_directed);\r\
-    \n  TREE& tree;\r\n  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\
-    \u90E8\u5206\u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\
-    \u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;   // full tree\r\n\r\n  template\
+    \n  TREE& tree;\r\n  vc<Data> dp_1;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\
+    \u90E8\u5206\u6728 v\r\n  vc<Data> dp_2;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\
+    \u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;    // full tree\r\n\r\n  template\
     \ <typename F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee,\
-    \ F2 f_ev, F3 f_ve, const Data unit) : tree(tree) {\r\n    build(f_ee, f_ev, f_ve,\
-    \ unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\
-    \ full tree\r\n  Data operator[](int v) { return dp[v]; }\r\n\r\n  // root \u3092\
-    \u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\n  Data get(int\
-    \ v, int root) {\r\n    if (root == v) return dp[v];\r\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\r\n    int w = tree.jump(v, root, 1);\r\n    return\
-    \ dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename F2, typename F3>\r\n\
-    \  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n    int N = tree.N;\r\
-    \n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\n    FOR_R(i, N) {\r\n  \
-    \    int v = tree.V[i];\r\n      for (auto&& e: tree.G[v]) {\r\n        if (e.to\
-    \ == tree.parent[v]) continue;\r\n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to],\
-    \ e));\r\n      }\r\n      dp_1[v] = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    //\
-    \ dp2[v]: subtree of p, rooted at v\r\n    dp_2.assign(N, unit);\r\n    // dp[v]:\
-    \ fulltree, rooted at v\r\n    dp.assign(N, unit);\r\n    FOR(i, N) {\r\n    \
-    \  int p = tree.V[i];\r\n      vc<int> ch;\r\n      vc<Data> ch_data;\r\n    \
-    \  Data x = unit;\r\n      for (auto&& e: tree.G[p]) {\r\n        if (e.to ==\
-    \ tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\n\
-    \          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n    \
-    \    }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n        dp[p]\
-    \ = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data> prod_left(n,\
-    \ x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);\r\
-    \n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]]\
-    \ = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right = f_ee(prod_right,\
-    \ ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n \
-    \   }\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"other/bit.hpp\"\
-    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ F2 f_ev, F3 f_ve, const Data unit)\r\n      : tree(tree) {\r\n    build(f_ee,\
+    \ f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\
+    \u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v]; }\r\n\r\n \
+    \ // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\
+    \n  Data get(int v, int root) {\r\n    if (root == v) return dp[v];\r\n    if\
+    \ (!tree.in_subtree(root, v)) {\r\n      return dp_1[v];\r\n    }\r\n    int w\
+    \ = tree.jump(v, root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename\
+    \ F1, typename F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const\
+    \ Data unit) {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N,\
+    \ unit);\r\n    FOR_R(i, N) {\r\n      int v = tree.V[i];\r\n      for (auto&&\
+    \ e : tree.G[v]) {\r\n        if (e.to == tree.parent[v]) continue;\r\n      \
+    \  dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));\r\n      }\r\n      dp_1[v] =\
+    \ f_ev(dp_1[v], v);\r\n    }\r\n\r\n    // dp2[v]: subtree of p, rooted at v\r\
+    \n    dp_2.assign(N, unit);\r\n    // dp[v]: fulltree, rooted at v\r\n    dp.assign(N,\
+    \ unit);\r\n    FOR(i, N) {\r\n      int p = tree.V[i];\r\n      vc<int> ch;\r\
+    \n      vc<Data> ch_data;\r\n      Data x = unit;\r\n      for (auto&& e : tree.G[p])\
+    \ {\r\n        if (e.to == tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\
+    \n        } else {\r\n          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to],\
+    \ e));\r\n        }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n\
+    \        dp[p] = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data>\
+    \ prod_left(n, x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i],\
+    \ ch_data[i]);\r\n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n   \
+    \     dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right\
+    \ = f_ee(prod_right, ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right),\
+    \ p);\r\n    }\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"\
+    other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
     \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
     \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
@@ -638,7 +638,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/rerooting_dp.test.cpp
   requiredBy: []
-  timestamp: '2026-08-08 05:13:48+09:00'
+  timestamp: '2026-08-08 07:07:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/rerooting_dp.test.cpp

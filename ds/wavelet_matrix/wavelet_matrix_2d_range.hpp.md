@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -324,17 +324,17 @@ data:
     \ [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(XY x1, XY x2, XY y1, XY y2) {\n\
     \    return WM.count_and_prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y1,\n\
     \                             y2);\n  }\n\n  // [L,R) x [-inf,inf)\n  T prod_all(XY\
-    \ x1, XY x2) { return WM.prod_all(IDX_X(x1), IDX_X(x2)); }\n  // [L,R) x [-inf,y)\n\
-    \  T prefix_prod(XY x1, XY x2, XY y) {\n    return WM.prefix_prod(IDX_X.val_to_idx(x1),\
-    \ IDX_X.val_to_idx(x2), y);\n  }\n  // [L,R) x [y1,y2)\n  T prod(XY x1, XY x2,\
-    \ XY y1, XY y2) {\n    return WM.prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2),\
-    \ y1, y2);\n  }\n  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\
-    \u30C7\u30C3\u30AF\u30B9\n  void set(int i, T t) { WM.set(new_idx[i], t); }\n\
-    \  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\
-    \u30B9\n  void multiply(int i, T t) { WM.multiply(new_idx[i], t); }\n  void add(int\
-    \ i, T t) { WM.multiply(new_idx[i], t); }\n\n  // [L,R) x [0,y) \u3067\u306E check(y,\
-    \ cnt, prod) \u304C true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\n \
-    \ // cnt \u306F\u30C7\u30FC\u30BF\u4EF6\u6570\u5168\u4F53\u3067\u3042\u3063\u3066\
+    \ x1, XY x2) {\n    return WM.prod_all(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2));\n\
+    \  }\n  // [L,R) x [-inf,y)\n  T prefix_prod(XY x1, XY x2, XY y) {\n    return\
+    \ WM.prefix_prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y);\n  }\n  // [L,R)\
+    \ x [y1,y2)\n  T prod(XY x1, XY x2, XY y1, XY y2) {\n    return WM.prod(IDX_X.val_to_idx(x1),\
+    \ IDX_X.val_to_idx(x2), y1, y2);\n  }\n  // i \u306F\u6700\u521D\u306B\u6E21\u3057\
+    \u305F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n  void set(int i, T t) { WM.set(new_idx[i],\
+    \ t); }\n  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\u30C7\u30C3\
+    \u30AF\u30B9\n  void multiply(int i, T t) { WM.multiply(new_idx[i], t); }\n  void\
+    \ add(int i, T t) { WM.multiply(new_idx[i], t); }\n\n  // [L,R) x [0,y) \u3067\
+    \u306E check(y, cnt, prod) \u304C true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\n\
+    \  // cnt \u306F\u30C7\u30FC\u30BF\u4EF6\u6570\u5168\u4F53\u3067\u3042\u3063\u3066\
     , activate/deactivate \u3092\u8003\u616E\u3059\u308B\u5834\u5408\u306B\u306F\n\
     \  // prod \u306E\u65B9\u3092\u898B\u308B\u5FC5\u8981\u304C\u3042\u308B\n  template\
     \ <typename F>\n  tuple<XY, int, T> max_right(F check, XY x1, XY x2) const {\n\
@@ -360,17 +360,17 @@ data:
     \ [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(XY x1, XY x2, XY y1, XY y2) {\n\
     \    return WM.count_and_prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y1,\n\
     \                             y2);\n  }\n\n  // [L,R) x [-inf,inf)\n  T prod_all(XY\
-    \ x1, XY x2) { return WM.prod_all(IDX_X(x1), IDX_X(x2)); }\n  // [L,R) x [-inf,y)\n\
-    \  T prefix_prod(XY x1, XY x2, XY y) {\n    return WM.prefix_prod(IDX_X.val_to_idx(x1),\
-    \ IDX_X.val_to_idx(x2), y);\n  }\n  // [L,R) x [y1,y2)\n  T prod(XY x1, XY x2,\
-    \ XY y1, XY y2) {\n    return WM.prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2),\
-    \ y1, y2);\n  }\n  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\
-    \u30C7\u30C3\u30AF\u30B9\n  void set(int i, T t) { WM.set(new_idx[i], t); }\n\
-    \  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\
-    \u30B9\n  void multiply(int i, T t) { WM.multiply(new_idx[i], t); }\n  void add(int\
-    \ i, T t) { WM.multiply(new_idx[i], t); }\n\n  // [L,R) x [0,y) \u3067\u306E check(y,\
-    \ cnt, prod) \u304C true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\n \
-    \ // cnt \u306F\u30C7\u30FC\u30BF\u4EF6\u6570\u5168\u4F53\u3067\u3042\u3063\u3066\
+    \ x1, XY x2) {\n    return WM.prod_all(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2));\n\
+    \  }\n  // [L,R) x [-inf,y)\n  T prefix_prod(XY x1, XY x2, XY y) {\n    return\
+    \ WM.prefix_prod(IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2), y);\n  }\n  // [L,R)\
+    \ x [y1,y2)\n  T prod(XY x1, XY x2, XY y1, XY y2) {\n    return WM.prod(IDX_X.val_to_idx(x1),\
+    \ IDX_X.val_to_idx(x2), y1, y2);\n  }\n  // i \u306F\u6700\u521D\u306B\u6E21\u3057\
+    \u305F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\n  void set(int i, T t) { WM.set(new_idx[i],\
+    \ t); }\n  // i \u306F\u6700\u521D\u306B\u6E21\u3057\u305F\u30A4\u30F3\u30C7\u30C3\
+    \u30AF\u30B9\n  void multiply(int i, T t) { WM.multiply(new_idx[i], t); }\n  void\
+    \ add(int i, T t) { WM.multiply(new_idx[i], t); }\n\n  // [L,R) x [0,y) \u3067\
+    \u306E check(y, cnt, prod) \u304C true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\n\
+    \  // cnt \u306F\u30C7\u30FC\u30BF\u4EF6\u6570\u5168\u4F53\u3067\u3042\u3063\u3066\
     , activate/deactivate \u3092\u8003\u616E\u3059\u308B\u5834\u5408\u306B\u306F\n\
     \  // prod \u306E\u65B9\u3092\u898B\u308B\u5FC5\u8981\u304C\u3042\u308B\n  template\
     \ <typename F>\n  tuple<XY, int, T> max_right(F check, XY x1, XY x2) const {\n\
@@ -386,7 +386,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   requiredBy: []
-  timestamp: '2026-08-02 14:15:06+09:00'
+  timestamp: '2026-08-08 07:07:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1919_2.test.cpp
