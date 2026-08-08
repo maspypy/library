@@ -368,19 +368,9 @@ struct My_Bitset {
   void set(int i) { (*this)[i] = 1; }
   void reset(int i) { (*this)[i] = 0; }
   void flip(int i) { (*this)[i].flip(); }
-  void set() {
-    fill(all(dat), u64(-1));
-    resize(N);
-  }
-  void reset() { fill(all(dat), 0); }
-  void flip() {
-    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }
-    int i = len(dat) - 1;
-    FOR(k, 64) {
-      if (64 * i + k >= size()) break;
-      flip(64 * i + k);
-    }
-  }
+  void set() { set_range(0, N); }
+  void reset() { reset_range(0, N); }
+  void flip() { flip_range(0, N); }
   bool any() {
     FOR(i, len(dat)) {
       if (dat[i]) return true;

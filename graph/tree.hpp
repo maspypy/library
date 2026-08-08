@@ -12,15 +12,17 @@ struct Tree {
   vector<int> LID, RID, head, V, parent, VtoE;
   vc<int> depth;
   vc<WT> depth_weighted;
+  vc<int> memo_tail;
 
   Tree(GT &G, int r = 0, bool hld = 1) : G(G) { build(r, hld); }
 
   void build(int r = 0, bool hld = 1) {
-    if (r == -1) return; // build を遅延したいとき
+    if (r == -1) return;  // build を遅延したいとき
     N = G.N;
     LID.assign(N, -1), RID.assign(N, -1), head.assign(N, r);
     V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);
     depth.assign(N, -1), depth_weighted.assign(N, 0);
+    memo_tail.clear();
     assert(G.is_prepared());
     int t1 = 0;
     dfs_sz(r, -1, hld);
@@ -46,7 +48,9 @@ struct Tree {
       VtoE[e.to] = e.id;
       dfs_sz(e.to, v, hld);
       sz[v] += sz[e.to];
-      if (hld && chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }
+      if (hld && chmax(hld_sz, sz[e.to]) && l < i) {
+        swap(csr[l], csr[i]);
+      }
     }
   }
 
@@ -55,7 +59,7 @@ struct Tree {
     RID[v] += LID[v];
     V[LID[v]] = v;
     bool heavy = true;
-    for (auto &&e: G[v]) {
+    for (auto &&e : G[v]) {
       if (depth[e.to] <= depth[v]) continue;
       head[e.to] = (heavy ? head[v] : e.to);
       heavy = false;
@@ -67,7 +71,7 @@ struct Tree {
     vc<int> P = {v};
     while (1) {
       int a = P.back();
-      for (auto &&e: G[a]) {
+      for (auto &&e : G[a]) {
         if (e.to != parent[a] && head[e.to] == v) {
           P.eb(e.to);
           break;
@@ -84,8 +88,6 @@ struct Tree {
     int w = V[k];
     return (parent[w] == v ? w : -1);
   }
-
-  vc<int> memo_tail;
 
   int tail(int v) {
     if (memo_tail.empty()) {
@@ -171,17 +173,19 @@ struct Tree {
 
   vc<int> collect_child(int v) {
     vc<int> res;
-    for (auto &&e: G[v])
+    for (auto &&e : G[v])
       if (e.to != parent[v]) res.eb(e.to);
     return res;
   }
 
-  vc<int> collect_subtree(int v) { return {V.begin() + LID[v], V.begin() + RID[v]}; }
+  vc<int> collect_subtree(int v) {
+    return {V.begin() + LID[v], V.begin() + RID[v]};
+  }
 
   vc<int> collect_light(int v) {
     vc<int> res;
     bool skip = true;
-    for (auto &&e: G[v])
+    for (auto &&e : G[v])
       if (e.to != parent[v]) {
         if (!skip) res.eb(e.to);
         skip = false;
@@ -232,7 +236,7 @@ struct Tree {
 
   vc<int> restore_path(int u, int v) {
     vc<int> P;
-    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {
+    for (auto &&[a, b] : get_path_decomposition(u, v, 0)) {
       if (a <= b) {
         FOR(i, a, b + 1) P.eb(V[i]);
       } else {
@@ -247,7 +251,7 @@ struct Tree {
   pair<int, int> path_intersection(int a, int b, int c, int d) {
     int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);
     int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);
-    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)
+    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;  // meet(a,b,c), meet(a,b,d)
     if (x != y) return {x, y};
     int z = ac ^ ad ^ cd;
     if (x != z) x = -1;
@@ -260,13 +264,14 @@ struct Tree {
   int max_path(F check, int u, int v) {
     if (!check(u)) return -1;
     auto pd = get_path_decomposition(u, v, false);
-    for (auto [a, b]: pd) {
+    for (auto [a, b] : pd) {
       if (!check(V[a])) return u;
       if (check(V[b])) {
         u = V[b];
         continue;
       }
-      int c = binary_search([&](int c) -> bool { return check(V[c]); }, a, b, 0);
+      int c =
+          binary_search([&](int c) -> bool { return check(V[c]); }, a, b, 0);
       return V[c];
     }
     return u;

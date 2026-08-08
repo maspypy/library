@@ -18,6 +18,7 @@ struct Graph {
   vector<int> indptr;
   vector<edge_type> csr_edges;
   vc<int> vc_deg, vc_indeg, vc_outdeg;
+  HashMap<int> MP_FOR_EID;
   bool prepared;
 
   class OutgoingEdges {
@@ -57,6 +58,7 @@ struct Graph {
     vc_deg.clear();
     vc_indeg.clear();
     vc_outdeg.clear();
+    MP_FOR_EID.clear();
   }
 
   void add(int frm, int to, T cost = 1, int i = -1) {
@@ -208,8 +210,6 @@ struct Graph {
     G1.build();
     return G1;
   }
-
-  HashMap<int> MP_FOR_EID;
 
   int get_eid(u64 a, u64 b) {
     if (len(MP_FOR_EID) == 0) {
