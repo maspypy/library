@@ -61,18 +61,16 @@ struct Compress_Tree {
       if (v == root) continue;
       int l = get_lca(V[st.back()], v);
       while (len(st) >= 2 && tree.depth[V[st[len(st) - 2]]] >= tree.depth[l]) {
-        int a = st[len(st) - 2], b = POP(st);
+        int a = st[len(st) - 2];
+        int b = POP(st);
         par[b] = a;
       }
       if (V[st.back()] != l) {
         int a = add(l);
-        int b = add(v);
-        par[st.back()] = par[b] = a;
-        st.back() = b;
-      } else {
-        int b = add(v);
-        par[b] = st.back();
+        par[st.back()] = a;
+        st.back() = a;
       }
+      st.eb(add(v));
     }
 
     while (len(st) >= 2) {
