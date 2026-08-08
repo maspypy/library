@@ -1,37 +1,92 @@
 #include "graph/tree.hpp"
+#include "ds/fastset.hpp"
+#include "graph/fast_lca.hpp"
 
-// (圧縮された木の頂点ラベルたち、グラフ)
-// 新しいグラフ：辺重みあり
 template <typename TREE>
-pair<vc<int>, typename TREE::Graph_type> compress_tree(TREE& tree, vc<int> V) {
-  // 大事な点をリストアップする
-  sort(all(V), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });
-  int n = len(V);
-  FOR(i, n) {
-    int j = (i + 1 == n ? 0 : i + 1);
-    V.eb(tree.lca(V[i], V[j]));
-  }
-  sort(all(V), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });
-  V.erase(unique(all(V)), V.end());
-  // 辺を張ってグラフを作る
-  n = len(V);
+struct Compress_Tree {
+  FastSet FS;
+  TREE& tree;
+  Compress_Tree(TREE& tree) : tree(tree) {}
+
   using GT = typename TREE::Graph_type;
   using WT = typename GT::cost_type;
-  GT G(n);
-  vc<int> st = {0};
-  FOR(i, 1, n) {
-    while (1) {
-      int p = V[st.back()];
-      int v = V[i];
-      if (tree.in_subtree(v, p)) break;
-      st.pop_back();
-    }
-    int p = V[st.back()];
-    int v = V[i];
-    WT d = tree.depth_weighted[v] - tree.depth_weighted[p];
-    G.add(st.back(), i, d);
-    st.eb(i);
+
+  pair<vc<int>, GT> compress(vc<int>& V, bool sorted = false) {
+    return compress_impl(V, sorted,
+                         [&](int a, int b) -> int { return tree.lca(a, b); });
   }
-  G.build();
-  return {V, G};
-}
+
+  pair<vc<int>, GT> compress_fast(vc<int>& V, Fast_Lca<TREE>& LCA,
+                                  bool sorted = false) {
+    return compress_impl(V, sorted,
+                         [&](int a, int b) -> int { return LCA.lca(a, b); });
+  }
+
+  void sort_vertices(vc<int>& V) {
+    int N = tree.N;
+    if (len(FS) == 0) FS.build(N);
+    for (int v : V) FS.insert(tree.LID[v]);
+    int k = 0;
+    FS.enumerate(0, N, [&](int i) -> void {
+      FS.erase(i);
+      V[k++] = tree.V[i];
+    });
+  }
+
+  template <typename F>
+  pair<vc<int>, GT> compress_impl(vc<int> V, bool sorted, F&& get_lca) {
+    assert(!V.empty());
+    if (!sorted) sort_vertices(V);
+    int n = len(V);
+    int root = get_lca(V[0], V.back());
+    vc<int> key = move(V);
+    V.clear();
+    V.reserve(2 * n);
+
+    // 圧縮木上の親番号
+    vc<int> par;
+    par.reserve(2 * n);
+
+    auto add = [&](int v) -> int {
+      int k = len(V);
+      V.eb(v), par.eb(-1);
+      return k;
+    };
+
+    add(root);
+    vc<int> st = {0};
+    st.reserve(2 * n);
+
+    for (int v : key) {
+      if (v == root) continue;
+      int l = get_lca(V[st.back()], v);
+      while (len(st) >= 2 && tree.depth[V[st[len(st) - 2]]] >= tree.depth[l]) {
+        int a = st[len(st) - 2], b = POP(st);
+        par[b] = a;
+      }
+      if (V[st.back()] != l) {
+        int a = add(l);
+        int b = add(v);
+        par[st.back()] = par[b] = a;
+        st.back() = b;
+      } else {
+        int b = add(v);
+        par[b] = st.back();
+      }
+    }
+
+    while (len(st) >= 2) {
+      int a = st[len(st) - 2], b = POP(st);
+      par[b] = a;
+    }
+
+    GT G(len(V));
+    FOR(v, 1, len(V)) {
+      int p = par[v];
+      WT d = tree.depth_weighted[V[v]] - tree.depth_weighted[V[p]];
+      G.add(p, v, d);
+    }
+    G.build();
+    return {move(V), move(G)};
+  }
+};
