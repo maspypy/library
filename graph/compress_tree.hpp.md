@@ -367,13 +367,12 @@ data:
     \      return k;\n    };\n\n    add(root);\n    vc<int> st = {0};\n    st.reserve(2\
     \ * n);\n\n    for (int v : key) {\n      if (v == root) continue;\n      int\
     \ l = get_lca(V[st.back()], v);\n      while (len(st) >= 2 && tree.depth[V[st[len(st)\
-    \ - 2]]] >= tree.depth[l]) {\n        int a = st[len(st) - 2], b = POP(st);\n\
-    \        par[b] = a;\n      }\n      if (V[st.back()] != l) {\n        int a =\
-    \ add(l);\n        int b = add(v);\n        par[st.back()] = par[b] = a;\n   \
-    \     st.back() = b;\n      } else {\n        int b = add(v);\n        par[b]\
-    \ = st.back();\n      }\n    }\n\n    while (len(st) >= 2) {\n      int a = st[len(st)\
-    \ - 2], b = POP(st);\n      par[b] = a;\n    }\n\n    GT G(len(V));\n    FOR(v,\
-    \ 1, len(V)) {\n      int p = par[v];\n      WT d = tree.depth_weighted[V[v]]\
+    \ - 2]]] >= tree.depth[l]) {\n        int a = st[len(st) - 2];\n        int b\
+    \ = POP(st);\n        par[b] = a;\n      }\n      if (V[st.back()] != l) {\n \
+    \       int a = add(l);\n        par[st.back()] = a;\n        st.back() = a;\n\
+    \      }\n      st.eb(add(v));\n    }\n\n    while (len(st) >= 2) {\n      int\
+    \ a = st[len(st) - 2], b = POP(st);\n      par[b] = a;\n    }\n\n    GT G(len(V));\n\
+    \    FOR(v, 1, len(V)) {\n      int p = par[v];\n      WT d = tree.depth_weighted[V[v]]\
     \ - tree.depth_weighted[V[p]];\n      G.add(p, v, d);\n    }\n    G.build();\n\
     \    return {move(V), move(G)};\n  }\n};\n"
   code: "#include \"graph/tree.hpp\"\n#include \"ds/fastset.hpp\"\n#include \"graph/fast_lca.hpp\"\
@@ -398,14 +397,14 @@ data:
     \    vc<int> st = {0};\n    st.reserve(2 * n);\n\n    for (int v : key) {\n  \
     \    if (v == root) continue;\n      int l = get_lca(V[st.back()], v);\n     \
     \ while (len(st) >= 2 && tree.depth[V[st[len(st) - 2]]] >= tree.depth[l]) {\n\
-    \        int a = st[len(st) - 2], b = POP(st);\n        par[b] = a;\n      }\n\
-    \      if (V[st.back()] != l) {\n        int a = add(l);\n        int b = add(v);\n\
-    \        par[st.back()] = par[b] = a;\n        st.back() = b;\n      } else {\n\
-    \        int b = add(v);\n        par[b] = st.back();\n      }\n    }\n\n    while\
-    \ (len(st) >= 2) {\n      int a = st[len(st) - 2], b = POP(st);\n      par[b]\
-    \ = a;\n    }\n\n    GT G(len(V));\n    FOR(v, 1, len(V)) {\n      int p = par[v];\n\
-    \      WT d = tree.depth_weighted[V[v]] - tree.depth_weighted[V[p]];\n      G.add(p,\
-    \ v, d);\n    }\n    G.build();\n    return {move(V), move(G)};\n  }\n};"
+    \        int a = st[len(st) - 2];\n        int b = POP(st);\n        par[b] =\
+    \ a;\n      }\n      if (V[st.back()] != l) {\n        int a = add(l);\n     \
+    \   par[st.back()] = a;\n        st.back() = a;\n      }\n      st.eb(add(v));\n\
+    \    }\n\n    while (len(st) >= 2) {\n      int a = st[len(st) - 2], b = POP(st);\n\
+    \      par[b] = a;\n    }\n\n    GT G(len(V));\n    FOR(v, 1, len(V)) {\n    \
+    \  int p = par[v];\n      WT d = tree.depth_weighted[V[v]] - tree.depth_weighted[V[p]];\n\
+    \      G.add(p, v, d);\n    }\n    G.build();\n    return {move(V), move(G)};\n\
+    \  }\n};"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -418,7 +417,7 @@ data:
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-08 17:11:20+09:00'
+  timestamp: '2026-08-08 17:23:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp
