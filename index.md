@@ -420,6 +420,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/static_range_product_group.hpp
       title: ds/static_range_product_group.hpp
+    - icon: ':warning:'
+      path: ds/static_vector.hpp
+      title: ds/static_vector.hpp
     - icon: ':heavy_check_mark:'
       path: ds/sum_over_bit_positions.hpp
       title: ds/sum_over_bit_positions.hpp
