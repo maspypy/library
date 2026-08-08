@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -213,156 +213,157 @@ data:
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
     \ bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type\
     \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
-    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
-    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
-    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n\
+    \  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
+    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
+    \ const {\n      if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
+    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
+    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
+    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\
+    \n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
-    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
-    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && frm < N && 0 <= to &&\
-    \ to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
-    \    edges.eb(e);\n    ++M;\n  }\n\n#ifdef FASTIO\n  // wt, off\n  void read_tree(bool\
-    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
-    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
-    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
-    \ }\n    }\n    build();\n  }\n#endif\n\n  void build() {\n    assert(!prepared);\n\
-    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e : edges)\
-    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
-    \  }\n    for (int v = 0; v < N; ++v) {\n      indptr[v + 1] += indptr[v];\n \
-    \   }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n\
-    \    for (auto&& e : edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if\
-    \ (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost,\
-    \ e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
-    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
-    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
-    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
-    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
-    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n#ifdef FASTIO\n  void debug() {\n#ifdef LOCAL\n    print(\"Graph\");\n    if\
-    \ (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e : edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e : (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n    flush();\n#endif\n  }\n#endif\n\
-    \n  vc<int> new_idx;\n  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\
-    \u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\
-    \u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\
-    \u7B97\u91CF\u306B\u306A\u3063\u3066\u3044\u3066\u3001\n  // \u65B0\u3057\u3044\
-    \u30B0\u30E9\u30D5\u306E n+m \u3088\u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\
-    \u3042\u308B\u306E\u3067\u6CE8\u610F\n  Graph<T, directed> rearrange(vc<int> V,\
-    \ bool keep_eid = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n  \
-    \  int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n\
-    \    vc<int> history;\n    FOR(i, n) {\n      for (auto&& e : (*this)[V[i]]) {\n\
-    \        if (len(used_e) <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id])\
-    \ continue;\n        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 &&\
-    \ new_idx[b] != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n\
-    \          int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
-    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
-    \    for (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
-    \  }\n\n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1)\
-    \ root = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T,\
-    \ true> G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v)\
-    \ -> void {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
+    \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
+    \ frm < N && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
+    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n#ifdef FASTIO\n  // wt, off\n\
+    \  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt, off);\
+    \ }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for (int\
+    \ m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n      if\
+    \ (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n#endif\n\n  void build()\
+    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \    for (auto&& e : edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
+    \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) {\n      indptr[v\
+    \ + 1] += indptr[v];\n    }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
+    \ + 1);\n    for (auto&& e : edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
+    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
+    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
+    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
+    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n#ifdef LOCAL\n\
+    \    print(\"Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n\
+    \      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n\
+    \      print(\"indptr\", indptr);\n      print(\"frm to cost id\");\n      FOR(v,\
+    \ N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n    }\n  \
+    \  flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n\
+    \  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
+    \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
+    \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
+    \u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\u3067\u6CE8\
+    \u610F\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n    if\
+    \ (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n    FOR(i,\
+    \ n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n\
+    \    FOR(i, n) {\n      for (auto&& e : (*this)[V[i]]) {\n        if (len(used_e)\
+    \ <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id]) continue;\n   \
+    \     int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] !=\
+    \ -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n          int\
+    \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
+    \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
+    \ (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
     \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
     \    for (auto& e : edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
     \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
-    \    }\n    G1.build();\n    return G1;\n  }\n\n  HashMap<int> MP_FOR_EID;\n\n\
-    \  int get_eid(u64 a, u64 b) {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N\
-    \ - 1);\n      for (auto& e : edges) {\n        u64 a = e.frm, b = e.to;\n   \
-    \     u64 k = to_eid_key(a, b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n\
-    \    return MP_FOR_EID.get(to_eid_key(a, b), -1);\n  }\n\n  u64 to_eid_key(u64\
-    \ a, u64 b) {\n    if (!directed && a > b) swap(a, b);\n    return N * a + b;\n\
-    \  }\n\n private:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 2 \"other/bit.hpp\"\
-    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
-    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
-    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
-    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
-    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
-    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
-    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
-    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
-    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
-    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
-    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
-    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
-    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
-    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
-    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
-    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
-    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
-    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
-    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
-    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 4 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename\
-    \ Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n \
-    \ using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n\
-    \  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template <typename\
-    \ F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
-    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
-    \ G::unit());\n    total = G::unit();\n  }\n  void build(const vc<E>& v) {\n \
-    \   build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template <typename\
-    \ F>\n  void build(int m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n\
-    \    total = G::unit();\n    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1;\
-    \ i <= n; ++i) {\n      int j = i + (i & -i);\n      if (j <= n) dat[j - 1] =\
-    \ G::op(dat[i - 1], dat[j - 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n \
-    \ E prod_all() const { return total; }\n  E sum_all() const { return total; }\n\
-    \  E sum(int k) const { return prefix_sum(k); }\n  E prod(int k) const { return\
-    \ prefix_prod(k); }\n  E prefix_sum(int k) const { return prefix_prod(k); }\n\
-    \  E prefix_prod(int k) const {\n    chmin(k, n);\n    E ret = G::unit();\n  \
-    \  for (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n\
-    \  }\n  E sum(int L, int R) const { return prod(L, R); }\n  E prod(int L, int\
-    \ R) const {\n    chmax(L, 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n\
-    \    assert(0 <= L && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n\
-    \    while (L < R) {\n      pos = G::op(pos, dat[R - 1]), R -= R & -R;\n    }\n\
-    \    while (R < L) {\n      neg = G::op(neg, dat[L - 1]), L -= L & -L;\n    }\n\
-    \    return G::op(pos, G::inverse(neg));\n  }\n\n  vc<E> get_all() const {\n \
-    \   vc<E> res(n);\n    FOR(i, n) res[i] = prod(i, i + 1);\n    return res;\n \
-    \ }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
-    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
-    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int\
-    \ k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\n  template <class\
-    \ F>\n  int max_right(const F check, int L = 0) const {\n    assert(check(G::unit()));\n\
-    \    E s = G::unit();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
-    \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) {\n        \
-    \  s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n        if (i ==\
-    \ 0) {\n          return topbit(n) + 1;\n        }\n        int k = lowbit(i)\
-    \ - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i\
-    \ + (1 << k) - 1]);\n        if (!check(t)) {\n          return k;\n        }\n\
-    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
-    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
-    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i + (1 << k) <= L || check(t))\
-    \ {\n          i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n\
-    \  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
-    \ F check, int L = 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
-    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
-    \ {\n      while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
-    \ - 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
-    \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
-    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i\
-    \ + (1 << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) {\n\
+    \    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for (auto&\
+    \ e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
+    \ b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n    return MP_FOR_EID.get(to_eid_key(a,\
+    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) {\n    if (!directed && a >\
+    \ b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
+    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\
+    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n \
+    \ static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n\
+    \  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
+    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 4 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
+    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
+    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total\
+    \ = G::unit();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int\
+    \ i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n\
+    \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
+    \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
+    \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() const { return\
+    \ total; }\n  E sum_all() const { return total; }\n  E sum(int k) const { return\
+    \ prefix_sum(k); }\n  E prod(int k) const { return prefix_prod(k); }\n  E prefix_sum(int\
+    \ k) const { return prefix_prod(k); }\n  E prefix_prod(int k) const {\n    chmin(k,\
+    \ n);\n    E ret = G::unit();\n    for (; k > 0; k -= k & -k) ret = G::op(ret,\
+    \ dat[k - 1]);\n    return ret;\n  }\n  E sum(int L, int R) const { return prod(L,\
+    \ R); }\n  E prod(int L, int R) const {\n    chmax(L, 0), chmin(R, n);\n    if\
+    \ (L == 0) return prefix_prod(R);\n    assert(0 <= L && L <= R && R <= n);\n \
+    \   E pos = G::unit(), neg = G::unit();\n    while (L < R) {\n      pos = G::op(pos,\
+    \ dat[R - 1]), R -= R & -R;\n    }\n    while (R < L) {\n      neg = G::op(neg,\
+    \ dat[L - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n\
+    \  }\n\n  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
+    \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
+    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    total = G::op(total,\
+    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
+    \  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\
+    \n  template <class F>\n  int max_right(const F check, int L = 0) const {\n  \
+    \  assert(check(G::unit()));\n    E s = G::unit();\n    int i = L;\n    // 2^k\
+    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
+    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
+    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
+    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
+    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) {\n  \
+    \        return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i\
+    \ -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1\
+    \ << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n  \
+    \      if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
+    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
+    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
+    \  assert(check(L, G::unit()));\n    E s = G::unit();\n    int i = L;\n    //\
+    \ 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n\
+    \        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i\
+    \ -= 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n \
+    \       }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return\
+    \ k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1\
+    \ << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
     \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
     \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
@@ -467,7 +468,7 @@ data:
   isVerificationFile: false
   path: graph/ds/range_edge_connected_component_query.hpp
   requiredBy: []
-  timestamp: '2026-08-08 08:47:36+09:00'
+  timestamp: '2026-08-08 15:43:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/range_edge_connected_component_query.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/grid_bfs.hpp
     title: graph/shortest_path/grid_bfs.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

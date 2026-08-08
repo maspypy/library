@@ -164,30 +164,27 @@ data:
     \ (L < R && (R & 63)) {\n      flip(--R);\n    }\n    FOR(i, L >> 6, R >> 6) dat[i]\
     \ ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\
     \n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0;\
-    \ }\n  void flip(int i) { (*this)[i].flip(); }\n  void set() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat), 0); }\n  void\
-    \ flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }\n    int i\
-    \ = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size()) break;\n\
-    \      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat)) {\n\
-    \      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  bool ALL()\
-    \ {\n    dat.resize((N + 63) >> 6);\n    int r = N & 63;\n    if (r != 0) {\n\
-    \      u64 mask = (u64(1) << r) - 1;\n      if (dat.back() != mask) return 0;\n\
-    \    }\n    for (int i = 0; i < N / 64; ++i)\n      if (dat[i] != u64(-1)) return\
-    \ false;\n    return true;\n  }\n  // bs[i]==true \u3067\u3042\u308B\u3088\u3046\
-    \u306A i \u5168\u4F53\n  vc<int> collect_idx() {\n    vc<int> I;\n    FOR(i, N)\
-    \ if ((*this)[i]) I.eb(i);\n    return I;\n  }\n\n  bool is_subset(T &other) {\n\
-    \    assert(len(other) == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b\
-    \ = other.dat[i];\n      if ((a & b) != a) return false;\n    }\n    return true;\n\
-    \  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return\
-    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
-    \ f) {\n    if (L >= size()) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  static\
-    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (auto &x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  // return:\
-    \ xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
+    \ }\n  void flip(int i) { (*this)[i].flip(); }\n  void set() { set_range(0, N);\
+    \ }\n  void reset() { reset_range(0, N); }\n  void flip() { flip_range(0, N);\
+    \ }\n  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n\
+    \    }\n    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n\
+    \    int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n\
+    \      if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n  //\
+    \ bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx()\
+    \ {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n \
+    \ }\n\n  bool is_subset(T &other) {\n    assert(len(other) == N);\n    FOR(i,\
+    \ len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a)\
+    \ return false;\n    }\n    return true;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  template <typename\
+    \ F>\n  void enumerate(int L, int R, F f) {\n    if (L >= size()) return;\n  \
+    \  int p = ((*this)[L] ? L : _Find_next(L));\n    while (p < R) {\n      f(p);\n\
+    \      p = _Find_next(p);\n    }\n  }\n\n  static string TO_STR[256];\n  string\
+    \ to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n\
+    \    for (auto &x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  // return: xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
     \  void prefix_xor_sum() {\n    int carry = 0;\n    for (u64 &a : dat) {\n   \
     \   a ^= carry;\n      carry = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n\
     \      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n\
@@ -208,7 +205,7 @@ data:
   isVerificationFile: false
   path: linalg/bitset/det.hpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-08-08 15:43:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: linalg/bitset/det.hpp

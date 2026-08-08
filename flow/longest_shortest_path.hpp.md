@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -158,135 +158,136 @@ data:
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
     \ bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type\
     \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
-    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
-    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
-    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n\
+    \  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
+    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
+    \ const {\n      if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
+    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
+    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
+    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\
+    \n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
-    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
-    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && frm < N && 0 <= to &&\
-    \ to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
-    \    edges.eb(e);\n    ++M;\n  }\n\n#ifdef FASTIO\n  // wt, off\n  void read_tree(bool\
-    \ wt = false, int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int\
-    \ M, bool wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n    \
-    \  INT(a, b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n\
-    \      } else {\n        T c;\n        read(c);\n        add(a, b, c);\n     \
-    \ }\n    }\n    build();\n  }\n#endif\n\n  void build() {\n    assert(!prepared);\n\
-    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e : edges)\
-    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
-    \  }\n    for (int v = 0; v < N; ++v) {\n      indptr[v + 1] += indptr[v];\n \
-    \   }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n\
-    \    for (auto&& e : edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if\
-    \ (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost,\
-    \ e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
-    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
-    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
-    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
-    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
-    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n#ifdef FASTIO\n  void debug() {\n#ifdef LOCAL\n    print(\"Graph\");\n    if\
-    \ (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e : edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e : (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n    flush();\n#endif\n  }\n#endif\n\
-    \n  vc<int> new_idx;\n  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\
-    \u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\
-    \u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\
-    \u7B97\u91CF\u306B\u306A\u3063\u3066\u3044\u3066\u3001\n  // \u65B0\u3057\u3044\
-    \u30B0\u30E9\u30D5\u306E n+m \u3088\u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\
-    \u3042\u308B\u306E\u3067\u6CE8\u610F\n  Graph<T, directed> rearrange(vc<int> V,\
-    \ bool keep_eid = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n  \
-    \  int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n\
-    \    vc<int> history;\n    FOR(i, n) {\n      for (auto&& e : (*this)[V[i]]) {\n\
-    \        if (len(used_e) <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id])\
-    \ continue;\n        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 &&\
-    \ new_idx[b] != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n\
-    \          int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
-    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
-    \    for (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
-    \  }\n\n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1)\
-    \ root = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T,\
-    \ true> G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v)\
-    \ -> void {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
+    \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
+    \ frm < N && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
+    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n#ifdef FASTIO\n  // wt, off\n\
+    \  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt, off);\
+    \ }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for (int\
+    \ m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n      if\
+    \ (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n#endif\n\n  void build()\
+    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \    for (auto&& e : edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
+    \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) {\n      indptr[v\
+    \ + 1] += indptr[v];\n    }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
+    \ + 1);\n    for (auto&& e : edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
+    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
+    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
+    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
+    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n#ifdef LOCAL\n\
+    \    print(\"Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n\
+    \      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n\
+    \      print(\"indptr\", indptr);\n      print(\"frm to cost id\");\n      FOR(v,\
+    \ N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n    }\n  \
+    \  flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n\
+    \  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
+    \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
+    \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
+    \u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\u3067\u6CE8\
+    \u610F\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n    if\
+    \ (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n    FOR(i,\
+    \ n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n\
+    \    FOR(i, n) {\n      for (auto&& e : (*this)[V[i]]) {\n        if (len(used_e)\
+    \ <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id]) continue;\n   \
+    \     int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] !=\
+    \ -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n          int\
+    \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
+    \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
+    \ (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
     \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
     \    for (auto& e : edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
     \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
-    \    }\n    G1.build();\n    return G1;\n  }\n\n  HashMap<int> MP_FOR_EID;\n\n\
-    \  int get_eid(u64 a, u64 b) {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N\
-    \ - 1);\n      for (auto& e : edges) {\n        u64 a = e.frm, b = e.to;\n   \
-    \     u64 k = to_eid_key(a, b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n\
-    \    return MP_FOR_EID.get(to_eid_key(a, b), -1);\n  }\n\n  u64 to_eid_key(u64\
-    \ a, u64 b) {\n    if (!directed && a > b) swap(a, b);\n    return N * a + b;\n\
-    \  }\n\n private:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename\
-    \ T, typename GT>\npair<vc<T>, vc<int>> dijkstra_dense(GT& G, int s) {\n  const\
-    \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<bool>\
-    \ done(N);\n  dist[s] = 0;\n  while (1) {\n    int v = -1;\n    T mi = infty<T>;\n\
-    \    FOR(i, N) {\n      if (!done[i] && chmin(mi, dist[i])) v = i;\n    }\n  \
-    \  if (v == -1) break;\n    done[v] = 1;\n    for (auto&& e : G[v]) {\n      if\
-    \ (chmin(dist[e.to], dist[v] + e.cost)) par[e.to] = v;\n    }\n  }\n  return {dist,\
-    \ par};\n}\n\ntemplate <typename T, typename GT, bool DENSE = false>\npair<vc<T>,\
-    \ vc<int>> dijkstra(GT& G, int v) {\n  if (DENSE) return dijkstra_dense<T>(G,\
-    \ v);\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n  vector<int> par(N, -1);\n\
-    \  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\
-    \n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv,\
-    \ v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&&\
-    \ e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to]\
-    \ = e.frm;\n        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return\
-    \ {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par,\
-    \ root]\ntemplate <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
-    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
-    \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
-    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  FOR(k, len(vs))\
-    \ {\n    int v = vs[k];\n    dist[v] = 0;\n    root[v] = k;\n    que.emplace(T(0),\
-    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
-    \    if (dv > dist[v]) continue;\n    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to],\
-    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
-    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 3 \"flow/longest_shortest_path.hpp\"\n\n/*\npotential\
-    \ p[v]\n\u8DDD\u96E2\u3092 L \u4EE5\u4E0A\u306B\u3057\u305F\u3044 : L<=p[t]-p[s]\n\
-    \u8FBA (u,v,w)\n\u4F38\u3070\u3059\u91CF max(0,p[v]-p[u]-w)\n- t \u304B\u3089\
-    \ s \u306B\u8CBB\u7528-L, \u5BB9\u91CFINF\n- u \u304B\u3089 v \u306B\u8CBB\u7528\
-    \ w, \u5BB9\u91CF 1\n\u3053\u308C\u306E\u5FAA\u74B0\u6D41\n*/\n\n// https://qoj.ac/contest/1435/problem/7737\n\
-    template <typename T = ll, bool DAG = false>\nstruct Longest_Shortest_Path {\n\
-    \  int N, s, t;\n  T F, L, K;\n  bool solved;\n  vc<tuple<int, int, T, T>> dat;\n\
-    \  vc<T> pot;\n  Longest_Shortest_Path(int N, int s, int t) : N(N), s(s), t(t),\
-    \ F(0), solved(0) {}\n\n  // \u73FE\u5728\u306E\u9577\u3055, \u9577\u3055\u3092\
-    +1\u3059\u308B\u30B3\u30B9\u30C8\n  void add(int frm, int to, T length, T cost)\
-    \ {\n    assert(0 <= frm && frm < N && 0 <= to && to < N && !solved);\n    if\
-    \ (DAG) assert(frm < to);\n    dat.eb(frm, to, length, cost);\n  }\n\n  T init_dist()\
-    \ {\n    Graph<T, 1> G(N);\n    for (auto& [a, b, c, d]: dat) G.add(a, b, c);\n\
-    \    G.build();\n    auto [dist, par] = dijkstra<T>(G, s);\n    return dist[t];\n\
-    \  }\n\n  // \u8DDD\u96E2\u304C L \u4EE5\u4E0A\u306B\u306A\u308B\u3088\u3046\u306B\
-    \u305B\u3088. return: min cost.\n  T solve_by_target_length(T target_length) {\n\
-    \    L = target_length;\n    assert(!solved && L >= init_dist());\n    solved\
-    \ = 1;\n    Min_Cost_Flow<T, T, DAG> G(N, s, t);\n    for (auto& [a, b, length,\
-    \ cost]: dat) { G.add(a, b, cost, length); }\n    T ans = -infty<T>;\n    for\
-    \ (auto& [x, y]: G.slope()) {\n      if (chmax(ans, x * L - y)) F = x;\n    }\n\
-    \    return K = ans;\n  }\n\n  // \u30B3\u30B9\u30C8\u304C K \u3067\u6700\u5927\
-    \u8DDD\u96E2\u306B\u305B\u3088. return: max dist.\n  T solve_by_cost(T K) {}\n\
-    \n  // frm, to, cost. add_edge \u9806.\n  vc<T> get_potentials() {\n    assert(solved);\n\
-    \    if (len(pot)) return pot;\n    Min_Cost_Flow<T, T, DAG> G(N, s, t);\n   \
-    \ for (auto& [a, b, length, cost]: dat) { G.add(a, b, cost, length); }\n    G.flow(F);\n\
-    \    pot = G.get_potentials();\n    Graph<T, 1> resG(N);\n    auto add = [&](int\
-    \ a, int b, T x) -> void {\n      x = x + pot[a] - pot[b];\n      resG.add(a,\
-    \ b, x);\n    };\n    for (auto& e: G.edges()) {\n      if (e.cap > e.flow) add(e.frm,\
-    \ e.to, e.cost);\n      if (e.flow > 0) add(e.to, e.frm, -e.cost);\n    }\n  \
-    \  add(s, t, L), add(t, s, -L);\n    resG.build();\n    vc<T> dist = dijkstra<ll>(resG,\
-    \ s).fi;\n    FOR(x, N) pot[x] += dist[x];\n    return pot;\n  }\n\n  // \u5909\
-    \u66F4\u5F8C\u306E\u9577\u3055\n  vc<T> get_edges() {\n    get_potentials();\n\
-    \    vc<T> res;\n    for (auto [frm, to, length, cost]: dat) { res.eb(max<T>(length,\
-    \ pot[to] - pot[frm])); }\n    return res;\n  }\n};\n"
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) {\n\
+    \    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for (auto&\
+    \ e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
+    \ b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n    return MP_FOR_EID.get(to_eid_key(a,\
+    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) {\n    if (!directed && a >\
+    \ b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
+    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\
+    \n\ntemplate <typename T, typename GT>\npair<vc<T>, vc<int>> dijkstra_dense(GT&\
+    \ G, int s) {\n  const int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N,\
+    \ -1);\n  vc<bool> done(N);\n  dist[s] = 0;\n  while (1) {\n    int v = -1;\n\
+    \    T mi = infty<T>;\n    FOR(i, N) {\n      if (!done[i] && chmin(mi, dist[i]))\
+    \ v = i;\n    }\n    if (v == -1) break;\n    done[v] = 1;\n    for (auto&& e\
+    \ : G[v]) {\n      if (chmin(dist[e.to], dist[v] + e.cost)) par[e.to] = v;\n \
+    \   }\n  }\n  return {dist, par};\n}\n\ntemplate <typename T, typename GT, bool\
+    \ DENSE = false>\npair<vc<T>, vc<int>> dijkstra(GT& G, int v) {\n  if (DENSE)\
+    \ return dijkstra_dense<T>(G, v);\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n\
+    \  vector<int> par(N, -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
+    \ greater<P>> que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty())\
+    \ {\n    auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
+    \    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
+    \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
+    \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
+    \ vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int>\
+    \ root(N, -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
+    \ greater<P>> que;\n\n  FOR(k, len(vs)) {\n    int v = vs[k];\n    dist[v] = 0;\n\
+    \    root[v] = k;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n\
+    \    auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
+    \    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
+    \ {\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
+    \ e.to));\n      }\n    }\n  }\n  return {dist, par, root};\n}\n#line 3 \"flow/longest_shortest_path.hpp\"\
+    \n\n/*\npotential p[v]\n\u8DDD\u96E2\u3092 L \u4EE5\u4E0A\u306B\u3057\u305F\u3044\
+    \ : L<=p[t]-p[s]\n\u8FBA (u,v,w)\n\u4F38\u3070\u3059\u91CF max(0,p[v]-p[u]-w)\n\
+    - t \u304B\u3089 s \u306B\u8CBB\u7528-L, \u5BB9\u91CFINF\n- u \u304B\u3089 v \u306B\
+    \u8CBB\u7528 w, \u5BB9\u91CF 1\n\u3053\u308C\u306E\u5FAA\u74B0\u6D41\n*/\n\n//\
+    \ https://qoj.ac/contest/1435/problem/7737\ntemplate <typename T = ll, bool DAG\
+    \ = false>\nstruct Longest_Shortest_Path {\n  int N, s, t;\n  T F, L, K;\n  bool\
+    \ solved;\n  vc<tuple<int, int, T, T>> dat;\n  vc<T> pot;\n  Longest_Shortest_Path(int\
+    \ N, int s, int t) : N(N), s(s), t(t), F(0), solved(0) {}\n\n  // \u73FE\u5728\
+    \u306E\u9577\u3055, \u9577\u3055\u3092+1\u3059\u308B\u30B3\u30B9\u30C8\n  void\
+    \ add(int frm, int to, T length, T cost) {\n    assert(0 <= frm && frm < N &&\
+    \ 0 <= to && to < N && !solved);\n    if (DAG) assert(frm < to);\n    dat.eb(frm,\
+    \ to, length, cost);\n  }\n\n  T init_dist() {\n    Graph<T, 1> G(N);\n    for\
+    \ (auto& [a, b, c, d]: dat) G.add(a, b, c);\n    G.build();\n    auto [dist, par]\
+    \ = dijkstra<T>(G, s);\n    return dist[t];\n  }\n\n  // \u8DDD\u96E2\u304C L\
+    \ \u4EE5\u4E0A\u306B\u306A\u308B\u3088\u3046\u306B\u305B\u3088. return: min cost.\n\
+    \  T solve_by_target_length(T target_length) {\n    L = target_length;\n    assert(!solved\
+    \ && L >= init_dist());\n    solved = 1;\n    Min_Cost_Flow<T, T, DAG> G(N, s,\
+    \ t);\n    for (auto& [a, b, length, cost]: dat) { G.add(a, b, cost, length);\
+    \ }\n    T ans = -infty<T>;\n    for (auto& [x, y]: G.slope()) {\n      if (chmax(ans,\
+    \ x * L - y)) F = x;\n    }\n    return K = ans;\n  }\n\n  // \u30B3\u30B9\u30C8\
+    \u304C K \u3067\u6700\u5927\u8DDD\u96E2\u306B\u305B\u3088. return: max dist.\n\
+    \  T solve_by_cost(T K) {}\n\n  // frm, to, cost. add_edge \u9806.\n  vc<T> get_potentials()\
+    \ {\n    assert(solved);\n    if (len(pot)) return pot;\n    Min_Cost_Flow<T,\
+    \ T, DAG> G(N, s, t);\n    for (auto& [a, b, length, cost]: dat) { G.add(a, b,\
+    \ cost, length); }\n    G.flow(F);\n    pot = G.get_potentials();\n    Graph<T,\
+    \ 1> resG(N);\n    auto add = [&](int a, int b, T x) -> void {\n      x = x +\
+    \ pot[a] - pot[b];\n      resG.add(a, b, x);\n    };\n    for (auto& e: G.edges())\
+    \ {\n      if (e.cap > e.flow) add(e.frm, e.to, e.cost);\n      if (e.flow > 0)\
+    \ add(e.to, e.frm, -e.cost);\n    }\n    add(s, t, L), add(t, s, -L);\n    resG.build();\n\
+    \    vc<T> dist = dijkstra<ll>(resG, s).fi;\n    FOR(x, N) pot[x] += dist[x];\n\
+    \    return pot;\n  }\n\n  // \u5909\u66F4\u5F8C\u306E\u9577\u3055\n  vc<T> get_edges()\
+    \ {\n    get_potentials();\n    vc<T> res;\n    for (auto [frm, to, length, cost]:\
+    \ dat) { res.eb(max<T>(length, pot[to] - pot[frm])); }\n    return res;\n  }\n\
+    };\n"
   code: "#include \"flow/mincostflow.hpp\"\n#include \"graph/shortest_path/dijkstra.hpp\"\
     \n\n/*\npotential p[v]\n\u8DDD\u96E2\u3092 L \u4EE5\u4E0A\u306B\u3057\u305F\u3044\
     \ : L<=p[t]-p[s]\n\u8FBA (u,v,w)\n\u4F38\u3070\u3059\u91CF max(0,p[v]-p[u]-w)\n\
@@ -330,7 +331,7 @@ data:
   isVerificationFile: false
   path: flow/longest_shortest_path.hpp
   requiredBy: []
-  timestamp: '2026-08-08 08:47:36+09:00'
+  timestamp: '2026-08-08 15:43:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/longest_shortest_path.hpp
