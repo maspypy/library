@@ -81,6 +81,7 @@
 "test/1_mytest/find_C4.test.cpp": "2026-08-08 15:43:41 +0900",
 "test/1_mytest/find_cycle_minimum.test.cpp": "2026-08-08 15:43:41 +0900",
 "test/1_mytest/find_even_cycle.test.cpp": "2026-08-08 15:43:41 +0900",
+"test/1_mytest/find_odd_cycle.test.cpp": "2026-08-08 15:43:41 +0900",
 "test/1_mytest/first_mod_range_of_linear.test.cpp": "2026-08-08 05:13:48 +0900",
 "test/1_mytest/floor_ceil.test.cpp": "2026-08-08 05:13:48 +0900",
 "test/1_mytest/floor_ceil_ranges.test.cpp": "2026-08-08 05:13:48 +0900",
