@@ -385,6 +385,9 @@ data:
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
     - icon: ':warning:'
+      path: ds/range_mex.hpp
+      title: ds/range_mex.hpp
+    - icon: ':warning:'
       path: ds/range_min_change.hpp
       title: ds/range_min_change.hpp
     - icon: ':heavy_check_mark:'
@@ -488,9 +491,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/point_add_rectangle_sum.hpp
       title: ds/offline_query/point_add_rectangle_sum.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/offline_query/range_mex_query.hpp
-      title: ds/offline_query/range_mex_query.hpp
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/range_xor_basis_query.hpp
       title: ds/offline_query/range_xor_basis_query.hpp
@@ -3144,7 +3144,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/range_freq_of_linear.test.cpp
       title: test/1_mytest/range_freq_of_linear.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/range_mex.test.cpp
       title: test/1_mytest/range_mex.test.cpp
     - icon: ':heavy_check_mark:'

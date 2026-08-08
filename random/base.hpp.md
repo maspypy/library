@@ -565,9 +565,6 @@ data:
     path: test/1_mytest/range_freq_of_linear.test.cpp
     title: test/1_mytest/range_freq_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/range_mex.test.cpp
-    title: test/1_mytest/range_mex.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst.test.cpp
     title: test/1_mytest/rbst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1240,7 +1237,6 @@ data:
   - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/four_square.test.cpp
-  - test/1_mytest/range_mex.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/is_substring.test.cpp

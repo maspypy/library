@@ -2,12 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: ds/offline_query/range_mex_query.hpp
-    title: ds/offline_query/range_mex_query.hpp
   - icon: ':warning:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
+  - icon: ':warning:'
+    path: ds/range_mex.hpp
+    title: ds/range_mex.hpp
   - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
@@ -90,9 +90,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/range_mex.test.cpp
-    title: test/1_mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/segtree_xor_prod.test.cpp
     title: test/1_mytest/segtree_xor_prod.test.cpp
@@ -301,8 +298,8 @@ data:
   - ds/rmq/range_add_range_max.hpp
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
-  - ds/offline_query/range_mex_query.hpp
   - ds/offline_query/uniqueproductquery.hpp
+  - ds/range_mex.hpp
   - string/suffix_array.hpp
   - string/many_string_compare.hpp
   - string/longest_common_substring.hpp
@@ -338,7 +335,6 @@ data:
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
-  - test/1_mytest/range_mex.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp

@@ -17,9 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/offline_query/range_mex_query.hpp
-    title: ds/offline_query/range_mex_query.hpp
+  - icon: ':warning:'
+    path: ds/range_mex.hpp
+    title: ds/range_mex.hpp
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
@@ -93,9 +93,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/range_mex.test.cpp
-    title: test/1_mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_am.test.cpp
     title: test/1_mytest/rbst_am.test.cpp
@@ -218,7 +215,7 @@ data:
   - graph/fast_lca.hpp
   - graph/minimum_spanning_tree.hpp
   - geo/range_closest_pair_query.hpp
-  - ds/offline_query/range_mex_query.hpp
+  - ds/range_mex.hpp
   - string/suffix_array.hpp
   - string/many_string_compare.hpp
   - string/longest_common_substring.hpp
@@ -264,7 +261,6 @@ data:
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/min_max.test.cpp
   - test/1_mytest/rbst_am.test.cpp
-  - test/1_mytest/range_mex.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
