@@ -185,6 +185,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
+  - icon: ':warning:'
+    path: graph/compress_tree.hpp
+    title: graph/compress_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
@@ -2498,6 +2501,7 @@ data:
   - graph/reachability.hpp
   - graph/steiner_tree.hpp
   - graph/all_cycle_common_vertex.hpp
+  - graph/compress_tree.hpp
   - graph/fast_lca.hpp
   - graph/count/count_labeled_strong_tournament.hpp
   - graph/count/count_independent_set.hpp

@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
+  - icon: ':warning:'
+    path: graph/compress_tree.hpp
+    title: graph/compress_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
@@ -178,6 +181,7 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/sparse_table.hpp
   requiredBy:
+  - graph/compress_tree.hpp
   - graph/fast_lca.hpp
   - ds/rmq/static_rmq.hpp
   - ds/static_range_product.hpp

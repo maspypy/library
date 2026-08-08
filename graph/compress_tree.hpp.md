@@ -1,15 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/min.hpp
+    title: alg/monoid/min.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/fastset.hpp
+    title: ds/fastset.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: ds/sparse_table/sparse_table.hpp
+    title: ds/sparse_table/sparse_table.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/fast_lca.hpp
+    title: graph/fast_lca.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -224,47 +239,186 @@ data:
     \ u;\r\n      if (check(V[b])) {\r\n        u = V[b];\r\n        continue;\r\n\
     \      }\r\n      int c =\r\n          binary_search([&](int c) -> bool { return\
     \ check(V[c]); }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n\
-    \  }\r\n};\r\n#line 2 \"graph/compress_tree.hpp\"\n\n// (\u5727\u7E2E\u3055\u308C\
-    \u305F\u6728\u306E\u9802\u70B9\u30E9\u30D9\u30EB\u305F\u3061\u3001\u30B0\u30E9\
-    \u30D5)\n// \u65B0\u3057\u3044\u30B0\u30E9\u30D5\uFF1A\u8FBA\u91CD\u307F\u3042\
-    \u308A\ntemplate <typename TREE>\npair<vc<int>, typename TREE::Graph_type> compress_tree(TREE&\
-    \ tree, vc<int> V) {\n  // \u5927\u4E8B\u306A\u70B9\u3092\u30EA\u30B9\u30C8\u30A2\
-    \u30C3\u30D7\u3059\u308B\n  sort(all(V), [&](auto& x, auto& y) { return tree.LID[x]\
-    \ < tree.LID[y]; });\n  int n = len(V);\n  FOR(i, n) {\n    int j = (i + 1 ==\
-    \ n ? 0 : i + 1);\n    V.eb(tree.lca(V[i], V[j]));\n  }\n  sort(all(V), [&](auto&\
-    \ x, auto& y) { return tree.LID[x] < tree.LID[y]; });\n  V.erase(unique(all(V)),\
-    \ V.end());\n  // \u8FBA\u3092\u5F35\u3063\u3066\u30B0\u30E9\u30D5\u3092\u4F5C\
-    \u308B\n  n = len(V);\n  using GT = typename TREE::Graph_type;\n  using WT = typename\
-    \ GT::cost_type;\n  GT G(n);\n  vc<int> st = {0};\n  FOR(i, 1, n) {\n    while\
-    \ (1) {\n      int p = V[st.back()];\n      int v = V[i];\n      if (tree.in_subtree(v,\
-    \ p)) break;\n      st.pop_back();\n    }\n    int p = V[st.back()];\n    int\
-    \ v = V[i];\n    WT d = tree.depth_weighted[v] - tree.depth_weighted[p];\n   \
-    \ G.add(st.back(), i, d);\n    st.eb(i);\n  }\n  G.build();\n  return {V, G};\n\
-    }\n"
-  code: "#include \"graph/tree.hpp\"\n\n// (\u5727\u7E2E\u3055\u308C\u305F\u6728\u306E\
-    \u9802\u70B9\u30E9\u30D9\u30EB\u305F\u3061\u3001\u30B0\u30E9\u30D5)\n// \u65B0\
-    \u3057\u3044\u30B0\u30E9\u30D5\uFF1A\u8FBA\u91CD\u307F\u3042\u308A\ntemplate <typename\
-    \ TREE>\npair<vc<int>, typename TREE::Graph_type> compress_tree(TREE& tree, vc<int>\
-    \ V) {\n  // \u5927\u4E8B\u306A\u70B9\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\
-    \u3059\u308B\n  sort(all(V), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y];\
-    \ });\n  int n = len(V);\n  FOR(i, n) {\n    int j = (i + 1 == n ? 0 : i + 1);\n\
-    \    V.eb(tree.lca(V[i], V[j]));\n  }\n  sort(all(V), [&](auto& x, auto& y) {\
-    \ return tree.LID[x] < tree.LID[y]; });\n  V.erase(unique(all(V)), V.end());\n\
-    \  // \u8FBA\u3092\u5F35\u3063\u3066\u30B0\u30E9\u30D5\u3092\u4F5C\u308B\n  n\
-    \ = len(V);\n  using GT = typename TREE::Graph_type;\n  using WT = typename GT::cost_type;\n\
-    \  GT G(n);\n  vc<int> st = {0};\n  FOR(i, 1, n) {\n    while (1) {\n      int\
-    \ p = V[st.back()];\n      int v = V[i];\n      if (tree.in_subtree(v, p)) break;\n\
-    \      st.pop_back();\n    }\n    int p = V[st.back()];\n    int v = V[i];\n \
-    \   WT d = tree.depth_weighted[v] - tree.depth_weighted[p];\n    G.add(st.back(),\
-    \ i, d);\n    st.eb(i);\n  }\n  G.build();\n  return {V, G};\n}\n"
+    \  }\r\n};\r\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 3 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space:\
+    \ (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int\
+    \ n = 0, log = 0;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n)\
+    \ { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  void fillone() {\r\n\
+    \    int cur = n;\r\n    for (auto& vs : seg) {\r\n      int p = cur / B, q =\
+    \ cur % B;\r\n      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p] = full_mask(q);\r\
+    \n      cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\
+    \n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
+    \ {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
+    \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
+    \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
+    \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
+    \ B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h\
+    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n      }\r\n    }\r\n  }\r\
+    \n\r\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\r\
+    \n  void insert(int i) {\r\n    assert(0 <= i && i < n);\r\n    for (int h = 0;\
+    \ h < log; h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\r\n   \
+    \ }\r\n  }\r\n  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n  \
+    \  assert(0 <= i && i < n);\r\n    u64 x = 0;\r\n    for (int h = 0; h < log;\
+    \ h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B]\
+    \ |= x << (i % B);\r\n      x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\
+    \n  }\r\n  void remove(int i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int\
+    \ next(int i) {\r\n    assert(i <= n);\r\n    chmax(i, 0);\r\n    for (int h =\
+    \ 0; h < log; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      u64\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      i += lowbit(d);\r\n      for (int g =\
+    \ h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // max\
+    \ [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i >= -1);\r\n    if (i >=\
+    \ n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\n      if (i == -1) break;\r\
+    \n      u64 d = seg[h][i / B] << (63 - i % B);\r\n      if (!d) {\r\n        i\
+    \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
+    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
+    \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
+    \ -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return next(l) < r; }\r\n\r\n \
+    \ // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
+    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
+    \  void reset() {\r\n    enumerate(0, n, [&](int i) -> void { erase(i); });\r\n\
+    \  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
+    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
+    };\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
+    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
+    \ { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ 3 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\
+    \u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002disjoint sparse table\
+    \ \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class Monoid>\nstruct Sparse_Table\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n, log;\n\
+    \  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) { build(n); }\n \
+    \ template <typename F>\n  Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n\
+    \  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m,\
+    \ [](int i) -> X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n\
+    \    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1 << log) <\
+    \ n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i, n) dat[0][i]\
+    \ = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i]) - (1 <<\
+    \ i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j] = MX::op(dat[i][j],\
+    \ dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int L, int R) const\
+    \ {\n    if (L == R) return MX::unit();\n    if (R == L + 1) return dat[0][L];\n\
+    \    int k = topbit(R - L - 1);\n    return MX::op(dat[k][L], dat[k][R - (1 <<\
+    \ k)]);\n  }\n\n  template <class F>\n  int max_right(const F check, int L) const\
+    \ {\n    assert(0 <= L && L <= n && check(MX::unit()));\n    if (L == n) return\
+    \ n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok\
+    \ + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n    \
+    \  if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int\
+    \ min_left(const F check, int R) const {\n    assert(0 <= R && R <= n && check(MX::unit()));\n\
+    \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
+    \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
+    \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line\
+    \ 4 \"graph/fast_lca.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_Lca {\n  TREE&\
+    \ tree;\n  Sparse_Table<Monoid_Min<int>> seg;\n  vc<int> pos;\n\n  Fast_Lca(TREE&\
+    \ tree) : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n    vc<int> dat(2\
+    \ * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n      int b = tree.ERID(v);\n\
+    \      pos[v] = a;\n      dat[a] = tree.LID[v];\n      dat[b] = (v == tree.V[0]\
+    \ ? -1 : tree.LID[tree.parent[v]]);\n    }\n    seg.build(dat);\n  }\n\n  int\
+    \ dist(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth[a] + tree.depth[b]\
+    \ - 2 * tree.depth[c];\n  }\n\n  using WT = typename TREE::WT;\n  WT dist_weighted(int\
+    \ a, int b) {\n    int c = lca(a, b);\n    return tree.depth_weighted[a] + tree.depth_weighted[b]\
+    \ -\n           2 * tree.depth_weighted[c];\n  }\n\n  int lca(int a, int b) {\n\
+    \    int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p,\
+    \ q + 1)];\n  }\n};\n#line 4 \"graph/compress_tree.hpp\"\n\ntemplate <typename\
+    \ TREE>\nstruct Compress_Tree {\n  FastSet FS;\n  TREE& tree;\n  Compress_Tree(TREE&\
+    \ tree) : tree(tree) {}\n\n  using GT = typename TREE::Graph_type;\n  using WT\
+    \ = typename GT::cost_type;\n\n  pair<vc<int>, GT> compress(vc<int>& V, bool sorted\
+    \ = false) {\n    return compress_impl(V, sorted,\n                         [&](int\
+    \ a, int b) -> int { return tree.lca(a, b); });\n  }\n\n  pair<vc<int>, GT> compress_fast(vc<int>&\
+    \ V, Fast_Lca<TREE>& LCA,\n                                  bool sorted = false)\
+    \ {\n    return compress_impl(V, sorted,\n                         [&](int a,\
+    \ int b) -> int { return LCA.lca(a, b); });\n  }\n\n  void sort_vertices(vc<int>&\
+    \ V) {\n    int N = tree.N;\n    if (len(FS) == 0) FS.build(N);\n    for (int\
+    \ v : V) FS.insert(tree.LID[v]);\n    int k = 0;\n    FS.enumerate(0, N, [&](int\
+    \ i) -> void {\n      FS.erase(i);\n      V[k++] = tree.V[i];\n    });\n  }\n\n\
+    \  template <typename F>\n  pair<vc<int>, GT> compress_impl(vc<int> V, bool sorted,\
+    \ F&& get_lca) {\n    assert(!V.empty());\n    if (!sorted) sort_vertices(V);\n\
+    \    int n = len(V);\n    int root = get_lca(V[0], V.back());\n    vc<int> key\
+    \ = move(V);\n    V.clear();\n    V.reserve(2 * n);\n\n    // \u5727\u7E2E\u6728\
+    \u4E0A\u306E\u89AA\u756A\u53F7\n    vc<int> par;\n    par.reserve(2 * n);\n\n\
+    \    auto add = [&](int v) -> int {\n      int k = len(V);\n      V.eb(v), par.eb(-1);\n\
+    \      return k;\n    };\n\n    add(root);\n    vc<int> st = {0};\n    st.reserve(2\
+    \ * n);\n\n    for (int v : key) {\n      if (v == root) continue;\n      int\
+    \ l = get_lca(V[st.back()], v);\n      while (len(st) >= 2 && tree.depth[V[st[len(st)\
+    \ - 2]]] >= tree.depth[l]) {\n        int a = st[len(st) - 2], b = POP(st);\n\
+    \        par[b] = a;\n      }\n      if (V[st.back()] != l) {\n        int a =\
+    \ add(l);\n        int b = add(v);\n        par[st.back()] = par[b] = a;\n   \
+    \     st.back() = b;\n      } else {\n        int b = add(v);\n        par[b]\
+    \ = st.back();\n      }\n    }\n\n    while (len(st) >= 2) {\n      int a = st[len(st)\
+    \ - 2], b = POP(st);\n      par[b] = a;\n    }\n\n    GT G(len(V));\n    FOR(v,\
+    \ 1, len(V)) {\n      int p = par[v];\n      WT d = tree.depth_weighted[V[v]]\
+    \ - tree.depth_weighted[V[p]];\n      G.add(p, v, d);\n    }\n    G.build();\n\
+    \    return {move(V), move(G)};\n  }\n};\n"
+  code: "#include \"graph/tree.hpp\"\n#include \"ds/fastset.hpp\"\n#include \"graph/fast_lca.hpp\"\
+    \n\ntemplate <typename TREE>\nstruct Compress_Tree {\n  FastSet FS;\n  TREE& tree;\n\
+    \  Compress_Tree(TREE& tree) : tree(tree) {}\n\n  using GT = typename TREE::Graph_type;\n\
+    \  using WT = typename GT::cost_type;\n\n  pair<vc<int>, GT> compress(vc<int>&\
+    \ V, bool sorted = false) {\n    return compress_impl(V, sorted,\n           \
+    \              [&](int a, int b) -> int { return tree.lca(a, b); });\n  }\n\n\
+    \  pair<vc<int>, GT> compress_fast(vc<int>& V, Fast_Lca<TREE>& LCA,\n        \
+    \                          bool sorted = false) {\n    return compress_impl(V,\
+    \ sorted,\n                         [&](int a, int b) -> int { return LCA.lca(a,\
+    \ b); });\n  }\n\n  void sort_vertices(vc<int>& V) {\n    int N = tree.N;\n  \
+    \  if (len(FS) == 0) FS.build(N);\n    for (int v : V) FS.insert(tree.LID[v]);\n\
+    \    int k = 0;\n    FS.enumerate(0, N, [&](int i) -> void {\n      FS.erase(i);\n\
+    \      V[k++] = tree.V[i];\n    });\n  }\n\n  template <typename F>\n  pair<vc<int>,\
+    \ GT> compress_impl(vc<int> V, bool sorted, F&& get_lca) {\n    assert(!V.empty());\n\
+    \    if (!sorted) sort_vertices(V);\n    int n = len(V);\n    int root = get_lca(V[0],\
+    \ V.back());\n    vc<int> key = move(V);\n    V.clear();\n    V.reserve(2 * n);\n\
+    \n    // \u5727\u7E2E\u6728\u4E0A\u306E\u89AA\u756A\u53F7\n    vc<int> par;\n\
+    \    par.reserve(2 * n);\n\n    auto add = [&](int v) -> int {\n      int k =\
+    \ len(V);\n      V.eb(v), par.eb(-1);\n      return k;\n    };\n\n    add(root);\n\
+    \    vc<int> st = {0};\n    st.reserve(2 * n);\n\n    for (int v : key) {\n  \
+    \    if (v == root) continue;\n      int l = get_lca(V[st.back()], v);\n     \
+    \ while (len(st) >= 2 && tree.depth[V[st[len(st) - 2]]] >= tree.depth[l]) {\n\
+    \        int a = st[len(st) - 2], b = POP(st);\n        par[b] = a;\n      }\n\
+    \      if (V[st.back()] != l) {\n        int a = add(l);\n        int b = add(v);\n\
+    \        par[st.back()] = par[b] = a;\n        st.back() = b;\n      } else {\n\
+    \        int b = add(v);\n        par[b] = st.back();\n      }\n    }\n\n    while\
+    \ (len(st) >= 2) {\n      int a = st[len(st) - 2], b = POP(st);\n      par[b]\
+    \ = a;\n    }\n\n    GT G(len(V));\n    FOR(v, 1, len(V)) {\n      int p = par[v];\n\
+    \      WT d = tree.depth_weighted[V[v]] - tree.depth_weighted[V[p]];\n      G.add(p,\
+    \ v, d);\n    }\n    G.build();\n    return {move(V), move(G)};\n  }\n};"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
+  - ds/fastset.hpp
+  - other/bit.hpp
+  - graph/fast_lca.hpp
+  - alg/monoid/min.hpp
+  - ds/sparse_table/sparse_table.hpp
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-08 15:43:41+09:00'
+  timestamp: '2026-08-08 17:11:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp

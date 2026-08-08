@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sqrt_tree.hpp
     title: ds/sqrt_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

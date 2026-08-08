@@ -24,6 +24,9 @@ data:
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
   - icon: ':warning:'
+    path: graph/compress_tree.hpp
+    title: graph/compress_tree.hpp
+  - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
   - icon: ':heavy_check_mark:'
@@ -211,6 +214,7 @@ data:
   path: alg/monoid/min.hpp
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
+  - graph/compress_tree.hpp
   - graph/fast_lca.hpp
   - graph/minimum_spanning_tree.hpp
   - geo/range_closest_pair_query.hpp

@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/compress_tree.hpp
+    title: graph/compress_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
@@ -326,7 +329,8 @@ data:
   - other/bit.hpp
   isVerificationFile: false
   path: graph/fast_lca.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/compress_tree.hpp
   timestamp: '2026-08-08 15:43:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

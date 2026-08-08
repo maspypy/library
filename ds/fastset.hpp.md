@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/all_cycle_common_vertex.hpp
     title: graph/all_cycle_common_vertex.hpp
+  - icon: ':warning:'
+    path: graph/compress_tree.hpp
+    title: graph/compress_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
@@ -208,6 +211,7 @@ data:
   requiredBy:
   - graph/ds/incremental_centroid.hpp
   - graph/all_cycle_common_vertex.hpp
+  - graph/compress_tree.hpp
   - graph/toposort.hpp
   - geo/delaunay_triangulation_of_convex_polygon.hpp
   - bigint/redundant_binary_number.hpp
