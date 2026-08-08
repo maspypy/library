@@ -1,8 +1,13 @@
 #include "other/bit.hpp"
 
-// basis[i]: i 番目に追加成功したもの. 別のラベルがあるなら外で管理する.
-// array<UINT, MAX_DIM> rbasis: 上三角化された基底. [i][i]==1.
-// way<UINT,UINT> rbasis[i] を basis[j] で作る方法
+/*
+使い分け方針
+Vector_Space: 線形空間そのものを管理
+Basis: 元の基底による線形結合表示も管理
+basis[i]: i 番目に追加成功したもの. 別のラベルがあるなら外で管理する.
+array<UINT, MAX_DIM> rbasis: 上三角化された基底. [i][i]==1.
+way<UINT,UINT> rbasis[i] を basis[j] で作る方法
+*/
 template <int MAX_DIM>
 struct Basis {
   static_assert(MAX_DIM <= 128);
