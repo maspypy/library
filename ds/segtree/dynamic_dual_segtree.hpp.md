@@ -63,27 +63,27 @@ data:
     \ c) {\n    if (!c || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
     \n  void apply_rec(np c, ll l, ll r, ll ql, ll qr, const X &a) {\n    // \u3082\
     \u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\n    assert(c);\n  \
-    \  chmax(ql, l), chmin(qr, r);\n    if (a == MX::unit() || ql >= qr) return;\n\
-    \    if (l == ql && r == qr) {\n      c->x = MX::op(c->x, a);\n      return;\n\
-    \    }\n    // push\n    c->l = (c->l ? clone(c->l) : new_node());\n    c->r =\
-    \ (c->r ? clone(c->r) : new_node());\n    c->l->x = MX::op(c->l->x, c->x);\n \
-    \   c->r->x = MX::op(c->r->x, c->x);\n    c->x = MX::unit();\n    ll m = (l +\
-    \ r) / 2;\n    apply_rec(c->l, l, m, ql, qr, a), apply_rec(c->r, m, r, ql, qr,\
-    \ a);\n    return;\n  }\n\n  void copy_interval_rec(np c, np d, ll l, ll r, ll\
-    \ ql, ll qr, X x) {\n    // c[ql,qr) <- d[ql,qr) * x\n    // \u3082\u3046 c \u306F\
-    \u65B0\u3057\u304F\u3057\u3066\u3042\u308B\n    assert(c);\n    chmax(ql, l),\
-    \ chmin(qr, r);\n    if (ql >= qr) return;\n    if (l == ql && r == qr) {\n  \
-    \    if (d)\n        c->x = MX::op(d->x, x), c->l = d->l, c->r = d->r;\n     \
-    \ else\n        c->x = x, c->l = nullptr, c->r = nullptr;\n      return;\n   \
-    \ }\n    // push\n    c->l = (c->l ? clone(c->l) : new_node());\n    c->r = (c->r\
-    \ ? clone(c->r) : new_node());\n    c->l->x = MX::op(c->l->x, c->x);\n    c->r->x\
-    \ = MX::op(c->r->x, c->x);\n    c->x = MX::unit();\n    ll m = (l + r) / 2;\n\
-    \    if (d) x = MX::op(d->x, x);\n    copy_interval_rec(c->l, (d && d->l ? d->l\
-    \ : nullptr), l, m, ql, qr, x);\n    copy_interval_rec(c->r, (d && d->r ? d->r\
-    \ : nullptr), m, r, ql, qr, x);\n    return;\n  }\n\n  void get_rec(np c, ll l,\
-    \ ll r, ll i, X &x) {\n    if (!c) return;\n    x = MX::op(c->x, x);\n    if (r\
-    \ == l + 1) {\n      return;\n    }\n    ll m = (l + r) / 2;\n    if (i < m) return\
-    \ get_rec(c->l, l, m, i, x);\n    return get_rec(c->r, m, r, i, x);\n  }\n};\n"
+    \  chmax(ql, l), chmin(qr, r);\n    if (ql >= qr) return;\n    if (l == ql &&\
+    \ r == qr) {\n      c->x = MX::op(c->x, a);\n      return;\n    }\n    // push\n\
+    \    c->l = (c->l ? clone(c->l) : new_node());\n    c->r = (c->r ? clone(c->r)\
+    \ : new_node());\n    c->l->x = MX::op(c->l->x, c->x);\n    c->r->x = MX::op(c->r->x,\
+    \ c->x);\n    c->x = MX::unit();\n    ll m = (l + r) / 2;\n    apply_rec(c->l,\
+    \ l, m, ql, qr, a), apply_rec(c->r, m, r, ql, qr, a);\n    return;\n  }\n\n  void\
+    \ copy_interval_rec(np c, np d, ll l, ll r, ll ql, ll qr, X x) {\n    // c[ql,qr)\
+    \ <- d[ql,qr) * x\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\
+    \u308B\n    assert(c);\n    chmax(ql, l), chmin(qr, r);\n    if (ql >= qr) return;\n\
+    \    if (l == ql && r == qr) {\n      if (d)\n        c->x = MX::op(d->x, x),\
+    \ c->l = d->l, c->r = d->r;\n      else\n        c->x = x, c->l = nullptr, c->r\
+    \ = nullptr;\n      return;\n    }\n    // push\n    c->l = (c->l ? clone(c->l)\
+    \ : new_node());\n    c->r = (c->r ? clone(c->r) : new_node());\n    c->l->x =\
+    \ MX::op(c->l->x, c->x);\n    c->r->x = MX::op(c->r->x, c->x);\n    c->x = MX::unit();\n\
+    \    ll m = (l + r) / 2;\n    if (d) x = MX::op(d->x, x);\n    copy_interval_rec(c->l,\
+    \ (d && d->l ? d->l : nullptr), l, m, ql, qr, x);\n    copy_interval_rec(c->r,\
+    \ (d && d->r ? d->r : nullptr), m, r, ql, qr, x);\n    return;\n  }\n\n  void\
+    \ get_rec(np c, ll l, ll r, ll i, X &x) {\n    if (!c) return;\n    x = MX::op(c->x,\
+    \ x);\n    if (r == l + 1) {\n      return;\n    }\n    ll m = (l + r) / 2;\n\
+    \    if (i < m) return get_rec(c->l, l, m, i, x);\n    return get_rec(c->r, m,\
+    \ r, i, x);\n  }\n};\n"
   code: "#include \"ds/node_pool.hpp\"\n\n// Q*2logN \u7A0B\u5EA6\u5FC5\u8981\n//\
     \ https://qoj.ac/contest/1516/problem/8240\ntemplate <typename Monoid, bool PERSISTENT>\n\
     struct Dynamic_Dual_SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
@@ -115,33 +115,33 @@ data:
     \ c) {\n    if (!c || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
     \n  void apply_rec(np c, ll l, ll r, ll ql, ll qr, const X &a) {\n    // \u3082\
     \u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\n    assert(c);\n  \
-    \  chmax(ql, l), chmin(qr, r);\n    if (a == MX::unit() || ql >= qr) return;\n\
-    \    if (l == ql && r == qr) {\n      c->x = MX::op(c->x, a);\n      return;\n\
-    \    }\n    // push\n    c->l = (c->l ? clone(c->l) : new_node());\n    c->r =\
-    \ (c->r ? clone(c->r) : new_node());\n    c->l->x = MX::op(c->l->x, c->x);\n \
-    \   c->r->x = MX::op(c->r->x, c->x);\n    c->x = MX::unit();\n    ll m = (l +\
-    \ r) / 2;\n    apply_rec(c->l, l, m, ql, qr, a), apply_rec(c->r, m, r, ql, qr,\
-    \ a);\n    return;\n  }\n\n  void copy_interval_rec(np c, np d, ll l, ll r, ll\
-    \ ql, ll qr, X x) {\n    // c[ql,qr) <- d[ql,qr) * x\n    // \u3082\u3046 c \u306F\
-    \u65B0\u3057\u304F\u3057\u3066\u3042\u308B\n    assert(c);\n    chmax(ql, l),\
-    \ chmin(qr, r);\n    if (ql >= qr) return;\n    if (l == ql && r == qr) {\n  \
-    \    if (d)\n        c->x = MX::op(d->x, x), c->l = d->l, c->r = d->r;\n     \
-    \ else\n        c->x = x, c->l = nullptr, c->r = nullptr;\n      return;\n   \
-    \ }\n    // push\n    c->l = (c->l ? clone(c->l) : new_node());\n    c->r = (c->r\
-    \ ? clone(c->r) : new_node());\n    c->l->x = MX::op(c->l->x, c->x);\n    c->r->x\
-    \ = MX::op(c->r->x, c->x);\n    c->x = MX::unit();\n    ll m = (l + r) / 2;\n\
-    \    if (d) x = MX::op(d->x, x);\n    copy_interval_rec(c->l, (d && d->l ? d->l\
-    \ : nullptr), l, m, ql, qr, x);\n    copy_interval_rec(c->r, (d && d->r ? d->r\
-    \ : nullptr), m, r, ql, qr, x);\n    return;\n  }\n\n  void get_rec(np c, ll l,\
-    \ ll r, ll i, X &x) {\n    if (!c) return;\n    x = MX::op(c->x, x);\n    if (r\
-    \ == l + 1) {\n      return;\n    }\n    ll m = (l + r) / 2;\n    if (i < m) return\
-    \ get_rec(c->l, l, m, i, x);\n    return get_rec(c->r, m, r, i, x);\n  }\n};\n"
+    \  chmax(ql, l), chmin(qr, r);\n    if (ql >= qr) return;\n    if (l == ql &&\
+    \ r == qr) {\n      c->x = MX::op(c->x, a);\n      return;\n    }\n    // push\n\
+    \    c->l = (c->l ? clone(c->l) : new_node());\n    c->r = (c->r ? clone(c->r)\
+    \ : new_node());\n    c->l->x = MX::op(c->l->x, c->x);\n    c->r->x = MX::op(c->r->x,\
+    \ c->x);\n    c->x = MX::unit();\n    ll m = (l + r) / 2;\n    apply_rec(c->l,\
+    \ l, m, ql, qr, a), apply_rec(c->r, m, r, ql, qr, a);\n    return;\n  }\n\n  void\
+    \ copy_interval_rec(np c, np d, ll l, ll r, ll ql, ll qr, X x) {\n    // c[ql,qr)\
+    \ <- d[ql,qr) * x\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\
+    \u308B\n    assert(c);\n    chmax(ql, l), chmin(qr, r);\n    if (ql >= qr) return;\n\
+    \    if (l == ql && r == qr) {\n      if (d)\n        c->x = MX::op(d->x, x),\
+    \ c->l = d->l, c->r = d->r;\n      else\n        c->x = x, c->l = nullptr, c->r\
+    \ = nullptr;\n      return;\n    }\n    // push\n    c->l = (c->l ? clone(c->l)\
+    \ : new_node());\n    c->r = (c->r ? clone(c->r) : new_node());\n    c->l->x =\
+    \ MX::op(c->l->x, c->x);\n    c->r->x = MX::op(c->r->x, c->x);\n    c->x = MX::unit();\n\
+    \    ll m = (l + r) / 2;\n    if (d) x = MX::op(d->x, x);\n    copy_interval_rec(c->l,\
+    \ (d && d->l ? d->l : nullptr), l, m, ql, qr, x);\n    copy_interval_rec(c->r,\
+    \ (d && d->r ? d->r : nullptr), m, r, ql, qr, x);\n    return;\n  }\n\n  void\
+    \ get_rec(np c, ll l, ll r, ll i, X &x) {\n    if (!c) return;\n    x = MX::op(c->x,\
+    \ x);\n    if (r == l + 1) {\n      return;\n    }\n    ll m = (l + r) / 2;\n\
+    \    if (i < m) return get_rec(c->l, l, m, i, x);\n    return get_rec(c->r, m,\
+    \ r, i, x);\n  }\n};\n"
   dependsOn:
   - ds/node_pool.hpp
   isVerificationFile: false
   path: ds/segtree/dynamic_dual_segtree.hpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
+  timestamp: '2026-08-10 04:00:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/dynamic_dual_segtree.hpp

@@ -49,48 +49,51 @@ data:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
-    \  int n, log, size;\n  vc<A> laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n\
-    \  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n\
-    \  }\n  template <typename F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n\
-    \  }\n\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n    log\
-    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
-    \ << 1, MA::unit());\n    FOR(i, n) laz[size + i] = f(i);\n  }\n  void build(int\
-    \ n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n\n  A get(int\
-    \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
-    \ >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n \
-    \   FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin() + size\
-    \ + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size] = x;\n\
-    \  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l && l <= r\
-    \ && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n    if (!MA::commute)\
+    \  int n, log, size;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() :\
+    \ Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A {\
+    \ return MA::unit(); });\n  }\n  template <typename F>\n  Dual_SegTree(int n,\
+    \ F f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m;\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
+    \ = 1 << log;\n    laz.assign(size << 1, MA::unit());\n    FOR(i, n) laz[size\
+    \ + i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void build(int n) {\n\
+    \    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n\n  A get(int p)\
+    \ {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >=\
+    \ 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i,\
+    \ size) push(i);\n    return {laz.begin() + size, laz.begin() + size + n};\n \
+    \ }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size] = x;\n  }\n\n\
+    \  void apply(int l, int r, const A& a) {\n    assert(0 <= l && l <= r && r <=\
+    \ n);\n    if (l == r) return;\n    l += size, r += size;\n    if (!MA::commute)\
     \ {\n      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l)\
     \ push(l >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n     \
     \ }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++, a);\n      if\
-    \ (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  }\n\nprivate:\n\
-    \  void push(int k) {\n    if (laz[k] == MA::unit()) return;\n    all_apply(2\
-    \ * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n\
-    \  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a); }\n};\n"
+    \ (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  }\n\n private:\n\
+    \  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = false;\n\
+    \    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
+    \  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k], a);\n    if\
+    \ (k < size) has_laz[k] = true;\n  }\n};\n"
   code: "#pragma once\n\ntemplate <typename Monoid>\nstruct Dual_SegTree {\n  using\
     \ MA = Monoid;\n  using A = typename MA::value_type;\n  int n, log, size;\n  vc<A>\
-    \ laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n   \
-    \ build(n, [&](int i) -> A { return MA::unit(); });\n  }\n  template <typename\
-    \ F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template <typename\
-    \ F>\n  void build(int m, F f) {\n    n = m;\n    log = 1;\n    while ((1 << log)\
-    \ < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::unit());\n\
-    \    FOR(i, n) laz[size + i] = f(i);\n  }\n  void build(int n) {\n    build(n,\
-    \ [&](int i) -> A { return MA::unit(); });\n  }\n\n  A get(int p) {\n    assert(0\
-    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
-    \ i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n\
-    \    return {laz.begin() + size, laz.begin() + size + n};\n  }\n\n  void set(int\
-    \ p, A x) {\n    get(p);\n    laz[p + size] = x;\n  }\n\n  void apply(int l, int\
-    \ r, const A& a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\
-    \    l += size, r += size;\n    if (!MA::commute) {\n      for (int i = log; i\
-    \ >= 1; i--) {\n        if (((l >> i) << i) != l) push(l >> i);\n        if (((r\
-    \ >> i) << i) != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n\
-    \      if (l & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n  \
-    \    l >>= 1, r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k]\
-    \ == MA::unit()) return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n\
-    \    laz[k] = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k],\
-    \ a); }\n};\n"
+    \ laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int\
+    \ n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n  template\
+    \ <typename F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m;\n    log = 1;\n    while\
+    \ ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::unit());\n\
+    \    FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size, false);\n  }\n\
+    \  void build(int n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n\
+    \  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
+    \ (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A>\
+    \ get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin()\
+    \ + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size]\
+    \ = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
+    \ if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
+    \ >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r) push((r -\
+    \ 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++,\
+    \ a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n \
+    \ }\n\n private:\n  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k]\
+    \ = false;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
+    \ = MA::unit();\n  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k],\
+    \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/dual_segtree.hpp
@@ -100,7 +103,7 @@ data:
   - geo/range_closest_pair_query.hpp
   - ds/segtree/range_add_make_decreasing.hpp
   - ds/segtree/range_add_make_increasing.hpp
-  timestamp: '2024-10-12 22:46:11+09:00'
+  timestamp: '2026-08-10 04:00:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/913.test.cpp

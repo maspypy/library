@@ -295,14 +295,15 @@ data:
     \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
     \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
-    \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n  \
-    \  build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
-    \    laz.assign(size, MA::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i,\
+    \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree()\
+    \ {}\n  Lazy_SegTree(int n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit();\
+    \ });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X\
+    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
+    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
+    \    dat.assign(size << 1, MX::unit());\n    laz.assign(size, MA::unit());\n \
+    \   has_laz.assign(size, false);\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i,\
     \ 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k],\
     \ dat[2 * k + 1]); }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
     \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
@@ -355,16 +356,16 @@ data:
     \   dfs(dfs, left, seg_l, seg_m);\n      dfs(dfs, right, seg_m, seg_r);\n    \
     \  update(idx);\n    };\n    dfs(dfs, 1, 0, n);\n  }\n\n private:\n  void apply_at(int\
     \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
-    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
-    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
-    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line 8 \"test/4_aoj/DSL_2_I.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  using AM = ActedMonoid_Sum_Assign<ll,\
-    \ 12345>;\r\n  Lazy_SegTree<AM> seg(N);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n\
-    \    ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\n\
-    \    } else {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ a, sz);\n    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n\
+    \  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n   \
+    \ apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
+    \  }\n};\n#line 8 \"test/4_aoj/DSL_2_I.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N,\
+    \ Q);\r\n  using AM = ActedMonoid_Sum_Assign<ll, 12345>;\r\n  Lazy_SegTree<AM>\
+    \ seg(N);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n    ++R;\r\n    if (t == 0) {\r\
+    \n      LL(x);\r\n      seg.apply(L, R, x);\r\n    } else {\r\n      print(seg.prod(L,\
+    \ R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
+    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T =\
+    \ 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I\"\
     \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
     \ \"alg/acted_monoid/sum_assign.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
@@ -386,7 +387,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_I.test.cpp
   requiredBy: []
-  timestamp: '2026-08-08 05:13:48+09:00'
+  timestamp: '2026-08-10 04:00:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_I.test.cpp

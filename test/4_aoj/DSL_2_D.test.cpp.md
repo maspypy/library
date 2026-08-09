@@ -242,37 +242,39 @@ data:
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"ds/segtree/dual_segtree.hpp\"\n\
     \ntemplate <typename Monoid>\nstruct Dual_SegTree {\n  using MA = Monoid;\n  using\
-    \ A = typename MA::value_type;\n  int n, log, size;\n  vc<A> laz;\n\n  Dual_SegTree()\
-    \ : Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A\
-    \ { return MA::unit(); });\n  }\n  template <typename F>\n  Dual_SegTree(int n,\
-    \ F f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m;\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
-    \ = 1 << log;\n    laz.assign(size << 1, MA::unit());\n    FOR(i, n) laz[size\
-    \ + i] = f(i);\n  }\n  void build(int n) {\n    build(n, [&](int i) -> A { return\
-    \ MA::unit(); });\n  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n   \
-    \ p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n\
-    \  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin()\
-    \ + size, laz.begin() + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n\
-    \    laz[p + size] = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n   \
-    \ assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size,\
-    \ r += size;\n    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n\
-    \        if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i)\
-    \ != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l\
-    \ & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1,\
-    \ r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a);\
-    \ }\n};\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\
-    \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
-    \ { return (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return\
-    \ X(none_val); }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 7\
-    \ \"test/4_aoj/DSL_2_D.test.cpp\"\n\r\nvoid solve() {\r\n  using Mono = Monoid_Assign<ll,\
-    \ (1LL << 31) - 1>;\r\n  LL(N, Q);\r\n  Dual_SegTree<Mono> seg(N);\r\n  FOR(Q)\
-    \ {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L,\
-    \ ++R, x);\r\n    } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\n   \
-    \ }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ A = typename MA::value_type;\n  int n, log, size;\n  vc<A> laz;\n  vc<bool>\
+    \ has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n\
+    \    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n  template <typename\
+    \ F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m;\n    log = 1;\n    while ((1 << log)\
+    \ < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::unit());\n\
+    \    FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size, false);\n  }\n\
+    \  void build(int n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n\
+    \  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
+    \ (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A>\
+    \ get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin()\
+    \ + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size]\
+    \ = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
+    \ if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
+    \ >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r) push((r -\
+    \ 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++,\
+    \ a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n \
+    \ }\n\n private:\n  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k]\
+    \ = false;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
+    \ = MA::unit();\n  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k],\
+    \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n#line 2 \"alg/monoid/assign.hpp\"\
+    \n\r\ntemplate <typename X, int none_val>\r\nstruct Monoid_Assign {\r\n  using\
+    \ value_type = X;\r\n  static X op(X x, X y) { return (y == X(none_val) ? x :\
+    \ y); }\r\n  static constexpr X unit() { return X(none_val); }\r\n  static constexpr\
+    \ bool commute = false;\r\n};\r\n#line 7 \"test/4_aoj/DSL_2_D.test.cpp\"\n\r\n\
+    void solve() {\r\n  using Mono = Monoid_Assign<ll, (1LL << 31) - 1>;\r\n  LL(N,\
+    \ Q);\r\n  Dual_SegTree<Mono> seg(N);\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t\
+    \ == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n    } else {\r\
+    \n      LL(i);\r\n      print(seg.get(i));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
+    \ << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/dual_segtree.hpp\"\
     \r\n#include \"alg/monoid/assign.hpp\"\r\n\r\nvoid solve() {\r\n  using Mono =\
@@ -290,7 +292,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2026-08-08 05:13:48+09:00'
+  timestamp: '2026-08-10 04:00:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_D.test.cpp
