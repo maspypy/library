@@ -2,8 +2,9 @@
 
 #include "graph/base.hpp"
 
-// HLD euler tour をとっていろいろ。
-template <typename GT>
+// HLD euler tour をとっていろいろ
+// HLD=false: 入力辺順で preorder
+template <typename GT, bool HLD = true>
 struct Tree {
   using Graph_type = GT;
   GT &G;
@@ -14,82 +15,33 @@ struct Tree {
   vc<WT> depth_weighted;
   vc<int> memo_tail;
 
-  Tree(GT &G, int r = 0, bool hld = 1) : G(G) { build(r, hld); }
+  Tree(GT &G, int r = 0) : G(G) { build(r); }
 
-  void build(int r = 0, bool hld = 1) {
+  void build(int r = 0) {
     if (r == -1) return;  // build を遅延したいとき
-    N = G.N;
-    LID.assign(N, -1), RID.assign(N, -1), head.assign(N, r);
-    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);
-    depth.assign(N, -1), depth_weighted.assign(N, 0);
-    memo_tail.clear();
-    assert(G.is_prepared());
-    int t1 = 0;
-    dfs_sz(r, -1, hld);
-    dfs_hld(r, t1);
-  }
-
-  void dfs_sz(int v, int p, bool hld) {
-    auto &sz = RID;
-    parent[v] = p;
-    depth[v] = (p == -1 ? 0 : depth[p] + 1);
-    sz[v] = 1;
-    int l = G.indptr[v], r = G.indptr[v + 1];
-    auto &csr = G.csr_edges;
-    // 使う辺があれば先頭にする
-    for (int i = r - 2; i >= l; --i) {
-      if (hld && depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);
-    }
-    int hld_sz = 0;
-    for (int i = l; i < r; ++i) {
-      auto e = csr[i];
-      if (depth[e.to] != -1) continue;
-      depth_weighted[e.to] = depth_weighted[v] + e.cost;
-      VtoE[e.to] = e.id;
-      dfs_sz(e.to, v, hld);
-      sz[v] += sz[e.to];
-      if (hld && chmax(hld_sz, sz[e.to]) && l < i) {
-        swap(csr[l], csr[i]);
-      }
-    }
-  }
-
-  void dfs_hld(int v, int &times) {
-    LID[v] = times++;
-    RID[v] += LID[v];
-    V[LID[v]] = v;
-    bool heavy = true;
-    for (auto &&e : G[v]) {
-      if (depth[e.to] <= depth[v]) continue;
-      head[e.to] = (heavy ? head[v] : e.to);
-      heavy = false;
-      dfs_hld(e.to, times);
-    }
+    if constexpr (!HLD)
+      build_simple(r);
+    else
+      build_HLD(r);
   }
 
   vc<int> heavy_path_at(int v) {
-    vc<int> P = {v};
-    while (1) {
-      int a = P.back();
-      for (auto &&e : G[a]) {
-        if (e.to != parent[a] && head[e.to] == v) {
-          P.eb(e.to);
-          break;
-        }
-      }
-      if (P.back() == a) break;
-    }
+    static_assert(HLD);
+    assert(head[v] == v);
+    int k = LID[v];
+    vc<int> P;
+    while (k < N && head[V[k]] == v) P.eb(V[k++]);
     return P;
   }
 
   int heavy_child(int v) {
-    int k = LID[v] + 1;
-    if (k == N) return -1;
-    int w = V[k];
-    return (parent[w] == v ? w : -1);
+    static_assert(HLD);
+    if (RID[v] == LID[v] + 1) return -1;
+    return V[LID[v] + 1];
   }
 
   int tail(int v) {
+    static_assert(HLD);
     if (memo_tail.empty()) {
       memo_tail.assign(N, -1);
       FOR_R(i, N) {
@@ -117,6 +69,7 @@ struct Tree {
 
   // 目標地点へ進む個数が k
   int LA(int v, int k) {
+    static_assert(HLD);
     assert(k <= depth[v]);
     while (1) {
       int u = head[v];
@@ -128,17 +81,23 @@ struct Tree {
   int la(int u, int v) { return LA(u, v); }
 
   int LCA(int u, int v) {
+    static_assert(HLD);
     for (;; v = parent[head[v]]) {
       if (LID[u] > LID[v]) swap(u, v);
       if (head[u] == head[v]) return u;
     }
   }
 
-  int meet(int a, int b, int c) { return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c); }
+  int meet(int a, int b, int c) {
+    static_assert(HLD);
+    return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c);
+  }
   int lca(int u, int v) { return LCA(u, v); }
 
-  int subtree_size(int v, int root = -1) {
-    if (root == -1) return RID[v] - LID[v];
+  int subtree_size(int v) { return RID[v] - LID[v]; }
+
+  int subtree_size(int v, int root) {
+    static_assert(HLD);
     if (v == root) return N;
     int x = jump(v, root, 1);
     if (in_subtree(v, x)) return RID[v] - LID[v];
@@ -146,11 +105,13 @@ struct Tree {
   }
 
   int dist(int a, int b) {
+    static_assert(HLD);
     int c = LCA(a, b);
     return depth[a] + depth[b] - 2 * depth[c];
   }
 
   WT dist_weighted(int a, int b) {
+    static_assert(HLD);
     int c = LCA(a, b);
     return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];
   }
@@ -159,6 +120,7 @@ struct Tree {
   bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }
 
   int jump(int a, int b, ll k) {
+    static_assert(HLD);
     if (k == 1) {
       if (a == b) return -1;
       return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);
@@ -183,17 +145,16 @@ struct Tree {
   }
 
   vc<int> collect_light(int v) {
+    static_assert(HLD);
     vc<int> res;
-    bool skip = true;
-    for (auto &&e : G[v])
-      if (e.to != parent[v]) {
-        if (!skip) res.eb(e.to);
-        skip = false;
-      }
+    for (auto &&e : G[v]) {
+      if (e.to != parent[v] && head[e.to] == e.to) res.eb(e.to);
+    }
     return res;
   }
 
   vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) {
+    static_assert(HLD);
     // [始点, 終点] の"閉"区間列。
     vc<pair<int, int>> up, down;
     while (1) {
@@ -216,6 +177,7 @@ struct Tree {
   // 辺の列の情報 (frm,to,str)
   // str = "heavy_up", "heavy_down", "light_up", "light_down"
   vc<tuple<int, int, string>> get_path_decomposition_detail(int u, int v) {
+    static_assert(HLD);
     vc<tuple<int, int, string>> up, down;
     while (1) {
       if (head[u] == head[v]) break;
@@ -235,20 +197,19 @@ struct Tree {
   }
 
   vc<int> restore_path(int u, int v) {
-    vc<int> P;
-    for (auto &&[a, b] : get_path_decomposition(u, v, 0)) {
-      if (a <= b) {
-        FOR(i, a, b + 1) P.eb(V[i]);
-      } else {
-        FOR_R(i, b, a + 1) P.eb(V[i]);
-      }
-    }
-    return P;
+    vc<int> L, R;
+    while (depth[u] > depth[v]) L.eb(u), u = parent[u];
+    while (depth[u] < depth[v]) R.eb(v), v = parent[v];
+    while (u != v) L.eb(u), R.eb(v), u = parent[u], v = parent[v];
+    L.eb(u);
+    while (len(R)) L.eb(POP(R));
+    return L;
   }
 
   // path [a,b] と [c,d] の交わり. 空ならば {-1,-1}.
   // https://codeforces.com/problemset/problem/500/G
   pair<int, int> path_intersection(int a, int b, int c, int d) {
+    static_assert(HLD);
     int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);
     int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);
     int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;  // meet(a,b,c), meet(a,b,d)
@@ -262,6 +223,7 @@ struct Tree {
   // なければ （つまり check(v) が ng ）-1
   template <class F>
   int max_path(F check, int u, int v) {
+    static_assert(HLD);
     if (!check(u)) return -1;
     auto pd = get_path_decomposition(u, v, false);
     for (auto [a, b] : pd) {
@@ -275,5 +237,97 @@ struct Tree {
       return V[c];
     }
     return u;
+  }
+
+ private:
+  void build_simple(int r = 0) {
+    N = G.N;
+    LID.assign(N, 0), RID.assign(N, 0);
+    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);
+    depth.assign(N, 0), depth_weighted.assign(N, 0);
+    assert(G.is_prepared());
+
+    // 1st dfs.
+    int k = 0;
+    vc<int> st;
+    st.reserve(N);
+    st.eb(r);
+    while (len(st)) {
+      int v = POP(st);
+      LID[v] = k, V[k] = v;
+      ++k;
+      for (int i = G.indptr[v + 1] - 1; i >= G.indptr[v]; --i) {
+        auto &e = G.csr_edges[i];
+        if (e.to == parent[v]) continue;
+        parent[e.to] = v;
+        depth[e.to] = depth[v] + 1;
+        depth_weighted[e.to] = depth_weighted[v] + e.cost;
+        VtoE[e.to] = e.id;
+        st.eb(e.to);
+      }
+    }
+
+    FOR_R(i, N) {
+      int v = V[i];
+      chmax(RID[v], LID[v] + 1);
+      if (parent[v] != -1) chmax(RID[parent[v]], RID[v]);
+    }
+  }
+
+  void build_HLD(int r = 0) {
+    N = G.N;
+    LID.assign(N, 0), RID.assign(N, 0), head.assign(N, r);
+    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);
+    depth.assign(N, 0), depth_weighted.assign(N, 0);
+    memo_tail.clear();
+    assert(G.is_prepared());
+
+    // 1st dfs.
+    {
+      int k = 0;
+      vc<int> st;
+      st.reserve(N);
+      st.eb(r);
+      while (len(st)) {
+        int v = POP(st);
+        V[k++] = v;
+        for (auto &e : G[v]) {
+          if (e.to == parent[v]) continue;
+          parent[e.to] = v, st.eb(e.to), depth[e.to] = depth[v] + 1;
+          depth_weighted[e.to] = depth_weighted[v] + e.cost;
+          VtoE[e.to] = e.id;
+        }
+      }
+      // 一時的に RID[v] := sz[v]
+      FOR_R(i, N) {
+        int v = V[i];
+        RID[v] += 1;
+        if (parent[v] != -1) RID[parent[v]] += RID[v];
+      }
+    }
+    // 2nd dfs.
+    {
+      int k = 0;
+      vc<int> st;
+      st.reserve(N);
+      st.eb(r);
+      while (len(st)) {
+        int v = POP(st);
+        V[k] = v, LID[v] = k;
+        RID[v] = k + RID[v];
+        ++k;
+        int max_sz = 0, max_ch = -1;
+        for (auto &e : G[v]) {
+          if (e.to == parent[v]) continue;
+          if (chmax(max_sz, RID[e.to])) max_ch = e.to;
+        }
+        for (int i = G.indptr[v + 1] - 1; i >= G.indptr[v]; --i) {
+          auto &e = G.csr_edges[i];
+          if (e.to == parent[v] || e.to == max_ch) continue;
+          st.eb(e.to), head[e.to] = e.to;
+        }
+        if (max_ch != -1) st.eb(max_ch), head[max_ch] = head[v];
+      }
+    }
   }
 };

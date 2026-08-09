@@ -2,7 +2,7 @@
 #include "string/run_length.hpp"
 
 // 部分文字列の種類数が最大であるような 01 文字列の構成
-// https://qoj.ac/contest/1096/problem/5434?v=1
+// https://qoj.ac/contest/1096/problem/5434
 // https://oeis.org/A094913
 // https://www.mimuw.edu.pl/~rytter/MYPAPERS/paper.pdf
 string substring_abundant_string(ll N) {
