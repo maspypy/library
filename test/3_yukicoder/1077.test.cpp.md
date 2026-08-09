@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_0.hpp
     title: convex/slope_trick/slope_trick_0.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
