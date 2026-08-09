@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1769.test.cpp
+    title: test/3_yukicoder/1769.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_9_A.test.cpp
     title: test/4_aoj/ITP1_9_A.test.cpp
   _isVerificationFailed: false
@@ -102,6 +105,7 @@ data:
   timestamp: '2026-03-14 08:28:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1769.test.cpp
   - test/4_aoj/ITP1_9_A.test.cpp
 documentation_of: other/io2.hpp
 layout: document
