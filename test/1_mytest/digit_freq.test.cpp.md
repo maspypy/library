@@ -75,52 +75,52 @@ data:
     \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
     }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
     \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
-    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok\
-    \ - ng) > 1) {\n    auto x = midpoint(ng, ok);\n    (check(x) ? ok : ng) = x;\n\
-    \  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check,\
-    \ double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok +\
-    \ ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\n\
-    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a,\
-    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class\
-    \ T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n\
-    \  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F -1\n\
-    vc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
-    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
-    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
-    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
-    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
-    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
-    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
-    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
-    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
-    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
-    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
-    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
-    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
-    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
-    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 4 \"test/1_mytest/digit_freq.test.cpp\"\n\n#line 1 \"nt/digit_frequency.hpp\"\
-    \ntemplate <typename T = ll, int K = 10>\narray<T, K> digit_frequency_vector(vc<int>\
-    \ A, bool include_N) {\n  assert(len(A) > 0 && A[0] != '0');\n  ll n = len(A);\n\
-    \  vc<T> pw(n + 1, T(1));\n  FOR(i, n) pw[i + 1] = pw[i] * K;\n  using ARR = array<T,\
-    \ K>;\n  ARR dp{}, same{};\n  same[A[0]] = 1;\n  FOR(i, 1, A[0]) dp[i] = 1;\n\
-    \  T lo_cnt = SUM<T>(dp);\n  FOR(i, 1, len(A)) {\n    int a = A[i];\n    ARR newdp{};\n\
-    \    FOR(k, K) newdp[k] = dp[k] * K + lo_cnt + same[k] * a + (k < a) + (k > 0);\n\
-    \    lo_cnt = lo_cnt * K + a + (K - 1);\n    swap(dp, newdp);\n    same[a] +=\
-    \ 1;\n  }\n  if (include_N) {\n    FOR(k, K) dp[k] += same[k];\n  }\n  return\
-    \ dp;\n}\n\n// [L,R) \u3092\u3059\u3079\u3066 10 \u9032\u8868\u8A18\u3057\u305F\
-    \u3068\u304D\u306B\u5404 digit \u304C\u73FE\u308C\u308B\u56DE\u6570\ntemplate\
-    \ <typename T = ll, int K = 10>\narray<T, K> digit_frequency(u64 L, u64 R) {\n\
-    \  auto F = [&](u64 N) -> array<T, K> {\n    vc<int> A;\n    while (N) {\n   \
-    \   A.eb(N % K), N /= K;\n    }\n    reverse(all(A));\n    return digit_frequency_vector<T,\
-    \ K>(A, false);\n  };\n  array<T, K> A = F(R);\n  array<T, K> B = F(L);\n  FOR(k,\
-    \ K) A[k] -= B[k];\n  return A;\n}\n#line 6 \"test/1_mytest/digit_freq.test.cpp\"\
-    \n\nvoid test() {\n  array<ll, 10> X{};\n  FOR(N, 1, 1 << 24) {\n    auto ANS\
-    \ = digit_frequency(1, N);\n    assert(X == ANS);\n    string S = to_string(N);\n\
-    \    for (auto& ch : S) X[ch - '0']++;\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n}\n"
+    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (1)\
+    \ {\n    ll x = midpoint(ok, ng);\n    if (x == ok || x == ng) break;\n    (check(x)\
+    \ ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
+    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
+    \ = midpoint(ok, ng);\n    (check(x) ? ok : ng) = x;\n  }\n  return midpoint(ok,\
+    \ ng);\n}\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b)\
+    \ {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n\
+    }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c =\
+    \ min<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n\
+    // ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int>\
+    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char :\
+    \ -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const\
+    \ vc<U> &A, int off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N)\
+    \ { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n\
+    }\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n\
+    \  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int\
+    \ i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n\
+    }\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T>\
+    \ &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
+    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
+    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
+    }\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr\
+    \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
+    \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
+    \ abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/digit_freq.test.cpp\"\n\n#line 1\
+    \ \"nt/digit_frequency.hpp\"\ntemplate <typename T = ll, int K = 10>\narray<T,\
+    \ K> digit_frequency_vector(vc<int> A, bool include_N) {\n  assert(len(A) > 0\
+    \ && A[0] != '0');\n  ll n = len(A);\n  vc<T> pw(n + 1, T(1));\n  FOR(i, n) pw[i\
+    \ + 1] = pw[i] * K;\n  using ARR = array<T, K>;\n  ARR dp{}, same{};\n  same[A[0]]\
+    \ = 1;\n  FOR(i, 1, A[0]) dp[i] = 1;\n  T lo_cnt = SUM<T>(dp);\n  FOR(i, 1, len(A))\
+    \ {\n    int a = A[i];\n    ARR newdp{};\n    FOR(k, K) newdp[k] = dp[k] * K +\
+    \ lo_cnt + same[k] * a + (k < a) + (k > 0);\n    lo_cnt = lo_cnt * K + a + (K\
+    \ - 1);\n    swap(dp, newdp);\n    same[a] += 1;\n  }\n  if (include_N) {\n  \
+    \  FOR(k, K) dp[k] += same[k];\n  }\n  return dp;\n}\n\n// [L,R) \u3092\u3059\u3079\
+    \u3066 10 \u9032\u8868\u8A18\u3057\u305F\u3068\u304D\u306B\u5404 digit \u304C\u73FE\
+    \u308C\u308B\u56DE\u6570\ntemplate <typename T = ll, int K = 10>\narray<T, K>\
+    \ digit_frequency(u64 L, u64 R) {\n  auto F = [&](u64 N) -> array<T, K> {\n  \
+    \  vc<int> A;\n    while (N) {\n      A.eb(N % K), N /= K;\n    }\n    reverse(all(A));\n\
+    \    return digit_frequency_vector<T, K>(A, false);\n  };\n  array<T, K> A = F(R);\n\
+    \  array<T, K> B = F(L);\n  FOR(k, K) A[k] -= B[k];\n  return A;\n}\n#line 6 \"\
+    test/1_mytest/digit_freq.test.cpp\"\n\nvoid test() {\n  array<ll, 10> X{};\n \
+    \ FOR(N, 1, 1 << 24) {\n    auto ANS = digit_frequency(1, N);\n    assert(X ==\
+    \ ANS);\n    string S = to_string(N);\n    for (auto& ch : S) X[ch - '0']++;\n\
+    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"nt/digit_frequency.hpp\"\n\nvoid test() {\n  array<ll,\
     \ 10> X{};\n  FOR(N, 1, 1 << 24) {\n    auto ANS = digit_frequency(1, N);\n  \
@@ -133,7 +133,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/digit_freq.test.cpp
   requiredBy: []
-  timestamp: '2026-08-10 06:19:34+09:00'
+  timestamp: '2026-08-10 06:35:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/digit_freq.test.cpp

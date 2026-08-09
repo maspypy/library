@@ -91,48 +91,49 @@ data:
     \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
     }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
     \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
-    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (llabs(ok\
-    \ - ng) > 1) {\n    auto x = midpoint(ng, ok);\n    (check(x) ? ok : ng) = x;\n\
-    \  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F check,\
-    \ double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok +\
-    \ ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\n\
-    template <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a,\
-    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class\
-    \ T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n\
-    \  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F -1\n\
-    vc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
-    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
-    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
-    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
-    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
-    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
-    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
-    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
-    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
-    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
-    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
-    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
-    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
-    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
-    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 4 \"test/1_mytest/prefix_max_segtree.test.cpp\"\n\n#line 1 \"\
-    ds/segtree/prefix_max_segtree.hpp\"\n\n/*\nkey[0],...,key[n-1] \u304C\u3042\u308B\
-    \n\u30E2\u30CE\u30A4\u30C9\u306E\u5217 x[0],...,x[n-1] \u304C\u3042\u308B\nquery(l,r):\
-    \ l \u304B\u3089\u898B\u3048\u308B\u3068\u3053\u308D\u306B\u5BFE\u3059\u308B monoid\
-    \ product\n\u898B\u3048\u308B: key[i]==max(key[0]...key[i])\nQlog^2n\nhttps://qoj.ac/contest/1540/problem/8338\n\
-    */\ntemplate <typename KEY_TYPE, typename Monoid>\nstruct Prefix_Max_SegTree {\n\
-    \  using MX = Monoid;\n  using KEY = KEY_TYPE;\n  using X = typename MX::value_type;\n\
-    \  int n, size, log;\n  struct Data {\n    KEY max;\n    X prod, rprod; // rprod\
-    \ \u306F\u3053\u306E\u533A\u9593\u3060\u3051\u3067\u8A08\u7B97\u3057\u305F\u3068\
-    \u304D\u306E\u53F3\u5074\n  };\n\n  vc<Data> dat;\n\n  Prefix_Max_SegTree() {}\n\
-    \  Prefix_Max_SegTree(int n) { build(n); }\n  template <typename F>\n  Prefix_Max_SegTree(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Prefix_Max_SegTree(const vc<X>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> pair<KEY, X> { return\
-    \ {-infty<int>, MX::unit()}; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size\
-    \ = 1 << log;\n    dat.assign(size << 1, {-infty<int>, MX::unit(), MX::unit()});\n\
-    \    FOR(i, n) {\n      auto [k, x] = f(i);\n      dat[size + i] = {k, x, MX::unit()};\n\
+    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (1)\
+    \ {\n    ll x = midpoint(ok, ng);\n    if (x == ok || x == ng) break;\n    (check(x)\
+    \ ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
+    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
+    \ = midpoint(ok, ng);\n    (check(x) ? ok : ng) = x;\n  }\n  return midpoint(ok,\
+    \ ng);\n}\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b)\
+    \ {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n\
+    }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c =\
+    \ min<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n\
+    // ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int>\
+    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char :\
+    \ -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const\
+    \ vc<U> &A, int off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N)\
+    \ { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n\
+    }\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n\
+    \  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int\
+    \ i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n\
+    }\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T>\
+    \ &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
+    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
+    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
+    }\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr\
+    \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
+    \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
+    \ abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/prefix_max_segtree.test.cpp\"\n\n\
+    #line 1 \"ds/segtree/prefix_max_segtree.hpp\"\n\n/*\nkey[0],...,key[n-1] \u304C\
+    \u3042\u308B\n\u30E2\u30CE\u30A4\u30C9\u306E\u5217 x[0],...,x[n-1] \u304C\u3042\
+    \u308B\nquery(l,r): l \u304B\u3089\u898B\u3048\u308B\u3068\u3053\u308D\u306B\u5BFE\
+    \u3059\u308B monoid product\n\u898B\u3048\u308B: key[i]==max(key[0]...key[i])\n\
+    Qlog^2n\nhttps://qoj.ac/contest/1540/problem/8338\n*/\ntemplate <typename KEY_TYPE,\
+    \ typename Monoid>\nstruct Prefix_Max_SegTree {\n  using MX = Monoid;\n  using\
+    \ KEY = KEY_TYPE;\n  using X = typename MX::value_type;\n  int n, size, log;\n\
+    \  struct Data {\n    KEY max;\n    X prod, rprod; // rprod \u306F\u3053\u306E\
+    \u533A\u9593\u3060\u3051\u3067\u8A08\u7B97\u3057\u305F\u3068\u304D\u306E\u53F3\
+    \u5074\n  };\n\n  vc<Data> dat;\n\n  Prefix_Max_SegTree() {}\n  Prefix_Max_SegTree(int\
+    \ n) { build(n); }\n  template <typename F>\n  Prefix_Max_SegTree(int n, F f)\
+    \ {\n    build(n, f);\n  }\n  Prefix_Max_SegTree(const vc<X>& v) { build(v); }\n\
+    \n  void build(int m) {\n    build(m, [](int i) -> pair<KEY, X> { return {-infty<int>,\
+    \ MX::unit()}; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
+    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
+    \    dat.assign(size << 1, {-infty<int>, MX::unit(), MX::unit()});\n    FOR(i,\
+    \ n) {\n      auto [k, x] = f(i);\n      dat[size + i] = {k, x, MX::unit()};\n\
     \    }\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void set(int i, pair<KEY, X>\
     \ p) {\n    int k = p.fi;\n    X x = p.se;\n    i += size;\n    dat[i] = {k, x,\
     \ MX::unit()};\n    while (i > 1) i /= 2, update(i);\n  }\n\n  X prod_all() {\
@@ -327,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_max_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-10 06:19:34+09:00'
+  timestamp: '2026-08-10 06:35:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_max_segtree.test.cpp
