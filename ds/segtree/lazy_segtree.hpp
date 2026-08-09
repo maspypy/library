@@ -11,6 +11,7 @@ struct Lazy_SegTree {
   int n, log, size;
   vc<X> dat;
   vc<A> laz;
+  vc<bool> has_laz;
 
   Lazy_SegTree() {}
   Lazy_SegTree(int n) { build(n); }
@@ -33,6 +34,7 @@ struct Lazy_SegTree {
     size = 1 << log;
     dat.assign(size << 1, MX::unit());
     laz.assign(size, MA::unit());
+    has_laz.assign(size, false);
     FOR(i, n) dat[size + i] = f(i);
     FOR_R(i, 1, size) update(i);
   }
@@ -183,10 +185,11 @@ struct Lazy_SegTree {
   void apply_at(int k, A a) {
     ll sz = 1 << (log - topbit(k));
     dat[k] = AM::act(dat[k], a, sz);
-    if (k < size) laz[k] = MA::op(laz[k], a);
+    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);
   }
   void push(int k) {
-    if (laz[k] == MA::unit()) return;
+    if (!has_laz[k]) return;
+    has_laz[k] = 0;
     apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);
     laz[k] = MA::unit();
   }

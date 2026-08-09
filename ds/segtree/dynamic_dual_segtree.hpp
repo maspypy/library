@@ -96,7 +96,7 @@ struct Dynamic_Dual_SegTree {
     // もう c は新しくしてある
     assert(c);
     chmax(ql, l), chmin(qr, r);
-    if (a == MX::unit() || ql >= qr) return;
+    if (ql >= qr) return;
     if (l == ql && r == qr) {
       c->x = MX::op(c->x, a);
       return;

@@ -6,6 +6,7 @@ struct Dual_SegTree {
   using A = typename MA::value_type;
   int n, log, size;
   vc<A> laz;
+  vc<bool> has_laz;
 
   Dual_SegTree() : Dual_SegTree(0) {}
   Dual_SegTree(int n) {
@@ -24,6 +25,7 @@ struct Dual_SegTree {
     size = 1 << log;
     laz.assign(size << 1, MA::unit());
     FOR(i, n) laz[size + i] = f(i);
+    has_laz.assign(size, false);
   }
   void build(int n) {
     build(n, [&](int i) -> A { return MA::unit(); });
@@ -63,11 +65,15 @@ struct Dual_SegTree {
     }
   }
 
-private:
+ private:
   void push(int k) {
-    if (laz[k] == MA::unit()) return;
+    if (!has_laz[k]) return;
+    has_laz[k] = false;
     all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);
     laz[k] = MA::unit();
   }
-  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a); }
+  void all_apply(int k, A a) {
+    laz[k] = MA::op(laz[k], a);
+    if (k < size) has_laz[k] = true;
+  }
 };
