@@ -1,86 +1,64 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1769"
-
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2995"
 #include "my_template.hpp"
-#include "other/io.hpp"
-
-#include "graph/centroid_decomposition_old.hpp"
-#include "graph/tree.hpp"
-#include "ds/hashmap.hpp"
+#include "other/io2.hpp"
+#include "graph/dsu_on_tree.hpp"
+#include "ds/unionfind/unionfind.hpp"
 
 void solve() {
-  LL(N);
-  Graph<int, 0> G(N);
-  G.read_tree(1);
-
-  vi ANS(N);
-  Centroid_Decomposition<decltype(G)> CD(G);
-
-  FOR(root, N) {
-    vc<int> conv;
-    Graph<int, 1> G;
-    vc<int> color;
-    tie(conv, G, color) = CD.get_subgraph(root);
-    const int N = G.N;
-    // lca が 0 であるような path について解く
-    vc<int> A(N);
-    FOR(v, N) {
-      for (auto&& e: G[v]) A[e.to] = A[v] ^ e.cost;
-    }
-    Tree<decltype(G)> tree(G, 0, false);
-
-    // 根以外の点に対して、dep=1 の LA
-    vc<int> par_1(N, -1);
-    FOR(v, 1, N) {
-      int p = tree.parent[v];
-      par_1[v] = (p == 0 ? v : par_1[p]);
-    }
-
-    // 色 -> 頂点集合
-    HashMap<vc<int>> MP(N - 1);
-    FOR(v, 1, N) if (A[v] != A[0]) MP[A[v]].eb(v);
-
-    // 根の次の点 -> 頂点の個数
-    vc<int> CNT(N);
-    FOR(v, N) if (par_1[v] == v) CNT[v] = tree.subtree_size(v);
-
-    MP.enumerate_all([&](auto key, auto V) -> void {
-      vc<int> W;
-      for (auto&& x: V) {
-        if (len(W) && tree.in_subtree(x, W.back())) { continue; }
-        W.eb(x);
-      }
-      V = W;
-      // 到達可能な点の個数を更新
-      ll s = N;
-      for (auto&& v: V) {
-        int x = tree.subtree_size(v);
-        CNT[par_1[v]] -= x;
-        s -= x;
-      }
-      // 各 v からの答を計算
-      for (auto&& v: V) { ANS[conv[v]] += s - CNT[par_1[v]]; }
-      for (auto&& v: V) {
-        int x = tree.subtree_size(v);
-        CNT[par_1[v]] += x;
-      }
-    });
-
-    // 根から進む場合
-    vc<int> OK(N);
-    OK[0] = 1;
-    FOR(v, N) {
-      if (!OK[v]) continue;
-      for (auto&& e: G[v]) {
-        if (A[e.to] == A[0]) continue;
-        OK[e.to] = 1;
-      }
-    }
-    ANS[conv[0]] += SUM<int>(OK) - 1;
+  LL(N, K);
+  Graph G(N);
+  FOR(N - 1) {
+    INT(a, b);
+    --a, --b;
+    G.add(a, b);
   }
-  print(SUM<ll>(ANS));
+  G.build();
+  Tree T(G);
+  VEC(pi, CD, N);
+  for (auto&& [c, d] : CD) --c, --d;
+  /*
+  頂点になっている：+x
+  連結成分ごとに、ロスの min を持たせる
+  */
+  vc<int> tree(K, 1);
+  vc<int> history;
+  ll ans = 0;
+  vc<int> ANS(N);
+  UnionFind uf(K);
+
+  auto eval = [&](int v) -> int {
+    return (tree[v] ? uf.size(v) - 1 : uf.size(v));
+  };
+
+  auto ADD = [&](int v) -> void {
+    auto [c, d] = CD[v];
+    history.eb(c), history.eb(d);
+    c = uf[c], d = uf[d];
+    if (c == d) {
+      if (tree[c]) tree[c] = 0, ans++;
+      return;
+    }
+    ans -= eval(c) + eval(d);
+    uf.merge(c, d);
+    int r = uf[c];
+    tree[r] = tree[c] && tree[d];
+    ans += eval(r);
+  };
+  auto QUERY = [&](int v) -> void { ANS[v] = ans; };
+  auto RESET = [&]() -> void {
+    for (auto&& v : history) {
+      uf.dat[v] = -1;
+      tree[v] = 1;
+    }
+    ans = 0;
+    history.clear();
+  };
+  DSU_on_Tree(T, ADD, QUERY, RESET);
+  for (auto&& x : ANS) print(x);
 }
 
 signed main() {
   solve();
+
   return 0;
 }
