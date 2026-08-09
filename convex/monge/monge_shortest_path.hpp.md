@@ -6,15 +6,15 @@ data:
     path: convex/monge/monge_shortest_path_d_edge.hpp
     title: convex/monge/monge_shortest_path_d_edge.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/monge_shortest_path.test.cpp
     title: test/1_mytest/monge_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/705.test.cpp
     title: test/3_yukicoder/705.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2023/02/18/005856
@@ -78,7 +78,7 @@ data:
   requiredBy:
   - convex/monge/monge_shortest_path_d_edge.hpp
   timestamp: '2026-07-28 11:49:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/705.test.cpp
   - test/1_mytest/monge_shortest_path.test.cpp
