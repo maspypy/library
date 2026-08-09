@@ -169,7 +169,7 @@ template <typename F>
 ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {
   if (check_ok) assert(check(ok));
   while (llabs(ok - ng) > 1) {
-    auto x = (ng + ok) / 2;
+    auto x = midpoint(ng, ok);
     (check(x) ? ok : ng) = x;
   }
   return ok;
