@@ -3,12 +3,12 @@
 
 // i, A[i] を追加 -> mex(A[j],...,A[i+1]) が更新
 // このときの更新規則を得る
-struct Range_Mex {
+struct Range_Mex_Change {
   int N;
   vc<int> last;
   SegTree<Monoid_Min<int>> seg;
   int nxt_i;
-  Range_Mex(int N) : N(N), last(N + 1, -1), seg(last), nxt_i(0) {}
+  Range_Mex_Change(int N) : N(N), last(N + 1, -1), seg(last), nxt_i(0) {}
 
   // F(l,r,x,y): [l,...,r) 部分が x->y に変更
   template <typename F>

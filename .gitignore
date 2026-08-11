@@ -1,4 +1,5 @@
 *.gch
+__pycache__/*
 
 temp.cpp
 my_template_compiled.hpp
