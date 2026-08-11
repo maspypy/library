@@ -169,7 +169,7 @@ template <typename F>
 ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {
   if (check_ok) assert(check(ok));
   while (1) {
-    ll x = midpoint(ok, ng);
+    ll x = (ok + ng) / 2;
     if (x == ok || x == ng) break;
     (check(x) ? ok : ng) = x;
   }
@@ -178,10 +178,10 @@ ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {
 template <typename F>
 double binary_search_real(F check, double ok, double ng, int iter = 100) {
   FOR(iter) {
-    double x = midpoint(ok, ng);
+    double x = (ok + ng) / 2;
     (check(x) ? ok : ng) = x;
   }
-  return midpoint(ok, ng);
+  return (ok + ng) / 2;
 }
 
 template <class T, class S>
