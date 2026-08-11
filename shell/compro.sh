@@ -93,6 +93,10 @@ test_samples() {
   rm -f a.out
 }
 
+shrink_temp() {
+  python3 "$COMPRO_LIBRARY_DIR/shrink.py" temp.cpp > submit.cpp
+}
+
 precompile() {
   (
     cd "$COMPRO_LIBRARY_DIR" || return
