@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   _extendedRequiredBy: []

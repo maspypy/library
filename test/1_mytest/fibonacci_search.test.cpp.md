@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/fibonacci_search.hpp
     title: other/fibonacci_search.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -80,48 +80,48 @@ data:
     }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
     \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
     \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (1)\
-    \ {\n    ll x = midpoint(ok, ng);\n    if (x == ok || x == ng) break;\n    (check(x)\
+    \ {\n    ll x = (ok + ng) / 2;\n    if (x == ok || x == ng) break;\n    (check(x)\
     \ ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
     \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
-    \ = midpoint(ok, ng);\n    (check(x) ? ok : ng) = x;\n  }\n  return midpoint(ok,\
-    \ ng);\n}\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b)\
-    \ {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n\
-    }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c =\
-    \ min<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n\
-    // ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int>\
-    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char :\
-    \ -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const\
-    \ vc<U> &A, int off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N)\
-    \ { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n\
-    }\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n\
-    \  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int\
-    \ i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n\
-    }\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T>\
-    \ &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
-    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
-    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
-    }\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr\
-    \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
-    \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
-    \ abs(a);\n}\n#endif\n#line 1 \"other/fibonacci_search.hpp\"\n// returns: {fx,\
-    \ x}\n// [L, R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\u3068\u3064\u6C42\u3081\
-    \u308B\u3001\u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename T, bool MINIMIZE,\
-    \ typename F>\npair<T, ll> fibonacci_search(F f, ll L, ll R) {\n  assert(L < R);\n\
-    \  --R;\n  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n  int n = 0;\n  while (d\
-    \ < R) { b = c, c = d, d = b + c - a, ++n; }\n  auto get = [&](ll x) -> T {\n\
-    \    if (R < x) return infty<T>;\n    return (MINIMIZE ? f(x) : -f(x));\n  };\n\
-    \  T ya = get(a), yb = get(b), yc = get(c), yd = get(d);\n  // \u3053\u306E\u4E2D\
-    \u3067\u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\u3082\u6975\u5C0F\u3001\
-    \u3092\u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb <= yc) {\n      d = c,\
-    \ c = b, b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n    } else {\n\
-    \      a = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc = get(c);\n  \
-    \  }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n  if (chmin(y,\
-    \ yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return {y, x};\n  return\
-    \ {-y, x};\n}\n#line 2 \"enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\n\
-    template <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N =\
-    \ len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n\
-    \    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
+    \ = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n\
+    }\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c\
+    \ = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\
+    template <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a,\
+    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F\
+    \ -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
+    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
+    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
+    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
+    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 1 \"other/fibonacci_search.hpp\"\n// returns: {fx, x}\n// [L,\
+    \ R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\u3068\u3064\u6C42\u3081\u308B\u3001\
+    \u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename T, bool MINIMIZE, typename\
+    \ F>\npair<T, ll> fibonacci_search(F f, ll L, ll R) {\n  assert(L < R);\n  --R;\n\
+    \  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n  int n = 0;\n  while (d < R) {\
+    \ b = c, c = d, d = b + c - a, ++n; }\n  auto get = [&](ll x) -> T {\n    if (R\
+    \ < x) return infty<T>;\n    return (MINIMIZE ? f(x) : -f(x));\n  };\n  T ya =\
+    \ get(a), yb = get(b), yc = get(c), yd = get(d);\n  // \u3053\u306E\u4E2D\u3067\
+    \u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\u3082\u6975\u5C0F\u3001\u3092\
+    \u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb <= yc) {\n      d = c, c = b,\
+    \ b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n    } else {\n      a\
+    \ = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc = get(c);\n    }\n  }\n\
+    \  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n  if (chmin(y, yc)) x =\
+    \ c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return {y, x};\n  return {-y,\
+    \ x};\n}\n#line 2 \"enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\ntemplate\
+    \ <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n\
+    \  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if\
+    \ (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
     \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
     \ 5 \"test/1_mytest/fibonacci_search.test.cpp\"\n\nvoid test() {\n  // permutation\n\
     \  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A), 0);\n    do {\n      auto\
@@ -164,8 +164,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fibonacci_search.test.cpp
   requiredBy: []
-  timestamp: '2026-08-10 06:35:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-11 20:16:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/fibonacci_search.test.cpp
 layout: document

@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -94,132 +94,131 @@ data:
     }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
     \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
     \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (1)\
-    \ {\n    ll x = midpoint(ok, ng);\n    if (x == ok || x == ng) break;\n    (check(x)\
+    \ {\n    ll x = (ok + ng) / 2;\n    if (x == ok || x == ng) break;\n    (check(x)\
     \ ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
     \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
-    \ = midpoint(ok, ng);\n    (check(x) ? ok : ng) = x;\n  }\n  return midpoint(ok,\
-    \ ng);\n}\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b)\
-    \ {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n\
-    }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c =\
-    \ min<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n\
-    // ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int>\
-    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char :\
-    \ -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const\
-    \ vc<U> &A, int off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N)\
-    \ { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n\
-    }\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n\
-    \  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int\
-    \ i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n\
-    }\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T>\
-    \ &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
-    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
-    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
-    }\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr\
-    \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
-    \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
-    \ abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/fenwick_raq.test.cpp\"\n\n#line\
-    \ 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
-    int popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
-    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
-    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
-    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
-    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
-    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
-    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
-    \ ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX =\
-    \ typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
-    \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
-    \  vc<X> dat;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n  \
-    \  build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
-    \    laz.assign(size, MA::unit());\n    has_laz.assign(size, false);\n    FOR(i,\
-    \ n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void update(int\
-    \ k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void set(int p, X x)\
-    \ {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >=\
-    \ 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p\
-    \ >> i);\n  }\n  void multiply(int p, const X& x) {\n    assert(0 <= p && p <\
-    \ n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
-    \ = MX::op(dat[p], x);\n    for (int i = 1; i <= log; i++) update(p >> i);\n \
-    \ }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
-    \ (int i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X>\
-    \ get_all() {\n    FOR(k, 1, size) { push(k); }\n    return {dat.begin() + size,\
-    \ dat.begin() + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l\
-    \ && l <= r && r <= n);\n    if (l == r) return MX::unit();\n    l += size, r\
-    \ += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) !=\
-    \ l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n\
-    \    X xl = MX::unit(), xr = MX::unit();\n    while (l < r) {\n      if (l & 1)\
-    \ xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r], xr);\n  \
-    \    l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X prod_all()\
-    \ { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l &&\
-    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
-    \ for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
-    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int l2\
-    \ = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n    \
-    \  if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2, r\
-    \ = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l)\
-    \ update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n   \
-    \ }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l) {\n\
-    \    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n    if (l == n)\
-    \ return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n\
-    \    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n      if\
-    \ (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n          push(l);\n\
-    \          l = (2 * l);\n          if (check(MX::op(sm, dat[l]))) {\n        \
-    \    sm = MX::op(sm, dat[l++]);\n          }\n        }\n        return l - size;\n\
-    \      }\n      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n   \
-    \ return n;\n  }\n\n  template <typename F>\n  int min_left(const F check, int\
-    \ r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n    if\
-    \ (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--) push((r\
-    \ - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while (r >\
-    \ 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while\
-    \ (r < size) {\n          push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
-    \ sm))) {\n            sm = MX::op(dat[r--], sm);\n          }\n        }\n  \
-    \      return r + 1 - size;\n      }\n      sm = MX::op(dat[r], sm);\n    } while\
-    \ ((r & -r) != r);\n    return 0;\n  }\n\n  // l <= i xor (xor_val) < r \u3068\
-    \u306A\u308B i \u5168\u4F53\u306B apply\n  void apply_xor_range(int l, int r,\
-    \ int xor_val, A a) {\n    assert(!(n & (n - 1)));\n    assert(0 <= xor_val &&\
-    \ xor_val < n);\n    assert(0 <= l && l <= r && r <= n);\n\n    auto dfs = [&](auto&\
-    \ dfs, int idx, int seg_l, int seg_r) -> void {\n      if (l <= seg_l && seg_r\
-    \ <= r) {\n        return apply_at(idx, a);\n      }\n      if (r <= seg_l ||\
-    \ seg_r <= l) return;\n      push(idx);\n      int seg_m = (seg_l + seg_r) / 2;\n\
-    \      int bit = (seg_r - seg_l) / 2;\n      int left = 2 * idx + 0, right = 2\
-    \ * idx + 1;\n      if (xor_val & bit) swap(left, right);\n      dfs(dfs, left,\
-    \ seg_l, seg_m);\n      dfs(dfs, right, seg_m, seg_r);\n      update(idx);\n \
-    \   };\n    dfs(dfs, 1, 0, n);\n  }\n\n private:\n  void apply_at(int k, A a)\
-    \ {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n\
-    \    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
-    \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
-    \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line\
-    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\
-    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\
+    \ = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n\
+    }\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c\
+    \ = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\
+    template <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a,\
+    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F\
+    \ -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
+    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
+    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
+    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
+    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/fenwick_raq.test.cpp\"\n\n#line 2 \"other/bit.hpp\"\
+    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
+    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
+    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
+    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
+    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
+    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
+    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
+    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
+    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
+    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
+    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
+    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
+    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
+    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
+    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
+    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
+    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\
+    \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
+    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
+    \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
+    \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree()\
+    \ {}\n  Lazy_SegTree(int n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit();\
+    \ });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X\
+    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
+    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
+    \    dat.assign(size << 1, MX::unit());\n    laz.assign(size, MA::unit());\n \
+    \   has_laz.assign(size, false);\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i,\
+    \ 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k],\
+    \ dat[2 * k + 1]); }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
+    \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n  void multiply(int\
+    \ p, const X& x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
+    \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for\
+    \ (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0\
+    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
+    \ i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k);\
+    \ }\n    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
+    \ MX::unit();\n    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n\
+    \      if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r)\
+    \ push((r - 1) >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while\
+    \ (l < r) {\n      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr\
+    \ = MX::op(dat[--r], xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl,\
+    \ xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r,\
+    \ A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n \
+    \   l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
+    \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
+    \ >> i);\n    }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1)\
+    \ apply_at(l++, a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>=\
+    \ 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n     \
+    \ if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r\
+    \ - 1) >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F\
+    \ check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n\
+    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
+    \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
+    \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
+    \ {\n            sm = MX::op(sm, dat[l++]);\n          }\n        }\n        return\
+    \ l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l)\
+    \ != l);\n    return n;\n  }\n\n  template <typename F>\n  int min_left(const\
+    \ F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
+    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
+    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
+    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
+    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
+    \     if (check(MX::op(dat[r], sm))) {\n            sm = MX::op(dat[r--], sm);\n\
+    \          }\n        }\n        return r + 1 - size;\n      }\n      sm = MX::op(dat[r],\
+    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  // l <= i xor (xor_val)\
+    \ < r \u3068\u306A\u308B i \u5168\u4F53\u306B apply\n  void apply_xor_range(int\
+    \ l, int r, int xor_val, A a) {\n    assert(!(n & (n - 1)));\n    assert(0 <=\
+    \ xor_val && xor_val < n);\n    assert(0 <= l && l <= r && r <= n);\n\n    auto\
+    \ dfs = [&](auto& dfs, int idx, int seg_l, int seg_r) -> void {\n      if (l <=\
+    \ seg_l && seg_r <= r) {\n        return apply_at(idx, a);\n      }\n      if\
+    \ (r <= seg_l || seg_r <= l) return;\n      push(idx);\n      int seg_m = (seg_l\
+    \ + seg_r) / 2;\n      int bit = (seg_r - seg_l) / 2;\n      int left = 2 * idx\
+    \ + 0, right = 2 * idx + 1;\n      if (xor_val & bit) swap(left, right);\n   \
+    \   dfs(dfs, left, seg_l, seg_m);\n      dfs(dfs, right, seg_m, seg_r);\n    \
+    \  update(idx);\n    };\n    dfs(dfs, 1, 0, n);\n  }\n\n private:\n  void apply_at(int\
+    \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
+    \ a, sz);\n    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n\
+    \  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n   \
+    \ apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
+    \  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Sum_Add {\r\n  using Monoid_X\
     \ = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
@@ -360,8 +359,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2026-08-10 06:35:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-11 20:16:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/fenwick_raq.test.cpp
 layout: document

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/knight_distance.hpp
     title: other/knight_distance.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -77,47 +77,46 @@ data:
     }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
     \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
     \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (1)\
-    \ {\n    ll x = midpoint(ok, ng);\n    if (x == ok || x == ng) break;\n    (check(x)\
+    \ {\n    ll x = (ok + ng) / 2;\n    if (x == ok || x == ng) break;\n    (check(x)\
     \ ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
     \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
-    \ = midpoint(ok, ng);\n    (check(x) ? ok : ng) = x;\n  }\n  return midpoint(ok,\
-    \ ng);\n}\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b)\
-    \ {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n\
-    }\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c =\
-    \ min<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n\
-    // ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int>\
-    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char :\
-    \ -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const\
-    \ vc<U> &A, int off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N)\
-    \ { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n\
-    }\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n\
-    \  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int\
-    \ i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n\
-    }\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T>\
-    \ &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
-    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
-    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
-    }\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr\
-    \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
-    \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
-    \ abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/knight_distance.test.cpp\"\n\n#line\
-    \ 1 \"other/knight_distance.hpp\"\nll knight_distance(ll x, ll y) {\n  x = abs(x),\
-    \ y = abs(y);\n  if (x + y == 0) return 0;\n  if (x + y == 1) return 3;\n  if\
-    \ (x == 2 && y == 2) return 4;\n  ll step = (max(x, y) + 1) / 2;\n  chmax(step,\
-    \ (x + y + 2) / 3);\n  step += (step ^ x ^ y) & 1;\n  return step;\n}\n#line 5\
-    \ \"test/1_mytest/knight_distance.test.cpp\"\n\nvoid test() {\n  ll LIM = 20;\n\
-    \  map<pi, int> dist;\n  deque<pi> que;\n  auto add = [&](int x, int y, int d)\
-    \ -> void {\n    if (abs(x) > 2 * LIM || abs(y) > 2 * LIM) return;\n    pi key\
-    \ = {x, y};\n    if (dist.count(key)) return;\n    dist[key] = d;\n    que.eb(x,\
-    \ y);\n  };\n  add(0, 0, 0);\n  ll dx[] = {2, 1, -1, -2, -2, -1, 1, 2};\n  ll\
-    \ dy[] = {1, 2, 2, 1, -1, -2, -2, -1};\n  while (len(que)) {\n    auto [x, y]\
-    \ = POP(que);\n    FOR(d, 8) {\n      ll nx = x + dx[d], ny = y + dy[d];\n   \
-    \   pi key = {x, y};\n      add(nx, ny, dist[key] + 1);\n    }\n  }\n  for (auto&&\
-    \ [key, d]: dist) {\n    auto [x, y] = key;\n    assert(knight_distance(x, y)\
-    \ == d);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
-    \ + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n\
+    }\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c\
+    \ = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\
+    template <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a,\
+    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F\
+    \ -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
+    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
+    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
+    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
+    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/knight_distance.test.cpp\"\n\n#line 1 \"other/knight_distance.hpp\"\
+    \nll knight_distance(ll x, ll y) {\n  x = abs(x), y = abs(y);\n  if (x + y ==\
+    \ 0) return 0;\n  if (x + y == 1) return 3;\n  if (x == 2 && y == 2) return 4;\n\
+    \  ll step = (max(x, y) + 1) / 2;\n  chmax(step, (x + y + 2) / 3);\n  step +=\
+    \ (step ^ x ^ y) & 1;\n  return step;\n}\n#line 5 \"test/1_mytest/knight_distance.test.cpp\"\
+    \n\nvoid test() {\n  ll LIM = 20;\n  map<pi, int> dist;\n  deque<pi> que;\n  auto\
+    \ add = [&](int x, int y, int d) -> void {\n    if (abs(x) > 2 * LIM || abs(y)\
+    \ > 2 * LIM) return;\n    pi key = {x, y};\n    if (dist.count(key)) return;\n\
+    \    dist[key] = d;\n    que.eb(x, y);\n  };\n  add(0, 0, 0);\n  ll dx[] = {2,\
+    \ 1, -1, -2, -2, -1, 1, 2};\n  ll dy[] = {1, 2, 2, 1, -1, -2, -2, -1};\n  while\
+    \ (len(que)) {\n    auto [x, y] = POP(que);\n    FOR(d, 8) {\n      ll nx = x\
+    \ + dx[d], ny = y + dy[d];\n      pi key = {x, y};\n      add(nx, ny, dist[key]\
+    \ + 1);\n    }\n  }\n  for (auto&& [key, d]: dist) {\n    auto [x, y] = key;\n\
+    \    assert(knight_distance(x, y) == d);\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"other/knight_distance.hpp\"\n\nvoid test() {\n  ll LIM = 20;\n\
     \  map<pi, int> dist;\n  deque<pi> que;\n  auto add = [&](int x, int y, int d)\
@@ -137,8 +136,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/knight_distance.test.cpp
   requiredBy: []
-  timestamp: '2026-08-10 06:35:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-11 20:16:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/knight_distance.test.cpp
 layout: document
