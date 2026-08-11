@@ -385,8 +385,11 @@ data:
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
     - icon: ':warning:'
-      path: ds/range_mex.hpp
-      title: ds/range_mex.hpp
+      path: ds/range_max_change.hpp
+      title: ds/range_max_change.hpp
+    - icon: ':warning:'
+      path: ds/range_mex_change.hpp
+      title: ds/range_mex_change.hpp
     - icon: ':warning:'
       path: ds/range_min_change.hpp
       title: ds/range_min_change.hpp
@@ -760,6 +763,9 @@ data:
     - icon: ':x:'
       path: my_template.hpp
       title: my_template.hpp
+    - icon: ':warning:'
+      path: shrink.py
+      title: shrink.py
   - name: flow
     pages:
     - icon: ':x:'
@@ -2180,6 +2186,9 @@ data:
     - icon: ':x:'
       path: poly/product_of_pow_of_linear.hpp
       title: poly/product_of_pow_of_linear.hpp
+    - icon: ':x:'
+      path: poly/schroder.hpp
+      title: poly/schroder.hpp
     - icon: ':x:'
       path: poly/slice_rational_fps.hpp
       title: poly/slice_rational_fps.hpp
@@ -4913,6 +4922,12 @@ data:
     - icon: ':x:'
       path: test/3_yukicoder/3314.test.cpp
       title: test/3_yukicoder/3314.test.cpp
+    - icon: ':x:'
+      path: test/3_yukicoder/3619.test.cpp
+      title: test/3_yukicoder/3619.test.cpp
+    - icon: ':x:'
+      path: test/3_yukicoder/3621.test.cpp
+      title: test/3_yukicoder/3621.test.cpp
     - icon: ':x:'
       path: test/3_yukicoder/421.test.cpp
       title: test/3_yukicoder/421.test.cpp

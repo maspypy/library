@@ -75,6 +75,9 @@ data:
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':x:'
+    path: poly/schroder.hpp
+    title: poly/schroder.hpp
+  - icon: ':x:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':x:'
@@ -168,6 +171,12 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3619.test.cpp
+    title: test/3_yukicoder/3619.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3621.test.cpp
+    title: test/3_yukicoder/3621.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -618,6 +627,7 @@ data:
   isVerificationFile: false
   path: poly/fps_pow.hpp
   requiredBy:
+  - poly/schroder.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/2d/fps_pow_1_2d.hpp
@@ -635,7 +645,9 @@ data:
   verifiedWith:
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/1321.test.cpp
+  - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/1939.test.cpp
   - test/3_yukicoder/1549.test.cpp
   - test/3_yukicoder/1533.test.cpp

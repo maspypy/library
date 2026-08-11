@@ -30,6 +30,9 @@ data:
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':x:'
+    path: poly/schroder.hpp
+    title: poly/schroder.hpp
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   _extendedVerifiedWith:
@@ -108,6 +111,12 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3619.test.cpp
+    title: test/3_yukicoder/3619.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3621.test.cpp
+    title: test/3_yukicoder/3621.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -224,6 +233,7 @@ data:
   isVerificationFile: false
   path: poly/transposed_ntt.hpp
   requiredBy:
+  - poly/schroder.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/multipoint.hpp
   - poly/composition.hpp
@@ -238,7 +248,9 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2877.test.cpp
+  - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/2243.test.cpp
   - test/3_yukicoder/1575.test.cpp
   - test/1_mytest/slice_rational_fps.test.cpp

@@ -102,6 +102,9 @@ data:
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':x:'
+    path: poly/schroder.hpp
+    title: poly/schroder.hpp
+  - icon: ':x:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':x:'
@@ -295,6 +298,12 @@ data:
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':x:'
+    path: test/3_yukicoder/3619.test.cpp
+    title: test/3_yukicoder/3619.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3621.test.cpp
+    title: test/3_yukicoder/3621.test.cpp
+  - icon: ':x:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
   _isVerificationFailed: true
@@ -330,6 +339,7 @@ data:
   isVerificationFile: false
   path: nt/primetable.hpp
   requiredBy:
+  - poly/schroder.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/composition_f_1_minus_ex.hpp
@@ -381,11 +391,13 @@ data:
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1875.test.cpp
   - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1321.test.cpp
   - test/3_yukicoder/2206.test.cpp
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1666.test.cpp
+  - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/2266.test.cpp
   - test/3_yukicoder/2206_2.test.cpp

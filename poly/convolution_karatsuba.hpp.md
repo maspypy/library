@@ -261,6 +261,9 @@ data:
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
   - icon: ':x:'
+    path: poly/schroder.hpp
+    title: poly/schroder.hpp
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':x:'
@@ -892,6 +895,12 @@ data:
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
   - icon: ':x:'
+    path: test/3_yukicoder/3619.test.cpp
+    title: test/3_yukicoder/3619.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3621.test.cpp
+    title: test/3_yukicoder/3621.test.cpp
+  - icon: ':x:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
   - icon: ':x:'
@@ -969,6 +978,7 @@ data:
   requiredBy:
   - poly/compositional_inverse_old.hpp
   - poly/convolution_huge.hpp
+  - poly/schroder.hpp
   - poly/sum_of_power_of_roots.hpp
   - poly/coef_of_rational_fps.hpp
   - poly/from_log_differentiation.hpp
@@ -1105,6 +1115,7 @@ data:
   - test/3_yukicoder/1875.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1783.test.cpp
+  - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1321.test.cpp
   - test/3_yukicoder/1500.test.cpp
@@ -1115,6 +1126,7 @@ data:
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1618.test.cpp
   - test/3_yukicoder/2587.test.cpp

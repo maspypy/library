@@ -6,8 +6,8 @@ data:
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
   - icon: ':warning:'
-    path: ds/range_mex.hpp
-    title: ds/range_mex.hpp
+    path: ds/range_mex_change.hpp
+    title: ds/range_mex_change.hpp
   - icon: ':x:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
@@ -296,10 +296,10 @@ data:
   - ds/rmq/range_add_range_maxidx.hpp
   - ds/rmq/range_add_range_min.hpp
   - ds/rmq/range_add_range_max.hpp
+  - ds/range_mex_change.hpp
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
   - ds/offline_query/uniqueproductquery.hpp
-  - ds/range_mex.hpp
   - string/suffix_array.hpp
   - string/many_string_compare.hpp
   - string/longest_common_substring.hpp

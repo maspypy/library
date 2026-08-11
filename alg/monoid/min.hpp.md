@@ -18,8 +18,8 @@ data:
     path: alg/acted_monoid/min_min.hpp
     title: alg/acted_monoid/min_min.hpp
   - icon: ':warning:'
-    path: ds/range_mex.hpp
-    title: ds/range_mex.hpp
+    path: ds/range_mex_change.hpp
+    title: ds/range_mex_change.hpp
   - icon: ':x:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
@@ -215,7 +215,7 @@ data:
   - graph/fast_lca.hpp
   - graph/minimum_spanning_tree.hpp
   - geo/range_closest_pair_query.hpp
-  - ds/range_mex.hpp
+  - ds/range_mex_change.hpp
   - string/suffix_array.hpp
   - string/many_string_compare.hpp
   - string/longest_common_substring.hpp

@@ -66,6 +66,9 @@ data:
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
   - icon: ':x:'
+    path: poly/schroder.hpp
+    title: poly/schroder.hpp
+  - icon: ':x:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedVerifiedWith:
@@ -129,6 +132,12 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3619.test.cpp
+    title: test/3_yukicoder/3619.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3621.test.cpp
+    title: test/3_yukicoder/3621.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -464,6 +473,7 @@ data:
   isVerificationFile: false
   path: poly/poly_taylor_shift.hpp
   requiredBy:
+  - poly/schroder.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/composition_f_1_minus_ex.hpp
@@ -481,8 +491,10 @@ data:
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/1875.test.cpp
   - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp

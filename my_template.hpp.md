@@ -2275,6 +2275,12 @@ data:
     path: test/3_yukicoder/3314.test.cpp
     title: test/3_yukicoder/3314.test.cpp
   - icon: ':x:'
+    path: test/3_yukicoder/3619.test.cpp
+    title: test/3_yukicoder/3619.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3621.test.cpp
+    title: test/3_yukicoder/3621.test.cpp
+  - icon: ':x:'
     path: test/3_yukicoder/421.test.cpp
     title: test/3_yukicoder/421.test.cpp
   - icon: ':x:'
@@ -2861,6 +2867,7 @@ data:
   - test/3_yukicoder/2604.test.cpp
   - test/3_yukicoder/1479.test.cpp
   - test/3_yukicoder/1344.test.cpp
+  - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/899.test.cpp
   - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/2295.test.cpp
@@ -2933,6 +2940,7 @@ data:
   - test/3_yukicoder/2897.test.cpp
   - test/3_yukicoder/1293.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
+  - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/789.test.cpp
   - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/2747.test.cpp

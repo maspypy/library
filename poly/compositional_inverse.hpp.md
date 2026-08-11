@@ -65,6 +65,9 @@ data:
   - icon: ':warning:'
     path: poly/2d/compositional_inverse_2d.hpp
     title: poly/2d/compositional_inverse_2d.hpp
+  - icon: ':x:'
+    path: poly/schroder.hpp
+    title: poly/schroder.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/1_mytest/compositional_inverset.test.cpp
@@ -81,6 +84,12 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3619.test.cpp
+    title: test/3_yukicoder/3619.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3621.test.cpp
+    title: test/3_yukicoder/3621.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -667,12 +676,15 @@ data:
   isVerificationFile: false
   path: poly/compositional_inverse.hpp
   requiredBy:
+  - poly/schroder.hpp
   - poly/2d/compositional_inverse_2d.hpp
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/3_yukicoder/3621.test.cpp
+  - test/3_yukicoder/3619.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
