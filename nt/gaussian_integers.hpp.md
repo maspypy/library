@@ -316,12 +316,12 @@ data:
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1593.test.cpp
-  - test/1_mytest/three_square.test.cpp
   - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/three_square.test.cpp
   - test/1_mytest/four_square.test.cpp
-  - test/2_library_checker/number_theory/gaussian_integers.test.cpp
   - test/2_library_checker/number_theory/two_square.test.cpp
+  - test/2_library_checker/number_theory/gaussian_integers.test.cpp
+  - test/3_yukicoder/1593.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:

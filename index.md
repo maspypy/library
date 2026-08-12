@@ -860,6 +860,9 @@ data:
       path: geo/convex_polygon_dp_order.hpp
       title: geo/convex_polygon_dp_order.hpp
     - icon: ':warning:'
+      path: geo/convex_polygon_edge_voronoi.hpp
+      title: geo/convex_polygon_edge_voronoi.hpp
+    - icon: ':warning:'
       path: geo/convex_polygon_union_area.hpp
       title: geo/convex_polygon_union_area.hpp
     - icon: ':heavy_check_mark:'
@@ -1901,6 +1904,9 @@ data:
     - icon: ':warning:'
       path: other/anulus_scheduling.hpp
       title: other/anulus_scheduling.hpp
+    - icon: ':warning:'
+      path: other/binary_search_real_abs_rel.hpp
+      title: other/binary_search_real_abs_rel.hpp
     - icon: ':heavy_check_mark:'
       path: other/bit.hpp
       title: other/bit.hpp
@@ -2631,6 +2637,9 @@ data:
     - icon: ':warning:'
       path: template/prefix_state_segtree.hpp
       title: template/prefix_state_segtree.hpp
+    - icon: ':warning:'
+      path: template/sqrt_decomposition.hpp
+      title: template/sqrt_decomposition.hpp
   - name: test/2_library_checker/convolution
     pages:
     - icon: ':warning:'

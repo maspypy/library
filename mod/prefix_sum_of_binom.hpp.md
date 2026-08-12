@@ -113,9 +113,9 @@ data:
   timestamp: '2026-05-01 13:15:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2206.test.cpp
-  - test/3_yukicoder/2206_2.test.cpp
   - test/1_mytest/prefix_sum_of_binom.test.cpp
+  - test/3_yukicoder/2206_2.test.cpp
+  - test/3_yukicoder/2206.test.cpp
 documentation_of: mod/prefix_sum_of_binom.hpp
 layout: document
 redirect_from:

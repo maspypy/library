@@ -457,14 +457,14 @@ data:
   isVerificationFile: false
   path: seq/famous/faulhaber.hpp
   requiredBy:
-  - convex/lattice_point_sum_polynomial_pq.hpp
   - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
 documentation_of: seq/famous/faulhaber.hpp
 layout: document
 redirect_from:

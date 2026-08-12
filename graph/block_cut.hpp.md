@@ -192,11 +192,11 @@ data:
   timestamp: '2026-08-08 15:43:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1326.test.cpp
-  - test/4_aoj/GRL_3_A.test.cpp
   - test/1_mytest/st_numbering.test.cpp
-  - test/2_library_checker/graph/biconnected_component.test.cpp
   - test/2_library_checker/graph/st_numbering.test.cpp
+  - test/2_library_checker/graph/biconnected_component.test.cpp
+  - test/4_aoj/GRL_3_A.test.cpp
+  - test/3_yukicoder/1326.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document
 redirect_from:
