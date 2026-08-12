@@ -90,20 +90,31 @@ struct Prefix_State_SegTree {
     auto& L = dat[2 * v];
     auto& R = dat[2 * v + 1];
     dat[v].state = MS::op(L.state, R.state);
-    dat[v].r_ans = dfs(2 * v + 1, L.state);
+    dat[v].r_ans = MX::unit();
+    dfs(2 * v + 1, L.state, dat[v].r_ans);
   }
 
   // prefix state = s から subtree v を読んだときの答え
-  X dfs(int v, S s) {
+  void dfs(int v, S s, X& ans) {
     // TODO: problem specific
     /* typically:
-    auto& L = dat[2 * v];
-    auto& R = dat[2 * v + 1];
-    if (left を飛ばせる) {
-      s = MS::op(s, L.state);
-      return dfs(2 * v + 1, s);
-    } else {
-      return MX::op(dfs(2 * v, s), dat[v].r_ans);
+    if (size <= v) {
+      // process leaf
+      return;
+    }
+
+    int l = 2 * v, r = 2 * v + 1;
+    auto& L = dat[l];
+
+    // case 1: L での ans 更新が自明
+    if (case1) {
+      ans = MX::op(ans, left_ans);
+      dfs(r, MS::op(s, dat[l].state), ans);
+    }
+    // case2: L での ans 更新が非自明かつ dat[l].state で終了
+    if (case2) {
+      dfs(l, s, ans);
+      ans = MX::op(ans, dat[v].r_ans);
     }
     */
   }
