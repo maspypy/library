@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -12,18 +15,45 @@ data:
   attributes:
     links:
     - https://qoj.ac/submission/114657
-  bundledCode: "#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
-    \ Rollback_Array {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int, T>> history;\r\
-    \n\r\n  Rollback_Array() {}\r\n  Rollback_Array(vc<T> x) : N(len(x)), dat(x) {}\r\
-    \n  Rollback_Array(int N) : N(N), dat(N) {}\r\n  template <typename F>\r\n  Rollback_Array(int\
-    \ N, F f) : N(N) {\r\n    dat.reserve(N);\r\n    FOR(i, N) dat.eb(f(i));\r\n \
-    \ }\r\n\r\n  int time() { return len(history); }\r\n  void rollback(int t) {\r\
-    \n    FOR_R(i, t, time()) {\r\n      auto& [idx, v] = history[i];\r\n      dat[idx]\
-    \ = v;\r\n    }\r\n    history.resize(t);\r\n  }\r\n  T get(int idx) { return\
-    \ dat[idx]; }\r\n  void set(int idx, T x) {\r\n    history.eb(idx, dat[idx]);\r\
-    \n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T> res(N);\r\n\
-    \    FOR(i, N) res[i] = get(i);\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"\
-    ds/segtree/rollback_lazy_segtree.hpp\"\n// verify? https://qoj.ac/submission/114657\n\
+  bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate <typename\
+    \ T>\r\nstruct Rollback_Array {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int,\
+    \ T>> history;\r\n\r\n  Rollback_Array() {}\r\n  Rollback_Array(vc<T> x) : N(len(x)),\
+    \ dat(x) {}\r\n  Rollback_Array(int N) : N(N), dat(N) {}\r\n  template <typename\
+    \ F>\r\n  Rollback_Array(int N, F f) : N(N) {\r\n    dat.reserve(N);\r\n    FOR(i,\
+    \ N) dat.eb(f(i));\r\n  }\r\n\r\n  int time() { return len(history); }\r\n  void\
+    \ rollback(int t) {\r\n    FOR_R(i, t, time()) {\r\n      auto& [idx, v] = history[i];\r\
+    \n      dat[idx] = v;\r\n    }\r\n    history.resize(t);\r\n  }\r\n  T get(int\
+    \ idx) { return dat[idx]; }\r\n  void set(int idx, T x) {\r\n    history.eb(idx,\
+    \ dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T>\
+    \ res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\n  }\r\n};\r\n\
+    #line 3 \"ds/segtree/rollback_lazy_segtree.hpp\"\n// verify? https://qoj.ac/submission/114657\n\
     template <typename ActedMonoid>\nstruct Rollback_Lazy_SegTree {\n  using AM =\
     \ ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n\
     \  using X = typename MX::value_type;\n  using A = typename MA::value_type;\n\
@@ -67,31 +97,32 @@ data:
     \   for (int i = log; i >= 1; i--) push(l >> i);\n    X sm = MX::unit();\n   \
     \ do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(MX::op(sm, dat.get(l))))\
     \ {\n        while (l < size) {\n          push(l);\n          l = (2 * l);\n\
-    \          if (check(MX::op(sm, dat.get(l)))) { sm = MX::op(sm, dat.get(l++));\
-    \ }\n        }\n        return l - size;\n      }\n      sm = MX::op(sm, dat.get(l++));\n\
-    \    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename F>\n\
-    \  int min_left(const F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
-    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
-    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
-    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat.get(r), sm))) {\n \
-    \       while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n \
-    \         if (check(MX::op(dat.get(r), sm))) { sm = MX::op(dat.get(r--), sm);\
-    \ }\n        }\n        return r + 1 - size;\n      }\n      sm = MX::op(dat.get(r),\
-    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  pair<int, int> time()\
-    \ { return {dat.time(), laz.time()}; }\n  void rollback(pair<int, int> t) { dat.rollback(t.fi),\
-    \ laz.rollback(t.se); }\n\n  void push(int k) {\n    if (laz.get(k) == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz.get(k)), apply_at(2 * k + 1, laz.get(k));\n\
-    \    laz.set(k, MA::unit());\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n\
-    \    ll sz = 1 << (log - topbit(k));\n    dat.set(k, AM::act(dat.get(k), a, sz));\n\
-    \    if (k < size) laz.set(k, MA::op(laz.get(k), a));\n  }\n};\n"
-  code: "#include \"ds/rollback_array.hpp\"\n// verify? https://qoj.ac/submission/114657\n\
-    template <typename ActedMonoid>\nstruct Rollback_Lazy_SegTree {\n  using AM =\
-    \ ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n\
-    \  using X = typename MX::value_type;\n  using A = typename MA::value_type;\n\
-    \  int n, log, size;\n  Rollback_Array<X> dat;\n  Rollback_Array<A> laz;\n\n \
-    \ Rollback_Lazy_SegTree() {}\n  Rollback_Lazy_SegTree(int n) { build(n); }\n \
-    \ template <typename F>\n  Rollback_Lazy_SegTree(int n, F f) {\n    build(n, f);\n\
-    \  }\n  Rollback_Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \          if (check(MX::op(sm, dat.get(l)))) {\n            sm = MX::op(sm, dat.get(l++));\n\
+    \          }\n        }\n        return l - size;\n      }\n      sm = MX::op(sm,\
+    \ dat.get(l++));\n    } while ((l & -l) != l);\n    return n;\n  }\n\n  template\
+    \ <typename F>\n  int min_left(const F check, int r) {\n    assert(0 <= r && r\
+    \ <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n    r +=\
+    \ size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X sm = MX::unit();\n\
+    \    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat.get(r),\
+    \ sm))) {\n        while (r < size) {\n          push(r);\n          r = (2 *\
+    \ r + 1);\n          if (check(MX::op(dat.get(r), sm))) {\n            sm = MX::op(dat.get(r--),\
+    \ sm);\n          }\n        }\n        return r + 1 - size;\n      }\n      sm\
+    \ = MX::op(dat.get(r), sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\
+    \n  pair<int, int> time() { return {dat.time(), laz.time()}; }\n  void rollback(pair<int,\
+    \ int> t) { dat.rollback(t.fi), laz.rollback(t.se); }\n\n  void push(int k) {\n\
+    \    if (laz.get(k) == MA::unit()) return;\n    apply_at(2 * k, laz.get(k)), apply_at(2\
+    \ * k + 1, laz.get(k));\n    laz.set(k, MA::unit());\n  }\n\n private:\n  void\
+    \ apply_at(int k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat.set(k,\
+    \ AM::act(dat.get(k), a, sz));\n    if (k < size) laz.set(k, MA::op(laz.get(k),\
+    \ a));\n  }\n};\n"
+  code: "#include \"other/bit.hpp\"\n#include \"ds/rollback_array.hpp\"\n// verify?\
+    \ https://qoj.ac/submission/114657\ntemplate <typename ActedMonoid>\nstruct Rollback_Lazy_SegTree\
+    \ {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA\
+    \ = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n  using A =\
+    \ typename MA::value_type;\n  int n, log, size;\n  Rollback_Array<X> dat;\n  Rollback_Array<A>\
+    \ laz;\n\n  Rollback_Lazy_SegTree() {}\n  Rollback_Lazy_SegTree(int n) { build(n);\
+    \ }\n  template <typename F>\n  Rollback_Lazy_SegTree(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  Rollback_Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
     \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
@@ -128,29 +159,31 @@ data:
     \   for (int i = log; i >= 1; i--) push(l >> i);\n    X sm = MX::unit();\n   \
     \ do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(MX::op(sm, dat.get(l))))\
     \ {\n        while (l < size) {\n          push(l);\n          l = (2 * l);\n\
-    \          if (check(MX::op(sm, dat.get(l)))) { sm = MX::op(sm, dat.get(l++));\
-    \ }\n        }\n        return l - size;\n      }\n      sm = MX::op(sm, dat.get(l++));\n\
-    \    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename F>\n\
-    \  int min_left(const F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
-    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
-    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
-    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat.get(r), sm))) {\n \
-    \       while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n \
-    \         if (check(MX::op(dat.get(r), sm))) { sm = MX::op(dat.get(r--), sm);\
-    \ }\n        }\n        return r + 1 - size;\n      }\n      sm = MX::op(dat.get(r),\
-    \ sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\n  pair<int, int> time()\
-    \ { return {dat.time(), laz.time()}; }\n  void rollback(pair<int, int> t) { dat.rollback(t.fi),\
-    \ laz.rollback(t.se); }\n\n  void push(int k) {\n    if (laz.get(k) == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz.get(k)), apply_at(2 * k + 1, laz.get(k));\n\
-    \    laz.set(k, MA::unit());\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n\
-    \    ll sz = 1 << (log - topbit(k));\n    dat.set(k, AM::act(dat.get(k), a, sz));\n\
-    \    if (k < size) laz.set(k, MA::op(laz.get(k), a));\n  }\n};"
+    \          if (check(MX::op(sm, dat.get(l)))) {\n            sm = MX::op(sm, dat.get(l++));\n\
+    \          }\n        }\n        return l - size;\n      }\n      sm = MX::op(sm,\
+    \ dat.get(l++));\n    } while ((l & -l) != l);\n    return n;\n  }\n\n  template\
+    \ <typename F>\n  int min_left(const F check, int r) {\n    assert(0 <= r && r\
+    \ <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n    r +=\
+    \ size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X sm = MX::unit();\n\
+    \    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat.get(r),\
+    \ sm))) {\n        while (r < size) {\n          push(r);\n          r = (2 *\
+    \ r + 1);\n          if (check(MX::op(dat.get(r), sm))) {\n            sm = MX::op(dat.get(r--),\
+    \ sm);\n          }\n        }\n        return r + 1 - size;\n      }\n      sm\
+    \ = MX::op(dat.get(r), sm);\n    } while ((r & -r) != r);\n    return 0;\n  }\n\
+    \n  pair<int, int> time() { return {dat.time(), laz.time()}; }\n  void rollback(pair<int,\
+    \ int> t) { dat.rollback(t.fi), laz.rollback(t.se); }\n\n  void push(int k) {\n\
+    \    if (laz.get(k) == MA::unit()) return;\n    apply_at(2 * k, laz.get(k)), apply_at(2\
+    \ * k + 1, laz.get(k));\n    laz.set(k, MA::unit());\n  }\n\n private:\n  void\
+    \ apply_at(int k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat.set(k,\
+    \ AM::act(dat.get(k), a, sz));\n    if (k < size) laz.set(k, MA::op(laz.get(k),\
+    \ a));\n  }\n};"
   dependsOn:
+  - other/bit.hpp
   - ds/rollback_array.hpp
   isVerificationFile: false
   path: ds/segtree/rollback_lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2023-06-23 23:22:00+09:00'
+  timestamp: '2026-08-13 03:07:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/rollback_lazy_segtree.hpp

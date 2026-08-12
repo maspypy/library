@@ -74,21 +74,23 @@ data:
     \ 1, N + 1) {\n//     int l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l,\
     \ r);\n//   }\n//   return dp;\n// }\n#line 5 \"convex/monge/monge_shortest_path_d_edge.hpp\"\
     \n\n// return: {ans, pena}\ntemplate <typename T, typename F>\npair<T, T> monge_shortest_path_d_edge(int\
-    \ N, int d, F f) {\n  Monge_Shortest_Path<T> solver(N);\n  auto solve = [&](T\
-    \ pena) -> pair<T, int> {\n    return solver.solve([&](int l, int r) -> T { return\
-    \ f(l, r) + pena; });\n  };\n  return alien_trick<T>(d, solve);\n}\n"
+    \ N, int d, F f) {\n  Monge_Shortest_Path<T> solver;\n\n  auto solve = [&](T pena)\
+    \ -> pair<T, int> {\n    T val = solver.solve(N, [&](int l, int r) -> T { return\
+    \ f(l, r) + pena; });\n    return {val, solver.cnt[N]};\n  };\n\n  return alien_trick<T,\
+    \ true>(d, solve);\n}\n"
   code: "#pragma once\n\n#include \"convex/alien.hpp\"\n#include \"convex/monge/monge_shortest_path.hpp\"\
     \n\n// return: {ans, pena}\ntemplate <typename T, typename F>\npair<T, T> monge_shortest_path_d_edge(int\
-    \ N, int d, F f) {\n  Monge_Shortest_Path<T> solver(N);\n  auto solve = [&](T\
-    \ pena) -> pair<T, int> {\n    return solver.solve([&](int l, int r) -> T { return\
-    \ f(l, r) + pena; });\n  };\n  return alien_trick<T>(d, solve);\n}\n"
+    \ N, int d, F f) {\n  Monge_Shortest_Path<T> solver;\n\n  auto solve = [&](T pena)\
+    \ -> pair<T, int> {\n    T val = solver.solve(N, [&](int l, int r) -> T { return\
+    \ f(l, r) + pena; });\n    return {val, solver.cnt[N]};\n  };\n\n  return alien_trick<T,\
+    \ true>(d, solve);\n}"
   dependsOn:
   - convex/alien.hpp
   - convex/monge/monge_shortest_path.hpp
   isVerificationFile: false
   path: convex/monge/monge_shortest_path_d_edge.hpp
   requiredBy: []
-  timestamp: '2026-08-13 01:21:44+09:00'
+  timestamp: '2026-08-13 03:03:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/monge/monge_shortest_path_d_edge.hpp
