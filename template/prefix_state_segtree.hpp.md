@@ -44,13 +44,16 @@ data:
     \    for (int v : suff) {\n      dfs(v, s, ans);\n      s = MS::op(s, dat[v].state);\n\
     \    }\n    return {s, ans};\n  }\n\n private:\n  void update(int v) {\n    auto&\
     \ L = dat[2 * v];\n    auto& R = dat[2 * v + 1];\n    dat[v].state = MS::op(L.state,\
-    \ R.state);\n    dat[v].r_ans = dfs(2 * v + 1, L.state);\n  }\n\n  // prefix state\
-    \ = s \u304B\u3089 subtree v \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E\u7B54\u3048\
-    \n  X dfs(int v, S s) {\n    // TODO: problem specific\n    /* typically:\n  \
-    \  auto& L = dat[2 * v];\n    auto& R = dat[2 * v + 1];\n    if (left \u3092\u98DB\
-    \u3070\u305B\u308B) {\n      s = MS::op(s, L.state);\n      return dfs(2 * v +\
-    \ 1, s);\n    } else {\n      return MX::op(dfs(2 * v, s), dat[v].r_ans);\n  \
-    \  }\n    */\n  }\n};\n"
+    \ R.state);\n    dat[v].r_ans = MX::unit();\n    dfs(2 * v + 1, L.state, dat[v].r_ans);\n\
+    \  }\n\n  // prefix state = s \u304B\u3089 subtree v \u3092\u8AAD\u3093\u3060\u3068\
+    \u304D\u306E\u7B54\u3048\n  void dfs(int v, S s, X& ans) {\n    // TODO: problem\
+    \ specific\n    /* typically:\n    if (size <= v) {\n      // process leaf\n \
+    \     return;\n    }\n\n    int l = 2 * v, r = 2 * v + 1;\n    auto& L = dat[l];\n\
+    \n    // case 1: L \u3067\u306E ans \u66F4\u65B0\u304C\u81EA\u660E\n    if (case1)\
+    \ {\n      ans = MX::op(ans, left_ans);\n      dfs(r, MS::op(s, dat[l].state),\
+    \ ans);\n    }\n    // case2: L \u3067\u306E ans \u66F4\u65B0\u304C\u975E\u81EA\
+    \u660E\u304B\u3064 dat[l].state \u3067\u7D42\u4E86\n    if (case2) {\n      dfs(l,\
+    \ s, ans);\n      ans = MX::op(ans, dat[v].r_ans);\n    }\n    */\n  }\n};\n"
   code: "// template/prefix_state_segtree.hpp\n/*\nprefix state \u3092\u6301\u3061\
     \u306A\u304C\u3089\u5DE6\u304B\u3089\u5217\u3092\u8AAD\u3080\u30BF\u30A4\u30D7\
     \u306E SegTree \u306E\u9AA8\u683C\nStateMonoid:\n  prefix state \u306E\u30E2\u30CE\
@@ -86,18 +89,22 @@ data:
     \    }\n\n    reverse(all(suff));\n    for (int v : suff) {\n      dfs(v, s, ans);\n\
     \      s = MS::op(s, dat[v].state);\n    }\n    return {s, ans};\n  }\n\n private:\n\
     \  void update(int v) {\n    auto& L = dat[2 * v];\n    auto& R = dat[2 * v +\
-    \ 1];\n    dat[v].state = MS::op(L.state, R.state);\n    dat[v].r_ans = dfs(2\
-    \ * v + 1, L.state);\n  }\n\n  // prefix state = s \u304B\u3089 subtree v \u3092\
-    \u8AAD\u3093\u3060\u3068\u304D\u306E\u7B54\u3048\n  X dfs(int v, S s) {\n    //\
-    \ TODO: problem specific\n    /* typically:\n    auto& L = dat[2 * v];\n    auto&\
-    \ R = dat[2 * v + 1];\n    if (left \u3092\u98DB\u3070\u305B\u308B) {\n      s\
-    \ = MS::op(s, L.state);\n      return dfs(2 * v + 1, s);\n    } else {\n     \
-    \ return MX::op(dfs(2 * v, s), dat[v].r_ans);\n    }\n    */\n  }\n};\n"
+    \ 1];\n    dat[v].state = MS::op(L.state, R.state);\n    dat[v].r_ans = MX::unit();\n\
+    \    dfs(2 * v + 1, L.state, dat[v].r_ans);\n  }\n\n  // prefix state = s \u304B\
+    \u3089 subtree v \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E\u7B54\u3048\n  void\
+    \ dfs(int v, S s, X& ans) {\n    // TODO: problem specific\n    /* typically:\n\
+    \    if (size <= v) {\n      // process leaf\n      return;\n    }\n\n    int\
+    \ l = 2 * v, r = 2 * v + 1;\n    auto& L = dat[l];\n\n    // case 1: L \u3067\u306E\
+    \ ans \u66F4\u65B0\u304C\u81EA\u660E\n    if (case1) {\n      ans = MX::op(ans,\
+    \ left_ans);\n      dfs(r, MS::op(s, dat[l].state), ans);\n    }\n    // case2:\
+    \ L \u3067\u306E ans \u66F4\u65B0\u304C\u975E\u81EA\u660E\u304B\u3064 dat[l].state\
+    \ \u3067\u7D42\u4E86\n    if (case2) {\n      dfs(l, s, ans);\n      ans = MX::op(ans,\
+    \ dat[v].r_ans);\n    }\n    */\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: template/prefix_state_segtree.hpp
   requiredBy: []
-  timestamp: '2026-08-12 15:20:42+09:00'
+  timestamp: '2026-08-12 15:29:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/prefix_state_segtree.hpp
