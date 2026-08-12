@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1142.test.cpp
     title: test/3_yukicoder/1142.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1753.test.cpp
     title: test/3_yukicoder/1753.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/hadamard.hpp\"\n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\
@@ -71,7 +71,7 @@ data:
   requiredBy:
   - setfunc/xor_convolution.hpp
   timestamp: '2026-07-26 16:27:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1753.test.cpp
   - test/3_yukicoder/1142.test.cpp

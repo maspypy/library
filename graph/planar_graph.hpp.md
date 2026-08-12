@@ -21,12 +21,12 @@ data:
   - icon: ':x:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -277,7 +277,7 @@ data:
   requiredBy:
   - geo/polygon_triangulation.hpp
   timestamp: '2026-08-08 15:43:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1777.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp

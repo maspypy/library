@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':question:'

@@ -18,13 +18,13 @@ data:
   - icon: ':x:'
     path: test/1_mytest/splay_am.test.cpp
     title: test/1_mytest/splay_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
   _isVerificationFailed: true

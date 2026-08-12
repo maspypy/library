@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2342.test.cpp
     title: test/3_yukicoder/2342.test.cpp
   _isVerificationFailed: true

@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/dirichlet.hpp
     title: nt/dirichlet.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
   - icon: ':question:'

@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':x:'
@@ -43,7 +43,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':question:'

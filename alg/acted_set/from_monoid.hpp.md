@@ -5,19 +5,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename Monoid>\n\
@@ -34,7 +34,7 @@ data:
   - mod/mod_log.hpp
   - nt/discrete_log.hpp
   timestamp: '2022-11-28 21:09:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1339.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp

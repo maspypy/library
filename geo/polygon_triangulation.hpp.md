@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   _extendedRequiredBy: []

@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/pascal.test.cpp
     title: test/1_mytest/pascal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2108.test.cpp
     title: test/3_yukicoder/2108.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -361,7 +361,7 @@ data:
   path: linalg/blackbox/pascal.hpp
   requiredBy: []
   timestamp: '2026-08-13 03:03:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2108.test.cpp
   - test/3_yukicoder/2243.test.cpp

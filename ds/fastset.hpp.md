@@ -38,10 +38,10 @@ data:
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':warning:'
@@ -50,7 +50,7 @@ data:
   - icon: ':warning:'
     path: string/enumerate_occurrence.hpp
     title: string/enumerate_occurrence.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -78,16 +78,16 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
   _isVerificationFailed: true

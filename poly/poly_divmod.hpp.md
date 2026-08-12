@@ -47,7 +47,7 @@ data:
   - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -59,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -68,7 +68,7 @@ data:
   - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
@@ -108,7 +108,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
     title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/find_linear_recurrence.test.cpp
     title: test/2_library_checker/other/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -120,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/polynomial_division.test.cpp
     title: test/2_library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/slice_rational.test.cpp
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,49 +129,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1547.test.cpp
     title: test/3_yukicoder/1547.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1755.test.cpp
     title: test/3_yukicoder/1755.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1962.test.cpp
     title: test/3_yukicoder/1962.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
   _isVerificationFailed: true

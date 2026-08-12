@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: geo/rotating_swaps.hpp
     title: geo/rotating_swaps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':x:'
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
   _isVerificationFailed: true

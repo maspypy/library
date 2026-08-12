@@ -50,7 +50,7 @@ data:
   - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':warning:'
@@ -59,7 +59,7 @@ data:
   - icon: ':warning:'
     path: geo/delaunay_triangulation_of_convex_polygon.hpp
     title: geo/delaunay_triangulation_of_convex_polygon.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':heavy_check_mark:'
@@ -98,7 +98,7 @@ data:
   - icon: ':x:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/projection.hpp
     title: geo/projection.hpp
   - icon: ':x:'
@@ -107,7 +107,7 @@ data:
   - icon: ':warning:'
     path: geo/rotating_swaps.hpp
     title: geo/rotating_swaps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':x:'
@@ -168,7 +168,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
   - icon: ':x:'
@@ -177,7 +177,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/3005.test.cpp
     title: test/3_yukicoder/3005.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_1_A.test.cpp
     title: test/4_aoj/CGL_1_A.test.cpp
   - icon: ':x:'
@@ -186,13 +186,13 @@ data:
   - icon: ':x:'
     path: test/4_aoj/CGL_2_A.test.cpp
     title: test/4_aoj/CGL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_B.test.cpp
     title: test/4_aoj/CGL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_C.test.cpp
     title: test/4_aoj/CGL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
   - icon: ':x:'

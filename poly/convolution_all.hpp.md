@@ -32,7 +32,7 @@ data:
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multipoint_evaluation_for_prefix_product.hpp
     title: poly/multipoint_evaluation_for_prefix_product.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
@@ -66,34 +66,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1145.test.cpp
     title: test/3_yukicoder/1145.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1857.test.cpp
     title: test/3_yukicoder/1857.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2459.test.cpp
     title: test/3_yukicoder/2459.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
   _isVerificationFailed: true

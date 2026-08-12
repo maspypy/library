@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':x:'
@@ -30,10 +30,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/domninator_tree.test.cpp
     title: test/2_library_checker/graph/domninator_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1601.test.cpp
     title: test/3_yukicoder/1601.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
   _isVerificationFailed: true
