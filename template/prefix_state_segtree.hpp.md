@@ -9,8 +9,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"template/prefix_state_segtree.hpp\"\n// template/prefix_state_segtree.hpp\n\
-    \n/*\nprefix state \u3092\u6301\u3061\u306A\u304C\u3089\u5DE6\u304B\u3089\u5217\
-    \u3092\u8AAD\u3080\u30BF\u30A4\u30D7\u306E SegTree \u306E\u9AA8\u683C\nStateMonoid:\n\
+    /*\nprefix state \u3092\u6301\u3061\u306A\u304C\u3089\u5DE6\u304B\u3089\u5217\u3092\
+    \u8AAD\u3080\u30BF\u30A4\u30D7\u306E SegTree \u306E\u9AA8\u683C\nStateMonoid:\n\
     \  prefix state \u306E\u30E2\u30CE\u30A4\u30C9\n  init state \u304C\u5358\u4F4D\
     \u5143\u3067\u3001\u533A\u9593\u3092\u901A\u3063\u305F\u3068\u304D\u306E state\
     \ \u304C\u30E2\u30CE\u30A4\u30C9\u306E\u7DCF\u7A4D\u3067\u3042\u308B\u3068\u3059\
@@ -38,20 +38,20 @@ data:
     \ (i > 1) i /= 2, update(i);\n  }\n\n  // prefix state = s \u304B\u3089 [L,R)\
     \ \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E finish state, ANS\n  pair<S, X> prod(int\
     \ L, int R, S s = MS::unit()) {\n    vc<int> suff;\n    X ans = MX::unit();\n\n\
-    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) {\n        ans\
-    \ = MX::op(ans, dfs(L, s));\n        s = MS::op(s, dat[L].state);\n        ++L;\n\
-    \      }\n      if (R & 1) suff.eb(--R);\n      L /= 2, R /= 2;\n    }\n\n   \
-    \ reverse(all(suff));\n    for (int v : suff) {\n      ans = MX::op(ans, dfs(v,\
-    \ s));\n      s = MS::op(s, dat[v].state);\n    }\n    return ans;\n  }\n\n private:\n\
-    \  void update(int v) {\n    auto& L = dat[2 * v];\n    auto& R = dat[2 * v +\
-    \ 1];\n    dat[v].state = MS::op(L.state, R.state);\n    dat[v].r_ans = dfs(2\
-    \ * v + 1, L.state);\n  }\n\n  // prefix state = s \u304B\u3089 subtree v \u3092\
-    \u8AAD\u3093\u3060\u3068\u304D\u306E\u7B54\u3048\n  X dfs(int v, S s) {\n    //\
-    \ TODO\n    static_assert(false);\n    /* typically:\n    auto& L = dat[2 * v];\n\
-    \    auto& R = dat[2 * v + 1];\n    if (left \u3092\u98DB\u3070\u305B\u308B) {\n\
-    \      s = MS::op(s, L.state);\n      return dfs(2 * v + 1, s);\n    } else {\n\
-    \      return MX::op(dfs(2 * v, s), dat[v].r_ans);\n    }\n    */\n  }\n};\n"
-  code: "// template/prefix_state_segtree.hpp\n\n/*\nprefix state \u3092\u6301\u3061\
+    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) {\n        dfs(L,\
+    \ s, ans);\n        s = MS::op(s, dat[L].state);\n        ++L;\n      }\n    \
+    \  if (R & 1) suff.eb(--R);\n      L /= 2, R /= 2;\n    }\n\n    reverse(all(suff));\n\
+    \    for (int v : suff) {\n      dfs(v, s, ans);\n      s = MS::op(s, dat[v].state);\n\
+    \    }\n    return {s, ans};\n  }\n\n private:\n  void update(int v) {\n    auto&\
+    \ L = dat[2 * v];\n    auto& R = dat[2 * v + 1];\n    dat[v].state = MS::op(L.state,\
+    \ R.state);\n    dat[v].r_ans = dfs(2 * v + 1, L.state);\n  }\n\n  // prefix state\
+    \ = s \u304B\u3089 subtree v \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E\u7B54\u3048\
+    \n  X dfs(int v, S s) {\n    // TODO: problem specific\n    /* typically:\n  \
+    \  auto& L = dat[2 * v];\n    auto& R = dat[2 * v + 1];\n    if (left \u3092\u98DB\
+    \u3070\u305B\u308B) {\n      s = MS::op(s, L.state);\n      return dfs(2 * v +\
+    \ 1, s);\n    } else {\n      return MX::op(dfs(2 * v, s), dat[v].r_ans);\n  \
+    \  }\n    */\n  }\n};\n"
+  code: "// template/prefix_state_segtree.hpp\n/*\nprefix state \u3092\u6301\u3061\
     \u306A\u304C\u3089\u5DE6\u304B\u3089\u5217\u3092\u8AAD\u3080\u30BF\u30A4\u30D7\
     \u306E SegTree \u306E\u9AA8\u683C\nStateMonoid:\n  prefix state \u306E\u30E2\u30CE\
     \u30A4\u30C9\n  init state \u304C\u5358\u4F4D\u5143\u3067\u3001\u533A\u9593\u3092\
@@ -81,24 +81,23 @@ data:
     \ state = s \u304B\u3089 [L,R) \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E finish\
     \ state, ANS\n  pair<S, X> prod(int L, int R, S s = MS::unit()) {\n    vc<int>\
     \ suff;\n    X ans = MX::unit();\n\n    L += size, R += size;\n    while (L <\
-    \ R) {\n      if (L & 1) {\n        ans = MX::op(ans, dfs(L, s));\n        s =\
-    \ MS::op(s, dat[L].state);\n        ++L;\n      }\n      if (R & 1) suff.eb(--R);\n\
-    \      L /= 2, R /= 2;\n    }\n\n    reverse(all(suff));\n    for (int v : suff)\
-    \ {\n      ans = MX::op(ans, dfs(v, s));\n      s = MS::op(s, dat[v].state);\n\
-    \    }\n    return ans;\n  }\n\n private:\n  void update(int v) {\n    auto& L\
-    \ = dat[2 * v];\n    auto& R = dat[2 * v + 1];\n    dat[v].state = MS::op(L.state,\
-    \ R.state);\n    dat[v].r_ans = dfs(2 * v + 1, L.state);\n  }\n\n  // prefix state\
-    \ = s \u304B\u3089 subtree v \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E\u7B54\u3048\
-    \n  X dfs(int v, S s) {\n    // TODO\n    static_assert(false);\n    /* typically:\n\
-    \    auto& L = dat[2 * v];\n    auto& R = dat[2 * v + 1];\n    if (left \u3092\
-    \u98DB\u3070\u305B\u308B) {\n      s = MS::op(s, L.state);\n      return dfs(2\
-    \ * v + 1, s);\n    } else {\n      return MX::op(dfs(2 * v, s), dat[v].r_ans);\n\
-    \    }\n    */\n  }\n};\n"
+    \ R) {\n      if (L & 1) {\n        dfs(L, s, ans);\n        s = MS::op(s, dat[L].state);\n\
+    \        ++L;\n      }\n      if (R & 1) suff.eb(--R);\n      L /= 2, R /= 2;\n\
+    \    }\n\n    reverse(all(suff));\n    for (int v : suff) {\n      dfs(v, s, ans);\n\
+    \      s = MS::op(s, dat[v].state);\n    }\n    return {s, ans};\n  }\n\n private:\n\
+    \  void update(int v) {\n    auto& L = dat[2 * v];\n    auto& R = dat[2 * v +\
+    \ 1];\n    dat[v].state = MS::op(L.state, R.state);\n    dat[v].r_ans = dfs(2\
+    \ * v + 1, L.state);\n  }\n\n  // prefix state = s \u304B\u3089 subtree v \u3092\
+    \u8AAD\u3093\u3060\u3068\u304D\u306E\u7B54\u3048\n  X dfs(int v, S s) {\n    //\
+    \ TODO: problem specific\n    /* typically:\n    auto& L = dat[2 * v];\n    auto&\
+    \ R = dat[2 * v + 1];\n    if (left \u3092\u98DB\u3070\u305B\u308B) {\n      s\
+    \ = MS::op(s, L.state);\n      return dfs(2 * v + 1, s);\n    } else {\n     \
+    \ return MX::op(dfs(2 * v, s), dat[v].r_ans);\n    }\n    */\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: template/prefix_state_segtree.hpp
   requiredBy: []
-  timestamp: '2026-08-12 14:24:50+09:00'
+  timestamp: '2026-08-12 15:20:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/prefix_state_segtree.hpp

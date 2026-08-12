@@ -2626,6 +2626,9 @@ data:
   - name: template
     pages:
     - icon: ':warning:'
+      path: template/monoid.hpp
+      title: template/monoid.hpp
+    - icon: ':warning:'
       path: template/prefix_state_segtree.hpp
       title: template/prefix_state_segtree.hpp
   - name: test/2_library_checker/convolution
