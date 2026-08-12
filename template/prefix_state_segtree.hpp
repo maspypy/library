@@ -1,5 +1,4 @@
 // template/prefix_state_segtree.hpp
-
 /*
 prefix state を持ちながら左から列を読むタイプの SegTree の骨格
 StateMonoid:
@@ -70,7 +69,7 @@ struct Prefix_State_SegTree {
     L += size, R += size;
     while (L < R) {
       if (L & 1) {
-        ans = MX::op(ans, dfs(L, s));
+        dfs(L, s, ans);
         s = MS::op(s, dat[L].state);
         ++L;
       }
@@ -80,10 +79,10 @@ struct Prefix_State_SegTree {
 
     reverse(all(suff));
     for (int v : suff) {
-      ans = MX::op(ans, dfs(v, s));
+      dfs(v, s, ans);
       s = MS::op(s, dat[v].state);
     }
-    return ans;
+    return {s, ans};
   }
 
  private:
@@ -96,8 +95,7 @@ struct Prefix_State_SegTree {
 
   // prefix state = s から subtree v を読んだときの答え
   X dfs(int v, S s) {
-    // TODO
-    static_assert(false);
+    // TODO: problem specific
     /* typically:
     auto& L = dat[2 * v];
     auto& R = dat[2 * v + 1];
