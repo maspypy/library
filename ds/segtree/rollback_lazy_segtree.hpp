@@ -1,3 +1,4 @@
+#include "other/bit.hpp"
 #include "ds/rollback_array.hpp"
 // verify? https://qoj.ac/submission/114657
 template <typename ActedMonoid>
@@ -119,7 +120,9 @@ struct Rollback_Lazy_SegTree {
         while (l < size) {
           push(l);
           l = (2 * l);
-          if (check(MX::op(sm, dat.get(l)))) { sm = MX::op(sm, dat.get(l++)); }
+          if (check(MX::op(sm, dat.get(l)))) {
+            sm = MX::op(sm, dat.get(l++));
+          }
         }
         return l - size;
       }
@@ -143,7 +146,9 @@ struct Rollback_Lazy_SegTree {
         while (r < size) {
           push(r);
           r = (2 * r + 1);
-          if (check(MX::op(dat.get(r), sm))) { sm = MX::op(dat.get(r--), sm); }
+          if (check(MX::op(dat.get(r), sm))) {
+            sm = MX::op(dat.get(r--), sm);
+          }
         }
         return r + 1 - size;
       }
@@ -161,7 +166,7 @@ struct Rollback_Lazy_SegTree {
     laz.set(k, MA::unit());
   }
 
-private:
+ private:
   void apply_at(int k, A a) {
     ll sz = 1 << (log - topbit(k));
     dat.set(k, AM::act(dat.get(k), a, sz));
