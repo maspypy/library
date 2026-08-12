@@ -2623,6 +2623,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
+  - name: template
+    pages:
+    - icon: ':warning:'
+      path: template/prefix_state_segtree.hpp
+      title: template/prefix_state_segtree.hpp
   - name: test/2_library_checker/convolution
     pages:
     - icon: ':warning:'
