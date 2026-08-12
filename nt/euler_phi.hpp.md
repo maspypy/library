@@ -174,9 +174,9 @@ data:
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/number_theory/tetration.test.cpp
-  - test/4_aoj/NTL_1_D.test.cpp
   - test/3_yukicoder/1262.test.cpp
+  - test/4_aoj/NTL_1_D.test.cpp
+  - test/2_library_checker/number_theory/tetration.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document
 redirect_from:

@@ -73,9 +73,9 @@ data:
   timestamp: '2026-07-26 16:27:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/3_yukicoder/1753.test.cpp
   - test/3_yukicoder/1142.test.cpp
+  - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
 documentation_of: setfunc/hadamard.hpp
 layout: document
 redirect_from:

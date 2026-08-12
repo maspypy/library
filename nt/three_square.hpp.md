@@ -286,8 +286,8 @@ data:
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/three_square.test.cpp
+  - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/four_square.test.cpp
 documentation_of: nt/three_square.hpp
 layout: document

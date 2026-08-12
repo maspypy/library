@@ -625,8 +625,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp
-  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
 documentation_of: poly/fps_sqrt.hpp
 layout: document
 redirect_from:

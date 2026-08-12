@@ -53,8 +53,8 @@ data:
   timestamp: '2026-05-31 17:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/monotone_minima.test.cpp
   - test/3_yukicoder/952.test.cpp
+  - test/1_mytest/monotone_minima.test.cpp
 documentation_of: convex/monotone_minima.hpp
 layout: document
 redirect_from:

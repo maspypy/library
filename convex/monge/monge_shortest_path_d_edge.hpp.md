@@ -73,34 +73,22 @@ data:
     \ f(j, i);\n//   };\n\n//   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r,\
     \ 1, N + 1) {\n//     int l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l,\
     \ r);\n//   }\n//   return dp;\n// }\n#line 5 \"convex/monge/monge_shortest_path_d_edge.hpp\"\
-    \n\n// lo: penalty = lo \u3067\u306F cnt > d\n// hi: penalty = hi \u3067\u306F\
-    \ cnt <= d\ntemplate <typename T, typename F>\nT monge_shortest_path_d_edge(int\
-    \ N, int d, T lo, T hi, F f) {\n  Monge_Shortest_Path<T> solver(N);\n  auto solve\
-    \ = [&](T pena) -> pair<T, int> {\n    return solver.solve([&](int l, int r) ->\
-    \ T { return f(l, r) + penalty; });\n  };\n  return alien_trick<T>(N, d, lo, hi,\
-    \ solve);\n}\n\ntemplate <typename T, typename F>\nT monge_shortest_path_d_edge_auto_search_range(int\
-    \ N, int d, T lo, T hi, F f) {\n  Monge_Shortest_Path<T> solver(N);\n  auto solve\
-    \ = [&](T pena) -> pair<T, int> {\n    return solver.solve([&](int l, int r) ->\
-    \ T { return f(l, r) + penalty; });\n  };\n\n  return alien_trick_auto_search_range<T>(N,\
-    \ d, solve);\n}\n"
+    \n\n// return: {ans, pena}\ntemplate <typename T, typename F>\npair<T, T> monge_shortest_path_d_edge(int\
+    \ N, int d, F f) {\n  Monge_Shortest_Path<T> solver(N);\n  auto solve = [&](T\
+    \ pena) -> pair<T, int> {\n    return solver.solve([&](int l, int r) -> T { return\
+    \ f(l, r) + pena; });\n  };\n  return alien_trick<T>(d, solve);\n}\n"
   code: "#pragma once\n\n#include \"convex/alien.hpp\"\n#include \"convex/monge/monge_shortest_path.hpp\"\
-    \n\n// lo: penalty = lo \u3067\u306F cnt > d\n// hi: penalty = hi \u3067\u306F\
-    \ cnt <= d\ntemplate <typename T, typename F>\nT monge_shortest_path_d_edge(int\
-    \ N, int d, T lo, T hi, F f) {\n  Monge_Shortest_Path<T> solver(N);\n  auto solve\
-    \ = [&](T pena) -> pair<T, int> {\n    return solver.solve([&](int l, int r) ->\
-    \ T { return f(l, r) + penalty; });\n  };\n  return alien_trick<T>(N, d, lo, hi,\
-    \ solve);\n}\n\ntemplate <typename T, typename F>\nT monge_shortest_path_d_edge_auto_search_range(int\
-    \ N, int d, T lo, T hi, F f) {\n  Monge_Shortest_Path<T> solver(N);\n  auto solve\
-    \ = [&](T pena) -> pair<T, int> {\n    return solver.solve([&](int l, int r) ->\
-    \ T { return f(l, r) + penalty; });\n  };\n\n  return alien_trick_auto_search_range<T>(N,\
-    \ d, solve);\n}\n"
+    \n\n// return: {ans, pena}\ntemplate <typename T, typename F>\npair<T, T> monge_shortest_path_d_edge(int\
+    \ N, int d, F f) {\n  Monge_Shortest_Path<T> solver(N);\n  auto solve = [&](T\
+    \ pena) -> pair<T, int> {\n    return solver.solve([&](int l, int r) -> T { return\
+    \ f(l, r) + pena; });\n  };\n  return alien_trick<T>(d, solve);\n}\n"
   dependsOn:
   - convex/alien.hpp
   - convex/monge/monge_shortest_path.hpp
   isVerificationFile: false
   path: convex/monge/monge_shortest_path_d_edge.hpp
   requiredBy: []
-  timestamp: '2026-07-28 17:43:44+09:00'
+  timestamp: '2026-08-13 01:21:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/monge/monge_shortest_path_d_edge.hpp

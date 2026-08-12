@@ -168,8 +168,8 @@ data:
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/3314.test.cpp
   - test/3_yukicoder/1526.test.cpp
+  - test/3_yukicoder/3314.test.cpp
 documentation_of: ds/segtree/beats_summin_chmax.hpp
 layout: document
 redirect_from:
