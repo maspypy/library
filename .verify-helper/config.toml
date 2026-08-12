@@ -1,0 +1,21 @@
+[[languages.cpp.environments]]
+CXX = "shell/verify-expanded-g++"
+CXXFLAGS = [
+  "-std=c++17",
+  "-O2",
+  "-Wall",
+  "-g",
+  "-mavx2",
+  "-mpopcnt",
+]
+
+[[languages.cpp.environments]]
+CXX = "shell/verify-shrunk-g++"
+CXXFLAGS = [
+  "-std=c++17",
+  "-O2",
+  "-Wall",
+  "-g",
+  "-mavx2",
+  "-mpopcnt",
+]

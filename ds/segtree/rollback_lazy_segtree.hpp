@@ -1,3 +1,5 @@
+#pragma once
+
 #include "other/bit.hpp"
 #include "ds/rollback_array.hpp"
 // verify? https://qoj.ac/submission/114657

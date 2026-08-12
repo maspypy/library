@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import datetime
+import hashlib
 import json
 import pathlib
 from typing import Any
@@ -35,6 +36,11 @@ def parse_timestamp(value: str, path: pathlib.Path, test: str) -> datetime.datet
             f"invalid timestamp for {test!r} in {path}: {value!r}") from exc
 
 
+def shard_of(path: pathlib.Path, shards: int) -> int:
+    digest = hashlib.sha256(path.as_posix().encode()).digest()
+    return int.from_bytes(digest[:8], "big") % shards
+
+
 def main() -> None:
     args = parse_args()
     if args.shards <= 0:
@@ -59,7 +65,9 @@ def main() -> None:
                 raise RuntimeError(
                     f"invalid timestamp entry in {timestamp_path}")
             current_time = parse_timestamp(value, timestamp_path, test)
-            if test not in merged_time or merged_time[test] < current_time:
+            # Only the owning shard is authoritative. Otherwise an old success
+            # from another shard can resurrect a failed forced rerun.
+            if shard_of(pathlib.Path(test), args.shards) == shard:
                 merged[test] = value
                 merged_time[test] = current_time
 

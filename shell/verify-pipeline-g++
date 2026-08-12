@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mode="${1:?usage: verify-pipeline-g++ MODE [compiler arguments...]}"
+shift
+
+case "$mode" in
+  expanded|shrunk) ;;
+  *)
+    echo "verify-pipeline-g++: unknown mode: $mode" >&2
+    exit 2
+    ;;
+esac
+
+# oj-verify-helper also invokes CXX for dependency and macro analysis.  Keep
+# those calls on the original source so header changes remain visible to its
+# timestamp/dependency machinery.
+for arg in "$@"; do
+  case "$arg" in
+    -M|-MM|-MD|-MMD|-E|-dM)
+      exec g++ "$@"
+      ;;
+  esac
+done
+
+if (($# == 0)); then
+  echo "verify-pipeline-g++: missing compiler arguments" >&2
+  exit 2
+fi
+
+source_file="${!#}"
+if [[ ! -f "$source_file" ]]; then
+  echo "verify-pipeline-g++: source file not found: $source_file" >&2
+  exit 2
+fi
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+library_dir="$(cd "$script_dir/.." && pwd)"
+work_dir="$(mktemp -d "${TMPDIR:-/tmp}/maspy-verify.XXXXXX")"
+trap 'rm -rf -- "$work_dir"' EXIT
+
+expanded_file="$work_dir/expanded.cpp"
+python3 "$library_dir/expander.py" "$source_file" > "$expanded_file"
+
+compile_file="$expanded_file"
+if [[ "$mode" == shrunk ]]; then
+  compile_file="$work_dir/shrunk.cpp"
+  # The final compile and judge execution below are stronger than shrink.py's
+  # built-in syntax-only check, and use exactly the C++17 flags supplied by
+  # oj-verify-helper.
+  python3 "$library_dir/shrink.py" \
+    "$expanded_file" --no-check -o "$compile_file"
+fi
+
+compiler_args=("${@:1:$#-1}")
+g++ "${compiler_args[@]}" "$compile_file"
