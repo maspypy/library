@@ -4,7 +4,7 @@
 template <int mod>
 struct modint {
   static constexpr u32 umod = u32(mod);
-  static_assert(umod < u32(1) << 31);
+  static_assert(0 < umod && umod < u32(1) << 31);
   u32 val;
 
   static modint raw(u32 v) {

@@ -6,9 +6,12 @@
 // return: {ans, pena}
 template <typename T, typename F>
 pair<T, T> monge_shortest_path_d_edge(int N, int d, F f) {
-  Monge_Shortest_Path<T> solver(N);
+  Monge_Shortest_Path<T> solver;
+
   auto solve = [&](T pena) -> pair<T, int> {
-    return solver.solve([&](int l, int r) -> T { return f(l, r) + pena; });
+    T val = solver.solve(N, [&](int l, int r) -> T { return f(l, r) + pena; });
+    return {val, solver.cnt[N]};
   };
-  return alien_trick<T>(d, solve);
+
+  return alien_trick<T, true>(d, solve);
 }
