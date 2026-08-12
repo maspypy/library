@@ -17,8 +17,8 @@ double binary_search_real_abs_rel(F check, double ok, double ng, double eps) {
 
   if (1 <= l) {
     // 相対誤差を狙う
-    while (r / l > 1.0 + eps) upd(sqrt(l * r));
-    return sqrt(l * r);
+    while (r / l > 1.0 + eps) upd(sqrt(l) * sqrt(r));
+    return sqrt(l) * sqrt(r);
   } else {
     // 絶対誤差を狙う
     while (r - l > eps) upd((l + r) / 2);
