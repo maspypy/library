@@ -25,13 +25,13 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -58,10 +58,10 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':question:'
@@ -76,16 +76,16 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
   - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []

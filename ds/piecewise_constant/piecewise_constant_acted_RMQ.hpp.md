@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':warning:'
     path: ds/piecewise_constant/piecewise_constant.hpp
     title: ds/piecewise_constant/piecewise_constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []

@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':question:'

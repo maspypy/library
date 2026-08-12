@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
   - icon: ':question:'
@@ -46,7 +46,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   _extendedRequiredBy: []

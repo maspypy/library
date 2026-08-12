@@ -5,7 +5,7 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':warning:'
@@ -93,7 +93,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/slope_super.test.cpp
     title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,12 +108,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
     title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
@@ -137,7 +137,7 @@ data:
   - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/minimum_enclosing_circle.hpp
   timestamp: '2024-10-18 02:58:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/CGL_5_A.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp

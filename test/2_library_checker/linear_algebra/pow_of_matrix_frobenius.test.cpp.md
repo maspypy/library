@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
   - icon: ':question:'

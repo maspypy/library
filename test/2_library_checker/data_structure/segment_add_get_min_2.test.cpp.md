@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
   - icon: ':question:'

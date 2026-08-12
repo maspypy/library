@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
   _extendedVerifiedWith:
@@ -78,7 +78,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/3619.test.cpp
     title: test/3_yukicoder/3619.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
   _isVerificationFailed: true

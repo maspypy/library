@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
   _extendedRequiredBy:

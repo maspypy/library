@@ -4,25 +4,25 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':question:'

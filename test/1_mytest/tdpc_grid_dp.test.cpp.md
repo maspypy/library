@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -19,13 +19,13 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []

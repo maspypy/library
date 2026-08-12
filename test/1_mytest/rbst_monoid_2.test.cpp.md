@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -423,7 +423,7 @@ data:
   path: test/1_mytest/rbst_monoid_2.test.cpp
   requiredBy: []
   timestamp: '2026-08-13 03:03:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_2.test.cpp
 layout: document

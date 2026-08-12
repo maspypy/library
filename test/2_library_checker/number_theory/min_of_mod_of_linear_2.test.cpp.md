@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_of_mod_of_linear
@@ -278,7 +278,7 @@ data:
   path: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
   requiredBy: []
   timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
 layout: document

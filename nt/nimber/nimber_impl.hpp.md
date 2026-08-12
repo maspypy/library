@@ -18,10 +18,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/nim_product.test.cpp
     title: test/2_library_checker/number_theory/nim_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2907.test.cpp
     title: test/3_yukicoder/2907.test.cpp
   - icon: ':x:'

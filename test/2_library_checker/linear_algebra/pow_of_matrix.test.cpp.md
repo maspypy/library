@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
@@ -415,7 +415,7 @@ data:
   path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   requiredBy: []
   timestamp: '2026-08-13 03:03:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
 layout: document

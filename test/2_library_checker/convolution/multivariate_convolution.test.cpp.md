@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':question:'

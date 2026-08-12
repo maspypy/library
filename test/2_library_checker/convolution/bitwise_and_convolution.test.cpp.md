@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/and_convolution.hpp
     title: setfunc/and_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
   - icon: ':heavy_check_mark:'

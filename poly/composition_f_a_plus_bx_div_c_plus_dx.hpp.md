@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
   - icon: ':question:'

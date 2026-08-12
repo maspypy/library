@@ -21,10 +21,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
   - icon: ':x:'

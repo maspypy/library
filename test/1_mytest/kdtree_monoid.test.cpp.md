@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_monoid.hpp
     title: ds/kdtree/kdtree_monoid.hpp
   - icon: ':question:'

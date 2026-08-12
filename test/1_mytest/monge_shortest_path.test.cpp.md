@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
   - icon: ':question:'
