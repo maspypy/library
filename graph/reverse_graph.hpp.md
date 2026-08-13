@@ -14,26 +14,26 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/domninator_tree.test.cpp
     title: test/2_library_checker/graph/domninator_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1601.test.cpp
     title: test/3_yukicoder/1601.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
   _isVerificationFailed: true
@@ -155,18 +155,18 @@ data:
   isVerificationFile: false
   path: graph/reverse_graph.hpp
   requiredBy:
-  - graph/dominator_tree.hpp
-  - graph/reachability.hpp
   - graph/shortest_path/K_shortest_walk.hpp
-  - game/graph_game.hpp
+  - graph/reachability.hpp
+  - graph/dominator_tree.hpp
   - game/graph_path_game.hpp
+  - game/graph_game.hpp
   timestamp: '2026-08-08 15:43:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1601.test.cpp
-  - test/4_aoj/0275.test.cpp
-  - test/2_library_checker/graph/domninator_tree.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
+  - test/2_library_checker/graph/domninator_tree.test.cpp
+  - test/4_aoj/0275.test.cpp
+  - test/3_yukicoder/1601.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document
 redirect_from:

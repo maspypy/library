@@ -18,10 +18,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/nim_product.test.cpp
     title: test/2_library_checker/number_theory/nim_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2907.test.cpp
     title: test/3_yukicoder/2907.test.cpp
   - icon: ':x:'
@@ -127,17 +127,17 @@ data:
   isVerificationFile: false
   path: nt/nimber/nimber_impl.hpp
   requiredBy:
+  - nt/nimber/solve_quadratic.hpp
   - nt/nimber/base.hpp
   - nt/nimber/nimber_log.hpp
-  - nt/nimber/solve_quadratic.hpp
   timestamp: '2024-10-01 00:24:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/2907_2.test.cpp
-  - test/3_yukicoder/2907.test.cpp
-  - test/1_mytest/nimber.test.cpp
   - test/1_mytest/nimber_log.test.cpp
+  - test/1_mytest/nimber.test.cpp
   - test/2_library_checker/number_theory/nim_product.test.cpp
+  - test/3_yukicoder/2907.test.cpp
+  - test/3_yukicoder/2907_2.test.cpp
 documentation_of: nt/nimber/nimber_impl.hpp
 layout: document
 redirect_from:

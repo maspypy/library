@@ -45,31 +45,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/sample/aplusb128.test.cpp
     title: test/2_library_checker/sample/aplusb128.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2440.test.cpp
     title: test/3_yukicoder/2440.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2508.test.cpp
     title: test/3_yukicoder/2508.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2525.test.cpp
     title: test/3_yukicoder/2525.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2649.test.cpp
     title: test/3_yukicoder/2649.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/303.test.cpp
     title: test/3_yukicoder/303.test.cpp
   - icon: ':x:'
     path: test/4_aoj/NTL_2_A.test.cpp
     title: test/4_aoj/NTL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/NTL_2_B.test.cpp
     title: test/4_aoj/NTL_2_B.test.cpp
   - icon: ':x:'
@@ -586,20 +586,20 @@ data:
   timestamp: '2026-08-13 03:03:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/303.test.cpp
-  - test/3_yukicoder/2595.test.cpp
-  - test/3_yukicoder/2649.test.cpp
-  - test/3_yukicoder/2508.test.cpp
+  - test/1_mytest/bigint.test.cpp
+  - test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
+  - test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
+  - test/2_library_checker/sample/aplusb128.test.cpp
+  - test/4_aoj/NTL_2_B.test.cpp
+  - test/4_aoj/NTL_2_C.test.cpp
+  - test/4_aoj/NTL_2_A.test.cpp
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/2525.test.cpp
+  - test/3_yukicoder/2595.test.cpp
+  - test/3_yukicoder/2649.test.cpp
+  - test/3_yukicoder/303.test.cpp
+  - test/3_yukicoder/2508.test.cpp
   - test/3_yukicoder/2440.test.cpp
-  - test/4_aoj/NTL_2_C.test.cpp
-  - test/4_aoj/NTL_2_B.test.cpp
-  - test/4_aoj/NTL_2_A.test.cpp
-  - test/1_mytest/bigint.test.cpp
-  - test/2_library_checker/sample/aplusb128.test.cpp
-  - test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
-  - test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
 documentation_of: bigint/base.hpp
 layout: document
 redirect_from:

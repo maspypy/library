@@ -23,10 +23,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':warning:'
@@ -38,10 +38,10 @@ data:
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':warning:'
@@ -50,7 +50,7 @@ data:
   - icon: ':warning:'
     path: string/enumerate_occurrence.hpp
     title: string/enumerate_occurrence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,22 +72,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
   _isVerificationFailed: true
@@ -209,37 +209,37 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - graph/ds/incremental_centroid.hpp
+  - bigint/redundant_binary_number.hpp
   - graph/all_cycle_common_vertex.hpp
+  - graph/ds/incremental_centroid.hpp
   - graph/compress_tree.hpp
   - graph/toposort.hpp
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
-  - bigint/redundant_binary_number.hpp
-  - ds/sortable_array.hpp
   - ds/incremental_rectangle_union.hpp
   - ds/intervals.hpp
-  - ds/segtree/range_add_make_decreasing.hpp
-  - ds/segtree/range_assignment_segtree.hpp
-  - ds/segtree/sortable_segtree.hpp
+  - ds/sortable_array.hpp
   - ds/segtree/range_add_make_increasing.hpp
-  - string/enumerate_occurrence.hpp
-  - string/suffix_tree.hpp
+  - ds/segtree/range_assignment_segtree.hpp
+  - ds/segtree/range_add_make_decreasing.hpp
+  - ds/segtree/sortable_segtree.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - other/cuboid_union_volume.hpp
+  - string/suffix_tree.hpp
+  - string/enumerate_occurrence.hpp
   timestamp: '2026-08-08 03:36:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
+  - test/1_mytest/range_assign.test.cpp
+  - test/1_mytest/sortable_array.test.cpp
+  - test/1_mytest/decremental_fastset.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/data_structure/predecessor_problem.test.cpp
+  - test/4_aoj/2251_1.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2809.test.cpp
-  - test/4_aoj/2636.test.cpp
-  - test/4_aoj/2251_1.test.cpp
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
-  - test/1_mytest/decremental_fastset.test.cpp
-  - test/1_mytest/sortable_array.test.cpp
-  - test/1_mytest/range_assign.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - test/2_library_checker/data_structure/predecessor_problem.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:

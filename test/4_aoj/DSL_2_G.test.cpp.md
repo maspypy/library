@@ -381,7 +381,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-13 09:52:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_G.test.cpp

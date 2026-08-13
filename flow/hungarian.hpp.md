@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/assignment.test.cpp
     title: test/2_library_checker/graph/assignment.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1789.test.cpp
     title: test/3_yukicoder/1789.test.cpp
   - icon: ':x:'
@@ -74,9 +74,9 @@ data:
   timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/2_library_checker/graph/assignment.test.cpp
   - test/3_yukicoder/2573.test.cpp
   - test/3_yukicoder/1789.test.cpp
-  - test/2_library_checker/graph/assignment.test.cpp
 documentation_of: flow/hungarian.hpp
 layout: document
 redirect_from:

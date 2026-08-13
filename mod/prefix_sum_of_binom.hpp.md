@@ -12,7 +12,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2206_2.test.cpp
     title: test/3_yukicoder/2206_2.test.cpp
   _isVerificationFailed: true
@@ -113,9 +113,9 @@ data:
   timestamp: '2026-05-01 13:15:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/2206.test.cpp
-  - test/3_yukicoder/2206_2.test.cpp
   - test/1_mytest/prefix_sum_of_binom.test.cpp
+  - test/3_yukicoder/2206_2.test.cpp
+  - test/3_yukicoder/2206.test.cpp
 documentation_of: mod/prefix_sum_of_binom.hpp
 layout: document
 redirect_from:

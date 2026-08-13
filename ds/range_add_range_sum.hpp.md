@@ -134,7 +134,7 @@ data:
     \ L, int R) {\n    auto [x0, x1] = bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n\
     \    E x = MX::op(MX::power(x1, L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n\
     \    return MX::op(MX::inverse(x), y);\n  }\n};\n"
-  code: "#include \"fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+  code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Range_Add_Range_Sum {\n  using MX = Monoid;\n  using E = typename MX::value_type;\n\
     \n  struct Mono {\n    using value_type = pair<E, E>;\n    using X = value_type;\n\
     \    static X op(X x, X y) { return {MX::op(x.fi, y.fi), MX::op(x.se, y.se)};\
@@ -158,7 +158,7 @@ data:
   isVerificationFile: false
   path: ds/range_add_range_sum.hpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-08-13 09:52:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/DSL_2_G.test.cpp

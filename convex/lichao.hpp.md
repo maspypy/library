@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1867.test.cpp
     title: test/3_yukicoder/1867.test.cpp
   - icon: ':x:'
@@ -114,10 +114,10 @@ data:
   timestamp: '2025-10-13 19:02:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/705_2.test.cpp
-  - test/3_yukicoder/1867.test.cpp
   - test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   - test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
+  - test/3_yukicoder/1867.test.cpp
+  - test/3_yukicoder/705_2.test.cpp
 documentation_of: convex/lichao.hpp
 layout: document
 redirect_from:

@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy:
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
   _extendedVerifiedWith:
@@ -75,15 +75,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3619.test.cpp
     title: test/3_yukicoder/3619.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/composition.hpp\"\n\r\n#line 2 \"poly/convolution.hpp\"\
@@ -658,22 +658,22 @@ data:
   isVerificationFile: false
   path: poly/composition.hpp
   requiredBy:
-  - poly/schroder.hpp
-  - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - poly/schroder.hpp
   timestamp: '2026-08-13 03:03:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/3621.test.cpp
-  - test/3_yukicoder/3619.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
-  - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
-  - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/3_yukicoder/3621.test.cpp
+  - test/3_yukicoder/3619.test.cpp
 documentation_of: poly/composition.hpp
 layout: document
 redirect_from:
