@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
@@ -66,45 +66,45 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1547.test.cpp
     title: test/3_yukicoder/1547.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1962.test.cpp
     title: test/3_yukicoder/1962.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -567,25 +567,25 @@ data:
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
   timestamp: '2026-08-13 03:03:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/coef_of_rational.test.cpp
-  - test/1_mytest/bell.test.cpp
-  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/2305.test.cpp
+  - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/2877.test.cpp
+  - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/1500.test.cpp
-  - test/3_yukicoder/1561.test.cpp
-  - test/3_yukicoder/2305.test.cpp
-  - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/1844.test.cpp
-  - test/3_yukicoder/2877.test.cpp
-  - test/3_yukicoder/541.test.cpp
-  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/1547.test.cpp
+  - test/1_mytest/bell.test.cpp
+  - test/1_mytest/coef_of_rational.test.cpp
+  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: poly/coef_of_rational_fps.hpp
 layout: document
 redirect_from:

@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/palindrome_decomposition_dp.hpp
     title: string/palindrome_decomposition_dp.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/palindrome_decomposition_dp.test.cpp
     title: test/1_mytest/palindrome_decomposition_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/eertree.test.cpp
     title: test/2_library_checker/string/eertree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2606.test.cpp
     title: test/3_yukicoder/2606.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/465.test.cpp
     title: test/3_yukicoder/465.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/palindromic_tree.hpp\"\ntemplate <int sigma>\nstruct\
@@ -111,13 +111,13 @@ data:
   requiredBy:
   - string/palindrome_decomposition_dp.hpp
   timestamp: '2026-03-14 08:28:15+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/palindrome_decomposition_dp.test.cpp
-  - test/2_library_checker/string/eertree.test.cpp
-  - test/3_yukicoder/2606.test.cpp
   - test/3_yukicoder/465.test.cpp
   - test/3_yukicoder/263.test.cpp
+  - test/3_yukicoder/2606.test.cpp
+  - test/1_mytest/palindrome_decomposition_dp.test.cpp
+  - test/2_library_checker/string/eertree.test.cpp
 documentation_of: string/palindromic_tree.hpp
 layout: document
 redirect_from:

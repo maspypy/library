@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':heavy_check_mark:'
@@ -39,37 +39,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1117.test.cpp
     title: test/3_yukicoder/1117.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625.test.cpp
     title: test/3_yukicoder/1625.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826.test.cpp
     title: test/3_yukicoder/1826.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826_2.test.cpp
     title: test/3_yukicoder/1826_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2026.test.cpp
     title: test/3_yukicoder/2026.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2242.test.cpp
     title: test/3_yukicoder/2242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2295.test.cpp
     title: test/3_yukicoder/2295.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
   - icon: ':x:'
@@ -102,24 +102,24 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/max_min.test.cpp
-  - test/1_mytest/max_assign.test.cpp
-  - test/1_mytest/max_max.test.cpp
-  - test/1_mytest/min_max.test.cpp
-  - test/1_mytest/range_add_range_max.test.cpp
-  - test/2_library_checker/tree/mst.test.cpp
-  - test/4_aoj/GRL_2_A.test.cpp
-  - test/3_yukicoder/2242.test.cpp
-  - test/3_yukicoder/1826_2.test.cpp
-  - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/1826.test.cpp
-  - test/3_yukicoder/2295.test.cpp
-  - test/3_yukicoder/1790.test.cpp
+  - test/3_yukicoder/1625.test.cpp
   - test/3_yukicoder/2026.test.cpp
   - test/3_yukicoder/686.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/1625.test.cpp
+  - test/3_yukicoder/2295.test.cpp
   - test/3_yukicoder/1117.test.cpp
+  - test/3_yukicoder/2859.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/1826.test.cpp
+  - test/3_yukicoder/1790.test.cpp
+  - test/3_yukicoder/2242.test.cpp
+  - test/3_yukicoder/1826_2.test.cpp
+  - test/4_aoj/GRL_2_A.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
+  - test/1_mytest/max_assign.test.cpp
+  - test/1_mytest/max_min.test.cpp
+  - test/1_mytest/max_max.test.cpp
+  - test/1_mytest/min_max.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
 documentation_of: alg/monoid/max.hpp
 layout: document
 redirect_from:

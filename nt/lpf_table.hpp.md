@@ -18,18 +18,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -57,16 +57,16 @@ data:
   isVerificationFile: false
   path: nt/lpf_table.hpp
   requiredBy:
-  - nt/all_lcm.hpp
-  - nt/find_coprime_pair.hpp
   - mod/modfast.hpp
+  - nt/find_coprime_pair.hpp
+  - nt/all_lcm.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/modfast.test.cpp
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1411.test.cpp
   - test/3_yukicoder/1575.test.cpp
+  - test/1_mytest/modfast.test.cpp
 documentation_of: nt/lpf_table.hpp
 layout: document
 redirect_from:

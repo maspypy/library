@@ -6,12 +6,12 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1936.test.cpp
     title: test/3_yukicoder/1936.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_E.test.cpp
     title: test/4_aoj/NTL_1_E.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/extgcd.hpp\"\n// {g,x,y}, ax+by=g\r\ntemplate <typename\
@@ -56,10 +56,10 @@ data:
   path: nt/extgcd.hpp
   requiredBy: []
   timestamp: '2024-11-29 17:01:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/4_aoj/NTL_1_E.test.cpp
   - test/3_yukicoder/1936.test.cpp
+  - test/4_aoj/NTL_1_E.test.cpp
 documentation_of: nt/extgcd.hpp
 layout: document
 redirect_from:

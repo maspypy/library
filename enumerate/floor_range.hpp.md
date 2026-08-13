@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/mertens.hpp
     title: nt/mertens.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
@@ -15,16 +15,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
     title: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1260.test.cpp
     title: test/3_yukicoder/1260.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1573.test.cpp
     title: test/3_yukicoder/1573.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
   - icon: ':x:'
@@ -58,18 +58,18 @@ data:
   isVerificationFile: false
   path: enumerate/floor_range.hpp
   requiredBy:
-  - nt/mertens.hpp
   - nt/range_rational_count.hpp
+  - nt/mertens.hpp
   timestamp: '2024-09-14 09:20:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/1276.test.cpp
+  - test/3_yukicoder/2266.test.cpp
+  - test/3_yukicoder/1260.test.cpp
+  - test/3_yukicoder/1573.test.cpp
+  - test/3_yukicoder/4954.test.cpp
   - test/1_mytest/floor_ceil_ranges.test.cpp
   - test/2_library_checker/number_theory/enumerate_quotients.test.cpp
-  - test/3_yukicoder/4954.test.cpp
-  - test/3_yukicoder/1573.test.cpp
-  - test/3_yukicoder/1260.test.cpp
-  - test/3_yukicoder/2266.test.cpp
-  - test/3_yukicoder/1276.test.cpp
 documentation_of: enumerate/floor_range.hpp
 layout: document
 redirect_from:

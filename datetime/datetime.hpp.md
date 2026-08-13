@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/datetime.test.cpp
     title: test/1_mytest/datetime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2109.test.cpp
     title: test/3_yukicoder/2109.test.cpp
   - icon: ':x:'
@@ -97,9 +97,9 @@ data:
   timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/datetime.test.cpp
   - test/3_yukicoder/2109.test.cpp
   - test/3_yukicoder/779.test.cpp
+  - test/1_mytest/datetime.test.cpp
 documentation_of: datetime/datetime.hpp
 layout: document
 redirect_from:

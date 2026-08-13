@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: geo/rotating_swaps.hpp
     title: geo/rotating_swaps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -147,24 +147,24 @@ data:
   isVerificationFile: false
   path: geo/angle_sort.hpp
   requiredBy:
-  - graph/planar_graph.hpp
   - random/random_polygon.hpp
-  - geo/max_norm_sum.hpp
-  - geo/count_points_in_triangles.hpp
+  - graph/planar_graph.hpp
   - geo/polygon_triangulation.hpp
+  - geo/count_points_in_triangles.hpp
+  - geo/max_norm_sum.hpp
   - geo/convex_polygon_dp_order.hpp
   - geo/rotating_swaps.hpp
   - geo/minkowski_sum.hpp
   timestamp: '2026-07-19 03:14:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/3_yukicoder/1777.test.cpp
   - test/1_mytest/qoj5443.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/1_mytest/count_points_in_triangles.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/3_yukicoder/1777.test.cpp
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/nim_product.test.cpp
     title: test/2_library_checker/number_theory/nim_product.test.cpp
   - icon: ':x:'
@@ -122,16 +122,16 @@ data:
   isVerificationFile: false
   path: nt/nimber/base.hpp
   requiredBy:
-  - nt/nimber/solve_quadratic.hpp
   - nt/nimber/nimber_log.hpp
+  - nt/nimber/solve_quadratic.hpp
   timestamp: '2024-10-16 04:41:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/nimber_log.test.cpp
-  - test/1_mytest/nimber.test.cpp
-  - test/2_library_checker/number_theory/nim_product.test.cpp
-  - test/3_yukicoder/2907.test.cpp
   - test/3_yukicoder/2907_2.test.cpp
+  - test/3_yukicoder/2907.test.cpp
+  - test/1_mytest/nimber.test.cpp
+  - test/1_mytest/nimber_log.test.cpp
+  - test/2_library_checker/number_theory/nim_product.test.cpp
 documentation_of: nt/nimber/base.hpp
 layout: document
 redirect_from:

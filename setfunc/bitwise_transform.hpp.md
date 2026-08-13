@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/and_convolution.hpp
     title: setfunc/and_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
   - icon: ':heavy_check_mark:'
@@ -35,13 +35,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   - icon: ':warning:'
@@ -50,10 +50,10 @@ data:
   - icon: ':warning:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/composition_sps.test.cpp
     title: test/2_library_checker/set_power_series/composition_sps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,21 +90,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/sps_exp.test.cpp
     title: test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/subset_convolution.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1142.test.cpp
     title: test/3_yukicoder/1142.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1753.test.cpp
     title: test/3_yukicoder/1753.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/bitwise_transform.hpp\"\n\nnamespace bitwise {\n\
@@ -171,42 +171,42 @@ data:
   isVerificationFile: false
   path: setfunc/bitwise_transform.hpp
   requiredBy:
-  - linalg/hafnian.hpp
   - graph/count/count_bridgeless_subgraph.hpp
   - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_connected_subgraph.hpp
   - graph/count/count_tree_subgraph.hpp
   - graph/chromatic.hpp
   - graph/tutte_polynomial.hpp
-  - setfunc/power_projection_of_sps.hpp
-  - setfunc/zeta.hpp
-  - setfunc/or_convolution.hpp
-  - setfunc/hadamard.hpp
+  - setfunc/sps_inv.hpp
   - setfunc/sps_composition.hpp
-  - setfunc/xor_convolution.hpp
   - setfunc/ranked_zeta.hpp
+  - setfunc/or_convolution.hpp
+  - setfunc/xor_convolution.hpp
+  - setfunc/zeta.hpp
   - setfunc/and_convolution.hpp
   - setfunc/subset_convolution.hpp
+  - setfunc/hadamard.hpp
   - setfunc/sps_exp.hpp
+  - setfunc/power_projection_of_sps.hpp
   - setfunc/sps_log.hpp
-  - setfunc/sps_inv.hpp
+  - linalg/hafnian.hpp
   timestamp: '2026-07-26 16:27:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
-  - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
-  - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
-  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - test/2_library_checker/set_power_series/composition_sps.test.cpp
-  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-  - test/2_library_checker/set_power_series/powproj_sps.test.cpp
-  - test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
+  - test/3_yukicoder/2507.test.cpp
   - test/3_yukicoder/1753.test.cpp
   - test/3_yukicoder/1142.test.cpp
-  - test/3_yukicoder/2507.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
+  - test/2_library_checker/set_power_series/sps_exp.test.cpp
+  - test/2_library_checker/set_power_series/powproj_sps.test.cpp
+  - test/2_library_checker/set_power_series/composition_sps.test.cpp
+  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
+  - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
+  - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
+  - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
 documentation_of: setfunc/bitwise_transform.hpp
 layout: document
 redirect_from:

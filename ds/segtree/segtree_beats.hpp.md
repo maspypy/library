@@ -8,10 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_kinetic.hpp
     title: ds/segtree/beats_kinetic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_summax_chmin.hpp
     title: ds/segtree/beats_summax_chmin.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/beats_summin_chmax.hpp
     title: ds/segtree/beats_summin_chmax.hpp
   - icon: ':heavy_check_mark:'
@@ -24,10 +24,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1526.test.cpp
     title: test/3_yukicoder/1526.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1526_2.test.cpp
     title: test/3_yukicoder/1526_2.test.cpp
   - icon: ':x:'
@@ -154,18 +154,18 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_beats.hpp
   requiredBy:
-  - ds/segtree/beats_summin_chmax.hpp
   - ds/segtree/beats_summinmax_chminchmax.hpp
+  - ds/segtree/beats_summin_chmax.hpp
   - ds/segtree/beats_summax_chmin.hpp
   - ds/segtree/beats_kinetic.hpp
   timestamp: '2026-07-28 12:25:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/1526_2.test.cpp
+  - test/3_yukicoder/1526.test.cpp
+  - test/3_yukicoder/3314.test.cpp
   - test/1_mytest/kinetic.test.cpp
   - test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - test/3_yukicoder/3314.test.cpp
-  - test/3_yukicoder/1526.test.cpp
-  - test/3_yukicoder/1526_2.test.cpp
 documentation_of: ds/segtree/segtree_beats.hpp
 layout: document
 redirect_from:

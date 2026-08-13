@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/equal_4square_sum_grid.test.cpp
     title: test/1_mytest/equal_4square_sum_grid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2108.test.cpp
     title: test/3_yukicoder/2108.test.cpp
   - icon: ':x:'
@@ -38,15 +38,15 @@ data:
   isVerificationFile: false
   path: linalg/transpose.hpp
   requiredBy:
-  - linalg/diagonalize_triangular_matrix.hpp
   - poly/coef_of_rational_fps_2d.hpp
+  - linalg/diagonalize_triangular_matrix.hpp
   - other/sliding_puzzle_solver.hpp
   timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/equal_4square_sum_grid.test.cpp
-  - test/3_yukicoder/2907.test.cpp
   - test/3_yukicoder/2108.test.cpp
+  - test/3_yukicoder/2907.test.cpp
+  - test/1_mytest/equal_4square_sum_grid.test.cpp
 documentation_of: linalg/transpose.hpp
 layout: document
 redirect_from:
