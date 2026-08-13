@@ -1,4 +1,4 @@
-#include "fenwicktree/fenwicktree.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 
 template <typename Monoid>
 struct Range_Add_Range_Sum {

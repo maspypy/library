@@ -84,13 +84,13 @@ def code_views(lines: list[str]) -> list[str]:
             if in_block:
                 chars[i] = " "
                 if line.startswith("*/", i):
-                    chars[i : i + 2] = [" ", " "]
+                    chars[i: i + 2] = [" ", " "]
                     i += 2
                     in_block = False
                 else:
                     i += 1
             elif line.startswith("/*", i):
-                chars[i : i + 2] = [" ", " "]
+                chars[i: i + 2] = [" ", " "]
                 i += 2
                 in_block = True
             else:
@@ -110,8 +110,10 @@ def remove_known_inactive(lines: list[str], undefined: set[str]) -> list[str]:
     # (parent_is_output, condition_known, chosen_branch, this_branch_is_output)
     stack: list[tuple[bool, bool, bool, bool]] = []
     current = True
-    known_if = re.compile(r"^\s*#\s*if\s+(?:defined\s*\(\s*([A-Za-z_]\w*)\s*\)|defined\s+([A-Za-z_]\w*))\s*$")
-    known_if_not = re.compile(r"^\s*#\s*if\s*!\s*defined\s*\(\s*([A-Za-z_]\w*)\s*\)\s*$")
+    known_if = re.compile(
+        r"^\s*#\s*if\s+(?:defined\s*\(\s*([A-Za-z_]\w*)\s*\)|defined\s+([A-Za-z_]\w*))\s*$")
+    known_if_not = re.compile(
+        r"^\s*#\s*if\s*!\s*defined\s*\(\s*([A-Za-z_]\w*)\s*\)\s*$")
     ifdef = re.compile(r"^\s*#\s*ifdef\s+([A-Za-z_]\w*)\s*$")
     ifndef = re.compile(r"^\s*#\s*ifndef\s+([A-Za-z_]\w*)\s*$")
     for line in lines:
@@ -159,7 +161,8 @@ def strip_artifacts(lines: list[str]) -> list[str]:
             continue
         m = ARTIFACT_RE.search(line)
         if m:
-            line = line[:m.start()].rstrip() + ("\n" if line.endswith("\n") else "")
+            line = line[:m.start()].rstrip() + \
+                ("\n" if line.endswith("\n") else "")
         if line.strip():
             out.append(line)
     return out
@@ -203,7 +206,7 @@ def strip_header_comments(lines: list[str]) -> list[str]:
                 if chars[i] != "\n":
                     chars[i] = " "
                 if line.startswith("*/", i):
-                    chars[i : i + 2] = [" ", " "]
+                    chars[i: i + 2] = [" ", " "]
                     i += 2
                     in_block = False
                 else:
@@ -227,7 +230,7 @@ def strip_header_comments(lines: list[str]) -> list[str]:
                         chars[j] = " "
                 break
             elif line.startswith("/*", i):
-                chars[i : i + 2] = [" ", " "]
+                chars[i: i + 2] = [" ", " "]
                 i += 2
                 in_block = True
             else:
@@ -250,24 +253,38 @@ def find_semicolon(lines: list[str], views: list[str], start: int) -> int | None
     return None
 
 
-def find_block_end(lines: list[str], views: list[str], start: int) -> int | None:
-    depth = 0
-    seen = False
+def find_function_end(lines: list[str], views: list[str], start: int) -> int | None:
+    """Find a function body, ignoring braces in parameters and attributes."""
+    paren_depth = 0
+    bracket_depth = 0
+    brace_depth = 0
+    seen_body = False
     for i in range(start, len(lines)):
         view = views[i]
         for c in view:
-            if c == "{":
-                depth += 1
-                seen = True
-            elif c == "}" and seen:
-                depth -= 1
-                if depth == 0:
+            if not seen_body:
+                if c == "(":
+                    paren_depth += 1
+                elif c == ")":
+                    paren_depth -= 1
+                elif c == "[":
+                    bracket_depth += 1
+                elif c == "]":
+                    bracket_depth -= 1
+                elif c == "{" and paren_depth == 0 and bracket_depth == 0:
+                    brace_depth = 1
+                    seen_body = True
+            elif c == "{":
+                brace_depth += 1
+            elif c == "}":
+                brace_depth -= 1
+                if brace_depth == 0:
                     return i
     return None
 
 
 def function_name(prefix: str) -> str | None:
-    if "operator" in prefix or re.search(r"(?:^|\\n)\\s*(?:class|struct)\\b", prefix):
+    if "operator" in prefix or re.search(r"(?:^|\n)\s*(?:class|struct|union|enum)\b", prefix):
         return None
     paren = prefix.rfind("(")
     if paren < 0:
@@ -309,6 +326,10 @@ def find_candidates(lines: list[str]) -> list[Candidate]:
         # Do not begin a function candidate on an arbitrary declaration: doing
         # so can swallow a preceding `using` until the next function body.
         if not view.lstrip().startswith("template") and not ("(" in view and "{" in view):
+            # This branch still has to maintain scope depth.  Otherwise a
+            # class declaration is skipped without entering its scope and its
+            # members are later mistaken for top-level functions.
+            depth += view.count("{") - view.count("}")
             i += 1
             continue
         # Function and variable templates may start with one or more template lines.
@@ -316,17 +337,17 @@ def find_candidates(lines: list[str]) -> list[Candidate]:
         probe = i
         while probe < len(lines) and views[probe].lstrip().startswith("template"):
             probe += 1
-        header = "".join(views[start : min(len(lines), probe + 4)])
+        header = "".join(views[start: min(len(lines), probe + 4)])
         brace = header.find("{")
         if brace >= 0:
             prefix = header[:brace]
             name = function_name(prefix)
-            end = find_block_end(lines, views, start)
+            end = find_function_end(lines, views, start)
             if name and end is not None:
                 # Functions entered implicitly by the runtime (notably
                 # __attribute__((destructor))) have no ordinary source-level
                 # call site.  Keep every attribute-bearing definition.
-                if "__attribute__" in "".join(views[start : end + 1]):
+                if "__attribute__" in "".join(views[start: end + 1]):
                     i = end + 1
                     continue
                 ans.append(Candidate(start, end, name, "function"))
@@ -350,12 +371,13 @@ def remove_unreachable(lines: list[str]) -> tuple[list[str], list[Candidate]]:
         for i in range(c.start, c.end + 1):
             occupied[i] = True
     names = set(by_name)
-    roots = identifiers([line for i, line in enumerate(lines) if not occupied[i]]) & names
+    roots = identifiers(
+        [line for i, line in enumerate(lines) if not occupied[i]]) & names
     # The C++ entry point is necessarily live even though no source token calls it.
     roots.add("main")
     deps: dict[str, set[str]] = defaultdict(set)
     for c in candidates:
-        used = identifiers(lines[c.start : c.end + 1]) & names
+        used = identifiers(lines[c.start: c.end + 1]) & names
         used.discard(c.name)
         deps[c.name].update(used)
     live: set[str] = set()
@@ -376,7 +398,8 @@ def remove_unreachable(lines: list[str]) -> tuple[list[str], list[Candidate]]:
 
 def check(command: str, path: Path) -> None:
     rendered = command.format(file=shlex.quote(str(path)))
-    result = subprocess.run(rendered, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    result = subprocess.run(rendered, shell=True, text=True,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if result.returncode:
         sys.stderr.write(result.stdout)
         sys.stderr.write(result.stderr)
@@ -384,12 +407,17 @@ def check(command: str, path: Path) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Conservatively shrink an expanded C++ source.")
+    parser = argparse.ArgumentParser(
+        description="Conservatively shrink an expanded C++ source.")
     parser.add_argument("input", type=Path)
-    parser.add_argument("-o", "--output", type=Path, help="write to this file (default: standard output)")
-    parser.add_argument("--undefined", default="USE_PCH,LOCAL", help="comma-separated macros known to be undefined")
-    parser.add_argument("--check", default="g++ -std=c++20 -O2 -mavx2 -mpopcnt -fsyntax-only {file}")
-    parser.add_argument("--no-check", action="store_true", help="skip baseline and final compiler checks")
+    parser.add_argument("-o", "--output", type=Path,
+                        help="write to this file (default: standard output)")
+    parser.add_argument("--undefined", default="USE_PCH,LOCAL",
+                        help="comma-separated macros known to be undefined")
+    parser.add_argument(
+        "--check", default="g++ -std=c++20 -O2 -mavx2 -mpopcnt -fsyntax-only {file}")
+    parser.add_argument("--no-check", action="store_true",
+                        help="skip baseline and final compiler checks")
     parser.add_argument("--report", action="store_true")
     args = parser.parse_args()
     source = args.input.read_text()

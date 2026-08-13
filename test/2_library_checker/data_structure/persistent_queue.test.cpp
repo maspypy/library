@@ -25,7 +25,9 @@ void solve() {
       INT(x);
       root = X.set(root, r++, x);
     }
-    if (t == 1) { print(X.get(root, l++)); }
+    if (t == 1) {
+      print(X.get(root, l++));
+    }
     roots.eb(root);
     L.eb(l), R.eb(r);
   }
