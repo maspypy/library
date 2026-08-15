@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "nt/primesum.hpp"
+#include "nt/prime_sum.hpp"
 #include "nt/multiplicative_sum.hpp"
 
 using mint = modint998;
@@ -20,7 +20,7 @@ void solve() {
     dp[e] = mint(e + 1).pow(N);
   }
 
-  PrimeSum<mint> X(M);
+  Prime_Sum<mint> X(M);
   X.calc_count();
 
   auto f_pe = [&](ll p, ll e) -> mint { return dp[e]; };
@@ -31,11 +31,7 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
+  solve();
 
   return 0;
 }

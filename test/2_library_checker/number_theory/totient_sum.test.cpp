@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "nt/primesum.hpp"
+#include "nt/prime_sum.hpp"
 #include "nt/multiplicative_sum.hpp"
 #include "mod/modint.hpp"
 
@@ -10,7 +10,7 @@ using mint = modint998;
 
 void solve() {
   LL(N);
-  PrimeSum<mint> A(N), B(N);
+  Prime_Sum<mint> A(N), B(N);
   A.calc_sum();
   B.calc_count();
 

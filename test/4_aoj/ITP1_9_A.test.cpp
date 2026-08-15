@@ -9,8 +9,8 @@ void solve() {
   string S;
   ll ANS = 0;
   while (getline(cin, S)) {
-    for (auto&& token: split(S, ' ')) {
-      for (auto&& t: token)
+    for (auto&& token : split(S, " ")) {
+      for (auto&& t : token)
         if (isupper(t)) t = tolower(t);
       ANS += token == T;
     }
@@ -19,13 +19,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

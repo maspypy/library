@@ -26,21 +26,27 @@ void test(mint p, mint q) {
 
   array<array<mint, K2 + 1>, K1 + 1> god{};
   auto add_point = [&](ll x, ll y) -> void {
-    FOR(i, K1 + 1) FOR(j, K2 + 1) { god[i][j] += p.pow(x) * q.pow(y) * mint(x).pow(i) * mint(y).pow(j); }
+    FOR(i, K1 + 1) FOR(j, K2 + 1) {
+      god[i][j] += p.pow(x) * q.pow(y) * mint(x).pow(i) * mint(y).pow(j);
+    }
   };
 
   ll K = 200;
   FOR(x, -2 * K, 2 * K + 1) {
     ll mi = -infty<ll>, ma = infty<ll>;
-    for (auto& [a, b, c]: LINE) {
+    for (auto& [a, b, c] : LINE) {
       if (b == 0) {
         // ax>=c
         if (a * x <= c) continue;
         mi = infty<ll> + 1;
         break;
       }
-      if (b > 0) { chmin(ma, floor<ll>(c - a * x, b)); }
-      if (b < 0) { chmax(mi, ceil<ll>(a * x - c, -b)); }
+      if (b > 0) {
+        chmin(ma, floor<ll>(c - a * x, b));
+      }
+      if (b < 0) {
+        chmax(mi, ceil<ll>(a * x - c, -b));
+      }
     }
 
     if (mi > ma) continue;

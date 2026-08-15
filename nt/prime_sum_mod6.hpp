@@ -2,7 +2,7 @@
 #include "nt/prime_table.hpp"
 
 template <typename T>
-struct PrimeSum_Mod_6 {
+struct Primee_Sum_Mod_6 {
   ll N;
   ll sqN;
 

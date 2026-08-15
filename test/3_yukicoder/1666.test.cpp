@@ -14,7 +14,7 @@ void solve() {
     };
     vi A(100);
     FOR3(i, 1, 100) A[i] = f(i);
-    multiplier_mobius(A);
+    multiple_mobius(A);
     ll cnt = 0;
     FOR3(i, 2, 100) cnt += A[i];
     if (1 <= LIM) ++cnt;
@@ -26,12 +26,7 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  LL(T);
-  FOR(_, T) solve();
+  solve();
 
   return 0;
 }

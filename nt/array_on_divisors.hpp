@@ -58,7 +58,7 @@ struct Array_On_Divisors {
     });
   }
 
-  void multiplier_zeta() {
+  void multiple_zeta() {
     ll k = 1;
     for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
@@ -69,7 +69,7 @@ struct Array_On_Divisors {
     }
   }
 
-  void multiplier_mobius() {
+  void multiple_mobius() {
     ll k = 1;
     for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);

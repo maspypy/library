@@ -1,5 +1,5 @@
 #include "poly/fps_div.hpp"
-#include "mod/powertable.hpp"
+#include "mod/power_table.hpp"
 
 template <typename mint>
 vc<mint> bernoulli_number(int N) {
@@ -42,7 +42,7 @@ mint single_bernoulli(int n) {
   }
   G[0] = sm;
   FOR(i, n) G[i + 1] += G[i];
-  vc<mint> pow = powertable_2<mint>(n, n);
+  vc<mint> pow = power_table_2<mint>(n, n);
   mint ans = 0;
   FOR(i, n + 1) { ans += pow[i] * G[i]; }
   return ans;

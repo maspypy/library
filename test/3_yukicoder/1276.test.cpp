@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "nt/multiplicative_sum.hpp"
-#include "nt/primesum.hpp"
+#include "nt/prime_sum.hpp"
 #include "enumerate/floor_range.hpp"
 
 using mint = modint107;
@@ -13,13 +13,13 @@ void solve() {
   LL(N);
   // zeta^3
   // p^k -> k(k+1)/2
-  PrimeSum<mint> X(N);
+  Prime_Sum<mint> X(N);
   X.calc_count();
   auto f_psum = [&](ll n) -> mint { return X[n] * mint(3); };
   auto f_pe = [&](ll p, ll e) -> mint { return (e + 1) * (e + 2) / 2; };
 
   mint ANS = 0;
-  mint x = 0; // a|b
+  mint x = 0;  // a|b
 
   auto f = [&](ll q, ll l, ll r) -> void {
     x += mint(r - l) * q;
@@ -40,11 +40,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
