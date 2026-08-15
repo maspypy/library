@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_sum.hpp
     title: nt/prime_sum.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: nt/prime_table.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod6.test.cpp
     title: test/1_mytest/primesum_mod6.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -54,7 +54,7 @@ data:
     \  void calc_sum() {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\
     \n      if (!(x & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a)\
     \ * T(b);\r\n    });\r\n  }\r\n};\n#line 3 \"nt/prime_sum_mod6.hpp\"\n\ntemplate\
-    \ <typename T>\nstruct Primee_Sum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T>\
+    \ <typename T>\nstruct Prime_Sum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T>\
     \ A, B;\n  Prime_Sum_Mod_6(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T,\
     \ T> operator[](ll x) {\n    T a = A[x], b = B[x];\n    return {(a + b) / T(2),\
     \ (a - b) / T(2)};\n  }\n\n  void calc_count() {\n    A.calc([](ll x) -> T { return\
@@ -67,7 +67,7 @@ data:
     \     return T(-4 * k);\n      }\n      return T(-4 * k + 6 * k + 1);\n    });\n\
     \  }\n};\n"
   code: "#include \"nt/prime_sum.hpp\"\n#include \"nt/prime_table.hpp\"\n\ntemplate\
-    \ <typename T>\nstruct Primee_Sum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T>\
+    \ <typename T>\nstruct Prime_Sum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T>\
     \ A, B;\n  Prime_Sum_Mod_6(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T,\
     \ T> operator[](ll x) {\n    T a = A[x], b = B[x];\n    return {(a + b) / T(2),\
     \ (a - b) / T(2)};\n  }\n\n  void calc_count() {\n    A.calc([](ll x) -> T { return\
@@ -85,8 +85,8 @@ data:
   isVerificationFile: false
   path: nt/prime_sum_mod6.hpp
   requiredBy: []
-  timestamp: '2026-08-15 16:31:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-15 16:38:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/primesum_mod6.test.cpp
 documentation_of: nt/prime_sum_mod6.hpp

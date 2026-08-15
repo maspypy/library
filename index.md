@@ -1834,13 +1834,13 @@ data:
     - icon: ':warning:'
       path: nt/pell_equation.hpp
       title: nt/pell_equation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/prime_sum.hpp
       title: nt/prime_sum.hpp
     - icon: ':heavy_check_mark:'
       path: nt/prime_sum_mod4.hpp
       title: nt/prime_sum_mod4.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/prime_sum_mod6.hpp
       title: nt/prime_sum_mod6.hpp
     - icon: ':question:'
@@ -3146,7 +3146,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/primesum_mod4.test.cpp
       title: test/1_mytest/primesum_mod4.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/primesum_mod6.test.cpp
       title: test/1_mytest/primesum_mod6.test.cpp
     - icon: ':heavy_check_mark:'
