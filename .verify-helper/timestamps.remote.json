@@ -163,6 +163,7 @@
 "test/1_mytest/prefix_sum_of_binom.test.cpp": "2026-08-13 09:52:55 +0900",
 "test/1_mytest/prime_sum.test.cpp": "2026-08-15 16:17:43 +0900",
 "test/1_mytest/primesum_mod4.test.cpp": "2026-08-15 16:17:43 +0900",
+"test/1_mytest/primesum_mod6.test.cpp": "2026-08-15 16:38:07 +0900",
 "test/1_mytest/product_of_one_pm_xn.test.cpp": "2026-08-13 09:52:55 +0900",
 "test/1_mytest/prufer.test.cpp": "2026-08-13 09:52:55 +0900",
 "test/1_mytest/pytagorean_triples.test.cpp": "2026-08-13 09:52:55 +0900",
