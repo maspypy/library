@@ -26,7 +26,8 @@ void solve() {
 }
 
 signed main() {
-  solve();
+  INT(T);
+  FOR(T) solve();
 
   return 0;
 }
