@@ -7,22 +7,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/primetable.hpp
-    title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: nt/prime_table.hpp
+    title: nt/prime_table.hpp
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -359,7 +359,7 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T> primetable(int\
+    #line 2 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T> prime_table(int\
     \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T>\
     \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
     \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
@@ -367,26 +367,26 @@ data:
     \ i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for\
     \ (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int\
     \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
-    \ idx]: cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
+    \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
     \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
     \    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
     \ + k};\n}\n#line 3 \"nt/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid divisor_zeta(vc<T>&\
-    \ A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\
-    \n  for (auto&& p: P) { FOR3(x, 1, N / p + 1) A[p * x] += A[x]; }\r\n}\r\n\r\n\
-    template <typename T>\r\nvoid divisor_mobius(vc<T>& A) {\r\n  assert(A[0] == 0);\r\
-    \n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\n  for (auto&& p: P) {\
-    \ FOR3_R(x, 1, N / p + 1) A[p * x] -= A[x]; }\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid multiplier_zeta(vc<T>& A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A)\
-    \ - 1;\r\n  auto P = primetable(N);\r\n  for (auto&& p: P) { FOR3_R(x, 1, N /\
-    \ p + 1) A[x] += A[p * x]; }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid multiplier_mobius(vc<T>&\
-    \ A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A) - 1;\r\n  auto P = primetable(N);\r\
-    \n  for (auto&& p: P) { FOR3(x, 1, N / p + 1) A[x] -= A[p * x]; }\r\n}\r\n#line\
-    \ 2 \"nt/gcd_convolution.hpp\"\n\ntemplate <typename T>\nvc<T> gcd_convolution(vc<T>\
-    \ A, vc<T>& B) {\n  assert(len(A) == len(B));\n  multiplier_zeta(A);\n  multiplier_zeta(B);\n\
-    \  FOR(i, len(A)) A[i] *= B[i];\n  multiplier_mobius(A);\n  return A;\n}\n#line\
-    \ 6 \"test/2_library_checker/convolution/gcd_convolution.test.cpp\"\n\nusing mint\
-    \ = modint998;\nvoid solve() {\n  LL(N);\n  VEC(mint, A, N);\n  VEC(mint, B, N);\n\
-    \  A.insert(A.begin(), 0);\n  B.insert(B.begin(), 0);\n  A = gcd_convolution(A,\
+    \ A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\
+    \n  for (auto&& p : P) {\r\n    FOR3(x, 1, N / p + 1) A[p * x] += A[x];\r\n  }\r\
+    \n}\r\n\r\ntemplate <typename T>\r\nvoid divisor_mobius(vc<T>& A) {\r\n  assert(A[0]\
+    \ == 0);\r\n  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&&\
+    \ p : P) {\r\n    FOR3_R(x, 1, N / p + 1) A[p * x] -= A[x];\r\n  }\r\n}\r\n\r\n\
+    template <typename T>\r\nvoid multiple_zeta(vc<T>& A) {\r\n  assert(A[0] == 0);\r\
+    \n  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&& p : P)\
+    \ {\r\n    FOR3_R(x, 1, N / p + 1) A[x] += A[p * x];\r\n  }\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid multiple_mobius(vc<T>& A) {\r\n  assert(A[0] == 0);\r\n\
+    \  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&& p : P) {\r\
+    \n    FOR3(x, 1, N / p + 1) A[x] -= A[p * x];\r\n  }\r\n}\r\n#line 2 \"nt/gcd_convolution.hpp\"\
+    \n\ntemplate <typename T>\nvc<T> gcd_convolution(vc<T> A, vc<T>& B) {\n  assert(len(A)\
+    \ == len(B));\n  multiple_zeta(A);\n  multiple_zeta(B);\n  FOR(i, len(A)) A[i]\
+    \ *= B[i];\n  multiple_mobius(A);\n  return A;\n}\n#line 6 \"test/2_library_checker/convolution/gcd_convolution.test.cpp\"\
+    \n\nusing mint = modint998;\nvoid solve() {\n  LL(N);\n  VEC(mint, A, N);\n  VEC(mint,\
+    \ B, N);\n  A.insert(A.begin(), 0);\n  B.insert(B.begin(), 0);\n  A = gcd_convolution(A,\
     \ B);\n  A.erase(A.begin());\n  print(A);\n}\n\nsigned main() {\n  solve();\n\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#include\
@@ -403,11 +403,11 @@ data:
   - other/bit.hpp
   - nt/gcd_convolution.hpp
   - nt/zeta.hpp
-  - nt/primetable.hpp
+  - nt/prime_table.hpp
   isVerificationFile: true
   path: test/2_library_checker/convolution/gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-15 15:50:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/gcd_convolution.test.cpp

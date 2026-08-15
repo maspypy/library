@@ -10,23 +10,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convex/lattice_point_sum_polynomial.hpp
-    title: convex/lattice_point_sum_polynomial.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/lattice_point_sum_polynomial_pq.hpp
-    title: convex/lattice_point_sum_polynomial_pq.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_sum_of_polynomial.test.cpp
     title: test/1_mytest/floor_sum_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-    title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
@@ -135,17 +123,13 @@ data:
   - alg/monoid/monoid_for_floor_sum.hpp
   isVerificationFile: false
   path: mod/floor_sum_of_linear_polynomial.hpp
-  requiredBy:
-  - convex/lattice_point_sum_polynomial_pq.hpp
-  - convex/lattice_point_sum_polynomial.hpp
+  requiredBy: []
   timestamp: '2026-02-27 23:10:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2362.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
+  - test/3_yukicoder/2362.test.cpp
 documentation_of: mod/floor_sum_of_linear_polynomial.hpp
 layout: document
 redirect_from:

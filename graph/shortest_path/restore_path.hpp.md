@@ -46,8 +46,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/st_numbering.test.cpp
-  - test/2_library_checker/graph/shortest_path.test.cpp
   - test/2_library_checker/graph/st_numbering.test.cpp
+  - test/2_library_checker/graph/shortest_path.test.cpp
   - test/2_library_checker/tree/tree_diameter.test.cpp
 documentation_of: graph/shortest_path/restore_path.hpp
 layout: document

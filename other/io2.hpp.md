@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1769.test.cpp
     title: test/3_yukicoder/1769.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ITP1_9_A.test.cpp
     title: test/4_aoj/ITP1_9_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io2.hpp\"\n#define INT(...)   \\\r\n  int __VA_ARGS__;\
@@ -103,10 +103,10 @@ data:
   path: other/io2.hpp
   requiredBy: []
   timestamp: '2026-03-14 08:28:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1769.test.cpp
   - test/4_aoj/ITP1_9_A.test.cpp
+  - test/3_yukicoder/1769.test.cpp
 documentation_of: other/io2.hpp
 layout: document
 redirect_from:

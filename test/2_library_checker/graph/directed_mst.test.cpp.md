@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -399,14 +399,14 @@ data:
     \ \"test/2_library_checker/graph/directed_mst.test.cpp\"\n\nvoid solve() {\n \
     \ INT(N, M, s);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n  auto [cost,\
     \ I] = directed_mst<decltype(G)>(G, s);\n  vc<int> par(N, -1);\n  par[s] = s;\n\
-    \  for (auto &idx: I) {\n    auto &e = G.edges[idx];\n    par[e.to] = e.frm;\n\
+    \  for (auto &idx : I) {\n    auto &e = G.edges[idx];\n    par[e.to] = e.frm;\n\
     \  }\n  print(cost);\n  print(par);\n}\n\nsigned main() {\n  solve();\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/directedmst\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/directed_mst.hpp\"\
     \n\nvoid solve() {\n  INT(N, M, s);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1,\
     \ 0);\n  auto [cost, I] = directed_mst<decltype(G)>(G, s);\n  vc<int> par(N, -1);\n\
-    \  par[s] = s;\n  for (auto &idx: I) {\n    auto &e = G.edges[idx];\n    par[e.to]\
+    \  par[s] = s;\n  for (auto &idx : I) {\n    auto &e = G.edges[idx];\n    par[e.to]\
     \ = e.frm;\n  }\n  print(cost);\n  print(par);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}"
   dependsOn:
@@ -419,7 +419,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/directed_mst.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-15 15:50:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/directed_mst.test.cpp

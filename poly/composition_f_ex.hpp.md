@@ -37,32 +37,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: poly/composition_f_1_minus_ex.hpp
-    title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/composition_f_ex_minus_1.hpp
-    title: poly/composition_f_ex_minus_1.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/composition_1_minus_ex.test.cpp
-    title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/composition_ex_minus_1.test.cpp
-    title: test/1_mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1875.test.cpp
-    title: test/3_yukicoder/1875.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"poly/convolution.hpp\"\
@@ -467,15 +452,10 @@ data:
   - poly/count_terms.hpp
   isVerificationFile: false
   path: poly/composition_f_ex.hpp
-  requiredBy:
-  - poly/composition_f_1_minus_ex.hpp
-  - poly/composition_f_ex_minus_1.hpp
+  requiredBy: []
   timestamp: '2026-08-13 03:03:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/3_yukicoder/1875.test.cpp
-  - test/1_mytest/composition_1_minus_ex.test.cpp
-  - test/1_mytest/composition_ex_minus_1.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: poly/composition_f_ex.hpp
 layout: document
 redirect_from:

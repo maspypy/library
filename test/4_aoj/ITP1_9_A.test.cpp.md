@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io2.hpp
     title: other/io2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A
@@ -146,18 +146,15 @@ data:
     \ }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t\
     \ = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\
     \nvoid no(bool t = 1) { yes(!t); }\r\n#line 1 \"string/split.hpp\"\nvc<string>\
-    \ split(string S, char sep = ',') {\r\n  vc<string> res = {\"\"};\r\n  for (auto&&\
-    \ s: S) {\r\n    if (s == sep)\r\n      res.eb(\"\");\r\n    else\r\n      res.back()\
-    \ += s;\r\n  }\r\n  return res;\r\n}\r\n\r\nvc<string> split(string S, string\
-    \ seps = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n\
-    \    if (count(all(seps), s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back()\
-    \ += s;\r\n  }\r\n  return res;\r\n}\r\n#line 6 \"test/4_aoj/ITP1_9_A.test.cpp\"\
-    \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
-    \ S)) {\n    for (auto&& token: split(S, ' ')) {\n      for (auto&& t: token)\n\
-    \        if (isupper(t)) t = tolower(t);\n      ANS += token == T;\n    }\n  }\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ split(string S, string seps = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for\
+    \ (auto&& s : S) {\r\n    if (count(all(seps), s))\r\n      res.eb(\"\");\r\n\
+    \    else\r\n      res.back() += s;\r\n  }\r\n  return res;\r\n}\r\n#line 6 \"\
+    test/4_aoj/ITP1_9_A.test.cpp\"\n\nvoid solve() {\n  STR(T);\n  string S;\n  ll\
+    \ ANS = 0;\n  while (getline(cin, S)) {\n    for (auto&& token: split(S, ' '))\
+    \ {\n      for (auto&& t: token)\n        if (isupper(t)) t = tolower(t);\n  \
+    \    ANS += token == T;\n    }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io2.hpp\"\n#include \"string/split.hpp\"\
     \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
@@ -173,8 +170,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP1_9_A.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-15 15:50:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP1_9_A.test.cpp
 layout: document

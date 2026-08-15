@@ -12,12 +12,6 @@ data:
     path: convex/lattice_point_count.hpp
     title: convex/lattice_point_count.hpp
   - icon: ':heavy_check_mark:'
-    path: convex/lattice_point_sum_polynomial.hpp
-    title: convex/lattice_point_sum_polynomial.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/lattice_point_sum_polynomial_pq.hpp
-    title: convex/lattice_point_sum_polynomial_pq.hpp
-  - icon: ':heavy_check_mark:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':warning:'
@@ -42,12 +36,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-    title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
@@ -169,24 +157,20 @@ data:
   - random/random_polygon.hpp
   - geo/furthest_pair.hpp
   - geo/convex_polygon.hpp
-  - convex/line_min_function.hpp
-  - convex/fenchel.hpp
   - convex/lower_integer_hull.hpp
-  - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/line_min_function.hpp
   - convex/lattice_point_count.hpp
-  - convex/lattice_point_sum_polynomial.hpp
+  - convex/fenchel.hpp
   timestamp: '2026-07-19 03:14:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
-  - test/2_library_checker/geometry/furthest_pair.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
+  - test/2_library_checker/geometry/furthest_pair.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:

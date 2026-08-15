@@ -10,17 +10,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convex/lattice_point_sum_polynomial_pq.hpp
-    title: convex/lattice_point_sum_polynomial_pq.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
     title: test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -132,12 +126,10 @@ data:
   - alg/monoid/monoid_for_floor_sum_pq.hpp
   isVerificationFile: false
   path: mod/floor_sum_of_linear_polynomial_pq.hpp
-  requiredBy:
-  - convex/lattice_point_sum_polynomial_pq.hpp
+  requiredBy: []
   timestamp: '2026-02-27 23:10:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
 documentation_of: mod/floor_sum_of_linear_polynomial_pq.hpp
 layout: document

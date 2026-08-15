@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []
@@ -129,13 +129,10 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"string/split.hpp\"\nvc<string> split(string S, char sep = ',') {\r\n\
-    \  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if (s == sep)\r\n\
-    \      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n  return\
-    \ res;\r\n}\r\n\r\nvc<string> split(string S, string seps = \" ,\") {\r\n  vc<string>\
-    \ res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if (count(all(seps), s))\r\n \
-    \     res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n  return res;\r\
-    \n}\r\n#line 3 \"linalg/ecottea_matrix_dp.hpp\"\n\n// https://maspypy.com/ecottea_dp_estimate_method\n\
+    #line 1 \"string/split.hpp\"\nvc<string> split(string S, string seps = \" ,\"\
+    ) {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s : S) {\r\n    if (count(all(seps),\
+    \ s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n\
+    \  return res;\r\n}\r\n#line 3 \"linalg/ecottea_matrix_dp.hpp\"\n\n// https://maspypy.com/ecottea_dp_estimate_method\n\
     // https://atcoder.jp/contests/agc022/tasks/agc022_e\n// https://atcoder.jp/contests/toyota2023spring-final/tasks/toyota2023spring_final_f\n\
     template <typename mint, int d>\nstruct ecottea_matrix_dp {\n  using MAT = array<array<mint,\
     \ d>, d>;\n  string alphabet;\n  map<char, MAT> matrix;\n  array<mint, d> X;\n\
@@ -239,7 +236,7 @@ data:
   isVerificationFile: false
   path: linalg/ecottea_matrix_dp.hpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-15 15:50:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: linalg/ecottea_matrix_dp.hpp

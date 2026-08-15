@@ -52,14 +52,8 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: poly/composition_f_log_1_minus_x.hpp
-    title: poly/composition_f_log_1_minus_x.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/composition_log_1_minus_x.test.cpp
-    title: test/1_mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
@@ -591,12 +585,10 @@ data:
   - poly/transposed_ntt.hpp
   isVerificationFile: false
   path: poly/partial_frac_decomposition_1.hpp
-  requiredBy:
-  - poly/composition_f_log_1_minus_x.hpp
+  requiredBy: []
   timestamp: '2026-08-13 03:03:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/partial_frac.test.cpp
 documentation_of: poly/partial_frac_decomposition_1.hpp
 layout: document

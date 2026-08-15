@@ -5,9 +5,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/det_A_plus_xB.hpp
-    title: linalg/det_A_plus_xB.hpp
   - icon: ':warning:'
     path: linalg/diagonalize_triangular_matrix.hpp
     title: linalg/diagonalize_triangular_matrix.hpp
@@ -28,14 +25,8 @@ data:
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1303.test.cpp
-    title: test/3_yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1774.test.cpp
     title: test/3_yukicoder/1774.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1907.test.cpp
-    title: test/3_yukicoder/1907.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -66,20 +57,17 @@ data:
   isVerificationFile: false
   path: linalg/matrix_inv.hpp
   requiredBy:
-  - linalg/frobenius.hpp
-  - linalg/matrix_lowrank_update.hpp
   - linalg/adjugate_matrix.hpp
-  - linalg/det_A_plus_xB.hpp
+  - linalg/matrix_lowrank_update.hpp
   - linalg/diagonalize_triangular_matrix.hpp
+  - linalg/frobenius.hpp
   timestamp: '2024-11-01 21:56:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1774.test.cpp
-  - test/3_yukicoder/1907.test.cpp
-  - test/3_yukicoder/1303.test.cpp
-  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  - test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
+  - test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+  - test/3_yukicoder/1774.test.cpp
 documentation_of: linalg/matrix_inv.hpp
 layout: document
 redirect_from:

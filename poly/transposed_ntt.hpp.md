@@ -6,20 +6,8 @@ data:
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/count/count_labeled_biconnected.hpp
-    title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_labeled_bridgeless.hpp
-    title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/composition.hpp
-    title: poly/composition.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/composition_f_log_1_minus_x.hpp
-    title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
@@ -30,33 +18,12 @@ data:
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/schroder.hpp
-    title: poly/schroder.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/chirp_z.test.cpp
     title: test/1_mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/composition_1_minus_ex.test.cpp
-    title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/composition_ex_minus_1.test.cpp
-    title: test/1_mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/composition_log_1_minus_x.test.cpp
-    title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/compositional_inverset.test.cpp
-    title: test/1_mytest/compositional_inverset.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_labeled_biconnected.test.cpp
-    title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_labeled_bridgeless.test.cpp
-    title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
@@ -75,12 +42,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
-    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
-    title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
@@ -111,12 +72,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/3619.test.cpp
-    title: test/3_yukicoder/3619.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/3621.test.cpp
-    title: test/3_yukicoder/3621.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -233,47 +188,32 @@ data:
   isVerificationFile: false
   path: poly/transposed_ntt.hpp
   requiredBy:
-  - poly/schroder.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/multipoint.hpp
-  - poly/composition.hpp
-  - poly/slice_rational_fps.hpp
-  - poly/partial_frac_decomposition_1.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - graph/count/count_labeled_biconnected.hpp
-  - graph/count/count_labeled_bridgeless.hpp
-  - graph/chromatic.hpp
   - linalg/blackbox/vandermonde.hpp
+  - graph/chromatic.hpp
+  - poly/partial_frac_decomposition_1.hpp
+  - poly/multipoint.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/slice_rational_fps.hpp
   timestamp: '2025-09-02 06:24:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2877.test.cpp
-  - test/3_yukicoder/3621.test.cpp
-  - test/3_yukicoder/2166.test.cpp
-  - test/3_yukicoder/3619.test.cpp
-  - test/3_yukicoder/2243.test.cpp
-  - test/3_yukicoder/1575.test.cpp
   - test/1_mytest/slice_rational_fps.test.cpp
-  - test/1_mytest/chirp_z.test.cpp
-  - test/1_mytest/composition_1_minus_ex.test.cpp
-  - test/1_mytest/count_labeled_bridgeless.test.cpp
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
-  - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/vandermonde.test.cpp
-  - test/1_mytest/composition_ex_minus_1.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/chirp_z.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
-  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/2_library_checker/polynomial/composition_of_fps.test.cpp
-  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/2243.test.cpp
+  - test/3_yukicoder/2877.test.cpp
 documentation_of: poly/transposed_ntt.hpp
 layout: document
 redirect_from:

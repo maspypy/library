@@ -11,13 +11,10 @@ data:
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
-    title: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"other/bit.hpp\"\n\n\
@@ -152,9 +149,8 @@ data:
   path: seq/limit_poly_exp_sum.hpp
   requiredBy: []
   timestamp: '2026-08-13 03:03:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: seq/limit_poly_exp_sum.hpp
 layout: document
 redirect_from:

@@ -73,9 +73,6 @@ data:
     path: test/3_yukicoder/1145.test.cpp
     title: test/3_yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1392.test.cpp
-    title: test/3_yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,12 +84,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2459.test.cpp
     title: test/3_yukicoder/2459.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
@@ -466,30 +457,27 @@ data:
   isVerificationFile: false
   path: poly/convolution_all.hpp
   requiredBy:
-  - poly/multipoint_evaluation_for_prefix_product.hpp
-  - graph/tree_walk_generating_function.hpp
-  - linalg/frobenius.hpp
   - linalg/adjugate_matrix.hpp
+  - linalg/frobenius.hpp
+  - graph/tree_walk_generating_function.hpp
+  - poly/multipoint_evaluation_for_prefix_product.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2026-08-13 03:03:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1392.test.cpp
-  - test/3_yukicoder/1145.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
+  - test/1_mytest/convolution_all_1.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
+  - test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/3_yukicoder/1857.test.cpp
-  - test/3_yukicoder/2747.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2243.test.cpp
   - test/3_yukicoder/2459.test.cpp
-  - test/3_yukicoder/1575.test.cpp
-  - test/1_mytest/poly_root_finding.test.cpp
-  - test/1_mytest/convolution_all_1.test.cpp
-  - test/1_mytest/multipoint_prefix.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  - test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/3_yukicoder/1145.test.cpp
+  - test/3_yukicoder/2747.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:
