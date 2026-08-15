@@ -1,4 +1,3 @@
-#pragma once
 
 #include "geo/convex_hull.hpp"
 

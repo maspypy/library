@@ -1,4 +1,3 @@
-#pragma once
 #include "ds/hashmap.hpp"
 
 template <typename T>

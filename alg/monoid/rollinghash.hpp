@@ -1,4 +1,3 @@
-#pragma once
 
 #include "random/base.hpp"
 #include "mod/modint61.hpp"

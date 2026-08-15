@@ -1,4 +1,3 @@
-#pragma once
 
 int digit_sum(u64 x) {
   const int K = 100'000;

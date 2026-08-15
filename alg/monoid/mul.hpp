@@ -1,4 +1,3 @@
-#pragma once
 
 template <class T>
 struct Monoid_Mul {

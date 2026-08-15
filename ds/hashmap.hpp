@@ -1,4 +1,3 @@
-#pragma once
 
 // u64 -> Val
 template <typename Val>

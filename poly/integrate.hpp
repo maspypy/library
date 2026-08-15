@@ -1,4 +1,3 @@
-#pragma once
 
 // 不定積分：integrate(f)
 // 定積分：integrate(f, L, R)

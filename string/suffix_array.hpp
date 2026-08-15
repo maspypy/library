@@ -1,4 +1,3 @@
-#pragma once
 
 #include "alg/monoid/min.hpp"
 #include "ds/sparse_table/sparse_table.hpp"

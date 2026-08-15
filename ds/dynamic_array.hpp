@@ -1,4 +1,3 @@
-#pragma once
 #include "ds/node_pool.hpp"
 
 template <typename T, bool PERSISTENT>

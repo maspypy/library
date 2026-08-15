@@ -1,4 +1,3 @@
-#pragma once
 
 // (det, invA) をかえす
 template <typename T>

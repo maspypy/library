@@ -1,4 +1,3 @@
-#pragma once
 #include "nt/prime_table.hpp"
 
 template <typename T>

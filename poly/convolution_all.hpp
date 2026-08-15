@@ -1,4 +1,3 @@
-#pragma once
 
 #include "poly/convolution.hpp"
 #include "poly/ntt_doubling.hpp"

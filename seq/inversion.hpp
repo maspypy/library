@@ -1,4 +1,3 @@
-#pragma once
 #include "ds/fenwicktree/fenwicktree_01.hpp"
 
 template <typename T>

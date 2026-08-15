@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename mint>
 vc<mint> differentiate(const vc<mint>& f) {

@@ -1,4 +1,3 @@
-#pragma once
 #include "alg/monoid/mul.hpp"
 #include "ds/sliding_window_aggregation.hpp"
 #include "poly/convolution.hpp"

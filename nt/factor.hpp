@@ -1,4 +1,3 @@
-#pragma once
 
 #include "random/base.hpp"
 #include "nt/primetest.hpp"

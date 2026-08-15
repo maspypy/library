@@ -1,4 +1,3 @@
-#pragma once
 #include "mod/modint.hpp"
 
 template <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>

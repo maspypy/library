@@ -1,4 +1,3 @@
-#pragma once
 
 #include "setfunc/subset_convolution.hpp"
 

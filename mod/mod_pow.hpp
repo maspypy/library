@@ -1,4 +1,3 @@
-#pragma once
 
 #include "mod/mongomery_modint.hpp"
 #include "mod/barrett.hpp"

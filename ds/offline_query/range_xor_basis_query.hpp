@@ -1,4 +1,3 @@
-#pragma once
 
 // 列もクエリも static
 template <typename INT_TYPE, int LOG>

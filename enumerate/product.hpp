@@ -1,4 +1,3 @@
-#pragma once
 
 // [0, A0) x [0, A1) x ...
 template <typename F>

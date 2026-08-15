@@ -1,4 +1,3 @@
-#pragma once
 #include "alg/monoid_pow.hpp"
 
 // https://yukicoder.me/submissions/883884

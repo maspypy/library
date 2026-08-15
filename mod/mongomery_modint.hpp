@@ -1,4 +1,3 @@
-#pragma once
 
 // odd mod.
 // x の代わりに rx を持つ

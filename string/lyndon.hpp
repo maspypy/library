@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename CHAR>
 struct Incremental_Lyndon_Factorization {

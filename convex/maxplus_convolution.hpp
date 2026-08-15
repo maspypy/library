@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename T>
 vc<T> maxplus_convolution_concave_concave(vc<T>& A, vc<T>& B) {

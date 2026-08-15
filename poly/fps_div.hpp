@@ -1,4 +1,3 @@
-#pragma once
 
 #include "poly/count_terms.hpp"
 #include "poly/fps_inv.hpp"

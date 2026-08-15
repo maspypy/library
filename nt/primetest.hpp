@@ -1,4 +1,3 @@
-#pragma once
 #include "other/bit.hpp"
 #include "mod/mongomery_modint.hpp"
 

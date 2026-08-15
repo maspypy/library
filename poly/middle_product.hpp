@@ -1,4 +1,3 @@
-#pragma once
 
 #include "poly/ntt.hpp"
 #include "mod/crt3.hpp"

@@ -1,4 +1,3 @@
-#pragma once
 
 #include "alg/monoid/assign.hpp"
 #include "alg/monoid/add_array.hpp"

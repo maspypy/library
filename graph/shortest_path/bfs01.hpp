@@ -1,4 +1,3 @@
-#pragma once
 #include "graph/base.hpp"
 
 template <typename T, typename GT>

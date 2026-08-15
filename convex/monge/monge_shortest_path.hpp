@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename T>
 struct Monge_Shortest_Path {

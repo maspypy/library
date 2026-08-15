@@ -1,4 +1,3 @@
-#pragma once
 #include "poly/online/online_convolution.hpp"
 
 // query(i)：a[i], b[i] を与えて (f/g)[i] を得る。

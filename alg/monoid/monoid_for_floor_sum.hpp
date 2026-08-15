@@ -1,4 +1,3 @@
-#pragma once
 // sum i^k1floor^k2: floor path で (x,y) から x 方向に進むときに x^k1y^k2 を足す
 template <typename T, int K1, int K2>
 struct Monoid_for_floor_sum {

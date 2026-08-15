@@ -1,4 +1,3 @@
-#pragma once
 #include "poly/online/online_division.hpp"
 
 template <typename mint>

@@ -1,4 +1,3 @@
-#pragma once
 
 #include "setfunc/bitwise_transform.hpp"
 

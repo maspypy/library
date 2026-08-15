@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename T = int>
 vc<T> prime_table(int LIM) {

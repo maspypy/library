@@ -1,4 +1,3 @@
-#pragma once
 
 /*
 O(2^{N/2})

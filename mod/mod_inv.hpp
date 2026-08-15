@@ -1,4 +1,3 @@
-#pragma once
 
 // long でも大丈夫
 // (val * x - 1) が mod の倍数になるようにする

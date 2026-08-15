@@ -1,4 +1,3 @@
-#pragma once
 #include "graph/base.hpp"
 
 // 負辺があっても負閉路がなければ正しく動作する。

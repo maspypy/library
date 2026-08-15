@@ -1,4 +1,3 @@
-#pragma once
 template<typename mint>
 int count_terms(const vc<mint>& f){
   int t = 0;

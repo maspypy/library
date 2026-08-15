@@ -32,6 +32,11 @@ struct BigInteger {
       s.erase(s.begin());
       assert(!s.empty());
     }
+    {
+      reverse(all(s));
+      while (len(s) >= 2 && s.back() == '0') s.pop_back();
+      reverse(all(s));
+    }
     if (s[0] == '0') {
       sgn = 0;
       return;

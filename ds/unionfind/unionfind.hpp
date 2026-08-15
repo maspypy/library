@@ -1,4 +1,3 @@
-#pragma once
 
 struct UnionFind {
   int n, n_comp;

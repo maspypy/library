@@ -1,4 +1,3 @@
-#pragma once
 
 #include "ds/segtree/segtree.hpp"
 #include "graph/tree.hpp"

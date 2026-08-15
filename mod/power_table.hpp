@@ -1,4 +1,3 @@
-#pragma once
 #include "nt/prime_table.hpp"
 
 // a^0, ..., a^N

@@ -1,4 +1,3 @@
-#pragma once
 #include "mod/modint_common.hpp"
 
 template <int mod>

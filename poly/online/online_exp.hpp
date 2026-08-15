@@ -1,4 +1,3 @@
-#pragma once
 #include "poly/online/online_convolution.hpp"
 
 // query(i)：f[i] を与えて (f^{-1})[i] を得る。

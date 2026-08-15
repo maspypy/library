@@ -1,4 +1,3 @@
-#pragma once
 
 #include "seq/p_recursive.hpp"
 

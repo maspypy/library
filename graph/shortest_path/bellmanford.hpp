@@ -1,4 +1,3 @@
-#pragma once
 #include "graph/base.hpp"
 
 // END=true: 負閉路があれば終了して空配列を返す.

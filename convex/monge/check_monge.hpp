@@ -1,4 +1,3 @@
-#pragma once
 
 // check Monge property on [0, N]:
 // f(a,d) + f(b,c) >= f(a,c) + f(b,d) for a < b < c < d

@@ -1,4 +1,3 @@
-#pragma once
 
 u64 RNG_64() {
   static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count()) * 10150724397891781847ULL;

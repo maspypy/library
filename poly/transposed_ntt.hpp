@@ -1,4 +1,3 @@
-#pragma once
 
 template <class mint>
 void transposed_ntt(vector<mint>& a, bool inverse) {

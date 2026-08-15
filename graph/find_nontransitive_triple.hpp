@@ -1,4 +1,3 @@
-#pragma once
 #include "graph/base.hpp"
 
 // ab, bc 辺はあるが ac 辺はないような 3 つ組 (a,b,c) を探す。

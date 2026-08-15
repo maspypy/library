@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename E>
 struct Monoid_SumMin {

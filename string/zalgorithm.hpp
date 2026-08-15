@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename STRING> // string, vector どちらでも
 vector<int> zalgorithm(const STRING& s) {

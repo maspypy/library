@@ -1,4 +1,3 @@
-#pragma once
 
 #include "poly/poly_gcd.hpp"
 

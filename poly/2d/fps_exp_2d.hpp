@@ -1,4 +1,3 @@
-#pragma once
 
 #include "poly/fps_exp.hpp"
 #include "poly/2d/fps_log_2d.hpp"

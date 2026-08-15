@@ -1,4 +1,3 @@
-#pragma once
 
 // 各行の最適列を求める.
 // better(i,j,k): 行 i において列 k が列 j より良いとき true.

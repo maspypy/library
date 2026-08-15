@@ -1,4 +1,3 @@
-#pragma once
 #include "graph/base.hpp"
 #include "enumerate/bits.hpp"
 

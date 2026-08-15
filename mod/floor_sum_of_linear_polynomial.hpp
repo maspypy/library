@@ -1,4 +1,3 @@
-#pragma once
 
 #include "mod/floor_monoid_product.hpp"
 #include "alg/monoid/monoid_for_floor_sum.hpp"

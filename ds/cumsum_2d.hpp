@@ -1,4 +1,3 @@
-#pragma once
 
 #include "alg/monoid/add.hpp"
 

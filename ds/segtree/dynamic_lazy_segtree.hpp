@@ -1,4 +1,3 @@
-#pragma once
 #include "ds/node_pool.hpp"
 
 // Q*4logN 程度必要? apply で 4logN ノード作っていると思う

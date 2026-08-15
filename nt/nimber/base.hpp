@@ -1,4 +1,3 @@
-#pragma once
 #include "nt/nimber/nimber_impl.hpp"
 
 template <typename UINT>

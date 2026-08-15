@@ -1,4 +1,3 @@
-#pragma once
 
 #include "poly/middle_product.hpp"
 #include "mod/all_inverse.hpp"

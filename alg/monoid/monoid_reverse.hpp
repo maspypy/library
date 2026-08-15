@@ -1,4 +1,3 @@
-#pragma once
 
 template <class Monoid>
 struct Monoid_Reverse {

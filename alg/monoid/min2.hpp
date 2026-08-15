@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename T, typename KEY>
 struct Monoid_Min2 {

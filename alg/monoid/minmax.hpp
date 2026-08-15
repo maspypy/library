@@ -1,4 +1,3 @@
-#pragma once
 
 template <class X>
 struct Monoid_MinMax {

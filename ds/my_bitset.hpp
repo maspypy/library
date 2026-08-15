@@ -1,4 +1,3 @@
-#pragma once
 #include "other/bit.hpp"
 
 // https://codeforces.com/contest/914/problem/F

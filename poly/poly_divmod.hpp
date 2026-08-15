@@ -1,4 +1,3 @@
-#pragma once
 
 #include "poly/fps_inv.hpp"
 template <typename mint>

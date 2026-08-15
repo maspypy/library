@@ -1,4 +1,3 @@
-#pragma once
 
 #include "mod/power_table.hpp"
 #include "poly/convolution.hpp"

@@ -1,4 +1,3 @@
-#pragma once
 
 // chat gpt
 template <typename U, typename Arg1, typename Arg2>

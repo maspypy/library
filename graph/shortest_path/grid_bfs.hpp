@@ -1,4 +1,3 @@
-#pragma once
 
 // walls = "#" や、walls = {-1} など。
 template <typename STRING>

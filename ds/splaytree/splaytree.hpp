@@ -1,4 +1,3 @@
-#pragma once
 #include "ds/node_pool.hpp"
 
 // Node 型を別に定義して使う

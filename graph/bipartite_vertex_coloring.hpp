@@ -1,4 +1,3 @@
-#pragma once
 
 #include "graph/base.hpp"
 #include "ds/unionfind/unionfind.hpp"

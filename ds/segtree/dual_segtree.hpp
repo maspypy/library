@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename Monoid>
 struct Dual_SegTree {

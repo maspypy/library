@@ -1,4 +1,3 @@
-#pragma once
 
 #include "poly/2d/convolution2d.hpp"
 #include "poly/2d/fps_inv_2d.hpp"

@@ -1,4 +1,3 @@
-#pragma once
 
 // sum_{x in [L,R)} floor(ax + b, mod)
 // I は範囲内で ax+b がオーバーフローしない程度

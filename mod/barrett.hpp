@@ -1,4 +1,3 @@
-#pragma once
 
 // https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp
 struct Barrett {

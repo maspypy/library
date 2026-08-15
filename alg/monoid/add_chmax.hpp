@@ -1,4 +1,3 @@
-#pragma once
 
 // max(x+a,b) と表せる関数の合成
 template <typename E>

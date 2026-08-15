@@ -1,4 +1,3 @@
-#pragma once
 #include "linalg/matrix_mul.hpp"
 #include "poly/lagrange_interpolate_iota.hpp"
 

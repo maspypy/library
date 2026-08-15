@@ -1,4 +1,3 @@
-#pragma once
 
 // op(F, G) = comp(G,F), F のあとで G
 template <typename K>

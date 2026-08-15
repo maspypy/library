@@ -1,4 +1,3 @@
-#pragma once
 
 #include "convex/alien.hpp"
 #include "convex/monge/monge_shortest_path.hpp"

@@ -1,4 +1,3 @@
-#pragma once
 
 #include "mod/modint.hpp"
 #include "mod/mod_inv.hpp"

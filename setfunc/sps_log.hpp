@@ -1,4 +1,3 @@
-#pragma once
 #include "mod/modint.hpp"
 #include "setfunc/sps_composition.hpp"
 

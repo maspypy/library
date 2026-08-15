@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename X, int none_val>
 struct Monoid_Assign {

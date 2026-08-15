@@ -1,4 +1,3 @@
-#pragma once
 
 template <class Monoid>
 struct SegTree_2D_Dense {

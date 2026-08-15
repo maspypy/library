@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename X>
 struct Monoid_Or {

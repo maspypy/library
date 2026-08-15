@@ -1,4 +1,3 @@
-#pragma once
 
 #include "poly/poly_taylor_shift.hpp"
 

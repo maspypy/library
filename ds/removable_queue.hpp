@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename QUE_TYPE>
 struct Removable_Queue {

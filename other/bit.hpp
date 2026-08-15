@@ -1,4 +1,3 @@
-#pragma once
 
 int popcnt(int x) { return __builtin_popcount(x); }
 int popcnt(u32 x) { return __builtin_popcount(x); }

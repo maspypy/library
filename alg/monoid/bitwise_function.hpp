@@ -1,4 +1,3 @@
-#pragma once
 
 // composition of bitwise operation
 // 0 -> a, -1 -> b

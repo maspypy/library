@@ -1,4 +1,3 @@
-#pragma once
 #include "other/bit.hpp"
 #include "graph/strongly_connected_component.hpp"
 #include "graph/reverse_graph.hpp"

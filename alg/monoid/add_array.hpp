@@ -1,4 +1,3 @@
-#pragma once
 
 template <typename E, int K>
 struct Monoid_Add_Array {

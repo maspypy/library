@@ -1,4 +1,3 @@
-#pragma once
 
 #include "seq/find_linear_rec.hpp"
 #include "poly/coef_of_rational_fps.hpp"

@@ -1,4 +1,3 @@
-#pragma once
 #include "poly/convolution.hpp"
 #include "poly/integrate.hpp"
 #include "poly/differentiate.hpp"

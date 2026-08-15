@@ -1,4 +1,3 @@
-#pragma once
 #include "random/base.hpp"
 
 // A[i1][j1] + A[i2][j2] <= A[i1][j2] + A[i2][j1] for i1 < i2, j1 < j2.

@@ -1,4 +1,3 @@
-#pragma once
 
 #include "ds/hashmap.hpp"
 #include "seq/cartesian_tree.hpp"

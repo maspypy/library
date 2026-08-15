@@ -1,4 +1,3 @@
-#pragma once
 
 // MINIMIZE に応じて、base_score + add * cnt を最小化 / 最大化する
 // solve(add) -> {val, cnt}
