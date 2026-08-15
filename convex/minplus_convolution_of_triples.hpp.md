@@ -15,7 +15,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/436/problem/E
-  bundledCode: "#line 2 \"convex/minplus_convolution.hpp\"\n\ntemplate <typename T>\n\
+  bundledCode: "#line 1 \"convex/minplus_convolution.hpp\"\n\ntemplate <typename T>\n\
     vc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A),\
     \ m = len(B);\n  if (n == 0 || m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
     \  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m > 0 && B[m - 1] == infty<T>)\
@@ -148,7 +148,7 @@ data:
   isVerificationFile: false
   path: convex/minplus_convolution_of_triples.hpp
   requiredBy: []
-  timestamp: '2026-07-21 19:37:36+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/minplus_conv_triple.test.cpp

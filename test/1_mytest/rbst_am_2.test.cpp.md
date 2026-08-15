@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -112,12 +112,12 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\
+    }\n#endif\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \  static constexpr bool commute = true;\n};\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Sum_Add {\r\n  using Monoid_X\
     \ = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
@@ -269,7 +269,7 @@ data:
     \    }\n    y = Monoid_X::op(x, root->x);\n    if (!check(y)) {\n      root->l\
     \ = nullptr;\n      update(root);\n      return {left, root};\n    }\n    x =\
     \ y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n    root->r =\
-    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 2 \"random/base.hpp\"\
+    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 1 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -330,7 +330,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_am_2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_am_2.test.cpp

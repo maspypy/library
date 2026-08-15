@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
@@ -21,53 +21,52 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_cycle_common_vertex.test.cpp
     title: test/1_mytest/all_cycle_common_vertex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
-    \ Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\
-    \u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32\
-    \ n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap = k / 2,\
-    \ mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\
-    \n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\
-    \u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\n   \
-    \ used.assign(len(used), 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int size()\
-    \ { return len(used) / 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int\
-    \ i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask)\
-    \ {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if\
-    \ (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i]\
-    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\
-    \n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n  \
-    \  return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
-    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
-    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
-    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
-    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
-    \ dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
-    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
-    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate\
-    \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
-    \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
-    \ bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type\
-    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n\
-    \  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
-    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
-    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
-    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\
-    \n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
+    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
+    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
+    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
+    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
+    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
+    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
+    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
+    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
+    \ key[i] != k; i = (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i])\
+    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
+    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
+    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
+    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
+    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
+    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -129,7 +128,7 @@ data:
     \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"other/bit.hpp\"\
+    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 1 \"other/bit.hpp\"\
     \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
     \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
@@ -156,53 +155,49 @@ data:
     \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
     \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
     \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"ds/fastset.hpp\"\n\r\n// 64-ary\
-    \ tree\r\n// space: (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32\
-    \ B = 64;\r\n  int n = 0, log = 0;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n\
-    \  FastSet(int n) { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  void\
-    \ fillone() {\r\n    int cur = n;\r\n    for (auto& vs : seg) {\r\n      int p\
-    \ = cur / B, q = cur % B;\r\n      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p]\
-    \ = full_mask(q);\r\n      cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n \
-    \ void build(int m) {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
-    \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
-    \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
-    \ B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h\
-    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n      }\r\n    }\r\n  }\r\
-    \n\r\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\r\
-    \n  void insert(int i) {\r\n    assert(0 <= i && i < n);\r\n    for (int h = 0;\
-    \ h < log; h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\r\n   \
-    \ }\r\n  }\r\n  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n  \
-    \  assert(0 <= i && i < n);\r\n    u64 x = 0;\r\n    for (int h = 0; h < log;\
-    \ h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B]\
-    \ |= x << (i % B);\r\n      x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\
-    \n  }\r\n  void remove(int i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int\
-    \ next(int i) {\r\n    assert(i <= n);\r\n    chmax(i, 0);\r\n    for (int h =\
-    \ 0; h < log; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      u64\
-    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
-    \n        continue;\r\n      }\r\n      i += lowbit(d);\r\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\
-    \n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // max\
-    \ [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i >= -1);\r\n    if (i >=\
-    \ n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\n      if (i == -1) break;\r\
-    \n      u64 d = seg[h][i / B] << (63 - i % B);\r\n      if (!d) {\r\n        i\
-    \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
-    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
-    \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
-    \ -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return next(l) < r; }\r\n\r\n \
-    \ // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
-    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
-    \  void reset() {\r\n    enumerate(0, n, [&](int i) -> void { erase(i); });\r\n\
-    \  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
-    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
-    };\n#line 3 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u306E\
-    \ toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\nvc<int> toposort(GT& G)\
-    \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  const int\
-    \ N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
-    \  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while (1) {\n\
-    \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
-    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2 \"ds/fastset.hpp\"\n\n// 64-ary\
+    \ tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n\
+    \  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) {\
+    \ build(n); }\n\n  int size() { return n; }\n\n  void fillone() {\n    int cur\
+    \ = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n    \
+    \  FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur = (cur\
+    \ + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int n, F f)\
+    \ {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n    n =\
+    \ m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m = (m +\
+    \ B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template <typename\
+    \ F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i / B]\
+    \ |= u64(f(i)) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
+    \    }\n  }\n\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B)\
+    \ & 1; }\n  void insert(int i) {\n    assert(0 <= i && i < n);\n    for (int h\
+    \ = 0; h < log; h++) {\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\n  \
+    \  }\n  }\n  void add(int i) { insert(i); }\n  void erase(int i) {\n    assert(0\
+    \ <= i && i < n);\n    u64 x = 0;\n    for (int h = 0; h < log; h++) {\n     \
+    \ seg[h][i / B] &= ~(u64(1) << (i % B));\n      seg[h][i / B] |= x << (i % B);\n\
+    \      x = bool(seg[h][i / B]);\n      i /= B;\n    }\n  }\n  void remove(int\
+    \ i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <=\
+    \ n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B\
+    \ == seg[h].size()) break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if\
+    \ (!d) {\n        i = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n\
+    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i\
+    \ / B]);\n      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x],\
+    \ or -1\n  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n\
+    \    for (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d =\
+    \ seg[h][i / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n  \
+    \      continue;\n      }\n      i -= __builtin_clzll(d);\n      for (int g =\
+    \ h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n\
+    \      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int\
+    \ r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int\
+    \ l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
+    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
+    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 3 \"\
+    graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u306E toposort \u3092\
+    \u8FD4\u3059\ntemplate <typename GT>\nvc<int> toposort(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n\
+    \  FastSet que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n\
+    \  while (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v),\
+    \ V.eb(v);\n    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n\n// inv_perm=true: inv\
     \ perm \u304C\u8F9E\u66F8\u6700\u5C0F\uFF08\u5404\u30A4\u30F3\u30C7\u30C3\u30AF\
     \u30B9\u306E\u73FE\u308C\u308B\u5834\u6240\u306E\u5217\u304C\u6700\u5C0F\uFF09\
@@ -245,8 +240,8 @@ data:
   path: graph/toposort.hpp
   requiredBy:
   - graph/all_cycle_common_vertex.hpp
-  timestamp: '2026-08-08 15:43:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/4_aoj/2251_1.test.cpp

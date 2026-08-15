@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -256,7 +256,7 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/data_structure/range_affine_range_sum.test.cpp\"\
-    \n\n#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    \n\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
     \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
@@ -283,7 +283,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
     \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -322,7 +322,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -362,33 +362,59 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/affine.hpp\"\
-    \n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename\
-    \ K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
-    \  using X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept\
-    \ {\n    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n\
-    \  static constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1)\
-    \ / a;\n    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f,\
-    \ K x) noexcept {\n    return f.first * x + f.second;\n  }\n  static constexpr\
-    \ F unit() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
-    };\n#line 3 \"alg/acted_monoid/sum_affine.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct ActedMonoid_Sum_Affine {\r\n  using Monoid_X = Monoid_Add<E>;\r\n  using\
-    \ Monoid_A = Monoid_Affine<E>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    return x * a.fi + E(size) * a.se;\r\
-    \n  }\r\n};\r\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
-    struct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
-    \  using MA = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n \
-    \ using A = typename MA::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A>\
-    \ laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int n) { build(n);\
-    \ }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n    build(n, f);\n\
-    \  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
+    #line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add {\n\
+    \  using X = E;\n  using value_type = X;\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const X\
+    \ &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n) noexcept\
+    \ { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n  static\
+    \ constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/affine.hpp\"\n\n//\
+    \ op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\n\
+    struct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using\
+    \ X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
+    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
+    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
+    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
+    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
+    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 3 \"alg/acted_monoid/sum_affine.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Sum_Affine {\r\n  using Monoid_X\
+    \ = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Affine<E>;\r\n  using X = typename\
+    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
+    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return x *\
+    \ a.fi + E(size) * a.se;\r\n  }\r\n};\r\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
+    \ ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX =\
+    \ typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
+    \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
+    \  vc<X> dat;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int\
+    \ n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
     \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
@@ -478,7 +504,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp

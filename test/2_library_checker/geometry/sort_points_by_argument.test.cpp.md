@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -240,8 +240,8 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"geo/angle_sort.hpp\"\n\r\n#line\
-    \ 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point()\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"geo/angle_sort.hpp\"\n\n#line 1\
+    \ \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point()\
     \ : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A x, B y) :\
     \ x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B> p)\
     \ : x(p.fi), y(p.se) {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x),\
@@ -295,22 +295,21 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/angle_sort.hpp\"\n\r\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\r\n\
-    template <typename T> int lower_or_upper(const Point<T> &p) {\r\n  if (p.y !=\
-    \ 0)\r\n    return (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0)\r\n    return -1;\r\n\
-    \  if (p.x < 0)\r\n    return 1;\r\n  return 0;\r\n}\r\n\r\n// L<R:-1, L==R:0,\
-    \ L>R:1, (-pi,pi]\r\ntemplate <typename T> int angle_comp_3(const Point<T> &L,\
-    \ const Point<T> &R) {\r\n  int a = lower_or_upper(L), b = lower_or_upper(R);\r\
-    \n  if (a != b)\r\n    return (a < b ? -1 : +1);\r\n  T det = L.det(R);\r\n  if\
-    \ (det > 0)\r\n    return -1;\r\n  if (det < 0)\r\n    return 1;\r\n  return 0;\r\
-    \n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<Point<T>> &P)\
-    \ {\r\n  vc<int> I(len(P));\r\n  FOR(i, len(P)) I[i] = i;\r\n  sort(all(I), [&](auto\
-    \ &L, auto &R) -> bool {\r\n    return angle_comp_3(P[L], P[R]) == -1;\r\n  });\r\
-    \n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
-    \ argsort, (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<pair<T,\
-    \ T>> &P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 5 \"test/2_library_checker/geometry/sort_points_by_argument.test.cpp\"\
+    \ 3 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\ntemplate\
+    \ <typename T> int lower_or_upper(const Point<T> &p) {\n  if (p.y != 0)\n    return\
+    \ (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n    return -1;\n  if (p.x < 0)\n    return\
+    \ 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0, L>R:1, (-pi,pi]\ntemplate <typename\
+    \ T> int angle_comp_3(const Point<T> &L, const Point<T> &R) {\n  int a = lower_or_upper(L),\
+    \ b = lower_or_upper(R);\n  if (a != b)\n    return (a < b ? -1 : +1);\n  T det\
+    \ = L.det(R);\n  if (det > 0)\n    return -1;\n  if (det < 0)\n    return 1;\n\
+    \  return 0;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
+    \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<Point<T>> &P)\
+    \ {\n  vc<int> I(len(P));\n  FOR(i, len(P)) I[i] = i;\n  sort(all(I), [&](auto\
+    \ &L, auto &R) -> bool {\n    return angle_comp_3(P[L], P[R]) == -1;\n  });\n\
+    \  return I;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
+    \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<pair<T, T>> &P)\
+    \ {\n  vc<Point<T>> tmp(len(P));\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n\
+    \  return angle_sort<T>(tmp);\n}\n#line 5 \"test/2_library_checker/geometry/sort_points_by_argument.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> P(N);\r\n  FOR(i, N) read(P[i].x),\
     \ read(P[i].y);\r\n  auto I = angle_sort<ll>(P);\r\n  P = rearrange(P, I);\r\n\
     \  FOR(i, N) print(P[i].x, P[i].y);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
@@ -329,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/sort_points_by_argument.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -12,7 +12,7 @@ data:
   attributes:
     links:
     - https://cp-algorithms.com/geometry/delaunay.html
-  bundledCode: "#line 1 \"geo/delaunay_triangulation.hpp\"\n\n#line 2 \"geo/base.hpp\"\
+  bundledCode: "#line 1 \"geo/delaunay_triangulation.hpp\"\n\n#line 1 \"geo/base.hpp\"\
     \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
     \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
     \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
@@ -246,7 +246,7 @@ data:
   isVerificationFile: false
   path: geo/delaunay_triangulation.hpp
   requiredBy: []
-  timestamp: '2026-07-19 03:14:38+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/delaunay_triangulation.hpp

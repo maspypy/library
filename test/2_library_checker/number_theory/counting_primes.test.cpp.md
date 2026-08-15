@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_sum.hpp
     title: nt/prime_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -240,7 +240,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"nt/prime_table.hpp\"\n\ntemplate\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate\
     \ <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const int S =\
     \ 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\
     \n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1,\
@@ -251,32 +251,30 @@ data:
     \      array<bool, S> block{};\n      for (auto& [p, idx] : cp)\n        for (int\
     \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
     \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"nt/prime_sum.hpp\"\
-    \n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix\
-    \ sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\u3002\r\nn = floor(N/d) \u3068\u306A\
-    \u308B n \u306B\u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\
-    \u3002\r\n\u7279\u306B\u3001\u7D20\u6570\u306E k \u4E57\u548C\u3084\u3001mod m\
-    \ \u3054\u3068\u3067\u306E\u7D20\u6570\u306E k \u4E57\u548C\u304C\u8A08\u7B97\u3067\
-    \u304D\u308B\u3002\r\nComplexity: O(N^{3/4}/logN) time, O(N^{1/2}) space.\r\n\
-    */\r\ntemplate <typename T>\r\nstruct Prime_Sum {\r\n  ll N;\r\n  ll sqN;\r\n\
-    \  vc<T> sum_lo, sum_hi;\r\n  bool calculated;\r\n\r\n  Prime_Sum(ll N) : N(N),\
-    \ sqN(sqrtl(N)), calculated(0) {}\r\n\r\n  // [1, x] \u305F\u3060\u3057\u3001\
-    x = floor(N, i) \u306E\u5F62\r\n  T operator[](ll x) {\r\n    assert(calculated);\r\
-    \n    return (x <= sqN ? sum_lo[x] : sum_hi[double(N) / x]);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void calc(const F f) {\r\n    auto primes = prime_table<int>(sqN);\r\
-    \n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN + 1);\r\n    FOR(i, 1,\
-    \ sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR(i, 1, sqN + 1) sum_hi[i] = f(double(N)\
-    \ / i) - 1;\r\n    for (int p : primes) {\r\n      ll pp = ll(p) * p;\r\n    \
-    \  if (pp > N) break;\r\n      int R = min(sqN, N / pp);\r\n      int M = sqN\
-    \ / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp = sum_lo[p] - sum_lo[p - 1];\r\
-    \n      for (int i = 1; i <= M; ++i) sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n\
-    \      for (int i = M + 1; i <= R; ++i)\r\n        sum_hi[i] -= fp * (sum_lo[N\
-    \ / (double(i) * p)] - x);\r\n      for (int n = sqN; n >= pp; --n) sum_lo[n]\
-    \ -= fp * (sum_lo[n / p] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\n\r\n\
-    \  void calc_count() {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n\
-    \  void calc_sum() {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\
-    \n      if (!(x & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a)\
-    \ * T(b);\r\n    });\r\n  }\r\n};\n#line 5 \"test/2_library_checker/number_theory/counting_primes.test.cpp\"\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/prime_sum.hpp\"\
+    \n\n/*\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix sum\
+    \ \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\u3002\nn = floor(N/d) \u3068\u306A\u308B\
+    \ n \u306B\u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\
+    \n\u7279\u306B\u3001\u7D20\u6570\u306E k \u4E57\u548C\u3084\u3001mod m \u3054\u3068\
+    \u3067\u306E\u7D20\u6570\u306E k \u4E57\u548C\u304C\u8A08\u7B97\u3067\u304D\u308B\
+    \u3002\nComplexity: O(N^{3/4}/logN) time, O(N^{1/2}) space.\n*/\ntemplate <typename\
+    \ T>\nstruct Prime_Sum {\n  ll N;\n  ll sqN;\n  vc<T> sum_lo, sum_hi;\n  bool\
+    \ calculated;\n\n  Prime_Sum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}\n\n\
+    \  // [1, x] \u305F\u3060\u3057\u3001x = floor(N, i) \u306E\u5F62\n  T operator[](ll\
+    \ x) {\n    assert(calculated);\n    return (x <= sqN ? sum_lo[x] : sum_hi[double(N)\
+    \ / x]);\n  }\n\n  template <typename F>\n  void calc(const F f) {\n    auto primes\
+    \ = prime_table<int>(sqN);\n    sum_lo.resize(sqN + 1);\n    sum_hi.resize(sqN\
+    \ + 1);\n    FOR(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\n    FOR(i, 1, sqN + 1)\
+    \ sum_hi[i] = f(double(N) / i) - 1;\n    for (int p : primes) {\n      ll pp =\
+    \ ll(p) * p;\n      if (pp > N) break;\n      int R = min(sqN, N / pp);\n    \
+    \  int M = sqN / p;\n      T x = sum_lo[p - 1];\n      T fp = sum_lo[p] - sum_lo[p\
+    \ - 1];\n      for (int i = 1; i <= M; ++i) sum_hi[i] -= fp * (sum_hi[i * p] -\
+    \ x);\n      for (int i = M + 1; i <= R; ++i)\n        sum_hi[i] -= fp * (sum_lo[N\
+    \ / (double(i) * p)] - x);\n      for (int n = sqN; n >= pp; --n) sum_lo[n] -=\
+    \ fp * (sum_lo[n / p] - x);\n    }\n    calculated = 1;\n  }\n\n  void calc_count()\
+    \ {\n    calc([](ll x) -> T { return x; });\n  }\n\n  void calc_sum() {\n    calc([](ll\
+    \ x) -> T {\n      ll a = x, b = x + 1;\n      if (!(x & 1)) a /= 2;\n      if\
+    \ (x & 1) b /= 2;\n      return T(a) * T(b);\n    });\n  }\n};\n#line 5 \"test/2_library_checker/number_theory/counting_primes.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N);\r\n  Prime_Sum<ll> X(N);\r\n  X.calc_count();\r\
     \n  print(X[N]);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
     \n}\r\n"
@@ -293,7 +291,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/counting_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-08-15 16:31:09+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/counting_primes.test.cpp

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_super.hpp
     title: convex/slope_trick/slope_super.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -115,7 +115,7 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 3 \"test/1_mytest/slope_super.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
+    }\n#endif\n#line 3 \"test/1_mytest/slope_super.test.cpp\"\n\n#line 1 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -140,7 +140,7 @@ data:
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
     \ \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename\
     \ Node>\nstruct SplayTree {\n  Node_Pool<Node> pool;\n  using np = Node *;\n \
     \ using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
@@ -275,75 +275,74 @@ data:
     \    X lprod = Mono::op(prod, root->prod);\n      root->r = tmp;\n      root->update();\n\
     \      if (check(lprod)) {\n        prod = lprod;\n        last_ok = root;\n \
     \       root = root->r;\n      } else {\n        root = root->l;\n      }\n  \
-    \  }\n    splay(last, true);\n    return last_ok;\n  }\n};\n#line 2 \"alg/monoid/add_pair.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type\
-    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
-    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
-    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
-    \n#line 3 \"convex/slope_trick/slope_super.hpp\"\n\nnamespace SLOPE_TRICK_SUPER\
-    \ {\n/*\n\u50BE\u304D\u3068\u5EA7\u6A19\u304C\u5168\u90E8 T.\n(x0,y0,a0) / \u50BE\
-    \u304D\u5909\u5316\u3092 splay tree \u3067\u6301\u3064.\n\u672B\u5C3E\u306B\u306F\
-    \u5FC5\u305A infty \u304C\u5165\u3063\u3066\u3044\u308B\u3088\u3046\u306B\u3059\
-    \u308B.\n(0,10),(1,6),(3,4),(6,7)\n->\n(x0,y0,a0)=(0,10,-4)\ndat = ([1,3],[3,2])\n\
-    \nf(x) \u306E\u8A08\u7B97, (min,argmin) \u306E\u8A08\u7B97\n\u52A0\u6CD5, \u7573\
-    \u307F\u8FBC\u307F\n\n\u52A0\u6CD5: easy\nf(x) \u306E\u8A08\u7B97: sum(a), sum(xa)\
-    \ \u304C\u8981\u308B\n\u7573\u307F\u8FBC\u307F: x->x+c \u304C\u8981\u308B\n*/\n\
-    \ntemplate <typename T>\nstruct Node {\n  using value_type = pair<T, T>;\n  using\
-    \ operator_type = T;\n  using np = Node *;\n  using Monoid_X = Monoid_Add_Pair<T>;\n\
-    \n  np p, l, r;\n  bool rev;\n  u32 size;\n  pair<T, T> x;     // (x,a)\n  pair<T,\
-    \ T> prod;  // (a sum, xa sum)\n  T add_x;\n\n  static void new_node(np n, const\
-    \ pair<T, T> &x) {\n    n->p = n->l = n->r = nullptr, n->rev = 0, n->size = 1;\n\
-    \    n->x = x, n->prod = {x.se, x.fi * x.se}, n->add_x = 0;\n  }\n\n  void update()\
-    \ {\n    size = 1;\n    if (l) {\n      size += l->size;\n    }\n    if (r) {\n\
-    \      size += r->size;\n    }\n    prod = {x.se, x.fi * x.se};\n    if (l) prod\
-    \ = Monoid_X::op(prod, l->prod);\n    if (r) prod = Monoid_X::op(prod, r->prod);\n\
-    \  }\n\n  void push() {\n    assert(!rev);\n    if (add_x == 0) return;\n    if\
-    \ (l)\n      l->x.fi += add_x, l->prod.se += l->prod.fi * add_x, l->add_x += add_x;\n\
-    \    if (r)\n      r->x.fi += add_x, r->prod.se += r->prod.fi * add_x, r->add_x\
-    \ += add_x;\n    add_x = 0;\n  }\n\n  void apply(T a) { x.fi += a, prod.se +=\
-    \ a * prod.fi, add_x += a; }\n\n  // update, push \u4EE5\u5916\u3067\u547C\u3070\
-    \u308C\u308B\u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\u3068\
-    \u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\u304C\
-    \u3063\u3066\u305D\u306E\u6642\u70B9\u3067 update, push \u6E08\u3067\u3042\u308B\
-    \u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  pair<T, T> get()\
-    \ { return x; }\n  void set(const pair<T, T> &xx) {\n    x = xx;\n    update();\n\
-    \  }\n};\n\n// \u95A2\u6570\u306F\u7834\u58CA\u7684\u306A\u5909\u66F4\u306B\u3055\
-    \u308C\u308B\ntemplate <typename T>\nstruct Slope_Trick_Super {\n  SplayTree<Node<T>>\
-    \ ST;\n  using np = Node<T> *;\n\n  struct FUNC {\n    np root;  // \u5B9A\u7FA9\
-    \u57DF\u304C\u3053\u308F\u308C\u3066\u3044\u305F\u3089 root == empty\n    T x0,\
-    \ x1, a0, y0;\n    int size() { return (root ? root->size : 0); }\n  };\n\n  //\
-    \ (L,R,a,b) : [L,R] \u3067 y=ax+b\n  FUNC segment_func(T L, T R, T a, T b) {\n\
-    \    return {nullptr, L, R, a, a * L + b};\n  }\n  FUNC from_points(vc<pair<T,\
-    \ T>> &point) {\n    return from_points(len(point),\n                       [&](int\
-    \ i) -> pair<T, T> { return point[i]; });\n  }\n  template <typename F>\n  FUNC\
-    \ from_points(int N, F f) {\n    vc<T> X(N), Y(N);\n    FOR(i, N) tie(X[i], Y[i])\
-    \ = f(i);\n    if (N == 1) return segment_func(X[0], X[0], 0, Y[0]);\n    T a0\
-    \ = (Y[1] - Y[0]) / (X[1] - X[0]);\n    T x0 = X[0], x1 = X.back();\n    vc<pair<T,\
-    \ T>> dat;\n    T a = a0;\n    FOR(i, 1, N - 1) {\n      T a1 = (Y[i + 1] - Y[i])\
-    \ / (X[i + 1] - X[i]);\n      dat.eb(X[i], a1 - a), a = a1;\n    }\n    return\
-    \ FUNC{ST.new_node(dat), x0, x1, a0, Y[0]};\n  }\n\n  pair<T, T> domain(FUNC &f)\
-    \ { return {f.x0, f.x1}; }\n  T eval(FUNC &f, T x) {\n    auto [x0, x1] = domain(f);\n\
-    \    if (!(x0 <= x && x <= x1)) return infty<T>;\n    auto [l, r] = ST.split_max_right(\n\
-    \        f.root, [&](auto dat) -> bool { return dat.fi <= x; });\n    auto [a_sum,\
-    \ xa_sum] = ST.prod(l);\n    f.root = ST.merge(l, r);\n    return f.y0 + f.a0\
-    \ * (x - x0) + a_sum * x - xa_sum;\n  }\n  FUNC restrict_domain(FUNC &f, T L,\
-    \ T R) {\n    auto [x0, x1] = domain(f);\n    chmax(L, x0), chmin(R, x1);\n  \
-    \  if (L > R) {\n      ST.free_subtree(f.root), f.root = nullptr;\n      f.root\
-    \ = nullptr;\n      f.x0 = infty<T>, f.x1 = -infty<T>;\n      return f;\n    }\n\
-    \    // \u307E\u305A\u306F\u53F3\u5074\u3092\u3061\u3062\u3081\u308B. R \u4EE5\
-    \u4E0A\u306E\u50BE\u304D\u5909\u5316\u3092\u6D88\u3057\u3066\u3057\u307E\u3048\
-    \u3070\u3088\u3044\n    auto [l, r] = ST.split_max_right(\n        f.root, [&](auto\
-    \ dat) -> bool { return dat.fi < R; });\n    ST.free_subtree(r);\n    // \u5DE6\
-    \u5074\u3092\u3061\u3062\u3081\u308B.\n    tie(l, r) =\n        ST.split_max_right(l,\
-    \ [&](auto dat) -> bool { return dat.fi <= L; });\n    auto [a_sum, xa_sum] =\
-    \ ST.prod(l);\n    T new_a0 = f.a0 + a_sum;\n    T new_y0 = f.y0 + f.a0 * (L -\
-    \ x0) + a_sum * L - xa_sum;\n    ST.free_subtree(l);\n    f.root = r, f.x0 = L,\
-    \ f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n    return f;\n  }\n  FUNC add(FUNC\
-    \ &f, FUNC &g) {\n    T x0 = max(f.x0, g.x0);\n    T x1 = min(f.x1, g.x1);\n \
-    \   restrict_domain(f, x0, x1), restrict_domain(g, x0, x1);\n    if (x0 > x1)\
-    \ return f;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n    if (len(f) < len(g))\
-    \ swap(f, g);\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n\
+    \  }\n    splay(last, true);\n    return last_ok;\n  }\n};\n#line 1 \"alg/monoid/add_pair.hpp\"\
+    \n\ntemplate <typename E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static constexpr X op(const X &x, const X &y)\
+    \ {\n    return {x.fi + y.fi, x.se + y.se};\n  }\n  static constexpr X inverse(const\
+    \ X &x) { return {-x.fi, -x.se}; }\n  static constexpr X unit() { return {0, 0};\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 3 \"convex/slope_trick/slope_super.hpp\"\
+    \n\nnamespace SLOPE_TRICK_SUPER {\n/*\n\u50BE\u304D\u3068\u5EA7\u6A19\u304C\u5168\
+    \u90E8 T.\n(x0,y0,a0) / \u50BE\u304D\u5909\u5316\u3092 splay tree \u3067\u6301\
+    \u3064.\n\u672B\u5C3E\u306B\u306F\u5FC5\u305A infty \u304C\u5165\u3063\u3066\u3044\
+    \u308B\u3088\u3046\u306B\u3059\u308B.\n(0,10),(1,6),(3,4),(6,7)\n->\n(x0,y0,a0)=(0,10,-4)\n\
+    dat = ([1,3],[3,2])\n\nf(x) \u306E\u8A08\u7B97, (min,argmin) \u306E\u8A08\u7B97\
+    \n\u52A0\u6CD5, \u7573\u307F\u8FBC\u307F\n\n\u52A0\u6CD5: easy\nf(x) \u306E\u8A08\
+    \u7B97: sum(a), sum(xa) \u304C\u8981\u308B\n\u7573\u307F\u8FBC\u307F: x->x+c \u304C\
+    \u8981\u308B\n*/\n\ntemplate <typename T>\nstruct Node {\n  using value_type =\
+    \ pair<T, T>;\n  using operator_type = T;\n  using np = Node *;\n  using Monoid_X\
+    \ = Monoid_Add_Pair<T>;\n\n  np p, l, r;\n  bool rev;\n  u32 size;\n  pair<T,\
+    \ T> x;     // (x,a)\n  pair<T, T> prod;  // (a sum, xa sum)\n  T add_x;\n\n \
+    \ static void new_node(np n, const pair<T, T> &x) {\n    n->p = n->l = n->r =\
+    \ nullptr, n->rev = 0, n->size = 1;\n    n->x = x, n->prod = {x.se, x.fi * x.se},\
+    \ n->add_x = 0;\n  }\n\n  void update() {\n    size = 1;\n    if (l) {\n     \
+    \ size += l->size;\n    }\n    if (r) {\n      size += r->size;\n    }\n    prod\
+    \ = {x.se, x.fi * x.se};\n    if (l) prod = Monoid_X::op(prod, l->prod);\n   \
+    \ if (r) prod = Monoid_X::op(prod, r->prod);\n  }\n\n  void push() {\n    assert(!rev);\n\
+    \    if (add_x == 0) return;\n    if (l)\n      l->x.fi += add_x, l->prod.se +=\
+    \ l->prod.fi * add_x, l->add_x += add_x;\n    if (r)\n      r->x.fi += add_x,\
+    \ r->prod.se += r->prod.fi * add_x, r->add_x += add_x;\n    add_x = 0;\n  }\n\n\
+    \  void apply(T a) { x.fi += a, prod.se += a * prod.fi, add_x += a; }\n\n  //\
+    \ update, push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001\
+    splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\
+    \u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\
+    \u3067 update, push \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\
+    \u3066\u3088\u3044\u3002\n  pair<T, T> get() { return x; }\n  void set(const pair<T,\
+    \ T> &xx) {\n    x = xx;\n    update();\n  }\n};\n\n// \u95A2\u6570\u306F\u7834\
+    \u58CA\u7684\u306A\u5909\u66F4\u306B\u3055\u308C\u308B\ntemplate <typename T>\n\
+    struct Slope_Trick_Super {\n  SplayTree<Node<T>> ST;\n  using np = Node<T> *;\n\
+    \n  struct FUNC {\n    np root;  // \u5B9A\u7FA9\u57DF\u304C\u3053\u308F\u308C\
+    \u3066\u3044\u305F\u3089 root == empty\n    T x0, x1, a0, y0;\n    int size()\
+    \ { return (root ? root->size : 0); }\n  };\n\n  // (L,R,a,b) : [L,R] \u3067 y=ax+b\n\
+    \  FUNC segment_func(T L, T R, T a, T b) {\n    return {nullptr, L, R, a, a *\
+    \ L + b};\n  }\n  FUNC from_points(vc<pair<T, T>> &point) {\n    return from_points(len(point),\n\
+    \                       [&](int i) -> pair<T, T> { return point[i]; });\n  }\n\
+    \  template <typename F>\n  FUNC from_points(int N, F f) {\n    vc<T> X(N), Y(N);\n\
+    \    FOR(i, N) tie(X[i], Y[i]) = f(i);\n    if (N == 1) return segment_func(X[0],\
+    \ X[0], 0, Y[0]);\n    T a0 = (Y[1] - Y[0]) / (X[1] - X[0]);\n    T x0 = X[0],\
+    \ x1 = X.back();\n    vc<pair<T, T>> dat;\n    T a = a0;\n    FOR(i, 1, N - 1)\
+    \ {\n      T a1 = (Y[i + 1] - Y[i]) / (X[i + 1] - X[i]);\n      dat.eb(X[i], a1\
+    \ - a), a = a1;\n    }\n    return FUNC{ST.new_node(dat), x0, x1, a0, Y[0]};\n\
+    \  }\n\n  pair<T, T> domain(FUNC &f) { return {f.x0, f.x1}; }\n  T eval(FUNC &f,\
+    \ T x) {\n    auto [x0, x1] = domain(f);\n    if (!(x0 <= x && x <= x1)) return\
+    \ infty<T>;\n    auto [l, r] = ST.split_max_right(\n        f.root, [&](auto dat)\
+    \ -> bool { return dat.fi <= x; });\n    auto [a_sum, xa_sum] = ST.prod(l);\n\
+    \    f.root = ST.merge(l, r);\n    return f.y0 + f.a0 * (x - x0) + a_sum * x -\
+    \ xa_sum;\n  }\n  FUNC restrict_domain(FUNC &f, T L, T R) {\n    auto [x0, x1]\
+    \ = domain(f);\n    chmax(L, x0), chmin(R, x1);\n    if (L > R) {\n      ST.free_subtree(f.root),\
+    \ f.root = nullptr;\n      f.root = nullptr;\n      f.x0 = infty<T>, f.x1 = -infty<T>;\n\
+    \      return f;\n    }\n    // \u307E\u305A\u306F\u53F3\u5074\u3092\u3061\u3062\
+    \u3081\u308B. R \u4EE5\u4E0A\u306E\u50BE\u304D\u5909\u5316\u3092\u6D88\u3057\u3066\
+    \u3057\u307E\u3048\u3070\u3088\u3044\n    auto [l, r] = ST.split_max_right(\n\
+    \        f.root, [&](auto dat) -> bool { return dat.fi < R; });\n    ST.free_subtree(r);\n\
+    \    // \u5DE6\u5074\u3092\u3061\u3062\u3081\u308B.\n    tie(l, r) =\n       \
+    \ ST.split_max_right(l, [&](auto dat) -> bool { return dat.fi <= L; });\n    auto\
+    \ [a_sum, xa_sum] = ST.prod(l);\n    T new_a0 = f.a0 + a_sum;\n    T new_y0 =\
+    \ f.y0 + f.a0 * (L - x0) + a_sum * L - xa_sum;\n    ST.free_subtree(l);\n    f.root\
+    \ = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n    return f;\n  }\n\
+    \  FUNC add(FUNC &f, FUNC &g) {\n    T x0 = max(f.x0, g.x0);\n    T x1 = min(f.x1,\
+    \ g.x1);\n    restrict_domain(f, x0, x1), restrict_domain(g, x0, x1);\n    if\
+    \ (x0 > x1) return f;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n    if (len(f)\
+    \ < len(g)) swap(f, g);\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n\
     \    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;\n    if (!f.root) {\n      f.root\
     \ = ST.new_node(tmp);\n      return f;\n    }\n    // \u3042\u3068\u306F\u5358\
     \u306B tmp \u3092\u633F\u5165\u3057\u3066\u3044\u3051\u3070\u3044\u3044\n    auto\
@@ -528,7 +527,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/slope_super.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/slope_super.test.cpp

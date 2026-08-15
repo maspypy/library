@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
+  bundledCode: "#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
     \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
     \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
     \ n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
@@ -127,7 +127,7 @@ data:
   isVerificationFile: false
   path: ds/rmq/range_add_range_minidx.hpp
   requiredBy: []
-  timestamp: '2026-07-14 09:59:38+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/rmq/range_add_range_minidx.hpp

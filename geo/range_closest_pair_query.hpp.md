@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -26,7 +26,7 @@ data:
     - https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf
     - https://codeforces.com/problemset/problem/765/F
     - https://qoj.ac/problem/5463
-  bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+  bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -53,62 +53,61 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate\
-    \ <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\
-    \u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void\
-    \ build(u32 n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap\
-    \ = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\
-    \n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
-    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\
-    \n    used.assign(len(used), 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int\
-    \ size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n\
-    \    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) &\
-    \ mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n\
-    \    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i]\
-    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\
-    \n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n  \
-    \  return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
-    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
-    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
-    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
-    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
-    \ dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
-    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
-    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"ds/segtree/dual_segtree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct Dual_SegTree {\n  using MA = Monoid;\n\
-    \  using A = typename MA::value_type;\n  int n, log, size;\n  vc<A> laz;\n  vc<bool>\
-    \ has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n\
-    \    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n  template <typename\
-    \ F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template <typename\
-    \ F>\n  void build(int m, F f) {\n    n = m;\n    log = 1;\n    while ((1 << log)\
-    \ < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::unit());\n\
-    \    FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size, false);\n  }\n\
-    \  void build(int n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n\
-    \  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
-    \ (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A>\
-    \ get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin()\
-    \ + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size]\
-    \ = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l &&\
-    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
-    \ if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
-    \ >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r) push((r -\
-    \ 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++,\
-    \ a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n \
-    \ }\n\n private:\n  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k]\
-    \ = false;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k],\
-    \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n#line 2 \"alg/monoid/min.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return min(x, y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n\
-    \  static constexpr bool commute = true;\r\n};\r\n#line 5 \"geo/range_closest_pair_query.hpp\"\
-    \n\n// \u70B9\u7FA4 {p_i | i in [l, r)} \u306B\u5BFE\u3059\u308B\u6700\u8FD1\u70B9\
-    \u5BFE\u306E\u8A08\u7B97\u3092\u884C\u3046\u30AF\u30A8\u30EA\n// O(KNlogKN + QlogN)\n\
-    // https://qoj.ac/problem/5463\n// https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf\n\
+    \ : (1ULL << n) - 1; }\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate\
+    \ <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\
+    \u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void\
+    \ build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k /\
+    \ 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\
+    \n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\
+    \u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used),\
+    \ 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap;\
+    \ }\n\n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i]\
+    \ && key[i] != k; i = (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i])\
+    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 1 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
+    \  int n, log, size;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() :\
+    \ Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A {\
+    \ return MA::unit(); });\n  }\n  template <typename F>\n  Dual_SegTree(int n,\
+    \ F f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m;\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
+    \ = 1 << log;\n    laz.assign(size << 1, MA::unit());\n    FOR(i, n) laz[size\
+    \ + i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void build(int n) {\n\
+    \    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n\n  A get(int p)\
+    \ {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >=\
+    \ 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i,\
+    \ size) push(i);\n    return {laz.begin() + size, laz.begin() + size + n};\n \
+    \ }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size] = x;\n  }\n\n\
+    \  void apply(int l, int r, const A& a) {\n    assert(0 <= l && l <= r && r <=\
+    \ n);\n    if (l == r) return;\n    l += size, r += size;\n    if (!MA::commute)\
+    \ {\n      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l)\
+    \ push(l >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n     \
+    \ }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++, a);\n      if\
+    \ (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  }\n\n private:\n\
+    \  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = false;\n\
+    \    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
+    \  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k], a);\n    if\
+    \ (k < size) has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate\
+    \ <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n\
+    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
+    \ }\n  static constexpr X unit() { return infty<E>; }\n  static constexpr bool\
+    \ commute = true;\n};\n#line 5 \"geo/range_closest_pair_query.hpp\"\n\n// \u70B9\
+    \u7FA4 {p_i | i in [l, r)} \u306B\u5BFE\u3059\u308B\u6700\u8FD1\u70B9\u5BFE\u306E\
+    \u8A08\u7B97\u3092\u884C\u3046\u30AF\u30A8\u30EA\n// O(KNlogKN + QlogN)\n// https://qoj.ac/problem/5463\n\
+    // https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf\n\
     // \u70B9\u7FA4\u304C 1 \u6B21\u5143\uFF1Ahttps://codeforces.com/problemset/problem/765/F\n\
     struct Range_Closest_Pair_Query {\n  /*\n  \u30FBR \u3092\u5897\u3084\u3057\u306A\
     \u304C\u3089\u3001L \u3054\u3068\u306E\u7B54\u3092\u7BA1\u7406\u3059\u308B\n \
@@ -240,7 +239,7 @@ data:
   isVerificationFile: false
   path: geo/range_closest_pair_query.hpp
   requiredBy: []
-  timestamp: '2026-08-10 04:00:31+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_closest_pair.test.cpp

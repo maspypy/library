@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -240,7 +240,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate\
     \ <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename\
     \ MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\
     \n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int\
@@ -284,11 +284,11 @@ data:
     \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
     \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return min(x,\
-    \ y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 6 \"test/2_library_checker/data_structure/staticrmq_seg.test.cpp\"\
+    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate\
+    \ <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n\
+    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
+    \ }\n  static constexpr X unit() { return infty<E>; }\n  static constexpr bool\
+    \ commute = true;\n};\n#line 6 \"test/2_library_checker/data_structure/staticrmq_seg.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  using Mono = Monoid_Min<int>;\r\n  SegTree<Mono>\
     \ seg(N, [&](int i) -> int {\r\n    INT(x);\r\n    return x;\r\n  });\r\n  FOR(Q)\
     \ {\r\n    LL(L, R);\r\n    print(seg.prod(L, R));\r\n  }\r\n}\r\n\r\nsigned main()\
@@ -308,7 +308,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_seg.test.cpp

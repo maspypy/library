@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add_chmin.hpp
     title: alg/monoid/add_chmin.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -103,10 +103,10 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    }\n#endif\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"alg/monoid/add_chmin.hpp\"\n\n// min(x+a,b)\
+    \ RNG_64() % (r - l); }\n#line 1 \"alg/monoid/add_chmin.hpp\"\n\n// min(x+a,b)\
     \ \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\ntemplate <typename E>\n\
     struct Monoid_Add_Chmin {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
     \n  static X op(X x, X y) {\n    auto [a, b] = x;\n    auto [d, e] = y;\n    a\
@@ -142,7 +142,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/add_chmin.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/add_chmin.test.cpp

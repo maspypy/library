@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A
@@ -252,7 +252,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
     \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
@@ -279,7 +279,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
     \ ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX =\
     \ typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
     \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
@@ -347,31 +347,31 @@ data:
     \    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line\
-    \ 2 \"alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\
-    \u306E\u500B\u6570\r\ntemplate <typename E>\r\nstruct Monoid_MinMincnt {\r\n \
-    \ using value_type = pair<E, E>;\r\n  using X = value_type;\r\n  static X op(X\
-    \ x, X y) {\r\n    auto [xmin, xmincnt] = x;\r\n    auto [ymin, ymincnt] = y;\r\
-    \n    if (xmin > ymin) return y;\r\n    if (xmin < ymin) return x;\r\n    return\
-    \ {xmin, xmincnt + ymincnt};\r\n  }\r\n  static constexpr X unit() { return {infty<E>,\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
-    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X\
-    \ = Monoid_MinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
-    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    auto [xmin,\
-    \ xmincnt] = x;\r\n    if (xmin == infty<E>) return x;\r\n    return {xmin + a,\
-    \ xmincnt};\r\n  }\r\n};\r\n#line 3 \"ds/rectangle_union.hpp\"\n\r\ntemplate <typename\
-    \ XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT = tuple<XY, XY, XY, XY>;\r\
-    \n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY xl, XY xr,\
-    \ XY yl, XY yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr),\
-    \ Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template\
-    \ <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    if (rectangles.empty())\
-    \ return 0;\r\n    int N = len(X);\r\n    vc<int> ord_x = argsort(X);\r\n    vc<int>\
+    \ 1 \"alg/monoid/minmincnt.hpp\"\n\n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\
+    \u306E\u500B\u6570\ntemplate <typename E>\nstruct Monoid_MinMincnt {\n  using\
+    \ value_type = pair<E, E>;\n  using X = value_type;\n  static X op(X x, X y) {\n\
+    \    auto [xmin, xmincnt] = x;\n    auto [ymin, ymincnt] = y;\n    if (xmin >\
+    \ ymin) return y;\n    if (xmin < ymin) return x;\n    return {xmin, xmincnt +\
+    \ ymincnt};\n  }\n  static constexpr X unit() { return {infty<E>, 0}; }\n  static\
+    \ constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate\
+    \ <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type = X;\n\
+    \  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\n\
+    \  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static constexpr\
+    \ X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr\
+    \ X unit() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 3 \"alg/acted_monoid/minmincnt_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X = Monoid_MinMincnt<E>;\r\n \
+    \ using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X &x, const A &a, const ll &size) {\r\n    auto [xmin, xmincnt] = x;\r\n   \
+    \ if (xmin == infty<E>) return x;\r\n    return {xmin + a, xmincnt};\r\n  }\r\n\
+    };\r\n#line 3 \"ds/rectangle_union.hpp\"\n\r\ntemplate <typename XY = int>\r\n\
+    struct Rectangle_Union {\r\n  using RECT = tuple<XY, XY, XY, XY>;\r\n  vc<RECT>\
+    \ rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY xl, XY xr, XY yl, XY\
+    \ yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl),\
+    \ Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template <typename\
+    \ ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    if (rectangles.empty()) return\
+    \ 0;\r\n    int N = len(X);\r\n    vc<int> ord_x = argsort(X);\r\n    vc<int>\
     \ ord_y = argsort(Y);\r\n    vc<int> rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]]\
     \ = i;\r\n    X = rearrange(X, ord_x);\r\n    Y = rearrange(Y, ord_y);\r\n\r\n\
     \    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\n    Lazy_SegTree<AM> seg(N -\
@@ -406,8 +406,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_4_A.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_4_A.test.cpp
 layout: document

@@ -32,23 +32,23 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
+  bundledCode: "#line 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
     \ Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
     \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
     \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
     \ {E(0), -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n"
-  code: "#pragma once\n\ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type\
-    \ = pair<E, E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi\
-    \ + y.fi, max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n\
-    \  static constexpr X unit() { return {E(0), -infty<E>}; }\n  static constexpr\
-    \ bool commute = 1;\n};"
+  code: "\ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
+    \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
+    \ constexpr X unit() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
+    \ = 1;\n};"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/summax.hpp
   requiredBy:
   - alg/acted_monoid/summax_assign.hpp
   - alg/acted_monoid/summax_add.hpp
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/kdtree_am.test.cpp

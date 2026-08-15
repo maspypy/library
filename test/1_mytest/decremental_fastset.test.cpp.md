@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/decremental_fastset.hpp
     title: ds/decremental_fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
     path: other/timer.hpp
     title: other/timer.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -119,7 +119,7 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 3 \"test/1_mytest/decremental_fastset.test.cpp\"\n\n#line 2 \"\
+    }\n#endif\n#line 3 \"test/1_mytest/decremental_fastset.test.cpp\"\n\n#line 1 \"\
     ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int>\
     \ dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void build(int\
     \ m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void reset()\
@@ -130,7 +130,7 @@ data:
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
     \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \    return A;\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
     \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -142,7 +142,7 @@ data:
     \ chrono::high_resolution_clock::now();\n  }\n\n  // second from start\n  double\
     \ operator()() {\n    assert(started);\n    chrono::high_resolution_clock::time_point\
     \ t = chrono::high_resolution_clock::now();\n    chrono::duration<double> diff\
-    \ = t - s;\n    return diff.count();\n  }\n};\n#line 2 \"other/bit.hpp\"\n\nint\
+    \ = t - s;\n    return diff.count();\n  }\n};\n#line 1 \"other/bit.hpp\"\n\nint\
     \ popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
     \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
@@ -169,65 +169,98 @@ data:
     \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
     \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
     \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"ds/fastset.hpp\"\n\r\n// 64-ary\
-    \ tree\r\n// space: (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32\
-    \ B = 64;\r\n  int n = 0, log = 0;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n\
-    \  FastSet(int n) { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  void\
-    \ fillone() {\r\n    int cur = n;\r\n    for (auto& vs : seg) {\r\n      int p\
-    \ = cur / B, q = cur % B;\r\n      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p]\
-    \ = full_mask(q);\r\n      cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n \
-    \ void build(int m) {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
-    \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
-    \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
-    \ B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h\
-    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n      }\r\n    }\r\n  }\r\
-    \n\r\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\r\
-    \n  void insert(int i) {\r\n    assert(0 <= i && i < n);\r\n    for (int h = 0;\
-    \ h < log; h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\r\n   \
-    \ }\r\n  }\r\n  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n  \
-    \  assert(0 <= i && i < n);\r\n    u64 x = 0;\r\n    for (int h = 0; h < log;\
-    \ h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B]\
-    \ |= x << (i % B);\r\n      x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\
-    \n  }\r\n  void remove(int i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int\
-    \ next(int i) {\r\n    assert(i <= n);\r\n    chmax(i, 0);\r\n    for (int h =\
-    \ 0; h < log; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      u64\
-    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
-    \n        continue;\r\n      }\r\n      i += lowbit(d);\r\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\
-    \n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // max\
-    \ [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i >= -1);\r\n    if (i >=\
-    \ n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\n      if (i == -1) break;\r\
-    \n      u64 d = seg[h][i / B] << (63 - i % B);\r\n      if (!d) {\r\n        i\
-    \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
-    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
-    \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
-    \ -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return next(l) < r; }\r\n\r\n \
-    \ // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
-    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
-    \  void reset() {\r\n    enumerate(0, n, [&](int i) -> void { erase(i); });\r\n\
-    \  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
-    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
-    };\n#line 3 \"ds/decremental_fastset.hpp\"\n\n// amortized linear\n// MoFR \u306A\
-    \u3057\u3060\u3068 FastSet \u3088\u308A\u9045\u304B\u3063\u305F\nstruct Decremental_FastSet\
-    \ {\n  struct Decremental_Neighbor_UF {\n    int n;\n    UnionFind uf;\n    vc<int>\
-    \ L, R;\n    Decremental_Neighbor_UF(int n) : n(n), uf(n + 2), L(n + 2), R(n +\
-    \ 2) {\n      FOR(i, n + 2) L[i] = i, R[i] = i;\n    }\n    void erase(int i)\
-    \ {\n      assert(0 <= i && i < n);\n      ++i;\n      int l = L[uf[i - 1]], r\
-    \ = R[uf[i]];\n      uf.merge(i, i - 1);\n      L[uf[i]] = l, R[uf[i]] = r;\n\
-    \    }\n    int prev(int i) {\n      assert(-1 <= i);\n      chmin(i, n - 1);\n\
-    \      return L[uf[i + 1]] - 1;\n    }\n    int next(int i) {\n      assert(i\
-    \ <= n);\n      chmax(i, 0);\n      return R[uf[i]];\n    }\n  };\n  int N, n;\n\
-    \  vc<u64> dat;\n  Decremental_Neighbor_UF X;\n  Decremental_FastSet(int N) :\
-    \ N(N), n((N + 63) / 64), X(n) {\n    dat.assign(n, u64(-1));\n    if (n) dat.back()\
-    \ = u64(-1) >> (64 * n - N);\n  }\n\n  bool operator[](int i) { return (dat[i\
-    \ / 64] >> (i & 63) & 1); }\n\n  void erase(int i) {\n    int a = i / 64, b =\
-    \ i & 63;\n    if (!(dat[a] >> b & 1)) return;\n    dat[a] &= ~(u64(1) << b);\n\
-    \    if (dat[a] == 0) {\n      X.erase(a);\n    }\n  }\n  int prev(int i) {\n\
-    \    assert(-1 <= i);\n    chmin(i, N - 1);\n    if (i == -1) return -1;\n   \
-    \ int a = i / 64, b = i & 63;\n    u64 x = dat[a] & (u64(-1) >> (63 - b));\n \
-    \   if (x != 0) return 64 * a + topbit(x);\n    a = X.prev(a - 1);\n    return\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2 \"ds/fastset.hpp\"\n\n// 64-ary\
+    \ tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n\
+    \  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) {\
+    \ build(n); }\n\n  int size() { return n; }\n\n  void fillone() {\n    int cur\
+    \ = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n    \
+    \  FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur = (cur\
+    \ + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int n, F f)\
+    \ {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n    n =\
+    \ m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m = (m +\
+    \ B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template <typename\
+    \ F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i / B]\
+    \ |= u64(f(i)) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
+    \    }\n  }\n\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B)\
+    \ & 1; }\n  void insert(int i) {\n    assert(0 <= i && i < n);\n    for (int h\
+    \ = 0; h < log; h++) {\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\n  \
+    \  }\n  }\n  void add(int i) { insert(i); }\n  void erase(int i) {\n    assert(0\
+    \ <= i && i < n);\n    u64 x = 0;\n    for (int h = 0; h < log; h++) {\n     \
+    \ seg[h][i / B] &= ~(u64(1) << (i % B));\n      seg[h][i / B] |= x << (i % B);\n\
+    \      x = bool(seg[h][i / B]);\n      i /= B;\n    }\n  }\n  void remove(int\
+    \ i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <=\
+    \ n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B\
+    \ == seg[h].size()) break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if\
+    \ (!d) {\n        i = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n\
+    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i\
+    \ / B]);\n      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x],\
+    \ or -1\n  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n\
+    \    for (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d =\
+    \ seg[h][i / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n  \
+    \      continue;\n      }\n      i -= __builtin_clzll(d);\n      for (int g =\
+    \ h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n\
+    \      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int\
+    \ r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int\
+    \ l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
+    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
+    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 1 \"\
+    other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
+    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
+    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
+    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
+    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
+    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
+    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
+    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
+    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
+    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
+    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
+    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
+    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
+    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
+    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
+    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
+    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 1 \"ds/unionfind/unionfind.hpp\"\
+    \n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n \
+    \ UnionFind(int n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp\
+    \ = m;\n    dat.assign(n, -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int\
+    \ x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp <\
+    \ 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n\
+    \  ll size(int x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int\
+    \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
+    \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"ds/decremental_fastset.hpp\"\
+    \n\n// amortized linear\n// MoFR \u306A\u3057\u3060\u3068 FastSet \u3088\u308A\
+    \u9045\u304B\u3063\u305F\nstruct Decremental_FastSet {\n  struct Decremental_Neighbor_UF\
+    \ {\n    int n;\n    UnionFind uf;\n    vc<int> L, R;\n    Decremental_Neighbor_UF(int\
+    \ n) : n(n), uf(n + 2), L(n + 2), R(n + 2) {\n      FOR(i, n + 2) L[i] = i, R[i]\
+    \ = i;\n    }\n    void erase(int i) {\n      assert(0 <= i && i < n);\n     \
+    \ ++i;\n      int l = L[uf[i - 1]], r = R[uf[i]];\n      uf.merge(i, i - 1);\n\
+    \      L[uf[i]] = l, R[uf[i]] = r;\n    }\n    int prev(int i) {\n      assert(-1\
+    \ <= i);\n      chmin(i, n - 1);\n      return L[uf[i + 1]] - 1;\n    }\n    int\
+    \ next(int i) {\n      assert(i <= n);\n      chmax(i, 0);\n      return R[uf[i]];\n\
+    \    }\n  };\n  int N, n;\n  vc<u64> dat;\n  Decremental_Neighbor_UF X;\n  Decremental_FastSet(int\
+    \ N) : N(N), n((N + 63) / 64), X(n) {\n    dat.assign(n, u64(-1));\n    if (n)\
+    \ dat.back() = u64(-1) >> (64 * n - N);\n  }\n\n  bool operator[](int i) { return\
+    \ (dat[i / 64] >> (i & 63) & 1); }\n\n  void erase(int i) {\n    int a = i / 64,\
+    \ b = i & 63;\n    if (!(dat[a] >> b & 1)) return;\n    dat[a] &= ~(u64(1) <<\
+    \ b);\n    if (dat[a] == 0) {\n      X.erase(a);\n    }\n  }\n  int prev(int i)\
+    \ {\n    assert(-1 <= i);\n    chmin(i, N - 1);\n    if (i == -1) return -1;\n\
+    \    int a = i / 64, b = i & 63;\n    u64 x = dat[a] & (u64(-1) >> (63 - b));\n\
+    \    if (x != 0) return 64 * a + topbit(x);\n    a = X.prev(a - 1);\n    return\
     \ (a == -1 ? -1 : 64 * a + topbit(dat[a]));\n  }\n  int next(int i) {\n    assert(i\
     \ <= N);\n    chmax(i, 0);\n    if (i == N) return N;\n    int a = i / 64, b =\
     \ i & 63;\n    u64 x = dat[a] >> b;\n    if (x != 0) return 64 * a + b + lowbit(x);\n\
@@ -307,7 +340,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/decremental_fastset.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/decremental_fastset.test.cpp

@@ -20,23 +20,23 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/summin.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_SumMin {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
-    \n  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\r\n  static\
-    \ X from_element(E x) { return {x, x}; }\r\n  static constexpr X unit() { return\
-    \ {E(0), infty<E>}; }\r\n  static constexpr bool commute = true;\r\n};\r\n"
-  code: "#pragma once\r\n\r\ntemplate <typename E>\r\nstruct Monoid_SumMin {\r\n \
-    \ using value_type = pair<E, E>;\r\n  using X = value_type;\r\n  static X op(X\
-    \ x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\r\n  static X from_element(E\
-    \ x) { return {x, x}; }\r\n  static constexpr X unit() { return {E(0), infty<E>};\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n"
+  bundledCode: "#line 1 \"alg/monoid/summin.hpp\"\n\ntemplate <typename E>\nstruct\
+    \ Monoid_SumMin {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
+    \  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\n  static\
+    \ X from_element(E x) { return {x, x}; }\n  static constexpr X unit() { return\
+    \ {E(0), infty<E>}; }\n  static constexpr bool commute = true;\n};\n"
+  code: "\ntemplate <typename E>\nstruct Monoid_SumMin {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
+    \ min(x.se, y.se)}; }\n  static X from_element(E x) { return {x, x}; }\n  static\
+    \ constexpr X unit() { return {E(0), infty<E>}; }\n  static constexpr bool commute\
+    \ = true;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/summin.hpp
   requiredBy:
   - alg/acted_monoid/summin_add.hpp
   - alg/acted_monoid/summin_assign.hpp
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/summin_assign.test.cpp

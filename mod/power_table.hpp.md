@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy:
@@ -17,19 +17,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -41,34 +41,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/faulhaber.hpp
     title: seq/famous/faulhaber.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
@@ -138,66 +138,66 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1321.test.cpp
     title: test/3_yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1357.test.cpp
     title: test/3_yukicoder/1357.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1760.test.cpp
     title: test/3_yukicoder/1760.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1821.test.cpp
     title: test/3_yukicoder/1821.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1907.test.cpp
     title: test/3_yukicoder/1907.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2005.test.cpp
     title: test/3_yukicoder/2005.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2206_2.test.cpp
     title: test/3_yukicoder/2206_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3619.test.cpp
     title: test/3_yukicoder/3619.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
+  bundledCode: "#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
     \ prime_table(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
     \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
     \  done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R =\
@@ -208,25 +208,24 @@ data:
     \ S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i = idx; i <\
     \ S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
     \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return\
-    \ {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/power_table.hpp\"\n\r\
-    \n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> power_table_1(mint\
-    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
-    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> power_table_2(ll e, ll N) {\r\n  auto primes = prime_table(N);\r\
-    \n  vc<mint> f(N + 1, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p : primes)\
-    \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
-    \n    while (pp <= N) {\r\n      ll i = pp;\r\n      while (i <= N) {\r\n    \
-    \    f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n\
-    \  }\r\n  return f;\r\n}\r\n"
-  code: "#pragma once\r\n#include \"nt/prime_table.hpp\"\r\n\r\n// a^0, ..., a^N\r\
-    \ntemplate <typename mint>\r\nvc<mint> power_table_1(mint a, ll N) {\r\n  // table\
-    \ of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i + 1] = a * f[i];\r\n  return\
-    \ f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename mint>\r\nvc<mint> power_table_2(ll\
-    \ e, ll N) {\r\n  auto primes = prime_table(N);\r\n  vc<mint> f(N + 1, 1);\r\n\
-    \  f[0] = mint(0).pow(e);\r\n  for (auto&& p : primes) {\r\n    if (p > N) break;\r\
-    \n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
-    \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
-    \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n"
+    \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"mod/power_table.hpp\"\n\n\
+    // a^0, ..., a^N\ntemplate <typename mint>\nvc<mint> power_table_1(mint a, ll\
+    \ N) {\n  // table of a^i\n  vc<mint> f(N + 1, 1);\n  FOR(i, N) f[i + 1] = a *\
+    \ f[i];\n  return f;\n}\n\n// 0^e, ..., N^e\ntemplate <typename mint>\nvc<mint>\
+    \ power_table_2(ll e, ll N) {\n  auto primes = prime_table(N);\n  vc<mint> f(N\
+    \ + 1, 1);\n  f[0] = mint(0).pow(e);\n  for (auto&& p : primes) {\n    if (p >\
+    \ N) break;\n    mint xp = mint(p).pow(e);\n    ll pp = p;\n    while (pp <= N)\
+    \ {\n      ll i = pp;\n      while (i <= N) {\n        f[i] *= xp;\n        i\
+    \ += pp;\n      }\n      pp *= p;\n    }\n  }\n  return f;\n}\n"
+  code: "#include \"nt/prime_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename mint>\n\
+    vc<mint> power_table_1(mint a, ll N) {\n  // table of a^i\n  vc<mint> f(N + 1,\
+    \ 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n// 0^e, ..., N^e\n\
+    template <typename mint>\nvc<mint> power_table_2(ll e, ll N) {\n  auto primes\
+    \ = prime_table(N);\n  vc<mint> f(N + 1, 1);\n  f[0] = mint(0).pow(e);\n  for\
+    \ (auto&& p : primes) {\n    if (p > N) break;\n    mint xp = mint(p).pow(e);\n\
+    \    ll pp = p;\n    while (pp <= N) {\n      ll i = pp;\n      while (i <= N)\
+    \ {\n        f[i] *= xp;\n        i += pp;\n      }\n      pp *= p;\n    }\n \
+    \ }\n  return f;\n}\n"
   dependsOn:
   - nt/prime_table.hpp
   isVerificationFile: false
@@ -254,8 +253,8 @@ data:
   - seq/famous/eulerian_number.hpp
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
-  timestamp: '2026-08-15 16:17:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp

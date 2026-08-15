@@ -1,30 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/domino_standard_tableaux.hpp
     title: seq/domino_standard_tableaux.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2149.test.cpp
     title: test/3_yukicoder/2149.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"seq/hook_length_formula.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
-    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+  bundledCode: "#line 1 \"seq/hook_length_formula.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -51,7 +51,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
     \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -90,7 +90,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -130,17 +130,16 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 4 \"seq/hook_length_formula.hpp\"\n\ntemplate <typename mint>\nmint hook_length_formula(vc<int>\
+    #line 3 \"seq/hook_length_formula.hpp\"\n\ntemplate <typename mint>\nmint hook_length_formula(vc<int>\
     \ A) {\n  if (len(A) == 0) return 1;\n  int H = len(A);\n  FOR(i, H - 1) assert(A[i]\
     \ >= A[i + 1]);\n  int N = SUM<int>(A);\n\n  FOR(i, H) A[i] += H - 1 - i;\n  mint\
     \ ANS = fact<mint>(N);\n  FOR(j, H) FOR(i, j) ANS *= A[i] - A[j];\n  FOR(i, H)\
     \ ANS *= fact_inv<mint>(A[i]);\n  return ANS;\n}\n"
-  code: "#pragma once\n\n#include \"mod/modint.hpp\"\n\ntemplate <typename mint>\n\
-    mint hook_length_formula(vc<int> A) {\n  if (len(A) == 0) return 1;\n  int H =\
-    \ len(A);\n  FOR(i, H - 1) assert(A[i] >= A[i + 1]);\n  int N = SUM<int>(A);\n\
-    \n  FOR(i, H) A[i] += H - 1 - i;\n  mint ANS = fact<mint>(N);\n  FOR(j, H) FOR(i,\
-    \ j) ANS *= A[i] - A[j];\n  FOR(i, H) ANS *= fact_inv<mint>(A[i]);\n  return ANS;\n\
-    }\n"
+  code: "\n#include \"mod/modint.hpp\"\n\ntemplate <typename mint>\nmint hook_length_formula(vc<int>\
+    \ A) {\n  if (len(A) == 0) return 1;\n  int H = len(A);\n  FOR(i, H - 1) assert(A[i]\
+    \ >= A[i + 1]);\n  int N = SUM<int>(A);\n\n  FOR(i, H) A[i] += H - 1 - i;\n  mint\
+    \ ANS = fact<mint>(N);\n  FOR(j, H) FOR(i, j) ANS *= A[i] - A[j];\n  FOR(i, H)\
+    \ ANS *= fact_inv<mint>(A[i]);\n  return ANS;\n}\n"
   dependsOn:
   - mod/modint.hpp
   - mod/modint_common.hpp
@@ -149,8 +148,8 @@ data:
   path: seq/hook_length_formula.hpp
   requiredBy:
   - seq/domino_standard_tableaux.hpp
-  timestamp: '2026-08-13 03:03:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2149.test.cpp
 documentation_of: seq/hook_length_formula.hpp

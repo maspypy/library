@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"geo3d/base.hpp\"\n\ntemplate <typename T>\nstruct Point_3d\
+  bundledCode: "#line 1 \"geo3d/base.hpp\"\n\ntemplate <typename T>\nstruct Point_3d\
     \ {\n  T x, y, z;\n\n  Point_3d() = default;\n\n  template <typename A, typename\
     \ B, typename C>\n  Point_3d(A x, B y, C z) : x(x), y(y), z(z) {}\n\n  Point_3d\
     \ operator+(Point_3d p) const { return {x + p.x, y + p.y, z + p.z}; }\n  Point_3d\
@@ -41,19 +41,19 @@ data:
     \    T y = normal_vec.dot(L.d);\n    Re t = Re(d - x) / y;\n    Point_3d<Re> ANS;\n\
     \    ANS.x = L.a.x + t * L.d.x;\n    ANS.y = L.a.y + t * L.d.y;\n    ANS.z = L.a.z\
     \ + t * L.d.z;\n    return ANS;\n  }\n};\n"
-  code: "#pragma once\n\ntemplate <typename T>\nstruct Point_3d {\n  T x, y, z;\n\n\
-    \  Point_3d() = default;\n\n  template <typename A, typename B, typename C>\n\
-    \  Point_3d(A x, B y, C z) : x(x), y(y), z(z) {}\n\n  Point_3d operator+(Point_3d\
-    \ p) const { return {x + p.x, y + p.y, z + p.z}; }\n  Point_3d operator-(Point_3d\
-    \ p) const { return {x - p.x, y - p.y, z - p.z}; }\n  Point_3d operator*(T t)\
-    \ const { return {x * t, y * t, z * t}; }\n  Point_3d operator/(T t) const { return\
-    \ {x / t, y / t, z / t}; }\n  bool operator==(Point_3d p) const { return x ==\
-    \ p.x && y == p.y && z == p.z; }\n  bool operator!=(Point_3d p) const { return\
-    \ x != p.x || y != p.y || z == p.z; }\n  Point_3d operator-() const { return {-x,\
-    \ -y, -z}; }\n\n  bool is_parallel(Point_3d p) const { return x * p.y == y * p.x\
-    \ && y * p.z == z * p.y && z * p.x == x * p.z; }\n\n  T dot(Point_3d other) {\
-    \ return x * other.x + y * other.y + z * other.z; }\n  double norm() { return\
-    \ sqrt(x * x + y * y + z * z); }\n  Point_3d cross(Point_3d other) { return Point_3d(y\
+  code: "\ntemplate <typename T>\nstruct Point_3d {\n  T x, y, z;\n\n  Point_3d()\
+    \ = default;\n\n  template <typename A, typename B, typename C>\n  Point_3d(A\
+    \ x, B y, C z) : x(x), y(y), z(z) {}\n\n  Point_3d operator+(Point_3d p) const\
+    \ { return {x + p.x, y + p.y, z + p.z}; }\n  Point_3d operator-(Point_3d p) const\
+    \ { return {x - p.x, y - p.y, z - p.z}; }\n  Point_3d operator*(T t) const { return\
+    \ {x * t, y * t, z * t}; }\n  Point_3d operator/(T t) const { return {x / t, y\
+    \ / t, z / t}; }\n  bool operator==(Point_3d p) const { return x == p.x && y ==\
+    \ p.y && z == p.z; }\n  bool operator!=(Point_3d p) const { return x != p.x ||\
+    \ y != p.y || z == p.z; }\n  Point_3d operator-() const { return {-x, -y, -z};\
+    \ }\n\n  bool is_parallel(Point_3d p) const { return x * p.y == y * p.x && y *\
+    \ p.z == z * p.y && z * p.x == x * p.z; }\n\n  T dot(Point_3d other) { return\
+    \ x * other.x + y * other.y + z * other.z; }\n  double norm() { return sqrt(x\
+    \ * x + y * y + z * z); }\n  Point_3d cross(Point_3d other) { return Point_3d(y\
     \ * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);\
     \ }\n};\n\ntemplate <typename T>\nstruct Line_3d {\n  // a + td\n  Point_3d<T>\
     \ a, d;\n\n  Line_3d(Point_3d<T> A, Point_3d<T> B) : a(A), d(B - A) { assert(d.dot(d)\
@@ -76,7 +76,7 @@ data:
   path: geo3d/base.hpp
   requiredBy:
   - geo3d/cross_point.hpp
-  timestamp: '2025-05-05 02:10:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo3d/base.hpp

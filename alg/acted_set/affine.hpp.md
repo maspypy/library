@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   _extendedRequiredBy: []
@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\
+  bundledCode: "#line 1 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\
     \u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F\
     \ = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n  static constexpr\
     \ F op(const F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second\
@@ -35,7 +35,7 @@ data:
   isVerificationFile: false
   path: alg/acted_set/affine.hpp
   requiredBy: []
-  timestamp: '2023-07-25 22:13:04+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/acted_set/affine.hpp

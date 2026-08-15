@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bflow.hpp
     title: flow/bflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -237,7 +237,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\
     \u304C\u3042\u3063\u3066\u3082\u52D5\u4F5C\u3059\u308B\u3088\n// INF \u8FBA\u304C\
     \u5927\u304D\u3059\u304E\u308B\u3068\u58CA\u308C\u305F\u308A\u3059\u308B\u307F\
     \u305F\u3044\u306A\u306E\u3067\u306E\u3067\u6CE8\u610F\ntemplate <class Flow =\
@@ -349,7 +349,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/min_cost_b-flow.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/min_cost_b-flow.test.cpp

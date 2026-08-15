@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/static_monoid_products.hpp
     title: ds/offline_query/static_monoid_products.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -243,12 +243,12 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return min(x,\
-    \ y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x)\
-    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate\
+    \ <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n\
+    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
+    \ }\n  static constexpr X unit() { return infty<E>; }\n  static constexpr bool\
+    \ commute = true;\n};\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
@@ -312,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_dc.test.cpp

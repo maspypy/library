@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"convex/maxplus_convolution.hpp\"\n\ntemplate <typename T>\n\
+  bundledCode: "#line 1 \"convex/maxplus_convolution.hpp\"\n\ntemplate <typename T>\n\
     vc<T> maxplus_convolution_concave_concave(vc<T>& A, vc<T>& B) {\n  int n = len(A),\
     \ m = len(B);\n  if (n == 0 || m == 0) return {};\n  vc<T> C(n + m - 1, -infty<T>);\n\
     \  while (n > 0 && A[n - 1] == -infty<T>) --n;\n  while (m > 0 && B[m - 1] ==\
@@ -37,7 +37,7 @@ data:
     \ B);\n  if constexpr (conA && !conB)\n    return maxplus_convolution_arbitrary_concave(B,\
     \ A);\n  if constexpr (conB && !conA)\n    return maxplus_convolution_arbitrary_concave(A,\
     \ B);\n  return {};\n}\n"
-  code: "#pragma once\n\ntemplate <typename T>\nvc<T> maxplus_convolution_concave_concave(vc<T>&\
+  code: "\ntemplate <typename T>\nvc<T> maxplus_convolution_concave_concave(vc<T>&\
     \ A, vc<T>& B) {\n  int n = len(A), m = len(B);\n  if (n == 0 || m == 0) return\
     \ {};\n  vc<T> C(n + m - 1, -infty<T>);\n  while (n > 0 && A[n - 1] == -infty<T>)\
     \ --n;\n  while (m > 0 && B[m - 1] == -infty<T>) --m;\n  if (n == 0 || m == 0)\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: convex/maxplus_convolution.hpp
   requiredBy: []
-  timestamp: '2026-05-31 18:02:06+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/maxplus_concave.test.cpp

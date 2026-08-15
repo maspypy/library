@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -246,8 +246,8 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"mod/modint_common.hpp\"\n\n#line\
-    \ 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"mod/modint_common.hpp\"\n\n#line\
+    \ 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
     int popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -274,7 +274,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
     \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -313,7 +313,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -353,20 +353,19 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"linalg/matrix_inv.hpp\"\n\r\n// (det, invA) \u3092\u304B\u3048\u3059\
-    \r\ntemplate <typename T>\r\npair<T, vc<vc<T>>> matrix_inv(vc<vc<T>> A) {\r\n\
-    \  T det = 1;\r\n  int N = len(A);\r\n  vv(T, B, N, N);\r\n  FOR(n, N) B[n][n]\
-    \ = 1;\r\n  FOR(i, N) {\r\n    FOR(k, i, N) if (A[k][i] != 0) {\r\n      if (k\
-    \ != i) {\r\n        swap(A[i], A[k]), swap(B[i], B[k]);\r\n        det = -det;\r\
-    \n      }\r\n      break;\r\n    }\r\n    if (A[i][i] == 0) return {T(0), {}};\r\
-    \n    T c = T(1) / A[i][i];\r\n    det *= A[i][i];\r\n    FOR(j, i, N) A[i][j]\
-    \ *= c;\r\n    FOR(j, N) B[i][j] *= c;\r\n    FOR(k, N) if (i != k) {\r\n    \
-    \  T c = A[k][i];\r\n      FOR(j, i, N) A[k][j] -= A[i][j] * c;\r\n      FOR(j,\
-    \ N) B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\n  return {det, B};\r\n}\r\n#line\
-    \ 6 \"test/2_library_checker/linear_algebra/inverse_matrix.test.cpp\"\n\r\nusing\
-    \ mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n\
-    \  auto [det, inv] = matrix_inv(A);\r\n  if (inv.empty()) return print(-1);\r\n\
-    \  FOR(n, N) print(inv[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    #line 1 \"linalg/matrix_inv.hpp\"\n\n// (det, invA) \u3092\u304B\u3048\u3059\n\
+    template <typename T>\npair<T, vc<vc<T>>> matrix_inv(vc<vc<T>> A) {\n  T det =\
+    \ 1;\n  int N = len(A);\n  vv(T, B, N, N);\n  FOR(n, N) B[n][n] = 1;\n  FOR(i,\
+    \ N) {\n    FOR(k, i, N) if (A[k][i] != 0) {\n      if (k != i) {\n        swap(A[i],\
+    \ A[k]), swap(B[i], B[k]);\n        det = -det;\n      }\n      break;\n    }\n\
+    \    if (A[i][i] == 0) return {T(0), {}};\n    T c = T(1) / A[i][i];\n    det\
+    \ *= A[i][i];\n    FOR(j, i, N) A[i][j] *= c;\n    FOR(j, N) B[i][j] *= c;\n \
+    \   FOR(k, N) if (i != k) {\n      T c = A[k][i];\n      FOR(j, i, N) A[k][j]\
+    \ -= A[i][j] * c;\n      FOR(j, N) B[k][j] -= B[i][j] * c;\n    }\n  }\n  return\
+    \ {det, B};\n}\n#line 6 \"test/2_library_checker/linear_algebra/inverse_matrix.test.cpp\"\
+    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N,\
+    \ N);\r\n  auto [det, inv] = matrix_inv(A);\r\n  if (inv.empty()) return print(-1);\r\
+    \n  FOR(n, N) print(inv[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
     \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
     \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\r\n#include\
@@ -386,7 +385,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp

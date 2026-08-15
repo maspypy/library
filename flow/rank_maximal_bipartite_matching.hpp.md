@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   _extendedRequiredBy: []
@@ -25,46 +25,45 @@ data:
     links:
     - https://qoj.ac/contest/1388/problem/6546
     - https://yukicoder.me/problems/no/1615
-  bundledCode: "#line 1 \"flow/rank_maximal_bipartite_matching.hpp\"\n\n#line 2 \"\
-    graph/bipartite_vertex_coloring.hpp\"\n\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n//\
-    \ u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\
-    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n =\
-    \ 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k\
-    \ < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k),\
-    \ used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E\
-    . size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\
-    \n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) /\
-    \ 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if\
-    \ (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return\
-    \ val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int\
-    \ i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\
-    \n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return used[i]\
-    \ && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n\
-    \  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\
-    \n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\
-    \n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x += FIXED_RANDOM;\r\
-    \n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\
-    \n    return (x ^ (x >> 31)) & mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64,\
-    \ Val>> dat;\r\n    dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used))\
-    \ {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\
-    \n    for (auto& [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
-    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int>\
-    \ MP_FOR_EID;\n  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
-    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
-    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
-    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\
-    \n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+  bundledCode: "#line 1 \"flow/rank_maximal_bipartite_matching.hpp\"\n\n#line 1 \"\
+    graph/bipartite_vertex_coloring.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
+    \ -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
+    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
+    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
+    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\n    return\
+    \ i;\n  }\n\n  Val& operator[](const u64& k) {\n    if (cap == 0) extend();\n\
+    \    int i = index(k);\n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] =\
+    \ Val{}, --cap; }\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
+    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
+    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
+    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
+    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
+    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
+    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
+    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
+    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -126,7 +125,7 @@ data:
     \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\
+    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 1 \"ds/unionfind/unionfind.hpp\"\
     \n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n \
     \ UnionFind(int n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp\
     \ = m;\n    dat.assign(n, -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int\
@@ -136,27 +135,26 @@ data:
     \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
     \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
-    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\
-    \n\r\n// \u73FE\u5728\u306E\u8FBA\u91CD\u307F\u5076\u5947\u3067\u4E8C\u90E8\u30B0\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 4 \"graph/bipartite_vertex_coloring.hpp\"\
+    \n\n// \u73FE\u5728\u306E\u8FBA\u91CD\u307F\u5076\u5947\u3067\u4E8C\u90E8\u30B0\
     \u30E9\u30D5\u9802\u70B9\u5F69\u8272, \u4E8C\u90E8\u3067\u306A\u304B\u3063\u305F\
-    \u5834\u5408\u306B\u306F empty\r\n// weight_one=true: \u8FBA\u91CD\u307F\u3092\
-    \ 1 \u3068\u3059\u308B\r\ntemplate <typename GT>\r\nvc<int> bipartite_vertex_coloring(GT&\
-    \ G, bool weight_one = false) {\r\n  assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\
-    \n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e : G.edges) {\r\
-    \n    int u = e.frm, v = e.to, c = (weight_one ? 1 : e.cost);\r\n    if (c % 2\
-    \ == 0) {\r\n      uf.merge(u, v), uf.merge(u + n, v + n);\r\n    } else {\r\n\
-    \      uf.merge(u + n, v), uf.merge(u, v + n);\r\n    }\r\n  }\r\n\r\n  vc<int>\
-    \ color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n \
-    \   color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v]\
-    \ = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n])\
-    \ return {};\r\n  return color;\r\n}\r\n#line 3 \"flow/rank_maximal_bipartite_matching.hpp\"\
-    \n\n// (N1, N2) bipartite graph with edge-weight 0, 1, ..., K - 1.\n// find a\
-    \ matching s.t. (# of K-1, # of K-2, ...) is lex max.\n// https://yukicoder.me/problems/no/1615\n\
-    // https://qoj.ac/contest/1388/problem/6546\n\ntemplate <typename GT>\nstruct\
-    \ Rank_Maximal_Bipartite_Matching {\n  int N, K;\n  GT& G;\n  vc<int> color;\n\
-    \  vc<int> dist, match;\n  vc<int> que;\n  vc<bool> vis;\n  vc<bool> vcover;\n\
-    \n  // edge \u306E\u7BA1\u7406\n  // [L,M) : active, [M,R) : inactive\n  vc<pair<int,\
-    \ int>> dat;\n  vc<int> LID, MID, RID;\n\n  Rank_Maximal_Bipartite_Matching(GT&\
+    \u5834\u5408\u306B\u306F empty\n// weight_one=true: \u8FBA\u91CD\u307F\u3092 1\
+    \ \u3068\u3059\u308B\ntemplate <typename GT>\nvc<int> bipartite_vertex_coloring(GT&\
+    \ G, bool weight_one = false) {\n  assert(!GT::is_directed);\n  assert(G.is_prepared());\n\
+    \n  int n = G.N;\n  UnionFind uf(2 * n);\n  for (auto&& e : G.edges) {\n    int\
+    \ u = e.frm, v = e.to, c = (weight_one ? 1 : e.cost);\n    if (c % 2 == 0) {\n\
+    \      uf.merge(u, v), uf.merge(u + n, v + n);\n    } else {\n      uf.merge(u\
+    \ + n, v), uf.merge(u, v + n);\n    }\n  }\n\n  vc<int> color(2 * n, -1);\n  FOR(v,\
+    \ n) if (uf[v] == v && color[uf[v]] < 0) {\n    color[uf[v]] = 0;\n    color[uf[v\
+    \ + n]] = 1;\n  }\n  FOR(v, n) color[v] = color[uf[v]];\n  color.resize(n);\n\
+    \  FOR(v, n) if (uf[v] == uf[v + n]) return {};\n  return color;\n}\n#line 3 \"\
+    flow/rank_maximal_bipartite_matching.hpp\"\n\n// (N1, N2) bipartite graph with\
+    \ edge-weight 0, 1, ..., K - 1.\n// find a matching s.t. (# of K-1, # of K-2,\
+    \ ...) is lex max.\n// https://yukicoder.me/problems/no/1615\n// https://qoj.ac/contest/1388/problem/6546\n\
+    \ntemplate <typename GT>\nstruct Rank_Maximal_Bipartite_Matching {\n  int N, K;\n\
+    \  GT& G;\n  vc<int> color;\n  vc<int> dist, match;\n  vc<int> que;\n  vc<bool>\
+    \ vis;\n  vc<bool> vcover;\n\n  // edge \u306E\u7BA1\u7406\n  // [L,M) : active,\
+    \ [M,R) : inactive\n  vc<pair<int, int>> dat;\n  vc<int> LID, MID, RID;\n\n  Rank_Maximal_Bipartite_Matching(GT&\
     \ G) : N(G.N), G(G) {\n    color = bipartite_vertex_coloring(G, true);\n    if\
     \ (N > 0) assert(!color.empty());\n    dist.assign(N, -1), match.assign(N, -1);\n\
     \    que.assign(N, -1), vis.assign(N, -1);\n    vcover.assign(N, 0);\n    K =\
@@ -254,7 +252,7 @@ data:
   isVerificationFile: false
   path: flow/rank_maximal_bipartite_matching.hpp
   requiredBy: []
-  timestamp: '2026-08-08 15:43:41+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1615.test.cpp

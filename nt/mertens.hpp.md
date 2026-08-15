@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat = {dp[1],\
@@ -41,7 +41,7 @@ data:
     \ - u32(double(N) / d);\n  }\n\n  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n\
     \  u64 get_floor(u32 i) { return (i < t ? 1 + i : double(N) / (t + sq - i)); }\n\
     \n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(dat)) {\
-    \ f(get_floor(i), dat[i]); }\n  }\n};\n#line 2 \"nt/prime_table.hpp\"\n\ntemplate\
+    \ f(get_floor(i), dat[i]); }\n  }\n};\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate\
     \ <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const int S =\
     \ 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\
     \n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1,\
@@ -52,19 +52,18 @@ data:
     \      array<bool, S> block{};\n      for (auto& [p, idx] : cp)\n        for (int\
     \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
     \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"nt/zeta.hpp\"\
-    \n\r\ntemplate <typename T>\r\nvoid divisor_zeta(vc<T>& A) {\r\n  assert(A[0]\
-    \ == 0);\r\n  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&&\
-    \ p : P) {\r\n    FOR3(x, 1, N / p + 1) A[p * x] += A[x];\r\n  }\r\n}\r\n\r\n\
-    template <typename T>\r\nvoid divisor_mobius(vc<T>& A) {\r\n  assert(A[0] == 0);\r\
-    \n  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&& p : P)\
-    \ {\r\n    FOR3_R(x, 1, N / p + 1) A[p * x] -= A[x];\r\n  }\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid multiple_zeta(vc<T>& A) {\r\n  assert(A[0] == 0);\r\n \
-    \ int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&& p : P) {\r\
-    \n    FOR3_R(x, 1, N / p + 1) A[x] += A[p * x];\r\n  }\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid multiple_mobius(vc<T>& A) {\r\n  assert(A[0] == 0);\r\n  int N =\
-    \ len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&& p : P) {\r\n    FOR3(x,\
-    \ 1, N / p + 1) A[x] -= A[p * x];\r\n  }\r\n}\r\n#line 2 \"nt/mobius_table.hpp\"\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/zeta.hpp\"\
+    \n\ntemplate <typename T>\nvoid divisor_zeta(vc<T>& A) {\n  assert(A[0] == 0);\n\
+    \  int N = len(A) - 1;\n  auto P = prime_table(N);\n  for (auto&& p : P) {\n \
+    \   FOR3(x, 1, N / p + 1) A[p * x] += A[x];\n  }\n}\n\ntemplate <typename T>\n\
+    void divisor_mobius(vc<T>& A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n\
+    \  auto P = prime_table(N);\n  for (auto&& p : P) {\n    FOR3_R(x, 1, N / p +\
+    \ 1) A[p * x] -= A[x];\n  }\n}\n\ntemplate <typename T>\nvoid multiple_zeta(vc<T>&\
+    \ A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n  auto P = prime_table(N);\n\
+    \  for (auto&& p : P) {\n    FOR3_R(x, 1, N / p + 1) A[x] += A[p * x];\n  }\n\
+    }\n\ntemplate <typename T>\nvoid multiple_mobius(vc<T>& A) {\n  assert(A[0] ==\
+    \ 0);\n  int N = len(A) - 1;\n  auto P = prime_table(N);\n  for (auto&& p : P)\
+    \ {\n    FOR3(x, 1, N / p + 1) A[x] -= A[p * x];\n  }\n}\n#line 2 \"nt/mobius_table.hpp\"\
     \n\r\ntemplate<typename T>\r\nvc<T> mobius_table(int N){\r\n  vc<T> mu(N + 1);\r\
     \n  mu[1] = T(1);\r\n  divisor_mobius(mu);\r\n  return mu;\r\n}\n#line 1 \"enumerate/floor_range.hpp\"\
     \n// \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\
@@ -106,8 +105,8 @@ data:
   path: nt/mertens.hpp
   requiredBy:
   - nt/range_rational_count.hpp
-  timestamp: '2026-08-15 15:50:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp
 documentation_of: nt/mertens.hpp

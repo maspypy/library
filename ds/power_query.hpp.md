@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   _extendedRequiredBy:
@@ -20,11 +20,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
-    \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
-    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/power_query.hpp\"\
+  bundledCode: "#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct Monoid_Mul\
+    \ {\n  using value_type = T;\n  using X = T;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x * y; }\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\n  static constexpr X unit() { return X(1);\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 2 \"ds/power_query.hpp\"\
     \n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002\
     \ B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono,\
     \ int B = 1024>\nstruct Power_Query {\n  using X = typename Mono::value_type;\n\
@@ -62,7 +62,7 @@ data:
   path: ds/power_query.hpp
   requiredBy:
   - graph/count/count_labeled_bipartite.hpp
-  timestamp: '2025-05-05 02:10:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp

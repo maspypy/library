@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree_2d.hpp
     title: ds/segtree/segtree_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -241,12 +241,12 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp\"\
-    \n\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/segtree/segtree_2d.hpp\"\
+    \n\r\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \  static constexpr bool commute = true;\n};\n#line 1 \"ds/segtree/segtree_2d.hpp\"\
     \n// \u70B9\u306E\u91CD\u8907\u304C\u3042\u3063\u3066\u3082\u5225\u306E\u70B9\u3068\
     \u3057\u3066 set \u306A\u3069\u304C\u3055\u308C\u308B\r\ntemplate <typename Monoid,\
     \ typename XY, bool SMALL_X = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\
@@ -360,7 +360,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp

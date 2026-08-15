@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -261,7 +261,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
     \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
@@ -550,12 +550,12 @@ data:
     \  // prod \u306E\u65B9\u3092\u898B\u308B\u5FC5\u8981\u304C\u3042\u308B\n  template\
     \ <typename F>\n  tuple<XY, int, T> max_right(F check, XY x1, XY x2) const {\n\
     \    return WM.max_right(check, IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2));\n\
-    \  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/static_range_product_group.hpp\"\
+    \  }\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \  static constexpr bool commute = true;\n};\n#line 2 \"ds/static_range_product_group.hpp\"\
     \n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group {\n  using MX\
     \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group()\
     \ {}\n  template <typename F>\n  Static_Range_Product_Group(int m, F f) {\n  \
@@ -566,9 +566,14 @@ data:
     \ A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n    for (int i =\
     \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int\
     \ r) const { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
-    \ T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n#line 8 \"\
-    test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i],\
+    \ T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n#line 1 \"\
+    alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add {\n  using X\
+    \ = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X &y)\
+    \ noexcept { return x + y; }\n  static constexpr X inverse(const X &x) noexcept\
+    \ { return -x; }\n  static constexpr X power(const X &x, ll n) noexcept { return\
+    \ X(n) * x; }\n  static constexpr X unit() { return X(0); }\n  static constexpr\
+    \ bool commute = true;\n};\n#line 8 \"test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i],\
     \ Y[i], W[i]);\n  Wavelet_Matrix_2D_Range<int, true, true, Prefix_Sum<ll>> WM(\n\
     \      N, [&](int i) -> tuple<int, int, ll> { return {X[i], Y[i], W[i]}; });\n\
     \  FOR(q, Q) {\n    LL(a, c, b, d);\n    print(WM.prod(a, b, c, d));\n  }\n}\n\
@@ -596,7 +601,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp

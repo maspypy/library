@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_3_B
@@ -240,7 +240,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate\
     \ <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename\
     \ MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\
     \n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int\
@@ -284,18 +284,18 @@ data:
     \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
     \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 2 \"alg/monoid/minmax.hpp\"\n\r\n\
-    template <class X>\r\nstruct Monoid_MinMax {\r\n  using P = pair<X, X>;\r\n  using\
-    \ value_type = P;\r\n  static constexpr P op(const P x, const P y) noexcept {\r\
-    \n    return {min(x.fi, y.fi), max(x.se, y.se)};\r\n  }\r\n  static constexpr\
-    \ P from_element(const X x) { return {x, x}; }\r\n  static constexpr P unit()\
-    \ { return {infty<X>, -infty<X>}; }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 7 \"test/4_aoj/ITP2_3_B.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  VEC(int, A, N);\n  using Mono = Monoid_MinMax<int>;\n  SegTree<Mono> seg(N,\
-    \ [&](int i) { return Mono::from_element(A[i]); });\n  LL(Q);\n  FOR(Q) {\n  \
-    \  LL(t, b, e);\n    if (t == 0) print(seg.prod(b, e).fi);\n    if (t == 1) print(seg.prod(b,\
-    \ e).se);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"alg/monoid/minmax.hpp\"\n\n\
+    template <class X>\nstruct Monoid_MinMax {\n  using P = pair<X, X>;\n  using value_type\
+    \ = P;\n  static constexpr P op(const P x, const P y) noexcept {\n    return {min(x.fi,\
+    \ y.fi), max(x.se, y.se)};\n  }\n  static constexpr P from_element(const X x)\
+    \ { return {x, x}; }\n  static constexpr P unit() { return {infty<X>, -infty<X>};\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 7 \"test/4_aoj/ITP2_3_B.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  using Mono = Monoid_MinMax<int>;\n\
+    \  SegTree<Mono> seg(N, [&](int i) { return Mono::from_element(A[i]); });\n  LL(Q);\n\
+    \  FOR(Q) {\n    LL(t, b, e);\n    if (t == 0) print(seg.prod(b, e).fi);\n   \
+    \ if (t == 1) print(seg.prod(b, e).se);\n  }\n}\n\nsigned main() {\n  cout <<\
+    \ fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_3_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/segtree.hpp\"\
     \n#include \"alg/monoid/minmax.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(int, A,\
@@ -312,8 +312,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP2_3_B.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_3_B.test.cpp
 layout: document

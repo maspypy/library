@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -118,7 +118,7 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 3 \"test/1_mytest/fenwick_raq.test.cpp\"\n\n#line 2 \"other/bit.hpp\"\
+    }\n#endif\n#line 3 \"test/1_mytest/fenwick_raq.test.cpp\"\n\n#line 1 \"other/bit.hpp\"\
     \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
     \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
@@ -145,7 +145,7 @@ data:
     \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
     \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
     \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
     \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
@@ -213,64 +213,96 @@ data:
     \ a, sz);\n    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n\
     \  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n   \
     \ apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
-    \  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\
+    \  }\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \  static constexpr bool commute = true;\n};\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Sum_Add {\r\n  using Monoid_X\
     \ = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
     \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return x +\
     \ a * E(size);\r\n  }\r\n};\r\n#line 1 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\
-    \n\n#line 4 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
-    struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
-    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
-    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total\
-    \ = G::unit();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int\
-    \ i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n\
-    \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
-    \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
-    \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() const { return\
-    \ total; }\n  E sum_all() const { return total; }\n  E sum(int k) const { return\
-    \ prefix_sum(k); }\n  E prod(int k) const { return prefix_prod(k); }\n  E prefix_sum(int\
-    \ k) const { return prefix_prod(k); }\n  E prefix_prod(int k) const {\n    chmin(k,\
-    \ n);\n    E ret = G::unit();\n    for (; k > 0; k -= k & -k) ret = G::op(ret,\
-    \ dat[k - 1]);\n    return ret;\n  }\n  E sum(int L, int R) const { return prod(L,\
-    \ R); }\n  E prod(int L, int R) const {\n    chmax(L, 0), chmin(R, n);\n    if\
-    \ (L == 0) return prefix_prod(R);\n    assert(0 <= L && L <= R && R <= n);\n \
-    \   E pos = G::unit(), neg = G::unit();\n    while (L < R) {\n      pos = G::op(pos,\
-    \ dat[R - 1]), R -= R & -R;\n    }\n    while (R < L) {\n      neg = G::op(neg,\
-    \ dat[L - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n\
-    \  }\n\n  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
-    \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
-    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    total = G::op(total,\
-    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
-    \  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\
-    \n  template <class F>\n  int max_right(const F check, int L = 0) const {\n  \
-    \  assert(check(G::unit()));\n    E s = G::unit();\n    int i = L;\n    // 2^k\
-    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
-    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
-    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
-    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
-    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) {\n  \
-    \        return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i\
-    \ -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1\
-    \ << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n  \
-    \      if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
-    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
-    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
-    \  assert(check(L, G::unit()));\n    E s = G::unit();\n    int i = L;\n    //\
-    \ 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n\
-    \        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i\
-    \ -= 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n \
-    \       }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return\
-    \ k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1\
-    \ << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\n\
+    struct Monoid_Add {\n  using X = E;\n  using value_type = X;\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr X unit() { return\
+    \ X(0); }\n  static constexpr bool commute = true;\n};\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
+    \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
+    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
+    \ G::unit());\n    total = G::unit();\n  }\n  void build(const vc<E>& v) {\n \
+    \   build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n\
+    \    total = G::unit();\n    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1;\
+    \ i <= n; ++i) {\n      int j = i + (i & -i);\n      if (j <= n) dat[j - 1] =\
+    \ G::op(dat[i - 1], dat[j - 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n \
+    \ E prod_all() const { return total; }\n  E sum_all() const { return total; }\n\
+    \  E sum(int k) const { return prefix_sum(k); }\n  E prod(int k) const { return\
+    \ prefix_prod(k); }\n  E prefix_sum(int k) const { return prefix_prod(k); }\n\
+    \  E prefix_prod(int k) const {\n    chmin(k, n);\n    E ret = G::unit();\n  \
+    \  for (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n\
+    \  }\n  E sum(int L, int R) const { return prod(L, R); }\n  E prod(int L, int\
+    \ R) const {\n    chmax(L, 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n\
+    \    assert(0 <= L && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n\
+    \    while (L < R) {\n      pos = G::op(pos, dat[R - 1]), R -= R & -R;\n    }\n\
+    \    while (R < L) {\n      neg = G::op(neg, dat[L - 1]), L -= L & -L;\n    }\n\
+    \    return G::op(pos, G::inverse(neg));\n  }\n\n  vc<E> get_all() const {\n \
+    \   vc<E> res(n);\n    FOR(i, n) res[i] = prod(i, i + 1);\n    return res;\n \
+    \ }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
+    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
+    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int\
+    \ k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\n  template <class\
+    \ F>\n  int max_right(const F check, int L = 0) const {\n    assert(check(G::unit()));\n\
+    \    E s = G::unit();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
+    \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) {\n        \
+    \  s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n        if (i ==\
+    \ 0) {\n          return topbit(n) + 1;\n        }\n        int k = lowbit(i)\
+    \ - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i\
+    \ + (1 << k) - 1]);\n        if (!check(t)) {\n          return k;\n        }\n\
+    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
+    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
+    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i + (1 << k) <= L || check(t))\
+    \ {\n          i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n\
+    \  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) const {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
+    \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
+    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i\
+    \ + (1 << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
     \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
     \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
@@ -301,7 +333,7 @@ data:
     \ bit0.add(R, G::power(val, R));\n    bit1.add(L, val);\n    bit1.add(R, G::inverse(val));\n\
     \  }\n\n  E prod(int L, int R) {\n    E prod_R = G::op(G::power(bit1.prod(R),\
     \ R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L), L), bit0.prod(L));\n\
-    \    return G::op(G::inverse(prod_L), prod_R);\n  }\n};\n#line 2 \"random/base.hpp\"\
+    \    return G::op(G::inverse(prod_L), prod_R);\n  }\n};\n#line 1 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -359,7 +391,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/fenwick_raq.test.cpp

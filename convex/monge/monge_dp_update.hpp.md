@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"convex/monge/monge_dp_update.hpp\"\n\n#line 2 \"convex/monotone_minima.hpp\"\
+  bundledCode: "#line 1 \"convex/monge/monge_dp_update.hpp\"\n\n#line 1 \"convex/monotone_minima.hpp\"\
     \n\n// \u5404\u884C\u306E\u6700\u9069\u5217\u3092\u6C42\u3081\u308B\n// better(i,j,k):\
     \ \u884C i \u306B\u304A\u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\
     \u3068\u304D true\n// \u9069\u7528\u6761\u4EF6\uFF1Abetter \u306B\u3088\u3063\u3066\
@@ -30,7 +30,7 @@ data:
     \ q << 1) {\n      int l = h - q;\n      int r = min(h + q, H);\n      int best\
     \ = idx[l];\n      for (int y = idx[l] + 1; y <= idx[r]; ++y) {\n        if (better(h,\
     \ best, y)) best = y;\n      }\n      idx[h] = best;\n    }\n  }\n  idx.pop_back();\n\
-    \  return idx;\n}\n#line 2 \"convex/smawk.hpp\"\n\n// \u5404\u884C\u306E\u6700\
+    \  return idx;\n}\n#line 1 \"convex/smawk.hpp\"\n\n// \u5404\u884C\u306E\u6700\
     \u9069\u5217\u3092\u6C42\u3081\u308B.\n// better(i,j,k): \u884C i \u306B\u304A\
     \u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\u3068\u304D true.\n\
     // \u9069\u7528\u6761\u4EF6\uFF1Atotally monotone matrix.\ntemplate <typename\
@@ -68,8 +68,8 @@ data:
   isVerificationFile: false
   path: convex/monge/monge_dp_update.hpp
   requiredBy: []
-  timestamp: '2026-06-15 22:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/952.test.cpp
 documentation_of: convex/monge/monge_dp_update.hpp

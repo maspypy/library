@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   _extendedRequiredBy: []
@@ -9,15 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
     title: test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2259.test.cpp
     title: test/3_yukicoder/2259.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\
+  bundledCode: "#line 1 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\
     \u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\u60C5\u5831\u3092\u8FD4\
     \u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B x \u5168\u4F53\u304C\u3001\
     \u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\u6B21\u3092\u8FD4\u3059\
@@ -57,8 +57,8 @@ data:
   isVerificationFile: false
   path: mod/min_of_linear.hpp
   requiredBy: []
-  timestamp: '2024-04-09 15:17:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
   - test/3_yukicoder/2259.test.cpp

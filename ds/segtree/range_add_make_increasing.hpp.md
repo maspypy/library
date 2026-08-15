@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -22,7 +22,7 @@ data:
     links:
     - https://atcoder.jp/contests/joisc2019/tasks/joisc2019_e
     - https://atcoder.jp/contests/joisp2024/tasks/joisp2024_i
-  bundledCode: "#line 1 \"ds/segtree/range_add_make_increasing.hpp\"\n\n#line 2 \"\
+  bundledCode: "#line 1 \"ds/segtree/range_add_make_increasing.hpp\"\n\n#line 1 \"\
     ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\nstruct Dual_SegTree\
     \ {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n  int n, log,\
     \ size;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0)\
@@ -45,32 +45,32 @@ data:
     \ }\n\n private:\n  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k]\
     \ = false;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
     \ = MA::unit();\n  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k],\
-    \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
-    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x)\
-    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
-    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
-    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/add.hpp\"\
+    \n\ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X unit() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
     \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
     \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
     \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
@@ -78,51 +78,47 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space:\
-    \ (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int\
-    \ n = 0, log = 0;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n)\
-    \ { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  void fillone() {\r\n\
-    \    int cur = n;\r\n    for (auto& vs : seg) {\r\n      int p = cur / B, q =\
-    \ cur % B;\r\n      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p] = full_mask(q);\r\
-    \n      cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\
-    \n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
-    \ {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
-    \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
-    \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
-    \ B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h\
-    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n      }\r\n    }\r\n  }\r\
-    \n\r\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\r\
-    \n  void insert(int i) {\r\n    assert(0 <= i && i < n);\r\n    for (int h = 0;\
-    \ h < log; h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\r\n   \
-    \ }\r\n  }\r\n  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n  \
-    \  assert(0 <= i && i < n);\r\n    u64 x = 0;\r\n    for (int h = 0; h < log;\
-    \ h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B]\
-    \ |= x << (i % B);\r\n      x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\
-    \n  }\r\n  void remove(int i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int\
-    \ next(int i) {\r\n    assert(i <= n);\r\n    chmax(i, 0);\r\n    for (int h =\
-    \ 0; h < log; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      u64\
-    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
-    \n        continue;\r\n      }\r\n      i += lowbit(d);\r\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\
-    \n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // max\
-    \ [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i >= -1);\r\n    if (i >=\
-    \ n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\n      if (i == -1) break;\r\
-    \n      u64 d = seg[h][i / B] << (63 - i % B);\r\n      if (!d) {\r\n        i\
-    \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
-    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
-    \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
-    \ -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return next(l) < r; }\r\n\r\n \
-    \ // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
-    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
-    \  void reset() {\r\n    enumerate(0, n, [&](int i) -> void { erase(i); });\r\n\
-    \  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
-    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
-    };\n#line 5 \"ds/segtree/range_add_make_increasing.hpp\"\n\n// \u533A\u9593\u52A0\
-    \u7B97 / \u3042\u308B\u7BC4\u56F2\u3092 prefix \u5074\u304B\u3089\u5358\u8ABF\
-    (\u5897\u52A0/\u6E1B\u5C11)\u306B\u306A\u308B\u3088\u3046\u306B\u4FEE\u6B63\n\
-    // \u6307\u5B9A\u3057\u306A\u304B\u3063\u305F\u5834\u5408 0 \u57CB\u3081\u3067\
-    \u521D\u671F\u5316\u3055\u308C\u308B\n// https://atcoder.jp/contests/joisc2019/tasks/joisc2019_e\n\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/fastset.hpp\"\n\n// 64-ary tree\n// space:\
+    \ (N/63) * u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0,\
+    \ log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\
+    \n  int size() { return n; }\n\n  void fillone() {\n    int cur = n;\n    for\
+    \ (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i]\
+    \ = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n\
+    \    }\n  }\n\n  template <typename F>\n  FastSet(int n, F f) {\n    build(n,\
+    \ f);\n  }\n\n  void build(int m) {\n    seg.clear();\n    n = m;\n    do {\n\
+    \      seg.push_back(vc<u64>((m + B - 1) / B));\n      m = (m + B - 1) / B;\n\
+    \    } while (m > 1);\n    log = len(seg);\n  }\n  template <typename F>\n  void\
+    \ build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i / B] |= u64(f(i))\
+    \ << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h])) {\n        seg[h\
+    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n    }\n  }\n\n  bool\
+    \ operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\n  void insert(int\
+    \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
+    \    seg[h][i / B] |= u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i)\
+    \ { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n    u64\
+    \ x = 0;\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1)\
+    \ << (i % B));\n      seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i\
+    \ / B]);\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  //\
+    \ min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n\
+    \    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n\
+    \      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B +\
+    \ 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int g = h\
+    \ - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
+    \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
+    \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
+    \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
+    \ / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n\
+    \      }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--)\
+    \ {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return\
+    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) { return next(l)\
+    \ < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int\
+    \ r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n  }\n\n\
+    \  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n  }\n\
+    \n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i < n; ++i)\
+    \ s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 5 \"ds/segtree/range_add_make_increasing.hpp\"\
+    \n\n// \u533A\u9593\u52A0\u7B97 / \u3042\u308B\u7BC4\u56F2\u3092 prefix \u5074\
+    \u304B\u3089\u5358\u8ABF(\u5897\u52A0/\u6E1B\u5C11)\u306B\u306A\u308B\u3088\u3046\
+    \u306B\u4FEE\u6B63\n// \u6307\u5B9A\u3057\u306A\u304B\u3063\u305F\u5834\u5408\
+    \ 0 \u57CB\u3081\u3067\u521D\u671F\u5316\u3055\u308C\u308B\n// https://atcoder.jp/contests/joisc2019/tasks/joisc2019_e\n\
     // https://atcoder.jp/contests/joisp2024/tasks/joisp2024_i\nstruct Range_Add_Make_Monotonic_Increasing\
     \ {\n  // \u4EE3\u8868\u70B9\u306E\u96C6\u5408\u3092\u6301\u3064. \u4EE3\u8868\
     \u70B9\u306B\u5BFE\u3059\u308B\u5024\u3092\u53CC\u5BFE\u30BB\u30B0\u6728\u3067\
@@ -193,7 +189,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_add_make_increasing.hpp
   requiredBy: []
-  timestamp: '2026-08-10 04:00:31+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/range_add_make_increasing.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy: []
@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
+  bundledCode: "#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
     \ prime_table(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
     \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
     \  done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R =\
@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: nt/factor_interval.hpp
   requiredBy: []
-  timestamp: '2026-08-15 16:17:43+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: nt/factor_interval.hpp

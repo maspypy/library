@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree.hpp
     title: ds/fenwicktree/dual_fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -106,19 +106,19 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 3 \"test/1_mytest/dual_fenwick.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
+    }\n#endif\n#line 3 \"test/1_mytest/dual_fenwick.test.cpp\"\n\n#line 1 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 1 \"ds/fenwicktree/dual_fenwicktree.hpp\"\n\n#line\
-    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\
-    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/dual_fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct Dual_FenwickTree {\n  using G = Monoid;\n\
-    \  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\n  Dual_FenwickTree()\
+    \ 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add {\n  using\
+    \ X = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return x + y; }\n  static constexpr X inverse(const X &x) noexcept\
+    \ { return -x; }\n  static constexpr X power(const X &x, ll n) noexcept { return\
+    \ X(n) * x; }\n  static constexpr X unit() { return X(0); }\n  static constexpr\
+    \ bool commute = true;\n};\n#line 3 \"ds/fenwicktree/dual_fenwicktree.hpp\"\n\n\
+    template <typename Monoid>\nstruct Dual_FenwickTree {\n  using G = Monoid;\n \
+    \ using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\n  Dual_FenwickTree()\
     \ {}\n  Dual_FenwickTree(int n) { build(n); }\n\n  void build(int m) {\n    n\
     \ = m;\n    dat.assign(m, G::unit());\n  }\n\n  E get(int k) {\n    E x = G::unit();\n\
     \    for (++k; k <= n; k += k & -k) x = G::op(x, dat[k - 1]);\n    return x;\n\
@@ -160,7 +160,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dual_fenwick.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dual_fenwick.test.cpp

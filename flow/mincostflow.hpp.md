@@ -9,36 +9,36 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/assignment_mcf.test.cpp
     title: test/2_library_checker/graph/assignment_mcf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1288.test.cpp
     title: test/3_yukicoder/1288.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1301.test.cpp
     title: test/3_yukicoder/1301.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1324.test.cpp
     title: test/3_yukicoder/1324.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1341.test.cpp
     title: test/3_yukicoder/1341.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1676.test.cpp
     title: test/3_yukicoder/1676.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1678.test.cpp
     title: test/3_yukicoder/1678.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2604.test.cpp
     title: test/3_yukicoder/2604.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_6_B.test.cpp
     title: test/4_aoj/GRL_6_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
+  bundledCode: "#line 1 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
     \u306E\u3092\u6539\u5909\nnamespace internal {\ntemplate <class E>\nstruct csr\
     \ {\n  vector<int> start;\n  vector<E> elist;\n  explicit csr(int n, const vector<pair<int,\
     \ E>>& edges) : start(n + 1), elist(edges.size()) {\n    for (auto e: edges) {\
@@ -145,50 +145,50 @@ data:
     \ (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
     \ cost});\n      prev_cost_per_flow = d;\n    }\n    dual_ref();\n    potential.resize(n);\n\
     \    FOR(v, n) potential[v] = dual_dist[v].fi;\n    return result;\n  }\n};\n"
-  code: "#pragma once\n\n// atcoder library \u306E\u3082\u306E\u3092\u6539\u5909\n\
-    namespace internal {\ntemplate <class E>\nstruct csr {\n  vector<int> start;\n\
-    \  vector<E> elist;\n  explicit csr(int n, const vector<pair<int, E>>& edges)\
-    \ : start(n + 1), elist(edges.size()) {\n    for (auto e: edges) { start[e.first\
-    \ + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i - 1]; }\n\
-    \    auto counter = start;\n    for (auto e: edges) { elist[counter[e.first]++]\
-    \ = e.second; }\n  }\n};\n\ntemplate <class T>\nstruct simple_queue {\n  vector<T>\
-    \ payload;\n  int pos = 0;\n  void reserve(int n) { payload.reserve(n); }\n  int\
-    \ size() const { return int(payload.size()) - pos; }\n  bool empty() const { return\
-    \ pos == int(payload.size()); }\n  void push(const T& t) { payload.push_back(t);\
-    \ }\n  T& front() { return payload[pos]; }\n  void clear() {\n    payload.clear();\n\
-    \    pos = 0;\n  }\n  void pop() { pos++; }\n};\n\n} // namespace internal\n\n\
-    /*\n\u30FBatcoder library \u3092\u3059\u3053\u3057\u6539\u5909\u3057\u305F\u3082\
-    \u306E\n\u30FBDAG = true \u3067\u3042\u308C\u3070\u3001\u8CA0\u8FBA OK \uFF08\
-    1 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\
-    \u3060\u3057\u3001\u9802\u70B9\u756A\u53F7\u306F toposort \u3055\u308C\u3066\u3044\
-    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
-    \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct Min_Cost_Flow {\n\
-    public:\n  Min_Cost_Flow() {}\n  explicit Min_Cost_Flow(int n, int source, int\
-    \ sink) : n(n), source(source), sink(sink) {\n    assert(0 <= source && source\
-    \ < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n  }\n\
-    \n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost) {\n\
-    \    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
-    \ <= cap);\n    assert(DAG || 0 <= cost);\n    if (DAG) assert(frm < to);\n  \
-    \  int m = int(_edges.size());\n    _edges.push_back({frm, to, cap, 0, cost});\n\
-    \    return m;\n  }\n\n  void debug() {\n    print(\"flow graph\");\n    print(\"\
-    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\
-    \ print(frm, to, cap, cost); }\n  }\n\n  struct edge {\n    int frm, to;\n   \
-    \ Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n    int m\
-    \ = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
-    \  }\n  vector<edge> edges() { return _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528\
-    )\n  pair<Cap, Cost> flow() { return flow(infty<Cap>); }\n  // (\u6D41\u91CF,\
-    \ \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap flow_limit) { return slope(flow_limit).back();\
-    \ }\n  vector<pair<Cap, Cost>> slope() { return slope(infty<Cap>); }\n  vector<pair<Cap,\
-    \ Cost>> slope(Cap flow_limit) {\n    int m = int(_edges.size());\n    vector<int>\
-    \ edge_idx(m);\n\n    auto g = [&]() {\n      vector<int> degree(n), redge_idx(m);\n\
-    \      vector<pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n      for\
-    \ (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
-    \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
-    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
-    \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(n, elist);\n\
-    \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
-    \ += _g.start[e.frm];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
-    \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
+  code: "\n// atcoder library \u306E\u3082\u306E\u3092\u6539\u5909\nnamespace internal\
+    \ {\ntemplate <class E>\nstruct csr {\n  vector<int> start;\n  vector<E> elist;\n\
+    \  explicit csr(int n, const vector<pair<int, E>>& edges) : start(n + 1), elist(edges.size())\
+    \ {\n    for (auto e: edges) { start[e.first + 1]++; }\n    for (int i = 1; i\
+    \ <= n; i++) { start[i] += start[i - 1]; }\n    auto counter = start;\n    for\
+    \ (auto e: edges) { elist[counter[e.first]++] = e.second; }\n  }\n};\n\ntemplate\
+    \ <class T>\nstruct simple_queue {\n  vector<T> payload;\n  int pos = 0;\n  void\
+    \ reserve(int n) { payload.reserve(n); }\n  int size() const { return int(payload.size())\
+    \ - pos; }\n  bool empty() const { return pos == int(payload.size()); }\n  void\
+    \ push(const T& t) { payload.push_back(t); }\n  T& front() { return payload[pos];\
+    \ }\n  void clear() {\n    payload.clear();\n    pos = 0;\n  }\n  void pop() {\
+    \ pos++; }\n};\n\n} // namespace internal\n\n/*\n\u30FBatcoder library \u3092\u3059\
+    \u3053\u3057\u6539\u5909\u3057\u305F\u3082\u306E\n\u30FBDAG = true \u3067\u3042\
+    \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
+    \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
+    \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
+    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
+    \ bool DAG = false>\nstruct Min_Cost_Flow {\npublic:\n  Min_Cost_Flow() {}\n \
+    \ explicit Min_Cost_Flow(int n, int source, int sink) : n(n), source(source),\
+    \ sink(sink) {\n    assert(0 <= source && source < n);\n    assert(0 <= sink &&\
+    \ sink < n);\n    assert(source != sink);\n  }\n\n  // frm, to, cap, cost\n  int\
+    \ add(int frm, int to, Cap cap, Cost cost) {\n    assert(0 <= frm && frm < n);\n\
+    \    assert(0 <= to && to < n);\n    assert(0 <= cap);\n    assert(DAG || 0 <=\
+    \ cost);\n    if (DAG) assert(frm < to);\n    int m = int(_edges.size());\n  \
+    \  _edges.push_back({frm, to, cap, 0, cost});\n    return m;\n  }\n\n  void debug()\
+    \ {\n    print(\"flow graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&&\
+    \ [frm, to, cap, flow, cost]: _edges) { print(frm, to, cap, cost); }\n  }\n\n\
+    \  struct edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\
+    \n  edge get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0 <= i\
+    \ && i < m);\n    return _edges[i];\n  }\n  vector<edge> edges() { return _edges;\
+    \ }\n\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  pair<Cap, Cost> flow() { return flow(infty<Cap>);\
+    \ }\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap flow_limit)\
+    \ { return slope(flow_limit).back(); }\n  vector<pair<Cap, Cost>> slope() { return\
+    \ slope(infty<Cap>); }\n  vector<pair<Cap, Cost>> slope(Cap flow_limit) {\n  \
+    \  int m = int(_edges.size());\n    vector<int> edge_idx(m);\n\n    auto g = [&]()\
+    \ {\n      vector<int> degree(n), redge_idx(m);\n      vector<pair<int, _edge>>\
+    \ elist;\n      elist.reserve(2 * m);\n      for (int i = 0; i < m; i++) {\n \
+    \       auto e = _edges[i];\n        edge_idx[i] = degree[e.frm]++;\n        redge_idx[i]\
+    \ = degree[e.to]++;\n        elist.push_back({e.frm, {e.to, -1, e.cap - e.flow,\
+    \ e.cost}});\n        elist.push_back({e.to, {e.frm, -1, e.flow, -e.cost}});\n\
+    \      }\n      auto _g = internal::csr<_edge>(n, elist);\n      for (int i =\
+    \ 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i] += _g.start[e.frm];\n\
+    \        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev =\
+    \ redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
     \      return _g;\n    }();\n\n    auto result = slope(g, flow_limit);\n\n   \
     \ for (int i = 0; i < m; i++) {\n      auto e = g.elist[edge_idx[i]];\n      _edges[i].flow\
     \ = _edges[i].cap - e.cap;\n    }\n\n    return result;\n  }\n\n  // O(F(N+M))\
@@ -257,8 +257,8 @@ data:
   path: flow/mincostflow.hpp
   requiredBy:
   - flow/longest_shortest_path.hpp
-  timestamp: '2024-11-07 04:20:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/graph/assignment_mcf.test.cpp
   - test/4_aoj/GRL_6_B.test.cpp

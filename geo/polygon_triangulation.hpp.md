@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   _extendedRequiredBy: []
@@ -35,7 +35,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
+  bundledCode: "#line 1 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
     \  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n\
     \  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
     \ B> p) : x(p.fi), y(p.se) {}\n\n  template <typename U>\n  Point(Point<U> p)\
@@ -108,7 +108,7 @@ data:
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
     \ \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename\
     \ Node>\nstruct SplayTree {\n  Node_Pool<Node> pool;\n  using np = Node *;\n \
     \ using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
@@ -260,45 +260,44 @@ data:
     \ { return x; }\n  void set(const S &xx) {\n    x = xx;\n    update();\n  }\n\
     \  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate <typename\
     \ S>\nusing SplayTree_Basic = SplayTree<Node_Basic<S>>;\n}  // namespace SplayTreeNodes\n\
-    \nusing SplayTreeNodes::SplayTree_Basic;\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64\
-    \ -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\
-    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n =\
-    \ 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k\
-    \ < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k),\
-    \ used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E\
-    . size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\
-    \n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) /\
-    \ 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if\
-    \ (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return\
-    \ val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int\
-    \ i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\
-    \n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return used[i]\
-    \ && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n\
-    \  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\
-    \n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\
-    \n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x += FIXED_RANDOM;\r\
-    \n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\
-    \n    return (x ^ (x >> 31)) & mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64,\
-    \ Val>> dat;\r\n    dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used))\
-    \ {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\
-    \n    for (auto& [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
-    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int>\
-    \ MP_FOR_EID;\n  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
-    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
-    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
-    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\
-    \n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \nusing SplayTreeNodes::SplayTree_Basic;\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
+    \ -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
+    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
+    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
+    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\n    return\
+    \ i;\n  }\n\n  Val& operator[](const u64& k) {\n    if (cap == 0) extend();\n\
+    \    int i = index(k);\n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] =\
+    \ Val{}, --cap; }\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
+    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
+    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
+    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
+    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
+    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
+    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
+    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
+    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -360,57 +359,164 @@ data:
     \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"geo/angle_sort.hpp\"\
-    \n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\r\
-    \ntemplate <typename T> int lower_or_upper(const Point<T> &p) {\r\n  if (p.y !=\
-    \ 0)\r\n    return (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0)\r\n    return -1;\r\n\
-    \  if (p.x < 0)\r\n    return 1;\r\n  return 0;\r\n}\r\n\r\n// L<R:-1, L==R:0,\
-    \ L>R:1, (-pi,pi]\r\ntemplate <typename T> int angle_comp_3(const Point<T> &L,\
-    \ const Point<T> &R) {\r\n  int a = lower_or_upper(L), b = lower_or_upper(R);\r\
-    \n  if (a != b)\r\n    return (a < b ? -1 : +1);\r\n  T det = L.det(R);\r\n  if\
-    \ (det > 0)\r\n    return -1;\r\n  if (det < 0)\r\n    return 1;\r\n  return 0;\r\
-    \n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<Point<T>> &P)\
-    \ {\r\n  vc<int> I(len(P));\r\n  FOR(i, len(P)) I[i] = i;\r\n  sort(all(I), [&](auto\
-    \ &L, auto &R) -> bool {\r\n    return angle_comp_3(P[L], P[R]) == -1;\r\n  });\r\
-    \n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
-    \ argsort, (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<pair<T,\
-    \ T>> &P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 4 \"graph/planar_graph.hpp\"\n\n\
-    /*\n\u30FB\u9023\u7D50\u5E73\u9762\u30B0\u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\
-    \u306A\u3044\u3068\u304D\u306B\u3069\u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\
-    \u4F55\u3082\u8003\u3048\u3066\u3044\u306A\u3044\n\u30FBN=1 \u3082\u6271\u308F\
-    \u306A\u3044\n\u30FB0\u756A\u76EE\u306B\u5916\u9762\u304C\u5165\u308B\n\u30FB\u6B21\
-    \u6570 1 \u306E\u70B9\u3068\u304B\u306F\u3042\u3063\u3066\u3082\u5927\u4E08\u592B\
-    \u3063\u307D\u3044\uFF1F\n*/\ntemplate <typename XY>\nstruct Planar_Graph {\n\
-    \  using P = Point<XY>;\n  int NV, NE, NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\
-    \u306A\u308B\u30B0\u30E9\u30D5. \u6709\u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\
-    \u304A\u304F\n  Graph<int, 1> G;\n  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point;\
-    \ // \u5EA7\u6A19\n  // \u8FBA\u5C5E\u6027\n  vc<int> left_face; // \u6709\u5411\
-    \u8FBA\u306E\u5DE6\u306B\u3042\u308B\u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;\
-    \  // \u9762\u3092\u53CD\u6642\u8A08\u56DE\u308A\u306B\u307E\u308F\u308B\u3068\
-    \u304D\u306E\u6B21\u306E\u8FBA\n  // \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\
-    \n  Planar_Graph(int N, vc<P> point) : NV(N), G(N), point(point) { assert(N >\
-    \ 1); }\n\n  void add(int a, int b) { G.add(a, b), G.add(b, a); }\n  void build()\
-    \ {\n    G.build();\n    NE = G.M / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M,\
-    \ -1);\n    int v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v]\
-    \ < point[v0]) v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto&\
-    \ e: G[v]) {\n        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n\
-    \      }\n      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k,\
-    \ len(I)) {\n        int i = (k == 0 ? I.back() : I[k - 1]);\n        int j =\
-    \ I[k];\n        i = eid[i], j = eid[j];\n        nxt_edge[j ^ 1] = i;\n     \
-    \ }\n      if (v == v0) e0 = eid[I[0]] ^ 1;\n    }\n    for (auto& x: nxt_edge)\
-    \ assert(x != -1);\n\n    auto make_face = [&](int e) -> void {\n      int p =\
-    \ len(first_edge);\n      first_edge.eb(e);\n      while (left_face[e] == -1)\
-    \ {\n        left_face[e] = p;\n        e = nxt_edge[e];\n      }\n    };\n\n\
-    \    make_face(e0);\n    FOR(e, 2 * NE) {\n      if (left_face[e] == -1) make_face(e);\n\
-    \    }\n    NF = len(first_edge);\n    assert(NV - NE + NF == 2);\n  }\n\n  //\
-    \ return {vs, es}\n  // vs = [v0,v1,v2,v0], es = [e0,e1,e2]\n  pair<vc<int>, vc<int>>\
-    \ get_face_data(int fid) {\n    vc<int> eid = {first_edge[fid]};\n    while (1)\
-    \ {\n      int e = nxt_edge[eid.back()];\n      if (e == first_edge[fid]) break;\n\
-    \      eid.eb(e);\n    }\n    vc<int> vid;\n    for (auto& e: eid) vid.eb(G.edges[e].frm);\n\
-    \    vid.eb(vid[0]);\n    return {vid, eid};\n  }\n};\n#line 4 \"geo/polygon_triangulation.hpp\"\
-    \n\ntemplate <typename T>\nvc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<T>>\
+    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 1 \"geo/base.hpp\"\
+    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {}\n\n \
+    \ Point operator+=(const Point p) {\n    x += p.x, y += p.y;\n    return *this;\n\
+    \  }\n  Point operator-=(const Point p) {\n    x -= p.x, y -= p.y;\n    return\
+    \ *this;\n  }\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n\
+    \  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
+    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
+    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
+    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
+    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
+    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(const Point&\
+    \ other) const { return x * other.x + y * other.y; }\n  T det(const Point& other)\
+    \ const { return x * other.y - y * other.x; }\n\n  double norm() { return sqrtl(x\
+    \ * x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double\
+    \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
+    \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n  Point\
+    \ rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y, -x}); }\n};\n\n#ifdef\
+    \ FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n\
+    }\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n  fastio::wt('\
+    \ ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\u3080\u3068\
+    \u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 +1\u3001\u53F3\
+    \u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename T>\nint ccw(Point<T>\
+    \ A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n  if (x > 0) return\
+    \ 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename REAL, typename\
+    \ T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx = REAL(A.x) -\
+    \ REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx * dx + dy *\
+    \ dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n\
+    \  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n\
+    \    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1,\
+    \ T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template\
+    \ <typename U>\n  U eval(Point<U> P) {\n    return U(a) * P.x + U(b) * P.y + U(c);\n\
+    \  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return a * x + b *\
+    \ y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\
+    \u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\u308B\n  void normalize() {\n\
+    \    static_assert(is_same_v<T, int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a),\
+    \ abs(b)), abs(c));\n    a /= g, b /= g, c /= g;\n    if (b < 0) {\n      a =\
+    \ -a, b = -b, c = -c;\n    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b,\
+    \ c = -c;\n    }\n  }\n\n  bool is_parallel(Line other) { return a * other.b -\
+    \ b * other.a == 0; }\n  bool is_orthogonal(Line other) { return a * other.a +\
+    \ b * other.b == 0; }\n  bool is_same(Line other) {\n    if (a * other.b != b\
+    \ * other.a) return 0;\n    if (a * other.c != c * other.a) return 0;\n    if\
+    \ (b * other.c != c * other.b) return 0;\n    return 1;\n  }\n};\n\ntemplate <typename\
+    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
+    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
+    \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
+    \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
+    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 1 \"geo/angle_sort.hpp\"\n\n#line 1 \"geo/base.hpp\"\
+    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {}\n\n \
+    \ Point operator+=(const Point p) {\n    x += p.x, y += p.y;\n    return *this;\n\
+    \  }\n  Point operator-=(const Point p) {\n    x -= p.x, y -= p.y;\n    return\
+    \ *this;\n  }\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n\
+    \  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
+    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
+    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
+    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
+    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
+    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(const Point&\
+    \ other) const { return x * other.x + y * other.y; }\n  T det(const Point& other)\
+    \ const { return x * other.y - y * other.x; }\n\n  double norm() { return sqrtl(x\
+    \ * x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double\
+    \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
+    \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n  Point\
+    \ rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y, -x}); }\n};\n\n#ifdef\
+    \ FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n\
+    }\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n  fastio::wt('\
+    \ ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\u3080\u3068\
+    \u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 +1\u3001\u53F3\
+    \u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename T>\nint ccw(Point<T>\
+    \ A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n  if (x > 0) return\
+    \ 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename REAL, typename\
+    \ T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx = REAL(A.x) -\
+    \ REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx * dx + dy *\
+    \ dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n\
+    \  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n\
+    \    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1,\
+    \ T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template\
+    \ <typename U>\n  U eval(Point<U> P) {\n    return U(a) * P.x + U(b) * P.y + U(c);\n\
+    \  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return a * x + b *\
+    \ y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\
+    \u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\u308B\n  void normalize() {\n\
+    \    static_assert(is_same_v<T, int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a),\
+    \ abs(b)), abs(c));\n    a /= g, b /= g, c /= g;\n    if (b < 0) {\n      a =\
+    \ -a, b = -b, c = -c;\n    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b,\
+    \ c = -c;\n    }\n  }\n\n  bool is_parallel(Line other) { return a * other.b -\
+    \ b * other.a == 0; }\n  bool is_orthogonal(Line other) { return a * other.a +\
+    \ b * other.b == 0; }\n  bool is_same(Line other) {\n    if (a * other.b != b\
+    \ * other.a) return 0;\n    if (a * other.c != c * other.a) return 0;\n    if\
+    \ (b * other.c != c * other.b) return 0;\n    return 1;\n  }\n};\n\ntemplate <typename\
+    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
+    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
+    \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
+    \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
+    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 3 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin:\
+    \ 0, upper: 1, (-pi,pi]\ntemplate <typename T> int lower_or_upper(const Point<T>\
+    \ &p) {\n  if (p.y != 0)\n    return (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n   \
+    \ return -1;\n  if (p.x < 0)\n    return 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0,\
+    \ L>R:1, (-pi,pi]\ntemplate <typename T> int angle_comp_3(const Point<T> &L, const\
+    \ Point<T> &R) {\n  int a = lower_or_upper(L), b = lower_or_upper(R);\n  if (a\
+    \ != b)\n    return (a < b ? -1 : +1);\n  T det = L.det(R);\n  if (det > 0)\n\
+    \    return -1;\n  if (det < 0)\n    return 1;\n  return 0;\n}\n\n// \u504F\u89D2\
+    \u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\ntemplate <typename\
+    \ T> vector<int> angle_sort(vector<Point<T>> &P) {\n  vc<int> I(len(P));\n  FOR(i,\
+    \ len(P)) I[i] = i;\n  sort(all(I), [&](auto &L, auto &R) -> bool {\n    return\
+    \ angle_comp_3(P[L], P[R]) == -1;\n  });\n  return I;\n}\n\n// \u504F\u89D2\u30BD\
+    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\ntemplate <typename T>\
+    \ vector<int> angle_sort(vector<pair<T, T>> &P) {\n  vc<Point<T>> tmp(len(P));\n\
+    \  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n  return angle_sort<T>(tmp);\n}\n\
+    #line 4 \"graph/planar_graph.hpp\"\n\n/*\n\u30FB\u9023\u7D50\u5E73\u9762\u30B0\
+    \u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\u306A\u3044\u3068\u304D\u306B\u3069\
+    \u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\u4F55\u3082\u8003\u3048\u3066\u3044\
+    \u306A\u3044\n\u30FBN=1 \u3082\u6271\u308F\u306A\u3044\n\u30FB0\u756A\u76EE\u306B\
+    \u5916\u9762\u304C\u5165\u308B\n\u30FB\u6B21\u6570 1 \u306E\u70B9\u3068\u304B\u306F\
+    \u3042\u3063\u3066\u3082\u5927\u4E08\u592B\u3063\u307D\u3044\uFF1F\n*/\ntemplate\
+    \ <typename XY>\nstruct Planar_Graph {\n  using P = Point<XY>;\n  int NV, NE,\
+    \ NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5. \u6709\
+    \u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\u304F\n  Graph<int, 1> G;\n\
+    \  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\u6A19\n  // \u8FBA\u5C5E\
+    \u6027\n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\u5DE6\u306B\u3042\u308B\
+    \u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\u3092\u53CD\u6642\u8A08\
+    \u56DE\u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\u6B21\u306E\u8FBA\n  //\
+    \ \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int N, vc<P> point)\
+    \ : NV(N), G(N), point(point) { assert(N > 1); }\n\n  void add(int a, int b) {\
+    \ G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n    NE = G.M\
+    \ / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n    int\
+    \ v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
+    \ v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto& e: G[v]) {\n\
+    \        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n      }\n\
+    \      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k, len(I))\
+    \ {\n        int i = (k == 0 ? I.back() : I[k - 1]);\n        int j = I[k];\n\
+    \        i = eid[i], j = eid[j];\n        nxt_edge[j ^ 1] = i;\n      }\n    \
+    \  if (v == v0) e0 = eid[I[0]] ^ 1;\n    }\n    for (auto& x: nxt_edge) assert(x\
+    \ != -1);\n\n    auto make_face = [&](int e) -> void {\n      int p = len(first_edge);\n\
+    \      first_edge.eb(e);\n      while (left_face[e] == -1) {\n        left_face[e]\
+    \ = p;\n        e = nxt_edge[e];\n      }\n    };\n\n    make_face(e0);\n    FOR(e,\
+    \ 2 * NE) {\n      if (left_face[e] == -1) make_face(e);\n    }\n    NF = len(first_edge);\n\
+    \    assert(NV - NE + NF == 2);\n  }\n\n  // return {vs, es}\n  // vs = [v0,v1,v2,v0],\
+    \ es = [e0,e1,e2]\n  pair<vc<int>, vc<int>> get_face_data(int fid) {\n    vc<int>\
+    \ eid = {first_edge[fid]};\n    while (1) {\n      int e = nxt_edge[eid.back()];\n\
+    \      if (e == first_edge[fid]) break;\n      eid.eb(e);\n    }\n    vc<int>\
+    \ vid;\n    for (auto& e: eid) vid.eb(G.edges[e].frm);\n    vid.eb(vid[0]);\n\
+    \    return {vid, eid};\n  }\n};\n#line 4 \"geo/polygon_triangulation.hpp\"\n\n\
+    template <typename T>\nvc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<T>>\
     \ point) {\n  int N = len(point);\n  int rot = min_element(all(point)) - point.begin();\n\
     \  rotate(point.begin(), point.begin() + rot, point.end());\n  int n = max_element(all(point))\
     \ - point.begin();\n  FOR(i, n) assert(point[i] < point[i + 1]);\n  FOR(i, n,\
@@ -556,7 +662,7 @@ data:
   isVerificationFile: false
   path: geo/polygon_triangulation.hpp
   requiredBy: []
-  timestamp: '2026-08-08 15:43:41+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp

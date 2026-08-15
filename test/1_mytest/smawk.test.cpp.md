@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -243,10 +243,10 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/1_mytest/smawk.test.cpp\"\n\
-    \n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 3 \"random/random_monge.hpp\"\n\n// A[i1][j1] +\
+    \ RNG_64() % (r - l); }\n#line 2 \"random/random_monge.hpp\"\n\n// A[i1][j1] +\
     \ A[i2][j2] <= A[i1][j2] + A[i2][j1] for i1 < i2, j1 < j2.\nvvc<ll> random_monge_matrix(int\
     \ H, int W) {\n  ll LIM = 10;\n  vv(ll, D, H, W);\n  FOR(i, H) FOR(j, W) D[i][j]\
     \ = RNG(0, LIM + 1);\n\n  vv(ll, A, H, W);\n  FOR(i, H) FOR(j, W) {\n    ll x\
@@ -254,7 +254,7 @@ data:
     \ if (i && j) x -= A[i - 1][j - 1];\n    A[i][j] = x;\n  }\n\n  vc<ll> row(H),\
     \ col(W);\n  FOR(i, H) row[i] = RNG(-LIM * W, LIM * W + 1);\n  FOR(j, W) col[j]\
     \ = RNG(-LIM * H, LIM * H + 1);\n\n  FOR(i, H) FOR(j, W) A[i][j] = -A[i][j] +\
-    \ row[i] + col[j];\n  return A;\n}\n#line 2 \"convex/smawk.hpp\"\n\n// \u5404\u884C\
+    \ row[i] + col[j];\n  return A;\n}\n#line 1 \"convex/smawk.hpp\"\n\n// \u5404\u884C\
     \u306E\u6700\u9069\u5217\u3092\u6C42\u3081\u308B.\n// better(i,j,k): \u884C i\
     \ \u306B\u304A\u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\u3068\
     \u304D true.\n// \u9069\u7528\u6761\u4EF6\uFF1Atotally monotone matrix.\ntemplate\
@@ -298,7 +298,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/smawk.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/smawk.test.cpp

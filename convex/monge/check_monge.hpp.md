@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"convex/monge/check_monge.hpp\"\n\n// check Monge property\
+  bundledCode: "#line 1 \"convex/monge/check_monge.hpp\"\n\n// check Monge property\
     \ on [0, N]:\n// f(a,d) + f(b,c) >= f(a,c) + f(b,d) for a < b < c < d\ntemplate\
     \ <typename T, typename F>\nbool check_monge(int N, F f) {\n  FOR(d, N + 1) FOR(c,\
     \ d) FOR(b, c) FOR(a, b) {\n    T lhs = f(a, d) + f(b, c);\n    T rhs = f(a, c)\
@@ -19,10 +19,10 @@ data:
     a,b,c,d = \", a, b, c, d);\n      print(\"f(a, d)=\", f(a, d));\n      print(\"\
     f(b, c)=\", f(b, c));\n      print(\"f(a, c)=\", f(a, c));\n      print(\"f(b,\
     \ d)=\", f(b, d));\n      return false;\n    }\n  }\n  return true;\n}\n"
-  code: "#pragma once\n\n// check Monge property on [0, N]:\n// f(a,d) + f(b,c) >=\
-    \ f(a,c) + f(b,d) for a < b < c < d\ntemplate <typename T, typename F>\nbool check_monge(int\
-    \ N, F f) {\n  FOR(d, N + 1) FOR(c, d) FOR(b, c) FOR(a, b) {\n    T lhs = f(a,\
-    \ d) + f(b, c);\n    T rhs = f(a, c) + f(b, d);\n    if (lhs < rhs) {\n      print(\"\
+  code: "\n// check Monge property on [0, N]:\n// f(a,d) + f(b,c) >= f(a,c) + f(b,d)\
+    \ for a < b < c < d\ntemplate <typename T, typename F>\nbool check_monge(int N,\
+    \ F f) {\n  FOR(d, N + 1) FOR(c, d) FOR(b, c) FOR(a, b) {\n    T lhs = f(a, d)\
+    \ + f(b, c);\n    T rhs = f(a, c) + f(b, d);\n    if (lhs < rhs) {\n      print(\"\
     monge ng\");\n      print(\"a,b,c,d = \", a, b, c, d);\n      print(\"f(a, d)=\"\
     , f(a, d));\n      print(\"f(b, c)=\", f(b, c));\n      print(\"f(a, c)=\", f(a,\
     \ c));\n      print(\"f(b, d)=\", f(b, d));\n      return false;\n    }\n  }\n\
@@ -31,7 +31,7 @@ data:
   isVerificationFile: false
   path: convex/monge/check_monge.hpp
   requiredBy: []
-  timestamp: '2026-05-31 17:32:53+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/check_monge.test.cpp

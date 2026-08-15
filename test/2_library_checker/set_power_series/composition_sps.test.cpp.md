@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   - icon: ':heavy_check_mark:'
@@ -253,7 +253,7 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/set_power_series/composition_sps.test.cpp\"\
-    \n\n#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    \n\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
     \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
@@ -280,7 +280,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
     \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -319,7 +319,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -359,7 +359,7 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"setfunc/ranked_zeta.hpp\"\n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\
+    #line 1 \"setfunc/ranked_zeta.hpp\"\n\n#line 1 \"setfunc/bitwise_transform.hpp\"\
     \n\nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
     \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
     \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
@@ -389,29 +389,28 @@ data:
     template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
     \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
     \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
-    \ bitwise\n#line 4 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int\
-    \ LIM>\r\nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\r\n  int n = topbit(len(f));\r\
-    \n  assert(n <= LIM);\r\n  assert(len(f) == 1 << n);\r\n  vc<array<T, LIM + 1>>\
-    \ Rf(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\r\
-    \n  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);\r\n  return\
-    \ Rf;\r\n}\r\n\r\ntemplate <typename T, int LIM>\r\nvc<T> ranked_mobius(vc<array<T,\
-    \ LIM + 1>>& Rf) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_mobius>(Rf);\r\
-    \n  vc<T> f(len(Rf));\r\n  for (int s = 0; s < len(f); ++s) f[s] = Rf[s][popcnt(s)];\r\
-    \n  return f;\r\n}\n#line 3 \"setfunc/sps_composition.hpp\"\n\n// sum_i f_i/i!\
-    \ s^i, s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint>\
-    \ sps_composition_egf(vc<mint>& f, vc<mint>& s) {\n  const int N = topbit(len(s));\n\
-    \  assert(len(s) == (1 << N) && s[0] == mint(0));\n  if (len(f) > N) f.resize(N\
-    \ + 1);\n  int D = len(f) - 1;\n  using ARR = array<mint, LIM + 1>;\n  vvc<ARR>\
-    \ zs(N);\n  FOR(i, N) { zs[i] = ranked_zeta<mint, LIM>({s.begin() + (1 << i),\
-    \ s.begin() + (2 << i)}); }\n\n  // dp : (d/dt)^df(s) (d=D,D-1,...)\n  vc<mint>\
-    \ dp(1 << (N - D));\n  dp[0] = f[D];\n  FOR_R(d, D) {\n    vc<mint> newdp(1 <<\
-    \ (N - d));\n    newdp[0] = f[d];\n    vc<ARR> zdp = ranked_zeta<mint, LIM>(dp);\n\
-    \    FOR(i, N - d) {\n      // zs[1<<i:2<<i], zdp[0:1<<i]\n      vc<ARR> znewdp(1\
-    \ << i);\n      FOR(k, 1 << i) {\n        FOR(p, i + 1) FOR(q, i - p + 1) { znewdp[k][p\
-    \ + q] += zdp[k][p] * zs[i][k][q]; }\n      }\n      auto x = ranked_mobius<mint,\
-    \ LIM>(znewdp);\n      copy(all(x), newdp.begin() + (1 << i));\n    }\n    swap(dp,\
-    \ newdp);\n  }\n  return dp;\n}\n\n// sum_i f_i s^i, s^i is subset-convolution\n\
-    template <typename mint, int LIM>\nvc<mint> sps_composition_poly(vc<mint> f, vc<mint>\
+    \ bitwise\n#line 3 \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM>\n\
+    vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\n  int n = topbit(len(f));\n\
+    \  assert(n <= LIM);\n  assert(len(f) == 1 << n);\n  vc<array<T, LIM + 1>> Rf(1\
+    \ << n);\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);\n\
+    \  return Rf;\n}\n\ntemplate <typename T, int LIM>\nvc<T> ranked_mobius(vc<array<T,\
+    \ LIM + 1>>& Rf) {\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_mobius>(Rf);\n\
+    \  vc<T> f(len(Rf));\n  for (int s = 0; s < len(f); ++s) f[s] = Rf[s][popcnt(s)];\n\
+    \  return f;\n}\n#line 2 \"setfunc/sps_composition.hpp\"\n\n// sum_i f_i/i! s^i,\
+    \ s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint> sps_composition_egf(vc<mint>&\
+    \ f, vc<mint>& s) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 <<\
+    \ N) && s[0] == mint(0));\n  if (len(f) > N) f.resize(N + 1);\n  int D = len(f)\
+    \ - 1;\n  using ARR = array<mint, LIM + 1>;\n  vvc<ARR> zs(N);\n  FOR(i, N) {\
+    \ zs[i] = ranked_zeta<mint, LIM>({s.begin() + (1 << i), s.begin() + (2 << i)});\
+    \ }\n\n  // dp : (d/dt)^df(s) (d=D,D-1,...)\n  vc<mint> dp(1 << (N - D));\n  dp[0]\
+    \ = f[D];\n  FOR_R(d, D) {\n    vc<mint> newdp(1 << (N - d));\n    newdp[0] =\
+    \ f[d];\n    vc<ARR> zdp = ranked_zeta<mint, LIM>(dp);\n    FOR(i, N - d) {\n\
+    \      // zs[1<<i:2<<i], zdp[0:1<<i]\n      vc<ARR> znewdp(1 << i);\n      FOR(k,\
+    \ 1 << i) {\n        FOR(p, i + 1) FOR(q, i - p + 1) { znewdp[k][p + q] += zdp[k][p]\
+    \ * zs[i][k][q]; }\n      }\n      auto x = ranked_mobius<mint, LIM>(znewdp);\n\
+    \      copy(all(x), newdp.begin() + (1 << i));\n    }\n    swap(dp, newdp);\n\
+    \  }\n  return dp;\n}\n\n// sum_i f_i s^i, s^i is subset-convolution\ntemplate\
+    \ <typename mint, int LIM>\nvc<mint> sps_composition_poly(vc<mint> f, vc<mint>\
     \ s) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 << N));\n  if (f.empty())\
     \ return vc<mint>(1 << N, mint(0));\n  // convert to egf problem\n  int D = min<int>(len(f)\
     \ - 1, N);\n  vc<mint> g(D + 1);\n  mint c = s[0];\n  s[0] = 0;\n  // (x+c)^i\n\
@@ -440,7 +439,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/set_power_series/composition_sps.test.cpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/set_power_series/composition_sps.test.cpp

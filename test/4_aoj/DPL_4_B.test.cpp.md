@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/subset_sum_count.hpp
     title: knapsack/subset_sum_count.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B
@@ -237,7 +237,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"knapsack/subset_sum_count.hpp\"\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"knapsack/subset_sum_count.hpp\"\
     \n\n/*\nO(2^{N/2})\nsubset sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi)\
     \ \u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\n*/\ntemplate <typename T =\
     \ ll>\nll subset_sum_count(vc<T> A, T lo, T hi) {\n  int n = len(A);\n  auto gen\
@@ -283,8 +283,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DPL_4_B.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DPL_4_B.test.cpp
 layout: document

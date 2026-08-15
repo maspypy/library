@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"geo3d/base.hpp\"\n\ntemplate <typename T>\nstruct Point_3d\
+  bundledCode: "#line 1 \"geo3d/base.hpp\"\n\ntemplate <typename T>\nstruct Point_3d\
     \ {\n  T x, y, z;\n\n  Point_3d() = default;\n\n  template <typename A, typename\
     \ B, typename C>\n  Point_3d(A x, B y, C z) : x(x), y(y), z(z) {}\n\n  Point_3d\
     \ operator+(Point_3d p) const { return {x + p.x, y + p.y, z + p.z}; }\n  Point_3d\
@@ -76,7 +76,7 @@ data:
   isVerificationFile: false
   path: geo3d/cross_point.hpp
   requiredBy: []
-  timestamp: '2025-05-05 02:10:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo3d/cross_point.hpp

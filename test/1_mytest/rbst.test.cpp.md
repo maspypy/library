@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst.hpp
     title: ds/randomized_bst/rbst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -202,7 +202,7 @@ data:
     \    root = clone(root);\n    if (check(root->s)) {\n      auto [n1, n2] = split_max_right_rec(root->r,\
     \ check);\n      root->r = n1;\n      update(root);\n      return {root, n2};\n\
     \    }\n    auto [n1, n2] = split_max_right_rec(root->l, check);\n    root->l\
-    \ = n2;\n    update(root);\n    return {n1, root};\n  }\n};\n#line 2 \"random/base.hpp\"\
+    \ = n2;\n    update(root);\n    return {n1, root};\n  }\n};\n#line 1 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -247,7 +247,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst.test.cpp

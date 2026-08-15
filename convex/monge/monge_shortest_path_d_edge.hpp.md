@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: convex/alien.hpp
     title: convex/alien.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
   _extendedRequiredBy: []
@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"convex/monge/monge_shortest_path_d_edge.hpp\"\n\n#line 2\
+  bundledCode: "#line 1 \"convex/monge/monge_shortest_path_d_edge.hpp\"\n\n#line 1\
     \ \"convex/alien.hpp\"\n\n// MINIMIZE \u306B\u5FDC\u3058\u3066\u3001base_score\
     \ + add * cnt \u3092\u6700\u5C0F\u5316 / \u6700\u5927\u5316\u3059\u308B\n// solve(add)\
     \ -> {val, cnt}\n// val \u306F add * cnt \u3092\u542B\u3080\u6700\u9069\u5024\n\
@@ -46,7 +46,7 @@ data:
     \ cnt_lo) = mp(val, cnt);\n    } else {\n      hi = mid;\n      tie(val_hi, cnt_hi)\
     \ = mp(val, cnt);\n    }\n  }\n\n  T ans_lo = val_lo - lo * T(K);\n  T ans_hi\
     \ = val_hi - hi * T(K);\n\n  if (ans_lo >= ans_hi) return {ans_lo, lo};\n  return\
-    \ {ans_hi, hi};\n}\n#line 2 \"convex/monge/monge_shortest_path.hpp\"\n\ntemplate\
+    \ {ans_hi, hi};\n}\n#line 1 \"convex/monge/monge_shortest_path.hpp\"\n\ntemplate\
     \ <typename T>\nstruct Monge_Shortest_Path {\n  vc<T> dp;\n  vc<int> cnt, frm;\n\
     \n  template <typename F>\n  T solve(int N, F f, bool minimize_cnt = true) {\n\
     \    dp.assign(N + 1, infty<T>);\n    cnt.assign(N + 1, infty<int>);\n    frm.assign(N\
@@ -72,13 +72,13 @@ data:
     \ T {\n//     ++i;\n//     if (i <= j) return infty<T>;\n//     return dp[j] +\
     \ f(j, i);\n//   };\n\n//   LARSCH<T, decltype(g)> larsch(N, g);\n//   FOR(r,\
     \ 1, N + 1) {\n//     int l = larsch.get_argmin();\n//     dp[r] = dp[l] + f(l,\
-    \ r);\n//   }\n//   return dp;\n// }\n#line 5 \"convex/monge/monge_shortest_path_d_edge.hpp\"\
+    \ r);\n//   }\n//   return dp;\n// }\n#line 4 \"convex/monge/monge_shortest_path_d_edge.hpp\"\
     \n\n// return: {ans, pena}\ntemplate <typename T, typename F>\npair<T, T> monge_shortest_path_d_edge(int\
     \ N, int d, F f) {\n  Monge_Shortest_Path<T> solver;\n\n  auto solve = [&](T pena)\
     \ -> pair<T, int> {\n    T val = solver.solve(N, [&](int l, int r) -> T { return\
     \ f(l, r) + pena; });\n    return {val, solver.cnt[N]};\n  };\n\n  return alien_trick<T,\
     \ true>(d, solve);\n}\n"
-  code: "#pragma once\n\n#include \"convex/alien.hpp\"\n#include \"convex/monge/monge_shortest_path.hpp\"\
+  code: "\n#include \"convex/alien.hpp\"\n#include \"convex/monge/monge_shortest_path.hpp\"\
     \n\n// return: {ans, pena}\ntemplate <typename T, typename F>\npair<T, T> monge_shortest_path_d_edge(int\
     \ N, int d, F f) {\n  Monge_Shortest_Path<T> solver;\n\n  auto solve = [&](T pena)\
     \ -> pair<T, int> {\n    T val = solver.solve(N, [&](int l, int r) -> T { return\
@@ -90,7 +90,7 @@ data:
   isVerificationFile: false
   path: convex/monge/monge_shortest_path_d_edge.hpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/monge/monge_shortest_path_d_edge.hpp

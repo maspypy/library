@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -30,26 +30,25 @@ data:
   attributes:
     links:
     - https://qoj.ac/contest/1277/problem/6674
-  bundledCode: "#line 1 \"graph/count/count_connected_intervals.hpp\"\n\n#line 2 \"\
-    alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\u306E\
-    \u500B\u6570\r\ntemplate <typename E>\r\nstruct Monoid_MinMincnt {\r\n  using\
-    \ value_type = pair<E, E>;\r\n  using X = value_type;\r\n  static X op(X x, X\
-    \ y) {\r\n    auto [xmin, xmincnt] = x;\r\n    auto [ymin, ymincnt] = y;\r\n \
-    \   if (xmin > ymin) return y;\r\n    if (xmin < ymin) return x;\r\n    return\
-    \ {xmin, xmincnt + ymincnt};\r\n  }\r\n  static constexpr X unit() { return {infty<E>,\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
-    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
+  bundledCode: "#line 1 \"graph/count/count_connected_intervals.hpp\"\n\n#line 1 \"\
+    alg/monoid/minmincnt.hpp\"\n\n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\u306E\
+    \u500B\u6570\ntemplate <typename E>\nstruct Monoid_MinMincnt {\n  using value_type\
+    \ = pair<E, E>;\n  using X = value_type;\n  static X op(X x, X y) {\n    auto\
+    \ [xmin, xmincnt] = x;\n    auto [ymin, ymincnt] = y;\n    if (xmin > ymin) return\
+    \ y;\n    if (xmin < ymin) return x;\n    return {xmin, xmincnt + ymincnt};\n\
+    \  }\n  static constexpr X unit() { return {infty<E>, 0}; }\n  static constexpr\
+    \ bool commute = true;\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename\
+    \ E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type = X;\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr X unit() { return\
+    \ X(0); }\n  static constexpr bool commute = true;\n};\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X\
     \ = Monoid_MinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
     \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    auto [xmin,\
     \ xmincnt] = x;\r\n    if (xmin == infty<E>) return x;\r\n    return {xmin + a,\
-    \ xmincnt};\r\n  }\r\n};\r\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
+    \ xmincnt};\r\n  }\r\n};\r\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
     \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
@@ -76,7 +75,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
     \ ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX =\
     \ typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
     \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
@@ -144,38 +143,36 @@ data:
     \    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line\
-    \ 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct\
-    \ HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\
-    \u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32 n) {\r\n \
-    \   u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k -\
-    \ 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  //\
-    \ size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\
-    \u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used),\
-    \ 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) /\
-    \ 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i\
-    \ = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\
-    \n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\
-    \n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1, key[i] = k, val[i]\
-    \ = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k,\
-    \ Val default_value) {\r\n    int i = index(k);\r\n    return (used[i] ? val[i]\
-    \ : default_value);\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i =\
-    \ index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\
-    \n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\
-    \n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x)\
-    \ {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
-    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
-    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
-    \ dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
-    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
-    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate\
-    \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
-    \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
-    \ bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type\
-    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n\
-    \  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
+    \ 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap\
+    \ {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067\
+    \ ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n\
+    \    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
+    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
+    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
+    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
+    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
+    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
+    \ (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const u64& k) {\n\
+    \    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i]) { used[i]\
+    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\n  Val\
+    \ get(const u64& k, Val default_value) {\n    int i = index(k);\n    return (used[i]\
+    \ ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n    int i =\
+    \ index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key, val)\n  template\
+    \ <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used)) if (used[i])\
+    \ f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
+    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
+    \ = std::chrono::steady_clock::now().time_since_epoch().count();\n    x += FIXED_RANDOM;\n\
+    \    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
+    \    return (x ^ (x >> 31)) & mask;\n  }\n\n  void extend() {\n    vc<pair<u64,\
+    \ Val>> dat;\n    dat.reserve(len(used) / 2 - cap);\n    FOR(i, len(used)) {\n\
+    \      if (used[i]) dat.eb(key[i], val[i]);\n    }\n    build(2 * len(dat));\n\
+    \    for (auto& [a, b]: dat) (*this)[a] = b;\n  }\n};\n#line 2 \"graph/base.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
+    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
+    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
+    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
+    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int>\
+    \ MP_FOR_EID;\n  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
     \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
     \ const {\n      if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
     \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
@@ -274,7 +271,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_connected_intervals.hpp
   requiredBy: []
-  timestamp: '2026-08-10 04:00:31+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count/count_connected_intervals.hpp

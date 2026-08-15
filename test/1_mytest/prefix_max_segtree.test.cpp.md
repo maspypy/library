@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/prefix_max_segtree.hpp
     title: ds/segtree/prefix_max_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -152,11 +152,11 @@ data:
     \u5834\u5408\u306E subtree(v) \u3067\u306E\u5024\n    if (size <= v) { return\
     \ (k <= dat[v].max ? dat[v].prod : MX::unit()); }\n    if (k <= dat[2 * v + 0].max)\
     \ { return MX::op(dfs(2 * v + 0, k), dat[v].rprod); }\n    return dfs(2 * v +\
-    \ 1, k);\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64\
+    \ 1, k);\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64\
     \ x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F),\
+    \ RNG_64() % (r - l); }\n#line 1 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F),\
     \ F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n\
     \  using F = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n \
     \ static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
@@ -164,8 +164,8 @@ data:
     \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
     \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
     \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
-    \  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint_common.hpp\"\
-    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \  static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -192,7 +192,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
     \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -231,7 +231,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -327,7 +327,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_max_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_max_segtree.test.cpp

@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_monoid.hpp
     title: ds/kdtree/kdtree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -153,11 +153,11 @@ data:
     \ MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) {\
     \ return dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\
     \n                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\r\n#line\
-    \ 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct Monoid_SumMax {\n\
+    \ 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct Monoid_SumMax {\n\
     \  using value_type = pair<E, E>;\n  using X = value_type;\n  static X op(X x,\
     \ X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static X from_element(E e)\
     \ { return {e, e}; }\n  static constexpr X unit() { return {E(0), -infty<E>};\
-    \ }\n  static constexpr bool commute = 1;\n};\n#line 2 \"random/base.hpp\"\n\n\
+    \ }\n  static constexpr bool commute = 1;\n};\n#line 1 \"random/base.hpp\"\n\n\
     u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -210,7 +210,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_monoid.test.cpp

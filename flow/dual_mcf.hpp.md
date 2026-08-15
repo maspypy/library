@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\u304C\u3042\u3063\u3066\
+  bundledCode: "#line 1 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\u304C\u3042\u3063\u3066\
     \u3082\u52D5\u4F5C\u3059\u308B\u3088\n// INF \u8FBA\u304C\u5927\u304D\u3059\u304E\
     \u308B\u3068\u58CA\u308C\u305F\u308A\u3059\u308B\u307F\u305F\u3044\u306A\u306E\
     \u3067\u306E\u3067\u6CE8\u610F\ntemplate <class Flow = ll, class Cost = ll>\n\
@@ -126,7 +126,7 @@ data:
   isVerificationFile: false
   path: flow/dual_mcf.hpp
   requiredBy: []
-  timestamp: '2025-12-11 22:19:39+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/dual_mcf.hpp

@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_acted_monoid.hpp
     title: ds/kdtree/kdtree_acted_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -315,7 +315,7 @@ data:
     \ y1 <= ymin && ymax < y2) { return apply_at(idx, a); }\r\n    push(idx);\r\n\
     \    apply_rec(2 * idx + 0, x1, x2, y1, y2, a);\r\n    apply_rec(2 * idx + 1,\
     \ x1, x2, y1, y2, a);\r\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx +\
-    \ 1]);\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"other/bit.hpp\"\
+    \ 1]);\r\n  }\r\n};\r\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
     \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
     \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
@@ -342,7 +342,7 @@ data:
     \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
     \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
     \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\n\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\n\
     struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -381,7 +381,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -421,7 +421,7 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\
+    #line 1 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\
     \u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n\
     \  using value_type = F;\n  using X = value_type;\n  static constexpr F op(const\
     \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
@@ -429,12 +429,12 @@ data:
     \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
     \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
     \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n#line 2 \"alg/monoid/add_pair.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type = pair<E, E>;\r\n  using\
-    \ X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\r\n   \
-    \ return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const\
-    \ X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit() { return {0,\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 9 \"test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp\"\
+    \ commute = false;\n};\n#line 1 \"alg/monoid/add_pair.hpp\"\n\ntemplate <typename\
+    \ E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E, E>;\n  using X =\
+    \ value_type;\n  static constexpr X op(const X &x, const X &y) {\n    return {x.fi\
+    \ + y.fi, x.se + y.se};\n  }\n  static constexpr X inverse(const X &x) { return\
+    \ {-x.fi, -x.se}; }\n  static constexpr X unit() { return {0, 0}; }\n  static\
+    \ constexpr bool commute = true;\n};\n#line 9 \"test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp\"\
     \n\nusing mint = modint998;\nstruct ActedMonoid {\n  using Monoid_X = Monoid_Add_Pair<mint>;\n\
     \  using Monoid_A = Monoid_Affine<mint>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static X act(const X &x, const\
@@ -486,7 +486,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp

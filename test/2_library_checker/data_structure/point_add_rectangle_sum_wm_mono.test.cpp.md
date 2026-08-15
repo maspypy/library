@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -262,7 +262,7 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp\"\
-    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -551,7 +551,7 @@ data:
     \  // prod \u306E\u65B9\u3092\u898B\u308B\u5FC5\u8981\u304C\u3042\u308B\n  template\
     \ <typename F>\n  tuple<XY, int, T> max_right(F check, XY x1, XY x2) const {\n\
     \    return WM.max_right(check, IDX_X.val_to_idx(x1), IDX_X.val_to_idx(x2));\n\
-    \  }\n};\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
+    \  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
     \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
     \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
     \ n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
@@ -595,13 +595,13 @@ data:
     \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
     \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
-    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
-    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 9 \"test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp\"\
+    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate\
+    \ <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type = X;\n\
+    \  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\n\
+    \  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static constexpr\
+    \ X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr\
+    \ X unit() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 9 \"test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N);\n  vc<u64> W(N);\n  FOR(i,\
     \ N) read(X[i], Y[i], W[i]);\n  using QQ = tuple<u32, u32, u32, u32>;\n  vc<QQ>\
     \ query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      U32(x, y, w);\n\
@@ -641,7 +641,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp

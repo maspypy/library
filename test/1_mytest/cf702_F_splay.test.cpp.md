@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -110,31 +110,31 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 2 \"alg/monoid/add_pair.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Monoid_Add_Pair {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
-    \n  static constexpr X op(const X &x, const X &y) {\r\n    return {x.fi + y.fi,\
-    \ x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const X &x) { return {-x.fi,\
-    \ -x.se}; }\r\n  static constexpr X unit() { return {0, 0}; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\
-    \u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\
-    \u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool\
-    \ {\n  struct Slot {\n    union alignas(Node) {\n      Slot* next;\n      unsigned\
-    \ char storage[sizeof(Node)];\n    };\n  };\n  using np = Node*;\n\n  static constexpr\
-    \ int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur =\
-    \ nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool()\
-    \ { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&... args)\
-    \ {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
-    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
-    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
-    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
-    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
-    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
-    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    }\n#endif\n#line 1 \"alg/monoid/add_pair.hpp\"\n\ntemplate <typename E>\nstruct\
+    \ Monoid_Add_Pair {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
+    \  static constexpr X op(const X &x, const X &y) {\n    return {x.fi + y.fi, x.se\
+    \ + y.se};\n  }\n  static constexpr X inverse(const X &x) { return {-x.fi, -x.se};\
+    \ }\n  static constexpr X unit() { return {0, 0}; }\n  static constexpr bool commute\
+    \ = true;\n};\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\
+    \u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\
+    \u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  struct\
+    \ Slot {\n    union alignas(Node) {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n\
+    \    };\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 <<\
+    \ 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n \
+    \ template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
+    \    return ::new (s) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np\
+    \ x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (s) Node(*x);\
+    \  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u547C\u3073\
+    \u51FA\u3057\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
+    \    auto s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
+    \ = s;\n  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty())\
+    \ {\n      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
+    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
     \ \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename\
     \ Node>\nstruct SplayTree {\n  Node_Pool<Node> pool;\n  using np = Node *;\n \
     \ using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
@@ -358,7 +358,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/cf702_F_splay.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/cf702_F_splay.test.cpp

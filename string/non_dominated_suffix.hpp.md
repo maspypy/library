@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/lyndon.hpp
     title: string/lyndon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct\
+  bundledCode: "#line 1 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct\
     \ Incremental_Lyndon_Factorization {\n  vc<CHAR> S;\n  int i = 0, j = 0, k = 0;\n\
     \  vc<int> minimum_suffix_len = {0};\n\n  int add(CHAR c) {\n    S.eb(c);\n  \
     \  // [j, j+(i-k)) simple\n    while (i < len(S)) {\n      if (k == i) {\n   \
@@ -25,7 +25,7 @@ data:
     \      minimum_suffix_len.eb(minimum_suffix_len[k]);\n    }\n    return minimum_suffix_len[i];\n\
     \  }\n\n  vc<int> factorize() {\n    int i = len(S);\n    vc<int> I;\n    while\
     \ (i) {\n      I.eb(i);\n      i -= minimum_suffix_len[i];\n    }\n    I.eb(0);\n\
-    \    reverse(all(I));\n    return I;\n  }\n};\n#line 2 \"string/zalgorithm.hpp\"\
+    \    reverse(all(I));\n    return I;\n  }\n};\n#line 1 \"string/zalgorithm.hpp\"\
     \n\ntemplate <typename STRING> // string, vector \u3069\u3061\u3089\u3067\u3082\
     \nvector<int> zalgorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n\
     \ == 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0;\
@@ -71,7 +71,7 @@ data:
   isVerificationFile: false
   path: string/non_dominated_suffix.hpp
   requiredBy: []
-  timestamp: '2025-05-18 18:12:51+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/non_dominated_suffix.hpp

@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
@@ -27,27 +27,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1524.test.cpp
     title: test/3_yukicoder/1524.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2498.test.cpp
     title: test/3_yukicoder/2498.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/913.test.cpp
     title: test/3_yukicoder/913.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_D.test.cpp
     title: test/4_aoj/DSL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
+  bundledCode: "#line 1 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
     \  int n, log, size;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() :\
     \ Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A {\
@@ -71,13 +71,13 @@ data:
     \    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
     \  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k], a);\n    if\
     \ (k < size) has_laz[k] = true;\n  }\n};\n"
-  code: "#pragma once\n\ntemplate <typename Monoid>\nstruct Dual_SegTree {\n  using\
-    \ MA = Monoid;\n  using A = typename MA::value_type;\n  int n, log, size;\n  vc<A>\
-    \ laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int\
-    \ n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n  template\
-    \ <typename F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m;\n    log = 1;\n    while\
-    \ ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::unit());\n\
+  code: "\ntemplate <typename Monoid>\nstruct Dual_SegTree {\n  using MA = Monoid;\n\
+    \  using A = typename MA::value_type;\n  int n, log, size;\n  vc<A> laz;\n  vc<bool>\
+    \ has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n\
+    \    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n  template <typename\
+    \ F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m;\n    log = 1;\n    while ((1 << log)\
+    \ < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::unit());\n\
     \    FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size, false);\n  }\n\
     \  void build(int n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n\
     \  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
@@ -103,8 +103,8 @@ data:
   - ds/segtree/range_add_make_increasing.hpp
   - ds/segtree/range_add_make_decreasing.hpp
   - geo/range_closest_pair_query.hpp
-  timestamp: '2026-08-10 04:00:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/range_closest_pair.test.cpp
   - test/2_library_checker/data_structure/range_affine_point_add.test.cpp

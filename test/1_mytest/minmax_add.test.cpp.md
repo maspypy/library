@@ -4,22 +4,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -115,28 +115,27 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/minmax.hpp\"\
-    \n\r\ntemplate <class X>\r\nstruct Monoid_MinMax {\r\n  using P = pair<X, X>;\r\
-    \n  using value_type = P;\r\n  static constexpr P op(const P x, const P y) noexcept\
-    \ {\r\n    return {min(x.fi, y.fi), max(x.se, y.se)};\r\n  }\r\n  static constexpr\
-    \ P from_element(const X x) { return {x, x}; }\r\n  static constexpr P unit()\
-    \ { return {infty<X>, -infty<X>}; }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 3 \"alg/acted_monoid/minmax_add.hpp\"\n\r\ntemplate <typename E>\r\
-    \nstruct ActedMonoid_MinMax_Add {\r\n  using Monoid_X = Monoid_MinMax<E>;\r\n\
-    \  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    E lo = (x.fi == infty<E> ? x.fi :\
-    \ x.fi + a);\r\n    E hi = (x.se == -infty<E> ? x.se : x.se + a);\r\n    return\
-    \ {lo, hi};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    }\n#endif\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/minmax.hpp\"\
+    \n\ntemplate <class X>\nstruct Monoid_MinMax {\n  using P = pair<X, X>;\n  using\
+    \ value_type = P;\n  static constexpr P op(const P x, const P y) noexcept {\n\
+    \    return {min(x.fi, y.fi), max(x.se, y.se)};\n  }\n  static constexpr P from_element(const\
+    \ X x) { return {x, x}; }\n  static constexpr P unit() { return {infty<X>, -infty<X>};\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 3 \"alg/acted_monoid/minmax_add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMax_Add {\r\n  using Monoid_X\
+    \ = Monoid_MinMax<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
+    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
+    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    E lo = (x.fi\
+    \ == infty<E> ? x.fi : x.fi + a);\r\n    E hi = (x.se == -infty<E> ? x.se : x.se\
+    \ + a);\r\n    return {lo, hi};\r\n  }\r\n};\r\n#line 1 \"random/base.hpp\"\n\n\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
+    \ RNG_64() % (r - l); }\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
     \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
@@ -163,7 +162,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
     \ ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX =\
     \ typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
     \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
@@ -266,7 +265,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/minmax_add.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/minmax_add.test.cpp

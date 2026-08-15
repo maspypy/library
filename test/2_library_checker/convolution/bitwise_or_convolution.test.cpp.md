@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
   - icon: ':heavy_check_mark:'
@@ -253,7 +253,7 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/convolution/bitwise_or_convolution.test.cpp\"\
-    \n\r\n#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    \n\r\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
     \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
@@ -280,7 +280,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
     \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -319,7 +319,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -359,7 +359,7 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"setfunc/zeta.hpp\"\n\r\n#line 2 \"setfunc/bitwise_transform.hpp\"\n\n\
+    #line 1 \"setfunc/zeta.hpp\"\n\n#line 1 \"setfunc/bitwise_transform.hpp\"\n\n\
     namespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
     \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
     \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
@@ -389,15 +389,14 @@ data:
     template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
     \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
     \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
-    \ bitwise\n#line 4 \"setfunc/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid superset_zeta(vc<T>&\
-    \ a) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::superset_zeta>(a);\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid superset_mobius(vc<T>& a) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::superset_mobius>(a);\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid subset_zeta(vc<T>& a) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::subset_zeta>(a);\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid subset_mobius(vc<T>& a) {\r\n  bitwise::bitwise_transform<bitwise::trans_type::subset_mobius>(a);\r\
-    \n}\r\n#line 2 \"setfunc/or_convolution.hpp\"\ntemplate <typename T>\r\nvc<T>\
-    \ or_convolution(vc<T> A, vc<T> B) {\r\n  subset_zeta(A);\r\n  subset_zeta(B);\r\
-    \n  FOR(i, len(A)) A[i] *= B[i];\r\n  subset_mobius(A);\r\n  return A;\r\n}\r\n\
-    #line 7 \"test/2_library_checker/convolution/bitwise_or_convolution.test.cpp\"\
+    \ bitwise\n#line 3 \"setfunc/zeta.hpp\"\n\ntemplate <typename T>\nvoid superset_zeta(vc<T>&\
+    \ a) {\n  bitwise::bitwise_transform<bitwise::trans_type::superset_zeta>(a);\n\
+    }\n\ntemplate <typename T>\nvoid superset_mobius(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::superset_mobius>(a);\n\
+    }\n\ntemplate <typename T>\nvoid subset_zeta(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::subset_zeta>(a);\n\
+    }\n\ntemplate <typename T>\nvoid subset_mobius(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::subset_mobius>(a);\n\
+    }\n#line 2 \"setfunc/or_convolution.hpp\"\ntemplate <typename T>\r\nvc<T> or_convolution(vc<T>\
+    \ A, vc<T> B) {\r\n  subset_zeta(A);\r\n  subset_zeta(B);\r\n  FOR(i, len(A))\
+    \ A[i] *= B[i];\r\n  subset_mobius(A);\r\n  return A;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/bitwise_or_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  reverse(all(A));\r\n  reverse(all(B));\r\
     \n  auto ANS = or_convolution(A, B);\r\n  reverse(all(ANS));\r\n  print(ANS);\r\
@@ -423,7 +422,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/bitwise_or_convolution.test.cpp

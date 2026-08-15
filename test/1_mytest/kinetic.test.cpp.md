@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_kinetic.hpp
     title: ds/segtree/beats_kinetic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -246,7 +246,7 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/1_mytest/kinetic.test.cpp\"\
-    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -273,7 +273,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename\
     \ ActedMonoid>\nstruct SegTree_Beats {\n  using AM = ActedMonoid;\n  using MX\
     \ = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
     \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
@@ -379,7 +379,7 @@ data:
     \ e = seg.prod(l, r);\n    return {e.idx, e.x, e.y};\n  }\n  tuple<int, T1, T2>\
     \ prod_all() {\n    auto e = seg.prod_all();\n    return {e.idx, e.x, e.y};\n\
     \  }\n\n  // y[i] := y[i] + ax[i] + b\n  void apply(int l, int r, T1 a, T2 b)\
-    \ { seg.apply(l, r, {a, b}); }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ { seg.apply(l, r, {a, b}); }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64()\
     \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -446,7 +446,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kinetic.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kinetic.test.cpp

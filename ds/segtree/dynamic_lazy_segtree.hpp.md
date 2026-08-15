@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
@@ -45,7 +45,7 @@ data:
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\
     \n// Q*4logN \u7A0B\u5EA6\u5FC5\u8981? apply \u3067 4logN \u30CE\u30FC\u30C9\u4F5C\
     \u3063\u3066\u3044\u308B\u3068\u601D\u3046\ntemplate <typename ActedMonoid, bool\
     \ PERSISTENT>\nstruct Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n  using\
@@ -150,9 +150,9 @@ data:
     \    push(c, l, r);\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check,\
     \ m, r, qr, x);\n    if (m < k) return k;\n    return min_left_rec(c->l, check,\
     \ l, m, qr, x);\n  }\n};\n"
-  code: "#pragma once\n#include \"ds/node_pool.hpp\"\n\n// Q*4logN \u7A0B\u5EA6\u5FC5\
-    \u8981? apply \u3067 4logN \u30CE\u30FC\u30C9\u4F5C\u3063\u3066\u3044\u308B\u3068\
-    \u601D\u3046\ntemplate <typename ActedMonoid, bool PERSISTENT>\nstruct Dynamic_Lazy_SegTree\
+  code: "#include \"ds/node_pool.hpp\"\n\n// Q*4logN \u7A0B\u5EA6\u5FC5\u8981? apply\
+    \ \u3067 4logN \u30CE\u30FC\u30C9\u4F5C\u3063\u3066\u3044\u308B\u3068\u601D\u3046\
+    \ntemplate <typename ActedMonoid, bool PERSISTENT>\nstruct Dynamic_Lazy_SegTree\
     \ {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA\
     \ = typename AM::Monoid_A;\n  using X = typename AM::X;\n  using A = typename\
     \ AM::A;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\n  struct Node\
@@ -259,8 +259,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp

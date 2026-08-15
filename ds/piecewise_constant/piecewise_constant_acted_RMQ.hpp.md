@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':warning:'
     path: ds/piecewise_constant/piecewise_constant.hpp
     title: ds/piecewise_constant/piecewise_constant.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
@@ -37,7 +37,7 @@ data:
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
     \ \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename\
     \ Node>\nstruct SplayTree {\n  Node_Pool<Node> pool;\n  using np = Node *;\n \
     \ using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
@@ -346,7 +346,7 @@ data:
   isVerificationFile: false
   path: ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp

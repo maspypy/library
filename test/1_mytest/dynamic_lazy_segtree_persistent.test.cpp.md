@@ -4,22 +4,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -116,29 +116,28 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
+    }\n#endif\n#line 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
     \ Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
     \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
     \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
-    \ {E(0), -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 2 \"alg/monoid/assign.hpp\"\
-    \n\r\ntemplate <typename X, int none_val>\r\nstruct Monoid_Assign {\r\n  using\
-    \ value_type = X;\r\n  static X op(X x, X y) { return (y == X(none_val) ? x :\
-    \ y); }\r\n  static constexpr X unit() { return X(none_val); }\r\n  static constexpr\
-    \ bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/summax_assign.hpp\"\
-    \n\r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_SumMax_Assign {\r\
-    \n  using Monoid_X = Monoid_SumMax<E>;\r\n  using Monoid_A = Monoid_Assign<E,\
-    \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
-    \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a, const\
-    \ ll& size) {\r\n    if (a == Monoid_A::unit()) return x;\r\n    return {E(size)\
-    \ * a, a};\r\n  }\r\n};\r\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\
-    \u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\
-    \u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool\
-    \ {\n  struct Slot {\n    union alignas(Node) {\n      Slot* next;\n      unsigned\
-    \ char storage[sizeof(Node)];\n    };\n  };\n  using np = Node*;\n\n  static constexpr\
-    \ int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur =\
-    \ nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool()\
-    \ { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&... args)\
-    \ {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
+    \ {E(0), -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 1 \"alg/monoid/assign.hpp\"\
+    \n\ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
+    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
+    \ constexpr X unit() { return X(none_val); }\n  static constexpr bool commute\
+    \ = false;\n};\n#line 3 \"alg/acted_monoid/summax_assign.hpp\"\n\r\ntemplate <typename\
+    \ E, E none_val>\r\nstruct ActedMonoid_SumMax_Assign {\r\n  using Monoid_X = Monoid_SumMax<E>;\r\
+    \n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X& x, const A& a, const ll& size) {\r\n    if (a == Monoid_A::unit()) return\
+    \ x;\r\n    return {E(size) * a, a};\r\n  }\r\n};\r\n#line 1 \"ds/node_pool.hpp\"\
+    \n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\
+    \u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\n\
+    struct Node_Pool {\n  struct Slot {\n    union alignas(Node) {\n      Slot* next;\n\
+    \      unsigned char storage[sizeof(Node)];\n    };\n  };\n  using np = Node*;\n\
+    \n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n\
+    \  Slot* cur = nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n\
+    \  Node_Pool() { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&...\
+    \ args) {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
     \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
     \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
     \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
@@ -149,7 +148,7 @@ data:
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\
     \n// Q*4logN \u7A0B\u5EA6\u5FC5\u8981? apply \u3067 4logN \u30CE\u30FC\u30C9\u4F5C\
     \u3063\u3066\u3044\u308B\u3068\u601D\u3046\ntemplate <typename ActedMonoid, bool\
     \ PERSISTENT>\nstruct Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n  using\
@@ -253,7 +252,7 @@ data:
     \ x = MX::op(c->x, x);\n      return l;\n    }\n    if (r == l + 1) return r;\n\
     \    push(c, l, r);\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check,\
     \ m, r, qr, x);\n    if (m < k) return k;\n    return min_left_rec(c->l, check,\
-    \ l, m, qr, x);\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ l, m, qr, x);\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
     \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -317,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp

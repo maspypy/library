@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -252,8 +252,8 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"mod/modint_common.hpp\"\n\n#line\
-    \ 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"mod/modint_common.hpp\"\n\n#line\
+    \ 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
     int popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -280,7 +280,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
     \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -319,7 +319,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -359,7 +359,7 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T> prime_table(int\
+    #line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T> prime_table(int\
     \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T>\
     \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
     \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
@@ -370,23 +370,23 @@ data:
     \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
     \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
     \    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 3 \"nt/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid divisor_zeta(vc<T>&\
-    \ A) {\r\n  assert(A[0] == 0);\r\n  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\
-    \n  for (auto&& p : P) {\r\n    FOR3(x, 1, N / p + 1) A[p * x] += A[x];\r\n  }\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid divisor_mobius(vc<T>& A) {\r\n  assert(A[0]\
-    \ == 0);\r\n  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&&\
-    \ p : P) {\r\n    FOR3_R(x, 1, N / p + 1) A[p * x] -= A[x];\r\n  }\r\n}\r\n\r\n\
-    template <typename T>\r\nvoid multiple_zeta(vc<T>& A) {\r\n  assert(A[0] == 0);\r\
-    \n  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&& p : P)\
-    \ {\r\n    FOR3_R(x, 1, N / p + 1) A[x] += A[p * x];\r\n  }\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid multiple_mobius(vc<T>& A) {\r\n  assert(A[0] == 0);\r\n\
-    \  int N = len(A) - 1;\r\n  auto P = prime_table(N);\r\n  for (auto&& p : P) {\r\
-    \n    FOR3(x, 1, N / p + 1) A[x] -= A[p * x];\r\n  }\r\n}\r\n#line 2 \"nt/lcm_convolution.hpp\"\
-    \n\ntemplate <typename T>\nvc<T> lcm_convolution(vc<T> A, vc<T>& B) {\n  assert(len(A)\
-    \ == len(B));\n  divisor_zeta(A);\n  divisor_zeta(B);\n  FOR(i, len(A)) A[i] *=\
-    \ B[i];\n  divisor_mobius(A);\n  return A;\n}\n#line 6 \"test/2_library_checker/convolution/lcm_convolution.test.cpp\"\
-    \n\nusing mint = modint998;\nvoid solve() {\n  LL(N);\n  VEC(mint, A, N);\n  VEC(mint,\
-    \ B, N);\n  A.insert(A.begin(), 0);\n  B.insert(B.begin(), 0);\n  A = lcm_convolution(A,\
+    \ + k};\n}\n#line 2 \"nt/zeta.hpp\"\n\ntemplate <typename T>\nvoid divisor_zeta(vc<T>&\
+    \ A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n  auto P = prime_table(N);\n\
+    \  for (auto&& p : P) {\n    FOR3(x, 1, N / p + 1) A[p * x] += A[x];\n  }\n}\n\
+    \ntemplate <typename T>\nvoid divisor_mobius(vc<T>& A) {\n  assert(A[0] == 0);\n\
+    \  int N = len(A) - 1;\n  auto P = prime_table(N);\n  for (auto&& p : P) {\n \
+    \   FOR3_R(x, 1, N / p + 1) A[p * x] -= A[x];\n  }\n}\n\ntemplate <typename T>\n\
+    void multiple_zeta(vc<T>& A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n\
+    \  auto P = prime_table(N);\n  for (auto&& p : P) {\n    FOR3_R(x, 1, N / p +\
+    \ 1) A[x] += A[p * x];\n  }\n}\n\ntemplate <typename T>\nvoid multiple_mobius(vc<T>&\
+    \ A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n  auto P = prime_table(N);\n\
+    \  for (auto&& p : P) {\n    FOR3(x, 1, N / p + 1) A[x] -= A[p * x];\n  }\n}\n\
+    #line 2 \"nt/lcm_convolution.hpp\"\n\ntemplate <typename T>\nvc<T> lcm_convolution(vc<T>\
+    \ A, vc<T>& B) {\n  assert(len(A) == len(B));\n  divisor_zeta(A);\n  divisor_zeta(B);\n\
+    \  FOR(i, len(A)) A[i] *= B[i];\n  divisor_mobius(A);\n  return A;\n}\n#line 6\
+    \ \"test/2_library_checker/convolution/lcm_convolution.test.cpp\"\n\nusing mint\
+    \ = modint998;\nvoid solve() {\n  LL(N);\n  VEC(mint, A, N);\n  VEC(mint, B, N);\n\
+    \  A.insert(A.begin(), 0);\n  B.insert(B.begin(), 0);\n  A = lcm_convolution(A,\
     \ B);\n  A.erase(A.begin());\n  print(A);\n}\n\nsigned main() {\n  solve();\n\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n#include\
@@ -407,7 +407,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/convolution/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-08-15 15:50:39+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/lcm_convolution.test.cpp

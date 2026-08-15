@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_sum.hpp
     title: nt/prime_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -253,7 +253,7 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/number_theory/totient_sum.test.cpp\"\
-    \n\n#line 2 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T> prime_table(int\
+    \n\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T> prime_table(int\
     \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T>\
     \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
     \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
@@ -264,65 +264,75 @@ data:
     \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
     \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
     \    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 3 \"nt/prime_sum.hpp\"\n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\
-    \u6CD5\u7684\u95A2\u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\u4E0E\u3048\
-    \u308B\u3002\r\nn = floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\u308B sum_{p\
-    \ <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\r\n\u7279\u306B\u3001\u7D20\u6570\
+    \ + k};\n}\n#line 2 \"nt/prime_sum.hpp\"\n\n/*\nN \u3068\u5B8C\u5168\u4E57\u6CD5\
+    \u7684\u95A2\u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\
+    \u3002\nn = floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\u308B sum_{p <=\
+    \ n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\n\u7279\u306B\u3001\u7D20\u6570\
     \u306E k \u4E57\u548C\u3084\u3001mod m \u3054\u3068\u3067\u306E\u7D20\u6570\u306E\
-    \ k \u4E57\u548C\u304C\u8A08\u7B97\u3067\u304D\u308B\u3002\r\nComplexity: O(N^{3/4}/logN)\
-    \ time, O(N^{1/2}) space.\r\n*/\r\ntemplate <typename T>\r\nstruct Prime_Sum {\r\
-    \n  ll N;\r\n  ll sqN;\r\n  vc<T> sum_lo, sum_hi;\r\n  bool calculated;\r\n\r\n\
-    \  Prime_Sum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}\r\n\r\n  // [1, x]\
-    \ \u305F\u3060\u3057\u3001x = floor(N, i) \u306E\u5F62\r\n  T operator[](ll x)\
-    \ {\r\n    assert(calculated);\r\n    return (x <= sqN ? sum_lo[x] : sum_hi[double(N)\
-    \ / x]);\r\n  }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n\
-    \    auto primes = prime_table<int>(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n \
-    \   sum_hi.resize(sqN + 1);\r\n    FOR(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n\
-    \    FOR(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (int p :\
-    \ primes) {\r\n      ll pp = ll(p) * p;\r\n      if (pp > N) break;\r\n      int\
-    \ R = min(sqN, N / pp);\r\n      int M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\
-    \n      T fp = sum_lo[p] - sum_lo[p - 1];\r\n      for (int i = 1; i <= M; ++i)\
-    \ sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n      for (int i = M + 1; i <= R;\
-    \ ++i)\r\n        sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);\r\n   \
-    \   for (int n = sqN; n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p] - x);\r\n\
-    \    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count() {\r\n    calc([](ll\
-    \ x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll\
-    \ x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n \
-    \     if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\n\
-    #line 2 \"nt/multiplicative_sum.hpp\"\n\r\n// f_pe\uFF1AT(int p,int e), f(p^e)\r\
-    \n// f_psum\uFF1A[1, x] \u3067\u306E f(p) \u306E\u548C\r\ntemplate <typename T,\
-    \ typename F1, typename F2>\r\nT multiplicative_sum(ll N, F1 f_pe, F2 f_psum)\
-    \ {\r\n  ll sqN = sqrtl(N);\r\n  auto P = prime_table<int>(sqN);\r\n\r\n  T ANS\
-    \ = T(1) + f_psum(N);  // 1 and prime\r\n  // t = up_i^k \u306E\u3068\u304D\u306B\
-    \u3001(t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n  auto dfs =\
-    \ [&](auto self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T f_nxt = fu *\
-    \ f_pe(P[i], k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\u90E8\u52A0\
-    \u7B97\r\n    ANS += f_nxt;\r\n    ANS += ft * (f_psum(double(N) / t) - f_psum(P[i]));\r\
-    \n\r\n    ll lim = sqrtl(double(N) / t);\r\n    if (P[i] <= lim) {\r\n      self(self,\
-    \ t * P[i], i, k + 1, f_nxt, fu);\r\n    }\r\n    FOR3(j, i + 1, len(P)) {\r\n\
-    \      if (P[j] > lim) break;\r\n      self(self, t * P[j], j, 1, ft * f_pe(P[j],\
-    \ 1), ft);\r\n    }\r\n  };\r\n  FOR(i, len(P)) if (P[i] <= sqN) dfs(dfs, P[i],\
-    \ i, 1, f_pe(P[i], 1), 1);\r\n  return ANS;\r\n}\n#line 2 \"mod/modint_common.hpp\"\
-    \n\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
-    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ k \u4E57\u548C\u304C\u8A08\u7B97\u3067\u304D\u308B\u3002\nComplexity: O(N^{3/4}/logN)\
+    \ time, O(N^{1/2}) space.\n*/\ntemplate <typename T>\nstruct Prime_Sum {\n  ll\
+    \ N;\n  ll sqN;\n  vc<T> sum_lo, sum_hi;\n  bool calculated;\n\n  Prime_Sum(ll\
+    \ N) : N(N), sqN(sqrtl(N)), calculated(0) {}\n\n  // [1, x] \u305F\u3060\u3057\
+    \u3001x = floor(N, i) \u306E\u5F62\n  T operator[](ll x) {\n    assert(calculated);\n\
+    \    return (x <= sqN ? sum_lo[x] : sum_hi[double(N) / x]);\n  }\n\n  template\
+    \ <typename F>\n  void calc(const F f) {\n    auto primes = prime_table<int>(sqN);\n\
+    \    sum_lo.resize(sqN + 1);\n    sum_hi.resize(sqN + 1);\n    FOR(i, 1, sqN +\
+    \ 1) sum_lo[i] = f(i) - 1;\n    FOR(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i)\
+    \ - 1;\n    for (int p : primes) {\n      ll pp = ll(p) * p;\n      if (pp > N)\
+    \ break;\n      int R = min(sqN, N / pp);\n      int M = sqN / p;\n      T x =\
+    \ sum_lo[p - 1];\n      T fp = sum_lo[p] - sum_lo[p - 1];\n      for (int i =\
+    \ 1; i <= M; ++i) sum_hi[i] -= fp * (sum_hi[i * p] - x);\n      for (int i = M\
+    \ + 1; i <= R; ++i)\n        sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] -\
+    \ x);\n      for (int n = sqN; n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p]\
+    \ - x);\n    }\n    calculated = 1;\n  }\n\n  void calc_count() {\n    calc([](ll\
+    \ x) -> T { return x; });\n  }\n\n  void calc_sum() {\n    calc([](ll x) -> T\
+    \ {\n      ll a = x, b = x + 1;\n      if (!(x & 1)) a /= 2;\n      if (x & 1)\
+    \ b /= 2;\n      return T(a) * T(b);\n    });\n  }\n};\n#line 1 \"nt/prime_table.hpp\"\
+    \n\ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
+    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
+    \ + k};\n}\n#line 2 \"nt/multiplicative_sum.hpp\"\n\r\n// f_pe\uFF1AT(int p,int\
+    \ e), f(p^e)\r\n// f_psum\uFF1A[1, x] \u3067\u306E f(p) \u306E\u548C\r\ntemplate\
+    \ <typename T, typename F1, typename F2>\r\nT multiplicative_sum(ll N, F1 f_pe,\
+    \ F2 f_psum) {\r\n  ll sqN = sqrtl(N);\r\n  auto P = prime_table<int>(sqN);\r\n\
+    \r\n  T ANS = T(1) + f_psum(N);  // 1 and prime\r\n  // t = up_i^k \u306E\u3068\
+    \u304D\u306B\u3001(t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n\
+    \  auto dfs = [&](auto self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T\
+    \ f_nxt = fu * f_pe(P[i], k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\
+    \u90E8\u52A0\u7B97\r\n    ANS += f_nxt;\r\n    ANS += ft * (f_psum(double(N) /\
+    \ t) - f_psum(P[i]));\r\n\r\n    ll lim = sqrtl(double(N) / t);\r\n    if (P[i]\
+    \ <= lim) {\r\n      self(self, t * P[i], i, k + 1, f_nxt, fu);\r\n    }\r\n \
+    \   FOR3(j, i + 1, len(P)) {\r\n      if (P[j] > lim) break;\r\n      self(self,\
+    \ t * P[j], j, 1, ft * f_pe(P[j], 1), ft);\r\n    }\r\n  };\r\n  FOR(i, len(P))\
+    \ if (P[i] <= sqN) dfs(dfs, P[i], i, 1, f_pe(P[i], 1), 1);\r\n  return ANS;\r\n\
+    }\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
     \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
     \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
     \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
@@ -330,7 +340,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
     \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -369,7 +379,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -435,7 +445,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/totient_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-15 16:31:09+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/totient_sum.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_1_A.test.cpp
     title: test/4_aoj/CGL_1_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"geo/projection.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
+  bundledCode: "#line 1 \"geo/projection.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
     \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
     \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
     \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
@@ -68,21 +68,21 @@ data:
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
     \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 4 \"geo/projection.hpp\"\n\ntemplate <typename REAL,\
+    \ <= r * r;\n  }\n};\n#line 3 \"geo/projection.hpp\"\n\ntemplate <typename REAL,\
     \ typename T, typename U>\nPoint<REAL> projection(Point<T> P, Line<U> L) {\n \
     \ REAL t = REAL(L.eval(P)) / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - t * L.a;\n\
     \  REAL y = P.y - t * L.b;\n  return Point<REAL>(x, y);\n};\n"
-  code: "#pragma once\n\n#include \"geo/base.hpp\"\n\ntemplate <typename REAL, typename\
-    \ T, typename U>\nPoint<REAL> projection(Point<T> P, Line<U> L) {\n  REAL t =\
-    \ REAL(L.eval(P)) / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - t * L.a;\n  REAL\
-    \ y = P.y - t * L.b;\n  return Point<REAL>(x, y);\n};\n"
+  code: "\n#include \"geo/base.hpp\"\n\ntemplate <typename REAL, typename T, typename\
+    \ U>\nPoint<REAL> projection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P))\
+    \ / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - t * L.a;\n  REAL y = P.y - t *\
+    \ L.b;\n  return Point<REAL>(x, y);\n};\n"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
   path: geo/projection.hpp
   requiredBy: []
-  timestamp: '2026-07-19 03:14:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/CGL_1_A.test.cpp
 documentation_of: geo/projection.hpp

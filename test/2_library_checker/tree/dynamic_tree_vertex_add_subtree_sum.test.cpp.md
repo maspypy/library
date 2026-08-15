@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/lct_node_commutative_monoid.hpp
     title: graph/ds/lct_node_commutative_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum
@@ -364,12 +364,12 @@ data:
     \      pp->change_light(p, n);\n      }\n    }\n    n->p = pp;\n    p->p = n;\n\
     \    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if (!n->p) return\
     \ 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return -1;\n    return\
-    \ 0;\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\
+    \ 0;\n  }\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct\
+    \ Monoid_Add {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return x + y; }\n  static constexpr X\
+    \ inverse(const X &x) noexcept { return -x; }\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr X unit() { return\
+    \ X(0); }\n  static constexpr bool commute = true;\n};\n#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\
     \n\n// SUBTREE : cluster \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\
     \ntemplate <typename Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid\
     \ {\n  static_assert(Monoid::commute);\n  static constexpr bool NODE_FOR_SUBTREE\
@@ -420,8 +420,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
 layout: document

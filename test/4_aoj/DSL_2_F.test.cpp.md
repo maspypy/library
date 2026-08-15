@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
@@ -249,7 +249,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
     \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
@@ -276,7 +276,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
     \ ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX =\
     \ typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
     \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
@@ -344,26 +344,26 @@ data:
     \    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line\
-    \ 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\
-    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
-    \ { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\nstruct\
-    \ Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return\
-    \ (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return X(none_val);\
-    \ }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/min_assign.hpp\"\
-    \n\r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Min_Assign {\r\n\
-    \  using Monoid_X = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
-    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return\
-    \ (a == none_val ? x : a);\r\n  }\r\n};\r\n#line 7 \"test/4_aoj/DSL_2_F.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  using AM = ActedMonoid_Min_Assign<ll,\
-    \ -1>;\r\n  vi seg_raw(N, (1LL << 31) - 1);\r\n  Lazy_SegTree<AM> seg(seg_raw);\r\
-    \n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n    \
-    \  seg.apply(L, ++R, x);\r\n    } else {\r\n      LL(L, R);\r\n      print(seg.prod(L,\
-    \ ++R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T =\
-    \ 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Min {\n  using\
+    \ X = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return min(x, y); }\n  static constexpr X unit() { return infty<E>;\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/assign.hpp\"\
+    \n\ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
+    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
+    \ constexpr X unit() { return X(none_val); }\n  static constexpr bool commute\
+    \ = false;\n};\n#line 3 \"alg/acted_monoid/min_assign.hpp\"\n\r\ntemplate <typename\
+    \ E, E none_val>\r\nstruct ActedMonoid_Min_Assign {\r\n  using Monoid_X = Monoid_Min<E>;\r\
+    \n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X &x, const A &a, const ll &size) {\r\n    return (a == none_val ? x : a);\r\
+    \n  }\r\n};\r\n#line 7 \"test/4_aoj/DSL_2_F.test.cpp\"\n\r\nvoid solve() {\r\n\
+    \  LL(N, Q);\r\n  using AM = ActedMonoid_Min_Assign<ll, -1>;\r\n  vi seg_raw(N,\
+    \ (1LL << 31) - 1);\r\n  Lazy_SegTree<AM> seg(seg_raw);\r\n  FOR(Q) {\r\n    LL(t);\r\
+    \n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n \
+    \   } else {\r\n      LL(L, R);\r\n      print(seg.prod(L, ++R));\r\n    }\r\n\
+    \  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
+    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
     \r\n#include \"alg/acted_monoid/min_assign.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N,\
@@ -385,8 +385,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_F.test.cpp
 layout: document

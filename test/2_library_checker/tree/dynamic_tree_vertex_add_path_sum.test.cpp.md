@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/lct_node_commutative_monoid.hpp
     title: graph/ds/lct_node_commutative_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
@@ -386,21 +386,21 @@ data:
     \ c) {\n    if constexpr (SUBTREE) mid = MX::op(mid, c->x);\n  }\n  void erase_light(np\
     \ c) {\n    if constexpr (SUBTREE) mid = MX::op(mid, MX::inverse(c->x));\n  }\n\
     \n  // b->x \u306B subtree value \u304C\u5165\u3063\u3066\u3044\u308B.\n  void\
-    \ change_light(np a, np b) {}\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
-    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
-    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 9 \"test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp\"\
-    \n\nusing Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>>;\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  VEC(u64, A, N);\n  Link_Cut_Tree<Node> LCT(N);\n  FOR(i, N)\
-    \ LCT.set(i, A[i]);\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a, b);\n  }\n\
-    \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c, d);\n      LCT.cut(a,\
-    \ b), LCT.link(c, d);\n    }\n    if (t == 1) {\n      LL(i);\n      u32 x;\n\
-    \      read(x);\n      A[i] += x;\n      LCT.set(i, A[i]);\n    }\n    if (t ==\
-    \ 2) {\n      LL(a, b);\n      u64 ans = LCT.prod_path(a, b);\n      print(ans);\n\
-    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ change_light(np a, np b) {}\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate\
+    \ <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type = X;\n\
+    \  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\n\
+    \  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static constexpr\
+    \ X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr\
+    \ X unit() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 9 \"test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp\"\n\
+    \nusing Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>>;\n\nvoid solve() {\n\
+    \  LL(N, Q);\n  VEC(u64, A, N);\n  Link_Cut_Tree<Node> LCT(N);\n  FOR(i, N) LCT.set(i,\
+    \ A[i]);\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a, b);\n  }\n  FOR(Q) {\n\
+    \    LL(t);\n    if (t == 0) {\n      LL(a, b, c, d);\n      LCT.cut(a, b), LCT.link(c,\
+    \ d);\n    }\n    if (t == 1) {\n      LL(i);\n      u32 x;\n      read(x);\n\
+    \      A[i] += x;\n      LCT.set(i, A[i]);\n    }\n    if (t == 2) {\n      LL(a,\
+    \ b);\n      u64 ans = LCT.prod_path(a, b);\n      print(ans);\n    }\n  }\n}\n\
+    \nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/link_cut_tree.hpp\"\
     \n#include \"graph/ds/lct_node_commutative_monoid.hpp\"\n#include \"alg/monoid/add.hpp\"\
@@ -421,8 +421,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
 layout: document

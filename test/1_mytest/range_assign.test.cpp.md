@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -127,7 +127,7 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 3 \"test/1_mytest/range_assign.test.cpp\"\n\n#line 2 \"ds/segtree/segtree.hpp\"\
+    }\n#endif\n#line 3 \"test/1_mytest/range_assign.test.cpp\"\n\n#line 1 \"ds/segtree/segtree.hpp\"\
     \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
     \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
     \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
@@ -172,7 +172,7 @@ data:
     \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
     \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 2 \"alg/monoid_pow.hpp\"\n\n// chat\
+    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"alg/monoid_pow.hpp\"\n\n// chat\
     \ gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
     \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
     \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
@@ -187,7 +187,7 @@ data:
     \ >= 0);\n    if (exp == 0) return Monoid::unit();\n    if (exp == 1) return x;\n\
     \    X res = Monoid::unit();\n    while (exp) {\n      if (exp & 1) res = Monoid::op(res,\
     \ x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n    return res;\n\
-    \  }\n}\n#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \  }\n}\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -214,50 +214,46 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space:\
-    \ (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int\
-    \ n = 0, log = 0;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n)\
-    \ { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  void fillone() {\r\n\
-    \    int cur = n;\r\n    for (auto& vs : seg) {\r\n      int p = cur / B, q =\
-    \ cur % B;\r\n      FOR(i, p) vs[i] = -1ull;\r\n      if (q) vs[p] = full_mask(q);\r\
-    \n      cur = (cur + B - 1) / B;\r\n    }\r\n  }\r\n\r\n  template <typename F>\r\
-    \n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
-    \ {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
-    \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
-    \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
-    \ B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h\
-    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n      }\r\n    }\r\n  }\r\
-    \n\r\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\r\
-    \n  void insert(int i) {\r\n    assert(0 <= i && i < n);\r\n    for (int h = 0;\
-    \ h < log; h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\r\n   \
-    \ }\r\n  }\r\n  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n  \
-    \  assert(0 <= i && i < n);\r\n    u64 x = 0;\r\n    for (int h = 0; h < log;\
-    \ h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B]\
-    \ |= x << (i % B);\r\n      x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\
-    \n  }\r\n  void remove(int i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int\
-    \ next(int i) {\r\n    assert(i <= n);\r\n    chmax(i, 0);\r\n    for (int h =\
-    \ 0; h < log; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      u64\
-    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
-    \n        continue;\r\n      }\r\n      i += lowbit(d);\r\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\
-    \n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // max\
-    \ [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i >= -1);\r\n    if (i >=\
-    \ n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\n      if (i == -1) break;\r\
-    \n      u64 d = seg[h][i / B] << (63 - i % B);\r\n      if (!d) {\r\n        i\
-    \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
-    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
-    \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
-    \ -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return next(l) < r; }\r\n\r\n \
-    \ // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
-    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
-    \  void reset() {\r\n    enumerate(0, n, [&](int i) -> void { erase(i); });\r\n\
-    \  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
-    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
-    };\n#line 4 \"ds/segtree/range_assignment_segtree.hpp\"\n\ntemplate <typename\
-    \ Monoid>\nstruct Range_Assignment_SegTree {\n  using MX = Monoid;\n  using X\
-    \ = typename MX::value_type;\n  int n;\n  SegTree<MX> seg;\n  FastSet cut;\n \
-    \ vc<X> dat;\n\n  Range_Assignment_SegTree() {}\n  Range_Assignment_SegTree(int\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/fastset.hpp\"\n\n// 64-ary tree\n// space:\
+    \ (N/63) * u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0,\
+    \ log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\
+    \n  int size() { return n; }\n\n  void fillone() {\n    int cur = n;\n    for\
+    \ (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i]\
+    \ = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n\
+    \    }\n  }\n\n  template <typename F>\n  FastSet(int n, F f) {\n    build(n,\
+    \ f);\n  }\n\n  void build(int m) {\n    seg.clear();\n    n = m;\n    do {\n\
+    \      seg.push_back(vc<u64>((m + B - 1) / B));\n      m = (m + B - 1) / B;\n\
+    \    } while (m > 1);\n    log = len(seg);\n  }\n  template <typename F>\n  void\
+    \ build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i / B] |= u64(f(i))\
+    \ << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h])) {\n        seg[h\
+    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n    }\n  }\n\n  bool\
+    \ operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\n  void insert(int\
+    \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
+    \    seg[h][i / B] |= u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i)\
+    \ { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n    u64\
+    \ x = 0;\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1)\
+    \ << (i % B));\n      seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i\
+    \ / B]);\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  //\
+    \ min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n\
+    \    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n\
+    \      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B +\
+    \ 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int g = h\
+    \ - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
+    \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
+    \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
+    \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
+    \ / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n\
+    \      }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--)\
+    \ {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return\
+    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) { return next(l)\
+    \ < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int\
+    \ r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n  }\n\n\
+    \  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n  }\n\
+    \n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i < n; ++i)\
+    \ s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 4 \"ds/segtree/range_assignment_segtree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct Range_Assignment_SegTree {\n  using MX\
+    \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  SegTree<MX> seg;\n\
+    \  FastSet cut;\n  vc<X> dat;\n\n  Range_Assignment_SegTree() {}\n  Range_Assignment_SegTree(int\
     \ n) { build(n); }\n  template <typename F>\n  Range_Assignment_SegTree(int n,\
     \ F f) {\n    build(n, f);\n  }\n  Range_Assignment_SegTree(const vc<X> &v) {\
     \ build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit();\
@@ -277,7 +273,34 @@ data:
     \ });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));\n\
     \  }\n\n  vc<X> get_all() {\n    vc<X> ANS(n);\n    int p = 0;\n    while (p <\
     \ n) {\n      int q = cut.next(p + 1);\n      FOR(i, p, q) ANS[i] = dat[p];\n\
-    \      p = q;\n    }\n    return ANS;\n  }\n};\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\
+    \      p = q;\n    }\n    return ANS;\n  }\n};\n#line 1 \"other/bit.hpp\"\n\n\
+    int popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
+    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
+    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
+    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
+    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
+    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
+    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
+    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
+    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
+    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
+    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
+    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
+    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
+    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
+    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
+    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
+    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
     \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
@@ -345,22 +368,27 @@ data:
     \ a, sz);\n    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n\
     \  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n   \
     \ apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
-    \  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\
-    \n\r\ntemplate <typename X, int none_val>\r\nstruct Monoid_Assign {\r\n  using\
-    \ value_type = X;\r\n  static X op(X x, X y) { return (y == X(none_val) ? x :\
-    \ y); }\r\n  static constexpr X unit() { return X(none_val); }\r\n  static constexpr\
-    \ bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/sum_assign.hpp\"\n\
-    \r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Sum_Assign {\r\n \
-    \ using Monoid_X = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
+    \  }\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/add.hpp\"\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X unit() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 1 \"alg/monoid/assign.hpp\"\n\ntemplate <typename X, int none_val>\n\
+    struct Monoid_Assign {\n  using value_type = X;\n  static X op(X x, X y) { return\
+    \ (y == X(none_val) ? x : y); }\n  static constexpr X unit() { return X(none_val);\
+    \ }\n  static constexpr bool commute = false;\n};\n#line 3 \"alg/acted_monoid/sum_assign.hpp\"\
+    \n\r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Sum_Assign {\r\n\
+    \  using Monoid_X = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
     \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
     \ (a == Monoid_A::unit()) return x;\r\n    return a * E(size);\r\n  }\r\n};\r\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 9 \"test/1_mytest/range_assign.test.cpp\"\n\nstruct\
@@ -419,7 +447,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_assign.test.cpp

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -252,8 +252,8 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"mod/modint_common.hpp\"\n\n#line\
-    \ 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"mod/modint_common.hpp\"\n\n#line\
+    \ 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
     int popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -280,7 +280,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
     \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -319,7 +319,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -367,7 +367,7 @@ data:
     \ \u3068\u3057\u3066\u3001c \u304C\u7B54\u3067\u3042\u308B\r\n  */\r\n  mint c\
     \ = 0;\r\n  int d = len(a) - 1;\r\n  mint p = 1;\r\n  FOR(i, d + 1) {\r\n    c\
     \ += a[d - i] * p * C<mint>(d, i);\r\n    p *= -r;\r\n  }\r\n  c /= (mint(1) -\
-    \ r).pow(d);\r\n  return c;\r\n}\r\n#line 2 \"nt/prime_table.hpp\"\n\ntemplate\
+    \ r).pow(d);\r\n  return c;\r\n}\r\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate\
     \ <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const int S =\
     \ 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\
     \n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1,\
@@ -378,16 +378,15 @@ data:
     \      array<bool, S> block{};\n      for (auto& [p, idx] : cp)\n        for (int\
     \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
     \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/power_table.hpp\"\
-    \n\r\n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> power_table_1(mint\
-    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
-    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> power_table_2(ll e, ll N) {\r\n  auto primes = prime_table(N);\r\
-    \n  vc<mint> f(N + 1, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p : primes)\
-    \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
-    \n    while (pp <= N) {\r\n      ll i = pp;\r\n      while (i <= N) {\r\n    \
-    \    f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n\
-    \  }\r\n  return f;\r\n}\r\n#line 7 \"test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp\"\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"mod/power_table.hpp\"\
+    \n\n// a^0, ..., a^N\ntemplate <typename mint>\nvc<mint> power_table_1(mint a,\
+    \ ll N) {\n  // table of a^i\n  vc<mint> f(N + 1, 1);\n  FOR(i, N) f[i + 1] =\
+    \ a * f[i];\n  return f;\n}\n\n// 0^e, ..., N^e\ntemplate <typename mint>\nvc<mint>\
+    \ power_table_2(ll e, ll N) {\n  auto primes = prime_table(N);\n  vc<mint> f(N\
+    \ + 1, 1);\n  f[0] = mint(0).pow(e);\n  for (auto&& p : primes) {\n    if (p >\
+    \ N) break;\n    mint xp = mint(p).pow(e);\n    ll pp = p;\n    while (pp <= N)\
+    \ {\n      ll i = pp;\n      while (i <= N) {\n        f[i] *= xp;\n        i\
+    \ += pp;\n      }\n      pp *= p;\n    }\n  }\n  return f;\n}\n#line 7 \"test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  mint r;\r\n  read(r);\r\n\
     \  LL(d);\r\n  int L = d + 5;\r\n  vc<mint> a = power_table_2<mint>(d, L - 1);\r\
     \n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n \
@@ -412,7 +411,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
   requiredBy: []
-  timestamp: '2026-08-15 16:17:43+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -14,20 +14,20 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
-    };\r\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
-    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
-    \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n)\
-    \ { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
+  bundledCode: "#line 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X unit()\
+    \ { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
+    ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n  using\
+    \ MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type = X;\n\
+    \  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n);\
+    \ }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n\
+    \  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m,\
+    \ [](int i) -> X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n\
+    \    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1 << log) <\
+    \ n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n  \
+    \  FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
     \  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all() const { return\
     \ {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i]\
     \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n\
@@ -92,7 +92,7 @@ data:
   isVerificationFile: false
   path: ds/range_mex_change.hpp
   requiredBy: []
-  timestamp: '2026-08-11 19:18:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/range_mex_change.hpp

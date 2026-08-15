@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: ds/rmq/static_rmq.hpp
     title: ds/rmq/static_rmq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sparse_table/sparse_table_on_segtree.hpp
     title: ds/sparse_table/sparse_table_on_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':warning:'
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':warning:'
@@ -41,13 +41,13 @@ data:
   - icon: ':warning:'
     path: string/substring_shortest_border.hpp
     title: string/substring_shortest_border.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -69,39 +69,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/number_of_substrings.test.cpp
     title: test/2_library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/suffix_array.test.cpp
     title: test/2_library_checker/string/suffix_array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1036_4.test.cpp
     title: test/3_yukicoder/1036_4.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/866.test.cpp
     title: test/3_yukicoder/866.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+  bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -128,7 +128,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\
     \u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\
     \u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
     \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
@@ -154,31 +154,31 @@ data:
     \    while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
     \  }\n};\n"
-  code: "#pragma once\n#include \"other/bit.hpp\"\n\n// \u51AA\u7B49\u306A\u30E2\u30CE\
-    \u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002disjoint sparse\
-    \ table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class Monoid>\nstruct Sparse_Table\
-    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n, log;\n\
-    \  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) { build(n); }\n \
-    \ template <typename F>\n  Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n\
-    \  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m,\
-    \ [](int i) -> X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n\
-    \    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template <typename\
-    \ F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1 << log) <\
-    \ n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i, n) dat[0][i]\
-    \ = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i]) - (1 <<\
-    \ i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j] = MX::op(dat[i][j],\
-    \ dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int L, int R) const\
-    \ {\n    if (L == R) return MX::unit();\n    if (R == L + 1) return dat[0][L];\n\
-    \    int k = topbit(R - L - 1);\n    return MX::op(dat[k][L], dat[k][R - (1 <<\
-    \ k)]);\n  }\n\n  template <class F>\n  int max_right(const F check, int L) const\
-    \ {\n    assert(0 <= L && L <= n && check(MX::unit()));\n    if (L == n) return\
-    \ n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok\
-    \ + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n    \
-    \  if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int\
-    \ min_left(const F check, int R) const {\n    assert(0 <= R && R <= n && check(MX::unit()));\n\
-    \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
-    \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
-    \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n"
+  code: "#include \"other/bit.hpp\"\n\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\
+    \u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002disjoint sparse table \u3088\
+    \u308A x \u500D\u9AD8\u901F\ntemplate <class Monoid>\nstruct Sparse_Table {\n\
+    \  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n, log;\n \
+    \ vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) { build(n); }\n  template\
+    \ <typename F>\n  Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n  Sparse_Table(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
+    \ X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
+    \    dat[0].resize(n);\n    FOR(i, n) dat[0][i] = f(i);\n\n    FOR(i, log - 1)\
+    \ {\n      dat[i + 1].resize(len(dat[i]) - (1 << i));\n      FOR(j, len(dat[i])\
+    \ - (1 << i)) {\n        dat[i + 1][j] = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n\
+    \      }\n    }\n  }\n\n  X prod(int L, int R) const {\n    if (L == R) return\
+    \ MX::unit();\n    if (R == L + 1) return dat[0][L];\n    int k = topbit(R - L\
+    \ - 1);\n    return MX::op(dat[k][L], dat[k][R - (1 << k)]);\n  }\n\n  template\
+    \ <class F>\n  int max_right(const F check, int L) const {\n    assert(0 <= L\
+    \ && L <= n && check(MX::unit()));\n    if (L == n) return n;\n    int ok = L,\
+    \ ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok + ng) / 2;\n     \
+    \ bool bl = check(prod(L, k));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n\
+    \    }\n    return ok;\n  }\n\n  template <class F>\n  int min_left(const F check,\
+    \ int R) const {\n    assert(0 <= R && R <= n && check(MX::unit()));\n    if (R\
+    \ == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok) {\n     \
+    \ int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl) ok\
+    \ = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n"
   dependsOn:
   - other/bit.hpp
   isVerificationFile: false
@@ -199,8 +199,8 @@ data:
   - string/suffix_array.hpp
   - string/longest_common_substring.hpp
   - string/substring_shortest_border.hpp
-  timestamp: '2026-07-28 12:25:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp

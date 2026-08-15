@@ -20,7 +20,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"linalg/basis.hpp\"\n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\
+  bundledCode: "#line 1 \"linalg/basis.hpp\"\n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\
     \u52A0\u6210\u529F\u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\
     \u3042\u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\n// rbasis: \u4E0A\
     \u4E09\u89D2\u5316\u3055\u308C\u305F\u57FA\u5E95. [i][i]==1.\n// way[i][j]: rbasis[i]\
@@ -49,25 +49,25 @@ data:
     \ {\n      --rank;\n      POP(basis);\n      FOR(i, n) if (way[i][rank] != mint(0))\
     \ {\n        fill(all(rbasis[i]), mint(0));\n        fill(all(way[i]), mint(0));\n\
     \      }\n    }\n  }\n};\n"
-  code: "#pragma once\n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\u6210\u529F\
-    \u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\u308B\u306A\
-    \u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\n// rbasis: \u4E0A\u4E09\u89D2\u5316\
-    \u3055\u308C\u305F\u57FA\u5E95. [i][i]==1.\n// way[i][j]: rbasis[i] = sum way[i][j]\
-    \ basis[j]\ntemplate <typename mint>\nstruct Basis {\n  int n, rank;\n  vvc<mint>\
-    \ basis;\n  vvc<mint> rbasis;\n  vvc<mint> way;\n  Basis(int max_dim) : n(max_dim),\
-    \ rank(0), basis{} {\n    rbasis.assign(max_dim, vc<mint>(max_dim));\n    way.assign(max_dim,\
-    \ vc<mint>(max_dim));\n  }\n\n  // return : (sum==X \u306B\u3067\u304D\u308B\u304B\
-    , \u305D\u306E\u65B9\u6CD5)\n  pair<bool, vc<mint>> solve(vc<mint> X) {\n    vc<mint>\
-    \ CF(n);\n    FOR(i, n) {\n      if (rbasis[i][i] == mint(1)) {\n        CF[i]\
-    \ = X[i];\n        FOR(j, i, n) X[j] -= CF[i] * rbasis[i][j];\n      }\n    }\n\
-    \    for (auto& x: X) {\n      if (x != mint(0)) { return {false, {}}; }\n   \
-    \ }\n    vc<mint> ANS(rank);\n    FOR(i, n) { FOR(j, rank) ANS[j] += CF[i] * way[i][j];\
-    \ }\n    return {true, ANS};\n  }\n\n  // return : (sum==x \u306B\u3067\u304D\u308B\
-    \u304B, \u305D\u306E\u65B9\u6CD5). false \u306E\u5834\u5408\u306B\u306F\u8FFD\u52A0\
-    \u3059\u308B\n  pair<bool, vc<mint>> solve_or_add(vc<mint> X) {\n    vc<mint>\
-    \ Y = X;\n    vc<mint> CF(n);\n    FOR(i, n) {\n      if (rbasis[i][i] == mint(1))\
-    \ {\n        CF[i] = X[i];\n        FOR(j, i, n) X[j] -= CF[i] * rbasis[i][j];\n\
-    \      }\n    }\n    int p = [&]() -> int {\n      FOR(i, n) if (X[i] != mint(0))\
+  code: "\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\u6210\u529F\u3057\u305F\u3082\
+    \u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\u308B\u306A\u3089\u5916\u3067\
+    \u7BA1\u7406\u3059\u308B.\n// rbasis: \u4E0A\u4E09\u89D2\u5316\u3055\u308C\u305F\
+    \u57FA\u5E95. [i][i]==1.\n// way[i][j]: rbasis[i] = sum way[i][j] basis[j]\ntemplate\
+    \ <typename mint>\nstruct Basis {\n  int n, rank;\n  vvc<mint> basis;\n  vvc<mint>\
+    \ rbasis;\n  vvc<mint> way;\n  Basis(int max_dim) : n(max_dim), rank(0), basis{}\
+    \ {\n    rbasis.assign(max_dim, vc<mint>(max_dim));\n    way.assign(max_dim, vc<mint>(max_dim));\n\
+    \  }\n\n  // return : (sum==X \u306B\u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\
+    \u6CD5)\n  pair<bool, vc<mint>> solve(vc<mint> X) {\n    vc<mint> CF(n);\n   \
+    \ FOR(i, n) {\n      if (rbasis[i][i] == mint(1)) {\n        CF[i] = X[i];\n \
+    \       FOR(j, i, n) X[j] -= CF[i] * rbasis[i][j];\n      }\n    }\n    for (auto&\
+    \ x: X) {\n      if (x != mint(0)) { return {false, {}}; }\n    }\n    vc<mint>\
+    \ ANS(rank);\n    FOR(i, n) { FOR(j, rank) ANS[j] += CF[i] * way[i][j]; }\n  \
+    \  return {true, ANS};\n  }\n\n  // return : (sum==x \u306B\u3067\u304D\u308B\u304B\
+    , \u305D\u306E\u65B9\u6CD5). false \u306E\u5834\u5408\u306B\u306F\u8FFD\u52A0\u3059\
+    \u308B\n  pair<bool, vc<mint>> solve_or_add(vc<mint> X) {\n    vc<mint> Y = X;\n\
+    \    vc<mint> CF(n);\n    FOR(i, n) {\n      if (rbasis[i][i] == mint(1)) {\n\
+    \        CF[i] = X[i];\n        FOR(j, i, n) X[j] -= CF[i] * rbasis[i][j];\n \
+    \     }\n    }\n    int p = [&]() -> int {\n      FOR(i, n) if (X[i] != mint(0))\
     \ return i;\n      return -1;\n    }();\n    if (p == -1) {\n      vc<mint> ANS(rank);\n\
     \      FOR(i, n) { FOR(j, rank) ANS[j] += CF[i] * way[i][j]; }\n      return {true,\
     \ ANS};\n    }\n    mint c = X[p].inverse();\n    FOR(j, p, n) X[j] *= c;\n  \
@@ -84,7 +84,7 @@ data:
   requiredBy:
   - linalg/adjugate_matrix.hpp
   - linalg/frobenius.hpp
-  timestamp: '2024-11-01 21:56:32+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp

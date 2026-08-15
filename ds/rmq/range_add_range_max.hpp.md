@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -100,7 +100,7 @@ data:
     \ m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);\n\
     \    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
     \ x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n    return min_left_rec(node[c].ch[0],\
-    \ check, l, m, qr, x);\n  }\n};\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate\
+    \ check, l, m, qr, x);\n  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate\
     \ <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename\
     \ MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\
     \n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int\
@@ -240,7 +240,7 @@ data:
   isVerificationFile: false
   path: ds/rmq/range_add_range_max.hpp
   requiredBy: []
-  timestamp: '2026-04-13 17:55:57+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp

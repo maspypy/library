@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -265,7 +265,7 @@ data:
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/splaytree/splaytree.hpp\"\n\n// Node\
     \ \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename\
     \ Node>\nstruct SplayTree {\n  Node_Pool<Node> pool;\n  using np = Node *;\n \
     \ using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
@@ -422,12 +422,12 @@ data:
     \ xx);\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n\
     \  }\n};\ntemplate <typename Monoid>\nusing SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>>;\n\
     }  // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Commutative_Monoid;\n\
-    #line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp\"\
+    #line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add {\n\
+    \  using X = E;\n  using value_type = X;\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const X\
+    \ &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n) noexcept\
+    \ { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n  static\
+    \ constexpr bool commute = true;\n};\n#line 7 \"test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n\n  SplayTree_Commutative_Monoid<Monoid_Add<ll>>\
     \ ST;\n  auto root = ST.new_node(A);\n\n  FOR(Q) {\n    LL(t, L, R);\n    if (t\
     \ == 0) {\n      ST.reverse(root, L, R);\n    } else {\n      print(ST.prod(root,\
@@ -449,7 +449,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
@@ -12,7 +12,7 @@ data:
   attributes:
     links:
     - https://qoj.ac/contest/1472/problem/7905
-  bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
+  bundledCode: "#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
     \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
     \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
     \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
@@ -61,7 +61,7 @@ data:
   isVerificationFile: false
   path: ds/monotone/prefix_add_append_get_max.hpp
   requiredBy: []
-  timestamp: '2024-11-14 21:00:22+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/monotone/prefix_add_append_get_max.hpp

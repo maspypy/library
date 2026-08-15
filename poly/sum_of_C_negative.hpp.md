@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
   _extendedRequiredBy: []
@@ -45,15 +45,15 @@ data:
     \ }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild() {\n    vc<X>\
     \ X;\n    reverse(all(dat_l));\n    concat(X, dat_l, dat_r);\n    clear();\n \
     \   int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X))\
-    \ push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n#line 2 \"alg/monoid/mul.hpp\"\
-    \n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n\
-    \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
-    \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 3 \"poly/sum_of_C_negative.hpp\"\n\n// calculate\
-    \ [x^N] f(x)(1-x)^{-K} in O(deg(f)+K).\ntemplate <typename mint>\nmint sum_of_C_negative(ll\
-    \ N, ll K, vc<mint>& f) {\n  assert(K >= 0);\n  if (N < 0) return mint(1);\n \
-    \ if (K == 0) { return (N < len(f) ? f[N] : mint(0)); }\n  K -= 1;\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
+    \ push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n#line 1 \"alg/monoid/mul.hpp\"\
+    \n\ntemplate <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using\
+    \ X = T;\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ * y; }\n  static constexpr X inverse(const X &x) noexcept { return X(1) / x;\
+    \ }\n  static constexpr X unit() { return X(1); }\n  static constexpr bool commute\
+    \ = true;\n};\n#line 3 \"poly/sum_of_C_negative.hpp\"\n\n// calculate [x^N] f(x)(1-x)^{-K}\
+    \ in O(deg(f)+K).\ntemplate <typename mint>\nmint sum_of_C_negative(ll N, ll K,\
+    \ vc<mint>& f) {\n  assert(K >= 0);\n  if (N < 0) return mint(1);\n  if (K ==\
+    \ 0) { return (N < len(f) ? f[N] : mint(0)); }\n  K -= 1;\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
     \ seg;\n  FOR(i, K) seg.push(N + K - i);\n  mint ANS = 0;\n  FOR(i, len(f)) {\n\
     \    ANS += f[i] * seg.prod();\n    seg.push(N - i);\n    seg.pop();\n  }\n  return\
     \ ANS * fact_inv<mint>(K);\n}\n"
@@ -71,7 +71,7 @@ data:
   isVerificationFile: false
   path: poly/sum_of_C_negative.hpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/sum_of_C_negative.hpp

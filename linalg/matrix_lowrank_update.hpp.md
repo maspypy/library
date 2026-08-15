@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -18,26 +18,25 @@ data:
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Woodbury_matrix_identity
-  bundledCode: "#line 2 \"linalg/matrix_inv.hpp\"\n\r\n// (det, invA) \u3092\u304B\
-    \u3048\u3059\r\ntemplate <typename T>\r\npair<T, vc<vc<T>>> matrix_inv(vc<vc<T>>\
-    \ A) {\r\n  T det = 1;\r\n  int N = len(A);\r\n  vv(T, B, N, N);\r\n  FOR(n, N)\
-    \ B[n][n] = 1;\r\n  FOR(i, N) {\r\n    FOR(k, i, N) if (A[k][i] != 0) {\r\n  \
-    \    if (k != i) {\r\n        swap(A[i], A[k]), swap(B[i], B[k]);\r\n        det\
-    \ = -det;\r\n      }\r\n      break;\r\n    }\r\n    if (A[i][i] == 0) return\
-    \ {T(0), {}};\r\n    T c = T(1) / A[i][i];\r\n    det *= A[i][i];\r\n    FOR(j,\
-    \ i, N) A[i][j] *= c;\r\n    FOR(j, N) B[i][j] *= c;\r\n    FOR(k, N) if (i !=\
-    \ k) {\r\n      T c = A[k][i];\r\n      FOR(j, i, N) A[k][j] -= A[i][j] * c;\r\
-    \n      FOR(j, N) B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\n  return {det, B};\r\
-    \n}\r\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(vc<vc<T>>\
-    \ a, int n = -1, int m = -1) {\n  if (n == 0) return 0;\n  if (n == -1) { n =\
-    \ len(a), m = len(a[0]); }\n  assert(n == len(a) && m == len(a[0]));\n  int rk\
-    \ = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    if (a[rk][j] == 0) {\n   \
-    \   FOR(i, rk + 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n   \
-    \     break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
-    \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
-    \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
-    \   ++rk;\n  }\n  return rk;\n}\n#line 3 \"linalg/matrix_lowrank_update.hpp\"\n\
-    \n// https://en.wikipedia.org/wiki/Woodbury_matrix_identity\ntemplate <typename\
+  bundledCode: "#line 1 \"linalg/matrix_inv.hpp\"\n\n// (det, invA) \u3092\u304B\u3048\
+    \u3059\ntemplate <typename T>\npair<T, vc<vc<T>>> matrix_inv(vc<vc<T>> A) {\n\
+    \  T det = 1;\n  int N = len(A);\n  vv(T, B, N, N);\n  FOR(n, N) B[n][n] = 1;\n\
+    \  FOR(i, N) {\n    FOR(k, i, N) if (A[k][i] != 0) {\n      if (k != i) {\n  \
+    \      swap(A[i], A[k]), swap(B[i], B[k]);\n        det = -det;\n      }\n   \
+    \   break;\n    }\n    if (A[i][i] == 0) return {T(0), {}};\n    T c = T(1) /\
+    \ A[i][i];\n    det *= A[i][i];\n    FOR(j, i, N) A[i][j] *= c;\n    FOR(j, N)\
+    \ B[i][j] *= c;\n    FOR(k, N) if (i != k) {\n      T c = A[k][i];\n      FOR(j,\
+    \ i, N) A[k][j] -= A[i][j] * c;\n      FOR(j, N) B[k][j] -= B[i][j] * c;\n   \
+    \ }\n  }\n  return {det, B};\n}\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate\
+    \ <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1) {\n  if (n\
+    \ == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n  assert(n ==\
+    \ len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n\
+    \    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j] != T(0)) {\n  \
+    \      swap(a[rk], a[i]);\n        break;\n      }\n    }\n    if (a[rk][j] ==\
+    \ 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n\
+    \    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) { a[i][k]\
+    \ -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 3 \"linalg/matrix_lowrank_update.hpp\"\
+    \n\n// https://en.wikipedia.org/wiki/Woodbury_matrix_identity\ntemplate <typename\
     \ T>\nstruct Lowrank_Update {\n  int n;\n  vvc<T> A, IA;\n  Lowrank_Update() {}\n\
     \  Lowrank_Update(vvc<T> A) : A(A) {\n    n = len(A);\n    T det;\n    tie(det,\
     \ IA) = matrix_inv(A);\n    assert(det != T(0));\n  }\n\n  // A + UV \u304C\u53EF\
@@ -120,7 +119,7 @@ data:
   isVerificationFile: false
   path: linalg/matrix_lowrank_update.hpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1774.test.cpp

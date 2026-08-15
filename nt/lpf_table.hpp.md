@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy:
@@ -21,18 +21,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
+  bundledCode: "#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
     \ prime_table(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
     \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
     \  done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R =\
@@ -43,16 +43,15 @@ data:
     \ S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i = idx; i <\
     \ S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
     \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return\
-    \ {primes.begin(), primes.begin() + k};\n}\n#line 3 \"nt/lpf_table.hpp\"\n\n//\
+    \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/lpf_table.hpp\"\n\n//\
     \ [0, LIM], 0, 1 \u306B\u306F -1 \u304C\u5165\u308B\u3002\nvc<int> lpf_table(ll\
     \ LIM) {\n  auto primes = prime_table(LIM);\n  vc<int> res(LIM + 1, -1);\n  FOR_R(i,\
     \ len(primes)) {\n    auto p = primes[i];\n    FOR3(j, 1, LIM / p + 1) res[p *\
     \ j] = p;\n  }\n  return res;\n}\n"
-  code: "#pragma once\n#include \"nt/prime_table.hpp\"\n\n// [0, LIM], 0, 1 \u306B\
-    \u306F -1 \u304C\u5165\u308B\u3002\nvc<int> lpf_table(ll LIM) {\n  auto primes\
-    \ = prime_table(LIM);\n  vc<int> res(LIM + 1, -1);\n  FOR_R(i, len(primes)) {\n\
-    \    auto p = primes[i];\n    FOR3(j, 1, LIM / p + 1) res[p * j] = p;\n  }\n \
-    \ return res;\n}\n"
+  code: "#include \"nt/prime_table.hpp\"\n\n// [0, LIM], 0, 1 \u306B\u306F -1 \u304C\
+    \u5165\u308B\u3002\nvc<int> lpf_table(ll LIM) {\n  auto primes = prime_table(LIM);\n\
+    \  vc<int> res(LIM + 1, -1);\n  FOR_R(i, len(primes)) {\n    auto p = primes[i];\n\
+    \    FOR3(j, 1, LIM / p + 1) res[p * j] = p;\n  }\n  return res;\n}\n"
   dependsOn:
   - nt/prime_table.hpp
   isVerificationFile: false
@@ -61,8 +60,8 @@ data:
   - nt/all_lcm.hpp
   - nt/find_coprime_pair.hpp
   - mod/modfast.hpp
-  timestamp: '2026-08-15 15:50:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/modfast.test.cpp
   - test/3_yukicoder/1881.test.cpp

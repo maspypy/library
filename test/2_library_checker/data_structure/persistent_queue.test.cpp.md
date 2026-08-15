@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -260,23 +260,22 @@ data:
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename\
-    \ T, bool PERSISTENT>\r\nstruct Dynamic_Array {\r\n  static constexpr int LOG\
-    \ = 4;\r\n  static constexpr int MASK = (1 << LOG) - 1;\r\n  struct Node {\r\n\
-    \    T x;\r\n    Node* ch[1 << LOG] = {};\r\n  };\r\n  Node_Pool<Node> pool;\r\
-    \n  using np = Node*;\r\n  const T x0;\r\n\r\n  Dynamic_Array(int NODES, T default_value)\
-    \ : x0(default_value) {}\r\n  np new_root() {\r\n    np c = pool.create();\r\n\
-    \    c->x = x0;\r\n    fill(c->ch, c->ch + (1 << LOG), nullptr);\r\n    return\
-    \ c;\r\n  }\r\n\r\n  np new_node(vc<T> dat) {\r\n    np root = new_root();\r\n\
-    \    FOR(i, len(dat)) root = set(root, i, dat[i], false);\r\n    return root;\r\
-    \n  }\r\n\r\n  T get(np c, int idx) {\r\n    if (!c) return x0;\r\n    if (idx\
-    \ == 0) return c->x;\r\n    return get(c->ch[idx & MASK], (idx - 1) >> LOG);\r\
-    \n  }\r\n\r\n  np set(np c, int idx, T x, bool make_copy = true) {\r\n    c =\
-    \ (c ? clone(c, make_copy) : new_root());\r\n    if (idx == 0) {\r\n      c->x\
-    \ = x;\r\n      return c;\r\n    }\r\n    c->ch[idx & MASK] = set(c->ch[idx &\
-    \ MASK], (idx - 1) >> LOG, x);\r\n    return c;\r\n  }\r\n\r\n private:\r\n  np\
-    \ clone(np c, bool make_copy) {\r\n    if (!make_copy || !PERSISTENT) return c;\r\
-    \n    return pool.clone(c);\r\n  }\r\n};\r\n#line 6 \"test/2_library_checker/data_structure/persistent_queue.test.cpp\"\
+    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/dynamic_array.hpp\"\n\ntemplate <typename\
+    \ T, bool PERSISTENT>\nstruct Dynamic_Array {\n  static constexpr int LOG = 4;\n\
+    \  static constexpr int MASK = (1 << LOG) - 1;\n  struct Node {\n    T x;\n  \
+    \  Node* ch[1 << LOG] = {};\n  };\n  Node_Pool<Node> pool;\n  using np = Node*;\n\
+    \  const T x0;\n\n  Dynamic_Array(int NODES, T default_value) : x0(default_value)\
+    \ {}\n  np new_root() {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch,\
+    \ c->ch + (1 << LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat)\
+    \ {\n    np root = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
+    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return\
+    \ x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx\
+    \ - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n\
+    \    c = (c ? clone(c, make_copy) : new_root());\n    if (idx == 0) {\n      c->x\
+    \ = x;\n      return c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK],\
+    \ (idx - 1) >> LOG, x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool\
+    \ make_copy) {\n    if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n\
+    \  }\n};\n#line 6 \"test/2_library_checker/data_structure/persistent_queue.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(Q);\r\n  vc<int> L, R;\r\n\r\n  Dynamic_Array<int,\
     \ true> X(2000000, 0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np> roots;\r\
     \n\r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q) {\r\n \
@@ -303,7 +302,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/persistent_queue.test.cpp
   requiredBy: []
-  timestamp: '2026-08-13 09:52:55+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/persistent_queue.test.cpp

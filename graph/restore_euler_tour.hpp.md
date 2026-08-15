@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/decremental_fastset.hpp
     title: ds/decremental_fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -18,7 +18,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/problemset/problem/1053/E
-  bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+  bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -45,7 +45,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind\
+    \ : (1ULL << n) - 1; }\n#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind\
     \ {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0)\
     \ { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
     \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
@@ -204,7 +204,7 @@ data:
   isVerificationFile: false
   path: graph/restore_euler_tour.hpp
   requiredBy: []
-  timestamp: '2026-07-28 12:25:36+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/restore_euler_tour.hpp

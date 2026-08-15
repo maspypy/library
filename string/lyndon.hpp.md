@@ -20,7 +20,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct\
+  bundledCode: "#line 1 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct\
     \ Incremental_Lyndon_Factorization {\n  vc<CHAR> S;\n  int i = 0, j = 0, k = 0;\n\
     \  vc<int> minimum_suffix_len = {0};\n\n  int add(CHAR c) {\n    S.eb(c);\n  \
     \  // [j, j+(i-k)) simple\n    while (i < len(S)) {\n      if (k == i) {\n   \
@@ -32,13 +32,13 @@ data:
     \  }\n\n  vc<int> factorize() {\n    int i = len(S);\n    vc<int> I;\n    while\
     \ (i) {\n      I.eb(i);\n      i -= minimum_suffix_len[i];\n    }\n    I.eb(0);\n\
     \    reverse(all(I));\n    return I;\n  }\n};\n"
-  code: "#pragma once\n\ntemplate <typename CHAR>\nstruct Incremental_Lyndon_Factorization\
-    \ {\n  vc<CHAR> S;\n  int i = 0, j = 0, k = 0;\n  vc<int> minimum_suffix_len =\
-    \ {0};\n\n  int add(CHAR c) {\n    S.eb(c);\n    // [j, j+(i-k)) simple\n    while\
-    \ (i < len(S)) {\n      if (k == i) {\n        assert(j == k);\n        ++i;\n\
-    \      }\n      elif (S[k] == S[i]) { ++k, ++i; }\n      elif (S[k] < S[i]) {\
-    \ k = j, ++i; }\n      else {\n        j += (i - j) / (i - k) * (i - k);\n   \
-    \     i = k = j;\n      }\n    }\n    if ((i - j) % (i - k) == 0) {\n      minimum_suffix_len.eb(i\
+  code: "\ntemplate <typename CHAR>\nstruct Incremental_Lyndon_Factorization {\n \
+    \ vc<CHAR> S;\n  int i = 0, j = 0, k = 0;\n  vc<int> minimum_suffix_len = {0};\n\
+    \n  int add(CHAR c) {\n    S.eb(c);\n    // [j, j+(i-k)) simple\n    while (i\
+    \ < len(S)) {\n      if (k == i) {\n        assert(j == k);\n        ++i;\n  \
+    \    }\n      elif (S[k] == S[i]) { ++k, ++i; }\n      elif (S[k] < S[i]) { k\
+    \ = j, ++i; }\n      else {\n        j += (i - j) / (i - k) * (i - k);\n     \
+    \   i = k = j;\n      }\n    }\n    if ((i - j) % (i - k) == 0) {\n      minimum_suffix_len.eb(i\
     \ - k);\n    } else {\n      minimum_suffix_len.eb(minimum_suffix_len[k]);\n \
     \   }\n    return minimum_suffix_len[i];\n  }\n\n  vc<int> factorize() {\n   \
     \ int i = len(S);\n    vc<int> I;\n    while (i) {\n      I.eb(i);\n      i -=\
@@ -50,7 +50,7 @@ data:
   requiredBy:
   - string/non_dominated_suffix.hpp
   - string/lex_min_suffix_for_all_prefix.hpp
-  timestamp: '2025-05-18 18:12:51+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lex_minmax_suffix.test.cpp

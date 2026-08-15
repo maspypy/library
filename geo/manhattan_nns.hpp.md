@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/manhattan_nns.test.cpp
     title: test/1_mytest/manhattan_nns.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2897.test.cpp
     title: test/3_yukicoder/2897.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
+  bundledCode: "#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
     \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
     \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
     \ n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
@@ -64,20 +64,20 @@ data:
     \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
     \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 2 \"alg/monoid/min_idx.hpp\"\n\r\
-    \ntemplate <typename T, bool tie_is_left = true>\r\nstruct Monoid_Min_Idx {\r\n\
-    \  using value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static constexpr\
-    \ bool is_small(const X& x, const X& y) {\r\n    if (x.fi < y.fi) return true;\r\
-    \n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se < y.se)\
-    \ : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x, y)\
-    \ ? x : y); }\r\n  static constexpr X unit() { return {infty<T>, -1}; }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\r\n#line 3 \"geo/manhattan_nns.hpp\"\n\r\
-    \n// \u70B9\u7FA4 FRM \u304B\u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\
-    \u63A2\u7D22\r\n// vector \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\r\n\
-    template <typename X = ll>\r\npair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>>\
-    \ FRM, vc<pair<X, X>>& TO) {\r\n  assert(len(TO) >= 1);\r\n  int N = len(FRM),\
-    \ M = len(TO);\r\n  vc<pair<X, X>> points(N + M);\r\n  FOR(i, N) points[i] = FRM[i];\r\
-    \n  FOR(i, M) points[N + i] = TO[i];\r\n  vc<X> Y(M);\r\n  FOR(i, M) Y[i] = TO[i].se;\r\
+    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"alg/monoid/min_idx.hpp\"\n\n\
+    template <typename T, bool tie_is_left = true>\nstruct Monoid_Min_Idx {\n  using\
+    \ value_type = pair<T, int>;\n  using X = value_type;\n  static constexpr bool\
+    \ is_small(const X& x, const X& y) {\n    if (x.fi < y.fi) return true;\n    if\
+    \ (x.fi > y.fi) return false;\n    return (tie_is_left ? (x.se < y.se) : (x.se\
+    \ >= y.se));\n  }\n  static X op(X x, X y) { return (is_small(x, y) ? x : y);\
+    \ }\n  static constexpr X unit() { return {infty<T>, -1}; }\n  static constexpr\
+    \ bool commute = true;\n};\n#line 3 \"geo/manhattan_nns.hpp\"\n\r\n// \u70B9\u7FA4\
+    \ FRM \u304B\u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\u63A2\u7D22\r\
+    \n// vector \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\r\ntemplate <typename\
+    \ X = ll>\r\npair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>> FRM, vc<pair<X,\
+    \ X>>& TO) {\r\n  assert(len(TO) >= 1);\r\n  int N = len(FRM), M = len(TO);\r\n\
+    \  vc<pair<X, X>> points(N + M);\r\n  FOR(i, N) points[i] = FRM[i];\r\n  FOR(i,\
+    \ M) points[N + i] = TO[i];\r\n  vc<X> Y(M);\r\n  FOR(i, M) Y[i] = TO[i].se;\r\
     \n  UNIQUE(Y);\r\n\r\n  vc<int> nbd_idx(N, -1);\r\n  vc<X> dist(N, infty<X>);\r\
     \n\r\n  auto add_ans = [&](int i, int j) -> void {\r\n    if (j == -1) return;\r\
     \n    X dx = points[i].fi - points[j].fi;\r\n    X dy = points[i].se - points[j].se;\r\
@@ -119,8 +119,8 @@ data:
   isVerificationFile: false
   path: geo/manhattan_nns.hpp
   requiredBy: []
-  timestamp: '2026-04-13 17:55:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/manhattan_nns.test.cpp
   - test/3_yukicoder/2897.test.cpp

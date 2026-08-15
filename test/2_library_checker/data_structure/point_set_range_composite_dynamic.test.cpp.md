@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -253,7 +253,7 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp\"\
-    \n\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n#line 1 \"ds/node_pool.hpp\"\
+    \n\n#line 1 \"ds/segtree/dynamic_segtree.hpp\"\n\n#line 1 \"ds/node_pool.hpp\"\
     \n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\
     \u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\n\
     struct Node_Pool {\n  struct Slot {\n    union alignas(Node) {\n      Slot* next;\n\
@@ -272,121 +272,118 @@ data:
     \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
     \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
     \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 4 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n\
-    // sparse \u3082\u3042\u308B\u306E\u3067\u72B6\u6CC1\u306B\u3088\u3063\u3066\u306F\
-    \u305D\u3063\u3061\u3067\r\ntemplate <typename Monoid, bool PERSISTENT>\r\nstruct\
-    \ Dynamic_SegTree {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
-    \n  using F = function<X(ll, ll)>;\r\n  F default_prod;\r\n\r\n  struct Node {\r\
-    \n    Node *l, *r;\r\n    X x;\r\n  };\r\n\r\n  const ll L0, R0;\r\n  Node_Pool<Node>\
-    \ pool;\r\n  using np = Node *;\r\n\r\n  Dynamic_SegTree(\r\n      ll L0, ll R0,\
-    \ F default_prod = [](ll l, ll r) -> X { return MX::unit(); })\r\n      : default_prod(default_prod),\
-    \ L0(L0), R0(R0) {}\r\n\r\n  np new_root() { return new_node(L0, R0); }\r\n\r\n\
-    \  np new_node(const X x) {\r\n    np n = pool.create();\r\n    n->l = nullptr,\
-    \ n->r = nullptr, n->x = x;\r\n    return n;\r\n  }\r\n\r\n  np new_node(ll l,\
-    \ ll r) { return new_node(default_prod(l, r)); }\r\n  np new_node() { return new_node(L0,\
-    \ R0); }\r\n\r\n  np new_node(const vc<X> &dat) {\r\n    assert(L0 == 0 && R0\
-    \ == len(dat));\r\n    auto dfs = [&](auto &dfs, ll l, ll r) -> np {\r\n     \
-    \ if (l == r) return nullptr;\r\n      if (r == l + 1) return new_node(dat[l]);\r\
-    \n      ll m = (l + r) / 2;\r\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
-    \ m, r);\r\n      X x = MX::op(l_root->x, r_root->x);\r\n      np root = new_node(x);\r\
-    \n      root->l = l_root, root->r = r_root;\r\n      return root;\r\n    };\r\n\
-    \    return dfs(dfs, 0, len(dat));\r\n  }\r\n\r\n  X prod(np root, ll l, ll r)\
-    \ {\r\n    assert(L0 <= l && l <= r && r <= R0);\r\n    if (!root || l == r) return\
-    \ MX::unit();\r\n    X x = MX::unit();\r\n    prod_rec(root, L0, R0, l, r, x);\r\
-    \n    return x;\r\n  }\r\n\r\n  np set(np root, ll i, const X &x) {\r\n    assert(root\
-    \ && L0 <= i && i < R0);\r\n    root = (root ? copy_node(root) : new_node());\r\
-    \n    set_rec(root, L0, R0, i, x);\r\n    return root;\r\n  }\r\n\r\n  np multiply(np\
-    \ root, ll i, const X &x) {\r\n    assert(root && L0 <= i && i < R0);\r\n    root\
-    \ = (root ? copy_node(root) : new_node());\r\n    multiply_rec(root, L0, R0, i,\
-    \ x);\r\n    return root;\r\n  }\r\n\r\n  template <typename F>\r\n  ll max_right(np\
-    \ root, F check, ll L) {\r\n    assert(root && L0 <= L && L <= R0 && check(MX::unit()));\r\
-    \n    X x = MX::unit();\r\n    return max_right_rec(root, check, L0, R0, L, x);\r\
-    \n  }\r\n\r\n  template <typename F>\r\n  ll min_left(np root, F check, ll R)\
-    \ {\r\n    assert(L0 <= R && R <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\
-    \n    return min_left_rec(root, check, L0, R0, R, x);\r\n  }\r\n\r\n  // (idx,\
-    \ val)\r\n  template <typename F>\r\n  void enumerate(np root, F f) {\r\n    if\
-    \ (!root) return;\r\n    auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {\r\
-    \n      if (!c) return;\r\n      if (r - l == 1) {\r\n        f(l, c->x);\r\n\
-    \        return;\r\n      }\r\n      ll m = (l + r) / 2;\r\n      dfs(dfs, c->l,\
-    \ l, m);\r\n      dfs(dfs, c->r, m, r);\r\n    };\r\n    dfs(dfs, root, L0, R0);\r\
-    \n    return;\r\n  }\r\n\r\n  void reset() { pool.reset(); }\r\n\r\n private:\r\
-    \n  np copy_node(np c) {\r\n    if (!c || !PERSISTENT) return c;\r\n    np n =\
-    \ pool.create();\r\n    n->l = c->l, n->r = c->r, n->x = c->x;\r\n    return n;\r\
-    \n  }\r\n\r\n  void set_rec(np c, ll l, ll r, ll i, const X &x) {\r\n    assert(c);\r\
-    \n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\r\n \
-    \   if (r == l + 1) {\r\n      c->x = x;\r\n      return;\r\n    }\r\n    ll m\
-    \ = (l + r) / 2;\r\n    if (l <= i && i < m) {\r\n      c->l = (c->l ? copy_node(c->l)\
-    \ : new_node());\r\n      set_rec(c->l, l, m, i, x);\r\n    }\r\n    if (m <=\
-    \ i && i < r) {\r\n      c->r = (c->r ? copy_node(c->r) : new_node());\r\n   \
-    \   set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l,\
-    \ m));\r\n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl,\
-    \ xr);\r\n    return;\r\n  }\r\n\r\n  void multiply_rec(np c, ll l, ll r, ll i,\
-    \ const X &x) {\r\n    assert(c);\r\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\
-    \u3057\u3066\u3042\u308B\r\n    if (r == l + 1) {\r\n      c->x = MX::op(c->x,\
-    \ x);\r\n      return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    if (l <= i &&\
-    \ i < m) {\r\n      c->l = (c->l ? copy_node(c->l) : new_node());\r\n      multiply_rec(c->l,\
-    \ l, m, i, x);\r\n    }\r\n    if (m <= i && i < r) {\r\n      c->r = (c->r ?\
-    \ copy_node(c->r) : new_node());\r\n      multiply_rec(c->r, m, r, i, x);\r\n\
-    \    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\n    X xr = (c->r\
-    \ ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\n    return;\r\
-    \n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x) {\r\n    chmax(ql,\
-    \ l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\n    if (!c) {\r\n \
-    \     x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\n    }\r\n    if\
-    \ (l == ql && r == qr) {\r\n      x = MX::op(x, c->x);\r\n      return;\r\n  \
-    \  }\r\n    ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql, qr, x);\r\n  \
-    \  prod_rec(c->r, m, r, ql, qr, x);\r\n  }\r\n\r\n  // \u3053\u308C new node \u4F5C\
-    \u3063\u3066\u308B\u306E\u306F\u3055\u307C\u308A\r\n  template <typename F>\r\n\
-    \  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {\r\n    if\
-    \ (r <= ql) return R0;\r\n    if (ql <= l && check(MX::op(x, c->x))) {\r\n   \
-    \   x = MX::op(x, c->x);\r\n      return R0;\r\n    }\r\n    if (r == l + 1) return\
-    \ l;\r\n    ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l, m);\r\n \
-    \   ll k = max_right_rec(c->l, check, l, m, ql, x);\r\n    if (k != R0) return\
-    \ k;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    return max_right_rec(c->r,\
-    \ check, m, r, ql, x);\r\n  }\r\n\r\n  // \u3053\u308C new node \u4F5C\u3063\u3066\
-    \u308B\u306E\u306F\u3055\u307C\u308A\r\n  template <typename F>\r\n  ll min_left_rec(np\
-    \ c, const F &check, ll l, ll r, ll qr, X &x) {\r\n    if (qr <= l) return L0;\r\
-    \n    if (r <= qr && check(MX::op(c->x, x))) {\r\n      x = MX::op(x, c->x);\r\
-    \n      return L0;\r\n    }\r\n    if (r == l + 1) return r;\r\n    ll m = (l\
-    \ + r) / 2;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    ll k = min_left_rec(c->r,\
-    \ check, m, r, qr, x);\r\n    if (k != L0) return k;\r\n    if (!c->l) c->l =\
-    \ new_node(l, m);\r\n    return min_left_rec(c->l, check, l, m, qr, x);\r\n  }\r\
-    \n};\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\
-    \u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K,\
-    \ K>;\n  using value_type = F;\n  using X = value_type;\n  static constexpr F\
-    \ op(const F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second\
-    \ * y.first + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n \
-    \   auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static\
-    \ constexpr K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n\
-    \  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr\
-    \ bool commute = false;\n};\n#line 2 \"mod/modint_common.hpp\"\n\n#line 2 \"other/bit.hpp\"\
-    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
-    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
-    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
-    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
-    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
-    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
-    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
-    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
-    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
-    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
-    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
-    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
-    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
-    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
-    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
-    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
-    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
-    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 4 \"mod/modint_common.hpp\"\n\n\
-    struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/segtree/dynamic_segtree.hpp\"\n\n//\
+    \ sparse \u3082\u3042\u308B\u306E\u3067\u72B6\u6CC1\u306B\u3088\u3063\u3066\u306F\
+    \u305D\u3063\u3061\u3067\ntemplate <typename Monoid, bool PERSISTENT>\nstruct\
+    \ Dynamic_SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  using F = function<X(ll, ll)>;\n  F default_prod;\n\n  struct Node {\n    Node\
+    \ *l, *r;\n    X x;\n  };\n\n  const ll L0, R0;\n  Node_Pool<Node> pool;\n  using\
+    \ np = Node *;\n\n  Dynamic_SegTree(\n      ll L0, ll R0, F default_prod = [](ll\
+    \ l, ll r) -> X { return MX::unit(); })\n      : default_prod(default_prod), L0(L0),\
+    \ R0(R0) {}\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const\
+    \ X x) {\n    np n = pool.create();\n    n->l = nullptr, n->r = nullptr, n->x\
+    \ = x;\n    return n;\n  }\n\n  np new_node(ll l, ll r) { return new_node(default_prod(l,\
+    \ r)); }\n  np new_node() { return new_node(L0, R0); }\n\n  np new_node(const\
+    \ vc<X> &dat) {\n    assert(L0 == 0 && R0 == len(dat));\n    auto dfs = [&](auto\
+    \ &dfs, ll l, ll r) -> np {\n      if (l == r) return nullptr;\n      if (r ==\
+    \ l + 1) return new_node(dat[l]);\n      ll m = (l + r) / 2;\n      np l_root\
+    \ = dfs(dfs, l, m), r_root = dfs(dfs, m, r);\n      X x = MX::op(l_root->x, r_root->x);\n\
+    \      np root = new_node(x);\n      root->l = l_root, root->r = r_root;\n   \
+    \   return root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  X prod(np\
+    \ root, ll l, ll r) {\n    assert(L0 <= l && l <= r && r <= R0);\n    if (!root\
+    \ || l == r) return MX::unit();\n    X x = MX::unit();\n    prod_rec(root, L0,\
+    \ R0, l, r, x);\n    return x;\n  }\n\n  np set(np root, ll i, const X &x) {\n\
+    \    assert(root && L0 <= i && i < R0);\n    root = (root ? copy_node(root) :\
+    \ new_node());\n    set_rec(root, L0, R0, i, x);\n    return root;\n  }\n\n  np\
+    \ multiply(np root, ll i, const X &x) {\n    assert(root && L0 <= i && i < R0);\n\
+    \    root = (root ? copy_node(root) : new_node());\n    multiply_rec(root, L0,\
+    \ R0, i, x);\n    return root;\n  }\n\n  template <typename F>\n  ll max_right(np\
+    \ root, F check, ll L) {\n    assert(root && L0 <= L && L <= R0 && check(MX::unit()));\n\
+    \    X x = MX::unit();\n    return max_right_rec(root, check, L0, R0, L, x);\n\
+    \  }\n\n  template <typename F>\n  ll min_left(np root, F check, ll R) {\n   \
+    \ assert(L0 <= R && R <= R0 && check(MX::unit()));\n    X x = MX::unit();\n  \
+    \  return min_left_rec(root, check, L0, R0, R, x);\n  }\n\n  // (idx, val)\n \
+    \ template <typename F>\n  void enumerate(np root, F f) {\n    if (!root) return;\n\
+    \    auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {\n      if (!c) return;\n\
+    \      if (r - l == 1) {\n        f(l, c->x);\n        return;\n      }\n    \
+    \  ll m = (l + r) / 2;\n      dfs(dfs, c->l, l, m);\n      dfs(dfs, c->r, m, r);\n\
+    \    };\n    dfs(dfs, root, L0, R0);\n    return;\n  }\n\n  void reset() { pool.reset();\
+    \ }\n\n private:\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n\
+    \    np n = pool.create();\n    n->l = c->l, n->r = c->r, n->x = c->x;\n    return\
+    \ n;\n  }\n\n  void set_rec(np c, ll l, ll r, ll i, const X &x) {\n    assert(c);\n\
+    \    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\n    if\
+    \ (r == l + 1) {\n      c->x = x;\n      return;\n    }\n    ll m = (l + r) /\
+    \ 2;\n    if (l <= i && i < m) {\n      c->l = (c->l ? copy_node(c->l) : new_node());\n\
+    \      set_rec(c->l, l, m, i, x);\n    }\n    if (m <= i && i < r) {\n      c->r\
+    \ = (c->r ? copy_node(c->r) : new_node());\n      set_rec(c->r, m, r, i, x);\n\
+    \    }\n    X xl = (c->l ? c->l->x : default_prod(l, m));\n    X xr = (c->r ?\
+    \ c->r->x : default_prod(m, r));\n    c->x = MX::op(xl, xr);\n    return;\n  }\n\
+    \n  void multiply_rec(np c, ll l, ll r, ll i, const X &x) {\n    assert(c);\n\
+    \    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\n    if\
+    \ (r == l + 1) {\n      c->x = MX::op(c->x, x);\n      return;\n    }\n    ll\
+    \ m = (l + r) / 2;\n    if (l <= i && i < m) {\n      c->l = (c->l ? copy_node(c->l)\
+    \ : new_node());\n      multiply_rec(c->l, l, m, i, x);\n    }\n    if (m <= i\
+    \ && i < r) {\n      c->r = (c->r ? copy_node(c->r) : new_node());\n      multiply_rec(c->r,\
+    \ m, r, i, x);\n    }\n    X xl = (c->l ? c->l->x : default_prod(l, m));\n   \
+    \ X xr = (c->r ? c->r->x : default_prod(m, r));\n    c->x = MX::op(xl, xr);\n\
+    \    return;\n  }\n\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x) {\n\
+    \    chmax(ql, l);\n    chmin(qr, r);\n    if (ql >= qr) return;\n    if (!c)\
+    \ {\n      x = MX::op(x, default_prod(ql, qr));\n      return;\n    }\n    if\
+    \ (l == ql && r == qr) {\n      x = MX::op(x, c->x);\n      return;\n    }\n \
+    \   ll m = (l + r) / 2;\n    prod_rec(c->l, l, m, ql, qr, x);\n    prod_rec(c->r,\
+    \ m, r, ql, qr, x);\n  }\n\n  // \u3053\u308C new node \u4F5C\u3063\u3066\u308B\
+    \u306E\u306F\u3055\u307C\u308A\n  template <typename F>\n  ll max_right_rec(np\
+    \ c, const F &check, ll l, ll r, ll ql, X &x) {\n    if (r <= ql) return R0;\n\
+    \    if (ql <= l && check(MX::op(x, c->x))) {\n      x = MX::op(x, c->x);\n  \
+    \    return R0;\n    }\n    if (r == l + 1) return l;\n    ll m = (l + r) / 2;\n\
+    \    if (!c->l) c->l = new_node(l, m);\n    ll k = max_right_rec(c->l, check,\
+    \ l, m, ql, x);\n    if (k != R0) return k;\n    if (!c->r) c->r = new_node(m,\
+    \ r);\n    return max_right_rec(c->r, check, m, r, ql, x);\n  }\n\n  // \u3053\
+    \u308C new node \u4F5C\u3063\u3066\u308B\u306E\u306F\u3055\u307C\u308A\n  template\
+    \ <typename F>\n  ll min_left_rec(np c, const F &check, ll l, ll r, ll qr, X &x)\
+    \ {\n    if (qr <= l) return L0;\n    if (r <= qr && check(MX::op(c->x, x))) {\n\
+    \      x = MX::op(x, c->x);\n      return L0;\n    }\n    if (r == l + 1) return\
+    \ r;\n    ll m = (l + r) / 2;\n    if (!c->r) c->r = new_node(m, r);\n    ll k\
+    \ = min_left_rec(c->r, check, m, r, qr, x);\n    if (k != L0) return k;\n    if\
+    \ (!c->l) c->l = new_node(l, m);\n    return min_left_rec(c->l, check, l, m, qr,\
+    \ x);\n  }\n};\n#line 1 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F),\
+    \ F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n\
+    \  using F = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n \
+    \ static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
+    \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
+    \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
+    \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
+    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
+    \  static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
@@ -424,7 +421,7 @@ data:
     \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
     \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
     \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
     \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
     \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
     \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
@@ -492,7 +489,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2026-08-13 03:03:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp

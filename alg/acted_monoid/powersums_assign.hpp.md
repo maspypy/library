@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add_array.hpp
     title: alg/monoid/add_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   _extendedRequiredBy: []
@@ -17,39 +17,37 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/acted_monoid/powersums_assign.hpp\"\n\r\n#line 2 \"\
-    alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\nstruct Monoid_Assign\
-    \ {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return (y == X(none_val)\
-    \ ? x : y); }\r\n  static constexpr X unit() { return X(none_val); }\r\n  static\
-    \ constexpr bool commute = false;\r\n};\r\n#line 2 \"alg/monoid/add_array.hpp\"\
-    \n\r\ntemplate <typename E, int K>\r\nstruct Monoid_Add_Array {\r\n  using value_type\
-    \ = array<E, K>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n \
-    \   FOR(i, K) x[i] += y[i];\r\n    return x;\r\n  }\r\n  static constexpr X unit()\
-    \ { return X{}; }\r\n  static constexpr X inverse(X x) {\r\n    for (auto& v:\
-    \ x) v = -v;\r\n    return x;\r\n  }\r\n  static constexpr X power(X x, ll n)\
-    \ {\r\n    for (auto& v: x) v *= E(n);\r\n    return x;\r\n  }\r\n  static constexpr\
-    \ bool commute = 1;\r\n};\r\n#line 5 \"alg/acted_monoid/powersums_assign.hpp\"\
-    \n\r\n// 0, 1, ..., K \u4E57\u548C\r\ntemplate <typename T, int K>\r\nstruct ActedMonoid_Power_Sums_Assign\
-    \ {\r\n  using Monoid_X = Monoid_Add_Array<T, K + 1>;\r\n  using Monoid_A = Monoid_Assign<T,\
-    \ -1>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
-    \ (a == Monoid_A::unit()) return x;\r\n    X y;\r\n    T pow = 1;\r\n    FOR(i,\
-    \ K + 1) { y[i] = x[0] * pow, pow *= a; }\r\n    return y;\r\n  }\r\n};\r\n"
-  code: "#pragma once\r\n\r\n#include \"alg/monoid/assign.hpp\"\r\n#include \"alg/monoid/add_array.hpp\"\
-    \r\n\r\n// 0, 1, ..., K \u4E57\u548C\r\ntemplate <typename T, int K>\r\nstruct\
-    \ ActedMonoid_Power_Sums_Assign {\r\n  using Monoid_X = Monoid_Add_Array<T, K\
-    \ + 1>;\r\n  using Monoid_A = Monoid_Assign<T, -1>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    if (a == Monoid_A::unit()) return\
-    \ x;\r\n    X y;\r\n    T pow = 1;\r\n    FOR(i, K + 1) { y[i] = x[0] * pow, pow\
-    \ *= a; }\r\n    return y;\r\n  }\r\n};\r\n"
+  bundledCode: "#line 1 \"alg/acted_monoid/powersums_assign.hpp\"\n\n#line 1 \"alg/monoid/assign.hpp\"\
+    \n\ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
+    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
+    \ constexpr X unit() { return X(none_val); }\n  static constexpr bool commute\
+    \ = false;\n};\n#line 1 \"alg/monoid/add_array.hpp\"\n\ntemplate <typename E,\
+    \ int K>\nstruct Monoid_Add_Array {\n  using value_type = array<E, K>;\n  using\
+    \ X = value_type;\n  static X op(X x, X y) {\n    FOR(i, K) x[i] += y[i];\n  \
+    \  return x;\n  }\n  static constexpr X unit() { return X{}; }\n  static constexpr\
+    \ X inverse(X x) {\n    for (auto& v: x) v = -v;\n    return x;\n  }\n  static\
+    \ constexpr X power(X x, ll n) {\n    for (auto& v: x) v *= E(n);\n    return\
+    \ x;\n  }\n  static constexpr bool commute = 1;\n};\n#line 4 \"alg/acted_monoid/powersums_assign.hpp\"\
+    \n\n// 0, 1, ..., K \u4E57\u548C\ntemplate <typename T, int K>\nstruct ActedMonoid_Power_Sums_Assign\
+    \ {\n  using Monoid_X = Monoid_Add_Array<T, K + 1>;\n  using Monoid_A = Monoid_Assign<T,\
+    \ -1>;\n  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    if (a\
+    \ == Monoid_A::unit()) return x;\n    X y;\n    T pow = 1;\n    FOR(i, K + 1)\
+    \ { y[i] = x[0] * pow, pow *= a; }\n    return y;\n  }\n};\n"
+  code: "\n#include \"alg/monoid/assign.hpp\"\n#include \"alg/monoid/add_array.hpp\"\
+    \n\n// 0, 1, ..., K \u4E57\u548C\ntemplate <typename T, int K>\nstruct ActedMonoid_Power_Sums_Assign\
+    \ {\n  using Monoid_X = Monoid_Add_Array<T, K + 1>;\n  using Monoid_A = Monoid_Assign<T,\
+    \ -1>;\n  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    if (a\
+    \ == Monoid_A::unit()) return x;\n    X y;\n    T pow = 1;\n    FOR(i, K + 1)\
+    \ { y[i] = x[0] * pow, pow *= a; }\n    return y;\n  }\n};\n"
   dependsOn:
   - alg/monoid/assign.hpp
   - alg/monoid/add_array.hpp
   isVerificationFile: false
   path: alg/acted_monoid/powersums_assign.hpp
   requiredBy: []
-  timestamp: '2023-10-14 20:28:40+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1548.test.cpp

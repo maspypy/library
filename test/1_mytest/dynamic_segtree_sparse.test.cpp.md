@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -107,28 +107,28 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
-    };\r\n#line 1 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\u307B\
-    \u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\u3053\u3068\
-    \u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\u30B0\
-    \u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod \u306E\u985E\u306F\
-    \u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\u822C\u306B\
-    \u306F\u6271\u3048\u306A\u3044\n// \u8FFD\u52A0 N \u56DE\u306E\u3068\u304D\u30CE\
-    \u30FC\u30C9\u6570 N \u4EE5\u4E0B\u304C\u4FDD\u8A3C\u3055\u308C\u308B\ntemplate\
-    \ <typename Monoid, bool PERSISTENT>\nstruct Dynamic_SegTree_Sparse {\n  using\
-    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node {\n    int\
-    \ ch[2];\n    ll idx;\n    X prod, x;\n  };\n  const ll L0, R0;\n  static constexpr\
-    \ int NIL = 0;\n  vc<Node> node;\n  vc<int> FREE;\n\n  Dynamic_SegTree_Sparse(ll\
-    \ L0, ll R0) : L0(L0), R0(R0) { reset(); }\n  void reserve(int n) { node.reserve(n\
-    \ + 1); }\n  void reset() {\n    node.clear(), FREE.clear();\n    node.eb(Node{{NIL,\
-    \ NIL}, 0, MX::unit(), MX::unit()});  // NIL\n  }\n\n  // \u6728 dp \u306E\u30DE\
-    \u30FC\u30B8\u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\u7528\u3059\u308B\u3068\
-    \ MLE \u56DE\u907F\u3067\u304D\u308B\u3053\u3068\u304C\u3042\u308B\n  // https://codeforces.com/problemset/problem/671/D\n\
-    \  void free_subtree(int c) {\n    assert(c != NIL);\n    auto dfs = [&](auto\
-    \ &dfs, int c) -> void {\n      if (c == NIL) return;\n      dfs(dfs, node[c].ch[0]),\
+    }\n#endif\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X unit()\
+    \ { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
+    ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\u307B\u3068\u3093\u3069\
+    \u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\u3053\u3068\u304C\u4FDD\u8A3C\
+    \u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\u30B0\u6728\n// \u3057\u305F\
+    \u304C\u3063\u3066\u3001default_prod \u306E\u985E\u306F\u6301\u305F\u305B\u3089\
+    \u308C\u305A\u3001acted monoid \u3082\u4E00\u822C\u306B\u306F\u6271\u3048\u306A\
+    \u3044\n// \u8FFD\u52A0 N \u56DE\u306E\u3068\u304D\u30CE\u30FC\u30C9\u6570 N \u4EE5\
+    \u4E0B\u304C\u4FDD\u8A3C\u3055\u308C\u308B\ntemplate <typename Monoid, bool PERSISTENT>\n\
+    struct Dynamic_SegTree_Sparse {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \n  struct Node {\n    int ch[2];\n    ll idx;\n    X prod, x;\n  };\n  const\
+    \ ll L0, R0;\n  static constexpr int NIL = 0;\n  vc<Node> node;\n  vc<int> FREE;\n\
+    \n  Dynamic_SegTree_Sparse(ll L0, ll R0) : L0(L0), R0(R0) { reset(); }\n  void\
+    \ reserve(int n) { node.reserve(n + 1); }\n  void reset() {\n    node.clear(),\
+    \ FREE.clear();\n    node.eb(Node{{NIL, NIL}, 0, MX::unit(), MX::unit()});  //\
+    \ NIL\n  }\n\n  // \u6728 dp \u306E\u30DE\u30FC\u30B8\u306E\u3068\u304D\u306A\u3069\
+    \u306B\u4F7F\u7528\u3059\u308B\u3068 MLE \u56DE\u907F\u3067\u304D\u308B\u3053\u3068\
+    \u304C\u3042\u308B\n  // https://codeforces.com/problemset/problem/671/D\n  void\
+    \ free_subtree(int c) {\n    assert(c != NIL);\n    auto dfs = [&](auto &dfs,\
+    \ int c) -> void {\n      if (c == NIL) return;\n      dfs(dfs, node[c].ch[0]),\
     \ dfs(dfs, node[c].ch[1]);\n      FREE.eb(c);\n    };\n    dfs(dfs, c);\n  }\n\
     \n  inline int new_root() { return NIL; }\n\n  inline int new_node(ll idx, const\
     \ X x) {\n    if (!FREE.empty()) {\n      int id = POP(FREE);\n      node[id].ch[0]\
@@ -193,7 +193,7 @@ data:
     \ m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);\n\
     \    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
     \ x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n    return min_left_rec(node[c].ch[0],\
-    \ check, l, m, qr, x);\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \ check, l, m, qr, x);\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
     \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -244,7 +244,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_segtree_sparse.test.cpp

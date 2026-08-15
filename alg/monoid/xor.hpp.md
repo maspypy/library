@@ -9,41 +9,41 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1602.test.cpp
     title: test/3_yukicoder/1602.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2293.test.cpp
     title: test/3_yukicoder/2293.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2294.test.cpp
     title: test/3_yukicoder/2294.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/xor.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
-    \ Monoid_Xor {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return\
-    \ x ^ y; }\r\n  static constexpr X inverse(const X &x) noexcept { return x; }\r\
-    \n  static constexpr X power(const X &x, ll n) noexcept {\r\n    return (n & 1\
-    \ ? x : 0);\r\n  }\r\n  static constexpr X unit(){return X(0);};\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n"
-  code: "#pragma once\r\n\r\ntemplate <typename X>\r\nstruct Monoid_Xor {\r\n  using\
-    \ value_type = X;\r\n  static X op(X x, X y) { return x ^ y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept {\r\n    return (n & 1 ? x : 0);\r\n  }\r\n  static constexpr\
-    \ X unit(){return X(0);};\r\n  static constexpr bool commute = true;\r\n};\r\n"
+  bundledCode: "#line 1 \"alg/monoid/xor.hpp\"\n\ntemplate <typename X>\nstruct Monoid_Xor\
+    \ {\n  using value_type = X;\n  static X op(X x, X y) { return x ^ y; }\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return x; }\n  static constexpr X\
+    \ power(const X &x, ll n) noexcept {\n    return (n & 1 ? x : 0);\n  }\n  static\
+    \ constexpr X unit(){return X(0);};\n  static constexpr bool commute = true;\n\
+    };\n"
+  code: "\ntemplate <typename X>\nstruct Monoid_Xor {\n  using value_type = X;\n \
+    \ static X op(X x, X y) { return x ^ y; }\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return x; }\n  static constexpr X power(const X &x, ll n) noexcept\
+    \ {\n    return (n & 1 ? x : 0);\n  }\n  static constexpr X unit(){return X(0);};\n\
+    \  static constexpr bool commute = true;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/xor.hpp
   requiredBy:
   - setfunc/submask_range_query.hpp
-  timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2294.test.cpp
   - test/3_yukicoder/1602.test.cpp

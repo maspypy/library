@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -36,8 +36,8 @@ data:
   attributes:
     links:
     - https://qoj.ac/contest/1576/problem/8505
-  bundledCode: "#line 2 \"convex/line_min_function.hpp\"\n\n#line 2 \"geo/convex_hull.hpp\"\
-    \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
+  bundledCode: "#line 1 \"convex/line_min_function.hpp\"\n\n#line 1 \"geo/convex_hull.hpp\"\
+    \n\n#line 1 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
     \n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
     \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
     \ B> p) : x(p.fi), y(p.se) {}\n\n  template <typename U>\n  Point(Point<U> p)\
@@ -91,7 +91,7 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\
+    \ 3 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\
     \u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\n// full \u306A\u3089 I[0]\
     \ \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate <typename T, bool allow_180\
     \ = false>\nvector<int> ConvexHull(vector<Point<T>>& XY, string mode = \"full\"\
@@ -111,7 +111,7 @@ data:
     \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
     \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
     \  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]]\
-    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 4 \"convex/line_min_function.hpp\"\
+    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 3 \"convex/line_min_function.hpp\"\
     \n\n// 1 \u6B21\u95A2\u6570\u306E max \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\
     \u3066\u51FA\u529B\n// https://qoj.ac/contest/1576/problem/8505\ntemplate <typename\
     \ Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T,\
@@ -196,8 +196,8 @@ data:
     \ {\n    auto& [l1, r1, a1, b1, c1] = A[i];\n    auto& [l2, r2, a2, b2, c2] =\
     \ B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r) f(l, r, a1, b1,\
     \ c1, a2, b2, c2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n"
-  code: "#pragma once\n\n#include \"geo/convex_hull.hpp\"\n\n// 1 \u6B21\u95A2\u6570\
-    \u306E max \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// https://qoj.ac/contest/1576/problem/8505\n\
+  code: "\n#include \"geo/convex_hull.hpp\"\n\n// 1 \u6B21\u95A2\u6570\u306E max \u3092\
+    \ [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// https://qoj.ac/contest/1576/problem/8505\n\
     template <typename Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T,\
     \ T>> LINE) {\n  assert(!LINE.empty());\n  using P = Point<T>;\n  vc<P> point;\n\
     \  for (auto& [x, y]: LINE) point.eb(P(x, y));\n  auto I = ConvexHull(point, \"\
@@ -290,7 +290,7 @@ data:
   - convex/lattice_point_count.hpp
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
-  timestamp: '2026-07-19 03:14:38+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp

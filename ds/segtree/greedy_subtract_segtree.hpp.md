@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   _extendedRequiredBy: []
@@ -12,7 +12,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1515/problem/I
-  bundledCode: "#line 2 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
+  bundledCode: "#line 1 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
     \ U, typename Arg1, typename Arg2>\nstruct has_power_method {\n private:\n  //\
     \ \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename\
     \ V, typename A1, typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
@@ -136,7 +136,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/greedy_subtract_segtree.hpp
   requiredBy: []
-  timestamp: '2026-02-27 23:10:36+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/greedy_subtract_segtree.hpp

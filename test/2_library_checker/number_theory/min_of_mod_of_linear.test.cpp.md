@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear.hpp
     title: mod/min_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -240,7 +240,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 2 \"mod/min_of_linear_segments.hpp\"\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"mod/min_of_linear_segments.hpp\"\
     \n\n/*\nax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\
     \u60C5\u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B\
     \ x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\
@@ -284,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp

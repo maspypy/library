@@ -9,34 +9,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/maxidx_add.test.cpp
     title: test/1_mytest/maxidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/max_idx.hpp\"\n\r\ntemplate <typename T, bool\
-    \ tie_is_left = true>\r\nstruct Monoid_Max_Idx {\r\n  using value_type = pair<T,\
-    \ int>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n    if (x.fi\
-    \ > y.fi) return x;\r\n    if (x.fi < y.fi) return y;\r\n    if (x.se > y.se)\
-    \ swap(x, y);\r\n    return (tie_is_left ? x : y);\r\n  }\r\n  static constexpr\
-    \ X unit() { return {-infty<T>, -1}; }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n"
-  code: "#pragma once\r\n\r\ntemplate <typename T, bool tie_is_left = true>\r\nstruct\
-    \ Monoid_Max_Idx {\r\n  using value_type = pair<T, int>;\r\n  using X = value_type;\r\
-    \n  static X op(X x, X y) {\r\n    if (x.fi > y.fi) return x;\r\n    if (x.fi\
-    \ < y.fi) return y;\r\n    if (x.se > y.se) swap(x, y);\r\n    return (tie_is_left\
-    \ ? x : y);\r\n  }\r\n  static constexpr X unit() { return {-infty<T>, -1}; }\r\
-    \n  static constexpr bool commute = true;\r\n};\r\n"
+  bundledCode: "#line 1 \"alg/monoid/max_idx.hpp\"\n\ntemplate <typename T, bool tie_is_left\
+    \ = true>\nstruct Monoid_Max_Idx {\n  using value_type = pair<T, int>;\n  using\
+    \ X = value_type;\n  static X op(X x, X y) {\n    if (x.fi > y.fi) return x;\n\
+    \    if (x.fi < y.fi) return y;\n    if (x.se > y.se) swap(x, y);\n    return\
+    \ (tie_is_left ? x : y);\n  }\n  static constexpr X unit() { return {-infty<T>,\
+    \ -1}; }\n  static constexpr bool commute = true;\n};\n"
+  code: "\ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_Max_Idx {\n\
+    \  using value_type = pair<T, int>;\n  using X = value_type;\n  static X op(X\
+    \ x, X y) {\n    if (x.fi > y.fi) return x;\n    if (x.fi < y.fi) return y;\n\
+    \    if (x.se > y.se) swap(x, y);\n    return (tie_is_left ? x : y);\n  }\n  static\
+    \ constexpr X unit() { return {-infty<T>, -1}; }\n  static constexpr bool commute\
+    \ = true;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/max_idx.hpp
   requiredBy:
   - alg/acted_monoid/maxidx_add.hpp
-  timestamp: '2023-02-01 23:31:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/maxidx_add.test.cpp
   - test/3_yukicoder/529.test.cpp

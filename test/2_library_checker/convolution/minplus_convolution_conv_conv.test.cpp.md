@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -238,7 +238,7 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp\"\
-    \n\n#line 2 \"convex/minplus_convolution.hpp\"\n\ntemplate <typename T>\nvc<T>\
+    \n\n#line 1 \"convex/minplus_convolution.hpp\"\n\ntemplate <typename T>\nvc<T>\
     \ minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A), m\
     \ = len(B);\n  if (n == 0 || m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
     \  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m > 0 && B[m - 1] == infty<T>)\
@@ -281,7 +281,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp

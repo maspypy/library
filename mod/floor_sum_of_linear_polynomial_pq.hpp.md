@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_for_floor_sum_pq.hpp
     title: alg/monoid/monoid_for_floor_sum_pq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
   _extendedRequiredBy:
@@ -26,7 +26,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
+  bundledCode: "#line 1 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
     \ U, typename Arg1, typename Arg2>\nstruct has_power_method {\n private:\n  //\
     \ \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename\
     \ V, typename A1, typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
@@ -40,7 +40,7 @@ data:
     \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::unit();\n\
     \    if (exp == 1) return x;\n    X res = Monoid::unit();\n    while (exp) {\n\
     \      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n \
-    \     exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 3 \"mod/floor_monoid_product.hpp\"\
+    \     exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"mod/floor_monoid_product.hpp\"\
     \n\n// https://yukicoder.me/submissions/883884\n// https://qoj.ac/contest/1411/problem/7620\n\
     // U \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\
     \u30FC\u3057\u306A\u3044\u7A0B\u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092\
@@ -134,7 +134,7 @@ data:
   path: mod/floor_sum_of_linear_polynomial_pq.hpp
   requiredBy:
   - convex/lattice_point_sum_polynomial_pq.hpp
-  timestamp: '2026-02-27 23:10:36+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp

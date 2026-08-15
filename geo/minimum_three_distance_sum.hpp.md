@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   _extendedRequiredBy: []
@@ -15,7 +15,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/problemset/problem/1662/K
-  bundledCode: "#line 2 \"geo/cross_point.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
+  bundledCode: "#line 1 \"geo/cross_point.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
     \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
     \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
     \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
@@ -69,7 +69,7 @@ data:
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
     \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 4 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\
+    \ <= r * r;\n  }\n};\n#line 3 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\
     \u306A\u3044\u3053\u3068\u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename\
     \ T>\nPoint<REAL> cross_point(const Line<T> L1, const Line<T> L2) {\n  T det =\
     \ L1.a * L2.b - L1.b * L2.a;\n  assert(det != 0);\n  REAL x = -REAL(L1.c) * L2.b\
@@ -146,7 +146,7 @@ data:
   isVerificationFile: false
   path: geo/minimum_three_distance_sum.hpp
   requiredBy: []
-  timestamp: '2026-08-01 05:28:09+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minimum_three_distance_sum.hpp

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -21,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+  bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -56,7 +56,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
+    \ : (1ULL << n) - 1; }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
     \ ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX =\
     \ typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
     \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
@@ -124,28 +124,28 @@ data:
     \    if (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line\
-    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\
-    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return min(x, y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n\
-    \  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/min_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Min_Add {\r\n  using Monoid_X\
-    \ = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
-    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if (x == infty<E>)\
-    \ return x;\r\n    return x + a;\r\n  }\r\n};\r\n#line 3 \"seq/common_interval_decomposition.hpp\"\
-    \n\nstruct Common_Inverval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n\
-    \    bool inc, dec;\n    int l, r, lo, hi;\n    string type() {\n      if (r ==\
-    \ l + 1) return \"leaf\";\n      if (inc) return \"inc\";\n      if (dec) return\
-    \ \"dec\";\n      return \"prime\";\n    }\n  };\n\n  Node* pool;\n  Node* root;\n\
-    \  int pid;\n\n  Common_Inverval_Decomposition(vc<int>& P) : pid(0) {\n    pool\
-    \ = new Node[2 * len(P)];\n    build(P);\n  }\n\n  Node* new_node(bool inc, bool\
-    \ dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n    pool[pid].dec\
+    \ 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add {\n  using\
+    \ X = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return x + y; }\n  static constexpr X inverse(const X &x) noexcept\
+    \ { return -x; }\n  static constexpr X power(const X &x, ll n) noexcept { return\
+    \ X(n) * x; }\n  static constexpr X unit() { return X(0); }\n  static constexpr\
+    \ bool commute = true;\n};\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename\
+    \ E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X unit() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n\
+    #line 3 \"alg/acted_monoid/min_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ ActedMonoid_Min_Add {\r\n  using Monoid_X = Monoid_Min<E>;\r\n  using Monoid_A\
+    \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
+    \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
+    \ A &a, const ll &size) {\r\n    if (x == infty<E>) return x;\r\n    return x\
+    \ + a;\r\n  }\r\n};\r\n#line 3 \"seq/common_interval_decomposition.hpp\"\n\nstruct\
+    \ Common_Inverval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n    bool\
+    \ inc, dec;\n    int l, r, lo, hi;\n    string type() {\n      if (r == l + 1)\
+    \ return \"leaf\";\n      if (inc) return \"inc\";\n      if (dec) return \"dec\"\
+    ;\n      return \"prime\";\n    }\n  };\n\n  Node* pool;\n  Node* root;\n  int\
+    \ pid;\n\n  Common_Inverval_Decomposition(vc<int>& P) : pid(0) {\n    pool = new\
+    \ Node[2 * len(P)];\n    build(P);\n  }\n\n  Node* new_node(bool inc, bool dec,\
+    \ int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n    pool[pid].dec\
     \ = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo = lo;\n\
     \    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
     \ P) {\n    int N = len(P);\n    Lazy_SegTree<ActedMonoid_Min_Add<int>> seg(vc<int>(N,\
@@ -225,8 +225,8 @@ data:
   isVerificationFile: false
   path: seq/common_interval_decomposition.hpp
   requiredBy: []
-  timestamp: '2026-08-10 04:00:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-16 04:03:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - test/3_yukicoder/1720.test.cpp

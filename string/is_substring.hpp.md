@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"string/zalgorithm.hpp\"\n\ntemplate <typename STRING> //\
+  bundledCode: "#line 1 \"string/zalgorithm.hpp\"\n\ntemplate <typename STRING> //\
     \ string, vector \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const\
     \ STRING& s) {\n  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int>\
     \ z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n\
@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: string/is_substring.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:12:23+09:00'
+  timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/is_substring.test.cpp
