@@ -5,10 +5,19 @@ data:
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/totient_sum.test.cpp
+    title: test/2_library_checker/number_theory/totient_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1276.test.cpp
+    title: test/3_yukicoder/1276.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1781.test.cpp
+    title: test/3_yukicoder/1781.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -57,8 +66,11 @@ data:
   path: nt/multiplicative_sum.hpp
   requiredBy: []
   timestamp: '2026-08-15 16:17:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/number_theory/totient_sum.test.cpp
+  - test/3_yukicoder/1276.test.cpp
+  - test/3_yukicoder/1781.test.cpp
 documentation_of: nt/multiplicative_sum.hpp
 layout: document
 redirect_from:

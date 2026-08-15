@@ -43,6 +43,9 @@ data:
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2580.test.cpp
+    title: test/3_yukicoder/2580.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   _isVerificationFailed: false
@@ -385,6 +388,7 @@ data:
   timestamp: '2026-08-15 16:17:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/2583.test.cpp
 documentation_of: poly/composition_f_a_plus_bx.hpp
 layout: document

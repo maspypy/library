@@ -238,6 +238,9 @@ data:
     path: test/1_mytest/factorial_digit.test.cpp
     title: test/1_mytest/factorial_digit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/faulhaber.test.cpp
+    title: test/1_mytest/faulhaber.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick01.test.cpp
     title: test/1_mytest/fenwick01.test.cpp
   - icon: ':heavy_check_mark:'
@@ -327,6 +330,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/knight_distance.test.cpp
     title: test/1_mytest/knight_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
@@ -1156,6 +1165,12 @@ data:
     path: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
     title: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/bernoulli.test.cpp
+    title: test/2_library_checker/number_theory/bernoulli.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/counting_primes.test.cpp
+    title: test/2_library_checker/number_theory/counting_primes.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/dirichlet.test.cpp
     title: test/2_library_checker/number_theory/dirichlet.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1218,6 +1233,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/tetration.test.cpp
     title: test/2_library_checker/number_theory/tetration.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/totient_sum.test.cpp
+    title: test/2_library_checker/number_theory/totient_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/two_square.test.cpp
     title: test/2_library_checker/number_theory/two_square.test.cpp
@@ -1597,6 +1615,9 @@ data:
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1276.test.cpp
+    title: test/3_yukicoder/1276.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1288.test.cpp
     title: test/3_yukicoder/1288.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1650,6 +1671,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1344.test.cpp
     title: test/3_yukicoder/1344.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1357.test.cpp
+    title: test/3_yukicoder/1357.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1383.test.cpp
     title: test/3_yukicoder/1383.test.cpp
@@ -1854,6 +1878,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1778.test.cpp
     title: test/3_yukicoder/1778.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1781.test.cpp
+    title: test/3_yukicoder/1781.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1783.test.cpp
     title: test/3_yukicoder/1783.test.cpp
@@ -2133,6 +2160,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2580.test.cpp
+    title: test/3_yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
@@ -2526,7 +2556,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_9_A.test.cpp
     title: test/4_aoj/ITP1_9_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2773,6 +2803,7 @@ data:
   - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
   - test/1_mytest/bigint.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
@@ -2834,6 +2865,7 @@ data:
   - test/1_mytest/segtree_xor_prod.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/is_substring.test.cpp
   - test/1_mytest/max_min.test.cpp
   - test/1_mytest/max_assign.test.cpp
@@ -2894,6 +2926,7 @@ data:
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/modfast.test.cpp
   - test/1_mytest/count_labeled_tournament.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/maxplus_concave.test.cpp
   - test/1_mytest/find_cycle_minimum.test.cpp
@@ -3177,6 +3210,7 @@ data:
   - test/2_library_checker/number_theory/dirichlet.test.cpp
   - test/2_library_checker/number_theory/two_square.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear.test.cpp
+  - test/2_library_checker/number_theory/bernoulli.test.cpp
   - test/2_library_checker/number_theory/sqrt_mod.test.cpp
   - test/2_library_checker/number_theory/gaussian_integers.test.cpp
   - test/2_library_checker/number_theory/enumerate_primes.test.cpp
@@ -3185,6 +3219,8 @@ data:
   - test/2_library_checker/number_theory/rational_approximation.test.cpp
   - test/2_library_checker/number_theory/kth_root_mod.test.cpp
   - test/2_library_checker/number_theory/enumerate_quotients.test.cpp
+  - test/2_library_checker/number_theory/counting_primes.test.cpp
+  - test/2_library_checker/number_theory/totient_sum.test.cpp
   - test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
@@ -3321,6 +3357,7 @@ data:
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/1618.test.cpp
   - test/3_yukicoder/2525.test.cpp
@@ -3383,6 +3420,7 @@ data:
   - test/3_yukicoder/2342.test.cpp
   - test/3_yukicoder/1936.test.cpp
   - test/3_yukicoder/2120.test.cpp
+  - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/142.test.cpp
   - test/3_yukicoder/2166.test.cpp
@@ -3517,6 +3555,7 @@ data:
   - test/3_yukicoder/1097.test.cpp
   - test/3_yukicoder/1977.test.cpp
   - test/3_yukicoder/2266.test.cpp
+  - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/1526_2.test.cpp
   - test/3_yukicoder/1263.test.cpp
   - test/3_yukicoder/1297.test.cpp
@@ -3545,6 +3584,7 @@ data:
   - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/2264.test.cpp
   - test/3_yukicoder/705_2.test.cpp
+  - test/3_yukicoder/1781.test.cpp
   - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/626.test.cpp
   - test/3_yukicoder/1293.test.cpp

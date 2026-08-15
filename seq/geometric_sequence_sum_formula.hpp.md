@@ -34,11 +34,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: convex/lattice_point_sum_polynomial_pq.hpp
+    title: convex/lattice_point_sum_polynomial_pq.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
     title: test/1_mytest/geometric_sequence_sum_formula.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -380,11 +386,13 @@ data:
   - poly/ntt.hpp
   isVerificationFile: false
   path: seq/geometric_sequence_sum_formula.hpp
-  requiredBy: []
+  requiredBy:
+  - convex/lattice_point_sum_polynomial_pq.hpp
   timestamp: '2026-08-13 03:03:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/geometric_sequence_sum_formula.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
 documentation_of: seq/geometric_sequence_sum_formula.hpp
 layout: document
 redirect_from:

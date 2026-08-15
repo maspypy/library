@@ -36,6 +36,12 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: convex/lattice_point_sum_polynomial.hpp
+    title: convex/lattice_point_sum_polynomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: convex/lattice_point_sum_polynomial_pq.hpp
+    title: convex/lattice_point_sum_polynomial_pq.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
@@ -84,6 +90,9 @@ data:
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/prefix_sum_of_polynomial.hpp
+    title: poly/prefix_sum_of_polynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
   - icon: ':heavy_check_mark:'
@@ -95,6 +104,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/bernoulli.hpp
+    title: seq/famous/bernoulli.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/faulhaber.hpp
+    title: seq/famous/faulhaber.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/riemann_zeta_even.hpp
+    title: seq/famous/riemann_zeta_even.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -126,6 +144,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/faulhaber.test.cpp
+    title: test/1_mytest/faulhaber.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
@@ -160,6 +187,9 @@ data:
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/bernoulli.test.cpp
+    title: test/2_library_checker/number_theory/bernoulli.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -189,6 +219,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1145.test.cpp
     title: test/3_yukicoder/1145.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1357.test.cpp
+    title: test/3_yukicoder/1357.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1500.test.cpp
     title: test/3_yukicoder/1500.test.cpp
@@ -228,6 +261,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2459.test.cpp
     title: test/3_yukicoder/2459.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2580.test.cpp
+    title: test/3_yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
@@ -621,6 +657,7 @@ data:
   - poly/multipoint_evaluation_for_prefix_product.hpp
   - poly/composed_sum.hpp
   - poly/composed_product.hpp
+  - poly/prefix_sum_of_polynomial.hpp
   - poly/compositional_inverse.hpp
   - poly/2d/compositional_inverse_2d.hpp
   - poly/slice_rational_fps.hpp
@@ -630,22 +667,30 @@ data:
   - seq/sum_of_powers.hpp
   - seq/famous/bell_number_large.hpp
   - seq/famous/stirling_number_1.hpp
+  - seq/famous/riemann_zeta_even.hpp
+  - seq/famous/faulhaber.hpp
+  - seq/famous/bernoulli.hpp
+  - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
   timestamp: '2026-08-13 03:03:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/slice_rational_fps.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/vandermonde.test.cpp
   - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/chirp_z.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
@@ -658,13 +703,16 @@ data:
   - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/2_library_checker/number_theory/bernoulli.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/3_yukicoder/1547.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1561.test.cpp

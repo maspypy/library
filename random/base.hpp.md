@@ -397,6 +397,12 @@ data:
     path: test/1_mytest/kinetic.test.cpp
     title: test/1_mytest/kinetic.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1072,6 +1078,7 @@ data:
   - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
   - test/1_mytest/bigint.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
@@ -1160,6 +1167,7 @@ data:
   - test/1_mytest/smawk.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/modfast.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/maxplus_concave.test.cpp
   - test/1_mytest/find_cycle_minimum.test.cpp

@@ -238,10 +238,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/lattice_point_count.hpp
       title: convex/lattice_point_count.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convex/lattice_point_sum_polynomial.hpp
       title: convex/lattice_point_sum_polynomial.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convex/lattice_point_sum_polynomial_pq.hpp
       title: convex/lattice_point_sum_polynomial_pq.hpp
     - icon: ':heavy_check_mark:'
@@ -1828,7 +1828,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/mobius_table.hpp
       title: nt/mobius_table.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: nt/multiplicative_sum.hpp
       title: nt/multiplicative_sum.hpp
     - icon: ':warning:'
@@ -1946,7 +1946,7 @@ data:
     - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io2.hpp
       title: other/io2.hpp
     - icon: ':warning:'
@@ -2180,7 +2180,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/prefix_sum_of_polynomial.hpp
       title: poly/prefix_sum_of_polynomial.hpp
     - icon: ':heavy_check_mark:'
@@ -2371,7 +2371,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/bell_number_large.hpp
       title: seq/famous/bell_number_large.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/bernoulli.hpp
       title: seq/famous/bernoulli.hpp
     - icon: ':heavy_check_mark:'
@@ -2383,7 +2383,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/eulerian_number.hpp
       title: seq/famous/eulerian_number.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/faulhaber.hpp
       title: seq/famous/faulhaber.hpp
     - icon: ':heavy_check_mark:'
@@ -2404,7 +2404,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/partition_number.hpp
       title: seq/famous/partition_number.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/riemann_zeta_even.hpp
       title: seq/famous/riemann_zeta_even.hpp
     - icon: ':heavy_check_mark:'
@@ -2599,7 +2599,7 @@ data:
     - icon: ':warning:'
       path: string/sort_substrings.hpp
       title: string/sort_substrings.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/split.hpp
       title: string/split.hpp
     - icon: ':heavy_check_mark:'
@@ -2876,7 +2876,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/factorial_digit.test.cpp
       title: test/1_mytest/factorial_digit.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/faulhaber.test.cpp
       title: test/1_mytest/faulhaber.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2969,10 +2969,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/knight_distance.test.cpp
       title: test/1_mytest/knight_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
       title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
       title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3819,10 +3819,10 @@ data:
       title: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
   - name: test/2_library_checker/number_theory
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/number_theory/bernoulli.test.cpp
       title: test/2_library_checker/number_theory/bernoulli.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/number_theory/counting_primes.test.cpp
       title: test/2_library_checker/number_theory/counting_primes.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3888,7 +3888,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/number_theory/tetration.test.cpp
       title: test/2_library_checker/number_theory/tetration.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/number_theory/totient_sum.test.cpp
       title: test/2_library_checker/number_theory/totient_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4285,7 +4285,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1270.test.cpp
       title: test/3_yukicoder/1270.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1276.test.cpp
       title: test/3_yukicoder/1276.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4342,7 +4342,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1344.test.cpp
       title: test/3_yukicoder/1344.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1357.test.cpp
       title: test/3_yukicoder/1357.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4549,7 +4549,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1778.test.cpp
       title: test/3_yukicoder/1778.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1781.test.cpp
       title: test/3_yukicoder/1781.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4831,7 +4831,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2578.test.cpp
       title: test/3_yukicoder/2578.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2580.test.cpp
       title: test/3_yukicoder/2580.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5229,7 +5229,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/ITP1_11_D.test.cpp
       title: test/4_aoj/ITP1_11_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/ITP1_9_A.test.cpp
       title: test/4_aoj/ITP1_9_A.test.cpp
     - icon: ':heavy_check_mark:'

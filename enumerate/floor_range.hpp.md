@@ -19,6 +19,9 @@ data:
     path: test/3_yukicoder/1260.test.cpp
     title: test/3_yukicoder/1260.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1276.test.cpp
+    title: test/3_yukicoder/1276.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1573.test.cpp
     title: test/3_yukicoder/1573.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,6 +69,7 @@ data:
   - test/3_yukicoder/1573.test.cpp
   - test/3_yukicoder/1260.test.cpp
   - test/3_yukicoder/2266.test.cpp
+  - test/3_yukicoder/1276.test.cpp
 documentation_of: enumerate/floor_range.hpp
 layout: document
 redirect_from:

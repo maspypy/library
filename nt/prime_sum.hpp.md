@@ -27,6 +27,18 @@ data:
   - icon: ':x:'
     path: test/1_mytest/primesum_mod6.test.cpp
     title: test/1_mytest/primesum_mod6.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/counting_primes.test.cpp
+    title: test/2_library_checker/number_theory/counting_primes.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/totient_sum.test.cpp
+    title: test/2_library_checker/number_theory/totient_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1276.test.cpp
+    title: test/3_yukicoder/1276.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1781.test.cpp
+    title: test/3_yukicoder/1781.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -109,6 +121,10 @@ data:
   - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
+  - test/2_library_checker/number_theory/counting_primes.test.cpp
+  - test/2_library_checker/number_theory/totient_sum.test.cpp
+  - test/3_yukicoder/1276.test.cpp
+  - test/3_yukicoder/1781.test.cpp
 documentation_of: nt/prime_sum.hpp
 layout: document
 redirect_from:

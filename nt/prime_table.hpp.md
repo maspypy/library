@@ -3,6 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: convex/lattice_point_sum_polynomial.hpp
+    title: convex/lattice_point_sum_polynomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: convex/lattice_point_sum_polynomial_pq.hpp
+    title: convex/lattice_point_sum_polynomial_pq.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
   - icon: ':question:'
@@ -93,11 +99,23 @@ data:
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/prefix_sum_of_polynomial.hpp
+    title: poly/prefix_sum_of_polynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/famous/bernoulli.hpp
+    title: seq/famous/bernoulli.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/faulhaber.hpp
+    title: seq/famous/faulhaber.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/riemann_zeta_even.hpp
+    title: seq/famous/riemann_zeta_even.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -139,6 +157,15 @@ data:
     path: test/1_mytest/eulerian_number.test.cpp
     title: test/1_mytest/eulerian_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/faulhaber.test.cpp
+    title: test/1_mytest/faulhaber.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
@@ -172,11 +199,20 @@ data:
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/bernoulli.test.cpp
+    title: test/2_library_checker/number_theory/bernoulli.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/counting_primes.test.cpp
+    title: test/2_library_checker/number_theory/counting_primes.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/enumerate_primes.test.cpp
     title: test/2_library_checker/number_theory/enumerate_primes.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/tetration.test.cpp
     title: test/2_library_checker/number_theory/tetration.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/totient_sum.test.cpp
+    title: test/2_library_checker/number_theory/totient_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
@@ -196,11 +232,17 @@ data:
     path: test/3_yukicoder/1262.test.cpp
     title: test/3_yukicoder/1262.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1276.test.cpp
+    title: test/3_yukicoder/1276.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1321.test.cpp
     title: test/3_yukicoder/1321.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1357.test.cpp
+    title: test/3_yukicoder/1357.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
@@ -216,6 +258,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1760.test.cpp
     title: test/3_yukicoder/1760.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1781.test.cpp
+    title: test/3_yukicoder/1781.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1821.test.cpp
     title: test/3_yukicoder/1821.test.cpp
@@ -240,6 +285,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2580.test.cpp
+    title: test/3_yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
@@ -315,6 +363,7 @@ data:
   - poly/poly_taylor_shift.hpp
   - poly/composition_f_ex_minus_1.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+  - poly/prefix_sum_of_polynomial.hpp
   - poly/composition_f_x_plus_1x.hpp
   - poly/composition.hpp
   - poly/composition_f_a_plus_bx.hpp
@@ -322,7 +371,12 @@ data:
   - seq/famous/stirling_number_2.hpp
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_1.hpp
+  - seq/famous/riemann_zeta_even.hpp
+  - seq/famous/faulhaber.hpp
+  - seq/famous/bernoulli.hpp
   - seq/famous/eulerian_number.hpp
+  - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
   - mod/power_table.hpp
   - mod/tetration.hpp
   - mod/modfast.hpp
@@ -332,17 +386,20 @@ data:
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/eulerian_number.test.cpp
   - test/1_mytest/prime_sum.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/qoj5443.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/modfast.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
@@ -353,7 +410,10 @@ data:
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
   - test/2_library_checker/number_theory/tetration.test.cpp
+  - test/2_library_checker/number_theory/bernoulli.test.cpp
   - test/2_library_checker/number_theory/enumerate_primes.test.cpp
+  - test/2_library_checker/number_theory/counting_primes.test.cpp
+  - test/2_library_checker/number_theory/totient_sum.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
@@ -362,11 +422,13 @@ data:
   - test/3_yukicoder/1262.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1303.test.cpp
+  - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1821.test.cpp
   - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2206_2.test.cpp
+  - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/1411.test.cpp
@@ -376,6 +438,8 @@ data:
   - test/3_yukicoder/1760.test.cpp
   - test/3_yukicoder/1875.test.cpp
   - test/3_yukicoder/2266.test.cpp
+  - test/3_yukicoder/1276.test.cpp
+  - test/3_yukicoder/1781.test.cpp
   - test/3_yukicoder/1321.test.cpp
   - test/3_yukicoder/2206.test.cpp
   - test/3_yukicoder/3619.test.cpp

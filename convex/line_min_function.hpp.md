@@ -11,6 +11,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lattice_point_count.hpp
     title: convex/lattice_point_count.hpp
+  - icon: ':heavy_check_mark:'
+    path: convex/lattice_point_sum_polynomial.hpp
+    title: convex/lattice_point_sum_polynomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: convex/lattice_point_sum_polynomial_pq.hpp
+    title: convex/lattice_point_sum_polynomial_pq.hpp
   - icon: ':warning:'
     path: convex/lower_integer_hull.hpp
     title: convex/lower_integer_hull.hpp
@@ -18,6 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -276,9 +288,13 @@ data:
   requiredBy:
   - convex/lower_integer_hull.hpp
   - convex/lattice_point_count.hpp
+  - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
   timestamp: '2026-07-19 03:14:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
 documentation_of: convex/line_min_function.hpp
 layout: document
