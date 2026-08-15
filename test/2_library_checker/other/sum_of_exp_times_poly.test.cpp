@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "seq/interpolate_poly_exp_sum.hpp"
-#include "mod/powertable.hpp"
+#include "mod/power_table.hpp"
 
 using mint = modint998;
 void solve() {
@@ -11,7 +11,7 @@ void solve() {
   read(r);
   LL(d, n);
   int L = d + 5;
-  vc<mint> a = powertable_2<mint>(d, L - 1);
+  vc<mint> a = power_table_2<mint>(d, L - 1);
   mint p = 1;
   FOR(i, L) {
     a[i] *= p;

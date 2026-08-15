@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mod/powertable.hpp"
+#include "mod/power_table.hpp"
 #include "poly/convolution.hpp"
 
 // f(x) -> f(x+c)
@@ -9,7 +9,7 @@ vc<mint> poly_taylor_shift(vc<mint> f, mint c) {
   if (c == mint(0)) return f;
   ll N = len(f);
   FOR(i, N) f[i] *= fact<mint>(i);
-  auto b = powertable_1<mint>(c, N);
+  auto b = power_table_1<mint>(c, N);
   FOR(i, N) b[i] *= fact_inv<mint>(i);
   reverse(all(f));
   f = convolution(f, b);

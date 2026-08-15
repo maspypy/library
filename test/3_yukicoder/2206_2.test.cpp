@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "mod/powertable.hpp"
+#include "mod/power_table.hpp"
 #include "mod/prefix_sum_of_binom.hpp"
 
 using mint = modint998;
@@ -11,7 +11,7 @@ using mint = modint998;
 void solve() {
   LL(Q);
   const int LIM = 200'000;
-  vc<mint> POW = powertable_1<mint>(2, LIM + 10);
+  vc<mint> POW = power_table_1<mint>(2, LIM + 10);
   Prefix_Sum_Of_Binom_Offline<mint> X;
 
   vc<mint> CF(Q);

@@ -1,13 +1,13 @@
-#include "nt/primesum.hpp"
-#include "nt/primetable.hpp"
+#include "nt/prime_sum.hpp"
+#include "nt/prime_table.hpp"
 
 template <typename T>
-struct PrimeSum_Mod_4 {
+struct Prime_Sum_Mod_4 {
   ll N;
   ll sqN;
 
-  PrimeSum<T> A, B;
-  PrimeSum_Mod_4(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}
+  Prime_Sum<T> A, B;
+  Prime_Sum_Mod_4(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}
 
   pair<T, T> operator[](ll x) {
     T a = A[x], b = B[x];

@@ -1,13 +1,13 @@
-#include "nt/primetable.hpp"
+#include "nt/prime_table.hpp"
 
 // n が p を持つとき f(n, p) を呼ぶ
 template <typename F>
 void factor_interval(ll L, ll R, F f) {
   int n = R - L;
-  auto primes = primetable(sqrt(R));
+  auto primes = prime_table(sqrt(R));
   vi A(n);
   iota(all(A), L);
-  for (auto&& p: primes) {
+  for (auto&& p : primes) {
     ll pp = 1;
     while (1) {
       if (pp > R / p) break;

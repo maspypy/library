@@ -2,11 +2,11 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "nt/primetable.hpp"
+#include "nt/prime_table.hpp"
 
 void solve() {
   LL(N, A, B);
-  auto primes = primetable(N);
+  auto primes = prime_table(N);
   int pi_N = UB(primes, N);
 
   vc<int> ANS;
@@ -19,10 +19,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
 
   return 0;

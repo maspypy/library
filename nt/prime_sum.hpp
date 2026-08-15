@@ -1,5 +1,5 @@
 #pragma once
-#include "nt/primetable.hpp"
+#include "nt/prime_table.hpp"
 
 /*
 N と完全乗法的関数 f の prefix sum 関数 F を与える。
@@ -8,13 +8,13 @@ n = floor(N/d) となる n に対する sum_{p <= n} f(p) を計算する。
 Complexity: O(N^{3/4}/logN) time, O(N^{1/2}) space.
 */
 template <typename T>
-struct PrimeSum {
+struct Prime_Sum {
   ll N;
   ll sqN;
   vc<T> sum_lo, sum_hi;
   bool calculated;
 
-  PrimeSum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}
+  Prime_Sum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}
 
   // [1, x] ただし、x = floor(N, i) の形
   T operator[](ll x) {
@@ -24,12 +24,12 @@ struct PrimeSum {
 
   template <typename F>
   void calc(const F f) {
-    auto primes = primetable<int>(sqN);
+    auto primes = prime_table<int>(sqN);
     sum_lo.resize(sqN + 1);
     sum_hi.resize(sqN + 1);
-    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;
-    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;
-    for (int p: primes) {
+    FOR(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;
+    FOR(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;
+    for (int p : primes) {
       ll pp = ll(p) * p;
       if (pp > N) break;
       int R = min(sqN, N / pp);
@@ -37,7 +37,8 @@ struct PrimeSum {
       T x = sum_lo[p - 1];
       T fp = sum_lo[p] - sum_lo[p - 1];
       for (int i = 1; i <= M; ++i) sum_hi[i] -= fp * (sum_hi[i * p] - x);
-      for (int i = M + 1; i <= R; ++i) sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);
+      for (int i = M + 1; i <= R; ++i)
+        sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);
       for (int n = sqN; n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p] - x);
     }
     calculated = 1;

@@ -1,6 +1,6 @@
 #include "poly/convolution.hpp"
 #include "poly/fps_pow.hpp"
-#include "mod/powertable.hpp"
+#include "mod/power_table.hpp"
 
 // n 個のもの (labeled) を k グループ (no label) に分ける方法
 // label をつけることで、全射の数え上げに利用できる
@@ -23,7 +23,7 @@ vvc<mint> stirling_number_2_2d(int nmax, int kmax) {
 // O(klogk)
 template <typename mint>
 vc<mint> stirling_number_2_n(int n, int k_max) {
-  vc<mint> a = powertable_2<mint>(n, k_max + 1);
+  vc<mint> a = power_table_2<mint>(n, k_max + 1);
   FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);
   vc<mint> b(k_max + 1);
   FOR(i, k_max + 1) b[i] = fact_inv<mint>(i);
@@ -39,7 +39,9 @@ vc<mint> stirling_number_2_n(int n, int k_max) {
 // O(nlogn)
 template <typename mint>
 vc<mint> stirling_number_2_k(int k, int n_max) {
-  if (k > n_max) { return vc<mint>(n_max + 1); }
+  if (k > n_max) {
+    return vc<mint>(n_max + 1);
+  }
   int LIM = n_max - k;
   vc<mint> f(LIM + 1);
   FOR(i, LIM + 1) f[i] = fact_inv<mint>(i + 1);

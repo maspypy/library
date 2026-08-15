@@ -5,7 +5,7 @@
 #include "geo/base.hpp"
 #include "mod/modint.hpp"
 #include "geo/inside_polygon.hpp"
-#include "mod/powertable.hpp"
+#include "mod/power_table.hpp"
 #include "geo/angle_sort.hpp"
 
 using P = Point<ll>;
@@ -32,7 +32,7 @@ mint solve_QOJ5443(int N, vc<P> dat) {
   FOR(a, N) FOR(b, N) assert(CNT[a][b] == CNT[b][a]);
 
   mint ANS = 0;
-  vc<mint> POW = powertable_1<mint>(2, N);
+  vc<mint> POW = power_table_1<mint>(2, N);
   // 凸包が線分
   FOR(a, N) FOR(b, a) {
     if (CAN[a][b]) ANS += POW[CNT[a][b]];

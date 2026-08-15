@@ -1,13 +1,13 @@
-#include "nt/primetable.hpp"
-#include "nt/primesum.hpp"
+#include "nt/prime_table.hpp"
+#include "nt/prime_sum.hpp"
 
 // factor type: 降順 270 -> (3,1,1)
 // N=10^9: 1324 種類, 0.4sec
 // https://atcoder.jp/contests/xmascon20/tasks/xmascon20_d
 map<vc<int>, ll> count_by_factor_type(ll N) {
   ll sqN = sqrtl(N);
-  auto P = primetable<int>(sqN);
-  PrimeSum<ll> X(N);
+  auto P = prime_table<int>(sqN);
+  Prime_Sum<ll> X(N);
   X.calc_count();
 
   // 1 and prime
@@ -18,7 +18,9 @@ map<vc<int>, ll> count_by_factor_type(ll N) {
   auto add = [&](vc<int> F, int k) -> vc<int> {
     int p = len(F);
     F.eb(k);
-    while (0 < p && F[p - 1] < F[p]) { swap(F[p - 1], F[p]), --p; }
+    while (0 < p && F[p - 1] < F[p]) {
+      swap(F[p - 1], F[p]), --p;
+    }
     return F;
   };
 
@@ -32,7 +34,9 @@ map<vc<int>, ll> count_by_factor_type(ll N) {
     ll cnt = X[N / t] - X[P[i]];
     if (cnt > 0) ANS[nxt2] += X[N / t] - X[P[i]];
     ll lim = sqrtl(double(N) / t);
-    if (P[i] <= lim) { dfs(dfs, t * P[i], i, k + 1, U); }
+    if (P[i] <= lim) {
+      dfs(dfs, t * P[i], i, k + 1, U);
+    }
     FOR(j, i + 1, len(P)) {
       if (P[j] > lim) break;
       dfs(dfs, t * P[j], j, 1, Uk);

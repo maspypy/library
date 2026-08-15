@@ -1,17 +1,19 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 
-#include "nt/primesum.hpp"
-#include "nt/primetable.hpp"
+#include "nt/prime_sum.hpp"
+#include "nt/prime_table.hpp"
 #include "mod/modint.hpp"
 
 void test_count() {
   vc<int> A(1000);
-  for (auto&& p: primetable(1000)) { A[p]++; }
+  for (auto&& p : prime_table(1000)) {
+    A[p]++;
+  }
   A = cumsum<int>(A, 0);
 
   FOR(N, 1000) {
-    PrimeSum<int> X(N);
+    Prime_Sum<int> X(N);
     X.calc_count();
     FOR(K, 1, N + 10) { assert(X[N / K] == A[N / K]); }
   }
@@ -21,7 +23,7 @@ void test_count() {
   FOR(i, 12) TEN[i + 1] = TEN[i] * 10;
 
   ll N = TEN[12];
-  PrimeSum<ll> X(N);
+  Prime_Sum<ll> X(N);
   X.calc_count();
   assert(X[TEN[0]] == 0);
   assert(X[TEN[1]] == 4);
@@ -40,11 +42,13 @@ void test_count() {
 
 void test_sum() {
   vc<int> A(1000);
-  for (auto&& p: primetable(1000)) { A[p] += p; }
+  for (auto&& p : prime_table(1000)) {
+    A[p] += p;
+  }
   A = cumsum<int>(A, 0);
 
   FOR(N, 1000) {
-    PrimeSum<int> X(N);
+    Prime_Sum<int> X(N);
     X.calc_sum();
     FOR(K, 1, N + 10) { assert(X[N / K] == A[N / K]); }
   }
@@ -55,12 +59,14 @@ void test_sum() {
 
   using mint = modint998;
   ll N = TEN[12];
-  PrimeSum<mint> X(N);
+  Prime_Sum<mint> X(N);
   X.calc_sum();
 
   auto f = [&](string S) -> mint {
     mint x = 0;
-    for (auto&& s: S) { x = x * mint(10) + mint(s - '0'); }
+    for (auto&& s : S) {
+      x = x * mint(10) + mint(s - '0');
+    }
     return x;
   };
 
