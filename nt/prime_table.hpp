@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename T = int>
-vc<T> primetable(int LIM) {
+vc<T> prime_table(int LIM) {
   ++LIM;
   const int S = 32768;
   static int done = 2;
@@ -22,7 +22,7 @@ vc<T> primetable(int LIM) {
     }
     for (int L = 1; L <= R; L += S) {
       array<bool, S> block{};
-      for (auto& [p, idx]: cp)
+      for (auto& [p, idx] : cp)
         for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;
       FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);
     }

@@ -11,7 +11,7 @@ void solve() {
   auto [cost, I] = directed_mst<decltype(G)>(G, s);
   vc<int> par(N, -1);
   par[s] = s;
-  for (auto &idx: I) {
+  for (auto &idx : I) {
     auto &e = G.edges[idx];
     par[e.to] = e.frm;
   }

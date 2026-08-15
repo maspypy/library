@@ -1,6 +1,6 @@
 #include "mod/floor_sum_of_linear.hpp"
 
-// sum_{x in [L,R)} floor(ax + b, mod)
+// count x in [L,R) such that lo <= (a*x+b) mod mod < hi
 // I は範囲内で ax+b がオーバーフローしない程度
 template <typename O = i128, typename I = long long>
 I range_freq_of_linear(I L, I R, I a, I b, I mod, I lo, I hi) {

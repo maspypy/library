@@ -1,4 +1,4 @@
-
+#include "ds/sparse_table/sparse_table.hpp"
 /*
 https://codeforces.com/problemset/problem/713/D
 ・sparse_table OR disjoint_sparse table をセグ木に乗せる
