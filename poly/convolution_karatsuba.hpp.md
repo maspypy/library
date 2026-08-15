@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'
@@ -167,7 +167,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -912,18 +912,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_A.test.cpp
     title: test/4_aoj/NTL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_B.test.cpp
     title: test/4_aoj/NTL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/convolution_naive.hpp\"\n\ntemplate <class T, typename\
@@ -1089,7 +1089,7 @@ data:
   - mod/multiplicative_convolution_mod_p.hpp
   - new_poly/base.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/1_mytest/sparse_pow_2d.test.cpp

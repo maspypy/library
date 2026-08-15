@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
@@ -87,15 +87,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2810.test.cpp
     title: test/3_yukicoder/2810.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\n\
@@ -277,7 +277,7 @@ data:
   - random/random_matrix.hpp
   - seq/p_recursive.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/blackbox_solve_linear.test.cpp
   - test/1_mytest/min_poly.test.cpp

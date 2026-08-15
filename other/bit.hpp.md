@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: alg/monoid/merge_vector_space.hpp
     title: alg/monoid/merge_vector_space.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'
@@ -356,7 +356,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -386,10 +386,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -530,7 +530,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -590,7 +590,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -2262,7 +2262,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/421_2.test.cpp
     title: test/3_yukicoder/421_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2358,18 +2358,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_A.test.cpp
     title: test/4_aoj/NTL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_B.test.cpp
     title: test/4_aoj/NTL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -2715,7 +2715,7 @@ data:
   - new_poly/base.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/dyadic_rational.test.cpp
   - test/1_mytest/composition_f_x_plus_1x.test.cpp

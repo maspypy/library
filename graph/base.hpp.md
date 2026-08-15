@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -140,7 +140,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/distance_sum.hpp
     title: graph/ds/distance_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -179,7 +179,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
@@ -245,7 +245,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -293,7 +293,7 @@ data:
   - icon: ':warning:'
     path: graph/shortest_path/top2_dijkstra.hpp
     title: graph/shortest_path/top2_dijkstra.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/warshall_floyd.hpp
     title: graph/shortest_path/warshall_floyd.hpp
   - icon: ':heavy_check_mark:'
@@ -311,7 +311,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -861,10 +861,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_1_B.test.cpp
     title: test/4_aoj/GRL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_1_C.test.cpp
     title: test/4_aoj/GRL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -891,9 +891,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -1203,7 +1203,7 @@ data:
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
