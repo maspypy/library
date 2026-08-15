@@ -130,6 +130,9 @@ data:
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/qoj5443.test.cpp
+    title: test/1_mytest/qoj5443.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -349,6 +352,7 @@ data:
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/qoj5443.test.cpp
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp

@@ -44,13 +44,16 @@ data:
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/bell.test.cpp
+    title: test/1_mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/coef_of_rational.test.cpp
     title: test/1_mytest/coef_of_rational.test.cpp
@@ -81,6 +84,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
@@ -561,10 +570,13 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/coef_of_rational.test.cpp
+  - test/1_mytest/bell.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/2305.test.cpp

@@ -12,6 +12,9 @@ data:
     path: mod/q_analogue.hpp
     title: mod/q_analogue.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/composition_f_log_1_minus_x.hpp
+    title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
   - icon: ':heavy_check_mark:'
@@ -36,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/chirp_z.test.cpp
     title: test/1_mytest/chirp_z.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_log_1_minus_x.test.cpp
+    title: test/1_mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
@@ -110,6 +116,7 @@ data:
   - graph/chromatic.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/partial_frac_decomposition_1.hpp
+  - poly/composition_f_log_1_minus_x.hpp
   - poly/multipoint.hpp
   - poly/from_log_differentiation.hpp
   - poly/multivar_convolution_cyclic.hpp
@@ -120,6 +127,7 @@ data:
   verifiedWith:
   - test/1_mytest/vandermonde.test.cpp
   - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/chirp_z.test.cpp
   - test/1_mytest/all_inverse.test.cpp
   - test/1_mytest/qbinom.test.cpp

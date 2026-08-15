@@ -19,9 +19,9 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 2 more times]\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: nt/primetable.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: mod/powertable.hpp:\
     \ line -1: no such header\n"
   code: "\n#include \"seq/geometric_sequence_sum_formula.hpp\"\n#include \"convex/line_min_function.hpp\"\
     \n#include \"convex/lattice_point_sum_polynomial.hpp\"\n#include \"mod/floor_sum_of_linear_polynomial.hpp\"\

@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/lcm_convolution.test.cpp
     title: test/2_library_checker/convolution/lcm_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1760.test.cpp
+    title: test/3_yukicoder/1760.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -56,6 +59,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/convolution/lcm_convolution.test.cpp
+  - test/3_yukicoder/1760.test.cpp
 documentation_of: nt/lcm_convolution.hpp
 layout: document
 redirect_from:

@@ -82,6 +82,9 @@ data:
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2005.test.cpp
+    title: test/3_yukicoder/2005.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   _isVerificationFailed: false
@@ -203,6 +206,7 @@ data:
   - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1216.test.cpp
+  - test/3_yukicoder/2005.test.cpp
   - test/3_yukicoder/1216_2.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
 documentation_of: ds/sparse_table/disjoint_sparse_table.hpp

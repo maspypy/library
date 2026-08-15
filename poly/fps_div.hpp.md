@@ -39,6 +39,12 @@ data:
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':warning:'
@@ -57,9 +63,12 @@ data:
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/composition_f_log_1_minus_x.hpp
+    title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
   - icon: ':heavy_check_mark:'
@@ -75,14 +84,20 @@ data:
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/schroder.hpp
+    title: poly/schroder.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':warning:'
     path: poly/sum_of_power_of_roots.hpp
     title: poly/sum_of_power_of_roots.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/stirling_number_1.hpp
+    title: seq/famous/stirling_number_1.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
@@ -91,11 +106,26 @@ data:
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/bell.test.cpp
+    title: test/1_mytest/bell.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/chirp_z.test.cpp
     title: test/1_mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/coef_of_rational.test.cpp
     title: test/1_mytest/coef_of_rational.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_log_1_minus_x.test.cpp
+    title: test/1_mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/compositional_inverset.test.cpp
+    title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_biconnected.test.cpp
+    title: test/1_mytest/count_labeled_biconnected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_bridgeless.test.cpp
+    title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
@@ -106,6 +136,9 @@ data:
     path: test/1_mytest/slice_rational_fps.test.cpp
     title: test/1_mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/stirling_1_suffix.test.cpp
+    title: test/1_mytest/stirling_1_suffix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,6 +147,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
@@ -190,11 +229,26 @@ data:
     path: test/3_yukicoder/2459.test.cpp
     title: test/3_yukicoder/2459.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2583.test.cpp
+    title: test/3_yukicoder/2583.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/3619.test.cpp
+    title: test/3_yukicoder/3619.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/3621.test.cpp
+    title: test/3_yukicoder/3621.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
@@ -554,9 +608,13 @@ data:
   path: poly/fps_div.hpp
   requiredBy:
   - linalg/blackbox/vandermonde.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
   - graph/chromatic.hpp
+  - poly/schroder.hpp
   - poly/compositional_inverse_old.hpp
   - poly/partial_frac_decomposition_1.hpp
+  - poly/composition_f_log_1_minus_x.hpp
   - poly/multipoint.hpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/coef_of_rational_fps.hpp
@@ -571,15 +629,22 @@ data:
   - seq/interpolate_linear_rec.hpp
   - seq/sum_of_powers.hpp
   - seq/famous/bell_number_large.hpp
+  - seq/famous/stirling_number_1.hpp
   timestamp: '2026-08-13 03:03:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/slice_rational_fps.test.cpp
+  - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/vandermonde.test.cpp
   - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/multipoint_prefix.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
+  - test/1_mytest/bell.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/chirp_z.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
@@ -593,13 +658,19 @@ data:
   - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/2305.test.cpp
+  - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/1516.test.cpp
@@ -610,6 +681,7 @@ data:
   - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/1533.test.cpp
+  - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1962.test.cpp
 documentation_of: poly/fps_div.hpp

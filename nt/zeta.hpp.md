@@ -43,6 +43,9 @@ data:
     path: test/3_yukicoder/1666.test.cpp
     title: test/3_yukicoder/1666.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1760.test.cpp
+    title: test/3_yukicoder/1760.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
   - icon: ':heavy_check_mark:'
@@ -111,6 +114,7 @@ data:
   - test/4_aoj/NTL_1_D.test.cpp
   - test/3_yukicoder/1262.test.cpp
   - test/3_yukicoder/1666.test.cpp
+  - test/3_yukicoder/1760.test.cpp
   - test/3_yukicoder/2266.test.cpp
 documentation_of: nt/zeta.hpp
 layout: document

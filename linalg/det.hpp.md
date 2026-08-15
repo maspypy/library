@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_det.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1303.test.cpp
+    title: test/3_yukicoder/1303.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -109,6 +112,7 @@ data:
   - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/2_library_checker/linear_algebra/det_mod.test.cpp
   - test/2_library_checker/linear_algebra/matrix_det.test.cpp
+  - test/3_yukicoder/1303.test.cpp
 documentation_of: linalg/det.hpp
 layout: document
 redirect_from:

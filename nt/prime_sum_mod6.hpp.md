@@ -9,15 +9,14 @@ data:
     title: nt/prime_table.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_by_factor_type.test.cpp
-    title: test/1_mytest/count_by_factor_type.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/1_mytest/primesum_mod6.test.cpp
+    title: test/1_mytest/primesum_mod6.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links:
-    - https://atcoder.jp/contests/xmascon20/tasks/xmascon20_d
+    links: []
   bundledCode: "#line 2 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
     \ prime_table(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
     \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
@@ -54,54 +53,46 @@ data:
     \  void calc_count() {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n\
     \  void calc_sum() {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\
     \n      if (!(x & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a)\
-    \ * T(b);\r\n    });\r\n  }\r\n};\n#line 3 \"nt/count_by_factor_type.hpp\"\n\n\
-    // factor type: \u964D\u9806 270 -> (3,1,1)\n// N=10^9: 1324 \u7A2E\u985E, 0.4sec\n\
-    // https://atcoder.jp/contests/xmascon20/tasks/xmascon20_d\nmap<vc<int>, ll> count_by_factor_type(ll\
-    \ N) {\n  ll sqN = sqrtl(N);\n  auto P = prime_table<int>(sqN);\n  Prime_Sum<ll>\
-    \ X(N);\n  X.calc_count();\n\n  // 1 and prime\n  map<vc<int>, ll> ANS;\n  ANS[vc<int>()]\
-    \ = 1;\n  if (X[N] > 0) ANS[vc<int>({1})] = X[N];\n\n  auto add = [&](vc<int>\
-    \ F, int k) -> vc<int> {\n    int p = len(F);\n    F.eb(k);\n    while (0 < p\
-    \ && F[p - 1] < F[p]) {\n      swap(F[p - 1], F[p]), --p;\n    }\n    return F;\n\
-    \  };\n\n  // t = up_i^k \u306E\u3068\u304D\u306B\n  auto dfs = [&](auto& dfs,\
-    \ ll t, ll i, ll k, vc<int> U) -> void {\n    // U * primes \u3092\u8FFD\u52A0\
-    \u3059\u308B\n    vc<int> nxt1 = add(U, k + 1);\n    ANS[nxt1]++;\n    vc<int>\
-    \ Uk = add(U, k);\n    vc<int> nxt2 = add(Uk, 1);\n    ll cnt = X[N / t] - X[P[i]];\n\
-    \    if (cnt > 0) ANS[nxt2] += X[N / t] - X[P[i]];\n    ll lim = sqrtl(double(N)\
-    \ / t);\n    if (P[i] <= lim) {\n      dfs(dfs, t * P[i], i, k + 1, U);\n    }\n\
-    \    FOR(j, i + 1, len(P)) {\n      if (P[j] > lim) break;\n      dfs(dfs, t *\
-    \ P[j], j, 1, Uk);\n    }\n  };\n  FOR(i, len(P)) if (P[i] <= sqN) dfs(dfs, P[i],\
-    \ i, 1, {});\n  return ANS;\n}\n"
-  code: "#include \"nt/prime_table.hpp\"\n#include \"nt/prime_sum.hpp\"\n\n// factor\
-    \ type: \u964D\u9806 270 -> (3,1,1)\n// N=10^9: 1324 \u7A2E\u985E, 0.4sec\n//\
-    \ https://atcoder.jp/contests/xmascon20/tasks/xmascon20_d\nmap<vc<int>, ll> count_by_factor_type(ll\
-    \ N) {\n  ll sqN = sqrtl(N);\n  auto P = prime_table<int>(sqN);\n  Prime_Sum<ll>\
-    \ X(N);\n  X.calc_count();\n\n  // 1 and prime\n  map<vc<int>, ll> ANS;\n  ANS[vc<int>()]\
-    \ = 1;\n  if (X[N] > 0) ANS[vc<int>({1})] = X[N];\n\n  auto add = [&](vc<int>\
-    \ F, int k) -> vc<int> {\n    int p = len(F);\n    F.eb(k);\n    while (0 < p\
-    \ && F[p - 1] < F[p]) {\n      swap(F[p - 1], F[p]), --p;\n    }\n    return F;\n\
-    \  };\n\n  // t = up_i^k \u306E\u3068\u304D\u306B\n  auto dfs = [&](auto& dfs,\
-    \ ll t, ll i, ll k, vc<int> U) -> void {\n    // U * primes \u3092\u8FFD\u52A0\
-    \u3059\u308B\n    vc<int> nxt1 = add(U, k + 1);\n    ANS[nxt1]++;\n    vc<int>\
-    \ Uk = add(U, k);\n    vc<int> nxt2 = add(Uk, 1);\n    ll cnt = X[N / t] - X[P[i]];\n\
-    \    if (cnt > 0) ANS[nxt2] += X[N / t] - X[P[i]];\n    ll lim = sqrtl(double(N)\
-    \ / t);\n    if (P[i] <= lim) {\n      dfs(dfs, t * P[i], i, k + 1, U);\n    }\n\
-    \    FOR(j, i + 1, len(P)) {\n      if (P[j] > lim) break;\n      dfs(dfs, t *\
-    \ P[j], j, 1, Uk);\n    }\n  };\n  FOR(i, len(P)) if (P[i] <= sqN) dfs(dfs, P[i],\
-    \ i, 1, {});\n  return ANS;\n}"
+    \ * T(b);\r\n    });\r\n  }\r\n};\n#line 3 \"nt/prime_sum_mod6.hpp\"\n\ntemplate\
+    \ <typename T>\nstruct PrimeSum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T>\
+    \ A, B;\n  Prime_Sum_Mod_6(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T,\
+    \ T> operator[](ll x) {\n    T a = A[x], b = B[x];\n    return {(a + b) / T(2),\
+    \ (a - b) / T(2)};\n  }\n\n  void calc_count() {\n    A.calc([](ll x) -> T { return\
+    \ ((x + 2) / 3 - (x % 6 == 4)); });\n    B.calc([](ll x) -> T { return ((x + 5)\
+    \ % 6 <= 3 ? 1 : 0); });\n  }\n\n  void calc_sum() {\n    A.calc([](ll x) -> T\
+    \ {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n\
+    \ % 2 == 0) {\n        return T(6 * k) * T(k);\n      }\n      return T(6 * k)\
+    \ * T(k) + T(6 * k + 1);\n    });\n    B.calc([](ll x) -> T {\n      ll n = (x\
+    \ + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) {\n   \
+    \     return T(-4 * k);\n      }\n      return T(-4 * k + 6 * k + 1);\n    });\n\
+    \  }\n};\n"
+  code: "#include \"nt/prime_sum.hpp\"\n#include \"nt/prime_table.hpp\"\n\ntemplate\
+    \ <typename T>\nstruct PrimeSum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T>\
+    \ A, B;\n  Prime_Sum_Mod_6(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T,\
+    \ T> operator[](ll x) {\n    T a = A[x], b = B[x];\n    return {(a + b) / T(2),\
+    \ (a - b) / T(2)};\n  }\n\n  void calc_count() {\n    A.calc([](ll x) -> T { return\
+    \ ((x + 2) / 3 - (x % 6 == 4)); });\n    B.calc([](ll x) -> T { return ((x + 5)\
+    \ % 6 <= 3 ? 1 : 0); });\n  }\n\n  void calc_sum() {\n    A.calc([](ll x) -> T\
+    \ {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n\
+    \ % 2 == 0) {\n        return T(6 * k) * T(k);\n      }\n      return T(6 * k)\
+    \ * T(k) + T(6 * k + 1);\n    });\n    B.calc([](ll x) -> T {\n      ll n = (x\
+    \ + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) {\n   \
+    \     return T(-4 * k);\n      }\n      return T(-4 * k + 6 * k + 1);\n    });\n\
+    \  }\n};\n"
   dependsOn:
-  - nt/prime_table.hpp
   - nt/prime_sum.hpp
+  - nt/prime_table.hpp
   isVerificationFile: false
-  path: nt/count_by_factor_type.hpp
+  path: nt/prime_sum_mod6.hpp
   requiredBy: []
   timestamp: '2026-08-15 16:17:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/1_mytest/count_by_factor_type.test.cpp
-documentation_of: nt/count_by_factor_type.hpp
+  - test/1_mytest/primesum_mod6.test.cpp
+documentation_of: nt/prime_sum_mod6.hpp
 layout: document
 redirect_from:
-- /library/nt/count_by_factor_type.hpp
-- /library/nt/count_by_factor_type.hpp.html
-title: nt/count_by_factor_type.hpp
+- /library/nt/prime_sum_mod6.hpp
+- /library/nt/prime_sum_mod6.hpp.html
+title: nt/prime_sum_mod6.hpp
 ---

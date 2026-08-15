@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -57,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+    title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
@@ -490,6 +493,7 @@ data:
   verifiedWith:
   - test/1_mytest/factorial_998.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1080_2.test.cpp

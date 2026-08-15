@@ -15,6 +15,9 @@ data:
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
   - icon: ':heavy_check_mark:'
@@ -67,11 +70,17 @@ data:
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1303.test.cpp
+    title: test/3_yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1750.test.cpp
     title: test/3_yukicoder/1750.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1810.test.cpp
     title: test/3_yukicoder/1810.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1907.test.cpp
+    title: test/3_yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
@@ -263,6 +272,7 @@ data:
   path: linalg/matrix_mul.hpp
   requiredBy:
   - linalg/adjugate_matrix.hpp
+  - linalg/det_A_plus_xB.hpp
   - linalg/matrix_pow.hpp
   - linalg/frobenius.hpp
   - poly/sparse_exp_of_div.hpp
@@ -282,6 +292,8 @@ data:
   - test/2_library_checker/linear_algebra/matrix_product.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/426.test.cpp

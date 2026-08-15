@@ -73,6 +73,12 @@ data:
     path: test/3_yukicoder/1868.test.cpp
     title: test/3_yukicoder/1868.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2892.test.cpp
     title: test/3_yukicoder/2892.test.cpp
   _isVerificationFailed: false
@@ -247,7 +253,9 @@ data:
   - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/3_yukicoder/1868.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1038.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/2892.test.cpp
   - test/3_yukicoder/1718.test.cpp

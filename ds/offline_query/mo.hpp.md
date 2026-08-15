@@ -24,6 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2206.test.cpp
+    title: test/3_yukicoder/2206.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2206_2.test.cpp
+    title: test/3_yukicoder/2206_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -87,6 +93,8 @@ data:
   - test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - test/3_yukicoder/1270.test.cpp
+  - test/3_yukicoder/2206_2.test.cpp
+  - test/3_yukicoder/2206.test.cpp
 documentation_of: ds/offline_query/mo.hpp
 layout: document
 redirect_from:

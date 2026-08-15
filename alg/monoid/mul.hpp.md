@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_C_negative.hpp
     title: poly/sum_of_C_negative.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -55,6 +55,9 @@ data:
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+    title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2005.test.cpp
+    title: test/3_yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
@@ -113,12 +119,14 @@ data:
   - test/1_mytest/factorial_998.test.cpp
   - test/1_mytest/powerquery.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/3_yukicoder/899.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/1339.test.cpp
+  - test/3_yukicoder/2005.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2747.test.cpp
 documentation_of: alg/monoid/mul.hpp

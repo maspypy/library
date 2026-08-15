@@ -94,6 +94,9 @@ data:
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_by_factor_type.test.cpp
+    title: test/1_mytest/count_by_factor_type.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/four_square.test.cpp
     title: test/1_mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -165,6 +168,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/two_square.test.cpp
     title: test/2_library_checker/number_theory/two_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
@@ -386,6 +392,7 @@ data:
   - test/1_mytest/modfast.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
+  - test/1_mytest/count_by_factor_type.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
@@ -395,6 +402,7 @@ data:
   - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp

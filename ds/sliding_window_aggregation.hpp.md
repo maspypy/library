@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_C_negative.hpp
     title: poly/sum_of_C_negative.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+    title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
@@ -149,6 +152,7 @@ data:
   - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
   - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/3_yukicoder/1036_3.test.cpp
   - test/3_yukicoder/1435_2.test.cpp

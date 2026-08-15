@@ -24,6 +24,9 @@ data:
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/composition_f_log_1_minus_x.hpp
+    title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -51,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/chirp_z.test.cpp
     title: test/1_mytest/chirp_z.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_log_1_minus_x.test.cpp
+    title: test/1_mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
@@ -374,6 +380,7 @@ data:
   - graph/chromatic.hpp
   - poly/typical_divide_conquer.hpp
   - poly/partial_frac_decomposition_1.hpp
+  - poly/composition_f_log_1_minus_x.hpp
   - poly/multipoint.hpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/multipoint_evaluation_for_prefix_product.hpp
@@ -386,6 +393,7 @@ data:
   - test/1_mytest/slice_rational_fps.test.cpp
   - test/1_mytest/vandermonde.test.cpp
   - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/typical_dc.test.cpp
   - test/1_mytest/chirp_z.test.cpp

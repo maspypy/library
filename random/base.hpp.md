@@ -54,6 +54,9 @@ data:
     path: linalg/blackbox/solve_linear.hpp
     title: linalg/blackbox/solve_linear.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
   - icon: ':heavy_check_mark:'
@@ -235,6 +238,21 @@ data:
     path: test/1_mytest/coef_of_rational.test.cpp
     title: test/1_mytest/coef_of_rational.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_1_minus_ex.test.cpp
+    title: test/1_mytest/composition_1_minus_ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_ex_minus_1.test.cpp
+    title: test/1_mytest/composition_ex_minus_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_f_x_plus_1x.test.cpp
+    title: test/1_mytest/composition_f_x_plus_1x.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_log_1_minus_x.test.cpp
+    title: test/1_mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/compositional_inverset.test.cpp
+    title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/connected_set_knapsack.test.cpp
     title: test/1_mytest/connected_set_knapsack.test.cpp
   - icon: ':heavy_check_mark:'
@@ -264,6 +282,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_by_factor_type.test.cpp
+    title: test/1_mytest/count_by_factor_type.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_clique.test.cpp
     title: test/1_mytest/count_clique.test.cpp
@@ -760,6 +781,9 @@ data:
     path: test/2_library_checker/number_theory/two_square.test.cpp
     title: test/2_library_checker/number_theory/two_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -814,6 +838,9 @@ data:
     path: test/3_yukicoder/1262.test.cpp
     title: test/3_yukicoder/1262.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1303.test.cpp
+    title: test/3_yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
@@ -855,6 +882,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1907.test.cpp
+    title: test/3_yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1956.test.cpp
     title: test/3_yukicoder/1956.test.cpp
@@ -960,6 +990,7 @@ data:
   - nt/gaussian_integers.hpp
   - nt/factor.hpp
   - linalg/adjugate_matrix.hpp
+  - linalg/det_A_plus_xB.hpp
   - linalg/blackbox/det.hpp
   - linalg/blackbox/solve_linear.hpp
   - linalg/blackbox/min_poly.hpp
@@ -1017,6 +1048,7 @@ data:
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/add_chmin.test.cpp
   - test/1_mytest/tournament.test.cpp
+  - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/1_mytest/check_monge.test.cpp
   - test/1_mytest/range_freq_of_linear.test.cpp
   - test/1_mytest/mod_sum_of_linear.test.cpp
@@ -1039,6 +1071,7 @@ data:
   - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/scc_tournament.test.cpp
+  - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
   - test/1_mytest/bigint.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
@@ -1063,6 +1096,7 @@ data:
   - test/1_mytest/count_P3P4P5.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/incremental_scc.test.cpp
   - test/1_mytest/poly_root_finding.test.cpp
   - test/1_mytest/splay_am.test.cpp
@@ -1082,6 +1116,7 @@ data:
   - test/1_mytest/factorial_998.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/is_substring.test.cpp
   - test/1_mytest/max_min.test.cpp
@@ -1115,6 +1150,7 @@ data:
   - test/1_mytest/conv_leq.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/min_min.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/three_square.test.cpp
@@ -1158,6 +1194,7 @@ data:
   - test/1_mytest/all_inverse.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
   - test/1_mytest/mybitset.test.cpp
+  - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/coprime_factorization.test.cpp
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
@@ -1193,6 +1230,7 @@ data:
   - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
@@ -1222,6 +1260,8 @@ data:
   - test/4_aoj/CGL_5_A.test.cpp
   - test/3_yukicoder/2578.test.cpp
   - test/3_yukicoder/1262.test.cpp
+  - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1776.test.cpp

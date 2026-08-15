@@ -16,6 +16,9 @@ data:
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1760.test.cpp
+    title: test/3_yukicoder/1760.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
   _isVerificationFailed: false
@@ -63,6 +66,7 @@ data:
   timestamp: '2026-08-15 15:50:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1760.test.cpp
   - test/3_yukicoder/2266.test.cpp
 documentation_of: nt/mobius_table.hpp
 layout: document
