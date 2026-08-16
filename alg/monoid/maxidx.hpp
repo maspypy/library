@@ -1,6 +1,6 @@
 
 template <typename T, bool tie_is_left = true>
-struct Monoid_Max_Idx {
+struct Monoid_MaxIdx {
   using value_type = pair<T, int>;
   using X = value_type;
   static X op(X x, X y) {

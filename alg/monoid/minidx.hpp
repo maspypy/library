@@ -1,6 +1,6 @@
 
 template <typename T, bool tie_is_left = true>
-struct Monoid_Min_Idx {
+struct Monoid_MinIdx {
   using value_type = pair<T, int>;
   using X = value_type;
   static constexpr bool is_small(const X& x, const X& y) {

@@ -1,6 +1,6 @@
 
 template <class Monoid>
-struct DualSegTree_2D_Dense {
+struct Dual_SegTree_2D_Dense {
   using MX = Monoid;
   using X = typename MX::value_type;
   using value_type = X;
@@ -8,15 +8,18 @@ struct DualSegTree_2D_Dense {
   int H, W;
   vc<X> dat;
 
-  DualSegTree_2D_Dense() : DualSegTree_2D_Dense(0, 0) {}
-  DualSegTree_2D_Dense(int H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}
+  Dual_SegTree_2D_Dense() : Dual_SegTree_2D_Dense(0, 0) {}
+  Dual_SegTree_2D_Dense(int H, int W)
+      : H(H), W(W), dat(4 * H * W, MX::unit()) {}
 
   X get(int x, int y) {
     X t = MX::unit();
     int a = x + H;
     while (a) {
       int b = y + W;
-      while (b) { t = MX::op(t, dat[idx(a, b)]), b /= 2; }
+      while (b) {
+        t = MX::op(t, dat[idx(a, b)]), b /= 2;
+      }
       a /= 2;
     };
     return t;
@@ -49,13 +52,17 @@ struct DualSegTree_2D_Dense {
     return res;
   }
 
-private:
+ private:
   inline int idx(int x, int y) { return x * 2 * W + y; }
   void apply_x(int x, int yl, int yr, const X& t) {
     yl += W, yr += W;
     while (yl < yr) {
-      if (yl & 1) { dat[idx(x, yl)] = MX::op(dat[idx(x, yl)], t), yl++; }
-      if (yr & 1) { --yr, dat[idx(x, yr)] = MX::op(dat[idx(x, yr)], t); }
+      if (yl & 1) {
+        dat[idx(x, yl)] = MX::op(dat[idx(x, yl)], t), yl++;
+      }
+      if (yr & 1) {
+        --yr, dat[idx(x, yr)] = MX::op(dat[idx(x, yr)], t);
+      }
       yl >>= 1, yr >>= 1;
     }
   }

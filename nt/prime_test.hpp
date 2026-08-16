@@ -1,7 +1,7 @@
 #include "other/bit.hpp"
 #include "mod/mongomery_modint.hpp"
 
-bool primetest(const u64 x) {
+bool prime_test(const u64 x) {
   assert(x < u64(1) << 62);
   if (x == 2 or x == 3 or x == 5 or x == 7) return true;
   if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;

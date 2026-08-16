@@ -1,6 +1,6 @@
 // +, -, * が定義された構造体を渡す
 template <typename Field>
-struct RollingHash_Field {
+struct Rolling_Hash_Field {
   using F = Field;
   const F base;
   vector<F> power;
@@ -11,11 +11,14 @@ struct RollingHash_Field {
     if (int(power.size()) < sz + 1) {
       int pre_sz = (int)power.size();
       power.resize(sz + 1);
-      for (int i = pre_sz - 1; i < sz; i++) { power[i + 1] = power[i] * base; }
+      for (int i = pre_sz - 1; i < sz; i++) {
+        power[i + 1] = power[i] * base;
+      }
     }
   }
 
-  explicit RollingHash_Field(F base = generate_base()) : base(base), power{1} {}
+  explicit Rolling_Hash_Field(F base = generate_base())
+      : base(base), power{1} {}
 
   template <typename STRING>
   vector<F> build(const STRING &s) const {

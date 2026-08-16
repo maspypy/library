@@ -6,7 +6,7 @@ c <= LIM, (a,b,c) と (b,a,c) は同一視, O(LIM) 時間
 https://codeforces.com/contest/60/problem/D
 */
 template <bool coprime_only, typename F>
-void enumerate_pytagorean_triple(int LIM, F f) {
+void enumerate_pythagorean_triple(int LIM, F f) {
   vc<tuple<int, int, int>> que;
   auto add = [&](int a, int b, int c) -> void {
     if (c <= LIM) que.eb(a, b, c);

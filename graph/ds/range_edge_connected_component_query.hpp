@@ -7,11 +7,11 @@
 
 // https://codeforces.com/problemset/problem/1386/C (TLE)
 // query(L,R) = # of component if edge L,...,R-1 are used.
-struct Range_Edge_Conneced_Component_Query {
+struct Range_Edge_Connected_Component_Query {
   Graph<int, 0>& G;
   vc<pair<int, int>> query;
 
-  Range_Edge_Conneced_Component_Query(Graph<int, 0>& G) : G(G) {}
+  Range_Edge_Connected_Component_Query(Graph<int, 0>& G) : G(G) {}
 
   void add_query(int l, int r) { query.eb(l, r); }
 
@@ -44,7 +44,7 @@ struct Range_Edge_Conneced_Component_Query {
         LCT.link(a, N + i), LCT.link(b, N + i);
         bit.add(i, 1);
       }
-      for (auto& q: QID[i]) {
+      for (auto& q : QID[i]) {
         auto [l, r] = query[q];
         ANS[q] = N - bit.sum(l, r);
       }

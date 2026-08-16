@@ -3,7 +3,7 @@
 // INF+x==INF みたいな処理は入れていない
 // N=Q=10^6 で lazysegtree より 40% 程度高速
 template <typename T>
-struct Range_Add_Range_MaxIdx {
+struct Range_Add_Range_MinIdx {
   struct Data {
     T sum, min;
     int idx;
@@ -25,14 +25,14 @@ struct Range_Add_Range_MaxIdx {
   T lazy;
   SegTree<Mono> seg;
 
-  Range_Add_Range_MaxIdx() {}
+  Range_Add_Range_MinIdx() {}
   // (n) だけだと 0 埋めで初期化します
-  Range_Add_Range_MaxIdx(int n) { build(n); }
+  Range_Add_Range_MinIdx(int n) { build(n); }
   template <typename F>
-  Range_Add_Range_MaxIdx(int n, F f) {
+  Range_Add_Range_MinIdx(int n, F f) {
     build(n, f);
   }
-  Range_Add_Range_MaxIdx(const vc<T>& v) { build(v); }
+  Range_Add_Range_MinIdx(const vc<T>& v) { build(v); }
 
   void build(int m) {
     build(m, [](int i) -> T { return 0; });

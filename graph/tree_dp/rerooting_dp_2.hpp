@@ -4,17 +4,18 @@
 // 永続データ構造のマージのときに少しメモリが節約できたがわずか
 // https://qoj.ac/contest/1699/problem/8518
 template <typename TREE, typename Data>
-struct Rerooting_dp_2 {
+struct Rerooting_DP_2 {
   static_assert(!TREE::Graph_type::is_directed);
   TREE &tree;
-  vc<Data> dp;   // full tree at v
-  vc<Data> dp_1; // 辺 pv に対して、部分木 v
-  vc<Data> dp_2; // 辺 pv に対して、部分木 p
-  vc<Data> dp_3; // rootless pv
-  vc<Data> dp_4; // dp_3 の左閉区間での累積
+  vc<Data> dp;    // full tree at v
+  vc<Data> dp_1;  // 辺 pv に対して、部分木 v
+  vc<Data> dp_2;  // 辺 pv に対して、部分木 p
+  vc<Data> dp_3;  // rootless pv
+  vc<Data> dp_4;  // dp_3 の左閉区間での累積
 
   template <typename F1, typename F2, typename F3>
-  Rerooting_dp_2(TREE &tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) : tree(tree) {
+  Rerooting_DP_2(TREE &tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
+      : tree(tree) {
     build(f_ee, f_ev, f_ve, unit);
   }
 
@@ -24,7 +25,9 @@ struct Rerooting_dp_2 {
   // root を根としたときの部分木 v
   Data get(int v, int root) {
     if (root == v) return dp[v];
-    if (!tree.in_subtree(root, v)) { return dp_1[v]; }
+    if (!tree.in_subtree(root, v)) {
+      return dp_1[v];
+    }
     int w = tree.jump(v, root, 1);
     return dp_2[w];
   }
@@ -41,7 +44,7 @@ struct Rerooting_dp_2 {
     FOR_R(i, N) {
       int v = tree.V[i];
       vc<Edge> ch;
-      for (auto &e: tree.G[v])
+      for (auto &e : tree.G[v])
         if (e.to != tree.parent[v]) ch.eb(e);
       int n = len(ch);
       FOR(i, n) {
@@ -61,7 +64,7 @@ struct Rerooting_dp_2 {
       int v = tree.V[i];
       vc<Edge> ch;
       Data x = unit;
-      for (auto &e: tree.G[v]) {
+      for (auto &e : tree.G[v]) {
         if (e.to != tree.parent[v]) ch.eb(e);
         if (e.to == tree.parent[v]) x = f_ve(dp_2[v], e);
       }

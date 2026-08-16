@@ -35,14 +35,14 @@ struct TREE_DP {
 */
 
 template <typename TREE, typename TREE_DP>
-struct Dynamic_Rerooting_Tree_Dp {
+struct Dynamic_Rerooting_Tree_DP {
   using X = typename TREE_DP::value_type;
   Static_TopTree<TREE> STT;
   vc<pair<X, X>> dp;
 
   template <typename F>
-  Dynamic_Rerooting_Tree_Dp(TREE& tree, F f) : STT(tree) {
-    assert(tree.V[0] == 0); // さぼり
+  Dynamic_Rerooting_Tree_DP(TREE& tree, F f) : STT(tree) {
+    assert(tree.V[0] == 0);  // さぼり
     int N = tree.N;
     dp.resize(2 * N - 1);
     FOR(v, N) {
@@ -60,7 +60,9 @@ struct Dynamic_Rerooting_Tree_Dp {
     assert(dp[v].fi.type == 0 && dp[v].se.type == 1);
     assert(dp[v].fi.s == STT.tree.parent[v] && dp[v].fi.t == v);
     assert(dp[v].se.t == STT.tree.parent[v] && dp[v].se.s == v);
-    for (int i = STT.par[v]; i != -1; i = STT.par[i]) { update(i); }
+    for (int i = STT.par[v]; i != -1; i = STT.par[i]) {
+      update(i);
+    }
   }
 
   X prod_all(int v) {
@@ -103,7 +105,7 @@ struct Dynamic_Rerooting_Tree_Dp {
     return (c.type == -1 ? a : TREE_DP::compress2(c, a));
   }
 
-private:
+ private:
   inline void update(int i) {
     auto& [L1, L2] = dp[STT.lch[i]];
     auto& [R1, R2] = dp[STT.rch[i]];

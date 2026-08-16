@@ -12,7 +12,7 @@ struct FastSet {
 
   int size() { return n; }
 
-  void fillone() {
+  void fill_one() {
     int cur = n;
     for (auto& vs : seg) {
       int p = cur / B, q = cur % B;

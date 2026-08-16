@@ -3,7 +3,7 @@
 #include "ds/sparse_table/sparse_table.hpp"
 
 template <typename TREE>
-struct Fast_Lca {
+struct Fast_LCA {
   TREE& tree;
   Sparse_Table<Monoid_Min<int>> seg;
   vc<int> pos;

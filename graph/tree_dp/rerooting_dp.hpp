@@ -2,7 +2,7 @@
 #include "graph/tree.hpp"
 
 template <typename TREE, typename Data>
-struct Rerooting_dp {
+struct Rerooting_DP {
   static_assert(!TREE::Graph_type::is_directed);
   TREE& tree;
   vc<Data> dp_1;  // 辺 pv に対して、部分木 v
@@ -10,7 +10,7 @@ struct Rerooting_dp {
   vc<Data> dp;    // full tree
 
   template <typename F1, typename F2, typename F3>
-  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
+  Rerooting_DP(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
       : tree(tree) {
     build(f_ee, f_ev, f_ve, unit);
   }

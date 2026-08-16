@@ -1,7 +1,7 @@
 #include "random/base.hpp"
 #include "mod/modint61.hpp"
 
-struct RollingHash {
+struct Rolling_Hash {
   using mint = modint61;
   static constexpr u64 mod = mint::get_mod();
   const mint base;
@@ -17,20 +17,22 @@ struct RollingHash {
     }
   }
 
-  explicit RollingHash(mint base = generate_base()) : base(base), power{1} {}
+  explicit Rolling_Hash(mint base = generate_base()) : base(base), power{1} {}
 
   template <typename STRING>
   vector<mint> build(const STRING& s) const {
     int sz = s.size();
     vector<mint> hashed(sz + 1, mint(0));
-    for (int i = 0; i < sz; i++) { hashed[i + 1] = hashed[i] * base + s[i]; }
+    for (int i = 0; i < sz; i++) {
+      hashed[i + 1] = hashed[i] * base + s[i];
+    }
     return hashed;
   }
 
   template <typename STRING>
   mint eval(STRING& s) {
     mint x = 0;
-    for (auto& ch: s) x = base * x + ch;
+    for (auto& ch : s) x = base * x + ch;
     return x;
   }
 

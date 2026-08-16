@@ -5,7 +5,7 @@
 // 到達不可能：infty<T>
 // 負閉路を経由していくらでも小さくできる：-infty<T>
 template <typename T, bool END = true, typename GT>
-pair<vc<T>, vc<int>> BellmanFord(GT &G, int s) {
+pair<vc<T>, vc<int>> bellman_ford(GT &G, int s) {
   int N = G.N;
   vc<T> dist(N, infty<T>);
   vc<int> par(N, -1);
@@ -15,8 +15,7 @@ pair<vc<T>, vc<int>> BellmanFord(GT &G, int s) {
     ++loop;
     bool upd = 0;
     FOR(v, N) {
-      if (dist[v] == infty<T>)
-        continue;
+      if (dist[v] == infty<T>) continue;
       for (auto &&e : G[v]) {
         T before = dist[e.to];
         T after = dist[v] + e.cost;
@@ -37,8 +36,7 @@ pair<vc<T>, vc<int>> BellmanFord(GT &G, int s) {
         }
       }
     }
-    if (!upd)
-      break;
+    if (!upd) break;
   }
   return {dist, par};
 }
