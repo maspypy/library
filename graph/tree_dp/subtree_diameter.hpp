@@ -22,7 +22,9 @@ struct SubTree_Diameter {
       if (A.diam == -1) return B;
       if (B.diam == -1) return A;
       if (A.diam < B.diam) swap(A, B);
-      if (chmax(A.diam, A.path + B.path)) { A.left = A.end, A.right = B.end; }
+      if (chmax(A.diam, A.path + B.path)) {
+        A.left = A.end, A.right = B.end;
+      }
       if (chmax(A.path, B.path)) A.end = B.end;
       return A;
     };
@@ -34,11 +36,13 @@ struct SubTree_Diameter {
     };
     auto f_ve = [&](Data A, const auto& e) -> Data {
       A.path += e.cost;
-      if (chmax(A.diam, A.path)) { A.left = e.frm, A.right = A.end; }
+      if (chmax(A.diam, A.path)) {
+        A.left = e.frm, A.right = A.end;
+      }
       return A;
     };
 
-    Rerooting_dp<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);
+    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);
     dp.resize(N), dp_1.resize(N), dp_2.resize(N);
     FOR(v, N) {
       dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};
@@ -55,7 +59,9 @@ struct SubTree_Diameter {
   // root を根としたときの部分木 v
   tuple<int, int, WT> get(int v, int root) {
     if (root == v) return dp[v];
-    if (!tree.in_subtree(root, v)) { return dp_1[v]; }
+    if (!tree.in_subtree(root, v)) {
+      return dp_1[v];
+    }
     int w = tree.jump(v, root, 1);
     return dp_2[w];
   }

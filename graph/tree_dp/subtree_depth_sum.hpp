@@ -19,7 +19,7 @@ struct SubTree_DepthSum {
       return {A.fi, A.se + A.fi * e.cost};
     };
 
-    Rerooting_dp<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);
+    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);
     dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;
   }
 
@@ -31,7 +31,9 @@ struct SubTree_DepthSum {
   // root を根としたときの部分木 v
   pair<int, WT> get(int v, int root) {
     if (root == v) return dp[v];
-    if (!tree.in_subtree(root, v)) { return dp_1[v]; }
+    if (!tree.in_subtree(root, v)) {
+      return dp_1[v];
+    }
     int w = tree.jump(v, root, 1);
     return dp_2[w];
   }
