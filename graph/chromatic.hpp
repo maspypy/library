@@ -1,6 +1,6 @@
 #include "graph/base.hpp"
 #include "random/base.hpp"
-#include "nt/primetest.hpp"
+#include "nt/is_prime.hpp"
 #include "poly/multipoint.hpp"
 #include "setfunc/power_projection_of_sps.hpp"
 
@@ -13,7 +13,7 @@ int chromatic_number(Graph& G) {
 
   int N = G.N;
   vc<int> nbd(N);
-  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= 1 << e.to;
+  FOR(v, N) for (auto&& e : G[v]) nbd[v] |= 1 << e.to;
 
   // s の subset であるような独立集合の数え上げ
   vc<int> dp(1 << N);
@@ -31,7 +31,9 @@ int chromatic_number(Graph& G) {
         sum += pow[s];
       }
       if (p) sum %= p;
-      if (sum != 0) { return k; }
+      if (sum != 0) {
+        return k;
+      }
     }
     return N;
   };
@@ -43,7 +45,7 @@ int chromatic_number(Graph& G) {
     int p;
     while (1) {
       p = RNG(1LL << 30, 1LL << 31);
-      if (primetest(p)) break;
+      if (is_prime(p)) break;
     }
     chmax(ANS, solve_p(p));
   }
@@ -56,7 +58,7 @@ vc<mint> chromatic_polynomial(Graph<int, 0> G) {
   int N = G.N;
   assert(N <= MAX_N);
   vc<int> ng(1 << N);
-  for (auto& e: G.edges) {
+  for (auto& e : G.edges) {
     int i = e.frm, j = e.to;
     ng[(1 << i) | (1 << j)] = 1;
   }

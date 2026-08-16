@@ -1,6 +1,6 @@
 
 #include "random/base.hpp"
-#include "nt/primetest.hpp"
+#include "nt/is_prime.hpp"
 
 template <typename mint>
 ll rho(ll n, ll c) {
@@ -28,7 +28,7 @@ ll rho(ll n, ll c) {
 
 ll find_prime_factor(ll n) {
   assert(n > 1);
-  if (primetest(n)) return n;
+  if (is_prime(n)) return n;
   FOR(100) {
     ll m = 0;
     if (n < (1 << 30)) {
@@ -40,7 +40,7 @@ ll find_prime_factor(ll n) {
       mint::set_mod(n);
       m = rho<mint>(n, RNG(0, n));
     }
-    if (primetest(m)) return m;
+    if (is_prime(m)) return m;
     n = m;
   }
   assert(0);
@@ -55,14 +55,18 @@ vc<pair<ll, int>> factor(ll n) {
     if (p * p > n) break;
     if (n % p == 0) {
       ll e = 0;
-      do { n /= p, e += 1; } while (n % p == 0);
+      do {
+        n /= p, e += 1;
+      } while (n % p == 0);
       pf.eb(p, e);
     }
   }
   while (n > 1) {
     ll p = find_prime_factor(n);
     ll e = 0;
-    do { n /= p, e += 1; } while (n % p == 0);
+    do {
+      n /= p, e += 1;
+    } while (n % p == 0);
     pf.eb(p, e);
   }
   sort(all(pf));

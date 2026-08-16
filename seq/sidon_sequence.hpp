@@ -1,5 +1,5 @@
 #include "mod/mod_sqrt.hpp"
-#include "nt/primetest.hpp"
+#include "nt/is_prime.hpp"
 #include "mod/primitive_root.hpp"
 
 // a[i]+a[j] が distinct になるように a[i] を作る
@@ -12,7 +12,7 @@ struct Sidon_Sequence {
 
   Sidon_Sequence(u32 N) : N(N) {
     p = max<ll>(3, N + 1);
-    while (!primetest(p)) ++p;
+    while (!is_prime(p)) ++p;
     exp.resize(p - 1);
     log.resize(p);
     u32 r = primitive_root(p);

@@ -1,11 +1,11 @@
-#include "nt/primetest.hpp"
+#include "nt/is_prime.hpp"
 #include "mod/primitive_root.hpp"
 #include "mod/mod_inv.hpp"
 #include "ds/hashmap.hpp"
 
 // mod は int
 int mod_kth_root(ll k, ll a, int mod) {
-  assert(primetest(mod) && 0 <= a && a < mod);
+  assert(is_prime(mod) && 0 <= a && a < mod);
   if (k == 0) return (a == 1 ? 1 : -1);
   if (a == 0) return 0;
   if (mod == 2) return a;
@@ -32,7 +32,7 @@ int mod_kth_root(ll k, ll a, int mod) {
     ・a の p^e 乗根をとりたい。持つことは分かっている
     ・a / x^{p^e} = b を維持する。まずは、b が p で割れる回数を増やしていく。
     */
-    ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1
+    ll x = 1, b = a, c = f - e;  // b ^ {mp^c} = 1
     int pc = 1;
     FOR(c) pc *= p;
     int pe = 1;
@@ -80,12 +80,12 @@ int mod_kth_root(ll k, ll a, int mod) {
   };
 
   auto pf = factor(k);
-  for (auto&& [p, e]: pf) a = solve_pp(p, e, a);
+  for (auto&& [p, e] : pf) a = solve_pp(p, e, a);
   return a;
 }
 
 ll mod_kth_root_64(ll k, ll a, ll mod) {
-  assert(primetest(mod) && 0 <= a && a < mod);
+  assert(is_prime(mod) && 0 <= a && a < mod);
   if (k == 0) return (a == 1 ? 1 : -1);
   if (a == 0) return 0;
   if (mod == 2) return a;
@@ -111,7 +111,7 @@ ll mod_kth_root_64(ll k, ll a, ll mod) {
     ・a の p^e 乗根をとりたい。持つことは分かっている
     ・a / x^{p^e} = b を維持する。まずは、b が p で割れる回数を増やしていく。
     */
-    ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1
+    ll x = 1, b = a, c = f - e;  // b ^ {mp^c} = 1
     ll pc = 1;
     FOR(c) pc *= p;
     ll pe = 1;
@@ -160,6 +160,6 @@ ll mod_kth_root_64(ll k, ll a, ll mod) {
   };
 
   auto pf = factor(k);
-  for (auto&& [p, e]: pf) a = solve_pp(p, e, a);
+  for (auto&& [p, e] : pf) a = solve_pp(p, e, a);
   return a;
 }

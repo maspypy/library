@@ -1,4 +1,4 @@
-#include "nt/primetest.hpp"
+#include "nt/is_prime.hpp"
 #include "nt/gaussian_integers.hpp"
 
 // https://math.stackexchange.com/questions/483101/rabin-and-shallit-algorithm
@@ -32,12 +32,12 @@ tuple<ll, ll, ll> three_square(ll N) {
       x -= 2;
       ll k = N - x * x;
       if (k < 0) break;
-      if (k % 2 == 1 && primetest(k)) {
+      if (k % 2 == 1 && is_prime(k)) {
         auto [a, b] = solve_norm_equation_prime(k);
         a = abs(a), b = abs(b);
         return {a, b, x};
       }
-      if (k % 2 == 0 && primetest(k / 2)) {
+      if (k % 2 == 0 && is_prime(k / 2)) {
         auto [a, b] = solve_norm_equation_prime(k / 2);
         tie(a, b) = mp(a + b, a - b);
         a = abs(a), b = abs(b);

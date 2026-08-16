@@ -1,4 +1,4 @@
-#include "nt/primetest.hpp"
+#include "nt/is_prime.hpp"
 
 // O(p^2) 時間の前計算のもと、O(log n) 時間
 struct Stirling_Number_Query {
@@ -44,7 +44,9 @@ struct Stirling_Number_Query {
     int x = C(i, a);
     int y = MEMO_S1[j][b];
     int res = x * y % p;
-    if ((i + a) % 2 == 1 && res) { res = p - res; }
+    if ((i + a) % 2 == 1 && res) {
+      res = p - res;
+    }
     return res;
   }
 
@@ -61,12 +63,14 @@ struct Stirling_Number_Query {
       a -= 1;
     }
     if (a < 0 || j > b) return 0;
-    if (b < p - 1) { return C(a, i) * MEMO_S2[b][j] % p; }
+    if (b < p - 1) {
+      return C(a, i) * MEMO_S2[b][j] % p;
+    }
     if (j == 0) return C(a, i - 1);
     return C(a, i) * MEMO_S2[p - 1][j] % p;
   }
 
-private:
+ private:
   void build_C() {
     auto& A = MEMO_C;
     A.resize(p);

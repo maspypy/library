@@ -2,25 +2,19 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "nt/primetest.hpp"
+#include "nt/is_prime.hpp"
 
 void solve() {
   ll ANS = 0;
   LL(N);
   FOR(N) {
     LL(p);
-    ANS += primetest(p);
+    ANS += is_prime(p);
   }
   print(ANS);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
