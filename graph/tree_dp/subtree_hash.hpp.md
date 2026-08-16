@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/modint61.hpp\"\n\nstruct modint61 {\n  static constexpr\
@@ -695,11 +695,11 @@ data:
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 3 \"\
     graph/tree_dp/rerooting_dp.hpp\"\n\ntemplate <typename TREE, typename Data>\n\
-    struct Rerooting_dp {\n  static_assert(!TREE::Graph_type::is_directed);\n  TREE&\
+    struct Rerooting_DP {\n  static_assert(!TREE::Graph_type::is_directed);\n  TREE&\
     \ tree;\n  vc<Data> dp_1;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
     \u6728 v\n  vc<Data> dp_2;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
     \u6728 p\n  vc<Data> dp;    // full tree\n\n  template <typename F1, typename\
-    \ F2, typename F3>\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
+    \ F2, typename F3>\n  Rerooting_DP(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
     \ Data unit)\n      : tree(tree) {\n    build(f_ee, f_ev, f_ve, unit);\n  }\n\n\
     \  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  Data operator[](int\
     \ v) { return dp[v]; }\n\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\
@@ -768,8 +768,8 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_hash.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 08:30:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp

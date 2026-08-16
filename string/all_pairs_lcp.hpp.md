@@ -1,0 +1,33 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"string/all_pairs_lcp.hpp\"\n// dp[i][j] = lcp(S[i:], T[j:])\n\
+    template <typename STRING>\nvvc<int> all_pairs_lcp(STRING& S, STRING& T) {\n \
+    \ int N = len(S), M = len(T);\n  vv(int, dp, N, M);\n  FOR_R(i, N) FOR_R(j, M)\
+    \ {\n    if (S[i] != T[j]) continue;\n    dp[i][j] = 1 + (i + 1 < N && j + 1 <\
+    \ M ? dp[i + 1][j + 1] : 0);\n  }\n  return dp;\n}\n"
+  code: "// dp[i][j] = lcp(S[i:], T[j:])\ntemplate <typename STRING>\nvvc<int> all_pairs_lcp(STRING&\
+    \ S, STRING& T) {\n  int N = len(S), M = len(T);\n  vv(int, dp, N, M);\n  FOR_R(i,\
+    \ N) FOR_R(j, M) {\n    if (S[i] != T[j]) continue;\n    dp[i][j] = 1 + (i + 1\
+    \ < N && j + 1 < M ? dp[i + 1][j + 1] : 0);\n  }\n  return dp;\n}"
+  dependsOn: []
+  isVerificationFile: false
+  path: string/all_pairs_lcp.hpp
+  requiredBy: []
+  timestamp: '2026-08-17 08:30:43+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: string/all_pairs_lcp.hpp
+layout: document
+redirect_from:
+- /library/string/all_pairs_lcp.hpp
+- /library/string/all_pairs_lcp.hpp.html
+title: string/all_pairs_lcp.hpp
+---

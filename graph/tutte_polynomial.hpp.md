@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
@@ -182,63 +182,64 @@ data:
     \ mint(0) : pow[j - 1]);\n  }\n  // to egf\n  mint factorial = 1;\n  FOR(j, D\
     \ + 1) g[j] *= factorial, factorial *= mint(j + 1);\n  return sps_composition_egf<mint,\
     \ LIM>(g, s);\n}\n#line 4 \"graph/tutte_polynomial.hpp\"\n\ntemplate <typename\
-    \ mint, int NMAX>\nmint Tutte_Polynomial_Eval_connected(Graph<int, 0> G, mint\
+    \ mint, int NMAX>\nmint tutte_polynomial_eval_connected(Graph<int, 0> G, mint\
     \ X, mint Y) {\n  int N = G.N;\n  X -= 1, Y -= 1;\n  /*\n  V \u306E\u9023\u7D50\
     \u6210\u5206\u5206\u89E3\u3092\u8003\u3048\u308B\u3068,\n  \u5404\u90E8\u5206\u96C6\
     \u5408\u306B S \u306B\u5BFE\u3057\u3066, S \u3092 span \u3059\u308B A \u306E\u9078\
-    \u3073\u65B9\u306B\u5BFE\u3059\u308B y^{cycle} \u306E sum \u3092 F[S] \u3068\u3057\
-    \u3066\n  c[n]F^n/n!, c[n] = X^{n-k(E)} \u3068\u3057\u3066 EGF composition \u3067\
-    \u3067\u304D\u308B.\n\n  F[S] \u306E\u8A08\u7B97\n  1 \u70B9\u305A\u3064\u8DB3\
-    \u3057\u3066\u3044\u304F\n  \u96C6\u5408\u306B\u8FBA\u306E\u500B\u6570\u306B\u5FDC\
-    \u3058\u305F\u91CD\u307F\u3092\u3064\u3051\u3066 exp\n  \u91CD\u307F C(N,1) +\
-    \ C(N,2)Y + C(N,3)YY+...\n  */\n\n  vv(mint, bin, N + 1, N + 1);\n  bin[0][0]\
-    \ = 1;\n  FOR(i, N) FOR(j, i + 1) bin[i + 1][j] += bin[i][j], bin[i + 1][j + 1]\
-    \ += bin[i][j];\n  vc<mint> wt(N + 1);\n  FOR(n, 1, N + 1) {\n    mint pow = 1;\n\
-    \    FOR(m, 1, n + 1) { wt[n] += bin[n][m] * pow, pow *= Y; }\n  }\n  vc<mint>\
-    \ F(1 << N);\n  FOR(v, N) {\n    u32 nbd = 0;\n    for (auto& e: G[v]) nbd |=\
-    \ 1 << e.to;\n    vc<mint> f(1 << v);\n    FOR(s, 1 << v) { f[s] = F[s] * wt[popcnt(s\
-    \ & nbd)]; }\n    f = sps_exp<mint, NMAX>(f);\n    FOR(s, 1 << v) { F[s | 1 <<\
-    \ v] = f[s]; }\n  }\n  if (X == mint(0)) { return F.back(); }\n\n  // X \u3067\
-    \u5272\u308C\u306A\u3044\u3068\u304D\u306F\u3053\u3046\u3059\u308C\u3070\u52D5\
-    \u304F. \u4F55\u3082\u304B\u3082\u304C\u74B0\u3067\u52D5\u4F5C\u3059\u308B.\n\
-    \  // vc<mint> c(N + 1);\n  // mint pow = 1;\n  // FOR(n, 1, N + 1) { c[n] = pow,\
-    \ pow *= X; }\n  // F = sps_composition_egf<mint, NMAX>(c, F);\n  // return F.back();\n\
-    \  FOR(s, 1 << N) F[s] *= X;\n  F = sps_exp<mint, NMAX>(F);\n  return F.back()\
-    \ * X.inverse();\n}\n\n// QOJ 45\ntemplate <typename mint, int NMAX>\nmint Tutte_Polynomial_Eval(Graph<int,\
-    \ 0> G, mint X, mint Y) {\n  int N = G.N;\n  UnionFind uf(N);\n  for (auto& e:\
-    \ G.edges) uf.merge(e.frm, e.to);\n  vvc<int> vs(N);\n  FOR(v, N) vs[uf[v]].eb(v);\n\
-    \  mint ANS = 1;\n  for (auto& V: vs) {\n    if (V.empty()) continue;\n    Graph<int,\
-    \ 0> H = G.rearrange(V);\n    ANS *= Tutte_Polynomial_Eval_connected<mint, NMAX>(H,\
-    \ X, Y);\n  }\n  return ANS;\n}\n"
+    \u3073\u65B9\u306B\u5BFE\u3059\u308B y^{cycle} \u306E sum \u3092\n  F[S] \u3068\
+    \u3057\u3066 c[n]F^n/n!, c[n] = X^{n-k(E)} \u3068\u3057\u3066 EGF composition\
+    \ \u3067\u3067\u304D\u308B.\n\n  F[S] \u306E\u8A08\u7B97\n  1 \u70B9\u305A\u3064\
+    \u8DB3\u3057\u3066\u3044\u304F\n  \u96C6\u5408\u306B\u8FBA\u306E\u500B\u6570\u306B\
+    \u5FDC\u3058\u305F\u91CD\u307F\u3092\u3064\u3051\u3066 exp\n  \u91CD\u307F C(N,1)\
+    \ + C(N,2)Y + C(N,3)YY+...\n  */\n\n  vv(mint, bin, N + 1, N + 1);\n  bin[0][0]\
+    \ = 1;\n  FOR(i, N)\n  FOR(j, i + 1) bin[i + 1][j] += bin[i][j],\n      bin[i\
+    \ + 1][j + 1] += bin[i][j];\n  vc<mint> wt(N + 1);\n  FOR(n, 1, N + 1) {\n   \
+    \ mint pow = 1;\n    FOR(m, 1, n + 1) { wt[n] += bin[n][m] * pow, pow *= Y; }\n\
+    \  }\n  vc<mint> F(1 << N);\n  FOR(v, N) {\n    u32 nbd = 0;\n    for (auto& e\
+    \ : G[v]) nbd |= 1 << e.to;\n    vc<mint> f(1 << v);\n    FOR(s, 1 << v) { f[s]\
+    \ = F[s] * wt[popcnt(s & nbd)]; }\n    f = sps_exp<mint, NMAX>(f);\n    FOR(s,\
+    \ 1 << v) { F[s | 1 << v] = f[s]; }\n  }\n  if (X == mint(0)) {\n    return F.back();\n\
+    \  }\n\n  // X \u3067\u5272\u308C\u306A\u3044\u3068\u304D\u306F\u3053\u3046\u3059\
+    \u308C\u3070\u52D5\u304F. \u4F55\u3082\u304B\u3082\u304C\u74B0\u3067\u52D5\u4F5C\
+    \u3059\u308B.\n  // vc<mint> c(N + 1);\n  // mint pow = 1;\n  // FOR(n, 1, N +\
+    \ 1) { c[n] = pow, pow *= X; }\n  // F = sps_composition_egf<mint, NMAX>(c, F);\n\
+    \  // return F.back();\n  FOR(s, 1 << N) F[s] *= X;\n  F = sps_exp<mint, NMAX>(F);\n\
+    \  return F.back() * X.inverse();\n}\n\n// QOJ 45\ntemplate <typename mint, int\
+    \ NMAX>\nmint tutte_polynomial_eval(Graph<int, 0> G, mint X, mint Y) {\n  int\
+    \ N = G.N;\n  UnionFind uf(N);\n  for (auto& e : G.edges) uf.merge(e.frm, e.to);\n\
+    \  vvc<int> vs(N);\n  FOR(v, N) vs[uf[v]].eb(v);\n  mint ANS = 1;\n  for (auto&\
+    \ V : vs) {\n    if (V.empty()) continue;\n    Graph<int, 0> H = G.rearrange(V);\n\
+    \    ANS *= tutte_polynomial_eval_connected<mint, NMAX>(H, X, Y);\n  }\n  return\
+    \ ANS;\n}\n"
   code: "#include \"ds/unionfind/unionfind.hpp\"\n#include \"setfunc/sps_exp.hpp\"\
     \n#include \"setfunc/sps_composition.hpp\"\n\ntemplate <typename mint, int NMAX>\n\
-    mint Tutte_Polynomial_Eval_connected(Graph<int, 0> G, mint X, mint Y) {\n  int\
+    mint tutte_polynomial_eval_connected(Graph<int, 0> G, mint X, mint Y) {\n  int\
     \ N = G.N;\n  X -= 1, Y -= 1;\n  /*\n  V \u306E\u9023\u7D50\u6210\u5206\u5206\u89E3\
     \u3092\u8003\u3048\u308B\u3068,\n  \u5404\u90E8\u5206\u96C6\u5408\u306B S \u306B\
     \u5BFE\u3057\u3066, S \u3092 span \u3059\u308B A \u306E\u9078\u3073\u65B9\u306B\
-    \u5BFE\u3059\u308B y^{cycle} \u306E sum \u3092 F[S] \u3068\u3057\u3066\n  c[n]F^n/n!,\
+    \u5BFE\u3059\u308B y^{cycle} \u306E sum \u3092\n  F[S] \u3068\u3057\u3066 c[n]F^n/n!,\
     \ c[n] = X^{n-k(E)} \u3068\u3057\u3066 EGF composition \u3067\u3067\u304D\u308B\
     .\n\n  F[S] \u306E\u8A08\u7B97\n  1 \u70B9\u305A\u3064\u8DB3\u3057\u3066\u3044\
     \u304F\n  \u96C6\u5408\u306B\u8FBA\u306E\u500B\u6570\u306B\u5FDC\u3058\u305F\u91CD\
     \u307F\u3092\u3064\u3051\u3066 exp\n  \u91CD\u307F C(N,1) + C(N,2)Y + C(N,3)YY+...\n\
-    \  */\n\n  vv(mint, bin, N + 1, N + 1);\n  bin[0][0] = 1;\n  FOR(i, N) FOR(j,\
-    \ i + 1) bin[i + 1][j] += bin[i][j], bin[i + 1][j + 1] += bin[i][j];\n  vc<mint>\
-    \ wt(N + 1);\n  FOR(n, 1, N + 1) {\n    mint pow = 1;\n    FOR(m, 1, n + 1) {\
-    \ wt[n] += bin[n][m] * pow, pow *= Y; }\n  }\n  vc<mint> F(1 << N);\n  FOR(v,\
-    \ N) {\n    u32 nbd = 0;\n    for (auto& e: G[v]) nbd |= 1 << e.to;\n    vc<mint>\
-    \ f(1 << v);\n    FOR(s, 1 << v) { f[s] = F[s] * wt[popcnt(s & nbd)]; }\n    f\
-    \ = sps_exp<mint, NMAX>(f);\n    FOR(s, 1 << v) { F[s | 1 << v] = f[s]; }\n  }\n\
-    \  if (X == mint(0)) { return F.back(); }\n\n  // X \u3067\u5272\u308C\u306A\u3044\
-    \u3068\u304D\u306F\u3053\u3046\u3059\u308C\u3070\u52D5\u304F. \u4F55\u3082\u304B\
-    \u3082\u304C\u74B0\u3067\u52D5\u4F5C\u3059\u308B.\n  // vc<mint> c(N + 1);\n \
-    \ // mint pow = 1;\n  // FOR(n, 1, N + 1) { c[n] = pow, pow *= X; }\n  // F =\
-    \ sps_composition_egf<mint, NMAX>(c, F);\n  // return F.back();\n  FOR(s, 1 <<\
-    \ N) F[s] *= X;\n  F = sps_exp<mint, NMAX>(F);\n  return F.back() * X.inverse();\n\
-    }\n\n// QOJ 45\ntemplate <typename mint, int NMAX>\nmint Tutte_Polynomial_Eval(Graph<int,\
-    \ 0> G, mint X, mint Y) {\n  int N = G.N;\n  UnionFind uf(N);\n  for (auto& e:\
-    \ G.edges) uf.merge(e.frm, e.to);\n  vvc<int> vs(N);\n  FOR(v, N) vs[uf[v]].eb(v);\n\
-    \  mint ANS = 1;\n  for (auto& V: vs) {\n    if (V.empty()) continue;\n    Graph<int,\
-    \ 0> H = G.rearrange(V);\n    ANS *= Tutte_Polynomial_Eval_connected<mint, NMAX>(H,\
+    \  */\n\n  vv(mint, bin, N + 1, N + 1);\n  bin[0][0] = 1;\n  FOR(i, N)\n  FOR(j,\
+    \ i + 1) bin[i + 1][j] += bin[i][j],\n      bin[i + 1][j + 1] += bin[i][j];\n\
+    \  vc<mint> wt(N + 1);\n  FOR(n, 1, N + 1) {\n    mint pow = 1;\n    FOR(m, 1,\
+    \ n + 1) { wt[n] += bin[n][m] * pow, pow *= Y; }\n  }\n  vc<mint> F(1 << N);\n\
+    \  FOR(v, N) {\n    u32 nbd = 0;\n    for (auto& e : G[v]) nbd |= 1 << e.to;\n\
+    \    vc<mint> f(1 << v);\n    FOR(s, 1 << v) { f[s] = F[s] * wt[popcnt(s & nbd)];\
+    \ }\n    f = sps_exp<mint, NMAX>(f);\n    FOR(s, 1 << v) { F[s | 1 << v] = f[s];\
+    \ }\n  }\n  if (X == mint(0)) {\n    return F.back();\n  }\n\n  // X \u3067\u5272\
+    \u308C\u306A\u3044\u3068\u304D\u306F\u3053\u3046\u3059\u308C\u3070\u52D5\u304F\
+    . \u4F55\u3082\u304B\u3082\u304C\u74B0\u3067\u52D5\u4F5C\u3059\u308B.\n  // vc<mint>\
+    \ c(N + 1);\n  // mint pow = 1;\n  // FOR(n, 1, N + 1) { c[n] = pow, pow *= X;\
+    \ }\n  // F = sps_composition_egf<mint, NMAX>(c, F);\n  // return F.back();\n\
+    \  FOR(s, 1 << N) F[s] *= X;\n  F = sps_exp<mint, NMAX>(F);\n  return F.back()\
+    \ * X.inverse();\n}\n\n// QOJ 45\ntemplate <typename mint, int NMAX>\nmint tutte_polynomial_eval(Graph<int,\
+    \ 0> G, mint X, mint Y) {\n  int N = G.N;\n  UnionFind uf(N);\n  for (auto& e\
+    \ : G.edges) uf.merge(e.frm, e.to);\n  vvc<int> vs(N);\n  FOR(v, N) vs[uf[v]].eb(v);\n\
+    \  mint ANS = 1;\n  for (auto& V : vs) {\n    if (V.empty()) continue;\n    Graph<int,\
+    \ 0> H = G.rearrange(V);\n    ANS *= tutte_polynomial_eval_connected<mint, NMAX>(H,\
     \ X, Y);\n  }\n  return ANS;\n}\n"
   dependsOn:
   - ds/unionfind/unionfind.hpp
@@ -251,7 +252,7 @@ data:
   isVerificationFile: false
   path: graph/tutte_polynomial.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 08:30:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tutte_polynomial.hpp

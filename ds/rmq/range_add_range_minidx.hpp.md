@@ -58,17 +58,17 @@ data:
     \ /= 2;\n    }\n    return x;\n  }\n};\n#line 2 \"ds/rmq/range_add_range_minidx.hpp\"\
     \n\n// INF+x==INF \u307F\u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\
     \u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\
-    \u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_MaxIdx {\n  struct\
+    \u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_MinIdx {\n  struct\
     \ Data {\n    T sum, min;\n    int idx;\n  };\n\n  struct Mono {\n    using value_type\
     \ = Data;\n    using X = value_type;\n    static X op(X L, X R) {\n      if (L.min\
     \ <= L.sum + R.min) {\n        return {L.sum + R.sum, L.min, L.idx};\n      }\n\
     \      return {L.sum + R.sum, L.sum + R.min, R.idx};\n    }\n    static constexpr\
     \ X unit() { return {0, 2 * infty<T>, -1}; }\n    static constexpr bool commute\
-    \ = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_MaxIdx()\
+    \ = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_MinIdx()\
     \ {}\n  // (n) \u3060\u3051\u3060\u3068 0 \u57CB\u3081\u3067\u521D\u671F\u5316\
-    \u3057\u307E\u3059\n  Range_Add_Range_MaxIdx(int n) { build(n); }\n  template\
-    \ <typename F>\n  Range_Add_Range_MaxIdx(int n, F f) {\n    build(n, f);\n  }\n\
-    \  Range_Add_Range_MaxIdx(const vc<T>& v) { build(v); }\n\n  void build(int m)\
+    \u3057\u307E\u3059\n  Range_Add_Range_MinIdx(int n) { build(n); }\n  template\
+    \ <typename F>\n  Range_Add_Range_MinIdx(int n, F f) {\n    build(n, f);\n  }\n\
+    \  Range_Add_Range_MinIdx(const vc<T>& v) { build(v); }\n\n  void build(int m)\
     \ {\n    build(m, [](int i) -> T { return 0; });\n  }\n  void build(const vc<T>&\
     \ v) {\n    build(len(v), [&](int i) -> T { return v[i]; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    lazy = 0;\n    n = m;\n    T pre\
@@ -91,17 +91,17 @@ data:
     \ i + 1, x - now);\n  }\n};\n"
   code: "#include \"ds/segtree/segtree.hpp\"\n\n// INF+x==INF \u307F\u305F\u3044\u306A\
     \u51E6\u7406\u306F\u5165\u308C\u3066\u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree\
-    \ \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_MaxIdx\
+    \ \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_MinIdx\
     \ {\n  struct Data {\n    T sum, min;\n    int idx;\n  };\n\n  struct Mono {\n\
     \    using value_type = Data;\n    using X = value_type;\n    static X op(X L,\
     \ X R) {\n      if (L.min <= L.sum + R.min) {\n        return {L.sum + R.sum,\
     \ L.min, L.idx};\n      }\n      return {L.sum + R.sum, L.sum + R.min, R.idx};\n\
     \    }\n    static constexpr X unit() { return {0, 2 * infty<T>, -1}; }\n    static\
     \ constexpr bool commute = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono>\
-    \ seg;\n\n  Range_Add_Range_MaxIdx() {}\n  // (n) \u3060\u3051\u3060\u3068 0 \u57CB\
-    \u3081\u3067\u521D\u671F\u5316\u3057\u307E\u3059\n  Range_Add_Range_MaxIdx(int\
-    \ n) { build(n); }\n  template <typename F>\n  Range_Add_Range_MaxIdx(int n, F\
-    \ f) {\n    build(n, f);\n  }\n  Range_Add_Range_MaxIdx(const vc<T>& v) { build(v);\
+    \ seg;\n\n  Range_Add_Range_MinIdx() {}\n  // (n) \u3060\u3051\u3060\u3068 0 \u57CB\
+    \u3081\u3067\u521D\u671F\u5316\u3057\u307E\u3059\n  Range_Add_Range_MinIdx(int\
+    \ n) { build(n); }\n  template <typename F>\n  Range_Add_Range_MinIdx(int n, F\
+    \ f) {\n    build(n, f);\n  }\n  Range_Add_Range_MinIdx(const vc<T>& v) { build(v);\
     \ }\n\n  void build(int m) {\n    build(m, [](int i) -> T { return 0; });\n  }\n\
     \  void build(const vc<T>& v) {\n    build(len(v), [&](int i) -> T { return v[i];\
     \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    lazy = 0;\n\
@@ -127,7 +127,7 @@ data:
   isVerificationFile: false
   path: ds/rmq/range_add_range_minidx.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 08:30:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/rmq/range_add_range_minidx.hpp

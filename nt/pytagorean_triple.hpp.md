@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/pytagorean_triples.test.cpp
     title: test/1_mytest/pytagorean_triples.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/60/problem/D
@@ -16,7 +16,7 @@ data:
     \ (b,a,c) \u306F\u540C\u4E00\u8996, O(LIM) \u6642\u9593\n\u30FBLIM = 10^8\uFF1A\
     \u4E92\u3044\u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\u30FBLIM = 10^8\uFF1A\u5168\
     \u90E8 2.71*10^8 \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n\
-    */\ntemplate <bool coprime_only, typename F>\nvoid enumerate_pytagorean_triple(int\
+    */\ntemplate <bool coprime_only, typename F>\nvoid enumerate_pythagorean_triple(int\
     \ LIM, F f) {\n  vc<tuple<int, int, int>> que;\n  auto add = [&](int a, int b,\
     \ int c) -> void {\n    if (c <= LIM) que.eb(a, b, c);\n  };\n  add(3, 4, 5);\n\
     \  while (len(que)) {\n    auto [a, b, c] = POP(que);\n    add(a - 2 * b + 2 *\
@@ -29,7 +29,7 @@ data:
   code: "\n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c) \u306F\u540C\u4E00\u8996, O(LIM) \u6642\
     \u9593\n\u30FBLIM = 10^8\uFF1A\u4E92\u3044\u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\
     \u30FBLIM = 10^8\uFF1A\u5168\u90E8 2.71*10^8 \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n\
-    */\ntemplate <bool coprime_only, typename F>\nvoid enumerate_pytagorean_triple(int\
+    */\ntemplate <bool coprime_only, typename F>\nvoid enumerate_pythagorean_triple(int\
     \ LIM, F f) {\n  vc<tuple<int, int, int>> que;\n  auto add = [&](int a, int b,\
     \ int c) -> void {\n    if (c <= LIM) que.eb(a, b, c);\n  };\n  add(3, 4, 5);\n\
     \  while (len(que)) {\n    auto [a, b, c] = POP(que);\n    add(a - 2 * b + 2 *\
@@ -43,8 +43,8 @@ data:
   isVerificationFile: false
   path: nt/pytagorean_triple.hpp
   requiredBy: []
-  timestamp: '2023-11-03 16:49:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 08:30:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/pytagorean_triples.test.cpp
 documentation_of: nt/pytagorean_triple.hpp

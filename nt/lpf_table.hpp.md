@@ -4,32 +4,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: mod/modfast.hpp
-    title: mod/modfast.hpp
-  - icon: ':warning:'
-    path: nt/all_lcm.hpp
-    title: nt/all_lcm.hpp
-  - icon: ':warning:'
-    path: nt/find_coprime_pair.hpp
-    title: nt/find_coprime_pair.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/modfast.test.cpp
-    title: test/1_mytest/modfast.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1411.test.cpp
-    title: test/3_yukicoder/1411.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1575.test.cpp
-    title: test/3_yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1881.test.cpp
-    title: test/3_yukicoder/1881.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -56,17 +35,10 @@ data:
   - nt/prime_table.hpp
   isVerificationFile: false
   path: nt/lpf_table.hpp
-  requiredBy:
-  - nt/all_lcm.hpp
-  - nt/find_coprime_pair.hpp
-  - mod/modfast.hpp
+  requiredBy: []
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/modfast.test.cpp
-  - test/3_yukicoder/1881.test.cpp
-  - test/3_yukicoder/1411.test.cpp
-  - test/3_yukicoder/1575.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: nt/lpf_table.hpp
 layout: document
 redirect_from:

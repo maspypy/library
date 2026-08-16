@@ -27,9 +27,6 @@ data:
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
-    path: geo/manhattan_nns.hpp
-    title: geo/manhattan_nns.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -38,9 +35,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':warning:'
-    path: string/basic_substring_structure.hpp
-    title: string/basic_substring_structure.hpp
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
@@ -54,9 +48,6 @@ data:
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
   - icon: ':warning:'
-    path: string/substring_count_in_substring.hpp
-    title: string/substring_count_in_substring.hpp
-  - icon: ':warning:'
     path: string/substring_shortest_border.hpp
     title: string/substring_shortest_border.hpp
   - icon: ':heavy_check_mark:'
@@ -65,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -75,9 +66,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/manhattan_nns.test.cpp
-    title: test/1_mytest/manhattan_nns.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
@@ -160,9 +148,6 @@ data:
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2361.test.cpp
-    title: test/3_yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
@@ -172,17 +157,11 @@ data:
     path: test/3_yukicoder/2890.test.cpp
     title: test/3_yukicoder/2890.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2897.test.cpp
-    title: test/3_yukicoder/2897.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/529.test.cpp
-    title: test/3_yukicoder/529.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
@@ -299,21 +278,17 @@ data:
   - ds/offline_query/uniqueproductquery.hpp
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
-  - geo/manhattan_nns.hpp
   - string/suffix_lcp_change.hpp
   - string/many_string_compare.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
-  - string/basic_substring_structure.hpp
   - string/suffix_tree.hpp
   - string/sort_substrings.hpp
-  - string/substring_count_in_substring.hpp
   - string/suffix_array.hpp
   - string/longest_common_substring.hpp
   - string/substring_shortest_border.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/manhattan_nns.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/range_assign.test.cpp
@@ -341,14 +316,11 @@ data:
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/ITP2_3_B.test.cpp
   - test/3_yukicoder/2890.test.cpp
-  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1036_2.test.cpp
   - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/2897.test.cpp
   - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/1435.test.cpp
-  - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/1625_2.test.cpp
   - test/3_yukicoder/3148.test.cpp
   - test/3_yukicoder/1549.test.cpp

@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: alg/monoid/merge_vector_space.hpp
-    title: alg/monoid/merge_vector_space.hpp
-  - icon: ':warning:'
     path: linalg/xor/solve_linear.hpp
     title: linalg/xor/solve_linear.hpp
   - icon: ':heavy_check_mark:'
@@ -59,7 +56,6 @@ data:
   requiredBy:
   - linalg/xor/vector_space.hpp
   - linalg/xor/solve_linear.hpp
-  - alg/monoid/merge_vector_space.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -418,8 +418,8 @@ data:
     \  string to_string() {\n    string out;\n    FOR(i, N) out += '0' + (dat[i /\
     \ 64] >> (i & 63) & 1);\n    return out;\n  }\n};\n#line 7 \"graph/ds/range_edge_connected_component_query.hpp\"\
     \n\n// https://codeforces.com/problemset/problem/1386/C (TLE)\n// query(L,R) =\
-    \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Conneced_Component_Query\
-    \ {\n  Graph<int, 0>& G;\n  vc<pair<int, int>> query;\n\n  Range_Edge_Conneced_Component_Query(Graph<int,\
+    \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Connected_Component_Query\
+    \ {\n  Graph<int, 0>& G;\n  vc<pair<int, int>> query;\n\n  Range_Edge_Connected_Component_Query(Graph<int,\
     \ 0>& G) : G(G) {}\n\n  void add_query(int l, int r) { query.eb(l, r); }\n\n \
     \ using Mono = Monoid_Min<int>;\n  using Node = LCT_Node_Commutative_Monoid<Mono>;\n\
     \n  vc<int> calc() {\n    int N = G.N, M = G.M;\n    Link_Cut_Tree<Node> LCT(N\
@@ -431,14 +431,14 @@ data:
     \ b);\n        int c = G.edges[k].frm, d = G.edges[k].to;\n        bit.add(k,\
     \ -1);\n        LCT.cut(c, N + k), LCT.cut(d, N + k);\n      }\n      if (a !=\
     \ b) {\n        LCT.set(N + i, i);\n        LCT.link(a, N + i), LCT.link(b, N\
-    \ + i);\n        bit.add(i, 1);\n      }\n      for (auto& q: QID[i]) {\n    \
-    \    auto [l, r] = query[q];\n        ANS[q] = N - bit.sum(l, r);\n      }\n \
-    \   }\n    return ANS;\n  }\n};\n"
+    \ + i);\n        bit.add(i, 1);\n      }\n      for (auto& q : QID[i]) {\n   \
+    \     auto [l, r] = query[q];\n        ANS[q] = N - bit.sum(l, r);\n      }\n\
+    \    }\n    return ANS;\n  }\n};\n"
   code: "\n#include \"graph/ds/link_cut_tree.hpp\"\n#include \"graph/ds/lct_node_commutative_monoid.hpp\"\
     \n#include \"alg/monoid/min.hpp\"\n#include \"graph/base.hpp\"\n#include \"ds/fenwicktree/fenwicktree_01.hpp\"\
     \n\n// https://codeforces.com/problemset/problem/1386/C (TLE)\n// query(L,R) =\
-    \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Conneced_Component_Query\
-    \ {\n  Graph<int, 0>& G;\n  vc<pair<int, int>> query;\n\n  Range_Edge_Conneced_Component_Query(Graph<int,\
+    \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Connected_Component_Query\
+    \ {\n  Graph<int, 0>& G;\n  vc<pair<int, int>> query;\n\n  Range_Edge_Connected_Component_Query(Graph<int,\
     \ 0>& G) : G(G) {}\n\n  void add_query(int l, int r) { query.eb(l, r); }\n\n \
     \ using Mono = Monoid_Min<int>;\n  using Node = LCT_Node_Commutative_Monoid<Mono>;\n\
     \n  vc<int> calc() {\n    int N = G.N, M = G.M;\n    Link_Cut_Tree<Node> LCT(N\
@@ -450,9 +450,9 @@ data:
     \ b);\n        int c = G.edges[k].frm, d = G.edges[k].to;\n        bit.add(k,\
     \ -1);\n        LCT.cut(c, N + k), LCT.cut(d, N + k);\n      }\n      if (a !=\
     \ b) {\n        LCT.set(N + i, i);\n        LCT.link(a, N + i), LCT.link(b, N\
-    \ + i);\n        bit.add(i, 1);\n      }\n      for (auto& q: QID[i]) {\n    \
-    \    auto [l, r] = query[q];\n        ANS[q] = N - bit.sum(l, r);\n      }\n \
-    \   }\n    return ANS;\n  }\n};"
+    \ + i);\n        bit.add(i, 1);\n      }\n      for (auto& q : QID[i]) {\n   \
+    \     auto [l, r] = query[q];\n        ANS[q] = N - bit.sum(l, r);\n      }\n\
+    \    }\n    return ANS;\n  }\n};"
   dependsOn:
   - graph/ds/link_cut_tree.hpp
   - graph/ds/lct_node_commutative_monoid.hpp
@@ -466,7 +466,7 @@ data:
   isVerificationFile: false
   path: graph/ds/range_edge_connected_component_query.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 08:30:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/range_edge_connected_component_query.hpp

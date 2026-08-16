@@ -9,9 +9,6 @@ data:
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/chromatic.hpp
-    title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
@@ -131,9 +128,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multipoint_evaluation_for_prefix_product.hpp
     title: poly/multipoint_evaluation_for_prefix_product.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/multivar_convolution_cyclic.hpp
-    title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
@@ -340,14 +334,8 @@ data:
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-    title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
@@ -363,12 +351,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/graph/chromatic_number.test.cpp
-    title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
@@ -403,32 +385,14 @@ data:
     path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-    title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
-    title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-    title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
@@ -436,14 +400,8 @@ data:
     path: test/2_library_checker/polynomial/log_of_fps.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-    title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
@@ -466,14 +424,8 @@ data:
     path: test/2_library_checker/polynomial/pow_of_fps.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-    title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/slice_rational.test.cpp
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
@@ -517,9 +469,6 @@ data:
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1575.test.cpp
-    title: test/3_yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1755.test.cpp
     title: test/3_yukicoder/1755.test.cpp
   - icon: ':heavy_check_mark:'
@@ -562,17 +511,8 @@ data:
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2877.test.cpp
-    title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2944.test.cpp
     title: test/3_yukicoder/2944.test.cpp
@@ -623,7 +563,6 @@ data:
   - graph/count/count_labeled_dag.hpp
   - graph/count/count_labeled_strong_tournament.hpp
   - graph/count/count_labeled_unicyclic.hpp
-  - graph/chromatic.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/finding_root_of_polynomial.hpp
   - poly/poly_gcd.hpp
@@ -636,7 +575,6 @@ data:
   - poly/composition_f_ex_minus_1.hpp
   - poly/poly_mod_pow.hpp
   - poly/sum_of_exp_bx.hpp
-  - poly/multivar_convolution_cyclic.hpp
   - poly/coef_of_rational_fps.hpp
   - poly/fps_pow.hpp
   - poly/multipoint_evaluation_for_prefix_product.hpp
@@ -713,7 +651,6 @@ data:
   - test/1_mytest/count_labeled_connected.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/chirp_z.test.cpp
@@ -730,38 +667,25 @@ data:
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/log_of_fps.test.cpp
   - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/polynomial/polynomial_division.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
-  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
   - test/2_library_checker/other/find_linear_recurrence.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -772,14 +696,12 @@ data:
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
   - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/2097.test.cpp
   - test/3_yukicoder/1755.test.cpp
   - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/2062.test.cpp
   - test/3_yukicoder/1357.test.cpp
@@ -790,7 +712,6 @@ data:
   - test/3_yukicoder/2305.test.cpp
   - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/1844.test.cpp
   - test/3_yukicoder/2243.test.cpp
@@ -798,7 +719,6 @@ data:
   - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/2944.test.cpp
   - test/3_yukicoder/1875.test.cpp
-  - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/1549.test.cpp
   - test/3_yukicoder/1939.test.cpp
   - test/3_yukicoder/541.test.cpp

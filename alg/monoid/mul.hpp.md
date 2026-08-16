@@ -11,10 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/mod_log.hpp
-    title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
@@ -52,9 +49,6 @@ data:
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-    title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,9 +57,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1339.test.cpp
-    title: test/3_yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2005.test.cpp
     title: test/3_yukicoder/2005.test.cpp
@@ -111,7 +102,6 @@ data:
   - seq/p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - alg/acted_monoid/sum_mul.hpp
-  - mod/mod_log.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -120,12 +110,10 @@ data:
   - test/1_mytest/powerquery.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/3_yukicoder/899.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
-  - test/3_yukicoder/1339.test.cpp
   - test/3_yukicoder/2005.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2747.test.cpp

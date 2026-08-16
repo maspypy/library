@@ -1,29 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/st_numbering.hpp
-    title: graph/st_numbering.hpp
-  - icon: ':warning:'
-    path: graph/tree_center.hpp
-    title: graph/tree_center.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_diameter.hpp
-    title: graph/tree_diameter.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/st_numbering.test.cpp
-    title: test/1_mytest/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/shortest_path.test.cpp
     title: test/2_library_checker/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/graph/st_numbering.test.cpp
-    title: test/2_library_checker/graph/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/tree_diameter.test.cpp
-    title: test/2_library_checker/tree/tree_diameter.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -38,17 +20,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: graph/shortest_path/restore_path.hpp
-  requiredBy:
-  - graph/st_numbering.hpp
-  - graph/tree_diameter.hpp
-  - graph/tree_center.hpp
+  requiredBy: []
   timestamp: '2022-10-21 18:11:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/st_numbering.test.cpp
-  - test/2_library_checker/graph/st_numbering.test.cpp
   - test/2_library_checker/graph/shortest_path.test.cpp
-  - test/2_library_checker/tree/tree_diameter.test.cpp
 documentation_of: graph/shortest_path/restore_path.hpp
 layout: document
 redirect_from:

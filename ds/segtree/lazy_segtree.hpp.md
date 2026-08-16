@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
@@ -31,17 +31,11 @@ data:
     path: test/1_mytest/max_min.test.cpp
     title: test/1_mytest/max_min.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/maxidx_add.test.cpp
-    title: test/1_mytest/maxidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_max.test.cpp
     title: test/1_mytest/min_max.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/minidx_add.test.cpp
-    title: test/1_mytest/minidx_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/minmax_add.test.cpp
     title: test/1_mytest/minmax_add.test.cpp
@@ -302,7 +296,6 @@ data:
   verifiedWith:
   - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/range_assign.test.cpp
-  - test/1_mytest/maxidx_add.test.cpp
   - test/1_mytest/summin_assign.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/max_min.test.cpp
@@ -315,7 +308,6 @@ data:
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/summax_add.test.cpp
   - test/1_mytest/summax_assign.test.cpp
-  - test/1_mytest/minidx_add.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
   - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp

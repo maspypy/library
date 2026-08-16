@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
@@ -50,7 +50,7 @@ data:
   - icon: ':warning:'
     path: string/enumerate_occurrence.hpp
     title: string/enumerate_occurrence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -78,9 +78,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2361.test.cpp
-    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
@@ -125,7 +122,7 @@ data:
     \ : (1ULL << n) - 1; }\n#line 2 \"ds/fastset.hpp\"\n\n// 64-ary tree\n// space:\
     \ (N/63) * u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0,\
     \ log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\
-    \n  int size() { return n; }\n\n  void fillone() {\n    int cur = n;\n    for\
+    \n  int size() { return n; }\n\n  void fill_one() {\n    int cur = n;\n    for\
     \ (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i]\
     \ = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n\
     \    }\n  }\n\n  template <typename F>\n  FastSet(int n, F f) {\n    build(n,\
@@ -162,8 +159,8 @@ data:
   code: "#include \"other/bit.hpp\"\n\n// 64-ary tree\n// space: (N/63) * u64\nstruct\
     \ FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n  vvc<u64>\
     \ seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int size() { return\
-    \ n; }\n\n  void fillone() {\n    int cur = n;\n    for (auto& vs : seg) {\n \
-    \     int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n      if\
+    \ n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto& vs : seg) {\n\
+    \      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n      if\
     \ (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n    }\n  }\n\n  template\
     \ <typename F>\n  FastSet(int n, F f) {\n    build(n, f);\n  }\n\n  void build(int\
     \ m) {\n    seg.clear();\n    n = m;\n    do {\n      seg.push_back(vc<u64>((m\
@@ -217,7 +214,7 @@ data:
   - other/cuboid_union_volume.hpp
   - string/suffix_tree.hpp
   - string/enumerate_occurrence.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 08:30:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/all_cycle_common_vertex.test.cpp
@@ -230,7 +227,6 @@ data:
   - test/2_library_checker/data_structure/predecessor_problem.test.cpp
   - test/4_aoj/2251_1.test.cpp
   - test/4_aoj/2636.test.cpp
-  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2809.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document

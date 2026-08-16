@@ -1,40 +1,25 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/max_idx.hpp
-    title: alg/monoid/max_idx.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/maxidx_add.test.cpp
-    title: test/1_mytest/maxidx_add.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
-    \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/max_idx.hpp\"\
-    \n\ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_Max_Idx {\n\
-    \  using value_type = pair<T, int>;\n  using X = value_type;\n  static X op(X\
-    \ x, X y) {\n    if (x.fi > y.fi) return x;\n    if (x.fi < y.fi) return y;\n\
-    \    if (x.se > y.se) swap(x, y);\n    return (tie_is_left ? x : y);\n  }\n  static\
-    \ constexpr X unit() { return {-infty<T>, -1}; }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 3 \"alg/acted_monoid/maxidx_add.hpp\"\n\r\ntemplate <typename\
-    \ E, bool tie_is_left = true>\r\nstruct ActedMonoid_MaxIdx_Add {\r\n  using Monoid_X\
-    \ = Monoid_Max_Idx<E, tie_is_left>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n \
-    \ using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
-    \ (x.fi == -infty<E>) return x;\r\n    return {x.fi + a, x.se};\r\n  }\r\n};\r\
-    \n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid/max_idx.hpp:\
+    \ line -1: no such header\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/max_idx.hpp\"\r\n\
     \r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MaxIdx_Add\
     \ {\r\n  using Monoid_X = Monoid_Max_Idx<E, tie_is_left>;\r\n  using Monoid_A\
@@ -42,16 +27,13 @@ data:
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
     \ A &a, const ll &size) {\r\n    if (x.fi == -infty<E>) return x;\r\n    return\
     \ {x.fi + a, x.se};\r\n  }\r\n};\r\n"
-  dependsOn:
-  - alg/monoid/add.hpp
-  - alg/monoid/max_idx.hpp
+  dependsOn: []
   isVerificationFile: false
   path: alg/acted_monoid/maxidx_add.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/maxidx_add.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/acted_monoid/maxidx_add.hpp
 layout: document
 redirect_from:

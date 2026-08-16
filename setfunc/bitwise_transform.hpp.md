@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/chromatic.hpp
-    title: graph/chromatic.hpp
   - icon: ':warning:'
     path: graph/count/count_biconnected_subgraph.hpp
     title: graph/count/count_biconnected_subgraph.hpp
@@ -69,12 +66,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/graph/chromatic_number.test.cpp
-    title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
@@ -176,7 +167,6 @@ data:
   - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_connected_subgraph.hpp
   - graph/count/count_tree_subgraph.hpp
-  - graph/chromatic.hpp
   - graph/tutte_polynomial.hpp
   - setfunc/power_projection_of_sps.hpp
   - setfunc/zeta.hpp
@@ -193,8 +183,6 @@ data:
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
   - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp

@@ -60,9 +60,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/590.test.cpp
-    title: test/3_yukicoder/590.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -121,7 +118,6 @@ data:
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
   - test/3_yukicoder/1242.test.cpp
-  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1211.test.cpp
   - test/3_yukicoder/2362.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -21,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1881.test.cpp
-    title: test/3_yukicoder/1881.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
@@ -99,7 +96,6 @@ data:
   - test/1_mytest/tdpc_grid_dp.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1397.test.cpp
-  - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/541.test.cpp

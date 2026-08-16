@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -20,9 +20,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':warning:'
-    path: seq/sidon_sequence.hpp
-    title: seq/sidon_sequence.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
@@ -150,7 +147,6 @@ data:
   requiredBy:
   - graph/count/count_labeled_bipartite.hpp
   - poly/fps_sqrt.hpp
-  - seq/sidon_sequence.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

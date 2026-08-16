@@ -1,89 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/centroid_decomposition.hpp
-    title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/ds/contour_query_range.hpp
-    title: graph/ds/contour_query_range.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/st_numbering.hpp
-    title: graph/st_numbering.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_all_distances.hpp
-    title: graph/tree_all_distances.hpp
-  - icon: ':warning:'
-    path: graph/tree_center.hpp
-    title: graph/tree_center.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_diameter.hpp
-    title: graph/tree_diameter.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_walk_generating_function.hpp
-    title: graph/tree_walk_generating_function.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/st_numbering.test.cpp
-    title: test/1_mytest/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/graph/st_numbering.test.cpp
-    title: test/2_library_checker/graph/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-    title: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-    title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/tree_diameter.test.cpp
-    title: test/2_library_checker/tree/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1038.test.cpp
-    title: test/3_yukicoder/1038.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1718.test.cpp
-    title: test/3_yukicoder/1718.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1796_1.test.cpp
-    title: test/3_yukicoder/1796_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1868.test.cpp
-    title: test/3_yukicoder/1868.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2892.test.cpp
-    title: test/3_yukicoder/2892.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -185,82 +113,55 @@ data:
     \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"graph/shortest_path/bfs01.hpp\"\
-    \n\ntemplate <typename T, typename GT>\npair<vc<T>, vc<int>> bfs01(GT& G, int\
-    \ v) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
-    \  vc<int> par(N, -1);\n  deque<int> que;\n\n  dist[v] = 0;\n  que.push_front(v);\n\
-    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
-    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm]\
-    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] =\
-    \ e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n        else\n\
-    \          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par};\n\
-    }\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\ntemplate\
-    \ <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> bfs01(GT& G, vc<int>\
-    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
-    \  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
-    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
-    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
-    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm]\
-    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
-    \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
-    \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
-    \    }\n    }\n  }\n  return {dist, par, root};\n}\n"
-  code: "#include \"graph/base.hpp\"\n\ntemplate <typename T, typename GT>\npair<vc<T>,\
-    \ vc<int>> bfs01(GT& G, int v) {\n  assert(G.is_prepared());\n  int N = G.N;\n\
-    \  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  deque<int> que;\n\n  dist[v]\
-    \ = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n    auto v = que.front();\n\
-    \    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T>\
-    \ || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm] +\
-    \ e.cost;\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n\
-    \        else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
-    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
-    template <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> bfs01(GT& G,\
-    \ vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
-    \  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
-    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
-    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
-    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm]\
-    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
-    \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
-    \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
-    \    }\n    }\n  }\n  return {dist, par, root};\n}\n"
+    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"graph/shortest_path/bellman_ford.hpp\"\
+    \n\n// END=true: \u8CA0\u9589\u8DEF\u304C\u3042\u308C\u3070\u7D42\u4E86\u3057\u3066\
+    \u7A7A\u914D\u5217\u3092\u8FD4\u3059.\n// \u305D\u3046\u3067\u306A\u3044\u5834\
+    \u5408\u8CA0\u9589\u8DEF\u304C\u3042\u3063\u3066\u3082\u5168\u70B9\u3078\u306E\
+    \u8DDD\u96E2\u3092\u8A08\u7B97\u3059\u308B.\n// \u5230\u9054\u4E0D\u53EF\u80FD\
+    \uFF1Ainfty<T>\n// \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\u304F\
+    \u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-infty<T>\ntemplate\
+    \ <typename T, bool END = true, typename GT>\npair<vc<T>, vc<int>> bellman_ford(GT\
+    \ &G, int s) {\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n\
+    \  dist[s] = 0;\n  int loop = 0;\n  while (1) {\n    ++loop;\n    bool upd = 0;\n\
+    \    FOR(v, N) {\n      if (dist[v] == infty<T>) continue;\n      for (auto &&e\
+    \ : G[v]) {\n        T before = dist[e.to];\n        T after = dist[v] + e.cost;\n\
+    \        if (dist[v] == -infty<T>) {\n          after = -infty<T>;\n        }\n\
+    \        chmax(after, -infty<T>);\n        if (before > after) {\n          par[e.to]\
+    \ = v;\n          upd = 1;\n          if (loop >= N) {\n            if constexpr\
+    \ (END) {\n              return {{}, {}};\n            }\n            after =\
+    \ -infty<T>;\n          }\n          dist[e.to] = after;\n        }\n      }\n\
+    \    }\n    if (!upd) break;\n  }\n  return {dist, par};\n}\n"
+  code: "#include \"graph/base.hpp\"\n\n// END=true: \u8CA0\u9589\u8DEF\u304C\u3042\
+    \u308C\u3070\u7D42\u4E86\u3057\u3066\u7A7A\u914D\u5217\u3092\u8FD4\u3059.\n//\
+    \ \u305D\u3046\u3067\u306A\u3044\u5834\u5408\u8CA0\u9589\u8DEF\u304C\u3042\u3063\
+    \u3066\u3082\u5168\u70B9\u3078\u306E\u8DDD\u96E2\u3092\u8A08\u7B97\u3059\u308B\
+    .\n// \u5230\u9054\u4E0D\u53EF\u80FD\uFF1Ainfty<T>\n// \u8CA0\u9589\u8DEF\u3092\
+    \u7D4C\u7531\u3057\u3066\u3044\u304F\u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\
+    \u304D\u308B\uFF1A-infty<T>\ntemplate <typename T, bool END = true, typename GT>\n\
+    pair<vc<T>, vc<int>> bellman_ford(GT &G, int s) {\n  int N = G.N;\n  vc<T> dist(N,\
+    \ infty<T>);\n  vc<int> par(N, -1);\n  dist[s] = 0;\n  int loop = 0;\n  while\
+    \ (1) {\n    ++loop;\n    bool upd = 0;\n    FOR(v, N) {\n      if (dist[v] ==\
+    \ infty<T>) continue;\n      for (auto &&e : G[v]) {\n        T before = dist[e.to];\n\
+    \        T after = dist[v] + e.cost;\n        if (dist[v] == -infty<T>) {\n  \
+    \        after = -infty<T>;\n        }\n        chmax(after, -infty<T>);\n   \
+    \     if (before > after) {\n          par[e.to] = v;\n          upd = 1;\n  \
+    \        if (loop >= N) {\n            if constexpr (END) {\n              return\
+    \ {{}, {}};\n            }\n            after = -infty<T>;\n          }\n    \
+    \      dist[e.to] = after;\n        }\n      }\n    }\n    if (!upd) break;\n\
+    \  }\n  return {dist, par};\n}\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
-  path: graph/shortest_path/bfs01.hpp
-  requiredBy:
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - graph/ds/contour_query_range.hpp
-  - graph/tree_all_distances.hpp
-  - graph/centroid_decomposition.hpp
-  - graph/st_numbering.hpp
-  - graph/tree_diameter.hpp
-  - graph/tree_walk_generating_function.hpp
-  - graph/tree_center.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/st_numbering.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/2_library_checker/graph/st_numbering.test.cpp
-  - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - test/2_library_checker/tree/tree_diameter.test.cpp
-  - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - test/3_yukicoder/1868.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/1038.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/1796_1.test.cpp
-  - test/3_yukicoder/2892.test.cpp
-  - test/3_yukicoder/1718.test.cpp
-documentation_of: graph/shortest_path/bfs01.hpp
+  path: graph/shortest_path/bellman_ford.hpp
+  requiredBy: []
+  timestamp: '2026-08-17 08:30:43+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/shortest_path/bellman_ford.hpp
 layout: document
 redirect_from:
-- /library/graph/shortest_path/bfs01.hpp
-- /library/graph/shortest_path/bfs01.hpp.html
-title: graph/shortest_path/bfs01.hpp
+- /library/graph/shortest_path/bellman_ford.hpp
+- /library/graph/shortest_path/bellman_ford.hpp.html
+title: graph/shortest_path/bellman_ford.hpp
 ---

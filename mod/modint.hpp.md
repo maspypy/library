@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
@@ -20,12 +20,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/chromatic.hpp
-    title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
@@ -84,12 +78,6 @@ data:
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/tree_all_distances.hpp
-    title: graph/tree_all_distances.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_walk_generating_function.hpp
-    title: graph/tree_walk_generating_function.hpp
-  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -122,9 +110,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/multiplicative_convolution_mod_p.hpp
-    title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':heavy_check_mark:'
     path: mod/q_analogue.hpp
     title: mod/q_analogue.hpp
@@ -209,9 +194,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_u64.hpp
     title: poly/convolution_u64.hpp
-  - icon: ':warning:'
-    path: poly/egf_convolution.hpp
-    title: poly/egf_convolution.hpp
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
@@ -251,9 +233,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/multivar_convolution_cyclic.hpp
-    title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
@@ -413,19 +392,13 @@ data:
   - icon: ':warning:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   - icon: ':warning:'
     path: test/2_library_checker/convolution/convolution_huge.test___.cpp
     title: test/2_library_checker/convolution/convolution_huge.test___.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/31bit_modint.test.cpp
-    title: test/1_mytest/31bit_modint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/O1_inv.test.cpp
-    title: test/1_mytest/O1_inv.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_inverse.test.cpp
     title: test/1_mytest/all_inverse.test.cpp
@@ -568,9 +541,6 @@ data:
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/modfast.test.cpp
-    title: test/1_mytest/modfast.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/multinomial.test.cpp
     title: test/1_mytest/multinomial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -649,9 +619,6 @@ data:
     path: test/1_mytest/rect_add_pt_sum.test.cpp
     title: test/1_mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/reeds_sloane.test.cpp
-    title: test/1_mytest/reeds_sloane.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -678,9 +645,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
@@ -709,17 +673,8 @@ data:
     path: test/2_library_checker/convolution/convolution_mod_107.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
-    title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
-    title: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
-    title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/gcd_convolution.test.cpp
     title: test/2_library_checker/convolution/gcd_convolution.test.cpp
@@ -730,14 +685,8 @@ data:
     path: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-    title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-    title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/online_convolution.test.cpp
     title: test/2_library_checker/convolution/online_convolution.test.cpp
@@ -813,12 +762,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/graph/chromatic_number.test.cpp
-    title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
@@ -898,41 +841,20 @@ data:
     path: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
-    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-    title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
-    title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-    title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
@@ -940,14 +862,8 @@ data:
     path: test/2_library_checker/polynomial/log_of_fps.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-    title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
@@ -973,14 +889,8 @@ data:
     path: test/2_library_checker/polynomial/pow_of_fps.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-    title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-    title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
@@ -1023,22 +933,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-    title: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-    title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1047,9 +948,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/unionfind_with_potential.test.cpp
     title: test/2_library_checker/unionfind_with_potential.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1025.test.cpp
-    title: test/3_yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080.test.cpp
     title: test/3_yukicoder/1080.test.cpp
@@ -1093,9 +991,6 @@ data:
     path: test/3_yukicoder/1397.test.cpp
     title: test/3_yukicoder/1397.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1411.test.cpp
-    title: test/3_yukicoder/1411.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1451.test.cpp
     title: test/3_yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1126,9 +1021,6 @@ data:
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1575.test.cpp
-    title: test/3_yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1150,9 +1042,6 @@ data:
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1728.test.cpp
-    title: test/3_yukicoder/1728.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1750.test.cpp
     title: test/3_yukicoder/1750.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1171,14 +1060,8 @@ data:
     path: test/3_yukicoder/1781.test.cpp
     title: test/3_yukicoder/1781.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1783.test.cpp
-    title: test/3_yukicoder/1783.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1796.test.cpp
     title: test/3_yukicoder/1796.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1796_1.test.cpp
-    title: test/3_yukicoder/1796_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1810.test.cpp
     title: test/3_yukicoder/1810.test.cpp
@@ -1189,14 +1072,8 @@ data:
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1848.test.cpp
-    title: test/3_yukicoder/1848.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1857.test.cpp
     title: test/3_yukicoder/1857.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/187.test.cpp
-    title: test/3_yukicoder/187.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
@@ -1255,14 +1132,8 @@ data:
     path: test/3_yukicoder/2230.test.cpp
     title: test/3_yukicoder/2230.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2231.test.cpp
-    title: test/3_yukicoder/2231.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2264.test.cpp
-    title: test/3_yukicoder/2264.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2265.test.cpp
     title: test/3_yukicoder/2265.test.cpp
@@ -1287,7 +1158,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/235.test.cpp
     title: test/3_yukicoder/235.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1306,32 +1177,14 @@ data:
     path: test/3_yukicoder/2525.test.cpp
     title: test/3_yukicoder/2525.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2578.test.cpp
-    title: test/3_yukicoder/2578.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2613.test.cpp
-    title: test/3_yukicoder/2613.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2626.test.cpp
-    title: test/3_yukicoder/2626.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2626_2.test.cpp
-    title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2649.test.cpp
     title: test/3_yukicoder/2649.test.cpp
@@ -1344,9 +1197,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2810.test.cpp
     title: test/3_yukicoder/2810.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2877.test.cpp
-    title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2907.test.cpp
     title: test/3_yukicoder/2907.test.cpp
@@ -1384,9 +1234,6 @@ data:
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/590.test.cpp
-    title: test/3_yukicoder/590.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/749.test.cpp
     title: test/3_yukicoder/749.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1401,9 +1248,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\n\
@@ -1588,11 +1435,7 @@ data:
   - graph/count/count_labeled_strong_tournament.hpp
   - graph/count/count_labeled_unicyclic.hpp
   - graph/count/count_clique.hpp
-  - graph/chromatic.hpp
   - graph/count_matching_on_tree.hpp
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - graph/tree_all_distances.hpp
-  - graph/tree_walk_generating_function.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/finding_root_of_polynomial.hpp
   - poly/middle_product.hpp
@@ -1623,7 +1466,6 @@ data:
   - poly/sum_of_exp_bx.hpp
   - poly/from_log_differentiation.hpp
   - poly/multivar_convolution.hpp
-  - poly/multivar_convolution_cyclic.hpp
   - poly/convolution_all.hpp
   - poly/coef_of_rational_fps.hpp
   - poly/fps_pow.hpp
@@ -1637,7 +1479,6 @@ data:
   - poly/composed_product.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/prefix_sum_of_polynomial.hpp
-  - poly/egf_convolution.hpp
   - poly/composition_f_x_plus_1x.hpp
   - poly/lagrange_interpolate_iota.hpp
   - poly/convolution.hpp
@@ -1692,11 +1533,10 @@ data:
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
   - mod/multiplicative_convolution_mod_2n.hpp
-  - mod/multiplicative_convolution_mod_p.hpp
   - mod/q_analogue.hpp
   - new_poly/base.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/1_mytest/sparse_pow_2d.test.cpp
@@ -1749,7 +1589,6 @@ data:
   - test/1_mytest/count_labeled_dag.test.cpp
   - test/1_mytest/count_unbordered_string.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
-  - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/count_labeled_connected.test.cpp
   - test/1_mytest/enumerate_products.test.cpp
@@ -1759,13 +1598,10 @@ data:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/conv_leq.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
-  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/prefix_sum_of_binom.test.cpp
   - test/1_mytest/chirp_z.test.cpp
-  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/count_labeled_tournament.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/fps_exp_2d.test.cpp
@@ -1776,7 +1612,6 @@ data:
   - test/1_mytest/count_unlabeled_tree.test.cpp
   - test/1_mytest/online_division.test.cpp
   - test/1_mytest/fps_inv_2d.test.cpp
-  - test/1_mytest/31bit_modint.test.cpp
   - test/1_mytest/powerquery.test.cpp
   - test/1_mytest/all_inverse.test.cpp
   - test/1_mytest/qbinom.test.cpp
@@ -1793,9 +1628,7 @@ data:
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/2_library_checker/graph/incremental_scc.test.cpp
-  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/graph/enumerate_cliques.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/data_structure/range_parallel_uf.test.cpp
@@ -1814,32 +1647,21 @@ data:
   - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps.test.cpp
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/log_of_fps.test.cpp
   - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/polynomial/polynomial_division.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
@@ -1853,9 +1675,6 @@ data:
   - test/2_library_checker/convolution/multivariate_convolution.test.cpp
   - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
   - test/2_library_checker/convolution/online_convolution.test.cpp
-  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/2_library_checker/convolution/gcd_convolution.test.cpp
   - test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
   - test/2_library_checker/convolution/convolution_mod_107.test.cpp
@@ -1863,8 +1682,6 @@ data:
   - test/2_library_checker/convolution/lcm_convolution.test.cpp
   - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
   - test/2_library_checker/convolution/convolution_mod.test.cpp
-  - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
-  - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
@@ -1895,12 +1712,9 @@ data:
   - test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/2_library_checker/set_power_series/composition_sps.test.cpp
   - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
   - test/2_library_checker/set_power_series/powproj_sps.test.cpp
@@ -1914,10 +1728,7 @@ data:
   - test/3_yukicoder/1547.test.cpp
   - test/3_yukicoder/2149.test.cpp
   - test/3_yukicoder/1649_2.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1141.test.cpp
-  - test/3_yukicoder/2578.test.cpp
-  - test/3_yukicoder/1848.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1857.test.cpp
   - test/3_yukicoder/2003.test.cpp
@@ -1927,7 +1738,6 @@ data:
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/1618.test.cpp
   - test/3_yukicoder/2525.test.cpp
-  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1753.test.cpp
   - test/3_yukicoder/2097.test.cpp
   - test/3_yukicoder/2810.test.cpp
@@ -1938,15 +1748,10 @@ data:
   - test/3_yukicoder/1397.test.cpp
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1919.test.cpp
-  - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1821.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/2206_2.test.cpp
-  - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/1989.test.cpp
-  - test/3_yukicoder/2626.test.cpp
   - test/3_yukicoder/2062.test.cpp
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/2498.test.cpp
@@ -1958,7 +1763,6 @@ data:
   - test/3_yukicoder/2649.test.cpp
   - test/3_yukicoder/1600.test.cpp
   - test/3_yukicoder/1269.test.cpp
-  - test/3_yukicoder/1025.test.cpp
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/2305.test.cpp
@@ -1966,16 +1770,13 @@ data:
   - test/3_yukicoder/1167.test.cpp
   - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/2293.test.cpp
-  - test/3_yukicoder/1411.test.cpp
   - test/3_yukicoder/749.test.cpp
   - test/3_yukicoder/303.test.cpp
   - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/1891.test.cpp
   - test/3_yukicoder/1516.test.cpp
-  - test/3_yukicoder/1783.test.cpp
   - test/3_yukicoder/1844.test.cpp
   - test/3_yukicoder/2907_2.test.cpp
   - test/3_yukicoder/2005.test.cpp
@@ -1985,7 +1786,6 @@ data:
   - test/3_yukicoder/2801.test.cpp
   - test/3_yukicoder/2459.test.cpp
   - test/3_yukicoder/2342_2.test.cpp
-  - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2230.test.cpp
@@ -2000,12 +1800,10 @@ data:
   - test/3_yukicoder/1875.test.cpp
   - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/1263.test.cpp
-  - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/1549.test.cpp
   - test/3_yukicoder/1939.test.cpp
   - test/3_yukicoder/1649.test.cpp
   - test/3_yukicoder/2265.test.cpp
-  - test/3_yukicoder/2264.test.cpp
   - test/3_yukicoder/1781.test.cpp
   - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/1321.test.cpp
@@ -2013,10 +1811,8 @@ data:
   - test/3_yukicoder/2108.test.cpp
   - test/3_yukicoder/1080.test.cpp
   - test/3_yukicoder/1533.test.cpp
-  - test/3_yukicoder/187.test.cpp
   - test/3_yukicoder/2206.test.cpp
   - test/3_yukicoder/3619.test.cpp
-  - test/3_yukicoder/1728.test.cpp
   - test/3_yukicoder/2440.test.cpp
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1493.test.cpp

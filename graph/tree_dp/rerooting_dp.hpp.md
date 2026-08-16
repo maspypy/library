@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -17,40 +17,37 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1295.test.cpp
     title: test/3_yukicoder/1295.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1418.test.cpp
     title: test/3_yukicoder/1418.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1494.test.cpp
     title: test/3_yukicoder/1494.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1718.test.cpp
-    title: test/3_yukicoder/1718.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1976.test.cpp
     title: test/3_yukicoder/1976.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -370,11 +367,11 @@ data:
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 3 \"\
     graph/tree_dp/rerooting_dp.hpp\"\n\ntemplate <typename TREE, typename Data>\n\
-    struct Rerooting_dp {\n  static_assert(!TREE::Graph_type::is_directed);\n  TREE&\
+    struct Rerooting_DP {\n  static_assert(!TREE::Graph_type::is_directed);\n  TREE&\
     \ tree;\n  vc<Data> dp_1;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
     \u6728 v\n  vc<Data> dp_2;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
     \u6728 p\n  vc<Data> dp;    // full tree\n\n  template <typename F1, typename\
-    \ F2, typename F3>\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
+    \ F2, typename F3>\n  Rerooting_DP(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
     \ Data unit)\n      : tree(tree) {\n    build(f_ee, f_ev, f_ve, unit);\n  }\n\n\
     \  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  Data operator[](int\
     \ v) { return dp[v]; }\n\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\
@@ -399,11 +396,11 @@ data:
     \ ch_data[i]);\n      }\n      dp[p] = f_ev(f_ee(x, prod_right), p);\n    }\n\
     \  }\n};\n"
   code: "#include \"graph/base.hpp\"\n#include \"graph/tree.hpp\"\n\ntemplate <typename\
-    \ TREE, typename Data>\nstruct Rerooting_dp {\n  static_assert(!TREE::Graph_type::is_directed);\n\
+    \ TREE, typename Data>\nstruct Rerooting_DP {\n  static_assert(!TREE::Graph_type::is_directed);\n\
     \  TREE& tree;\n  vc<Data> dp_1;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\
     \u5206\u6728 v\n  vc<Data> dp_2;  // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\
     \u5206\u6728 p\n  vc<Data> dp;    // full tree\n\n  template <typename F1, typename\
-    \ F2, typename F3>\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
+    \ F2, typename F3>\n  Rerooting_DP(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
     \ Data unit)\n      : tree(tree) {\n    build(f_ee, f_ev, f_ve, unit);\n  }\n\n\
     \  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  Data operator[](int\
     \ v) { return dp[v]; }\n\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\
@@ -437,8 +434,8 @@ data:
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 08:30:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp
@@ -448,7 +445,6 @@ data:
   - test/3_yukicoder/1494.test.cpp
   - test/3_yukicoder/2360.test.cpp
   - test/3_yukicoder/1418.test.cpp
-  - test/3_yukicoder/1718.test.cpp
 documentation_of: graph/tree_dp/rerooting_dp.hpp
 layout: document
 redirect_from:

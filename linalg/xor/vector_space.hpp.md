@@ -4,13 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: alg/monoid/merge_vector_space.hpp
-    title: alg/monoid/merge_vector_space.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
@@ -177,8 +174,7 @@ data:
   - linalg/xor/transpose.hpp
   isVerificationFile: false
   path: linalg/xor/vector_space.hpp
-  requiredBy:
-  - alg/monoid/merge_vector_space.hpp
+  requiredBy: []
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

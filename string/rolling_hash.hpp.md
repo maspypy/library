@@ -1,38 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: string/basic_substring_structure.hpp
-    title: string/basic_substring_structure.hpp
-  - icon: ':warning:'
-    path: string/substring_count_in_substring.hpp
-    title: string/substring_count_in_substring.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-    title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2102.test.cpp
-    title: test/3_yukicoder/2102.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2231.test.cpp
-    title: test/3_yukicoder/2231.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2626.test.cpp
-    title: test/3_yukicoder/2626.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/263.test.cpp
-    title: test/3_yukicoder/263.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
@@ -65,18 +44,40 @@ data:
     \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
     \ mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\nvoid\
     \ rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < modint61::mod);\n\
-    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 3 \"string/rollinghash.hpp\"\
-    \n\nstruct RollingHash {\n  using mint = modint61;\n  static constexpr u64 mod\
+    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 3 \"string/rolling_hash.hpp\"\
+    \n\nstruct Rolling_Hash {\n  using mint = modint61;\n  static constexpr u64 mod\
     \ = mint::get_mod();\n  const mint base;\n  vc<mint> power;\n\n  static inline\
     \ mint generate_base() { return RNG(mod); }\n\n  inline void expand(size_t sz)\
     \ {\n    if (power.size() < sz + 1) {\n      int pre_sz = (int)power.size();\n\
     \      power.resize(sz + 1);\n      FOR(i, pre_sz - 1, sz) power[i + 1] = power[i]\
-    \ * base;\n    }\n  }\n\n  explicit RollingHash(mint base = generate_base()) :\
-    \ base(base), power{1} {}\n\n  template <typename STRING>\n  vector<mint> build(const\
+    \ * base;\n    }\n  }\n\n  explicit Rolling_Hash(mint base = generate_base())\
+    \ : base(base), power{1} {}\n\n  template <typename STRING>\n  vector<mint> build(const\
     \ STRING& s) const {\n    int sz = s.size();\n    vector<mint> hashed(sz + 1,\
-    \ mint(0));\n    for (int i = 0; i < sz; i++) { hashed[i + 1] = hashed[i] * base\
-    \ + s[i]; }\n    return hashed;\n  }\n\n  template <typename STRING>\n  mint eval(STRING&\
-    \ s) {\n    mint x = 0;\n    for (auto& ch: s) x = base * x + ch;\n    return\
+    \ mint(0));\n    for (int i = 0; i < sz; i++) {\n      hashed[i + 1] = hashed[i]\
+    \ * base + s[i];\n    }\n    return hashed;\n  }\n\n  template <typename STRING>\n\
+    \  mint eval(STRING& s) {\n    mint x = 0;\n    for (auto& ch : s) x = base *\
+    \ x + ch;\n    return x;\n  }\n\n  mint query(const vc<mint>& s, int l, int r)\
+    \ {\n    assert(0 <= l && l <= r && r < len(s));\n    expand(r - l);\n    return\
+    \ (s[r] - s[l] * power[r - l]);\n  }\n\n  mint combine(mint h1, mint h2, int h2len)\
+    \ {\n    expand(h2len);\n    return h1 * power[h2len] + h2;\n  }\n\n  mint add_char(mint\
+    \ h, int x) { return h * base + mint(x); }\n\n  int lcp(const vc<mint>& a, int\
+    \ l1, int r1, const vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1\
+    \ - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high - low > 1)\
+    \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
+    \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
+    \    return low;\n  }\n};\n"
+  code: "#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\nstruct Rolling_Hash\
+    \ {\n  using mint = modint61;\n  static constexpr u64 mod = mint::get_mod();\n\
+    \  const mint base;\n  vc<mint> power;\n\n  static inline mint generate_base()\
+    \ { return RNG(mod); }\n\n  inline void expand(size_t sz) {\n    if (power.size()\
+    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
+    \ 1);\n      FOR(i, pre_sz - 1, sz) power[i + 1] = power[i] * base;\n    }\n \
+    \ }\n\n  explicit Rolling_Hash(mint base = generate_base()) : base(base), power{1}\
+    \ {}\n\n  template <typename STRING>\n  vector<mint> build(const STRING& s) const\
+    \ {\n    int sz = s.size();\n    vector<mint> hashed(sz + 1, mint(0));\n    for\
+    \ (int i = 0; i < sz; i++) {\n      hashed[i + 1] = hashed[i] * base + s[i];\n\
+    \    }\n    return hashed;\n  }\n\n  template <typename STRING>\n  mint eval(STRING&\
+    \ s) {\n    mint x = 0;\n    for (auto& ch : s) x = base * x + ch;\n    return\
     \ x;\n  }\n\n  mint query(const vc<mint>& s, int l, int r) {\n    assert(0 <=\
     \ l && l <= r && r < len(s));\n    expand(r - l);\n    return (s[r] - s[l] * power[r\
     \ - l]);\n  }\n\n  mint combine(mint h1, mint h2, int h2len) {\n    expand(h2len);\n\
@@ -87,48 +88,19 @@ data:
     \ = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
     \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
     \  }\n};\n"
-  code: "#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\nstruct RollingHash\
-    \ {\n  using mint = modint61;\n  static constexpr u64 mod = mint::get_mod();\n\
-    \  const mint base;\n  vc<mint> power;\n\n  static inline mint generate_base()\
-    \ { return RNG(mod); }\n\n  inline void expand(size_t sz) {\n    if (power.size()\
-    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
-    \ 1);\n      FOR(i, pre_sz - 1, sz) power[i + 1] = power[i] * base;\n    }\n \
-    \ }\n\n  explicit RollingHash(mint base = generate_base()) : base(base), power{1}\
-    \ {}\n\n  template <typename STRING>\n  vector<mint> build(const STRING& s) const\
-    \ {\n    int sz = s.size();\n    vector<mint> hashed(sz + 1, mint(0));\n    for\
-    \ (int i = 0; i < sz; i++) { hashed[i + 1] = hashed[i] * base + s[i]; }\n    return\
-    \ hashed;\n  }\n\n  template <typename STRING>\n  mint eval(STRING& s) {\n   \
-    \ mint x = 0;\n    for (auto& ch: s) x = base * x + ch;\n    return x;\n  }\n\n\
-    \  mint query(const vc<mint>& s, int l, int r) {\n    assert(0 <= l && l <= r\
-    \ && r < len(s));\n    expand(r - l);\n    return (s[r] - s[l] * power[r - l]);\n\
-    \  }\n\n  mint combine(mint h1, mint h2, int h2len) {\n    expand(h2len);\n  \
-    \  return h1 * power[h2len] + h2;\n  }\n\n  mint add_char(mint h, int x) { return\
-    \ h * base + mint(x); }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const\
-    \ vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n\
-    \    int low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid\
-    \ = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
-    \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
-    \  }\n};\n"
   dependsOn:
   - random/base.hpp
   - mod/modint61.hpp
   isVerificationFile: false
-  path: string/rollinghash.hpp
-  requiredBy:
-  - string/basic_substring_structure.hpp
-  - string/substring_count_in_substring.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/3_yukicoder/2231.test.cpp
-  - test/3_yukicoder/2626.test.cpp
-  - test/3_yukicoder/263.test.cpp
-  - test/3_yukicoder/2102.test.cpp
-documentation_of: string/rollinghash.hpp
+  path: string/rolling_hash.hpp
+  requiredBy: []
+  timestamp: '2026-08-17 08:30:43+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: string/rolling_hash.hpp
 layout: document
 redirect_from:
-- /library/string/rollinghash.hpp
-- /library/string/rollinghash.hpp.html
-title: string/rollinghash.hpp
+- /library/string/rolling_hash.hpp
+- /library/string/rolling_hash.hpp.html
+title: string/rolling_hash.hpp
 ---

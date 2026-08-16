@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
@@ -300,11 +300,11 @@ data:
     \ X& L, const X& R) {\n    assert(L.type == 1 && R.type == 1 && L.t == R.s);\n\
     \    X ANS = {1, L.s, R.t};\n  }\n  static X compress3(const X& L, const X& R)\
     \ {\n    assert(L.type == 1 && R.type == 0 && L.t == R.s);\n    X ANS = {1, L.s,\
-    \ L.t};\n  }\n};\n*/\n\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_Dp\
+    \ L.t};\n  }\n};\n*/\n\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_DP\
     \ {\n  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n\
-    \  vc<pair<X, X>> dp;\n\n  template <typename F>\n  Dynamic_Rerooting_Tree_Dp(TREE&\
-    \ tree, F f) : STT(tree) {\n    assert(tree.V[0] == 0); // \u3055\u307C\u308A\n\
-    \    int N = tree.N;\n    dp.resize(2 * N - 1);\n    FOR(v, N) {\n      dp[v]\
+    \  vc<pair<X, X>> dp;\n\n  template <typename F>\n  Dynamic_Rerooting_Tree_DP(TREE&\
+    \ tree, F f) : STT(tree) {\n    assert(tree.V[0] == 0);  // \u3055\u307C\u308A\
+    \n    int N = tree.N;\n    dp.resize(2 * N - 1);\n    FOR(v, N) {\n      dp[v]\
     \ = f(v);\n      assert(dp[v].fi.type == 0 && dp[v].se.type == 1);\n      assert(dp[v].fi.s\
     \ == STT.tree.parent[v] && dp[v].fi.t == v);\n      assert(dp[v].se.t == STT.tree.parent[v]\
     \ && dp[v].se.s == v);\n    }\n    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n  //\
@@ -312,10 +312,10 @@ data:
     \ virtual\n  void set(int v, pair<X, X> x) {\n    dp[v] = x;\n    assert(dp[v].fi.type\
     \ == 0 && dp[v].se.type == 1);\n    assert(dp[v].fi.s == STT.tree.parent[v] &&\
     \ dp[v].fi.t == v);\n    assert(dp[v].se.t == STT.tree.parent[v] && dp[v].se.s\
-    \ == v);\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) { update(i); }\n\
-    \  }\n\n  X prod_all(int v) {\n    int i = v;\n    X a = dp[i].se, b, c;\n   \
-    \ b.type = c.type = -1;\n    while (1) {\n      int p = STT.par[i];\n      if\
-    \ (p == -1) break;\n      int l = STT.lch[p], r = STT.rch[p];\n      if (STT.is_compress[p])\
+    \ == v);\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) {\n      update(i);\n\
+    \    }\n  }\n\n  X prod_all(int v) {\n    int i = v;\n    X a = dp[i].se, b, c;\n\
+    \    b.type = c.type = -1;\n    while (1) {\n      int p = STT.par[i];\n     \
+    \ if (p == -1) break;\n      int l = STT.lch[p], r = STT.rch[p];\n      if (STT.is_compress[p])\
     \ {\n        if (l == i) {\n          b = (b.type == -1 ? dp[r].fi : TREE_DP::compress(b,\
     \ dp[r].fi));\n        } else {\n          a = (a.type == -1 ? dp[l].se : TREE_DP::compress2(a,\
     \ dp[l].se));\n        }\n      } else {\n        if (STT.lch[p] == i) {\n   \
@@ -327,7 +327,7 @@ data:
     \            c = (c.type == -1 ? a : TREE_DP::compress2(c, a));\n            a.type\
     \ = -1;\n            b = dp[l].fi;\n          }\n        }\n      }\n      i =\
     \ p;\n    }\n    a = (b.type == -1 ? a : TREE_DP::rake2(a, b));\n    return (c.type\
-    \ == -1 ? a : TREE_DP::compress2(c, a));\n  }\n\nprivate:\n  inline void update(int\
+    \ == -1 ? a : TREE_DP::compress2(c, a));\n  }\n\n private:\n  inline void update(int\
     \ i) {\n    auto& [L1, L2] = dp[STT.lch[i]];\n    auto& [R1, R2] = dp[STT.rch[i]];\n\
     \    if (STT.is_compress[i]) {\n      dp[i] = {TREE_DP::compress(L1, R1), TREE_DP::compress2(R2,\
     \ L2)};\n    } else {\n      dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::compress3(L2,\
@@ -346,11 +346,11 @@ data:
     \    assert(L.type == 1 && R.type == 1 && L.t == R.s);\n    X ANS = {1, L.s, R.t};\n\
     \  }\n  static X compress3(const X& L, const X& R) {\n    assert(L.type == 1 &&\
     \ R.type == 0 && L.t == R.s);\n    X ANS = {1, L.s, L.t};\n  }\n};\n*/\n\ntemplate\
-    \ <typename TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_Dp {\n  using\
+    \ <typename TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_DP {\n  using\
     \ X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n  vc<pair<X,\
-    \ X>> dp;\n\n  template <typename F>\n  Dynamic_Rerooting_Tree_Dp(TREE& tree,\
-    \ F f) : STT(tree) {\n    assert(tree.V[0] == 0); // \u3055\u307C\u308A\n    int\
-    \ N = tree.N;\n    dp.resize(2 * N - 1);\n    FOR(v, N) {\n      dp[v] = f(v);\n\
+    \ X>> dp;\n\n  template <typename F>\n  Dynamic_Rerooting_Tree_DP(TREE& tree,\
+    \ F f) : STT(tree) {\n    assert(tree.V[0] == 0);  // \u3055\u307C\u308A\n   \
+    \ int N = tree.N;\n    dp.resize(2 * N - 1);\n    FOR(v, N) {\n      dp[v] = f(v);\n\
     \      assert(dp[v].fi.type == 0 && dp[v].se.type == 1);\n      assert(dp[v].fi.s\
     \ == STT.tree.parent[v] && dp[v].fi.t == v);\n      assert(dp[v].se.t == STT.tree.parent[v]\
     \ && dp[v].se.s == v);\n    }\n    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n  //\
@@ -358,10 +358,10 @@ data:
     \ virtual\n  void set(int v, pair<X, X> x) {\n    dp[v] = x;\n    assert(dp[v].fi.type\
     \ == 0 && dp[v].se.type == 1);\n    assert(dp[v].fi.s == STT.tree.parent[v] &&\
     \ dp[v].fi.t == v);\n    assert(dp[v].se.t == STT.tree.parent[v] && dp[v].se.s\
-    \ == v);\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) { update(i); }\n\
-    \  }\n\n  X prod_all(int v) {\n    int i = v;\n    X a = dp[i].se, b, c;\n   \
-    \ b.type = c.type = -1;\n    while (1) {\n      int p = STT.par[i];\n      if\
-    \ (p == -1) break;\n      int l = STT.lch[p], r = STT.rch[p];\n      if (STT.is_compress[p])\
+    \ == v);\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) {\n      update(i);\n\
+    \    }\n  }\n\n  X prod_all(int v) {\n    int i = v;\n    X a = dp[i].se, b, c;\n\
+    \    b.type = c.type = -1;\n    while (1) {\n      int p = STT.par[i];\n     \
+    \ if (p == -1) break;\n      int l = STT.lch[p], r = STT.rch[p];\n      if (STT.is_compress[p])\
     \ {\n        if (l == i) {\n          b = (b.type == -1 ? dp[r].fi : TREE_DP::compress(b,\
     \ dp[r].fi));\n        } else {\n          a = (a.type == -1 ? dp[l].se : TREE_DP::compress2(a,\
     \ dp[l].se));\n        }\n      } else {\n        if (STT.lch[p] == i) {\n   \
@@ -373,7 +373,7 @@ data:
     \            c = (c.type == -1 ? a : TREE_DP::compress2(c, a));\n            a.type\
     \ = -1;\n            b = dp[l].fi;\n          }\n        }\n      }\n      i =\
     \ p;\n    }\n    a = (b.type == -1 ? a : TREE_DP::rake2(a, b));\n    return (c.type\
-    \ == -1 ? a : TREE_DP::compress2(c, a));\n  }\n\nprivate:\n  inline void update(int\
+    \ == -1 ? a : TREE_DP::compress2(c, a));\n  }\n\n private:\n  inline void update(int\
     \ i) {\n    auto& [L1, L2] = dp[STT.lch[i]];\n    auto& [R1, R2] = dp[STT.rch[i]];\n\
     \    if (STT.is_compress[i]) {\n      dp[i] = {TREE_DP::compress(L1, R1), TREE_DP::compress2(R2,\
     \ L2)};\n    } else {\n      dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::compress3(L2,\
@@ -386,8 +386,8 @@ data:
   isVerificationFile: false
   path: graph/ds/dynamic_rerooting_tree_dp.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 08:30:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
 documentation_of: graph/ds/dynamic_rerooting_tree_dp.hpp

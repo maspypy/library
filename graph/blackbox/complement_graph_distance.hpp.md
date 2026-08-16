@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':warning:'
@@ -129,24 +129,24 @@ data:
     \  for (auto& e: G[v]) NG[e.to] = 0;\n  }\n  return {dist, par};\n}\n#line 2 \"\
     graph/blackbox/complement_graph_distance.hpp\"\n\n// \u8DDD\u96E2 2 \u4EE5\u4E0A\
     \u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\ntemplate <typename GT>\n\
-    vc<tuple<int, int, int>> complement_graph_all_distance(GT& G) {\n  const int N\
-    \ = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg)) - deg.begin();\n\
-    \  vc<int> nbd(N);\n  for (auto& e: G[S]) { nbd[e.to] = 1; }\n\n  vc<tuple<int,\
-    \ int, int>> res;\n  for (auto& e: G.edges) {\n    if (nbd[e.frm] || nbd[e.to])\
+    vc<tuple<int, int, int>> complement_graph_all_distances(GT& G) {\n  const int\
+    \ N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg)) - deg.begin();\n\
+    \  vc<int> nbd(N);\n  for (auto& e : G[S]) {\n    nbd[e.to] = 1;\n  }\n\n  vc<tuple<int,\
+    \ int, int>> res;\n  for (auto& e : G.edges) {\n    if (nbd[e.frm] || nbd[e.to])\
     \ continue;\n    // a -> S -> b\n    int a = e.frm, b = e.to;\n    res.eb(a, b,\
-    \ 2);\n  }\n\n  for (auto& e: G[S]) {\n    int a = e.to;\n    auto dist = complement_graph_bfs(G,\
+    \ 2);\n  }\n\n  for (auto& e : G[S]) {\n    int a = e.to;\n    auto dist = complement_graph_bfs(G,\
     \ a).fi;\n    FOR(b, N) {\n      if (dist[b] <= 1) continue;\n      if (nbd[b]\
     \ && a >= b) continue;\n      res.eb(a, b, dist[b]);\n    }\n  }\n  return res;\n\
     }\n"
   code: "#include \"graph/blackbox/complement_graph_bfs.hpp\"\n\n// \u8DDD\u96E2 2\
     \ \u4EE5\u4E0A\u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\ntemplate <typename\
-    \ GT>\nvc<tuple<int, int, int>> complement_graph_all_distance(GT& G) {\n  const\
+    \ GT>\nvc<tuple<int, int, int>> complement_graph_all_distances(GT& G) {\n  const\
     \ int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg)) -\
-    \ deg.begin();\n  vc<int> nbd(N);\n  for (auto& e: G[S]) { nbd[e.to] = 1; }\n\n\
-    \  vc<tuple<int, int, int>> res;\n  for (auto& e: G.edges) {\n    if (nbd[e.frm]\
+    \ deg.begin();\n  vc<int> nbd(N);\n  for (auto& e : G[S]) {\n    nbd[e.to] = 1;\n\
+    \  }\n\n  vc<tuple<int, int, int>> res;\n  for (auto& e : G.edges) {\n    if (nbd[e.frm]\
     \ || nbd[e.to]) continue;\n    // a -> S -> b\n    int a = e.frm, b = e.to;\n\
-    \    res.eb(a, b, 2);\n  }\n\n  for (auto& e: G[S]) {\n    int a = e.to;\n   \
-    \ auto dist = complement_graph_bfs(G, a).fi;\n    FOR(b, N) {\n      if (dist[b]\
+    \    res.eb(a, b, 2);\n  }\n\n  for (auto& e : G[S]) {\n    int a = e.to;\n  \
+    \  auto dist = complement_graph_bfs(G, a).fi;\n    FOR(b, N) {\n      if (dist[b]\
     \ <= 1) continue;\n      if (nbd[b] && a >= b) continue;\n      res.eb(a, b, dist[b]);\n\
     \    }\n  }\n  return res;\n}\n"
   dependsOn:
@@ -156,7 +156,7 @@ data:
   isVerificationFile: false
   path: graph/blackbox/complement_graph_distance.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 08:30:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/blackbox/complement_graph_distance.hpp
