@@ -7,14 +7,14 @@ using T = tuple<int, int, int>;
 // https://codeforces.com/contest/940/problem/F
 vc<int> solve_CF940F(int N, int Q, vc<int> A, vc<T> query) {
   vc<int> X;
-  for (auto&& x: A) X.eb(x);
-  for (auto&& [t, a, b]: query) {
+  for (auto&& x : A) X.eb(x);
+  for (auto&& [t, a, b] : query) {
     --a;
     if (t == 2) X.eb(b);
   }
   UNIQUE(X);
-  for (auto&& x: A) x = LB(X, x);
-  for (auto&& [t, a, b]: query) {
+  for (auto&& x : A) x = LB(X, x);
+  for (auto&& [t, a, b] : query) {
     if (t == 2) b = LB(X, b);
   }
 
@@ -23,8 +23,8 @@ vc<int> solve_CF940F(int N, int Q, vc<int> A, vc<T> query) {
 
   Q = 0;
 
-  Mo_3d mo;
-  for (auto&& [t, a, b]: query) {
+  Mo_3D mo;
+  for (auto&& [t, a, b] : query) {
     if (t == 1) {
       mo.add_query(len(change), a, b);
       ++Q;
@@ -50,12 +50,16 @@ vc<int> solve_CF940F(int N, int Q, vc<int> A, vc<T> query) {
   auto RM = [&](int i) -> void { ADD_ELEM(A[i], -1); };
   auto ADD_CHANGE = [&](int t, int l, int r) -> void {
     auto [i, a, b] = change[t];
-    if (l <= i && i < r) { ADD_ELEM(a, -1), ADD_ELEM(b, 1); }
+    if (l <= i && i < r) {
+      ADD_ELEM(a, -1), ADD_ELEM(b, 1);
+    }
     A[i] = b;
   };
   auto RM_CHANGE = [&](int t, int l, int r) -> void {
     auto [i, a, b] = change[t];
-    if (l <= i && i < r) { ADD_ELEM(b, -1), ADD_ELEM(a, +1); }
+    if (l <= i && i < r) {
+      ADD_ELEM(b, -1), ADD_ELEM(a, +1);
+    }
     A[i] = a;
   };
   auto CALC = [&](int q) -> void {

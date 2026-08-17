@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1288"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "flow/mincostflow.hpp"
+#include "flow/min_cost_flow.hpp"
 
 void solve() {
   LL(N);
@@ -25,7 +25,7 @@ void solve() {
     if (S[i] == 'i') G.add(D(i), E(i + 1), 1, -X[i]);
   }
   ll ANS = 0;
-  for (auto&& [x, y]: G.slope()) chmax(ANS, -y);
+  for (auto&& [x, y] : G.slope()) chmax(ANS, -y);
   print(ANS);
 }
 

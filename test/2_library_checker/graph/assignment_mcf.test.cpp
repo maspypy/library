@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/assignment"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "flow/mincostflow.hpp"
+#include "flow/min_cost_flow.hpp"
 
 void solve() {
   LL(N);
@@ -21,7 +21,7 @@ void solve() {
   auto xy = G.slope();
   auto edges = G.edges();
   vi ANS(N);
-  for (auto&& e: edges) {
+  for (auto&& e : edges) {
     if (e.flow && 1 <= e.frm && e.frm <= N) {
       ANS[e.frm - 1] = e.to - right(0);
     }

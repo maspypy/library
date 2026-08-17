@@ -8,7 +8,7 @@ void solve() {
   LL(N, M);
   VEC(mint, A, N);
   VEC(mint, B, M);
-  auto [d, x, y] = poly_extgcd(A, B);
+  auto [d, x, y] = poly_ext_gcd(A, B);
   if (len(d) > 1) return print(-1);
   mint c = mint(1) / d[0];
   FOR(i, len(x)) x[i] *= c;
@@ -17,11 +17,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }

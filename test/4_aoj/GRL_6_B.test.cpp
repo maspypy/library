@@ -3,7 +3,7 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "flow/mincostflow.hpp"
+#include "flow/min_cost_flow.hpp"
 
 void solve() {
   LL(N, M, F);
