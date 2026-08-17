@@ -51,8 +51,8 @@ data:
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/finding_root_of_polynomial.hpp
-    title: poly/finding_root_of_polynomial.hpp
+    path: poly/find_roots_of_polynomial.hpp
+    title: poly/find_roots_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
@@ -153,12 +153,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
@@ -551,10 +545,10 @@ data:
   - linalg/blackbox/min_poly.hpp
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
-  - poly/finding_root_of_polynomial.hpp
   - poly/poly_gcd.hpp
   - poly/poly_mod_pow.hpp
   - poly/coef_of_rational_fps.hpp
+  - poly/find_roots_of_polynomial.hpp
   - poly/slice_rational_fps.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
@@ -580,11 +574,9 @@ data:
   - test/2_library_checker/other/find_linear_recurrence.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1755.test.cpp
   - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/1561.test.cpp

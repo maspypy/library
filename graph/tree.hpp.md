@@ -8,9 +8,9 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':warning:'
+    path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
@@ -81,9 +81,6 @@ data:
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/tree_walk_generating_function.hpp
-    title: graph/tree_walk_generating_function.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/unicyclic_graph.hpp
     title: graph/unicyclic_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -114,9 +111,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
@@ -237,12 +231,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
@@ -619,7 +607,6 @@ data:
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/ds/dual_tree_monoid.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
@@ -635,8 +622,8 @@ data:
   - graph/ds/static_toptree.hpp
   - graph/compress_tree.hpp
   - graph/unicyclic_graph.hpp
+  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - graph/optimal_product_on_tree.hpp
-  - graph/tree_walk_generating_function.hpp
   - string/enumerate_occurrence.hpp
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
@@ -646,7 +633,6 @@ data:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
@@ -667,14 +653,12 @@ data:
   - test/4_aoj/2677.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/2636.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/1976.test.cpp
   - test/3_yukicoder/1216.test.cpp
   - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1295.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1778.test.cpp
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/2342.test.cpp

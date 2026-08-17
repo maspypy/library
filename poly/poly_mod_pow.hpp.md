@@ -39,8 +39,8 @@ data:
     title: poly/poly_divmod.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: poly/finding_root_of_polynomial.hpp
-    title: poly/finding_root_of_polynomial.hpp
+    path: poly/find_roots_of_polynomial.hpp
+    title: poly/find_roots_of_polynomial.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
@@ -422,7 +422,7 @@ data:
   isVerificationFile: false
   path: poly/poly_mod_pow.hpp
   requiredBy:
-  - poly/finding_root_of_polynomial.hpp
+  - poly/find_roots_of_polynomial.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -51,8 +51,8 @@ data:
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/finding_root_of_polynomial.hpp
-    title: poly/finding_root_of_polynomial.hpp
+    path: poly/find_roots_of_polynomial.hpp
+    title: poly/find_roots_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
@@ -585,7 +585,7 @@ data:
   - linalg/blackbox/min_poly.hpp
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
-  - poly/finding_root_of_polynomial.hpp
+  - poly/find_roots_of_polynomial.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/find_linear_rec.hpp
   timestamp: '2026-08-17 11:59:38+09:00'

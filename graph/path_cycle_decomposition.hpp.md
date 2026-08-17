@@ -7,23 +7,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_clique.hpp
-    title: graph/count/count_clique.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_independent_set.hpp
-    title: graph/count/count_independent_set.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_clique.test.cpp
-    title: test/1_mytest/count_clique.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_indep_set.test.cpp
-    title: test/1_mytest/count_indep_set.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -125,15 +113,15 @@ data:
     \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"graph/path_cycle.hpp\"\
+    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"graph/path_cycle_decomposition.hpp\"\
     \n\n// \u3069\u306E\u70B9\u306E\u6B21\u6570\u3082 2 \u4EE5\u4E0B\u306E\u30B0\u30E9\
     \u30D5\u304C\u3042\u308B\u3068\u304D\u306B\u3001\n// \u30D1\u30B9\u306E\u9802\u70B9\
     \u5217, \u30B5\u30A4\u30AF\u30EB\u306E\u9802\u70B9\u5217\n// \u306B\u5206\u89E3\
-    \u3059\u308B\ntemplate <typename GT>\npair<vvc<int>, vvc<int>> path_cycle(GT&\
+    \u3059\u308B\ntemplate <typename GT>\npair<vvc<int>, vvc<int>> path_cycle_decomposition(GT&\
     \ G) {\n  static_assert(!GT::is_directed);\n  int N = G.N;\n  auto deg = G.deg_array();\n\
     \  assert(MAX(deg) <= 2);\n\n  vc<bool> done(N);\n  auto calc_frm = [&](int v)\
     \ -> vc<int> {\n    vc<int> P = {v};\n    done[v] = 1;\n    while (1) {\n    \
-    \  bool ok = 0;\n      for (auto&& e: G[P.back()]) {\n        if (done[e.to])\
+    \  bool ok = 0;\n      for (auto&& e : G[P.back()]) {\n        if (done[e.to])\
     \ continue;\n        P.eb(e.to);\n        done[e.to] = 1;\n        ok = 1;\n \
     \       break;\n      }\n      if (!ok) break;\n    }\n    return P;\n  };\n \
     \ vvc<int> paths, cycs;\n  FOR(v, N) {\n    if (deg[v] == 0) {\n      done[v]\
@@ -144,34 +132,30 @@ data:
     \ 2 \u4EE5\u4E0B\u306E\u30B0\u30E9\u30D5\u304C\u3042\u308B\u3068\u304D\u306B\u3001\
     \n// \u30D1\u30B9\u306E\u9802\u70B9\u5217, \u30B5\u30A4\u30AF\u30EB\u306E\u9802\
     \u70B9\u5217\n// \u306B\u5206\u89E3\u3059\u308B\ntemplate <typename GT>\npair<vvc<int>,\
-    \ vvc<int>> path_cycle(GT& G) {\n  static_assert(!GT::is_directed);\n  int N =\
-    \ G.N;\n  auto deg = G.deg_array();\n  assert(MAX(deg) <= 2);\n\n  vc<bool> done(N);\n\
-    \  auto calc_frm = [&](int v) -> vc<int> {\n    vc<int> P = {v};\n    done[v]\
-    \ = 1;\n    while (1) {\n      bool ok = 0;\n      for (auto&& e: G[P.back()])\
-    \ {\n        if (done[e.to]) continue;\n        P.eb(e.to);\n        done[e.to]\
-    \ = 1;\n        ok = 1;\n        break;\n      }\n      if (!ok) break;\n    }\n\
-    \    return P;\n  };\n  vvc<int> paths, cycs;\n  FOR(v, N) {\n    if (deg[v] ==\
-    \ 0) {\n      done[v] = 1;\n      paths.eb(vc<int>({int(v)}));\n    }\n    if\
-    \ (done[v] || deg[v] != 1) continue;\n    paths.eb(calc_frm(v));\n  }\n  FOR(v,\
-    \ N) {\n    if (done[v]) continue;\n    cycs.eb(calc_frm(v));\n  }\n  return {paths,\
-    \ cycs};\n}\n"
+    \ vvc<int>> path_cycle_decomposition(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    \  int N = G.N;\n  auto deg = G.deg_array();\n  assert(MAX(deg) <= 2);\n\n  vc<bool>\
+    \ done(N);\n  auto calc_frm = [&](int v) -> vc<int> {\n    vc<int> P = {v};\n\
+    \    done[v] = 1;\n    while (1) {\n      bool ok = 0;\n      for (auto&& e :\
+    \ G[P.back()]) {\n        if (done[e.to]) continue;\n        P.eb(e.to);\n   \
+    \     done[e.to] = 1;\n        ok = 1;\n        break;\n      }\n      if (!ok)\
+    \ break;\n    }\n    return P;\n  };\n  vvc<int> paths, cycs;\n  FOR(v, N) {\n\
+    \    if (deg[v] == 0) {\n      done[v] = 1;\n      paths.eb(vc<int>({int(v)}));\n\
+    \    }\n    if (done[v] || deg[v] != 1) continue;\n    paths.eb(calc_frm(v));\n\
+    \  }\n  FOR(v, N) {\n    if (done[v]) continue;\n    cycs.eb(calc_frm(v));\n \
+    \ }\n  return {paths, cycs};\n}\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
-  path: graph/path_cycle.hpp
-  requiredBy:
-  - graph/count/count_independent_set.hpp
-  - graph/count/count_clique.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/count_indep_set.test.cpp
-  - test/1_mytest/count_clique.test.cpp
-documentation_of: graph/path_cycle.hpp
+  path: graph/path_cycle_decomposition.hpp
+  requiredBy: []
+  timestamp: '2026-08-17 13:01:23+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/path_cycle_decomposition.hpp
 layout: document
 redirect_from:
-- /library/graph/path_cycle.hpp
-- /library/graph/path_cycle.hpp.html
-title: graph/path_cycle.hpp
+- /library/graph/path_cycle_decomposition.hpp
+- /library/graph/path_cycle_decomposition.hpp.html
+title: graph/path_cycle_decomposition.hpp
 ---

@@ -798,11 +798,11 @@ data:
     \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 4 \"poly/finding_root_of_polynomial.hpp\"\n\n//\
-    \ F(a)=0 \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\u8FD4\u3059\n// \u6607\u9806\
-    \u306B\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\u3068\u306B\ntemplate <typename\
-    \ mint>\nvc<mint> finding_root_of_polynomial(vc<mint> F) {\n  while (len(F) &&\
-    \ F.back() == mint(0)) POP(F);\n  assert(!F.empty());\n\n  const int p = mint::get_mod();\n\
+    \ RNG_64() % (r - l); }\n#line 4 \"poly/find_roots_of_polynomial.hpp\"\n\n// F(a)=0\
+    \ \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\u8FD4\u3059\n// \u6607\u9806\u306B\
+    \u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\u3068\u306B\ntemplate <typename\
+    \ mint>\nvc<mint> find_roots_of_polynomial(vc<mint> F) {\n  while (len(F) && F.back()\
+    \ == mint(0)) POP(F);\n  assert(!F.empty());\n\n  const int p = mint::get_mod();\n\
     \  assert(p % 2 == 1);\n\n  vc<mint> g = {0, 1};\n  g = poly_mod_pow(g, p, F);\n\
     \  if (len(g) <= 2) g.resize(2);\n  g[1] -= 1;\n  F = poly_gcd(F, g);\n\n  //\
     \ F \u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\n  vc<mint> ANS;\n\
@@ -810,13 +810,13 @@ data:
     \    if (len(F) == 2) {\n      mint a = F[0], b = F[1];\n      // a+bx=0\n   \
     \   ANS.eb((-a) / b);\n      return;\n    }\n    vc<mint> g(2);\n    g[0] = RNG(0,\
     \ p), g[1] = 1;\n    vc<mint> h = poly_mod_pow(g, (p - 1) / 2, F);\n    if (h.empty())\
-    \ { return dfs(dfs, F); }\n    h[0] -= 1;\n    vc<mint> f1 = poly_gcd(F, h);\n\
-    \    vc<mint> f2 = poly_divmod(F, f1).fi;\n    dfs(dfs, f1), dfs(dfs, f2);\n \
-    \ };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return ANS;\n}\n"
+    \ {\n      return dfs(dfs, F);\n    }\n    h[0] -= 1;\n    vc<mint> f1 = poly_gcd(F,\
+    \ h);\n    vc<mint> f2 = poly_divmod(F, f1).fi;\n    dfs(dfs, f1), dfs(dfs, f2);\n\
+    \  };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return ANS;\n}\n"
   code: "#include \"poly/poly_mod_pow.hpp\"\n#include \"poly/poly_gcd.hpp\"\n#include\
     \ \"random/base.hpp\"\n\n// F(a)=0 \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\
     \u8FD4\u3059\n// \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\
-    \u3068\u306B\ntemplate <typename mint>\nvc<mint> finding_root_of_polynomial(vc<mint>\
+    \u3068\u306B\ntemplate <typename mint>\nvc<mint> find_roots_of_polynomial(vc<mint>\
     \ F) {\n  while (len(F) && F.back() == mint(0)) POP(F);\n  assert(!F.empty());\n\
     \n  const int p = mint::get_mod();\n  assert(p % 2 == 1);\n\n  vc<mint> g = {0,\
     \ 1};\n  g = poly_mod_pow(g, p, F);\n  if (len(g) <= 2) g.resize(2);\n  g[1] -=\
@@ -825,10 +825,10 @@ data:
     \ {\n    if (len(F) == 1) return;\n    if (len(F) == 2) {\n      mint a = F[0],\
     \ b = F[1];\n      // a+bx=0\n      ANS.eb((-a) / b);\n      return;\n    }\n\
     \    vc<mint> g(2);\n    g[0] = RNG(0, p), g[1] = 1;\n    vc<mint> h = poly_mod_pow(g,\
-    \ (p - 1) / 2, F);\n    if (h.empty()) { return dfs(dfs, F); }\n    h[0] -= 1;\n\
-    \    vc<mint> f1 = poly_gcd(F, h);\n    vc<mint> f2 = poly_divmod(F, f1).fi;\n\
-    \    dfs(dfs, f1), dfs(dfs, f2);\n  };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return\
-    \ ANS;\n}"
+    \ (p - 1) / 2, F);\n    if (h.empty()) {\n      return dfs(dfs, F);\n    }\n \
+    \   h[0] -= 1;\n    vc<mint> f1 = poly_gcd(F, h);\n    vc<mint> f2 = poly_divmod(F,\
+    \ f1).fi;\n    dfs(dfs, f1), dfs(dfs, f2);\n  };\n  dfs(dfs, F);\n  sort(all(ANS));\n\
+    \  return ANS;\n}"
   dependsOn:
   - poly/poly_mod_pow.hpp
   - poly/poly_divmod.hpp
@@ -846,16 +846,16 @@ data:
   - poly/poly_gcd.hpp
   - random/base.hpp
   isVerificationFile: false
-  path: poly/finding_root_of_polynomial.hpp
+  path: poly/find_roots_of_polynomial.hpp
   requiredBy: []
-  timestamp: '2026-08-17 11:59:38+09:00'
+  timestamp: '2026-08-17 13:01:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/poly_root_finding.test.cpp
-documentation_of: poly/finding_root_of_polynomial.hpp
+documentation_of: poly/find_roots_of_polynomial.hpp
 layout: document
 redirect_from:
-- /library/poly/finding_root_of_polynomial.hpp
-- /library/poly/finding_root_of_polynomial.hpp.html
-title: poly/finding_root_of_polynomial.hpp
+- /library/poly/find_roots_of_polynomial.hpp
+- /library/poly/find_roots_of_polynomial.hpp.html
+title: poly/find_roots_of_polynomial.hpp
 ---

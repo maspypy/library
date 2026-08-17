@@ -32,9 +32,9 @@ data:
   - icon: ':warning:'
     path: geo/delaunay_triangulation_of_convex_polygon.hpp
     title: geo/delaunay_triangulation_of_convex_polygon.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/all_cycle_common_vertex.hpp
-    title: graph/all_cycle_common_vertex.hpp
+  - icon: ':warning:'
+    path: graph/all_cycle_common_vertices.hpp
+    title: graph/all_cycle_common_vertices.hpp
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
@@ -54,9 +54,6 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/all_cycle_common_vertex.test.cpp
-    title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/decremental_fastset.test.cpp
     title: test/1_mytest/decremental_fastset.test.cpp
@@ -202,7 +199,7 @@ data:
   path: ds/fastset.hpp
   requiredBy:
   - bigint/redundant_binary_number.hpp
-  - graph/all_cycle_common_vertex.hpp
+  - graph/all_cycle_common_vertices.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/compress_tree.hpp
   - graph/toposort.hpp
@@ -220,7 +217,6 @@ data:
   timestamp: '2026-08-17 08:30:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/sortable_array.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp

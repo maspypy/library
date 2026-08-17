@@ -135,8 +135,8 @@ data:
     path: poly/egf_convolution.hpp
     title: poly/egf_convolution.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/finding_root_of_polynomial.hpp
-    title: poly/finding_root_of_polynomial.hpp
+    path: poly/find_roots_of_polynomial.hpp
+    title: poly/find_roots_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
@@ -204,9 +204,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/add_chmin_chmax.test.cpp
     title: test/1_mytest/add_chmin_chmax.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/all_cycle_common_vertex.test.cpp
-    title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_inverse.test.cpp
     title: test/1_mytest/all_inverse.test.cpp
@@ -282,12 +279,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_by_factor_type.test.cpp
     title: test/1_mytest/count_by_factor_type.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_clique.test.cpp
-    title: test/1_mytest/count_clique.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_indep_set.test.cpp
-    title: test/1_mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
@@ -679,9 +670,6 @@ data:
     path: test/1_mytest/tournament.test.cpp
     title: test/1_mytest/tournament.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1006,8 +994,8 @@ data:
   - graph/find_path_through_specified.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/ds/rolling_hash_on_tree.hpp
-  - poly/finding_root_of_polynomial.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - poly/find_roots_of_polynomial.hpp
   - poly/fps_sqrt.hpp
   - poly/egf_convolution.hpp
   - setfunc/submask_range_query.hpp
@@ -1071,13 +1059,11 @@ data:
   - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/splay.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
   - test/1_mytest/bigint.test.cpp
-  - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/binary_trie.test.cpp
   - test/1_mytest/min_poly.test.cpp
   - test/1_mytest/product_of_one_pm_xn.test.cpp
@@ -1151,7 +1137,6 @@ data:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/minplus_conv_triple.test.cpp
   - test/1_mytest/conv_leq.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/min_min.test.cpp
@@ -1202,7 +1187,6 @@ data:
   - test/1_mytest/coprime_factorization.test.cpp
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
-  - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/digit_sum.test.cpp
   - test/1_mytest/max_of_linear_segments.test.cpp
   - test/1_mytest/enum_partitions.test.cpp

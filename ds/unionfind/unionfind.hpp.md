@@ -50,9 +50,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/blackbox/unionfind.hpp
     title: graph/blackbox/unionfind.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':warning:'
+    path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
@@ -86,9 +86,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_walk_generating_function.hpp
-    title: graph/tree_walk_generating_function.hpp
   - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
@@ -114,12 +111,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_clique.test.cpp
-    title: test/1_mytest/count_clique.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_indep_set.test.cpp
-    title: test/1_mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/decremental_fastset.test.cpp
     title: test/1_mytest/decremental_fastset.test.cpp
@@ -171,9 +162,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
@@ -274,12 +262,6 @@ data:
     path: test/3_yukicoder/2296.test.cpp
     title: test/3_yukicoder/2296.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
   - icon: ':heavy_check_mark:'
@@ -330,7 +312,6 @@ data:
   - graph/tutte_polynomial.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/restore_euler_tour.hpp
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/bipartite_balanced_edge_coloring.hpp
   - graph/ds/grid_decremental_connectivity.hpp
   - graph/blackbox/mst.hpp
@@ -343,8 +324,8 @@ data:
   - graph/unicyclic_graph.hpp
   - graph/dag_path_cover.hpp
   - graph/bipartite_edge_coloring.hpp
+  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - graph/optimal_product_on_tree.hpp
-  - graph/tree_walk_generating_function.hpp
   - graph/maximum_antichain.hpp
   - ds/rmq/suffix_min.hpp
   - ds/rmq/suffix_max.hpp
@@ -362,7 +343,6 @@ data:
   verifiedWith:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
-  - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/count_P3P4P5.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp
@@ -373,7 +353,6 @@ data:
   - test/1_mytest/st_numbering.test.cpp
   - test/1_mytest/find_even_cycle.test.cpp
   - test/1_mytest/count_K4.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/find_cycle_minimum.test.cpp
@@ -383,7 +362,6 @@ data:
   - test/1_mytest/decremental_fastset.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
-  - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/2_library_checker/geometry/manhattan_mst.test.cpp
   - test/2_library_checker/graph/incremental_scc.test.cpp
@@ -402,12 +380,10 @@ data:
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/2251_1.test.cpp
   - test/4_aoj/2251_2.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/2295.test.cpp
   - test/3_yukicoder/1600.test.cpp

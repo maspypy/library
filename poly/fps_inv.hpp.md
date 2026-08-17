@@ -132,8 +132,8 @@ data:
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/finding_root_of_polynomial.hpp
-    title: poly/finding_root_of_polynomial.hpp
+    path: poly/find_roots_of_polynomial.hpp
+    title: poly/find_roots_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
@@ -340,9 +340,6 @@ data:
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -543,12 +540,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
@@ -974,7 +965,6 @@ data:
   - graph/count/count_labeled_unicyclic.hpp
   - graph/chromatic.hpp
   - poly/product_of_f_rk_x.hpp
-  - poly/finding_root_of_polynomial.hpp
   - poly/poly_gcd.hpp
   - poly/schroder.hpp
   - poly/compositional_inverse_old.hpp
@@ -988,6 +978,7 @@ data:
   - poly/coef_of_rational_fps.hpp
   - poly/fps_pow.hpp
   - poly/multipoint_evaluation_for_prefix_product.hpp
+  - poly/find_roots_of_polynomial.hpp
   - poly/fps_sqrt.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/composed_sum.hpp
@@ -1054,7 +1045,6 @@ data:
   - test/1_mytest/count_labeled_connected.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/chirp_z.test.cpp
@@ -1107,14 +1097,12 @@ data:
   - test/2_library_checker/enumerative_combinatorics/partition.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/2097.test.cpp
   - test/3_yukicoder/1755.test.cpp
   - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/1500.test.cpp

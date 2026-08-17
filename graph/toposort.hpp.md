@@ -14,13 +14,10 @@ data:
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/all_cycle_common_vertex.hpp
-    title: graph/all_cycle_common_vertex.hpp
+  - icon: ':warning:'
+    path: graph/all_cycle_common_vertices.hpp
+    title: graph/all_cycle_common_vertices.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/all_cycle_common_vertex.test.cpp
-    title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
@@ -239,11 +236,10 @@ data:
   isVerificationFile: false
   path: graph/toposort.hpp
   requiredBy:
-  - graph/all_cycle_common_vertex.hpp
+  - graph/all_cycle_common_vertices.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/4_aoj/2251_1.test.cpp
 documentation_of: graph/toposort.hpp
 layout: document

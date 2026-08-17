@@ -53,9 +53,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/all_cycle_common_vertex.hpp
-    title: graph/all_cycle_common_vertex.hpp
+  - icon: ':warning:'
+    path: graph/all_cycle_common_vertices.hpp
+    title: graph/all_cycle_common_vertices.hpp
   - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
@@ -89,9 +89,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition_old.hpp
     title: graph/centroid_decomposition_old.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':warning:'
+    path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
@@ -113,9 +113,6 @@ data:
   - icon: ':warning:'
     path: graph/count/count_bridgeless_subgraph.hpp
     title: graph/count/count_bridgeless_subgraph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_clique.hpp
-    title: graph/count/count_clique.hpp
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
@@ -125,9 +122,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_cycle.hpp
     title: graph/count/count_cycle.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_independent_set.hpp
-    title: graph/count/count_independent_set.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
@@ -263,9 +257,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/path_cycle.hpp
-    title: graph/path_cycle.hpp
+  - icon: ':warning:'
+    path: graph/path_cycle_decomposition.hpp
+    title: graph/path_cycle_decomposition.hpp
   - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
@@ -354,9 +348,6 @@ data:
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/tree_walk_generating_function.hpp
-    title: graph/tree_walk_generating_function.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':heavy_check_mark:'
@@ -421,9 +412,6 @@ data:
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/all_cycle_common_vertex.test.cpp
-    title: test/1_mytest/all_cycle_common_vertex.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
     title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - icon: ':heavy_check_mark:'
@@ -435,12 +423,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_clique.test.cpp
-    title: test/1_mytest/count_clique.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_indep_set.test.cpp
-    title: test/1_mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_labeled_tree.test.cpp
     title: test/1_mytest/enumerate_labeled_tree.test.cpp
@@ -513,9 +495,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
@@ -913,12 +892,6 @@ data:
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1073,23 +1046,19 @@ data:
   - nt/discrete_log.hpp
   - nt/nimber/nimber_log.hpp
   - graph/block_cut.hpp
-  - graph/path_cycle.hpp
   - graph/count/count_P3_P4_P5.hpp
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   - graph/count/count_C3_C4.hpp
   - graph/count/count_cycle.hpp
   - graph/count/count_bridgeless_subgraph.hpp
-  - graph/count/count_independent_set.hpp
   - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_connected_subgraph.hpp
   - graph/count/count_tree_subgraph.hpp
-  - graph/count/count_clique.hpp
   - graph/count/count_connected_intervals.hpp
   - graph/centroid_decomposition_old.hpp
   - graph/chromatic.hpp
   - graph/steiner_tree.hpp
-  - graph/all_cycle_common_vertex.hpp
   - graph/tree_of_unionfind.hpp
   - graph/find_centroid.hpp
   - graph/fast_lca.hpp
@@ -1106,8 +1075,8 @@ data:
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/bipartite_balanced_edge_coloring.hpp
+  - graph/all_cycle_common_vertices.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/ds/dual_tree_monoid.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
@@ -1160,13 +1129,14 @@ data:
   - graph/dag_path_cover.hpp
   - graph/bipartite_edge_coloring.hpp
   - graph/two_edge_component.hpp
+  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - graph/bracket_graph.hpp
   - graph/find_C4.hpp
   - graph/optimal_product_on_tree.hpp
   - graph/base.hpp
   - graph/maximum_independent_set_weighted.hpp
+  - graph/path_cycle_decomposition.hpp
   - graph/minimum_cost_cycle.hpp
-  - graph/tree_walk_generating_function.hpp
   - graph/find_even_cycle.hpp
   - graph/find_nontransitive_triple.hpp
   - graph/find_cycle.hpp
@@ -1214,10 +1184,8 @@ data:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
   - test/1_mytest/nimber_log.test.cpp
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
-  - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/tdpc_grid_dp.test.cpp
@@ -1232,7 +1200,6 @@ data:
   - test/1_mytest/st_numbering.test.cpp
   - test/1_mytest/find_even_cycle.test.cpp
   - test/1_mytest/count_K4.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/modfast.test.cpp
@@ -1242,7 +1209,6 @@ data:
   - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
-  - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/2_library_checker/geometry/manhattan_mst.test.cpp
@@ -1327,7 +1293,6 @@ data:
   - test/4_aoj/GRL_6_A.test.cpp
   - test/4_aoj/ITP1_11_B.test.cpp
   - test/3_yukicoder/1868.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/1320.test.cpp
   - test/3_yukicoder/1242.test.cpp
@@ -1343,7 +1308,6 @@ data:
   - test/3_yukicoder/899.test.cpp
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1295.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/1778.test.cpp
   - test/3_yukicoder/1752.test.cpp

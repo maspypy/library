@@ -43,23 +43,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_walk_generating_function.hpp
-    title: graph/tree_walk_generating_function.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
@@ -651,7 +639,7 @@ data:
     \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
     \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
     \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
-    #line 4 \"graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp\"\n\ntemplate\
+    #line 4 \"graph/characteristic_poly_of_tree_adjacency_matrix.hpp\"\n\ntemplate\
     \ <typename mint>\nstruct TREE_ADJ_MATRIX_DP {\n  using poly = vc<mint>;\n  using\
     \ Data = array<array<poly, 2>, 2>;\n  using value_type = Data;\n\n  static void\
     \ add(poly& f, poly g) {\n    if (len(f) < len(g)) f.resize(len(g));\n    FOR(i,\
@@ -749,19 +737,15 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   isVerificationFile: false
-  path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  requiredBy:
-  - graph/tree_walk_generating_function.hpp
-  timestamp: '2026-08-17 09:36:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-documentation_of: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+  requiredBy: []
+  timestamp: '2026-08-17 13:01:23+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
 layout: document
 redirect_from:
-- /library/graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-- /library/graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp.html
-title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+- /library/graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+- /library/graph/characteristic_poly_of_tree_adjacency_matrix.hpp.html
+title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
 ---

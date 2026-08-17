@@ -11,9 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching.hpp
     title: flow/bipartite_matching.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/all_cycle_common_vertex.hpp
-    title: graph/all_cycle_common_vertex.hpp
+  - icon: ':warning:'
+    path: graph/all_cycle_common_vertices.hpp
+    title: graph/all_cycle_common_vertices.hpp
   - icon: ':warning:'
     path: graph/bipartite_balanced_edge_coloring.hpp
     title: graph/bipartite_balanced_edge_coloring.hpp
@@ -36,9 +36,6 @@ data:
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/all_cycle_common_vertex.test.cpp
-    title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_odd_cycle.test.cpp
     title: test/1_mytest/find_odd_cycle.test.cpp
@@ -239,9 +236,9 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_component.hpp
   requiredBy:
-  - graph/all_cycle_common_vertex.hpp
   - graph/find_odd_cycle.hpp
   - graph/bipartite_balanced_edge_coloring.hpp
+  - graph/all_cycle_common_vertices.hpp
   - graph/reachability.hpp
   - graph/twosat.hpp
   - graph/bipartite_edge_coloring.hpp
@@ -251,7 +248,6 @@ data:
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp

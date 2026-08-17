@@ -23,13 +23,10 @@ data:
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/all_cycle_common_vertex.test.cpp
-    title: test/1_mytest/all_cycle_common_vertex.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://codeforces.com/contest/982/problem/F
@@ -464,21 +461,21 @@ data:
     \ b = G.edges[back_e].to;\r\n  if (dep[a] > dep[b]) swap(a, b);\r\n  es.eb(back_e),\
     \ vs.eb(a);\r\n  while (1) {\r\n    int x = vs.back();\r\n    auto& e = G.edges[es.back()];\r\
     \n    int y = e.frm + e.to - x;\r\n    if (y == a) break;\r\n    vs.eb(y);\r\n\
-    \    es.eb(par[y]);\r\n  }\r\n  return {vs, es};\r\n}\r\n#line 4 \"graph/all_cycle_common_vertex.hpp\"\
+    \    es.eb(par[y]);\r\n  }\r\n  return {vs, es};\r\n}\r\n#line 4 \"graph/all_cycle_common_vertices.hpp\"\
     \n\n// v \u3092\u901A\u308B\u30B5\u30A4\u30AF\u30EB\u304C\u5B58\u5728\u3057, v\
     \ \u3092\u6D88\u3059\u3068 DAG \u306B\u306A\u308B\u3088\u3046\u306A v \u3092\u6607\
     \u9806\u5168\u5217\u6319\u3059\u308B\n// v \u3092\u6D88\u3059\u3068 \u975EDAG\
     \ -> DAG\n// loop \u306F\u306A\u3044\u3082\u306E\u3068\u3057\u305F\u304B\u3082\
     \n// https://codeforces.com/contest/982/problem/F\ntemplate <typename GT>\nvc<int>\
-    \ all_cycle_common_vertex(GT& G, bool strongly_connected) {\n  static_assert(GT::is_directed);\n\
+    \ all_cycle_common_vertices(GT& G, bool strongly_connected) {\n  static_assert(GT::is_directed);\n\
     \  int N = G.N;\n  if (!strongly_connected) {\n    auto [nc, comp] = strongly_connected_component(G);\n\
     \    vc<int> sz(nc);\n    FOR(v, N) sz[comp[v]]++;\n    int k = -1;\n    FOR(i,\
     \ nc) {\n      if (sz[i] >= 2) {\n        if (k != -1) return {};\n        k =\
     \ i;\n      }\n    }\n    if (k == -1) return {};  // DAG\n    vc<int> V;\n  \
     \  FOR(v, N) if (comp[v] == k) V.eb(v);\n    Graph<int, 1> H = G.rearrange(V);\n\
-    \    vc<int> ANS = all_cycle_common_vertex(H, true);\n    for (int& x : ANS) x\
-    \ = V[x];\n    return ANS;\n  }\n\n  assert(strongly_connected);\n  if (N == 1)\
-    \ return {};  // DAG\n\n  // main cycle\n  vc<int> C = find_cycle_directed(G).fi;\n\
+    \    vc<int> ANS = all_cycle_common_vertices(H, true);\n    for (int& x : ANS)\
+    \ x = V[x];\n    return ANS;\n  }\n\n  assert(strongly_connected);\n  if (N ==\
+    \ 1) return {};  // DAG\n\n  // main cycle\n  vc<int> C = find_cycle_directed(G).fi;\n\
     \n  int n = len(C);\n  vc<int> idx(N, -1);\n  FOR(i, n) idx[C[i]] = i;\n\n  vc<int>\
     \ other;\n  FOR(i, N) if (idx[i] == -1) other.eb(i);\n  if (len(other)) {\n  \
     \  Graph<int, 1> H = G.rearrange(other);\n    if (toposort(H).empty()) return\
@@ -503,13 +500,13 @@ data:
     \u3088\u3046\u306A v \u3092\u6607\u9806\u5168\u5217\u6319\u3059\u308B\n// v \u3092\
     \u6D88\u3059\u3068 \u975EDAG -> DAG\n// loop \u306F\u306A\u3044\u3082\u306E\u3068\
     \u3057\u305F\u304B\u3082\n// https://codeforces.com/contest/982/problem/F\ntemplate\
-    \ <typename GT>\nvc<int> all_cycle_common_vertex(GT& G, bool strongly_connected)\
+    \ <typename GT>\nvc<int> all_cycle_common_vertices(GT& G, bool strongly_connected)\
     \ {\n  static_assert(GT::is_directed);\n  int N = G.N;\n  if (!strongly_connected)\
     \ {\n    auto [nc, comp] = strongly_connected_component(G);\n    vc<int> sz(nc);\n\
     \    FOR(v, N) sz[comp[v]]++;\n    int k = -1;\n    FOR(i, nc) {\n      if (sz[i]\
     \ >= 2) {\n        if (k != -1) return {};\n        k = i;\n      }\n    }\n \
     \   if (k == -1) return {};  // DAG\n    vc<int> V;\n    FOR(v, N) if (comp[v]\
-    \ == k) V.eb(v);\n    Graph<int, 1> H = G.rearrange(V);\n    vc<int> ANS = all_cycle_common_vertex(H,\
+    \ == k) V.eb(v);\n    Graph<int, 1> H = G.rearrange(V);\n    vc<int> ANS = all_cycle_common_vertices(H,\
     \ true);\n    for (int& x : ANS) x = V[x];\n    return ANS;\n  }\n\n  assert(strongly_connected);\n\
     \  if (N == 1) return {};  // DAG\n\n  // main cycle\n  vc<int> C = find_cycle_directed(G).fi;\n\
     \n  int n = len(C);\n  vc<int> idx(N, -1);\n  FOR(i, n) idx[C[i]] = i;\n\n  vc<int>\
@@ -539,16 +536,15 @@ data:
   - other/bit.hpp
   - graph/find_cycle.hpp
   isVerificationFile: false
-  path: graph/all_cycle_common_vertex.hpp
+  path: graph/all_cycle_common_vertices.hpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
-documentation_of: graph/all_cycle_common_vertex.hpp
+  timestamp: '2026-08-17 13:01:23+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/all_cycle_common_vertices.hpp
 layout: document
 redirect_from:
-- /library/graph/all_cycle_common_vertex.hpp
-- /library/graph/all_cycle_common_vertex.hpp.html
-title: graph/all_cycle_common_vertex.hpp
+- /library/graph/all_cycle_common_vertices.hpp
+- /library/graph/all_cycle_common_vertices.hpp.html
+title: graph/all_cycle_common_vertices.hpp
 ---

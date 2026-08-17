@@ -37,12 +37,6 @@ data:
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_clique.test.cpp
-    title: test/1_mytest/count_clique.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_indep_set.test.cpp
-    title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/decremental_fastset.test.cpp
     title: test/1_mytest/decremental_fastset.test.cpp
   - icon: ':heavy_check_mark:'
@@ -100,9 +94,6 @@ data:
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -142,7 +133,6 @@ data:
   - test/1_mytest/nth_element_from_sorted_lists.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
-  - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/count_P3P4P5.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp
@@ -154,7 +144,6 @@ data:
   - test/1_mytest/find_even_cycle.test.cpp
   - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/count_K4.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/find_cycle_minimum.test.cpp
@@ -163,7 +152,6 @@ data:
   - test/1_mytest/remove_one_edge.test.cpp
   - test/1_mytest/extended_lichao_2.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
-  - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/2_library_checker/geometry/closest_pair_dc.test.cpp

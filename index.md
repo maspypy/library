@@ -956,9 +956,9 @@ data:
       title: geo3d/cross_point.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
-      path: graph/all_cycle_common_vertex.hpp
-      title: graph/all_cycle_common_vertex.hpp
+    - icon: ':warning:'
+      path: graph/all_cycle_common_vertices.hpp
+      title: graph/all_cycle_common_vertices.hpp
     - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
@@ -989,9 +989,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/centroid_decomposition_old.hpp
       title: graph/centroid_decomposition_old.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-      title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+    - icon: ':warning:'
+      path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+      title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     - icon: ':heavy_check_mark:'
       path: graph/chromatic.hpp
       title: graph/chromatic.hpp
@@ -1097,9 +1097,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/outerplanar.hpp
       title: graph/outerplanar.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/path_cycle.hpp
-      title: graph/path_cycle.hpp
+    - icon: ':warning:'
+      path: graph/path_cycle_decomposition.hpp
+      title: graph/path_cycle_decomposition.hpp
     - icon: ':heavy_check_mark:'
       path: graph/planar_graph.hpp
       title: graph/planar_graph.hpp
@@ -1163,7 +1163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: graph/tree_walk_generating_function.hpp
       title: graph/tree_walk_generating_function.hpp
     - icon: ':warning:'
@@ -1244,7 +1244,7 @@ data:
     - icon: ':warning:'
       path: graph/count/count_bridgeless_subgraph.hpp
       title: graph/count/count_bridgeless_subgraph.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: graph/count/count_clique.hpp
       title: graph/count/count_clique.hpp
     - icon: ':warning:'
@@ -1256,7 +1256,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/count/count_cycle.hpp
       title: graph/count/count_cycle.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: graph/count/count_independent_set.hpp
       title: graph/count/count_independent_set.hpp
     - icon: ':heavy_check_mark:'
@@ -2094,8 +2094,8 @@ data:
       path: poly/fft.hpp
       title: poly/fft.hpp
     - icon: ':heavy_check_mark:'
-      path: poly/finding_root_of_polynomial.hpp
-      title: poly/finding_root_of_polynomial.hpp
+      path: poly/find_roots_of_polynomial.hpp
+      title: poly/find_roots_of_polynomial.hpp
     - icon: ':heavy_check_mark:'
       path: poly/fps_div.hpp
       title: poly/fps_div.hpp
@@ -2672,7 +2672,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/all_but_one_products.test.cpp
       title: test/1_mytest/all_but_one_products.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/all_cycle_common_vertex.test.cpp
       title: test/1_mytest/all_cycle_common_vertex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2768,10 +2768,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/count_by_factor_type.test.cpp
       title: test/1_mytest/count_by_factor_type.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/count_clique.test.cpp
       title: test/1_mytest/count_clique.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/count_indep_set.test.cpp
       title: test/1_mytest/count_indep_set.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3314,7 +3314,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/tournament.test.cpp
       title: test/1_mytest/tournament.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/tree_walk_gf.test.cpp
       title: test/1_mytest/tree_walk_gf.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4831,10 +4831,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2583.test.cpp
       title: test/3_yukicoder/2583.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/2587.test.cpp
       title: test/3_yukicoder/2587.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/2587_2.test.cpp
       title: test/3_yukicoder/2587_2.test.cpp
     - icon: ':heavy_check_mark:'

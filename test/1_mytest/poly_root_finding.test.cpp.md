@@ -35,8 +35,8 @@ data:
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/finding_root_of_polynomial.hpp
-    title: poly/finding_root_of_polynomial.hpp
+    path: poly/find_roots_of_polynomial.hpp
+    title: poly/find_roots_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
@@ -895,11 +895,11 @@ data:
     \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 4 \"poly/finding_root_of_polynomial.hpp\"\n\n//\
-    \ F(a)=0 \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\u8FD4\u3059\n// \u6607\u9806\
-    \u306B\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\u3068\u306B\ntemplate <typename\
-    \ mint>\nvc<mint> finding_root_of_polynomial(vc<mint> F) {\n  while (len(F) &&\
-    \ F.back() == mint(0)) POP(F);\n  assert(!F.empty());\n\n  const int p = mint::get_mod();\n\
+    \ RNG_64() % (r - l); }\n#line 4 \"poly/find_roots_of_polynomial.hpp\"\n\n// F(a)=0\
+    \ \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\u8FD4\u3059\n// \u6607\u9806\u306B\
+    \u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\u3068\u306B\ntemplate <typename\
+    \ mint>\nvc<mint> find_roots_of_polynomial(vc<mint> F) {\n  while (len(F) && F.back()\
+    \ == mint(0)) POP(F);\n  assert(!F.empty());\n\n  const int p = mint::get_mod();\n\
     \  assert(p % 2 == 1);\n\n  vc<mint> g = {0, 1};\n  g = poly_mod_pow(g, p, F);\n\
     \  if (len(g) <= 2) g.resize(2);\n  g[1] -= 1;\n  F = poly_gcd(F, g);\n\n  //\
     \ F \u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\n  vc<mint> ANS;\n\
@@ -907,9 +907,9 @@ data:
     \    if (len(F) == 2) {\n      mint a = F[0], b = F[1];\n      // a+bx=0\n   \
     \   ANS.eb((-a) / b);\n      return;\n    }\n    vc<mint> g(2);\n    g[0] = RNG(0,\
     \ p), g[1] = 1;\n    vc<mint> h = poly_mod_pow(g, (p - 1) / 2, F);\n    if (h.empty())\
-    \ { return dfs(dfs, F); }\n    h[0] -= 1;\n    vc<mint> f1 = poly_gcd(F, h);\n\
-    \    vc<mint> f2 = poly_divmod(F, f1).fi;\n    dfs(dfs, f1), dfs(dfs, f2);\n \
-    \ };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return ANS;\n}\n#line 1 \"poly/convolution_all.hpp\"\
+    \ {\n      return dfs(dfs, F);\n    }\n    h[0] -= 1;\n    vc<mint> f1 = poly_gcd(F,\
+    \ h);\n    vc<mint> f2 = poly_divmod(F, f1).fi;\n    dfs(dfs, f1), dfs(dfs, f2);\n\
+    \  };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return ANS;\n}\n#line 1 \"poly/convolution_all.hpp\"\
     \n\n#line 1 \"poly/convolution.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\n\n\
     #line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
@@ -1353,7 +1353,7 @@ data:
     \    vc<poly> polys;\n      vc<mint> roots;\n      FOR(N) {\n        mint a =\
     \ S[RNG(0, 10)];\n        roots.eb(a);\n        polys.eb(poly({-mint(a), mint(1)}));\n\
     \      }\n      UNIQUE(roots);\n      poly f = convolution_all(polys);\n     \
-    \ auto ANS = finding_root_of_polynomial(f);\n      sort(all(ANS));\n      assert(roots\
+    \ auto ANS = find_roots_of_polynomial(f);\n      sort(all(ANS));\n      assert(roots\
     \ == ANS);\n    }\n  }\n}\n\n// test_1 \u306B\u3082\u3046\u3072\u3068\u3064 N\
     \ \u6B21\u5F0F\u3092\u304B\u3051\u308B\nvoid test_2() {\n  using mint = modint998;\n\
     \  using poly = vc<mint>;\n  int p = mint::get_mod();\n  FOR(N, 50) {\n    FOR(10)\
@@ -1362,12 +1362,12 @@ data:
     \    roots.eb(a);\n        polys.eb(poly({-mint(a), mint(1)}));\n      }\n   \
     \   UNIQUE(roots);\n      poly f = convolution_all(polys);\n      vc<mint> g(N\
     \ + 1);\n      FOR(i, N + 1) g[i] = RNG(0, p);\n      f = convolution(f, g);\n\
-    \      auto ANS = finding_root_of_polynomial(f);\n      for (auto& r: roots) {\
-    \ assert(binary_search(all(ANS), r)); }\n    }\n  }\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test_1();\n  test_2();\n  solve();\n  return 0;\n}\n"
+    \      auto ANS = find_roots_of_polynomial(f);\n      for (auto& r : roots) {\n\
+    \        assert(binary_search(all(ANS), r));\n      }\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test_1();\n  test_2();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"poly/finding_root_of_polynomial.hpp\"\n#include \"poly/convolution_all.hpp\"\
+    \n\n#include \"poly/find_roots_of_polynomial.hpp\"\n#include \"poly/convolution_all.hpp\"\
     \n\n// \u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\u3001\u91CD\u8907\u5EA6\
     \u307E\u3042\u307E\u3042\u3042\u308B\u304B\u3082\nvoid test_1() {\n  using mint\
     \ = modint998;\n  using poly = vc<mint>;\n  int p = mint::get_mod();\n  FOR(N,\
@@ -1375,7 +1375,7 @@ data:
     \    vc<poly> polys;\n      vc<mint> roots;\n      FOR(N) {\n        mint a =\
     \ S[RNG(0, 10)];\n        roots.eb(a);\n        polys.eb(poly({-mint(a), mint(1)}));\n\
     \      }\n      UNIQUE(roots);\n      poly f = convolution_all(polys);\n     \
-    \ auto ANS = finding_root_of_polynomial(f);\n      sort(all(ANS));\n      assert(roots\
+    \ auto ANS = find_roots_of_polynomial(f);\n      sort(all(ANS));\n      assert(roots\
     \ == ANS);\n    }\n  }\n}\n\n// test_1 \u306B\u3082\u3046\u3072\u3068\u3064 N\
     \ \u6B21\u5F0F\u3092\u304B\u3051\u308B\nvoid test_2() {\n  using mint = modint998;\n\
     \  using poly = vc<mint>;\n  int p = mint::get_mod();\n  FOR(N, 50) {\n    FOR(10)\
@@ -1384,13 +1384,13 @@ data:
     \    roots.eb(a);\n        polys.eb(poly({-mint(a), mint(1)}));\n      }\n   \
     \   UNIQUE(roots);\n      poly f = convolution_all(polys);\n      vc<mint> g(N\
     \ + 1);\n      FOR(i, N + 1) g[i] = RNG(0, p);\n      f = convolution(f, g);\n\
-    \      auto ANS = finding_root_of_polynomial(f);\n      for (auto& r: roots) {\
-    \ assert(binary_search(all(ANS), r)); }\n    }\n  }\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test_1();\n  test_2();\n  solve();\n  return 0;\n}"
+    \      auto ANS = find_roots_of_polynomial(f);\n      for (auto& r : roots) {\n\
+    \        assert(binary_search(all(ANS), r));\n      }\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test_1();\n  test_2();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
-  - poly/finding_root_of_polynomial.hpp
+  - poly/find_roots_of_polynomial.hpp
   - poly/poly_mod_pow.hpp
   - poly/poly_divmod.hpp
   - poly/fps_inv.hpp
@@ -1411,7 +1411,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/poly_root_finding.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 11:59:38+09:00'
+  timestamp: '2026-08-17 13:01:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/poly_root_finding.test.cpp

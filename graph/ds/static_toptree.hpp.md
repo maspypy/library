@@ -11,9 +11,9 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':warning:'
+    path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
@@ -26,13 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_walk_generating_function.hpp
-    title: graph/tree_walk_generating_function.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
@@ -42,12 +36,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2258.test.cpp
     title: test/3_yukicoder/2258.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -373,19 +361,15 @@ data:
   path: graph/ds/static_toptree.hpp
   requiredBy:
   - graph/count_matching_on_tree.hpp
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/dynamic_tree_dp.hpp
   - graph/ds/distance_sum.hpp
-  - graph/tree_walk_generating_function.hpp
+  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2258.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
