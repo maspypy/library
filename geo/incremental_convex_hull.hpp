@@ -2,11 +2,11 @@
 
 // 下側凸包
 template <typename T, bool strict = true>
-struct IncrementalConvexHull_Lower {
+struct Incremental_Convex_Hull_Lower {
   using P = Point<T>;
   set<P> S;
 
-  IncrementalConvexHull_Lower() {}
+  Incremental_Convex_Hull_Lower() {}
 
   int size() { return len(S); }
 
@@ -58,8 +58,12 @@ struct IncrementalConvexHull_Lower {
     }
 
     // 点削除
-    if (len(left) > 1) { S.erase(next(S.find(left.back())), S.find(p)); }
-    if (len(right) > 1) { S.erase(next(S.find(p)), S.find(right.back())); }
+    if (len(left) > 1) {
+      S.erase(next(S.find(left.back())), S.find(p));
+    }
+    if (len(right) > 1) {
+      S.erase(next(S.find(p)), S.find(right.back()));
+    }
     FOR(i, len(left) - 1) rm_v(left[i]);
     FOR(i, len(right) - 1) rm_v(right[i]);
 
@@ -77,8 +81,12 @@ struct IncrementalConvexHull_Lower {
       rm_e(a, b);
     }
     // 辺追加
-    if (len(left)) { add_e(left.back(), p); }
-    if (len(right)) { add_e(p, right.back()); }
+    if (len(left)) {
+      add_e(left.back(), p);
+    }
+    if (len(right)) {
+      add_e(p, right.back());
+    }
   }
 
   // 中：1, 境界：0, 外：-1
@@ -102,14 +110,14 @@ struct IncrementalConvexHull_Lower {
 };
 
 template <typename T, bool strict = true>
-struct Incremental_ConvexHull {
+struct Incremental_Convex_Hull {
   using P = Point<T>;
   IncrementalConvexHull_Lower<T, strict> LOWER, UPPER;
   int cnt_E;
   T det_sum;
   bool is_empty;
 
-  Incremental_ConvexHull() : cnt_E(0), det_sum(0), is_empty(1) {}
+  Incremental_Convex_Hull() : cnt_E(0), det_sum(0), is_empty(1) {}
 
   int size() { return cnt_E; }
 

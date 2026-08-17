@@ -9,9 +9,9 @@ using P = Point<ll>;
 void solve() {
   LL(N);
   VEC(P, point, N);
-  vc<int> I = ConvexHull(point);
+  vc<int> I = Convex_Hull(point);
   print(len(I));
-  for (auto& i: I) print(point[i]);
+  for (auto& i : I) print(point[i]);
 }
 
 signed main() {

@@ -7,7 +7,7 @@
 // functional graph の辺に static な群の要素があるとする
 // （モノイドにもできるがそれは doubling してもらうということでさぼり. ）
 template <typename Monoid>
-struct FunctionalGraph {
+struct Functional_Graph {
   using MX = Monoid;
   using X = typename MX::value_type;
   int N, M;
@@ -16,8 +16,9 @@ struct FunctionalGraph {
   vc<int> root;
   Graph<int, 1> G;
 
-  FunctionalGraph() {}
-  FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N, MX::unit()), root(N, -1) {}
+  Functional_Graph() {}
+  Functional_Graph(int N)
+      : N(N), M(0), TO(N, -1), wt(N, MX::unit()), root(N, -1) {}
 
   void add(int a, int b, X c = MX::unit()) {
     assert(0 <= a && a < N);
@@ -47,7 +48,9 @@ struct FunctionalGraph {
     FOR(i, 1, N + 1) {
       int v = tree.V[i];
       int p = tree.parent[v];
-      if (p == N) { continue; }
+      if (p == N) {
+        continue;
+      }
       dp[v] = MX::op(wt[v], dp[p]);
     }
     return {G, tree};
@@ -106,7 +109,9 @@ struct FunctionalGraph {
       vc<X> pw;
       pw.eb(MX::op(wt[v], dp[bottom]));
       FOR(k, 63) {
-        if (!check(root[v], MX::op(prod, pw[k]))) { break; }
+        if (!check(root[v], MX::op(prod, pw[k]))) {
+          break;
+        }
         if (ans + (c << k) >= infty<ll>) return infty<ll>;
         pw.eb(MX::op(pw.back(), pw.back()));
       }
@@ -125,15 +130,18 @@ struct FunctionalGraph {
       return check(w, x);
     };
     int last = v;
-    for (auto [a, b]: pd) {
+    for (auto [a, b] : pd) {
       swap(a, b);
       assert(a <= b);
       if (mycheck(tree.V[a])) {
         last = tree.V[a];
         continue;
       }
-      if (!mycheck(tree.V[b])) { break; }
-      int k = binary_search([&](int i) -> bool { return mycheck(tree.V[i]); }, b, a, 0);
+      if (!mycheck(tree.V[b])) {
+        break;
+      }
+      int k = binary_search([&](int i) -> bool { return mycheck(tree.V[i]); },
+                            b, a, 0);
       last = tree.V[k];
       break;
     }
@@ -150,7 +158,9 @@ struct FunctionalGraph {
     FOR(v, N) {
       int d = tree.depth[v];
       int r = root[v];
-      if (d - 1 > step) { query[v].eb(v, step); }
+      if (d - 1 > step) {
+        query[v].eb(v, step);
+      }
       if (d - 1 <= step) {
         ll k = step - (d - 1);
         int bottom = TO[r];
@@ -167,11 +177,15 @@ struct FunctionalGraph {
     vc<int> path;
     auto dfs = [&](auto& dfs, int v) -> void {
       path.eb(v);
-      for (auto&& [w, k]: query[v]) { res[w] = path[len(path) - 1 - k]; }
-      for (auto&& e: G[v]) dfs(dfs, e.to);
+      for (auto&& [w, k] : query[v]) {
+        res[w] = path[len(path) - 1 - k];
+      }
+      for (auto&& e : G[v]) dfs(dfs, e.to);
       path.pop_back();
     };
-    for (auto&& e: G[N]) { dfs(dfs, e.to); }
+    for (auto&& e : G[N]) {
+      dfs(dfs, e.to);
+    }
     return res;
   }
 
@@ -197,7 +211,7 @@ struct FunctionalGraph {
     if (root[i] != root[j]) return -1;
     int r = root[i];
     int b = TO[r];
-    int n = tree.depth[b] - tree.depth[r] + 1; // cyc len
+    int n = tree.depth[b] - tree.depth[r] + 1;  // cyc len
     if ((tree.depth[i] - tree.depth[j]) % n != 0) return -1;
 
     if (tree.depth[i] == tree.depth[j]) {

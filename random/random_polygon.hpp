@@ -16,11 +16,11 @@ vc<Point<ll>> random_polygon(int N, int XY_ABS_MAX = 10) {
       S.insert(Point<ll>(x, y));
     }
     vc<P> point(all(S));
-    auto I = ConvexHull<ll, true>(point);
+    auto I = Convex_Hull<ll, true>(point);
     Count_Points_In_Triangles CT(point, point);
     vc<int> other;
     vc<int> done(N);
-    for (auto& i: I) done[i]++;
+    for (auto& i : I) done[i]++;
     if (MAX(done) >= 2) return {};
     FOR(i, N) if (!done[i]) other.eb(i);
     int fail = 0;
@@ -34,7 +34,7 @@ vc<Point<ll>> random_polygon(int N, int XY_ABS_MAX = 10) {
       if (CT.count3(a, b, c)) continue;
       if (CT.count2(a, c) + CT.count2(b, c)) continue;
       bool ok = 1;
-      for (auto& v: {a, b}) {
+      for (auto& v : {a, b}) {
         FOR(i, len(I)) {
           Segment<ll> S1(point[v], point[c]);
           Segment<ll> S2(point[I[i]], point[I[(i + 1) % len(I)]]);
@@ -47,7 +47,9 @@ vc<Point<ll>> random_polygon(int N, int XY_ABS_MAX = 10) {
     }
     point = rearrange(point, I);
     FOR(i, N) {
-      if ((point[(i + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) == 0) return {};
+      if ((point[(i + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) ==
+          0)
+        return {};
     }
     return point;
   };

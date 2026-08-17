@@ -8,12 +8,14 @@ vc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T, T>> LINE) {
   assert(!LINE.empty());
   using P = Point<T>;
   vc<P> point;
-  for (auto& [x, y]: LINE) point.eb(P(x, y));
-  auto I = ConvexHull(point, "lower");
+  for (auto& [x, y] : LINE) point.eb(P(x, y));
+  auto I = Convex_Hull(point, "lower");
   point = rearrange(point, I);
   int N = len(point);
-  if (N >= 2 && point[N - 1].x == point[N - 2].x) { POP(point), --N; }
-  reverse(all(point)); // 傾きは大きい方から
+  if (N >= 2 && point[N - 1].x == point[N - 2].x) {
+    POP(point), --N;
+  }
+  reverse(all(point));  // 傾きは大きい方から
   Re l = -infty<Re>;
   vc<tuple<Re, Re, Re, Re>> ANS;
   FOR(i, N) {
@@ -35,16 +37,17 @@ vc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T, T>> LINE) {
 template <typename Re, typename T>
 vc<tuple<Re, Re, Re, Re>> line_max_function_real(vc<pair<T, T>> LINE) {
   assert(!LINE.empty());
-  for (auto& [a, b]: LINE) a = -a, b = -b;
+  for (auto& [a, b] : LINE) a = -a, b = -b;
   auto ANS = line_min_function_real<Re, T>(LINE);
-  for (auto& [l, r, a, b]: ANS) a = -a, b = -b;
+  for (auto& [l, r, a, b] : ANS) a = -a, b = -b;
   return ANS;
 }
 
 // LINE(a,b,c): y=(ax+b)/c, 評価点は整数
 // 1 次関数の min を [L,R,a,b,c] の列として出力
 // オーバーフロー安全
-vc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(vc<tuple<ll, ll, ll>> LINE, ll L, ll R) {
+vc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(
+    vc<tuple<ll, ll, ll>> LINE, ll L, ll R) {
   // 傾き降順
   sort(all(LINE), [&](auto& L, auto& R) -> bool {
     auto& [a1, b1, c1] = L;
@@ -52,14 +55,14 @@ vc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(vc<tuple<ll, ll, ll>> L
     return i128(a1) * c2 > i128(a2) * c1;
   });
   vc<tuple<ll, ll, ll, ll, ll>> ANS;
-  for (auto& [a2, b2, c2]: LINE) {
+  for (auto& [a2, b2, c2] : LINE) {
     while (1) {
       if (ANS.empty()) {
         ANS.eb(L, R, a2, b2, c2);
         break;
       }
       auto& [L1, R1, a1, b1, c1] = ANS.back();
-      i128 s = i128(c2) * a1 - i128(a2) * c1; // >= 0
+      i128 s = i128(c2) * a1 - i128(a2) * c1;  // >= 0
       i128 t = i128(b2) * c1 - i128(b1) * c2;
       if (s == 0) {
         // 平行なので小さい方だけを残す
@@ -89,17 +92,19 @@ vc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(vc<tuple<ll, ll, ll>> L
 // LINE(a,b,c): y=(ax+b)/c, 評価点は整数
 // 1 次関数の max を [L,R,a,b,c] の列として出力
 // オーバーフロー安全
-vc<tuple<ll, ll, ll, ll, ll>> line_max_function_rational(vc<tuple<ll, ll, ll>> LINE, ll L, ll R) {
-  for (auto& [a, b, c]: LINE) a = -a, b = -b;
+vc<tuple<ll, ll, ll, ll, ll>> line_max_function_rational(
+    vc<tuple<ll, ll, ll>> LINE, ll L, ll R) {
+  for (auto& [a, b, c] : LINE) a = -a, b = -b;
   auto ANS = line_min_function_rational(LINE, L, R);
-  for (auto& [L, R, a, b, c]: ANS) a = -a, b = -b;
+  for (auto& [L, R, a, b, c] : ANS) a = -a, b = -b;
   return ANS;
 }
 
 // LINE(a,b): y=ax+b, 評価点は整数
 // 1 次関数の min を [L,R,a,b] の列として出力
 // オーバーフロー安全
-vc<tuple<ll, ll, ll, ll>> line_min_function_integer(vc<pair<ll, ll>> LINE, ll L, ll R) {
+vc<tuple<ll, ll, ll, ll>> line_min_function_integer(vc<pair<ll, ll>> LINE, ll L,
+                                                    ll R) {
   // 傾き降順
   sort(all(LINE), [&](auto& L, auto& R) -> bool {
     auto& [a1, b1] = L;
@@ -107,7 +112,7 @@ vc<tuple<ll, ll, ll, ll>> line_min_function_integer(vc<pair<ll, ll>> LINE, ll L,
     return a1 > a2;
   });
   vc<tuple<ll, ll, ll, ll>> ANS;
-  for (auto& [a2, b2]: LINE) {
+  for (auto& [a2, b2] : LINE) {
     while (1) {
       if (ANS.empty()) {
         ANS.eb(L, R, a2, b2);
@@ -141,16 +146,18 @@ vc<tuple<ll, ll, ll, ll>> line_min_function_integer(vc<pair<ll, ll>> LINE, ll L,
 // LINE(a,b,c): y=(ax+b)/c, 評価点は整数
 // 1 次関数の min を [L,R,a,b,c] の列として出力
 // c>0, (ax+b)c がオーバーフローしない,
-vc<tuple<ll, ll, ll, ll>> line_max_function_integer(vc<pair<ll, ll>> LINE, ll L, ll R) {
-  for (auto& [a, b]: LINE) a = -a, b = -b;
+vc<tuple<ll, ll, ll, ll>> line_max_function_integer(vc<pair<ll, ll>> LINE, ll L,
+                                                    ll R) {
+  for (auto& [a, b] : LINE) a = -a, b = -b;
   auto ANS = line_min_function_integer(LINE, L, R);
-  for (auto& [L, R, a, b]: ANS) a = -a, b = -b;
+  for (auto& [L, R, a, b] : ANS) a = -a, b = -b;
   return ANS;
 }
 
 // (L,R,func) の下側と上側をマージするときなどに使う用
 template <typename T>
-vc<tuple<T, T, T, T, T, T>> merge_46(vc<tuple<T, T, T, T>> A, vc<tuple<T, T, T, T>> B) {
+vc<tuple<T, T, T, T, T, T>> merge_46(vc<tuple<T, T, T, T>> A,
+                                     vc<tuple<T, T, T, T>> B) {
   vc<tuple<T, T, T, T, T, T>> ANS;
   reverse(all(A));
   reverse(all(B));
@@ -170,7 +177,8 @@ vc<tuple<T, T, T, T, T, T>> merge_46(vc<tuple<T, T, T, T>> A, vc<tuple<T, T, T, 
 // (L,R,func) の下側と上側をマージするときなどに使う用
 // f(L,R,a1,b1,a2,b2)
 template <typename T, typename F>
-void merge_46(const vc<tuple<T, T, T, T>>& A, const vc<tuple<T, T, T, T>>& B, F f) {
+void merge_46(const vc<tuple<T, T, T, T>>& A, const vc<tuple<T, T, T, T>>& B,
+              F f) {
   int i = 0, j = 0;
   while (i < len(A) && j < len(B)) {
     auto& [l1, r1, a1, b1] = A[i];
@@ -184,7 +192,8 @@ void merge_46(const vc<tuple<T, T, T, T>>& A, const vc<tuple<T, T, T, T>>& B, F 
 // (L,R,func) の下側と上側をマージするときなどに使う用
 // f(L,R,a1,b1,a2,b2)
 template <typename T, typename F>
-void merge_58(const vc<tuple<T, T, T, T, T>>& A, const vc<tuple<T, T, T, T, T>>& B, F f) {
+void merge_58(const vc<tuple<T, T, T, T, T>>& A,
+              const vc<tuple<T, T, T, T, T>>& B, F f) {
   int i = 0, j = 0;
   while (i < len(A) && j < len(B)) {
     auto& [l1, r1, a1, b1, c1] = A[i];

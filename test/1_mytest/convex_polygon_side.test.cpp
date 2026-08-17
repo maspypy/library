@@ -4,7 +4,7 @@
 #include "geo/base.hpp"
 #include "geo/convex_hull.hpp"
 #include "geo/convex_polygon.hpp"
-#include "geo/incremental_convexhull.hpp"
+#include "geo/incremental_convex_hull.hpp"
 #include "random/base.hpp"
 
 using P = Point<ll>;
@@ -14,15 +14,15 @@ void test() {
   vc<P> point(N);
   FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));
 
-  Incremental_ConvexHull<ll> Y;
-  for (auto& p: point) Y.add(p);
+  Incremental_Convex_Hull<ll> Y;
+  for (auto& p : point) Y.add(p);
 
-  auto I = ConvexHull(point);
+  auto I = Convex_Hull(point);
   point = rearrange(point, I);
   N = len(point);
   if (N <= 2) return;
 
-  ConvexPolygon<ll> X(point);
+  Convex_Polygon<ll> X(point);
 
   FOR(x, -10, 11) FOR(y, -10, 11) {
     P p(x, y);

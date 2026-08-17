@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "geo/incremental_convexhull.hpp"
+#include "geo/incremental_convex_hull.hpp"
 
 // geocon2013 c sample より
 void test() {
   {
-    Incremental_ConvexHull<ll> X;
+    Incremental_Convex_Hull<ll> X;
     assert(X.area_2() == 0);
     assert(X.side(Point<ll>(2, 2)) == -1);
     assert(X.side(Point<ll>(1, 2)) == -1);
@@ -30,7 +30,7 @@ void test() {
     assert(X.side(Point<ll>(2, 1)) == 0);
   }
   {
-    Incremental_ConvexHull<ll> X;
+    Incremental_Convex_Hull<ll> X;
     X.add(Point<ll>(2, 1));
     X.add(Point<ll>(4, 1));
     X.add(Point<ll>(6, 1));

@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 
 #include "graph/maximum_matching_size.hpp"
-#include "flow/bipartite.hpp"
+#include "flow/bipartite_matching.hpp"
 
 void test_bipartite() {
   FOR(N, 1, 50) {
@@ -15,7 +15,7 @@ void test_bipartite() {
         G.add(a, b);
       }
       G.build();
-      BipartiteMatching<decltype(G)> X(G);
+      Bipartite_Matching<decltype(G)> X(G);
       int a = len(X.matching());
       int b = maximum_matching_size(G);
       assert(a == b);

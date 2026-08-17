@@ -1,6 +1,6 @@
 // ALLOW_180=true のときに同一座標の点があると壊れる気がする
 template <typename T, bool ALLOW_180 = false>
-struct Lower_ConvexHull_SegTree {
+struct Lower_Convex_Hull_SegTree {
   struct P {
     T x, y;
     P() : x(0), y(0) {}
@@ -29,10 +29,10 @@ struct Lower_ConvexHull_SegTree {
   vc<P> point;
   vc<Data> dat;
 
-  Lower_ConvexHull_SegTree() {}
-  Lower_ConvexHull_SegTree(int n) { build(n); }
+  Lower_Convex_Hull_SegTree() {}
+  Lower_Convex_Hull_SegTree(int n) { build(n); }
   template <typename F>
-  Lower_ConvexHull_SegTree(int n, F f) {
+  Lower_Convex_Hull_SegTree(int n, F f) {
     build(n, f);
   }
   void build(int m) {
@@ -72,7 +72,9 @@ struct Lower_ConvexHull_SegTree {
     while (1) {
       down_while_trivial(p);
       P L = point[dat[p].L], R = point[dat[p].R];
-      if (a < L) { p = 2 * p + 0; }
+      if (a < L) {
+        p = 2 * p + 0;
+      }
       elif (a == L) { return 0; }
       elif (L < a && a < R) { return -ccw(L, a, R); }
       elif (R == a) { return 0; }
@@ -114,7 +116,7 @@ struct Lower_ConvexHull_SegTree {
     return res;
   }
 
-private:
+ private:
   // A,B,C は昇順. 同一座標の点はタイブレイクする.
   int ccw(P A, P B, P C) {
     auto [x1, y1] = B - A;
@@ -135,7 +137,9 @@ private:
 
   void update(int i) {
     assert(1 <= i && i < size);
-    if (!dat[2 * i + 0].exist()) { dat[i] = dat[2 * i + 1]; }
+    if (!dat[2 * i + 0].exist()) {
+      dat[i] = dat[2 * i + 1];
+    }
     elif (!dat[2 * i + 1].exist()) { dat[i] = dat[2 * i + 0]; }
     else {
       dat[i].max_x = dat[2 * i + 1].max_x;
@@ -162,8 +166,8 @@ private:
       else {
         ll x1 = A.x, x2 = B.x, x3 = C.x, x4 = D.x;
         ll y1 = A.y, y2 = B.y, y3 = C.y, y4 = D.y;
-        ll num
-            = (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - x4 * y3);
+        ll num =
+            (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - x4 * y3);
         ll den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
         if (den == 0 || num <= dat[p].max_x * den)
           p = 2 * p + 1;

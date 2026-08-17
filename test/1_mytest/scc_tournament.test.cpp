@@ -3,7 +3,7 @@
 
 #include "graph/base.hpp"
 #include "graph/strongly_connected_component.hpp"
-#include "graph/scc_tounament_by_indegrees.hpp"
+#include "graph/scc_tournament_by_indegrees.hpp"
 #include "random/base.hpp"
 
 void test() {
@@ -18,8 +18,8 @@ void test() {
       G.build();
 
       auto [indeg, outdeg] = G.deg_array_inout();
-      assert(strongly_connected_component(G)
-             == scc_tournament_by_indegrees(indeg));
+      assert(strongly_connected_component(G) ==
+             scc_tournament_by_indegrees(indeg));
     }
   }
 }

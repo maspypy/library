@@ -13,10 +13,12 @@ pair<int, int> furthest_pair(vc<Point<T>> point) {
   };
   upd(0, 1);
 
-  auto I = ConvexHull(point);
+  auto I = Convex_Hull(point);
   int n = len(I);
   if (n == 1) return ANS;
-  if (n == 2) { return {I[0], I[1]}; }
+  if (n == 2) {
+    return {I[0], I[1]};
+  }
   /*
   直径と垂直な平行線 2 本で凸包をはさめる
   平行線 2 本ではさんで引っかかる 2 点が候補

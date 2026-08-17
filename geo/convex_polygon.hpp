@@ -4,13 +4,13 @@
 
 // n=2 は何が起こるかわからない
 template <typename T>
-struct ConvexPolygon {
+struct Convex_Polygon {
   using P = Point<T>;
   int n;
   vc<P> point;
   T area2;
 
-  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {
+  Convex_Polygon(vc<P> point_) : n(len(point_)), point(point_) {
     // assert(n >= 3);
     area2 = 0;
     FOR(i, n) {
