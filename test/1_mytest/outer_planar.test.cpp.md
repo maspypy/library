@@ -11,8 +11,8 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/outer_planar.hpp
-    title: graph/outer_planar.hpp
+    path: graph/outerplanar.hpp
+    title: graph/outerplanar.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
@@ -307,7 +307,7 @@ data:
     \ ok = 0;\n    }\n    if (ok) E.eb(a, b);\n  }\n  vc<int> label(N);\n  FOR(i,\
     \ N) label[i] = i;\n  shuffle(label);\n  FOR(i, N) E.eb(i, (i + 1) % N);\n  for\
     \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
-    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 1 \"graph/outer_planar.hpp\"\n\
+    \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 1 \"graph/outerplanar.hpp\"\n\
     \n// N>=3, simple \u3092\u524D\u63D0. return: biconnected planar?\nbool check_outerplanar(vc<int>\
     \ cycle, Graph<int, 0> G) {\n  int N = G.N;\n  if (N != len(cycle)) return {};\n\
     \  G = G.rearrange(cycle);\n  vc<pair<int, int>> LR;\n  vc<bool> exist(N);\n \
@@ -318,7 +318,7 @@ data:
     \ (auto [l, r] : LR) {\n    while (!st.empty() && st.back() < l) st.pop_back();\n\
     \    if (!st.empty()) {\n      if (l < st.back() && st.back() < r) return false;\n\
     \    }\n    st.eb(r);\n  }\n  return true;\n}\n\n// N>=3. simple biconnected.\n\
-    // https://codeforces.com/contest/1656/problem/I\nvc<int> hamilton_cycle_outerplanar(Graph<int,\
+    // https://codeforces.com/contest/1656/problem/I\nvc<int> hamiltonian_cycle_outerplanar(Graph<int,\
     \ 0>& G) {\n  int N = G.N;\n  assert(N >= 3);\n  vc<set<int>> adj(N);\n  for (auto&\
     \ e : G.edges) {\n    adj[e.frm].emplace(e.to), adj[e.to].emplace(e.frm);\n  }\n\
     \  vc<bool> exist(N, 1);\n  vc<int> que;\n  FOR(v, N) if (len(adj[v]) == 2) que.eb(v);\n\
@@ -337,14 +337,14 @@ data:
     \ == 0) return {};\n  }\n  return V;\n}\n#line 7 \"test/1_mytest/outer_planar.test.cpp\"\
     \n\nvoid test() {\n  int N = RNG(3, 100);\n  auto edges = random_outerplanar(N);\n\
     \  Graph<int, 0> G(N);\n  for (auto& [a, b] : edges) G.add(a, b);\n  G.build();\n\
-    \  auto C = hamilton_cycle_outerplanar(G);\n  assert(!C.empty());\n  assert(check_outerplanar(C,\
+    \  auto C = hamiltonian_cycle_outerplanar(G);\n  assert(!C.empty());\n  assert(check_outerplanar(C,\
     \ G));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b <<\
     \ \"\\n\";\n}\n\nsigned main() {\n  FOR(10000) test();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n\n#include \"random/random_graph.hpp\"\n#include \"graph/outer_planar.hpp\"\
+    my_template.hpp\"\n\n#include \"random/random_graph.hpp\"\n#include \"graph/outerplanar.hpp\"\
     \n\nvoid test() {\n  int N = RNG(3, 100);\n  auto edges = random_outerplanar(N);\n\
     \  Graph<int, 0> G(N);\n  for (auto& [a, b] : edges) G.add(a, b);\n  G.build();\n\
-    \  auto C = hamilton_cycle_outerplanar(G);\n  assert(!C.empty());\n  assert(check_outerplanar(C,\
+    \  auto C = hamiltonian_cycle_outerplanar(G);\n  assert(!C.empty());\n  assert(check_outerplanar(C,\
     \ G));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b <<\
     \ \"\\n\";\n}\n\nsigned main() {\n  FOR(10000) test();\n  solve();\n}"
   dependsOn:
@@ -355,11 +355,11 @@ data:
   - random/base.hpp
   - random/shuffle.hpp
   - ds/unionfind/unionfind.hpp
-  - graph/outer_planar.hpp
+  - graph/outerplanar.hpp
   isVerificationFile: true
   path: test/1_mytest/outer_planar.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 12:32:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/outer_planar.test.cpp

@@ -23,22 +23,22 @@ data:
     \ z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n\
     \    k = (j + z[j] <= i) ? 0 : min(j + z[j] - i, z[i - j]);\n    while (i + k\
     \ < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0]\
-    \ = n;\n  return z;\n}\n#line 2 \"string/run_enumerate.hpp\"\n\r\n// (period,\
-    \ l, r)\r\n// \u6975\u5927, \u3064\u307E\u308A S[l:r] \u306F\u5468\u671F p (\u305F\
-    \u3060\u3057 r-l >= 2p) \u3092\u6301\u3064\u304C\u3001S[l-1:r], S[l:r+1]\r\n//\
-    \ \u306F\u305D\u3046\u3067\u306F\u306A\u3044\r\n// \u9AD8\u3005 n \u500B\u4EE5\
-    \u4E0B\r\n// sum of (r-l)/p = O(n)\r\ntemplate <typename STRING>\r\nvc<tuple<int,\
-    \ int, int>> run_enumerate(const STRING& S) {\r\n  ll N = len(S);\r\n  using T\
-    \ = tuple<int, int, int>;\r\n  using P = pair<int, int>;\r\n  vc<vc<P>> by_p(N\
-    \ + 1);\r\n\r\n  auto solve_sub = [&](STRING& left, STRING& right) -> vc<T> {\r\
-    \n    vc<T> res;\r\n    int n = len(left), m = len(right);\r\n    auto S = left,\
-    \ T = right;\r\n    reverse(all(S));\r\n    T.insert(T.end(), all(left));\r\n\
-    \    T.insert(T.end(), all(right));\r\n    auto ZS = z_algorithm(S), ZT = z_algorithm(T);\r\
-    \n    FOR3(p, 1, n + 1) {\r\n      int a = (p == n ? p : min(ZS[p] + int(p), n));\r\
-    \n      int b = min(ZT[n + m - p], m);\r\n      if (a + b < 2 * p) continue;\r\
-    \n      res.eb(p, a, b);\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<P> st\
-    \ = {{0, N}};\r\n  while (!st.empty()) {\r\n    auto [L, R] = st.back();\r\n \
-    \   st.pop_back();\r\n    if (R - L <= 1) continue;\r\n    int M = (L + R) / 2;\r\
+    \ = n;\n  return z;\n}\n#line 2 \"string/find_runs.hpp\"\n\r\n// (period, l, r)\r\
+    \n// \u6975\u5927, \u3064\u307E\u308A S[l:r] \u306F\u5468\u671F p (\u305F\u3060\
+    \u3057 r-l >= 2p) \u3092\u6301\u3064\u304C\u3001S[l-1:r], S[l:r+1]\r\n// \u306F\
+    \u305D\u3046\u3067\u306F\u306A\u3044\r\n// \u9AD8\u3005 n \u500B\u4EE5\u4E0B\r\
+    \n// sum of (r-l)/p = O(n)\r\ntemplate <typename STRING>\r\nvc<tuple<int, int,\
+    \ int>> find_runs(const STRING& S) {\r\n  ll N = len(S);\r\n  using T = tuple<int,\
+    \ int, int>;\r\n  using P = pair<int, int>;\r\n  vc<vc<P>> by_p(N + 1);\r\n\r\n\
+    \  auto solve_sub = [&](STRING& left, STRING& right) -> vc<T> {\r\n    vc<T> res;\r\
+    \n    int n = len(left), m = len(right);\r\n    auto S = left, T = right;\r\n\
+    \    reverse(all(S));\r\n    T.insert(T.end(), all(left));\r\n    T.insert(T.end(),\
+    \ all(right));\r\n    auto ZS = z_algorithm(S), ZT = z_algorithm(T);\r\n    FOR3(p,\
+    \ 1, n + 1) {\r\n      int a = (p == n ? p : min(ZS[p] + int(p), n));\r\n    \
+    \  int b = min(ZT[n + m - p], m);\r\n      if (a + b < 2 * p) continue;\r\n  \
+    \    res.eb(p, a, b);\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<P> st =\
+    \ {{0, N}};\r\n  while (!st.empty()) {\r\n    auto [L, R] = st.back();\r\n   \
+    \ st.pop_back();\r\n    if (R - L <= 1) continue;\r\n    int M = (L + R) / 2;\r\
     \n    st.eb(L, M), st.eb(M, R);\r\n    STRING SL = {S.begin() + L, S.begin() +\
     \ M};\r\n    STRING SR = {S.begin() + M, S.begin() + R};\r\n    {\r\n      auto\
     \ sub_res = solve_sub(SL, SR);\r\n      for (auto&& [p, a, b] : sub_res) by_p[p].eb(M\
@@ -54,7 +54,7 @@ data:
     \u5927, \u3064\u307E\u308A S[l:r] \u306F\u5468\u671F p (\u305F\u3060\u3057 r-l\
     \ >= 2p) \u3092\u6301\u3064\u304C\u3001S[l-1:r], S[l:r+1]\r\n// \u306F\u305D\u3046\
     \u3067\u306F\u306A\u3044\r\n// \u9AD8\u3005 n \u500B\u4EE5\u4E0B\r\n// sum of\
-    \ (r-l)/p = O(n)\r\ntemplate <typename STRING>\r\nvc<tuple<int, int, int>> run_enumerate(const\
+    \ (r-l)/p = O(n)\r\ntemplate <typename STRING>\r\nvc<tuple<int, int, int>> find_runs(const\
     \ STRING& S) {\r\n  ll N = len(S);\r\n  using T = tuple<int, int, int>;\r\n  using\
     \ P = pair<int, int>;\r\n  vc<vc<P>> by_p(N + 1);\r\n\r\n  auto solve_sub = [&](STRING&\
     \ left, STRING& right) -> vc<T> {\r\n    vc<T> res;\r\n    int n = len(left),\
@@ -80,17 +80,17 @@ data:
   dependsOn:
   - string/z_algorithm.hpp
   isVerificationFile: false
-  path: string/run_enumerate.hpp
+  path: string/find_runs.hpp
   requiredBy: []
-  timestamp: '2026-08-17 09:36:33+09:00'
+  timestamp: '2026-08-17 12:32:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/run_enumerate.test.cpp
   - test/2_library_checker/string/run_enumerate_vec.test.cpp
-documentation_of: string/run_enumerate.hpp
+documentation_of: string/find_runs.hpp
 layout: document
 redirect_from:
-- /library/string/run_enumerate.hpp
-- /library/string/run_enumerate.hpp.html
-title: string/run_enumerate.hpp
+- /library/string/find_runs.hpp
+- /library/string/find_runs.hpp.html
+title: string/find_runs.hpp
 ---

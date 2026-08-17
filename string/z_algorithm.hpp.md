@@ -6,14 +6,14 @@ data:
     path: seq/interpolate_periodic_sequence.hpp
     title: seq/interpolate_periodic_sequence.hpp
   - icon: ':heavy_check_mark:'
+    path: string/find_runs.hpp
+    title: string/find_runs.hpp
+  - icon: ':heavy_check_mark:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
   - icon: ':warning:'
     path: string/non_dominated_suffix.hpp
     title: string/non_dominated_suffix.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/run_enumerate.hpp
-    title: string/run_enumerate.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/is_substring.test.cpp
@@ -59,7 +59,7 @@ data:
   path: string/z_algorithm.hpp
   requiredBy:
   - seq/interpolate_periodic_sequence.hpp
-  - string/run_enumerate.hpp
+  - string/find_runs.hpp
   - string/non_dominated_suffix.hpp
   - string/is_substring.hpp
   timestamp: '2026-08-17 08:30:43+09:00'

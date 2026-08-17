@@ -1098,8 +1098,8 @@ data:
       path: graph/optimal_product_on_tree.hpp
       title: graph/optimal_product_on_tree.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/outer_planar.hpp
-      title: graph/outer_planar.hpp
+      path: graph/outerplanar.hpp
+      title: graph/outerplanar.hpp
     - icon: ':heavy_check_mark:'
       path: graph/path_cycle.hpp
       title: graph/path_cycle.hpp
@@ -2495,8 +2495,8 @@ data:
       path: string/basic_substring_structure.hpp
       title: string/basic_substring_structure.hpp
     - icon: ':heavy_check_mark:'
-      path: string/count_subseq.hpp
-      title: string/count_subseq.hpp
+      path: string/count_subsequence.hpp
+      title: string/count_subsequence.hpp
     - icon: ':heavy_check_mark:'
       path: string/count_unbordered_string.hpp
       title: string/count_unbordered_string.hpp
@@ -2512,6 +2512,9 @@ data:
     - icon: ':warning:'
       path: string/enumerate_occurrence.hpp
       title: string/enumerate_occurrence.hpp
+    - icon: ':heavy_check_mark:'
+      path: string/find_runs.hpp
+      title: string/find_runs.hpp
     - icon: ':warning:'
       path: string/inverse_manacher.hpp
       title: string/inverse_manacher.hpp
@@ -2522,8 +2525,8 @@ data:
       path: string/inverse_z_algorithm.hpp
       title: string/inverse_z_algorithm.hpp
     - icon: ':heavy_check_mark:'
-      path: string/is_subseq.hpp
-      title: string/is_subseq.hpp
+      path: string/is_subsequence.hpp
+      title: string/is_subsequence.hpp
     - icon: ':heavy_check_mark:'
       path: string/is_substring.hpp
       title: string/is_substring.hpp
@@ -2578,9 +2581,6 @@ data:
     - icon: ':warning:'
       path: string/rolling_hash_field.hpp
       title: string/rolling_hash_field.hpp
-    - icon: ':heavy_check_mark:'
-      path: string/run_enumerate.hpp
-      title: string/run_enumerate.hpp
     - icon: ':heavy_check_mark:'
       path: string/run_length.hpp
       title: string/run_length.hpp

@@ -8,8 +8,8 @@ data:
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
-    path: string/run_enumerate.hpp
-    title: string/run_enumerate.hpp
+    path: string/find_runs.hpp
+    title: string/find_runs.hpp
   - icon: ':heavy_check_mark:'
     path: string/z_algorithm.hpp
     title: string/z_algorithm.hpp
@@ -246,13 +246,13 @@ data:
     \ {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++)\
     \ {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j] - i, z[i -\
     \ j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i +\
-    \ z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 2 \"string/run_enumerate.hpp\"\
+    \ z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 2 \"string/find_runs.hpp\"\
     \n\r\n// (period, l, r)\r\n// \u6975\u5927, \u3064\u307E\u308A S[l:r] \u306F\u5468\
     \u671F p (\u305F\u3060\u3057 r-l >= 2p) \u3092\u6301\u3064\u304C\u3001S[l-1:r],\
     \ S[l:r+1]\r\n// \u306F\u305D\u3046\u3067\u306F\u306A\u3044\r\n// \u9AD8\u3005\
     \ n \u500B\u4EE5\u4E0B\r\n// sum of (r-l)/p = O(n)\r\ntemplate <typename STRING>\r\
-    \nvc<tuple<int, int, int>> run_enumerate(const STRING& S) {\r\n  ll N = len(S);\r\
-    \n  using T = tuple<int, int, int>;\r\n  using P = pair<int, int>;\r\n  vc<vc<P>>\
+    \nvc<tuple<int, int, int>> find_runs(const STRING& S) {\r\n  ll N = len(S);\r\n\
+    \  using T = tuple<int, int, int>;\r\n  using P = pair<int, int>;\r\n  vc<vc<P>>\
     \ by_p(N + 1);\r\n\r\n  auto solve_sub = [&](STRING& left, STRING& right) -> vc<T>\
     \ {\r\n    vc<T> res;\r\n    int n = len(left), m = len(right);\r\n    auto S\
     \ = left, T = right;\r\n    reverse(all(S));\r\n    T.insert(T.end(), all(left));\r\
@@ -273,23 +273,23 @@ data:
     \    int r = -1;\r\n    for (auto&& lr : LR) {\r\n      if (chmax(r, lr.se) &&\
     \ !done.count(lr)) {\r\n        done.insert(lr);\r\n        res.eb(p, lr.fi, lr.se);\r\
     \n      }\r\n    }\r\n  }\r\n  return res;\r\n}\r\n#line 5 \"test/2_library_checker/string/run_enumerate.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  STR(S);\r\n  auto ANS = run_enumerate(S);\r\n  print(len(ANS));\r\
+    \n\r\nvoid solve() {\r\n  STR(S);\r\n  auto ANS = find_runs(S);\r\n  print(len(ANS));\r\
     \n  for (auto&& [p, l, r] : ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\
     \n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/runenumerate\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"string/run_enumerate.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto ANS = run_enumerate(S);\r\n  print(len(ANS));\r\
+    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"string/find_runs.hpp\"\
+    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto ANS = find_runs(S);\r\n  print(len(ANS));\r\
     \n  for (auto&& [p, l, r] : ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\
     \n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/run_enumerate.hpp
+  - string/find_runs.hpp
   - string/z_algorithm.hpp
   isVerificationFile: true
   path: test/2_library_checker/string/run_enumerate.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 09:36:33+09:00'
+  timestamp: '2026-08-17 12:32:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/run_enumerate.test.cpp
