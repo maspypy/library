@@ -469,6 +469,7 @@
 "test/2_library_checker/string/suffix_array_vec.test.cpp": "2026-08-16 04:03:00 +0900",
 "test/2_library_checker/string/zalgorithm.test.cpp": "2026-08-17 09:25:20 +0900",
 "test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp": "2026-08-17 09:25:20 +0900",
+"test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp": "2026-08-17 09:52:06 +0900",
 "test/2_library_checker/tree/cartesian_tree.test.cpp": "2026-08-16 04:03:00 +0900",
 "test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp": "2026-08-13 09:52:55 +0900",
 "test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp": "2026-08-16 04:03:00 +0900",
