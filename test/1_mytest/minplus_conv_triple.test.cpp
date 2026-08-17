@@ -24,7 +24,7 @@ void test() {
       swap(dp, newdp);
     }
 
-    MinPlus_Convolution_of_Triples<ll> X;
+    Minplus_Convolution_of_Triples<ll> X;
     FOR(i, N) X.add(A[i], B[i], C[i]);
     X.solve();
     FOR(K, 2 * N + 1) {

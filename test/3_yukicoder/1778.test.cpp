@@ -20,7 +20,7 @@ void solve() {
     LL(a, b);
     --a, --b;
     int i = idx[a], j = idx[b];
-    int k = tree.lca(i, j);
+    int k = tree.LCA(i, j);
     if (k == 0)
       print(-1);
     else {

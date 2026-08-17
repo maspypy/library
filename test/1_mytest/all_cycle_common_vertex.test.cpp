@@ -4,7 +4,7 @@
 // #include "other/io.hpp"
 
 #include "graph/base.hpp"
-#include "graph/all_cycle_common_vertex.hpp"
+#include "graph/all_cycle_common_vertices.hpp"
 
 #include "random/base.hpp"
 
@@ -36,7 +36,7 @@ void test() {
       if (RNG(0, 100) < prob) G.add(a, b);
     }
     G.build();
-    auto ANS1 = all_cycle_common_vertex(G, 0);
+    auto ANS1 = all_cycle_common_vertices(G, 0);
     auto ANS2 = naive(G);
     sort(all(ANS1));
     sort(all(ANS2));

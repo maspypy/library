@@ -16,7 +16,7 @@ void solve() {
   FOR(i, 1, N + 1) {
     ll hi = N / i;
     if (i >= hi) break;
-    Re x = Harmonic(hi) - Harmonic(i);
+    Re x = harmonic_number(hi) - harmonic_number(i);
     ANS += x / i;
   }
   ANS += ANS;

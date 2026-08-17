@@ -18,7 +18,7 @@ REAL distance(Segment<T> S, Point<U> P) {
   if (!b1 && b2) {
     return distance<REAL, T, T>(A, P);
   }
-  Line<T> L = S.to_Line();
+  Line<T> L = S.to_line();
   // 点と直線の距離
   return REAL(abs(L.eval(P))) / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);
 }
@@ -53,7 +53,7 @@ pi distance_acculate(Segment<T> S, Point<T> P) {
     T d = (A - P).dot(A - P);
     return {d, 1};
   }
-  Line<T> L = S.to_Line();
+  Line<T> L = S.to_line();
   T a = L.eval(P);
   if (a < 0) a = -a;
   T b = L.a * L.a + L.b * L.b;

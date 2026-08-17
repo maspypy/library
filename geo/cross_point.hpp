@@ -29,8 +29,8 @@ tuple<T, T, T> cross_point_strict(const Line<T> L1, const Line<T> L2) {
 template <typename T>
 int count_cross(Segment<T> S1, Segment<T> S2, bool include_ends) {
   static_assert(!std::is_floating_point<T>::value);
-  Line<T> L1 = S1.to_Line();
-  Line<T> L2 = S2.to_Line();
+  Line<T> L1 = S1.to_line();
+  Line<T> L2 = S2.to_line();
   if (L1.is_parallel(L2)) {
     if (L1.eval(S2.A) != 0) return 0;
     // 4 点とも同一直線上にある

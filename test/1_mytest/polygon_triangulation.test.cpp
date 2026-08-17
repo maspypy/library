@@ -12,7 +12,7 @@ void test() {
     // 簡易テスト. 面積和がいい感じの N-2 個になってればいいことにする.
     ll AREA = 0, AREA3 = 0;
     FOR(i, N) AREA += point[i].det(point[(i + 1) % N]);
-    for (auto& [a, b, c]: dat) {
+    for (auto& [a, b, c] : dat) {
       ll S = (point[b] - point[a]).det(point[c] - point[a]);
       assert(S > 0);
       AREA3 += S;

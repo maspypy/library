@@ -15,9 +15,11 @@ bool inside_polygon(Segment<T> S, vc<Point<T>>& dat) {
     int c = ccw(A, B, r);
     if (a * b == -1) {
       Segment pq(p, q);
-      auto L = pq.to_Line();
+      auto L = pq.to_line();
       T x = L.eval(A), y = L.eval(B);
-      if (x < y) { x = -x, y = -y; }
+      if (x < y) {
+        x = -x, y = -y;
+      }
       if (x <= 0) ++cnt;
       if (0 < x && x < x - y) return 0;
     }
