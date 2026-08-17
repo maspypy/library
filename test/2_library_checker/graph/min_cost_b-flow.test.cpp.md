@@ -2,12 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: flow/bflow.hpp
-    title: flow/bflow.hpp
-  - icon: ':heavy_check_mark:'
+    path: flow/min_cost_b_flow.hpp
+    title: flow/min_cost_b_flow.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -237,30 +237,30 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\
-    \u304C\u3042\u3063\u3066\u3082\u52D5\u4F5C\u3059\u308B\u3088\n// INF \u8FBA\u304C\
-    \u5927\u304D\u3059\u304E\u308B\u3068\u58CA\u308C\u305F\u308A\u3059\u308B\u307F\
-    \u305F\u3044\u306A\u306E\u3067\u306E\u3067\u6CE8\u610F\ntemplate <class Flow =\
-    \ ll, class Cost = ll>\nstruct MinCostFlow {\n private:\n  static constexpr int\
-    \ SCALING_FACTOR = 2;\n  using V_id = uint32_t;\n  using E_id = uint32_t;\n\n\
-    \  struct Edge {\n    friend struct MinCostFlow;\n\n   private:\n    V_id frm,\
-    \ to;\n    Flow flow, cap;\n    Cost cost;\n    E_id rev;\n\n   public:\n    Edge()\
-    \ = default;\n\n    Edge(const V_id frm, const V_id to, const Flow cap, const\
-    \ Cost cost,\n         const E_id rev)\n        : frm(frm), to(to), flow(0), cap(cap),\
-    \ cost(cost), rev(rev) {}\n\n    [[nodiscard]] Flow residual_cap() const { return\
-    \ cap - flow; }\n  };\n\n public:\n  struct EdgePtr {\n    friend struct MinCostFlow;\n\
-    \n   private:\n    const MinCostFlow *instance;\n    const V_id v;\n    const\
-    \ E_id e;\n\n    EdgePtr(const MinCostFlow *instance, const V_id v, const E_id\
-    \ e)\n        : instance(instance), v(v), e(e) {}\n\n    [[nodiscard]] const Edge\
-    \ &edge() const { return instance->g[v][e]; }\n    [[nodiscard]] const Edge &rev()\
-    \ const {\n      const Edge &e = edge();\n      return instance->g[e.to][e.rev];\n\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"flow/min_cost_b_flow.hpp\"\n\n\
+    // \u8CA0\u8FBA\u304C\u3042\u3063\u3066\u3082\u52D5\u4F5C\u3059\u308B\u3088\n\
+    // INF \u8FBA\u304C\u5927\u304D\u3059\u304E\u308B\u3068\u58CA\u308C\u305F\u308A\
+    \u3059\u308B\u307F\u305F\u3044\u306A\u306E\u3067\u306E\u3067\u6CE8\u610F\ntemplate\
+    \ <class Flow = ll, class Cost = ll>\nstruct Min_Cost_B_Flow {\n private:\n  static\
+    \ constexpr int SCALING_FACTOR = 2;\n  using V_id = uint32_t;\n  using E_id =\
+    \ uint32_t;\n\n  struct Edge {\n    friend struct Min_Cost_B_Flow;\n\n   private:\n\
+    \    V_id frm, to;\n    Flow flow, cap;\n    Cost cost;\n    E_id rev;\n\n   public:\n\
+    \    Edge() = default;\n\n    Edge(const V_id frm, const V_id to, const Flow cap,\
+    \ const Cost cost,\n         const E_id rev)\n        : frm(frm), to(to), flow(0),\
+    \ cap(cap), cost(cost), rev(rev) {}\n\n    [[nodiscard]] Flow residual_cap() const\
+    \ { return cap - flow; }\n  };\n\n public:\n  struct EdgePtr {\n    friend struct\
+    \ Min_Cost_B_Flow;\n\n   private:\n    const Min_Cost_B_Flow *instance;\n    const\
+    \ V_id v;\n    const E_id e;\n\n    EdgePtr(const Min_Cost_B_Flow *instance, const\
+    \ V_id v, const E_id e)\n        : instance(instance), v(v), e(e) {}\n\n    [[nodiscard]]\
+    \ const Edge &edge() const { return instance->g[v][e]; }\n    [[nodiscard]] const\
+    \ Edge &rev() const {\n      const Edge &e = edge();\n      return instance->g[e.to][e.rev];\n\
     \    }\n\n   public:\n    [[nodiscard]] V_id frm() const { return rev().to; }\n\
     \    [[nodiscard]] V_id to() const { return edge().to; }\n    [[nodiscard]] Flow\
     \ flow() const { return edge().flow; }\n    [[nodiscard]] Flow lower() const {\
     \ return -rev().cap; }\n    [[nodiscard]] Flow upper() const { return edge().cap;\
     \ }\n    [[nodiscard]] Cost cost() const { return edge().cost; }\n    [[nodiscard]]\
     \ Cost gain() const { return -edge().cost; }\n  };\n\n private:\n  V_id n;\n \
-    \ std::vector<std::vector<Edge>> g;\n  std::vector<Flow> b;\n\n public:\n  MinCostFlow(int\
+    \ std::vector<std::vector<Edge>> g;\n  std::vector<Flow> b;\n\n public:\n  Min_Cost_B_Flow(int\
     \ n) : n(n) {\n    g.resize(n);\n    b.resize(n);\n  }\n\n  V_id add_vertex()\
     \ {\n    ++n;\n    g.resize(n);\n    b.resize(n);\n    return n - 1;\n  }\n\n\
     \  std::vector<V_id> add_vertices(const size_t size) {\n    std::vector<V_id>\
@@ -328,28 +328,30 @@ data:
     \ > 0)\n            potential[e.to] =\n                std::min(potential[e.to],\
     \ potential[e.frm] + e.cost);\n    return potential;\n  }\n\n  std::vector<EdgePtr>\
     \ get_edges() { return edges; }\n};\n#line 5 \"test/2_library_checker/graph/min_cost_b-flow.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  MinCostFlow<ll, ll> G(N);\n  FOR(i, N) {\n\
-    \    LL(b);\n    G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to, lo,\
-    \ hi, cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [ok, cost] = G.solve();\n\
-    \  if (!ok) return print(\"infeasible\");\n  print(cost);\n  for (auto &&p: G.get_potential())\
-    \ print(p);\n  for (auto &&e: G.get_edges()) { print(e.flow()); }\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N, M);\n  Min_Cost_B_Flow<ll, ll> G(N);\n  FOR(i, N)\
+    \ {\n    LL(b);\n    G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to,\
+    \ lo, hi, cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [ok, cost] =\
+    \ G.solve();\n  if (!ok) return print(\"infeasible\");\n  print(cost);\n  for\
+    \ (auto &&p : G.get_potential()) print(p);\n  for (auto &&e : G.get_edges()) {\n\
+    \    print(e.flow());\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_cost_b_flow\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/bflow.hpp\"\n\
-    \nvoid solve() {\n  LL(N, M);\n  MinCostFlow<ll, ll> G(N);\n  FOR(i, N) {\n  \
-    \  LL(b);\n    G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to, lo, hi,\
-    \ cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [ok, cost] = G.solve();\n\
-    \  if (!ok) return print(\"infeasible\");\n  print(cost);\n  for (auto &&p: G.get_potential())\
-    \ print(p);\n  for (auto &&e: G.get_edges()) { print(e.flow()); }\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}\n"
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/min_cost_b_flow.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Min_Cost_B_Flow<ll, ll> G(N);\n  FOR(i, N)\
+    \ {\n    LL(b);\n    G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to,\
+    \ lo, hi, cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [ok, cost] =\
+    \ G.solve();\n  if (!ok) return print(\"infeasible\");\n  print(cost);\n  for\
+    \ (auto &&p : G.get_potential()) print(p);\n  for (auto &&e : G.get_edges()) {\n\
+    \    print(e.flow());\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - flow/bflow.hpp
+  - flow/min_cost_b_flow.hpp
   isVerificationFile: true
   path: test/2_library_checker/graph/min_cost_b-flow.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 11:40:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/min_cost_b-flow.test.cpp

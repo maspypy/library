@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
+  - icon: ':warning:'
+    path: graph/tree_center.hpp
+    title: graph/tree_center.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
@@ -38,6 +41,7 @@ data:
   requiredBy:
   - graph/st_numbering.hpp
   - graph/tree_diameter.hpp
+  - graph/tree_center.hpp
   timestamp: '2022-10-21 18:11:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

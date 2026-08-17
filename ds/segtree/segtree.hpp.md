@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: ds/offline_query/uniqueproductquery.hpp
-    title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':warning:'
     path: ds/range_mex_change.hpp
     title: ds/range_mex_change.hpp
   - icon: ':heavy_check_mark:'
@@ -293,7 +290,6 @@ data:
   - ds/rmq/range_add_range_maxidx.hpp
   - ds/rmq/range_add_range_min.hpp
   - ds/range_mex_change.hpp
-  - ds/offline_query/uniqueproductquery.hpp
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
   - geo/manhattan_nns.hpp

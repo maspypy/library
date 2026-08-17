@@ -1,44 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: flow/longest_shortest_path.hpp
-    title: flow/longest_shortest_path.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/graph/assignment_mcf.test.cpp
-    title: test/2_library_checker/graph/assignment_mcf.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1288.test.cpp
-    title: test/3_yukicoder/1288.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1301.test.cpp
-    title: test/3_yukicoder/1301.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1324.test.cpp
-    title: test/3_yukicoder/1324.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1341.test.cpp
-    title: test/3_yukicoder/1341.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1676.test.cpp
-    title: test/3_yukicoder/1676.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1678.test.cpp
-    title: test/3_yukicoder/1678.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2604.test.cpp
-    title: test/3_yukicoder/2604.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/4_aoj/GRL_6_B.test.cpp
-    title: test/4_aoj/GRL_6_B.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
+  bundledCode: "#line 1 \"flow/min_cost_flow.hpp\"\n\n// atcoder library \u306E\u3082\
     \u306E\u3092\u6539\u5909\nnamespace internal {\ntemplate <class E>\nstruct csr\
     \ {\n  vector<int> start;\n  vector<E> elist;\n  explicit csr(int n, const vector<pair<int,\
     \ E>>& edges) : start(n + 1), elist(edges.size()) {\n    for (auto e: edges) {\
@@ -254,25 +224,15 @@ data:
     \    FOR(v, n) potential[v] = dual_dist[v].fi;\n    return result;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: flow/mincostflow.hpp
-  requiredBy:
-  - flow/longest_shortest_path.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/2_library_checker/graph/assignment_mcf.test.cpp
-  - test/4_aoj/GRL_6_B.test.cpp
-  - test/3_yukicoder/1301.test.cpp
-  - test/3_yukicoder/1341.test.cpp
-  - test/3_yukicoder/2604.test.cpp
-  - test/3_yukicoder/1678.test.cpp
-  - test/3_yukicoder/1324.test.cpp
-  - test/3_yukicoder/1288.test.cpp
-  - test/3_yukicoder/1676.test.cpp
-documentation_of: flow/mincostflow.hpp
+  path: flow/min_cost_flow.hpp
+  requiredBy: []
+  timestamp: '2026-08-17 11:40:35+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: flow/min_cost_flow.hpp
 layout: document
 redirect_from:
-- /library/flow/mincostflow.hpp
-- /library/flow/mincostflow.hpp.html
-title: flow/mincostflow.hpp
+- /library/flow/min_cost_flow.hpp
+- /library/flow/min_cost_flow.hpp.html
+title: flow/min_cost_flow.hpp
 ---

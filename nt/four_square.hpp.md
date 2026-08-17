@@ -22,10 +22,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -256,8 +256,8 @@ data:
     \ const {\r\n    assert(n >= 0);\r\n    G ret(1), mul(*this);\r\n    while (n\
     \ > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul;\r\n      n >>= 1;\r\
     \n    }\r\n    return ret;\r\n  }\r\n\r\n  // (g,x,y) s.t ax+by=g\r\n  static\
-    \ tuple<G, G, G> extgcd(G a, G b) {\r\n    if (b.x != 0 || b.y != 0) {\r\n   \
-    \   G q = a / b;\r\n      auto [g, x, y] = extgcd(b, a - q * b);\r\n      return\
+    \ tuple<G, G, G> ext_gcd(G a, G b) {\r\n    if (b.x != 0 || b.y != 0) {\r\n  \
+    \    G q = a / b;\r\n      auto [g, x, y] = ext_gcd(b, a - q * b);\r\n      return\
     \ {g, y, x - q * y};\r\n    }\r\n    return {a, G{1, 0}, G{0, 0}};\r\n  }\r\n\
     };\r\n\r\npair<ll, ll> solve_norm_equation_prime(ll p) {\r\n  using G = Gaussian_Integer<i128>;\r\
     \n  assert(p == 2 || p % 4 == 1);\r\n  if (p == 2) return {1, 1};\r\n  ll x =\
@@ -337,7 +337,7 @@ data:
   isVerificationFile: false
   path: nt/four_square.hpp
   requiredBy: []
-  timestamp: '2026-08-17 10:49:32+09:00'
+  timestamp: '2026-08-17 11:40:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/four_square.test.cpp

@@ -20,9 +20,6 @@ data:
   - icon: ':warning:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
-  - icon: ':warning:'
-    path: flow/longest_shortest_path.hpp
-    title: flow/longest_shortest_path.hpp
   - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
@@ -314,6 +311,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
+  - icon: ':warning:'
+    path: graph/tree_center.hpp
+    title: graph/tree_center.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
@@ -1152,6 +1152,7 @@ data:
   - graph/find_even_cycle.hpp
   - graph/find_nontransitive_triple.hpp
   - graph/find_cycle.hpp
+  - graph/tree_center.hpp
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/strongly_connected_component.hpp
   - graph/toposort.hpp
@@ -1175,7 +1176,6 @@ data:
   - flow/bipartite_matching.hpp
   - flow/maxflow.hpp
   - flow/rank_maximal_bipartite_matching.hpp
-  - flow/longest_shortest_path.hpp
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   timestamp: '2026-08-16 04:03:00+09:00'

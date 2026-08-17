@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
@@ -134,7 +134,7 @@ data:
     \ s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n\
     \  return res;\r\n}\r\n#line 3 \"linalg/ecottea_matrix_dp.hpp\"\n\n// https://maspypy.com/ecottea_dp_estimate_method\n\
     // https://atcoder.jp/contests/agc022/tasks/agc022_e\n// https://atcoder.jp/contests/toyota2023spring-final/tasks/toyota2023spring_final_f\n\
-    template <typename mint, int d>\nstruct ecottea_matrix_dp {\n  using MAT = array<array<mint,\
+    template <typename mint, int d>\nstruct Ecottea_Matrix_DP {\n  using MAT = array<array<mint,\
     \ d>, d>;\n  string alphabet;\n  map<char, MAT> matrix;\n  array<mint, d> X;\n\
     \  int rank;\n\n  // naive(n): map<string,mint>\n  template <typename F>\n  void\
     \ build(string alphabet_, F naive, int max_append = -1) {\n    alphabet = alphabet_;\n\
@@ -182,7 +182,7 @@ data:
     \    }\n    return dp[0];\n  }\n};\n"
   code: "#include \"mod/modint.hpp\"\n#include \"string/split.hpp\"\n\n// https://maspypy.com/ecottea_dp_estimate_method\n\
     // https://atcoder.jp/contests/agc022/tasks/agc022_e\n// https://atcoder.jp/contests/toyota2023spring-final/tasks/toyota2023spring_final_f\n\
-    template <typename mint, int d>\nstruct ecottea_matrix_dp {\n  using MAT = array<array<mint,\
+    template <typename mint, int d>\nstruct Ecottea_Matrix_DP {\n  using MAT = array<array<mint,\
     \ d>, d>;\n  string alphabet;\n  map<char, MAT> matrix;\n  array<mint, d> X;\n\
     \  int rank;\n\n  // naive(n): map<string,mint>\n  template <typename F>\n  void\
     \ build(string alphabet_, F naive, int max_append = -1) {\n    alphabet = alphabet_;\n\
@@ -236,7 +236,7 @@ data:
   isVerificationFile: false
   path: linalg/ecottea_matrix_dp.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 11:40:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: linalg/ecottea_matrix_dp.hpp

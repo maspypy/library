@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/slope_trick/slope_trick_0.hpp
     title: convex/slope_trick/slope_trick_0.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/min_cost_matching_on_line.test.cpp
     title: test/1_mytest/min_cost_matching_on_line.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/slope_trick/slope_trick_0.hpp\"\n// \u6700\u521D\u306B\
@@ -58,13 +58,13 @@ data:
     , right);\r\n  }\r\n#endif\r\n};\n#line 2 \"flow/min_cost_matching_on_line.hpp\"\
     \n\n// \u5EA7\u6A19 0, ..., N-1 \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19\
     \ 0, ..., N-1 \u3067 B_i \u500B\u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\
-    \u308B\nll min_cost_matching_on_line_1(vi A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n\
+    \u308B\nll min_cost_matching_on_line(vi A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n\
     \  const int N = len(A);\n  Slope_Trick_0 f;\n  FOR(N + 1) f.add_a_minus_x(0);\n\
     \  FOR(i, N) {\n    ll c = A[i] - B[i];\n    f.shift(c);\n    f.clear_right();\n\
     \    f.add_abs(0);\n  }\n  return f.eval(0);\n}\n"
   code: "#include \"convex/slope_trick/slope_trick_0.hpp\"\n\n// \u5EA7\u6A19 0, ...,\
     \ N-1 \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19 0, ..., N-1 \u3067 B_i \u500B\
-    \u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\u308B\nll min_cost_matching_on_line_1(vi\
+    \u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\u308B\nll min_cost_matching_on_line(vi\
     \ A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n  const int N = len(A);\n \
     \ Slope_Trick_0 f;\n  FOR(N + 1) f.add_a_minus_x(0);\n  FOR(i, N) {\n    ll c\
     \ = A[i] - B[i];\n    f.shift(c);\n    f.clear_right();\n    f.add_abs(0);\n \
@@ -74,8 +74,8 @@ data:
   isVerificationFile: false
   path: flow/min_cost_matching_on_line.hpp
   requiredBy: []
-  timestamp: '2025-07-04 07:28:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 11:40:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/min_cost_matching_on_line.test.cpp
 documentation_of: flow/min_cost_matching_on_line.hpp

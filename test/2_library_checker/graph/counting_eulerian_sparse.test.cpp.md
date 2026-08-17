@@ -22,52 +22,52 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -884,29 +884,29 @@ data:
     \  if (a[1].empty()) return m0;\r\n  mat<T> Q = step(poly_divmod(a[0], a[1]).fi);\r\
     \n  m0 = Q * m0, a = Q * a;\r\n  if (a[1].empty()) return m0;\r\n  return cgcd(a)\
     \ * m0;\r\n}\r\n\r\n// gcd == f * fi + g * gi \u3068\u306A\u308B (gcd, fi, gi)\r\
-    \ntemplate <typename T>\r\ntuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>&\
+    \ntemplate <typename T>\r\ntuple<vc<T>, vc<T>, vc<T>> poly_ext_gcd(const vc<T>&\
     \ f, const vc<T>& g) {\r\n  mat<T> Q = step(poly_divmod(f, g).fi);\r\n  auto m\
     \ = Q;\r\n  auto ap = Q * arr<T>{f, g};\r\n  if (!ap[1].empty()) m = cgcd(ap)\
     \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n\r\ntemplate <typename\
     \ T>\r\nvc<T> poly_gcd(vc<T> f, vc<T> g) {\r\n  while (len(f) && f.back() == T(0))\
     \ POP(f);\r\n  while (len(g) && g.back() == T(0)) POP(g);\r\n  if (f.empty())\
     \ return g;\r\n  if (g.empty()) return f;\r\n  auto F = get<0>(poly_extgcd(f,\
-    \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f: F) f *= c;\r\n  return F;\r\
-    \n}\r\n} // namespace half_gcd\r\nusing half_gcd::poly_extgcd;\r\nusing half_gcd::poly_gcd;\r\
-    \n#line 3 \"seq/find_linear_rec.hpp\"\n\n// template <typename mint>\n// vector<mint>\
-    \ find_linear_rec(vector<mint>& A) {\n//   int N = len(A);\n//   vc<mint> B =\
-    \ {1}, C = {1};\n//   int l = 0, m = 1;\n//   mint p = 1;\n//   FOR(i, N) {\n\
-    //     mint d = A[i];\n//     FOR3(j, 1, l + 1) { d += C[j] * A[i - j]; }\n//\
-    \     if (d == 0) {\n//       ++m;\n//       continue;\n//     }\n//     auto\
-    \ tmp = C;\n//     mint q = d / p;\n//     if (len(C) < len(B) + m) C.insert(C.end(),\
-    \ len(B) + m - len(C), 0);\n//     FOR(j, len(B)) C[j + m] -= q * B[j];\n//  \
-    \   if (l + l <= i) {\n//       B = tmp;\n//       l = i + 1 - l, m = 1;\n// \
-    \      p = d;\n//     } else {\n//       ++m;\n//     }\n//   }\n//   return C;\n\
-    // }\n\nnamespace half_gcd {\ntemplate <typename T>\nvector<T> find_linear_rec(vc<T>&\
-    \ F) {\n  vc<T> f = F;\n  int d = len(f);\n  reverse(all(f));\n  while (len(f)\
-    \ && f.back() == T(0)) POP(f);\n  if (f.empty()) return vc<T>{T(1)};\n  vc<T>\
-    \ g(d + 1);\n  g.back() = T(1);\n  auto m = hgcd(arr<T>{g, f});\n  auto a = m\
-    \ * arr<T>{g, f};\n  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0],\
+    \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f : F) f *= c;\r\n  return\
+    \ F;\r\n}\r\n}  // namespace half_gcd\r\nusing half_gcd::poly_ext_gcd;\r\nusing\
+    \ half_gcd::poly_gcd;\r\n#line 3 \"seq/find_linear_rec.hpp\"\n\n// template <typename\
+    \ mint>\n// vector<mint> find_linear_rec(vector<mint>& A) {\n//   int N = len(A);\n\
+    //   vc<mint> B = {1}, C = {1};\n//   int l = 0, m = 1;\n//   mint p = 1;\n//\
+    \   FOR(i, N) {\n//     mint d = A[i];\n//     FOR3(j, 1, l + 1) { d += C[j] *\
+    \ A[i - j]; }\n//     if (d == 0) {\n//       ++m;\n//       continue;\n//   \
+    \  }\n//     auto tmp = C;\n//     mint q = d / p;\n//     if (len(C) < len(B)\
+    \ + m) C.insert(C.end(), len(B) + m - len(C), 0);\n//     FOR(j, len(B)) C[j +\
+    \ m] -= q * B[j];\n//     if (l + l <= i) {\n//       B = tmp;\n//       l = i\
+    \ + 1 - l, m = 1;\n//       p = d;\n//     } else {\n//       ++m;\n//     }\n\
+    //   }\n//   return C;\n// }\n\nnamespace half_gcd {\ntemplate <typename T>\n\
+    vector<T> find_linear_rec(vc<T>& F) {\n  vc<T> f = F;\n  int d = len(f);\n  reverse(all(f));\n\
+    \  while (len(f) && f.back() == T(0)) POP(f);\n  if (f.empty()) return vc<T>{T(1)};\n\
+    \  vc<T> g(d + 1);\n  g.back() = T(1);\n  auto m = hgcd(arr<T>{g, f});\n  auto\
+    \ a = m * arr<T>{g, f};\n  if (len(a[1]) > d - len(a[0]) + 1) m = step(poly_divmod(a[0],\
     \ a[1]).fi) * m;\n  vc<T> Q = m[3];\n  T v = Q.back().inverse();\n  for (auto&\
     \ x : Q) x *= v;\n  reverse(all(Q));\n  return Q;\n}\n};  // namespace half_gcd\n\
     using half_gcd::find_linear_rec;\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64()\
@@ -1021,7 +1021,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 11:40:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
