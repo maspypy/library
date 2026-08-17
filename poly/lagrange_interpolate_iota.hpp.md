@@ -87,7 +87,7 @@ data:
     \ }\n  static constexpr bool commute = true;\n};\n#line 1 \"ds/sliding_window_aggregation.hpp\"\
     \ntemplate <class Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename\
     \ Monoid::value_type;\n  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n\
-    \  vc<X> cum_l;\n  X cum_r;\n\n  Sliding_Window_Aggregation() : cum_l({Monoid::unit()}),\
+    \  vc<X> cum_l;\n  X cum_r;\n\n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::unit()}),\
     \ cum_r(Monoid::unit()) {}\n\n  int size() { return sz; }\n\n  void push(X x)\
     \ {\n    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void\
     \ pop() {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n    \
@@ -97,54 +97,55 @@ data:
     \ }\n  X rprod() { return cum_r; }\n\n  X prod() { return Monoid::op(cum_l.back(),\
     \ cum_r); }\n};\n\n// \u5B9A\u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\u9045\
     \u304F\u306A\u308B\u306E\u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\u306F\
-    \u4F7F\u308F\u306A\u3044\ntemplate <class Monoid>\nstruct SWAG_deque {\n  using\
-    \ X = typename Monoid::value_type;\n  using value_type = X;\n  int sz;\n  vc<X>\
-    \ dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  SWAG_deque() : sz(0), cum_l({Monoid::unit()}),\
-    \ cum_r({Monoid::unit()}) {}\n\n  int size() { return sz; }\n\n  void push_back(X\
-    \ x) {\n    ++sz;\n    dat_r.eb(x);\n    cum_r.eb(Monoid::op(cum_r.back(), x));\n\
-    \  }\n\n  void push_front(X x) {\n    ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x,\
-    \ cum_l.back()));\n  }\n\n  void push(X x) { push_back(x); }\n\n  void clear()\
-    \ {\n    sz = 0;\n    dat_l.clear(), dat_r.clear();\n    cum_l = {Monoid::unit()},\
-    \ cum_r = {Monoid::unit()};\n  }\n\n  void pop_front() {\n    if (sz == 1) return\
-    \ clear();\n    if (dat_l.empty()) rebuild();\n    --sz;\n    dat_l.pop_back();\n\
-    \    cum_l.pop_back();\n  }\n\n  void pop_back() {\n    if (sz == 1) return clear();\n\
-    \    if (dat_r.empty()) rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n\
-    \  }\n\n  void pop() { pop_front(); }\n\n  X front() {\n    if (len(dat_l)) return\
-    \ dat_l.back();\n    return dat_r[0];\n  }\n\n  X lprod() { return cum_l.back();\
-    \ }\n  X rprod() { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(),\
-    \ cum_r.back()); }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild()\
-    \ {\n    vc<X> X;\n    reverse(all(dat_l));\n    concat(X, dat_l, dat_r);\n  \
-    \  clear();\n    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i,\
-    \ m, len(X)) push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n#line 1 \"\
-    poly/convolution.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
-    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
-    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
-    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
-    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
-    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
-    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
-    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
-    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
-    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
-    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
-    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
-    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
-    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
-    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
-    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
-    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
-    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
-    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\n\
-    struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \u4F7F\u308F\u306A\u3044\ntemplate <class Monoid>\nstruct Sliding_Window_Aggregation_Deque\
+    \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  int\
+    \ sz;\n  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  Sliding_Window_Aggregation_Deque()\n\
+    \      : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}\n\n  int size()\
+    \ { return sz; }\n\n  void push_back(X x) {\n    ++sz;\n    dat_r.eb(x);\n   \
+    \ cum_r.eb(Monoid::op(cum_r.back(), x));\n  }\n\n  void push_front(X x) {\n  \
+    \  ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x, cum_l.back()));\n  }\n\n\
+    \  void push(X x) { push_back(x); }\n\n  void clear() {\n    sz = 0;\n    dat_l.clear(),\
+    \ dat_r.clear();\n    cum_l = {Monoid::unit()}, cum_r = {Monoid::unit()};\n  }\n\
+    \n  void pop_front() {\n    if (sz == 1) return clear();\n    if (dat_l.empty())\
+    \ rebuild();\n    --sz;\n    dat_l.pop_back();\n    cum_l.pop_back();\n  }\n\n\
+    \  void pop_back() {\n    if (sz == 1) return clear();\n    if (dat_r.empty())\
+    \ rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n  }\n\n\
+    \  void pop() { pop_front(); }\n\n  X front() {\n    if (len(dat_l)) return dat_l.back();\n\
+    \    return dat_r[0];\n  }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
+    \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
+    \ }\n  X prod_all() { return prod(); }\n\n private:\n  void rebuild() {\n    vc<X>\
+    \ X;\n    reverse(all(dat_l));\n    concat(X, dat_l, dat_r);\n    clear();\n \
+    \   int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X))\
+    \ push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n#line 1 \"poly/convolution.hpp\"\
+    \n\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
@@ -520,7 +521,7 @@ data:
   - poly/from_log_differentiation.hpp
   - seq/p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 12:11:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/factorial_998.test.cpp

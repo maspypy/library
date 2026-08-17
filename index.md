@@ -150,7 +150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/maxidx.hpp
       title: alg/monoid/maxidx.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':warning:'
@@ -211,7 +211,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/cht.hpp
       title: convex/cht.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convex/cht_monotone.hpp
       title: convex/cht_monotone.hpp
     - icon: ':warning:'
@@ -580,7 +580,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summinmax_chminchmax.hpp
       title: ds/segtree/beats_summinmax_chminchmax.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/dual_segtree.hpp
       title: ds/segtree/dual_segtree.hpp
     - icon: ':warning:'
@@ -754,7 +754,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1931,7 +1931,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -5035,7 +5035,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/902.test.cpp
       title: test/3_yukicoder/902.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/913.test.cpp
       title: test/3_yukicoder/913.test.cpp
     - icon: ':heavy_check_mark:'
