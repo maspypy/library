@@ -1,4 +1,4 @@
-#include "flow/mincostflow.hpp"
+#include "flow/min_cost_flow.hpp"
 #include "graph/shortest_path/dijkstra.hpp"
 
 /*
@@ -19,7 +19,8 @@ struct Longest_Shortest_Path {
   bool solved;
   vc<tuple<int, int, T, T>> dat;
   vc<T> pot;
-  Longest_Shortest_Path(int N, int s, int t) : N(N), s(s), t(t), F(0), solved(0) {}
+  Longest_Shortest_Path(int N, int s, int t)
+      : N(N), s(s), t(t), F(0), solved(0) {}
 
   // 現在の長さ, 長さを+1するコスト
   void add(int frm, int to, T length, T cost) {
@@ -30,7 +31,7 @@ struct Longest_Shortest_Path {
 
   T init_dist() {
     Graph<T, 1> G(N);
-    for (auto& [a, b, c, d]: dat) G.add(a, b, c);
+    for (auto& [a, b, c, d] : dat) G.add(a, b, c);
     G.build();
     auto [dist, par] = dijkstra<T>(G, s);
     return dist[t];
@@ -42,9 +43,11 @@ struct Longest_Shortest_Path {
     assert(!solved && L >= init_dist());
     solved = 1;
     Min_Cost_Flow<T, T, DAG> G(N, s, t);
-    for (auto& [a, b, length, cost]: dat) { G.add(a, b, cost, length); }
+    for (auto& [a, b, length, cost] : dat) {
+      G.add(a, b, cost, length);
+    }
     T ans = -infty<T>;
-    for (auto& [x, y]: G.slope()) {
+    for (auto& [x, y] : G.slope()) {
       if (chmax(ans, x * L - y)) F = x;
     }
     return K = ans;
@@ -58,7 +61,9 @@ struct Longest_Shortest_Path {
     assert(solved);
     if (len(pot)) return pot;
     Min_Cost_Flow<T, T, DAG> G(N, s, t);
-    for (auto& [a, b, length, cost]: dat) { G.add(a, b, cost, length); }
+    for (auto& [a, b, length, cost] : dat) {
+      G.add(a, b, cost, length);
+    }
     G.flow(F);
     pot = G.get_potentials();
     Graph<T, 1> resG(N);
@@ -66,7 +71,7 @@ struct Longest_Shortest_Path {
       x = x + pot[a] - pot[b];
       resG.add(a, b, x);
     };
-    for (auto& e: G.edges()) {
+    for (auto& e : G.edges()) {
       if (e.cap > e.flow) add(e.frm, e.to, e.cost);
       if (e.flow > 0) add(e.to, e.frm, -e.cost);
     }
@@ -81,7 +86,9 @@ struct Longest_Shortest_Path {
   vc<T> get_edges() {
     get_potentials();
     vc<T> res;
-    for (auto [frm, to, length, cost]: dat) { res.eb(max<T>(length, pot[to] - pot[frm])); }
+    for (auto [frm, to, length, cost] : dat) {
+      res.eb(max<T>(length, pot[to] - pot[frm]));
+    }
     return res;
   }
 };

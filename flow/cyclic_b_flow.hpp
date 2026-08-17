@@ -4,7 +4,7 @@ cost[i]：i → i+1 のコスト
 https://atcoder.jp/contests/dwango2015-prelims/tasks/dwango2015_prelims_4
 */
 template <typename CAP, typename COST>
-COST cyclic_bflow(vc<CAP> supply, vc<COST> cost) {
+COST cyclic_b_flow(vc<CAP> supply, vc<COST> cost) {
   const int N = len(supply);
   if (N == 0) return 0;
   assert(SUM(supply) == 0);
@@ -21,7 +21,7 @@ COST cyclic_bflow(vc<CAP> supply, vc<COST> cost) {
 
   auto check = [&](ll x) -> bool { return f(x) <= f(x + 1); };
   ll LIM = 5;
-  for (auto&& x: supply) LIM += max<ll>(x, 0);
+  for (auto&& x : supply) LIM += max<ll>(x, 0);
   ll x = binary_search(check, LIM, -LIM);
   return f(x);
 }
