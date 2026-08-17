@@ -41,7 +41,7 @@ REAL distance(Point<T> P, Line<T> L) {
 // return: {a, b}. where dist=sqrt(a/b)
 // a,b:座標の 4 乗
 template <typename T>
-pi distance_acculate(Segment<T> S, Point<T> P) {
+pi distance_exact(Segment<T> S, Point<T> P) {
   Point<T> A = S.A, B = S.B;
   bool b1 = (B - A).dot(P - A) >= 0;
   bool b2 = (A - B).dot(P - B) >= 0;
