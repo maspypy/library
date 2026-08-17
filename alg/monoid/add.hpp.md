@@ -9,8 +9,14 @@ data:
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/maxidx_add.hpp
+    title: alg/acted_monoid/maxidx_add.hpp
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/minidx_add.hpp
+    title: alg/acted_monoid/minidx_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
@@ -153,6 +159,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_am.test.cpp
     title: test/1_mytest/kdtree_am.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/maxidx_add.test.cpp
+    title: test/1_mytest/maxidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/minidx_add.test.cpp
+    title: test/1_mytest/minidx_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/minmax_add.test.cpp
     title: test/1_mytest/minmax_add.test.cpp
@@ -304,11 +316,20 @@ data:
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/unionfind_with_potential.test.cpp
     title: test/2_library_checker/unionfind_with_potential.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1038.test.cpp
+    title: test/3_yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1077_2.test.cpp
     title: test/3_yukicoder/1077_2.test.cpp
@@ -516,10 +537,12 @@ data:
   - seq/inversion.hpp
   - seq/factorial_digit_system.hpp
   - other/sliding_puzzle_solver.hpp
+  - alg/acted_monoid/maxidx_add.hpp
   - alg/acted_monoid/minmax_add.hpp
   - alg/acted_monoid/summin_add.hpp
   - alg/acted_monoid/min_add.hpp
   - alg/acted_monoid/sum_assign.hpp
+  - alg/acted_monoid/minidx_add.hpp
   - alg/acted_monoid/minmincnt_add.hpp
   - alg/acted_monoid/sum_affine.hpp
   - alg/acted_monoid/cntsum_add.hpp
@@ -538,6 +561,7 @@ data:
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/kdtree_am.test.cpp
   - test/1_mytest/fenwick_max_right.test.cpp
+  - test/1_mytest/maxidx_add.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
@@ -552,6 +576,7 @@ data:
   - test/1_mytest/fenwick01.test.cpp
   - test/1_mytest/factorial_digit.test.cpp
   - test/1_mytest/ARC30D.test.cpp
+  - test/1_mytest/minidx_add.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
@@ -587,7 +612,9 @@ data:
   - test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
   - test/2_library_checker/unionfind_with_potential.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
+  - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
+  - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
@@ -604,6 +631,7 @@ data:
   - test/4_aoj/DSL_1_B.test.cpp
   - test/4_aoj/2842_2.test.cpp
   - test/3_yukicoder/2292.test.cpp
+  - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/1141.test.cpp
   - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/694.test.cpp

@@ -179,13 +179,13 @@ data:
   - icon: ':warning:'
     path: setfunc/submask_range_query.hpp
     title: setfunc/submask_range_query.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
@@ -403,6 +403,9 @@ data:
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/manhattan_nns.test.cpp
+    title: test/1_mytest/manhattan_nns.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching.test.cpp
     title: test/1_mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
@@ -427,6 +430,9 @@ data:
     path: test/1_mytest/max_of_linear_segments.test.cpp
     title: test/1_mytest/max_of_linear_segments.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/maxidx_add.test.cpp
+    title: test/1_mytest/maxidx_add.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/maxplus_concave.test.cpp
     title: test/1_mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
@@ -441,6 +447,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/minidx_add.test.cpp
+    title: test/1_mytest/minidx_add.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/minmax_add.test.cpp
     title: test/1_mytest/minmax_add.test.cpp
@@ -805,6 +814,9 @@ data:
     path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
+    title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
@@ -868,6 +880,9 @@ data:
     path: test/3_yukicoder/1956.test.cpp
     title: test/3_yukicoder/1956.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2102.test.cpp
+    title: test/3_yukicoder/2102.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2119.test.cpp
     title: test/3_yukicoder/2119.test.cpp
   - icon: ':heavy_check_mark:'
@@ -879,6 +894,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2181.test.cpp
     title: test/3_yukicoder/2181.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2231.test.cpp
+    title: test/3_yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2264.test.cpp
     title: test/3_yukicoder/2264.test.cpp
@@ -1009,6 +1027,7 @@ data:
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/manhattan_nns.test.cpp
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/add_chmin.test.cpp
   - test/1_mytest/tournament.test.cpp
@@ -1071,6 +1090,7 @@ data:
   - test/1_mytest/find_C4.test.cpp
   - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/splay_monoid.test.cpp
+  - test/1_mytest/maxidx_add.test.cpp
   - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/convolution_all_1.test.cpp
   - test/1_mytest/matching.test.cpp
@@ -1159,6 +1179,7 @@ data:
   - test/1_mytest/mybitset.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/coprime_factorization.test.cpp
+  - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
   - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/digit_sum.test.cpp
@@ -1205,6 +1226,7 @@ data:
   - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+  - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/2_library_checker/number_theory/factorize.test.cpp
   - test/2_library_checker/number_theory/tetration.test.cpp
@@ -1229,6 +1251,7 @@ data:
   - test/3_yukicoder/1667.test.cpp
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1881.test.cpp
+  - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/2120.test.cpp
   - test/3_yukicoder/2181.test.cpp
@@ -1245,6 +1268,7 @@ data:
   - test/3_yukicoder/4_1.test.cpp
   - test/3_yukicoder/1783.test.cpp
   - test/3_yukicoder/1593.test.cpp
+  - test/3_yukicoder/2102.test.cpp
   - test/3_yukicoder/1774.test.cpp
   - test/3_yukicoder/2119.test.cpp
   - test/3_yukicoder/2877.test.cpp

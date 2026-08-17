@@ -27,6 +27,9 @@ data:
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/manhattan_nns.hpp
+    title: geo/manhattan_nns.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -66,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/manhattan_nns.test.cpp
+    title: test/1_mytest/manhattan_nns.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
@@ -148,6 +154,9 @@ data:
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
@@ -156,6 +165,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2890.test.cpp
     title: test/3_yukicoder/2890.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2897.test.cpp
+    title: test/3_yukicoder/2897.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
@@ -278,6 +290,7 @@ data:
   - ds/offline_query/uniqueproductquery.hpp
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
+  - geo/manhattan_nns.hpp
   - string/suffix_lcp_change.hpp
   - string/many_string_compare.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
@@ -289,6 +302,7 @@ data:
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/manhattan_nns.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/range_assign.test.cpp
@@ -316,8 +330,10 @@ data:
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/ITP2_3_B.test.cpp
   - test/3_yukicoder/2890.test.cpp
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1036_2.test.cpp
   - test/3_yukicoder/2859.test.cpp
+  - test/3_yukicoder/2897.test.cpp
   - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/1435.test.cpp

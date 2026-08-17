@@ -641,13 +641,13 @@ data:
     \ q + 1)];\n  }\n};\n#line 7 \"test/2_library_checker/tree/lca_fast.test.cpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n  \
     \  INT(p);\n    G.add(p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n\
-    \  Fast_Lca<decltype(tree)> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a,\
+    \  Fast_LCA<decltype(tree)> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a,\
     \ b));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\n#include \"graph/fast_lca.hpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n  \
     \  INT(p);\n    G.add(p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n\
-    \  Fast_Lca<decltype(tree)> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a,\
+    \  Fast_LCA<decltype(tree)> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a,\
     \ b));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -662,7 +662,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/lca_fast.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
+  timestamp: '2026-08-17 09:25:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/lca_fast.test.cpp

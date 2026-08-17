@@ -90,6 +90,9 @@ data:
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/tree_all_distances.hpp
+    title: graph/tree_all_distances.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -736,6 +739,15 @@ data:
     path: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+    title: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+    title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080.test.cpp
     title: test/3_yukicoder/1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1318,6 +1330,7 @@ data:
   - graph/count/count_clique.hpp
   - graph/chromatic.hpp
   - graph/count_matching_on_tree.hpp
+  - graph/tree_all_distances.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/finding_root_of_polynomial.hpp
   - poly/sparse_exp_of_div.hpp
@@ -1528,6 +1541,9 @@ data:
   - test/2_library_checker/enumerative_combinatorics/partition.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
   - test/2_library_checker/set_power_series/powproj_sps.test.cpp
   - test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp

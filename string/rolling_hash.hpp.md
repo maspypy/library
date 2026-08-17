@@ -8,10 +8,19 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
+    title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2102.test.cpp
+    title: test/3_yukicoder/2102.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2231.test.cpp
+    title: test/3_yukicoder/2231.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
@@ -95,8 +104,11 @@ data:
   path: string/rolling_hash.hpp
   requiredBy: []
   timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - test/3_yukicoder/2231.test.cpp
+  - test/3_yukicoder/2102.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 redirect_from:

@@ -78,6 +78,9 @@ data:
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/tree_all_distances.hpp
+    title: graph/tree_all_distances.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -416,7 +419,7 @@ data:
   - icon: ':warning:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   - icon: ':warning:'
@@ -1029,13 +1032,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+    title: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+    title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1180,6 +1192,9 @@ data:
     path: test/3_yukicoder/1796.test.cpp
     title: test/3_yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1796_1.test.cpp
+    title: test/3_yukicoder/1796_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1810.test.cpp
     title: test/3_yukicoder/1810.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1188,6 +1203,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1848.test.cpp
+    title: test/3_yukicoder/1848.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1857.test.cpp
     title: test/3_yukicoder/1857.test.cpp
@@ -1251,6 +1269,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2230.test.cpp
     title: test/3_yukicoder/2230.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2231.test.cpp
+    title: test/3_yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
@@ -1532,6 +1553,7 @@ data:
   - graph/count/count_clique.hpp
   - graph/chromatic.hpp
   - graph/count_matching_on_tree.hpp
+  - graph/tree_all_distances.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/finding_root_of_polynomial.hpp
   - poly/middle_product.hpp
@@ -1840,9 +1862,12 @@ data:
   - test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/2_library_checker/set_power_series/composition_sps.test.cpp
   - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
   - test/2_library_checker/set_power_series/powproj_sps.test.cpp
@@ -1858,6 +1883,7 @@ data:
   - test/3_yukicoder/1649_2.test.cpp
   - test/3_yukicoder/1141.test.cpp
   - test/3_yukicoder/2578.test.cpp
+  - test/3_yukicoder/1848.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1857.test.cpp
   - test/3_yukicoder/2003.test.cpp
@@ -1881,7 +1907,9 @@ data:
   - test/3_yukicoder/1667.test.cpp
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1821.test.cpp
+  - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/2206_2.test.cpp
+  - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/1989.test.cpp
   - test/3_yukicoder/2062.test.cpp

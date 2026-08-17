@@ -7,11 +7,20 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_diameter.hpp
+    title: graph/tree_diameter.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/tree_diameter.test.cpp
+    title: test/2_library_checker/tree/tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1868.test.cpp
+    title: test/3_yukicoder/1868.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -157,10 +166,13 @@ data:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/shortest_path/bfs_01.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/tree_diameter.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/tree/tree_diameter.test.cpp
+  - test/3_yukicoder/1868.test.cpp
 documentation_of: graph/shortest_path/bfs_01.hpp
 layout: document
 redirect_from:

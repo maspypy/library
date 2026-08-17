@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
-    path: nt/pytagorean_triple.hpp
-    title: nt/pytagorean_triple.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/pythagorean_triple.hpp
+    title: nt/pythagorean_triple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/pytagorean_triples.test.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/1_mytest/pythagorean_triples.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n\
     #if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
     #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n//\
@@ -101,8 +101,8 @@ data:
     template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 4 \"test/1_mytest/pytagorean_triples.test.cpp\"\n\n#line 1 \"\
-    nt/pytagorean_triple.hpp\"\n\n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c) \u306F\u540C\
+    }\n#endif\n#line 4 \"test/1_mytest/pythagorean_triples.test.cpp\"\n\n#line 1 \"\
+    nt/pythagorean_triple.hpp\"\n\n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c) \u306F\u540C\
     \u4E00\u8996, O(LIM) \u6642\u9593\n\u30FBLIM = 10^8\uFF1A\u4E92\u3044\u306B\u7D20\
     \ 1.59*10^7 \u500B, 0.13sec\n\u30FBLIM = 10^8\uFF1A\u5168\u90E8 2.71*10^8 \u500B\
     , 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n*/\ntemplate <bool coprime_only,\
@@ -115,26 +115,26 @@ data:
     \ 3 * c);\n    if constexpr (coprime_only) {\n      f(min(a, b), max(a, b), c);\n\
     \    } else {\n      int x = min(a, b), y = max(a, b), z = c;\n      while (z\
     \ <= LIM) {\n        f(x, y, z);\n        x += min(a, b), y += max(a, b), z +=\
-    \ c;\n      }\n    }\n  }\n}\n#line 6 \"test/1_mytest/pytagorean_triples.test.cpp\"\
+    \ c;\n      }\n    }\n  }\n}\n#line 6 \"test/1_mytest/pythagorean_triples.test.cpp\"\
     \n\nvoid test() {\n  int LIM = 10000;\n  int A = 0, B = 0;\n  FOR(y, 1, LIM) {\n\
     \    FOR(x, 1, y) {\n      int z = sqrtl(x * x + y * y);\n      if (z > LIM) break;\n\
     \      if (x * x + y * y != z * z) continue;\n      A += 1;\n      B += gcd(x,\
-    \ y) == 1;\n    }\n  }\n  enumerate_pytagorean_triple<false>(LIM, [&](int a, int\
-    \ b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM && a\
-    \ * a + b * b == c * c);\n    --A;\n  });\n  enumerate_pytagorean_triple<true>(LIM,\
+    \ y) == 1;\n    }\n  }\n  enumerate_pythagorean_triple<false>(LIM, [&](int a,\
+    \ int b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM &&\
+    \ a * a + b * b == c * c);\n    --A;\n  });\n  enumerate_pythagorean_triple<true>(LIM,\
     \ [&](int a, int b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c &&\
     \ c <= LIM && a * a + b * b == c * c);\n    assert(gcd(a, b) == 1);\n    --B;\n\
     \  });\n  assert(A == 0 && B == 0);\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
     \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n\n#include \"nt/pytagorean_triple.hpp\"\n\nvoid test() {\n\
+    my_template.hpp\"\n\n#include \"nt/pythagorean_triple.hpp\"\n\nvoid test() {\n\
     \  int LIM = 10000;\n  int A = 0, B = 0;\n  FOR(y, 1, LIM) {\n    FOR(x, 1, y)\
     \ {\n      int z = sqrtl(x * x + y * y);\n      if (z > LIM) break;\n      if\
     \ (x * x + y * y != z * z) continue;\n      A += 1;\n      B += gcd(x, y) == 1;\n\
-    \    }\n  }\n  enumerate_pytagorean_triple<false>(LIM, [&](int a, int b, int c)\
-    \ -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM && a * a + b *\
-    \ b == c * c);\n    --A;\n  });\n  enumerate_pytagorean_triple<true>(LIM, [&](int\
+    \    }\n  }\n  enumerate_pythagorean_triple<false>(LIM, [&](int a, int b, int\
+    \ c) -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM && a * a + b\
+    \ * b == c * c);\n    --A;\n  });\n  enumerate_pythagorean_triple<true>(LIM, [&](int\
     \ a, int b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM\
     \ && a * a + b * b == c * c);\n    assert(gcd(a, b) == 1);\n    --B;\n  });\n\
     \  assert(A == 0 && B == 0);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
@@ -142,17 +142,17 @@ data:
     \  return 0;\n}"
   dependsOn:
   - my_template.hpp
-  - nt/pytagorean_triple.hpp
+  - nt/pythagorean_triple.hpp
   isVerificationFile: true
-  path: test/1_mytest/pytagorean_triples.test.cpp
+  path: test/1_mytest/pythagorean_triples.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 09:25:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/1_mytest/pytagorean_triples.test.cpp
+documentation_of: test/1_mytest/pythagorean_triples.test.cpp
 layout: document
 redirect_from:
-- /verify/test/1_mytest/pytagorean_triples.test.cpp
-- /verify/test/1_mytest/pytagorean_triples.test.cpp.html
-title: test/1_mytest/pytagorean_triples.test.cpp
+- /verify/test/1_mytest/pythagorean_triples.test.cpp
+- /verify/test/1_mytest/pythagorean_triples.test.cpp.html
+title: test/1_mytest/pythagorean_triples.test.cpp
 ---

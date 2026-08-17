@@ -59,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -163,6 +163,9 @@ data:
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
   - icon: ':heavy_check_mark:'
@@ -255,6 +258,7 @@ data:
   - test/4_aoj/DSL_2_F.test.cpp
   - test/4_aoj/1508.test.cpp
   - test/4_aoj/1508_2.test.cpp
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1270.test.cpp
   - test/3_yukicoder/1600.test.cpp
   - test/3_yukicoder/1234.test.cpp

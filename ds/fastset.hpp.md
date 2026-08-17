@@ -50,7 +50,7 @@ data:
   - icon: ':warning:'
     path: string/enumerate_occurrence.hpp
     title: string/enumerate_occurrence.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -78,6 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
@@ -227,6 +230,7 @@ data:
   - test/2_library_checker/data_structure/predecessor_problem.test.cpp
   - test/4_aoj/2251_1.test.cpp
   - test/4_aoj/2636.test.cpp
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2809.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document

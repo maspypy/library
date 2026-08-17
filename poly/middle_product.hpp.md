@@ -47,7 +47,7 @@ data:
   - icon: ':warning:'
     path: seq/count_grid_path.hpp
     title: seq/count_grid_path.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
@@ -103,8 +103,14 @@ data:
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1796_1.test.cpp
+    title: test/3_yukicoder/1796_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2231.test.cpp
+    title: test/3_yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
@@ -420,6 +426,8 @@ data:
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - test/3_yukicoder/2231.test.cpp
+  - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2243.test.cpp

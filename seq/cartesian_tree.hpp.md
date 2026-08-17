@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/cartesian_tree.test.cpp
     title: test/2_library_checker/tree/cartesian_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2574.test.cpp
     title: test/3_yukicoder/2574.test.cpp
@@ -86,6 +89,7 @@ data:
   - test/2_library_checker/tree/cartesian_tree.test.cpp
   - test/4_aoj/DPL_3_B.test.cpp
   - test/4_aoj/DPL_3_C.test.cpp
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2574.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document

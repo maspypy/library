@@ -3,16 +3,16 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/pytagorean_triples.test.cpp
-    title: test/1_mytest/pytagorean_triples.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/pythagorean_triples.test.cpp
+    title: test/1_mytest/pythagorean_triples.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/60/problem/D
-  bundledCode: "#line 1 \"nt/pytagorean_triple.hpp\"\n\n/*\nc <= LIM, (a,b,c) \u3068\
+  bundledCode: "#line 1 \"nt/pythagorean_triple.hpp\"\n\n/*\nc <= LIM, (a,b,c) \u3068\
     \ (b,a,c) \u306F\u540C\u4E00\u8996, O(LIM) \u6642\u9593\n\u30FBLIM = 10^8\uFF1A\
     \u4E92\u3044\u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\u30FBLIM = 10^8\uFF1A\u5168\
     \u90E8 2.71*10^8 \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n\
@@ -41,16 +41,16 @@ data:
     \ += min(a, b), y += max(a, b), z += c;\n      }\n    }\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: nt/pytagorean_triple.hpp
+  path: nt/pythagorean_triple.hpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 09:25:20+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/pytagorean_triples.test.cpp
-documentation_of: nt/pytagorean_triple.hpp
+  - test/1_mytest/pythagorean_triples.test.cpp
+documentation_of: nt/pythagorean_triple.hpp
 layout: document
 redirect_from:
-- /library/nt/pytagorean_triple.hpp
-- /library/nt/pytagorean_triple.hpp.html
-title: nt/pytagorean_triple.hpp
+- /library/nt/pythagorean_triple.hpp
+- /library/nt/pythagorean_triple.hpp.html
+title: nt/pythagorean_triple.hpp
 ---

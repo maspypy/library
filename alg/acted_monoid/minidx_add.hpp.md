@@ -1,39 +1,58 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/minidx.hpp
+    title: alg/monoid/minidx.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/minidx_add.test.cpp
+    title: test/1_mytest/minidx_add.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid/min_idx.hpp:\
-    \ line -1: no such header\n"
-  code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/min_idx.hpp\"\r\n\
-    \r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MinIdx_Add\
-    \ {\r\n  using Monoid_X = Monoid_Min_Idx<E, tie_is_left>;\r\n  using Monoid_A\
-    \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
-    \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
+  bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/minidx.hpp\"\
+    \n\ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_MinIdx {\n \
+    \ using value_type = pair<T, int>;\n  using X = value_type;\n  static constexpr\
+    \ bool is_small(const X& x, const X& y) {\n    if (x.fi < y.fi) return true;\n\
+    \    if (x.fi > y.fi) return false;\n    return (tie_is_left ? (x.se < y.se) :\
+    \ (x.se >= y.se));\n  }\n  static X op(X x, X y) { return (is_small(x, y) ? x\
+    \ : y); }\n  static constexpr X unit() { return {infty<T>, -1}; }\n  static constexpr\
+    \ bool commute = true;\n};\n#line 3 \"alg/acted_monoid/minidx_add.hpp\"\n\r\n\
+    template <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MinIdx_Add\
+    \ {\r\n  using Monoid_X = Monoid_MinIdx<E, tie_is_left>;\r\n  using Monoid_A =\
+    \ Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A =\
+    \ typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
     \ A &a, const ll &size) {\r\n    if (x.fi == infty<E>) return x;\r\n    return\
     \ {x.fi + a, x.se};\r\n  }\r\n};\r\n"
-  dependsOn: []
+  code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/minidx.hpp\"\r\n\
+    \r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MinIdx_Add\
+    \ {\r\n  using Monoid_X = Monoid_MinIdx<E, tie_is_left>;\r\n  using Monoid_A =\
+    \ Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A =\
+    \ typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
+    \ A &a, const ll &size) {\r\n    if (x.fi == infty<E>) return x;\r\n    return\
+    \ {x.fi + a, x.se};\r\n  }\r\n};\r\n"
+  dependsOn:
+  - alg/monoid/add.hpp
+  - alg/monoid/minidx.hpp
   isVerificationFile: false
   path: alg/acted_monoid/minidx_add.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-08-17 09:25:20+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/minidx_add.test.cpp
 documentation_of: alg/acted_monoid/minidx_add.hpp
 layout: document
 redirect_from:

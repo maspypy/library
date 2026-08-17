@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/maxidx_add.hpp
+    title: alg/acted_monoid/maxidx_add.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/maxidx_add.test.cpp
+    title: test/1_mytest/maxidx_add.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/maxidx.hpp\"\n\ntemplate <typename T, bool tie_is_left\
@@ -23,10 +29,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/maxidx.hpp
-  requiredBy: []
+  requiredBy:
+  - alg/acted_monoid/maxidx_add.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/maxidx_add.test.cpp
 documentation_of: alg/monoid/maxidx.hpp
 layout: document
 redirect_from:
