@@ -10,9 +10,9 @@ data:
   - icon: ':x:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':question:'
-    path: geo/incremental_convexhull.hpp
-    title: geo/incremental_convexhull.hpp
+  - icon: ':x:'
+    path: geo/incremental_convex_hull.hpp
+    title: geo/incremental_convex_hull.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -372,34 +372,35 @@ data:
     upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n\
     \  return P;\n}\n#line 4 \"geo/convex_polygon.hpp\"\n\n// n=2 \u306F\u4F55\u304C\
     \u8D77\u3053\u308B\u304B\u308F\u304B\u3089\u306A\u3044\ntemplate <typename T>\n\
-    struct ConvexPolygon {\n  using P = Point<T>;\n  int n;\n  vc<P> point;\n  T area2;\n\
-    \n  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {\n    // assert(n\
-    \ >= 3);\n    area2 = 0;\n    FOR(i, n) {\n      int j = nxt_idx(i), k = nxt_idx(j);\n\
-    \      assert((point[j] - point[i]).det(point[k] - point[i]) >= 0);\n      area2\
-    \ += point[i].det(point[j]);\n    }\n  }\n\n  // \u6BD4\u8F03\u95A2\u6570 comp(i,j)\n\
-    \  template <typename F>\n  int periodic_min_comp(F comp) {\n    int L = 0, M\
-    \ = n, R = n + n;\n    while (1) {\n      if (R - L == 2) break;\n      int L1\
-    \ = (L + M) / 2, R1 = (M + R + 1) / 2;\n      if (comp(L1 % n, M % n)) {\n   \
-    \     R = M, M = L1;\n      }\n      elif (comp(R1 % n, M % n)) { L = M, M = R1;\
-    \ }\n      else {\n        L = L1, R = R1;\n      }\n    }\n    return M % n;\n\
-    \  }\n\n  int nxt_idx(int i) { return (i + 1 == n ? 0 : i + 1); }\n  int prev_idx(int\
-    \ i) { return (i == 0 ? n - 1 : i - 1); }\n\n  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A\
-    0, \u5916\uFF1A-1. test \u3057\u305F.\n  int side(P p) {\n    if (n == 2) {\n\
-    \      P A = point[0], B = point[1];\n      if ((B - A).det(p - A) == 0) {\n \
-    \       if ((B - A).dot(p - A) >= 0 && (A - B).dot(p - B) >= 0) return 0;\n  \
-    \    }\n      return -1;\n    }\n    int L = 1, R = n - 1;\n    T a = (point[L]\
-    \ - point[0]).det(p - point[0]);\n    T b = (point[R] - point[0]).det(p - point[0]);\n\
-    \    if (a < 0 || b > 0) return -1;\n    // p \u306F 0 \u304B\u3089\u898B\u3066\
-    \ [L,R] \u65B9\u5411\n    while (R - L >= 2) {\n      int M = (L + R) / 2;\n \
-    \     T c = (point[M] - point[0]).det(p - point[0]);\n      if (c < 0)\n     \
-    \   R = M, b = c;\n      else\n        L = M, a = c;\n    }\n    T c = (point[R]\
-    \ - point[L]).det(p - point[L]);\n    T x = min({a, -b, c});\n    if (x < 0) return\
-    \ -1;\n    if (x > 0) return 1;\n    // on triangle p[0]p[L]p[R]\n    if (p ==\
-    \ point[0]) return 0;\n    if (c != 0 && a == 0 && L != 1) return 1;\n    if (c\
-    \ != 0 && b == 0 && R != n - 1) return 1;\n    return 0;\n  }\n\n  // return {min,\
-    \ idx}. test \u3057\u305F.\n  pair<T, int> min_dot(P p) {\n    int idx = periodic_min_comp([&](int\
-    \ i, int j) -> bool {\n      return point[i].dot(p) < point[j].dot(p);\n    });\n\
-    \    return {point[idx].dot(p), idx};\n  }\n\n  // return {max, idx}. test \u3057\
+    struct Convex_Polygon {\n  using P = Point<T>;\n  int n;\n  vc<P> point;\n  T\
+    \ area2;\n\n  Convex_Polygon(vc<P> point_) : n(len(point_)), point(point_) {\n\
+    \    // assert(n >= 3);\n    area2 = 0;\n    FOR(i, n) {\n      int j = nxt_idx(i),\
+    \ k = nxt_idx(j);\n      assert((point[j] - point[i]).det(point[k] - point[i])\
+    \ >= 0);\n      area2 += point[i].det(point[j]);\n    }\n  }\n\n  // \u6BD4\u8F03\
+    \u95A2\u6570 comp(i,j)\n  template <typename F>\n  int periodic_min_comp(F comp)\
+    \ {\n    int L = 0, M = n, R = n + n;\n    while (1) {\n      if (R - L == 2)\
+    \ break;\n      int L1 = (L + M) / 2, R1 = (M + R + 1) / 2;\n      if (comp(L1\
+    \ % n, M % n)) {\n        R = M, M = L1;\n      }\n      elif (comp(R1 % n, M\
+    \ % n)) { L = M, M = R1; }\n      else {\n        L = L1, R = R1;\n      }\n \
+    \   }\n    return M % n;\n  }\n\n  int nxt_idx(int i) { return (i + 1 == n ? 0\
+    \ : i + 1); }\n  int prev_idx(int i) { return (i == 0 ? n - 1 : i - 1); }\n\n\
+    \  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1. test \u3057\u305F.\n\
+    \  int side(P p) {\n    if (n == 2) {\n      P A = point[0], B = point[1];\n \
+    \     if ((B - A).det(p - A) == 0) {\n        if ((B - A).dot(p - A) >= 0 && (A\
+    \ - B).dot(p - B) >= 0) return 0;\n      }\n      return -1;\n    }\n    int L\
+    \ = 1, R = n - 1;\n    T a = (point[L] - point[0]).det(p - point[0]);\n    T b\
+    \ = (point[R] - point[0]).det(p - point[0]);\n    if (a < 0 || b > 0) return -1;\n\
+    \    // p \u306F 0 \u304B\u3089\u898B\u3066 [L,R] \u65B9\u5411\n    while (R -\
+    \ L >= 2) {\n      int M = (L + R) / 2;\n      T c = (point[M] - point[0]).det(p\
+    \ - point[0]);\n      if (c < 0)\n        R = M, b = c;\n      else\n        L\
+    \ = M, a = c;\n    }\n    T c = (point[R] - point[L]).det(p - point[L]);\n   \
+    \ T x = min({a, -b, c});\n    if (x < 0) return -1;\n    if (x > 0) return 1;\n\
+    \    // on triangle p[0]p[L]p[R]\n    if (p == point[0]) return 0;\n    if (c\
+    \ != 0 && a == 0 && L != 1) return 1;\n    if (c != 0 && b == 0 && R != n - 1)\
+    \ return 1;\n    return 0;\n  }\n\n  // return {min, idx}. test \u3057\u305F.\n\
+    \  pair<T, int> min_dot(P p) {\n    int idx = periodic_min_comp([&](int i, int\
+    \ j) -> bool {\n      return point[i].dot(p) < point[j].dot(p);\n    });\n   \
+    \ return {point[idx].dot(p), idx};\n  }\n\n  // return {max, idx}. test \u3057\
     \u305F.\n  pair<T, int> max_dot(P p) {\n    int idx = periodic_min_comp([&](int\
     \ i, int j) -> bool {\n      return point[i].dot(p) > point[j].dot(p);\n    });\n\
     \    return {point[idx].dot(p), idx};\n  }\n\n  // p \u304B\u3089\u898B\u3048\u308B\
@@ -495,9 +496,9 @@ data:
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
     \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\
-    \u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct IncrementalConvexHull_Lower\
-    \ {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\
+    \ <= r * r;\n  }\n};\n#line 2 \"geo/incremental_convex_hull.hpp\"\n\n// \u4E0B\
+    \u5074\u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct Incremental_Convex_Hull_Lower\
+    \ {\n  using P = Point<T>;\n  set<P> S;\n\n  Incremental_Convex_Hull_Lower() {}\n\
     \n  int size() { return len(S); }\n\n  template <typename ADD_V, typename RM_V,\
     \ typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V rm_v,\
     \ ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >= 0) return;\n\
@@ -513,24 +514,24 @@ data:
     \  }\n        auto a = right.back();\n        auto b = *it;\n        T det = (a\
     \ - p).det(b - p);\n        if (strict && det > 0) break;\n        if (!strict\
     \ && det >= 0) break;\n        right.eb(b);\n      }\n    }\n\n    // \u70B9\u524A\
-    \u9664\n    if (len(left) > 1) { S.erase(next(S.find(left.back())), S.find(p));\
-    \ }\n    if (len(right) > 1) { S.erase(next(S.find(p)), S.find(right.back()));\
-    \ }\n    FOR(i, len(left) - 1) rm_v(left[i]);\n    FOR(i, len(right) - 1) rm_v(right[i]);\n\
+    \u9664\n    if (len(left) > 1) {\n      S.erase(next(S.find(left.back())), S.find(p));\n\
+    \    }\n    if (len(right) > 1) {\n      S.erase(next(S.find(p)), S.find(right.back()));\n\
+    \    }\n    FOR(i, len(left) - 1) rm_v(left[i]);\n    FOR(i, len(right) - 1) rm_v(right[i]);\n\
     \n    // \u8FBA\u524A\u9664\n    if (len(left) && len(right)) {\n      auto a\
     \ = left[0], b = right[0];\n      rm_e(a, b);\n    }\n    FOR(i, len(left) - 1)\
     \ {\n      auto a = left[i + 1], b = left[i];\n      rm_e(a, b);\n    }\n    FOR(i,\
     \ len(right) - 1) {\n      auto a = right[i], b = right[i + 1];\n      rm_e(a,\
-    \ b);\n    }\n    // \u8FBA\u8FFD\u52A0\n    if (len(left)) { add_e(left.back(),\
-    \ p); }\n    if (len(right)) { add_e(p, right.back()); }\n  }\n\n  // \u4E2D\uFF1A\
-    1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1\n  int side(Point<T> p) {\n    auto r =\
-    \ S.lower_bound(p);\n    if (r == S.begin()) {\n      // \u5168\u90E8 p \u4EE5\
-    \u4E0A\n      if (len(S) && (*r) == p) return 0;\n      return -1;\n    }\n  \
-    \  if (r == S.end()) {\n      // p \u306F max \u3088\u308A\u5927\u304D\u3044\n\
-    \      return -1;\n    }\n    auto l = prev(r);\n    auto p1 = *l, p2 = *r;\n\
-    \    T det = (p - p1).det(p2 - p1);\n    if (det == 0) return 0;\n    return (det\
-    \ > 0 ? -1 : 1);\n  }\n};\n\ntemplate <typename T, bool strict = true>\nstruct\
-    \ Incremental_ConvexHull {\n  using P = Point<T>;\n  IncrementalConvexHull_Lower<T,\
-    \ strict> LOWER, UPPER;\n  int cnt_E;\n  T det_sum;\n  bool is_empty;\n\n  Incremental_ConvexHull()\
+    \ b);\n    }\n    // \u8FBA\u8FFD\u52A0\n    if (len(left)) {\n      add_e(left.back(),\
+    \ p);\n    }\n    if (len(right)) {\n      add_e(p, right.back());\n    }\n  }\n\
+    \n  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1\n  int side(Point<T>\
+    \ p) {\n    auto r = S.lower_bound(p);\n    if (r == S.begin()) {\n      // \u5168\
+    \u90E8 p \u4EE5\u4E0A\n      if (len(S) && (*r) == p) return 0;\n      return\
+    \ -1;\n    }\n    if (r == S.end()) {\n      // p \u306F max \u3088\u308A\u5927\
+    \u304D\u3044\n      return -1;\n    }\n    auto l = prev(r);\n    auto p1 = *l,\
+    \ p2 = *r;\n    T det = (p - p1).det(p2 - p1);\n    if (det == 0) return 0;\n\
+    \    return (det > 0 ? -1 : 1);\n  }\n};\n\ntemplate <typename T, bool strict\
+    \ = true>\nstruct Incremental_Convex_Hull {\n  using P = Point<T>;\n  IncrementalConvexHull_Lower<T,\
+    \ strict> LOWER, UPPER;\n  int cnt_E;\n  T det_sum;\n  bool is_empty;\n\n  Incremental_Convex_Hull()\
     \ : cnt_E(0), det_sum(0), is_empty(1) {}\n\n  int size() { return cnt_E; }\n\n\
     \  bool empty() { return is_empty; }\n\n  template <typename REAL>\n  REAL area()\
     \ {\n    return det_sum * 0.5;\n  }\n  T area_2() { return det_sum; }\n\n  template\
@@ -555,26 +556,26 @@ data:
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 9 \"test/1_mytest/max_dot.test.cpp\"\n\nusing P\
     \ = Point<ll>;\n\nvoid test() {\n  int N = RNG(3, 10);\n  vc<P> point(N);\n  FOR(i,\
-    \ N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n\n  auto I = ConvexHull(point);\n\
+    \ N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n\n  auto I = Convex_Hull(point);\n\
     \  point = rearrange(point, I);\n  N = len(point);\n  if (N <= 2) return;\n\n\
-    \  ConvexPolygon<ll> X(point);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P p(x,\
-    \ y);\n    pair<int, int> ans = {infty<int>, -infty<int>};\n    FOR(i, N) { chmin(ans.fi,\
-    \ p.dot(point[i])); }\n    FOR(i, N) { chmax(ans.se, p.dot(point[i])); }\n   \
-    \ auto [mi, i] = X.min_dot(p);\n    auto [ma, j] = X.max_dot(p);\n    assert(ans.fi\
+    \  Convex_Polygon<ll> X(point);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P\
+    \ p(x, y);\n    pair<int, int> ans = {infty<int>, -infty<int>};\n    FOR(i, N)\
+    \ { chmin(ans.fi, p.dot(point[i])); }\n    FOR(i, N) { chmax(ans.se, p.dot(point[i]));\
+    \ }\n    auto [mi, i] = X.min_dot(p);\n    auto [ma, j] = X.max_dot(p);\n    assert(ans.fi\
     \ == mi && ans.se == ma);\n    assert(mi == p.dot(point[i]));\n    assert(ma ==\
     \ p.dot(point[j]));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
     \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10000) test();\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\n#include \"geo/convex_polygon.hpp\"\
-    \n#include \"geo/incremental_convexhull.hpp\"\n#include \"random/base.hpp\"\n\n\
-    using P = Point<ll>;\n\nvoid test() {\n  int N = RNG(3, 10);\n  vc<P> point(N);\n\
-    \  FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n\n  auto I = ConvexHull(point);\n\
+    \n#include \"geo/incremental_convex_hull.hpp\"\n#include \"random/base.hpp\"\n\
+    \nusing P = Point<ll>;\n\nvoid test() {\n  int N = RNG(3, 10);\n  vc<P> point(N);\n\
+    \  FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n\n  auto I = Convex_Hull(point);\n\
     \  point = rearrange(point, I);\n  N = len(point);\n  if (N <= 2) return;\n\n\
-    \  ConvexPolygon<ll> X(point);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P p(x,\
-    \ y);\n    pair<int, int> ans = {infty<int>, -infty<int>};\n    FOR(i, N) { chmin(ans.fi,\
-    \ p.dot(point[i])); }\n    FOR(i, N) { chmax(ans.se, p.dot(point[i])); }\n   \
-    \ auto [mi, i] = X.min_dot(p);\n    auto [ma, j] = X.max_dot(p);\n    assert(ans.fi\
+    \  Convex_Polygon<ll> X(point);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P\
+    \ p(x, y);\n    pair<int, int> ans = {infty<int>, -infty<int>};\n    FOR(i, N)\
+    \ { chmin(ans.fi, p.dot(point[i])); }\n    FOR(i, N) { chmax(ans.se, p.dot(point[i]));\
+    \ }\n    auto [mi, i] = X.min_dot(p);\n    auto [ma, j] = X.max_dot(p);\n    assert(ans.fi\
     \ == mi && ans.se == ma);\n    assert(mi == p.dot(point[i]));\n    assert(ma ==\
     \ p.dot(point[j]));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
     \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10000) test();\n  solve();\n\
@@ -584,12 +585,12 @@ data:
   - geo/base.hpp
   - geo/convex_hull.hpp
   - geo/convex_polygon.hpp
-  - geo/incremental_convexhull.hpp
+  - geo/incremental_convex_hull.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/1_mytest/max_dot.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
+  timestamp: '2026-08-17 11:03:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/max_dot.test.cpp

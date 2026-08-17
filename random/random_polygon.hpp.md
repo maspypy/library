@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':question:'
@@ -33,12 +33,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/random_polygon.hpp\"\n\n#line 1 \"random/base.hpp\"\
@@ -583,48 +583,49 @@ data:
     \ Point<ll>;\n  auto trial = [&]() -> vc<P> {\n    set<Point<ll>> S;\n    while\
     \ (len(S) < N) {\n      int x = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      int y\
     \ = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      S.insert(Point<ll>(x, y));\n    }\n\
-    \    vc<P> point(all(S));\n    auto I = ConvexHull<ll, true>(point);\n    Count_Points_In_Triangles\
+    \    vc<P> point(all(S));\n    auto I = Convex_Hull<ll, true>(point);\n    Count_Points_In_Triangles\
     \ CT(point, point);\n    vc<int> other;\n    vc<int> done(N);\n    for (auto&\
-    \ i: I) done[i]++;\n    if (MAX(done) >= 2) return {};\n    FOR(i, N) if (!done[i])\
+    \ i : I) done[i]++;\n    if (MAX(done) >= 2) return {};\n    FOR(i, N) if (!done[i])\
     \ other.eb(i);\n    int fail = 0;\n    while (len(other)) {\n      if (fail >\
     \ 1000) return {};\n      ++fail;\n      int i = RNG(0, len(I)), j = RNG(0, len(other));\n\
     \      swap(other[j], other.back());\n      int a = I[i], b = I[(i + 1) % len(I)],\
     \ c = other.back();\n      if ((point[b] - point[a]).det(point[c] - point[a])\
     \ < 0) continue;\n      if (CT.count3(a, b, c)) continue;\n      if (CT.count2(a,\
-    \ c) + CT.count2(b, c)) continue;\n      bool ok = 1;\n      for (auto& v: {a,\
+    \ c) + CT.count2(b, c)) continue;\n      bool ok = 1;\n      for (auto& v : {a,\
     \ b}) {\n        FOR(i, len(I)) {\n          Segment<ll> S1(point[v], point[c]);\n\
     \          Segment<ll> S2(point[I[i]], point[I[(i + 1) % len(I)]]);\n        \
     \  if (count_cross(S1, S2, false)) ok = 0;\n        }\n      }\n      if (!ok)\
     \ continue;\n      fail = 0;\n      I.insert(I.begin() + i + 1, POP(other));\n\
     \    }\n    point = rearrange(point, I);\n    FOR(i, N) {\n      if ((point[(i\
-    \ + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) == 0) return {};\n\
-    \    }\n    return point;\n  };\n  while (1) {\n    vc<P> ANS = trial();\n   \
-    \ if (ANS.empty()) continue;\n    int k = RNG(0, len(ANS));\n    rotate(ANS.begin(),\
-    \ ANS.begin() + k, ANS.end());\n    return ANS;\n  }\n}\n"
+    \ + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) ==\n          0)\n\
+    \        return {};\n    }\n    return point;\n  };\n  while (1) {\n    vc<P>\
+    \ ANS = trial();\n    if (ANS.empty()) continue;\n    int k = RNG(0, len(ANS));\n\
+    \    rotate(ANS.begin(), ANS.begin() + k, ANS.end());\n    return ANS;\n  }\n\
+    }\n"
   code: "\n#include \"random/base.hpp\"\n#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\
     \n#include \"geo/cross_point.hpp\"\n#include \"geo/count_points_in_triangles.hpp\"\
     \n\nvc<Point<ll>> random_polygon(int N, int XY_ABS_MAX = 10) {\n  assert(N >=\
     \ 3);\n  using P = Point<ll>;\n  auto trial = [&]() -> vc<P> {\n    set<Point<ll>>\
     \ S;\n    while (len(S) < N) {\n      int x = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n\
     \      int y = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      S.insert(Point<ll>(x,\
-    \ y));\n    }\n    vc<P> point(all(S));\n    auto I = ConvexHull<ll, true>(point);\n\
+    \ y));\n    }\n    vc<P> point(all(S));\n    auto I = Convex_Hull<ll, true>(point);\n\
     \    Count_Points_In_Triangles CT(point, point);\n    vc<int> other;\n    vc<int>\
-    \ done(N);\n    for (auto& i: I) done[i]++;\n    if (MAX(done) >= 2) return {};\n\
+    \ done(N);\n    for (auto& i : I) done[i]++;\n    if (MAX(done) >= 2) return {};\n\
     \    FOR(i, N) if (!done[i]) other.eb(i);\n    int fail = 0;\n    while (len(other))\
     \ {\n      if (fail > 1000) return {};\n      ++fail;\n      int i = RNG(0, len(I)),\
     \ j = RNG(0, len(other));\n      swap(other[j], other.back());\n      int a =\
     \ I[i], b = I[(i + 1) % len(I)], c = other.back();\n      if ((point[b] - point[a]).det(point[c]\
     \ - point[a]) < 0) continue;\n      if (CT.count3(a, b, c)) continue;\n      if\
     \ (CT.count2(a, c) + CT.count2(b, c)) continue;\n      bool ok = 1;\n      for\
-    \ (auto& v: {a, b}) {\n        FOR(i, len(I)) {\n          Segment<ll> S1(point[v],\
+    \ (auto& v : {a, b}) {\n        FOR(i, len(I)) {\n          Segment<ll> S1(point[v],\
     \ point[c]);\n          Segment<ll> S2(point[I[i]], point[I[(i + 1) % len(I)]]);\n\
     \          if (count_cross(S1, S2, false)) ok = 0;\n        }\n      }\n     \
     \ if (!ok) continue;\n      fail = 0;\n      I.insert(I.begin() + i + 1, POP(other));\n\
     \    }\n    point = rearrange(point, I);\n    FOR(i, N) {\n      if ((point[(i\
-    \ + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) == 0) return {};\n\
-    \    }\n    return point;\n  };\n  while (1) {\n    vc<P> ANS = trial();\n   \
-    \ if (ANS.empty()) continue;\n    int k = RNG(0, len(ANS));\n    rotate(ANS.begin(),\
-    \ ANS.begin() + k, ANS.end());\n    return ANS;\n  }\n}"
+    \ + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) ==\n          0)\n\
+    \        return {};\n    }\n    return point;\n  };\n  while (1) {\n    vc<P>\
+    \ ANS = trial();\n    if (ANS.empty()) continue;\n    int k = RNG(0, len(ANS));\n\
+    \    rotate(ANS.begin(), ANS.begin() + k, ANS.end());\n    return ANS;\n  }\n}"
   dependsOn:
   - random/base.hpp
   - geo/base.hpp
@@ -639,8 +640,8 @@ data:
   isVerificationFile: false
   path: random/random_polygon.hpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 11:03:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: random/random_polygon.hpp

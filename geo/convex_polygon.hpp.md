@@ -13,9 +13,6 @@ data:
     path: test/1_mytest/convex_polygon_side.test.cpp
     title: test/1_mytest/convex_polygon_side.test.cpp
   - icon: ':x:'
-    path: test/1_mytest/convex_polygon_visible_range.test.cpp
-    title: test/1_mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':x:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
   _isVerificationFailed: true
@@ -156,34 +153,35 @@ data:
     upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n\
     \  return P;\n}\n#line 4 \"geo/convex_polygon.hpp\"\n\n// n=2 \u306F\u4F55\u304C\
     \u8D77\u3053\u308B\u304B\u308F\u304B\u3089\u306A\u3044\ntemplate <typename T>\n\
-    struct ConvexPolygon {\n  using P = Point<T>;\n  int n;\n  vc<P> point;\n  T area2;\n\
-    \n  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {\n    // assert(n\
-    \ >= 3);\n    area2 = 0;\n    FOR(i, n) {\n      int j = nxt_idx(i), k = nxt_idx(j);\n\
-    \      assert((point[j] - point[i]).det(point[k] - point[i]) >= 0);\n      area2\
-    \ += point[i].det(point[j]);\n    }\n  }\n\n  // \u6BD4\u8F03\u95A2\u6570 comp(i,j)\n\
-    \  template <typename F>\n  int periodic_min_comp(F comp) {\n    int L = 0, M\
-    \ = n, R = n + n;\n    while (1) {\n      if (R - L == 2) break;\n      int L1\
-    \ = (L + M) / 2, R1 = (M + R + 1) / 2;\n      if (comp(L1 % n, M % n)) {\n   \
-    \     R = M, M = L1;\n      }\n      elif (comp(R1 % n, M % n)) { L = M, M = R1;\
-    \ }\n      else {\n        L = L1, R = R1;\n      }\n    }\n    return M % n;\n\
-    \  }\n\n  int nxt_idx(int i) { return (i + 1 == n ? 0 : i + 1); }\n  int prev_idx(int\
-    \ i) { return (i == 0 ? n - 1 : i - 1); }\n\n  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A\
-    0, \u5916\uFF1A-1. test \u3057\u305F.\n  int side(P p) {\n    if (n == 2) {\n\
-    \      P A = point[0], B = point[1];\n      if ((B - A).det(p - A) == 0) {\n \
-    \       if ((B - A).dot(p - A) >= 0 && (A - B).dot(p - B) >= 0) return 0;\n  \
-    \    }\n      return -1;\n    }\n    int L = 1, R = n - 1;\n    T a = (point[L]\
-    \ - point[0]).det(p - point[0]);\n    T b = (point[R] - point[0]).det(p - point[0]);\n\
-    \    if (a < 0 || b > 0) return -1;\n    // p \u306F 0 \u304B\u3089\u898B\u3066\
-    \ [L,R] \u65B9\u5411\n    while (R - L >= 2) {\n      int M = (L + R) / 2;\n \
-    \     T c = (point[M] - point[0]).det(p - point[0]);\n      if (c < 0)\n     \
-    \   R = M, b = c;\n      else\n        L = M, a = c;\n    }\n    T c = (point[R]\
-    \ - point[L]).det(p - point[L]);\n    T x = min({a, -b, c});\n    if (x < 0) return\
-    \ -1;\n    if (x > 0) return 1;\n    // on triangle p[0]p[L]p[R]\n    if (p ==\
-    \ point[0]) return 0;\n    if (c != 0 && a == 0 && L != 1) return 1;\n    if (c\
-    \ != 0 && b == 0 && R != n - 1) return 1;\n    return 0;\n  }\n\n  // return {min,\
-    \ idx}. test \u3057\u305F.\n  pair<T, int> min_dot(P p) {\n    int idx = periodic_min_comp([&](int\
-    \ i, int j) -> bool {\n      return point[i].dot(p) < point[j].dot(p);\n    });\n\
-    \    return {point[idx].dot(p), idx};\n  }\n\n  // return {max, idx}. test \u3057\
+    struct Convex_Polygon {\n  using P = Point<T>;\n  int n;\n  vc<P> point;\n  T\
+    \ area2;\n\n  Convex_Polygon(vc<P> point_) : n(len(point_)), point(point_) {\n\
+    \    // assert(n >= 3);\n    area2 = 0;\n    FOR(i, n) {\n      int j = nxt_idx(i),\
+    \ k = nxt_idx(j);\n      assert((point[j] - point[i]).det(point[k] - point[i])\
+    \ >= 0);\n      area2 += point[i].det(point[j]);\n    }\n  }\n\n  // \u6BD4\u8F03\
+    \u95A2\u6570 comp(i,j)\n  template <typename F>\n  int periodic_min_comp(F comp)\
+    \ {\n    int L = 0, M = n, R = n + n;\n    while (1) {\n      if (R - L == 2)\
+    \ break;\n      int L1 = (L + M) / 2, R1 = (M + R + 1) / 2;\n      if (comp(L1\
+    \ % n, M % n)) {\n        R = M, M = L1;\n      }\n      elif (comp(R1 % n, M\
+    \ % n)) { L = M, M = R1; }\n      else {\n        L = L1, R = R1;\n      }\n \
+    \   }\n    return M % n;\n  }\n\n  int nxt_idx(int i) { return (i + 1 == n ? 0\
+    \ : i + 1); }\n  int prev_idx(int i) { return (i == 0 ? n - 1 : i - 1); }\n\n\
+    \  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1. test \u3057\u305F.\n\
+    \  int side(P p) {\n    if (n == 2) {\n      P A = point[0], B = point[1];\n \
+    \     if ((B - A).det(p - A) == 0) {\n        if ((B - A).dot(p - A) >= 0 && (A\
+    \ - B).dot(p - B) >= 0) return 0;\n      }\n      return -1;\n    }\n    int L\
+    \ = 1, R = n - 1;\n    T a = (point[L] - point[0]).det(p - point[0]);\n    T b\
+    \ = (point[R] - point[0]).det(p - point[0]);\n    if (a < 0 || b > 0) return -1;\n\
+    \    // p \u306F 0 \u304B\u3089\u898B\u3066 [L,R] \u65B9\u5411\n    while (R -\
+    \ L >= 2) {\n      int M = (L + R) / 2;\n      T c = (point[M] - point[0]).det(p\
+    \ - point[0]);\n      if (c < 0)\n        R = M, b = c;\n      else\n        L\
+    \ = M, a = c;\n    }\n    T c = (point[R] - point[L]).det(p - point[L]);\n   \
+    \ T x = min({a, -b, c});\n    if (x < 0) return -1;\n    if (x > 0) return 1;\n\
+    \    // on triangle p[0]p[L]p[R]\n    if (p == point[0]) return 0;\n    if (c\
+    \ != 0 && a == 0 && L != 1) return 1;\n    if (c != 0 && b == 0 && R != n - 1)\
+    \ return 1;\n    return 0;\n  }\n\n  // return {min, idx}. test \u3057\u305F.\n\
+    \  pair<T, int> min_dot(P p) {\n    int idx = periodic_min_comp([&](int i, int\
+    \ j) -> bool {\n      return point[i].dot(p) < point[j].dot(p);\n    });\n   \
+    \ return {point[idx].dot(p), idx};\n  }\n\n  // return {max, idx}. test \u3057\
     \u305F.\n  pair<T, int> max_dot(P p) {\n    int idx = periodic_min_comp([&](int\
     \ i, int j) -> bool {\n      return point[i].dot(p) > point[j].dot(p);\n    });\n\
     \    return {point[idx].dot(p), idx};\n  }\n\n  // p \u304B\u3089\u898B\u3048\u308B\
@@ -228,9 +226,9 @@ data:
     \ - C).det(X - C);\n    return ANS;\n  }\n};\n"
   code: "\n#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\n\n// n=2 \u306F\
     \u4F55\u304C\u8D77\u3053\u308B\u304B\u308F\u304B\u3089\u306A\u3044\ntemplate <typename\
-    \ T>\nstruct ConvexPolygon {\n  using P = Point<T>;\n  int n;\n  vc<P> point;\n\
-    \  T area2;\n\n  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {\n\
-    \    // assert(n >= 3);\n    area2 = 0;\n    FOR(i, n) {\n      int j = nxt_idx(i),\
+    \ T>\nstruct Convex_Polygon {\n  using P = Point<T>;\n  int n;\n  vc<P> point;\n\
+    \  T area2;\n\n  Convex_Polygon(vc<P> point_) : n(len(point_)), point(point_)\
+    \ {\n    // assert(n >= 3);\n    area2 = 0;\n    FOR(i, n) {\n      int j = nxt_idx(i),\
     \ k = nxt_idx(j);\n      assert((point[j] - point[i]).det(point[k] - point[i])\
     \ >= 0);\n      area2 += point[i].det(point[j]);\n    }\n  }\n\n  // \u6BD4\u8F03\
     \u95A2\u6570 comp(i,j)\n  template <typename F>\n  int periodic_min_comp(F comp)\
@@ -305,12 +303,11 @@ data:
   isVerificationFile: false
   path: geo/convex_polygon.hpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
+  timestamp: '2026-08-17 11:03:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/max_dot.test.cpp
-  - test/1_mytest/convex_polygon_visible_range.test.cpp
 documentation_of: geo/convex_polygon.hpp
 layout: document
 redirect_from:

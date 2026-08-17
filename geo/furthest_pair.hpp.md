@@ -9,12 +9,12 @@ data:
     title: geo/convex_hull.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -150,38 +150,38 @@ data:
     pair<int, int> furthest_pair(vc<Point<T>> point) {\n  T best = -1;\n  pair<int,\
     \ int> ANS = {-1, -1};\n\n  auto upd = [&](int i, int j) -> void {\n    Point<T>\
     \ p = point[i] - point[j];\n    ll d = p.dot(p);\n    if (chmax(best, d)) ANS\
-    \ = {i, j};\n  };\n  upd(0, 1);\n\n  auto I = ConvexHull(point);\n  int n = len(I);\n\
-    \  if (n == 1) return ANS;\n  if (n == 2) { return {I[0], I[1]}; }\n  /*\n  \u76F4\
-    \u5F84\u3068\u5782\u76F4\u306A\u5E73\u884C\u7DDA 2 \u672C\u3067\u51F8\u5305\u3092\
-    \u306F\u3055\u3081\u308B\n  \u5E73\u884C\u7DDA 2 \u672C\u3067\u306F\u3055\u3093\
-    \u3067\u5F15\u3063\u304B\u304B\u308B 2 \u70B9\u304C\u5019\u88DC\n  p[i]p[i+1]\
-    \ \u306E\u53CD\u5BFE\u5074\u3092\u5019\u88DC\u3068\u3059\u308C\u3070\u3088\u3044\
-    \n  */\n  FOR(i, n) I.eb(I[i]);\n\n  vc<Point<T>> C = rearrange(point, I);\n \
-    \ int j = 1;\n  FOR(i, n) {\n    chmax(j, i);\n    while (j < 2 * n && (C[i +\
-    \ 1] - C[i]).det(C[j + 1] - C[j]) > 0) ++j;\n    upd(I[i], I[j]);\n  }\n  return\
-    \ ANS;\n}\n"
+    \ = {i, j};\n  };\n  upd(0, 1);\n\n  auto I = Convex_Hull(point);\n  int n = len(I);\n\
+    \  if (n == 1) return ANS;\n  if (n == 2) {\n    return {I[0], I[1]};\n  }\n \
+    \ /*\n  \u76F4\u5F84\u3068\u5782\u76F4\u306A\u5E73\u884C\u7DDA 2 \u672C\u3067\u51F8\
+    \u5305\u3092\u306F\u3055\u3081\u308B\n  \u5E73\u884C\u7DDA 2 \u672C\u3067\u306F\
+    \u3055\u3093\u3067\u5F15\u3063\u304B\u304B\u308B 2 \u70B9\u304C\u5019\u88DC\n\
+    \  p[i]p[i+1] \u306E\u53CD\u5BFE\u5074\u3092\u5019\u88DC\u3068\u3059\u308C\u3070\
+    \u3088\u3044\n  */\n  FOR(i, n) I.eb(I[i]);\n\n  vc<Point<T>> C = rearrange(point,\
+    \ I);\n  int j = 1;\n  FOR(i, n) {\n    chmax(j, i);\n    while (j < 2 * n &&\
+    \ (C[i + 1] - C[i]).det(C[j + 1] - C[j]) > 0) ++j;\n    upd(I[i], I[j]);\n  }\n\
+    \  return ANS;\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\n\ntemplate <typename\
     \ T>\npair<int, int> furthest_pair(vc<Point<T>> point) {\n  T best = -1;\n  pair<int,\
     \ int> ANS = {-1, -1};\n\n  auto upd = [&](int i, int j) -> void {\n    Point<T>\
     \ p = point[i] - point[j];\n    ll d = p.dot(p);\n    if (chmax(best, d)) ANS\
-    \ = {i, j};\n  };\n  upd(0, 1);\n\n  auto I = ConvexHull(point);\n  int n = len(I);\n\
-    \  if (n == 1) return ANS;\n  if (n == 2) { return {I[0], I[1]}; }\n  /*\n  \u76F4\
-    \u5F84\u3068\u5782\u76F4\u306A\u5E73\u884C\u7DDA 2 \u672C\u3067\u51F8\u5305\u3092\
-    \u306F\u3055\u3081\u308B\n  \u5E73\u884C\u7DDA 2 \u672C\u3067\u306F\u3055\u3093\
-    \u3067\u5F15\u3063\u304B\u304B\u308B 2 \u70B9\u304C\u5019\u88DC\n  p[i]p[i+1]\
-    \ \u306E\u53CD\u5BFE\u5074\u3092\u5019\u88DC\u3068\u3059\u308C\u3070\u3088\u3044\
-    \n  */\n  FOR(i, n) I.eb(I[i]);\n\n  vc<Point<T>> C = rearrange(point, I);\n \
-    \ int j = 1;\n  FOR(i, n) {\n    chmax(j, i);\n    while (j < 2 * n && (C[i +\
-    \ 1] - C[i]).det(C[j + 1] - C[j]) > 0) ++j;\n    upd(I[i], I[j]);\n  }\n  return\
-    \ ANS;\n}\n"
+    \ = {i, j};\n  };\n  upd(0, 1);\n\n  auto I = Convex_Hull(point);\n  int n = len(I);\n\
+    \  if (n == 1) return ANS;\n  if (n == 2) {\n    return {I[0], I[1]};\n  }\n \
+    \ /*\n  \u76F4\u5F84\u3068\u5782\u76F4\u306A\u5E73\u884C\u7DDA 2 \u672C\u3067\u51F8\
+    \u5305\u3092\u306F\u3055\u3081\u308B\n  \u5E73\u884C\u7DDA 2 \u672C\u3067\u306F\
+    \u3055\u3093\u3067\u5F15\u3063\u304B\u304B\u308B 2 \u70B9\u304C\u5019\u88DC\n\
+    \  p[i]p[i+1] \u306E\u53CD\u5BFE\u5074\u3092\u5019\u88DC\u3068\u3059\u308C\u3070\
+    \u3088\u3044\n  */\n  FOR(i, n) I.eb(I[i]);\n\n  vc<Point<T>> C = rearrange(point,\
+    \ I);\n  int j = 1;\n  FOR(i, n) {\n    chmax(j, i);\n    while (j < 2 * n &&\
+    \ (C[i + 1] - C[i]).det(C[j + 1] - C[j]) > 0) ++j;\n    upd(I[i], I[j]);\n  }\n\
+    \  return ANS;\n}\n"
   dependsOn:
   - geo/base.hpp
   - geo/convex_hull.hpp
   isVerificationFile: false
   path: geo/furthest_pair.hpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 11:03:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/geometry/furthest_pair.test.cpp
 documentation_of: geo/furthest_pair.hpp

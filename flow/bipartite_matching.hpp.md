@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -31,6 +31,9 @@ data:
     path: test/1_mytest/matching_ve.test.cpp
     title: test/1_mytest/matching_ve.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tutte.test.cpp
+    title: test/1_mytest/tutte.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1479.test.cpp
     title: test/3_yukicoder/1479.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1744.test.cpp
+    title: test/3_yukicoder/1744.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1745.test.cpp
     title: test/3_yukicoder/1745.test.cpp
@@ -544,12 +550,14 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/matching_ve.test.cpp
+  - test/1_mytest/tutte.test.cpp
   - test/2_library_checker/graph/bipartitematching.test.cpp
   - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/4_aoj/1566.test.cpp
   - test/4_aoj/2251_2.test.cpp
   - test/3_yukicoder/1479.test.cpp
   - test/3_yukicoder/1745.test.cpp
+  - test/3_yukicoder/1744.test.cpp
 documentation_of: flow/bipartite_matching.hpp
 layout: document
 redirect_from:

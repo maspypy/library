@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_for_floor_sum.hpp
     title: alg/monoid/monoid_for_floor_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -58,13 +58,13 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -257,10 +257,10 @@ data:
     \u3066\u51FA\u529B\n// https://qoj.ac/contest/1576/problem/8505\ntemplate <typename\
     \ Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T,\
     \ T>> LINE) {\n  assert(!LINE.empty());\n  using P = Point<T>;\n  vc<P> point;\n\
-    \  for (auto& [x, y]: LINE) point.eb(P(x, y));\n  auto I = ConvexHull(point, \"\
-    lower\");\n  point = rearrange(point, I);\n  int N = len(point);\n  if (N >= 2\
-    \ && point[N - 1].x == point[N - 2].x) { POP(point), --N; }\n  reverse(all(point));\
-    \ // \u50BE\u304D\u306F\u5927\u304D\u3044\u65B9\u304B\u3089\n  Re l = -infty<Re>;\n\
+    \  for (auto& [x, y] : LINE) point.eb(P(x, y));\n  auto I = Convex_Hull(point,\
+    \ \"lower\");\n  point = rearrange(point, I);\n  int N = len(point);\n  if (N\
+    \ >= 2 && point[N - 1].x == point[N - 2].x) {\n    POP(point), --N;\n  }\n  reverse(all(point));\
+    \  // \u50BE\u304D\u306F\u5927\u304D\u3044\u65B9\u304B\u3089\n  Re l = -infty<Re>;\n\
     \  vc<tuple<Re, Re, Re, Re>> ANS;\n  FOR(i, N) {\n    Re r = infty<Re>;\n    auto\
     \ [a, b] = point[i];\n    if (i + 1 < N) {\n      auto [c, d] = point[i + 1];\n\
     \      if (a == c) continue;\n      assert(a > c);\n      r = Re(d - b) / (a -\
@@ -268,57 +268,60 @@ data:
     \ r, a, b), l = r;\n  }\n  return ANS;\n}\n\n// 1 \u6B21\u95A2\u6570\u306E max\
     \ \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\ntemplate <typename\
     \ Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_max_function_real(vc<pair<T,\
-    \ T>> LINE) {\n  assert(!LINE.empty());\n  for (auto& [a, b]: LINE) a = -a, b\
+    \ T>> LINE) {\n  assert(!LINE.empty());\n  for (auto& [a, b] : LINE) a = -a, b\
     \ = -b;\n  auto ANS = line_min_function_real<Re, T>(LINE);\n  for (auto& [l, r,\
-    \ a, b]: ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c,\
+    \ a, b] : ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c,\
     \ \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092\
     \ [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\u30FC\u30D0\
-    \u30FC\u30D5\u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(vc<tuple<ll,\
-    \ ll, ll>> LINE, ll L, ll R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE),\
-    \ [&](auto& L, auto& R) -> bool {\n    auto& [a1, b1, c1] = L;\n    auto& [a2,\
-    \ b2, c2] = R;\n    return i128(a1) * c2 > i128(a2) * c1;\n  });\n  vc<tuple<ll,\
-    \ ll, ll, ll, ll>> ANS;\n  for (auto& [a2, b2, c2]: LINE) {\n    while (1) {\n\
-    \      if (ANS.empty()) {\n        ANS.eb(L, R, a2, b2, c2);\n        break;\n\
-    \      }\n      auto& [L1, R1, a1, b1, c1] = ANS.back();\n      i128 s = i128(c2)\
-    \ * a1 - i128(a2) * c1; // >= 0\n      i128 t = i128(b2) * c1 - i128(b1) * c2;\n\
-    \      if (s == 0) {\n        // \u5E73\u884C\u306A\u306E\u3067\u5C0F\u3055\u3044\
-    \u65B9\u3060\u3051\u3092\u6B8B\u3059\n        if (t >= 0) break;\n        ANS.pop_back();\n\
-    \        if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n      }\n \
-    \     i128 x = ceil<i128>(t, s);\n      // x \u4EE5\u4E0A\u3067 2 \u306E\u65B9\
-    \u304C\u4E0B\u306B\u6765\u308B\n      if (x <= L1) {\n        ANS.pop_back();\n\
-    \        continue;\n      }\n      if (x < R) {\n        R1 = x;\n        ANS.eb(x,\
-    \ R, a2, b2, c2);\n        break;\n      } else {\n        break;\n      }\n \
-    \   }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\u4FA1\u70B9\
-    \u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E max \u3092 [L,R,a,b,c] \u306E\
-    \u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
-    \u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>> line_max_function_rational(vc<tuple<ll,\
-    \ ll, ll>> LINE, ll L, ll R) {\n  for (auto& [a, b, c]: LINE) a = -a, b = -b;\n\
-    \  auto ANS = line_min_function_rational(LINE, L, R);\n  for (auto& [L, R, a,\
-    \ b, c]: ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b): y=ax+b, \u8A55\
-    \u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b]\
-    \ \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\u30FC\u30D0\u30FC\u30D5\
-    \u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll, ll>> line_min_function_integer(vc<pair<ll,\
-    \ ll>> LINE, ll L, ll R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE), [&](auto&\
-    \ L, auto& R) -> bool {\n    auto& [a1, b1] = L;\n    auto& [a2, b2] = R;\n  \
-    \  return a1 > a2;\n  });\n  vc<tuple<ll, ll, ll, ll>> ANS;\n  for (auto& [a2,\
-    \ b2]: LINE) {\n    while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L, R,\
-    \ a2, b2);\n        break;\n      }\n      auto& [L1, R1, a1, b1] = ANS.back();\n\
-    \      if (a1 == a2) {\n        if (b1 <= b2) break;\n        ANS.pop_back();\n\
-    \        if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n      }\n \
-    \     ll x = ceil<ll>(b2 - b1, a1 - a2);\n      // x \u4EE5\u4E0A\u3067 2 \u306E\
-    \u65B9\u304C\u4E0B\u306B\u6765\u308B\n      if (x <= L1) {\n        ANS.pop_back();\n\
-    \        continue;\n      }\n      if (x < R) {\n        R1 = x;\n        ANS.eb(x,\
-    \ R, a2, b2);\n        break;\n      } else {\n        break;\n      }\n    }\n\
-    \  }\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\u4FA1\u70B9\u306F\
-    \u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b,c] \u306E\u5217\
-    \u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c \u304C\u30AA\u30FC\u30D0\u30FC\
-    \u30D5\u30ED\u30FC\u3057\u306A\u3044,\nvc<tuple<ll, ll, ll, ll>> line_max_function_integer(vc<pair<ll,\
-    \ ll>> LINE, ll L, ll R) {\n  for (auto& [a, b]: LINE) a = -a, b = -b;\n  auto\
-    \ ANS = line_min_function_integer(LINE, L, R);\n  for (auto& [L, R, a, b]: ANS)\
-    \ a = -a, b = -b;\n  return ANS;\n}\n\n// (L,R,func) \u306E\u4E0B\u5074\u3068\u4E0A\
-    \u5074\u3092\u30DE\u30FC\u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\
-    \u3046\u7528\ntemplate <typename T>\nvc<tuple<T, T, T, T, T, T>> merge_46(vc<tuple<T,\
-    \ T, T, T>> A, vc<tuple<T, T, T, T>> B) {\n  vc<tuple<T, T, T, T, T, T>> ANS;\n\
+    \u30FC\u30D5\u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(\n\
+    \    vc<tuple<ll, ll, ll>> LINE, ll L, ll R) {\n  // \u50BE\u304D\u964D\u9806\n\
+    \  sort(all(LINE), [&](auto& L, auto& R) -> bool {\n    auto& [a1, b1, c1] = L;\n\
+    \    auto& [a2, b2, c2] = R;\n    return i128(a1) * c2 > i128(a2) * c1;\n  });\n\
+    \  vc<tuple<ll, ll, ll, ll, ll>> ANS;\n  for (auto& [a2, b2, c2] : LINE) {\n \
+    \   while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L, R, a2, b2, c2);\n\
+    \        break;\n      }\n      auto& [L1, R1, a1, b1, c1] = ANS.back();\n   \
+    \   i128 s = i128(c2) * a1 - i128(a2) * c1;  // >= 0\n      i128 t = i128(b2)\
+    \ * c1 - i128(b1) * c2;\n      if (s == 0) {\n        // \u5E73\u884C\u306A\u306E\
+    \u3067\u5C0F\u3055\u3044\u65B9\u3060\u3051\u3092\u6B8B\u3059\n        if (t >=\
+    \ 0) break;\n        ANS.pop_back();\n        if (len(ANS)) get<1>(ANS.back())\
+    \ = R;\n        continue;\n      }\n      i128 x = ceil<i128>(t, s);\n      //\
+    \ x \u4EE5\u4E0A\u3067 2 \u306E\u65B9\u304C\u4E0B\u306B\u6765\u308B\n      if\
+    \ (x <= L1) {\n        ANS.pop_back();\n        continue;\n      }\n      if (x\
+    \ < R) {\n        R1 = x;\n        ANS.eb(x, R, a2, b2, c2);\n        break;\n\
+    \      } else {\n        break;\n      }\n    }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c):\
+    \ y=(ax+b)/c, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E\
+    \ max \u3092 [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\
+    \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>>\
+    \ line_max_function_rational(\n    vc<tuple<ll, ll, ll>> LINE, ll L, ll R) {\n\
+    \  for (auto& [a, b, c] : LINE) a = -a, b = -b;\n  auto ANS = line_min_function_rational(LINE,\
+    \ L, R);\n  for (auto& [L, R, a, b, c] : ANS) a = -a, b = -b;\n  return ANS;\n\
+    }\n\n// LINE(a,b): y=ax+b, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\
+    \u6570\u306E min \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n\
+    // \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll,\
+    \ ll>> line_min_function_integer(vc<pair<ll, ll>> LINE, ll L,\n              \
+    \                                      ll R) {\n  // \u50BE\u304D\u964D\u9806\n\
+    \  sort(all(LINE), [&](auto& L, auto& R) -> bool {\n    auto& [a1, b1] = L;\n\
+    \    auto& [a2, b2] = R;\n    return a1 > a2;\n  });\n  vc<tuple<ll, ll, ll, ll>>\
+    \ ANS;\n  for (auto& [a2, b2] : LINE) {\n    while (1) {\n      if (ANS.empty())\
+    \ {\n        ANS.eb(L, R, a2, b2);\n        break;\n      }\n      auto& [L1,\
+    \ R1, a1, b1] = ANS.back();\n      if (a1 == a2) {\n        if (b1 <= b2) break;\n\
+    \        ANS.pop_back();\n        if (len(ANS)) get<1>(ANS.back()) = R;\n    \
+    \    continue;\n      }\n      ll x = ceil<ll>(b2 - b1, a1 - a2);\n      // x\
+    \ \u4EE5\u4E0A\u3067 2 \u306E\u65B9\u304C\u4E0B\u306B\u6765\u308B\n      if (x\
+    \ <= L1) {\n        ANS.pop_back();\n        continue;\n      }\n      if (x <\
+    \ R) {\n        R1 = x;\n        ANS.eb(x, R, a2, b2);\n        break;\n     \
+    \ } else {\n        break;\n      }\n    }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c):\
+    \ y=(ax+b)/c, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E\
+    \ min \u3092 [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c\
+    \ \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\nvc<tuple<ll,\
+    \ ll, ll, ll>> line_max_function_integer(vc<pair<ll, ll>> LINE, ll L,\n      \
+    \                                              ll R) {\n  for (auto& [a, b] :\
+    \ LINE) a = -a, b = -b;\n  auto ANS = line_min_function_integer(LINE, L, R);\n\
+    \  for (auto& [L, R, a, b] : ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// (L,R,func)\
+    \ \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\u30B8\u3059\u308B\u3068\
+    \u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\ntemplate <typename T>\nvc<tuple<T,\
+    \ T, T, T, T, T>> merge_46(vc<tuple<T, T, T, T>> A,\n                        \
+    \             vc<tuple<T, T, T, T>> B) {\n  vc<tuple<T, T, T, T, T, T>> ANS;\n\
     \  reverse(all(A));\n  reverse(all(B));\n  while (len(A) && len(B)) {\n    auto&\
     \ [l1, r1, a1, b1] = A.back();\n    auto& [l2, r2, a2, b2] = B.back();\n    assert(l1\
     \ == l2);\n    T r = min(r1, r2);\n    ANS.eb(l1, r, a1, b1, a2, b2);\n    l1\
@@ -326,93 +329,93 @@ data:
     \ ANS;\n}\n\n// (L,R,func) \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\
     \u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\n\
     template <typename T, typename F>\nvoid merge_46(const vc<tuple<T, T, T, T>>&\
-    \ A, const vc<tuple<T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i <\
-    \ len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1] = A[i];\n    auto& [l2,\
-    \ r2, a2, b2] = B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r)\
-    \ f(l, r, a1, b1, a2, b2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n\n// (L,R,func)\
-    \ \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\u30B8\u3059\u308B\u3068\
-    \u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\ntemplate <typename\
-    \ T, typename F>\nvoid merge_58(const vc<tuple<T, T, T, T, T>>& A, const vc<tuple<T,\
-    \ T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i < len(A) && j < len(B))\
-    \ {\n    auto& [l1, r1, a1, b1, c1] = A[i];\n    auto& [l2, r2, a2, b2, c2] =\
-    \ B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r) f(l, r, a1, b1,\
-    \ c1, a2, b2, c2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n#line 1 \"mod/floor_sum_of_linear_polynomial.hpp\"\
-    \n\n#line 1 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename U, typename\
-    \ Arg1, typename Arg2>\nstruct has_power_method {\n private:\n  // \u30D8\u30EB\
-    \u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename V, typename A1,\
-    \ typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
-    \                                          std::declval<A2>()),\n            \
-    \      std::true_type{});\n  template <typename, typename, typename>\n  static\
-    \ auto check(...) -> std::false_type;\n\n public:\n  // \u30E1\u30BD\u30C3\u30C9\
-    \u306E\u6709\u7121\u3092\u8868\u3059\u578B\n  static constexpr bool value = decltype(check<U,\
-    \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
-    \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
-    \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::unit();\n\
-    \    if (exp == 1) return x;\n    X res = Monoid::unit();\n    while (exp) {\n\
-    \      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n \
-    \     exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"mod/floor_monoid_product.hpp\"\
-    \n\n// https://yukicoder.me/submissions/883884\n// https://qoj.ac/contest/1411/problem/7620\n\
-    // U \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\
-    \u30FC\u3057\u306A\u3044\u7A0B\u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092\
-    \ N \u500B)\n// k \u500B\u76EE\u306E x \u307E\u3067\u306B floor(ak+b,m) \u500B\
-    \u306E y \u304C\u3042\u308B\n// my<=ax+b \u306B\u304A\u3051\u308B lattice path\
-    \ \u306B\u304A\u3051\u308B\u8FBA\u306E\u5217\u3068\u898B\u306A\u305B\u308B\ntemplate\
-    \ <typename Monoid, typename X, typename U>\nX floor_monoid_product(X x, X y,\
-    \ U N, U a, U b, U m) {\n  U c = (a * N + b) / m;\n  X pre = Monoid::unit(), suf\
-    \ = Monoid::unit();\n  while (1) {\n    const U p = a / m, q = b / m;\n    a %=\
-    \ m, b %= m;\n    x = Monoid::op(x, monoid_pow<Monoid>(y, p));\n    pre = Monoid::op(pre,\
-    \ monoid_pow<Monoid>(y, q));\n    c -= (p * N + q);\n    if (c == 0) break;\n\
-    \    const U d = (m * c - b - 1) / a + 1;\n    suf = Monoid::op(y, Monoid::op(monoid_pow<Monoid>(x,\
-    \ N - d), suf));\n    b = m - b - 1 + a, N = c - 1, c = d;\n    swap(m, a), swap(x,\
-    \ y);\n  }\n  x = monoid_pow<Monoid>(x, N);\n  return Monoid::op(Monoid::op(pre,\
-    \ x), suf);\n}\n#line 1 \"alg/monoid/monoid_for_floor_sum.hpp\"\n// sum i^k1floor^k2:\
-    \ floor path \u3067 (x,y) \u304B\u3089 x \u65B9\u5411\u306B\u9032\u3080\u3068\u304D\
-    \u306B x^k1y^k2 \u3092\u8DB3\u3059\ntemplate <typename T, int K1, int K2>\nstruct\
-    \ Monoid_for_floor_sum {\n  using ARR = array<array<T, K2 + 1>, K1 + 1>;\n  struct\
-    \ Data {\n    ARR dp;\n    T dx, dy;\n  };\n\n  using value_type = Data;\n  using\
-    \ X = value_type;\n  static X op(X a, X b) {\n    static constexpr int n = max(K1,\
-    \ K2);\n    static T comb[n + 1][n + 1];\n    if (comb[0][0] != T(1)) {\n    \
-    \  comb[0][0] = T(1);\n      FOR(i, n) FOR(j, i + 1) { comb[i + 1][j] += comb[i][j],\
-    \ comb[i + 1][j + 1] += comb[i][j]; }\n    }\n\n    array<T, K1 + 1> pow_x;\n\
-    \    array<T, K2 + 1> pow_y;\n    pow_x[0] = 1, pow_y[0] = 1;\n    FOR(i, K1)\
-    \ pow_x[i + 1] = pow_x[i] * a.dx;\n    FOR(i, K2) pow_y[i + 1] = pow_y[i] * a.dy;\n\
-    \n    // +dy\n    FOR(i, K1 + 1) {\n      FOR_R(j, K2 + 1) {\n        T x = b.dp[i][j];\n\
-    \        FOR(k, j + 1, K2 + 1) b.dp[i][k] += comb[k][j] * pow_y[k - j] * x;\n\
-    \      }\n    }\n    // +dx\n    FOR(j, K2 + 1) {\n      FOR_R(i, K1 + 1) { FOR(k,\
-    \ i, K1 + 1) a.dp[k][j] += comb[k][i] * pow_x[k - i] * b.dp[i][j]; }\n    }\n\n\
-    \    a.dx += b.dx, a.dy += b.dy;\n    return a;\n  }\n\n  static X to_x() {\n\
-    \    X x = unit();\n    x.dp[0][0] = 1, x.dx = 1;\n    return x;\n  }\n  static\
-    \ X to_y() {\n    X x = unit();\n    x.dy = 1;\n    return x;\n  }\n  static constexpr\
-    \ X unit() { return {ARR{}, T(0), T(0)}; }\n  static constexpr bool commute =\
-    \ 0;\n};\n#line 4 \"mod/floor_sum_of_linear_polynomial.hpp\"\n\n// \u5168\u90E8\
-    \u975E\u8CA0, T \u306F\u7B54, U \u306F ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\
-    \u30ED\u30FC\u3057\u306A\u3044\ntemplate <typename T, int K1, int K2, typename\
-    \ U>\narray<array<T, K2 + 1>, K1 + 1> floor_sum_of_linear_polynomial_nonnegative(U\
-    \ N, U a, U b, U mod) {\n  static_assert(is_same_v<U, u64> || is_same_v<U, u128>);\n\
-    \  assert(a == 0 || N < (U(-1) - b) / a);\n  using Mono = Monoid_for_floor_sum<T,\
-    \ K1, K2>;\n  auto x = floor_monoid_product<Mono>(Mono::to_x(), Mono::to_y(),\
-    \ N, a, b, mod);\n  return x.dp;\n};\n\n// sum_{L<=x<R} x^i floor(ax+b,mod)^j\n\
-    // a+bx \u304C I, U \u3067\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\
-    \u3044\ntemplate <typename T, int K1, int K2, typename I>\narray<array<T, K2 +\
-    \ 1>, K1 + 1> floor_sum_of_linear_polynomial(I L, I R, I a, I b, I mod) {\n  static_assert(is_same_v<I,\
-    \ ll> || is_same_v<I, i128>);\n  assert(L <= R && mod > 0);\n  if (a < 0) {\n\
-    \    auto ANS = floor_sum_of_linear_polynomial<T, K1, K2, I>(-R + 1, -L + 1, -a,\
-    \ b, mod);\n    FOR(i, K1 + 1) {\n      if (i % 2 == 1) { FOR(j, K2 + 1) ANS[i][j]\
-    \ = -ANS[i][j]; }\n    }\n    return ANS;\n  }\n  assert(a >= 0);\n  I ADD_X =\
-    \ L;\n  I N = R - L;\n  b += a * L;\n  I ADD_Y = floor<I>(b, mod);\n  b -= ADD_Y\
-    \ * mod;\n  assert(a >= 0 && b >= 0);\n\n  using Mono = Monoid_for_floor_sum<T,\
-    \ K1, K2>;\n  using Data = typename Mono::Data;\n  using U = std::conditional_t<is_same_v<I,\
-    \ ll>, u64, u128>;\n  Data A = floor_monoid_product<Mono, Data, U>(Mono::to_x(),\
-    \ Mono::to_y(), N, a, b, mod);\n  Data offset = Mono::unit();\n  offset.dx = T(ADD_X),\
-    \ offset.dy = T(ADD_Y);\n  A = Mono::op(offset, A);\n  return A.dp;\n};\n#line\
-    \ 1 \"poly/fps_div.hpp\"\n\n#line 1 \"poly/count_terms.hpp\"\ntemplate<typename\
-    \ mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i]\
-    \ != mint(0)) ++t;\n  return t;\n}\n#line 1 \"poly/count_terms.hpp\"\ntemplate<typename\
-    \ mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i]\
-    \ != mint(0)) ++t;\n  return t;\n}\n#line 1 \"poly/convolution.hpp\"\n\n#line\
-    \ 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x)\
-    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ A, const vc<tuple<T, T, T, T>>& B,\n              F f) {\n  int i = 0, j = 0;\n\
+    \  while (i < len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1] = A[i];\n  \
+    \  auto& [l2, r2, a2, b2] = B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n \
+    \   if (l < r) f(l, r, a1, b1, a2, b2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n\n\
+    // (L,R,func) \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\u30B8\u3059\
+    \u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\n\
+    template <typename T, typename F>\nvoid merge_58(const vc<tuple<T, T, T, T, T>>&\
+    \ A,\n              const vc<tuple<T, T, T, T, T>>& B, F f) {\n  int i = 0, j\
+    \ = 0;\n  while (i < len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1, c1] =\
+    \ A[i];\n    auto& [l2, r2, a2, b2, c2] = B[j];\n    T l = max(l1, l2), r = min(r1,\
+    \ r2);\n    if (l < r) f(l, r, a1, b1, c1, a2, b2, c2);\n    (r1 < r2 ? i : j)++;\n\
+    \  }\n}\n#line 1 \"mod/floor_sum_of_linear_polynomial.hpp\"\n\n#line 1 \"alg/monoid_pow.hpp\"\
+    \n\n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
+    \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
+    \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
+    \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
+    \                             std::declval<A2>()),\n                  std::true_type{});\n\
+    \  template <typename, typename, typename>\n  static auto check(...) -> std::false_type;\n\
+    \n public:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
+    \n  static constexpr bool value = decltype(check<U, Arg1, Arg2>(0))::value;\n\
+    };\n\ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
+    \ x, ll exp) {\n  using X = typename Monoid::X;\n  if constexpr (has_power_method<Monoid,\
+    \ X, ll>::value) {\n    return Monoid::power(x, exp);\n  } else {\n    assert(exp\
+    \ >= 0);\n    if (exp == 0) return Monoid::unit();\n    if (exp == 1) return x;\n\
+    \    X res = Monoid::unit();\n    while (exp) {\n      if (exp & 1) res = Monoid::op(res,\
+    \ x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n    return res;\n\
+    \  }\n}\n#line 2 \"mod/floor_monoid_product.hpp\"\n\n// https://yukicoder.me/submissions/883884\n\
+    // https://qoj.ac/contest/1411/problem/7620\n// U \u306F\u7BC4\u56F2\u5185\u3067\
+    \ ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\
+    \u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092 N \u500B)\n// k \u500B\u76EE\u306E\
+    \ x \u307E\u3067\u306B floor(ak+b,m) \u500B\u306E y \u304C\u3042\u308B\n// my<=ax+b\
+    \ \u306B\u304A\u3051\u308B lattice path \u306B\u304A\u3051\u308B\u8FBA\u306E\u5217\
+    \u3068\u898B\u306A\u305B\u308B\ntemplate <typename Monoid, typename X, typename\
+    \ U>\nX floor_monoid_product(X x, X y, U N, U a, U b, U m) {\n  U c = (a * N +\
+    \ b) / m;\n  X pre = Monoid::unit(), suf = Monoid::unit();\n  while (1) {\n  \
+    \  const U p = a / m, q = b / m;\n    a %= m, b %= m;\n    x = Monoid::op(x, monoid_pow<Monoid>(y,\
+    \ p));\n    pre = Monoid::op(pre, monoid_pow<Monoid>(y, q));\n    c -= (p * N\
+    \ + q);\n    if (c == 0) break;\n    const U d = (m * c - b - 1) / a + 1;\n  \
+    \  suf = Monoid::op(y, Monoid::op(monoid_pow<Monoid>(x, N - d), suf));\n    b\
+    \ = m - b - 1 + a, N = c - 1, c = d;\n    swap(m, a), swap(x, y);\n  }\n  x =\
+    \ monoid_pow<Monoid>(x, N);\n  return Monoid::op(Monoid::op(pre, x), suf);\n}\n\
+    #line 1 \"alg/monoid/monoid_for_floor_sum.hpp\"\n// sum i^k1floor^k2: floor path\
+    \ \u3067 (x,y) \u304B\u3089 x \u65B9\u5411\u306B\u9032\u3080\u3068\u304D\u306B\
+    \ x^k1y^k2 \u3092\u8DB3\u3059\ntemplate <typename T, int K1, int K2>\nstruct Monoid_for_floor_sum\
+    \ {\n  using ARR = array<array<T, K2 + 1>, K1 + 1>;\n  struct Data {\n    ARR\
+    \ dp;\n    T dx, dy;\n  };\n\n  using value_type = Data;\n  using X = value_type;\n\
+    \  static X op(X a, X b) {\n    static constexpr int n = max(K1, K2);\n    static\
+    \ T comb[n + 1][n + 1];\n    if (comb[0][0] != T(1)) {\n      comb[0][0] = T(1);\n\
+    \      FOR(i, n) FOR(j, i + 1) { comb[i + 1][j] += comb[i][j], comb[i + 1][j +\
+    \ 1] += comb[i][j]; }\n    }\n\n    array<T, K1 + 1> pow_x;\n    array<T, K2 +\
+    \ 1> pow_y;\n    pow_x[0] = 1, pow_y[0] = 1;\n    FOR(i, K1) pow_x[i + 1] = pow_x[i]\
+    \ * a.dx;\n    FOR(i, K2) pow_y[i + 1] = pow_y[i] * a.dy;\n\n    // +dy\n    FOR(i,\
+    \ K1 + 1) {\n      FOR_R(j, K2 + 1) {\n        T x = b.dp[i][j];\n        FOR(k,\
+    \ j + 1, K2 + 1) b.dp[i][k] += comb[k][j] * pow_y[k - j] * x;\n      }\n    }\n\
+    \    // +dx\n    FOR(j, K2 + 1) {\n      FOR_R(i, K1 + 1) { FOR(k, i, K1 + 1)\
+    \ a.dp[k][j] += comb[k][i] * pow_x[k - i] * b.dp[i][j]; }\n    }\n\n    a.dx +=\
+    \ b.dx, a.dy += b.dy;\n    return a;\n  }\n\n  static X to_x() {\n    X x = unit();\n\
+    \    x.dp[0][0] = 1, x.dx = 1;\n    return x;\n  }\n  static X to_y() {\n    X\
+    \ x = unit();\n    x.dy = 1;\n    return x;\n  }\n  static constexpr X unit()\
+    \ { return {ARR{}, T(0), T(0)}; }\n  static constexpr bool commute = 0;\n};\n\
+    #line 4 \"mod/floor_sum_of_linear_polynomial.hpp\"\n\n// \u5168\u90E8\u975E\u8CA0\
+    , T \u306F\u7B54, U \u306F ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
+    \u3057\u306A\u3044\ntemplate <typename T, int K1, int K2, typename U>\narray<array<T,\
+    \ K2 + 1>, K1 + 1> floor_sum_of_linear_polynomial_nonnegative(U N, U a, U b, U\
+    \ mod) {\n  static_assert(is_same_v<U, u64> || is_same_v<U, u128>);\n  assert(a\
+    \ == 0 || N < (U(-1) - b) / a);\n  using Mono = Monoid_for_floor_sum<T, K1, K2>;\n\
+    \  auto x = floor_monoid_product<Mono>(Mono::to_x(), Mono::to_y(), N, a, b, mod);\n\
+    \  return x.dp;\n};\n\n// sum_{L<=x<R} x^i floor(ax+b,mod)^j\n// a+bx \u304C I,\
+    \ U \u3067\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\ntemplate\
+    \ <typename T, int K1, int K2, typename I>\narray<array<T, K2 + 1>, K1 + 1> floor_sum_of_linear_polynomial(I\
+    \ L, I R, I a, I b, I mod) {\n  static_assert(is_same_v<I, ll> || is_same_v<I,\
+    \ i128>);\n  assert(L <= R && mod > 0);\n  if (a < 0) {\n    auto ANS = floor_sum_of_linear_polynomial<T,\
+    \ K1, K2, I>(-R + 1, -L + 1, -a, b, mod);\n    FOR(i, K1 + 1) {\n      if (i %\
+    \ 2 == 1) { FOR(j, K2 + 1) ANS[i][j] = -ANS[i][j]; }\n    }\n    return ANS;\n\
+    \  }\n  assert(a >= 0);\n  I ADD_X = L;\n  I N = R - L;\n  b += a * L;\n  I ADD_Y\
+    \ = floor<I>(b, mod);\n  b -= ADD_Y * mod;\n  assert(a >= 0 && b >= 0);\n\n  using\
+    \ Mono = Monoid_for_floor_sum<T, K1, K2>;\n  using Data = typename Mono::Data;\n\
+    \  using U = std::conditional_t<is_same_v<I, ll>, u64, u128>;\n  Data A = floor_monoid_product<Mono,\
+    \ Data, U>(Mono::to_x(), Mono::to_y(), N, a, b, mod);\n  Data offset = Mono::unit();\n\
+    \  offset.dx = T(ADD_X), offset.dy = T(ADD_Y);\n  A = Mono::op(offset, A);\n \
+    \ return A.dp;\n};\n#line 1 \"poly/fps_div.hpp\"\n\n#line 1 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n\
+    \  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n}\n#line 1 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n\
+    \  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n}\n#line 1 \"poly/convolution.hpp\"\
+    \n\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
@@ -1010,7 +1013,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
+  timestamp: '2026-08-17 11:03:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/lattice_point_sum_polynomial.test.cpp

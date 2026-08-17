@@ -19,6 +19,9 @@ data:
     path: test/1_mytest/matching_line_graph.test.cpp
     title: test/1_mytest/matching_line_graph.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tutte.test.cpp
+    title: test/1_mytest/tutte.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/general_matching.test.cpp
     title: test/2_library_checker/graph/general_matching.test.cpp
   _isVerificationFailed: false
@@ -87,6 +90,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/matching.test.cpp
+  - test/1_mytest/tutte.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp
   - test/2_library_checker/graph/general_matching.test.cpp
 documentation_of: graph/maximum_matching_size.hpp

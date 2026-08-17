@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_convex_hull
@@ -371,14 +371,14 @@ data:
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
     \ 7 \"test/2_library_checker/geometry/static_convex_hull.test.cpp\"\n\nusing P\
-    \ = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, point, N);\n  vc<int> I = ConvexHull(point);\n\
-    \  print(len(I));\n  for (auto& i: I) print(point[i]);\n}\n\nsigned main() {\n\
+    \ = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, point, N);\n  vc<int> I = Convex_Hull(point);\n\
+    \  print(len(I));\n  for (auto& i : I) print(point[i]);\n}\n\nsigned main() {\n\
     \  INT(T);\n  FOR(T) solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_hull.hpp\"\
     \n#include \"geo/base.hpp\"\n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n\
-    \  VEC(P, point, N);\n  vc<int> I = ConvexHull(point);\n  print(len(I));\n  for\
-    \ (auto& i: I) print(point[i]);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
+    \  VEC(P, point, N);\n  vc<int> I = Convex_Hull(point);\n  print(len(I));\n  for\
+    \ (auto& i : I) print(point[i]);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
     }"
   dependsOn:
   - my_template.hpp
@@ -388,8 +388,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 11:03:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/static_convex_hull.test.cpp
 layout: document

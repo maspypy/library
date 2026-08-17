@@ -146,11 +146,11 @@ data:
     \ 3 \"convex/fenchel.hpp\"\n\n// (L,R,a,b)\uFF1A\u50BE\u304D\u304C [L,R) \u306E\
     \u3068\u304D (a,b) \u3092\u901A\u308B\ntemplate <typename T>\nvc<tuple<T, T, T,\
     \ T>> Fenchel(vc<Point<T>> XY, string mode, bool sorted) {\n  if (mode == \"upper\"\
-    ) {\n    for (auto&& p: XY) p.y = -p.y;\n    vc<tuple<T, T, T, T>> res;\n    for\
-    \ (auto&& [L, R, a, b]: Fenchel(XY, \"lower\", sorted)) {\n      T l = (R == infty<T>\
-    \ ? -infty<T> : 1 - R);\n      T r = (L == -infty<T> ? infty<T> : 1 - L);\n  \
-    \    chmax(l, -infty<T>), chmin(r, infty<T>);\n      res.eb(l, r, a, -b);\n  \
-    \  }\n    reverse(all(res));\n    return res;\n  }\n  auto I = ConvexHull(XY,\
+    ) {\n    for (auto&& p : XY) p.y = -p.y;\n    vc<tuple<T, T, T, T>> res;\n   \
+    \ for (auto&& [L, R, a, b] : Fenchel(XY, \"lower\", sorted)) {\n      T l = (R\
+    \ == infty<T> ? -infty<T> : 1 - R);\n      T r = (L == -infty<T> ? infty<T> :\
+    \ 1 - L);\n      chmax(l, -infty<T>), chmin(r, infty<T>);\n      res.eb(l, r,\
+    \ a, -b);\n    }\n    reverse(all(res));\n    return res;\n  }\n  auto I = Convex_Hull(XY,\
     \ \"lower\", sorted);\n  XY = rearrange(XY, I);\n  vc<tuple<T, T, T, T>> res;\n\
     \n  ll lo = -infty<ll>;\n  FOR(i, len(XY)) {\n    T hi = infty<T>;\n    if (i\
     \ + 1 < len(XY)) {\n      chmin(hi, floor(XY[i + 1].y - XY[i].y, XY[i + 1].x -\
@@ -159,12 +159,12 @@ data:
   code: "#include \"geo/convex_hull.hpp\"\n#include \"geo/base.hpp\"\n\n// (L,R,a,b)\uFF1A\
     \u50BE\u304D\u304C [L,R) \u306E\u3068\u304D (a,b) \u3092\u901A\u308B\ntemplate\
     \ <typename T>\nvc<tuple<T, T, T, T>> Fenchel(vc<Point<T>> XY, string mode, bool\
-    \ sorted) {\n  if (mode == \"upper\") {\n    for (auto&& p: XY) p.y = -p.y;\n\
-    \    vc<tuple<T, T, T, T>> res;\n    for (auto&& [L, R, a, b]: Fenchel(XY, \"\
+    \ sorted) {\n  if (mode == \"upper\") {\n    for (auto&& p : XY) p.y = -p.y;\n\
+    \    vc<tuple<T, T, T, T>> res;\n    for (auto&& [L, R, a, b] : Fenchel(XY, \"\
     lower\", sorted)) {\n      T l = (R == infty<T> ? -infty<T> : 1 - R);\n      T\
     \ r = (L == -infty<T> ? infty<T> : 1 - L);\n      chmax(l, -infty<T>), chmin(r,\
     \ infty<T>);\n      res.eb(l, r, a, -b);\n    }\n    reverse(all(res));\n    return\
-    \ res;\n  }\n  auto I = ConvexHull(XY, \"lower\", sorted);\n  XY = rearrange(XY,\
+    \ res;\n  }\n  auto I = Convex_Hull(XY, \"lower\", sorted);\n  XY = rearrange(XY,\
     \ I);\n  vc<tuple<T, T, T, T>> res;\n\n  ll lo = -infty<ll>;\n  FOR(i, len(XY))\
     \ {\n    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n      chmin(hi, floor(XY[i\
     \ + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n    if (lo < hi) res.eb(lo,\
@@ -175,7 +175,7 @@ data:
   isVerificationFile: false
   path: convex/fenchel.hpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
+  timestamp: '2026-08-17 11:03:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/fenchel.hpp

@@ -52,6 +52,9 @@ data:
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tutte.test.cpp
+    title: test/1_mytest/tutte.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -181,6 +184,7 @@ data:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/tdpc_grid_dp.test.cpp
   - test/1_mytest/matching.test.cpp
+  - test/1_mytest/tutte.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp
   - test/2_library_checker/graph/general_matching.test.cpp

@@ -26,19 +26,16 @@ data:
   - icon: ':x:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/1_mytest/convex_polygon_side.test.cpp
     title: test/1_mytest/convex_polygon_side.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/convex_polygon_visible_range.test.cpp
-    title: test/1_mytest/convex_polygon_visible_range.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
@@ -51,13 +48,13 @@ data:
   - icon: ':x:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
   _isVerificationFailed: true
@@ -185,7 +182,6 @@ data:
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
   - test/2_library_checker/geometry/furthest_pair.test.cpp
 documentation_of: geo/convex_hull.hpp

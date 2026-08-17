@@ -152,10 +152,10 @@ data:
     \u3066\u51FA\u529B\n// https://qoj.ac/contest/1576/problem/8505\ntemplate <typename\
     \ Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T,\
     \ T>> LINE) {\n  assert(!LINE.empty());\n  using P = Point<T>;\n  vc<P> point;\n\
-    \  for (auto& [x, y]: LINE) point.eb(P(x, y));\n  auto I = ConvexHull(point, \"\
-    lower\");\n  point = rearrange(point, I);\n  int N = len(point);\n  if (N >= 2\
-    \ && point[N - 1].x == point[N - 2].x) { POP(point), --N; }\n  reverse(all(point));\
-    \ // \u50BE\u304D\u306F\u5927\u304D\u3044\u65B9\u304B\u3089\n  Re l = -infty<Re>;\n\
+    \  for (auto& [x, y] : LINE) point.eb(P(x, y));\n  auto I = Convex_Hull(point,\
+    \ \"lower\");\n  point = rearrange(point, I);\n  int N = len(point);\n  if (N\
+    \ >= 2 && point[N - 1].x == point[N - 2].x) {\n    POP(point), --N;\n  }\n  reverse(all(point));\
+    \  // \u50BE\u304D\u306F\u5927\u304D\u3044\u65B9\u304B\u3089\n  Re l = -infty<Re>;\n\
     \  vc<tuple<Re, Re, Re, Re>> ANS;\n  FOR(i, N) {\n    Re r = infty<Re>;\n    auto\
     \ [a, b] = point[i];\n    if (i + 1 < N) {\n      auto [c, d] = point[i + 1];\n\
     \      if (a == c) continue;\n      assert(a > c);\n      r = Re(d - b) / (a -\
@@ -163,57 +163,60 @@ data:
     \ r, a, b), l = r;\n  }\n  return ANS;\n}\n\n// 1 \u6B21\u95A2\u6570\u306E max\
     \ \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\ntemplate <typename\
     \ Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_max_function_real(vc<pair<T,\
-    \ T>> LINE) {\n  assert(!LINE.empty());\n  for (auto& [a, b]: LINE) a = -a, b\
+    \ T>> LINE) {\n  assert(!LINE.empty());\n  for (auto& [a, b] : LINE) a = -a, b\
     \ = -b;\n  auto ANS = line_min_function_real<Re, T>(LINE);\n  for (auto& [l, r,\
-    \ a, b]: ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c,\
+    \ a, b] : ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c,\
     \ \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092\
     \ [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\u30FC\u30D0\
-    \u30FC\u30D5\u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(vc<tuple<ll,\
-    \ ll, ll>> LINE, ll L, ll R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE),\
-    \ [&](auto& L, auto& R) -> bool {\n    auto& [a1, b1, c1] = L;\n    auto& [a2,\
-    \ b2, c2] = R;\n    return i128(a1) * c2 > i128(a2) * c1;\n  });\n  vc<tuple<ll,\
-    \ ll, ll, ll, ll>> ANS;\n  for (auto& [a2, b2, c2]: LINE) {\n    while (1) {\n\
-    \      if (ANS.empty()) {\n        ANS.eb(L, R, a2, b2, c2);\n        break;\n\
-    \      }\n      auto& [L1, R1, a1, b1, c1] = ANS.back();\n      i128 s = i128(c2)\
-    \ * a1 - i128(a2) * c1; // >= 0\n      i128 t = i128(b2) * c1 - i128(b1) * c2;\n\
-    \      if (s == 0) {\n        // \u5E73\u884C\u306A\u306E\u3067\u5C0F\u3055\u3044\
-    \u65B9\u3060\u3051\u3092\u6B8B\u3059\n        if (t >= 0) break;\n        ANS.pop_back();\n\
-    \        if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n      }\n \
-    \     i128 x = ceil<i128>(t, s);\n      // x \u4EE5\u4E0A\u3067 2 \u306E\u65B9\
-    \u304C\u4E0B\u306B\u6765\u308B\n      if (x <= L1) {\n        ANS.pop_back();\n\
-    \        continue;\n      }\n      if (x < R) {\n        R1 = x;\n        ANS.eb(x,\
-    \ R, a2, b2, c2);\n        break;\n      } else {\n        break;\n      }\n \
-    \   }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\u4FA1\u70B9\
-    \u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E max \u3092 [L,R,a,b,c] \u306E\
-    \u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
-    \u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>> line_max_function_rational(vc<tuple<ll,\
-    \ ll, ll>> LINE, ll L, ll R) {\n  for (auto& [a, b, c]: LINE) a = -a, b = -b;\n\
-    \  auto ANS = line_min_function_rational(LINE, L, R);\n  for (auto& [L, R, a,\
-    \ b, c]: ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b): y=ax+b, \u8A55\
-    \u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b]\
-    \ \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\u30FC\u30D0\u30FC\u30D5\
-    \u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll, ll>> line_min_function_integer(vc<pair<ll,\
-    \ ll>> LINE, ll L, ll R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE), [&](auto&\
-    \ L, auto& R) -> bool {\n    auto& [a1, b1] = L;\n    auto& [a2, b2] = R;\n  \
-    \  return a1 > a2;\n  });\n  vc<tuple<ll, ll, ll, ll>> ANS;\n  for (auto& [a2,\
-    \ b2]: LINE) {\n    while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L, R,\
-    \ a2, b2);\n        break;\n      }\n      auto& [L1, R1, a1, b1] = ANS.back();\n\
-    \      if (a1 == a2) {\n        if (b1 <= b2) break;\n        ANS.pop_back();\n\
-    \        if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n      }\n \
-    \     ll x = ceil<ll>(b2 - b1, a1 - a2);\n      // x \u4EE5\u4E0A\u3067 2 \u306E\
-    \u65B9\u304C\u4E0B\u306B\u6765\u308B\n      if (x <= L1) {\n        ANS.pop_back();\n\
-    \        continue;\n      }\n      if (x < R) {\n        R1 = x;\n        ANS.eb(x,\
-    \ R, a2, b2);\n        break;\n      } else {\n        break;\n      }\n    }\n\
-    \  }\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\u4FA1\u70B9\u306F\
-    \u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b,c] \u306E\u5217\
-    \u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c \u304C\u30AA\u30FC\u30D0\u30FC\
-    \u30D5\u30ED\u30FC\u3057\u306A\u3044,\nvc<tuple<ll, ll, ll, ll>> line_max_function_integer(vc<pair<ll,\
-    \ ll>> LINE, ll L, ll R) {\n  for (auto& [a, b]: LINE) a = -a, b = -b;\n  auto\
-    \ ANS = line_min_function_integer(LINE, L, R);\n  for (auto& [L, R, a, b]: ANS)\
-    \ a = -a, b = -b;\n  return ANS;\n}\n\n// (L,R,func) \u306E\u4E0B\u5074\u3068\u4E0A\
-    \u5074\u3092\u30DE\u30FC\u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\
-    \u3046\u7528\ntemplate <typename T>\nvc<tuple<T, T, T, T, T, T>> merge_46(vc<tuple<T,\
-    \ T, T, T>> A, vc<tuple<T, T, T, T>> B) {\n  vc<tuple<T, T, T, T, T, T>> ANS;\n\
+    \u30FC\u30D5\u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(\n\
+    \    vc<tuple<ll, ll, ll>> LINE, ll L, ll R) {\n  // \u50BE\u304D\u964D\u9806\n\
+    \  sort(all(LINE), [&](auto& L, auto& R) -> bool {\n    auto& [a1, b1, c1] = L;\n\
+    \    auto& [a2, b2, c2] = R;\n    return i128(a1) * c2 > i128(a2) * c1;\n  });\n\
+    \  vc<tuple<ll, ll, ll, ll, ll>> ANS;\n  for (auto& [a2, b2, c2] : LINE) {\n \
+    \   while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L, R, a2, b2, c2);\n\
+    \        break;\n      }\n      auto& [L1, R1, a1, b1, c1] = ANS.back();\n   \
+    \   i128 s = i128(c2) * a1 - i128(a2) * c1;  // >= 0\n      i128 t = i128(b2)\
+    \ * c1 - i128(b1) * c2;\n      if (s == 0) {\n        // \u5E73\u884C\u306A\u306E\
+    \u3067\u5C0F\u3055\u3044\u65B9\u3060\u3051\u3092\u6B8B\u3059\n        if (t >=\
+    \ 0) break;\n        ANS.pop_back();\n        if (len(ANS)) get<1>(ANS.back())\
+    \ = R;\n        continue;\n      }\n      i128 x = ceil<i128>(t, s);\n      //\
+    \ x \u4EE5\u4E0A\u3067 2 \u306E\u65B9\u304C\u4E0B\u306B\u6765\u308B\n      if\
+    \ (x <= L1) {\n        ANS.pop_back();\n        continue;\n      }\n      if (x\
+    \ < R) {\n        R1 = x;\n        ANS.eb(x, R, a2, b2, c2);\n        break;\n\
+    \      } else {\n        break;\n      }\n    }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c):\
+    \ y=(ax+b)/c, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E\
+    \ max \u3092 [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\
+    \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>>\
+    \ line_max_function_rational(\n    vc<tuple<ll, ll, ll>> LINE, ll L, ll R) {\n\
+    \  for (auto& [a, b, c] : LINE) a = -a, b = -b;\n  auto ANS = line_min_function_rational(LINE,\
+    \ L, R);\n  for (auto& [L, R, a, b, c] : ANS) a = -a, b = -b;\n  return ANS;\n\
+    }\n\n// LINE(a,b): y=ax+b, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\
+    \u6570\u306E min \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n\
+    // \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll,\
+    \ ll>> line_min_function_integer(vc<pair<ll, ll>> LINE, ll L,\n              \
+    \                                      ll R) {\n  // \u50BE\u304D\u964D\u9806\n\
+    \  sort(all(LINE), [&](auto& L, auto& R) -> bool {\n    auto& [a1, b1] = L;\n\
+    \    auto& [a2, b2] = R;\n    return a1 > a2;\n  });\n  vc<tuple<ll, ll, ll, ll>>\
+    \ ANS;\n  for (auto& [a2, b2] : LINE) {\n    while (1) {\n      if (ANS.empty())\
+    \ {\n        ANS.eb(L, R, a2, b2);\n        break;\n      }\n      auto& [L1,\
+    \ R1, a1, b1] = ANS.back();\n      if (a1 == a2) {\n        if (b1 <= b2) break;\n\
+    \        ANS.pop_back();\n        if (len(ANS)) get<1>(ANS.back()) = R;\n    \
+    \    continue;\n      }\n      ll x = ceil<ll>(b2 - b1, a1 - a2);\n      // x\
+    \ \u4EE5\u4E0A\u3067 2 \u306E\u65B9\u304C\u4E0B\u306B\u6765\u308B\n      if (x\
+    \ <= L1) {\n        ANS.pop_back();\n        continue;\n      }\n      if (x <\
+    \ R) {\n        R1 = x;\n        ANS.eb(x, R, a2, b2);\n        break;\n     \
+    \ } else {\n        break;\n      }\n    }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c):\
+    \ y=(ax+b)/c, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E\
+    \ min \u3092 [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c\
+    \ \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\nvc<tuple<ll,\
+    \ ll, ll, ll>> line_max_function_integer(vc<pair<ll, ll>> LINE, ll L,\n      \
+    \                                              ll R) {\n  for (auto& [a, b] :\
+    \ LINE) a = -a, b = -b;\n  auto ANS = line_min_function_integer(LINE, L, R);\n\
+    \  for (auto& [L, R, a, b] : ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// (L,R,func)\
+    \ \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\u30B8\u3059\u308B\u3068\
+    \u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\ntemplate <typename T>\nvc<tuple<T,\
+    \ T, T, T, T, T>> merge_46(vc<tuple<T, T, T, T>> A,\n                        \
+    \             vc<tuple<T, T, T, T>> B) {\n  vc<tuple<T, T, T, T, T, T>> ANS;\n\
     \  reverse(all(A));\n  reverse(all(B));\n  while (len(A) && len(B)) {\n    auto&\
     \ [l1, r1, a1, b1] = A.back();\n    auto& [l2, r2, a2, b2] = B.back();\n    assert(l1\
     \ == l2);\n    T r = min(r1, r2);\n    ANS.eb(l1, r, a1, b1, a2, b2);\n    l1\
@@ -221,34 +224,34 @@ data:
     \ ANS;\n}\n\n// (L,R,func) \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\
     \u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\n\
     template <typename T, typename F>\nvoid merge_46(const vc<tuple<T, T, T, T>>&\
-    \ A, const vc<tuple<T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i <\
-    \ len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1] = A[i];\n    auto& [l2,\
-    \ r2, a2, b2] = B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r)\
-    \ f(l, r, a1, b1, a2, b2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n\n// (L,R,func)\
-    \ \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\u30B8\u3059\u308B\u3068\
-    \u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\ntemplate <typename\
-    \ T, typename F>\nvoid merge_58(const vc<tuple<T, T, T, T, T>>& A, const vc<tuple<T,\
-    \ T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i < len(A) && j < len(B))\
-    \ {\n    auto& [l1, r1, a1, b1, c1] = A[i];\n    auto& [l2, r2, a2, b2, c2] =\
-    \ B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r) f(l, r, a1, b1,\
-    \ c1, a2, b2, c2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n#line 4 \"convex/lower_integer_hull.hpp\"\
-    \n\n// https://atcoder.jp/contests/arc130/tasks/arc130_f\n// \u6574\u6570\u50BE\
-    \u304D\u3067\u4E0B\u304B\u3089\u304A\u3055\u3048\u308B. 2n-1\u70B9\u4EE5\u4E0B\
-    .\nvc<Point<ll>> lower_integer_hull(vc<Point<ll>> point) {\n  using P = Point<ll>;\n\
-    \  int n = len(point);\n  assert(n > 0);\n  P L(infty<ll>, infty<ll>), R(-infty<ll>,\
-    \ infty<ll>);\n  for (auto& p: point) {\n    if (L.x > p.x) L = p;\n    if (R.x\
-    \ < p.x) R = p;\n    if (L.x == p.x) chmin(L.y, p.y);\n    if (R.x == p.x) chmin(R.y,\
-    \ p.y);\n  }\n  if (L.x == R.x) return {L};\n\n  vc<pi> line;\n  for (auto& p:\
-    \ point) line.eb(-p.x, p.y);\n  auto dat = line_min_function_integer(line, -infty<ll>,\
-    \ infty<ll>);\n\n  vc<P> ANS = {L};\n  auto add = [&](ll x, ll y) -> void {\n\
-    \    if (ANS.back().x < x) ANS.eb(P(x, y));\n  };\n  FOR(i, len(dat) - 1) {\n\
-    \    auto [xx, a1, p1, q1] = dat[i];\n    auto [a2, yy, p2, q2] = dat[i + 1];\n\
-    \    --a1;\n    ll b1 = p1 * a1 + q1;\n    ll b2 = p2 * a2 + q2;\n    ll x = (b1\
-    \ - b2) / (a2 - a1);\n    ll y = a1 * x + b1;\n    add(x, y);\n    if (i == len(dat)\
-    \ - 2) break;\n    a1 = a2, a2 = yy - 1;\n    b1 = p2 * a1 + q2;\n    b2 = p2\
-    \ * a2 + q2;\n    if (a1 < a2) {\n      x = (b1 - b2) / (a2 - a1);\n      y =\
-    \ a1 * x + b1;\n      add(x, y);\n    }\n  }\n  add(R.x, R.y);\n  return ANS;\n\
-    }\n"
+    \ A, const vc<tuple<T, T, T, T>>& B,\n              F f) {\n  int i = 0, j = 0;\n\
+    \  while (i < len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1] = A[i];\n  \
+    \  auto& [l2, r2, a2, b2] = B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n \
+    \   if (l < r) f(l, r, a1, b1, a2, b2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n\n\
+    // (L,R,func) \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\u30B8\u3059\
+    \u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\n\
+    template <typename T, typename F>\nvoid merge_58(const vc<tuple<T, T, T, T, T>>&\
+    \ A,\n              const vc<tuple<T, T, T, T, T>>& B, F f) {\n  int i = 0, j\
+    \ = 0;\n  while (i < len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1, c1] =\
+    \ A[i];\n    auto& [l2, r2, a2, b2, c2] = B[j];\n    T l = max(l1, l2), r = min(r1,\
+    \ r2);\n    if (l < r) f(l, r, a1, b1, c1, a2, b2, c2);\n    (r1 < r2 ? i : j)++;\n\
+    \  }\n}\n#line 4 \"convex/lower_integer_hull.hpp\"\n\n// https://atcoder.jp/contests/arc130/tasks/arc130_f\n\
+    // \u6574\u6570\u50BE\u304D\u3067\u4E0B\u304B\u3089\u304A\u3055\u3048\u308B. 2n-1\u70B9\
+    \u4EE5\u4E0B.\nvc<Point<ll>> lower_integer_hull(vc<Point<ll>> point) {\n  using\
+    \ P = Point<ll>;\n  int n = len(point);\n  assert(n > 0);\n  P L(infty<ll>, infty<ll>),\
+    \ R(-infty<ll>, infty<ll>);\n  for (auto& p: point) {\n    if (L.x > p.x) L =\
+    \ p;\n    if (R.x < p.x) R = p;\n    if (L.x == p.x) chmin(L.y, p.y);\n    if\
+    \ (R.x == p.x) chmin(R.y, p.y);\n  }\n  if (L.x == R.x) return {L};\n\n  vc<pi>\
+    \ line;\n  for (auto& p: point) line.eb(-p.x, p.y);\n  auto dat = line_min_function_integer(line,\
+    \ -infty<ll>, infty<ll>);\n\n  vc<P> ANS = {L};\n  auto add = [&](ll x, ll y)\
+    \ -> void {\n    if (ANS.back().x < x) ANS.eb(P(x, y));\n  };\n  FOR(i, len(dat)\
+    \ - 1) {\n    auto [xx, a1, p1, q1] = dat[i];\n    auto [a2, yy, p2, q2] = dat[i\
+    \ + 1];\n    --a1;\n    ll b1 = p1 * a1 + q1;\n    ll b2 = p2 * a2 + q2;\n   \
+    \ ll x = (b1 - b2) / (a2 - a1);\n    ll y = a1 * x + b1;\n    add(x, y);\n   \
+    \ if (i == len(dat) - 2) break;\n    a1 = a2, a2 = yy - 1;\n    b1 = p2 * a1 +\
+    \ q2;\n    b2 = p2 * a2 + q2;\n    if (a1 < a2) {\n      x = (b1 - b2) / (a2 -\
+    \ a1);\n      y = a1 * x + b1;\n      add(x, y);\n    }\n  }\n  add(R.x, R.y);\n\
+    \  return ANS;\n}\n"
   code: "\n#include \"geo/base.hpp\"\n#include \"convex/line_min_function.hpp\"\n\n\
     // https://atcoder.jp/contests/arc130/tasks/arc130_f\n// \u6574\u6570\u50BE\u304D\
     \u3067\u4E0B\u304B\u3089\u304A\u3055\u3048\u308B. 2n-1\u70B9\u4EE5\u4E0B.\nvc<Point<ll>>\
@@ -274,7 +277,7 @@ data:
   isVerificationFile: false
   path: convex/lower_integer_hull.hpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
+  timestamp: '2026-08-17 11:03:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/lower_integer_hull.hpp

@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -31,19 +31,19 @@ data:
   - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':question:'
@@ -55,14 +55,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -695,85 +695,86 @@ data:
     \ Point<ll>;\n  auto trial = [&]() -> vc<P> {\n    set<Point<ll>> S;\n    while\
     \ (len(S) < N) {\n      int x = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      int y\
     \ = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      S.insert(Point<ll>(x, y));\n    }\n\
-    \    vc<P> point(all(S));\n    auto I = ConvexHull<ll, true>(point);\n    Count_Points_In_Triangles\
+    \    vc<P> point(all(S));\n    auto I = Convex_Hull<ll, true>(point);\n    Count_Points_In_Triangles\
     \ CT(point, point);\n    vc<int> other;\n    vc<int> done(N);\n    for (auto&\
-    \ i: I) done[i]++;\n    if (MAX(done) >= 2) return {};\n    FOR(i, N) if (!done[i])\
+    \ i : I) done[i]++;\n    if (MAX(done) >= 2) return {};\n    FOR(i, N) if (!done[i])\
     \ other.eb(i);\n    int fail = 0;\n    while (len(other)) {\n      if (fail >\
     \ 1000) return {};\n      ++fail;\n      int i = RNG(0, len(I)), j = RNG(0, len(other));\n\
     \      swap(other[j], other.back());\n      int a = I[i], b = I[(i + 1) % len(I)],\
     \ c = other.back();\n      if ((point[b] - point[a]).det(point[c] - point[a])\
     \ < 0) continue;\n      if (CT.count3(a, b, c)) continue;\n      if (CT.count2(a,\
-    \ c) + CT.count2(b, c)) continue;\n      bool ok = 1;\n      for (auto& v: {a,\
+    \ c) + CT.count2(b, c)) continue;\n      bool ok = 1;\n      for (auto& v : {a,\
     \ b}) {\n        FOR(i, len(I)) {\n          Segment<ll> S1(point[v], point[c]);\n\
     \          Segment<ll> S2(point[I[i]], point[I[(i + 1) % len(I)]]);\n        \
     \  if (count_cross(S1, S2, false)) ok = 0;\n        }\n      }\n      if (!ok)\
     \ continue;\n      fail = 0;\n      I.insert(I.begin() + i + 1, POP(other));\n\
     \    }\n    point = rearrange(point, I);\n    FOR(i, N) {\n      if ((point[(i\
-    \ + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) == 0) return {};\n\
-    \    }\n    return point;\n  };\n  while (1) {\n    vc<P> ANS = trial();\n   \
-    \ if (ANS.empty()) continue;\n    int k = RNG(0, len(ANS));\n    rotate(ANS.begin(),\
-    \ ANS.begin() + k, ANS.end());\n    return ANS;\n  }\n}\n#line 1 \"geo/base.hpp\"\
-    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
-    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
-    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
-    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {}\n\n \
-    \ Point operator+=(const Point p) {\n    x += p.x, y += p.y;\n    return *this;\n\
-    \  }\n  Point operator-=(const Point p) {\n    x -= p.x, y -= p.y;\n    return\
-    \ *this;\n  }\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n\
-    \  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
-    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
-    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
-    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
-    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
-    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(const Point&\
-    \ other) const { return x * other.x + y * other.y; }\n  T det(const Point& other)\
-    \ const { return x * other.y - y * other.x; }\n\n  double norm() { return sqrtl(x\
-    \ * x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double\
-    \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
-    \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n  Point\
-    \ rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y, -x}); }\n};\n\n#ifdef\
-    \ FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n\
-    }\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n  fastio::wt('\
-    \ ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\u3080\u3068\
-    \u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 +1\u3001\u53F3\
-    \u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename T>\nint ccw(Point<T>\
-    \ A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n  if (x > 0) return\
-    \ 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename REAL, typename\
-    \ T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx = REAL(A.x) -\
-    \ REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx * dx + dy *\
-    \ dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n\
-    \  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n\
-    \    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1,\
-    \ T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template\
-    \ <typename U>\n  U eval(Point<U> P) {\n    return U(a) * P.x + U(b) * P.y + U(c);\n\
-    \  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return a * x + b *\
-    \ y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\
-    \u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\u308B\n  void normalize() {\n\
-    \    static_assert(is_same_v<T, int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a),\
-    \ abs(b)), abs(c));\n    a /= g, b /= g, c /= g;\n    if (b < 0) {\n      a =\
-    \ -a, b = -b, c = -c;\n    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b,\
-    \ c = -c;\n    }\n  }\n\n  bool is_parallel(Line other) { return a * other.b -\
-    \ b * other.a == 0; }\n  bool is_orthogonal(Line other) { return a * other.a +\
-    \ b * other.b == 0; }\n  bool is_same(Line other) {\n    if (a * other.b != b\
-    \ * other.a) return 0;\n    if (a * other.c != c * other.a) return 0;\n    if\
-    \ (b * other.c != c * other.b) return 0;\n    return 1;\n  }\n};\n\ntemplate <typename\
-    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
-    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
-    \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
-    \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
-    \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
-    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
-    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\
-    \u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\
-    \u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  struct\
-    \ Slot {\n    union alignas(Node) {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n\
-    \    };\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 <<\
-    \ 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used\
-    \ = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n \
-    \ template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
+    \ + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) ==\n          0)\n\
+    \        return {};\n    }\n    return point;\n  };\n  while (1) {\n    vc<P>\
+    \ ANS = trial();\n    if (ANS.empty()) continue;\n    int k = RNG(0, len(ANS));\n\
+    \    rotate(ANS.begin(), ANS.begin() + k, ANS.end());\n    return ANS;\n  }\n\
+    }\n#line 1 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
+    \n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
+    \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
+    \ B> p) : x(p.fi), y(p.se) {}\n\n  template <typename U>\n  Point(Point<U> p)\
+    \ : x(p.x), y(p.y) {}\n\n  Point operator+=(const Point p) {\n    x += p.x, y\
+    \ += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n    x\
+    \ -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
+    \ { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x\
+    \ - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x == p.x && y\
+    \ == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n\
+    \  Point operator-() const { return {-x, -y}; }\n  Point operator*(T t) const\
+    \ { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x / t, y\
+    \ / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
+    \    return y < p.y;\n  }\n  T dot(const Point& other) const { return x * other.x\
+    \ + y * other.y; }\n  T det(const Point& other) const { return x * other.y - y\
+    \ * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double angle()\
+    \ { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
+    \ * x + c * y};\n  }\n  Point rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y,\
+    \ -x}); }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n\
+    \  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
+    \ p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
+    \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
+    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
+    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
+    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
+    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL dist(Point<T>\
+    \ A, Point<U> B) {\n  REAL dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y)\
+    \ - REAL(B.y);\n  return sqrt(dx * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename\
+    \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
+    \ {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c =\
+    \ A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return U(a) * P.x + U(b) * P.y + U(c);\n  }\n\n  template <typename U>\n\
+    \  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\
+    \u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\
+    \u3046\u306B\u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T,\
+    \ int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n\
+    \    a /= g, b /= g, c /= g;\n    if (b < 0) {\n      a = -a, b = -b, c = -c;\n\
+    \    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b, c = -c;\n    }\n  }\n\
+    \n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\
+    \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
+    \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
+    \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
+    \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
+    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
+    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
+    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
+    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\
+    \u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\
+    \ntemplate <class Node>\nstruct Node_Pool {\n  struct Slot {\n    union alignas(Node)\
+    \ {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n    };\n \
+    \ };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n\
+    \  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used = 0;\n\
+    \  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n  template\
+    \ <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
     \    return ::new (s) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np\
     \ x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (s) Node(*x);\
     \  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u547C\u3073\
@@ -1308,8 +1309,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/polygon_triangulation.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 11:03:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/polygon_triangulation.test.cpp
 layout: document

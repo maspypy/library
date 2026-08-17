@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
   - icon: ':heavy_check_mark:'
@@ -212,10 +212,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
-  - icon: ':warning:'
-    path: graph/functional.hpp
-    title: graph/functional.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -254,7 +251,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -435,7 +432,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/outer_planar.test.cpp
     title: test/1_mytest/outer_planar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -451,11 +448,17 @@ data:
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/scc_tournament.test.cpp
+    title: test/1_mytest/scc_tournament.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tutte.test.cpp
+    title: test/1_mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/manhattan_mst.test.cpp
     title: test/2_library_checker/geometry/manhattan_mst.test.cpp
@@ -627,7 +630,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
@@ -639,7 +642,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -700,6 +703,9 @@ data:
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1744.test.cpp
+    title: test/3_yukicoder/1744.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1745.test.cpp
     title: test/3_yukicoder/1745.test.cpp
   - icon: ':heavy_check_mark:'
@@ -747,7 +753,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1983.test.cpp
     title: test/3_yukicoder/1983.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1137,7 +1143,6 @@ data:
   - graph/bracket_graph.hpp
   - graph/find_C4.hpp
   - graph/optimal_product_on_tree.hpp
-  - graph/functional.hpp
   - graph/maximum_independent_set_weighted.hpp
   - graph/minimum_cost_cycle.hpp
   - graph/tree_walk_generating_function.hpp
@@ -1176,6 +1181,7 @@ data:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
+  - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
@@ -1194,6 +1200,7 @@ data:
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/find_cycle_minimum.test.cpp
+  - test/1_mytest/tutte.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
@@ -1307,6 +1314,7 @@ data:
   - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/1745.test.cpp
   - test/3_yukicoder/2507.test.cpp
+  - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1541.test.cpp
   - test/3_yukicoder/1211.test.cpp
   - test/3_yukicoder/529.test.cpp

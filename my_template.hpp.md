@@ -108,9 +108,6 @@ data:
   - icon: ':x:'
     path: test/1_mytest/convex_polygon_side.test.cpp
     title: test/1_mytest/convex_polygon_side.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/convex_polygon_visible_range.test.cpp
-    title: test/1_mytest/convex_polygon_visible_range.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convolution_all_1.test.cpp
     title: test/1_mytest/convolution_all_1.test.cpp
@@ -297,7 +294,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/gray_code.test.cpp
     title: test/1_mytest/gray_code.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/incremental_ch.test.cpp
     title: test/1_mytest/incremental_ch.test.cpp
   - icon: ':heavy_check_mark:'
@@ -483,7 +480,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -586,6 +583,9 @@ data:
     path: test/1_mytest/run_length.test.cpp
     title: test/1_mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/scc_tournament.test.cpp
+    title: test/1_mytest/scc_tournament.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/seg2d.test.cpp
     title: test/1_mytest/seg2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -672,6 +672,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tutte.test.cpp
+    title: test/1_mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
@@ -990,7 +993,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1002,7 +1005,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1560,7 +1563,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1201.test.cpp
     title: test/3_yukicoder/1201.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1578,7 +1581,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1240.test.cpp
     title: test/3_yukicoder/1240.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1819,6 +1822,9 @@ data:
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1744.test.cpp
+    title: test/3_yukicoder/1744.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1745.test.cpp
     title: test/3_yukicoder/1745.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2001,7 +2007,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2120.test.cpp
     title: test/3_yukicoder/2120.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2771,6 +2777,7 @@ data:
   - test/1_mytest/splay.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
+  - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
@@ -2898,6 +2905,7 @@ data:
   - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/maxplus_concave.test.cpp
   - test/1_mytest/find_cycle_minimum.test.cpp
+  - test/1_mytest/tutte.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/min_max.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
@@ -2957,7 +2965,6 @@ data:
   - test/1_mytest/bell_number.test.cpp
   - test/1_mytest/rbst_monoid_2.test.cpp
   - test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
-  - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
@@ -3455,6 +3462,7 @@ data:
   - test/3_yukicoder/421_2.test.cpp
   - test/3_yukicoder/1435.test.cpp
   - test/3_yukicoder/465.test.cpp
+  - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1541.test.cpp
   - test/3_yukicoder/1844.test.cpp
   - test/3_yukicoder/2907_2.test.cpp
