@@ -11,10 +11,10 @@ bridge 同士の 4 点での上側凸包を見れば、次に探索するべき�
 座標 10^9 以下の整数を仮定
 */
 template <typename Point>
-struct DynamicUpperHull {
+struct Dynamic_Upper_Hull {
   struct node {
-    int l, r;   // 範囲 (-1 if no vertex)
-    int bl, br; // bridge idx
+    int l, r;    // 範囲 (-1 if no vertex)
+    int bl, br;  // bridge idx
   };
   int N, sz;
   vc<Point> P;
@@ -22,11 +22,11 @@ struct DynamicUpperHull {
   // 受け取ったインデックスとの対応
   vc<int> to_original_idx, to_seg_idx;
 
-  DynamicUpperHull(vc<Point> P) : DynamicUpperHull(P, 0) {}
-  DynamicUpperHull(vc<Point> P, bool b)
-      : DynamicUpperHull(P, vc<bool>(len(P), b)) {}
+  Dynamic_Upper_Hull(vc<Point> P) : DynamicUpperHull(P, 0) {}
+  Dynamic_Upper_Hull(vc<Point> P, bool b)
+      : Dynamic_Upper_Hull(P, vc<bool>(len(P), b)) {}
 
-  DynamicUpperHull(vc<Point> _P, vc<bool> isin) : N(len(_P)), P(_P) {
+  Dynamic_Upper_Hull(vc<Point> _P, vc<bool> isin) : N(len(_P)), P(_P) {
     to_original_idx = argsort(P);
     sort(all(P));
     sz = 1;
@@ -35,7 +35,9 @@ struct DynamicUpperHull {
     seg.assign(sz + sz, {-1, -1, -1, -1});
     for (int i = 0; i < N; ++i) to_seg_idx[to_original_idx[i]] = i;
     for (int i = 0; i < N; ++i)
-      if (isin[to_original_idx[i]]) { seg[sz + i] = {i, i + 1, i, i}; }
+      if (isin[to_original_idx[i]]) {
+        seg[sz + i] = {i, i + 1, i, i};
+      }
     FOR3_R(i, 1, sz) update(i);
   }
 
@@ -131,7 +133,7 @@ struct DynamicUpperHull {
       self(self, 2 * k + 1, seg[k].br, r);
     };
     dfs(dfs, 1, 0, N);
-    for (auto&& i: res) i = to_original_idx[i];
+    for (auto&& i : res) i = to_original_idx[i];
     return res;
   }
 

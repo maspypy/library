@@ -1,12 +1,12 @@
-#include "geo/dynamicupperhull.hpp"
+#include "geo/dynamic_upper_hull.hpp"
 
 // https://codeforces.com/contest/1599/problem/D
 // 出力は反時計回りである
 vvc<int> convex_layers(vc<Point<ll>> points) {
   int N = len(points);
-  DynamicUpperHull<Point<ll>> DUH(points, 1);
+  Dynamic_Upper_Hull<Point<ll>> DUH(points, 1);
   FOR(i, N) points[i] = -points[i];
-  DynamicUpperHull<Point<ll>> DLH(points, 1);
+  Dynamic_Upper_Hull<Point<ll>> DLH(points, 1);
   vvc<int> ANS;
   int done = 0;
   int k = 0;
@@ -20,7 +20,7 @@ vvc<int> convex_layers(vc<Point<ll>> points) {
       reverse(all(A));
     }
     ANS.eb(A);
-    for (auto&& i: A) {
+    for (auto&& i : A) {
       ++done;
       DUH.erase(i);
       DLH.erase(i);

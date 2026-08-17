@@ -3,7 +3,7 @@ template <typename STRING>
 ll longest_common_subsequence(STRING& A, STRING& B) {
   int N = len(B);
   vc<int> dp(N + 1);
-  for (auto&& a: A) {
+  for (auto&& a : A) {
     FOR_R(i, N) if (a == B[i]) chmax(dp[i + 1], dp[i] + 1);
     FOR(i, N) chmax(dp[i + 1], dp[i]);
   }
@@ -15,7 +15,7 @@ ll longest_common_subsequence(STRING& A, STRING& B) {
 (A[i], B[j]) を使うような (i, j) のペアの vector を返す。
 */
 template <typename STRING>
-vc<pair<int, int>> longest_common_subsequence_restore(STRING& A, STRING& B) {
+vc<pair<int, int>> restore_longest_common_subsequence(STRING& A, STRING& B) {
   int N = len(A), M = len(B);
   vv(int, DP, N + 1, M + 1);
   FOR(i, N) {
@@ -30,7 +30,9 @@ vc<pair<int, int>> longest_common_subsequence_restore(STRING& A, STRING& B) {
   vc<pair<int, int>> res;
   int n = N, m = M;
   while (DP[n][m]) {
-    if (DP[n][m] == DP[n - 1][m]) { --n; }
+    if (DP[n][m] == DP[n - 1][m]) {
+      --n;
+    }
     elif (DP[n][m] == DP[n][m - 1]) { --m; }
     else {
       --n, --m;

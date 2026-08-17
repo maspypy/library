@@ -2,7 +2,7 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/eulerwalk.hpp"
+#include "graph/euler_walk.hpp"
 
 void solve() {
   LL(N, M);

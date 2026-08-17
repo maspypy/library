@@ -1,6 +1,7 @@
 
 
-template <typename Cap> struct MaxFlow_With_LowerBound {
+template <typename Cap>
+struct MaxFlow_With_Lower_Bound {
   int N, s, t, S, T;
   Cap flow_ans;
   bool prepared = 0;
@@ -13,7 +14,7 @@ template <typename Cap> struct MaxFlow_With_LowerBound {
   };
   vc<Edge_raw> dat;
 
-  MaxFlow_With_LowerBound(int N, int s, int t)
+  MaxFlow_With_Lower_Bound(int N, int s, int t)
       : N(N), s(s), t(t), S(N), T(N + 1), flow_ans(0) {
     assert(0 <= s && s < N);
     assert(0 <= t && t < N);
@@ -38,8 +39,7 @@ template <typename Cap> struct MaxFlow_With_LowerBound {
 
   void debug() {
     print("frm,to,lo,hi");
-    for (auto &e : dat)
-      print(e.frm, e.to, e.lo, e.hi);
+    for (auto &e : dat) print(e.frm, e.to, e.lo, e.hi);
   }
 
   void build() {
@@ -50,12 +50,9 @@ template <typename Cap> struct MaxFlow_With_LowerBound {
     vc<int> cnt(N + 2);
     FOR(i, M) {
       auto [frm, to, lo, hi] = dat[i];
-      if (frm == to)
-        continue;
-      if (lo < hi)
-        cnt[frm]++, cnt[to]++;
-      if (0 < lo)
-        cnt[S]++, cnt[to]++, cnt[frm]++, cnt[T]++;
+      if (frm == to) continue;
+      if (lo < hi) cnt[frm]++, cnt[to]++;
+      if (0 < lo) cnt[S]++, cnt[to]++, cnt[frm]++, cnt[T]++;
     }
     indptr = cumsum<int>(cnt);
     int m = indptr.back();
@@ -69,10 +66,8 @@ template <typename Cap> struct MaxFlow_With_LowerBound {
     };
     FOR(i, M) {
       auto [frm, to, lo, hi] = dat[i];
-      if (frm == to)
-        continue;
-      if (lo < hi)
-        add(6 * i + 0, 6 * i + 1, frm, to, hi - lo);
+      if (frm == to) continue;
+      if (lo < hi) add(6 * i + 0, 6 * i + 1, frm, to, hi - lo);
       if (0 < lo) {
         add(6 * i + 2, 6 * i + 3, S, to, lo);
         add(6 * i + 4, 6 * i + 5, frm, T, lo);
@@ -89,13 +84,10 @@ template <typename Cap> struct MaxFlow_With_LowerBound {
     int M = len(dat);
     FOR(i, M) {
       auto [frm, to, lo, hi] = dat[i];
-      if (lo > 0 && G[idx[6 * i + 2]].cap > 0)
-        valid = 0;
-      if (lo > 0 && G[idx[6 * i + 4]].cap > 0)
-        valid = 0;
+      if (lo > 0 && G[idx[6 * i + 2]].cap > 0) valid = 0;
+      if (lo > 0 && G[idx[6 * i + 4]].cap > 0) valid = 0;
     }
-    if (!valid)
-      return flow_ans = -1;
+    if (!valid) return flow_ans = -1;
     assert(a + b == a + c && c + d == b + d);
     return flow_ans = c + d;
   }
@@ -105,16 +97,14 @@ template <typename Cap> struct MaxFlow_With_LowerBound {
     que.resize(N + 2);
     int ql = 0, qr = 0;
     auto upd = [&](int v, int d) -> void {
-      if (chmin(level[v], d))
-        que[qr++] = v;
+      if (chmin(level[v], d)) que[qr++] = v;
     };
     upd(s, 0);
     while (ql < qr) {
       int v = que[ql++];
       FOR(i, indptr[v], indptr[v + 1]) {
         auto &e = G[i];
-        if (e.cap > 0)
-          upd(e.to, level[v] + 1);
+        if (e.cap > 0) upd(e.to, level[v] + 1);
       }
     }
   }
@@ -122,20 +112,17 @@ template <typename Cap> struct MaxFlow_With_LowerBound {
   Cap flow_dfs(int s, int t) {
     prog = indptr;
     auto dfs = [&](auto &dfs, int v, Cap lim) -> Cap {
-      if (v == t)
-        return lim;
+      if (v == t) return lim;
       Cap res = 0;
       for (int &i = prog[v]; i < indptr[v + 1]; ++i) {
         auto &e = G[i];
         if (e.cap > 0 && level[e.to] == level[v] + 1) {
           Cap a = dfs(dfs, e.to, min(lim, e.cap));
-          if (a == Cap(0))
-            continue;
+          if (a == Cap(0)) continue;
           e.cap -= a, e.flow += a;
           G[e.rev].cap += a, G[e.rev].flow -= a;
           res += a, lim -= a;
-          if (lim == Cap(0))
-            break;
+          if (lim == Cap(0)) break;
         }
       }
       return res;
@@ -147,8 +134,7 @@ template <typename Cap> struct MaxFlow_With_LowerBound {
     Cap ans = 0;
     while (1) {
       set_level(s);
-      if (level[t] == infty<int>)
-        break;
+      if (level[t] == infty<int>) break;
       ans += flow_dfs(s, t);
     }
     return ans;
