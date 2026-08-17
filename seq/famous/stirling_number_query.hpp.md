@@ -15,12 +15,12 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -86,7 +86,7 @@ data:
     \n\n// O(p^2) \u6642\u9593\u306E\u524D\u8A08\u7B97\u306E\u3082\u3068\u3001O(log\
     \ n) \u6642\u9593\nstruct Stirling_Number_Query {\n  const int p;\n  vvc<int>\
     \ MEMO_C;\n  vvc<int> MEMO_S1;\n  vvc<int> MEMO_S2;\n\n  Stirling_Number_Query(int\
-    \ p, bool first_kind = true, bool second_kind = true)\n      : p(p) {\n    assert(primetest(p));\n\
+    \ p, bool first_kind = true, bool second_kind = true)\n      : p(p) {\n    assert(is_prime(p));\n\
     \    assert(p <= (1 << 15));\n    build_C();\n    if (first_kind) build_S1();\n\
     \    if (second_kind) build_S2();\n  }\n\n  int C(ll n, ll k) {\n    if (k < 0\
     \ || k > n) return 0;\n    int res = 1;\n    while (n) {\n      int i = n % p,\
@@ -120,7 +120,7 @@ data:
     \u306E\u3082\u3068\u3001O(log n) \u6642\u9593\nstruct Stirling_Number_Query {\n\
     \  const int p;\n  vvc<int> MEMO_C;\n  vvc<int> MEMO_S1;\n  vvc<int> MEMO_S2;\n\
     \n  Stirling_Number_Query(int p, bool first_kind = true, bool second_kind = true)\n\
-    \      : p(p) {\n    assert(primetest(p));\n    assert(p <= (1 << 15));\n    build_C();\n\
+    \      : p(p) {\n    assert(is_prime(p));\n    assert(p <= (1 << 15));\n    build_C();\n\
     \    if (first_kind) build_S1();\n    if (second_kind) build_S2();\n  }\n\n  int\
     \ C(ll n, ll k) {\n    if (k < 0 || k > n) return 0;\n    int res = 1;\n    while\
     \ (n) {\n      int i = n % p, j = k % p;\n      if (j > i) return 0;\n      res\
@@ -156,8 +156,8 @@ data:
   isVerificationFile: false
   path: seq/famous/stirling_number_query.hpp
   requiredBy: []
-  timestamp: '2026-08-17 08:53:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 09:41:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp

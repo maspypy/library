@@ -16,14 +16,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n
@@ -309,7 +309,7 @@ data:
     \n\n// O(p^2) \u6642\u9593\u306E\u524D\u8A08\u7B97\u306E\u3082\u3068\u3001O(log\
     \ n) \u6642\u9593\nstruct Stirling_Number_Query {\n  const int p;\n  vvc<int>\
     \ MEMO_C;\n  vvc<int> MEMO_S1;\n  vvc<int> MEMO_S2;\n\n  Stirling_Number_Query(int\
-    \ p, bool first_kind = true, bool second_kind = true)\n      : p(p) {\n    assert(primetest(p));\n\
+    \ p, bool first_kind = true, bool second_kind = true)\n      : p(p) {\n    assert(is_prime(p));\n\
     \    assert(p <= (1 << 15));\n    build_C();\n    if (first_kind) build_S1();\n\
     \    if (second_kind) build_S2();\n  }\n\n  int C(ll n, ll k) {\n    if (k < 0\
     \ || k > n) return 0;\n    int res = 1;\n    while (n) {\n      int i = n % p,\
@@ -359,8 +359,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 08:53:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 09:41:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
 layout: document

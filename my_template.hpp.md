@@ -978,7 +978,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1458,7 +1458,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_directed.test.cpp
     title: test/2_library_checker/tree/lca_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1818,6 +1818,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/17.test.cpp
     title: test/3_yukicoder/17.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1718.test.cpp
+    title: test/3_yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
@@ -3596,6 +3599,7 @@ data:
   - test/3_yukicoder/779.test.cpp
   - test/3_yukicoder/2490.test.cpp
   - test/3_yukicoder/1720.test.cpp
+  - test/3_yukicoder/1718.test.cpp
   - test/3_yukicoder/1962.test.cpp
   - test/3_yukicoder/1069.test.cpp
 documentation_of: my_template.hpp

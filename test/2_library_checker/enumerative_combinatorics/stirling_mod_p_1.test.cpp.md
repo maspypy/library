@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
   _extendedRequiredBy: []
@@ -26,25 +26,26 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
+    PROBLEM: https://judge.yosupo.jp/problem/" "stirling_number_of_the_first_kind_small_p_large_n
     links:
-    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
+    - https://judge.yosupo.jp/problem/
   bundledCode: "#line 1 \"test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
-    Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
-    \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
-    \n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \n#define PROBLEM                      \\\n  \"https://judge.yosupo.jp/problem/\"\
+    \ \\\n  \"stirling_number_of_the_first_kind_small_p_large_n\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
+    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n//\
+    \ \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\
+    \u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\n#pragma GCC target(\"\
+    avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing\
+    \ namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
     template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
     \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
@@ -309,7 +310,7 @@ data:
     \n\n// O(p^2) \u6642\u9593\u306E\u524D\u8A08\u7B97\u306E\u3082\u3068\u3001O(log\
     \ n) \u6642\u9593\nstruct Stirling_Number_Query {\n  const int p;\n  vvc<int>\
     \ MEMO_C;\n  vvc<int> MEMO_S1;\n  vvc<int> MEMO_S2;\n\n  Stirling_Number_Query(int\
-    \ p, bool first_kind = true, bool second_kind = true)\n      : p(p) {\n    assert(primetest(p));\n\
+    \ p, bool first_kind = true, bool second_kind = true)\n      : p(p) {\n    assert(is_prime(p));\n\
     \    assert(p <= (1 << 15));\n    build_C();\n    if (first_kind) build_S1();\n\
     \    if (second_kind) build_S2();\n  }\n\n  int C(ll n, ll k) {\n    if (k < 0\
     \ || k > n) return 0;\n    int res = 1;\n    while (n) {\n      int i = n % p,\
@@ -338,17 +339,16 @@ data:
     \ A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i + 1,\
     \ 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n   \
     \     if (j < i) A[i][j] += A[i - 1][j] * j;\n        A[i][j] %= p;\n      }\n\
-    \    }\n  }\n};\n#line 6 \"test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp\"\
+    \    }\n  }\n};\n#line 7 \"test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp\"\
     \n\nvoid solve() {\n  LL(T, p);\n  Stirling_Number_Query X(p, 1, 0);\n  FOR(T)\
-    \ {\n    LL(n, k);\n    print(X.S1(n, k));\n  }\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  // LL(T);\n  ll T = 1;\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/famous/stirling_number_query.hpp\"\
+    \ {\n    LL(n, k);\n    print(X.S1(n, k));\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM                      \\\n  \"https://judge.yosupo.jp/problem/\"\
+    \ \\\n  \"stirling_number_of_the_first_kind_small_p_large_n\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"seq/famous/stirling_number_query.hpp\"\
     \n\nvoid solve() {\n  LL(T, p);\n  Stirling_Number_Query X(p, 1, 0);\n  FOR(T)\
-    \ {\n    LL(n, k);\n    print(X.S1(n, k));\n  }\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  // LL(T);\n  ll T = 1;\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    \ {\n    LL(n, k);\n    print(X.S1(n, k));\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -359,7 +359,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 08:53:30+09:00'
+  timestamp: '2026-08-17 09:41:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp

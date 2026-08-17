@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -24,12 +24,12 @@ data:
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
@@ -306,7 +306,7 @@ data:
     \ int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl) ok\
     \ = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line 4 \"graph/fast_lca.hpp\"\
     \n\ntemplate <typename TREE>\nstruct Fast_LCA {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>>\
-    \ seg;\n  vc<int> pos;\n\n  Fast_Lca(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
+    \ seg;\n  vc<int> pos;\n\n  Fast_LCA(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
     \    pos.resize(N);\n    vc<int> dat(2 * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n\
     \      int b = tree.ERID(v);\n      pos[v] = a;\n      dat[a] = tree.LID[v];\n\
     \      dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n   \
@@ -320,7 +320,7 @@ data:
   code: "#include \"graph/tree.hpp\"\n#include \"alg/monoid/min.hpp\"\n#include \"\
     ds/sparse_table/sparse_table.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_LCA\
     \ {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>> seg;\n  vc<int> pos;\n\n \
-    \ Fast_Lca(TREE& tree) : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n\
+    \ Fast_LCA(TREE& tree) : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n\
     \    vc<int> dat(2 * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n     \
     \ int b = tree.ERID(v);\n      pos[v] = a;\n      dat[a] = tree.LID[v];\n    \
     \  dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n    seg.build(dat);\n\
@@ -341,8 +341,8 @@ data:
   path: graph/fast_lca.hpp
   requiredBy:
   - graph/compress_tree.hpp
-  timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 09:41:55+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/lca_fast.test.cpp
 documentation_of: graph/fast_lca.hpp

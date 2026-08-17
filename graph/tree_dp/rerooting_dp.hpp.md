@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -39,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1494.test.cpp
     title: test/3_yukicoder/1494.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1718.test.cpp
+    title: test/3_yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1976.test.cpp
     title: test/3_yukicoder/1976.test.cpp
@@ -445,6 +448,7 @@ data:
   - test/3_yukicoder/1494.test.cpp
   - test/3_yukicoder/2360.test.cpp
   - test/3_yukicoder/1418.test.cpp
+  - test/3_yukicoder/1718.test.cpp
 documentation_of: graph/tree_dp/rerooting_dp.hpp
 layout: document
 redirect_from:

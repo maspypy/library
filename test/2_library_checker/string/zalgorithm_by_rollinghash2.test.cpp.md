@@ -17,18 +17,17 @@ data:
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid/rollinghash.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: alg/monoid/rolling_hash.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/monoid/rollinghash.hpp\"\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/monoid/rolling_hash.hpp\"\
     \n#include \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\nvoid solve() {\n \
     \ STR(S);\n  ll N = len(S);\n  using Mono = Monoid_Rolling_Hash;\n  Disjoint_Sparse_Table<Mono>\
     \ seg(\n      N, [&](int i) { return Mono::from_element(S[i]); });\n  vi Z(N);\n\
     \  FOR(i, N) {\n    auto check = [&](int n) -> bool {\n      if (i + n > N) return\
     \ false;\n      return seg.prod(0, n) == seg.prod(i, i + n);\n    };\n    Z[i]\
     \ = binary_search(check, 0, N + 1);\n  }\n  print(Z);\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \  solve();\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true
   path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
