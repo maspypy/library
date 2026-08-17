@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -26,6 +26,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_clique.hpp
+    title: graph/count/count_clique.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_independent_set.hpp
+    title: graph/count/count_independent_set.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
@@ -68,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
@@ -424,6 +433,12 @@ data:
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_clique.test.cpp
+    title: test/1_mytest/count_clique.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_indep_set.test.cpp
+    title: test/1_mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
   - icon: ':heavy_check_mark:'
@@ -534,6 +549,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tree_walk_gf.test.cpp
+    title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
@@ -892,6 +910,12 @@ data:
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1106,6 +1130,7 @@ data:
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   - graph/count/count_unlabeled_tree.hpp
+  - graph/count/count_independent_set.hpp
   - graph/count/count_labeled_eulerian.hpp
   - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_bridgeless.hpp
@@ -1114,10 +1139,12 @@ data:
   - graph/count/count_labeled_dag.hpp
   - graph/count/count_labeled_strong_tournament.hpp
   - graph/count/count_labeled_unicyclic.hpp
+  - graph/count/count_clique.hpp
   - graph/chromatic.hpp
   - graph/count_matching_on_tree.hpp
   - graph/tree_all_distances.hpp
   - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+  - graph/tree_walk_generating_function.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/middle_product.hpp
   - poly/sparse_exp_of_div.hpp
@@ -1228,6 +1255,7 @@ data:
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/bigint.test.cpp
+  - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/min_poly.test.cpp
   - test/1_mytest/product_of_one_pm_xn.test.cpp
   - test/1_mytest/eulerian_number.test.cpp
@@ -1258,6 +1286,7 @@ data:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/conv_leq.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
@@ -1269,6 +1298,7 @@ data:
   - test/1_mytest/online_division.test.cpp
   - test/1_mytest/fps_inv_2d.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
+  - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/graph_count.test.cpp
   - test/1_mytest/catalan_convolution.test.cpp
@@ -1351,6 +1381,7 @@ data:
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_2_A.test.cpp
   - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1857.test.cpp
   - test/3_yukicoder/1303.test.cpp
@@ -1366,6 +1397,7 @@ data:
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1821.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/310.test.cpp

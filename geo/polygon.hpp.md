@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   _extendedRequiredBy: []
@@ -140,7 +140,7 @@ data:
     \u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\u53B3\u5BC6\
     \u306B\u3084\u308B\uFF09\ntemplate <typename T>\nint count_cross(Segment<T> S1,\
     \ Segment<T> S2, bool include_ends) {\n  static_assert(!std::is_floating_point<T>::value);\n\
-    \  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
+    \  Line<T> L1 = S1.to_line();\n  Line<T> L2 = S2.to_line();\n  if (L1.is_parallel(L2))\
     \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
     \u76F4\u7DDA\u4E0A\u306B\u3042\u308B\n    T a1 = S1.A.x, b1 = S1.B.x;\n    T a2\
     \ = S2.A.x, b2 = S2.B.x;\n    if (a1 == b1) {\n      a1 = S1.A.y, b1 = S1.B.y;\n\
@@ -259,7 +259,7 @@ data:
   isVerificationFile: false
   path: geo/polygon.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-17 16:53:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/polygon.hpp

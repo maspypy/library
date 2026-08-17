@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':question:'
@@ -588,7 +588,7 @@ data:
     \    pos.resize(N);\n    vc<int> dat(2 * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n\
     \      int b = tree.ERID(v);\n      pos[v] = a;\n      dat[a] = tree.LID[v];\n\
     \      dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n   \
-    \ seg.build(dat);\n  }\n\n  int dist(int a, int b) {\n    int c = lca(a, b);\n\
+    \ seg.build(dat);\n  }\n\n  int dist(int a, int b) {\n    int c = LCA(a, b);\n\
     \    return tree.depth[a] + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  using\
     \ WT = typename TREE::WT;\n  WT dist_weighted(int a, int b) {\n    int c = LCA(a,\
     \ b);\n    return tree.depth_weighted[a] + tree.depth_weighted[b] -\n        \
@@ -665,7 +665,7 @@ data:
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:42:09+09:00'
+  timestamp: '2026-08-17 16:49:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp

@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/doubling.hpp
     title: ds/doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -116,7 +116,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':heavy_check_mark:'
@@ -170,7 +170,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/all_cycle_common_vertices.hpp
     title: graph/all_cycle_common_vertices.hpp
   - icon: ':heavy_check_mark:'
@@ -182,7 +182,7 @@ data:
   - icon: ':warning:'
     path: graph/bitset/transitive_reduction.hpp
     title: graph/bitset/transitive_reduction.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -203,6 +203,9 @@ data:
   - icon: ':warning:'
     path: graph/count/count_bridgeless_subgraph.hpp
     title: graph/count/count_bridgeless_subgraph.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_clique.hpp
+    title: graph/count/count_clique.hpp
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
@@ -212,6 +215,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_cycle.hpp
     title: graph/count/count_cycle.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_independent_set.hpp
+    title: graph/count/count_independent_set.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
@@ -272,7 +278,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':heavy_check_mark:'
@@ -287,12 +293,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
   - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
@@ -843,6 +852,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/all_cycle_common_vertex.test.cpp
+    title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_inverse.test.cpp
     title: test/1_mytest/all_inverse.test.cpp
@@ -915,6 +927,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_by_factor_type.test.cpp
     title: test/1_mytest/count_by_factor_type.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_clique.test.cpp
+    title: test/1_mytest/count_clique.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_indep_set.test.cpp
+    title: test/1_mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
@@ -1230,6 +1248,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_triangular.test.cpp
     title: test/1_mytest/three_triangular.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tree_walk_gf.test.cpp
+    title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
@@ -1725,7 +1746,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2158,6 +2179,12 @@ data:
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2438,6 +2465,7 @@ data:
   - graph/count/count_unlabeled_tree.hpp
   - graph/count/count_cycle.hpp
   - graph/count/count_bridgeless_subgraph.hpp
+  - graph/count/count_independent_set.hpp
   - graph/count/count_labeled_eulerian.hpp
   - graph/count/count_K4.hpp
   - graph/count/count_labeled_bipartite.hpp
@@ -2450,6 +2478,7 @@ data:
   - graph/count/count_labeled_dag.hpp
   - graph/count/count_labeled_strong_tournament.hpp
   - graph/count/count_labeled_unicyclic.hpp
+  - graph/count/count_clique.hpp
   - graph/count/count_connected_intervals.hpp
   - graph/chromatic.hpp
   - graph/steiner_tree.hpp
@@ -2471,6 +2500,7 @@ data:
   - graph/tree_all_distances.hpp
   - graph/reachability.hpp
   - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+  - graph/tree_walk_generating_function.hpp
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/toposort.hpp
   - ds/bit_vector.hpp
@@ -2691,10 +2721,12 @@ data:
   - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/splay.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
   - test/1_mytest/bigint.test.cpp
+  - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/binary_trie.test.cpp
   - test/1_mytest/min_poly.test.cpp
   - test/1_mytest/product_of_one_pm_xn.test.cpp
@@ -2763,6 +2795,7 @@ data:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/conv_leq.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
@@ -2801,6 +2834,7 @@ data:
   - test/1_mytest/qbinom.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/minidx_add.test.cpp
+  - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/graph_count.test.cpp
@@ -3005,6 +3039,7 @@ data:
   - test/3_yukicoder/1547.test.cpp
   - test/3_yukicoder/2149.test.cpp
   - test/3_yukicoder/1649_2.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/3229.test.cpp
   - test/3_yukicoder/1141.test.cpp
@@ -3044,6 +3079,7 @@ data:
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1821.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/1332.test.cpp
   - test/3_yukicoder/2206_2.test.cpp

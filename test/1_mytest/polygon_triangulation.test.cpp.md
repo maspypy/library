@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':x:'
@@ -355,7 +355,7 @@ data:
     \u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\u53B3\u5BC6\
     \u306B\u3084\u308B\uFF09\ntemplate <typename T>\nint count_cross(Segment<T> S1,\
     \ Segment<T> S2, bool include_ends) {\n  static_assert(!std::is_floating_point<T>::value);\n\
-    \  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
+    \  Line<T> L1 = S1.to_line();\n  Line<T> L2 = S2.to_line();\n  if (L1.is_parallel(L2))\
     \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
     \u76F4\u7DDA\u4E0A\u306B\u3042\u308B\n    T a1 = S1.A.x, b1 = S1.B.x;\n    T a2\
     \ = S2.A.x, b2 = S2.B.x;\n    if (a1 == b1) {\n      a1 = S1.A.y, b1 = S1.B.y;\n\
@@ -1265,13 +1265,13 @@ data:
     \ == N - 2);\n    // \u7C21\u6613\u30C6\u30B9\u30C8. \u9762\u7A4D\u548C\u304C\u3044\
     \u3044\u611F\u3058\u306E N-2 \u500B\u306B\u306A\u3063\u3066\u308C\u3070\u3044\u3044\
     \u3053\u3068\u306B\u3059\u308B.\n    ll AREA = 0, AREA3 = 0;\n    FOR(i, N) AREA\
-    \ += point[i].det(point[(i + 1) % N]);\n    for (auto& [a, b, c]: dat) {\n   \
-    \   ll S = (point[b] - point[a]).det(point[c] - point[a]);\n      assert(S > 0);\n\
-    \      AREA3 += S;\n    }\n    assert(AREA == AREA3);\n  };\n\n  FOR(10000) {\n\
-    \    int N = RNG(3, 20);\n    int K = RNG(3, 10);\n    vc<Point<ll>> point = random_polygon(N,\
-    \ K);\n    check(point);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ += point[i].det(point[(i + 1) % N]);\n    for (auto& [a, b, c] : dat) {\n  \
+    \    ll S = (point[b] - point[a]).det(point[c] - point[a]);\n      assert(S >\
+    \ 0);\n      AREA3 += S;\n    }\n    assert(AREA == AREA3);\n  };\n\n  FOR(10000)\
+    \ {\n    int N = RNG(3, 20);\n    int K = RNG(3, 10);\n    vc<Point<ll>> point\
+    \ = random_polygon(N, K);\n    check(point);\n  }\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/random_polygon.hpp\"\n#include \"geo/polygon_triangulation.hpp\"\
     \n\nvoid test() {\n  auto check = [&](vc<Point<ll>> point) -> void {\n    int\
@@ -1279,13 +1279,13 @@ data:
     \ == N - 2);\n    // \u7C21\u6613\u30C6\u30B9\u30C8. \u9762\u7A4D\u548C\u304C\u3044\
     \u3044\u611F\u3058\u306E N-2 \u500B\u306B\u306A\u3063\u3066\u308C\u3070\u3044\u3044\
     \u3053\u3068\u306B\u3059\u308B.\n    ll AREA = 0, AREA3 = 0;\n    FOR(i, N) AREA\
-    \ += point[i].det(point[(i + 1) % N]);\n    for (auto& [a, b, c]: dat) {\n   \
-    \   ll S = (point[b] - point[a]).det(point[c] - point[a]);\n      assert(S > 0);\n\
-    \      AREA3 += S;\n    }\n    assert(AREA == AREA3);\n  };\n\n  FOR(10000) {\n\
-    \    int N = RNG(3, 20);\n    int K = RNG(3, 10);\n    vc<Point<ll>> point = random_polygon(N,\
-    \ K);\n    check(point);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ += point[i].det(point[(i + 1) % N]);\n    for (auto& [a, b, c] : dat) {\n  \
+    \    ll S = (point[b] - point[a]).det(point[c] - point[a]);\n      assert(S >\
+    \ 0);\n      AREA3 += S;\n    }\n    assert(AREA == AREA3);\n  };\n\n  FOR(10000)\
+    \ {\n    int N = RNG(3, 20);\n    int K = RNG(3, 10);\n    vc<Point<ll>> point\
+    \ = random_polygon(N, K);\n    check(point);\n  }\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/random_polygon.hpp
@@ -1309,7 +1309,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/polygon_triangulation.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-17 16:53:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/polygon_triangulation.test.cpp

@@ -7,11 +7,23 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_clique.hpp
+    title: graph/count/count_clique.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_independent_set.hpp
+    title: graph/count/count_independent_set.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_clique.test.cpp
+    title: test/1_mytest/count_clique.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_indep_set.test.cpp
+    title: test/1_mytest/count_indep_set.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -148,10 +160,14 @@ data:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/path_cycle_decomposition.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/count/count_independent_set.hpp
+  - graph/count/count_clique.hpp
   timestamp: '2026-08-17 13:01:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/count_indep_set.test.cpp
+  - test/1_mytest/count_clique.test.cpp
 documentation_of: graph/path_cycle_decomposition.hpp
 layout: document
 redirect_from:

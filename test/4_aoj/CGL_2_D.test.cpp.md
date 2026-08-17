@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':question:'
@@ -313,7 +313,7 @@ data:
     \u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\u53B3\u5BC6\
     \u306B\u3084\u308B\uFF09\ntemplate <typename T>\nint count_cross(Segment<T> S1,\
     \ Segment<T> S2, bool include_ends) {\n  static_assert(!std::is_floating_point<T>::value);\n\
-    \  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
+    \  Line<T> L1 = S1.to_line();\n  Line<T> L2 = S2.to_line();\n  if (L1.is_parallel(L2))\
     \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
     \u76F4\u7DDA\u4E0A\u306B\u3042\u308B\n    T a1 = S1.A.x, b1 = S1.B.x;\n    T a2\
     \ = S2.A.x, b2 = S2.B.x;\n    if (a1 == b1) {\n      a1 = S1.A.y, b1 = S1.B.y;\n\
@@ -353,7 +353,7 @@ data:
     \ Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2\
     \ = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) {\n    return distance<REAL, T,\
     \ T>(B, P);\n  }\n  if (!b1 && b2) {\n    return distance<REAL, T, T>(A, P);\n\
-    \  }\n  Line<T> L = S.to_Line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\
+    \  }\n  Line<T> L = S.to_line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\
     \n  return REAL(abs(L.eval(P))) / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);\n}\n\
     \ntemplate <typename REAL, typename T>\nREAL distance(Segment<T> S1, Segment<T>\
     \ S2) {\n  if (count_cross<T>(S1, S2, true)) return REAL(0);\n  REAL res = distance<REAL,\
@@ -366,7 +366,7 @@ data:
     \ P) {\n  Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n \
     \ bool b2 = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) {\n    T d = (B - P).dot(B\
     \ - P);\n    return {d, 1};\n  }\n  if (!b1 && b2) {\n    T d = (A - P).dot(A\
-    \ - P);\n    return {d, 1};\n  }\n  Line<T> L = S.to_Line();\n  T a = L.eval(P);\n\
+    \ - P);\n    return {d, 1};\n  }\n  Line<T> L = S.to_line();\n  T a = L.eval(P);\n\
     \  if (a < 0) a = -a;\n  T b = L.a * L.a + L.b * L.b;\n  return {a * a, b};\n\
     }\n#line 7 \"test/4_aoj/CGL_2_D.test.cpp\"\n\nusing Re = double;\n\nvoid solve()\
     \ {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a,\
@@ -389,7 +389,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-17 16:53:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_D.test.cpp

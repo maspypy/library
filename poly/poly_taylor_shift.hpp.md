@@ -127,6 +127,12 @@ data:
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3619.test.cpp
     title: test/3_yukicoder/3619.test.cpp
   - icon: ':heavy_check_mark:'
@@ -528,9 +534,11 @@ data:
   - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/1875.test.cpp

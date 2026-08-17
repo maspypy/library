@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':question:'
@@ -310,7 +310,7 @@ data:
     \u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\u53B3\u5BC6\
     \u306B\u3084\u308B\uFF09\ntemplate <typename T>\nint count_cross(Segment<T> S1,\
     \ Segment<T> S2, bool include_ends) {\n  static_assert(!std::is_floating_point<T>::value);\n\
-    \  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
+    \  Line<T> L1 = S1.to_line();\n  Line<T> L2 = S2.to_line();\n  if (L1.is_parallel(L2))\
     \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
     \u76F4\u7DDA\u4E0A\u306B\u3042\u308B\n    T a1 = S1.A.x, b1 = S1.B.x;\n    T a2\
     \ = S2.A.x, b2 = S2.B.x;\n    if (a1 == b1) {\n      a1 = S1.A.y, b1 = S1.B.y;\n\
@@ -345,14 +345,14 @@ data:
     \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
     }\n#line 8 \"test/4_aoj/CGL_2_C.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q)\
     \ {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n    Segment<ll>\
-    \ S2(e, f, g, h);\n    Point<double> pt = cross_point<double>(S1.to_Line(), S2.to_Line());\n\
+    \ S2(e, f, g, h);\n    Point<double> pt = cross_point<double>(S1.to_line(), S2.to_line());\n\
     \    print(pt.x, pt.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
     \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
     \n#include \"geo/cross_point.hpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n \
     \   LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n    Segment<ll>\
-    \ S2(e, f, g, h);\n    Point<double> pt = cross_point<double>(S1.to_Line(), S2.to_Line());\n\
+    \ S2(e, f, g, h);\n    Point<double> pt = cross_point<double>(S1.to_line(), S2.to_line());\n\
     \    print(pt.x, pt.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -363,7 +363,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-17 16:53:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_C.test.cpp
