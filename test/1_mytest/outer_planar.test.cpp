@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 
 #include "random/random_graph.hpp"
-#include "graph/outer_planar.hpp"
+#include "graph/outerplanar.hpp"
 
 void test() {
   int N = RNG(3, 100);
@@ -11,7 +11,7 @@ void test() {
   Graph<int, 0> G(N);
   for (auto& [a, b] : edges) G.add(a, b);
   G.build();
-  auto C = hamilton_cycle_outerplanar(G);
+  auto C = hamiltonian_cycle_outerplanar(G);
   assert(!C.empty());
   assert(check_outerplanar(C, G));
 }

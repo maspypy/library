@@ -2,10 +2,10 @@
 // 行列にするときは、(mp[x]+1) の列を持つと小さい行列になることがある.
 // https://yukicoder.me/problems/no/2762
 template <typename mint, typename STRING>
-mint count_subseq(STRING& S) {
+mint count_subsequence(STRING& S) {
   map<int, mint> dp;
   mint sm = 1;
-  for (auto&& x: S) {
+  for (auto&& x : S) {
     auto it = dp.find(x);
     if (it == dp.end()) {
       dp[x] = sm;

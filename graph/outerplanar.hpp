@@ -33,7 +33,7 @@ bool check_outerplanar(vc<int> cycle, Graph<int, 0> G) {
 
 // N>=3. simple biconnected.
 // https://codeforces.com/contest/1656/problem/I
-vc<int> hamilton_cycle_outerplanar(Graph<int, 0>& G) {
+vc<int> hamiltonian_cycle_outerplanar(Graph<int, 0>& G) {
   int N = G.N;
   assert(N >= 3);
   vc<set<int>> adj(N);

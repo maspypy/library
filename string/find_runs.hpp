@@ -6,7 +6,7 @@
 // 高々 n 個以下
 // sum of (r-l)/p = O(n)
 template <typename STRING>
-vc<tuple<int, int, int>> run_enumerate(const STRING& S) {
+vc<tuple<int, int, int>> find_runs(const STRING& S) {
   ll N = len(S);
   using T = tuple<int, int, int>;
   using P = pair<int, int>;

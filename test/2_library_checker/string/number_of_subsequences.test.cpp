@@ -2,14 +2,14 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "string/count_subseq.hpp"
+#include "string/count_subsequence.hpp"
 
 using mint = modint998;
 
 void solve() {
   LL(N);
   VEC(int, A, N);
-  mint ANS = count_subseq<mint>(A);
+  mint ANS = count_subsequence<mint>(A);
   ANS -= mint(1);
   print(ANS);
 }
