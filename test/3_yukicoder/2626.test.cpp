@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "string/rollinghash.hpp"
+#include "string/rolling_hash.hpp"
 #include "poly/middle_product.hpp"
 
 using mint = modint998;
@@ -11,7 +11,7 @@ using mint = modint998;
 void solve() {
   LL(N, M, K);
   STR(A, B);
-  RollingHash RH;
+  Rolling_Hash RH;
 
   vc<mint> F1(N), F2(N), G1(M), G2(M);
   FOR(i, N) F1[i] = ('a' <= A[i] && A[i] <= 'z');
@@ -19,10 +19,10 @@ void solve() {
   FOR(i, M) G1[i] = ('a' <= B[i] && B[i] <= 'z');
   FOR(i, M) G2[i] = mint(1) - G1[i];
 
-  for (auto& x: A) {
+  for (auto& x : A) {
     if ('a' <= x && x <= 'z') x ^= 32;
   }
-  for (auto& x: B) {
+  for (auto& x : B) {
     if ('a' <= x && x <= 'z') x ^= 32;
   }
 
@@ -39,7 +39,9 @@ void solve() {
     auto a = RH.query(AH, i, i + M);
     auto b = RH.query(BH, 0, M);
     bool match = (a == b);
-    if (match && 1 <= cnt && cnt <= K) { ++ANS; }
+    if (match && 1 <= cnt && cnt <= K) {
+      ++ANS;
+    }
   }
   print(ANS);
 }

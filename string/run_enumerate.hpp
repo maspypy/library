@@ -19,7 +19,7 @@ vc<tuple<int, int, int>> run_enumerate(const STRING& S) {
     reverse(all(S));
     T.insert(T.end(), all(left));
     T.insert(T.end(), all(right));
-    auto ZS = zalgorithm(S), ZT = zalgorithm(T);
+    auto ZS = z_algorithm(S), ZT = z_algorithm(T);
     FOR3(p, 1, n + 1) {
       int a = (p == n ? p : min(ZS[p] + int(p), n));
       int b = min(ZT[n + m - p], m);

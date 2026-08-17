@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "graph/two_edge_component.hpp"
 #include "graph/ds/tree_monoid.hpp"
-#include "alg/monoid/max_idx.hpp"
+#include "alg/monoid/maxidx.hpp"
 
 void solve() {
   LL(N, M, Q);
@@ -19,7 +19,7 @@ void solve() {
   }
   G.build();
 
-  using Mono = Monoid_Max_Idx<ll>;
+  using Mono = Monoid_MaxIdx<ll>;
 
   Tree tree(G);
   vc<pq_max<ll>> wts(C);

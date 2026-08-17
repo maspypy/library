@@ -1,5 +1,4 @@
 #include "graph/ds/static_toptree.hpp"
-#include "graph/shortest_path/bfs01.hpp"
 #include "ds/unionfind/unionfind.hpp"
 #include "poly/convolution.hpp"
 
@@ -26,7 +25,9 @@ struct TREE_ADJ_MATRIX_DP {
   }
   static Data compress(Data L, Data R) {
     Data Z;
-    FOR(p, 2) FOR(q, 2) FOR(r, 2) { add(Z[p][r], convolution<mint>(L[p][q], R[1 - q][r])); }
+    FOR(p, 2) FOR(q, 2) FOR(r, 2) {
+      add(Z[p][r], convolution<mint>(L[p][q], R[1 - q][r]));
+    }
     return Z;
   }
 };
@@ -35,7 +36,8 @@ struct TREE_ADJ_MATRIX_DP {
 // weight(i,j)：A[i][j]
 // 偶数次だけしか出てこないので loop ありより高速
 template <typename mint, typename F>
-vc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(Graph<int, 0>& G, F weight) {
+vc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(
+    Graph<int, 0>& G, F weight) {
   using poly = vc<mint>;
   Tree<Graph<int, 0>> tree(G);
   Static_TopTree<decltype(tree)> STT(tree);
@@ -47,8 +49,8 @@ vc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(Graph<int, 
     int p = tree.parent[v];
     mint wt = (p == -1 ? mint(0) : weight(p, v) * weight(v, p));
     X[0][0] = poly{mint(1)};
-    X[0][1] = poly{mint(1)};                   // loop
-    if (p != -1) X[1][1] = poly{mint(0), -wt}; // match
+    X[0][1] = poly{mint(1)};                    // loop
+    if (p != -1) X[1][1] = poly{mint(0), -wt};  // match
     return X;
   };
   Data X = STT.tree_dp<TREE_ADJ_MATRIX_DP<mint>>(single);
@@ -58,7 +60,8 @@ vc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(Graph<int, 
 }
 
 template <typename mint, typename F>
-vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(Graph<int, 0>& G, F weight) {
+vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(
+    Graph<int, 0>& G, F weight) {
   using poly = vc<mint>;
   Tree<Graph<int, 0>> tree(G);
   Static_TopTree<decltype(tree)> STT(tree);
@@ -69,8 +72,8 @@ vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(Graph<int, 0>& 
     int p = tree.parent[v];
     mint wt = (p == -1 ? mint(0) : weight(p, v) * weight(v, p));
     X[0][0] = poly{mint(1)};
-    X[0][1] = poly{mint(1), -weight(v, v)};             // loop
-    if (p != -1) X[1][1] = poly{mint(0), mint(0), -wt}; // match
+    X[0][1] = poly{mint(1), -weight(v, v)};              // loop
+    if (p != -1) X[1][1] = poly{mint(0), mint(0), -wt};  // match
     return X;
   };
   Data X = STT.tree_dp<TREE_ADJ_MATRIX_DP<mint>>(single);
@@ -82,10 +85,13 @@ vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(Graph<int, 0>& 
 // det(I-xA) の計算 (固有多項式の reverse になっている)
 // weight(i,j)：A[i][j]
 template <bool ALLOW_LOOP, typename mint, typename F>
-vc<mint> characteristic_poly_of_tree_adjacency_matrix(Graph<int, 0>& G, F weight) {
+vc<mint> characteristic_poly_of_tree_adjacency_matrix(Graph<int, 0>& G,
+                                                      F weight) {
   if constexpr (ALLOW_LOOP) {
-    return characteristic_poly_of_tree_adjacency_matrix_allow_loop<mint>(G, weight);
+    return characteristic_poly_of_tree_adjacency_matrix_allow_loop<mint>(
+        G, weight);
   } else {
-    return characteristic_poly_of_tree_adjacency_matrix_not_allow_loop<mint>(G, weight);
+    return characteristic_poly_of_tree_adjacency_matrix_not_allow_loop<mint>(
+        G, weight);
   }
 }

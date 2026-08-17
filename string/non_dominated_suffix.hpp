@@ -1,5 +1,5 @@
 #include "string/lyndon.hpp"
-#include "string/zalgorithm.hpp"
+#include "string/z_algorithm.hpp"
 
 // suffix X,Y について, Y<X かつ Y notin prefix(X) となる Y がない X たち.
 // 長さの列を返す. 互いに border になっている.
@@ -12,7 +12,7 @@ vc<int> non_dominated_suffix(string S) {
   Incremental_Lyndon_Factorization<char> LDN;
   FOR(i, N) LDN.add(S[i]);
   string RS = {S.rbegin(), S.rend()};
-  vc<int> Z = zalgorithm(RS);
+  vc<int> Z = z_algorithm(RS);
 
   vc<int> ANS;
   vc<int> cut = LDN.factorize();

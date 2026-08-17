@@ -1,4 +1,5 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum"
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -11,7 +12,7 @@ struct Data {
   // type, s, t は必ず定義する. （経験上どうせデバッグで必要になる）. s が根.
   // type==0: sが virtual. type==1: t が virtual.
   int type, s, t;
-  mint a, b; // path composition
+  mint a, b;  // path composition
   mint cnt, ans;
 };
 
@@ -88,7 +89,7 @@ void solve() {
     return {up, down};
   };
 
-  Dynamic_Rerooting_Tree_Dp<decltype(tree), TREE_DP> DP(tree, single);
+  Dynamic_Rerooting_Tree_DP<decltype(tree), TREE_DP> DP(tree, single);
   FOR(Q) {
     INT(t);
     if (t == 0) {

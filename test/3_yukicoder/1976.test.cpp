@@ -17,11 +17,11 @@ void solve() {
   auto fev = [&](Data x, int v) -> Data { return x; };
   // e は v から出る有向辺
   auto fve = [&](Data x, auto& e) -> Data { return {x.fi, x.se + 1}; };
-  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
 
   int ANS = N;
 
-  for (auto&& e: G.edges) {
+  for (auto&& e : G.edges) {
     int a = e.frm, b = e.to;
     int xa = dp.get(a, b).fi;
     int xb = dp.get(b, a).fi;

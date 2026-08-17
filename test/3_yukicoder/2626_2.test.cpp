@@ -4,7 +4,7 @@
 
 #include "mod/modint.hpp"
 #include "ds/my_bitset.hpp"
-#include "string/zalgorithm.hpp"
+#include "string/z_algorithm.hpp"
 
 using BS = My_Bitset;
 
@@ -16,13 +16,13 @@ void solve() {
   FOR(i, N) X[i] = ('a' <= A[i] && A[i] <= 'z');
   FOR(i, M) Y[i] = ('a' <= B[i] && B[i] <= 'z');
 
-  for (auto& x: A) {
+  for (auto& x : A) {
     if ('a' <= x && x <= 'z') x ^= 32;
   }
-  for (auto& x: B) {
+  for (auto& x : B) {
     if ('a' <= x && x <= 'z') x ^= 32;
   }
-  vc<int> Z = zalgorithm(B + "." + A);
+  vc<int> Z = z_algorithm(B + "." + A);
   Z = {Z.end() - N, Z.end()};
 
   ll ANS = 0;

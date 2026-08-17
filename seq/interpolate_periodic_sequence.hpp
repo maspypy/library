@@ -1,5 +1,5 @@
 
-#include "string/zalgorithm.hpp"
+#include "string/z_algorithm.hpp"
 
 // 012[345][345][345] みたいなやつ
 template <typename T>
@@ -9,7 +9,7 @@ struct Interpolate_Periodic_Sequence {
 
   Interpolate_Periodic_Sequence(vc<T> A) : dat(A) {
     reverse(all(A));
-    auto Z = zalgorithm(A);
+    auto Z = z_algorithm(A);
     Z[0] = 0;
     p = max_element(all(Z)) - Z.begin();
   }
@@ -33,7 +33,7 @@ struct Interpolate_Difference_Periodic_Sequence {
     vc<T> diff;
     FOR(i, len(A) - 1) diff.eb(A[i + 1] - A[i]);
     reverse(all(diff));
-    auto Z = zalgorithm(diff);
+    auto Z = z_algorithm(diff);
     Z[0] = 0;
     p = max_element(all(Z)) - Z.begin();
     ll n = len(A);

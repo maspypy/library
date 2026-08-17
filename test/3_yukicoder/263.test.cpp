@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "string/rollinghash.hpp"
+#include "string/rolling_hash.hpp"
 #include "string/palindromic_tree.hpp"
 #include "ds/hashmap.hpp"
 
 void solve() {
-  RollingHash RH;
+  Rolling_Hash RH;
   using M61 = modint61;
 
   auto get = [&]() -> vc<pair<ll, int>> {
@@ -29,9 +29,11 @@ void solve() {
   auto B = get();
 
   HashMap<int> MP(len(A));
-  for (auto&& [x, cnt]: A) MP[x] += cnt;
+  for (auto&& [x, cnt] : A) MP[x] += cnt;
   ll ANS = 0;
-  for (auto&& [y, cnt]: B) { ANS += MP.get(y, 0) * ll(cnt); }
+  for (auto&& [y, cnt] : B) {
+    ANS += MP.get(y, 0) * ll(cnt);
+  }
   print(ANS);
 }
 

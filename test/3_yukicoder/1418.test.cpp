@@ -19,7 +19,7 @@ void solve() {
   auto fve = [&](Data x, auto& e) -> Data { return x; };
 
   Tree<decltype(G)> tree(G);
-  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
   ll ANS = 0;
   FOR(v, N) ANS += dp[v].se;
   print(ANS);

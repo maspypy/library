@@ -7,14 +7,10 @@ void solve() {
   STR(S);
   auto ANS = run_enumerate(S);
   print(len(ANS));
-  for (auto&& [p, l, r]: ANS) print(p, l, r);
+  for (auto&& [p, l, r] : ANS) print(p, l, r);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
 
   return 0;
