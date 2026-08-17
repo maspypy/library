@@ -23,7 +23,7 @@ struct Fast_LCA {
   }
 
   int dist(int a, int b) {
-    int c = lca(a, b);
+    int c = LCA(a, b);
     return tree.depth[a] + tree.depth[b] - 2 * tree.depth[c];
   }
 

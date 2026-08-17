@@ -1,4 +1,4 @@
-#include "graph/path_cycle.hpp"
+#include "graph/path_cycle_decomposition.hpp"
 #include "poly/convolution.hpp"
 
 // 独立集合数え上げ。空集合も認める。N 1.381^N 程度。
@@ -9,7 +9,7 @@ u64 count_independent_set(GT& G) {
   assert(N < 64);
   if (N == 0) return 1;
   vc<U> nbd(N);
-  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= U(1) << e.to;
+  FOR(v, N) for (auto&& e : G[v]) nbd[v] |= U(1) << e.to;
 
   vc<U> dp_path(N + 1), dp_cyc(N + 1);
   dp_path[0] = 1, dp_path[1] = 2;
@@ -18,7 +18,7 @@ u64 count_independent_set(GT& G) {
 
   auto dfs = [&](auto& dfs, U s) -> U {
     int deg0 = 0;
-    pair<int, int> p = {-1, -1}; // (v, d)
+    pair<int, int> p = {-1, -1};  // (v, d)
     FOR(v, N) if (s >> v & 1) {
       int d = popcnt(nbd[v] & s);
       if (chmax(p.se, d)) p.fi = v;
@@ -48,10 +48,10 @@ u64 count_independent_set(GT& G) {
       }
     }
     G.build();
-    auto [paths, cycs] = path_cycle(G);
+    auto [paths, cycs] = path_cycle_decomposition(G);
     U res = 1;
-    for (auto&& P: paths) res *= dp_path[len(P)];
-    for (auto&& C: cycs) res *= dp_cyc[len(C)];
+    for (auto&& P : paths) res *= dp_path[len(P)];
+    for (auto&& C : cycs) res *= dp_cyc[len(C)];
     return res << deg0;
   };
   return dfs(dfs, (U(1) << N) - 1);
@@ -65,7 +65,7 @@ vc<u64> count_independent_set_by_size(GT& G) {
   assert(N < 64);
   if (N == 0) return {1};
   vc<U> nbd(N);
-  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= U(1) << e.to;
+  FOR(v, N) for (auto&& e : G[v]) nbd[v] |= U(1) << e.to;
 
   vvc<U> dp_path(N + 1), dp_cyc(N + 1);
   dp_path[0] = {1}, dp_path[1] = {1, 1};
@@ -81,7 +81,7 @@ vc<u64> count_independent_set_by_size(GT& G) {
 
   auto dfs = [&](auto& dfs, U s) -> vc<U> {
     vc<U> res = {1};
-    pair<int, int> p = {-1, -1}; // (v, d)
+    pair<int, int> p = {-1, -1};  // (v, d)
     FOR(v, N) if (s >> v & 1) {
       int d = popcnt(nbd[v] & s);
       if (chmax(p.se, d)) p.fi = v;
@@ -115,9 +115,9 @@ vc<u64> count_independent_set_by_size(GT& G) {
       }
     }
     G.build();
-    auto [paths, cycs] = path_cycle(G);
-    for (auto&& P: paths) res = convolution_naive(res, dp_path[len(P)]);
-    for (auto&& C: cycs) res = convolution_naive(res, dp_cyc[len(C)]);
+    auto [paths, cycs] = path_cycle_decomposition(G);
+    for (auto&& P : paths) res = convolution_naive(res, dp_path[len(P)]);
+    for (auto&& C : cycs) res = convolution_naive(res, dp_cyc[len(C)]);
     return res;
   };
   auto res = dfs(dfs, (U(1) << N) - 1);
@@ -134,7 +134,7 @@ vc<T> count_independent_set_by_size_weighted(GT& G, vc<T> wt) {
   assert(N < 64);
   if (N == 0) return {1};
   vc<U> nbd(N);
-  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= U(1) << e.to;
+  FOR(v, N) for (auto&& e : G[v]) nbd[v] |= U(1) << e.to;
 
   auto solve_path = [&](const vc<T>& A) -> vc<T> {
     int N = len(A);
@@ -174,7 +174,7 @@ vc<T> count_independent_set_by_size_weighted(GT& G, vc<T> wt) {
 
   auto dfs = [&](auto& dfs, U s) -> vc<T> {
     vc<T> res = {1};
-    pair<int, int> p = {-1, -1}; // (v, d)
+    pair<int, int> p = {-1, -1};  // (v, d)
     FOR(v, N) if (s >> v & 1) {
       int d = popcnt(nbd[v] & s);
       if (chmax(p.se, d)) p.fi = v;
@@ -208,15 +208,15 @@ vc<T> count_independent_set_by_size_weighted(GT& G, vc<T> wt) {
       }
     }
     G.build();
-    auto [paths, cycs] = path_cycle(G);
-    for (auto&& P: paths) {
+    auto [paths, cycs] = path_cycle_decomposition(G);
+    for (auto&& P : paths) {
       vc<T> A;
-      for (auto& i: P) A.eb(wt[V[i]]);
+      for (auto& i : P) A.eb(wt[V[i]]);
       res = convolution<T>(res, solve_path(A));
     }
-    for (auto&& P: cycs) {
+    for (auto&& P : cycs) {
       vc<T> A;
-      for (auto& i: P) A.eb(wt[V[i]]);
+      for (auto& i : P) A.eb(wt[V[i]]);
       res = convolution(res, solve_cycle(A));
     }
     return res;

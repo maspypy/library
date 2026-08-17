@@ -1,6 +1,6 @@
 
 #include "graph/shortest_path/bfs_01.hpp"
-#include "graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp"
+#include "graph/characteristic_poly_of_tree_adjacency_matrix.hpp"
 #include "poly/convolution_all.hpp"
 
 // ループなし：1600ms(N=10^5)
