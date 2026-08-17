@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"
-#include "flow/bipartite.hpp"
+#include "flow/bipartite_matching.hpp"
 
 void solve() {
   LL(H, W);
@@ -17,20 +17,20 @@ void solve() {
     auto& XY = dat[v];
     if (len(XY) == 0) continue;
     vi X, Y;
-    for (auto&& [x, y]: XY) {
+    for (auto&& [x, y] : XY) {
       X.eb(x);
       Y.eb(y);
     }
     UNIQUE(X);
     UNIQUE(Y);
     Graph G(len(X) + len(Y));
-    for (auto&& [x, y]: XY) {
+    for (auto&& [x, y] : XY) {
       x = LB(X, x);
       y = LB(Y, y);
       G.add(x, len(X) + y);
     }
     G.build();
-    BipartiteMatching BM(G);
+    Bipartite_Matching BM(G);
     auto cov = BM.vertex_cover();
     ANS += len(cov);
     // print(v, len(cov));
@@ -39,13 +39,7 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
+  solve();
 
   return 0;
 }

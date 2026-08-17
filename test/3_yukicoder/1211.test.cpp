@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1211"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/functional.hpp"
+#include "graph/functional_graph.hpp"
 
 void solve() {
   LL(N, K);
@@ -12,7 +12,7 @@ void solve() {
   auto check = [&](ll S) -> bool {
     // 全部 S 以上にできる
     if (S <= 0) return 1;
-    FunctionalGraph<Monoid_Add<int>> FG(N + N + 1);
+    Functional_Graph<Monoid_Add<int>> FG(N + N + 1);
     int j = 0;
     FOR(i, N + N + 1) {
       while (j < N + N && Ac[j] < Ac[i] + S) ++j;

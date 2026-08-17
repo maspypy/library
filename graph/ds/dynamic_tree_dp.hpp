@@ -7,13 +7,13 @@
 // rake(L,R) : L の boundary を維持
 // compress(L,R)  (top-down) 順に L,R
 template <typename TREE, typename TREE_DP>
-struct Dynamic_Tree_Dp {
+struct Dynamic_Tree_DP {
   using X = typename TREE_DP::value_type;
   Static_TopTree<TREE> STT;
   vc<X> dp;
 
   template <typename F>
-  Dynamic_Tree_Dp(TREE& tree, F single) : STT(tree) {
+  Dynamic_Tree_DP(TREE& tree, F single) : STT(tree) {
     int N = tree.N;
     dp.resize(2 * N - 1);
     FOR(i, N) dp[i] = single(i);
@@ -27,9 +27,10 @@ struct Dynamic_Tree_Dp {
 
   X prod_all() { return dp.back(); }
 
-private:
+ private:
   inline void update(int i) {
     X &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];
-    dp[i] = (STT.is_compress[i] ? TREE_DP::compress(L, R) : TREE_DP::rake(L, R));
+    dp[i] =
+        (STT.is_compress[i] ? TREE_DP::compress(L, R) : TREE_DP::rake(L, R));
   }
 };

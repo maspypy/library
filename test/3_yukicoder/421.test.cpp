@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "ds/my_bitset.hpp"
-#include "flow/bipartite_dense.hpp"
+#include "flow/bipartite_matching_dense.hpp"
 
 void solve() {
   INT(H, W);
@@ -35,7 +35,7 @@ void solve() {
     }
   }
 
-  BipartiteMatching_Dense<My_Bitset> BM(adj, a, b);
+  Bipartite_Matching_Dense<My_Bitset> BM(adj, a, b);
   auto match = BM.matching();
   int n = len(match);
   int x = 0, y = 0;

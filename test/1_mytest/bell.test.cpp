@@ -11,7 +11,7 @@ void test() {
   auto S = stirling_number_2_2d<mint>(N, N);
   vc<mint> B(N);
   FOR(i, N) B[i] = SUM<mint>(S[i]);
-  FOR(i, N) { assert(B[i] == Bell_Number_large<mint>(i)); }
+  FOR(i, N) { assert(B[i] == bell_number_large<mint>(i)); }
 }
 
 void solve() {

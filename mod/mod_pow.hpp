@@ -1,5 +1,5 @@
 
-#include "mod/mongomery_modint.hpp"
+#include "mod/montgomery_modint.hpp"
 #include "mod/barrett.hpp"
 
 u32 mod_pow(int a, ll n, int mod) {
@@ -7,7 +7,7 @@ u32 mod_pow(int a, ll n, int mod) {
   if (mod == 1) return 0;
   a = ((a %= mod) < 0 ? a + mod : a);
   if ((mod & 1) && (mod < (1 << 30))) {
-    using mint = Mongomery_modint_32<202311021>;
+    using mint = Montgomery_modint_32<202311021>;
     mint::set_mod(mod);
     return mint(a).pow(n).val();
   }
@@ -25,7 +25,7 @@ u64 mod_pow_64(ll a, ll n, u64 mod) {
   if (mod == 1) return 0;
   a = ((a %= mod) < 0 ? a + mod : a);
   if ((mod & 1) && (mod < (u64(1) << 62))) {
-    using mint = Mongomery_modint_64<202311021>;
+    using mint = Montgomery_modint_64<202311021>;
     mint::set_mod(mod);
     return mint(a).pow(n).val();
   }

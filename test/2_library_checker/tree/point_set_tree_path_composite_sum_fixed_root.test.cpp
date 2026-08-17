@@ -1,4 +1,6 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root"
+#define PROBLEM                      \
+  "https://judge.yosupo.jp/problem/" \
+  "point_set_tree_path_composite_sum_fixed_root"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -8,7 +10,7 @@
 using mint = modint998;
 
 struct Data {
-  mint a, b; // path composition = x -> ax+b
+  mint a, b;  // path composition = x -> ax+b
   mint cnt;
   mint ans;
 };
@@ -43,12 +45,14 @@ void solve() {
   Tree<decltype(G)> tree(G);
 
   auto single = [&](int v) -> Data {
-    if (v == 0) { return {1, 0, 1, A[v]}; }
+    if (v == 0) {
+      return {1, 0, 1, A[v]};
+    }
     int e = tree.v_to_e(v);
     return {B[e], C[e], 1, B[e] * A[v] + C[e]};
   };
 
-  Dynamic_Tree_Dp<decltype(tree), TREE_DP> DP(tree, single);
+  Dynamic_Tree_DP<decltype(tree), TREE_DP> DP(tree, single);
 
   FOR(Q) {
     INT(t);

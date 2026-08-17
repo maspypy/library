@@ -3,14 +3,14 @@
 #include "graph/strongly_connected_component.hpp"
 
 template <typename GT>
-struct BipartiteMatching {
+struct Bipartite_Matching {
   int N;
   GT& G;
   vc<int> color;
   vc<int> dist, match;
   vc<int> vis;
 
-  BipartiteMatching(GT& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {
+  Bipartite_Matching(GT& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {
     color = bipartite_vertex_coloring(G);
     if (N > 0) assert(!color.empty());
     while (1) {
@@ -22,7 +22,7 @@ struct BipartiteMatching {
     }
   }
 
-  BipartiteMatching(GT& G, vc<int> color)
+  Bipartite_Matching(GT& G, vc<int> color)
       : N(G.N), G(G), color(color), dist(G.N, -1), match(G.N, -1) {
     while (1) {
       bfs();

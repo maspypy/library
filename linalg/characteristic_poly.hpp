@@ -1,5 +1,5 @@
 template <typename T>
-void to_Hessenberg_matrix(vc<vc<T>>& A) {
+void to_hessenberg_matrix(vc<vc<T>>& A) {
   /*
   P^{-1}AP の形の変換で、Hessenberg 行列に変形する。
   特定多項式の計算に用いることができる。
@@ -32,7 +32,7 @@ vc<T> characteristic_poly(vc<vc<T>> A) {
   ・Hessenberg 行列の行列式は、最後の列で場合分けすれば dp できる
   */
   int n = len(A);
-  to_Hessenberg_matrix(A);
+  to_hessenberg_matrix(A);
   vc<vc<T>> DP(n + 1);
   DP[0] = {T(1)};
   FOR(k, n) {

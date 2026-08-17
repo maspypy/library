@@ -4,7 +4,7 @@
 #include "mod/dynamic_modint.hpp"
 
 template <bool EVEN>
-vc<u32> Reeds_Sloane_Prime_Power(vc<u32> S, int p, int e) {
+vc<u32> reeds_sloane_prime_power(vc<u32> S, int p, int e) {
   using T = std::conditional_t<EVEN, u32, Dynamic_Modint<20260623>>;
   u32 M = 1;
   FOR(e) M *= p;
@@ -115,7 +115,7 @@ S(x)=P(x)/Q(x) mod x^N, [x^0]Q=1
 minimize L=max(deg(P)+1,deg(Q))
 */
 template <typename mint>
-pair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S, vc<pair<ll, int>> pfs = {}) {
+pair<vc<mint>, vc<mint>> reeds_sloane(vc<mint> S, vc<pair<ll, int>> pfs = {}) {
   u32 mod = mint::get_mod();
   if (mod > 1 && pfs.empty()) {
     pfs = factor(mod);
@@ -149,8 +149,8 @@ pair<vc<mint>, vc<mint>> Reeds_Sloane(vc<mint> S, vc<pair<ll, int>> pfs = {}) {
     FOR(e) a *= p;
     vc<u32> T(len(S));
     FOR(i, len(S)) T[i] = (S[i].val) % a;
-    auto Qk = (p == 2 ? Reeds_Sloane_Prime_Power<1>(T, p, e)
-                      : Reeds_Sloane_Prime_Power<0>(T, p, e));
+    auto Qk = (p == 2 ? reeds_sloane_prime_power<1>(T, p, e)
+                      : reeds_sloane_prime_power<0>(T, p, e));
     if (len(Q) < len(Qk)) Q.resize(len(Qk));
     FOR(i, len(Qk)) Q[i] += ll(Qk[i]) * coef[k];
   }

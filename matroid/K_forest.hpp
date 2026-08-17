@@ -1,6 +1,6 @@
 // frm, to, 重複度
 // https://codeforces.com/contest/1951/problem/I
-bool K_Forest(ll K, int N, vc<tuple<int, int, ll>> dat) {
+bool is_k_forest(ll K, int N, vc<tuple<int, int, ll>> dat) {
   ll sm = 0;
   ll M = len(dat);
   for (auto& [a, b, cnt] : dat) sm += cnt;

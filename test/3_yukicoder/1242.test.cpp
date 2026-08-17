@@ -1,13 +1,13 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1242"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/functional.hpp"
+#include "graph/functional_graph.hpp"
 
 void solve() {
   LL(N, K);
   VEC(ll, A, K);
 
-  FunctionalGraph<Monoid_Add<int>> FG(64);
+  Functional_Graph<Monoid_Add<int>> FG(64);
   FOR(s, 64) {
     int t = (2 * s) & 63;
     bool ok = 1;

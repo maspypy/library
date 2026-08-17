@@ -3,7 +3,7 @@
 #include "ds/unionfind/unionfind.hpp"
 
 template <typename GT>
-struct UnicyclicGraph {
+struct Unicyclic_Graph {
   static_assert(!GT::is_directed);
   using T = typename GT::cost_type;
   GT& G0;
@@ -12,10 +12,10 @@ struct UnicyclicGraph {
   int out_eid;
   T out_cost;
   vc<int> TO;
-  vc<int> cycle;     // 根に向かうような頂点列
-  vc<bool> in_cycle; // vertex id -> bool
+  vc<int> cycle;      // 根に向かうような頂点列
+  vc<bool> in_cycle;  // vertex id -> bool
 
-  UnicyclicGraph(GT& G) : G0(G), N(G.N) {
+  Unicyclic_Graph(GT& G) : G0(G), N(G.N) {
     assert(N == G.M);
     UnionFind uf(N);
     TO.assign(N, -1);
@@ -32,7 +32,7 @@ struct UnicyclicGraph {
     while (len(que)) {
       int v = POP(que);
       done[v] = 1;
-      for (auto&& e: G[v]) {
+      for (auto&& e : G[v]) {
         if (done[e.to] || e.id == out_eid) continue;
         TO[e.to] = v;
         que.eb(e.to);
@@ -41,7 +41,7 @@ struct UnicyclicGraph {
     cycle = {TO[root]};
     while (cycle.back() != root) cycle.eb(TO[cycle.back()]);
     in_cycle.assign(N, 0);
-    for (auto&& v: cycle) in_cycle[v] = 1;
+    for (auto&& v : cycle) in_cycle[v] = 1;
   }
 
   // {G, tree}

@@ -2,16 +2,17 @@
 #include "random/base.hpp"
 
 // https://codeforces.com/contest/958/problem/A2
-struct RollingHash_2D {
+struct Rolling_Hash_2D {
   using M61 = modint61;
   const M61 b1, b2;
   vc<M61> pow1;
   vc<M61> pow2;
 
-  RollingHash_2D()
+  Rolling_Hash_2D()
       : b1(generate_base()), b2(generate_base()), pow1{M61(1)}, pow2{M61(1)} {}
 
-  template <typename STRING> vvc<M61> build(const vc<STRING> &S) {
+  template <typename STRING>
+  vvc<M61> build(const vc<STRING> &S) {
     int H = len(S);
     int W = len(S[0]);
     vv(M61, res, H + 1, W + 1);
@@ -32,11 +33,10 @@ struct RollingHash_2D {
     return a - b * pow1[xr - xl];
   }
 
-private:
+ private:
   static inline u64 generate_base() { return RNG(M61::get_mod()); }
 
   void expand(vc<M61> &pow, const M61 &b, int n) {
-    while (len(pow) <= n)
-      pow.eb(pow.back() * b);
+    while (len(pow) <= n) pow.eb(pow.back() * b);
   }
 };

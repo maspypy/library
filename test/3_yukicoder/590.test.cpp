@@ -1,7 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/590"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/functional.hpp"
 #include "nt/crt.hpp"
 #include "mod/modint.hpp"
 
@@ -15,7 +14,7 @@ void solve() {
     vvc<int> C;
     vc<pair<int, int>> pos(N, {-1, -1});
     VEC(ll, TO, N);
-    for (auto&& x: TO) --x;
+    for (auto&& x : TO) --x;
     FOR(r, N) {
       if (pos[r].fi != -1) continue;
       vc<int> cyc = {int(r)};
@@ -52,7 +51,7 @@ void solve() {
 
   mint ANS = 0;
 
-  for (auto&& [key, I]: MP) {
+  for (auto&& [key, I] : MP) {
     auto r = I[0];
     // t=0 で (r,r) にいるとする。(v,v) にいる時刻
     vi X;
@@ -61,7 +60,7 @@ void solve() {
     ll n2 = len(CB[i2]);
     ll s1 = posA[r].se;
     ll s2 = posB[r].se;
-    for (auto&& v: I) {
+    for (auto&& v : I) {
       ll t1 = posA[v].se;
       ll t2 = posB[v].se;
       t1 -= s1;

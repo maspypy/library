@@ -2,7 +2,7 @@
 
 // Bell 数 B_n の計算。O(p logp logn)
 template <typename mint>
-mint Bell_Number_large(ll n) {
+mint bell_number_large(ll n) {
   int p = mint::get_mod();
   vc<mint> f(p);
   FOR(i, p) f[i] = fact_inv<mint>(i);

@@ -2,7 +2,7 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/functional.hpp"
+#include "graph/functional_graph.hpp"
 #include "mod/modint.hpp"
 #include "poly/coef_of_rational_fps.hpp"
 
@@ -12,7 +12,9 @@ ll to(ll n, ll M) {
   vc<mint> f = {0, 1};
   vc<mint> g = {1, -n, -1};
   mint x = coef_of_rational_fps(f, g, M);
-  if (M % 2 == 1) { x -= mint(1); }
+  if (M % 2 == 1) {
+    x -= mint(1);
+  }
   return x.val;
 }
 
@@ -45,7 +47,7 @@ void solve() {
   };
 
   ll N = 10000;
-  FunctionalGraph<Monoid_Add<int>> X(N);
+  Functional_Graph<Monoid_Add<int>> X(N);
   FOR(n, N) {
     ll m = to(n, M);
     X.add(n, m);

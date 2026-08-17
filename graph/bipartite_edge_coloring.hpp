@@ -2,7 +2,7 @@
 #include "ds/unionfind/unionfind.hpp"
 #include "flow/bipartite.hpp"
 
-struct RegularBipartiteColoring {
+struct Regular_Bipartite_Coloring {
   using P = pair<int, int>;
   int N, M;
   vc<P> edges;
@@ -77,7 +77,7 @@ struct RegularBipartiteColoring {
       G.add(a, b);
     }
     G.build();
-    BipartiteMatching<decltype(G)> BM(G);
+    Bipartite_Matching<decltype(G)> BM(G);
     auto& match = BM.match;
     vc<bool> res(len(A));
     FOR(i, len(A)) {
@@ -175,7 +175,7 @@ pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
     edges.eb(p, X + q);
     degL[p]++, degR[q]++;
   }
-  RegularBipartiteColoring RBC;
+  Regular_Bipartite_Coloring RBC;
   vvc<int> res = RBC.solve(X, D, edges);
   vc<int> ecolor(len(edges));
   FOR(i, len(res)) {

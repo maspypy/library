@@ -11,7 +11,7 @@
 // (10000, 10000) 6500ms TLE. row, col とも shuffle で 3000ms AC.
 // bitset の方が My_Bitset より高速？(2024/05/27)
 template <typename BS>
-struct BipartiteMatching_Dense {
+struct Bipartite_Matching_Dense {
   int N1, N2;
   vc<BS>& adj;
   vc<int> match_1, match_2;
@@ -19,7 +19,8 @@ struct BipartiteMatching_Dense {
   vc<int> prev;
   BS vis;
 
-  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2) : N1(N1), N2(N2), adj(adj), match_1(N1, -1), match_2(N2, -1) {
+  Bipartite_Matching_Dense(vc<BS>& adj, int N1, int N2)
+      : N1(N1), N2(N2), adj(adj), match_1(N1, -1), match_2(N2, -1) {
     if constexpr (is_same_v<BS, My_Bitset>) vis.resize(N2);
     FOR(s, N1) bfs(s);
   }
