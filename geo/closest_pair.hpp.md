@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -81,7 +81,7 @@ data:
     \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
     \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
     \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
     struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
@@ -205,7 +205,7 @@ data:
   isVerificationFile: false
   path: geo/closest_pair.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/geometry/closest_pair.test.cpp

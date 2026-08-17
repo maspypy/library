@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incremental_convex_hull.hpp
     title: geo/incremental_convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -163,7 +163,7 @@ data:
     \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
     \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
     \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
     struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
@@ -217,7 +217,7 @@ data:
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
     \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B);\
     \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
@@ -225,7 +225,7 @@ data:
     \ <= r * r;\n  }\n};\n#line 3 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\
     \u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\
     \n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate\
-    \ <typename T, bool allow_180 = false>\nvector<int> Convex_Hull(vector<Point<T>>&\
+    \ <typename T, bool allow_180 = false>\nvector<int> convex_hull(vector<Point<T>>&\
     \ XY, string mode = \"full\",\n                        bool sorted = false) {\n\
     \  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N\
     \ = XY.size();\n  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1])\
@@ -292,7 +292,7 @@ data:
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
     \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B);\
     \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
@@ -346,7 +346,7 @@ data:
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
     \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B);\
     \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
@@ -354,7 +354,7 @@ data:
     \ <= r * r;\n  }\n};\n#line 3 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\
     \u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\
     \n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate\
-    \ <typename T, bool allow_180 = false>\nvector<int> Convex_Hull(vector<Point<T>>&\
+    \ <typename T, bool allow_180 = false>\nvector<int> convex_hull(vector<Point<T>>&\
     \ XY, string mode = \"full\",\n                        bool sorted = false) {\n\
     \  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N\
     \ = XY.size();\n  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1])\
@@ -493,7 +493,7 @@ data:
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
     \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B);\
     \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
@@ -558,7 +558,7 @@ data:
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 9 \"test/1_mytest/convex_polygon_visible_range.test.cpp\"\
     \n\nusing P = Point<ll>;\n\nvoid test() {\n  int N = RNG(3, 10);\n  vc<P> point(N);\n\
-    \  FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n  auto I = Convex_Hull(point);\n\
+    \  FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n  auto I = convex_hull(point);\n\
     \  point = rearrange(point, I);\n  N = len(point);\n  if (N <= 2) return;\n\n\
     \  Convex_Polygon<ll> X(point);\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P p(x,\
     \ y);\n    if (X.side(p) == 1) continue;\n    auto [l, r] = X.visible_range(p);\n\
@@ -574,7 +574,7 @@ data:
     \n\n#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\n#include \"geo/convex_polygon.hpp\"\
     \n#include \"geo/incremental_convex_hull.hpp\"\n#include \"random/base.hpp\"\n\
     \nusing P = Point<ll>;\n\nvoid test() {\n  int N = RNG(3, 10);\n  vc<P> point(N);\n\
-    \  FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n  auto I = Convex_Hull(point);\n\
+    \  FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n  auto I = convex_hull(point);\n\
     \  point = rearrange(point, I);\n  N = len(point);\n  if (N <= 2) return;\n\n\
     \  Convex_Polygon<ll> X(point);\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P p(x,\
     \ y);\n    if (X.side(p) == 1) continue;\n    auto [l, r] = X.visible_range(p);\n\
@@ -596,7 +596,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/convex_polygon_visible_range.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 11:13:06+09:00'
+  timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/convex_polygon_visible_range.test.cpp

@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':heavy_check_mark:'

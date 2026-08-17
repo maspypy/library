@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/random_polygon.hpp\"\n\n#line 1 \"random/base.hpp\"\
@@ -94,7 +94,7 @@ data:
     \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
     \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
     \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
     struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
@@ -148,7 +148,7 @@ data:
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
     \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B);\
     \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
@@ -156,7 +156,7 @@ data:
     \ <= r * r;\n  }\n};\n#line 3 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\
     \u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\
     \n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate\
-    \ <typename T, bool allow_180 = false>\nvector<int> Convex_Hull(vector<Point<T>>&\
+    \ <typename T, bool allow_180 = false>\nvector<int> convex_hull(vector<Point<T>>&\
     \ XY, string mode = \"full\",\n                        bool sorted = false) {\n\
     \  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N\
     \ = XY.size();\n  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1])\
@@ -223,7 +223,7 @@ data:
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
     \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B);\
     \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
@@ -326,7 +326,7 @@ data:
     \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
     \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
     \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
     struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
@@ -394,7 +394,7 @@ data:
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
     \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B);\
     \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
@@ -583,7 +583,7 @@ data:
     \ Point<ll>;\n  auto trial = [&]() -> vc<P> {\n    set<Point<ll>> S;\n    while\
     \ (len(S) < N) {\n      int x = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      int y\
     \ = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      S.insert(Point<ll>(x, y));\n    }\n\
-    \    vc<P> point(all(S));\n    auto I = Convex_Hull<ll, true>(point);\n    Count_Points_In_Triangles\
+    \    vc<P> point(all(S));\n    auto I = convex_hull<ll, true>(point);\n    Count_Points_In_Triangles\
     \ CT(point, point);\n    vc<int> other;\n    vc<int> done(N);\n    for (auto&\
     \ i : I) done[i]++;\n    if (MAX(done) >= 2) return {};\n    FOR(i, N) if (!done[i])\
     \ other.eb(i);\n    int fail = 0;\n    while (len(other)) {\n      if (fail >\
@@ -608,7 +608,7 @@ data:
     \ 3);\n  using P = Point<ll>;\n  auto trial = [&]() -> vc<P> {\n    set<Point<ll>>\
     \ S;\n    while (len(S) < N) {\n      int x = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n\
     \      int y = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      S.insert(Point<ll>(x,\
-    \ y));\n    }\n    vc<P> point(all(S));\n    auto I = Convex_Hull<ll, true>(point);\n\
+    \ y));\n    }\n    vc<P> point(all(S));\n    auto I = convex_hull<ll, true>(point);\n\
     \    Count_Points_In_Triangles CT(point, point);\n    vc<int> other;\n    vc<int>\
     \ done(N);\n    for (auto& i : I) done[i]++;\n    if (MAX(done) >= 2) return {};\n\
     \    FOR(i, N) if (!done[i]) other.eb(i);\n    int fail = 0;\n    while (len(other))\
@@ -640,8 +640,8 @@ data:
   isVerificationFile: false
   path: random/random_polygon.hpp
   requiredBy: []
-  timestamp: '2026-08-17 11:03:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 16:26:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: random/random_polygon.hpp

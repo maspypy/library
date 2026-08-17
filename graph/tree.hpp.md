@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -20,55 +20,55 @@ data:
   - icon: ':warning:'
     path: graph/ds/distance_sum.hpp
     title: graph/ds/distance_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':warning:'
@@ -77,184 +77,184 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/unicyclic_graph.hpp
     title: graph/unicyclic_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/ancestor_closed_set_knapsack.hpp
     title: knapsack/ancestor_closed_set_knapsack.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/independent_set_knapsack.hpp
     title: knapsack/independent_set_knapsack.hpp
   - icon: ':warning:'
     path: string/enumerate_occurrence.hpp
     title: string/enumerate_occurrence.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
     title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/connected_set_knapsack.test.cpp
     title: test/1_mytest/connected_set_knapsack.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/independent_set_knapsack.test.cpp
     title: test/1_mytest/independent_set_knapsack.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca.test.cpp
     title: test/2_library_checker/tree/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_directed.test.cpp
     title: test/2_library_checker/tree/lca_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
     title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1212.test.cpp
     title: test/3_yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1254.test.cpp
     title: test/3_yukicoder/1254.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1295.test.cpp
     title: test/3_yukicoder/1295.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1326.test.cpp
     title: test/3_yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1418.test.cpp
     title: test/3_yukicoder/1418.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1451.test.cpp
     title: test/3_yukicoder/1451.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1494.test.cpp
     title: test/3_yukicoder/1494.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1524.test.cpp
     title: test/3_yukicoder/1524.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1778.test.cpp
     title: test/3_yukicoder/1778.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1789.test.cpp
     title: test/3_yukicoder/1789.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1976.test.cpp
     title: test/3_yukicoder/1976.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2258.test.cpp
     title: test/3_yukicoder/2258.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2342.test.cpp
     title: test/3_yukicoder/2342.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2342_2.test.cpp
     title: test/3_yukicoder/2342_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/235.test.cpp
     title: test/3_yukicoder/235.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -382,44 +382,43 @@ data:
     \u500B\u6570\u304C k\n  int LA(int v, int k) {\n    static_assert(HLD);\n    assert(k\
     \ <= depth[v]);\n    while (1) {\n      int u = head[v];\n      if (LID[v] - k\
     \ >= LID[u]) return V[LID[v] - k];\n      k -= LID[v] - LID[u] + 1;\n      v =\
-    \ parent[u];\n    }\n  }\n  int la(int u, int v) { return LA(u, v); }\n\n  int\
-    \ LCA(int u, int v) {\n    static_assert(HLD);\n    for (;; v = parent[head[v]])\
-    \ {\n      if (LID[u] > LID[v]) swap(u, v);\n      if (head[u] == head[v]) return\
-    \ u;\n    }\n  }\n\n  int meet(int a, int b, int c) {\n    static_assert(HLD);\n\
-    \    return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c);\n  }\n  int lca(int u, int v) {\
-    \ return LCA(u, v); }\n\n  int subtree_size(int v) { return RID[v] - LID[v]; }\n\
-    \n  int subtree_size(int v, int root) {\n    static_assert(HLD);\n    if (v ==\
-    \ root) return N;\n    int x = jump(v, root, 1);\n    if (in_subtree(v, x)) return\
-    \ RID[v] - LID[v];\n    return N - RID[x] + LID[x];\n  }\n\n  int dist(int a,\
-    \ int b) {\n    static_assert(HLD);\n    int c = LCA(a, b);\n    return depth[a]\
-    \ + depth[b] - 2 * depth[c];\n  }\n\n  WT dist_weighted(int a, int b) {\n    static_assert(HLD);\n\
-    \    int c = LCA(a, b);\n    return depth_weighted[a] + depth_weighted[b] - WT(2)\
-    \ * depth_weighted[c];\n  }\n\n  // a is in b\n  bool in_subtree(int a, int b)\
-    \ { return LID[b] <= LID[a] && LID[a] < RID[b]; }\n\n  int jump(int a, int b,\
-    \ ll k) {\n    static_assert(HLD);\n    if (k == 1) {\n      if (a == b) return\
-    \ -1;\n      return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\n\
-    \    }\n    int c = LCA(a, b);\n    int d_ac = depth[a] - depth[c];\n    int d_bc\
-    \ = depth[b] - depth[c];\n    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac)\
-    \ return LA(a, k);\n    return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int\
-    \ v) {\n    vc<int> res;\n    for (auto &&e : G[v])\n      if (e.to != parent[v])\
-    \ res.eb(e.to);\n    return res;\n  }\n\n  vc<int> collect_subtree(int v) {\n\
-    \    return {V.begin() + LID[v], V.begin() + RID[v]};\n  }\n\n  vc<int> collect_light(int\
-    \ v) {\n    static_assert(HLD);\n    vc<int> res;\n    for (auto &&e : G[v]) {\n\
-    \      if (e.to != parent[v] && head[e.to] == e.to) res.eb(e.to);\n    }\n   \
-    \ return res;\n  }\n\n  vc<pair<int, int>> get_path_decomposition(int u, int v,\
-    \ bool edge) {\n    static_assert(HLD);\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\
-    \"\u9589\"\u533A\u9593\u5217\u3002\n    vc<pair<int, int>> up, down;\n    while\
+    \ parent[u];\n    }\n  }\n\n  int LCA(int u, int v) {\n    static_assert(HLD);\n\
+    \    for (;; v = parent[head[v]]) {\n      if (LID[u] > LID[v]) swap(u, v);\n\
+    \      if (head[u] == head[v]) return u;\n    }\n  }\n\n  int meet(int a, int\
+    \ b, int c) {\n    static_assert(HLD);\n    return LCA(a, b) ^ LCA(a, c) ^ LCA(b,\
+    \ c);\n  }\n\n  int subtree_size(int v) { return RID[v] - LID[v]; }\n\n  int subtree_size(int\
+    \ v, int root) {\n    static_assert(HLD);\n    if (v == root) return N;\n    int\
+    \ x = jump(v, root, 1);\n    if (in_subtree(v, x)) return RID[v] - LID[v];\n \
+    \   return N - RID[x] + LID[x];\n  }\n\n  int dist(int a, int b) {\n    static_assert(HLD);\n\
+    \    int c = LCA(a, b);\n    return depth[a] + depth[b] - 2 * depth[c];\n  }\n\
+    \n  WT dist_weighted(int a, int b) {\n    static_assert(HLD);\n    int c = LCA(a,\
+    \ b);\n    return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\n\
+    \  }\n\n  // a is in b\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a]\
+    \ && LID[a] < RID[b]; }\n\n  int jump(int a, int b, ll k) {\n    static_assert(HLD);\n\
+    \    if (k == 1) {\n      if (a == b) return -1;\n      return (in_subtree(b,\
+    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\n    }\n    int c = LCA(a,\
+    \ b);\n    int d_ac = depth[a] - depth[c];\n    int d_bc = depth[b] - depth[c];\n\
+    \    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac) return LA(a, k);\n  \
+    \  return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int v) {\n \
+    \   vc<int> res;\n    for (auto &&e : G[v])\n      if (e.to != parent[v]) res.eb(e.to);\n\
+    \    return res;\n  }\n\n  vc<int> collect_subtree(int v) {\n    return {V.begin()\
+    \ + LID[v], V.begin() + RID[v]};\n  }\n\n  vc<int> collect_light(int v) {\n  \
+    \  static_assert(HLD);\n    vc<int> res;\n    for (auto &&e : G[v]) {\n      if\
+    \ (e.to != parent[v] && head[e.to] == e.to) res.eb(e.to);\n    }\n    return res;\n\
+    \  }\n\n  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) {\n\
+    \    static_assert(HLD);\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\
+    \u533A\u9593\u5217\u3002\n    vc<pair<int, int>> up, down;\n    while (1) {\n\
+    \      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v]) {\n        down.eb(LID[head[v]],\
+    \ LID[v]);\n        v = parent[head[v]];\n      } else {\n        up.eb(LID[u],\
+    \ LID[head[u]]);\n        u = parent[head[u]];\n      }\n    }\n    if (LID[u]\
+    \ < LID[v]) down.eb(LID[u] + edge, LID[v]);\n    elif (LID[v] + edge <= LID[u])\
+    \ up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n    up.insert(up.end(),\
+    \ all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\u5217\u306E\u60C5\u5831\
+    \ (frm,to,str)\n  // str = \"heavy_up\", \"heavy_down\", \"light_up\", \"light_down\"\
+    \n  vc<tuple<int, int, string>> get_path_decomposition_detail(int u, int v) {\n\
+    \    static_assert(HLD);\n    vc<tuple<int, int, string>> up, down;\n    while\
     \ (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v]) {\n\
-    \        down.eb(LID[head[v]], LID[v]);\n        v = parent[head[v]];\n      }\
-    \ else {\n        up.eb(LID[u], LID[head[u]]);\n        u = parent[head[u]];\n\
-    \      }\n    }\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\n  \
-    \  elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n\
-    \    up.insert(up.end(), all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\
-    \u5217\u306E\u60C5\u5831 (frm,to,str)\n  // str = \"heavy_up\", \"heavy_down\"\
-    , \"light_up\", \"light_down\"\n  vc<tuple<int, int, string>> get_path_decomposition_detail(int\
-    \ u, int v) {\n    static_assert(HLD);\n    vc<tuple<int, int, string>> up, down;\n\
-    \    while (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v])\
-    \ {\n        if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\n\
+    \        if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\n\
     \        down.eb(parent[v], v, \"light_down\"), v = parent[v];\n      } else {\n\
     \        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\n   \
     \     up.eb(u, parent[u], \"light_up\"), u = parent[u];\n      }\n    }\n    if\
@@ -499,19 +498,18 @@ data:
     \ \u76EE\u6A19\u5730\u70B9\u3078\u9032\u3080\u500B\u6570\u304C k\n  int LA(int\
     \ v, int k) {\n    static_assert(HLD);\n    assert(k <= depth[v]);\n    while\
     \ (1) {\n      int u = head[v];\n      if (LID[v] - k >= LID[u]) return V[LID[v]\
-    \ - k];\n      k -= LID[v] - LID[u] + 1;\n      v = parent[u];\n    }\n  }\n \
-    \ int la(int u, int v) { return LA(u, v); }\n\n  int LCA(int u, int v) {\n   \
-    \ static_assert(HLD);\n    for (;; v = parent[head[v]]) {\n      if (LID[u] >\
-    \ LID[v]) swap(u, v);\n      if (head[u] == head[v]) return u;\n    }\n  }\n\n\
-    \  int meet(int a, int b, int c) {\n    static_assert(HLD);\n    return LCA(a,\
-    \ b) ^ LCA(a, c) ^ LCA(b, c);\n  }\n  int lca(int u, int v) { return LCA(u, v);\
-    \ }\n\n  int subtree_size(int v) { return RID[v] - LID[v]; }\n\n  int subtree_size(int\
-    \ v, int root) {\n    static_assert(HLD);\n    if (v == root) return N;\n    int\
-    \ x = jump(v, root, 1);\n    if (in_subtree(v, x)) return RID[v] - LID[v];\n \
-    \   return N - RID[x] + LID[x];\n  }\n\n  int dist(int a, int b) {\n    static_assert(HLD);\n\
-    \    int c = LCA(a, b);\n    return depth[a] + depth[b] - 2 * depth[c];\n  }\n\
-    \n  WT dist_weighted(int a, int b) {\n    static_assert(HLD);\n    int c = LCA(a,\
-    \ b);\n    return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\n\
+    \ - k];\n      k -= LID[v] - LID[u] + 1;\n      v = parent[u];\n    }\n  }\n\n\
+    \  int LCA(int u, int v) {\n    static_assert(HLD);\n    for (;; v = parent[head[v]])\
+    \ {\n      if (LID[u] > LID[v]) swap(u, v);\n      if (head[u] == head[v]) return\
+    \ u;\n    }\n  }\n\n  int meet(int a, int b, int c) {\n    static_assert(HLD);\n\
+    \    return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c);\n  }\n\n  int subtree_size(int\
+    \ v) { return RID[v] - LID[v]; }\n\n  int subtree_size(int v, int root) {\n  \
+    \  static_assert(HLD);\n    if (v == root) return N;\n    int x = jump(v, root,\
+    \ 1);\n    if (in_subtree(v, x)) return RID[v] - LID[v];\n    return N - RID[x]\
+    \ + LID[x];\n  }\n\n  int dist(int a, int b) {\n    static_assert(HLD);\n    int\
+    \ c = LCA(a, b);\n    return depth[a] + depth[b] - 2 * depth[c];\n  }\n\n  WT\
+    \ dist_weighted(int a, int b) {\n    static_assert(HLD);\n    int c = LCA(a, b);\n\
+    \    return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\n\
     \  }\n\n  // a is in b\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a]\
     \ && LID[a] < RID[b]; }\n\n  int jump(int a, int b, ll k) {\n    static_assert(HLD);\n\
     \    if (k == 1) {\n      if (a == b) return -1;\n      return (in_subtree(b,\
@@ -627,8 +625,8 @@ data:
   - string/enumerate_occurrence.hpp
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 16:26:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp

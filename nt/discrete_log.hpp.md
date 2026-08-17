@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -31,7 +31,7 @@ data:
     \ &x, const X &y) noexcept { return x * y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return X(1) / x; }\n  static constexpr X unit() { return X(1);\
     \ }\n  static constexpr bool commute = true;\n};\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
-    \ntemplate <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A\
+    \ntemplate <typename Monoid>\nstruct ActedSet_from_Monoid {\n  using Monoid_A\
     \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
     \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 1 \"ds/hashmap.hpp\"\
     \n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
@@ -83,7 +83,7 @@ data:
     \u3092\u304B\u3048\u3059\u3001\u306A\u3051\u308C\u3070 -1\r\ntemplate <typename\
     \ Monoid, typename F>\r\nll discrete_log_monoid(typename Monoid::X a, typename\
     \ Monoid::X b, F H, ll lb,\r\n                       ll ub) {\r\n  using AM =\
-    \ ActedSet_From_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a, Monoid::unit(),\
+    \ ActedSet_from_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a, Monoid::unit(),\
     \ b, H, lb, ub);\r\n}\r\n"
   code: "#include \"alg/monoid/mul.hpp\"\r\n#include \"alg/acted_set/from_monoid.hpp\"\
     \r\n#include \"ds/hashmap.hpp\"\r\n\r\n// \u30E2\u30CE\u30A4\u30C9 X \u306E\u4F5C\
@@ -111,7 +111,7 @@ data:
     \u308B\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3001\
     \u306A\u3051\u308C\u3070 -1\r\ntemplate <typename Monoid, typename F>\r\nll discrete_log_monoid(typename\
     \ Monoid::X a, typename Monoid::X b, F H, ll lb,\r\n                       ll\
-    \ ub) {\r\n  using AM = ActedSet_From_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a,\
+    \ ub) {\r\n  using AM = ActedSet_from_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a,\
     \ Monoid::unit(), b, H, lb, ub);\r\n}\r\n"
   dependsOn:
   - alg/monoid/mul.hpp
@@ -121,7 +121,7 @@ data:
   path: nt/discrete_log.hpp
   requiredBy:
   - mod/mod_log.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp

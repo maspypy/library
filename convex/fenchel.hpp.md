@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   _extendedRequiredBy: []
@@ -63,7 +63,7 @@ data:
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
     \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B);\
+    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B);\
     \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
     \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
     \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
@@ -71,7 +71,7 @@ data:
     \ <= r * r;\n  }\n};\n#line 3 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\
     \u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\
     \n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate\
-    \ <typename T, bool allow_180 = false>\nvector<int> Convex_Hull(vector<Point<T>>&\
+    \ <typename T, bool allow_180 = false>\nvector<int> convex_hull(vector<Point<T>>&\
     \ XY, string mode = \"full\",\n                        bool sorted = false) {\n\
     \  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N\
     \ = XY.size();\n  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1])\
@@ -138,19 +138,20 @@ data:
     \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
     \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
     \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
     struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
     \ 3 \"convex/fenchel.hpp\"\n\n// (L,R,a,b)\uFF1A\u50BE\u304D\u304C [L,R) \u306E\
     \u3068\u304D (a,b) \u3092\u901A\u308B\ntemplate <typename T>\nvc<tuple<T, T, T,\
-    \ T>> Fenchel(vc<Point<T>> XY, string mode, bool sorted) {\n  if (mode == \"upper\"\
-    ) {\n    for (auto&& p : XY) p.y = -p.y;\n    vc<tuple<T, T, T, T>> res;\n   \
-    \ for (auto&& [L, R, a, b] : Fenchel(XY, \"lower\", sorted)) {\n      T l = (R\
-    \ == infty<T> ? -infty<T> : 1 - R);\n      T r = (L == -infty<T> ? infty<T> :\
-    \ 1 - L);\n      chmax(l, -infty<T>), chmin(r, infty<T>);\n      res.eb(l, r,\
-    \ a, -b);\n    }\n    reverse(all(res));\n    return res;\n  }\n  auto I = Convex_Hull(XY,\
+    \ T>> fenchel_transform(vc<Point<T>> XY, string mode,\n                      \
+    \                  bool sorted) {\n  if (mode == \"upper\") {\n    for (auto&&\
+    \ p : XY) p.y = -p.y;\n    vc<tuple<T, T, T, T>> res;\n    for (auto&& [L, R,\
+    \ a, b] : fenchel_transform(XY, \"lower\", sorted)) {\n      T l = (R == infty<T>\
+    \ ? -infty<T> : 1 - R);\n      T r = (L == -infty<T> ? infty<T> : 1 - L);\n  \
+    \    chmax(l, -infty<T>), chmin(r, infty<T>);\n      res.eb(l, r, a, -b);\n  \
+    \  }\n    reverse(all(res));\n    return res;\n  }\n  auto I = convex_hull(XY,\
     \ \"lower\", sorted);\n  XY = rearrange(XY, I);\n  vc<tuple<T, T, T, T>> res;\n\
     \n  ll lo = -infty<ll>;\n  FOR(i, len(XY)) {\n    T hi = infty<T>;\n    if (i\
     \ + 1 < len(XY)) {\n      chmin(hi, floor(XY[i + 1].y - XY[i].y, XY[i + 1].x -\
@@ -158,24 +159,25 @@ data:
     \    lo = hi;\n  }\n  return res;\n}\n"
   code: "#include \"geo/convex_hull.hpp\"\n#include \"geo/base.hpp\"\n\n// (L,R,a,b)\uFF1A\
     \u50BE\u304D\u304C [L,R) \u306E\u3068\u304D (a,b) \u3092\u901A\u308B\ntemplate\
-    \ <typename T>\nvc<tuple<T, T, T, T>> Fenchel(vc<Point<T>> XY, string mode, bool\
-    \ sorted) {\n  if (mode == \"upper\") {\n    for (auto&& p : XY) p.y = -p.y;\n\
-    \    vc<tuple<T, T, T, T>> res;\n    for (auto&& [L, R, a, b] : Fenchel(XY, \"\
-    lower\", sorted)) {\n      T l = (R == infty<T> ? -infty<T> : 1 - R);\n      T\
-    \ r = (L == -infty<T> ? infty<T> : 1 - L);\n      chmax(l, -infty<T>), chmin(r,\
-    \ infty<T>);\n      res.eb(l, r, a, -b);\n    }\n    reverse(all(res));\n    return\
-    \ res;\n  }\n  auto I = Convex_Hull(XY, \"lower\", sorted);\n  XY = rearrange(XY,\
-    \ I);\n  vc<tuple<T, T, T, T>> res;\n\n  ll lo = -infty<ll>;\n  FOR(i, len(XY))\
-    \ {\n    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n      chmin(hi, floor(XY[i\
-    \ + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n    if (lo < hi) res.eb(lo,\
-    \ hi, XY[i].x, XY[i].y);\n    lo = hi;\n  }\n  return res;\n}"
+    \ <typename T>\nvc<tuple<T, T, T, T>> fenchel_transform(vc<Point<T>> XY, string\
+    \ mode,\n                                        bool sorted) {\n  if (mode ==\
+    \ \"upper\") {\n    for (auto&& p : XY) p.y = -p.y;\n    vc<tuple<T, T, T, T>>\
+    \ res;\n    for (auto&& [L, R, a, b] : fenchel_transform(XY, \"lower\", sorted))\
+    \ {\n      T l = (R == infty<T> ? -infty<T> : 1 - R);\n      T r = (L == -infty<T>\
+    \ ? infty<T> : 1 - L);\n      chmax(l, -infty<T>), chmin(r, infty<T>);\n     \
+    \ res.eb(l, r, a, -b);\n    }\n    reverse(all(res));\n    return res;\n  }\n\
+    \  auto I = convex_hull(XY, \"lower\", sorted);\n  XY = rearrange(XY, I);\n  vc<tuple<T,\
+    \ T, T, T>> res;\n\n  ll lo = -infty<ll>;\n  FOR(i, len(XY)) {\n    T hi = infty<T>;\n\
+    \    if (i + 1 < len(XY)) {\n      chmin(hi, floor(XY[i + 1].y - XY[i].y, XY[i\
+    \ + 1].x - XY[i].x) + 1);\n    };\n    if (lo < hi) res.eb(lo, hi, XY[i].x, XY[i].y);\n\
+    \    lo = hi;\n  }\n  return res;\n}"
   dependsOn:
   - geo/convex_hull.hpp
   - geo/base.hpp
   isVerificationFile: false
   path: convex/fenchel.hpp
   requiredBy: []
-  timestamp: '2026-08-17 11:03:23+09:00'
+  timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/fenchel.hpp

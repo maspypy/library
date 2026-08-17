@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -139,11 +139,11 @@ data:
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
     \ A &a, const ll &size) {\r\n    if (x == infty<E>) return x;\r\n    return x\
     \ + a;\r\n  }\r\n};\r\n#line 3 \"seq/common_interval_decomposition.hpp\"\n\nstruct\
-    \ Common_Inverval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n    bool\
+    \ Common_Interval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n    bool\
     \ inc, dec;\n    int l, r, lo, hi;\n    string type() {\n      if (r == l + 1)\
     \ return \"leaf\";\n      if (inc) return \"inc\";\n      if (dec) return \"dec\"\
     ;\n      return \"prime\";\n    }\n  };\n\n  Node* pool;\n  Node* root;\n  int\
-    \ pid;\n\n  Common_Inverval_Decomposition(vc<int>& P) : pid(0) {\n    pool = new\
+    \ pid;\n\n  Common_Interval_Decomposition(vc<int>& P) : pid(0) {\n    pool = new\
     \ Node[2 * len(P)];\n    build(P);\n  }\n\n  Node* new_node(bool inc, bool dec,\
     \ int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n    pool[pid].dec\
     \ = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo = lo;\n\
@@ -178,11 +178,11 @@ data:
     \ n->r, n->lo, n->hi);\n      for (auto&& c : n->ch) dfs(dfs, c);\n    };\n  \
     \  dfs(dfs, root);\n  };\n};\n"
   code: "#include \"ds/segtree/lazy_segtree.hpp\"\n#include \"alg/acted_monoid/min_add.hpp\"\
-    \n\nstruct Common_Inverval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n\
+    \n\nstruct Common_Interval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n\
     \    bool inc, dec;\n    int l, r, lo, hi;\n    string type() {\n      if (r ==\
     \ l + 1) return \"leaf\";\n      if (inc) return \"inc\";\n      if (dec) return\
     \ \"dec\";\n      return \"prime\";\n    }\n  };\n\n  Node* pool;\n  Node* root;\n\
-    \  int pid;\n\n  Common_Inverval_Decomposition(vc<int>& P) : pid(0) {\n    pool\
+    \  int pid;\n\n  Common_Interval_Decomposition(vc<int>& P) : pid(0) {\n    pool\
     \ = new Node[2 * len(P)];\n    build(P);\n  }\n\n  Node* new_node(bool inc, bool\
     \ dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n    pool[pid].dec\
     \ = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo = lo;\n\
@@ -225,7 +225,7 @@ data:
   isVerificationFile: false
   path: seq/common_interval_decomposition.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp

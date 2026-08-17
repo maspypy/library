@@ -1,46 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'
     path: bigint/binary.hpp
     title: bigint/binary.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -987,27 +987,27 @@ data:
     \ + 2);\n        dat[q + 1] += 1;\n        q += 1;\n      }\n    } else {\n  \
     \    dat[q] += 1 << r;\n      while (dat[q] >= MOD) {\n        dat[q] -= MOD;\n\
     \        if (q + 1 >= len(dat)) dat.resize(q + 2);\n        dat[q + 1] += 1;\n\
-    \        q += 1;\n      }\n    }\n  }\n\n  void substract_power_of_2(int k) {\
-    \ assert(0); }\n\n  int topbit() {\n    if (dat.empty()) return -1;\n    int k\
-    \ = len(dat) - 1;\n    return LOG * k + ::topbit(dat[k]);\n  }\n  int lowbit()\
-    \ {\n    FOR(i, len(dat)) {\n      if (dat[i] == 0) continue;\n      return LOG\
-    \ * i + ::lowbit(dat[i]);\n    }\n    return -1;\n  }\n\n  // if k>0:2^kx\n  //\
-    \ if k<0:floor(x/(2^{-k}))\n  void shift(int k) {\n    assert(sgn >= 0);\n   \
-    \ if (sgn == 0 || k == 0) return;\n\n    if (k > 0) {\n      int q = k / LOG;\n\
-    \      int r = k % LOG;\n\n      if (q > 0) {\n        dat.insert(dat.begin(),\
-    \ q, 0);\n      }\n\n      if (r > 0) {\n        int carry = 0;\n        FOR(i,\
-    \ len(dat)) {\n          ll x = (ll(dat[i]) << r) + carry;\n          dat[i] =\
-    \ x & (MOD - 1);\n          carry = x >> LOG;\n        }\n        if (carry) dat.eb(carry);\n\
-    \      }\n    } else {\n      k = -k;\n      int q = k / LOG;\n      int r = k\
-    \ % LOG;\n\n      if (q >= len(dat)) {\n        dat.clear();\n        sgn = 0;\n\
-    \        return;\n      }\n\n      if (q > 0) {\n        dat.erase(dat.begin(),\
-    \ dat.begin() + q);\n      }\n\n      if (r > 0) {\n        int carry = 0;\n \
-    \       FOR_R(i, len(dat)) {\n          int new_carry = dat[i] & ((1 << r) - 1);\n\
-    \          dat[i] = (dat[i] >> r) | (carry << (LOG - r));\n          carry = new_carry;\n\
-    \        }\n      }\n\n      while (len(dat) && dat.back() == 0) dat.pop_back();\n\
-    \      if (dat.empty()) sgn = 0;\n    }\n  }\n};\n\n#ifdef FASTIO\nvoid wt(BigInteger_Binary\
-    \ x) { fastio::wt(x.to_string()); }\n#endif\n#line 1 \"random/base.hpp\"\n\nu64\
-    \ RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \        q += 1;\n      }\n    }\n  }\n\n  void subtract_power_of_2(int k) { assert(0);\
+    \ }\n\n  int topbit() {\n    if (dat.empty()) return -1;\n    int k = len(dat)\
+    \ - 1;\n    return LOG * k + ::topbit(dat[k]);\n  }\n  int lowbit() {\n    FOR(i,\
+    \ len(dat)) {\n      if (dat[i] == 0) continue;\n      return LOG * i + ::lowbit(dat[i]);\n\
+    \    }\n    return -1;\n  }\n\n  // if k>0:2^kx\n  // if k<0:floor(x/(2^{-k}))\n\
+    \  void shift(int k) {\n    assert(sgn >= 0);\n    if (sgn == 0 || k == 0) return;\n\
+    \n    if (k > 0) {\n      int q = k / LOG;\n      int r = k % LOG;\n\n      if\
+    \ (q > 0) {\n        dat.insert(dat.begin(), q, 0);\n      }\n\n      if (r >\
+    \ 0) {\n        int carry = 0;\n        FOR(i, len(dat)) {\n          ll x = (ll(dat[i])\
+    \ << r) + carry;\n          dat[i] = x & (MOD - 1);\n          carry = x >> LOG;\n\
+    \        }\n        if (carry) dat.eb(carry);\n      }\n    } else {\n      k\
+    \ = -k;\n      int q = k / LOG;\n      int r = k % LOG;\n\n      if (q >= len(dat))\
+    \ {\n        dat.clear();\n        sgn = 0;\n        return;\n      }\n\n    \
+    \  if (q > 0) {\n        dat.erase(dat.begin(), dat.begin() + q);\n      }\n\n\
+    \      if (r > 0) {\n        int carry = 0;\n        FOR_R(i, len(dat)) {\n  \
+    \        int new_carry = dat[i] & ((1 << r) - 1);\n          dat[i] = (dat[i]\
+    \ >> r) | (carry << (LOG - r));\n          carry = new_carry;\n        }\n   \
+    \   }\n\n      while (len(dat) && dat.back() == 0) dat.pop_back();\n      if (dat.empty())\
+    \ sgn = 0;\n    }\n  }\n};\n\n#ifdef FASTIO\nvoid wt(BigInteger_Binary x) { fastio::wt(x.to_string());\
+    \ }\n#endif\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ =\
+    \ u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 8 \"test/1_mytest/bigint.test.cpp\"\n\ntemplate\
@@ -1052,7 +1052,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/bigint.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/bigint.test.cpp

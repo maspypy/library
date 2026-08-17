@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -122,12 +122,12 @@ data:
     \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"graph/range_to_range_graph.hpp\"\
     \n\ntemplate <typename T>\nstruct Range_to_Range_Graph {\n  int n;\n  int n_node;\n\
     \  vc<tuple<int, int, T>> edges;\n\n  Range_to_Range_Graph(int n) : n(n), n_node(n\
-    \ * 3) {\n    FOR3(i, 2, n + n) { edges.eb(to_upper_idx(i / 2), to_upper_idx(i),\
-    \ 0); }\n    FOR3(i, 2, n + n) { edges.eb(to_lower_idx(i), to_lower_idx(i / 2),\
+    \ * 3) {\n    FOR(i, 2, n + n) { edges.eb(to_upper_idx(i / 2), to_upper_idx(i),\
+    \ 0); }\n    FOR(i, 2, n + n) { edges.eb(to_lower_idx(i), to_lower_idx(i / 2),\
     \ 0); }\n  }\n\n  inline int to_upper_idx(const int& i) {\n    if (i >= n) return\
     \ i - n;\n    return n + i;\n  }\n\n  inline int to_lower_idx(const int& i) {\n\
     \    if (i >= n) return i - n;\n    return n + n + i;\n  }\n\n  void add(int frm,\
-    \ int to, T wt) { edges.eb(frm, to, wt); }\n\n  void add_frm_range(int frm_l,\
+    \ int to, T wt) { edges.eb(frm, to, wt); }\n\n  void add_from_range(int frm_l,\
     \ int frm_r, int to, T wt) {\n    int l = frm_l + n, r = frm_r + n;\n    while\
     \ (l < r) {\n      if (l & 1) add(to_lower_idx(l++), to, wt);\n      if (r & 1)\
     \ add(to_lower_idx(--r), to, wt);\n      l >>= 1, r >>= 1;\n    }\n  }\n\n  void\
@@ -135,7 +135,7 @@ data:
     \ to_r + n;\n    while (l < r) {\n      if (l & 1) add(frm, to_upper_idx(l++),\
     \ wt);\n      if (r & 1) add(frm, to_upper_idx(--r), wt);\n      l >>= 1, r >>=\
     \ 1;\n    }\n  }\n\n  void add_range_to_range(int frm_l, int frm_r, int to_l,\
-    \ int to_r, T wt) {\n    int new_node = n_node++;\n    add_frm_range(frm_l, frm_r,\
+    \ int to_r, T wt) {\n    int new_node = n_node++;\n    add_from_range(frm_l, frm_r,\
     \ new_node, wt);\n    add_to_range(new_node, to_l, to_r, T(0));\n  }\n\n  Graph<T,\
     \ 1> build() {\n    Graph<T, 1> G(n_node);\n    for (auto&& [a, b, c] : edges)\
     \ G.add(a, b, c);\n    G.build();\n    return G;\n  }\n};\n\n// DST \u65B9\u5F0F\
@@ -143,7 +143,7 @@ data:
     \   int n_node;\n//   vc<tuple<int, int, T>> edges;\n//   vc<tuple<int, int, int,\
     \ T>> FRM, TO;\n//   vc<int> A;\n\n//   const int K = 16;\n\n//   Range_to_Range_Graph(int\
     \ n) : n(n), n_node(n), A(n) {}\n\n//   void add(int frm, int to, T wt = 1) {\
-    \ edges.eb(frm, to, wt); }\n//   void add_frm_range(int frm_l, int frm_r, int\
+    \ edges.eb(frm, to, wt); }\n//   void add_from_range(int frm_l, int frm_r, int\
     \ to, T wt = 1) {\n//     assert(0 <= frm_l && frm_l <= frm_r && frm_r <= n);\n\
     //     if (frm_l == frm_r) return;\n//     if (frm_r == frm_l + 1) return add(frm_l,\
     \ to, wt);\n//     FRM.eb(frm_l, frm_r, to, wt);\n//   }\n\n//   void add_to_range(int\
@@ -185,12 +185,12 @@ data:
     \ };\n"
   code: "#include \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Range_to_Range_Graph\
     \ {\n  int n;\n  int n_node;\n  vc<tuple<int, int, T>> edges;\n\n  Range_to_Range_Graph(int\
-    \ n) : n(n), n_node(n * 3) {\n    FOR3(i, 2, n + n) { edges.eb(to_upper_idx(i\
-    \ / 2), to_upper_idx(i), 0); }\n    FOR3(i, 2, n + n) { edges.eb(to_lower_idx(i),\
+    \ n) : n(n), n_node(n * 3) {\n    FOR(i, 2, n + n) { edges.eb(to_upper_idx(i /\
+    \ 2), to_upper_idx(i), 0); }\n    FOR(i, 2, n + n) { edges.eb(to_lower_idx(i),\
     \ to_lower_idx(i / 2), 0); }\n  }\n\n  inline int to_upper_idx(const int& i) {\n\
     \    if (i >= n) return i - n;\n    return n + i;\n  }\n\n  inline int to_lower_idx(const\
     \ int& i) {\n    if (i >= n) return i - n;\n    return n + n + i;\n  }\n\n  void\
-    \ add(int frm, int to, T wt) { edges.eb(frm, to, wt); }\n\n  void add_frm_range(int\
+    \ add(int frm, int to, T wt) { edges.eb(frm, to, wt); }\n\n  void add_from_range(int\
     \ frm_l, int frm_r, int to, T wt) {\n    int l = frm_l + n, r = frm_r + n;\n \
     \   while (l < r) {\n      if (l & 1) add(to_lower_idx(l++), to, wt);\n      if\
     \ (r & 1) add(to_lower_idx(--r), to, wt);\n      l >>= 1, r >>= 1;\n    }\n  }\n\
@@ -198,7 +198,7 @@ data:
     \ n, r = to_r + n;\n    while (l < r) {\n      if (l & 1) add(frm, to_upper_idx(l++),\
     \ wt);\n      if (r & 1) add(frm, to_upper_idx(--r), wt);\n      l >>= 1, r >>=\
     \ 1;\n    }\n  }\n\n  void add_range_to_range(int frm_l, int frm_r, int to_l,\
-    \ int to_r, T wt) {\n    int new_node = n_node++;\n    add_frm_range(frm_l, frm_r,\
+    \ int to_r, T wt) {\n    int new_node = n_node++;\n    add_from_range(frm_l, frm_r,\
     \ new_node, wt);\n    add_to_range(new_node, to_l, to_r, T(0));\n  }\n\n  Graph<T,\
     \ 1> build() {\n    Graph<T, 1> G(n_node);\n    for (auto&& [a, b, c] : edges)\
     \ G.add(a, b, c);\n    G.build();\n    return G;\n  }\n};\n\n// DST \u65B9\u5F0F\
@@ -206,7 +206,7 @@ data:
     \   int n_node;\n//   vc<tuple<int, int, T>> edges;\n//   vc<tuple<int, int, int,\
     \ T>> FRM, TO;\n//   vc<int> A;\n\n//   const int K = 16;\n\n//   Range_to_Range_Graph(int\
     \ n) : n(n), n_node(n), A(n) {}\n\n//   void add(int frm, int to, T wt = 1) {\
-    \ edges.eb(frm, to, wt); }\n//   void add_frm_range(int frm_l, int frm_r, int\
+    \ edges.eb(frm, to, wt); }\n//   void add_from_range(int frm_l, int frm_r, int\
     \ to, T wt = 1) {\n//     assert(0 <= frm_l && frm_l <= frm_r && frm_r <= n);\n\
     //     if (frm_l == frm_r) return;\n//     if (frm_r == frm_l + 1) return add(frm_l,\
     \ to, wt);\n//     FRM.eb(frm_l, frm_r, to, wt);\n//   }\n\n//   void add_to_range(int\
@@ -252,7 +252,7 @@ data:
   isVerificationFile: false
   path: graph/range_to_range_graph.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1868.test.cpp

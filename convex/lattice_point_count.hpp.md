@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
@@ -73,7 +73,7 @@ data:
     \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
     \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
     \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
     struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
@@ -81,7 +81,7 @@ data:
     \ 3 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\
     \u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\n// full \u306A\u3089 I[0]\
     \ \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate <typename T, bool allow_180\
-    \ = false>\nvector<int> Convex_Hull(vector<Point<T>>& XY, string mode = \"full\"\
+    \ = false>\nvector<int> convex_hull(vector<Point<T>>& XY, string mode = \"full\"\
     ,\n                        bool sorted = false) {\n  assert(mode == \"full\" ||\
     \ mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N == 1)\
     \ return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n    if\
@@ -103,7 +103,7 @@ data:
     \u3066\u51FA\u529B\n// https://qoj.ac/contest/1576/problem/8505\ntemplate <typename\
     \ Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T,\
     \ T>> LINE) {\n  assert(!LINE.empty());\n  using P = Point<T>;\n  vc<P> point;\n\
-    \  for (auto& [x, y] : LINE) point.eb(P(x, y));\n  auto I = Convex_Hull(point,\
+    \  for (auto& [x, y] : LINE) point.eb(P(x, y));\n  auto I = convex_hull(point,\
     \ \"lower\");\n  point = rearrange(point, I);\n  int N = len(point);\n  if (N\
     \ >= 2 && point[N - 1].x == point[N - 2].x) {\n    POP(point), --N;\n  }\n  reverse(all(point));\
     \  // \u50BE\u304D\u306F\u5927\u304D\u3044\u65B9\u304B\u3089\n  Re l = -infty<Re>;\n\
@@ -252,7 +252,7 @@ data:
   isVerificationFile: false
   path: convex/lattice_point_count.hpp
   requiredBy: []
-  timestamp: '2026-08-17 11:03:23+09:00'
+  timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp

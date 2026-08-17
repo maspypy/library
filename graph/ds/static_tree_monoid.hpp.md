@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -208,44 +208,43 @@ data:
     \u500B\u6570\u304C k\n  int LA(int v, int k) {\n    static_assert(HLD);\n    assert(k\
     \ <= depth[v]);\n    while (1) {\n      int u = head[v];\n      if (LID[v] - k\
     \ >= LID[u]) return V[LID[v] - k];\n      k -= LID[v] - LID[u] + 1;\n      v =\
-    \ parent[u];\n    }\n  }\n  int la(int u, int v) { return LA(u, v); }\n\n  int\
-    \ LCA(int u, int v) {\n    static_assert(HLD);\n    for (;; v = parent[head[v]])\
-    \ {\n      if (LID[u] > LID[v]) swap(u, v);\n      if (head[u] == head[v]) return\
-    \ u;\n    }\n  }\n\n  int meet(int a, int b, int c) {\n    static_assert(HLD);\n\
-    \    return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c);\n  }\n  int lca(int u, int v) {\
-    \ return LCA(u, v); }\n\n  int subtree_size(int v) { return RID[v] - LID[v]; }\n\
-    \n  int subtree_size(int v, int root) {\n    static_assert(HLD);\n    if (v ==\
-    \ root) return N;\n    int x = jump(v, root, 1);\n    if (in_subtree(v, x)) return\
-    \ RID[v] - LID[v];\n    return N - RID[x] + LID[x];\n  }\n\n  int dist(int a,\
-    \ int b) {\n    static_assert(HLD);\n    int c = LCA(a, b);\n    return depth[a]\
-    \ + depth[b] - 2 * depth[c];\n  }\n\n  WT dist_weighted(int a, int b) {\n    static_assert(HLD);\n\
-    \    int c = LCA(a, b);\n    return depth_weighted[a] + depth_weighted[b] - WT(2)\
-    \ * depth_weighted[c];\n  }\n\n  // a is in b\n  bool in_subtree(int a, int b)\
-    \ { return LID[b] <= LID[a] && LID[a] < RID[b]; }\n\n  int jump(int a, int b,\
-    \ ll k) {\n    static_assert(HLD);\n    if (k == 1) {\n      if (a == b) return\
-    \ -1;\n      return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\n\
-    \    }\n    int c = LCA(a, b);\n    int d_ac = depth[a] - depth[c];\n    int d_bc\
-    \ = depth[b] - depth[c];\n    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac)\
-    \ return LA(a, k);\n    return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int\
-    \ v) {\n    vc<int> res;\n    for (auto &&e : G[v])\n      if (e.to != parent[v])\
-    \ res.eb(e.to);\n    return res;\n  }\n\n  vc<int> collect_subtree(int v) {\n\
-    \    return {V.begin() + LID[v], V.begin() + RID[v]};\n  }\n\n  vc<int> collect_light(int\
-    \ v) {\n    static_assert(HLD);\n    vc<int> res;\n    for (auto &&e : G[v]) {\n\
-    \      if (e.to != parent[v] && head[e.to] == e.to) res.eb(e.to);\n    }\n   \
-    \ return res;\n  }\n\n  vc<pair<int, int>> get_path_decomposition(int u, int v,\
-    \ bool edge) {\n    static_assert(HLD);\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\
-    \"\u9589\"\u533A\u9593\u5217\u3002\n    vc<pair<int, int>> up, down;\n    while\
+    \ parent[u];\n    }\n  }\n\n  int LCA(int u, int v) {\n    static_assert(HLD);\n\
+    \    for (;; v = parent[head[v]]) {\n      if (LID[u] > LID[v]) swap(u, v);\n\
+    \      if (head[u] == head[v]) return u;\n    }\n  }\n\n  int meet(int a, int\
+    \ b, int c) {\n    static_assert(HLD);\n    return LCA(a, b) ^ LCA(a, c) ^ LCA(b,\
+    \ c);\n  }\n\n  int subtree_size(int v) { return RID[v] - LID[v]; }\n\n  int subtree_size(int\
+    \ v, int root) {\n    static_assert(HLD);\n    if (v == root) return N;\n    int\
+    \ x = jump(v, root, 1);\n    if (in_subtree(v, x)) return RID[v] - LID[v];\n \
+    \   return N - RID[x] + LID[x];\n  }\n\n  int dist(int a, int b) {\n    static_assert(HLD);\n\
+    \    int c = LCA(a, b);\n    return depth[a] + depth[b] - 2 * depth[c];\n  }\n\
+    \n  WT dist_weighted(int a, int b) {\n    static_assert(HLD);\n    int c = LCA(a,\
+    \ b);\n    return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\n\
+    \  }\n\n  // a is in b\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a]\
+    \ && LID[a] < RID[b]; }\n\n  int jump(int a, int b, ll k) {\n    static_assert(HLD);\n\
+    \    if (k == 1) {\n      if (a == b) return -1;\n      return (in_subtree(b,\
+    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\n    }\n    int c = LCA(a,\
+    \ b);\n    int d_ac = depth[a] - depth[c];\n    int d_bc = depth[b] - depth[c];\n\
+    \    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac) return LA(a, k);\n  \
+    \  return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int v) {\n \
+    \   vc<int> res;\n    for (auto &&e : G[v])\n      if (e.to != parent[v]) res.eb(e.to);\n\
+    \    return res;\n  }\n\n  vc<int> collect_subtree(int v) {\n    return {V.begin()\
+    \ + LID[v], V.begin() + RID[v]};\n  }\n\n  vc<int> collect_light(int v) {\n  \
+    \  static_assert(HLD);\n    vc<int> res;\n    for (auto &&e : G[v]) {\n      if\
+    \ (e.to != parent[v] && head[e.to] == e.to) res.eb(e.to);\n    }\n    return res;\n\
+    \  }\n\n  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) {\n\
+    \    static_assert(HLD);\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\
+    \u533A\u9593\u5217\u3002\n    vc<pair<int, int>> up, down;\n    while (1) {\n\
+    \      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v]) {\n        down.eb(LID[head[v]],\
+    \ LID[v]);\n        v = parent[head[v]];\n      } else {\n        up.eb(LID[u],\
+    \ LID[head[u]]);\n        u = parent[head[u]];\n      }\n    }\n    if (LID[u]\
+    \ < LID[v]) down.eb(LID[u] + edge, LID[v]);\n    elif (LID[v] + edge <= LID[u])\
+    \ up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n    up.insert(up.end(),\
+    \ all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\u5217\u306E\u60C5\u5831\
+    \ (frm,to,str)\n  // str = \"heavy_up\", \"heavy_down\", \"light_up\", \"light_down\"\
+    \n  vc<tuple<int, int, string>> get_path_decomposition_detail(int u, int v) {\n\
+    \    static_assert(HLD);\n    vc<tuple<int, int, string>> up, down;\n    while\
     \ (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v]) {\n\
-    \        down.eb(LID[head[v]], LID[v]);\n        v = parent[head[v]];\n      }\
-    \ else {\n        up.eb(LID[u], LID[head[u]]);\n        u = parent[head[u]];\n\
-    \      }\n    }\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\n  \
-    \  elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n\
-    \    up.insert(up.end(), all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\
-    \u5217\u306E\u60C5\u5831 (frm,to,str)\n  // str = \"heavy_up\", \"heavy_down\"\
-    , \"light_up\", \"light_down\"\n  vc<tuple<int, int, string>> get_path_decomposition_detail(int\
-    \ u, int v) {\n    static_assert(HLD);\n    vc<tuple<int, int, string>> up, down;\n\
-    \    while (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v])\
-    \ {\n        if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\n\
+    \        if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\n\
     \        down.eb(parent[v], v, \"light_down\"), v = parent[v];\n      } else {\n\
     \        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\n   \
     \     up.eb(u, parent[u], \"light_up\"), u = parent[u];\n      }\n    }\n    if\
@@ -418,8 +417,8 @@ data:
   isVerificationFile: false
   path: graph/ds/static_tree_monoid.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 16:26:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1216.test.cpp
   - test/3_yukicoder/1216_2.test.cpp

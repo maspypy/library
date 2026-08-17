@@ -4,22 +4,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -362,11 +362,11 @@ data:
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
     \ A &a, const ll &size) {\r\n    if (x == infty<E>) return x;\r\n    return x\
     \ + a;\r\n  }\r\n};\r\n#line 3 \"seq/common_interval_decomposition.hpp\"\n\nstruct\
-    \ Common_Inverval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n    bool\
+    \ Common_Interval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n    bool\
     \ inc, dec;\n    int l, r, lo, hi;\n    string type() {\n      if (r == l + 1)\
     \ return \"leaf\";\n      if (inc) return \"inc\";\n      if (dec) return \"dec\"\
     ;\n      return \"prime\";\n    }\n  };\n\n  Node* pool;\n  Node* root;\n  int\
-    \ pid;\n\n  Common_Inverval_Decomposition(vc<int>& P) : pid(0) {\n    pool = new\
+    \ pid;\n\n  Common_Interval_Decomposition(vc<int>& P) : pid(0) {\n    pool = new\
     \ Node[2 * len(P)];\n    build(P);\n  }\n\n  Node* new_node(bool inc, bool dec,\
     \ int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n    pool[pid].dec\
     \ = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo = lo;\n\
@@ -400,20 +400,20 @@ data:
     \ dfs = [&](auto& dfs, Node* n) -> void {\n      print(\"l, r, lo, hi\", n->l,\
     \ n->r, n->lo, n->hi);\n      for (auto&& c : n->ch) dfs(dfs, c);\n    };\n  \
     \  dfs(dfs, root);\n  };\n};\n#line 5 \"test/2_library_checker/graph/common_interval_decomposition.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Inverval_Decomposition\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Interval_Decomposition\
     \ X(P);\n  int nxt = 0;\n  auto dfs = [&](auto& dfs, auto n, int p) -> void {\n\
     \    string t = (n->inc || n->dec || (n->r - n->l == 1) ? \"linear\" : \"prime\"\
-    );\n    print(p, n->l, n->r - 1, t);\n    int v = nxt++;\n    for (auto&& c: n->ch)\
-    \ dfs(dfs, c, v);\n  };\n  print(X.pid);\n  dfs(dfs, X.root, -1);\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}\n"
+    );\n    print(p, n->l, n->r - 1, t);\n    int v = nxt++;\n    for (auto&& c :\
+    \ n->ch) dfs(dfs, c, v);\n  };\n  print(X.pid);\n  dfs(dfs, X.root, -1);\n}\n\n\
+    signed main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/common_interval_decomposition_tree\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/common_interval_decomposition.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Inverval_Decomposition\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Interval_Decomposition\
     \ X(P);\n  int nxt = 0;\n  auto dfs = [&](auto& dfs, auto n, int p) -> void {\n\
     \    string t = (n->inc || n->dec || (n->r - n->l == 1) ? \"linear\" : \"prime\"\
-    );\n    print(p, n->l, n->r - 1, t);\n    int v = nxt++;\n    for (auto&& c: n->ch)\
-    \ dfs(dfs, c, v);\n  };\n  print(X.pid);\n  dfs(dfs, X.root, -1);\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}"
+    );\n    print(p, n->l, n->r - 1, t);\n    int v = nxt++;\n    for (auto&& c :\
+    \ n->ch) dfs(dfs, c, v);\n  };\n  print(X.pid);\n  dfs(dfs, X.root, -1);\n}\n\n\
+    signed main() {\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -426,7 +426,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/common_interval_decomposition.test.cpp

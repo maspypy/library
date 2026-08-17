@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -48,21 +48,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
@@ -108,7 +108,7 @@ data:
   - mod/floor_monoid_product.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/range_assign.test.cpp
