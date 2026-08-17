@@ -4,12 +4,12 @@
 #include "other/io.hpp"
 
 #include "mod/modint61.hpp"
-#include "string/rollinghash_2d.hpp"
+#include "string/rolling_hash_2d.hpp"
 
 void solve() {
   LL(H, W);
   VEC(string, A, H);
-  RollingHash_2D RH;
+  Rolling_Hash_2D RH;
   auto AH = RH.build(A);
   LL(H2, W2);
   VEC(string, B, H2);
@@ -18,7 +18,9 @@ void solve() {
 
   FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {
     auto a = RH.query(AH, x, x + H2, y, y + W2);
-    if (a == b) { print(x, y); }
+    if (a == b) {
+      print(x, y);
+    }
   }
 }
 
