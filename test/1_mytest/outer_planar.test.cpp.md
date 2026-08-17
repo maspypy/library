@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/outer_planar.hpp
     title: graph/outer_planar.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
