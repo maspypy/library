@@ -1701,7 +1701,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mongomery_modint.hpp
       title: mod/mongomery_modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1807,7 +1807,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/integer_kth_root.hpp
       title: nt/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/is_prime.hpp
       title: nt/is_prime.hpp
     - icon: ':heavy_check_mark:'
@@ -1901,7 +1901,7 @@ data:
     - icon: ':warning:'
       path: other/binary_search_real_abs_rel.hpp
       title: other/binary_search_real_abs_rel.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/bit.hpp
       title: other/bit.hpp
     - icon: ':heavy_check_mark:'
@@ -2407,7 +2407,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/stirling_number_2.hpp
       title: seq/famous/stirling_number_2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/stirling_number_query.hpp
       title: seq/famous/stirling_number_query.hpp
     - icon: ':heavy_check_mark:'
@@ -3628,7 +3628,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
       title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
     - icon: ':heavy_check_mark:'

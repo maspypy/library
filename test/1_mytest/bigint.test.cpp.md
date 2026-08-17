@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'

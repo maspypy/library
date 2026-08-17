@@ -342,7 +342,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   - icon: ':heavy_check_mark:'

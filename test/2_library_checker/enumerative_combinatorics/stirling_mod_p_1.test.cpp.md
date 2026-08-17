@@ -1,51 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/" "stirling_number_of_the_first_kind_small_p_large_n
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
     links:
-    - https://judge.yosupo.jp/problem/
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
   bundledCode: "#line 1 \"test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp\"\
-    \n#define PROBLEM                      \\\n  \"https://judge.yosupo.jp/problem/\"\
-    \ \\\n  \"stirling_number_of_the_first_kind_small_p_large_n\"\n#line 1 \"my_template.hpp\"\
-    \n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n//\
-    \ \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\
-    \u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\n#pragma GCC target(\"\
-    avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing\
-    \ namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
-    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
-    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
-    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
-    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
-    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
-    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
-    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
-    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
+    \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
+    \n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
     template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
     \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
@@ -339,13 +338,12 @@ data:
     \ A.resize(p);\n    A[0] = {1};\n    FOR(i, 1, p) {\n      A[i].assign(i + 1,\
     \ 0);\n      FOR(j, i + 1) {\n        if (j) A[i][j] += A[i - 1][j - 1];\n   \
     \     if (j < i) A[i][j] += A[i - 1][j] * j;\n        A[i][j] %= p;\n      }\n\
-    \    }\n  }\n};\n#line 7 \"test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp\"\
+    \    }\n  }\n};\n#line 6 \"test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp\"\
     \n\nvoid solve() {\n  LL(T, p);\n  Stirling_Number_Query X(p, 1, 0);\n  FOR(T)\
     \ {\n    LL(n, k);\n    print(X.S1(n, k));\n  }\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
-  code: "#define PROBLEM                      \\\n  \"https://judge.yosupo.jp/problem/\"\
-    \ \\\n  \"stirling_number_of_the_first_kind_small_p_large_n\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"seq/famous/stirling_number_query.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/famous/stirling_number_query.hpp\"\
     \n\nvoid solve() {\n  LL(T, p);\n  Stirling_Number_Query X(p, 1, 0);\n  FOR(T)\
     \ {\n    LL(n, k);\n    print(X.S1(n, k));\n  }\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
@@ -359,8 +357,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 09:41:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 10:01:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
 layout: document
