@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 
 #include "ds/fenwicktree/fenwicktree.hpp"
-#include "ds/offline_query/coeffient_query_2d.hpp"
+#include "ds/offline_query/coefficient_query_2d.hpp"
 
 void solve() {
   LL(N, Q);

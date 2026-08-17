@@ -112,7 +112,7 @@ struct Incremental_Convex_Hull_Lower {
 template <typename T, bool strict = true>
 struct Incremental_Convex_Hull {
   using P = Point<T>;
-  IncrementalConvexHull_Lower<T, strict> LOWER, UPPER;
+  Incremental_Convex_Hull_Lower<T, strict> LOWER, UPPER;
   int cnt_E;
   T det_sum;
   bool is_empty;

@@ -35,7 +35,7 @@ void test(int T) {
     QQ[0] = 1;
     FOR(i, L) PP[i] = RNG(0, mod), QQ[1 + i] = RNG(0, mod);
     auto S = from_PQ(N, PP, QQ);
-    auto [P, Q] = Reeds_Sloane<mint>(S, pfs);
+    auto [P, Q] = reeds_sloane<mint>(S, pfs);
     assert(len(P) <= L);
     assert(len(Q) - 1 <= L);
     assert(Q[0] == 1);

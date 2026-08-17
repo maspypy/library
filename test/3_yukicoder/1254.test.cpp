@@ -1,13 +1,13 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1254"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/unicyclic.hpp"
+#include "graph/unicyclic_graph.hpp"
 
 void solve() {
   LL(N);
   Graph<int, 0> G(N);
   G.read_graph(N);
-  UnicyclicGraph X(G);
+  Unicyclic_Graph X(G);
   vc<int> ANS;
   FOR(i, N) {
     auto& e = G.edges[i];
