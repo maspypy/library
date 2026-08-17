@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
@@ -119,8 +119,8 @@ data:
     \  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n// \u9045\u5EF6\
     \u30BB\u30B0\u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\uFF1F\n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n\
     // https://codeforces.com/contest/860/submission/228355081\ntemplate <typename\
-    \ AbelianGruop>\nstruct FenwickTree_Range_Add {\n  using G = AbelianGruop;\n \
-    \ using E = typename AbelianGruop::value_type;\n  int n;\n  FenwickTree<G> bit0;\n\
+    \ AbelianGroup>\nstruct FenwickTree_Range_Add {\n  using G = AbelianGroup;\n \
+    \ using E = typename AbelianGroup::value_type;\n  int n;\n  FenwickTree<G> bit0;\n\
     \  FenwickTree<G> bit1;\n\n  FenwickTree_Range_Add() {}\n  FenwickTree_Range_Add(int\
     \ n) { build(n); }\n  template <typename F>\n  FenwickTree_Range_Add(int n, F\
     \ f) {\n    build(n, f);\n  }\n  FenwickTree_Range_Add(const vc<E>& v) { build(v);\
@@ -136,8 +136,8 @@ data:
   code: "\n#include \"ds/fenwicktree/fenwicktree.hpp\"\n\n// \u9045\u5EF6\u30BB\u30B0\
     \u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\uFF1F\n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n\
     // https://codeforces.com/contest/860/submission/228355081\ntemplate <typename\
-    \ AbelianGruop>\nstruct FenwickTree_Range_Add {\n  using G = AbelianGruop;\n \
-    \ using E = typename AbelianGruop::value_type;\n  int n;\n  FenwickTree<G> bit0;\n\
+    \ AbelianGroup>\nstruct FenwickTree_Range_Add {\n  using G = AbelianGroup;\n \
+    \ using E = typename AbelianGroup::value_type;\n  int n;\n  FenwickTree<G> bit0;\n\
     \  FenwickTree<G> bit1;\n\n  FenwickTree_Range_Add() {}\n  FenwickTree_Range_Add(int\
     \ n) { build(n); }\n  template <typename F>\n  FenwickTree_Range_Add(int n, F\
     \ f) {\n    build(n, f);\n  }\n  FenwickTree_Range_Add(const vc<E>& v) { build(v);\
@@ -157,7 +157,7 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_range_add.hpp
   requiredBy: []
-  timestamp: '2026-08-17 17:17:31+09:00'
+  timestamp: '2026-08-17 18:54:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/fenwick_raq.test.cpp

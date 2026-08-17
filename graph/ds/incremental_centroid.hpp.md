@@ -24,7 +24,7 @@ data:
     // \u6728\u306F\u56FA\u5B9A\u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\
     \u308B\u3002\n// cent: \u91CD\u5FC3\n// max_subtree\ntemplate <typename TREE>\n\
     struct Incremental_Centroid {\n  TREE& tree;\n  int N;\n  int cent;\n  pair<int,\
-    \ int> max_subtree;  // (adj, size)\n  int wt_sm;\n  Tree_AbelianGruop<TREE, Monoid_Add<int>,\
+    \ int> max_subtree;  // (adj, size)\n  int wt_sm;\n  Tree_AbelianGroup<TREE, Monoid_Add<int>,\
     \ 0, 0, 1> TA;\n  FastSet ss;\n\n  Incremental_Centroid(TREE& tree)\n      : tree(tree),\n\
     \        N(tree.N),\n        cent(0),\n        max_subtree(0, 0),\n        wt_sm(0),\n\
     \        TA(tree),\n        ss(N) {}\n\n  int get_subtree_wt(int v) {\n    assert(v\
