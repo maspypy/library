@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_side.test.cpp
     title: test/1_mytest/convex_polygon_side.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/convex_polygon_visible_range.test.cpp
+    title: test/1_mytest/convex_polygon_visible_range.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_ch.test.cpp
     title: test/1_mytest/incremental_ch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -108,7 +111,7 @@ data:
     \u304D\u3044\n      return -1;\n    }\n    auto l = prev(r);\n    auto p1 = *l,\
     \ p2 = *r;\n    T det = (p - p1).det(p2 - p1);\n    if (det == 0) return 0;\n\
     \    return (det > 0 ? -1 : 1);\n  }\n};\n\ntemplate <typename T, bool strict\
-    \ = true>\nstruct Incremental_Convex_Hull {\n  using P = Point<T>;\n  IncrementalConvexHull_Lower<T,\
+    \ = true>\nstruct Incremental_Convex_Hull {\n  using P = Point<T>;\n  Incremental_Convex_Hull_Lower<T,\
     \ strict> LOWER, UPPER;\n  int cnt_E;\n  T det_sum;\n  bool is_empty;\n\n  Incremental_Convex_Hull()\
     \ : cnt_E(0), det_sum(0), is_empty(1) {}\n\n  int size() { return cnt_E; }\n\n\
     \  bool empty() { return is_empty; }\n\n  template <typename REAL>\n  REAL area()\
@@ -163,7 +166,7 @@ data:
     \u304D\u3044\n      return -1;\n    }\n    auto l = prev(r);\n    auto p1 = *l,\
     \ p2 = *r;\n    T det = (p - p1).det(p2 - p1);\n    if (det == 0) return 0;\n\
     \    return (det > 0 ? -1 : 1);\n  }\n};\n\ntemplate <typename T, bool strict\
-    \ = true>\nstruct Incremental_Convex_Hull {\n  using P = Point<T>;\n  IncrementalConvexHull_Lower<T,\
+    \ = true>\nstruct Incremental_Convex_Hull {\n  using P = Point<T>;\n  Incremental_Convex_Hull_Lower<T,\
     \ strict> LOWER, UPPER;\n  int cnt_E;\n  T det_sum;\n  bool is_empty;\n\n  Incremental_Convex_Hull()\
     \ : cnt_E(0), det_sum(0), is_empty(1) {}\n\n  int size() { return cnt_E; }\n\n\
     \  bool empty() { return is_empty; }\n\n  template <typename REAL>\n  REAL area()\
@@ -189,12 +192,13 @@ data:
   isVerificationFile: false
   path: geo/incremental_convex_hull.hpp
   requiredBy: []
-  timestamp: '2026-08-17 11:03:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 11:13:06+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/incremental_ch.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
 documentation_of: geo/incremental_convex_hull.hpp
 layout: document
 redirect_from:

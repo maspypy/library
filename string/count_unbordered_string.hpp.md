@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_unbordered_string.test.cpp
+    title: test/1_mytest/count_unbordered_string.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A003000
@@ -32,8 +35,9 @@ data:
   path: string/count_unbordered_string.hpp
   requiredBy: []
   timestamp: '2026-08-17 10:29:39+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/count_unbordered_string.test.cpp
 documentation_of: string/count_unbordered_string.hpp
 layout: document
 redirect_from:

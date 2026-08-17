@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/incremental_convex_hull.hpp
     title: geo/incremental_convex_hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -192,7 +192,7 @@ data:
     \u304D\u3044\n      return -1;\n    }\n    auto l = prev(r);\n    auto p1 = *l,\
     \ p2 = *r;\n    T det = (p - p1).det(p2 - p1);\n    if (det == 0) return 0;\n\
     \    return (det > 0 ? -1 : 1);\n  }\n};\n\ntemplate <typename T, bool strict\
-    \ = true>\nstruct Incremental_Convex_Hull {\n  using P = Point<T>;\n  IncrementalConvexHull_Lower<T,\
+    \ = true>\nstruct Incremental_Convex_Hull {\n  using P = Point<T>;\n  Incremental_Convex_Hull_Lower<T,\
     \ strict> LOWER, UPPER;\n  int cnt_E;\n  T det_sum;\n  bool is_empty;\n\n  Incremental_Convex_Hull()\
     \ : cnt_E(0), det_sum(0), is_empty(1) {}\n\n  int size() { return cnt_E; }\n\n\
     \  bool empty() { return is_empty; }\n\n  template <typename REAL>\n  REAL area()\
@@ -258,8 +258,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/incremental_ch.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 11:03:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 11:13:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/incremental_ch.test.cpp
 layout: document

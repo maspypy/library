@@ -92,7 +92,7 @@ data:
   - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/unicyclic_graph.hpp
     title: graph/unicyclic_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -228,6 +228,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1254.test.cpp
+    title: test/3_yukicoder/1254.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
@@ -410,6 +413,7 @@ data:
   - test/3_yukicoder/1600.test.cpp
   - test/3_yukicoder/1479.test.cpp
   - test/3_yukicoder/1615.test.cpp
+  - test/3_yukicoder/1254.test.cpp
   - test/3_yukicoder/1745.test.cpp
   - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1211.test.cpp

@@ -1,71 +1,71 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/reeds_sloane.hpp
     title: seq/reeds_sloane.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -1485,7 +1485,7 @@ data:
     \ T) {\n  using mint = modint<mod>;\n  auto pfs = factor(mod);\n\n  FOR(T) {\n\
     \    int N = RNG(1, 20);\n    int L = RNG(0, N + 1);\n    vc<mint> QQ(L + 1);\n\
     \    vc<mint> PP(L);\n    QQ[0] = 1;\n    FOR(i, L) PP[i] = RNG(0, mod), QQ[1\
-    \ + i] = RNG(0, mod);\n    auto S = from_PQ(N, PP, QQ);\n    auto [P, Q] = Reeds_Sloane<mint>(S,\
+    \ + i] = RNG(0, mod);\n    auto S = from_PQ(N, PP, QQ);\n    auto [P, Q] = reeds_sloane<mint>(S,\
     \ pfs);\n    assert(len(P) <= L);\n    assert(len(Q) - 1 <= L);\n    assert(Q[0]\
     \ == 1);\n    assert(S == from_PQ(N, P, Q));\n  }\n}\n\nvoid solve() {\n  int\
     \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
@@ -1504,7 +1504,7 @@ data:
     \n  FOR(T) {\n    int N = RNG(1, 20);\n    int L = RNG(0, N + 1);\n    vc<mint>\
     \ QQ(L + 1);\n    vc<mint> PP(L);\n    QQ[0] = 1;\n    FOR(i, L) PP[i] = RNG(0,\
     \ mod), QQ[1 + i] = RNG(0, mod);\n    auto S = from_PQ(N, PP, QQ);\n    auto [P,\
-    \ Q] = Reeds_Sloane<mint>(S, pfs);\n    assert(len(P) <= L);\n    assert(len(Q)\
+    \ Q] = reeds_sloane<mint>(S, pfs);\n    assert(len(P) <= L);\n    assert(len(Q)\
     \ - 1 <= L);\n    assert(Q[0] == 1);\n    assert(S == from_PQ(N, P, Q));\n  }\n\
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
     ;\n}\n\nsigned main() {\n  int T = 1 << 13;\n  test<1>(T);\n  test<2>(T);\n  test<3>(T);\n\
@@ -1536,8 +1536,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/reeds_sloane.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 10:49:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 11:13:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/reeds_sloane.test.cpp
 layout: document
