@@ -4,10 +4,10 @@
 // 遅延セグ木より 4 ～ 5 倍高速？
 // https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp
 // https://codeforces.com/contest/860/submission/228355081
-template <typename AbelGroup>
+template <typename AbelianGruop>
 struct FenwickTree_Range_Add {
-  using G = AbelGroup;
-  using E = typename AbelGroup::value_type;
+  using G = AbelianGruop;
+  using E = typename AbelianGruop::value_type;
   int n;
   FenwickTree<G> bit0;
   FenwickTree<G> bit1;

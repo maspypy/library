@@ -11,7 +11,7 @@ struct Incremental_Centroid {
   int cent;
   pair<int, int> max_subtree;  // (adj, size)
   int wt_sm;
-  Tree_AbelGroup<TREE, Monoid_Add<int>, 0, 0, 1> TA;
+  Tree_AbelianGruop<TREE, Monoid_Add<int>, 0, 0, 1> TA;
   FastSet ss;
 
   Incremental_Centroid(TREE& tree)

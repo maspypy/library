@@ -1,24 +1,24 @@
 #include "ds/fenwicktree/fenwicktree.hpp"
 #include "graph/tree.hpp"
 
-template <typename TREE, typename AbelGroup, bool edge, bool path_query, bool subtree_query>
-struct Tree_AbelGroup {
-  using MX = AbelGroup;
+template <typename TREE, typename AbelianGruop, bool edge, bool path_query, bool subtree_query>
+struct Tree_AbelianGruop {
+  using MX = AbelianGruop;
   using X = typename MX::value_type;
   TREE &tree;
   int N;
   FenwickTree<MX> bit, bit_subtree;
 
-  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N) {
+  Tree_AbelianGruop(TREE &tree) : tree(tree), N(tree.N) {
     build([](int i) -> X { return MX::unit(); });
   }
 
-  Tree_AbelGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
+  Tree_AbelianGruop(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
     build([&](int i) -> X { return dat[i]; });
   }
 
   template <typename F>
-  Tree_AbelGroup(TREE &tree, F f) : tree(tree), N(tree.N) {
+  Tree_AbelianGruop(TREE &tree, F f) : tree(tree), N(tree.N) {
     build(f);
   }
 
