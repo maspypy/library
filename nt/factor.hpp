@@ -32,11 +32,11 @@ ll find_prime_factor(ll n) {
   FOR(100) {
     ll m = 0;
     if (n < (1 << 30)) {
-      using mint = Mongomery_modint_32<20231025>;
+      using mint = Montgomery_modint_32<20231025>;
       mint::set_mod(n);
       m = rho<mint>(n, RNG(0, n));
     } else {
-      using mint = Mongomery_modint_64<20231025>;
+      using mint = Montgomery_modint_64<20231025>;
       mint::set_mod(n);
       m = rho<mint>(n, RNG(0, n));
     }

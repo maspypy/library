@@ -1,4 +1,4 @@
-#include "ds/offline_query/coeffient_query_2d.hpp"
+#include "ds/offline_query/coefficient_query_2d.hpp"
 
 template <typename T>
 struct Rectangle_Add_Rectangle_Sum {

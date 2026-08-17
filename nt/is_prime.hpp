@@ -8,7 +8,7 @@ bool is_prime(const u64 x) {
   if (x < 121) return x > 1;
   const u64 d = (x - 1) >> lowbit(x - 1);
 
-  using mint = Mongomery_modint_64<202311020>;
+  using mint = Montgomery_modint_64<202311020>;
 
   mint::set_mod(x);
   const mint one(u64(1)), minus_one(x - 1);

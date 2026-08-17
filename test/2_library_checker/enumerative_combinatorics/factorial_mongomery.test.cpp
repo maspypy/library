@@ -2,9 +2,9 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "mod/mongomery_modint.hpp"
+#include "mod/montgomery_modint.hpp"
 
-using mint = Mongomery_modint_32<0>;
+using mint = Montgomery_modint_32<0>;
 constexpr int mod = 998244353;
 
 void solve() {

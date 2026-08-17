@@ -1,6 +1,6 @@
 #include "graph/bipartite_vertex_coloring.hpp"
 #include "ds/unionfind/unionfind.hpp"
-#include "flow/bipartite.hpp"
+#include "flow/bipartite_matching.hpp"
 
 struct Regular_Bipartite_Coloring {
   using P = pair<int, int>;

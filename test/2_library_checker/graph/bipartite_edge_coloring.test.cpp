@@ -13,7 +13,7 @@ void solve() {
   G.build();
   auto [C, color] = bipartite_edge_coloring(G);
   print(C);
-  for (auto&& x: color) print(x);
+  for (auto&& x : color) print(x);
 }
 
 signed main() {
