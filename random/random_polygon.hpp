@@ -17,7 +17,7 @@ vc<Point<ll>> random_polygon(int N, int XY_ABS_MAX = 10) {
     }
     vc<P> point(all(S));
     auto I = convex_hull<ll, true>(point);
-    Count_Points_In_Triangles CT(point, point);
+    Count_Points_in_Triangles CT(point, point);
     vc<int> other;
     vc<int> done(N);
     for (auto& i : I) done[i]++;

@@ -2,7 +2,7 @@
 
 // https://codeforces.com/problemset/problem/1725/J
 template <typename TREE, typename WT>
-struct SubTree_Diameter {
+struct Subtree_Diameter {
   struct Data {
     // 今まで見つけた直径距離、端点
     WT diam;
@@ -15,7 +15,7 @@ struct SubTree_Diameter {
   TREE& tree;
   vc<tuple<int, int, WT>> dp, dp_1, dp_2;
 
-  SubTree_Diameter(TREE& tree) : tree(tree) {
+  Subtree_Diameter(TREE& tree) : tree(tree) {
     int N = tree.N;
     Data unit = {-1, -1, -1, -1, -1};
     auto f_ee = [&](Data A, Data B) -> Data {

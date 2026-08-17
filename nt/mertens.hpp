@@ -4,11 +4,11 @@
 
 template <typename T>
 struct Mertens {
-  Array_On_Floor<T> sum;
+  Array_on_Floor<T> sum;
   Mertens() {}
   Mertens(u64 N, u64 K = -1) { build(N, K); }
   void build(u64 N, u64 K = -1) {
-    sum = Array_On_Floor<T>(N);
+    sum = Array_on_Floor<T>(N);
     if (K == u64(-1)) { K = pow(N, 0.67); }
     vc<T> A = mobius_table<T>(K);
     FOR(k, 1, K) A[k + 1] += A[k];

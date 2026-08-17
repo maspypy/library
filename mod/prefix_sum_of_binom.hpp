@@ -1,14 +1,14 @@
 #include "ds/offline_query/mo.hpp"
 
 template <typename mint>
-struct Prefix_Sum_Of_Binom {
+struct Prefix_Sum_of_Binom {
   static constexpr u32 mod = mint::get_mod();
   const int MAX_N;
   const int B;
   vc<mint> POW;
   vvc<mint> dat;
 
-  Prefix_Sum_Of_Binom(int MAX_N) : MAX_N(MAX_N), B(sqrt(MAX_N + 1)) {
+  Prefix_Sum_of_Binom(int MAX_N) : MAX_N(MAX_N), B(sqrt(MAX_N + 1)) {
     assert(MAX_N >= 0);
     int K = ceil(MAX_N, B + B) + 2;
     int p = max(MAX_N, K * B);
@@ -61,7 +61,7 @@ struct Prefix_Sum_Of_Binom {
 };
 
 template <typename mint>
-struct Prefix_Sum_Of_Binom_Offline {
+struct Prefix_Sum_of_Binom_Offline {
   vc<pair<int, int>> query;
 
   void add(int n, int m) { query.eb(n, m); }

@@ -3,13 +3,13 @@
 
 // sum_v dist(root, v)
 template <typename TREE, typename WT = ll>
-struct SubTree_Depth_Sum {
+struct Subtree_Depth_Sum {
   // num_point, dist_sum
   using Data = pair<int, WT>;
   TREE& tree;
   vc<Data> dp, dp_1, dp_2;
 
-  SubTree_Depth_Sum(TREE& tree) : tree(tree) {
+  Subtree_Depth_Sum(TREE& tree) : tree(tree) {
     Data unit = {0, 0};
     auto f_ee = [&](Data A, Data B) -> Data {
       return {A.fi + B.fi, A.se + B.se};

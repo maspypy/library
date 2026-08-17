@@ -3,7 +3,7 @@
 // https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub
 // 選好リストは左にある方優先
 // 必要なら INF を入れて長さ N-1 ずつにしておくこと
-vc<pair<int, int>> stable_roommate(vvc<int> prefer_list) {
+vc<pair<int, int>> stable_roommates(vvc<int> prefer_list) {
   vvc<int>& A = prefer_list;
   int N = len(A);
   FOR(i, N - 1) assert(len(A[i]) == N - 1);

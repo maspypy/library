@@ -6,7 +6,7 @@ https://codeforces.com/problemset/problem/713/D
 ・クエリ O(log H)
 */
 template <typename SPARSE_TABLE>
-struct Sparse_Table_On_SegTree {
+struct Sparse_Table_on_SegTree {
   using ST = SPARSE_TABLE;
   using MX = typename ST::MX;
   using X = typename MX::value_type;
@@ -15,8 +15,8 @@ struct Sparse_Table_On_SegTree {
   int H, W;
   vc<ST> dat;
 
-  Sparse_Table_On_SegTree() {}
-  Sparse_Table_On_SegTree(vvc<X> &v) {
+  Sparse_Table_on_SegTree() {}
+  Sparse_Table_on_SegTree(vvc<X> &v) {
     H = len(v), W = (H == 0 ? 0 : len(v[0]));
     dat.resize(2 * H);
     FOR(i, H) { dat[H + i] = ST(v[i]); }

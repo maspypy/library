@@ -9,7 +9,7 @@
 // 前計算 O(NMlogM)、クエリ O(1)
 // https://codeforces.com/contest/13/problem/D
 // https://codeforces.com/contest/852/problem/H
-struct Count_Points_In_Triangles {
+struct Count_Points_in_Triangles {
   using P = Point<ll>;
   const int LIM = 1'000'000'000 + 10;
   vc<P> A, B;
@@ -17,7 +17,7 @@ struct Count_Points_In_Triangles {
   vc<int> point;   // A[i] と一致する B[j] の数え上げ
   vvc<int> seg;    // 線分 A[i]A[j] 内にある B[k] の数え上げ
   vvc<int> tri;    // OA[i]A[j] 内部にある B[k] の数え上げ
-  Count_Points_In_Triangles(const vc<P>& A, const vc<P>& B) : A(A), B(B) {
+  Count_Points_in_Triangles(const vc<P>& A, const vc<P>& B) : A(A), B(B) {
     for (auto&& p: A) assert(max(abs(p.x), abs(p.y)) < LIM);
     for (auto&& p: B) assert(max(abs(p.x), abs(p.y)) < LIM);
     build();

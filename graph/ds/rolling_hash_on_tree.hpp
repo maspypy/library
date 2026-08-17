@@ -4,7 +4,7 @@
 
 // 木の辺に文字がちょうどひとつ書いてある (static)
 template <typename TREE, bool EDGE>
-struct Rolling_Hash_On_Tree {
+struct Rolling_Hash_on_Tree {
   using mint = modint61;
 
   TREE& tree;
@@ -18,7 +18,7 @@ struct Rolling_Hash_On_Tree {
   vc<mint> pow, ipow;
 
   template <typename F>
-  Rolling_Hash_On_Tree(TREE& tree, F f, mint base_ = 0)
+  Rolling_Hash_on_Tree(TREE& tree, F f, mint base_ = 0)
       : tree(tree), N(tree.N), base(base_) {
     if (base == mint(0)) base = RNG(mint::get_mod());
     build(f);

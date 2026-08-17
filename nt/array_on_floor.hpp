@@ -1,12 +1,12 @@
 // N=10 だと dat = {dp[1], dp[2], dp[3], dp[5], dp[10]} みたいになる
 // hashmap より数倍高速
 template <typename T>
-struct Array_On_Floor {
+struct Array_on_Floor {
   u64 N;
   u32 t, sq;
   vc<T> dat;
-  Array_On_Floor() {}
-  Array_On_Floor(u64 N, T default_value = T{}) : N(N) {
+  Array_on_Floor() {}
+  Array_on_Floor(u64 N, T default_value = T{}) : N(N) {
     assert(N <= u64(1) << 50);
     sq = sqrtl(N);
     t = (u64(sq) * sq + sq <= N ? sq : sq - 1);

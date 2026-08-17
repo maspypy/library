@@ -6,12 +6,12 @@
 
 // 複数の木で使って大丈夫
 template <typename TREE>
-struct SubTree_Hash {
+struct Subtree_Hash {
   using mint = modint61;
   TREE& tree;
   vc<u64> dp, dp_1, dp_2;
 
-  SubTree_Hash(TREE& tree) : tree(tree) {
+  Subtree_Hash(TREE& tree) : tree(tree) {
     int N = tree.N;
     using T = pair<int, mint>;
     T unit = {0, mint(1)};

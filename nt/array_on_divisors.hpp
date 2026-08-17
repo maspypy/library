@@ -2,14 +2,14 @@
 #include "ds/hashmap.hpp"
 
 template <typename T>
-struct Array_On_Divisors {
+struct Array_on_Divisors {
   vc<pair<ll, int>> pf;
   vc<ll> divs;
   vc<T> dat;
   HashMap<int> MP;
 
-  Array_On_Divisors(ll N = 1) { build(N); }
-  Array_On_Divisors(vc<pair<ll, int>> pf) { build(pf); }
+  Array_on_Divisors(ll N = 1) { build(N); }
+  Array_on_Divisors(vc<pair<ll, int>> pf) { build(pf); }
 
   void build(ll N) { build(factor(N)); }
   void build(vc<pair<ll, int>> pfs) {

@@ -1,14 +1,14 @@
 // 全体加算もできるようにしよう
 // Monoid_Add<T> を渡す感じで. T は operator< が定義されている必要あり.
 template <typename Monoid>
-struct Double_End_Queue_Const_Add {
+struct Double_Ended_Queue_Const_Add {
   using MX = Monoid;
   using T = typename MX::value_type;
   vector<T> dat;
   T add;
 
-  Double_End_Queue_Const_Add() : add(MX::unit()) {}
-  Double_End_Queue_Const_Add(vc<T>& A) : add(MX::unit()) { build(A); }
+  Double_Ended_Queue_Const_Add() : add(MX::unit()) {}
+  Double_Ended_Queue_Const_Add(vc<T>& A) : add(MX::unit()) { build(A); }
 
   int size() { return dat.size(); }
   bool empty() { return dat.empty(); }

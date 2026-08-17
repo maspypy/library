@@ -1,14 +1,14 @@
 // T は operator< を持つ
 template <typename T>
-struct Double_End_Queue {
+struct Double_Ended_Queue {
   // interval heap
   // 子よりも親の方が大きな区間を作るようにする
   // 奇数要素のときは [a,a] という区間があると思う
   // すると根の区間が min,max を与える
   vector<T> dat;
 
-  Double_End_Queue() {}
-  Double_End_Queue(vc<T>& A) { build(A); }
+  Double_Ended_Queue() {}
+  Double_Ended_Queue(vc<T>& A) { build(A); }
 
   int size() { return dat.size(); }
   bool empty() { return dat.empty(); }

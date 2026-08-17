@@ -5,7 +5,7 @@
 struct Slope_Trick_1 {
   struct FUNC {
     // 定義域の両端は que に入れることにして que が空でない状態を保つ
-    Double_End_Queue_Const_Add<Monoid_Add<ll>> que_l, que_r;
+    Double_Ended_Queue_Const_Add<Monoid_Add<ll>> que_l, que_r;
     i128 min_f = 0;
     int size() { return que_l.size() + que_r.size(); }
   };

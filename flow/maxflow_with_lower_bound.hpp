@@ -1,7 +1,7 @@
 
 
 template <typename Cap>
-struct MaxFlow_With_Lower_Bound {
+struct MaxFlow_with_Lower_Bound {
   int N, s, t, S, T;
   Cap flow_ans;
   bool prepared = 0;
@@ -14,7 +14,7 @@ struct MaxFlow_With_Lower_Bound {
   };
   vc<Edge_raw> dat;
 
-  MaxFlow_With_Lower_Bound(int N, int s, int t)
+  MaxFlow_with_Lower_Bound(int N, int s, int t)
       : N(N), s(s), t(t), S(N), T(N + 1), flow_ans(0) {
     assert(0 <= s && s < N);
     assert(0 <= t && t < N);

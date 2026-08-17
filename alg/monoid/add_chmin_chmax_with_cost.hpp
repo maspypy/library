@@ -1,5 +1,5 @@
 template <typename T>
-struct Monoid_Add_Chmin_Chmax_With_Cost {
+struct Monoid_Add_Chmin_Chmax_with_Cost {
   // clamp(x+a,l,r) は (a,0,0,l-a,r-a) とする
   // eval_cost(f,x) すると、add, chmax, chmin による x の変化量が入る
   struct F {
