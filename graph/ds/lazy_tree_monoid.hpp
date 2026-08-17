@@ -13,7 +13,9 @@ struct Lazy_Tree_Monoid {
     using Monoid_A = MA;
     using X = typename Monoid_X::value_type;
     using A = typename Monoid_A::value_type;
-    static X act(const X &x, const A &a, const ll &size) { return ActedMonoid::act(x, a, size); }
+    static X act(const X &x, const A &a, const ll &size) {
+      return ActedMonoid::act(x, a, size);
+    }
   };
 
   TREE &tree;
@@ -39,11 +41,17 @@ struct Lazy_Tree_Monoid {
     if (!edge) {
       auto f_v = [&](int i) -> X { return f(tree.V[i]); };
       seg.build(N, f_v);
-      if constexpr (!MX::commute) { seg_r.build(N, f_v); }
+      if constexpr (!MX::commute) {
+        seg_r.build(N, f_v);
+      }
     } else {
-      auto f_e = [&](int i) -> X { return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i]))); };
+      auto f_e = [&](int i) -> X {
+        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));
+      };
       seg.build(N, f_e);
-      if constexpr (!MX::commute) { seg_r.build(N, f_e); }
+      if constexpr (!MX::commute) {
+        seg_r.build(N, f_e);
+      }
     }
   }
 
@@ -51,7 +59,9 @@ struct Lazy_Tree_Monoid {
     if constexpr (edge) i = tree.e_to_v(i);
     i = tree.LID[i];
     seg.set(i, x);
-    if constexpr (!MX::commute) { seg_r.set(i, x); }
+    if constexpr (!MX::commute) {
+      seg_r.set(i, x);
+    }
   }
 
   X get(int v) { return seg.get(tree.LID[v]); }
@@ -71,7 +81,9 @@ struct Lazy_Tree_Monoid {
   X prod_path(int u, int v) {
     auto pd = tree.get_path_decomposition(u, v, edge);
     X val = MX::unit();
-    for (auto &&[a, b]: pd) { val = MX::op(val, get_prod(a, b)); }
+    for (auto &&[a, b] : pd) {
+      val = MX::op(val, get_prod(a, b));
+    }
     return val;
   }
 
@@ -81,7 +93,7 @@ struct Lazy_Tree_Monoid {
       int l = tree.LID[u], r = tree.RID[u];
       return seg.prod(l + edge, r);
     }
-    assert(!edge); // さぼり
+    assert(!edge);  // さぼり
     u = tree.jump(u, root, 1);
     int L = tree.LID[u], R = tree.RID[u];
     return MX::op(seg.prod(0, L), seg.prod(R, N));
@@ -94,17 +106,21 @@ struct Lazy_Tree_Monoid {
 
   void apply_path(int u, int v, A a) {
     auto pd = tree.get_path_decomposition(u, v, edge);
-    for (auto &&[x, y]: pd) {
+    for (auto &&[x, y] : pd) {
       int l = min(x, y), r = max(x, y);
       seg.apply(l, r + 1, a);
-      if constexpr (!MX::commute) { seg_r.apply(l, r + 1, a); }
+      if constexpr (!MX::commute) {
+        seg_r.apply(l, r + 1, a);
+      }
     }
   }
 
   void apply_subtree(int u, A a) {
     int l = tree.LID[u], r = tree.RID[u];
     seg.apply(l + edge, r, a);
-    if constexpr (!MX::commute) { seg_r.apply(l + edge, r, a); }
+    if constexpr (!MX::commute) {
+      seg_r.apply(l + edge, r, a);
+    }
   }
 
   void apply_outtree(int u, A a) {
@@ -123,7 +139,7 @@ struct Lazy_Tree_Monoid {
     if (!check(prod_path(u, u))) return -1;
     auto pd = tree.get_path_decomposition(u, v, edge);
     X val = MX::unit();
-    for (auto &&[a, b]: pd) {
+    for (auto &&[a, b] : pd) {
       X x = get_prod(a, b);
       if (check(MX::op(val, x))) {
         val = MX::op(val, x);
@@ -149,21 +165,22 @@ struct Lazy_Tree_Monoid {
 
   // closed range [a,b] を heavy path の形式に応じて
   inline X get_prod(int a, int b) {
-    if constexpr (MX::commute) return (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
+    if constexpr (MX::commute)
+      return (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
     return (a <= b ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1));
   }
 
-private:
+ private:
   template <class F>
   int max_path_edge(F check, int u, int v) {
     static_assert(edge);
     if (!check(MX::unit())) return -1;
-    int lca = tree.lca(u, v);
+    int lca = tree.LCA(u, v);
     auto pd = tree.get_path_decomposition(u, lca, edge);
     X val = MX::unit();
 
     // climb
-    for (auto &&[a, b]: pd) {
+    for (auto &&[a, b] : pd) {
       assert(a >= b);
       X x = get_prod(a, b);
       if (check(MX::op(val, x))) {
@@ -180,7 +197,7 @@ private:
     }
     // down
     pd = tree.get_path_decomposition(lca, v, edge);
-    for (auto &&[a, b]: pd) {
+    for (auto &&[a, b] : pd) {
       assert(a <= b);
       X x = get_prod(a, b);
       if (check(MX::op(val, x))) {

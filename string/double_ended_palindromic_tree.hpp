@@ -3,12 +3,12 @@
 template <int sigma, char offset>
 struct Double_Ended_Palindromic_Tree {
   struct Node {
-    array<int, sigma> TO; // 両端にある文字を追加してできる回文
-    int par;              // 両端にある文字を除いてできる回文
-    int link;             // longest suffix palindrome ノード
-    int length;           // その回文の長さ
+    array<int, sigma> TO;  // 両端にある文字を追加してできる回文
+    int par;               // 両端にある文字を除いてできる回文
+    int link;              // longest suffix palindrome ノード
+    int length;            // その回文の長さ
     int cnt;
-    int linkcnt; // suffix link tree での子の個数
+    int linkcnt;  // suffix link tree での子の個数
 
     // link の計算をメモ化したもの
     // str(v)+c の longest palindrome suffix = c+str(w)+c となる w
@@ -16,7 +16,7 @@ struct Double_Ended_Palindromic_Tree {
   };
   static constexpr int ODD = 0, EVEN = 1;
   vc<Node> nodes;
-  vc<int> FREE; // Node が削除済で使われていない index
+  vc<int> FREE;  // Node が削除済で使われていない index
 
   // 文字列の position ごとに持つもの
   struct T {
@@ -28,7 +28,7 @@ struct Double_Ended_Palindromic_Tree {
 
   int mod, mask;
   vc<T> dat;
-  int L = 0, R = 0; // global index range
+  int L = 0, R = 0;  // global index range
   int num_node = 0;
 
   int new_node(int par, int link, int length, int c = -1) {
@@ -61,7 +61,7 @@ struct Double_Ended_Palindromic_Tree {
     if (nodes[k].linkcnt == 0) FREE.eb(nid);
   }
 
-  Double_Ended_Palindromic_Tree(int max_size) { // odd, even
+  Double_Ended_Palindromic_Tree(int max_size) {  // odd, even
     assert(ODD == new_node(-1, -1, -1));
     assert(EVEN == new_node(-1, 0, 0));
     nodes[ODD].cnt = infty<int>, nodes[EVEN].cnt = infty<int>;
@@ -86,17 +86,25 @@ struct Double_Ended_Palindromic_Tree {
       auto dfs = [&](auto& dfs, int v) -> int {
         // str(v)+c の longest suffix palindrome = c+str(w)+c
         int& w = nodes[v].direct_link[c];
-        if (w != -1) { return w; }
+        if (w != -1) {
+          return w;
+        }
         int p = nodes[v].link;
         int j = R - 1 - nodes[p].length;
-        if (L <= j && j <= R && dat[j & mask].c == c) { return w = p; }
+        if (L <= j && j <= R && dat[j & mask].c == c) {
+          return w = p;
+        }
         return w = dfs(dfs, p);
       };
       // いまのノードに足せないなら戻る
       int j = R - 1 - nodes[v].length;
-      if (!(L <= j && j <= R && dat[j & mask].c == c)) { v = dfs(dfs, v); }
+      if (!(L <= j && j <= R && dat[j & mask].c == c)) {
+        v = dfs(dfs, v);
+      }
       // c+str(v)+c を作る
-      if (nodes[v].TO[c] != -1) { return nodes[v].TO[c]; }
+      if (nodes[v].TO[c] != -1) {
+        return nodes[v].TO[c];
+      }
       int link = (v == ODD ? EVEN : nodes[dfs(dfs, v)].TO[c]);
       return new_node(v, link, nodes[v].length + 2, c);
     }();
@@ -140,10 +148,14 @@ struct Double_Ended_Palindromic_Tree {
       auto dfs = [&](auto& dfs, int v) -> int {
         // str(v)+c の longest suffix palindrome = c+str(w)+c
         int& w = nodes[v].direct_link[c];
-        if (w != -1) { return w; }
+        if (w != -1) {
+          return w;
+        }
         int p = nodes[v].link;
         int j = L + nodes[p].length;
-        if (L - 1 <= j && j <= R - 1 && dat[j & mask].c == c) { return w = p; }
+        if (L - 1 <= j && j <= R - 1 && dat[j & mask].c == c) {
+          return w = p;
+        }
         return w = dfs(dfs, p);
       };
       // いまのノードに足せないなら戻る
@@ -152,7 +164,9 @@ struct Double_Ended_Palindromic_Tree {
         v = dfs(dfs, v);
       }
       // c+str(v)+c を作る
-      if (nodes[v].TO[c] != -1) { return nodes[v].TO[c]; }
+      if (nodes[v].TO[c] != -1) {
+        return nodes[v].TO[c];
+      }
       int link = (v == ODD ? EVEN : nodes[dfs(dfs, v)].TO[c]);
       return new_node(v, link, nodes[v].length + 2, c);
     }();
@@ -186,7 +200,7 @@ struct Double_Ended_Palindromic_Tree {
     ++L;
   }
 
-  int count_distinct_palindrome() { return num_node - 2; }
+  int count_distinct_palindromes() { return num_node - 2; }
   int maximum_prefix_palindrome() { return nodes[prefix_node()].length; }
   int maximum_suffix_palindrome() { return nodes[suffix_node()].length; }
 };

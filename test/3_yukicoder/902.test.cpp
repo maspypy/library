@@ -14,7 +14,7 @@ struct Node {
   using X = ll;
 
   Node *l, *r, *p;
-  int idx, size; // size は heavy path の頂点数
+  int idx, size;  // size は heavy path の頂点数
   bool rev;
   VX vx = 0;
   X x = 0;
@@ -25,8 +25,12 @@ struct Node {
   void update() {
     size = 1;
     x = vx;
-    if (l) { size += l->size, x += l->x; }
-    if (r) { size += r->size, x += r->x; }
+    if (l) {
+      size += l->size, x += l->x;
+    }
+    if (r) {
+      size += r->size, x += r->x;
+    }
   }
 
   void push() {
@@ -86,7 +90,7 @@ void solve() {
     sort(all(X), [&](auto a, auto b) -> bool {
       if (a == b) return false;
       LCT.evert(r);
-      int c = LCT.lca(a, b);
+      int c = LCT.LCA(a, b);
       if (a == c) return true;
       if (b == c) return false;
       int x = LCT.jump(c, a, 1);

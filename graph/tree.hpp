@@ -207,8 +207,8 @@ struct Tree {
   // https://codeforces.com/problemset/problem/500/G
   pair<int, int> path_intersection(int a, int b, int c, int d) {
     static_assert(HLD);
-    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);
-    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);
+    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);
+    int bc = LCA(b, c), bd = LCA(b, d), cd = LCA(c, d);
     int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;  // meet(a,b,c), meet(a,b,d)
     if (x != y) return {x, y};
     int z = ac ^ ad ^ cd;

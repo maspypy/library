@@ -4,7 +4,7 @@
 // 長さ 3 の数列 {a[i][0], a[i][1], a[i][2]} たちの畳み込み, O(NlogN)
 // 同種の問題：(a_i,b_i) があって、b_i は a_i を取ってからだけ取れる
 template <typename T>
-struct MinPlus_Convolution_of_Triples {
+struct Minplus_Convolution_of_Triples {
   int N = 0;
   T sm0 = 0;
   vc<array<T, 3>> dat;
@@ -27,7 +27,7 @@ struct MinPlus_Convolution_of_Triples {
     solve_1();
     solve_2();
     dp = minplus_convolution<T, true, false>(dp1, dp2);
-    for (auto&& x: dp) x += sm0;
+    for (auto&& x : dp) x += sm0;
   }
 
   T operator[](int i) { return dp[i]; }
@@ -37,8 +37,8 @@ struct MinPlus_Convolution_of_Triples {
     int k1 = -1, k2 = -1;
     FOR(i, k + 1) {
       int j = k - i;
-      if (0 <= i && i < len(dp1) && 0 <= j && j < len(dp2)
-          && dp1[i] + dp2[j] + sm0 == dp[k]) {
+      if (0 <= i && i < len(dp1) && 0 <= j && j < len(dp2) &&
+          dp1[i] + dp2[j] + sm0 == dp[k]) {
         k1 = i, k2 = j;
         break;
       }
@@ -51,10 +51,10 @@ struct MinPlus_Convolution_of_Triples {
     return x;
   }
 
-private:
+ private:
   void solve_1() {
     dp1.reserve(len(I1));
-    for (int i: I1) {
+    for (int i : I1) {
       dp1.eb(dat[i][1] - dat[i][0]), dp1.eb(dat[i][2] - dat[i][1]);
     }
     sort(all(dp1));
@@ -63,7 +63,7 @@ private:
 
   vc<int> restore_1(int k) {
     vc<pair<T, int>> A;
-    for (int i: I1) {
+    for (int i : I1) {
       A.eb(dat[i][1] - dat[i][0], i);
       A.eb(dat[i][2] - dat[i][1], i);
     }

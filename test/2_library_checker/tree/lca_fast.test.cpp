@@ -19,7 +19,7 @@ void solve() {
 
   FOR(Q) {
     INT(a, b);
-    print(LCA.lca(a, b));
+    print(LCA.LCA(a, b));
   }
 }
 

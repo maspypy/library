@@ -9,7 +9,7 @@ struct Incremental_Centroid {
   TREE& tree;
   int N;
   int cent;
-  pair<int, int> max_subtree; // (adj, size)
+  pair<int, int> max_subtree;  // (adj, size)
   int wt_sm;
   Tree_AbelGroup<TREE, Monoid_Add<int>, 0, 0, 1> TA;
   FastSet ss;
@@ -40,7 +40,7 @@ struct Incremental_Centroid {
       int L = tree.LID[a], R = tree.RID[a];
       L = ss.next(L), R = ss.prev(R - 1);
       int x = tree.V[L], y = tree.V[R];
-      return tree.lca(x, y);
+      return tree.LCA(x, y);
     }
     int L = tree.LID[cent], R = tree.RID[cent];
     int x = v;
@@ -49,7 +49,7 @@ struct Incremental_Centroid {
     if (1 < L) I.eb(ss.prev(L - 1));
     if (R < N - 1) I.eb(ss.next(R));
     I.eb(ss.prev(N - 1));
-    for (auto&& idx: I) {
+    for (auto&& idx : I) {
       if (idx == -1 || idx == N) continue;
       if (L <= idx && idx < R) continue;
       int y = tree.V[idx];

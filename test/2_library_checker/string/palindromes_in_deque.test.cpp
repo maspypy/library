@@ -17,9 +17,13 @@ void solve() {
       CHAR(c);
       tree.push_back(c);
     }
-    if (t == 2) { tree.pop_front(); }
-    if (t == 3) { tree.pop_back(); }
-    int a = tree.count_distinct_palindrome();
+    if (t == 2) {
+      tree.pop_front();
+    }
+    if (t == 3) {
+      tree.pop_back();
+    }
+    int a = tree.count_distinct_palindromes();
     int b = tree.maximum_prefix_palindrome();
     int c = tree.maximum_suffix_palindrome();
     print(a, b, c);

@@ -64,7 +64,7 @@ struct Unicyclic_Graph {
   template <typename TREE>
   int dist(TREE& tree, int a, int b) {
     int btm = TO[root];
-    int ra = tree.lca(a, btm), rb = tree.lca(b, btm);
+    int ra = tree.LCA(a, btm), rb = tree.LCA(b, btm);
     int d = abs(tree.depth[ra] - tree.depth[rb]);
     d = min<int>(d, len(cycle) - d);
     return d + tree.depth[a] + tree.depth[b] - tree.depth[ra] - tree.depth[rb];
@@ -73,7 +73,7 @@ struct Unicyclic_Graph {
   template <typename TREE>
   T dist_weighted(TREE& tree, int a, int b) {
     int btm = TO[root];
-    int ra = tree.lca(a, btm), rb = tree.lca(b, btm);
+    int ra = tree.LCA(a, btm), rb = tree.LCA(b, btm);
     vc<T>& D = tree.depth_weighted;
     T d = abs(D[ra] - D[rb]);
     d = min(d, D[btm] + out_cost - d);

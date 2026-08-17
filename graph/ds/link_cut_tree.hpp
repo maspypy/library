@@ -74,14 +74,14 @@ struct Link_Cut_Tree {
   void evert(int c) { evert(&nodes[c]); }
 
   // 根は変えない
-  Node *lca(Node *u, Node *v) {
+  Node *LCA(Node *u, Node *v) {
     assert(get_root(u) == get_root(v));
     expose(u);
     return expose(v);
   }
 
   // 根は変えない
-  int lca(int u, int v) { return lca(&nodes[u], &nodes[v])->idx; }
+  int LCA(int u, int v) { return LCA(&nodes[u], &nodes[v])->idx; }
 
   // 辺の個数. 根を変える.
   int dist(int u, int v) {
@@ -107,7 +107,9 @@ struct Link_Cut_Tree {
         u = u->r;
         continue;
       }
-      if (k == rs) { break; }
+      if (k == rs) {
+        break;
+      }
       k -= rs + 1;
       u = u->l;
     }
@@ -127,12 +129,16 @@ struct Link_Cut_Tree {
   // c は push 済になる
   virtual Node *expose(Node *c) {
     Node *now = c;
-    Node *rp = nullptr; // 今まで作ったパス
+    Node *rp = nullptr;  // 今まで作ったパス
     while (now) {
       splay(now);
       // heavy -> light, light -> heavy.
-      if (now->r) { now->add_light(now->r); }
-      if (rp) { now->erase_light(rp); }
+      if (now->r) {
+        now->add_light(now->r);
+      }
+      if (rp) {
+        now->erase_light(rp);
+      }
       now->r = rp;
       now->update();
       rp = now;
@@ -219,7 +225,10 @@ struct Link_Cut_Tree {
   void debug() {
     print("p, l, r, rev");
     auto f = [&](np c) -> int { return (c ? c->idx : -1); };
-    FOR(i, len(nodes)) { print(i, ",", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r), (*this)[i]->rev); }
+    FOR(i, len(nodes)) {
+      print(i, ",", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),
+            (*this)[i]->rev);
+    }
     FOR(i, len(nodes)) {
       np c = (*this)[i];
       if (c->l) assert(c->l->p == c);
@@ -249,9 +258,8 @@ struct Link_Cut_Tree {
     }
   }
 
-  // uv path 上で prod_path(u, x) が check を満たす最後の x, なければ （つまり path(u,u) が ng ）-1.
-  // 根を変える.
-  // あまり verify されてないよ.
+  // uv path 上で prod_path(u, x) が check を満たす最後の x, なければ （つまり
+  // path(u,u) が ng ）-1. 根を変える. あまり verify されてないよ.
   // https://codeforces.com/contest/1039/submission/320681517
   // https://codesprintla25.kattis.com/contests/cxeqb3/submissions/17431394
   template <class F>
@@ -278,7 +286,7 @@ struct Link_Cut_Tree {
     return last_ok->idx;
   }
 
-private:
+ private:
   // splay tree 内で完結する操作. 特に heavy, light 構造は変わらない.
   // light pointer は rotate 内でケア
   // c は push 済になる

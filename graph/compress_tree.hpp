@@ -13,13 +13,13 @@ struct Compress_Tree {
 
   pair<vc<int>, GT> compress(vc<int>& V, bool sorted = false) {
     return compress_impl(V, sorted,
-                         [&](int a, int b) -> int { return tree.lca(a, b); });
+                         [&](int a, int b) -> int { return tree.LCA(a, b); });
   }
 
   pair<vc<int>, GT> compress_fast(vc<int>& V, Fast_Lca<TREE>& LCA,
                                   bool sorted = false) {
     return compress_impl(V, sorted,
-                         [&](int a, int b) -> int { return LCA.lca(a, b); });
+                         [&](int a, int b) -> int { return LCA.LCA(a, b); });
   }
 
   void sort_vertices(vc<int>& V) {

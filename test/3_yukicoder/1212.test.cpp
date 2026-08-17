@@ -15,11 +15,11 @@ void solve() {
 
   LL(Q);
   VEC(pi, query, Q);
-  for (auto&& [x, y]: query) --x, --y;
+  for (auto&& [x, y] : query) --x, --y;
   vvc<int> QIDS(N);
   FOR(q, Q) {
     auto [x, y] = query[q];
-    int lca = tree.lca(x, y);
+    int lca = tree.LCA(x, y);
     QIDS[lca].eb(q);
   }
 
@@ -31,17 +31,17 @@ void solve() {
   // これを使って、dat[edge] = 親から見て edge 以外のところの min を作る
   SegTree<Mono> seg(N);
   vi dat(N - 1);
-  vi dat_v(N);                 // 子方向の min
-  vi dat_par(N, Mono::unit()); // 親方向
+  vi dat_v(N);                  // 子方向の min
+  vi dat_par(N, Mono::unit());  // 親方向
 
   auto build_at = [&](int v) -> void {
-    for (auto&& e: G[v]) {
+    for (auto&& e : G[v]) {
       if (e.to == par[v]) continue;
       seg.set(e.to, e.cost);
     }
   };
   auto reset_at = [&](int v) -> void {
-    for (auto&& e: G[v]) {
+    for (auto&& e : G[v]) {
       if (e.to == par[v]) continue;
       seg.set(e.to, Mono::unit());
     }
@@ -50,7 +50,7 @@ void solve() {
   FOR(v, N) {
     build_at(v);
     dat_v[v] = seg.prod_all();
-    for (auto&& e: G[v]) {
+    for (auto&& e : G[v]) {
       if (e.to == par[v]) continue;
       dat_par[e.to] = e.cost;
       dat[e.id] = Mono::op(seg.prod(0, e.to), seg.prod(e.to + 1, N));
@@ -62,7 +62,7 @@ void solve() {
   vi ANS(Q);
   FOR(lca, N) {
     build_at(lca);
-    for (auto&& q: QIDS[lca]) {
+    for (auto&& q : QIDS[lca]) {
       auto [S, T] = query[q];
       if (S > T) swap(S, T);
       ll base = tree.dist_weighted(S, T);
@@ -91,7 +91,7 @@ void solve() {
     }
     reset_at(lca);
   }
-  for (auto&& x: ANS) print(x);
+  for (auto&& x : ANS) print(x);
 }
 
 signed main() {

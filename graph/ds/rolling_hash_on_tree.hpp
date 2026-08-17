@@ -49,10 +49,12 @@ struct Rolling_Hash_On_Tree {
   }
 
   mint get(int a, int b) {
-    int c = tree.lca(a, b);
+    int c = tree.LCA(a, b);
     mint x1 = get_du(a, c), x2 = get_ud(c, b);
     int n2 = tree.depth[b] - tree.depth[c];
-    if constexpr (!EDGE) { x1 = x1 * base + dat[c]; }
+    if constexpr (!EDGE) {
+      x1 = x1 * base + dat[c];
+    }
     return x1 * pow[n2] + x2;
   }
 
@@ -78,12 +80,20 @@ struct Rolling_Hash_On_Tree {
       ll n1 = abs(a - b) + 1, n2 = abs(c - d) + 1;
       ll n = min(n1, n2);
       if (n < n1) {
-        if (a <= b) { path1.eb(a + n, b), b = a + n - 1; }
-        if (a > b) { path1.eb(a - n, b), b = a - n + 1; }
+        if (a <= b) {
+          path1.eb(a + n, b), b = a + n - 1;
+        }
+        if (a > b) {
+          path1.eb(a - n, b), b = a - n + 1;
+        }
       }
       if (n < n2) {
-        if (c <= d) { path2.eb(c + n, d), d = c + n - 1; }
-        if (c > d) { path2.eb(c - n, d), d = c - n + 1; }
+        if (c <= d) {
+          path2.eb(c + n, d), d = c + n - 1;
+        }
+        if (c > d) {
+          path2.eb(c - n, d), d = c - n + 1;
+        }
       }
       mint x1 = from_hld_pair(a, b), x2 = from_hld_pair(c, d);
       if (x1 == x2) {
@@ -112,7 +122,7 @@ struct Rolling_Hash_On_Tree {
     return {lcp, '='};
   }
 
-private:
+ private:
   mint get_ud(int a, int b) {
     return (a == -1 ? dp1[b]
                     : dp1[b] - dp1[a] * pow[tree.depth[b] - tree.depth[a]]);
@@ -121,7 +131,9 @@ private:
     return (b == -1 ? dp2[a] : (dp2[a] - dp2[b]) * ipow[tree.depth[b] + 1]);
   }
   mint from_hld_pair(int a, int b) {
-    if (a <= b) { return get_ud(tree.parent[tree.V[a]], tree.V[b]); }
+    if (a <= b) {
+      return get_ud(tree.parent[tree.V[a]], tree.V[b]);
+    }
     return get_du(tree.V[a], tree.parent[tree.V[b]]);
   }
 };

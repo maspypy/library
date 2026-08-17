@@ -42,7 +42,9 @@ struct Static_Tree_Monoid {
   X prod_path(int u, int v) {
     auto pd = tree.get_path_decomposition(u, v, edge);
     X val = MX::unit();
-    for (auto &&[a, b]: pd) { val = MX::op(val, get_prod(a, b)); }
+    for (auto &&[a, b] : pd) {
+      val = MX::op(val, get_prod(a, b));
+    }
     return val;
   }
 
@@ -54,7 +56,7 @@ struct Static_Tree_Monoid {
     if (!check(prod_path(u, u))) return -1;
     auto pd = tree.get_path_decomposition(u, v, edge);
     X val = MX::unit();
-    for (auto &&[a, b]: pd) {
+    for (auto &&[a, b] : pd) {
       X x = get_prod(a, b);
       if (check(MX::op(val, x))) {
         val = MX::op(val, x);
@@ -90,17 +92,17 @@ struct Static_Tree_Monoid {
     return (a <= b ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1));
   }
 
-private:
+ private:
   template <class F>
   int max_path_edge(F check, int u, int v) {
     assert(edge);
     if (!check(MX::unit())) return -1;
-    int lca = tree.lca(u, v);
+    int lca = tree.LCA(u, v);
     auto pd = tree.get_path_decomposition(u, lca, edge);
     X val = MX::unit();
 
     // climb
-    for (auto &&[a, b]: pd) {
+    for (auto &&[a, b] : pd) {
       assert(a >= b);
       X x = get_prod(a, b);
       if (check(MX::op(val, x))) {
@@ -117,7 +119,7 @@ private:
     }
     // down
     pd = tree.get_path_decomposition(lca, v, edge);
-    for (auto &&[a, b]: pd) {
+    for (auto &&[a, b] : pd) {
       assert(a <= b);
       X x = seg.prod(a, b + 1);
       if (check(MX::op(val, x))) {

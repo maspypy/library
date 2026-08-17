@@ -1,5 +1,5 @@
 
-#include "convex/alien.hpp"
+#include "convex/alien_trick.hpp"
 #include "convex/monge/monge_shortest_path.hpp"
 
 // return: {ans, pena}

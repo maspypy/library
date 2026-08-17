@@ -9,9 +9,13 @@ struct Distance_Sum {
   struct Data {
     T ans, cnt, a, b, c;
   };
-  static Data rake(Data& L, Data& R) { return {L.ans + R.ans + L.cnt * R.a + R.cnt * L.a, L.cnt + R.cnt, L.a + R.a, L.b + R.a + L.c * R.cnt, L.c}; }
+  static Data rake(Data& L, Data& R) {
+    return {L.ans + R.ans + L.cnt * R.a + R.cnt * L.a, L.cnt + R.cnt, L.a + R.a,
+            L.b + R.a + L.c * R.cnt, L.c};
+  }
   static Data compress(Data& L, Data& R) {
-    return {L.ans + R.ans + L.cnt * R.a + R.cnt * L.b, L.cnt + R.cnt, L.a + R.a + R.cnt * L.c, L.b + R.b + L.cnt * R.c, L.c + R.c};
+    return {L.ans + R.ans + L.cnt * R.a + R.cnt * L.b, L.cnt + R.cnt,
+            L.a + R.a + R.cnt * L.c, L.b + R.b + L.cnt * R.c, L.c + R.c};
   }
   static Data single(T d, T cnt) { return {0, cnt, d * cnt, 0, d}; }
 
@@ -40,7 +44,7 @@ struct Distance_Sum {
     }
   }
 
-  T all_pair_sum() { return dp[2 * N - 2].ans; }
+  T all_pairs_sum() { return dp[2 * N - 2].ans; }
 
   void add(int v, T x) { set(v, dp[v].cnt + x); }
   T query(int v) {
