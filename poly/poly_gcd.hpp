@@ -105,7 +105,7 @@ vc<T> poly_gcd(vc<T> f, vc<T> g) {
   while (len(g) && g.back() == T(0)) POP(g);
   if (f.empty()) return g;
   if (g.empty()) return f;
-  auto F = get<0>(poly_extgcd(f, g));
+  auto F = get<0>(poly_ext_gcd(f, g));
   T c = T(1) / F.back();
   for (auto& f : F) f *= c;
   return F;
