@@ -952,19 +952,19 @@ data:
     \    T unit = {0, mint(1)};\n\n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi,\
     \ B.fi), A.se * B.se}; };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi\
     \ + 1, A.se}; };\n    auto f_ve = [&](T A, const auto& e) -> T {\n      return\
-    \ {A.fi, A.se + hash_base(A.fi)};\n    };\n\n    Rerooting_dp<TREE, T> DP(tree,\
+    \ {A.fi, A.se + hash_base(A.fi)};\n    };\n\n    Rerooting_DP<TREE, T> DP(tree,\
     \ f_ee, f_ev, f_ve, unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
     \    FOR(v, N) dp[v] = DP.dp[v].se.val;\n    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n\
     \    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n  }\n\n  // v \u3092\u6839\u3068\u3057\
     \u305F\u3068\u304D\u306E full tree\n  u64 operator[](int v) { return dp[v]; }\n\
     \n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728\
     \ v\n  u64 get(int v, int root) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
-    \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
-    \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n\
-    #line 7 \"test/2_library_checker/graph/classify_tree.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(p,\
-    \ v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
+    \ v)) {\n      return dp_1[v];\n    }\n    int w = tree.jump(v, root, 1);\n  \
+    \  return dp_2[w];\n  }\n\n  static mint hash_base(int k) {\n    static vc<mint>\
+    \ dat;\n    while (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n\
+    \  }\n};\n#line 7 \"test/2_library_checker/graph/classify_tree.test.cpp\"\n\n\
+    void solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
+    \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
     \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(v, 0);\n  vi key = ANS;\n\
     \  UNIQUE(key);\n  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
     \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
@@ -988,7 +988,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
+  timestamp: '2026-08-17 08:56:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/classify_tree.test.cpp

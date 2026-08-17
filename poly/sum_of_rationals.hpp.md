@@ -70,6 +70,9 @@ data:
     path: test/3_yukicoder/1145.test.cpp
     title: test/3_yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1575.test.cpp
+    title: test/3_yukicoder/1575.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
   - icon: ':heavy_check_mark:'
@@ -617,6 +620,7 @@ data:
   - test/1_mytest/vandermonde.test.cpp
   - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2459.test.cpp
   - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/1875.test.cpp

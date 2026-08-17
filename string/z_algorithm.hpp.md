@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: string/is_substring.hpp
+    title: string/is_substring.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/1_mytest/is_substring.test.cpp
+    title: test/1_mytest/is_substring.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/z_algorithm.hpp\"\n\ntemplate <typename STRING> \
@@ -24,10 +30,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/z_algorithm.hpp
-  requiredBy: []
+  requiredBy:
+  - string/is_substring.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/1_mytest/is_substring.test.cpp
 documentation_of: string/z_algorithm.hpp
 layout: document
 redirect_from:

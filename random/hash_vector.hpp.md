@@ -22,6 +22,9 @@ data:
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1881.test.cpp
+    title: test/3_yukicoder/1881.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,6 +99,7 @@ data:
   - test/1_mytest/tdpc_grid_dp.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1397.test.cpp
+  - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/541.test.cpp

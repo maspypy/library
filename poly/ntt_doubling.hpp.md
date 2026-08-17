@@ -9,6 +9,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -41,6 +44,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multipoint_evaluation_for_prefix_product.hpp
     title: poly/multipoint_evaluation_for_prefix_product.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
@@ -97,6 +103,15 @@ data:
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/chromatic_number.test.cpp
+    title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -142,6 +157,9 @@ data:
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1575.test.cpp
+    title: test/3_yukicoder/1575.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,6 +189,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2877.test.cpp
+    title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
@@ -301,11 +322,13 @@ data:
   - linalg/adjugate_matrix.hpp
   - linalg/blackbox/vandermonde.hpp
   - linalg/frobenius.hpp
+  - graph/chromatic.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/multipoint.hpp
   - poly/composition_f_ex_minus_1.hpp
   - poly/sum_of_exp_bx.hpp
+  - poly/multivar_convolution_cyclic.hpp
   - poly/convolution_all.hpp
   - poly/coef_of_rational_fps.hpp
   - poly/multipoint_evaluation_for_prefix_product.hpp
@@ -330,12 +353,15 @@ data:
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/chirp_z.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -349,12 +375,14 @@ data:
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/2305.test.cpp
   - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/1844.test.cpp
   - test/3_yukicoder/2243.test.cpp
   - test/3_yukicoder/2459.test.cpp
   - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/1875.test.cpp
+  - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1962.test.cpp

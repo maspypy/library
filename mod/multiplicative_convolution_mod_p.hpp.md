@@ -1,29 +1,544 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: mod/barrett.hpp
+    title: mod/barrett.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/crt3.hpp
+    title: mod/crt3.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_inv.hpp
+    title: mod/mod_inv.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_pow.hpp
+    title: mod/mod_pow.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
+    path: mod/modint_common.hpp
+    title: mod/modint_common.hpp
+  - icon: ':question:'
+    path: mod/mongomery_modint.hpp
+    title: mod/mongomery_modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/factor.hpp
+    title: nt/factor.hpp
+  - icon: ':question:'
+    path: nt/is_prime.hpp
+    title: nt/is_prime.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/convolution.hpp
+    title: poly/convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/convolution_karatsuba.hpp
+    title: poly/convolution_karatsuba.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/convolution_naive.hpp
+    title: poly/convolution_naive.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/ntt.hpp
+    title: poly/ntt.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
+    title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2613.test.cpp
+    title: test/3_yukicoder/2613.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: nt/primetest.hpp:\
-    \ line -1: no such header\n"
+  bundledCode: "#line 1 \"poly/convolution.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
+    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
+    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
+    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
+    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
+    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
+    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
+    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
+    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
+    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
+    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
+    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
+    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
+    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
+    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
+    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
+    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
+    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
+    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
+    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
+    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
+    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n\
+    \    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n    \
+    \  if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
+    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
+    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
+    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
+    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
+    \ (mod == 1012924417) return {21, 368093570};\n    if (mod == 1224736769) return\
+    \ {24, 1191450770};\n    if (mod == 2013265921) return {27, 244035102};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"mod/mod_inv.hpp\"\n\n// long \u3067\u3082\u5927\u4E08\u592B\n// (val\
+    \ * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
+    \u308B\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\nll mod_inv(ll\
+    \ val, ll mod) {\n  if (mod == 0) return 0;\n  mod = abs(mod);\n  val %= mod;\n\
+    \  if (val < 0) val += mod;\n  ll a = val, b = mod, u = 1, v = 0, t;\n  while\
+    \ (b > 0) {\n    t = a / b;\n    swap(a -= t * b, b), swap(u -= t * v, v);\n \
+    \ }\n  if (u < 0) u += mod;\n  return u;\n}\n#line 1 \"mod/crt3.hpp\"\n\nconstexpr\
+    \ u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n\
+    \  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a * a % mod, n /= 2;\n\
+    \  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32 p1>\nT CRT2(u64 a0,\
+    \ u64 a1) {\n  static_assert(p0 < p1);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  return a0 + c * p0;\n\
+    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64\
+    \ a2) {\n  static_assert(p0 < p1 && p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
+    \ p2 - 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0\
+    \ + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) *\
+    \ x2 % p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32\
+    \ p0, u32 p1, u32 p2, u32 p3>\nT CRT4(u64 a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0\
+    \ < p1 && p1 < p2 && p2 < p3);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
+    \ p2 - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3\
+    \ * p2 % p3, p3 - 2, p3);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c\
+    \ = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 %\
+    \ p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c\
+    \ = (a3 - ans_2 % p3 + p3) * x3 % p3;\n  return T(ans_2) + T(c) * T(p01) * T(p2);\n\
+    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64\
+    \ a0, u64 a1, u64 a2, u64 a3, u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 &&\
+    \ p2 < p3 && p3 < p4);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
+    \ 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2\
+    \ - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 *\
+    \ p2 % p3, p3 - 2, p3);\n  static constexpr u64 x4 = mod_pow_constexpr(u64(p0)\
+    \ * p1 % p4 * p2 % p4 * p3 % p4, p4 - 2, p4);\n  static constexpr u64 p01 = u64(p0)\
+    \ * p1;\n  static constexpr u64 p23 = u64(p2) * p3;\n  u64 c = (a1 - a0 + p1)\
+    \ * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 %\
+    \ p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3\
+    \ - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c *\
+    \ p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 + p4) * x4 % p4;\n  return\
+    \ T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 1 \"poly/convolution_naive.hpp\"\
+    \n\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\n\
+    vc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\n  int n = int(a.size()),\
+    \ m = int(b.size());\n  if (n > m) return convolution_naive<T>(b, a);\n  if (n\
+    \ == 0) return {};\n  vector<T> ans(n + m - 1);\n  FOR(i, n) FOR(j, m) ans[i +\
+    \ j] += a[i] * b[j];\n  return ans;\n}\n\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\n  int\
+    \ n = int(a.size()), m = int(b.size());\n  if (n > m) return convolution_naive<T>(b,\
+    \ a);\n  if (n == 0) return {};\n  vc<T> ans(n + m - 1);\n  if (n <= 16 && (T::get_mod()\
+    \ < (1 << 30))) {\n    for (int k = 0; k < n + m - 1; ++k) {\n      int s = max(0,\
+    \ k - m + 1);\n      int t = min(n, k + 1);\n      u64 sm = 0;\n      for (int\
+    \ i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\n      ans[k] =\
+    \ sm;\n    }\n  } else {\n    for (int k = 0; k < n + m - 1; ++k) {\n      int\
+    \ s = max(0, k - m + 1);\n      int t = min(n, k + 1);\n      u128 sm = 0;\n \
+    \     for (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\n\
+    \      ans[k] = T::raw(sm % T::get_mod());\n    }\n  }\n  return ans;\n}\n#line\
+    \ 1 \"poly/convolution_naive.hpp\"\n\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
+    \ = nullptr>\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\n  int\
+    \ n = int(a.size()), m = int(b.size());\n  if (n > m) return convolution_naive<T>(b,\
+    \ a);\n  if (n == 0) return {};\n  vector<T> ans(n + m - 1);\n  FOR(i, n) FOR(j,\
+    \ m) ans[i + j] += a[i] * b[j];\n  return ans;\n}\n\ntemplate <class T, typename\
+    \ enable_if<has_mod<T>::value>::type* = nullptr>\nvc<T> convolution_naive(const\
+    \ vc<T>& a, const vc<T>& b) {\n  int n = int(a.size()), m = int(b.size());\n \
+    \ if (n > m) return convolution_naive<T>(b, a);\n  if (n == 0) return {};\n  vc<T>\
+    \ ans(n + m - 1);\n  if (n <= 16 && (T::get_mod() < (1 << 30))) {\n    for (int\
+    \ k = 0; k < n + m - 1; ++k) {\n      int s = max(0, k - m + 1);\n      int t\
+    \ = min(n, k + 1);\n      u64 sm = 0;\n      for (int i = s; i < t; ++i) { sm\
+    \ += u64(a[i].val) * (b[k - i].val); }\n      ans[k] = sm;\n    }\n  } else {\n\
+    \    for (int k = 0; k < n + m - 1; ++k) {\n      int s = max(0, k - m + 1);\n\
+    \      int t = min(n, k + 1);\n      u128 sm = 0;\n      for (int i = s; i < t;\
+    \ ++i) { sm += u64(a[i].val) * (b[k - i].val); }\n      ans[k] = T::raw(sm % T::get_mod());\n\
+    \    }\n  }\n  return ans;\n}\n#line 2 \"poly/convolution_karatsuba.hpp\"\n\n\
+    // \u4EFB\u610F\u306E\u74B0\u3067\u3067\u304D\u308B\ntemplate <typename T>\nvc<T>\
+    \ convolution_karatsuba(const vc<T>& f, const vc<T>& g) {\n  const int thresh\
+    \ = 30;\n  if (min(len(f), len(g)) <= thresh) return convolution_naive(f, g);\n\
+    \  int n = max(len(f), len(g));\n  int m = ceil(n, 2);\n  vc<T> f1, f2, g1, g2;\n\
+    \  if (len(f) < m) f1 = f;\n  if (len(f) >= m) f1 = {f.begin(), f.begin() + m};\n\
+    \  if (len(f) >= m) f2 = {f.begin() + m, f.end()};\n  if (len(g) < m) g1 = g;\n\
+    \  if (len(g) >= m) g1 = {g.begin(), g.begin() + m};\n  if (len(g) >= m) g2 =\
+    \ {g.begin() + m, g.end()};\n  vc<T> a = convolution_karatsuba(f1, g1);\n  vc<T>\
+    \ b = convolution_karatsuba(f2, g2);\n  FOR(i, len(f2)) f1[i] += f2[i];\n  FOR(i,\
+    \ len(g2)) g1[i] += g2[i];\n  vc<T> c = convolution_karatsuba(f1, g1);\n  vc<T>\
+    \ F(len(f) + len(g) - 1);\n  assert(2 * m + len(b) <= len(F));\n  FOR(i, len(a))\
+    \ F[i] += a[i], c[i] -= a[i];\n  FOR(i, len(b)) F[2 * m + i] += b[i], c[i] -=\
+    \ b[i];\n  if (c.back() == T(0)) c.pop_back();\n  FOR(i, len(c)) if (c[i] != T(0))\
+    \ F[m + i] += c[i];\n  return F;\n}\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 2 \"poly/ntt.hpp\"\n\ntemplate <class mint>\nvoid\
+    \ ntt(vector<mint>& a, bool inverse) {\n  assert(mint::can_ntt());\n  const int\
+    \ rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n  static array<mint,\
+    \ 30> root, iroot;\n  static array<mint, 30> rate2, irate2;\n  static array<mint,\
+    \ 30> rate3, irate3;\n\n  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\n\
+    \n  static bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n    root[rank2]\
+    \ = mint::ntt_info().se;\n    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i,\
+    \ rank2) {\n      root[i] = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i\
+    \ + 1] * iroot[i + 1];\n    }\n    mint prod = 1, iprod = 1;\n    for (int i =\
+    \ 0; i <= rank2 - 2; i++) {\n      rate2[i] = root[i + 2] * prod;\n      irate2[i]\
+    \ = iroot[i + 2] * iprod;\n      prod *= iroot[i + 2];\n      iprod *= root[i\
+    \ + 2];\n    }\n    prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 3;\
+    \ i++) {\n      rate3[i] = root[i + 3] * prod;\n      irate3[i] = iroot[i + 3]\
+    \ * iprod;\n      prod *= iroot[i + 3];\n      iprod *= root[i + 3];\n    }\n\
+    \  }\n\n  int n = int(a.size());\n  int h = topbit(n);\n  assert(n == 1 << h);\n\
+    \  if (!inverse) {\n    int len = 0;\n    while (len < h) {\n      if (h - len\
+    \ == 1) {\n        int p = 1 << (h - len - 1);\n        mint rot = 1;\n      \
+    \  FOR(s, 1 << len) {\n          int offset = s << (h - len);\n          FOR(i,\
+    \ p) {\n            auto l = a[i + offset];\n            auto r = a[i + offset\
+    \ + p] * rot;\n            a[i + offset] = l + r;\n            a[i + offset +\
+    \ p] = l - r;\n          }\n          rot *= rate2[topbit(~s & -~s)];\n      \
+    \  }\n        len++;\n      } else {\n        int p = 1 << (h - len - 2);\n  \
+    \      mint rot = 1, imag = root[2];\n        for (int s = 0; s < (1 << len);\
+    \ s++) {\n          mint rot2 = rot * rot;\n          mint rot3 = rot2 * rot;\n\
+    \          int offset = s << (h - len);\n          for (int i = 0; i < p; i++)\
+    \ {\n            u64 mod2 = u64(mod) * mod;\n            u64 a0 = a[i + offset].val;\n\
+    \            u64 a1 = u64(a[i + offset + p].val) * rot.val;\n            u64 a2\
+    \ = u64(a[i + offset + 2 * p].val) * rot2.val;\n            u64 a3 = u64(a[i +\
+    \ offset + 3 * p].val) * rot3.val;\n            u64 a1na3imag = (a1 + mod2 - a3)\
+    \ % mod * imag.val;\n            u64 na2 = mod2 - a2;\n            a[i + offset]\
+    \ = a0 + a2 + a1 + a3;\n            a[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
+    \ - (a1 + a3));\n            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\n \
+    \           a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\n         \
+    \ }\n          rot *= rate3[topbit(~s & -~s)];\n        }\n        len += 2;\n\
+    \      }\n    }\n  } else {\n    mint coef = mint(1) / mint(len(a));\n    FOR(i,\
+    \ len(a)) a[i] *= coef;\n    int len = h;\n    while (len) {\n      if (len ==\
+    \ 1) {\n        int p = 1 << (h - len);\n        mint irot = 1;\n        FOR(s,\
+    \ 1 << (len - 1)) {\n          int offset = s << (h - len + 1);\n          FOR(i,\
+    \ p) {\n            u64 l = a[i + offset].val;\n            u64 r = a[i + offset\
+    \ + p].val;\n            a[i + offset] = l + r;\n            a[i + offset + p]\
+    \ = (mod + l - r) * irot.val;\n          }\n          irot *= irate2[topbit(~s\
+    \ & -~s)];\n        }\n        len--;\n      } else {\n        int p = 1 << (h\
+    \ - len);\n        mint irot = 1, iimag = iroot[2];\n        FOR(s, (1 << (len\
+    \ - 2))) {\n          mint irot2 = irot * irot;\n          mint irot3 = irot2\
+    \ * irot;\n          int offset = s << (h - len + 2);\n          for (int i =\
+    \ 0; i < p; i++) {\n            u64 a0 = a[i + offset + 0 * p].val;\n        \
+    \    u64 a1 = a[i + offset + 1 * p].val;\n            u64 a2 = a[i + offset +\
+    \ 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n            u64\
+    \ x = (mod + a2 - a3) * iimag.val % mod;\n            a[i + offset] = a0 + a1\
+    \ + a2 + a3;\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x) * irot.val;\n\
+    \            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\n\
+    \            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) * irot3.val;\n  \
+    \        }\n          irot *= irate3[topbit(~s & -~s)];\n        }\n        len\
+    \ -= 2;\n      }\n    }\n  }\n}\n#line 8 \"poly/convolution.hpp\"\n\ntemplate\
+    \ <class mint>\nvector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {\n\
+    \  assert(mint::can_ntt());\n  if (a.empty() || b.empty()) return {};\n  int n\
+    \ = int(a.size()), m = int(b.size());\n  int sz = 1;\n  while (sz < n + m - 1)\
+    \ sz *= 2;\n\n  // sz = 2^k \u306E\u3068\u304D\u306E\u9AD8\u901F\u5316\u3002\u5206\
+    \u5272\u7D71\u6CBB\u7684\u306A\u3084\u3064\u3067\u640D\u3057\u307E\u304F\u308B\
+    \u306E\u3067\u3002\n  if ((n + m - 3) <= sz / 2) {\n    auto a_last = a.back(),\
+    \ b_last = b.back();\n    a.pop_back(), b.pop_back();\n    auto c = convolution(a,\
+    \ b);\n    c.resize(n + m - 1);\n    c[n + m - 2] = a_last * b_last;\n    FOR(i,\
+    \ len(a)) c[i + len(b)] += a[i] * b_last;\n    FOR(i, len(b)) c[i + len(a)] +=\
+    \ b[i] * a_last;\n    return c;\n  }\n\n  a.resize(sz), b.resize(sz);\n  bool\
+    \ same = a == b;\n  ntt(a, 0);\n  if (same) {\n    b = a;\n  } else {\n    ntt(b,\
+    \ 0);\n  }\n  FOR(i, sz) a[i] *= b[i];\n  ntt(a, 1);\n  a.resize(n + m - 1);\n\
+    \  return a;\n}\n\ntemplate <typename mint>\nvector<mint> convolution_garner(const\
+    \ vector<mint>& a, const vector<mint>& b) {\n  int n = len(a), m = len(b);\n \
+    \ if (!n || !m) return {};\n  static constexpr int p0 = 167772161;\n  static constexpr\
+    \ int p1 = 469762049;\n  static constexpr int p2 = 754974721;\n  using mint0 =\
+    \ modint<p0>;\n  using mint1 = modint<p1>;\n  using mint2 = modint<p2>;\n  vc<mint0>\
+    \ a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n  vc<mint2> a2(n), b2(m);\n  FOR(i,\
+    \ n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i] = a[i].val;\n  FOR(i, m) b0[i]\
+    \ = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n  auto c0 = convolution_ntt<mint0>(a0,\
+    \ b0);\n  auto c1 = convolution_ntt<mint1>(a1, b1);\n  auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\n  vc<mint> c(len(c0));\n  FOR(i, n + m - 1) {\n    c[i] = CRT3<mint, p0,\
+    \ p1, p2>(c0[i].val, c1[i].val, c2[i].val);\n  }\n  return c;\n}\n\nvector<ll>\
+    \ convolution(vector<ll> a, vector<ll> b) {\n  int n = len(a), m = len(b);\n \
+    \ if (!n || !m) return {};\n  if (min(n, m) <= 2500) return convolution_naive(a,\
+    \ b);\n\n  ll mi_a = MIN(a), mi_b = MIN(b);\n  for (auto& x : a) x -= mi_a;\n\
+    \  for (auto& x : b) x -= mi_b;\n  assert(MAX(a) * MAX(b) <= 1e18);\n\n  auto\
+    \ Ac = cumsum<ll>(a), Bc = cumsum<ll>(b);\n  vi res(n + m - 1);\n  for (int k\
+    \ = 0; k < n + m - 1; ++k) {\n    int s = max(0, k - m + 1);\n    int t = min(n,\
+    \ k + 1);\n    res[k] += (t - s) * mi_a * mi_b;\n    res[k] += mi_a * (Bc[k -\
+    \ s + 1] - Bc[k - t + 1]);\n    res[k] += mi_b * (Ac[t] - Ac[s]);\n  }\n\n  static\
+    \ constexpr u32 MOD1 = 1004535809;\n  static constexpr u32 MOD2 = 1012924417;\n\
+    \  using mint1 = modint<MOD1>;\n  using mint2 = modint<MOD2>;\n\n  vc<mint1> a1(n),\
+    \ b1(m);\n  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a1[i] = a[i], a2[i] = a[i];\n\
+    \  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\n\n  auto c1 = convolution_ntt<mint1>(a1,\
+    \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
+    \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
+    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
+    \ {\n  if (mint::get_mod() == 2) {\n    vc<modint998> aa, bb;\n    for (auto&\
+    \ x : a) aa.eb(x.val);\n    for (auto& x : b) bb.eb(x.val);\n    aa = convolution<modint998>(aa,\
+    \ bb);\n    vc<mint> ANS(len(aa));\n    FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\n\
+    \    return ANS;\n  }\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 1 \"mod/primitive_root.hpp\"\n\n#line 1 \"nt/factor.hpp\"\n\n#line 1 \"\
+    random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 1 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
+    // x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename\
+    \ U1, typename U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n\
+    \  inline static U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\
+    \n  static void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W -\
+    \ 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n   \
+    \ r = -r;\n    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return\
+    \ (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n\
+    \  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n   \
+    \ U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
+    \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
+    \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
+    \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
+    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
+    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
+    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
+    \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
+    \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
+    \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
+    \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
+    \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
+    \ = Mongomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
+    \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
+    \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
+    \ - 1);\n\n  using mint = Mongomery_modint_64<202311020>;\n\n  mint::set_mod(x);\n\
+    \  const mint one(u64(1)), minus_one(x - 1);\n  auto ok = [&](u64 a) -> bool {\n\
+    \    auto y = mint(a).pow(d);\n    u64 t = d;\n    while (y != one && y != minus_one\
+    \ && t != x - 1) y *= y, t <<= 1;\n    if (y != minus_one && t % 2 == 0) return\
+    \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
+    \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
+    \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
+    \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
+    \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
+    \ == 1; r <<= 1) {\n    x = y;\n    FOR(r) y = f(y);\n    for (ll k = 0; k < r\
+    \ && g == 1; k += m) {\n      z = y;\n      FOR(min(m, r - k)) y = f(y), q *=\
+    \ x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n      z\
+    \ = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return g;\n\
+    }\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (is_prime(n)) return\
+    \ n;\n  FOR(100) {\n    ll m = 0;\n    if (n < (1 << 30)) {\n      using mint\
+    \ = Mongomery_modint_32<20231025>;\n      mint::set_mod(n);\n      m = rho<mint>(n,\
+    \ RNG(0, n));\n    } else {\n      using mint = Mongomery_modint_64<20231025>;\n\
+    \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    }\n    if (is_prime(m))\
+    \ return m;\n    n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\
+    \u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n\
+    \ >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2, 100) {\n    if (p * p > n) break;\n\
+    \    if (n % p == 0) {\n      ll e = 0;\n      do {\n        n /= p, e += 1;\n\
+    \      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1)\
+    \ {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n      n /= p,\
+    \ e += 1;\n    } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
+    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
+    \ return res;\n}\n#line 1 \"mod/mod_pow.hpp\"\n\n#line 1 \"mod/mongomery_modint.hpp\"\
+    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \ <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using mint\
+    \ = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
+    \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
+    \ & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n   \
+    \ FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n  }\n  static\
+    \ U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint()\
+    \ : x(0) {}\n  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const\
+    \ {\n    U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
+    \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
+    \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
+    \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
+    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
+    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
+    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
+    \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
+    \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
+    \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
+    \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
+    \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
+    \ = Mongomery_modint<id, u64, u128>;\n#line 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
+    \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
+    \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
+    \    u64 y = x * m;\n    return (z - y + (z < y ? m : 0));\n  }\n  u64 floor(u64\
+    \ z) {\n    if (m == 1) return z;\n    u64 x = (u64)(((unsigned __int128)(z)*im)\
+    \ >> 64);\n    u64 y = x * m;\n    return (z < y ? x - 1 : x);\n  }\n  pair<u64,\
+    \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
+    \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
+    \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
+    \ * b); }\n};\n\nstruct Barrett_64 {\n  u128 mod, mh, ml;\n\n  explicit Barrett_64(u64\
+    \ mod = 1) : mod(mod) {\n    u128 m = u128(-1) / mod;\n    if (m * mod + mod ==\
+    \ u128(0)) ++m;\n    mh = m >> 64;\n    ml = m & u64(-1);\n  }\n\n  u64 umod()\
+    \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
+    \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
+    \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 4 \"\
+    mod/mod_pow.hpp\"\n\nu32 mod_pow(int a, ll n, int mod) {\n  assert(n >= 0);\n\
+    \  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod : a);\n  if ((mod\
+    \ & 1) && (mod < (1 << 30))) {\n    using mint = Mongomery_modint_32<202311021>;\n\
+    \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett bt(mod);\n\
+    \  int r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n    a = bt.mul(a,\
+    \ a), n >>= 1;\n  }\n  return r;\n}\n\nu64 mod_pow_64(ll a, ll n, u64 mod) {\n\
+    \  assert(n >= 0);\n  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod\
+    \ : a);\n  if ((mod & 1) && (mod < (u64(1) << 62))) {\n    using mint = Mongomery_modint_64<202311021>;\n\
+    \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett_64\
+    \ bt(mod);\n  ll r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n   \
+    \ a = bt.mul(a, a), n >>= 1;\n  }\n  return r;\n}\n#line 1 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 5 \"mod/primitive_root.hpp\"\n\n// int\nint primitive_root(int\
+    \ p, bool min = true) {\n  auto pf = factor(p - 1);\n  auto is_ok = [&](int g)\
+    \ -> bool {\n    for (auto&& [q, e] : pf)\n      if (mod_pow(g, (p - 1) / q, p)\
+    \ == 1) return false;\n    return true;\n  };\n  if (min) {\n    FOR(x, 1, p)\
+    \ if (is_ok(x)) return x;\n  }\n  while (1) {\n    int x = RNG(1, p);\n    if\
+    \ (is_ok(x)) return x;\n  }\n  return -1;\n}\n\nll primitive_root_64(ll p) {\n\
+    \  auto pf = factor(p - 1);\n  auto is_ok = [&](ll g) -> bool {\n    for (auto&&\
+    \ [q, e] : pf)\n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\n\
+    \    return true;\n  };\n  while (1) {\n    ll x = RNG(1, p);\n    if (is_ok(x))\
+    \ return x;\n  }\n  return -1;\n}\n\n// https://codeforces.com/contest/1190/problem/F\n\
+    ll primitive_root_prime_power_64(ll p, ll e) {\n  assert(p >= 3);\n  ll g = primitive_root_64(p);\n\
+    \  ll q = p;\n  ll phi = p - 1;\n  FOR(e - 1) {\n    q *= p;\n    phi *= p;\n\
+    \    if (mod_pow_64(g, phi / p, q) == 1) g += q / p;\n  }\n  return g;\n}\n#line\
+    \ 3 \"mod/multiplicative_convolution_mod_p.hpp\"\n\n// C[k] = sum[k=ij mod p]\
+    \ A[i]B[j]\ntemplate <typename mint>\nvc<mint> multiplicative_convolution_mod_p(int\
+    \ p, vc<mint>& A, vc<mint>& B) {\n  assert(len(A) == p && len(B) == p);\n  int\
+    \ r = primitive_root(p);\n  vc<int> exp(p - 1), log(p);\n  exp[0] = 1;\n  FOR(i,\
+    \ p - 2) exp[i + 1] = exp[i] * ll(r) % p;\n  FOR(i, p - 1) log[exp[i]] = i;\n\n\
+    \  vc<mint> FA(p - 1), FB(p - 1);\n  FOR(i, p - 1) FA[i] = A[exp[i]], FB[i] =\
+    \ B[exp[i]];\n  vc<mint> FC = convolution(FA, FB);\n  FOR(i, p - 1, len(FC)) FC[i\
+    \ - (p - 1)] += FC[i];\n\n  vc<mint> C(p);\n  FOR(i, 1, p) C[i] = FC[log[i]];\n\
+    \n  mint SA = SUM<mint>(A), SB = SUM<mint>(B);\n  C[0] += SA * B[0] + SB * A[0]\
+    \ - A[0] * B[0];\n  return C;\n}\n"
   code: "#include \"poly/convolution.hpp\"\n#include \"mod/primitive_root.hpp\"\n\n\
     // C[k] = sum[k=ij mod p] A[i]B[j]\ntemplate <typename mint>\nvc<mint> multiplicative_convolution_mod_p(int\
     \ p, vc<mint>& A, vc<mint>& B) {\n  assert(len(A) == p && len(B) == p);\n  int\
@@ -34,13 +549,31 @@ data:
     \ - (p - 1)] += FC[i];\n\n  vc<mint> C(p);\n  FOR(i, 1, p) C[i] = FC[log[i]];\n\
     \n  mint SA = SUM<mint>(A), SB = SUM<mint>(B);\n  C[0] += SA * B[0] + SB * A[0]\
     \ - A[0] * B[0];\n  return C;\n}"
-  dependsOn: []
+  dependsOn:
+  - poly/convolution.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
+  - other/bit.hpp
+  - mod/mod_inv.hpp
+  - mod/crt3.hpp
+  - poly/convolution_naive.hpp
+  - poly/convolution_karatsuba.hpp
+  - poly/ntt.hpp
+  - mod/primitive_root.hpp
+  - nt/factor.hpp
+  - random/base.hpp
+  - nt/is_prime.hpp
+  - mod/mongomery_modint.hpp
+  - mod/mod_pow.hpp
+  - mod/barrett.hpp
   isVerificationFile: false
   path: mod/multiplicative_convolution_mod_p.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-08-17 08:53:30+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - test/3_yukicoder/2613.test.cpp
 documentation_of: mod/multiplicative_convolution_mod_p.hpp
 layout: document
 redirect_from:

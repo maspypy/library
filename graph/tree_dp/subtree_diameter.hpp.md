@@ -375,23 +375,23 @@ data:
     \    int N = tree.N;\n    Data unit = {-1, -1, -1, -1, -1};\n    auto f_ee = [&](Data\
     \ A, Data B) -> Data {\n      if (A.diam == -1) return B;\n      if (B.diam ==\
     \ -1) return A;\n      if (A.diam < B.diam) swap(A, B);\n      if (chmax(A.diam,\
-    \ A.path + B.path)) { A.left = A.end, A.right = B.end; }\n      if (chmax(A.path,\
-    \ B.path)) A.end = B.end;\n      return A;\n    };\n    auto f_ev = [&](Data A,\
-    \ int v) -> Data {\n      if (A.diam == -1) {\n        A.diam = 0, A.left = v,\
-    \ A.right = v, A.path = 0, A.end = v;\n      }\n      return A;\n    };\n    auto\
-    \ f_ve = [&](Data A, const auto& e) -> Data {\n      A.path += e.cost;\n     \
-    \ if (chmax(A.diam, A.path)) { A.left = e.frm, A.right = A.end; }\n      return\
-    \ A;\n    };\n\n    Rerooting_dp<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);\n\
-    \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) {\n      dp[v]\
-    \ = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n      dp_1[v] = {DP.dp_1[v].left,\
-    \ DP.dp_1[v].right, DP.dp_1[v].diam};\n      dp_2[v] = {DP.dp_2[v].left, DP.dp_2[v].right,\
-    \ DP.dp_2[v].diam};\n    }\n  }\n\n  // (u, v, diam)\n  // v \u3092\u6839\u3068\
-    \u3057\u305F\u3068\u304D\u306E full tree\n  tuple<int, int, WT> operator[](int\
-    \ v) { return dp[v]; }\n\n  // (u, v, diam)\n  // root \u3092\u6839\u3068\u3057\
-    \u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  tuple<int, int, WT> get(int v,\
-    \ int root) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
-    \  }\n};\n"
+    \ A.path + B.path)) {\n        A.left = A.end, A.right = B.end;\n      }\n   \
+    \   if (chmax(A.path, B.path)) A.end = B.end;\n      return A;\n    };\n    auto\
+    \ f_ev = [&](Data A, int v) -> Data {\n      if (A.diam == -1) {\n        A.diam\
+    \ = 0, A.left = v, A.right = v, A.path = 0, A.end = v;\n      }\n      return\
+    \ A;\n    };\n    auto f_ve = [&](Data A, const auto& e) -> Data {\n      A.path\
+    \ += e.cost;\n      if (chmax(A.diam, A.path)) {\n        A.left = e.frm, A.right\
+    \ = A.end;\n      }\n      return A;\n    };\n\n    Rerooting_DP<TREE, Data> DP(tree,\
+    \ f_ee, f_ev, f_ve, unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
+    \    FOR(v, N) {\n      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n\
+    \      dp_1[v] = {DP.dp_1[v].left, DP.dp_1[v].right, DP.dp_1[v].diam};\n     \
+    \ dp_2[v] = {DP.dp_2[v].left, DP.dp_2[v].right, DP.dp_2[v].diam};\n    }\n  }\n\
+    \n  // (u, v, diam)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full\
+    \ tree\n  tuple<int, int, WT> operator[](int v) { return dp[v]; }\n\n  // (u,\
+    \ v, diam)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
+    \u6728 v\n  tuple<int, int, WT> get(int v, int root) {\n    if (root == v) return\
+    \ dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n    }\n\
+    \    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};\n"
   code: "#include \"graph/tree_dp/rerooting_dp.hpp\"\n\n// https://codeforces.com/problemset/problem/1725/J\n\
     template <typename TREE, typename WT>\nstruct SubTree_Diameter {\n  struct Data\
     \ {\n    // \u4ECA\u307E\u3067\u898B\u3064\u3051\u305F\u76F4\u5F84\u8DDD\u96E2\
@@ -402,23 +402,23 @@ data:
     \    int N = tree.N;\n    Data unit = {-1, -1, -1, -1, -1};\n    auto f_ee = [&](Data\
     \ A, Data B) -> Data {\n      if (A.diam == -1) return B;\n      if (B.diam ==\
     \ -1) return A;\n      if (A.diam < B.diam) swap(A, B);\n      if (chmax(A.diam,\
-    \ A.path + B.path)) { A.left = A.end, A.right = B.end; }\n      if (chmax(A.path,\
-    \ B.path)) A.end = B.end;\n      return A;\n    };\n    auto f_ev = [&](Data A,\
-    \ int v) -> Data {\n      if (A.diam == -1) {\n        A.diam = 0, A.left = v,\
-    \ A.right = v, A.path = 0, A.end = v;\n      }\n      return A;\n    };\n    auto\
-    \ f_ve = [&](Data A, const auto& e) -> Data {\n      A.path += e.cost;\n     \
-    \ if (chmax(A.diam, A.path)) { A.left = e.frm, A.right = A.end; }\n      return\
-    \ A;\n    };\n\n    Rerooting_dp<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);\n\
-    \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) {\n      dp[v]\
-    \ = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n      dp_1[v] = {DP.dp_1[v].left,\
-    \ DP.dp_1[v].right, DP.dp_1[v].diam};\n      dp_2[v] = {DP.dp_2[v].left, DP.dp_2[v].right,\
-    \ DP.dp_2[v].diam};\n    }\n  }\n\n  // (u, v, diam)\n  // v \u3092\u6839\u3068\
-    \u3057\u305F\u3068\u304D\u306E full tree\n  tuple<int, int, WT> operator[](int\
-    \ v) { return dp[v]; }\n\n  // (u, v, diam)\n  // root \u3092\u6839\u3068\u3057\
-    \u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  tuple<int, int, WT> get(int v,\
-    \ int root) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
-    \  }\n};"
+    \ A.path + B.path)) {\n        A.left = A.end, A.right = B.end;\n      }\n   \
+    \   if (chmax(A.path, B.path)) A.end = B.end;\n      return A;\n    };\n    auto\
+    \ f_ev = [&](Data A, int v) -> Data {\n      if (A.diam == -1) {\n        A.diam\
+    \ = 0, A.left = v, A.right = v, A.path = 0, A.end = v;\n      }\n      return\
+    \ A;\n    };\n    auto f_ve = [&](Data A, const auto& e) -> Data {\n      A.path\
+    \ += e.cost;\n      if (chmax(A.diam, A.path)) {\n        A.left = e.frm, A.right\
+    \ = A.end;\n      }\n      return A;\n    };\n\n    Rerooting_DP<TREE, Data> DP(tree,\
+    \ f_ee, f_ev, f_ve, unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
+    \    FOR(v, N) {\n      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n\
+    \      dp_1[v] = {DP.dp_1[v].left, DP.dp_1[v].right, DP.dp_1[v].diam};\n     \
+    \ dp_2[v] = {DP.dp_2[v].left, DP.dp_2[v].right, DP.dp_2[v].diam};\n    }\n  }\n\
+    \n  // (u, v, diam)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full\
+    \ tree\n  tuple<int, int, WT> operator[](int v) { return dp[v]; }\n\n  // (u,\
+    \ v, diam)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
+    \u6728 v\n  tuple<int, int, WT> get(int v, int root) {\n    if (root == v) return\
+    \ dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n    }\n\
+    \    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};"
   dependsOn:
   - graph/tree_dp/rerooting_dp.hpp
   - graph/base.hpp
@@ -427,7 +427,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_diameter.hpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
+  timestamp: '2026-08-17 08:56:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_diameter.hpp

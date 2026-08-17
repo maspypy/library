@@ -103,6 +103,9 @@ data:
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -521,6 +524,7 @@ data:
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
   - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp

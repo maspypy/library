@@ -55,6 +55,9 @@ data:
     path: test/3_yukicoder/1145.test.cpp
     title: test/3_yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1575.test.cpp
+    title: test/3_yukicoder/1575.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2459.test.cpp
     title: test/3_yukicoder/2459.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1714,6 +1717,7 @@ data:
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2459.test.cpp
   - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/2747.test.cpp

@@ -8,10 +8,13 @@ data:
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_by_factor_type.test.cpp
+    title: test/1_mytest/count_by_factor_type.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/xmascon20/tasks/xmascon20_d
@@ -101,8 +104,9 @@ data:
   path: nt/count_by_factor_type.hpp
   requiredBy: []
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/count_by_factor_type.test.cpp
 documentation_of: nt/count_by_factor_type.hpp
 layout: document
 redirect_from:

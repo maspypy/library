@@ -30,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/590.test.cpp
+    title: test/3_yukicoder/590.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -471,6 +474,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1242.test.cpp
+  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1211.test.cpp
 documentation_of: graph/functional.hpp

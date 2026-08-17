@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1783.test.cpp
+    title: test/3_yukicoder/1783.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -427,6 +430,7 @@ data:
   verifiedWith:
   - test/2_library_checker/convolution/multivariate_convolution.test.cpp
   - test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
+  - test/3_yukicoder/1783.test.cpp
 documentation_of: poly/multivar_convolution.hpp
 layout: document
 redirect_from:

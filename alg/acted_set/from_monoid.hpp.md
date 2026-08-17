@@ -2,13 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1339.test.cpp
+    title: test/3_yukicoder/1339.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename Monoid>\n\
@@ -23,9 +32,12 @@ data:
   path: alg/acted_set/from_monoid.hpp
   requiredBy:
   - nt/discrete_log.hpp
+  - mod/mod_log.hpp
   timestamp: '2022-11-28 21:09:42+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - test/3_yukicoder/1339.test.cpp
 documentation_of: alg/acted_set/from_monoid.hpp
 layout: document
 redirect_from:

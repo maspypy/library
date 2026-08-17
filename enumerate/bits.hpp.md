@@ -52,6 +52,9 @@ data:
     path: test/3_yukicoder/1263.test.cpp
     title: test/3_yukicoder/1263.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1881.test.cpp
+    title: test/3_yukicoder/1881.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,6 +135,7 @@ data:
   - test/1_mytest/enum_partitions.test.cpp
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   - test/4_aoj/DPL_2_A.test.cpp
+  - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/2507.test.cpp
   - test/3_yukicoder/1263.test.cpp
   - test/3_yukicoder/4_2.test.cpp

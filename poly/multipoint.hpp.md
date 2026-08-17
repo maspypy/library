@@ -51,11 +51,17 @@ data:
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
@@ -73,6 +79,15 @@ data:
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/chromatic_number.test.cpp
+    title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -88,11 +103,17 @@ data:
     path: test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
     title: test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1575.test.cpp
+    title: test/3_yukicoder/1575.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2877.test.cpp
+    title: test/3_yukicoder/2877.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -1011,8 +1032,10 @@ data:
   path: poly/multipoint.hpp
   requiredBy:
   - linalg/blackbox/vandermonde.hpp
+  - graph/chromatic.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/composition_f_log_1_minus_x.hpp
+  - poly/multivar_convolution_cyclic.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -1020,13 +1043,18 @@ data:
   - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/chirp_z.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2243.test.cpp
+  - test/3_yukicoder/2877.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:

@@ -70,6 +70,9 @@ data:
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2877.test.cpp
+    title: test/3_yukicoder/2877.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1395,6 +1398,7 @@ data:
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/541.test.cpp
 documentation_of: seq/interpolate_linear_rec.hpp
 layout: document

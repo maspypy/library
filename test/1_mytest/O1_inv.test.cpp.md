@@ -1,27 +1,585 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: mod/O1_inverse.hpp
+    title: mod/O1_inverse.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/barrett.hpp
+    title: mod/barrett.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_pow.hpp
+    title: mod/mod_pow.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
+    path: mod/modint_common.hpp
+    title: mod/modint_common.hpp
+  - icon: ':question:'
+    path: mod/mongomery_modint.hpp
+    title: mod/mongomery_modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':question:'
+    path: my_template.hpp
+    title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/factor.hpp
+    title: nt/factor.hpp
+  - icon: ':question:'
+    path: nt/is_prime.hpp
+    title: nt/is_prime.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: nt/primetest.hpp:\
-    \ line -1: no such header\n"
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    links:
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/1_mytest/O1_inv.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
+    \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
+    \n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
+    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
+    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
+    template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
+    \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
+    \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
+    \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
+    \ a, b, c) for (ll i = a; i < ll(b); i += (c))\n#define FOR1_R(a) for (ll i =\
+    \ ll(a) - 1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = ll(a) - 1; i >=\
+    \ ll(0); --i)\n#define FOR3_R(i, a, b) for (ll i = ll(b) - 1; i >= ll(a); --i)\n\
+    #define overload4(a, b, c, d, e, ...) e\n#define overload3(a, b, c, d, ...) d\n\
+    #define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)\n\
+    #define FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\
+    \n#define all(x) (x).begin(), (x).end()\n#define len(x) ll(x.size())\n#define\
+    \ elif else if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
+    #define fi first\n#define se second\n\n#define stoi stoll\n\n// require y > 0\n\
+    template <typename T>\nT floor(T x, T y) {\n  return x / y - (x % y < 0);\n}\n\
+    \n// require y > 0\ntemplate <typename T>\nT ceil(T x, T y) {\n  return (x / y)\
+    \ + (x % y > 0);\n}\n\n// require y > 0\ntemplate <typename T>\nT bmod(T x, T\
+    \ y) {\n  T r = x % y;\n  return (r < 0 ? r + y : r);\n}\n\n// require y > 0\n\
+    template <typename T>\npair<T, T> divmod(T x, T y) {\n  T q = x / y, r = x % y;\n\
+    \  if (r < 0) --q, r += y;\n  return {q, r};\n}\n\nconstexpr auto TEN = [] {\n\
+    \  array<u64, 20> A{};\n  A[0] = 1;\n  for (int i = 1; i < 20; ++i) A[i] = 10\
+    \ * A[i - 1];\n  return A;\n}();\n\ntemplate <typename T, typename U>\nT SUM(const\
+    \ U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n}\n\n#define MIN(v)\
+    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\ntemplate <class C,\
+    \ class T>\ninline long long LB(const C &c, const T &x) {\n  return lower_bound(c.begin(),\
+    \ c.end(), x) - c.begin();\n}\ntemplate <class C, class T>\ninline long long UB(const\
+    \ C &c, const T &x) {\n  return upper_bound(c.begin(), c.end(), x) - c.begin();\n\
+    }\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end())\n\ntemplate\
+    \ <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
+    \  return a;\n}\ntemplate <class T, class Container, class Compare>\nT POP(priority_queue<T,\
+    \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
+    }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
+    \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
+    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (1)\
+    \ {\n    ll x = (ok + ng) / 2;\n    if (x == ok || x == ng) break;\n    (check(x)\
+    \ ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
+    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
+    \ = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n\
+    }\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c\
+    \ = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\
+    template <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a,\
+    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F\
+    \ -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
+    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
+    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
+    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
+    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
+    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
+    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
+    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
+    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
+    }\n#endif\n#line 3 \"test/1_mytest/O1_inv.test.cpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
+    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
+    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
+    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
+    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
+    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
+    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
+    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
+    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
+    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
+    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
+    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
+    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
+    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
+    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
+    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
+    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
+    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
+    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
+    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
+    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
+    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n\
+    \    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n    \
+    \  if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
+    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
+    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
+    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
+    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
+    \ (mod == 1012924417) return {21, 368093570};\n    if (mod == 1224736769) return\
+    \ {24, 1191450770};\n    if (mod == 2013265921) return {27, 244035102};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"mod/dynamic_modint.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
+    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
+    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
+    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
+    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
+    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
+    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
+    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
+    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
+    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
+    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
+    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
+    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
+    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
+    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
+    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
+    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
+    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\n\
+    struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
+    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
+    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
+    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
+    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
+    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
+    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
+    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
+    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
+    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
+    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
+    \ + d - 1, d);\n}\n#line 1 \"mod/primitive_root.hpp\"\n\n#line 1 \"nt/factor.hpp\"\
+    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 1 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
+    // x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename\
+    \ U1, typename U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n\
+    \  inline static U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\
+    \n  static void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W -\
+    \ 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n   \
+    \ r = -r;\n    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return\
+    \ (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n\
+    \  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n   \
+    \ U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
+    \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
+    \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
+    \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
+    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
+    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
+    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
+    \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
+    \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
+    \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
+    \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
+    \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
+    \ = Mongomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
+    \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
+    \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
+    \ - 1);\n\n  using mint = Mongomery_modint_64<202311020>;\n\n  mint::set_mod(x);\n\
+    \  const mint one(u64(1)), minus_one(x - 1);\n  auto ok = [&](u64 a) -> bool {\n\
+    \    auto y = mint(a).pow(d);\n    u64 t = d;\n    while (y != one && y != minus_one\
+    \ && t != x - 1) y *= y, t <<= 1;\n    if (y != minus_one && t % 2 == 0) return\
+    \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
+    \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
+    \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
+    \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
+    \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
+    \ == 1; r <<= 1) {\n    x = y;\n    FOR(r) y = f(y);\n    for (ll k = 0; k < r\
+    \ && g == 1; k += m) {\n      z = y;\n      FOR(min(m, r - k)) y = f(y), q *=\
+    \ x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n      z\
+    \ = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return g;\n\
+    }\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (is_prime(n)) return\
+    \ n;\n  FOR(100) {\n    ll m = 0;\n    if (n < (1 << 30)) {\n      using mint\
+    \ = Mongomery_modint_32<20231025>;\n      mint::set_mod(n);\n      m = rho<mint>(n,\
+    \ RNG(0, n));\n    } else {\n      using mint = Mongomery_modint_64<20231025>;\n\
+    \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    }\n    if (is_prime(m))\
+    \ return m;\n    n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\
+    \u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n\
+    \ >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2, 100) {\n    if (p * p > n) break;\n\
+    \    if (n % p == 0) {\n      ll e = 0;\n      do {\n        n /= p, e += 1;\n\
+    \      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1)\
+    \ {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n      n /= p,\
+    \ e += 1;\n    } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
+    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
+    \ return res;\n}\n#line 1 \"mod/mod_pow.hpp\"\n\n#line 1 \"mod/mongomery_modint.hpp\"\
+    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \ <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using mint\
+    \ = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
+    \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
+    \ & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n   \
+    \ FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n  }\n  static\
+    \ U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint()\
+    \ : x(0) {}\n  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const\
+    \ {\n    U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
+    \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
+    \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
+    \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
+    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
+    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
+    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
+    \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
+    \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
+    \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
+    \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
+    \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
+    \ = Mongomery_modint<id, u64, u128>;\n#line 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
+    \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
+    \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
+    \    u64 y = x * m;\n    return (z - y + (z < y ? m : 0));\n  }\n  u64 floor(u64\
+    \ z) {\n    if (m == 1) return z;\n    u64 x = (u64)(((unsigned __int128)(z)*im)\
+    \ >> 64);\n    u64 y = x * m;\n    return (z < y ? x - 1 : x);\n  }\n  pair<u64,\
+    \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
+    \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
+    \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
+    \ * b); }\n};\n\nstruct Barrett_64 {\n  u128 mod, mh, ml;\n\n  explicit Barrett_64(u64\
+    \ mod = 1) : mod(mod) {\n    u128 m = u128(-1) / mod;\n    if (m * mod + mod ==\
+    \ u128(0)) ++m;\n    mh = m >> 64;\n    ml = m & u64(-1);\n  }\n\n  u64 umod()\
+    \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
+    \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
+    \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 4 \"\
+    mod/mod_pow.hpp\"\n\nu32 mod_pow(int a, ll n, int mod) {\n  assert(n >= 0);\n\
+    \  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod : a);\n  if ((mod\
+    \ & 1) && (mod < (1 << 30))) {\n    using mint = Mongomery_modint_32<202311021>;\n\
+    \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett bt(mod);\n\
+    \  int r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n    a = bt.mul(a,\
+    \ a), n >>= 1;\n  }\n  return r;\n}\n\nu64 mod_pow_64(ll a, ll n, u64 mod) {\n\
+    \  assert(n >= 0);\n  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod\
+    \ : a);\n  if ((mod & 1) && (mod < (u64(1) << 62))) {\n    using mint = Mongomery_modint_64<202311021>;\n\
+    \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett_64\
+    \ bt(mod);\n  ll r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n   \
+    \ a = bt.mul(a, a), n >>= 1;\n  }\n  return r;\n}\n#line 1 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 5 \"mod/primitive_root.hpp\"\n\n// int\nint primitive_root(int\
+    \ p, bool min = true) {\n  auto pf = factor(p - 1);\n  auto is_ok = [&](int g)\
+    \ -> bool {\n    for (auto&& [q, e] : pf)\n      if (mod_pow(g, (p - 1) / q, p)\
+    \ == 1) return false;\n    return true;\n  };\n  if (min) {\n    FOR(x, 1, p)\
+    \ if (is_ok(x)) return x;\n  }\n  while (1) {\n    int x = RNG(1, p);\n    if\
+    \ (is_ok(x)) return x;\n  }\n  return -1;\n}\n\nll primitive_root_64(ll p) {\n\
+    \  auto pf = factor(p - 1);\n  auto is_ok = [&](ll g) -> bool {\n    for (auto&&\
+    \ [q, e] : pf)\n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\n\
+    \    return true;\n  };\n  while (1) {\n    ll x = RNG(1, p);\n    if (is_ok(x))\
+    \ return x;\n  }\n  return -1;\n}\n\n// https://codeforces.com/contest/1190/problem/F\n\
+    ll primitive_root_prime_power_64(ll p, ll e) {\n  assert(p >= 3);\n  ll g = primitive_root_64(p);\n\
+    \  ll q = p;\n  ll phi = p - 1;\n  FOR(e - 1) {\n    q *= p;\n    phi *= p;\n\
+    \    if (mod_pow_64(g, phi / p, q) == 1) g += q / p;\n  }\n  return g;\n}\n#line\
+    \ 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
+    \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
+    \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
+    \    u64 y = x * m;\n    return (z - y + (z < y ? m : 0));\n  }\n  u64 floor(u64\
+    \ z) {\n    if (m == 1) return z;\n    u64 x = (u64)(((unsigned __int128)(z)*im)\
+    \ >> 64);\n    u64 y = x * m;\n    return (z < y ? x - 1 : x);\n  }\n  pair<u64,\
+    \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
+    \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
+    \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
+    \ * b); }\n};\n\nstruct Barrett_64 {\n  u128 mod, mh, ml;\n\n  explicit Barrett_64(u64\
+    \ mod = 1) : mod(mod) {\n    u128 m = u128(-1) / mod;\n    if (m * mod + mod ==\
+    \ u128(0)) ++m;\n    mh = m >> 64;\n    ml = m & u64(-1);\n  }\n\n  u64 umod()\
+    \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
+    \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
+    \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 6 \"\
+    mod/dynamic_modint.hpp\"\n\ntemplate <int id>\nstruct Dynamic_Modint {\n  static\
+    \ constexpr bool is_modint = true;\n  using mint = Dynamic_Modint;\n  u32 val;\n\
+    \  static Barrett bt;\n  static u32 umod() { return bt.umod(); }\n\n  static int\
+    \ get_mod() { return (int)(bt.umod()); }\n  static void set_mod(int m) {\n   \
+    \ assert(1 <= m);\n    bt = Barrett(m);\n  }\n\n  static Dynamic_Modint raw(u32\
+    \ v) {\n    Dynamic_Modint x;\n    x.val = v;\n    return x;\n  }\n  Dynamic_Modint()\
+    \ : val(0) {}\n  Dynamic_Modint(u32 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64\
+    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x) : val((x %= get_mod()) <\
+    \ 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0\
+    \ ? x + get_mod() : x) {}\n  Dynamic_Modint(i128 x) : val((x %= get_mod()) < 0\
+    \ ? x + get_mod() : x){};\n\n  bool operator<(const mint& other) const { return\
+    \ val < other.val; }\n  mint& operator+=(const mint& rhs) {\n    val = (val +=\
+    \ rhs.val) < umod() ? val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const\
+    \ mint& rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
+    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
+    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
+    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
+    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
+    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
+    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
+    \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
+    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
+    \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
+    \ mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint operator-(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint\
+    \ operator*(const mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n\
+    \  }\n  friend mint operator/(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
+    \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
+    \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n  static\
+    \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
+    \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
+    \ = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod\
+    \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
+    \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
+    \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 1 \"mod/O1_inverse.hpp\"\n\n// https://qoj.ac/problem/5\n\
+    // precompute O(p^{2/3}), query O(1)\n// 10^8 query: 3sec\ntemplate <typename\
+    \ mint>\nmint O1_inverse(int a) {\n  /*\n  n^3>=p \u3068\u306A\u308B\u3088\u3046\
+    \u306B n \u3092\u3068\u308A, n^2\u307E\u3067\u306F\u524D\u8A08\u7B97.\n  a/p \u3092\
+    \u6709\u7406\u6570\u8FD1\u4F3C\u3059\u308B x/y. |a/p-x/y|<=|1/ny \u3068\u306A\u308B\
+    \u3068\n  |ay-px|<=p/n<=n^2 \u3088\u308A(ay)^{-1}\u304C\u524D\u8A08\u7B97\u3055\
+    \u308C\u3066\u3044\u308B\u306E\u3067\u3067\u304D\u308B.\n\n  x/y \u306F\u5206\u6BCD\
+    \ n \u672A\u6E80\u306E Farey \u6570\u5217\u306E\u524D\u5F8C\u3069\u3061\u3089\u304B\
+    \u304C\u6E80\u305F\u3059.\n  n^2 bucket \u306B\u5206\u5272\u3057\u3066\u304A\u304F\
+    \u3068 bucket \u3054\u3068\u306E\u6709\u7406\u6570\u306F distinct.\n  \u524D\u5F8C\
+    \u306E\u3046\u3061\u826F\u3044\u65B9\u3092\u9078\u3079\u3070\u3088\u3044.\n  */\n\
+    \  static int p = 0;\n  static double cp = 0.0;\n  static vc<int> FRAC;\n  static\
+    \ vc<mint> invs;\n  if (p != mint::get_mod()) {\n    p = mint::get_mod();\n  \
+    \  int k = min(2 << 20, p);\n    invs.resize(k);\n    invs[1] = 1;\n    FOR(i,\
+    \ 2, k) {\n      int q = (p + i - 1) / i;\n      invs[i] = invs[i * q - p] * mint::raw(q);\n\
+    \    }\n    assert(p <= (1 << 30));\n    FRAC.assign(1 << 20, -1);\n    cp = 1.0\
+    \ * (1 << 20) / p;\n    for (int y = 1023; y >= 1; --y) {\n      for (int x =\
+    \ 0; x < y; ++x) { FRAC[(x << 20) / y] = {x << 10 | y}; }\n    }\n    FOR(i, 1,\
+    \ len(FRAC)) if (FRAC[i] == -1) FRAC[i] = FRAC[i - 1];\n    int nxt = 1025;\n\
+    \    FOR_R(i, 1, len(FRAC)) {\n      if (FRAC[i] != FRAC[i - 1]) {\n        nxt\
+    \ = FRAC[i];\n        continue;\n      }\n      int x1 = FRAC[i] >> 10, y1 = FRAC[i]\
+    \ & 1023;\n      int x2 = nxt >> 10, y2 = nxt & 1023;\n      int c1 = i * y1 -\
+    \ (x1 << 20);\n      int c2 = i * y2 - (x2 << 20);\n      if (abs(c2) < abs(c1))\
+    \ FRAC[i] = nxt;\n    }\n  }\n  assert(0 <= a && a < p);\n  if (a < len(invs))\
+    \ return invs[a];\n\n  int k = a * cp;\n  ll x = FRAC[k] >> 10, y = FRAC[k] &\
+    \ 1023;\n  int c = ll(a) * y - ll(p) * x;\n  if (c < 0) c = -c, y = -y;\n  return\
+    \ invs[c] * mint(y);\n}\n#line 8 \"test/1_mytest/O1_inv.test.cpp\"\n\ntemplate\
+    \ <typename mint>\nvoid test() {\n  FOR(10000000) {\n    int x = RNG(1, mint::get_mod());\n\
+    \    mint v = O1_inverse<mint>(x);\n    mint prd = v * mint::raw(x);\n    assert(prd\
+    \ == mint(1));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<modint998>();\n  test<modint107>();\n\
+    \  dmint::set_mod(998244353);\n  test<dmint>();\n  dmint::set_mod(2);\n  test<dmint>();\n\
+    \  dmint::set_mod(3);\n  test<dmint>();\n  dmint::set_mod(5);\n  test<dmint>();\n\
+    \  dmint::set_mod(1'000'003);\n  test<dmint>();\n  dmint::set_mod(1'048'573);\n\
+    \  test<dmint>();\n  dmint::set_mod(1'048'583);\n  test<dmint>();\n  dmint::set_mod(2097143);\n\
+    \  test<dmint>();\n  dmint::set_mod(2097169);\n  test<dmint>();\n  solve();\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"mod/dynamic_modint.hpp\"\n#include\
     \ \"random/base.hpp\"\n#include \"mod/O1_inverse.hpp\"\n\ntemplate <typename mint>\n\
@@ -35,12 +593,25 @@ data:
     \  test<dmint>();\n  dmint::set_mod(1'048'583);\n  test<dmint>();\n  dmint::set_mod(2097143);\n\
     \  test<dmint>();\n  dmint::set_mod(2097169);\n  test<dmint>();\n  solve();\n\
     }\n"
-  dependsOn: []
+  dependsOn:
+  - my_template.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
+  - other/bit.hpp
+  - mod/dynamic_modint.hpp
+  - mod/primitive_root.hpp
+  - nt/factor.hpp
+  - random/base.hpp
+  - nt/is_prime.hpp
+  - mod/mongomery_modint.hpp
+  - mod/mod_pow.hpp
+  - mod/barrett.hpp
+  - mod/O1_inverse.hpp
   isVerificationFile: true
   path: test/1_mytest/O1_inv.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 08:53:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/O1_inv.test.cpp
 layout: document

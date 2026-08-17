@@ -133,6 +133,9 @@ data:
     path: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -262,6 +265,7 @@ data:
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
   - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp

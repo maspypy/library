@@ -1,13 +1,16 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: mod/mongomery_modint.hpp
+    title: mod/mongomery_modint.hpp
+  - icon: ':question:'
+    path: other/bit.hpp
+    title: other/bit.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_labeled_bipartite.hpp
-    title: graph/count/count_labeled_bipartite.hpp
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
@@ -20,12 +23,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/mod_pow.hpp
-    title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/mod_sqrt.hpp
-    title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
@@ -65,9 +62,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':question:'
-    path: nt/is_prime.hpp
-    title: nt/is_prime.hpp
   - icon: ':heavy_check_mark:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
@@ -80,9 +74,6 @@ data:
   - icon: ':warning:'
     path: poly/egf_convolution.hpp
     title: poly/egf_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_sqrt.hpp
-    title: poly/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
@@ -102,9 +93,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_bipartite.test.cpp
-    title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_by_factor_type.test.cpp
     title: test/1_mytest/count_by_factor_type.test.cpp
@@ -144,9 +132,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/enumerative_combinatorics/factorial_mongomery.test.cpp
-    title: test/2_library_checker/enumerative_combinatorics/factorial_mongomery.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
@@ -177,9 +162,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/primitive_root.test.cpp
     title: test/2_library_checker/number_theory/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/number_theory/sqrt_mod.test.cpp
-    title: test/2_library_checker/number_theory/sqrt_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/tetration.test.cpp
     title: test/2_library_checker/number_theory/tetration.test.cpp
@@ -219,12 +201,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
-    title: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-    title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
@@ -283,9 +259,6 @@ data:
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/3229.test.cpp
-    title: test/3_yukicoder/3229.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
@@ -302,37 +275,43 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\
-    \u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename\
-    \ U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n  inline static\
-    \ U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static\
-    \ void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n  \
-    \  m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n    r = -r;\n\
-    \    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b)\
-    \ * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n  Mongomery_modint(U1\
-    \ x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n    U1 y = reduce(x);\n \
-    \   return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint y) {\n    x = ((x\
-    \ += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint &operator-=(mint\
-    \ y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint\
-    \ y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint\
-    \ y) const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
-    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
-    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
-    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
-    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
-    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
-    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
-    \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
-    \ u64, u128>;\n"
-  code: "\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\n\
-    template <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using\
-    \ mint = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int\
-    \ W = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
-    \ & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n   \
-    \ FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n  }\n  static\
-    \ U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint()\
-    \ : x(0) {}\n  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const\
-    \ {\n    U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
+  bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 1 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
+    // x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename\
+    \ U1, typename U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n\
+    \  inline static U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\
+    \n  static void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W -\
+    \ 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n   \
+    \ r = -r;\n    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return\
+    \ (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n\
+    \  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n   \
+    \ U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
     \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
     \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
     \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
@@ -344,10 +323,35 @@ data:
     \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
     \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
     \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
-    \ = Mongomery_modint<id, u64, u128>;\n"
-  dependsOn: []
+    \ = Mongomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
+    \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
+    \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
+    \ - 1);\n\n  using mint = Mongomery_modint_64<202311020>;\n\n  mint::set_mod(x);\n\
+    \  const mint one(u64(1)), minus_one(x - 1);\n  auto ok = [&](u64 a) -> bool {\n\
+    \    auto y = mint(a).pow(d);\n    u64 t = d;\n    while (y != one && y != minus_one\
+    \ && t != x - 1) y *= y, t <<= 1;\n    if (y != minus_one && t % 2 == 0) return\
+    \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
+    \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
+    \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
+    \ false;\n    }\n  }\n  return true;\n}\n"
+  code: "#include \"other/bit.hpp\"\n#include \"mod/mongomery_modint.hpp\"\n\nbool\
+    \ is_prime(const u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3\
+    \ or x == 5 or x == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 ==\
+    \ 0 or x % 7 == 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d\
+    \ = (x - 1) >> lowbit(x - 1);\n\n  using mint = Mongomery_modint_64<202311020>;\n\
+    \n  mint::set_mod(x);\n  const mint one(u64(1)), minus_one(x - 1);\n  auto ok\
+    \ = [&](u64 a) -> bool {\n    auto y = mint(a).pow(d);\n    u64 t = d;\n    while\
+    \ (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;\n    if (y != minus_one\
+    \ && t % 2 == 0) return false;\n    return true;\n  };\n  if (x < (u64(1) << 32))\
+    \ {\n    for (u64 a : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n\
+    \    for (u64 a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n    \
+    \  if (!ok(a)) return false;\n    }\n  }\n  return true;\n}"
+  dependsOn:
+  - other/bit.hpp
+  - mod/mongomery_modint.hpp
   isVerificationFile: false
-  path: mod/mongomery_modint.hpp
+  path: nt/is_prime.hpp
   requiredBy:
   - nt/array_on_divisors.hpp
   - nt/all_lcm.hpp
@@ -359,31 +363,25 @@ data:
   - nt/four_square.hpp
   - nt/three_square.hpp
   - nt/divisors.hpp
-  - nt/is_prime.hpp
   - nt/gaussian_integers.hpp
   - nt/factor.hpp
-  - graph/count/count_labeled_bipartite.hpp
   - graph/chromatic.hpp
   - poly/multivar_convolution_cyclic.hpp
-  - poly/fps_sqrt.hpp
   - poly/egf_convolution.hpp
   - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
   - seq/famous/stirling_number_query.hpp
-  - mod/mod_pow.hpp
   - mod/mod_log.hpp
   - mod/dynamic_modint.hpp
-  - mod/mod_sqrt.hpp
   - mod/multiplicative_convolution_mod_p.hpp
   - mod/binomial.hpp
   - mod/tetration.hpp
   - mod/mod_kth_root.hpp
   - mod/primitive_root.hpp
   - mod/modfast.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 08:53:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp
@@ -396,7 +394,6 @@ data:
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/inv_of_fps.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
@@ -407,7 +404,6 @@ data:
   - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/convolution/mul_modp_conv.test.cpp
   - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
@@ -418,18 +414,15 @@ data:
   - test/2_library_checker/number_theory/factorize.test.cpp
   - test/2_library_checker/number_theory/tetration.test.cpp
   - test/2_library_checker/number_theory/two_square.test.cpp
-  - test/2_library_checker/number_theory/sqrt_mod.test.cpp
   - test/2_library_checker/number_theory/gaussian_integers.test.cpp
   - test/2_library_checker/number_theory/primitive_root.test.cpp
   - test/2_library_checker/number_theory/kth_root_mod.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/factorial_mongomery.test.cpp
   - test/4_aoj/ITP1_D_D.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp
   - test/4_aoj/ALDS1_1_C.test.cpp
-  - test/3_yukicoder/3229.test.cpp
   - test/3_yukicoder/2578.test.cpp
   - test/3_yukicoder/1262.test.cpp
   - test/3_yukicoder/590.test.cpp
@@ -450,10 +443,10 @@ data:
   - test/3_yukicoder/2264.test.cpp
   - test/3_yukicoder/187.test.cpp
   - test/3_yukicoder/1728.test.cpp
-documentation_of: mod/mongomery_modint.hpp
+documentation_of: nt/is_prime.hpp
 layout: document
 redirect_from:
-- /library/mod/mongomery_modint.hpp
-- /library/mod/mongomery_modint.hpp.html
-title: mod/mongomery_modint.hpp
+- /library/nt/is_prime.hpp
+- /library/nt/is_prime.hpp.html
+title: nt/is_prime.hpp
 ---

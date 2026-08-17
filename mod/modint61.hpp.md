@@ -64,6 +64,9 @@ data:
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1881.test.cpp
+    title: test/3_yukicoder/1881.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4_1.test.cpp
     title: test/3_yukicoder/4_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -167,6 +170,7 @@ data:
   - test/4_aoj/ALDS1_14_C.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1397.test.cpp
+  - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/4_1.test.cpp

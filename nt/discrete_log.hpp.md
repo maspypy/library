@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -10,11 +10,20 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1339.test.cpp
+    title: test/3_yukicoder/1339.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct Monoid_Mul\
@@ -110,10 +119,13 @@ data:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: nt/discrete_log.hpp
-  requiredBy: []
+  requiredBy:
+  - mod/mod_log.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - test/3_yukicoder/1339.test.cpp
 documentation_of: nt/discrete_log.hpp
 layout: document
 redirect_from:

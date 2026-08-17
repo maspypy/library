@@ -70,6 +70,9 @@ data:
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1575.test.cpp
+    title: test/3_yukicoder/1575.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1857.test.cpp
     title: test/3_yukicoder/1857.test.cpp
   - icon: ':heavy_check_mark:'
@@ -578,6 +581,7 @@ data:
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/3_yukicoder/1857.test.cpp
   - test/3_yukicoder/1392.test.cpp
+  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2243.test.cpp
   - test/3_yukicoder/2459.test.cpp
   - test/3_yukicoder/1145.test.cpp

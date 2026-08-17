@@ -41,6 +41,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
@@ -422,6 +425,7 @@ data:
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
+  - nt/find_coprime_pair.hpp
   - linalg/bitset/det.hpp
   - linalg/bitset/matrix_mul_mod_2.hpp
   - linalg/bitset/matrix_pow.hpp

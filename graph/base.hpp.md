@@ -71,6 +71,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition_old.hpp
     title: graph/centroid_decomposition_old.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
@@ -444,6 +447,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartitematching.test.cpp
     title: test/2_library_checker/graph/bipartitematching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/chromatic_number.test.cpp
+    title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
@@ -724,6 +733,9 @@ data:
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/590.test.cpp
+    title: test/3_yukicoder/590.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
   - icon: ':heavy_check_mark:'
@@ -984,6 +996,7 @@ data:
   - graph/count/count_clique.hpp
   - graph/count/count_connected_intervals.hpp
   - graph/centroid_decomposition_old.hpp
+  - graph/chromatic.hpp
   - graph/steiner_tree.hpp
   - graph/all_cycle_common_vertex.hpp
   - graph/tree_of_unionfind.hpp
@@ -1123,6 +1136,7 @@ data:
   - test/2_library_checker/graph/general_matching.test.cpp
   - test/2_library_checker/graph/incremental_scc.test.cpp
   - test/2_library_checker/graph/bipartitematching.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/graph/complement_graph_unionfind.test.cpp
   - test/2_library_checker/graph/maximum_independent_set2.test.cpp
   - test/2_library_checker/graph/enumerate_cliques.test.cpp
@@ -1131,6 +1145,7 @@ data:
   - test/2_library_checker/graph/shortest_path.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp
   - test/2_library_checker/graph/eulerwalk_d.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/scc.test.cpp
   - test/2_library_checker/graph/cycle_detection_undirected.test.cpp
   - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
@@ -1176,6 +1191,7 @@ data:
   - test/4_aoj/ITP1_11_B.test.cpp
   - test/3_yukicoder/1320.test.cpp
   - test/3_yukicoder/1242.test.cpp
+  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1976.test.cpp
   - test/3_yukicoder/1216.test.cpp
   - test/3_yukicoder/2595.test.cpp

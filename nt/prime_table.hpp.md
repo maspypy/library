@@ -18,21 +18,36 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/modfast.hpp
+    title: mod/modfast.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/tetration.hpp
+    title: mod/tetration.hpp
   - icon: ':warning:'
+    path: nt/all_lcm.hpp
+    title: nt/all_lcm.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/count_by_factor_type.hpp
     title: nt/count_by_factor_type.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/euler_phi.hpp
+    title: nt/euler_phi.hpp
   - icon: ':warning:'
     path: nt/factor_interval.hpp
     title: nt/factor_interval.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   - icon: ':heavy_check_mark:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
   - icon: ':heavy_check_mark:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
   - icon: ':heavy_check_mark:'
@@ -130,6 +145,9 @@ data:
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_by_factor_type.test.cpp
+    title: test/1_mytest/count_by_factor_type.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,6 +165,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/prime_sum.test.cpp
     title: test/1_mytest/prime_sum.test.cpp
@@ -187,6 +208,9 @@ data:
     path: test/2_library_checker/number_theory/enumerate_primes.test.cpp
     title: test/2_library_checker/number_theory/enumerate_primes.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/tetration.test.cpp
+    title: test/2_library_checker/number_theory/tetration.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/totient_sum.test.cpp
     title: test/2_library_checker/number_theory/totient_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -196,11 +220,17 @@ data:
     path: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1262.test.cpp
+    title: test/3_yukicoder/1262.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
@@ -217,6 +247,12 @@ data:
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1411.test.cpp
+    title: test/3_yukicoder/1411.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1575.test.cpp
+    title: test/3_yukicoder/1575.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1666.test.cpp
     title: test/3_yukicoder/1666.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,6 +267,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1881.test.cpp
+    title: test/3_yukicoder/1881.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1907.test.cpp
     title: test/3_yukicoder/1907.test.cpp
@@ -258,6 +297,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/NTL_1_D.test.cpp
+    title: test/4_aoj/NTL_1_D.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -295,8 +337,11 @@ data:
   - nt/zeta.hpp
   - nt/prime_sum_mod6.hpp
   - nt/multiplicative_sum.hpp
+  - nt/all_lcm.hpp
   - nt/count_by_factor_type.hpp
+  - nt/find_coprime_pair.hpp
   - nt/mobius_table.hpp
+  - nt/euler_phi.hpp
   - nt/mertens.hpp
   - nt/factor_interval.hpp
   - nt/lcm_convolution.hpp
@@ -327,6 +372,8 @@ data:
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
   - mod/power_table.hpp
+  - mod/tetration.hpp
+  - mod/modfast.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -345,14 +392,18 @@ data:
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
+  - test/1_mytest/count_by_factor_type.test.cpp
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
   - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/2_library_checker/convolution/gcd_convolution.test.cpp
   - test/2_library_checker/convolution/lcm_convolution.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
+  - test/2_library_checker/number_theory/tetration.test.cpp
   - test/2_library_checker/number_theory/bernoulli.test.cpp
   - test/2_library_checker/number_theory/enumerate_primes.test.cpp
   - test/2_library_checker/number_theory/counting_primes.test.cpp
@@ -360,15 +411,20 @@ data:
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - test/4_aoj/NTL_1_D.test.cpp
+  - test/3_yukicoder/1262.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1392.test.cpp
+  - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1821.test.cpp
   - test/3_yukicoder/2206_2.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/3621.test.cpp
+  - test/3_yukicoder/1411.test.cpp
+  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2005.test.cpp
   - test/3_yukicoder/1666.test.cpp
   - test/3_yukicoder/1760.test.cpp

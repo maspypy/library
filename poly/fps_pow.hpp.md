@@ -133,11 +133,20 @@ data:
     path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
@@ -991,8 +1000,11 @@ data:
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp

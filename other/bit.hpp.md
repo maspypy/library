@@ -182,6 +182,9 @@ data:
   - icon: ':warning:'
     path: graph/bitset/transitive_reduction.hpp
     title: graph/bitset/transitive_reduction.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
@@ -353,9 +356,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/binomial.hpp
+    title: mod/binomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
   - icon: ':warning:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_kth_root.hpp
+    title: mod/mod_kth_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/modfast.hpp
+    title: mod/modfast.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -369,17 +387,62 @@ data:
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/multiplicative_convolution_mod_p.hpp
+    title: mod/multiplicative_convolution_mod_p.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/q_analogue.hpp
     title: mod/q_analogue.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/tetration.hpp
+    title: mod/tetration.hpp
   - icon: ':warning:'
     path: new_poly/base.hpp
     title: new_poly/base.hpp
+  - icon: ':warning:'
+    path: nt/all_lcm.hpp
+    title: nt/all_lcm.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/array_on_divisors.hpp
+    title: nt/array_on_divisors.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/crt.hpp
+    title: nt/crt.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/divisors.hpp
+    title: nt/divisors.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/euler_phi.hpp
+    title: nt/euler_phi.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/factor.hpp
+    title: nt/factor.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/four_square.hpp
+    title: nt/four_square.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/gaussian_integers.hpp
+    title: nt/gaussian_integers.hpp
+  - icon: ':question:'
+    path: nt/is_prime.hpp
+    title: nt/is_prime.hpp
   - icon: ':heavy_check_mark:'
     path: nt/nimber/solve_quadratic.hpp
     title: nt/nimber/solve_quadratic.hpp
-  - icon: ':warning:'
-    path: nt/prime_test.hpp
-    title: nt/prime_test.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/three_square.hpp
+    title: nt/three_square.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/three_triangular.hpp
+    title: nt/three_triangular.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/two_square.hpp
+    title: nt/two_square.hpp
   - icon: ':warning:'
     path: other/count_seq_with_fixed_xor_value.hpp
     title: other/count_seq_with_fixed_xor_value.hpp
@@ -470,6 +533,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_u64.hpp
     title: poly/convolution_u64.hpp
+  - icon: ':warning:'
+    path: poly/egf_convolution.hpp
+    title: poly/egf_convolution.hpp
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
@@ -509,6 +575,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
@@ -653,6 +722,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
+  - icon: ':x:'
+    path: seq/famous/stirling_number_query.hpp
+    title: seq/famous/stirling_number_query.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
@@ -680,6 +752,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
+  - icon: ':warning:'
+    path: seq/sidon_sequence.hpp
+    title: seq/sidon_sequence.hpp
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
@@ -757,6 +835,12 @@ data:
     title: test/2_library_checker/convolution/convolution_huge.test___.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/31bit_modint.test.cpp
+    title: test/1_mytest/31bit_modint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/O1_inv.test.cpp
+    title: test/1_mytest/O1_inv.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_cycle_common_vertex.test.cpp
     title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -828,6 +912,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_by_factor_type.test.cpp
+    title: test/1_mytest/count_by_factor_type.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_clique.test.cpp
     title: test/1_mytest/count_clique.test.cpp
@@ -913,11 +1000,17 @@ data:
     path: test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
     title: test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/four_square.test.cpp
+    title: test/1_mytest/four_square.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/fps_exp_2d.test.cpp
     title: test/1_mytest/fps_exp_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/fps_inv_2d.test.cpp
     title: test/1_mytest/fps_inv_2d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/geometric_sequence_sum.test.cpp
+    title: test/1_mytest/geometric_sequence_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
     title: test/1_mytest/geometric_sequence_sum_formula.test.cpp
@@ -966,6 +1059,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multinomial.test.cpp
     title: test/1_mytest/multinomial.test.cpp
@@ -1072,6 +1168,9 @@ data:
     path: test/1_mytest/rect_add_pt_sum.test.cpp
     title: test/1_mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1126,6 +1225,12 @@ data:
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/three_square.test.cpp
+    title: test/1_mytest/three_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/three_triangular.test.cpp
+    title: test/1_mytest/three_triangular.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1153,8 +1258,17 @@ data:
     path: test/2_library_checker/convolution/convolution_mod_107.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+    title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+    title: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
+    title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/gcd_convolution.test.cpp
     title: test/2_library_checker/convolution/gcd_convolution.test.cpp
@@ -1165,8 +1279,14 @@ data:
     path: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
+    title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/online_convolution.test.cpp
     title: test/2_library_checker/convolution/online_convolution.test.cpp
@@ -1300,6 +1420,9 @@ data:
     path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
     title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1311,6 +1434,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
@@ -1323,6 +1452,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/chromatic_number.test.cpp
+    title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
@@ -1399,8 +1534,32 @@ data:
     path: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
     title: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/factorize.test.cpp
+    title: test/2_library_checker/number_theory/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/gaussian_integers.test.cpp
+    title: test/2_library_checker/number_theory/gaussian_integers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
+    title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/primality_test.test.cpp
+    title: test/2_library_checker/number_theory/primality_test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/primitive_root.test.cpp
+    title: test/2_library_checker/number_theory/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/tetration.test.cpp
+    title: test/2_library_checker/number_theory/tetration.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/totient_sum.test.cpp
     title: test/2_library_checker/number_theory/totient_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/two_square.test.cpp
+    title: test/2_library_checker/number_theory/two_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/find_linear_recurrence.test.cpp
     title: test/2_library_checker/other/find_linear_recurrence.test.cpp
@@ -1414,20 +1573,41 @@ data:
     path: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
+    title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
@@ -1435,8 +1615,14 @@ data:
     path: test/2_library_checker/polynomial/log_of_fps.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
@@ -1462,8 +1648,14 @@ data:
     path: test/2_library_checker/polynomial/pow_of_fps.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
@@ -1543,6 +1735,9 @@ data:
     path: test/2_library_checker/unionfind_with_potential.test.cpp
     title: test/2_library_checker/unionfind_with_potential.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1025.test.cpp
+    title: test/3_yukicoder/1025.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036_4.test.cpp
     title: test/3_yukicoder/1036_4.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1582,6 +1777,9 @@ data:
     path: test/3_yukicoder/1260.test.cpp
     title: test/3_yukicoder/1260.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1262.test.cpp
+    title: test/3_yukicoder/1262.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1263.test.cpp
     title: test/3_yukicoder/1263.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1609,6 +1807,9 @@ data:
     path: test/3_yukicoder/1332.test.cpp
     title: test/3_yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1339.test.cpp
+    title: test/3_yukicoder/1339.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1340.test.cpp
     title: test/3_yukicoder/1340.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1623,6 +1824,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1400.test.cpp
     title: test/3_yukicoder/1400.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1411.test.cpp
+    title: test/3_yukicoder/1411.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/142.test.cpp
     title: test/3_yukicoder/142.test.cpp
@@ -1669,6 +1873,12 @@ data:
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1575.test.cpp
+    title: test/3_yukicoder/1575.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1593.test.cpp
+    title: test/3_yukicoder/1593.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1693,11 +1903,17 @@ data:
     path: test/3_yukicoder/1649_2.test.cpp
     title: test/3_yukicoder/1649_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1667.test.cpp
+    title: test/3_yukicoder/1667.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1685.test.cpp
     title: test/3_yukicoder/1685.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1728.test.cpp
+    title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1750.test.cpp
     title: test/3_yukicoder/1750.test.cpp
@@ -1719,6 +1935,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1781.test.cpp
     title: test/3_yukicoder/1781.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1783.test.cpp
+    title: test/3_yukicoder/1783.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
@@ -1744,11 +1963,17 @@ data:
     path: test/3_yukicoder/1857.test.cpp
     title: test/3_yukicoder/1857.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/187.test.cpp
+    title: test/3_yukicoder/187.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1874.test.cpp
     title: test/3_yukicoder/1874.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1881.test.cpp
+    title: test/3_yukicoder/1881.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1891.test.cpp
     title: test/3_yukicoder/1891.test.cpp
@@ -1764,6 +1989,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1939.test.cpp
     title: test/3_yukicoder/1939.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1956.test.cpp
+    title: test/3_yukicoder/1956.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1962.test.cpp
     title: test/3_yukicoder/1962.test.cpp
@@ -1795,6 +2023,12 @@ data:
     path: test/3_yukicoder/2109.test.cpp
     title: test/3_yukicoder/2109.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2119.test.cpp
+    title: test/3_yukicoder/2119.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2120.test.cpp
+    title: test/3_yukicoder/2120.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1806,6 +2040,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2181.test.cpp
+    title: test/3_yukicoder/2181.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
@@ -1821,6 +2058,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2264.test.cpp
+    title: test/3_yukicoder/2264.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2265.test.cpp
     title: test/3_yukicoder/2265.test.cpp
@@ -1876,6 +2116,9 @@ data:
     path: test/3_yukicoder/255.test.cpp
     title: test/3_yukicoder/255.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2578.test.cpp
+    title: test/3_yukicoder/2578.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1884,6 +2127,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2613.test.cpp
+    title: test/3_yukicoder/2613.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2649.test.cpp
     title: test/3_yukicoder/2649.test.cpp
@@ -1902,6 +2148,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2877.test.cpp
+    title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2895.test.cpp
     title: test/3_yukicoder/2895.test.cpp
@@ -1960,6 +2209,9 @@ data:
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/590.test.cpp
+    title: test/3_yukicoder/590.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1986,6 +2238,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/ALDS1_1_C.test.cpp
+    title: test/4_aoj/ALDS1_1_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
@@ -2020,8 +2275,14 @@ data:
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/4_aoj/ITP1_D_D.test.cpp
+    title: test/4_aoj/ITP1_D_D.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_11_D.test.cpp
     title: test/4_aoj/ITP2_11_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/NTL_1_D.test.cpp
+    title: test/4_aoj/NTL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_A.test.cpp
     title: test/4_aoj/NTL_2_A.test.cpp
@@ -2095,8 +2356,20 @@ data:
   isVerificationFile: false
   path: other/bit.hpp
   requiredBy:
-  - nt/prime_test.hpp
+  - nt/array_on_divisors.hpp
+  - nt/all_lcm.hpp
+  - nt/find_coprime_pair.hpp
+  - nt/two_square.hpp
+  - nt/euler_phi.hpp
+  - nt/crt.hpp
+  - nt/three_triangular.hpp
+  - nt/four_square.hpp
+  - nt/three_square.hpp
+  - nt/divisors.hpp
+  - nt/is_prime.hpp
+  - nt/gaussian_integers.hpp
   - nt/nimber/solve_quadratic.hpp
+  - nt/factor.hpp
   - linalg/ecottea_matrix_dp.hpp
   - linalg/bitset/det.hpp
   - linalg/bitset/matrix_mul_mod_2.hpp
@@ -2141,6 +2414,7 @@ data:
   - graph/count/count_labeled_unicyclic.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_connected_intervals.hpp
+  - graph/chromatic.hpp
   - graph/steiner_tree.hpp
   - graph/all_cycle_common_vertex.hpp
   - graph/fast_lca.hpp
@@ -2233,6 +2507,7 @@ data:
   - poly/sum_of_exp_bx.hpp
   - poly/from_log_differentiation.hpp
   - poly/multivar_convolution.hpp
+  - poly/multivar_convolution_cyclic.hpp
   - poly/convolution_all.hpp
   - poly/coef_of_rational_fps.hpp
   - poly/fps_pow.hpp
@@ -2246,6 +2521,7 @@ data:
   - poly/composed_product.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/prefix_sum_of_polynomial.hpp
+  - poly/egf_convolution.hpp
   - poly/composition_f_x_plus_1x.hpp
   - poly/ntt_doubling.hpp
   - poly/lagrange_interpolate_iota.hpp
@@ -2290,6 +2566,7 @@ data:
   - game/number_and_star.hpp
   - game/dyadic_rational.hpp
   - game/solve_partizan_game.hpp
+  - seq/reeds_sloane.hpp
   - seq/geometric_sequence_sum_formula.hpp
   - seq/common_interval_decomposition.hpp
   - seq/inversion.hpp
@@ -2299,6 +2576,7 @@ data:
   - seq/hook_length_formula.hpp
   - seq/count_grid_path.hpp
   - seq/sum_of_powers.hpp
+  - seq/sidon_sequence.hpp
   - seq/factorial_digit_system.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/bell_number_large.hpp
@@ -2312,6 +2590,7 @@ data:
   - seq/famous/bernoulli.hpp
   - seq/famous/simple_permutations.hpp
   - seq/famous/eulerian_number.hpp
+  - seq/famous/stirling_number_query.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - seq/limit_poly_exp_sum.hpp
   - seq/find_linear_rec.hpp
@@ -2341,9 +2620,17 @@ data:
   - mod/multiplicative_convolution_mod_2n.hpp
   - mod/modular_subset_sum.hpp
   - mod/modint.hpp
+  - mod/mod_log.hpp
+  - mod/dynamic_modint.hpp
+  - mod/multiplicative_convolution_mod_p.hpp
+  - mod/binomial.hpp
+  - mod/tetration.hpp
   - mod/q_analogue.hpp
+  - mod/mod_kth_root.hpp
   - mod/dynamic_modint_64.hpp
+  - mod/primitive_root.hpp
   - mod/modint_common.hpp
+  - mod/modfast.hpp
   - new_poly/base.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
@@ -2415,6 +2702,7 @@ data:
   - test/1_mytest/dirichlet.test.cpp
   - test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   - test/1_mytest/simple_perm.test.cpp
+  - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/max_max.test.cpp
   - test/1_mytest/prefix_max_segtree.test.cpp
   - test/1_mytest/summin_add.test.cpp
@@ -2423,6 +2711,7 @@ data:
   - test/1_mytest/count_labeled_dag.test.cpp
   - test/1_mytest/count_unbordered_string.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
+  - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/kinetic.test.cpp
   - test/1_mytest/count_labeled_connected.test.cpp
@@ -2436,17 +2725,22 @@ data:
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/conv_leq.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/prefix_sum_of_binom.test.cpp
   - test/1_mytest/min_min.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
+  - test/1_mytest/three_square.test.cpp
   - test/1_mytest/minmax_add.test.cpp
   - test/1_mytest/chirp_z.test.cpp
+  - test/1_mytest/four_square.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/count_labeled_tournament.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/min_max.test.cpp
+  - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/rbst_commutative_persistent.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/binom.test.cpp
@@ -2458,6 +2752,7 @@ data:
   - test/1_mytest/fenwick01.test.cpp
   - test/1_mytest/fps_inv_2d.test.cpp
   - test/1_mytest/substring_abundant.test.cpp
+  - test/1_mytest/31bit_modint.test.cpp
   - test/1_mytest/factorial_digit.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/summax_assign.test.cpp
@@ -2465,6 +2760,7 @@ data:
   - test/1_mytest/all_inverse.test.cpp
   - test/1_mytest/mybitset.test.cpp
   - test/1_mytest/qbinom.test.cpp
+  - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
@@ -2481,8 +2777,10 @@ data:
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/2_library_checker/graph/incremental_scc.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/graph/enumerate_cliques.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
@@ -2527,21 +2825,32 @@ data:
   - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps.test.cpp
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/log_of_fps.test.cpp
   - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/polynomial/polynomial_division.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
@@ -2555,6 +2864,9 @@ data:
   - test/2_library_checker/convolution/multivariate_convolution.test.cpp
   - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
   - test/2_library_checker/convolution/online_convolution.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/2_library_checker/convolution/gcd_convolution.test.cpp
   - test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
   - test/2_library_checker/convolution/convolution_mod_107.test.cpp
@@ -2562,6 +2874,8 @@ data:
   - test/2_library_checker/convolution/lcm_convolution.test.cpp
   - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
   - test/2_library_checker/convolution/convolution_mod.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
@@ -2587,14 +2901,25 @@ data:
   - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/2_library_checker/sample/aplusb128.test.cpp
+  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - test/2_library_checker/number_theory/primality_test.test.cpp
   - test/2_library_checker/number_theory/dirichlet_inv.test.cpp
+  - test/2_library_checker/number_theory/factorize.test.cpp
+  - test/2_library_checker/number_theory/tetration.test.cpp
   - test/2_library_checker/number_theory/dirichlet.test.cpp
+  - test/2_library_checker/number_theory/two_square.test.cpp
   - test/2_library_checker/number_theory/bernoulli.test.cpp
+  - test/2_library_checker/number_theory/gaussian_integers.test.cpp
+  - test/2_library_checker/number_theory/primitive_root.test.cpp
+  - test/2_library_checker/number_theory/kth_root_mod.test.cpp
   - test/2_library_checker/number_theory/totient_sum.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/partition.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
@@ -2611,10 +2936,13 @@ data:
   - test/2_library_checker/set_power_series/sps_exp.test.cpp
   - test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
   - test/2_library_checker/set_power_series/subset_convolution.test.cpp
+  - test/4_aoj/ITP1_D_D.test.cpp
   - test/4_aoj/NTL_2_B.test.cpp
   - test/4_aoj/ALDS1_2_A.test.cpp
   - test/4_aoj/ALDS1_5.test.cpp
+  - test/4_aoj/NTL_1_D.test.cpp
   - test/4_aoj/2251_1.test.cpp
+  - test/4_aoj/ALDS1_1_C.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/DSL_2_H.test.cpp
   - test/4_aoj/DSL_4_A.test.cpp
@@ -2634,6 +2962,8 @@ data:
   - test/3_yukicoder/1649_2.test.cpp
   - test/3_yukicoder/3229.test.cpp
   - test/3_yukicoder/1141.test.cpp
+  - test/3_yukicoder/2578.test.cpp
+  - test/3_yukicoder/1262.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/694.test.cpp
   - test/3_yukicoder/1857.test.cpp
@@ -2645,6 +2975,7 @@ data:
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/1618.test.cpp
   - test/3_yukicoder/2525.test.cpp
+  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1753.test.cpp
   - test/3_yukicoder/2859.test.cpp
   - test/3_yukicoder/2097.test.cpp
@@ -2660,7 +2991,10 @@ data:
   - test/3_yukicoder/1270.test.cpp
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1919.test.cpp
+  - test/3_yukicoder/1667.test.cpp
   - test/3_yukicoder/899.test.cpp
+  - test/3_yukicoder/2613.test.cpp
+  - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1821.test.cpp
   - test/3_yukicoder/1332.test.cpp
   - test/3_yukicoder/2206_2.test.cpp
@@ -2672,6 +3006,7 @@ data:
   - test/3_yukicoder/2498.test.cpp
   - test/3_yukicoder/924.test.cpp
   - test/3_yukicoder/2342.test.cpp
+  - test/3_yukicoder/2120.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/142.test.cpp
@@ -2680,8 +3015,10 @@ data:
   - test/3_yukicoder/919.test.cpp
   - test/3_yukicoder/2649.test.cpp
   - test/3_yukicoder/1600.test.cpp
+  - test/3_yukicoder/2181.test.cpp
   - test/3_yukicoder/1269.test.cpp
   - test/3_yukicoder/1634.test.cpp
+  - test/3_yukicoder/1025.test.cpp
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/2305.test.cpp
@@ -2693,19 +3030,24 @@ data:
   - test/3_yukicoder/1311.test.cpp
   - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/2293.test.cpp
+  - test/3_yukicoder/1411.test.cpp
   - test/3_yukicoder/749.test.cpp
   - test/3_yukicoder/303.test.cpp
   - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/1339.test.cpp
+  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2065.test.cpp
   - test/3_yukicoder/2109.test.cpp
   - test/3_yukicoder/1891.test.cpp
   - test/3_yukicoder/1234.test.cpp
   - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/1956.test.cpp
   - test/3_yukicoder/4_1.test.cpp
   - test/3_yukicoder/1036_4.test.cpp
   - test/3_yukicoder/1641.test.cpp
+  - test/3_yukicoder/1783.test.cpp
   - test/3_yukicoder/3314.test.cpp
   - test/3_yukicoder/2507.test.cpp
   - test/3_yukicoder/421_2.test.cpp
@@ -2722,6 +3064,7 @@ data:
   - test/3_yukicoder/1340.test.cpp
   - test/3_yukicoder/2459.test.cpp
   - test/3_yukicoder/2342_2.test.cpp
+  - test/3_yukicoder/1593.test.cpp
   - test/3_yukicoder/1197.test.cpp
   - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/2895.test.cpp
@@ -2745,12 +3088,15 @@ data:
   - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/1526_2.test.cpp
   - test/3_yukicoder/1263.test.cpp
+  - test/3_yukicoder/2119.test.cpp
   - test/3_yukicoder/1838.test.cpp
+  - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/1549.test.cpp
   - test/3_yukicoder/1939.test.cpp
   - test/3_yukicoder/184.test.cpp
   - test/3_yukicoder/1649.test.cpp
   - test/3_yukicoder/2265.test.cpp
+  - test/3_yukicoder/2264.test.cpp
   - test/3_yukicoder/1781.test.cpp
   - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/866.test.cpp
@@ -2760,10 +3106,12 @@ data:
   - test/3_yukicoder/1080.test.cpp
   - test/3_yukicoder/1533.test.cpp
   - test/3_yukicoder/4_2.test.cpp
+  - test/3_yukicoder/187.test.cpp
   - test/3_yukicoder/255.test.cpp
   - test/3_yukicoder/2206.test.cpp
   - test/3_yukicoder/1326.test.cpp
   - test/3_yukicoder/3619.test.cpp
+  - test/3_yukicoder/1728.test.cpp
   - test/3_yukicoder/2440.test.cpp
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1493.test.cpp

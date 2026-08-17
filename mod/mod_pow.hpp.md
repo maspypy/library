@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   _extendedRequiredBy:
@@ -12,24 +12,186 @@ data:
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/binomial.hpp
+    title: mod/binomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_kth_root.hpp
+    title: mod/mod_kth_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/modfast.hpp
+    title: mod/modfast.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/multiplicative_convolution_mod_p.hpp
+    title: mod/multiplicative_convolution_mod_p.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/four_square.hpp
+    title: nt/four_square.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/gaussian_integers.hpp
+    title: nt/gaussian_integers.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/three_square.hpp
+    title: nt/three_square.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/three_triangular.hpp
+    title: nt/three_triangular.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/two_square.hpp
+    title: nt/two_square.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/reeds_sloane.hpp
+    title: seq/reeds_sloane.hpp
+  - icon: ':warning:'
+    path: seq/sidon_sequence.hpp
+    title: seq/sidon_sequence.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/31bit_modint.test.cpp
+    title: test/1_mytest/31bit_modint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/O1_inv.test.cpp
+    title: test/1_mytest/O1_inv.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/four_square.test.cpp
+    title: test/1_mytest/four_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/geometric_sequence_sum.test.cpp
+    title: test/1_mytest/geometric_sequence_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/reeds_sloane.test.cpp
+    title: test/1_mytest/reeds_sloane.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/three_square.test.cpp
+    title: test/1_mytest/three_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/three_triangular.test.cpp
+    title: test/1_mytest/three_triangular.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+    title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+    title: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
+    title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
+    title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/gaussian_integers.test.cpp
+    title: test/2_library_checker/number_theory/gaussian_integers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
+    title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/primitive_root.test.cpp
+    title: test/2_library_checker/number_theory/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/sqrt_mod.test.cpp
     title: test/2_library_checker/number_theory/sqrt_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/two_square.test.cpp
+    title: test/2_library_checker/number_theory/two_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
+    title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1025.test.cpp
+    title: test/3_yukicoder/1025.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1339.test.cpp
+    title: test/3_yukicoder/1339.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1593.test.cpp
+    title: test/3_yukicoder/1593.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1667.test.cpp
+    title: test/3_yukicoder/1667.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1783.test.cpp
+    title: test/3_yukicoder/1783.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2120.test.cpp
+    title: test/3_yukicoder/2120.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2181.test.cpp
+    title: test/3_yukicoder/2181.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2613.test.cpp
+    title: test/3_yukicoder/2613.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2877.test.cpp
+    title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3229.test.cpp
     title: test/3_yukicoder/3229.test.cpp
@@ -105,17 +267,71 @@ data:
   isVerificationFile: false
   path: mod/mod_pow.hpp
   requiredBy:
+  - nt/two_square.hpp
+  - nt/three_triangular.hpp
+  - nt/four_square.hpp
+  - nt/three_square.hpp
+  - nt/gaussian_integers.hpp
   - graph/count/count_labeled_bipartite.hpp
+  - poly/multivar_convolution_cyclic.hpp
   - poly/fps_sqrt.hpp
+  - seq/reeds_sloane.hpp
+  - seq/sidon_sequence.hpp
+  - mod/mod_log.hpp
+  - mod/dynamic_modint.hpp
   - mod/mod_sqrt.hpp
+  - mod/multiplicative_convolution_mod_p.hpp
+  - mod/binomial.hpp
+  - mod/mod_kth_root.hpp
+  - mod/primitive_root.hpp
+  - mod/modfast.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp
+  - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/O1_inv.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
+  - test/1_mytest/three_square.test.cpp
+  - test/1_mytest/four_square.test.cpp
+  - test/1_mytest/modfast.test.cpp
+  - test/1_mytest/geometric_sequence_sum.test.cpp
+  - test/1_mytest/31bit_modint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - test/2_library_checker/number_theory/two_square.test.cpp
   - test/2_library_checker/number_theory/sqrt_mod.test.cpp
+  - test/2_library_checker/number_theory/gaussian_integers.test.cpp
+  - test/2_library_checker/number_theory/primitive_root.test.cpp
+  - test/2_library_checker/number_theory/kth_root_mod.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
   - test/3_yukicoder/3229.test.cpp
+  - test/3_yukicoder/1667.test.cpp
+  - test/3_yukicoder/2613.test.cpp
+  - test/3_yukicoder/2120.test.cpp
+  - test/3_yukicoder/2181.test.cpp
+  - test/3_yukicoder/1025.test.cpp
+  - test/3_yukicoder/1339.test.cpp
+  - test/3_yukicoder/1783.test.cpp
+  - test/3_yukicoder/1593.test.cpp
+  - test/3_yukicoder/2877.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document
 redirect_from:

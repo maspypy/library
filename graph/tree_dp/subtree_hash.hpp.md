@@ -729,16 +729,17 @@ data:
     \    T unit = {0, mint(1)};\n\n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi,\
     \ B.fi), A.se * B.se}; };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi\
     \ + 1, A.se}; };\n    auto f_ve = [&](T A, const auto& e) -> T {\n      return\
-    \ {A.fi, A.se + hash_base(A.fi)};\n    };\n\n    Rerooting_dp<TREE, T> DP(tree,\
+    \ {A.fi, A.se + hash_base(A.fi)};\n    };\n\n    Rerooting_DP<TREE, T> DP(tree,\
     \ f_ee, f_ev, f_ve, unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
     \    FOR(v, N) dp[v] = DP.dp[v].se.val;\n    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n\
     \    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n  }\n\n  // v \u3092\u6839\u3068\u3057\
     \u305F\u3068\u304D\u306E full tree\n  u64 operator[](int v) { return dp[v]; }\n\
     \n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728\
     \ v\n  u64 get(int v, int root) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
-    \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
-    \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n"
+    \ v)) {\n      return dp_1[v];\n    }\n    int w = tree.jump(v, root, 1);\n  \
+    \  return dp_2[w];\n  }\n\n  static mint hash_base(int k) {\n    static vc<mint>\
+    \ dat;\n    while (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n\
+    \  }\n};\n"
   code: "#include \"mod/modint61.hpp\"\n#include \"graph/base.hpp\"\n#include \"graph/tree.hpp\"\
     \n#include \"random/base.hpp\"\n#include \"graph/tree_dp/rerooting_dp.hpp\"\n\n\
     // \u8907\u6570\u306E\u6728\u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate\
@@ -748,16 +749,16 @@ data:
     \    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n\
     \    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto\
     \ f_ve = [&](T A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
-    \    };\n\n    Rerooting_dp<TREE, T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N),\
+    \    };\n\n    Rerooting_DP<TREE, T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N),\
     \ dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n  \
     \  FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
     \  }\n\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  u64\
     \ operator[](int v) { return dp[v]; }\n\n  // root \u3092\u6839\u3068\u3057\u305F\
     \u3068\u304D\u306E\u90E8\u5206\u6728 v\n  u64 get(int v, int root) {\n    if (root\
-    \ == v) return dp[v];\n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\n\
-    \    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n\n  static mint\
-    \ hash_base(int k) {\n    static vc<mint> dat;\n    while (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n\
-    \    return dat[k];\n  }\n};\n"
+    \ == v) return dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n\
+    \    }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n\n  static\
+    \ mint hash_base(int k) {\n    static vc<mint> dat;\n    while (len(dat) <= k)\
+    \ dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n"
   dependsOn:
   - mod/modint61.hpp
   - graph/base.hpp
@@ -768,7 +769,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_hash.hpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
+  timestamp: '2026-08-17 08:56:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
