@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
@@ -48,9 +48,9 @@ data:
     title: poly/poly_gcd.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_polynomials
@@ -663,19 +663,17 @@ data:
     \ F;\r\n}\r\n}  // namespace half_gcd\r\nusing half_gcd::poly_ext_gcd;\r\nusing\
     \ half_gcd::poly_gcd;\r\n#line 5 \"test/2_library_checker/polynomial/inv_of_polynomials.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint,\
-    \ A, N);\r\n  VEC(mint, B, M);\r\n  auto [d, x, y] = poly_extgcd(A, B);\r\n  if\
-    \ (len(d) > 1) return print(-1);\r\n  mint c = mint(1) / d[0];\r\n  FOR(i, len(x))\
-    \ x[i] *= c;\r\n  print(len(x));\r\n  if (len(x)) print(x);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ A, N);\r\n  VEC(mint, B, M);\r\n  auto [d, x, y] = poly_ext_gcd(A, B);\r\n \
+    \ if (len(d) > 1) return print(-1);\r\n  mint c = mint(1) / d[0];\r\n  FOR(i,\
+    \ len(x)) x[i] *= c;\r\n  print(len(x));\r\n  if (len(x)) print(x);\r\n}\r\n\r\
+    \nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_polynomials\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"poly/poly_gcd.hpp\"\
     \r\n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint,\
-    \ A, N);\r\n  VEC(mint, B, M);\r\n  auto [d, x, y] = poly_extgcd(A, B);\r\n  if\
-    \ (len(d) > 1) return print(-1);\r\n  mint c = mint(1) / d[0];\r\n  FOR(i, len(x))\
-    \ x[i] *= c;\r\n  print(len(x));\r\n  if (len(x)) print(x);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ A, N);\r\n  VEC(mint, B, M);\r\n  auto [d, x, y] = poly_ext_gcd(A, B);\r\n \
+    \ if (len(d) > 1) return print(-1);\r\n  mint c = mint(1) / d[0];\r\n  FOR(i,\
+    \ len(x)) x[i] *= c;\r\n  print(len(x));\r\n  if (len(x)) print(x);\r\n}\r\n\r\
+    \nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -695,8 +693,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 11:40:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 11:46:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
 layout: document
