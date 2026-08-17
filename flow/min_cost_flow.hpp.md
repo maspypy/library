@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: flow/longest_shortest_path.hpp
+    title: flow/longest_shortest_path.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/assignment_mcf.test.cpp
@@ -252,7 +255,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: flow/min_cost_flow.hpp
-  requiredBy: []
+  requiredBy:
+  - flow/longest_shortest_path.hpp
   timestamp: '2026-08-17 11:40:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

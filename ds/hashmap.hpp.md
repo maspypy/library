@@ -26,6 +26,9 @@ data:
   - icon: ':warning:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
+  - icon: ':warning:'
+    path: flow/longest_shortest_path.hpp
+    title: flow/longest_shortest_path.hpp
   - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
@@ -1199,6 +1202,7 @@ data:
   - flow/bipartite_matching.hpp
   - flow/maxflow.hpp
   - flow/rank_maximal_bipartite_matching.hpp
+  - flow/longest_shortest_path.hpp
   - mod/mod_log.hpp
   - mod/mod_kth_root.hpp
   - mod/modfast.hpp

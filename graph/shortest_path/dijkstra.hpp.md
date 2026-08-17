@@ -8,6 +8,9 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: flow/longest_shortest_path.hpp
+    title: flow/longest_shortest_path.hpp
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
@@ -199,6 +202,7 @@ data:
   requiredBy:
   - graph/shortest_path/K_shortest_walk.hpp
   - graph/shortest_path/nonzero_group_product_shortest_path.hpp
+  - flow/longest_shortest_path.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

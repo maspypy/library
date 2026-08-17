@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: knapsack/connected_set_knapsack.hpp
     title: knapsack/connected_set_knapsack.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

@@ -20,6 +20,9 @@ data:
   - icon: ':warning:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
+  - icon: ':warning:'
+    path: flow/longest_shortest_path.hpp
+    title: flow/longest_shortest_path.hpp
   - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
@@ -1176,6 +1179,7 @@ data:
   - flow/bipartite_matching.hpp
   - flow/maxflow.hpp
   - flow/rank_maximal_bipartite_matching.hpp
+  - flow/longest_shortest_path.hpp
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   timestamp: '2026-08-16 04:03:00+09:00'

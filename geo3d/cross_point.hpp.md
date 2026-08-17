@@ -43,41 +43,41 @@ data:
     \    ANS.y = L.a.y + t * L.d.y;\n    ANS.z = L.a.z + t * L.d.z;\n    return ANS;\n\
     \  }\n};\n#line 2 \"geo3d/cross_point.hpp\"\n\n// 0: \u4EA4\u70B9\u306A\u3057\n\
     // 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\u4E0A\u306E\u4EA4\
-    \u70B9\ntemplate <typename T>\nint count_cross(Line_3d<T> L1, Line_3d<T> L2) {\n\
+    \u70B9\ntemplate <typename T>\nint count_cross(Line_3D<T> L1, Line_3D<T> L2) {\n\
     \  static_assert(!std::is_floating_point<T>::value);\n  if (L1.is_parallel(L2))\
-    \ {\n    if (L1.contain(L2.a)) return 2;\n    return 0;\n  }\n  Point_3d<T> norm\
+    \ {\n    if (L1.contain(L2.a)) return 2;\n    return 0;\n  }\n  Point_3D<T> norm\
     \ = L1.d.cross(L2.d);\n  return ((L1.a - L2.a).dot(norm) == 0 ? 1 : 0);\n}\n\n\
     // count_cross == 1 \u306E\u3068\u304D\u306B\u3060\u3051\u547C\u3076\u3053\u3068\
-    \ntemplate <typename REAL, typename T>\nPoint_3d<REAL> cross_point(Line_3d<T>\
-    \ L1, Line_3d<T> L2) {\n  Point_3d<T> d1 = L1.d;\n  Point_3d<T> d2 = L2.d;\n \
-    \ Point_3d<T> a = L2.a - L1.a;\n  REAL t1 = [&]() -> REAL {\n    FOR(3) {\n  \
+    \ntemplate <typename REAL, typename T>\nPoint_3D<REAL> cross_point(Line_3D<T>\
+    \ L1, Line_3D<T> L2) {\n  Point_3D<T> d1 = L1.d;\n  Point_3D<T> d2 = L2.d;\n \
+    \ Point_3D<T> a = L2.a - L1.a;\n  REAL t1 = [&]() -> REAL {\n    FOR(3) {\n  \
     \    d1 = {d1.y, d1.z, d1.x};\n      d2 = {d2.y, d2.z, d2.x};\n      a = {a.y,\
-    \ a.z, a.x};\n      T det = d1.x * d2.y - d1.y * d2.x;\n      if (det != 0) {\
-    \ return REAL(a.x * d2.y - a.y * d2.x) / REAL(det); }\n    }\n    assert(0);\n\
-    \    return 0;\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n  REAL y\
-    \ = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 * REAL(L1.d.z);\n\
-    \  return {x, y, z};\n}\n"
-  code: "#include \"geo3d/base.hpp\"\n\n// 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\
-    \u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\ntemplate\
-    \ <typename T>\nint count_cross(Line_3d<T> L1, Line_3d<T> L2) {\n  static_assert(!std::is_floating_point<T>::value);\n\
-    \  if (L1.is_parallel(L2)) {\n    if (L1.contain(L2.a)) return 2;\n    return\
-    \ 0;\n  }\n  Point_3d<T> norm = L1.d.cross(L2.d);\n  return ((L1.a - L2.a).dot(norm)\
-    \ == 0 ? 1 : 0);\n}\n\n// count_cross == 1 \u306E\u3068\u304D\u306B\u3060\u3051\
-    \u547C\u3076\u3053\u3068\ntemplate <typename REAL, typename T>\nPoint_3d<REAL>\
-    \ cross_point(Line_3d<T> L1, Line_3d<T> L2) {\n  Point_3d<T> d1 = L1.d;\n  Point_3d<T>\
-    \ d2 = L2.d;\n  Point_3d<T> a = L2.a - L1.a;\n  REAL t1 = [&]() -> REAL {\n  \
-    \  FOR(3) {\n      d1 = {d1.y, d1.z, d1.x};\n      d2 = {d2.y, d2.z, d2.x};\n\
-    \      a = {a.y, a.z, a.x};\n      T det = d1.x * d2.y - d1.y * d2.x;\n      if\
-    \ (det != 0) { return REAL(a.x * d2.y - a.y * d2.x) / REAL(det); }\n    }\n  \
-    \  assert(0);\n    return 0;\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n\
+    \ a.z, a.x};\n      T det = d1.x * d2.y - d1.y * d2.x;\n      if (det != 0) {\n\
+    \        return REAL(a.x * d2.y - a.y * d2.x) / REAL(det);\n      }\n    }\n \
+    \   assert(0);\n    return 0;\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n\
     \  REAL y = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 *\
     \ REAL(L1.d.z);\n  return {x, y, z};\n}\n"
+  code: "#include \"geo3d/base.hpp\"\n\n// 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\
+    \u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\ntemplate\
+    \ <typename T>\nint count_cross(Line_3D<T> L1, Line_3D<T> L2) {\n  static_assert(!std::is_floating_point<T>::value);\n\
+    \  if (L1.is_parallel(L2)) {\n    if (L1.contain(L2.a)) return 2;\n    return\
+    \ 0;\n  }\n  Point_3D<T> norm = L1.d.cross(L2.d);\n  return ((L1.a - L2.a).dot(norm)\
+    \ == 0 ? 1 : 0);\n}\n\n// count_cross == 1 \u306E\u3068\u304D\u306B\u3060\u3051\
+    \u547C\u3076\u3053\u3068\ntemplate <typename REAL, typename T>\nPoint_3D<REAL>\
+    \ cross_point(Line_3D<T> L1, Line_3D<T> L2) {\n  Point_3D<T> d1 = L1.d;\n  Point_3D<T>\
+    \ d2 = L2.d;\n  Point_3D<T> a = L2.a - L1.a;\n  REAL t1 = [&]() -> REAL {\n  \
+    \  FOR(3) {\n      d1 = {d1.y, d1.z, d1.x};\n      d2 = {d2.y, d2.z, d2.x};\n\
+    \      a = {a.y, a.z, a.x};\n      T det = d1.x * d2.y - d1.y * d2.x;\n      if\
+    \ (det != 0) {\n        return REAL(a.x * d2.y - a.y * d2.x) / REAL(det);\n  \
+    \    }\n    }\n    assert(0);\n    return 0;\n  }();\n  REAL x = REAL(L1.a.x)\
+    \ + t1 * REAL(L1.d.x);\n  REAL y = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z\
+    \ = REAL(L1.a.z) + t1 * REAL(L1.d.z);\n  return {x, y, z};\n}\n"
   dependsOn:
   - geo3d/base.hpp
   isVerificationFile: false
   path: geo3d/cross_point.hpp
   requiredBy: []
-  timestamp: '2026-08-17 12:11:00+09:00'
+  timestamp: '2026-08-17 12:20:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo3d/cross_point.hpp
