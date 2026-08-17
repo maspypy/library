@@ -3,7 +3,7 @@
 // x の代わりに rx を持つ
 template <int id, typename U1, typename U2>
 struct Montgomery_modint {
-  using mint = Mongomery_modint;
+  using mint = Montgomery_modint;
   inline static U1 m, r, n2;
   static constexpr int W = numeric_limits<U1>::digits;
 
