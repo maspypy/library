@@ -5,11 +5,13 @@
 
 void solve() {
   LL(N);
-  CHT_xy<ll> cht;
+  CHT_XY<ll> cht;
   VEC(pi, XY, N);
   ll ANS = 0;
-  for (auto&& [a, b]: XY) cht.add(a, -b);
-  for (auto&& [x, y]: XY) { chmax(ANS, cht.get_max(y, x).fi); }
+  for (auto&& [a, b] : XY) cht.add(a, -b);
+  for (auto&& [x, y] : XY) {
+    chmax(ANS, cht.get_max(y, x).fi);
+  }
   print(ANS);
 }
 

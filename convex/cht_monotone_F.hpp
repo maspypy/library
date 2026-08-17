@@ -3,21 +3,27 @@
 // https://contest.ucup.ac/contest/1893/problem/9737
 // push front 使ったことなし
 template <typename F, bool MINIMIZE>
-struct CHT_monotone_F {
+struct CHT_Monotone_F {
   using T = typename F::value_type;
   ll L, R;
 
   // func, L, R
   vc<tuple<F, ll, ll>> dat;
-  CHT_monotone_F(ll L, ll R) : L(L), R(R) {}
+  CHT_Monotone_F(ll L, ll R) : L(L), R(R) {}
 
   void push_back(F f) {
-    auto find = [&](F f, F g, ll a, ll b) -> ll { return binary_search([&](ll x) -> bool { return select_right(f, g, x); }, b, a, 0); };
+    auto find = [&](F f, F g, ll a, ll b) -> ll {
+      return binary_search([&](ll x) -> bool { return select_right(f, g, x); },
+                           b, a, 0);
+    };
     push_back_with_find(f, find);
   }
 
   void push_front(F f) {
-    auto find = [&](F f, F g, ll a, ll b) -> ll { return binary_search([&](ll x) -> bool { return select_right(f, g, x); }, b, a, 0); };
+    auto find = [&](F f, F g, ll a, ll b) -> ll {
+      return binary_search([&](ll x) -> bool { return select_right(f, g, x); },
+                           b, a, 0);
+    };
     push_front_with_find(f, find);
   }
 
@@ -35,7 +41,9 @@ struct CHT_monotone_F {
         if (len(dat)) get<2>(dat.back()) = b;
         continue;
       }
-      if (!select_right(f, g, b - 1)) { break; }
+      if (!select_right(f, g, b - 1)) {
+        break;
+      }
       ll x = find(f, g, a, b - 1);
       get<2>(dat.back()) = x;
       dat.emplace_back(g, x, b);
@@ -67,7 +75,8 @@ struct CHT_monotone_F {
 
   T query(ll x) {
     assert(!dat.empty());
-    int k = binary_search([&](int i) -> bool { return get<1>(dat[i]) <= x; }, 0, len(dat));
+    int k = binary_search([&](int i) -> bool { return get<1>(dat[i]) <= x; }, 0,
+                          len(dat));
     auto [f, a, b] = dat[k];
     assert(a <= x && x < b);
     return f(x);
@@ -87,6 +96,8 @@ struct CHT_monotone_F {
     return f(x);
   }
 
-private:
-  bool select_right(F L, F R, ll x) { return (MINIMIZE ? !(L(x) < R(x)) : (L(x) < R(x))); }
+ private:
+  bool select_right(F L, F R, ll x) {
+    return (MINIMIZE ? !(L(x) < R(x)) : (L(x) < R(x)));
+  }
 };

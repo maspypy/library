@@ -1,5 +1,5 @@
 template <typename T, bool isMin>
-struct CHT_monotone {
+struct CHT_Monotone {
   static_assert(is_same_v<T, ll> || std::is_floating_point_v<T>);
   struct Line {
     T a, b;
@@ -8,7 +8,7 @@ struct CHT_monotone {
   deque<Line> H;
   int nxt_idx = 0;
 
-  CHT_monotone() = default;
+  CHT_Monotone() = default;
 
   bool empty() const { return H.empty(); }
   void clear() { H.clear(); }
@@ -19,12 +19,14 @@ struct CHT_monotone {
     if (b.b == a.b || c.b == b.b)
       return sgn(b.a - a.a) * sgn(c.b - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);
     // return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);
-    return D(b.a - a.a) * sgn(c.b - b.b) / D(abs(b.b - a.b))
-           >= D(c.a - b.a) * sgn(b.b - a.b) / D(abs(c.b - b.b));
+    return D(b.a - a.a) * sgn(c.b - b.b) / D(abs(b.b - a.b)) >=
+           D(c.a - b.a) * sgn(b.b - a.b) / D(abs(c.b - b.b));
   }
 
   void add(T a, T b, int idx = -1) {
-    if (idx == -1) { idx = nxt_idx++; }
+    if (idx == -1) {
+      idx = nxt_idx++;
+    }
     if (!isMin) a *= -1, b *= -1;
     Line L{a, b, idx};
     if (empty()) {
@@ -36,7 +38,9 @@ struct CHT_monotone {
         if (H.front().b <= b) return;
         H.pop_front();
       }
-      while (H.size() >= 2 && check(L, H.front(), H[1])) { H.pop_front(); }
+      while (H.size() >= 2 && check(L, H.front(), H[1])) {
+        H.pop_front();
+      }
       H.emplace_front(L);
     } else {
       assert(a <= H.back().a);

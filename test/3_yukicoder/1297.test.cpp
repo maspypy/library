@@ -6,8 +6,8 @@
 
 void solve() {
   LL(N, C);
-  CHT_monotone<ll, true> X2;
-  CHT_min<ll> X1;
+  CHT_Monotone<ll, true> X2;
+  CHT_Min<ll> X1;
 
   FOR(i, N + 1) {
     ll dp = 0;

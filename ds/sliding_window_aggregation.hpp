@@ -7,7 +7,8 @@ struct Sliding_Window_Aggregation {
   vc<X> cum_l;
   X cum_r;
 
-  Sliding_Window_Aggregation() : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}
+  Sliding_Window_Aggregation()
+      : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}
 
   int size() { return sz; }
 
@@ -39,14 +40,15 @@ struct Sliding_Window_Aggregation {
 
 // 定数倍は目に見えて遅くなるので、queue でよいときは使わない
 template <class Monoid>
-struct SWAG_deque {
+struct Sliding_Window_Aggregation_Deque {
   using X = typename Monoid::value_type;
   using value_type = X;
   int sz;
   vc<X> dat_l, dat_r;
   vc<X> cum_l, cum_r;
 
-  SWAG_deque() : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}
+  Sliding_Window_Aggregation_Deque()
+      : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}
 
   int size() { return sz; }
 
@@ -98,7 +100,7 @@ struct SWAG_deque {
   X prod() { return Monoid::op(cum_l.back(), cum_r.back()); }
   X prod_all() { return prod(); }
 
-private:
+ private:
   void rebuild() {
     vc<X> X;
     reverse(all(dat_l));

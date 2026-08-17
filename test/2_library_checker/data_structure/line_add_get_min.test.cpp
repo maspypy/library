@@ -5,8 +5,8 @@
 
 void solve() {
   LL(N, Q);
-  CHT_min<ll> cht_min;
-  CHT_max<ll> cht_max;
+  CHT_Min<ll> cht_min;
+  CHT_Max<ll> cht_max;
   FOR(N) {
     LL(a, b);
     cht_min.add(a, b);

@@ -29,7 +29,7 @@ double lc_div(double a, double b) {
 };
 
 template <typename T, bool MINIMIZE = true>
-struct LineContainer : multiset<Line<T>, less<>> {
+struct Line_Container : multiset<Line<T>, less<>> {
   using super = multiset<Line<T>, less<>>;
   using super::begin, super::end, super::insert, super::erase;
   using super::empty, super::lower_bound;
@@ -43,7 +43,9 @@ struct LineContainer : multiset<Line<T>, less<>> {
     return x->p >= y->p;
   }
   void add(T k, T m) {
-    if (MINIMIZE) { k = -k, m = -m; }
+    if (MINIMIZE) {
+      k = -k, m = -m;
+    }
     auto z = insert({k, m, 0}), y = z++, x = y;
     while (insect(y, z)) z = erase(z);
     if (x != begin() and insect(--x, y)) insect(x, y = erase(y));
@@ -56,13 +58,13 @@ struct LineContainer : multiset<Line<T>, less<>> {
     return (MINIMIZE ? -v : v);
   }
 };
-}; // namespace CHT
+};  // namespace CHT
 
 using namespace CHT;
 template <typename T>
-using CHT_min = LineContainer<T, true>;
+using CHT_Min = Line_Container<T, true>;
 template <typename T>
-using CHT_max = LineContainer<T, false>;
+using CHT_Max = Line_Container<T, false>;
 
 /*
 long long / double で動くと思う。クエリあたり O(log N)
@@ -71,11 +73,11 @@ long long / double で動くと思う。クエリあたり O(log N)
 ・get_min(x,y)：(ax + by,i)
 */
 template <typename T>
-struct CHT_xy {
+struct CHT_XY {
   static_assert(is_same_v<T, ll> || std::is_floating_point_v<T>);
   using ld = long double;
-  CHT_min<ld> cht_min;
-  CHT_max<ld> cht_max;
+  CHT_Min<ld> cht_min;
+  CHT_Max<ld> cht_max;
   T amax = -infty<T>, amin = infty<T>;
   T bmax = -infty<T>, bmin = infty<T>;
   int amax_idx = -1, amin_idx = -1;
@@ -106,7 +108,9 @@ struct CHT_xy {
     if (cht_min.empty()) return {-infty<T>, -1};
 
     if (x == 0) {
-      if (bmax * y > bmin * y) { return {bmax * y, bmax_idx}; }
+      if (bmax * y > bmin * y) {
+        return {bmax * y, bmax_idx};
+      }
       return {bmin * y, bmin_idx};
     }
     ld z = ld(y) / x;

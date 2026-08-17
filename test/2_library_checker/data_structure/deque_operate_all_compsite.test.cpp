@@ -11,7 +11,7 @@ using mint = modint998;
 void solve() {
   LL(Q);
   using G = Monoid_Affine<mint>;
-  SWAG_deque<G> X;
+  Sliding_Window_Aggregation_Deque<G> X;
   FOR(Q) {
     LL(t);
     if (t == 0) {
@@ -22,8 +22,12 @@ void solve() {
       INT(a, b);
       X.push_back({a, b});
     }
-    if (t == 2) { X.pop_front(); }
-    if (t == 3) { X.pop_back(); }
+    if (t == 2) {
+      X.pop_front();
+    }
+    if (t == 3) {
+      X.pop_back();
+    }
     if (t == 4) {
       INT(x);
       auto f = X.prod();
