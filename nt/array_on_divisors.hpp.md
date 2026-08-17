@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2264.test.cpp
     title: test/3_yukicoder/2264.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64()\
@@ -146,8 +146,8 @@ data:
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
     \  }\n};\n#line 3 \"nt/array_on_divisors.hpp\"\n\ntemplate <typename T>\nstruct\
-    \ Array_On_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T> dat;\n\
-    \  HashMap<int> MP;\n\n  Array_On_Divisors(ll N = 1) { build(N); }\n  Array_On_Divisors(vc<pair<ll,\
+    \ Array_on_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T> dat;\n\
+    \  HashMap<int> MP;\n\n  Array_on_Divisors(ll N = 1) { build(N); }\n  Array_on_Divisors(vc<pair<ll,\
     \ int>> pf) { build(pf); }\n\n  void build(ll N) { build(factor(N)); }\n  void\
     \ build(vc<pair<ll, int>> pfs) {\n    if (!pf.empty() && pf == pfs) return;\n\
     \    pf = pfs;\n    ll n = 1;\n    for (auto&& [p, e] : pf) n *= (e + 1);\n  \
@@ -204,8 +204,8 @@ data:
     \ len(dp);\n      FOR(i, m) {\n        ll x = dp[i];\n        FOR(j, 1, e + 1)\
     \ x *= p, dp.eb(x);\n      }\n    }\n    return dp;\n  }\n};\n"
   code: "#include \"nt/factor.hpp\"\n#include \"ds/hashmap.hpp\"\n\ntemplate <typename\
-    \ T>\nstruct Array_On_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T>\
-    \ dat;\n  HashMap<int> MP;\n\n  Array_On_Divisors(ll N = 1) { build(N); }\n  Array_On_Divisors(vc<pair<ll,\
+    \ T>\nstruct Array_on_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T>\
+    \ dat;\n  HashMap<int> MP;\n\n  Array_on_Divisors(ll N = 1) { build(N); }\n  Array_on_Divisors(vc<pair<ll,\
     \ int>> pf) { build(pf); }\n\n  void build(ll N) { build(factor(N)); }\n  void\
     \ build(vc<pair<ll, int>> pfs) {\n    if (!pf.empty() && pf == pfs) return;\n\
     \    pf = pfs;\n    ll n = 1;\n    for (auto&& [p, e] : pf) n *= (e + 1);\n  \
@@ -271,8 +271,8 @@ data:
   isVerificationFile: false
   path: nt/array_on_divisors.hpp
   requiredBy: []
-  timestamp: '2026-08-17 10:49:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 17:13:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2578.test.cpp
   - test/3_yukicoder/2264.test.cpp

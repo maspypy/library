@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -362,7 +362,7 @@ data:
     \  return res;\n}\n\ntemplate <typename REAL, typename T>\nREAL distance(Point<T>\
     \ P, Line<T> L) {\n  return abs(L.a * P.x + L.b * P.y + L.c) / sqrt(L.a * L.a\
     \ + L.b * L.b);\n}\n\n// return: {a, b}. where dist=sqrt(a/b)\n// a,b:\u5EA7\u6A19\
-    \u306E 4 \u4E57\ntemplate <typename T>\npi distance_acculate(Segment<T> S, Point<T>\
+    \u306E 4 \u4E57\ntemplate <typename T>\npi distance_exact(Segment<T> S, Point<T>\
     \ P) {\n  Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n \
     \ bool b2 = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) {\n    T d = (B - P).dot(B\
     \ - P);\n    return {d, 1};\n  }\n  if (!b1 && b2) {\n    T d = (A - P).dot(A\
@@ -389,7 +389,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 16:53:43+09:00'
+  timestamp: '2026-08-17 17:08:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_D.test.cpp

@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -374,11 +374,11 @@ data:
     \ <= x.val && x.val < modint61::mod);\n}\n\nvoid wt(modint61 x) { fastio::wt(x.val);\
     \ }\n#endif\n#line 4 \"graph/ds/rolling_hash_on_tree.hpp\"\n\n// \u6728\u306E\u8FBA\
     \u306B\u6587\u5B57\u304C\u3061\u3087\u3046\u3069\u3072\u3068\u3064\u66F8\u3044\
-    \u3066\u3042\u308B (static)\ntemplate <typename TREE, bool EDGE>\nstruct Rolling_Hash_On_Tree\
+    \u3066\u3042\u308B (static)\ntemplate <typename TREE, bool EDGE>\nstruct Rolling_Hash_on_Tree\
     \ {\n  using mint = modint61;\n\n  TREE& tree;\n  int N;\n  mint base;\n  // edge\
     \ \u306B\u6587\u5B57\u304C\u3042\u308B\u3068\u601D\u3063\u3066\n  // dp1: [root,v]\n\
     \  // dp2: [v,root]\n  vc<int> dat;\n  vc<mint> dp1, dp2;\n  vc<mint> pow, ipow;\n\
-    \n  template <typename F>\n  Rolling_Hash_On_Tree(TREE& tree, F f, mint base_\
+    \n  template <typename F>\n  Rolling_Hash_on_Tree(TREE& tree, F f, mint base_\
     \ = 0)\n      : tree(tree), N(tree.N), base(base_) {\n    if (base == mint(0))\
     \ base = RNG(mint::get_mod());\n    build(f);\n  }\n\n  template <typename F>\n\
     \  void build(F f) {\n    dat.resize(N);\n    if constexpr (EDGE) {\n      FOR(i,\
@@ -692,8 +692,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rolling_hash_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 16:42:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-17 17:13:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rolling_hash_on_tree.test.cpp
 layout: document

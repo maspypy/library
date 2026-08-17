@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
@@ -24,21 +24,21 @@ data:
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1326.test.cpp
     title: test/3_yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -350,18 +350,18 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 3 \"\
-    graph/ds/tree_abelgroup.hpp\"\n\r\ntemplate <typename TREE, typename AbelGroup,\
-    \ bool edge, bool path_query, bool subtree_query>\r\nstruct Tree_AbelGroup {\r\
-    \n  using MX = AbelGroup;\r\n  using X = typename MX::value_type;\r\n  TREE &tree;\r\
-    \n  int N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE\
+    graph/ds/tree_abelgroup.hpp\"\n\r\ntemplate <typename TREE, typename AbelianGruop,\
+    \ bool edge, bool path_query, bool subtree_query>\r\nstruct Tree_AbelianGruop\
+    \ {\r\n  using MX = AbelianGruop;\r\n  using X = typename MX::value_type;\r\n\
+    \  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelianGruop(TREE\
     \ &tree) : tree(tree), N(tree.N) {\r\n    build([](int i) -> X { return MX::unit();\
-    \ });\r\n  }\r\n\r\n  Tree_AbelGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N)\
-    \ {\r\n    build([&](int i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  Tree_AbelGroup(TREE &tree, F f) : tree(tree), N(tree.N) {\r\
-    \n    build(f);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(F f) {\r\
-    \n    vc<X> bit_raw_1(2 * N);\r\n    vc<X> bit_raw_2(N);\r\n    FOR(v, N) {\r\n\
-    \      X x = MX::unit();\r\n      if (!edge) x = f(v);\r\n      if (edge) x =\
-    \ (v == 0 ? MX::unit() : f(tree.v_to_e(v)));\r\n      bit_raw_1[tree.ELID(v)]\
+    \ });\r\n  }\r\n\r\n  Tree_AbelianGruop(TREE &tree, vc<X> &dat) : tree(tree),\
+    \ N(tree.N) {\r\n    build([&](int i) -> X { return dat[i]; });\r\n  }\r\n\r\n\
+    \  template <typename F>\r\n  Tree_AbelianGruop(TREE &tree, F f) : tree(tree),\
+    \ N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template <typename F>\r\n  void\
+    \ build(F f) {\r\n    vc<X> bit_raw_1(2 * N);\r\n    vc<X> bit_raw_2(N);\r\n \
+    \   FOR(v, N) {\r\n      X x = MX::unit();\r\n      if (!edge) x = f(v);\r\n \
+    \     if (edge) x = (v == 0 ? MX::unit() : f(tree.v_to_e(v)));\r\n      bit_raw_1[tree.ELID(v)]\
     \ = x;\r\n      bit_raw_1[tree.ERID(v)] = MX::inverse(x);\r\n      bit_raw_2[tree.LID[v]]\
     \ = x;\r\n    }\r\n    if constexpr (path_query) bit.build(bit_raw_1);\r\n   \
     \ if constexpr (subtree_query) bit_subtree.build(bit_raw_2);\r\n  }\r\n\r\n  void\
@@ -382,13 +382,13 @@ data:
     \n    return MX::op(bit_subtree.prod(0, L), bit_subtree.prod(R, N));\r\n  }\r\n\
     };\r\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\r\n#include \"graph/tree.hpp\"\
-    \r\n\r\ntemplate <typename TREE, typename AbelGroup, bool edge, bool path_query,\
-    \ bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using MX = AbelGroup;\r\n\
-    \  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX>\
-    \ bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N)\
-    \ {\r\n    build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Tree_AbelGroup(TREE\
+    \r\n\r\ntemplate <typename TREE, typename AbelianGruop, bool edge, bool path_query,\
+    \ bool subtree_query>\r\nstruct Tree_AbelianGruop {\r\n  using MX = AbelianGruop;\r\
+    \n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX>\
+    \ bit, bit_subtree;\r\n\r\n  Tree_AbelianGruop(TREE &tree) : tree(tree), N(tree.N)\
+    \ {\r\n    build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Tree_AbelianGruop(TREE\
     \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int i) -> X {\
-    \ return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_AbelGroup(TREE\
+    \ return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_AbelianGruop(TREE\
     \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
     \ <typename F>\r\n  void build(F f) {\r\n    vc<X> bit_raw_1(2 * N);\r\n    vc<X>\
     \ bit_raw_2(N);\r\n    FOR(v, N) {\r\n      X x = MX::unit();\r\n      if (!edge)\
@@ -423,8 +423,8 @@ data:
   path: graph/ds/tree_abelgroup.hpp
   requiredBy:
   - graph/ds/incremental_centroid.hpp
-  timestamp: '2026-08-17 16:42:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 17:17:31+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
   - test/4_aoj/2636.test.cpp

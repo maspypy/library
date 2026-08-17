@@ -9,10 +9,10 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow_with_lower_bound.hpp\"\n\n\ntemplate <typename\
-    \ Cap>\nstruct MaxFlow_With_Lower_Bound {\n  int N, s, t, S, T;\n  Cap flow_ans;\n\
+    \ Cap>\nstruct MaxFlow_with_Lower_Bound {\n  int N, s, t, S, T;\n  Cap flow_ans;\n\
     \  bool prepared = 0;\n\n  struct Edge_raw {\n    int frm, to;\n    Cap lo, hi;\n\
     \    Edge_raw(int frm, int to, Cap lo, Cap hi)\n        : frm(frm), to(to), lo(lo),\
-    \ hi(hi){};\n  };\n  vc<Edge_raw> dat;\n\n  MaxFlow_With_Lower_Bound(int N, int\
+    \ hi(hi){};\n  };\n  vc<Edge_raw> dat;\n\n  MaxFlow_with_Lower_Bound(int N, int\
     \ s, int t)\n      : N(N), s(s), t(t), S(N), T(N + 1), flow_ans(0) {\n    assert(0\
     \ <= s && s < N);\n    assert(0 <= t && t < N);\n  }\n  void add(int frm, int\
     \ to, Cap lo, Cap hi) {\n    assert(!prepared);\n    assert(0 <= frm && frm <\
@@ -61,11 +61,11 @@ data:
     \ FOR(i, M) {\n      auto [frm, to, lo, hi] = dat[i];\n      Cap flow = (lo <\
     \ hi ? G[idx[6 * i + 1]].cap + lo : lo);\n      // print(frm, to, lo, hi, flow);\n\
     \      res[i] = {frm, to, flow};\n    }\n    return res;\n  }\n};\n"
-  code: "\n\ntemplate <typename Cap>\nstruct MaxFlow_With_Lower_Bound {\n  int N,\
+  code: "\n\ntemplate <typename Cap>\nstruct MaxFlow_with_Lower_Bound {\n  int N,\
     \ s, t, S, T;\n  Cap flow_ans;\n  bool prepared = 0;\n\n  struct Edge_raw {\n\
     \    int frm, to;\n    Cap lo, hi;\n    Edge_raw(int frm, int to, Cap lo, Cap\
     \ hi)\n        : frm(frm), to(to), lo(lo), hi(hi){};\n  };\n  vc<Edge_raw> dat;\n\
-    \n  MaxFlow_With_Lower_Bound(int N, int s, int t)\n      : N(N), s(s), t(t), S(N),\
+    \n  MaxFlow_with_Lower_Bound(int N, int s, int t)\n      : N(N), s(s), t(t), S(N),\
     \ T(N + 1), flow_ans(0) {\n    assert(0 <= s && s < N);\n    assert(0 <= t &&\
     \ t < N);\n  }\n  void add(int frm, int to, Cap lo, Cap hi) {\n    assert(!prepared);\n\
     \    assert(0 <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0)\
@@ -118,7 +118,7 @@ data:
   isVerificationFile: false
   path: flow/maxflow_with_lower_bound.hpp
   requiredBy: []
-  timestamp: '2026-08-17 12:47:36+09:00'
+  timestamp: '2026-08-17 17:13:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/maxflow_with_lower_bound.hpp

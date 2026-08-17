@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   _extendedRequiredBy: []
@@ -364,9 +364,9 @@ data:
     \ = f_ev(f_ee(prod_left[i], prod_right), p);\n        prod_right = f_ee(prod_right,\
     \ ch_data[i]);\n      }\n      dp[p] = f_ev(f_ee(x, prod_right), p);\n    }\n\
     \  }\n};\n#line 3 \"graph/tree_dp/subtree_depth_sum.hpp\"\n\n// sum_v dist(root,\
-    \ v)\ntemplate <typename TREE, typename WT = ll>\nstruct SubTree_Depth_Sum {\n\
+    \ v)\ntemplate <typename TREE, typename WT = ll>\nstruct Subtree_Depth_Sum {\n\
     \  // num_point, dist_sum\n  using Data = pair<int, WT>;\n  TREE& tree;\n  vc<Data>\
-    \ dp, dp_1, dp_2;\n\n  SubTree_Depth_Sum(TREE& tree) : tree(tree) {\n    Data\
+    \ dp, dp_1, dp_2;\n\n  Subtree_Depth_Sum(TREE& tree) : tree(tree) {\n    Data\
     \ unit = {0, 0};\n    auto f_ee = [&](Data A, Data B) -> Data {\n      return\
     \ {A.fi + B.fi, A.se + B.se};\n    };\n    auto f_ev = [&](Data A, int v) -> Data\
     \ { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](Data A, const auto& e) ->\
@@ -379,9 +379,9 @@ data:
     \ dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n    }\n\
     \    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};\n"
   code: "\n#include \"graph/tree_dp/rerooting_dp.hpp\"\n\n// sum_v dist(root, v)\n\
-    template <typename TREE, typename WT = ll>\nstruct SubTree_Depth_Sum {\n  // num_point,\
+    template <typename TREE, typename WT = ll>\nstruct Subtree_Depth_Sum {\n  // num_point,\
     \ dist_sum\n  using Data = pair<int, WT>;\n  TREE& tree;\n  vc<Data> dp, dp_1,\
-    \ dp_2;\n\n  SubTree_Depth_Sum(TREE& tree) : tree(tree) {\n    Data unit = {0,\
+    \ dp_2;\n\n  Subtree_Depth_Sum(TREE& tree) : tree(tree) {\n    Data unit = {0,\
     \ 0};\n    auto f_ee = [&](Data A, Data B) -> Data {\n      return {A.fi + B.fi,\
     \ A.se + B.se};\n    };\n    auto f_ev = [&](Data A, int v) -> Data { return {A.fi\
     \ + 1, A.se}; };\n    auto f_ve = [&](Data A, const auto& e) -> Data {\n     \
@@ -401,7 +401,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_depth_sum.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:42:09+09:00'
+  timestamp: '2026-08-17 17:13:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_depth_sum.hpp

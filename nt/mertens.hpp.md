@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
   - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':heavy_check_mark:'
@@ -31,8 +31,8 @@ data:
     links: []
   bundledCode: "#line 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat = {dp[1],\
     \ dp[2], dp[3], dp[5], dp[10]} \u307F\u305F\u3044\u306B\u306A\u308B\n// hashmap\
-    \ \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate <typename T>\nstruct Array_On_Floor\
-    \ {\n  u64 N;\n  u32 t, sq;\n  vc<T> dat;\n  Array_On_Floor() {}\n  Array_On_Floor(u64\
+    \ \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate <typename T>\nstruct Array_on_Floor\
+    \ {\n  u64 N;\n  u32 t, sq;\n  vc<T> dat;\n  Array_on_Floor() {}\n  Array_on_Floor(u64\
     \ N, T default_value = T{}) : N(N) {\n    assert(N <= u64(1) << 50);\n    sq =\
     \ sqrtl(N);\n    t = (u64(sq) * sq + sq <= N ? sq : sq - 1);\n    dat.resize(t\
     \ + sq, default_value);\n  }\n\n  u32 size() { return dat.size(); }\n\n  T& operator[](u64\
@@ -75,9 +75,9 @@ data:
     \ 1); }\r\n  } else {\r\n    for (u32 l = 1; l <= sq; ++l) { f(N / l, l, l + 1);\
     \ }\r\n    for (u32 q = n; q >= 1; --q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\
     \n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n  }\r\n}\r\n#line 4 \"nt/mertens.hpp\"\
-    \n\ntemplate <typename T>\nstruct Mertens {\n  Array_On_Floor<T> sum;\n  Mertens()\
+    \n\ntemplate <typename T>\nstruct Mertens {\n  Array_on_Floor<T> sum;\n  Mertens()\
     \ {}\n  Mertens(u64 N, u64 K = -1) { build(N, K); }\n  void build(u64 N, u64 K\
-    \ = -1) {\n    sum = Array_On_Floor<T>(N);\n    if (K == u64(-1)) { K = pow(N,\
+    \ = -1) {\n    sum = Array_on_Floor<T>(N);\n    if (K == u64(-1)) { K = pow(N,\
     \ 0.67); }\n    vc<T> A = mobius_table<T>(K);\n    FOR(k, 1, K) A[k + 1] += A[k];\n\
     \    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n      if (n <= K) {\n\
     \        sum.dat[i] = A[n];\n        continue;\n      }\n      T ans = 1;\n  \
@@ -86,8 +86,8 @@ data:
     \  }\n  T operator[](u64 n) { return sum[n]; }\n};\n"
   code: "#include \"nt/array_on_floor.hpp\"\n#include \"nt/mobius_table.hpp\"\n#include\
     \ \"enumerate/floor_range.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n \
-    \ Array_On_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N,\
-    \ K); }\n  void build(u64 N, u64 K = -1) {\n    sum = Array_On_Floor<T>(N);\n\
+    \ Array_on_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N,\
+    \ K); }\n  void build(u64 N, u64 K = -1) {\n    sum = Array_on_Floor<T>(N);\n\
     \    if (K == u64(-1)) { K = pow(N, 0.67); }\n    vc<T> A = mobius_table<T>(K);\n\
     \    FOR(k, 1, K) A[k + 1] += A[k];\n    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n\
     \      if (n <= K) {\n        sum.dat[i] = A[n];\n        continue;\n      }\n\
@@ -105,7 +105,7 @@ data:
   path: nt/mertens.hpp
   requiredBy:
   - nt/range_rational_count.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 17:13:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp

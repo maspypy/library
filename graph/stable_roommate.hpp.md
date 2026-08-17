@@ -14,7 +14,7 @@ data:
     // https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub\n\
     // \u9078\u597D\u30EA\u30B9\u30C8\u306F\u5DE6\u306B\u3042\u308B\u65B9\u512A\u5148\
     \n// \u5FC5\u8981\u306A\u3089 INF \u3092\u5165\u308C\u3066\u9577\u3055 N-1 \u305A\
-    \u3064\u306B\u3057\u3066\u304A\u304F\u3053\u3068\nvc<pair<int, int>> stable_roommate(vvc<int>\
+    \u3064\u306B\u3057\u3066\u304A\u304F\u3053\u3068\nvc<pair<int, int>> stable_roommates(vvc<int>\
     \ prefer_list) {\n  vvc<int>& A = prefer_list;\n  int N = len(A);\n  FOR(i, N\
     \ - 1) assert(len(A[i]) == N - 1);\n\n  FOR(v, N) SHOW(v, A[v]);\n\n  vv(int,\
     \ rank, N, N);\n  FOR(i, N) FOR(j, N - 1) rank[i][A[i][j]] = j;\n\n  vv(bool,\
@@ -46,7 +46,7 @@ data:
   code: "\n// https://codeforces.com/contest/1423/problem/A\n// https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub\n\
     // \u9078\u597D\u30EA\u30B9\u30C8\u306F\u5DE6\u306B\u3042\u308B\u65B9\u512A\u5148\
     \n// \u5FC5\u8981\u306A\u3089 INF \u3092\u5165\u308C\u3066\u9577\u3055 N-1 \u305A\
-    \u3064\u306B\u3057\u3066\u304A\u304F\u3053\u3068\nvc<pair<int, int>> stable_roommate(vvc<int>\
+    \u3064\u306B\u3057\u3066\u304A\u304F\u3053\u3068\nvc<pair<int, int>> stable_roommates(vvc<int>\
     \ prefer_list) {\n  vvc<int>& A = prefer_list;\n  int N = len(A);\n  FOR(i, N\
     \ - 1) assert(len(A[i]) == N - 1);\n\n  FOR(v, N) SHOW(v, A[v]);\n\n  vv(int,\
     \ rank, N, N);\n  FOR(i, N) FOR(j, N - 1) rank[i][A[i][j]] = j;\n\n  vv(bool,\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: graph/stable_roommate.hpp
   requiredBy: []
-  timestamp: '2025-10-30 08:59:40+09:00'
+  timestamp: '2026-08-17 17:13:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/stable_roommate.hpp

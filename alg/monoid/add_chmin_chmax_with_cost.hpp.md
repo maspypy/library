@@ -3,16 +3,16 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2890.test.cpp
     title: test/3_yukicoder/2890.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/add_chmin_chmax_with_cost.hpp\"\ntemplate <typename\
-    \ T>\nstruct Monoid_Add_Chmin_Chmax_With_Cost {\n  // clamp(x+a,l,r) \u306F (a,0,0,l-a,r-a)\
+    \ T>\nstruct Monoid_Add_Chmin_Chmax_with_Cost {\n  // clamp(x+a,l,r) \u306F (a,0,0,l-a,r-a)\
     \ \u3068\u3059\u308B\n  // eval_cost(f,x) \u3059\u308B\u3068\u3001add, chmax,\
     \ chmin \u306B\u3088\u308B x \u306E\u5909\u5316\u91CF\u304C\u5165\u308B\n  struct\
     \ F {\n    T a, b, c, x1, x2;\n    F(T a = 0, T b = 0, T c = 0, T x1 = -infty<T>,\
@@ -28,7 +28,7 @@ data:
     \    elif (y2 < x2) M.c = L.c + R.c, M.x2 = y2;\n    else M.c = L.c + R.c, M.x2\
     \ = x2;\n    return M;\n  }\n\n  static constexpr X unit() { return F(); }\n \
     \ static constexpr bool commute = 0;\n};\n"
-  code: "template <typename T>\nstruct Monoid_Add_Chmin_Chmax_With_Cost {\n  // clamp(x+a,l,r)\
+  code: "template <typename T>\nstruct Monoid_Add_Chmin_Chmax_with_Cost {\n  // clamp(x+a,l,r)\
     \ \u306F (a,0,0,l-a,r-a) \u3068\u3059\u308B\n  // eval_cost(f,x) \u3059\u308B\u3068\
     \u3001add, chmax, chmin \u306B\u3088\u308B x \u306E\u5909\u5316\u91CF\u304C\u5165\
     \u308B\n  struct F {\n    T a, b, c, x1, x2;\n    F(T a = 0, T b = 0, T c = 0,\
@@ -48,8 +48,8 @@ data:
   isVerificationFile: false
   path: alg/monoid/add_chmin_chmax_with_cost.hpp
   requiredBy: []
-  timestamp: '2026-05-31 16:42:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 17:13:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2890.test.cpp
 documentation_of: alg/monoid/add_chmin_chmax_with_cost.hpp

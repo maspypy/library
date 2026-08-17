@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: enumerate/unlabeled_tree.hpp
     title: enumerate/unlabeled_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -826,8 +826,8 @@ data:
     \ = f_ev(f_ee(prod_left[i], prod_right), p);\n        prod_right = f_ee(prod_right,\
     \ ch_data[i]);\n      }\n      dp[p] = f_ev(f_ee(x, prod_right), p);\n    }\n\
     \  }\n};\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\n// \u8907\u6570\u306E\u6728\
-    \u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate <typename TREE>\nstruct SubTree_Hash\
-    \ {\n  using mint = modint61;\n  TREE& tree;\n  vc<u64> dp, dp_1, dp_2;\n\n  SubTree_Hash(TREE&\
+    \u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate <typename TREE>\nstruct Subtree_Hash\
+    \ {\n  using mint = modint61;\n  TREE& tree;\n  vc<u64> dp, dp_1, dp_2;\n\n  Subtree_Hash(TREE&\
     \ tree) : tree(tree) {\n    int N = tree.N;\n    using T = pair<int, mint>;\n\
     \    T unit = {0, mint(1)};\n\n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi,\
     \ B.fi), A.se * B.se}; };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi\
@@ -930,7 +930,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 16:42:09+09:00'
+  timestamp: '2026-08-17 17:13:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_unlabeled_tree.test.cpp

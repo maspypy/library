@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/double_end_queue.hpp
     title: ds/double_end_queue.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -239,12 +239,12 @@ data:
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/data_structure/double_ended_q.test.cpp\"\
     \n\n#line 1 \"ds/double_end_queue.hpp\"\n// T \u306F operator< \u3092\u6301\u3064\
-    \ntemplate <typename T>\nstruct Double_End_Queue {\n  // interval heap\n  // \u5B50\
-    \u3088\u308A\u3082\u89AA\u306E\u65B9\u304C\u5927\u304D\u306A\u533A\u9593\u3092\
-    \u4F5C\u308B\u3088\u3046\u306B\u3059\u308B\n  // \u5947\u6570\u8981\u7D20\u306E\
-    \u3068\u304D\u306F [a,a] \u3068\u3044\u3046\u533A\u9593\u304C\u3042\u308B\u3068\
-    \u601D\u3046\n  // \u3059\u308B\u3068\u6839\u306E\u533A\u9593\u304C min,max \u3092\
-    \u4E0E\u3048\u308B\n  vector<T> dat;\n\n  Double_End_Queue() {}\n  Double_End_Queue(vc<T>&\
+    \ntemplate <typename T>\nstruct Double_Ended_Queue {\n  // interval heap\n  //\
+    \ \u5B50\u3088\u308A\u3082\u89AA\u306E\u65B9\u304C\u5927\u304D\u306A\u533A\u9593\
+    \u3092\u4F5C\u308B\u3088\u3046\u306B\u3059\u308B\n  // \u5947\u6570\u8981\u7D20\
+    \u306E\u3068\u304D\u306F [a,a] \u3068\u3044\u3046\u533A\u9593\u304C\u3042\u308B\
+    \u3068\u601D\u3046\n  // \u3059\u308B\u3068\u6839\u306E\u533A\u9593\u304C min,max\
+    \ \u3092\u4E0E\u3048\u308B\n  vector<T> dat;\n\n  Double_Ended_Queue() {}\n  Double_Ended_Queue(vc<T>&\
     \ A) { build(A); }\n\n  int size() { return dat.size(); }\n  bool empty() { return\
     \ dat.empty(); }\n  T min() { return dat[0]; }\n  T max() { return len(dat) ==\
     \ 1 ? dat[0] : dat[1]; }\n\n  void build(vc<T>& A) {\n    dat = A;\n    int n\
@@ -294,8 +294,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/double_ended_q.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-17 17:13:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/double_ended_q.test.cpp
 layout: document

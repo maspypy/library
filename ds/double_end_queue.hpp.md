@@ -3,22 +3,22 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/double_ended_q.test.cpp
     title: test/2_library_checker/data_structure/double_ended_q.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/double_end_queue.hpp\"\n// T \u306F operator< \u3092\u6301\
-    \u3064\ntemplate <typename T>\nstruct Double_End_Queue {\n  // interval heap\n\
+    \u3064\ntemplate <typename T>\nstruct Double_Ended_Queue {\n  // interval heap\n\
     \  // \u5B50\u3088\u308A\u3082\u89AA\u306E\u65B9\u304C\u5927\u304D\u306A\u533A\
     \u9593\u3092\u4F5C\u308B\u3088\u3046\u306B\u3059\u308B\n  // \u5947\u6570\u8981\
     \u7D20\u306E\u3068\u304D\u306F [a,a] \u3068\u3044\u3046\u533A\u9593\u304C\u3042\
     \u308B\u3068\u601D\u3046\n  // \u3059\u308B\u3068\u6839\u306E\u533A\u9593\u304C\
-    \ min,max \u3092\u4E0E\u3048\u308B\n  vector<T> dat;\n\n  Double_End_Queue() {}\n\
-    \  Double_End_Queue(vc<T>& A) { build(A); }\n\n  int size() { return dat.size();\
+    \ min,max \u3092\u4E0E\u3048\u308B\n  vector<T> dat;\n\n  Double_Ended_Queue()\
+    \ {}\n  Double_Ended_Queue(vc<T>& A) { build(A); }\n\n  int size() { return dat.size();\
     \ }\n  bool empty() { return dat.empty(); }\n  T min() { return dat[0]; }\n  T\
     \ max() { return len(dat) == 1 ? dat[0] : dat[1]; }\n\n  void build(vc<T>& A)\
     \ {\n    dat = A;\n    int n = len(dat);\n    FOR_R(i, n) { down(i); }\n  }\n\n\
@@ -51,17 +51,17 @@ data:
     \ dat[i]), i = p;\n      }\n      return;\n    }\n    while (i >= 3) {\n     \
     \ int p = parent(i);\n      if (!(dat[p] < dat[i])) break;\n      swap(dat[p],\
     \ dat[i]), i = p;\n    }\n  }\n};\n"
-  code: "// T \u306F operator< \u3092\u6301\u3064\ntemplate <typename T>\nstruct Double_End_Queue\
+  code: "// T \u306F operator< \u3092\u6301\u3064\ntemplate <typename T>\nstruct Double_Ended_Queue\
     \ {\n  // interval heap\n  // \u5B50\u3088\u308A\u3082\u89AA\u306E\u65B9\u304C\
     \u5927\u304D\u306A\u533A\u9593\u3092\u4F5C\u308B\u3088\u3046\u306B\u3059\u308B\
     \n  // \u5947\u6570\u8981\u7D20\u306E\u3068\u304D\u306F [a,a] \u3068\u3044\u3046\
     \u533A\u9593\u304C\u3042\u308B\u3068\u601D\u3046\n  // \u3059\u308B\u3068\u6839\
     \u306E\u533A\u9593\u304C min,max \u3092\u4E0E\u3048\u308B\n  vector<T> dat;\n\n\
-    \  Double_End_Queue() {}\n  Double_End_Queue(vc<T>& A) { build(A); }\n\n  int\
-    \ size() { return dat.size(); }\n  bool empty() { return dat.empty(); }\n  T min()\
-    \ { return dat[0]; }\n  T max() { return len(dat) == 1 ? dat[0] : dat[1]; }\n\n\
-    \  void build(vc<T>& A) {\n    dat = A;\n    int n = len(dat);\n    FOR_R(i, n)\
-    \ { down(i); }\n  }\n\n  void push(T x) { dat.eb(x), up(); }\n\n  T pop_min()\
+    \  Double_Ended_Queue() {}\n  Double_Ended_Queue(vc<T>& A) { build(A); }\n\n \
+    \ int size() { return dat.size(); }\n  bool empty() { return dat.empty(); }\n\
+    \  T min() { return dat[0]; }\n  T max() { return len(dat) == 1 ? dat[0] : dat[1];\
+    \ }\n\n  void build(vc<T>& A) {\n    dat = A;\n    int n = len(dat);\n    FOR_R(i,\
+    \ n) { down(i); }\n  }\n\n  void push(T x) { dat.eb(x), up(); }\n\n  T pop_min()\
     \ {\n    assert(!dat.empty());\n    swap(dat[0], dat.back());\n    T res = POP(dat);\n\
     \    down(0);\n    return res;\n  }\n\n  T pop_max() {\n    assert(!dat.empty());\n\
     \    if (len(dat) <= 2) { return POP(dat); }\n    swap(dat[1], dat.back());\n\
@@ -94,8 +94,8 @@ data:
   isVerificationFile: false
   path: ds/double_end_queue.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:54:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 17:13:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/data_structure/double_ended_q.test.cpp
 documentation_of: ds/double_end_queue.hpp

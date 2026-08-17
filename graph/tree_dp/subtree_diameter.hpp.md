@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   _extendedRequiredBy: []
@@ -365,12 +365,12 @@ data:
     \ = f_ev(f_ee(prod_left[i], prod_right), p);\n        prod_right = f_ee(prod_right,\
     \ ch_data[i]);\n      }\n      dp[p] = f_ev(f_ee(x, prod_right), p);\n    }\n\
     \  }\n};\n#line 2 \"graph/tree_dp/subtree_diameter.hpp\"\n\n// https://codeforces.com/problemset/problem/1725/J\n\
-    template <typename TREE, typename WT>\nstruct SubTree_Diameter {\n  struct Data\
+    template <typename TREE, typename WT>\nstruct Subtree_Diameter {\n  struct Data\
     \ {\n    // \u4ECA\u307E\u3067\u898B\u3064\u3051\u305F\u76F4\u5F84\u8DDD\u96E2\
     \u3001\u7AEF\u70B9\n    WT diam;\n    int left, right;\n    // \u6839\u304B\u3089\
     \u51FA\u3066\u3044\u308B\u6700\u5927\u30D1\u30B9\u306E\u3001\u9577\u3055\u3001\
     \u7AEF\u70B9\n    WT path;\n    int end;\n  };\n\n  TREE& tree;\n  vc<tuple<int,\
-    \ int, WT>> dp, dp_1, dp_2;\n\n  SubTree_Diameter(TREE& tree) : tree(tree) {\n\
+    \ int, WT>> dp, dp_1, dp_2;\n\n  Subtree_Diameter(TREE& tree) : tree(tree) {\n\
     \    int N = tree.N;\n    Data unit = {-1, -1, -1, -1, -1};\n    auto f_ee = [&](Data\
     \ A, Data B) -> Data {\n      if (A.diam == -1) return B;\n      if (B.diam ==\
     \ -1) return A;\n      if (A.diam < B.diam) swap(A, B);\n      if (chmax(A.diam,\
@@ -392,12 +392,12 @@ data:
     \ dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n    }\n\
     \    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};\n"
   code: "#include \"graph/tree_dp/rerooting_dp.hpp\"\n\n// https://codeforces.com/problemset/problem/1725/J\n\
-    template <typename TREE, typename WT>\nstruct SubTree_Diameter {\n  struct Data\
+    template <typename TREE, typename WT>\nstruct Subtree_Diameter {\n  struct Data\
     \ {\n    // \u4ECA\u307E\u3067\u898B\u3064\u3051\u305F\u76F4\u5F84\u8DDD\u96E2\
     \u3001\u7AEF\u70B9\n    WT diam;\n    int left, right;\n    // \u6839\u304B\u3089\
     \u51FA\u3066\u3044\u308B\u6700\u5927\u30D1\u30B9\u306E\u3001\u9577\u3055\u3001\
     \u7AEF\u70B9\n    WT path;\n    int end;\n  };\n\n  TREE& tree;\n  vc<tuple<int,\
-    \ int, WT>> dp, dp_1, dp_2;\n\n  SubTree_Diameter(TREE& tree) : tree(tree) {\n\
+    \ int, WT>> dp, dp_1, dp_2;\n\n  Subtree_Diameter(TREE& tree) : tree(tree) {\n\
     \    int N = tree.N;\n    Data unit = {-1, -1, -1, -1, -1};\n    auto f_ee = [&](Data\
     \ A, Data B) -> Data {\n      if (A.diam == -1) return B;\n      if (B.diam ==\
     \ -1) return A;\n      if (A.diam < B.diam) swap(A, B);\n      if (chmax(A.diam,\
@@ -426,7 +426,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_diameter.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:42:09+09:00'
+  timestamp: '2026-08-17 17:13:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_diameter.hpp

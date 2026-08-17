@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
@@ -240,8 +240,8 @@ data:
     void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"nt/array_on_floor.hpp\"\n// N=10\
     \ \u3060\u3068 dat = {dp[1], dp[2], dp[3], dp[5], dp[10]} \u307F\u305F\u3044\u306B\
     \u306A\u308B\n// hashmap \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate <typename\
-    \ T>\nstruct Array_On_Floor {\n  u64 N;\n  u32 t, sq;\n  vc<T> dat;\n  Array_On_Floor()\
-    \ {}\n  Array_On_Floor(u64 N, T default_value = T{}) : N(N) {\n    assert(N <=\
+    \ T>\nstruct Array_on_Floor {\n  u64 N;\n  u32 t, sq;\n  vc<T> dat;\n  Array_on_Floor()\
+    \ {}\n  Array_on_Floor(u64 N, T default_value = T{}) : N(N) {\n    assert(N <=\
     \ u64(1) << 50);\n    sq = sqrtl(N);\n    t = (u64(sq) * sq + sq <= N ? sq : sq\
     \ - 1);\n    dat.resize(t + sq, default_value);\n  }\n\n  u32 size() { return\
     \ dat.size(); }\n\n  T& operator[](u64 d) {\n    int i = get_index(d);\n    return\
@@ -266,8 +266,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-17 17:13:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
 layout: document

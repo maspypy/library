@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -21,9 +21,9 @@ data:
     \n// \u5168\u4F53\u52A0\u7B97\u3082\u3067\u304D\u308B\u3088\u3046\u306B\u3057\u3088\
     \u3046\n// Monoid_Add<T> \u3092\u6E21\u3059\u611F\u3058\u3067. T \u306F operator<\
     \ \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\u308B\u5FC5\u8981\u3042\u308A.\n\
-    template <typename Monoid>\nstruct Double_End_Queue_Const_Add {\n  using MX =\
-    \ Monoid;\n  using T = typename MX::value_type;\n  vector<T> dat;\n  T add;\n\n\
-    \  Double_End_Queue_Const_Add() : add(MX::unit()) {}\n  Double_End_Queue_Const_Add(vc<T>&\
+    template <typename Monoid>\nstruct Double_Ended_Queue_Const_Add {\n  using MX\
+    \ = Monoid;\n  using T = typename MX::value_type;\n  vector<T> dat;\n  T add;\n\
+    \n  Double_Ended_Queue_Const_Add() : add(MX::unit()) {}\n  Double_Ended_Queue_Const_Add(vc<T>&\
     \ A) : add(MX::unit()) { build(A); }\n\n  int size() { return dat.size(); }\n\
     \  bool empty() { return dat.empty(); }\n  T min() { return MX::op(dat[0], add);\
     \ }\n  T max() { return MX::op(add, (len(dat) == 1 ? dat[0] : dat[1])); }\n\n\
@@ -62,7 +62,7 @@ data:
     \ 4 \"convex/slope_trick/slope_trick_1.hpp\"\n\nstruct Slope_Trick_1 {\n  struct\
     \ FUNC {\n    // \u5B9A\u7FA9\u57DF\u306E\u4E21\u7AEF\u306F que \u306B\u5165\u308C\
     \u308B\u3053\u3068\u306B\u3057\u3066 que \u304C\u7A7A\u3067\u306A\u3044\u72B6\u614B\
-    \u3092\u4FDD\u3064\n    Double_End_Queue_Const_Add<Monoid_Add<ll>> que_l, que_r;\n\
+    \u3092\u4FDD\u3064\n    Double_Ended_Queue_Const_Add<Monoid_Add<ll>> que_l, que_r;\n\
     \    i128 min_f = 0;\n    int size() { return que_l.size() + que_r.size(); }\n\
     \  };\n\n  // O(|a|)\n  FUNC segment_func(ll L, ll R, ll a, ll b) {\n    FUNC\
     \ f;\n    if (a >= 0) {\n      f.min_f = i128(a) * L + b;\n      f.que_l.push(L);\n\
@@ -143,7 +143,7 @@ data:
   code: "\n#include \"ds/double_end_queue_const_add.hpp\"\n#include \"alg/monoid/add.hpp\"\
     \n\nstruct Slope_Trick_1 {\n  struct FUNC {\n    // \u5B9A\u7FA9\u57DF\u306E\u4E21\
     \u7AEF\u306F que \u306B\u5165\u308C\u308B\u3053\u3068\u306B\u3057\u3066 que \u304C\
-    \u7A7A\u3067\u306A\u3044\u72B6\u614B\u3092\u4FDD\u3064\n    Double_End_Queue_Const_Add<Monoid_Add<ll>>\
+    \u7A7A\u3067\u306A\u3044\u72B6\u614B\u3092\u4FDD\u3064\n    Double_Ended_Queue_Const_Add<Monoid_Add<ll>>\
     \ que_l, que_r;\n    i128 min_f = 0;\n    int size() { return que_l.size() + que_r.size();\
     \ }\n  };\n\n  // O(|a|)\n  FUNC segment_func(ll L, ll R, ll a, ll b) {\n    FUNC\
     \ f;\n    if (a >= 0) {\n      f.min_f = i128(a) * L + b;\n      f.que_l.push(L);\n\
@@ -227,7 +227,7 @@ data:
   isVerificationFile: false
   path: convex/slope_trick/slope_trick_1.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 17:13:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1077_2.test.cpp

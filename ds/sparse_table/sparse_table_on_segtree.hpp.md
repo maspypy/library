@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/866.test.cpp
     title: test/3_yukicoder/866.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/713/D
@@ -73,10 +73,10 @@ data:
     \  }\n};\n#line 2 \"ds/sparse_table/sparse_table_on_segtree.hpp\"\n/*\nhttps://codeforces.com/problemset/problem/713/D\n\
     \u30FBsparse_table OR disjoint_sparse table \u3092\u30BB\u30B0\u6728\u306B\u4E57\
     \u305B\u308B\n\u30FB\u69CB\u7BC9 O(HW log W)\n\u30FB\u30AF\u30A8\u30EA O(log H)\n\
-    */\ntemplate <typename SPARSE_TABLE>\nstruct Sparse_Table_On_SegTree {\n  using\
+    */\ntemplate <typename SPARSE_TABLE>\nstruct Sparse_Table_on_SegTree {\n  using\
     \ ST = SPARSE_TABLE;\n  using MX = typename ST::MX;\n  using X = typename MX::value_type;\n\
     \  using value_type = X;\n  static_assert(MX::commute);\n  int H, W;\n  vc<ST>\
-    \ dat;\n\n  Sparse_Table_On_SegTree() {}\n  Sparse_Table_On_SegTree(vvc<X> &v)\
+    \ dat;\n\n  Sparse_Table_on_SegTree() {}\n  Sparse_Table_on_SegTree(vvc<X> &v)\
     \ {\n    H = len(v), W = (H == 0 ? 0 : len(v[0]));\n    dat.resize(2 * H);\n \
     \   FOR(i, H) { dat[H + i] = ST(v[i]); }\n    FOR_R(i, 1, H) {\n      dat[i] =\
     \ ST(W, [&](int j) -> X {\n        X x = dat[2 * i + 0].prod(j, j + 1);\n    \
@@ -90,10 +90,10 @@ data:
   code: "#include \"ds/sparse_table/sparse_table.hpp\"\n/*\nhttps://codeforces.com/problemset/problem/713/D\n\
     \u30FBsparse_table OR disjoint_sparse table \u3092\u30BB\u30B0\u6728\u306B\u4E57\
     \u305B\u308B\n\u30FB\u69CB\u7BC9 O(HW log W)\n\u30FB\u30AF\u30A8\u30EA O(log H)\n\
-    */\ntemplate <typename SPARSE_TABLE>\nstruct Sparse_Table_On_SegTree {\n  using\
+    */\ntemplate <typename SPARSE_TABLE>\nstruct Sparse_Table_on_SegTree {\n  using\
     \ ST = SPARSE_TABLE;\n  using MX = typename ST::MX;\n  using X = typename MX::value_type;\n\
     \  using value_type = X;\n  static_assert(MX::commute);\n  int H, W;\n  vc<ST>\
-    \ dat;\n\n  Sparse_Table_On_SegTree() {}\n  Sparse_Table_On_SegTree(vvc<X> &v)\
+    \ dat;\n\n  Sparse_Table_on_SegTree() {}\n  Sparse_Table_on_SegTree(vvc<X> &v)\
     \ {\n    H = len(v), W = (H == 0 ? 0 : len(v[0]));\n    dat.resize(2 * H);\n \
     \   FOR(i, H) { dat[H + i] = ST(v[i]); }\n    FOR_R(i, 1, H) {\n      dat[i] =\
     \ ST(W, [&](int j) -> X {\n        X x = dat[2 * i + 0].prod(j, j + 1);\n    \
@@ -110,8 +110,8 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/sparse_table_on_segtree.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 17:13:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/866.test.cpp
 documentation_of: ds/sparse_table/sparse_table_on_segtree.hpp

@@ -18,9 +18,9 @@ data:
     \u7B97\u3082\u3067\u304D\u308B\u3088\u3046\u306B\u3057\u3088\u3046\n// Monoid_Add<T>\
     \ \u3092\u6E21\u3059\u611F\u3058\u3067. T \u306F operator< \u304C\u5B9A\u7FA9\u3055\
     \u308C\u3066\u3044\u308B\u5FC5\u8981\u3042\u308A.\ntemplate <typename Monoid>\n\
-    struct Double_End_Queue_Const_Add {\n  using MX = Monoid;\n  using T = typename\
-    \ MX::value_type;\n  vector<T> dat;\n  T add;\n\n  Double_End_Queue_Const_Add()\
-    \ : add(MX::unit()) {}\n  Double_End_Queue_Const_Add(vc<T>& A) : add(MX::unit())\
+    struct Double_Ended_Queue_Const_Add {\n  using MX = Monoid;\n  using T = typename\
+    \ MX::value_type;\n  vector<T> dat;\n  T add;\n\n  Double_Ended_Queue_Const_Add()\
+    \ : add(MX::unit()) {}\n  Double_Ended_Queue_Const_Add(vc<T>& A) : add(MX::unit())\
     \ { build(A); }\n\n  int size() { return dat.size(); }\n  bool empty() { return\
     \ dat.empty(); }\n  T min() { return MX::op(dat[0], add); }\n  T max() { return\
     \ MX::op(add, (len(dat) == 1 ? dat[0] : dat[1])); }\n\n  void build(vc<T>& A)\
@@ -54,9 +54,9 @@ data:
   code: "// \u5168\u4F53\u52A0\u7B97\u3082\u3067\u304D\u308B\u3088\u3046\u306B\u3057\
     \u3088\u3046\n// Monoid_Add<T> \u3092\u6E21\u3059\u611F\u3058\u3067. T \u306F\
     \ operator< \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\u308B\u5FC5\u8981\u3042\
-    \u308A.\ntemplate <typename Monoid>\nstruct Double_End_Queue_Const_Add {\n  using\
-    \ MX = Monoid;\n  using T = typename MX::value_type;\n  vector<T> dat;\n  T add;\n\
-    \n  Double_End_Queue_Const_Add() : add(MX::unit()) {}\n  Double_End_Queue_Const_Add(vc<T>&\
+    \u308A.\ntemplate <typename Monoid>\nstruct Double_Ended_Queue_Const_Add {\n \
+    \ using MX = Monoid;\n  using T = typename MX::value_type;\n  vector<T> dat;\n\
+    \  T add;\n\n  Double_Ended_Queue_Const_Add() : add(MX::unit()) {}\n  Double_Ended_Queue_Const_Add(vc<T>&\
     \ A) : add(MX::unit()) { build(A); }\n\n  int size() { return dat.size(); }\n\
     \  bool empty() { return dat.empty(); }\n  T min() { return MX::op(dat[0], add);\
     \ }\n  T max() { return MX::op(add, (len(dat) == 1 ? dat[0] : dat[1])); }\n\n\
@@ -92,7 +92,7 @@ data:
   path: ds/double_end_queue_const_add.hpp
   requiredBy:
   - convex/slope_trick/slope_trick_1.hpp
-  timestamp: '2024-10-23 21:57:13+09:00'
+  timestamp: '2026-08-17 17:13:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1077_2.test.cpp
