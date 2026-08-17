@@ -7,7 +7,7 @@
 // loop はないものとしたかも
 // https://codeforces.com/contest/982/problem/F
 template <typename GT>
-vc<int> all_cycle_common_vertex(GT& G, bool strongly_connected) {
+vc<int> all_cycle_common_vertices(GT& G, bool strongly_connected) {
   static_assert(GT::is_directed);
   int N = G.N;
   if (!strongly_connected) {
@@ -25,7 +25,7 @@ vc<int> all_cycle_common_vertex(GT& G, bool strongly_connected) {
     vc<int> V;
     FOR(v, N) if (comp[v] == k) V.eb(v);
     Graph<int, 1> H = G.rearrange(V);
-    vc<int> ANS = all_cycle_common_vertex(H, true);
+    vc<int> ANS = all_cycle_common_vertices(H, true);
     for (int& x : ANS) x = V[x];
     return ANS;
   }

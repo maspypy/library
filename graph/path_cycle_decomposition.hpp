@@ -4,7 +4,7 @@
 // パスの頂点列, サイクルの頂点列
 // に分解する
 template <typename GT>
-pair<vvc<int>, vvc<int>> path_cycle(GT& G) {
+pair<vvc<int>, vvc<int>> path_cycle_decomposition(GT& G) {
   static_assert(!GT::is_directed);
   int N = G.N;
   auto deg = G.deg_array();
@@ -16,7 +16,7 @@ pair<vvc<int>, vvc<int>> path_cycle(GT& G) {
     done[v] = 1;
     while (1) {
       bool ok = 0;
-      for (auto&& e: G[P.back()]) {
+      for (auto&& e : G[P.back()]) {
         if (done[e.to]) continue;
         P.eb(e.to);
         done[e.to] = 1;

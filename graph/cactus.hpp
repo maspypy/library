@@ -1,6 +1,6 @@
 
-vvc<int> get_cactus_cycle(Graph<int, 0>& G, Graph<int, 0>& BCT,
-                          Tree<Graph<int, 0>>& tree) {
+vvc<int> get_cactus_cycles(Graph<int, 0>& G, Graph<int, 0>& BCT,
+                           Tree<Graph<int, 0>>& tree) {
   vvc<pair<int, int>> es(BCT.N);
   vvc<int> cs(BCT.N);
   for (auto& e : G.edges) {

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 
-#include "poly/finding_root_of_polynomial.hpp"
+#include "poly/find_roots_of_polynomial.hpp"
 #include "poly/convolution_all.hpp"
 
 // 相異なる 1 次式の積、重複度まあまああるかも
@@ -22,7 +22,7 @@ void test_1() {
       }
       UNIQUE(roots);
       poly f = convolution_all(polys);
-      auto ANS = finding_root_of_polynomial(f);
+      auto ANS = find_roots_of_polynomial(f);
       sort(all(ANS));
       assert(roots == ANS);
     }
@@ -50,8 +50,10 @@ void test_2() {
       vc<mint> g(N + 1);
       FOR(i, N + 1) g[i] = RNG(0, p);
       f = convolution(f, g);
-      auto ANS = finding_root_of_polynomial(f);
-      for (auto& r: roots) { assert(binary_search(all(ANS), r)); }
+      auto ANS = find_roots_of_polynomial(f);
+      for (auto& r : roots) {
+        assert(binary_search(all(ANS), r));
+      }
     }
   }
 }
