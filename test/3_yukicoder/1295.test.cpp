@@ -44,7 +44,9 @@ void solve() {
     if (x.x0 == 0 && x.x1 == 1 && x.x_mi == 1) {
       if (x.mi < p) ok_1 = 1;
     }
-    if (x.x0 == 0 && x.x1 == 1 && x.x_ma == 1) { ok_2 = 1; }
+    if (x.x0 == 0 && x.x1 == 1 && x.x_ma == 1) {
+      ok_2 = 1;
+    }
     int s = 0;
     if (ok_0 || ok_1 || ok_2) s = 1;
     if (ok) s = 2;
@@ -62,7 +64,7 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_tree();
   Tree<decltype(G)> tree(G);
-  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
 
   FOR(v, N) {
     auto x = dp[v];

@@ -20,7 +20,7 @@ void solve() {
   G.build();
   Tree<decltype(G)> tree(G);
 
-  using Data = pair<mint, mint>; // cnt, sum
+  using Data = pair<mint, mint>;  // cnt, sum
   Data unit = {0, 0};
   auto fee = [&](Data x, Data y) -> Data { return {x.fi + y.fi, x.se + y.se}; };
   auto fev = [&](Data x, int v) -> Data {
@@ -31,7 +31,7 @@ void solve() {
     x.se = B[e.id] * x.se + x.fi * C[e.id];
     return x;
   };
-  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
 
   vc<mint> ANS(N);
   FOR(v, N) ANS[v] = dp[v].se;

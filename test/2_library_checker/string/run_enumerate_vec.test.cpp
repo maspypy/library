@@ -5,18 +5,13 @@
 
 void solve() {
   STR(S);
-  auto A = s_to_vi(S, 'a'); // vector の場合
+  auto A = s_to_vi(S, 'a');  // vector の場合
   auto ANS = run_enumerate(A);
   print(len(ANS));
-  for (auto&& [p, l, r]: ANS) print(p, l, r);
+  for (auto&& [p, l, r] : ANS) print(p, l, r);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }

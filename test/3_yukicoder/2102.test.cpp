@@ -2,11 +2,11 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "string/rollinghash.hpp"
+#include "string/rolling_hash.hpp"
 #include "ds/hashmap.hpp"
 
 void solve() {
-  RollingHash RH;
+  Rolling_Hash RH;
   LL(N);
   HashMap<char> MP(N);
   FOR(N) {
@@ -28,7 +28,7 @@ void solve() {
       X.eb(l);
     }
     bool ok = 0;
-    for (auto&& x: X) {
+    for (auto&& x : X) {
       if (MP.count(x.val)) ok = 1;
     }
     Yes(ok);

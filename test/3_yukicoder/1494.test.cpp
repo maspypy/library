@@ -30,7 +30,7 @@ void solve() {
     FOR(j, len(S)) chmax(x[j + 1], x[j]);
     return x;
   };
-  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
 
   ll ANS = 0;
   FOR(v, N) {
@@ -41,11 +41,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

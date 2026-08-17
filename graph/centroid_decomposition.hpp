@@ -1,5 +1,4 @@
 #include "graph/base.hpp"
-#include "graph/shortest_path/bfs01.hpp"
 
 // 頂点ベースの重心分解
 // f(par, V, indptr)
@@ -20,10 +19,14 @@ void centroid_decomposition_0_dfs(vc<int>& par, vc<int>& vs, F f) {
   vc<int> V = {c};
   int nc = 1;
   FOR(v, 1, N) {
-    if (par[v] == c) { V.eb(v), color[v] = nc++; }
+    if (par[v] == c) {
+      V.eb(v), color[v] = nc++;
+    }
   }
   if (c > 0) {
-    for (int a = par[c]; a != -1; a = par[a]) { color[a] = nc, V.eb(a); }
+    for (int a = par[c]; a != -1; a = par[a]) {
+      color[a] = nc, V.eb(a);
+    }
     ++nc;
   }
   FOR(i, N) {
@@ -34,7 +37,9 @@ void centroid_decomposition_0_dfs(vc<int>& par, vc<int>& vs, F f) {
   FOR(i, nc) indptr[i + 1] += indptr[i];
   vc<int> counter = indptr;
   vc<int> ord(N);
-  for (auto& v: V) { ord[counter[color[v]]++] = v; }
+  for (auto& v : V) {
+    ord[counter[color[v]]++] = v;
+  }
   vc<int> new_idx(N);
   FOR(i, N) new_idx[ord[i]] = i;
   vc<int> name(N);
@@ -91,13 +96,17 @@ void centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {
   ord[c] = 0;
   int p = 1;
   FOR(v, 1, N) {
-    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) { color[v] = 0, ord[v] = p++, take += sz[v]; }
+    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) {
+      color[v] = 0, ord[v] = p++, take += sz[v];
+    }
   }
   FOR(i, 1, N) {
     if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;
   }
   int n0 = p - 1;
-  for (int a = par[c]; a != -1; a = par[a]) { color[a] = 1, ord[a] = p++; }
+  for (int a = par[c]; a != -1; a = par[a]) {
+    color[a] = 1, ord[a] = p++;
+  }
   FOR(i, N) {
     if (i != c && color[i] == -1) color[i] = 1, ord[i] = p++;
   }
@@ -108,15 +117,20 @@ void centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {
   FOR(v, N) {
     int i = ord[v];
     V2[i] = vs[v];
-    if (color[v] != 1) { V0[i] = vs[v]; }
-    if (color[v] != 0) { V1[max(i - n0, 0)] = vs[v]; }
+    if (color[v] != 1) {
+      V0[i] = vs[v];
+    }
+    if (color[v] != 0) {
+      V1[max(i - n0, 0)] = vs[v];
+    }
   }
   FOR(v, 1, N) {
     int a = ord[v], b = ord[par[v]];
     if (a > b) swap(a, b);
     par2[b] = a;
     if (color[v] != 1 && color[par[v]] != 1) par0[b] = a;
-    if (color[v] != 0 && color[par[v]] != 0) par1[max(b - n0, 0)] = max(a - n0, 0);
+    if (color[v] != 0 && color[par[v]] != 0)
+      par1[max(b - n0, 0)] = max(a - n0, 0);
   }
   f(par2, V2, 1, 1 + n0, 1 + n0, 1 + n0 + n1);
   centroid_decomposition_1_dfs(par0, V0, f);
@@ -129,7 +143,8 @@ f(par, V, color)
 color in [-1,0,1], -1 is virtual.
 */
 template <typename F>
-void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real, F f) {
+void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,
+                                  F f) {
   const int N = len(par);
   assert(N > 1);
   if (N == 2) {
@@ -154,13 +169,17 @@ void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real, F f)
   ord[c] = 0;
   int p = 1;
   FOR(v, 1, N) {
-    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) { color[v] = 0, ord[v] = p++, take += sz[v]; }
+    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) {
+      color[v] = 0, ord[v] = p++, take += sz[v];
+    }
   }
   FOR(i, 1, N) {
     if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;
   }
   int n0 = p - 1;
-  for (int a = par[c]; a != -1; a = par[a]) { color[a] = 1, ord[a] = p++; }
+  for (int a = par[c]; a != -1; a = par[a]) {
+    color[a] = 1, ord[a] = p++;
+  }
   FOR(i, N) {
     if (i != c && color[i] == -1) color[i] = 1, ord[i] = p++;
   }
@@ -172,15 +191,20 @@ void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real, F f)
   FOR(v, N) {
     int i = ord[v];
     V2[i] = vs[v], rea2[i] = real[v];
-    if (color[v] != 1) { V0[i] = vs[v], rea0[i] = real[v]; }
-    if (color[v] != 0) { V1[max(i - n0, 0)] = vs[v], rea1[max(i - n0, 0)] = real[v]; }
+    if (color[v] != 1) {
+      V0[i] = vs[v], rea0[i] = real[v];
+    }
+    if (color[v] != 0) {
+      V1[max(i - n0, 0)] = vs[v], rea1[max(i - n0, 0)] = real[v];
+    }
   }
   FOR(v, 1, N) {
     int a = ord[v], b = ord[par[v]];
     if (a > b) swap(a, b);
     par2[b] = a;
     if (color[v] != 1 && color[par[v]] != 1) par0[b] = a;
-    if (color[v] != 0 && color[par[v]] != 0) par1[max(b - n0, 0)] = max(a - n0, 0);
+    if (color[v] != 0 && color[par[v]] != 0)
+      par1[max(b - n0, 0)] = max(a - n0, 0);
   }
   color.assign(N, -1);
   FOR(i, 1, N) if (rea2[i]) color[i] = (i <= n0 ? 0 : 1);
@@ -203,7 +227,7 @@ void centroid_decomposition(GT& G, F f) {
   V[r++] = 0;
   while (l < r) {
     int v = V[l++];
-    for (auto& e: G[v]) {
+    for (auto& e : G[v]) {
       if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;
     }
   }
@@ -217,7 +241,9 @@ void centroid_decomposition(GT& G, F f) {
   }
   swap(par, tmp);
   static_assert(MODE == 0 || MODE == 1 || MODE == 2);
-  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par, V, f); }
+  if constexpr (MODE == 0) {
+    centroid_decomposition_0_dfs(par, V, f);
+  }
   elif constexpr(MODE == 1) { centroid_decomposition_1_dfs(par, V, f); }
   else {
     vc<int> real(N, 1);

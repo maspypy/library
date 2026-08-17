@@ -4,7 +4,7 @@
 
 #include "string/suffix_array.hpp"
 #include "string/suffix_tree.hpp"
-#include "alg/monoid/min_idx.hpp"
+#include "alg/monoid/minidx.hpp"
 #include "ds/segtree/segtree.hpp"
 
 void solve() {
@@ -28,7 +28,7 @@ void solve() {
     reverse(all(dat[i]));
   }
 
-  SegTree<Monoid_Min_Idx<int>> seg(N);
+  SegTree<Monoid_MinIdx<int>> seg(N);
 
   auto upd = [&](int i) -> void {
     if (dat[i].empty())

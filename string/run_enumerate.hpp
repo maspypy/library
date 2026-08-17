@@ -1,4 +1,4 @@
-#include "string/zalgorithm.hpp"
+#include "string/z_algorithm.hpp"
 
 // (period, l, r)
 // 極大, つまり S[l:r] は周期 p (ただし r-l >= 2p) を持つが、S[l-1:r], S[l:r+1]
@@ -40,12 +40,12 @@ vc<tuple<int, int, int>> run_enumerate(const STRING& S) {
     STRING SR = {S.begin() + M, S.begin() + R};
     {
       auto sub_res = solve_sub(SL, SR);
-      for (auto&& [p, a, b]: sub_res) by_p[p].eb(M - a, M + b);
+      for (auto&& [p, a, b] : sub_res) by_p[p].eb(M - a, M + b);
     }
     {
       reverse(all(SL)), reverse(all(SR));
       auto sub_res = solve_sub(SR, SL);
-      for (auto&& [p, a, b]: sub_res) by_p[p].eb(M - b, M + a);
+      for (auto&& [p, a, b] : sub_res) by_p[p].eb(M - b, M + a);
     }
   }
 
@@ -56,7 +56,7 @@ vc<tuple<int, int, int>> run_enumerate(const STRING& S) {
     sort(all(LR),
          [](auto& x, auto& y) { return P(x.fi, -x.se) < P(y.fi, -y.se); });
     int r = -1;
-    for (auto&& lr: LR) {
+    for (auto&& lr : LR) {
       if (chmax(r, lr.se) && !done.count(lr)) {
         done.insert(lr);
         res.eb(p, lr.fi, lr.se);

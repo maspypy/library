@@ -15,7 +15,7 @@ void solve() {
   G.build();
 
   Tree<decltype(G)> tree(G);
-  Fast_Lca<decltype(tree)> LCA(tree);
+  Fast_LCA<decltype(tree)> LCA(tree);
 
   FOR(Q) {
     INT(a, b);

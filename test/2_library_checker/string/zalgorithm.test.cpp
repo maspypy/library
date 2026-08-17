@@ -2,20 +2,15 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "string/zalgorithm.hpp"
+#include "string/z_algorithm.hpp"
 
 void solve() {
   STR(S);
-  auto Z = zalgorithm(S);
+  auto Z = z_algorithm(S);
   print(Z);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }

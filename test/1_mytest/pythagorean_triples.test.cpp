@@ -2,7 +2,7 @@
 
 #include "my_template.hpp"
 
-#include "nt/pytagorean_triple.hpp"
+#include "nt/pythagorean_triple.hpp"
 
 void test() {
   int LIM = 10000;
@@ -16,11 +16,11 @@ void test() {
       B += gcd(x, y) == 1;
     }
   }
-  enumerate_pytagorean_triple<false>(LIM, [&](int a, int b, int c) -> void {
+  enumerate_pythagorean_triple<false>(LIM, [&](int a, int b, int c) -> void {
     assert(0 <= a && a <= b && b <= c && c <= LIM && a * a + b * b == c * c);
     --A;
   });
-  enumerate_pytagorean_triple<true>(LIM, [&](int a, int b, int c) -> void {
+  enumerate_pythagorean_triple<true>(LIM, [&](int a, int b, int c) -> void {
     assert(0 <= a && a <= b && b <= c && c <= LIM && a * a + b * b == c * c);
     assert(gcd(a, b) == 1);
     --B;

@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1848"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "string/zalgorithm.hpp"
+#include "string/z_algorithm.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;
@@ -15,7 +15,7 @@ void solve() {
   // 1 文字目以降
   vc<pair<char, int>> dat;
   FOR(i, 1, N) dat.eb(S[i], A[i]);
-  auto Z = zalgorithm<decltype(dat)>(dat);
+  auto Z = z_algorithm<decltype(dat)>(dat);
 
   mint ANS = 0;
   FOR(i, N) {

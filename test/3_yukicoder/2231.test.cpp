@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2231"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "string/rollinghash.hpp"
+#include "string/rolling_hash.hpp"
 #include "string/wildcard_pattern_matching.hpp"
 
 void solve() {
@@ -9,7 +9,7 @@ void solve() {
   STR(S1, S2);
   string A = S1;
   FOR(i, N) if (S1[i] == '?') A[i] = 'a';
-  RollingHash RH;
+  Rolling_Hash RH;
   auto RS1 = RH.build(S1);
   auto RS2 = RH.build(S2);
   auto RA = RH.build(A);
@@ -32,16 +32,22 @@ void solve() {
       return true;
     }
     int n = RH.lcp(RS2, 0, j - i, RA, i, j);
-    if (n < j - i) { return S2[n] < A[i + n]; };
+    if (n < j - i) {
+      return S2[n] < A[i + n];
+    };
     n = RH.lcp(RS2, j - i, M, RS2, 0, M + i - j);
-    if (n < M + i - j) { return S2[j - i + n] < S2[n]; }
+    if (n < M + i - j) {
+      return S2[j - i + n] < S2[n];
+    }
     n = RH.lcp(RA, i + M, j + M, RS2, M + i - j, M);
-    if (n < j - i) { return A[i + M + n] < S2[M + i - j + n]; }
+    if (n < j - i) {
+      return A[i + M + n] < S2[M + i - j + n];
+    }
     return true;
   };
   int i = I[0];
   I.erase(I.begin());
-  for (auto&& j: I) {
+  for (auto&& j : I) {
     if (!check(i, j)) i = j;
   }
 

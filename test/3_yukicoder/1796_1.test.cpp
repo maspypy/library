@@ -19,7 +19,8 @@ void solve() {
   // 距離 0
   FOR(v, N) ANS[v] += A[v];
 
-  auto F = [&](vc<int>& par, vc<int> vs, int L1, int R1, int L2, int R2) -> void {
+  auto F = [&](vc<int>& par, vc<int> vs, int L1, int R1, int L2,
+               int R2) -> void {
     int n = len(par);
     vc<int> dist(n);
     FOR(i, 1, n) dist[i] = dist[par[i]] + 1;
@@ -40,8 +41,8 @@ void solve() {
 
   mint k0 = fact<mint>(N);
   k0 *= k0;
-  for (auto&& x: ANS) x *= k0;
-  for (auto&& x: ANS) print(x);
+  for (auto&& x : ANS) x *= k0;
+  for (auto&& x : ANS) print(x);
 }
 
 signed main() {

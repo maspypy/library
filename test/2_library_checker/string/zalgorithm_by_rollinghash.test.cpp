@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "string/rollinghash.hpp"
+#include "string/rolling_hash.hpp"
 
 void solve() {
   STR(S);
   ll N = len(S);
-  RollingHash RH;
+  Rolling_Hash RH;
   auto RS = RH.build(S);
   vi Z(N);
   FOR(i, N) { Z[i] = RH.lcp(RS, 0, N, RS, i, N); }
