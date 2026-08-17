@@ -97,6 +97,12 @@ data:
     path: test/1_mytest/slope_super.test.cpp
     title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/st_numbering.test.cpp
+    title: test/1_mytest/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tree_walk_gf.test.cpp
+    title: test/1_mytest/tree_walk_gf.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,9 +150,11 @@ data:
   - test/1_mytest/find_C4.test.cpp
   - test/1_mytest/extended_lichao.test.cpp
   - test/1_mytest/nth_element_from_sorted_matrix.test.cpp
+  - test/1_mytest/st_numbering.test.cpp
   - test/1_mytest/find_even_cycle.test.cpp
   - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/count_K4.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/find_cycle_minimum.test.cpp

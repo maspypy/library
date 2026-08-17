@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -340,6 +340,9 @@ data:
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tree_walk_gf.test.cpp
+    title: test/1_mytest/tree_walk_gf.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -540,6 +543,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
@@ -1045,6 +1054,7 @@ data:
   - test/1_mytest/count_labeled_connected.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/chirp_z.test.cpp
@@ -1097,12 +1107,14 @@ data:
   - test/2_library_checker/enumerative_combinatorics/partition.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/2097.test.cpp
   - test/3_yukicoder/1755.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/1500.test.cpp

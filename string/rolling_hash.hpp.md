@@ -18,6 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2231.test.cpp
     title: test/3_yukicoder/2231.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2626.test.cpp
+    title: test/3_yukicoder/2626.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/263.test.cpp
+    title: test/3_yukicoder/263.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -108,6 +114,8 @@ data:
   verifiedWith:
   - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/3_yukicoder/2231.test.cpp
+  - test/3_yukicoder/2626.test.cpp
+  - test/3_yukicoder/263.test.cpp
   - test/3_yukicoder/2102.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document

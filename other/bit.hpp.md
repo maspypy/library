@@ -183,6 +183,9 @@ data:
     path: graph/bitset/transitive_reduction.hpp
     title: graph/bitset/transitive_reduction.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':warning:'
@@ -296,6 +299,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
   - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
@@ -377,10 +383,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -1240,6 +1246,9 @@ data:
     path: test/1_mytest/three_triangular.test.cpp
     title: test/1_mytest/three_triangular.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tree_walk_gf.test.cpp
+    title: test/1_mytest/tree_walk_gf.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1734,7 +1743,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2124,7 +2133,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/235.test.cpp
     title: test/3_yukicoder/235.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2164,11 +2173,23 @@ data:
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2626.test.cpp
+    title: test/3_yukicoder/2626.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2626_2.test.cpp
+    title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2649.test.cpp
     title: test/3_yukicoder/2649.test.cpp
@@ -2463,6 +2484,7 @@ data:
   - graph/tutte_polynomial.hpp
   - graph/restore_euler_tour.hpp
   - graph/count_matching_on_tree.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/lazy_tree_monoid.hpp
@@ -2472,6 +2494,7 @@ data:
   - graph/compress_tree.hpp
   - graph/tree_all_distances.hpp
   - graph/reachability.hpp
+  - graph/tree_walk_generating_function.hpp
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/toposort.hpp
   - ds/bit_vector.hpp
@@ -2765,6 +2788,7 @@ data:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/conv_leq.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
@@ -3007,6 +3031,7 @@ data:
   - test/3_yukicoder/1547.test.cpp
   - test/3_yukicoder/2149.test.cpp
   - test/3_yukicoder/1649_2.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/3229.test.cpp
   - test/3_yukicoder/1141.test.cpp
@@ -3046,12 +3071,14 @@ data:
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1821.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/1332.test.cpp
   - test/3_yukicoder/2206_2.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/1989.test.cpp
+  - test/3_yukicoder/2626.test.cpp
   - test/3_yukicoder/2062.test.cpp
   - test/3_yukicoder/2338.test.cpp
   - test/3_yukicoder/1451.test.cpp
@@ -3118,6 +3145,7 @@ data:
   - test/3_yukicoder/2342_2.test.cpp
   - test/3_yukicoder/1593.test.cpp
   - test/3_yukicoder/1197.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/2895.test.cpp
   - test/3_yukicoder/502_2.test.cpp

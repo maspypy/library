@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/z_algorithm.hpp
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/runenumerate
@@ -256,7 +256,7 @@ data:
     \ by_p(N + 1);\r\n\r\n  auto solve_sub = [&](STRING& left, STRING& right) -> vc<T>\
     \ {\r\n    vc<T> res;\r\n    int n = len(left), m = len(right);\r\n    auto S\
     \ = left, T = right;\r\n    reverse(all(S));\r\n    T.insert(T.end(), all(left));\r\
-    \n    T.insert(T.end(), all(right));\r\n    auto ZS = zalgorithm(S), ZT = zalgorithm(T);\r\
+    \n    T.insert(T.end(), all(right));\r\n    auto ZS = z_algorithm(S), ZT = z_algorithm(T);\r\
     \n    FOR3(p, 1, n + 1) {\r\n      int a = (p == n ? p : min(ZS[p] + int(p), n));\r\
     \n      int b = min(ZT[n + m - p], m);\r\n      if (a + b < 2 * p) continue;\r\
     \n      res.eb(p, a, b);\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<P> st\
@@ -291,8 +291,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/run_enumerate_vec.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 09:25:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 09:36:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/run_enumerate_vec.test.cpp
 layout: document

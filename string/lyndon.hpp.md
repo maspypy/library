@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/lex_min_suffix_for_all_prefix.hpp
     title: string/lex_min_suffix_for_all_prefix.hpp
+  - icon: ':warning:'
+    path: string/non_dominated_suffix.hpp
+    title: string/non_dominated_suffix.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
@@ -45,6 +48,7 @@ data:
   isVerificationFile: false
   path: string/lyndon.hpp
   requiredBy:
+  - string/non_dominated_suffix.hpp
   - string/lex_min_suffix_for_all_prefix.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC

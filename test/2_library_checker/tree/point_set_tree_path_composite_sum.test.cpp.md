@@ -7,19 +7,19 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -33,16 +33,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum
     links:
     - https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum
   bundledCode: "#line 1 \"test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
@@ -258,7 +258,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp\"\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp\"\
     \n\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
     \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
@@ -673,12 +673,12 @@ data:
     \ i) {\n    auto& [L1, L2] = dp[STT.lch[i]];\n    auto& [R1, R2] = dp[STT.rch[i]];\n\
     \    if (STT.is_compress[i]) {\n      dp[i] = {TREE_DP::compress(L1, R1), TREE_DP::compress2(R2,\
     \ L2)};\n    } else {\n      dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::compress3(L2,\
-    \ R1)};\n    }\n  }\n};\n#line 7 \"test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp\"\
+    \ R1)};\n    }\n  }\n};\n#line 8 \"test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp\"\
     \n\nusing mint = modint998;\n\nstruct Data {\n  // type, s, t \u306F\u5FC5\u305A\
     \u5B9A\u7FA9\u3059\u308B. \uFF08\u7D4C\u9A13\u4E0A\u3069\u3046\u305B\u30C7\u30D0\
     \u30C3\u30B0\u3067\u5FC5\u8981\u306B\u306A\u308B\uFF09. s \u304C\u6839.\n  //\
     \ type==0: s\u304C virtual. type==1: t \u304C virtual.\n  int type, s, t;\n  mint\
-    \ a, b; // path composition\n  mint cnt, ans;\n};\n\nstruct TREE_DP {\n  using\
+    \ a, b;  // path composition\n  mint cnt, ans;\n};\n\nstruct TREE_DP {\n  using\
     \ value_type = Data;\n  using X = value_type;\n\n  static X rake(const X& L, const\
     \ X& R) {\n    assert(L.type == 0 && R.type == 0 && L.s == R.s);\n    X ANS =\
     \ {0, L.s, L.t};\n\n    ANS.a = L.a, ANS.b = L.b;\n    ANS.cnt = L.cnt + R.cnt,\
@@ -703,19 +703,19 @@ data:
     \ up = {0, -1, 0, 1, 0, 1, A[v]};\n      Data down = {1, 0, -1, 1, 0, 1, A[v]};\n\
     \      return {up, down};\n    }\n    int e = tree.v_to_e(v);\n    int p = tree.parent[v];\n\
     \    Data up = {0, p, v, B[e], C[e], 1, B[e] * A[v] + C[e]};\n    Data down =\
-    \ {1, v, p, B[e], C[e], 1, A[v]};\n    return {up, down};\n  };\n\n  Dynamic_Rerooting_Tree_Dp<decltype(tree),\
+    \ {1, v, p, B[e], C[e], 1, A[v]};\n    return {up, down};\n  };\n\n  Dynamic_Rerooting_Tree_DP<decltype(tree),\
     \ TREE_DP> DP(tree, single);\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n   \
     \   INT(w, x);\n      A[w] = x;\n      DP.set(w, single(w));\n    }\n    if (t\
     \ == 1) {\n      INT(e, b, c);\n      B[e] = b, C[e] = c;\n      int v = tree.e_to_v(e);\n\
     \      DP.set(v, single(v));\n    }\n    INT(r);\n    Data x = DP.prod_all(r);\n\
     \    print(x.ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\n\nusing mint = modint998;\n\
     \nstruct Data {\n  // type, s, t \u306F\u5FC5\u305A\u5B9A\u7FA9\u3059\u308B. \uFF08\
     \u7D4C\u9A13\u4E0A\u3069\u3046\u305B\u30C7\u30D0\u30C3\u30B0\u3067\u5FC5\u8981\
     \u306B\u306A\u308B\uFF09. s \u304C\u6839.\n  // type==0: s\u304C virtual. type==1:\
-    \ t \u304C virtual.\n  int type, s, t;\n  mint a, b; // path composition\n  mint\
+    \ t \u304C virtual.\n  int type, s, t;\n  mint a, b;  // path composition\n  mint\
     \ cnt, ans;\n};\n\nstruct TREE_DP {\n  using value_type = Data;\n  using X = value_type;\n\
     \n  static X rake(const X& L, const X& R) {\n    assert(L.type == 0 && R.type\
     \ == 0 && L.s == R.s);\n    X ANS = {0, L.s, L.t};\n\n    ANS.a = L.a, ANS.b =\
@@ -741,7 +741,7 @@ data:
     \ down = {1, 0, -1, 1, 0, 1, A[v]};\n      return {up, down};\n    }\n    int\
     \ e = tree.v_to_e(v);\n    int p = tree.parent[v];\n    Data up = {0, p, v, B[e],\
     \ C[e], 1, B[e] * A[v] + C[e]};\n    Data down = {1, v, p, B[e], C[e], 1, A[v]};\n\
-    \    return {up, down};\n  };\n\n  Dynamic_Rerooting_Tree_Dp<decltype(tree), TREE_DP>\
+    \    return {up, down};\n  };\n\n  Dynamic_Rerooting_Tree_DP<decltype(tree), TREE_DP>\
     \ DP(tree, single);\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(w,\
     \ x);\n      A[w] = x;\n      DP.set(w, single(w));\n    }\n    if (t == 1) {\n\
     \      INT(e, b, c);\n      B[e] = b, C[e] = c;\n      int v = tree.e_to_v(e);\n\
@@ -761,8 +761,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 09:36:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
 layout: document

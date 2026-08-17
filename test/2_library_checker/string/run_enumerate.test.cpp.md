@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/z_algorithm.hpp
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/runenumerate
@@ -256,7 +256,7 @@ data:
     \ by_p(N + 1);\r\n\r\n  auto solve_sub = [&](STRING& left, STRING& right) -> vc<T>\
     \ {\r\n    vc<T> res;\r\n    int n = len(left), m = len(right);\r\n    auto S\
     \ = left, T = right;\r\n    reverse(all(S));\r\n    T.insert(T.end(), all(left));\r\
-    \n    T.insert(T.end(), all(right));\r\n    auto ZS = zalgorithm(S), ZT = zalgorithm(T);\r\
+    \n    T.insert(T.end(), all(right));\r\n    auto ZS = z_algorithm(S), ZT = z_algorithm(T);\r\
     \n    FOR3(p, 1, n + 1) {\r\n      int a = (p == n ? p : min(ZS[p] + int(p), n));\r\
     \n      int b = min(ZT[n + m - p], m);\r\n      if (a + b < 2 * p) continue;\r\
     \n      res.eb(p, a, b);\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<P> st\
@@ -274,15 +274,13 @@ data:
     \ !done.count(lr)) {\r\n        done.insert(lr);\r\n        res.eb(p, lr.fi, lr.se);\r\
     \n      }\r\n    }\r\n  }\r\n  return res;\r\n}\r\n#line 5 \"test/2_library_checker/string/run_enumerate.test.cpp\"\
     \n\r\nvoid solve() {\r\n  STR(S);\r\n  auto ANS = run_enumerate(S);\r\n  print(len(ANS));\r\
-    \n  for (auto&& [p, l, r]: ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\n\
-    \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n  for (auto&& [p, l, r] : ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\
+    \n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/runenumerate\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"string/run_enumerate.hpp\"\
     \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto ANS = run_enumerate(S);\r\n  print(len(ANS));\r\
-    \n  for (auto&& [p, l, r]: ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\n\
-    \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n  for (auto&& [p, l, r] : ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\
+    \n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -291,8 +289,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/run_enumerate.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 09:25:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 09:36:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/run_enumerate.test.cpp
 layout: document

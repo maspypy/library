@@ -16,6 +16,9 @@ data:
     path: test/3_yukicoder/2606.test.cpp
     title: test/3_yukicoder/2606.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/263.test.cpp
+    title: test/3_yukicoder/263.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/465.test.cpp
     title: test/3_yukicoder/465.test.cpp
   _isVerificationFailed: false
@@ -114,6 +117,7 @@ data:
   - test/2_library_checker/string/eertree.test.cpp
   - test/3_yukicoder/2606.test.cpp
   - test/3_yukicoder/465.test.cpp
+  - test/3_yukicoder/263.test.cpp
 documentation_of: string/palindromic_tree.hpp
 layout: document
 redirect_from:

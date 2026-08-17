@@ -76,6 +76,12 @@ data:
     path: test/3_yukicoder/2231.test.cpp
     title: test/3_yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2626.test.cpp
+    title: test/3_yukicoder/2626.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/263.test.cpp
+    title: test/3_yukicoder/263.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4_1.test.cpp
     title: test/3_yukicoder/4_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -182,9 +188,11 @@ data:
   - test/3_yukicoder/1397.test.cpp
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/2231.test.cpp
+  - test/3_yukicoder/2626.test.cpp
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/4_1.test.cpp
+  - test/3_yukicoder/263.test.cpp
   - test/3_yukicoder/2102.test.cpp
   - test/3_yukicoder/541.test.cpp
 documentation_of: mod/modint61.hpp

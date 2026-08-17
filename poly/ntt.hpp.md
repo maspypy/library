@@ -18,6 +18,9 @@ data:
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
@@ -71,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
@@ -544,6 +550,9 @@ data:
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tree_walk_gf.test.cpp
+    title: test/1_mytest/tree_walk_gf.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -901,11 +910,20 @@ data:
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2626.test.cpp
+    title: test/3_yukicoder/2626.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2649.test.cpp
     title: test/3_yukicoder/2649.test.cpp
@@ -1124,7 +1142,9 @@ data:
   - graph/count/count_clique.hpp
   - graph/chromatic.hpp
   - graph/count_matching_on_tree.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/tree_all_distances.hpp
+  - graph/tree_walk_generating_function.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/finding_root_of_polynomial.hpp
   - poly/middle_product.hpp
@@ -1266,6 +1286,7 @@ data:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/conv_leq.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
@@ -1360,6 +1381,7 @@ data:
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_2_A.test.cpp
   - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1857.test.cpp
   - test/3_yukicoder/1303.test.cpp
@@ -1375,9 +1397,11 @@ data:
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/1821.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/310.test.cpp
+  - test/3_yukicoder/2626.test.cpp
   - test/3_yukicoder/2062.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/1500.test.cpp

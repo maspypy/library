@@ -1,47 +1,64 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: string/z_algorithm.hpp
+    title: string/z_algorithm.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2858.test.cpp
+    title: test/3_yukicoder/2858.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: string/zalgorithm.hpp:\
-    \ line -1: no such header\n"
-  code: "\n#include \"string/zalgorithm.hpp\"\n\n// 012[345][345][345] \u307F\u305F\
+  bundledCode: "#line 1 \"seq/interpolate_periodic_sequence.hpp\"\n\n#line 1 \"string/z_algorithm.hpp\"\
+    \n\ntemplate <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\
+    \nvector<int> z_algorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n\
+    \ == 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0;\
+    \ i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j]\
+    \ - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j +\
+    \ z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 3 \"seq/interpolate_periodic_sequence.hpp\"\
+    \n\n// 012[345][345][345] \u307F\u305F\u3044\u306A\u3084\u3064\ntemplate <typename\
+    \ T>\nstruct Interpolate_Periodic_Sequence {\n  vc<T> dat;\n  int p;\n\n  Interpolate_Periodic_Sequence(vc<T>\
+    \ A) : dat(A) {\n    reverse(all(A));\n    auto Z = z_algorithm(A);\n    Z[0]\
+    \ = 0;\n    p = max_element(all(Z)) - Z.begin();\n  }\n\n  T operator[](ll n)\
+    \ {\n    if (n < len(dat)) return dat[n];\n    ll k = ceil<ll>(n - (len(dat) -\
+    \ 1), p);\n    n -= k * p;\n    return dat[n];\n  }\n};\n\n// \u5DEE\u5206\u304C\
+    \ 012[345][345][345] \u307F\u305F\u3044\u306A\u3084\u3064\ntemplate <typename\
+    \ T>\nstruct Interpolate_Difference_Periodic_Sequence {\n  vc<T> dat;\n  T d;\n\
+    \  int p;\n\n  Interpolate_Difference_Periodic_Sequence(vc<T> A) : dat(A) {\n\
+    \    vc<T> diff;\n    FOR(i, len(A) - 1) diff.eb(A[i + 1] - A[i]);\n    reverse(all(diff));\n\
+    \    auto Z = z_algorithm(diff);\n    Z[0] = 0;\n    p = max_element(all(Z)) -\
+    \ Z.begin();\n    ll n = len(A);\n    d = A[n - 1] - A[n - p - 1];\n  }\n\n  T\
+    \ operator[](ll n) {\n    if (n < len(dat)) return dat[n];\n    ll k = ceil<ll>(n\
+    \ - (len(dat) - 1), p);\n    n -= k * p;\n    return dat[n] + k * d;\n  }\n};\n"
+  code: "\n#include \"string/z_algorithm.hpp\"\n\n// 012[345][345][345] \u307F\u305F\
     \u3044\u306A\u3084\u3064\ntemplate <typename T>\nstruct Interpolate_Periodic_Sequence\
     \ {\n  vc<T> dat;\n  int p;\n\n  Interpolate_Periodic_Sequence(vc<T> A) : dat(A)\
-    \ {\n    reverse(all(A));\n    auto Z = zalgorithm(A);\n    Z[0] = 0;\n    p =\
-    \ max_element(all(Z)) - Z.begin();\n  }\n\n  T operator[](ll n) {\n    if (n <\
-    \ len(dat)) return dat[n];\n    ll k = ceil<ll>(n - (len(dat) - 1), p);\n    n\
-    \ -= k * p;\n    return dat[n];\n  }\n};\n\n// \u5DEE\u5206\u304C 012[345][345][345]\
+    \ {\n    reverse(all(A));\n    auto Z = z_algorithm(A);\n    Z[0] = 0;\n    p\
+    \ = max_element(all(Z)) - Z.begin();\n  }\n\n  T operator[](ll n) {\n    if (n\
+    \ < len(dat)) return dat[n];\n    ll k = ceil<ll>(n - (len(dat) - 1), p);\n  \
+    \  n -= k * p;\n    return dat[n];\n  }\n};\n\n// \u5DEE\u5206\u304C 012[345][345][345]\
     \ \u307F\u305F\u3044\u306A\u3084\u3064\ntemplate <typename T>\nstruct Interpolate_Difference_Periodic_Sequence\
     \ {\n  vc<T> dat;\n  T d;\n  int p;\n\n  Interpolate_Difference_Periodic_Sequence(vc<T>\
     \ A) : dat(A) {\n    vc<T> diff;\n    FOR(i, len(A) - 1) diff.eb(A[i + 1] - A[i]);\n\
-    \    reverse(all(diff));\n    auto Z = zalgorithm(diff);\n    Z[0] = 0;\n    p\
-    \ = max_element(all(Z)) - Z.begin();\n    ll n = len(A);\n    d = A[n - 1] - A[n\
-    \ - p - 1];\n  }\n\n  T operator[](ll n) {\n    if (n < len(dat)) return dat[n];\n\
+    \    reverse(all(diff));\n    auto Z = z_algorithm(diff);\n    Z[0] = 0;\n   \
+    \ p = max_element(all(Z)) - Z.begin();\n    ll n = len(A);\n    d = A[n - 1] -\
+    \ A[n - p - 1];\n  }\n\n  T operator[](ll n) {\n    if (n < len(dat)) return dat[n];\n\
     \    ll k = ceil<ll>(n - (len(dat) - 1), p);\n    n -= k * p;\n    return dat[n]\
     \ + k * d;\n  }\n};"
-  dependsOn: []
+  dependsOn:
+  - string/z_algorithm.hpp
   isVerificationFile: false
   path: seq/interpolate_periodic_sequence.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-08-17 09:36:33+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/3_yukicoder/2858.test.cpp
 documentation_of: seq/interpolate_periodic_sequence.hpp
 layout: document
 redirect_from:

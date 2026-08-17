@@ -40,6 +40,9 @@ data:
     path: test/3_yukicoder/1212.test.cpp
     title: test/3_yukicoder/1212.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/529.test.cpp
+    title: test/3_yukicoder/529.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   _isVerificationFailed: false
@@ -452,6 +455,7 @@ data:
   - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
+  - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/1212.test.cpp
 documentation_of: graph/ds/tree_monoid.hpp
 layout: document

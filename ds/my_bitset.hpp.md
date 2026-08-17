@@ -76,6 +76,9 @@ data:
     path: test/3_yukicoder/2490.test.cpp
     title: test/3_yukicoder/2490.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2626_2.test.cpp
+    title: test/3_yukicoder/2626_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3229.test.cpp
     title: test/3_yukicoder/3229.test.cpp
   - icon: ':heavy_check_mark:'
@@ -453,6 +456,7 @@ data:
   - test/3_yukicoder/421.test.cpp
   - test/3_yukicoder/421_2.test.cpp
   - test/3_yukicoder/1340.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/4_2.test.cpp
   - test/3_yukicoder/2490.test.cpp
 documentation_of: ds/my_bitset.hpp

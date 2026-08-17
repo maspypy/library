@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -114,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2626.test.cpp
+    title: test/3_yukicoder/2626.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
@@ -428,6 +431,7 @@ data:
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
+  - test/3_yukicoder/2626.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2243.test.cpp

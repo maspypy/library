@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1936.test.cpp
+    title: test/3_yukicoder/1936.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/ext_gcd.hpp\"\n// {g,x,y}, ax+by=g\r\ntemplate <typename\
@@ -37,8 +40,9 @@ data:
   path: nt/ext_gcd.hpp
   requiredBy: []
   timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/3_yukicoder/1936.test.cpp
 documentation_of: nt/ext_gcd.hpp
 layout: document
 redirect_from:

@@ -637,6 +637,9 @@ data:
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/st_numbering.test.cpp
+    title: test/1_mytest/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/stern_brocot.test.cpp
     title: test/1_mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
@@ -672,6 +675,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tournament.test.cpp
     title: test/1_mytest/tournament.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tree_walk_gf.test.cpp
+    title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
@@ -910,6 +916,12 @@ data:
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2626.test.cpp
+    title: test/3_yukicoder/2626.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/263.test.cpp
+    title: test/3_yukicoder/263.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1116,6 +1128,7 @@ data:
   - test/1_mytest/nth_element_from_sorted_matrix.test.cpp
   - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/online_inv.test.cpp
+  - test/1_mytest/st_numbering.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/find_even_cycle.test.cpp
@@ -1131,6 +1144,7 @@ data:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/minplus_conv_triple.test.cpp
   - test/1_mytest/conv_leq.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/min_min.test.cpp
@@ -1253,6 +1267,7 @@ data:
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/310.test.cpp
+  - test/3_yukicoder/2626.test.cpp
   - test/3_yukicoder/2120.test.cpp
   - test/3_yukicoder/2181.test.cpp
   - test/3_yukicoder/1025.test.cpp
@@ -1268,6 +1283,7 @@ data:
   - test/3_yukicoder/4_1.test.cpp
   - test/3_yukicoder/1783.test.cpp
   - test/3_yukicoder/1593.test.cpp
+  - test/3_yukicoder/263.test.cpp
   - test/3_yukicoder/2102.test.cpp
   - test/3_yukicoder/1774.test.cpp
   - test/3_yukicoder/2119.test.cpp

@@ -12,6 +12,9 @@ data:
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -100,6 +103,9 @@ data:
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/tree_walk_gf.test.cpp
+    title: test/1_mytest/tree_walk_gf.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,6 +192,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2459.test.cpp
     title: test/3_yukicoder/2459.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
@@ -323,6 +335,7 @@ data:
   - linalg/blackbox/vandermonde.hpp
   - linalg/frobenius.hpp
   - graph/chromatic.hpp
+  - graph/tree_walk_generating_function.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/multipoint.hpp
@@ -351,6 +364,7 @@ data:
   - test/1_mytest/convolution_all_1.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/chirp_z.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
@@ -366,10 +380,12 @@ data:
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1857.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1561.test.cpp
