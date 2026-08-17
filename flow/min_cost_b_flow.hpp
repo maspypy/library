@@ -2,14 +2,14 @@
 // 負辺があっても動作するよ
 // INF 辺が大きすぎると壊れたりするみたいなのでので注意
 template <class Flow = ll, class Cost = ll>
-struct MinCostFlow {
+struct Min_Cost_B_Flow {
  private:
   static constexpr int SCALING_FACTOR = 2;
   using V_id = uint32_t;
   using E_id = uint32_t;
 
   struct Edge {
-    friend struct MinCostFlow;
+    friend struct Min_Cost_B_Flow;
 
    private:
     V_id frm, to;
@@ -29,14 +29,14 @@ struct MinCostFlow {
 
  public:
   struct EdgePtr {
-    friend struct MinCostFlow;
+    friend struct Min_Cost_B_Flow;
 
    private:
-    const MinCostFlow *instance;
+    const Min_Cost_B_Flow *instance;
     const V_id v;
     const E_id e;
 
-    EdgePtr(const MinCostFlow *instance, const V_id v, const E_id e)
+    EdgePtr(const Min_Cost_B_Flow *instance, const V_id v, const E_id e)
         : instance(instance), v(v), e(e) {}
 
     [[nodiscard]] const Edge &edge() const { return instance->g[v][e]; }
@@ -61,7 +61,7 @@ struct MinCostFlow {
   std::vector<Flow> b;
 
  public:
-  MinCostFlow(int n) : n(n) {
+  Min_Cost_B_Flow(int n) : n(n) {
     g.resize(n);
     b.resize(n);
   }

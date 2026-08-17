@@ -71,10 +71,10 @@ struct Gaussian_Integer {
   }
 
   // (g,x,y) s.t ax+by=g
-  static tuple<G, G, G> extgcd(G a, G b) {
+  static tuple<G, G, G> ext_gcd(G a, G b) {
     if (b.x != 0 || b.y != 0) {
       G q = a / b;
-      auto [g, x, y] = extgcd(b, a - q * b);
+      auto [g, x, y] = ext_gcd(b, a - q * b);
       return {g, y, x - q * y};
     }
     return {a, G{1, 0}, G{0, 0}};

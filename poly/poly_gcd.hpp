@@ -91,7 +91,7 @@ mat<T> cgcd(arr<T> a) {
 
 // gcd == f * fi + g * gi となる (gcd, fi, gi)
 template <typename T>
-tuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>& f, const vc<T>& g) {
+tuple<vc<T>, vc<T>, vc<T>> poly_ext_gcd(const vc<T>& f, const vc<T>& g) {
   mat<T> Q = step(poly_divmod(f, g).fi);
   auto m = Q;
   auto ap = Q * arr<T>{f, g};
@@ -107,9 +107,9 @@ vc<T> poly_gcd(vc<T> f, vc<T> g) {
   if (g.empty()) return f;
   auto F = get<0>(poly_extgcd(f, g));
   T c = T(1) / F.back();
-  for (auto& f: F) f *= c;
+  for (auto& f : F) f *= c;
   return F;
 }
-} // namespace half_gcd
-using half_gcd::poly_extgcd;
+}  // namespace half_gcd
+using half_gcd::poly_ext_gcd;
 using half_gcd::poly_gcd;

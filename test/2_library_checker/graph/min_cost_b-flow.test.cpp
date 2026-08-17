@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/min_cost_b_flow"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "flow/bflow.hpp"
+#include "flow/min_cost_b_flow.hpp"
 
 void solve() {
   LL(N, M);
-  MinCostFlow<ll, ll> G(N);
+  Min_Cost_B_Flow<ll, ll> G(N);
   FOR(i, N) {
     LL(b);
     G.add_source(i, b);
@@ -17,8 +17,10 @@ void solve() {
   auto [ok, cost] = G.solve();
   if (!ok) return print("infeasible");
   print(cost);
-  for (auto &&p: G.get_potential()) print(p);
-  for (auto &&e: G.get_edges()) { print(e.flow()); }
+  for (auto &&p : G.get_potential()) print(p);
+  for (auto &&e : G.get_edges()) {
+    print(e.flow());
+  }
 }
 
 signed main() {

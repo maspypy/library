@@ -1,6 +1,6 @@
 // https://codeforces.com/contest/940/problem/F
 // https://codeforces.com/contest/1476/problem/G
-struct Mo_3d {
+struct Mo_3D {
   vc<tuple<int, int, int>> query;
 
   void add_query(int t, int l, int r) { query.eb(t, l, r); }
@@ -29,12 +29,12 @@ struct Mo_3d {
       return abs(t1 - t2) + abs(x1 - x2) + abs(y1 - y2);
     };
     FOR(k, Q - 5) {
-      if (cost(k, k + 2) + cost(k + 1, k + 3)
-          < cost(k, k + 1) + cost(k + 2, k + 3)) {
+      if (cost(k, k + 2) + cost(k + 1, k + 3) <
+          cost(k, k + 1) + cost(k + 2, k + 3)) {
         swap(I[k + 1], I[k + 2]);
       }
-      if (cost(k, k + 3) + cost(k + 1, k + 4)
-          < cost(k, k + 1) + cost(k + 3, k + 4)) {
+      if (cost(k, k + 3) + cost(k + 1, k + 4) <
+          cost(k, k + 1) + cost(k + 3, k + 4)) {
         swap(I[k + 1], I[k + 3]);
       }
     }
@@ -47,11 +47,13 @@ struct Mo_3d {
             F7 CALC, ll block_sz = -1) {
     if (block_sz == -1) {
       ll Q = max(1LL, len(query));
-      while (block_sz * block_sz * block_sz < Q * Q) { block_sz++; }
+      while (block_sz * block_sz * block_sz < Q * Q) {
+        block_sz++;
+      }
     }
     auto I = get_mo_order(block_sz);
     ll t = 0, l = 0, r = 0;
-    for (auto&& qid: I) {
+    for (auto&& qid : I) {
       auto [nt, nl, nr] = query[qid];
       while (l > nl) ADD_L(--l);
       while (r < nr) ADD_R(r++);

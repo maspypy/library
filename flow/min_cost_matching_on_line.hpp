@@ -2,7 +2,7 @@
 
 // 座標 0, ..., N-1 に A_i 個ある
 // 座標 0, ..., N-1 で B_i 個まで受け入れられる
-ll min_cost_matching_on_line_1(vi A, vi B) {
+ll min_cost_matching_on_line(vi A, vi B) {
   assert(SUM<ll>(A) <= SUM<ll>(B));
   const int N = len(A);
   Slope_Trick_0 f;

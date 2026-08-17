@@ -1,4 +1,4 @@
-#include "graph/shortest_path/bfs01.hpp"
+#include "graph/shortest_path/bfs_01.hpp"
 #include "graph/shortest_path/restore_path.hpp"
 
 // verify してない
@@ -7,9 +7,9 @@
 template <typename T, typename GT>
 tuple<int, int, T> tree_center(GT& G) {
   assert(G.is_prepared());
-  auto [distA, parA] = bfs01<T>(G, 0);
+  auto [distA, parA] = bfs_01<T>(G, 0);
   int a = max_element(all(distA)) - distA.begin();
-  auto [dist, par] = bfs01<T>(G, A);
+  auto [dist, par] = bfs_01<T>(G, A);
   int b = max_element(all(dist)) - dist.begin();
   T d = dist[b];
   assert(d % 2 == 0);
@@ -20,7 +20,9 @@ tuple<int, int, T> tree_center(GT& G) {
   }
   FOR(i, len(path) - 1) {
     int a = path[i], b = path[i + 1];
-    if (dist[a] < d / 2 && d / 2 < dist[b]) { return {a, b, d / 2 - dist[a]}; }
+    if (dist[a] < d / 2 && d / 2 < dist[b]) {
+      return {a, b, d / 2 - dist[a]};
+    }
   }
   assert(0);
   return {-1, -1, 0};

@@ -5,7 +5,7 @@
 // https://atcoder.jp/contests/agc022/tasks/agc022_e
 // https://atcoder.jp/contests/toyota2023spring-final/tasks/toyota2023spring_final_f
 template <typename mint, int d>
-struct ecottea_matrix_dp {
+struct Ecottea_Matrix_DP {
   using MAT = array<array<mint, d>, d>;
   string alphabet;
   map<char, MAT> matrix;
