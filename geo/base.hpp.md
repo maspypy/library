@@ -63,8 +63,8 @@ data:
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':heavy_check_mark:'
-    path: geo/dynamicupperhull.hpp
-    title: geo/dynamicupperhull.hpp
+    path: geo/dynamic_upper_hull.hpp
+    title: geo/dynamic_upper_hull.hpp
   - icon: ':heavy_check_mark:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
@@ -337,6 +337,7 @@ data:
   - geo/closest_pair.hpp
   - geo/convex_polygon_dp_order.hpp
   - geo/furthest_pair.hpp
+  - geo/dynamic_upper_hull.hpp
   - geo/incircle.hpp
   - geo/convex_hull.hpp
   - geo/projection.hpp
@@ -345,7 +346,6 @@ data:
   - geo/reflection.hpp
   - geo/apollonian_circle.hpp
   - geo/convex_polygon.hpp
-  - geo/dynamicupperhull.hpp
   - geo/incremental_convex_hull.hpp
   - geo/rotating_swaps.hpp
   - geo/minkowski_sum.hpp

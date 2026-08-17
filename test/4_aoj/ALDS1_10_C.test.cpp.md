@@ -20,8 +20,7 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja
-  bundledCode: "#line 1 \"test/4_aoj/ALDS1_10_C.test.cpp\"\n#define PROBLEM \\\n \
-    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\"\
+  bundledCode: "#line 1 \"test/4_aoj/ALDS1_10_C.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
@@ -239,34 +238,34 @@ data:
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"string/longest_common_subsequence.hpp\"\
     \n\ntemplate <typename STRING>\nll longest_common_subsequence(STRING& A, STRING&\
-    \ B) {\n  int N = len(B);\n  vc<int> dp(N + 1);\n  for (auto&& a: A) {\n    FOR_R(i,\
+    \ B) {\n  int N = len(B);\n  vc<int> dp(N + 1);\n  for (auto&& a : A) {\n    FOR_R(i,\
     \ N) if (a == B[i]) chmax(dp[i + 1], dp[i] + 1);\n    FOR(i, N) chmax(dp[i + 1],\
     \ dp[i]);\n  }\n  return dp[N];\n}\n\n/*\n\u5FA9\u5143\u3082\u3059\u308B LCS dp\u3002\
     \n(A[i], B[j]) \u3092\u4F7F\u3046\u3088\u3046\u306A (i, j) \u306E\u30DA\u30A2\u306E\
     \ vector \u3092\u8FD4\u3059\u3002\n*/\ntemplate <typename STRING>\nvc<pair<int,\
-    \ int>> longest_common_subsequence_restore(STRING& A, STRING& B) {\n  int N =\
+    \ int>> restore_longest_common_subsequence(STRING& A, STRING& B) {\n  int N =\
     \ len(A), M = len(B);\n  vv(int, DP, N + 1, M + 1);\n  FOR(i, N) {\n    auto&\
     \ dp = DP[i];\n    auto& newdp = DP[i + 1];\n    newdp = dp;\n    FOR(j, M) {\n\
     \      chmax(newdp[j + 1], newdp[j]);\n      if (A[i] == B[j]) chmax(newdp[j +\
     \ 1], dp[j] + 1);\n    }\n  }\n  vc<pair<int, int>> res;\n  int n = N, m = M;\n\
-    \  while (DP[n][m]) {\n    if (DP[n][m] == DP[n - 1][m]) { --n; }\n    elif (DP[n][m]\
-    \ == DP[n][m - 1]) { --m; }\n    else {\n      --n, --m;\n      res.eb(n, m);\n\
-    \    }\n  }\n  reverse(all(res));\n  return res;\n}\n#line 6 \"test/4_aoj/ALDS1_10_C.test.cpp\"\
-    \n\nvoid solve() {\n  STR(S, T);\n  ll LCS = longest_common_subsequence(S, T);\n\
-    \  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S, T);\n  assert(len(pairs)\
-    \ == LCS);\n  for (auto&& [i, j]: pairs) assert(S[i] == T[j]);\n  FOR(i, LCS -\
-    \ 1) {\n    assert(pairs[i].fi < pairs[i + 1].fi);\n    assert(pairs[i].se < pairs[i\
-    \ + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n \
-    \ ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  LL(T);\n  FOR(_,\
-    \ T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\"\
+    \  while (DP[n][m]) {\n    if (DP[n][m] == DP[n - 1][m]) {\n      --n;\n    }\n\
+    \    elif (DP[n][m] == DP[n][m - 1]) { --m; }\n    else {\n      --n, --m;\n \
+    \     res.eb(n, m);\n    }\n  }\n  reverse(all(res));\n  return res;\n}\n#line\
+    \ 5 \"test/4_aoj/ALDS1_10_C.test.cpp\"\n\nvoid solve() {\n  STR(S, T);\n  ll LCS\
+    \ = longest_common_subsequence(S, T);\n  vc<pair<int, int>> pairs = restore_longest_common_subsequence(S,\
+    \ T);\n  assert(len(pairs) == LCS);\n  for (auto&& [i, j] : pairs) assert(S[i]\
+    \ == T[j]);\n  FOR(i, LCS - 1) {\n    assert(pairs[i].fi < pairs[i + 1].fi);\n\
+    \    assert(pairs[i].se < pairs[i + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/longest_common_subsequence.hpp\"\
     \n\nvoid solve() {\n  STR(S, T);\n  ll LCS = longest_common_subsequence(S, T);\n\
-    \  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S, T);\n  assert(len(pairs)\
-    \ == LCS);\n  for (auto&& [i, j]: pairs) assert(S[i] == T[j]);\n  FOR(i, LCS -\
-    \ 1) {\n    assert(pairs[i].fi < pairs[i + 1].fi);\n    assert(pairs[i].se < pairs[i\
-    \ + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n \
-    \ ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  LL(T);\n  FOR(_,\
+    \  vc<pair<int, int>> pairs = restore_longest_common_subsequence(S, T);\n  assert(len(pairs)\
+    \ == LCS);\n  for (auto&& [i, j] : pairs) assert(S[i] == T[j]);\n  FOR(i, LCS\
+    \ - 1) {\n    assert(pairs[i].fi < pairs[i + 1].fi);\n    assert(pairs[i].se <\
+    \ pairs[i + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  LL(T);\n  FOR(_,\
     \ T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -275,7 +274,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ALDS1_10_C.test.cpp
   requiredBy: []
-  timestamp: '2026-08-11 20:16:07+09:00'
+  timestamp: '2026-08-17 12:55:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/ALDS1_10_C.test.cpp

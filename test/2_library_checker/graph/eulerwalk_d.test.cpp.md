@@ -11,8 +11,8 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/eulerwalk.hpp
-    title: graph/eulerwalk.hpp
+    path: graph/euler_walk.hpp
+    title: graph/euler_walk.hpp
   - icon: ':heavy_check_mark:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
@@ -391,7 +391,7 @@ data:
     \  nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n\
     \  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n    int eid = MP.get(k,\
     \ -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if (!allow_use_twice) {\
-    \ MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 4 \"graph/eulerwalk.hpp\"\n\
+    \ MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 4 \"graph/euler_walk.hpp\"\n\
     \r\n// (vs, es) or empty\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>> euler_walk(GT&\
     \ G, int s = -1) {\r\n  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\
     \n  assert(N > 0);\r\n  assert((s == -1) || (0 <= s && s < N));\r\n\r\n  if (s\
@@ -436,7 +436,7 @@ data:
     \  print(vs);\n  print(es);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/eulerwalk.hpp\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/euler_walk.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n\
     \  auto [vs, es] = euler_walk(G);\n  if (vs.empty()) return No();\n  Yes();\n\
     \  print(vs);\n  print(es);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
@@ -444,7 +444,7 @@ data:
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/eulerwalk.hpp
+  - graph/euler_walk.hpp
   - ds/unionfind/unionfind.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -452,7 +452,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/eulerwalk_d.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 12:47:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/eulerwalk_d.test.cpp

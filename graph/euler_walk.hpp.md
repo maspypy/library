@@ -168,7 +168,7 @@ data:
     \  nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n\
     \  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n    int eid = MP.get(k,\
     \ -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if (!allow_use_twice) {\
-    \ MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 4 \"graph/eulerwalk.hpp\"\n\
+    \ MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 4 \"graph/euler_walk.hpp\"\n\
     \r\n// (vs, es) or empty\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>> euler_walk(GT&\
     \ G, int s = -1) {\r\n  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\
     \n  assert(N > 0);\r\n  assert((s == -1) || (0 <= s && s < N));\r\n\r\n  if (s\
@@ -255,17 +255,17 @@ data:
   - ds/hashmap.hpp
   - graph/vs_to_es.hpp
   isVerificationFile: false
-  path: graph/eulerwalk.hpp
+  path: graph/euler_walk.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 12:47:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/eulerwalk_d.test.cpp
   - test/2_library_checker/graph/eulerwalk_ud.test.cpp
-documentation_of: graph/eulerwalk.hpp
+documentation_of: graph/euler_walk.hpp
 layout: document
 redirect_from:
-- /library/graph/eulerwalk.hpp
-- /library/graph/eulerwalk.hpp.html
-title: graph/eulerwalk.hpp
+- /library/graph/euler_walk.hpp
+- /library/graph/euler_walk.hpp.html
+title: graph/euler_walk.hpp
 ---

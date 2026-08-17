@@ -39,7 +39,7 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"setfunc/maxmin_patrition.hpp\"\n\n// https://codeforces.com/blog/entry/153948?#comment-1367191\n\
+    \ : (1ULL << n) - 1; }\n#line 2 \"setfunc/maxmin_partition.hpp\"\n\n// https://codeforces.com/blog/entry/153948?#comment-1367191\n\
     // O(n 2^n)\ntemplate <typename WT>\nWT maxmin_partition(int K, vc<WT> A) {\n\
     \  int N = len(A);\n  if (N < K) return 0;\n  assert(1 <= K && K <= N);\n  vc<WT>\
     \ S(1 << N);\n  FOR(i, N) FOR(s, 1 << i) S[s | 1 << i] = S[s] + A[i];\n\n  WT\
@@ -64,15 +64,15 @@ data:
   dependsOn:
   - other/bit.hpp
   isVerificationFile: false
-  path: setfunc/maxmin_patrition.hpp
+  path: setfunc/maxmin_partition.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 12:47:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: setfunc/maxmin_patrition.hpp
+documentation_of: setfunc/maxmin_partition.hpp
 layout: document
 redirect_from:
-- /library/setfunc/maxmin_patrition.hpp
-- /library/setfunc/maxmin_patrition.hpp.html
-title: setfunc/maxmin_patrition.hpp
+- /library/setfunc/maxmin_partition.hpp
+- /library/setfunc/maxmin_partition.hpp.html
+title: setfunc/maxmin_partition.hpp
 ---

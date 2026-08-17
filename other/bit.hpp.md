@@ -774,8 +774,8 @@ data:
     path: setfunc/all_k_subset.hpp
     title: setfunc/all_k_subset.hpp
   - icon: ':warning:'
-    path: setfunc/maxmin_patrition.hpp
-    title: setfunc/maxmin_patrition.hpp
+    path: setfunc/maxmin_partition.hpp
+    title: setfunc/maxmin_partition.hpp
   - icon: ':warning:'
     path: setfunc/online/online_or_convolution.hpp
     title: setfunc/online/online_or_convolution.hpp
@@ -2621,7 +2621,7 @@ data:
   - setfunc/online/online_subset_zeta.hpp
   - setfunc/online/online_subset_mobius.hpp
   - setfunc/online/online_or_convolution.hpp
-  - setfunc/maxmin_patrition.hpp
+  - setfunc/maxmin_partition.hpp
   - setfunc/subset_convolution.hpp
   - setfunc/xor_submask_lower_bound.hpp
   - setfunc/sps_exp.hpp

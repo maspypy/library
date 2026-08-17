@@ -63,8 +63,8 @@ data:
     path: graph/ds/grid_decremental_connectivity.hpp
     title: graph/ds/grid_decremental_connectivity.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/eulerwalk.hpp
-    title: graph/eulerwalk.hpp
+    path: graph/euler_walk.hpp
+    title: graph/euler_walk.hpp
   - icon: ':heavy_check_mark:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
@@ -326,13 +326,13 @@ data:
   requiredBy:
   - graph/tree_of_unionfind.hpp
   - graph/functional_graph.hpp
+  - graph/euler_walk.hpp
   - graph/tutte_polynomial.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/restore_euler_tour.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/bipartite_balanced_edge_coloring.hpp
   - graph/ds/grid_decremental_connectivity.hpp
-  - graph/eulerwalk.hpp
   - graph/blackbox/mst.hpp
   - graph/blackbox/unionfind.hpp
   - graph/blackbox/complement_graph_unionfind.hpp

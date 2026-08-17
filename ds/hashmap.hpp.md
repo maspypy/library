@@ -201,8 +201,8 @@ data:
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/eulerwalk.hpp
-    title: graph/eulerwalk.hpp
+    path: graph/euler_walk.hpp
+    title: graph/euler_walk.hpp
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
@@ -1096,6 +1096,7 @@ data:
   - graph/reverse_graph.hpp
   - graph/find_path_through_specified.hpp
   - graph/functional_graph.hpp
+  - graph/euler_walk.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/find_odd_cycle.hpp
   - graph/to_directed_tree.hpp
@@ -1125,7 +1126,6 @@ data:
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/distance_sum.hpp
   - graph/ds/static_toptree.hpp
-  - graph/eulerwalk.hpp
   - graph/compress_tree.hpp
   - graph/shortest_path/warshall_floyd.hpp
   - graph/shortest_path/bellman_ford.hpp

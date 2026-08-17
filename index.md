@@ -737,9 +737,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/product.hpp
       title: enumerate/product.hpp
-    - icon: ':warning:'
-      path: enumerate/set_partitioin.hpp
-      title: enumerate/set_partitioin.hpp
     - icon: ':heavy_check_mark:'
       path: enumerate/triangle.hpp
       title: enumerate/triangle.hpp
@@ -793,8 +790,8 @@ data:
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
     - icon: ':warning:'
-      path: flow/maxflow_with_lowerbound.hpp
-      title: flow/maxflow_with_lowerbound.hpp
+      path: flow/maxflow_with_lower_bound.hpp
+      title: flow/maxflow_with_lower_bound.hpp
     - icon: ':heavy_check_mark:'
       path: flow/min_cost_b_flow.hpp
       title: flow/min_cost_b_flow.hpp
@@ -878,8 +875,8 @@ data:
       path: geo/distance.hpp
       title: geo/distance.hpp
     - icon: ':heavy_check_mark:'
-      path: geo/dynamicupperhull.hpp
-      title: geo/dynamicupperhull.hpp
+      path: geo/dynamic_upper_hull.hpp
+      title: geo/dynamic_upper_hull.hpp
     - icon: ':heavy_check_mark:'
       path: geo/furthest_pair.hpp
       title: geo/furthest_pair.hpp
@@ -1020,8 +1017,8 @@ data:
       path: graph/dominator_tree.hpp
       title: graph/dominator_tree.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/eulerwalk.hpp
-      title: graph/eulerwalk.hpp
+      path: graph/euler_walk.hpp
+      title: graph/euler_walk.hpp
     - icon: ':heavy_check_mark:'
       path: graph/fast_lca.hpp
       title: graph/fast_lca.hpp
@@ -2431,8 +2428,8 @@ data:
       path: setfunc/hadamard.hpp
       title: setfunc/hadamard.hpp
     - icon: ':warning:'
-      path: setfunc/maxmin_patrition.hpp
-      title: setfunc/maxmin_patrition.hpp
+      path: setfunc/maxmin_partition.hpp
+      title: setfunc/maxmin_partition.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
