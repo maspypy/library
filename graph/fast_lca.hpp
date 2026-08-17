@@ -8,7 +8,7 @@ struct Fast_LCA {
   Sparse_Table<Monoid_Min<int>> seg;
   vc<int> pos;
 
-  Fast_Lca(TREE& tree) : tree(tree) {
+  Fast_LCA(TREE& tree) : tree(tree) {
     int N = tree.N;
     pos.resize(N);
     vc<int> dat(2 * N);

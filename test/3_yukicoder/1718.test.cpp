@@ -2,14 +2,14 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/tree_dp/rerooting_dp.hpp"
-#include "graph/shortest_path/bfs01.hpp"
+#include "graph/shortest_path/bfs_01.hpp"
 
 void solve() {
   LL(N, K);
   Graph<int, 0> G(N);
   G.read_tree();
   VEC(ll, D, K);
-  for (auto&& a: D) --a;
+  for (auto&& a : D) --a;
 
   Tree<decltype(G)> tree(G);
   sort(all(D), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });
@@ -33,7 +33,7 @@ void solve() {
     }
   }
 
-  for (auto&& x: D) isin[x] = 1;
+  for (auto&& x : D) isin[x] = 1;
 
   using Data = ll;
   Data unit = -infty<ll>;
@@ -44,12 +44,12 @@ void solve() {
   };
   // e は v から出る有向辺
   auto fve = [&](Data x, auto& e) -> Data { return x + 1; };
-  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
 
   // span される部分からの距離
   vc<int> V;
   FOR(v, N) if (isin[v]) V.eb(v);
-  auto [dist, par, root] = bfs01<int>(G, V);
+  auto [dist, par, root] = bfs_01<int>(G, V);
 
   FOR(v, N) {
     ll r = root[v];

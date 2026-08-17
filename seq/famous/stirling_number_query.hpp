@@ -9,7 +9,7 @@ struct Stirling_Number_Query {
 
   Stirling_Number_Query(int p, bool first_kind = true, bool second_kind = true)
       : p(p) {
-    assert(primetest(p));
+    assert(is_prime(p));
     assert(p <= (1 << 15));
     build_C();
     if (first_kind) build_S1();

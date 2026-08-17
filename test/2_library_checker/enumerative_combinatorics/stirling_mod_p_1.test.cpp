@@ -1,5 +1,6 @@
-#define PROBLEM \
-  "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n"
+#define PROBLEM                      \
+  "https://judge.yosupo.jp/problem/" \
+  "stirling_number_of_the_first_kind_small_p_large_n"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "seq/famous/stirling_number_query.hpp"
@@ -14,11 +15,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  // LL(T);
-  ll T = 1;
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

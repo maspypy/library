@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "alg/monoid/rollinghash.hpp"
+#include "alg/monoid/rolling_hash.hpp"
 #include "ds/sparse_table/disjoint_sparse_table.hpp"
 
 void solve() {
@@ -23,11 +23,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }
