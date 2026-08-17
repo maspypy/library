@@ -10,7 +10,7 @@ data:
     links:
     - https://codeforces.com/contest/1423/problem/A
     - https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub
-  bundledCode: "#line 1 \"graph/stable_roommate.hpp\"\n\n// https://codeforces.com/contest/1423/problem/A\n\
+  bundledCode: "#line 1 \"graph/stable_roommates.hpp\"\n\n// https://codeforces.com/contest/1423/problem/A\n\
     // https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub\n\
     // \u9078\u597D\u30EA\u30B9\u30C8\u306F\u5DE6\u306B\u3042\u308B\u65B9\u512A\u5148\
     \n// \u5FC5\u8981\u306A\u3089 INF \u3092\u5165\u308C\u3066\u9577\u3055 N-1 \u305A\
@@ -77,15 +77,15 @@ data:
     \ if (i < j) ANS.eb(i, j);\n  }\n  return ANS;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/stable_roommate.hpp
+  path: graph/stable_roommates.hpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
+  timestamp: '2026-08-17 18:40:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/stable_roommate.hpp
+documentation_of: graph/stable_roommates.hpp
 layout: document
 redirect_from:
-- /library/graph/stable_roommate.hpp
-- /library/graph/stable_roommate.hpp.html
-title: graph/stable_roommate.hpp
+- /library/graph/stable_roommates.hpp
+- /library/graph/stable_roommates.hpp.html
+title: graph/stable_roommates.hpp
 ---

@@ -30,9 +30,6 @@ data:
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/ds/incremental_centroid.hpp
-    title: graph/ds/incremental_centroid.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -47,9 +44,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
-  - icon: ':question:'
-    path: graph/ds/tree_abelgroup.hpp
-    title: graph/ds/tree_abelgroup.hpp
+  - icon: ':x:'
+    path: graph/ds/tree_abeliangroup.hpp
+    title: graph/ds/tree_abeliangroup.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
@@ -68,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':warning:'
@@ -77,7 +74,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':heavy_check_mark:'
@@ -117,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -252,9 +249,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/4_aoj/2636.test.cpp
-    title: test/4_aoj/2636.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
@@ -617,7 +611,6 @@ data:
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
-  - graph/ds/incremental_centroid.hpp
   - graph/ds/dual_tree_monoid.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/rolling_hash_on_tree.hpp
@@ -627,7 +620,7 @@ data:
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_monoid.hpp
   - graph/ds/static_tree_monoid.hpp
-  - graph/ds/tree_abelgroup.hpp
+  - graph/ds/tree_abeliangroup.hpp
   - graph/ds/distance_sum.hpp
   - graph/ds/static_toptree.hpp
   - graph/compress_tree.hpp
@@ -664,7 +657,6 @@ data:
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/2677.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
-  - test/4_aoj/2636.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/1976.test.cpp

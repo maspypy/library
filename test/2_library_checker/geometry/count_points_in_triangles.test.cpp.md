@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
@@ -563,13 +563,13 @@ data:
     \ >= 0); }, 0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
     \      }\n    }\n  }\n};\n#line 7 \"test/2_library_checker/geometry/count_points_in_triangles.test.cpp\"\
     \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> A(N);\n  FOR(i,\
-    \ N) read(A[i]);\n  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_In_Triangles\
+    \ N) read(A[i]);\n  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_in_Triangles\
     \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.count3(a, b,\
     \ c));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/count_points_in_triangles.hpp\"\
     \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> A(N);\n  FOR(i,\
-    \ N) read(A[i]);\n  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_In_Triangles\
+    \ N) read(A[i]);\n  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_in_Triangles\
     \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.count3(a, b,\
     \ c));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
@@ -586,8 +586,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 18:40:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
 layout: document

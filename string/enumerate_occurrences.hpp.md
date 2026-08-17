@@ -350,7 +350,7 @@ data:
     \ + 1]};\n  }\n};\n#line 6 \"string/enumerate_occurrences.hpp\"\n\n// T[i] distinct\
     \ \u304C\u5FC5\u8981\n// T[i] \u304C S \u306B\u73FE\u308C\u308B\u4F4D\u7F6E\u3092\
     \u6607\u9806\u5217\u6319\n// call f(i, vc<int>&pos)\n// O(T + Slog^2S + Ssqrt(T))\n\
-    template <typename STRING, int SIGMA = 26, int off = 'a', typename F>\nvoid enumerate_occurrence(STRING\
+    template <typename STRING, int SIGMA = 26, int off = 'a', typename F>\nvoid enumerate_occurrences(STRING\
     \ S, vc<STRING> T, F f) {\n  Trie<SIGMA> trie;\n  FOR(i, len(T)) trie.add(T[i],\
     \ off);\n  trie.calc_suffix_link();\n\n  int n = trie.n_node;\n  Graph<int, 1>\
     \ G(n);\n  FOR(i, 1, n) G.add(trie.nodes[i].suffix_link, i);\n  G.build();\n \
@@ -375,7 +375,7 @@ data:
     ds/fastset.hpp\"\n#include \"ds/csr.hpp\"\n\n// T[i] distinct \u304C\u5FC5\u8981\
     \n// T[i] \u304C S \u306B\u73FE\u308C\u308B\u4F4D\u7F6E\u3092\u6607\u9806\u5217\
     \u6319\n// call f(i, vc<int>&pos)\n// O(T + Slog^2S + Ssqrt(T))\ntemplate <typename\
-    \ STRING, int SIGMA = 26, int off = 'a', typename F>\nvoid enumerate_occurrence(STRING\
+    \ STRING, int SIGMA = 26, int off = 'a', typename F>\nvoid enumerate_occurrences(STRING\
     \ S, vc<STRING> T, F f) {\n  Trie<SIGMA> trie;\n  FOR(i, len(T)) trie.add(T[i],\
     \ off);\n  trie.calc_suffix_link();\n\n  int n = trie.n_node;\n  Graph<int, 1>\
     \ G(n);\n  FOR(i, 1, n) G.add(trie.nodes[i].suffix_link, i);\n  G.build();\n \
@@ -407,7 +407,7 @@ data:
   isVerificationFile: false
   path: string/enumerate_occurrences.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:42:09+09:00'
+  timestamp: '2026-08-17 18:40:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/enumerate_occurrences.hpp

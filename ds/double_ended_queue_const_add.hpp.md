@@ -1,20 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convex/slope_trick/slope_trick_1.hpp
-    title: convex/slope_trick/slope_trick_1.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1077_2.test.cpp
-    title: test/3_yukicoder/1077_2.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/double_end_queue_const_add.hpp\"\n// \u5168\u4F53\u52A0\
+  bundledCode: "#line 1 \"ds/double_ended_queue_const_add.hpp\"\n// \u5168\u4F53\u52A0\
     \u7B97\u3082\u3067\u304D\u308B\u3088\u3046\u306B\u3057\u3088\u3046\n// Monoid_Add<T>\
     \ \u3092\u6E21\u3059\u611F\u3058\u3067. T \u306F operator< \u304C\u5B9A\u7FA9\u3055\
     \u308C\u3066\u3044\u308B\u5FC5\u8981\u3042\u308A.\ntemplate <typename Monoid>\n\
@@ -89,17 +83,15 @@ data:
     \ dat[i]), i = p;\n    }\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/double_end_queue_const_add.hpp
-  requiredBy:
-  - convex/slope_trick/slope_trick_1.hpp
-  timestamp: '2026-08-17 17:13:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/3_yukicoder/1077_2.test.cpp
-documentation_of: ds/double_end_queue_const_add.hpp
+  path: ds/double_ended_queue_const_add.hpp
+  requiredBy: []
+  timestamp: '2026-08-17 18:40:13+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/double_ended_queue_const_add.hpp
 layout: document
 redirect_from:
-- /library/ds/double_end_queue_const_add.hpp
-- /library/ds/double_end_queue_const_add.hpp.html
-title: ds/double_end_queue_const_add.hpp
+- /library/ds/double_ended_queue_const_add.hpp
+- /library/ds/double_ended_queue_const_add.hpp.html
+title: ds/double_ended_queue_const_add.hpp
 ---

@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
@@ -600,7 +600,7 @@ data:
     \ = typename GT::cost_type;\n\n  pair<vc<int>, GT> compress(vc<int>& V, bool sorted\
     \ = false) {\n    return compress_impl(V, sorted,\n                         [&](int\
     \ a, int b) -> int { return tree.LCA(a, b); });\n  }\n\n  pair<vc<int>, GT> compress_fast(vc<int>&\
-    \ V, Fast_Lca<TREE>& LCA,\n                                  bool sorted = false)\
+    \ V, Fast_LCA<TREE>& LCA,\n                                  bool sorted = false)\
     \ {\n    return compress_impl(V, sorted,\n                         [&](int a,\
     \ int b) -> int { return LCA.LCA(a, b); });\n  }\n\n  void sort_vertices(vc<int>&\
     \ V) {\n    int N = tree.N;\n    if (len(FS) == 0) FS.build(N);\n    for (int\
@@ -629,7 +629,7 @@ data:
     \  using WT = typename GT::cost_type;\n\n  pair<vc<int>, GT> compress(vc<int>&\
     \ V, bool sorted = false) {\n    return compress_impl(V, sorted,\n           \
     \              [&](int a, int b) -> int { return tree.LCA(a, b); });\n  }\n\n\
-    \  pair<vc<int>, GT> compress_fast(vc<int>& V, Fast_Lca<TREE>& LCA,\n        \
+    \  pair<vc<int>, GT> compress_fast(vc<int>& V, Fast_LCA<TREE>& LCA,\n        \
     \                          bool sorted = false) {\n    return compress_impl(V,\
     \ sorted,\n                         [&](int a, int b) -> int { return LCA.LCA(a,\
     \ b); });\n  }\n\n  void sort_vertices(vc<int>& V) {\n    int N = tree.N;\n  \
@@ -665,7 +665,7 @@ data:
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:49:33+09:00'
+  timestamp: '2026-08-17 18:40:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp

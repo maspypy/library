@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/prefix_sum_of_binom.hpp
     title: mod/prefix_sum_of_binom.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -273,14 +273,14 @@ data:
     \      --n;\n      }\n      while (m < mm) {\n        ans += C<mint>(n, m++);\n\
     \      }\n      while (m > mm) {\n        ans -= C<mint>(n, --m);\n      }\n \
     \     ANS[i] = ans;\n    }\n    return ANS;\n  }\n};\n#line 6 \"test/1_mytest/prefix_sum_of_binom.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(LIM, 0, 500) {\n    Prefix_Sum_Of_Binom<mint>\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(LIM, 0, 500) {\n    Prefix_Sum_of_Binom<mint>\
     \ X(LIM);\n    FOR(N, LIM + 1) {\n      mint sm = 0;\n      FOR(k, N + 10) {\n\
     \        assert(sm == X.query(N, k));\n        sm += C<mint>(N, k);\n      }\n\
     \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
     \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"mod/prefix_sum_of_binom.hpp\"\n\n\
-    using mint = modint998;\n\nvoid test() {\n  FOR(LIM, 0, 500) {\n    Prefix_Sum_Of_Binom<mint>\
+    using mint = modint998;\n\nvoid test() {\n  FOR(LIM, 0, 500) {\n    Prefix_Sum_of_Binom<mint>\
     \ X(LIM);\n    FOR(N, LIM + 1) {\n      mint sm = 0;\n      FOR(k, N + 10) {\n\
     \        assert(sm == X.query(N, k));\n        sm += C<mint>(N, k);\n      }\n\
     \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
@@ -295,8 +295,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_sum_of_binom.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 18:40:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_sum_of_binom.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
@@ -251,12 +251,12 @@ data:
     \ (i < t ? 1 + i : double(N) / (t + sq - i)); }\n\n  template <typename F>\n \
     \ void enumerate_all(F f) {\n    FOR(i, len(dat)) { f(get_floor(i), dat[i]); }\n\
     \  }\n};\n#line 5 \"test/2_library_checker/number_theory/enumerate_quotients2.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n\
+    \n\nvoid solve() {\n  LL(N);\n  Array_on_Floor<int> A(N);\n  print(len(A));\n\
     \  FOR(i, len(A)) print(A.get_floor(i));\n}\n\nsigned main() {\n  solve();\n \
     \ return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/array_on_floor.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n\
+    \n\nvoid solve() {\n  LL(N);\n  Array_on_Floor<int> A(N);\n  print(len(A));\n\
     \  FOR(i, len(A)) print(A.get_floor(i));\n}\n\nsigned main() {\n  solve();\n \
     \ return 0;\n}"
   dependsOn:
@@ -266,8 +266,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 18:40:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
 layout: document

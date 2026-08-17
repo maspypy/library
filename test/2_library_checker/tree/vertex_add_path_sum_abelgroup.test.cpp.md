@@ -13,9 +13,9 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
-    path: graph/ds/tree_abelgroup.hpp
-    title: graph/ds/tree_abelgroup.hpp
+  - icon: ':x:'
+    path: graph/ds/tree_abeliangroup.hpp
+    title: graph/ds/tree_abeliangroup.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
@@ -565,7 +565,7 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 3 \"\
-    graph/ds/tree_abelgroup.hpp\"\n\r\ntemplate <typename TREE, typename AbelianGruop,\
+    graph/ds/tree_abeliangroup.hpp\"\n\r\ntemplate <typename TREE, typename AbelianGruop,\
     \ bool edge, bool path_query, bool subtree_query>\r\nstruct Tree_AbelianGruop\
     \ {\r\n  using MX = AbelianGruop;\r\n  using X = typename MX::value_type;\r\n\
     \  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelianGruop(TREE\
@@ -602,7 +602,7 @@ data:
     \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 7 \"test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
-    \ G.read_tree(0, 0);\r\n\r\n  Tree tree(G);\r\n  Tree_AbelGroup<decltype(tree),\
+    \ G.read_tree(0, 0);\r\n\r\n  Tree tree(G);\r\n  Tree_AbelianGroup<decltype(tree),\
     \ Monoid_Add<ll>, 0, 1, 0> TA(tree, A);\r\n\r\n  FOR(Q) {\r\n    LL(t);\r\n  \
     \  if (t == 0) {\r\n      LL(v, x);\r\n      TA.add(v, x);\r\n    } else {\r\n\
     \      LL(u, v);\r\n      print(TA.prod_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\
@@ -610,18 +610,18 @@ data:
     \  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\r\
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
-    graph/ds/tree_abelgroup.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n  G.read_tree(0, 0);\r\
-    \n\r\n  Tree tree(G);\r\n  Tree_AbelGroup<decltype(tree), Monoid_Add<ll>, 0, 1,\
-    \ 0> TA(tree, A);\r\n\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n   \
-    \   LL(v, x);\r\n      TA.add(v, x);\r\n    } else {\r\n      LL(u, v);\r\n  \
-    \    print(TA.prod_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
-    \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    graph/ds/tree_abeliangroup.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\n\r\nvoid\
+    \ solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n  G.read_tree(0,\
+    \ 0);\r\n\r\n  Tree tree(G);\r\n  Tree_AbelianGroup<decltype(tree), Monoid_Add<ll>,\
+    \ 0, 1, 0> TA(tree, A);\r\n\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\
+    \n      LL(v, x);\r\n      TA.add(v, x);\r\n    } else {\r\n      LL(u, v);\r\n\
+    \      print(TA.prod_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\
+    \n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
     \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/ds/tree_abelgroup.hpp
+  - graph/ds/tree_abeliangroup.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - other/bit.hpp
   - alg/monoid/add.hpp
@@ -631,7 +631,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 17:17:31+09:00'
+  timestamp: '2026-08-17 18:40:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp

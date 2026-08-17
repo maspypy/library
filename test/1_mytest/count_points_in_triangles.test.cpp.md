@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -434,15 +434,16 @@ data:
     \ {\n      A.eb(RNG(-4, 5), RNG(-4, 5));\n    } else {\n      A.eb(RNG(-K, K),\
     \ RNG(-K, K));\n    }\n  }\n  FOR(M) {\n    bool small = RNG(0, 2);\n    if (small)\
     \ {\n      B.eb(RNG(-4, 5), RNG(-4, 5));\n    } else {\n      B.eb(RNG(-K, K),\
-    \ RNG(-K, K));\n    }\n  }\n  Count_Points_In_Triangles X(A, B);\n  FOR(100) {\n\
+    \ RNG(-K, K));\n    }\n  }\n  Count_Points_in_Triangles X(A, B);\n  FOR(100) {\n\
     \    int i = RNG(0, N), j = RNG(0, N), k = RNG(0, N);\n    int me = X.count3(i,\
-    \ j, k);\n    int naive = 0;\n    for (auto&& p: B) {\n      ll s1 = (A[j] - A[i]).det(p\
-    \ - A[i]);\n      ll s2 = (A[k] - A[j]).det(p - A[j]);\n      ll s3 = (A[i] -\
-    \ A[k]).det(p - A[k]);\n      ll s = (A[k] - A[i]).det(A[j] - A[i]);\n      if\
-    \ (s1 == 0 || s2 == 0 || s3 == 0 || s == 0) continue;\n      if (abs(s1) + abs(s2)\
-    \ + abs(s3) == abs(s)) ++naive;\n    }\n    assert(me == naive);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
+    \ j, k);\n    int naive = 0;\n    for (auto&& p : B) {\n      ll s1 = (A[j] -\
+    \ A[i]).det(p - A[i]);\n      ll s2 = (A[k] - A[j]).det(p - A[j]);\n      ll s3\
+    \ = (A[i] - A[k]).det(p - A[k]);\n      ll s = (A[k] - A[i]).det(A[j] - A[i]);\n\
+    \      if (s1 == 0 || s2 == 0 || s3 == 0 || s == 0) continue;\n      if (abs(s1)\
+    \ + abs(s2) + abs(s3) == abs(s)) ++naive;\n    }\n    assert(me == naive);\n \
+    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"geo/count_points_in_triangles.hpp\"\n#include \"random/base.hpp\"\
     \n\nvoid test() {\n  using P = Point<ll>;\n  vc<P> A, B;\n  int K = 1'000'000'000;\n\
@@ -450,15 +451,15 @@ data:
     \ {\n      A.eb(RNG(-4, 5), RNG(-4, 5));\n    } else {\n      A.eb(RNG(-K, K),\
     \ RNG(-K, K));\n    }\n  }\n  FOR(M) {\n    bool small = RNG(0, 2);\n    if (small)\
     \ {\n      B.eb(RNG(-4, 5), RNG(-4, 5));\n    } else {\n      B.eb(RNG(-K, K),\
-    \ RNG(-K, K));\n    }\n  }\n  Count_Points_In_Triangles X(A, B);\n  FOR(100) {\n\
+    \ RNG(-K, K));\n    }\n  }\n  Count_Points_in_Triangles X(A, B);\n  FOR(100) {\n\
     \    int i = RNG(0, N), j = RNG(0, N), k = RNG(0, N);\n    int me = X.count3(i,\
-    \ j, k);\n    int naive = 0;\n    for (auto&& p: B) {\n      ll s1 = (A[j] - A[i]).det(p\
-    \ - A[i]);\n      ll s2 = (A[k] - A[j]).det(p - A[j]);\n      ll s3 = (A[i] -\
-    \ A[k]).det(p - A[k]);\n      ll s = (A[k] - A[i]).det(A[j] - A[i]);\n      if\
-    \ (s1 == 0 || s2 == 0 || s3 == 0 || s == 0) continue;\n      if (abs(s1) + abs(s2)\
-    \ + abs(s3) == abs(s)) ++naive;\n    }\n    assert(me == naive);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}"
+    \ j, k);\n    int naive = 0;\n    for (auto&& p : B) {\n      ll s1 = (A[j] -\
+    \ A[i]).det(p - A[i]);\n      ll s2 = (A[k] - A[j]).det(p - A[j]);\n      ll s3\
+    \ = (A[i] - A[k]).det(p - A[k]);\n      ll s = (A[k] - A[i]).det(A[j] - A[i]);\n\
+    \      if (s1 == 0 || s2 == 0 || s3 == 0 || s == 0) continue;\n      if (abs(s1)\
+    \ + abs(s2) + abs(s3) == abs(s)) ++naive;\n    }\n    assert(me == naive);\n \
+    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - geo/count_points_in_triangles.hpp
@@ -472,8 +473,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_points_in_triangles.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 18:40:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_points_in_triangles.test.cpp
 layout: document

@@ -39,9 +39,6 @@ data:
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/ds/incremental_centroid.hpp
-    title: graph/ds/incremental_centroid.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':warning:'
@@ -87,9 +84,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/4_aoj/2636.test.cpp
-    title: test/4_aoj/2636.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -203,7 +197,6 @@ data:
   requiredBy:
   - bigint/redundant_binary_number.hpp
   - graph/all_cycle_common_vertices.hpp
-  - graph/ds/incremental_centroid.hpp
   - graph/compress_tree.hpp
   - graph/toposort.hpp
   - ds/incremental_rectangle_union.hpp
@@ -229,7 +222,6 @@ data:
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem.test.cpp
   - test/4_aoj/2251_1.test.cpp
-  - test/4_aoj/2636.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2809.test.cpp
 documentation_of: ds/fastset.hpp

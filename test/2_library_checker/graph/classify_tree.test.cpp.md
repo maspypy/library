@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -962,16 +962,16 @@ data:
     \ dat;\n    while (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n\
     \  }\n};\n#line 7 \"test/2_library_checker/graph/classify_tree.test.cpp\"\n\n\
     void solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
-    \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
+    \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  Subtree_Hash<decltype(tree)>\
     \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(v, 0);\n  vi key = ANS;\n\
-    \  UNIQUE(key);\n  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
+    \  UNIQUE(key);\n  for (auto&& x : ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
     \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/tree_dp/subtree_hash.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
-    \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
+    \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  Subtree_Hash<decltype(tree)>\
     \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(v, 0);\n  vi key = ANS;\n\
-    \  UNIQUE(key);\n  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
+    \  UNIQUE(key);\n  for (auto&& x : ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
     \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -986,8 +986,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 18:40:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/classify_tree.test.cpp
 layout: document

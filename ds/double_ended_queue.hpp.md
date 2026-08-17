@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/double_ended_q.test.cpp
     title: test/2_library_checker/data_structure/double_ended_q.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/double_end_queue.hpp\"\n// T \u306F operator< \u3092\u6301\
-    \u3064\ntemplate <typename T>\nstruct Double_Ended_Queue {\n  // interval heap\n\
-    \  // \u5B50\u3088\u308A\u3082\u89AA\u306E\u65B9\u304C\u5927\u304D\u306A\u533A\
-    \u9593\u3092\u4F5C\u308B\u3088\u3046\u306B\u3059\u308B\n  // \u5947\u6570\u8981\
-    \u7D20\u306E\u3068\u304D\u306F [a,a] \u3068\u3044\u3046\u533A\u9593\u304C\u3042\
-    \u308B\u3068\u601D\u3046\n  // \u3059\u308B\u3068\u6839\u306E\u533A\u9593\u304C\
-    \ min,max \u3092\u4E0E\u3048\u308B\n  vector<T> dat;\n\n  Double_Ended_Queue()\
+  bundledCode: "#line 1 \"ds/double_ended_queue.hpp\"\n// T \u306F operator< \u3092\
+    \u6301\u3064\ntemplate <typename T>\nstruct Double_Ended_Queue {\n  // interval\
+    \ heap\n  // \u5B50\u3088\u308A\u3082\u89AA\u306E\u65B9\u304C\u5927\u304D\u306A\
+    \u533A\u9593\u3092\u4F5C\u308B\u3088\u3046\u306B\u3059\u308B\n  // \u5947\u6570\
+    \u8981\u7D20\u306E\u3068\u304D\u306F [a,a] \u3068\u3044\u3046\u533A\u9593\u304C\
+    \u3042\u308B\u3068\u601D\u3046\n  // \u3059\u308B\u3068\u6839\u306E\u533A\u9593\
+    \u304C min,max \u3092\u4E0E\u3048\u308B\n  vector<T> dat;\n\n  Double_Ended_Queue()\
     \ {}\n  Double_Ended_Queue(vc<T>& A) { build(A); }\n\n  int size() { return dat.size();\
     \ }\n  bool empty() { return dat.empty(); }\n  T min() { return dat[0]; }\n  T\
     \ max() { return len(dat) == 1 ? dat[0] : dat[1]; }\n\n  void build(vc<T>& A)\
@@ -92,16 +92,16 @@ data:
     \ dat[i]), i = p;\n    }\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: ds/double_end_queue.hpp
+  path: ds/double_ended_queue.hpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 18:40:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/double_ended_q.test.cpp
-documentation_of: ds/double_end_queue.hpp
+documentation_of: ds/double_ended_queue.hpp
 layout: document
 redirect_from:
-- /library/ds/double_end_queue.hpp
-- /library/ds/double_end_queue.hpp.html
-title: ds/double_end_queue.hpp
+- /library/ds/double_ended_queue.hpp
+- /library/ds/double_ended_queue.hpp.html
+title: ds/double_ended_queue.hpp
 ---

@@ -19,10 +19,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/ds/incremental_centroid.hpp
-    title: graph/ds/incremental_centroid.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
@@ -33,12 +30,9 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/4_aoj/2636.test.cpp
-    title: test/4_aoj/2636.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -350,7 +344,7 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 3 \"\
-    graph/ds/tree_abelgroup.hpp\"\n\r\ntemplate <typename TREE, typename AbelianGruop,\
+    graph/ds/tree_abeliangroup.hpp\"\n\r\ntemplate <typename TREE, typename AbelianGruop,\
     \ bool edge, bool path_query, bool subtree_query>\r\nstruct Tree_AbelianGruop\
     \ {\r\n  using MX = AbelianGruop;\r\n  using X = typename MX::value_type;\r\n\
     \  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelianGruop(TREE\
@@ -420,20 +414,18 @@ data:
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
-  path: graph/ds/tree_abelgroup.hpp
-  requiredBy:
-  - graph/ds/incremental_centroid.hpp
-  timestamp: '2026-08-17 17:17:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  path: graph/ds/tree_abeliangroup.hpp
+  requiredBy: []
+  timestamp: '2026-08-17 18:40:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - test/4_aoj/2636.test.cpp
   - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/1326.test.cpp
-documentation_of: graph/ds/tree_abelgroup.hpp
+documentation_of: graph/ds/tree_abeliangroup.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/tree_abelgroup.hpp
-- /library/graph/ds/tree_abelgroup.hpp.html
-title: graph/ds/tree_abelgroup.hpp
+- /library/graph/ds/tree_abeliangroup.hpp
+- /library/graph/ds/tree_abeliangroup.hpp.html
+title: graph/ds/tree_abeliangroup.hpp
 ---

@@ -615,69 +615,69 @@ data:
     \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
     \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 7 \"test/1_mytest/rolling_hash_on_tree.test.cpp\"\
     \n\nvoid test_edge() {\n  ll N = RNG(1, 20);\n  auto edges = random_tree(N);\n\
-    \  Graph<int, 0> G(N);\n  for (auto& [a, b]: edges) {\n    int x = RNG(0, 3);\n\
+    \  Graph<int, 0> G(N);\n  for (auto& [a, b] : edges) {\n    int x = RNG(0, 3);\n\
     \    G.add(a, b, x);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using\
-    \ mint = modint61;\n  mint base = RNG_64();\n\n  Rolling_Hash_On_Tree<decltype(tree),\
+    \ mint = modint61;\n  mint base = RNG_64();\n\n  Rolling_Hash_on_Tree<decltype(tree),\
     \ true> RH(\n      tree, [&](int i) -> int { return G.edges[i].cost; }, base);\n\
     \n  vvv(int, dat, N, N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a,\
     \ b);\n    vc<int> S;\n    FOR(i, len(P) - 1) {\n      int eid = tree.get_eid(P[i],\
     \ P[i + 1]);\n      S.eb(G.edges[eid].cost);\n    }\n    dat[a][b] = S;\n  }\n\
-    \n  FOR(a, N) FOR(b, N) {\n    mint h = 0;\n    for (auto& x: dat[a][b]) { h =\
-    \ h * base + x; }\n    assert(h == RH.get(a, b));\n  }\n  FOR(a, N) FOR(b, N)\
-    \ FOR(c, N) FOR(d, N) {\n    vc<int> A = dat[a][b], B = dat[c][d];\n    int lcp\
-    \ = 0;\n    while (lcp < len(A) && lcp < len(B) && A[lcp] == B[lcp]) ++lcp;\n\
-    \    auto [k, ch] = RH.lcp_and_comp(a, b, c, d);\n    assert(k == lcp);\n    if\
-    \ (ch == '<') assert(A < B);\n    if (ch == '=') assert(A == B);\n    if (ch ==\
-    \ '>') assert(A > B);\n  }\n}\n\nvoid test_vertex() {\n  ll N = RNG(1, 20);\n\
-    \  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a, b]: edges)\
-    \ { G.add(a, b); }\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(0, 3);\n  G.build();\n\
-    \  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n  mint base = RNG_64();\n\
-    \n  Rolling_Hash_On_Tree<decltype(tree), false> RH(\n      tree, [&](int i) ->\
-    \ int { return A[i]; }, base);\n\n  vvv(int, dat, N, N, 0);\n  FOR(a, N) FOR(b,\
-    \ N) {\n    vc<int> P = tree.restore_path(a, b);\n    vc<int> S;\n    for (auto&\
-    \ v: P) S.eb(A[v]);\n    dat[a][b] = S;\n  }\n\n  FOR(a, N) FOR(b, N) {\n    mint\
-    \ h = 0;\n    for (auto& x: dat[a][b]) { h = h * base + x; }\n    assert(h ==\
-    \ RH.get(a, b));\n  }\n\n  FOR(a, N) FOR(b, N) FOR(c, N) FOR(d, N) {\n    vc<int>\
-    \ A = dat[a][b], B = dat[c][d];\n    int lcp = 0;\n    while (lcp < len(A) &&\
-    \ lcp < len(B) && A[lcp] == B[lcp]) ++lcp;\n    auto [k, ch] = RH.lcp_and_comp(a,\
-    \ b, c, d);\n    assert(k == lcp);\n    if (ch == '<') assert(A < B);\n    if\
-    \ (ch == '=') assert(A == B);\n    if (ch == '>') assert(A > B);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(300) test_edge();\n  FOR(300) test_vertex();\n  solve();\n\
-    }\n"
+    \n  FOR(a, N) FOR(b, N) {\n    mint h = 0;\n    for (auto& x : dat[a][b]) {\n\
+    \      h = h * base + x;\n    }\n    assert(h == RH.get(a, b));\n  }\n  FOR(a,\
+    \ N) FOR(b, N) FOR(c, N) FOR(d, N) {\n    vc<int> A = dat[a][b], B = dat[c][d];\n\
+    \    int lcp = 0;\n    while (lcp < len(A) && lcp < len(B) && A[lcp] == B[lcp])\
+    \ ++lcp;\n    auto [k, ch] = RH.lcp_and_comp(a, b, c, d);\n    assert(k == lcp);\n\
+    \    if (ch == '<') assert(A < B);\n    if (ch == '=') assert(A == B);\n    if\
+    \ (ch == '>') assert(A > B);\n  }\n}\n\nvoid test_vertex() {\n  ll N = RNG(1,\
+    \ 20);\n  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a,\
+    \ b] : edges) {\n    G.add(a, b);\n  }\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(0,\
+    \ 3);\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n\
+    \  mint base = RNG_64();\n\n  Rolling_Hash_On_Tree<decltype(tree), false> RH(\n\
+    \      tree, [&](int i) -> int { return A[i]; }, base);\n\n  vvv(int, dat, N,\
+    \ N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a, b);\n\
+    \    vc<int> S;\n    for (auto& v : P) S.eb(A[v]);\n    dat[a][b] = S;\n  }\n\n\
+    \  FOR(a, N) FOR(b, N) {\n    mint h = 0;\n    for (auto& x : dat[a][b]) {\n \
+    \     h = h * base + x;\n    }\n    assert(h == RH.get(a, b));\n  }\n\n  FOR(a,\
+    \ N) FOR(b, N) FOR(c, N) FOR(d, N) {\n    vc<int> A = dat[a][b], B = dat[c][d];\n\
+    \    int lcp = 0;\n    while (lcp < len(A) && lcp < len(B) && A[lcp] == B[lcp])\
+    \ ++lcp;\n    auto [k, ch] = RH.lcp_and_comp(a, b, c, d);\n    assert(k == lcp);\n\
+    \    if (ch == '<') assert(A < B);\n    if (ch == '=') assert(A == B);\n    if\
+    \ (ch == '>') assert(A > B);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(300) test_edge();\n\
+    \  FOR(300) test_vertex();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"graph/ds/rolling_hash_on_tree.hpp\"\n#include\
     \ \"random/random_graph.hpp\"\n\nvoid test_edge() {\n  ll N = RNG(1, 20);\n  auto\
-    \ edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a, b]: edges)\
+    \ edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a, b] : edges)\
     \ {\n    int x = RNG(0, 3);\n    G.add(a, b, x);\n  }\n  G.build();\n  Tree<decltype(G)>\
-    \ tree(G);\n\n  using mint = modint61;\n  mint base = RNG_64();\n\n  Rolling_Hash_On_Tree<decltype(tree),\
+    \ tree(G);\n\n  using mint = modint61;\n  mint base = RNG_64();\n\n  Rolling_Hash_on_Tree<decltype(tree),\
     \ true> RH(\n      tree, [&](int i) -> int { return G.edges[i].cost; }, base);\n\
     \n  vvv(int, dat, N, N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a,\
     \ b);\n    vc<int> S;\n    FOR(i, len(P) - 1) {\n      int eid = tree.get_eid(P[i],\
     \ P[i + 1]);\n      S.eb(G.edges[eid].cost);\n    }\n    dat[a][b] = S;\n  }\n\
-    \n  FOR(a, N) FOR(b, N) {\n    mint h = 0;\n    for (auto& x: dat[a][b]) { h =\
-    \ h * base + x; }\n    assert(h == RH.get(a, b));\n  }\n  FOR(a, N) FOR(b, N)\
-    \ FOR(c, N) FOR(d, N) {\n    vc<int> A = dat[a][b], B = dat[c][d];\n    int lcp\
-    \ = 0;\n    while (lcp < len(A) && lcp < len(B) && A[lcp] == B[lcp]) ++lcp;\n\
-    \    auto [k, ch] = RH.lcp_and_comp(a, b, c, d);\n    assert(k == lcp);\n    if\
-    \ (ch == '<') assert(A < B);\n    if (ch == '=') assert(A == B);\n    if (ch ==\
-    \ '>') assert(A > B);\n  }\n}\n\nvoid test_vertex() {\n  ll N = RNG(1, 20);\n\
-    \  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a, b]: edges)\
-    \ { G.add(a, b); }\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(0, 3);\n  G.build();\n\
-    \  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n  mint base = RNG_64();\n\
-    \n  Rolling_Hash_On_Tree<decltype(tree), false> RH(\n      tree, [&](int i) ->\
-    \ int { return A[i]; }, base);\n\n  vvv(int, dat, N, N, 0);\n  FOR(a, N) FOR(b,\
-    \ N) {\n    vc<int> P = tree.restore_path(a, b);\n    vc<int> S;\n    for (auto&\
-    \ v: P) S.eb(A[v]);\n    dat[a][b] = S;\n  }\n\n  FOR(a, N) FOR(b, N) {\n    mint\
-    \ h = 0;\n    for (auto& x: dat[a][b]) { h = h * base + x; }\n    assert(h ==\
-    \ RH.get(a, b));\n  }\n\n  FOR(a, N) FOR(b, N) FOR(c, N) FOR(d, N) {\n    vc<int>\
-    \ A = dat[a][b], B = dat[c][d];\n    int lcp = 0;\n    while (lcp < len(A) &&\
-    \ lcp < len(B) && A[lcp] == B[lcp]) ++lcp;\n    auto [k, ch] = RH.lcp_and_comp(a,\
-    \ b, c, d);\n    assert(k == lcp);\n    if (ch == '<') assert(A < B);\n    if\
-    \ (ch == '=') assert(A == B);\n    if (ch == '>') assert(A > B);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(300) test_edge();\n  FOR(300) test_vertex();\n  solve();\n\
-    }\n"
+    \n  FOR(a, N) FOR(b, N) {\n    mint h = 0;\n    for (auto& x : dat[a][b]) {\n\
+    \      h = h * base + x;\n    }\n    assert(h == RH.get(a, b));\n  }\n  FOR(a,\
+    \ N) FOR(b, N) FOR(c, N) FOR(d, N) {\n    vc<int> A = dat[a][b], B = dat[c][d];\n\
+    \    int lcp = 0;\n    while (lcp < len(A) && lcp < len(B) && A[lcp] == B[lcp])\
+    \ ++lcp;\n    auto [k, ch] = RH.lcp_and_comp(a, b, c, d);\n    assert(k == lcp);\n\
+    \    if (ch == '<') assert(A < B);\n    if (ch == '=') assert(A == B);\n    if\
+    \ (ch == '>') assert(A > B);\n  }\n}\n\nvoid test_vertex() {\n  ll N = RNG(1,\
+    \ 20);\n  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a,\
+    \ b] : edges) {\n    G.add(a, b);\n  }\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(0,\
+    \ 3);\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n\
+    \  mint base = RNG_64();\n\n  Rolling_Hash_On_Tree<decltype(tree), false> RH(\n\
+    \      tree, [&](int i) -> int { return A[i]; }, base);\n\n  vvv(int, dat, N,\
+    \ N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a, b);\n\
+    \    vc<int> S;\n    for (auto& v : P) S.eb(A[v]);\n    dat[a][b] = S;\n  }\n\n\
+    \  FOR(a, N) FOR(b, N) {\n    mint h = 0;\n    for (auto& x : dat[a][b]) {\n \
+    \     h = h * base + x;\n    }\n    assert(h == RH.get(a, b));\n  }\n\n  FOR(a,\
+    \ N) FOR(b, N) FOR(c, N) FOR(d, N) {\n    vc<int> A = dat[a][b], B = dat[c][d];\n\
+    \    int lcp = 0;\n    while (lcp < len(A) && lcp < len(B) && A[lcp] == B[lcp])\
+    \ ++lcp;\n    auto [k, ch] = RH.lcp_and_comp(a, b, c, d);\n    assert(k == lcp);\n\
+    \    if (ch == '<') assert(A < B);\n    if (ch == '=') assert(A == B);\n    if\
+    \ (ch == '>') assert(A > B);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(300) test_edge();\n\
+    \  FOR(300) test_vertex();\n  solve();\n}\n"
   dependsOn:
   - my_template.hpp
   - graph/ds/rolling_hash_on_tree.hpp
@@ -692,7 +692,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rolling_hash_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
+  timestamp: '2026-08-17 18:40:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rolling_hash_on_tree.test.cpp

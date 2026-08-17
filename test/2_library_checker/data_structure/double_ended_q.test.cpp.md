@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: ds/double_end_queue.hpp
-    title: ds/double_end_queue.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/double_ended_queue.hpp
+    title: ds/double_ended_queue.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -238,7 +238,7 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/data_structure/double_ended_q.test.cpp\"\
-    \n\n#line 1 \"ds/double_end_queue.hpp\"\n// T \u306F operator< \u3092\u6301\u3064\
+    \n\n#line 1 \"ds/double_ended_queue.hpp\"\n// T \u306F operator< \u3092\u6301\u3064\
     \ntemplate <typename T>\nstruct Double_Ended_Queue {\n  // interval heap\n  //\
     \ \u5B50\u3088\u308A\u3082\u89AA\u306E\u65B9\u304C\u5927\u304D\u306A\u533A\u9593\
     \u3092\u4F5C\u308B\u3088\u3046\u306B\u3059\u308B\n  // \u5947\u6570\u8981\u7D20\
@@ -277,25 +277,25 @@ data:
     \ dat[i]), i = p;\n      }\n      return;\n    }\n    while (i >= 3) {\n     \
     \ int p = parent(i);\n      if (!(dat[p] < dat[i])) break;\n      swap(dat[p],\
     \ dat[i]), i = p;\n    }\n  }\n};\n#line 6 \"test/2_library_checker/data_structure/double_ended_q.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Double_End_Queue<int> que(A);\n\
-    \  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(x);\n      que.push(x);\n\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Double_Ended_Queue<int>\
+    \ que(A);\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(x);\n      que.push(x);\n\
     \    }\n    if (t == 1) print(que.pop_min());\n    if (t == 2) print(que.pop_max());\n\
     \  }\n}\n\nsigned main() { solve(); }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/double_end_queue.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Double_End_Queue<int> que(A);\n\
-    \  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(x);\n      que.push(x);\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/double_ended_queue.hpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Double_Ended_Queue<int>\
+    \ que(A);\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(x);\n      que.push(x);\n\
     \    }\n    if (t == 1) print(que.pop_min());\n    if (t == 2) print(que.pop_max());\n\
     \  }\n}\n\nsigned main() { solve(); }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/double_end_queue.hpp
+  - ds/double_ended_queue.hpp
   isVerificationFile: true
   path: test/2_library_checker/data_structure/double_ended_q.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 18:40:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/double_ended_q.test.cpp
 layout: document
