@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/all_cycle_common_vertices.hpp
     title: graph/all_cycle_common_vertices.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':warning:'
@@ -165,6 +165,9 @@ data:
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -179,7 +182,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/remove_one_vertex_connectivity.hpp
     title: graph/ds/remove_one_vertex_connectivity.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -320,7 +323,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -398,7 +401,7 @@ data:
   - icon: ':warning:'
     path: other/optimize_2d.hpp
     title: other/optimize_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':warning:'
@@ -498,7 +501,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_vertex.test.cpp
     title: test/1_mytest/remove_one_vertex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -958,6 +961,9 @@ data:
     path: test/4_aoj/2251_2.test.cpp
     title: test/4_aoj/2251_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1005,9 +1011,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -1100,6 +1106,7 @@ data:
   - graph/tree_dp/subtree_depth_sum.hpp
   - graph/bipartite_balanced_edge_coloring.hpp
   - graph/all_cycle_common_vertices.hpp
+  - graph/ds/incremental_centroid.hpp
   - graph/ds/dual_tree_monoid.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/remove_one_vertex_connectivity.hpp
@@ -1202,7 +1209,7 @@ data:
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
@@ -1308,6 +1315,7 @@ data:
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/ALDS1_12_B.test.cpp
   - test/4_aoj/ITP1_11_A.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/4_aoj/GRL_1_B.test.cpp
   - test/4_aoj/2835.test.cpp
   - test/4_aoj/0275.test.cpp

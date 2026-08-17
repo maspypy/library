@@ -261,6 +261,9 @@ data:
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':warning:'
@@ -380,10 +383,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -2088,7 +2091,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2181.test.cpp
     title: test/3_yukicoder/2181.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2299,6 +2302,9 @@ data:
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_1_C.test.cpp
     title: test/4_aoj/ALDS1_1_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2352,9 +2358,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -2484,6 +2490,7 @@ data:
   - graph/restore_euler_tour.hpp
   - graph/count_matching_on_tree.hpp
   - graph/all_cycle_common_vertices.hpp
+  - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/range_edge_connected_component_query.hpp
@@ -2697,7 +2704,7 @@ data:
   - new_poly/base.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/dyadic_rational.test.cpp
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
@@ -3022,6 +3029,7 @@ data:
   - test/4_aoj/DSL_2_E.test.cpp
   - test/4_aoj/DSL_2_F.test.cpp
   - test/4_aoj/DPL_5_C.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/4_aoj/DSL_2_I.test.cpp
   - test/4_aoj/0275.test.cpp
   - test/4_aoj/ITP2_11_D.test.cpp

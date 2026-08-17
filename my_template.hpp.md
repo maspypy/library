@@ -582,7 +582,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_vertex.test.cpp
     title: test/1_mytest/remove_one_vertex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1528,6 +1528,9 @@ data:
     path: test/3_yukicoder/1077.test.cpp
     title: test/3_yukicoder/1077.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1077_2.test.cpp
+    title: test/3_yukicoder/1077_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080.test.cpp
     title: test/3_yukicoder/1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2034,7 +2037,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2181.test.cpp
     title: test/3_yukicoder/2181.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2395,6 +2398,9 @@ data:
     path: test/4_aoj/2251_2.test.cpp
     title: test/4_aoj/2251_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2565,9 +2571,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2746,7 +2752,7 @@ data:
   - other/mhc_template_directory/para2.cpp
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
   timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/incremental_ch.test.cpp
   - test/1_mytest/manhattan_nns.test.cpp
@@ -3283,6 +3289,7 @@ data:
   - test/4_aoj/DSL_2_F.test.cpp
   - test/4_aoj/DPL_5_C.test.cpp
   - test/4_aoj/ITP1_11_A.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/4_aoj/GRL_1_B.test.cpp
   - test/4_aoj/1508.test.cpp
   - test/4_aoj/2835.test.cpp
@@ -3414,6 +3421,7 @@ data:
   - test/3_yukicoder/1269.test.cpp
   - test/3_yukicoder/1634.test.cpp
   - test/3_yukicoder/1025.test.cpp
+  - test/3_yukicoder/1077_2.test.cpp
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/2305.test.cpp

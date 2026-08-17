@@ -42,6 +42,9 @@ data:
     path: alg/acted_monoid/summin_add.hpp
     title: alg/acted_monoid/summin_add.hpp
   - icon: ':heavy_check_mark:'
+    path: convex/slope_trick/slope_trick_1.hpp
+    title: convex/slope_trick/slope_trick_1.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -101,6 +104,9 @@ data:
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
@@ -325,6 +331,9 @@ data:
     path: test/3_yukicoder/1038.test.cpp
     title: test/3_yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1077_2.test.cpp
+    title: test/3_yukicoder/1077_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1097.test.cpp
     title: test/3_yukicoder/1097.test.cpp
   - icon: ':heavy_check_mark:'
@@ -439,6 +448,9 @@ data:
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842.test.cpp
     title: test/4_aoj/2842.test.cpp
   - icon: ':heavy_check_mark:'
@@ -494,6 +506,7 @@ data:
   requiredBy:
   - graph/count/count_connected_intervals.hpp
   - graph/functional_graph.hpp
+  - graph/ds/incremental_centroid.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abeliangroup.hpp
   - ds/range_add_range_sum.hpp
@@ -534,6 +547,7 @@ data:
   - alg/acted_monoid/sum_mul.hpp
   - alg/acted_monoid/sum_add.hpp
   - alg/acted_monoid/max_add.hpp
+  - convex/slope_trick/slope_trick_1.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -609,6 +623,7 @@ data:
   - test/4_aoj/DSL_4_A.test.cpp
   - test/4_aoj/DSL_2_G.test.cpp
   - test/4_aoj/DSL_2_E.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/4_aoj/DSL_2_I.test.cpp
   - test/4_aoj/DSL_1_B.test.cpp
   - test/4_aoj/2842_2.test.cpp
@@ -627,6 +642,7 @@ data:
   - test/3_yukicoder/2338.test.cpp
   - test/3_yukicoder/924.test.cpp
   - test/3_yukicoder/2342.test.cpp
+  - test/3_yukicoder/1077_2.test.cpp
   - test/3_yukicoder/1311.test.cpp
   - test/3_yukicoder/655.test.cpp
   - test/3_yukicoder/2065.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
@@ -159,6 +162,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
@@ -338,6 +344,7 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree.hpp
   requiredBy:
+  - graph/ds/incremental_centroid.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abeliangroup.hpp
   - ds/range_add_range_sum.hpp
@@ -383,6 +390,7 @@ data:
   - test/4_aoj/ALDS1_5.test.cpp
   - test/4_aoj/DSL_2_G.test.cpp
   - test/4_aoj/DSL_2_E.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/694.test.cpp
   - test/3_yukicoder/1270.test.cpp

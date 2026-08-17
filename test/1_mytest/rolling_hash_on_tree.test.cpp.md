@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -632,7 +632,7 @@ data:
     \ 20);\n  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a,\
     \ b] : edges) {\n    G.add(a, b);\n  }\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(0,\
     \ 3);\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n\
-    \  mint base = RNG_64();\n\n  Rolling_Hash_On_Tree<decltype(tree), false> RH(\n\
+    \  mint base = RNG_64();\n\n  Rolling_Hash_on_Tree<decltype(tree), false> RH(\n\
     \      tree, [&](int i) -> int { return A[i]; }, base);\n\n  vvv(int, dat, N,\
     \ N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a, b);\n\
     \    vc<int> S;\n    for (auto& v : P) S.eb(A[v]);\n    dat[a][b] = S;\n  }\n\n\
@@ -665,7 +665,7 @@ data:
     \ 20);\n  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a,\
     \ b] : edges) {\n    G.add(a, b);\n  }\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(0,\
     \ 3);\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n\
-    \  mint base = RNG_64();\n\n  Rolling_Hash_On_Tree<decltype(tree), false> RH(\n\
+    \  mint base = RNG_64();\n\n  Rolling_Hash_on_Tree<decltype(tree), false> RH(\n\
     \      tree, [&](int i) -> int { return A[i]; }, base);\n\n  vvv(int, dat, N,\
     \ N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a, b);\n\
     \    vc<int> S;\n    for (auto& v : P) S.eb(A[v]);\n    dat[a][b] = S;\n  }\n\n\
@@ -692,8 +692,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rolling_hash_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 18:40:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 18:59:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rolling_hash_on_tree.test.cpp
 layout: document
