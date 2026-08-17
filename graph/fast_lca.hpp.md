@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -205,8 +205,8 @@ data:
     \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
     \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) {\n    static_assert(HLD);\n\
-    \    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\n    int bc = lca(b,\
-    \ c), bd = lca(b, d), cd = lca(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
     \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
     \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
     \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
@@ -311,9 +311,9 @@ data:
     \      dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n   \
     \ seg.build(dat);\n  }\n\n  int dist(int a, int b) {\n    int c = lca(a, b);\n\
     \    return tree.depth[a] + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  using\
-    \ WT = typename TREE::WT;\n  WT dist_weighted(int a, int b) {\n    int c = lca(a,\
+    \ WT = typename TREE::WT;\n  WT dist_weighted(int a, int b) {\n    int c = LCA(a,\
     \ b);\n    return tree.depth_weighted[a] + tree.depth_weighted[b] -\n        \
-    \   2 * tree.depth_weighted[c];\n  }\n\n  int lca(int a, int b) {\n    int p =\
+    \   2 * tree.depth_weighted[c];\n  }\n\n  int LCA(int a, int b) {\n    int p =\
     \ pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p,\
     \ q + 1)];\n  }\n};\n"
   code: "#include \"graph/tree.hpp\"\n#include \"alg/monoid/min.hpp\"\n#include \"\
@@ -325,9 +325,9 @@ data:
     \  dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n    seg.build(dat);\n\
     \  }\n\n  int dist(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth[a]\
     \ + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  using WT = typename TREE::WT;\n\
-    \  WT dist_weighted(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth_weighted[a]\
+    \  WT dist_weighted(int a, int b) {\n    int c = LCA(a, b);\n    return tree.depth_weighted[a]\
     \ + tree.depth_weighted[b] -\n           2 * tree.depth_weighted[c];\n  }\n\n\
-    \  int lca(int a, int b) {\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p,\
+    \  int LCA(int a, int b) {\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p,\
     \ q);\n    return tree.V[seg.prod(p, q + 1)];\n  }\n};\n"
   dependsOn:
   - graph/tree.hpp
@@ -340,7 +340,7 @@ data:
   path: graph/fast_lca.hpp
   requiredBy:
   - graph/compress_tree.hpp
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-17 16:42:09+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/tree/lca_fast.test.cpp

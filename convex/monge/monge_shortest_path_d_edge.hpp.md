@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':warning:'
-    path: convex/alien.hpp
-    title: convex/alien.hpp
+    path: convex/alien_trick.hpp
+    title: convex/alien_trick.hpp
   - icon: ':heavy_check_mark:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
@@ -15,7 +15,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monge/monge_shortest_path_d_edge.hpp\"\n\n#line 1\
-    \ \"convex/alien.hpp\"\n\n// MINIMIZE \u306B\u5FDC\u3058\u3066\u3001base_score\
+    \ \"convex/alien_trick.hpp\"\n\n// MINIMIZE \u306B\u5FDC\u3058\u3066\u3001base_score\
     \ + add * cnt \u3092\u6700\u5C0F\u5316 / \u6700\u5927\u5316\u3059\u308B\n// solve(add)\
     \ -> {val, cnt}\n// val \u306F add * cnt \u3092\u542B\u3080\u6700\u9069\u5024\n\
     // \u6700\u9069\u89E3\u304C\u8907\u6570\u3042\u308B\u5834\u5408\u3001cnt \u306F\
@@ -78,19 +78,19 @@ data:
     \ -> pair<T, int> {\n    T val = solver.solve(N, [&](int l, int r) -> T { return\
     \ f(l, r) + pena; });\n    return {val, solver.cnt[N]};\n  };\n\n  return alien_trick<T,\
     \ true>(d, solve);\n}\n"
-  code: "\n#include \"convex/alien.hpp\"\n#include \"convex/monge/monge_shortest_path.hpp\"\
+  code: "\n#include \"convex/alien_trick.hpp\"\n#include \"convex/monge/monge_shortest_path.hpp\"\
     \n\n// return: {ans, pena}\ntemplate <typename T, typename F>\npair<T, T> monge_shortest_path_d_edge(int\
     \ N, int d, F f) {\n  Monge_Shortest_Path<T> solver;\n\n  auto solve = [&](T pena)\
     \ -> pair<T, int> {\n    T val = solver.solve(N, [&](int l, int r) -> T { return\
     \ f(l, r) + pena; });\n    return {val, solver.cnt[N]};\n  };\n\n  return alien_trick<T,\
     \ true>(d, solve);\n}"
   dependsOn:
-  - convex/alien.hpp
+  - convex/alien_trick.hpp
   - convex/monge/monge_shortest_path.hpp
   isVerificationFile: false
   path: convex/monge/monge_shortest_path_d_edge.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 16:42:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/monge/monge_shortest_path_d_edge.hpp

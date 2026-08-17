@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: ds/csr.hpp
     title: ds/csr.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -29,7 +29,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/enumerate_occurrence.hpp\"\n\n#line 1 \"graph/tree.hpp\"\
+  bundledCode: "#line 1 \"string/enumerate_occurrences.hpp\"\n\n#line 1 \"graph/tree.hpp\"\
     \n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct\
     \ HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\
     \u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32\
@@ -202,8 +202,8 @@ data:
     \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
     \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) {\n    static_assert(HLD);\n\
-    \    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\n    int bc = lca(b,\
-    \ c), bd = lca(b, d), cd = lca(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
     \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
     \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
     \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
@@ -347,7 +347,7 @@ data:
     \ { return last; }\n    bool empty() const { return first == last; }\n    int\
     \ size() const { return last - first; }\n  };\n\n  range operator[](int i) {\n\
     \    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data() + ptr[i\
-    \ + 1]};\n  }\n};\n#line 6 \"string/enumerate_occurrence.hpp\"\n\n// T[i] distinct\
+    \ + 1]};\n  }\n};\n#line 6 \"string/enumerate_occurrences.hpp\"\n\n// T[i] distinct\
     \ \u304C\u5FC5\u8981\n// T[i] \u304C S \u306B\u73FE\u308C\u308B\u4F4D\u7F6E\u3092\
     \u6607\u9806\u5217\u6319\n// call f(i, vc<int>&pos)\n// O(T + Slog^2S + Ssqrt(T))\n\
     template <typename STRING, int SIGMA = 26, int off = 'a', typename F>\nvoid enumerate_occurrence(STRING\
@@ -405,15 +405,15 @@ data:
   - other/bit.hpp
   - ds/csr.hpp
   isVerificationFile: false
-  path: string/enumerate_occurrence.hpp
+  path: string/enumerate_occurrences.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-17 16:42:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: string/enumerate_occurrence.hpp
+documentation_of: string/enumerate_occurrences.hpp
 layout: document
 redirect_from:
-- /library/string/enumerate_occurrence.hpp
-- /library/string/enumerate_occurrence.hpp.html
-title: string/enumerate_occurrence.hpp
+- /library/string/enumerate_occurrences.hpp
+- /library/string/enumerate_occurrences.hpp.html
+title: string/enumerate_occurrences.hpp
 ---

@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -18,12 +18,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
@@ -202,8 +202,8 @@ data:
     \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
     \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) {\n    static_assert(HLD);\n\
-    \    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\n    int bc = lca(b,\
-    \ c), bd = lca(b, d), cd = lca(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
     \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
     \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
     \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
@@ -290,39 +290,41 @@ data:
     \    dp1[root] = dp2[root] = dat[0];\n    FOR(i, 1, N) {\n      int v = tree.V[i];\n\
     \      int d = tree.depth[v], p = tree.parent[v];\n      dp1[v] = base * dp1[p]\
     \ + dat[v];\n      dp2[v] = dp2[p] + pow[d] * dat[v];\n    }\n  }\n\n  mint get(int\
-    \ a, int b) {\n    int c = tree.lca(a, b);\n    mint x1 = get_du(a, c), x2 = get_ud(c,\
-    \ b);\n    int n2 = tree.depth[b] - tree.depth[c];\n    if constexpr (!EDGE) {\
-    \ x1 = x1 * base + dat[c]; }\n    return x1 * pow[n2] + x2;\n  }\n\n  int lcp(int\
-    \ s1, int t1, int s2, int t2) {\n    return lcp_and_comp(s1, t1, s2, t2).fi;\n\
-    \  }\n\n  // <=>\n  char comp(int s1, int t1, int s2, int t2) {\n    return lcp_and_comp(s1,\
-    \ t1, s2, t2).se;\n  }\n\n  pair<int, char> lcp_and_comp(int s1, int t1, int s2,\
-    \ int t2) {\n    int lcp = 0;\n    // heavy path \u306E\u9802\u70B9\u5217\n  \
-    \  auto path1 = tree.get_path_decomposition(s1, t1, EDGE);\n    auto path2 = tree.get_path_decomposition(s2,\
-    \ t2, EDGE);\n    reverse(all(path1));\n    reverse(all(path2));\n    while (len(path1)\
-    \ && len(path2)) {\n      int a, b, c, d;\n      tie(a, b) = POP(path1), tie(c,\
-    \ d) = POP(path2);\n      ll n1 = abs(a - b) + 1, n2 = abs(c - d) + 1;\n     \
-    \ ll n = min(n1, n2);\n      if (n < n1) {\n        if (a <= b) { path1.eb(a +\
-    \ n, b), b = a + n - 1; }\n        if (a > b) { path1.eb(a - n, b), b = a - n\
-    \ + 1; }\n      }\n      if (n < n2) {\n        if (c <= d) { path2.eb(c + n,\
-    \ d), d = c + n - 1; }\n        if (c > d) { path2.eb(c - n, d), d = c - n + 1;\
-    \ }\n      }\n      mint x1 = from_hld_pair(a, b), x2 = from_hld_pair(c, d);\n\
-    \      if (x1 == x2) {\n        lcp += n;\n        continue;\n      }\n      auto\
-    \ check = [&](ll n) -> bool {\n        if (n == 0) return 1;\n        mint x1\
-    \ = (a <= b ? from_hld_pair(a, a + n - 1)\n                          : from_hld_pair(a,\
-    \ a - n + 1));\n        mint x2 = (c <= d ? from_hld_pair(c, c + n - 1)\n    \
-    \                      : from_hld_pair(c, c - n + 1));\n        return x1 == x2;\n\
-    \      };\n      ll k = binary_search(check, 0, n);\n      lcp += k;\n      a\
-    \ = (a <= b ? a + k : a - k);\n      c = (c <= d ? c + k : c - k);\n      a =\
-    \ tree.V[a], c = tree.V[c];\n      if (dat[a] < dat[c]) return {lcp, '<'};\n \
-    \     if (dat[a] == dat[c]) return {lcp, '='};\n      if (dat[a] > dat[c]) return\
-    \ {lcp, '>'};\n    }\n    if (!path1.empty()) return {lcp, '>'};\n    if (!path2.empty())\
-    \ return {lcp, '<'};\n    return {lcp, '='};\n  }\n\nprivate:\n  mint get_ud(int\
-    \ a, int b) {\n    return (a == -1 ? dp1[b]\n                    : dp1[b] - dp1[a]\
+    \ a, int b) {\n    int c = tree.LCA(a, b);\n    mint x1 = get_du(a, c), x2 = get_ud(c,\
+    \ b);\n    int n2 = tree.depth[b] - tree.depth[c];\n    if constexpr (!EDGE) {\n\
+    \      x1 = x1 * base + dat[c];\n    }\n    return x1 * pow[n2] + x2;\n  }\n\n\
+    \  int lcp(int s1, int t1, int s2, int t2) {\n    return lcp_and_comp(s1, t1,\
+    \ s2, t2).fi;\n  }\n\n  // <=>\n  char comp(int s1, int t1, int s2, int t2) {\n\
+    \    return lcp_and_comp(s1, t1, s2, t2).se;\n  }\n\n  pair<int, char> lcp_and_comp(int\
+    \ s1, int t1, int s2, int t2) {\n    int lcp = 0;\n    // heavy path \u306E\u9802\
+    \u70B9\u5217\n    auto path1 = tree.get_path_decomposition(s1, t1, EDGE);\n  \
+    \  auto path2 = tree.get_path_decomposition(s2, t2, EDGE);\n    reverse(all(path1));\n\
+    \    reverse(all(path2));\n    while (len(path1) && len(path2)) {\n      int a,\
+    \ b, c, d;\n      tie(a, b) = POP(path1), tie(c, d) = POP(path2);\n      ll n1\
+    \ = abs(a - b) + 1, n2 = abs(c - d) + 1;\n      ll n = min(n1, n2);\n      if\
+    \ (n < n1) {\n        if (a <= b) {\n          path1.eb(a + n, b), b = a + n -\
+    \ 1;\n        }\n        if (a > b) {\n          path1.eb(a - n, b), b = a - n\
+    \ + 1;\n        }\n      }\n      if (n < n2) {\n        if (c <= d) {\n     \
+    \     path2.eb(c + n, d), d = c + n - 1;\n        }\n        if (c > d) {\n  \
+    \        path2.eb(c - n, d), d = c - n + 1;\n        }\n      }\n      mint x1\
+    \ = from_hld_pair(a, b), x2 = from_hld_pair(c, d);\n      if (x1 == x2) {\n  \
+    \      lcp += n;\n        continue;\n      }\n      auto check = [&](ll n) ->\
+    \ bool {\n        if (n == 0) return 1;\n        mint x1 = (a <= b ? from_hld_pair(a,\
+    \ a + n - 1)\n                          : from_hld_pair(a, a - n + 1));\n    \
+    \    mint x2 = (c <= d ? from_hld_pair(c, c + n - 1)\n                       \
+    \   : from_hld_pair(c, c - n + 1));\n        return x1 == x2;\n      };\n    \
+    \  ll k = binary_search(check, 0, n);\n      lcp += k;\n      a = (a <= b ? a\
+    \ + k : a - k);\n      c = (c <= d ? c + k : c - k);\n      a = tree.V[a], c =\
+    \ tree.V[c];\n      if (dat[a] < dat[c]) return {lcp, '<'};\n      if (dat[a]\
+    \ == dat[c]) return {lcp, '='};\n      if (dat[a] > dat[c]) return {lcp, '>'};\n\
+    \    }\n    if (!path1.empty()) return {lcp, '>'};\n    if (!path2.empty()) return\
+    \ {lcp, '<'};\n    return {lcp, '='};\n  }\n\n private:\n  mint get_ud(int a,\
+    \ int b) {\n    return (a == -1 ? dp1[b]\n                    : dp1[b] - dp1[a]\
     \ * pow[tree.depth[b] - tree.depth[a]]);\n  }\n  mint get_du(int a, int b) {\n\
     \    return (b == -1 ? dp2[a] : (dp2[a] - dp2[b]) * ipow[tree.depth[b] + 1]);\n\
-    \  }\n  mint from_hld_pair(int a, int b) {\n    if (a <= b) { return get_ud(tree.parent[tree.V[a]],\
-    \ tree.V[b]); }\n    return get_du(tree.V[a], tree.parent[tree.V[b]]);\n  }\n\
-    };\n"
+    \  }\n  mint from_hld_pair(int a, int b) {\n    if (a <= b) {\n      return get_ud(tree.parent[tree.V[a]],\
+    \ tree.V[b]);\n    }\n    return get_du(tree.V[a], tree.parent[tree.V[b]]);\n\
+    \  }\n};\n"
   code: "#include \"random/base.hpp\"\n#include \"graph/tree.hpp\"\n#include \"mod/modint61.hpp\"\
     \n\n// \u6728\u306E\u8FBA\u306B\u6587\u5B57\u304C\u3061\u3087\u3046\u3069\u3072\
     \u3068\u3064\u66F8\u3044\u3066\u3042\u308B (static)\ntemplate <typename TREE,\
@@ -341,39 +343,41 @@ data:
     \    dp1[root] = dp2[root] = dat[0];\n    FOR(i, 1, N) {\n      int v = tree.V[i];\n\
     \      int d = tree.depth[v], p = tree.parent[v];\n      dp1[v] = base * dp1[p]\
     \ + dat[v];\n      dp2[v] = dp2[p] + pow[d] * dat[v];\n    }\n  }\n\n  mint get(int\
-    \ a, int b) {\n    int c = tree.lca(a, b);\n    mint x1 = get_du(a, c), x2 = get_ud(c,\
-    \ b);\n    int n2 = tree.depth[b] - tree.depth[c];\n    if constexpr (!EDGE) {\
-    \ x1 = x1 * base + dat[c]; }\n    return x1 * pow[n2] + x2;\n  }\n\n  int lcp(int\
-    \ s1, int t1, int s2, int t2) {\n    return lcp_and_comp(s1, t1, s2, t2).fi;\n\
-    \  }\n\n  // <=>\n  char comp(int s1, int t1, int s2, int t2) {\n    return lcp_and_comp(s1,\
-    \ t1, s2, t2).se;\n  }\n\n  pair<int, char> lcp_and_comp(int s1, int t1, int s2,\
-    \ int t2) {\n    int lcp = 0;\n    // heavy path \u306E\u9802\u70B9\u5217\n  \
-    \  auto path1 = tree.get_path_decomposition(s1, t1, EDGE);\n    auto path2 = tree.get_path_decomposition(s2,\
-    \ t2, EDGE);\n    reverse(all(path1));\n    reverse(all(path2));\n    while (len(path1)\
-    \ && len(path2)) {\n      int a, b, c, d;\n      tie(a, b) = POP(path1), tie(c,\
-    \ d) = POP(path2);\n      ll n1 = abs(a - b) + 1, n2 = abs(c - d) + 1;\n     \
-    \ ll n = min(n1, n2);\n      if (n < n1) {\n        if (a <= b) { path1.eb(a +\
-    \ n, b), b = a + n - 1; }\n        if (a > b) { path1.eb(a - n, b), b = a - n\
-    \ + 1; }\n      }\n      if (n < n2) {\n        if (c <= d) { path2.eb(c + n,\
-    \ d), d = c + n - 1; }\n        if (c > d) { path2.eb(c - n, d), d = c - n + 1;\
-    \ }\n      }\n      mint x1 = from_hld_pair(a, b), x2 = from_hld_pair(c, d);\n\
-    \      if (x1 == x2) {\n        lcp += n;\n        continue;\n      }\n      auto\
-    \ check = [&](ll n) -> bool {\n        if (n == 0) return 1;\n        mint x1\
-    \ = (a <= b ? from_hld_pair(a, a + n - 1)\n                          : from_hld_pair(a,\
-    \ a - n + 1));\n        mint x2 = (c <= d ? from_hld_pair(c, c + n - 1)\n    \
-    \                      : from_hld_pair(c, c - n + 1));\n        return x1 == x2;\n\
-    \      };\n      ll k = binary_search(check, 0, n);\n      lcp += k;\n      a\
-    \ = (a <= b ? a + k : a - k);\n      c = (c <= d ? c + k : c - k);\n      a =\
-    \ tree.V[a], c = tree.V[c];\n      if (dat[a] < dat[c]) return {lcp, '<'};\n \
-    \     if (dat[a] == dat[c]) return {lcp, '='};\n      if (dat[a] > dat[c]) return\
-    \ {lcp, '>'};\n    }\n    if (!path1.empty()) return {lcp, '>'};\n    if (!path2.empty())\
-    \ return {lcp, '<'};\n    return {lcp, '='};\n  }\n\nprivate:\n  mint get_ud(int\
-    \ a, int b) {\n    return (a == -1 ? dp1[b]\n                    : dp1[b] - dp1[a]\
+    \ a, int b) {\n    int c = tree.LCA(a, b);\n    mint x1 = get_du(a, c), x2 = get_ud(c,\
+    \ b);\n    int n2 = tree.depth[b] - tree.depth[c];\n    if constexpr (!EDGE) {\n\
+    \      x1 = x1 * base + dat[c];\n    }\n    return x1 * pow[n2] + x2;\n  }\n\n\
+    \  int lcp(int s1, int t1, int s2, int t2) {\n    return lcp_and_comp(s1, t1,\
+    \ s2, t2).fi;\n  }\n\n  // <=>\n  char comp(int s1, int t1, int s2, int t2) {\n\
+    \    return lcp_and_comp(s1, t1, s2, t2).se;\n  }\n\n  pair<int, char> lcp_and_comp(int\
+    \ s1, int t1, int s2, int t2) {\n    int lcp = 0;\n    // heavy path \u306E\u9802\
+    \u70B9\u5217\n    auto path1 = tree.get_path_decomposition(s1, t1, EDGE);\n  \
+    \  auto path2 = tree.get_path_decomposition(s2, t2, EDGE);\n    reverse(all(path1));\n\
+    \    reverse(all(path2));\n    while (len(path1) && len(path2)) {\n      int a,\
+    \ b, c, d;\n      tie(a, b) = POP(path1), tie(c, d) = POP(path2);\n      ll n1\
+    \ = abs(a - b) + 1, n2 = abs(c - d) + 1;\n      ll n = min(n1, n2);\n      if\
+    \ (n < n1) {\n        if (a <= b) {\n          path1.eb(a + n, b), b = a + n -\
+    \ 1;\n        }\n        if (a > b) {\n          path1.eb(a - n, b), b = a - n\
+    \ + 1;\n        }\n      }\n      if (n < n2) {\n        if (c <= d) {\n     \
+    \     path2.eb(c + n, d), d = c + n - 1;\n        }\n        if (c > d) {\n  \
+    \        path2.eb(c - n, d), d = c - n + 1;\n        }\n      }\n      mint x1\
+    \ = from_hld_pair(a, b), x2 = from_hld_pair(c, d);\n      if (x1 == x2) {\n  \
+    \      lcp += n;\n        continue;\n      }\n      auto check = [&](ll n) ->\
+    \ bool {\n        if (n == 0) return 1;\n        mint x1 = (a <= b ? from_hld_pair(a,\
+    \ a + n - 1)\n                          : from_hld_pair(a, a - n + 1));\n    \
+    \    mint x2 = (c <= d ? from_hld_pair(c, c + n - 1)\n                       \
+    \   : from_hld_pair(c, c - n + 1));\n        return x1 == x2;\n      };\n    \
+    \  ll k = binary_search(check, 0, n);\n      lcp += k;\n      a = (a <= b ? a\
+    \ + k : a - k);\n      c = (c <= d ? c + k : c - k);\n      a = tree.V[a], c =\
+    \ tree.V[c];\n      if (dat[a] < dat[c]) return {lcp, '<'};\n      if (dat[a]\
+    \ == dat[c]) return {lcp, '='};\n      if (dat[a] > dat[c]) return {lcp, '>'};\n\
+    \    }\n    if (!path1.empty()) return {lcp, '>'};\n    if (!path2.empty()) return\
+    \ {lcp, '<'};\n    return {lcp, '='};\n  }\n\n private:\n  mint get_ud(int a,\
+    \ int b) {\n    return (a == -1 ? dp1[b]\n                    : dp1[b] - dp1[a]\
     \ * pow[tree.depth[b] - tree.depth[a]]);\n  }\n  mint get_du(int a, int b) {\n\
     \    return (b == -1 ? dp2[a] : (dp2[a] - dp2[b]) * ipow[tree.depth[b] + 1]);\n\
-    \  }\n  mint from_hld_pair(int a, int b) {\n    if (a <= b) { return get_ud(tree.parent[tree.V[a]],\
-    \ tree.V[b]); }\n    return get_du(tree.V[a], tree.parent[tree.V[b]]);\n  }\n\
-    };\n"
+    \  }\n  mint from_hld_pair(int a, int b) {\n    if (a <= b) {\n      return get_ud(tree.parent[tree.V[a]],\
+    \ tree.V[b]);\n    }\n    return get_du(tree.V[a], tree.parent[tree.V[b]]);\n\
+    \  }\n};\n"
   dependsOn:
   - random/base.hpp
   - graph/tree.hpp
@@ -383,8 +387,8 @@ data:
   isVerificationFile: false
   path: graph/ds/rolling_hash_on_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 16:42:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
 documentation_of: graph/ds/rolling_hash_on_tree.hpp

@@ -24,6 +24,9 @@ data:
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   - icon: ':warning:'
+    path: setfunc/boolean_range_add_point_get.hpp
+    title: setfunc/boolean_range_add_point_get.hpp
+  - icon: ':warning:'
     path: setfunc/online/online_or_convolution.hpp
     title: setfunc/online/online_or_convolution.hpp
   - icon: ':warning:'
@@ -32,9 +35,6 @@ data:
   - icon: ':warning:'
     path: setfunc/online/online_subset_zeta.hpp
     title: setfunc/online/online_subset_zeta.hpp
-  - icon: ':warning:'
-    path: setfunc/submask_range_query.hpp
-    title: setfunc/submask_range_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enum_partitions.test.cpp
@@ -125,7 +125,7 @@ data:
   - setfunc/online/online_subset_zeta.hpp
   - setfunc/online/online_subset_mobius.hpp
   - setfunc/online/online_or_convolution.hpp
-  - setfunc/submask_range_query.hpp
+  - setfunc/boolean_range_add_point_get.hpp
   - enumerate/partition.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-08-16 04:03:00+09:00'

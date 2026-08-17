@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/minplus_convolution_of_triples.hpp
     title: convex/minplus_convolution_of_triples.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -145,7 +145,7 @@ data:
     // \u9577\u3055 3 \u306E\u6570\u5217 {a[i][0], a[i][1], a[i][2]} \u305F\u3061\u306E\
     \u7573\u307F\u8FBC\u307F, O(NlogN)\n// \u540C\u7A2E\u306E\u554F\u984C\uFF1A(a_i,b_i)\
     \ \u304C\u3042\u3063\u3066\u3001b_i \u306F a_i \u3092\u53D6\u3063\u3066\u304B\u3089\
-    \u3060\u3051\u53D6\u308C\u308B\ntemplate <typename T>\nstruct MinPlus_Convolution_of_Triples\
+    \u3060\u3051\u53D6\u308C\u308B\ntemplate <typename T>\nstruct Minplus_Convolution_of_Triples\
     \ {\n  int N = 0;\n  T sm0 = 0;\n  vc<array<T, 3>> dat;\n  vc<T> dp1, dp2, dp;\n\
     \  vc<int> I1, I2;\n  bool solved = false;\n\n  void add(T x0, T x1, T x2) { sm0\
     \ += x0, dat.eb(array<T, 3>{x0, x1, x2}); }\n\n  void solve() {\n    solved =\
@@ -153,17 +153,17 @@ data:
     \ b = dat[i][2] - dat[i][1];\n      (a <= b ? I1 : I2).eb(i);\n    };\n    sort(all(I2),\
     \ [&](int i, int j) -> bool {\n      return dat[i][2] - dat[i][0] < dat[j][2]\
     \ - dat[j][0];\n    });\n    solve_1();\n    solve_2();\n    dp = minplus_convolution<T,\
-    \ true, false>(dp1, dp2);\n    for (auto&& x: dp) x += sm0;\n  }\n\n  T operator[](int\
+    \ true, false>(dp1, dp2);\n    for (auto&& x : dp) x += sm0;\n  }\n\n  T operator[](int\
     \ i) { return dp[i]; }\n\n  vc<int> restore(int k) {\n    assert(solved);\n  \
     \  int k1 = -1, k2 = -1;\n    FOR(i, k + 1) {\n      int j = k - i;\n      if\
-    \ (0 <= i && i < len(dp1) && 0 <= j && j < len(dp2)\n          && dp1[i] + dp2[j]\
+    \ (0 <= i && i < len(dp1) && 0 <= j && j < len(dp2) &&\n          dp1[i] + dp2[j]\
     \ + sm0 == dp[k]) {\n        k1 = i, k2 = j;\n        break;\n      }\n    }\n\
     \    assert(k1 != -1 && k2 != -1);\n    vc<int> x(N);\n    vc<int> x1 = restore_1(k1);\n\
     \    vc<int> x2 = restore_2(k2);\n    for (int i = 0; i < N; ++i) x[i] = x1[i]\
-    \ + x2[i];\n    return x;\n  }\n\nprivate:\n  void solve_1() {\n    dp1.reserve(len(I1));\n\
-    \    for (int i: I1) {\n      dp1.eb(dat[i][1] - dat[i][0]), dp1.eb(dat[i][2]\
+    \ + x2[i];\n    return x;\n  }\n\n private:\n  void solve_1() {\n    dp1.reserve(len(I1));\n\
+    \    for (int i : I1) {\n      dp1.eb(dat[i][1] - dat[i][0]), dp1.eb(dat[i][2]\
     \ - dat[i][1]);\n    }\n    sort(all(dp1));\n    dp1 = cumsum<T>(dp1);\n  }\n\n\
-    \  vc<int> restore_1(int k) {\n    vc<pair<T, int>> A;\n    for (int i: I1) {\n\
+    \  vc<int> restore_1(int k) {\n    vc<pair<T, int>> A;\n    for (int i : I1) {\n\
     \      A.eb(dat[i][1] - dat[i][0], i);\n      A.eb(dat[i][2] - dat[i][1], i);\n\
     \    }\n    nth_element(A.begin(), A.begin() + k, A.end());\n    vc<int> x(N);\n\
     \    FOR(i, k) x[A[i].se]++;\n    return x;\n  }\n\n  void solve_2() {\n    //\
@@ -232,8 +232,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/minplus_conv_triple.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-17 16:42:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/minplus_conv_triple.test.cpp
 layout: document

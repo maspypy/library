@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/xor.hpp
     title: alg/monoid/xor.hpp
   - icon: ':heavy_check_mark:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -77,7 +77,7 @@ data:
     \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
     \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
     \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
-    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 5 \"setfunc/submask_range_query.hpp\"\
+    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 5 \"setfunc/boolean_range_add_point_get.hpp\"\
     \n\n// O((4/3)^LOG) per query\ntemplate <typename Monoid>\nstruct Boolean_Range_Add_Point_Get\
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\n  const int\
     \ LOG;\n  vc<X> S;\n  array<u32, 3> mask;\n\n  /*\n  0: [x0,x1]\n  1: [x0+x1,x0]\n\
@@ -144,15 +144,15 @@ data:
   - enumerate/bits.hpp
   - other/bit.hpp
   isVerificationFile: false
-  path: setfunc/submask_range_query.hpp
+  path: setfunc/boolean_range_add_point_get.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 16:42:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: setfunc/submask_range_query.hpp
+documentation_of: setfunc/boolean_range_add_point_get.hpp
 layout: document
 redirect_from:
-- /library/setfunc/submask_range_query.hpp
-- /library/setfunc/submask_range_query.hpp.html
-title: setfunc/submask_range_query.hpp
+- /library/setfunc/boolean_range_add_point_get.hpp
+- /library/setfunc/boolean_range_add_point_get.hpp.html
+title: setfunc/boolean_range_add_point_get.hpp
 ---

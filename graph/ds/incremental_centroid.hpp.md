@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -27,12 +27,12 @@ data:
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -301,8 +301,8 @@ data:
     \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
     \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) {\n    static_assert(HLD);\n\
-    \    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\n    int bc = lca(b,\
-    \ c), bd = lca(b, d), cd = lca(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
     \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
     \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
     \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
@@ -441,7 +441,7 @@ data:
     \n\n// \u6728\u306F\u56FA\u5B9A\u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\
     \u308B\u3002\n// cent: \u91CD\u5FC3\n// max_subtree\ntemplate <typename TREE>\n\
     struct Incremental_Centroid {\n  TREE& tree;\n  int N;\n  int cent;\n  pair<int,\
-    \ int> max_subtree; // (adj, size)\n  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>,\
+    \ int> max_subtree;  // (adj, size)\n  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>,\
     \ 0, 0, 1> TA;\n  FastSet ss;\n\n  Incremental_Centroid(TREE& tree)\n      : tree(tree),\n\
     \        N(tree.N),\n        cent(0),\n        max_subtree(0, 0),\n        wt_sm(0),\n\
     \        TA(tree),\n        ss(N) {}\n\n  int get_subtree_wt(int v) {\n    assert(v\
@@ -452,10 +452,10 @@ data:
     \ cent)) {\n      // v \u65B9\u5411\u306B\u3042\u308B\u91CD\u307F\u306E lca\n\
     \      int a = tree.jump(cent, v, 1);\n      int L = tree.LID[a], R = tree.RID[a];\n\
     \      L = ss.next(L), R = ss.prev(R - 1);\n      int x = tree.V[L], y = tree.V[R];\n\
-    \      return tree.lca(x, y);\n    }\n    int L = tree.LID[cent], R = tree.RID[cent];\n\
+    \      return tree.LCA(x, y);\n    }\n    int L = tree.LID[cent], R = tree.RID[cent];\n\
     \    int x = v;\n    vc<int> I;\n    I.eb(ss.next(0));\n    if (1 < L) I.eb(ss.prev(L\
     \ - 1));\n    if (R < N - 1) I.eb(ss.next(R));\n    I.eb(ss.prev(N - 1));\n  \
-    \  for (auto&& idx: I) {\n      if (idx == -1 || idx == N) continue;\n      if\
+    \  for (auto&& idx : I) {\n      if (idx == -1 || idx == N) continue;\n      if\
     \ (L <= idx && idx < R) continue;\n      int y = tree.V[idx];\n      x = tree.meet(x,\
     \ y, cent);\n    }\n    return x;\n  }\n\n  void add(int v) {\n    ss.insert(tree.LID[v]),\
     \ TA.add(v, 1), wt_sm++;\n    if (v == cent) return;\n    int wt = get_subtree_wt(v);\n\
@@ -467,7 +467,7 @@ data:
     // \u6728\u306F\u56FA\u5B9A\u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\
     \u308B\u3002\n// cent: \u91CD\u5FC3\n// max_subtree\ntemplate <typename TREE>\n\
     struct Incremental_Centroid {\n  TREE& tree;\n  int N;\n  int cent;\n  pair<int,\
-    \ int> max_subtree; // (adj, size)\n  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>,\
+    \ int> max_subtree;  // (adj, size)\n  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>,\
     \ 0, 0, 1> TA;\n  FastSet ss;\n\n  Incremental_Centroid(TREE& tree)\n      : tree(tree),\n\
     \        N(tree.N),\n        cent(0),\n        max_subtree(0, 0),\n        wt_sm(0),\n\
     \        TA(tree),\n        ss(N) {}\n\n  int get_subtree_wt(int v) {\n    assert(v\
@@ -478,10 +478,10 @@ data:
     \ cent)) {\n      // v \u65B9\u5411\u306B\u3042\u308B\u91CD\u307F\u306E lca\n\
     \      int a = tree.jump(cent, v, 1);\n      int L = tree.LID[a], R = tree.RID[a];\n\
     \      L = ss.next(L), R = ss.prev(R - 1);\n      int x = tree.V[L], y = tree.V[R];\n\
-    \      return tree.lca(x, y);\n    }\n    int L = tree.LID[cent], R = tree.RID[cent];\n\
+    \      return tree.LCA(x, y);\n    }\n    int L = tree.LID[cent], R = tree.RID[cent];\n\
     \    int x = v;\n    vc<int> I;\n    I.eb(ss.next(0));\n    if (1 < L) I.eb(ss.prev(L\
     \ - 1));\n    if (R < N - 1) I.eb(ss.next(R));\n    I.eb(ss.prev(N - 1));\n  \
-    \  for (auto&& idx: I) {\n      if (idx == -1 || idx == N) continue;\n      if\
+    \  for (auto&& idx : I) {\n      if (idx == -1 || idx == N) continue;\n      if\
     \ (L <= idx && idx < R) continue;\n      int y = tree.V[idx];\n      x = tree.meet(x,\
     \ y, cent);\n    }\n    return x;\n  }\n\n  void add(int v) {\n    ss.insert(tree.LID[v]),\
     \ TA.add(v, 1), wt_sm++;\n    if (v == cent) return;\n    int wt = get_subtree_wt(v);\n\
@@ -501,8 +501,8 @@ data:
   isVerificationFile: false
   path: graph/ds/incremental_centroid.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 16:42:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2636.test.cpp
 documentation_of: graph/ds/incremental_centroid.hpp

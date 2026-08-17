@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -25,17 +25,17 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -302,8 +302,8 @@ data:
     \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
     \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) {\n    static_assert(HLD);\n\
-    \    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\n    int bc = lca(b,\
-    \ c), bd = lca(b, d), cd = lca(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
     \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
     \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
     \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
@@ -390,75 +390,78 @@ data:
     \    dp1[root] = dp2[root] = dat[0];\n    FOR(i, 1, N) {\n      int v = tree.V[i];\n\
     \      int d = tree.depth[v], p = tree.parent[v];\n      dp1[v] = base * dp1[p]\
     \ + dat[v];\n      dp2[v] = dp2[p] + pow[d] * dat[v];\n    }\n  }\n\n  mint get(int\
-    \ a, int b) {\n    int c = tree.lca(a, b);\n    mint x1 = get_du(a, c), x2 = get_ud(c,\
-    \ b);\n    int n2 = tree.depth[b] - tree.depth[c];\n    if constexpr (!EDGE) {\
-    \ x1 = x1 * base + dat[c]; }\n    return x1 * pow[n2] + x2;\n  }\n\n  int lcp(int\
-    \ s1, int t1, int s2, int t2) {\n    return lcp_and_comp(s1, t1, s2, t2).fi;\n\
-    \  }\n\n  // <=>\n  char comp(int s1, int t1, int s2, int t2) {\n    return lcp_and_comp(s1,\
-    \ t1, s2, t2).se;\n  }\n\n  pair<int, char> lcp_and_comp(int s1, int t1, int s2,\
-    \ int t2) {\n    int lcp = 0;\n    // heavy path \u306E\u9802\u70B9\u5217\n  \
-    \  auto path1 = tree.get_path_decomposition(s1, t1, EDGE);\n    auto path2 = tree.get_path_decomposition(s2,\
-    \ t2, EDGE);\n    reverse(all(path1));\n    reverse(all(path2));\n    while (len(path1)\
-    \ && len(path2)) {\n      int a, b, c, d;\n      tie(a, b) = POP(path1), tie(c,\
-    \ d) = POP(path2);\n      ll n1 = abs(a - b) + 1, n2 = abs(c - d) + 1;\n     \
-    \ ll n = min(n1, n2);\n      if (n < n1) {\n        if (a <= b) { path1.eb(a +\
-    \ n, b), b = a + n - 1; }\n        if (a > b) { path1.eb(a - n, b), b = a - n\
-    \ + 1; }\n      }\n      if (n < n2) {\n        if (c <= d) { path2.eb(c + n,\
-    \ d), d = c + n - 1; }\n        if (c > d) { path2.eb(c - n, d), d = c - n + 1;\
-    \ }\n      }\n      mint x1 = from_hld_pair(a, b), x2 = from_hld_pair(c, d);\n\
-    \      if (x1 == x2) {\n        lcp += n;\n        continue;\n      }\n      auto\
-    \ check = [&](ll n) -> bool {\n        if (n == 0) return 1;\n        mint x1\
-    \ = (a <= b ? from_hld_pair(a, a + n - 1)\n                          : from_hld_pair(a,\
-    \ a - n + 1));\n        mint x2 = (c <= d ? from_hld_pair(c, c + n - 1)\n    \
-    \                      : from_hld_pair(c, c - n + 1));\n        return x1 == x2;\n\
-    \      };\n      ll k = binary_search(check, 0, n);\n      lcp += k;\n      a\
-    \ = (a <= b ? a + k : a - k);\n      c = (c <= d ? c + k : c - k);\n      a =\
-    \ tree.V[a], c = tree.V[c];\n      if (dat[a] < dat[c]) return {lcp, '<'};\n \
-    \     if (dat[a] == dat[c]) return {lcp, '='};\n      if (dat[a] > dat[c]) return\
-    \ {lcp, '>'};\n    }\n    if (!path1.empty()) return {lcp, '>'};\n    if (!path2.empty())\
-    \ return {lcp, '<'};\n    return {lcp, '='};\n  }\n\nprivate:\n  mint get_ud(int\
-    \ a, int b) {\n    return (a == -1 ? dp1[b]\n                    : dp1[b] - dp1[a]\
+    \ a, int b) {\n    int c = tree.LCA(a, b);\n    mint x1 = get_du(a, c), x2 = get_ud(c,\
+    \ b);\n    int n2 = tree.depth[b] - tree.depth[c];\n    if constexpr (!EDGE) {\n\
+    \      x1 = x1 * base + dat[c];\n    }\n    return x1 * pow[n2] + x2;\n  }\n\n\
+    \  int lcp(int s1, int t1, int s2, int t2) {\n    return lcp_and_comp(s1, t1,\
+    \ s2, t2).fi;\n  }\n\n  // <=>\n  char comp(int s1, int t1, int s2, int t2) {\n\
+    \    return lcp_and_comp(s1, t1, s2, t2).se;\n  }\n\n  pair<int, char> lcp_and_comp(int\
+    \ s1, int t1, int s2, int t2) {\n    int lcp = 0;\n    // heavy path \u306E\u9802\
+    \u70B9\u5217\n    auto path1 = tree.get_path_decomposition(s1, t1, EDGE);\n  \
+    \  auto path2 = tree.get_path_decomposition(s2, t2, EDGE);\n    reverse(all(path1));\n\
+    \    reverse(all(path2));\n    while (len(path1) && len(path2)) {\n      int a,\
+    \ b, c, d;\n      tie(a, b) = POP(path1), tie(c, d) = POP(path2);\n      ll n1\
+    \ = abs(a - b) + 1, n2 = abs(c - d) + 1;\n      ll n = min(n1, n2);\n      if\
+    \ (n < n1) {\n        if (a <= b) {\n          path1.eb(a + n, b), b = a + n -\
+    \ 1;\n        }\n        if (a > b) {\n          path1.eb(a - n, b), b = a - n\
+    \ + 1;\n        }\n      }\n      if (n < n2) {\n        if (c <= d) {\n     \
+    \     path2.eb(c + n, d), d = c + n - 1;\n        }\n        if (c > d) {\n  \
+    \        path2.eb(c - n, d), d = c - n + 1;\n        }\n      }\n      mint x1\
+    \ = from_hld_pair(a, b), x2 = from_hld_pair(c, d);\n      if (x1 == x2) {\n  \
+    \      lcp += n;\n        continue;\n      }\n      auto check = [&](ll n) ->\
+    \ bool {\n        if (n == 0) return 1;\n        mint x1 = (a <= b ? from_hld_pair(a,\
+    \ a + n - 1)\n                          : from_hld_pair(a, a - n + 1));\n    \
+    \    mint x2 = (c <= d ? from_hld_pair(c, c + n - 1)\n                       \
+    \   : from_hld_pair(c, c - n + 1));\n        return x1 == x2;\n      };\n    \
+    \  ll k = binary_search(check, 0, n);\n      lcp += k;\n      a = (a <= b ? a\
+    \ + k : a - k);\n      c = (c <= d ? c + k : c - k);\n      a = tree.V[a], c =\
+    \ tree.V[c];\n      if (dat[a] < dat[c]) return {lcp, '<'};\n      if (dat[a]\
+    \ == dat[c]) return {lcp, '='};\n      if (dat[a] > dat[c]) return {lcp, '>'};\n\
+    \    }\n    if (!path1.empty()) return {lcp, '>'};\n    if (!path2.empty()) return\
+    \ {lcp, '<'};\n    return {lcp, '='};\n  }\n\n private:\n  mint get_ud(int a,\
+    \ int b) {\n    return (a == -1 ? dp1[b]\n                    : dp1[b] - dp1[a]\
     \ * pow[tree.depth[b] - tree.depth[a]]);\n  }\n  mint get_du(int a, int b) {\n\
     \    return (b == -1 ? dp2[a] : (dp2[a] - dp2[b]) * ipow[tree.depth[b] + 1]);\n\
-    \  }\n  mint from_hld_pair(int a, int b) {\n    if (a <= b) { return get_ud(tree.parent[tree.V[a]],\
-    \ tree.V[b]); }\n    return get_du(tree.V[a], tree.parent[tree.V[b]]);\n  }\n\
-    };\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct\
-    \ HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\
-    \u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32\
-    \ k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const u64& k) {\n\
-    \    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i]) { used[i]\
-    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\n  Val\
-    \ get(const u64& k, Val default_value) {\n    int i = index(k);\n    return (used[i]\
-    \ ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n    int i =\
-    \ index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key, val)\n  template\
-    \ <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used)) if (used[i])\
-    \ f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
-    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\n    x += FIXED_RANDOM;\n\
-    \    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
-    \    return (x ^ (x >> 31)) & mask;\n  }\n\n  void extend() {\n    vc<pair<u64,\
-    \ Val>> dat;\n    dat.reserve(len(used) / 2 - cap);\n    FOR(i, len(used)) {\n\
-    \      if (used[i]) dat.eb(key[i], val[i]);\n    }\n    build(2 * len(dat));\n\
-    \    for (auto& [a, b]: dat) (*this)[a] = b;\n  }\n};\n#line 2 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
-    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int>\
-    \ MP_FOR_EID;\n  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
-    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
-    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
-    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\
-    \n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \  }\n  mint from_hld_pair(int a, int b) {\n    if (a <= b) {\n      return get_ud(tree.parent[tree.V[a]],\
+    \ tree.V[b]);\n    }\n    return get_du(tree.V[a], tree.parent[tree.V[b]]);\n\
+    \  }\n};\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
+    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
+    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
+    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
+    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
+    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
+    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
+    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
+    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
+    \ key[i] != k; i = (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i])\
+    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
+    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
+    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
+    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
+    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
+    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -689,8 +692,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rolling_hash_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-17 16:42:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rolling_hash_on_tree.test.cpp
 layout: document

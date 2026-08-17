@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -205,8 +205,8 @@ data:
     \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
     \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) {\n    static_assert(HLD);\n\
-    \    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\n    int bc = lca(b,\
-    \ c), bd = lca(b, d), cd = lca(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
     \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
     \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
     \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
@@ -484,8 +484,8 @@ data:
     \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
     \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) {\n    static_assert(HLD);\n\
-    \    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\n    int bc = lca(b,\
-    \ c), bd = lca(b, d), cd = lca(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
     \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
     \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
     \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
@@ -590,19 +590,19 @@ data:
     \      dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n   \
     \ seg.build(dat);\n  }\n\n  int dist(int a, int b) {\n    int c = lca(a, b);\n\
     \    return tree.depth[a] + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  using\
-    \ WT = typename TREE::WT;\n  WT dist_weighted(int a, int b) {\n    int c = lca(a,\
+    \ WT = typename TREE::WT;\n  WT dist_weighted(int a, int b) {\n    int c = LCA(a,\
     \ b);\n    return tree.depth_weighted[a] + tree.depth_weighted[b] -\n        \
-    \   2 * tree.depth_weighted[c];\n  }\n\n  int lca(int a, int b) {\n    int p =\
+    \   2 * tree.depth_weighted[c];\n  }\n\n  int LCA(int a, int b) {\n    int p =\
     \ pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p,\
     \ q + 1)];\n  }\n};\n#line 4 \"graph/compress_tree.hpp\"\n\ntemplate <typename\
     \ TREE>\nstruct Compress_Tree {\n  FastSet FS;\n  TREE& tree;\n  Compress_Tree(TREE&\
     \ tree) : tree(tree) {}\n\n  using GT = typename TREE::Graph_type;\n  using WT\
     \ = typename GT::cost_type;\n\n  pair<vc<int>, GT> compress(vc<int>& V, bool sorted\
     \ = false) {\n    return compress_impl(V, sorted,\n                         [&](int\
-    \ a, int b) -> int { return tree.lca(a, b); });\n  }\n\n  pair<vc<int>, GT> compress_fast(vc<int>&\
+    \ a, int b) -> int { return tree.LCA(a, b); });\n  }\n\n  pair<vc<int>, GT> compress_fast(vc<int>&\
     \ V, Fast_Lca<TREE>& LCA,\n                                  bool sorted = false)\
     \ {\n    return compress_impl(V, sorted,\n                         [&](int a,\
-    \ int b) -> int { return LCA.lca(a, b); });\n  }\n\n  void sort_vertices(vc<int>&\
+    \ int b) -> int { return LCA.LCA(a, b); });\n  }\n\n  void sort_vertices(vc<int>&\
     \ V) {\n    int N = tree.N;\n    if (len(FS) == 0) FS.build(N);\n    for (int\
     \ v : V) FS.insert(tree.LID[v]);\n    int k = 0;\n    FS.enumerate(0, N, [&](int\
     \ i) -> void {\n      FS.erase(i);\n      V[k++] = tree.V[i];\n    });\n  }\n\n\
@@ -628,10 +628,10 @@ data:
     \  Compress_Tree(TREE& tree) : tree(tree) {}\n\n  using GT = typename TREE::Graph_type;\n\
     \  using WT = typename GT::cost_type;\n\n  pair<vc<int>, GT> compress(vc<int>&\
     \ V, bool sorted = false) {\n    return compress_impl(V, sorted,\n           \
-    \              [&](int a, int b) -> int { return tree.lca(a, b); });\n  }\n\n\
+    \              [&](int a, int b) -> int { return tree.LCA(a, b); });\n  }\n\n\
     \  pair<vc<int>, GT> compress_fast(vc<int>& V, Fast_Lca<TREE>& LCA,\n        \
     \                          bool sorted = false) {\n    return compress_impl(V,\
-    \ sorted,\n                         [&](int a, int b) -> int { return LCA.lca(a,\
+    \ sorted,\n                         [&](int a, int b) -> int { return LCA.LCA(a,\
     \ b); });\n  }\n\n  void sort_vertices(vc<int>& V) {\n    int N = tree.N;\n  \
     \  if (len(FS) == 0) FS.build(N);\n    for (int v : V) FS.insert(tree.LID[v]);\n\
     \    int k = 0;\n    FS.enumerate(0, N, [&](int i) -> void {\n      FS.erase(i);\n\
@@ -665,7 +665,7 @@ data:
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-17 16:42:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp

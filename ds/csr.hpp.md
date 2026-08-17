@@ -9,8 +9,8 @@ data:
     path: graph/degree_sequence.hpp
     title: graph/degree_sequence.hpp
   - icon: ':warning:'
-    path: string/enumerate_occurrence.hpp
-    title: string/enumerate_occurrence.hpp
+    path: string/enumerate_occurrences.hpp
+    title: string/enumerate_occurrences.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -51,7 +51,7 @@ data:
   requiredBy:
   - graph/degree_sequence.hpp
   - ds/offline_query/offline_set_intersection.hpp
-  - string/enumerate_occurrence.hpp
+  - string/enumerate_occurrences.hpp
   timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

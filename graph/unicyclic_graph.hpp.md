@@ -4,23 +4,23 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1254.test.cpp
     title: test/3_yukicoder/1254.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -295,8 +295,8 @@ data:
     \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
     \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) {\n    static_assert(HLD);\n\
-    \    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\n    int bc = lca(b,\
-    \ c), bd = lca(b, d), cd = lca(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
     \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
     \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
     \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
@@ -369,11 +369,11 @@ data:
     \ == a);\n      int k = (keep_eid ? eid : -1);\n      G.add(a, b, e.cost, k);\n\
     \    }\n    G.build();\n    Tree<decltype(G)> tree(G, root);\n    return {G, tree};\n\
     \  };\n\n  template <typename TREE>\n  int dist(TREE& tree, int a, int b) {\n\
-    \    int btm = TO[root];\n    int ra = tree.lca(a, btm), rb = tree.lca(b, btm);\n\
+    \    int btm = TO[root];\n    int ra = tree.LCA(a, btm), rb = tree.LCA(b, btm);\n\
     \    int d = abs(tree.depth[ra] - tree.depth[rb]);\n    d = min<int>(d, len(cycle)\
     \ - d);\n    return d + tree.depth[a] + tree.depth[b] - tree.depth[ra] - tree.depth[rb];\n\
     \  }\n\n  template <typename TREE>\n  T dist_weighted(TREE& tree, int a, int b)\
-    \ {\n    int btm = TO[root];\n    int ra = tree.lca(a, btm), rb = tree.lca(b,\
+    \ {\n    int btm = TO[root];\n    int ra = tree.LCA(a, btm), rb = tree.LCA(b,\
     \ btm);\n    vc<T>& D = tree.depth_weighted;\n    T d = abs(D[ra] - D[rb]);\n\
     \    d = min(d, D[btm] + out_cost - d);\n    return d + D[a] + D[b] - D[ra] -\
     \ D[rb];\n  }\n};\n"
@@ -398,11 +398,11 @@ data:
     \ == a);\n      int k = (keep_eid ? eid : -1);\n      G.add(a, b, e.cost, k);\n\
     \    }\n    G.build();\n    Tree<decltype(G)> tree(G, root);\n    return {G, tree};\n\
     \  };\n\n  template <typename TREE>\n  int dist(TREE& tree, int a, int b) {\n\
-    \    int btm = TO[root];\n    int ra = tree.lca(a, btm), rb = tree.lca(b, btm);\n\
+    \    int btm = TO[root];\n    int ra = tree.LCA(a, btm), rb = tree.LCA(b, btm);\n\
     \    int d = abs(tree.depth[ra] - tree.depth[rb]);\n    d = min<int>(d, len(cycle)\
     \ - d);\n    return d + tree.depth[a] + tree.depth[b] - tree.depth[ra] - tree.depth[rb];\n\
     \  }\n\n  template <typename TREE>\n  T dist_weighted(TREE& tree, int a, int b)\
-    \ {\n    int btm = TO[root];\n    int ra = tree.lca(a, btm), rb = tree.lca(b,\
+    \ {\n    int btm = TO[root];\n    int ra = tree.LCA(a, btm), rb = tree.LCA(b,\
     \ btm);\n    vc<T>& D = tree.depth_weighted;\n    T d = abs(D[ra] - D[rb]);\n\
     \    d = min(d, D[btm] + out_cost - d);\n    return d + D[a] + D[b] - D[ra] -\
     \ D[rb];\n  }\n};\n"
@@ -414,8 +414,8 @@ data:
   isVerificationFile: false
   path: graph/unicyclic_graph.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-08-17 16:42:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1254.test.cpp
 documentation_of: graph/unicyclic_graph.hpp

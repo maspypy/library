@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -194,8 +194,8 @@ data:
     \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
     \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) {\n    static_assert(HLD);\n\
-    \    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\n    int bc = lca(b,\
-    \ c), bd = lca(b, d), cd = lca(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
     \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
     \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
     \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
@@ -290,22 +290,22 @@ data:
     \u88C5\u3060\u3068\u96D1\u306A\u91CD\u5FC3\u5206\u89E3\u3088\u308A\u901F\u304B\
     \u3063\u305F.\n// https://codeforces.com/contest/1458/problem/F\ntemplate <typename\
     \ TREE, typename T>\nstruct Distance_Sum {\n  struct Data {\n    T ans, cnt, a,\
-    \ b, c;\n  };\n  static Data rake(Data& L, Data& R) { return {L.ans + R.ans +\
-    \ L.cnt * R.a + R.cnt * L.a, L.cnt + R.cnt, L.a + R.a, L.b + R.a + L.c * R.cnt,\
-    \ L.c}; }\n  static Data compress(Data& L, Data& R) {\n    return {L.ans + R.ans\
-    \ + L.cnt * R.a + R.cnt * L.b, L.cnt + R.cnt, L.a + R.a + R.cnt * L.c, L.b + R.b\
-    \ + L.cnt * R.c, L.c + R.c};\n  }\n  static Data single(T d, T cnt) { return {0,\
-    \ cnt, d * cnt, 0, d}; }\n\n  int N;\n  Static_TopTree<TREE> STT;\n  T ALL_PAIR_SUM\
-    \ = 0;\n  vc<Data> dp;\n  Distance_Sum(TREE& tree) : N(tree.N), STT(tree) {\n\
-    \    dp.assign(2 * N - 1, {0, 0, 0, 0, 0});\n    FOR(v, N) dp[v] = {0, 0, 0, 0,\
-    \ edge_len(v)};\n    FOR(i, N, 2 * N - 2) {\n      Data &L = dp[STT.lch[i]], &R\
-    \ = dp[STT.rch[i]];\n      dp[i] = (STT.is_compress[i] ? compress(L, R) : rake(L,\
+    \ b, c;\n  };\n  static Data rake(Data& L, Data& R) {\n    return {L.ans + R.ans\
+    \ + L.cnt * R.a + R.cnt * L.a, L.cnt + R.cnt, L.a + R.a,\n            L.b + R.a\
+    \ + L.c * R.cnt, L.c};\n  }\n  static Data compress(Data& L, Data& R) {\n    return\
+    \ {L.ans + R.ans + L.cnt * R.a + R.cnt * L.b, L.cnt + R.cnt,\n            L.a\
+    \ + R.a + R.cnt * L.c, L.b + R.b + L.cnt * R.c, L.c + R.c};\n  }\n  static Data\
+    \ single(T d, T cnt) { return {0, cnt, d * cnt, 0, d}; }\n\n  int N;\n  Static_TopTree<TREE>\
+    \ STT;\n  T ALL_PAIR_SUM = 0;\n  vc<Data> dp;\n  Distance_Sum(TREE& tree) : N(tree.N),\
+    \ STT(tree) {\n    dp.assign(2 * N - 1, {0, 0, 0, 0, 0});\n    FOR(v, N) dp[v]\
+    \ = {0, 0, 0, 0, edge_len(v)};\n    FOR(i, N, 2 * N - 2) {\n      Data &L = dp[STT.lch[i]],\
+    \ &R = dp[STT.rch[i]];\n      dp[i] = (STT.is_compress[i] ? compress(L, R) : rake(L,\
     \ R));\n    }\n  }\n  T edge_len(int v) {\n    if (v == 0) return 0;\n    int\
     \ p = STT.tree.parent[v];\n    return STT.tree.depth_weighted[v] - STT.tree.depth_weighted[p];\n\
     \  }\n  void set(int v, T x) {\n    dp[v] = single(edge_len(v), x);\n    for (int\
     \ i = STT.par[v]; i != -1; i = STT.par[i]) {\n      Data &L = dp[STT.lch[i]],\
     \ &R = dp[STT.rch[i]];\n      dp[i] = (STT.is_compress[i] ? compress(L, R) : rake(L,\
-    \ R));\n    }\n  }\n\n  T all_pair_sum() { return dp[2 * N - 2].ans; }\n\n  void\
+    \ R));\n    }\n  }\n\n  T all_pairs_sum() { return dp[2 * N - 2].ans; }\n\n  void\
     \ add(int v, T x) { set(v, dp[v].cnt + x); }\n  T query(int v) {\n    T now =\
     \ dp[2 * N - 2].ans;\n    Data x = single(edge_len(v), dp[v].cnt + 1);\n    while\
     \ (v != 2 * N - 2) {\n      int p = STT.par[v];\n      Data& L = (STT.lch[p] ==\
@@ -318,28 +318,29 @@ data:
     \u308C\u308B.\n// O(logN). \u81EA\u5206\u306E\u5B9F\u88C5\u3060\u3068\u96D1\u306A\
     \u91CD\u5FC3\u5206\u89E3\u3088\u308A\u901F\u304B\u3063\u305F.\n// https://codeforces.com/contest/1458/problem/F\n\
     template <typename TREE, typename T>\nstruct Distance_Sum {\n  struct Data {\n\
-    \    T ans, cnt, a, b, c;\n  };\n  static Data rake(Data& L, Data& R) { return\
-    \ {L.ans + R.ans + L.cnt * R.a + R.cnt * L.a, L.cnt + R.cnt, L.a + R.a, L.b +\
-    \ R.a + L.c * R.cnt, L.c}; }\n  static Data compress(Data& L, Data& R) {\n   \
-    \ return {L.ans + R.ans + L.cnt * R.a + R.cnt * L.b, L.cnt + R.cnt, L.a + R.a\
-    \ + R.cnt * L.c, L.b + R.b + L.cnt * R.c, L.c + R.c};\n  }\n  static Data single(T\
-    \ d, T cnt) { return {0, cnt, d * cnt, 0, d}; }\n\n  int N;\n  Static_TopTree<TREE>\
-    \ STT;\n  T ALL_PAIR_SUM = 0;\n  vc<Data> dp;\n  Distance_Sum(TREE& tree) : N(tree.N),\
-    \ STT(tree) {\n    dp.assign(2 * N - 1, {0, 0, 0, 0, 0});\n    FOR(v, N) dp[v]\
-    \ = {0, 0, 0, 0, edge_len(v)};\n    FOR(i, N, 2 * N - 2) {\n      Data &L = dp[STT.lch[i]],\
-    \ &R = dp[STT.rch[i]];\n      dp[i] = (STT.is_compress[i] ? compress(L, R) : rake(L,\
-    \ R));\n    }\n  }\n  T edge_len(int v) {\n    if (v == 0) return 0;\n    int\
-    \ p = STT.tree.parent[v];\n    return STT.tree.depth_weighted[v] - STT.tree.depth_weighted[p];\n\
-    \  }\n  void set(int v, T x) {\n    dp[v] = single(edge_len(v), x);\n    for (int\
-    \ i = STT.par[v]; i != -1; i = STT.par[i]) {\n      Data &L = dp[STT.lch[i]],\
-    \ &R = dp[STT.rch[i]];\n      dp[i] = (STT.is_compress[i] ? compress(L, R) : rake(L,\
-    \ R));\n    }\n  }\n\n  T all_pair_sum() { return dp[2 * N - 2].ans; }\n\n  void\
-    \ add(int v, T x) { set(v, dp[v].cnt + x); }\n  T query(int v) {\n    T now =\
-    \ dp[2 * N - 2].ans;\n    Data x = single(edge_len(v), dp[v].cnt + 1);\n    while\
-    \ (v != 2 * N - 2) {\n      int p = STT.par[v];\n      Data& L = (STT.lch[p] ==\
-    \ v ? x : dp[STT.lch[p]]);\n      Data& R = (STT.rch[p] == v ? x : dp[STT.rch[p]]);\n\
-    \      x = (STT.is_compress[p] ? compress(L, R) : rake(L, R)), v = p;\n    }\n\
-    \    return x.ans - now;\n  }\n};"
+    \    T ans, cnt, a, b, c;\n  };\n  static Data rake(Data& L, Data& R) {\n    return\
+    \ {L.ans + R.ans + L.cnt * R.a + R.cnt * L.a, L.cnt + R.cnt, L.a + R.a,\n    \
+    \        L.b + R.a + L.c * R.cnt, L.c};\n  }\n  static Data compress(Data& L,\
+    \ Data& R) {\n    return {L.ans + R.ans + L.cnt * R.a + R.cnt * L.b, L.cnt + R.cnt,\n\
+    \            L.a + R.a + R.cnt * L.c, L.b + R.b + L.cnt * R.c, L.c + R.c};\n \
+    \ }\n  static Data single(T d, T cnt) { return {0, cnt, d * cnt, 0, d}; }\n\n\
+    \  int N;\n  Static_TopTree<TREE> STT;\n  T ALL_PAIR_SUM = 0;\n  vc<Data> dp;\n\
+    \  Distance_Sum(TREE& tree) : N(tree.N), STT(tree) {\n    dp.assign(2 * N - 1,\
+    \ {0, 0, 0, 0, 0});\n    FOR(v, N) dp[v] = {0, 0, 0, 0, edge_len(v)};\n    FOR(i,\
+    \ N, 2 * N - 2) {\n      Data &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];\n    \
+    \  dp[i] = (STT.is_compress[i] ? compress(L, R) : rake(L, R));\n    }\n  }\n \
+    \ T edge_len(int v) {\n    if (v == 0) return 0;\n    int p = STT.tree.parent[v];\n\
+    \    return STT.tree.depth_weighted[v] - STT.tree.depth_weighted[p];\n  }\n  void\
+    \ set(int v, T x) {\n    dp[v] = single(edge_len(v), x);\n    for (int i = STT.par[v];\
+    \ i != -1; i = STT.par[i]) {\n      Data &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];\n\
+    \      dp[i] = (STT.is_compress[i] ? compress(L, R) : rake(L, R));\n    }\n  }\n\
+    \n  T all_pairs_sum() { return dp[2 * N - 2].ans; }\n\n  void add(int v, T x)\
+    \ { set(v, dp[v].cnt + x); }\n  T query(int v) {\n    T now = dp[2 * N - 2].ans;\n\
+    \    Data x = single(edge_len(v), dp[v].cnt + 1);\n    while (v != 2 * N - 2)\
+    \ {\n      int p = STT.par[v];\n      Data& L = (STT.lch[p] == v ? x : dp[STT.lch[p]]);\n\
+    \      Data& R = (STT.rch[p] == v ? x : dp[STT.rch[p]]);\n      x = (STT.is_compress[p]\
+    \ ? compress(L, R) : rake(L, R)), v = p;\n    }\n    return x.ans - now;\n  }\n\
+    };"
   dependsOn:
   - graph/ds/static_toptree.hpp
   - graph/tree.hpp
@@ -348,7 +349,7 @@ data:
   isVerificationFile: false
   path: graph/ds/distance_sum.hpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-17 16:42:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/distance_sum.hpp
