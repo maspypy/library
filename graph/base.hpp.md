@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -15,8 +15,8 @@ data:
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':heavy_check_mark:'
-    path: flow/bipartite.hpp
-    title: flow/bipartite.hpp
+    path: flow/bipartite_matching.hpp
+    title: flow/bipartite_matching.hpp
   - icon: ':warning:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
   - icon: ':heavy_check_mark:'
@@ -146,7 +146,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -170,7 +170,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -212,9 +212,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/functional.hpp
     title: graph/functional.hpp
+  - icon: ':x:'
+    path: graph/functional_graph.hpp
+    title: graph/functional_graph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
@@ -251,7 +254,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -308,7 +311,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -344,9 +347,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/unicyclic.hpp
-    title: graph/unicyclic.hpp
+  - icon: ':warning:'
+    path: graph/unicyclic_graph.hpp
+    title: graph/unicyclic_graph.hpp
   - icon: ':heavy_check_mark:'
     path: knapsack/ancestor_closed_set_knapsack.hpp
     title: knapsack/ancestor_closed_set_knapsack.hpp
@@ -432,7 +435,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/outer_planar.test.cpp
     title: test/1_mytest/outer_planar.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -448,17 +451,11 @@ data:
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/scc_tournament.test.cpp
-    title: test/1_mytest/scc_tournament.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tutte.test.cpp
-    title: test/1_mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/manhattan_mst.test.cpp
     title: test/2_library_checker/geometry/manhattan_mst.test.cpp
@@ -582,7 +579,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - icon: ':heavy_check_mark:'
@@ -630,7 +627,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
@@ -642,12 +639,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1254.test.cpp
-    title: test/3_yukicoder/1254.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1293.test.cpp
     title: test/3_yukicoder/1293.test.cpp
@@ -706,9 +700,6 @@ data:
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1744.test.cpp
-    title: test/3_yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1745.test.cpp
     title: test/3_yukicoder/1745.test.cpp
   - icon: ':heavy_check_mark:'
@@ -756,7 +747,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1983.test.cpp
     title: test/3_yukicoder/1983.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -807,9 +798,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/590.test.cpp
-    title: test/3_yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
@@ -873,9 +861,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -1082,6 +1070,7 @@ data:
   - graph/fast_lca.hpp
   - graph/reverse_graph.hpp
   - graph/find_path_through_specified.hpp
+  - graph/functional_graph.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/find_odd_cycle.hpp
   - graph/to_directed_tree.hpp
@@ -1138,9 +1127,9 @@ data:
   - graph/tree.hpp
   - graph/directed_mst.hpp
   - graph/dominator_tree.hpp
+  - graph/unicyclic_graph.hpp
   - graph/tree_diameter.hpp
   - graph/maximum_independent_set.hpp
-  - graph/unicyclic.hpp
   - graph/prufer_code.hpp
   - graph/dag_path_cover.hpp
   - graph/bipartite_edge_coloring.hpp
@@ -1175,19 +1164,18 @@ data:
   - enumerate/triangle.hpp
   - flow/k_ary_optimization.hpp
   - flow/binary_optimization.hpp
+  - flow/bipartite_matching.hpp
   - flow/maxflow.hpp
   - flow/rank_maximal_bipartite_matching.hpp
   - flow/longest_shortest_path.hpp
-  - flow/bipartite.hpp
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
-  - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
@@ -1206,7 +1194,6 @@ data:
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/find_cycle_minimum.test.cpp
-  - test/1_mytest/tutte.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
@@ -1290,7 +1277,6 @@ data:
   - test/3_yukicoder/1320.test.cpp
   - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/2361.test.cpp
-  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1976.test.cpp
   - test/3_yukicoder/1216.test.cpp
   - test/3_yukicoder/2595.test.cpp
@@ -1319,10 +1305,8 @@ data:
   - test/3_yukicoder/17.test.cpp
   - test/3_yukicoder/2258.test.cpp
   - test/3_yukicoder/1641.test.cpp
-  - test/3_yukicoder/1254.test.cpp
   - test/3_yukicoder/1745.test.cpp
   - test/3_yukicoder/2507.test.cpp
-  - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1541.test.cpp
   - test/3_yukicoder/1211.test.cpp
   - test/3_yukicoder/529.test.cpp

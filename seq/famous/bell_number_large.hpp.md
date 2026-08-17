@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   _extendedRequiredBy: []
@@ -925,13 +925,13 @@ data:
     \ 16 ? coef_of_rational_fps_small(P, Q, N)\r\n                    : coef_of_rational_fps_convolution(P,\
     \ Q, N));\r\n  return base + x;\r\n}\n#line 2 \"seq/famous/bell_number_large.hpp\"\
     \n\n// Bell \u6570 B_n \u306E\u8A08\u7B97\u3002O(p logp logn)\ntemplate <typename\
-    \ mint>\nmint Bell_Number_large(ll n) {\n  int p = mint::get_mod();\n  vc<mint>\
+    \ mint>\nmint bell_number_large(ll n) {\n  int p = mint::get_mod();\n  vc<mint>\
     \ f(p);\n  FOR(i, p) f[i] = fact_inv<mint>(i);\n  f[0] = 0;\n  f = fps_exp(f);\n\
     \  FOR(i, p) f[i] *= fact<mint>(i);\n  vc<mint> g(p + 1);\n  g[0] = 1;\n  g[p\
     \ - 1] = -1;\n  g[p] = -1;\n  f = convolution(f, g);\n  f.resize(p);\n  return\
     \ coef_of_rational_fps<mint>(f, g, n);\n}\n"
   code: "#include \"poly/coef_of_rational_fps.hpp\"\n\n// Bell \u6570 B_n \u306E\u8A08\
-    \u7B97\u3002O(p logp logn)\ntemplate <typename mint>\nmint Bell_Number_large(ll\
+    \u7B97\u3002O(p logp logn)\ntemplate <typename mint>\nmint bell_number_large(ll\
     \ n) {\n  int p = mint::get_mod();\n  vc<mint> f(p);\n  FOR(i, p) f[i] = fact_inv<mint>(i);\n\
     \  f[0] = 0;\n  f = fps_exp(f);\n  FOR(i, p) f[i] *= fact<mint>(i);\n  vc<mint>\
     \ g(p + 1);\n  g[0] = 1;\n  g[p - 1] = -1;\n  g[p] = -1;\n  f = convolution(f,\
@@ -955,7 +955,7 @@ data:
   isVerificationFile: false
   path: seq/famous/bell_number_large.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 10:29:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/bell.test.cpp

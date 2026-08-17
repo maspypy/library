@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
@@ -9,8 +9,8 @@ data:
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
   - icon: ':heavy_check_mark:'
-    path: flow/bipartite_dense.hpp
-    title: flow/bipartite_dense.hpp
+    path: flow/bipartite_matching_dense.hpp
+    title: flow/bipartite_matching_dense.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bitset/bfs_bitset.hpp
     title: graph/bitset/bfs_bitset.hpp
@@ -439,7 +439,7 @@ data:
   - graph/bitset/transitive_reduction.hpp
   - graph/bitset/transitive_closure.hpp
   - ds/sum_over_bit_positions.hpp
-  - flow/bipartite_dense.hpp
+  - flow/bipartite_matching_dense.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC

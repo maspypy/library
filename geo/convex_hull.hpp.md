@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -23,20 +23,20 @@ data:
   - icon: ':warning:'
     path: convex/lower_integer_hull.hpp
     title: convex/lower_integer_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/convex_polygon_side.test.cpp
     title: test/1_mytest/convex_polygon_side.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,21 +48,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"geo/convex_hull.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
@@ -122,16 +122,38 @@ data:
     \ <= r * r;\n  }\n};\n#line 3 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\
     \u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\
     \n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate\
-    \ <typename T, bool allow_180 = false>\nvector<int> ConvexHull(vector<Point<T>>&\
-    \ XY, string mode = \"full\", bool sorted = false) {\n  assert(mode == \"full\"\
-    \ || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N ==\
-    \ 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n   \
-    \ if (XY[1] < XY[0]) return {1, 0};\n    return {0};\n  }\n  vc<int> I(N);\n \
-    \ if (sorted) {\n    FOR(i, N) I[i] = i;\n  } else {\n    I = argsort(XY);\n \
-    \ }\n  if constexpr (allow_180) { FOR(i, N - 1) assert(XY[i] != XY[i + 1]); }\n\
-    \n  auto check = [&](ll i, ll j, ll k) -> bool {\n    T det = (XY[j] - XY[i]).det(XY[k]\
+    \ <typename T, bool allow_180 = false>\nvector<int> Convex_Hull(vector<Point<T>>&\
+    \ XY, string mode = \"full\",\n                        bool sorted = false) {\n\
+    \  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N\
+    \ = XY.size();\n  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1])\
+    \ return {0, 1};\n    if (XY[1] < XY[0]) return {1, 0};\n    return {0};\n  }\n\
+    \  vc<int> I(N);\n  if (sorted) {\n    FOR(i, N) I[i] = i;\n  } else {\n    I\
+    \ = argsort(XY);\n  }\n  if constexpr (allow_180) {\n    FOR(i, N - 1) assert(XY[i]\
+    \ != XY[i + 1]);\n  }\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    T\
+    \ det = (XY[j] - XY[i]).det(XY[k] - XY[i]);\n    if constexpr (allow_180) return\
+    \ det >= 0;\n    return det > T(0);\n  };\n\n  auto calc = [&]() {\n    vector<int>\
+    \ P;\n    for (auto&& k : I) {\n      while (P.size() > 1) {\n        auto i =\
+    \ P[P.size() - 2];\n        auto j = P[P.size() - 1];\n        if (check(i, j,\
+    \ k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n    }\n    return\
+    \ P;\n  };\n\n  vc<int> P;\n  if (mode == \"full\" || mode == \"lower\") {\n \
+    \   vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
+    full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n    reverse(all(I));\n\
+    \    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
+    upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n\
+    \  return P;\n}\n"
+  code: "\n#include \"geo/base.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\
+    \u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\n// full \u306A\u3089\
+    \ I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate <typename T, bool\
+    \ allow_180 = false>\nvector<int> Convex_Hull(vector<Point<T>>& XY, string mode\
+    \ = \"full\",\n                        bool sorted = false) {\n  assert(mode ==\
+    \ \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n\
+    \  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0,\
+    \ 1};\n    if (XY[1] < XY[0]) return {1, 0};\n    return {0};\n  }\n  vc<int>\
+    \ I(N);\n  if (sorted) {\n    FOR(i, N) I[i] = i;\n  } else {\n    I = argsort(XY);\n\
+    \  }\n  if constexpr (allow_180) {\n    FOR(i, N - 1) assert(XY[i] != XY[i + 1]);\n\
+    \  }\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    T det = (XY[j] - XY[i]).det(XY[k]\
     \ - XY[i]);\n    if constexpr (allow_180) return det >= 0;\n    return det > T(0);\n\
-    \  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&& k: I) {\n\
+    \  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&& k : I) {\n\
     \      while (P.size() > 1) {\n        auto i = P[P.size() - 2];\n        auto\
     \ j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n        P.pop_back();\n\
     \      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode\
@@ -139,28 +161,7 @@ data:
     \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
     \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
     \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >=\
-    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n"
-  code: "\n#include \"geo/base.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\
-    \u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\n// full \u306A\u3089\
-    \ I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate <typename T, bool\
-    \ allow_180 = false>\nvector<int> ConvexHull(vector<Point<T>>& XY, string mode\
-    \ = \"full\", bool sorted = false) {\n  assert(mode == \"full\" || mode == \"\
-    lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N == 1) return {0};\n\
-    \  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n    if (XY[1] < XY[0])\
-    \ return {1, 0};\n    return {0};\n  }\n  vc<int> I(N);\n  if (sorted) {\n   \
-    \ FOR(i, N) I[i] = i;\n  } else {\n    I = argsort(XY);\n  }\n  if constexpr (allow_180)\
-    \ { FOR(i, N - 1) assert(XY[i] != XY[i + 1]); }\n\n  auto check = [&](ll i, ll\
-    \ j, ll k) -> bool {\n    T det = (XY[j] - XY[i]).det(XY[k] - XY[i]);\n    if\
-    \ constexpr (allow_180) return det >= 0;\n    return det > T(0);\n  };\n\n  auto\
-    \ calc = [&]() {\n    vector<int> P;\n    for (auto&& k: I) {\n      while (P.size()\
-    \ > 1) {\n        auto i = P[P.size() - 2];\n        auto j = P[P.size() - 1];\n\
-    \        if (check(i, j, k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n\
-    \    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode == \"full\" || mode ==\
-    \ \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n\
-    \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
-    \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
-    \  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]]\
-    \ == XY[P.back()]) P.pop_back();\n  return P;\n}"
+    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
@@ -175,8 +176,8 @@ data:
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
   - convex/fenchel.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 10:29:39+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp

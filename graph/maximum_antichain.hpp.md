@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
-    path: flow/bipartite.hpp
-    title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+    path: flow/bipartite_matching.hpp
+    title: flow/bipartite_matching.hpp
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -364,14 +364,14 @@ data:
     \ edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n\
     \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
     \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}\n#line 4 \"flow/bipartite.hpp\"\n\r\ntemplate <typename GT>\r\nstruct\
-    \ BipartiteMatching {\r\n  int N;\r\n  GT& G;\r\n  vc<int> color;\r\n  vc<int>\
-    \ dist, match;\r\n  vc<int> vis;\r\n\r\n  BipartiteMatching(GT& G) : N(G.N), G(G),\
-    \ dist(G.N, -1), match(G.N, -1) {\r\n    color = bipartite_vertex_coloring(G);\r\
+    \ DAG;\n}\n#line 4 \"flow/bipartite_matching.hpp\"\n\r\ntemplate <typename GT>\r\
+    \nstruct Bipartite_Matching {\r\n  int N;\r\n  GT& G;\r\n  vc<int> color;\r\n\
+    \  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n  Bipartite_Matching(GT& G) :\
+    \ N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n    color = bipartite_vertex_coloring(G);\r\
     \n    if (N > 0) assert(!color.empty());\r\n    while (1) {\r\n      bfs();\r\n\
     \      vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
     \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
-    \  }\r\n\r\n  BipartiteMatching(GT& G, vc<int> color)\r\n      : N(G.N), G(G),\
+    \  }\r\n\r\n  Bipartite_Matching(GT& G, vc<int> color)\r\n      : N(G.N), G(G),\
     \ color(color), dist(G.N, -1), match(G.N, -1) {\r\n    while (1) {\r\n      bfs();\r\
     \n      vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
     \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
@@ -435,23 +435,23 @@ data:
     graph/maximum_antichain.hpp\"\n\n// \u6BD4\u8F03\u53EF\u80FD\u30B0\u30E9\u30D5\
     \u3092\u4E0E\u3048\u308B\u3002DAG \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\u3002\
     \ntemplate <typename GT>\nvc<int> maximum_antichain(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  int n = G.N;\n\n  Graph H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm,\
-    \ e.to + n); }\n  H.build();\n  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n\
+    \  int n = G.N;\n\n  Graph H(n + n);\n  for (auto&& e : G.edges) {\n    H.add(e.frm,\
+    \ e.to + n);\n  }\n  H.build();\n  Bipartite_Matching BM(H);\n  auto cover = BM.vertex_cover();\n\
     \  auto match = BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool>\
-    \ ok(n, 1);\n  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n\
-    \  FOR(v, n) if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm]\
-    \ || !ok[e.to]); }\n  return antichain;\n}\n"
-  code: "#include \"flow/bipartite.hpp\"\n\n// \u6BD4\u8F03\u53EF\u80FD\u30B0\u30E9\
-    \u30D5\u3092\u4E0E\u3048\u308B\u3002DAG \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\
-    \u3002\ntemplate <typename GT>\nvc<int> maximum_antichain(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  int n = G.N;\n\n  Graph H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm,\
-    \ e.to + n); }\n  H.build();\n  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n\
+    \ ok(n, 1);\n  for (auto&& v : cover) {\n    ok[v % n] = 0;\n  }\n  vc<int> antichain;\n\
+    \  FOR(v, n) if (ok[v]) antichain.eb(v);\n  for (auto&& e : G.edges) {\n    assert(!ok[e.frm]\
+    \ || !ok[e.to]);\n  }\n  return antichain;\n}\n"
+  code: "#include \"flow/bipartite_matching.hpp\"\n\n// \u6BD4\u8F03\u53EF\u80FD\u30B0\
+    \u30E9\u30D5\u3092\u4E0E\u3048\u308B\u3002DAG \u306A\u3060\u3051\u3067\u306F\u30C0\
+    \u30E1\u3002\ntemplate <typename GT>\nvc<int> maximum_antichain(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  int n = G.N;\n\n  Graph H(n + n);\n  for (auto&& e : G.edges) {\n    H.add(e.frm,\
+    \ e.to + n);\n  }\n  H.build();\n  Bipartite_Matching BM(H);\n  auto cover = BM.vertex_cover();\n\
     \  auto match = BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool>\
-    \ ok(n, 1);\n  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n\
-    \  FOR(v, n) if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm]\
-    \ || !ok[e.to]); }\n  return antichain;\n}"
+    \ ok(n, 1);\n  for (auto&& v : cover) {\n    ok[v % n] = 0;\n  }\n  vc<int> antichain;\n\
+    \  FOR(v, n) if (ok[v]) antichain.eb(v);\n  for (auto&& e : G.edges) {\n    assert(!ok[e.frm]\
+    \ || !ok[e.to]);\n  }\n  return antichain;\n}"
   dependsOn:
-  - flow/bipartite.hpp
+  - flow/bipartite_matching.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
   - graph/bipartite_vertex_coloring.hpp
@@ -460,7 +460,7 @@ data:
   isVerificationFile: false
   path: graph/maximum_antichain.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 10:29:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2251_2.test.cpp

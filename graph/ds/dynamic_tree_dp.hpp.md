@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1172/problem/E
@@ -293,28 +293,29 @@ data:
     // https://codeforces.com/contest/1942/problem/H\n// single(v) : v \u3068\u305D\
     \u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n// rake(L,R)\
     \ : L \u306E boundary \u3092\u7DAD\u6301\n// compress(L,R)  (top-down) \u9806\u306B\
-    \ L,R\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Tree_Dp {\n\
+    \ L,R\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Tree_DP {\n\
     \  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n  vc<X>\
-    \ dp;\n\n  template <typename F>\n  Dynamic_Tree_Dp(TREE& tree, F single) : STT(tree)\
+    \ dp;\n\n  template <typename F>\n  Dynamic_Tree_DP(TREE& tree, F single) : STT(tree)\
     \ {\n    int N = tree.N;\n    dp.resize(2 * N - 1);\n    FOR(i, N) dp[i] = single(i);\n\
     \    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n  void set(int v, X x) {\n    dp[v]\
     \ = x;\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) update(i);\n  }\n\
-    \n  X prod_all() { return dp.back(); }\n\nprivate:\n  inline void update(int i)\
-    \ {\n    X &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];\n    dp[i] = (STT.is_compress[i]\
-    \ ? TREE_DP::compress(L, R) : TREE_DP::rake(L, R));\n  }\n};\n"
+    \n  X prod_all() { return dp.back(); }\n\n private:\n  inline void update(int\
+    \ i) {\n    X &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];\n    dp[i] =\n       \
+    \ (STT.is_compress[i] ? TREE_DP::compress(L, R) : TREE_DP::rake(L, R));\n  }\n\
+    };\n"
   code: "#include \"graph/ds/static_toptree.hpp\"\n\n// reroot \u3067\u304D\u306A\u3044\
     \u7C21\u6613\u7248\n// https://codeforces.com/contest/1172/problem/E\n// https://codeforces.com/contest/1942/problem/H\n\
     // single(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\
     \u30E9\u30B9\u30BF\n// rake(L,R) : L \u306E boundary \u3092\u7DAD\u6301\n// compress(L,R)\
     \  (top-down) \u9806\u306B L,R\ntemplate <typename TREE, typename TREE_DP>\nstruct\
-    \ Dynamic_Tree_Dp {\n  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE>\
-    \ STT;\n  vc<X> dp;\n\n  template <typename F>\n  Dynamic_Tree_Dp(TREE& tree,\
+    \ Dynamic_Tree_DP {\n  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE>\
+    \ STT;\n  vc<X> dp;\n\n  template <typename F>\n  Dynamic_Tree_DP(TREE& tree,\
     \ F single) : STT(tree) {\n    int N = tree.N;\n    dp.resize(2 * N - 1);\n  \
     \  FOR(i, N) dp[i] = single(i);\n    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n\
     \  void set(int v, X x) {\n    dp[v] = x;\n    for (int i = STT.par[v]; i != -1;\
     \ i = STT.par[i]) update(i);\n  }\n\n  X prod_all() { return dp.back(); }\n\n\
-    private:\n  inline void update(int i) {\n    X &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];\n\
-    \    dp[i] = (STT.is_compress[i] ? TREE_DP::compress(L, R) : TREE_DP::rake(L,\
+    \ private:\n  inline void update(int i) {\n    X &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];\n\
+    \    dp[i] =\n        (STT.is_compress[i] ? TREE_DP::compress(L, R) : TREE_DP::rake(L,\
     \ R));\n  }\n};"
   dependsOn:
   - graph/ds/static_toptree.hpp
@@ -324,8 +325,8 @@ data:
   isVerificationFile: false
   path: graph/ds/dynamic_tree_dp.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 10:29:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
 documentation_of: graph/ds/dynamic_tree_dp.hpp

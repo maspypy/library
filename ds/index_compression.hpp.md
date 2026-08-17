@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: ds/offline_query/coeffient_query_2d.hpp
-    title: ds/offline_query/coeffient_query_2d.hpp
+    path: ds/offline_query/coefficient_query_2d.hpp
+    title: ds/offline_query/coefficient_query_2d.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
@@ -21,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
-    title: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
@@ -138,12 +135,11 @@ data:
   requiredBy:
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - ds/offline_query/coeffient_query_2d.hpp
+  - ds/offline_query/coefficient_query_2d.hpp
   timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/index_compression.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp

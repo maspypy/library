@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/offline_query/coeffient_query_2d.hpp
-    title: ds/offline_query/coeffient_query_2d.hpp
+    path: ds/offline_query/coefficient_query_2d.hpp
+    title: ds/offline_query/coefficient_query_2d.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':question:'
@@ -391,7 +391,7 @@ data:
     \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
     \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
     \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 3 \"ds/offline_query/coeffient_query_2d.hpp\"\n\n// A, B\uFF1A\
+    \  }\n};\n#line 3 \"ds/offline_query/coefficient_query_2d.hpp\"\n\n// A, B\uFF1A\
     \u5B9A\u6570\n// \u5EA7\u6A19\u306F ll \u3067\u4FC2\u6570\u306F T\n// Sparse Laurent\
     \ Polynomial f(x,y) \u3092\u4E0E\u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B\
     \ \u3092\u305F\u304F\u3055\u3093\u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\
@@ -574,7 +574,7 @@ data:
   - my_template.hpp
   - other/io.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - ds/offline_query/coeffient_query_2d.hpp
+  - ds/offline_query/coefficient_query_2d.hpp
   - ds/index_compression.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - other/bit.hpp
@@ -584,7 +584,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 10:35:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp

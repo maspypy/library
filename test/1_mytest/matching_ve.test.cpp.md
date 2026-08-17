@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
-    path: flow/bipartite.hpp
-    title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+    path: flow/bipartite_matching.hpp
+    title: flow/bipartite_matching.hpp
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -476,14 +476,14 @@ data:
     \ edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n\
     \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
     \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}\n#line 4 \"flow/bipartite.hpp\"\n\r\ntemplate <typename GT>\r\nstruct\
-    \ BipartiteMatching {\r\n  int N;\r\n  GT& G;\r\n  vc<int> color;\r\n  vc<int>\
-    \ dist, match;\r\n  vc<int> vis;\r\n\r\n  BipartiteMatching(GT& G) : N(G.N), G(G),\
-    \ dist(G.N, -1), match(G.N, -1) {\r\n    color = bipartite_vertex_coloring(G);\r\
+    \ DAG;\n}\n#line 4 \"flow/bipartite_matching.hpp\"\n\r\ntemplate <typename GT>\r\
+    \nstruct Bipartite_Matching {\r\n  int N;\r\n  GT& G;\r\n  vc<int> color;\r\n\
+    \  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n  Bipartite_Matching(GT& G) :\
+    \ N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n    color = bipartite_vertex_coloring(G);\r\
     \n    if (N > 0) assert(!color.empty());\r\n    while (1) {\r\n      bfs();\r\n\
     \      vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
     \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
-    \  }\r\n\r\n  BipartiteMatching(GT& G, vc<int> color)\r\n      : N(G.N), G(G),\
+    \  }\r\n\r\n  Bipartite_Matching(GT& G, vc<int> color)\r\n      : N(G.N), G(G),\
     \ color(color), dist(G.N, -1), match(G.N, -1) {\r\n    while (1) {\r\n      bfs();\r\
     \n      vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
     \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
@@ -734,27 +734,27 @@ data:
     \ (auto& [a, b] : E) {\n    a = label[a], b = label[b];\n    if (RNG(0, 2)) swap(a,\
     \ b);\n  }\n  shuffle(E);\n  return E;\n}\n#line 7 \"test/1_mytest/matching_ve.test.cpp\"\
     \n\nvoid test() {\n  FOR(N, 50) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n\
-    \      for (auto& [a, b]: random_graph<0>(N, false)) G.add(a, b);\n      G.build();\n\
-    \      Graph<int, 0> VE(G.N + G.M);\n      for (auto& e: G.edges) {\n        VE.add(e.frm,\
-    \ N + e.id);\n        VE.add(e.to, N + e.id);\n      }\n      VE.build();\n  \
-    \    BipartiteMatching<decltype(G)> BM(VE);\n      int n = len(BM.matching());\n\
+    \      for (auto& [a, b] : random_graph<0>(N, false)) G.add(a, b);\n      G.build();\n\
+    \      Graph<int, 0> VE(G.N + G.M);\n      for (auto& e : G.edges) {\n       \
+    \ VE.add(e.frm, N + e.id);\n        VE.add(e.to, N + e.id);\n      }\n      VE.build();\n\
+    \      Bipartite_Matching<decltype(G)> BM(VE);\n      int n = len(BM.matching());\n\
     \n      auto match = maximum_matching_between_vertex_edge(G);\n      assert(len(match)\
-    \ == n);\n      vc<int> used_v(N), used_e(G.M);\n      for (auto& [v, e]: match)\
+    \ == n);\n      vc<int> used_v(N), used_e(G.M);\n      for (auto& [v, e] : match)\
     \ {\n        assert(!used_v[v]);\n        assert(!used_e[e]);\n        used_v[v]\
     \ = used_e[e] = 1;\n        auto& eg = G.edges[e];\n        assert(eg.frm == v\
     \ || eg.to == v);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
     \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
     \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"graph/maximum_matching_between_vertex_edge.hpp\"\n#include \"flow/bipartite.hpp\"\
+    \n\n#include \"graph/maximum_matching_between_vertex_edge.hpp\"\n#include \"flow/bipartite_matching.hpp\"\
     \n#include \"random/random_graph.hpp\"\n\nvoid test() {\n  FOR(N, 50) {\n    FOR(100)\
-    \ {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N, false))\
+    \ {\n      Graph<int, 0> G(N);\n      for (auto& [a, b] : random_graph<0>(N, false))\
     \ G.add(a, b);\n      G.build();\n      Graph<int, 0> VE(G.N + G.M);\n      for\
-    \ (auto& e: G.edges) {\n        VE.add(e.frm, N + e.id);\n        VE.add(e.to,\
-    \ N + e.id);\n      }\n      VE.build();\n      BipartiteMatching<decltype(G)>\
+    \ (auto& e : G.edges) {\n        VE.add(e.frm, N + e.id);\n        VE.add(e.to,\
+    \ N + e.id);\n      }\n      VE.build();\n      Bipartite_Matching<decltype(G)>\
     \ BM(VE);\n      int n = len(BM.matching());\n\n      auto match = maximum_matching_between_vertex_edge(G);\n\
     \      assert(len(match) == n);\n      vc<int> used_v(N), used_e(G.M);\n     \
-    \ for (auto& [v, e]: match) {\n        assert(!used_v[v]);\n        assert(!used_e[e]);\n\
+    \ for (auto& [v, e] : match) {\n        assert(!used_v[v]);\n        assert(!used_e[e]);\n\
     \        used_v[v] = used_e[e] = 1;\n        auto& eg = G.edges[e];\n        assert(eg.frm\
     \ == v || eg.to == v);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
     \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
@@ -762,7 +762,7 @@ data:
   dependsOn:
   - my_template.hpp
   - graph/maximum_matching_between_vertex_edge.hpp
-  - flow/bipartite.hpp
+  - flow/bipartite_matching.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
   - graph/bipartite_vertex_coloring.hpp
@@ -774,7 +774,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/matching_ve.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 10:29:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/matching_ve.test.cpp

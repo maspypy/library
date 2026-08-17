@@ -2,17 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/count_unbordered_string.test.cpp
-    title: test/1_mytest/count_unbordered_string.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://oeis.org/A003000
-  bundledCode: "#line 1 \"string/count_unborderd_string.hpp\"\n\n// O(N) time\n//\
+  bundledCode: "#line 1 \"string/count_unbordered_string.hpp\"\n\n// O(N) time\n//\
     \ https://oeis.org/A003000\ntemplate <typename mint>\nvc<mint> count_unbordered_string(int\
     \ N, int sigma) {\n  // \u5168\u4F53\u304B\u3089 border \u3092\u6301\u3064\u3082\
     \u306E\u3092\u5F15\u304F, minimum border = unbordered\n  // vc<mint> dp(N + 1);\n\
@@ -32,16 +29,15 @@ data:
     }\n"
   dependsOn: []
   isVerificationFile: false
-  path: string/count_unborderd_string.hpp
+  path: string/count_unbordered_string.hpp
   requiredBy: []
-  timestamp: '2024-08-18 02:41:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/count_unbordered_string.test.cpp
-documentation_of: string/count_unborderd_string.hpp
+  timestamp: '2026-08-17 10:29:39+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: string/count_unbordered_string.hpp
 layout: document
 redirect_from:
-- /library/string/count_unborderd_string.hpp
-- /library/string/count_unborderd_string.hpp.html
-title: string/count_unborderd_string.hpp
+- /library/string/count_unbordered_string.hpp
+- /library/string/count_unbordered_string.hpp.html
+title: string/count_unbordered_string.hpp
 ---

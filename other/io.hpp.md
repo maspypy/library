@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod4.test.cpp
     title: test/1_mytest/primesum_mod4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/reeds_sloane.test.cpp
     title: test/1_mytest/reeds_sloane.test.cpp
   - icon: ':heavy_check_mark:'
@@ -247,9 +247,6 @@ data:
     path: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
-    title: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
@@ -369,7 +366,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -381,7 +378,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
   - icon: ':heavy_check_mark:'
@@ -837,7 +834,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - icon: ':heavy_check_mark:'
@@ -939,7 +936,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1201.test.cpp
     title: test/3_yukicoder/1201.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
@@ -957,12 +954,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1240.test.cpp
     title: test/3_yukicoder/1240.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1254.test.cpp
-    title: test/3_yukicoder/1254.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1260.test.cpp
     title: test/3_yukicoder/1260.test.cpp
@@ -1201,9 +1195,6 @@ data:
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1744.test.cpp
-    title: test/3_yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1745.test.cpp
     title: test/3_yukicoder/1745.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1386,7 +1377,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2120.test.cpp
     title: test/3_yukicoder/2120.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1785,7 +1776,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_12_B.test.cpp
     title: test/4_aoj/ALDS1_12_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2281,7 +2272,6 @@ data:
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   - test/2_library_checker/data_structure/unionfind.test.cpp
   - test/2_library_checker/data_structure/add_remove_query.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
@@ -2723,7 +2713,6 @@ data:
   - test/3_yukicoder/2258.test.cpp
   - test/3_yukicoder/1036_4.test.cpp
   - test/3_yukicoder/1641.test.cpp
-  - test/3_yukicoder/1254.test.cpp
   - test/3_yukicoder/1783.test.cpp
   - test/3_yukicoder/2026.test.cpp
   - test/3_yukicoder/3314.test.cpp
@@ -2732,7 +2721,6 @@ data:
   - test/3_yukicoder/421_2.test.cpp
   - test/3_yukicoder/1435.test.cpp
   - test/3_yukicoder/465.test.cpp
-  - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1541.test.cpp
   - test/3_yukicoder/1844.test.cpp
   - test/3_yukicoder/2907_2.test.cpp

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: flow/bipartite.hpp
-    title: flow/bipartite.hpp
+    path: flow/bipartite_matching.hpp
+    title: flow/bipartite_matching.hpp
   - icon: ':heavy_check_mark:'
     path: flow/rank_maximal_bipartite_matching.hpp
     title: flow/rank_maximal_bipartite_matching.hpp
@@ -37,9 +37,6 @@ data:
     path: test/1_mytest/matching_ve.test.cpp
     title: test/1_mytest/matching_ve.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/tutte.test.cpp
-    title: test/1_mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,9 +48,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1615.test.cpp
     title: test/3_yukicoder/1615.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1744.test.cpp
-    title: test/3_yukicoder/1744.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1745.test.cpp
     title: test/3_yukicoder/1745.test.cpp
@@ -217,14 +211,13 @@ data:
   - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
   - game/graph_path_game.hpp
+  - flow/bipartite_matching.hpp
   - flow/rank_maximal_bipartite_matching.hpp
-  - flow/bipartite.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp
-  - test/1_mytest/tutte.test.cpp
   - test/2_library_checker/graph/bipartitematching.test.cpp
   - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/4_aoj/1566.test.cpp
@@ -232,7 +225,6 @@ data:
   - test/3_yukicoder/1479.test.cpp
   - test/3_yukicoder/1615.test.cpp
   - test/3_yukicoder/1745.test.cpp
-  - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1911.test.cpp
 documentation_of: graph/bipartite_vertex_coloring.hpp
 layout: document

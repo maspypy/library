@@ -16,37 +16,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   - icon: ':question:'
@@ -1142,7 +1142,7 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>&\
+    #line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\nvoid to_hessenberg_matrix(vc<vc<T>>&\
     \ A) {\r\n  /*\r\n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg\
     \ \u884C\u5217\u306B\u5909\u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\
     \u5F0F\u306E\u8A08\u7B97\u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\
@@ -1157,7 +1157,7 @@ data:
     \ T>\r\nvc<T> characteristic_poly(vc<vc<T>> A) {\r\n  /*\r\n  \u30FBHessenberg\
     \ \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FBHessenberg \u884C\u5217\u306E\u884C\
     \u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\u3067\u5834\u5408\u5206\u3051\
-    \u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\
+    \u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\n  int n = len(A);\r\n  to_hessenberg_matrix(A);\r\
     \n  vc<vc<T>> DP(n + 1);\r\n  DP[0] = {T(1)};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k\
     \ + 2);\r\n    auto& dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\
     \u3046\u5834\u5408\r\n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i,\
@@ -2171,7 +2171,7 @@ data:
   isVerificationFile: false
   path: linalg/adjugate_matrix.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 10:29:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp

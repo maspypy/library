@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -365,13 +365,13 @@ data:
     \ = f_ev(f_ee(prod_left[i], prod_right), p);\n        prod_right = f_ee(prod_right,\
     \ ch_data[i]);\n      }\n      dp[p] = f_ev(f_ee(x, prod_right), p);\n    }\n\
     \  }\n};\n#line 3 \"graph/tree_dp/subtree_depth_sum.hpp\"\n\n// sum_v dist(root,\
-    \ v)\ntemplate <typename TREE, typename WT = ll>\nstruct SubTree_DepthSum {\n\
+    \ v)\ntemplate <typename TREE, typename WT = ll>\nstruct SubTree_Depth_Sum {\n\
     \  // num_point, dist_sum\n  using Data = pair<int, WT>;\n  TREE& tree;\n  vc<Data>\
-    \ dp, dp_1, dp_2;\n\n  SubTree_DepthSum(TREE& tree) : tree(tree) {\n    Data unit\
-    \ = {0, 0};\n    auto f_ee = [&](Data A, Data B) -> Data {\n      return {A.fi\
-    \ + B.fi, A.se + B.se};\n    };\n    auto f_ev = [&](Data A, int v) -> Data {\
-    \ return {A.fi + 1, A.se}; };\n    auto f_ve = [&](Data A, const auto& e) -> Data\
-    \ {\n      return {A.fi, A.se + A.fi * e.cost};\n    };\n\n    Rerooting_DP<TREE,\
+    \ dp, dp_1, dp_2;\n\n  SubTree_Depth_Sum(TREE& tree) : tree(tree) {\n    Data\
+    \ unit = {0, 0};\n    auto f_ee = [&](Data A, Data B) -> Data {\n      return\
+    \ {A.fi + B.fi, A.se + B.se};\n    };\n    auto f_ev = [&](Data A, int v) -> Data\
+    \ { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](Data A, const auto& e) ->\
+    \ Data {\n      return {A.fi, A.se + A.fi * e.cost};\n    };\n\n    Rerooting_DP<TREE,\
     \ Data> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp = DP.dp, dp_1 = DP.dp_1, dp_2\
     \ = DP.dp_2;\n  }\n\n  // (cnt, sum)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\
     \u304D\u306E full tree\n  pair<int, WT> operator[](int v) { return dp[v]; }\n\n\
@@ -380,9 +380,9 @@ data:
     \ dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n    }\n\
     \    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};\n"
   code: "\n#include \"graph/tree_dp/rerooting_dp.hpp\"\n\n// sum_v dist(root, v)\n\
-    template <typename TREE, typename WT = ll>\nstruct SubTree_DepthSum {\n  // num_point,\
+    template <typename TREE, typename WT = ll>\nstruct SubTree_Depth_Sum {\n  // num_point,\
     \ dist_sum\n  using Data = pair<int, WT>;\n  TREE& tree;\n  vc<Data> dp, dp_1,\
-    \ dp_2;\n\n  SubTree_DepthSum(TREE& tree) : tree(tree) {\n    Data unit = {0,\
+    \ dp_2;\n\n  SubTree_Depth_Sum(TREE& tree) : tree(tree) {\n    Data unit = {0,\
     \ 0};\n    auto f_ee = [&](Data A, Data B) -> Data {\n      return {A.fi + B.fi,\
     \ A.se + B.se};\n    };\n    auto f_ev = [&](Data A, int v) -> Data { return {A.fi\
     \ + 1, A.se}; };\n    auto f_ve = [&](Data A, const auto& e) -> Data {\n     \
@@ -402,7 +402,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_depth_sum.hpp
   requiredBy: []
-  timestamp: '2026-08-17 08:56:49+09:00'
+  timestamp: '2026-08-17 10:29:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_depth_sum.hpp

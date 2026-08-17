@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
-    path: flow/bipartite.hpp
-    title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+    path: flow/bipartite_matching.hpp
+    title: flow/bipartite_matching.hpp
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -722,14 +722,14 @@ data:
     \ edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n\
     \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
     \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}\n#line 4 \"flow/bipartite.hpp\"\n\r\ntemplate <typename GT>\r\nstruct\
-    \ BipartiteMatching {\r\n  int N;\r\n  GT& G;\r\n  vc<int> color;\r\n  vc<int>\
-    \ dist, match;\r\n  vc<int> vis;\r\n\r\n  BipartiteMatching(GT& G) : N(G.N), G(G),\
-    \ dist(G.N, -1), match(G.N, -1) {\r\n    color = bipartite_vertex_coloring(G);\r\
+    \ DAG;\n}\n#line 4 \"flow/bipartite_matching.hpp\"\n\r\ntemplate <typename GT>\r\
+    \nstruct Bipartite_Matching {\r\n  int N;\r\n  GT& G;\r\n  vc<int> color;\r\n\
+    \  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n  Bipartite_Matching(GT& G) :\
+    \ N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n    color = bipartite_vertex_coloring(G);\r\
     \n    if (N > 0) assert(!color.empty());\r\n    while (1) {\r\n      bfs();\r\n\
     \      vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
     \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
-    \  }\r\n\r\n  BipartiteMatching(GT& G, vc<int> color)\r\n      : N(G.N), G(G),\
+    \  }\r\n\r\n  Bipartite_Matching(GT& G, vc<int> color)\r\n      : N(G.N), G(G),\
     \ color(color), dist(G.N, -1), match(G.N, -1) {\r\n    while (1) {\r\n      bfs();\r\
     \n      vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
     \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
@@ -790,9 +790,9 @@ data:
     \n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\"\
     , vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\n   \
     \ print(\"min edge cover\", edge_cover());\r\n  }\r\n#endif\r\n};\r\n#line 4 \"\
-    graph/bipartite_edge_coloring.hpp\"\n\nstruct RegularBipartiteColoring {\n  using\
-    \ P = pair<int, int>;\n  int N, M;\n  vc<P> edges;\n\n  vvc<int> solve(int n,\
-    \ int k, vc<P> G) {\n    N = n;\n    M = len(G);\n    edges = G;\n    vc<int>\
+    graph/bipartite_edge_coloring.hpp\"\n\nstruct Regular_Bipartite_Coloring {\n \
+    \ using P = pair<int, int>;\n  int N, M;\n  vc<P> edges;\n\n  vvc<int> solve(int\
+    \ n, int k, vc<P> G) {\n    N = n;\n    M = len(G);\n    edges = G;\n    vc<int>\
     \ A(M);\n    iota(all(A), 0);\n    return solve_inner(M / N, A);\n  }\n\n  vvc<int>\
     \ solve_inner(int k, vc<int> A) {\n    return (k % 2 == 0 ? solve_even(k, A) :\
     \ solve_odd(k, A));\n  }\n\n  vvc<int> solve_even(int k, vc<int> A) {\n    assert(k\
@@ -812,7 +812,7 @@ data:
     \ - 1, B);\n    res.eb(es);\n    return res;\n  }\n\n  vc<bool> matching(int k,\
     \ vc<int> A) {\n    Graph<bool, 0> G(N + N);\n    vc<int> color(N + N);\n    FOR(v,\
     \ N) color[v] = 0;\n    for (auto&& eid : A) {\n      auto [a, b] = edges[eid];\n\
-    \      G.add(a, b);\n    }\n    G.build();\n    BipartiteMatching<decltype(G)>\
+    \      G.add(a, b);\n    }\n    G.build();\n    Bipartite_Matching<decltype(G)>\
     \ BM(G);\n    auto& match = BM.match;\n    vc<bool> res(len(A));\n    FOR(i, len(A))\
     \ {\n      auto idx = A[i];\n      auto [a, b] = edges[idx];\n      if (match[a]\
     \ == b) {\n        match[a] = -1;\n        res[i] = 1;\n      }\n    }\n    return\
@@ -841,19 +841,19 @@ data:
     \ degR[b]++;\n    edges.eb(a, X + b);\n  }\n  int p = 0, q = 0;\n  while (p <\
     \ X && q < X) {\n    if (degL[p] == D) {\n      ++p;\n      continue;\n    }\n\
     \    if (degR[q] == D) {\n      ++q;\n      continue;\n    }\n    edges.eb(p,\
-    \ X + q);\n    degL[p]++, degR[q]++;\n  }\n  RegularBipartiteColoring RBC;\n \
-    \ vvc<int> res = RBC.solve(X, D, edges);\n  vc<int> ecolor(len(edges));\n  FOR(i,\
+    \ X + q);\n    degL[p]++, degR[q]++;\n  }\n  Regular_Bipartite_Coloring RBC;\n\
+    \  vvc<int> res = RBC.solve(X, D, edges);\n  vc<int> ecolor(len(edges));\n  FOR(i,\
     \ len(res)) {\n    for (auto&& j : res[i]) ecolor[j] = i;\n  }\n  ecolor.resize(G.M);\n\
     \  return {D, ecolor};\n}\n#line 5 \"test/2_library_checker/graph/bipartite_edge_coloring.test.cpp\"\
     \n\nvoid solve() {\n  LL(L, R, M);\n  Graph<bool, 0> G(L + R);\n  FOR(M) {\n \
     \   LL(a, b);\n    G.add(a, L + b);\n  }\n  G.build();\n  auto [C, color] = bipartite_edge_coloring(G);\n\
-    \  print(C);\n  for (auto&& x: color) print(x);\n}\n\nsigned main() {\n  solve();\n\
+    \  print(C);\n  for (auto&& x : color) print(x);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartite_edge_coloring\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/bipartite_edge_coloring.hpp\"\
     \n\nvoid solve() {\n  LL(L, R, M);\n  Graph<bool, 0> G(L + R);\n  FOR(M) {\n \
     \   LL(a, b);\n    G.add(a, L + b);\n  }\n  G.build();\n  auto [C, color] = bipartite_edge_coloring(G);\n\
-    \  print(C);\n  for (auto&& x: color) print(x);\n}\n\nsigned main() {\n  solve();\n\
+    \  print(C);\n  for (auto&& x : color) print(x);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}"
   dependsOn:
   - my_template.hpp
@@ -863,12 +863,12 @@ data:
   - graph/base.hpp
   - ds/hashmap.hpp
   - ds/unionfind/unionfind.hpp
-  - flow/bipartite.hpp
+  - flow/bipartite_matching.hpp
   - graph/strongly_connected_component.hpp
   isVerificationFile: true
   path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-17 10:35:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp

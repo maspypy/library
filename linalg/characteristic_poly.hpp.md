@@ -27,7 +27,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\
-    \nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\n  P^{-1}AP \u306E\u5F62\
+    \nvoid to_hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\n  P^{-1}AP \u306E\u5F62\
     \u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\u306B\u5909\u5F62\u3059\u308B\
     \u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\u8A08\u7B97\u306B\u7528\u3044\
     \u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\r\n  */\r\n  int n = len(A);\r\
@@ -42,7 +42,7 @@ data:
     \  \u30FBHessenberg \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FBHessenberg \u884C\
     \u5217\u306E\u884C\u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\u3067\u5834\
     \u5408\u5206\u3051\u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\n  int n\
-    \ = len(A);\r\n  to_Hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n  DP[0]\
+    \ = len(A);\r\n  to_hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n  DP[0]\
     \ = {T(1)};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k + 2);\r\n    auto& dp =\
     \ DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\n \
     \   FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i, len(DP[k])) dp[i]\
@@ -52,7 +52,7 @@ data:
     \ c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\u52A0\u7B97\r\n\
     \      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n  }\r\n  return DP[n];\r\
     \n}\r\n"
-  code: "template <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\
+  code: "template <typename T>\r\nvoid to_hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\
     \n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\
     \u306B\u5909\u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\
     \u8A08\u7B97\u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\
@@ -67,7 +67,7 @@ data:
     \ A) {\r\n  /*\r\n  \u30FBHessenberg \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FB\
     Hessenberg \u884C\u5217\u306E\u884C\u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\
     \u3067\u5834\u5408\u5206\u3051\u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\
-    \n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n\
+    \n  int n = len(A);\r\n  to_hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n\
     \  DP[0] = {T(1)};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k + 2);\r\n    auto&\
     \ dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\
     \n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i, len(DP[k])) dp[i]\
@@ -83,7 +83,7 @@ data:
   requiredBy:
   - linalg/adjugate_matrix.hpp
   - linalg/det_A_plus_xB.hpp
-  timestamp: '2026-02-03 22:59:09+09:00'
+  timestamp: '2026-08-17 10:29:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp

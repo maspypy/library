@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':question:'
@@ -33,30 +33,31 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root
+    PROBLEM: https://judge.yosupo.jp/problem/" "point_set_tree_path_composite_sum_fixed_root
     links:
-    - https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root
+    - https://judge.yosupo.jp/problem/
   bundledCode: "#line 1 \"test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
-    Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
-    \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
-    \n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \n#define PROBLEM                      \\\n  \"https://judge.yosupo.jp/problem/\"\
+    \ \\\n  \"point_set_tree_path_composite_sum_fixed_root\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
+    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n//\
+    \ \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\u30D1\u30A4\u30EB\u6210\
+    \u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\n#pragma GCC target(\"\
+    avx2,popcnt\")\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing\
+    \ namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
     template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
     \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
@@ -258,7 +259,7 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp\"\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 6 \"test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp\"\
     \n\n#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\n\
     template <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\
     \u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n\
@@ -527,35 +528,35 @@ data:
     // https://codeforces.com/contest/1942/problem/H\n// single(v) : v \u3068\u305D\
     \u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n// rake(L,R)\
     \ : L \u306E boundary \u3092\u7DAD\u6301\n// compress(L,R)  (top-down) \u9806\u306B\
-    \ L,R\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Tree_Dp {\n\
+    \ L,R\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Tree_DP {\n\
     \  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n  vc<X>\
-    \ dp;\n\n  template <typename F>\n  Dynamic_Tree_Dp(TREE& tree, F single) : STT(tree)\
+    \ dp;\n\n  template <typename F>\n  Dynamic_Tree_DP(TREE& tree, F single) : STT(tree)\
     \ {\n    int N = tree.N;\n    dp.resize(2 * N - 1);\n    FOR(i, N) dp[i] = single(i);\n\
     \    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n  void set(int v, X x) {\n    dp[v]\
     \ = x;\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) update(i);\n  }\n\
-    \n  X prod_all() { return dp.back(); }\n\nprivate:\n  inline void update(int i)\
-    \ {\n    X &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];\n    dp[i] = (STT.is_compress[i]\
-    \ ? TREE_DP::compress(L, R) : TREE_DP::rake(L, R));\n  }\n};\n#line 1 \"mod/modint_common.hpp\"\
-    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
-    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \n  X prod_all() { return dp.back(); }\n\n private:\n  inline void update(int\
+    \ i) {\n    X &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];\n    dp[i] =\n       \
+    \ (STT.is_compress[i] ? TREE_DP::compress(L, R) : TREE_DP::rake(L, R));\n  }\n\
+    };\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
     \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
     \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
     \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
@@ -642,8 +643,8 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 7 \"test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp\"\
-    \n\nusing mint = modint998;\n\nstruct Data {\n  mint a, b; // path composition\
+    #line 9 \"test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp\"\
+    \n\nusing mint = modint998;\n\nstruct Data {\n  mint a, b;  // path composition\
     \ = x -> ax+b\n  mint cnt;\n  mint ans;\n};\n\nstruct TREE_DP {\n  using value_type\
     \ = Data;\n  using X = value_type;\n  static X rake(X &L, X &R) { return {L.a,\
     \ L.b, L.cnt + R.cnt, L.ans + R.ans}; }\n  static X compress(X &L, X &R) {\n \
@@ -653,20 +654,21 @@ data:
     \  }\n};\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n  vc<mint> B(N -\
     \ 1), C(N - 1);\n  Graph<int, 0> G(N);\n  FOR(i, N - 1) {\n    INT(u, v);\n  \
     \  G.add(u, v);\n    read(B[i], C[i]);\n  }\n  G.build();\n\n  Tree<decltype(G)>\
-    \ tree(G);\n\n  auto single = [&](int v) -> Data {\n    if (v == 0) { return {1,\
-    \ 0, 1, A[v]}; }\n    int e = tree.v_to_e(v);\n    return {B[e], C[e], 1, B[e]\
-    \ * A[v] + C[e]};\n  };\n\n  Dynamic_Tree_Dp<decltype(tree), TREE_DP> DP(tree,\
-    \ single);\n\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(w, x);\n \
-    \     A[w] = x;\n      DP.set(w, single(w));\n    }\n    if (t == 1) {\n     \
-    \ INT(e, b, c);\n      B[e] = b, C[e] = c;\n      int v = tree.e_to_v(e);\n  \
-    \    DP.set(v, single(v));\n    }\n    Data x = DP.prod_all();\n    print(x.ans);\n\
+    \ tree(G);\n\n  auto single = [&](int v) -> Data {\n    if (v == 0) {\n      return\
+    \ {1, 0, 1, A[v]};\n    }\n    int e = tree.v_to_e(v);\n    return {B[e], C[e],\
+    \ 1, B[e] * A[v] + C[e]};\n  };\n\n  Dynamic_Tree_DP<decltype(tree), TREE_DP>\
+    \ DP(tree, single);\n\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(w,\
+    \ x);\n      A[w] = x;\n      DP.set(w, single(w));\n    }\n    if (t == 1) {\n\
+    \      INT(e, b, c);\n      B[e] = b, C[e] = c;\n      int v = tree.e_to_v(e);\n\
+    \      DP.set(v, single(v));\n    }\n    Data x = DP.prod_all();\n    print(x.ans);\n\
     \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/dynamic_tree_dp.hpp\"\
-    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nstruct Data {\n  mint\
-    \ a, b; // path composition = x -> ax+b\n  mint cnt;\n  mint ans;\n};\n\nstruct\
-    \ TREE_DP {\n  using value_type = Data;\n  using X = value_type;\n  static X rake(X\
-    \ &L, X &R) { return {L.a, L.b, L.cnt + R.cnt, L.ans + R.ans}; }\n  static X compress(X\
+  code: "#define PROBLEM                      \\\n  \"https://judge.yosupo.jp/problem/\"\
+    \ \\\n  \"point_set_tree_path_composite_sum_fixed_root\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"graph/ds/dynamic_tree_dp.hpp\"\n#include\
+    \ \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nstruct Data {\n  mint a, b;\
+    \  // path composition = x -> ax+b\n  mint cnt;\n  mint ans;\n};\n\nstruct TREE_DP\
+    \ {\n  using value_type = Data;\n  using X = value_type;\n  static X rake(X &L,\
+    \ X &R) { return {L.a, L.b, L.cnt + R.cnt, L.ans + R.ans}; }\n  static X compress(X\
     \ &L, X &R) {\n    mint a = L.a, b = L.b;\n    mint c = R.a, d = R.b;\n    //\
     \ x -> (cx+d) -> a(cx+d)+b\n    mint aa = a * c, bb = a * d + b;\n    mint cnt\
     \ = L.cnt + R.cnt;\n    mint ans = L.ans + a * R.ans + b * R.cnt;\n    return\
@@ -674,8 +676,8 @@ data:
     \ N);\n  vc<mint> B(N - 1), C(N - 1);\n  Graph<int, 0> G(N);\n  FOR(i, N - 1)\
     \ {\n    INT(u, v);\n    G.add(u, v);\n    read(B[i], C[i]);\n  }\n  G.build();\n\
     \n  Tree<decltype(G)> tree(G);\n\n  auto single = [&](int v) -> Data {\n    if\
-    \ (v == 0) { return {1, 0, 1, A[v]}; }\n    int e = tree.v_to_e(v);\n    return\
-    \ {B[e], C[e], 1, B[e] * A[v] + C[e]};\n  };\n\n  Dynamic_Tree_Dp<decltype(tree),\
+    \ (v == 0) {\n      return {1, 0, 1, A[v]};\n    }\n    int e = tree.v_to_e(v);\n\
+    \    return {B[e], C[e], 1, B[e] * A[v] + C[e]};\n  };\n\n  Dynamic_Tree_DP<decltype(tree),\
     \ TREE_DP> DP(tree, single);\n\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n \
     \     INT(w, x);\n      A[w] = x;\n      DP.set(w, single(w));\n    }\n    if\
     \ (t == 1) {\n      INT(e, b, c);\n      B[e] = b, C[e] = c;\n      int v = tree.e_to_v(e);\n\
@@ -695,8 +697,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-17 10:29:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
 layout: document
