@@ -1,5 +1,5 @@
 #include "other/bit.hpp"
-#include "mod/mongomery_modint.hpp"
+#include "mod/montgomery_modint.hpp"
 
 bool is_prime(const u64 x) {
   assert(x < u64(1) << 62);

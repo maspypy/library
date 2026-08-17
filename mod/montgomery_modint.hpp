@@ -10,7 +10,7 @@ struct Montgomery_modint {
   static void set_mod(U1 mod) {
     assert(mod & 1 && mod <= U1(1) << (W - 2));
     m = mod, n2 = -U2(m) % m, r = m;
-    FOR(5) r *= 2 - m * r;
+    FOR(6) r *= 2 - m * r;
     r = -r;
     assert(r * m == U1(-1));
   }

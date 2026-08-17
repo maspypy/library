@@ -16,7 +16,8 @@ void solve() {
   vc<mint> Y(N + 1);
 
   FOR(p, N + 1) {
-    vc<mint> dp = {mint(2) * inv<mint>(5), mint(2) * inv<mint>(5) * x, inv<mint>(5) * x};
+    vc<mint> dp = {mint(2) * inv<mint>(5), mint(2) * inv<mint>(5) * x,
+                   inv<mint>(5) * x};
     vc<mint> A;
     vc<tuple<int, int, mint>> tr;
     tr.eb(0, 0, inv<mint>(2));
@@ -31,7 +32,7 @@ void solve() {
     FOR(7) {
       A.eb(SUM<mint>(dp));
       vc<mint> newdp(3);
-      for (auto& [a, b, c]: tr) newdp[b] += dp[a] * c;
+      for (auto& [a, b, c] : tr) newdp[b] += dp[a] * c;
       swap(dp, newdp);
     }
     Y[p] = interpolate_linear_rec<mint>(A, N - 1, 0);
