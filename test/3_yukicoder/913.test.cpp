@@ -14,7 +14,7 @@ void solve() {
     {
       // 右について、含む場合
       // まずは、左をデータに挿入
-      CHT_monotone<ll, 1> cht;
+      CHT_Monotone<ll, 1> cht;
       ll a = 0, b = 0;
       cht.add(2 * a, a * a + b);
       FOR3_R(i, L, M) {
@@ -32,7 +32,7 @@ void solve() {
       }
     }
     {
-      CHT_monotone<ll, 1> cht;
+      CHT_Monotone<ll, 1> cht;
       ll a = 0, b = 0;
       cht.add(2 * a, a * a + b);
       FOR3(i, M + 1, R) {
@@ -60,7 +60,7 @@ void solve() {
   };
   dfs(dfs, 0, N);
   vi ANS = seg.get_all();
-  for (auto&& x: ANS) print(x);
+  for (auto&& x : ANS) print(x);
 }
 
 signed main() {
