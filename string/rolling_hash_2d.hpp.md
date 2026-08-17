@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/958/problem/A2
@@ -49,7 +49,7 @@ data:
     \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 3 \"string/rollinghash_2d.hpp\"\n\n// https://codeforces.com/contest/958/problem/A2\n\
+    \ RNG_64() % (r - l); }\n#line 3 \"string/rolling_hash_2d.hpp\"\n\n// https://codeforces.com/contest/958/problem/A2\n\
     struct RollingHash_2D {\n  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61>\
     \ pow1;\n  vc<M61> pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()),\
     \ pow1{M61(1)}, pow2{M61(1)} {}\n\n  template <typename STRING> vvc<M61> build(const\
@@ -83,16 +83,16 @@ data:
   - mod/modint61.hpp
   - random/base.hpp
   isVerificationFile: false
-  path: string/rollinghash_2d.hpp
+  path: string/rolling_hash_2d.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-17 09:56:21+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/ALDS1_14_C.test.cpp
-documentation_of: string/rollinghash_2d.hpp
+documentation_of: string/rolling_hash_2d.hpp
 layout: document
 redirect_from:
-- /library/string/rollinghash_2d.hpp
-- /library/string/rollinghash_2d.hpp.html
-title: string/rollinghash_2d.hpp
+- /library/string/rolling_hash_2d.hpp
+- /library/string/rolling_hash_2d.hpp.html
+title: string/rolling_hash_2d.hpp
 ---

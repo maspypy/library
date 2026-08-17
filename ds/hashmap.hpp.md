@@ -405,6 +405,9 @@ data:
     path: string/aho_corasick_for_general_trie.hpp
     title: string/aho_corasick_for_general_trie.hpp
   - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
+  - icon: ':warning:'
     path: string/enumerate_occurrence.hpp
     title: string/enumerate_occurrence.hpp
   - icon: ':heavy_check_mark:'
@@ -1186,6 +1189,7 @@ data:
   - other/connected_dp.hpp
   - other/dice.hpp
   - other/optimize_2d.hpp
+  - string/basic_substring_structure.hpp
   - string/suffix_tree.hpp
   - string/enumerate_occurrence.hpp
   - string/aho_corasick_for_general_trie.hpp

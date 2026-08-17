@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: alg/monoid/roling_hash.hpp
-    title: alg/monoid/roling_hash.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/rolling_hash.hpp
+    title: alg/monoid/rolling_hash.hpp
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
@@ -179,12 +179,15 @@ data:
   - icon: ':warning:'
     path: setfunc/submask_range_query.hpp
     title: setfunc/submask_range_query.hpp
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
   - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rollinghash_2d.hpp
-    title: string/rollinghash_2d.hpp
+  - icon: ':x:'
+    path: string/rolling_hash_2d.hpp
+    title: string/rolling_hash_2d.hpp
   - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
@@ -823,6 +826,9 @@ data:
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
@@ -945,7 +951,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -957,9 +963,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
@@ -1022,10 +1028,11 @@ data:
   - seq/sidon_sequence.hpp
   - other/connected_dp.hpp
   - other/optimize_2d.hpp
-  - string/rollinghash_2d.hpp
   - string/wildcard_pattern_matching.hpp
+  - string/basic_substring_structure.hpp
   - string/rolling_hash.hpp
-  - alg/monoid/roling_hash.hpp
+  - string/rolling_hash_2d.hpp
+  - alg/monoid/rolling_hash.hpp
   - mod/modular_subset_sum.hpp
   - mod/mod_log.hpp
   - mod/dynamic_modint.hpp
@@ -1037,7 +1044,7 @@ data:
   - mod/primitive_root.hpp
   - mod/modfast.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/manhattan_nns.test.cpp
   - test/1_mytest/rbst_test.test.cpp
@@ -1241,6 +1248,7 @@ data:
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/2_library_checker/number_theory/factorize.test.cpp
   - test/2_library_checker/number_theory/tetration.test.cpp

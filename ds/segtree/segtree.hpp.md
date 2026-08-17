@@ -38,6 +38,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
@@ -297,6 +300,7 @@ data:
   - string/suffix_lcp_change.hpp
   - string/many_string_compare.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
+  - string/basic_substring_structure.hpp
   - string/suffix_tree.hpp
   - string/sort_substrings.hpp
   - string/suffix_array.hpp

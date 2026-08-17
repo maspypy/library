@@ -796,6 +796,9 @@ data:
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/cartesian_tree.test.cpp
     title: test/2_library_checker/tree/cartesian_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1782,7 +1785,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_12_B.test.cpp
     title: test/4_aoj/ALDS1_12_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2432,6 +2435,7 @@ data:
   - test/2_library_checker/string/eertree.test.cpp
   - test/2_library_checker/string/number_of_substrings2.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/2_library_checker/string/online_z.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/2_library_checker/sample/many_aplusb.test.cpp

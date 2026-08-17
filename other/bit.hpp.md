@@ -804,6 +804,9 @@ data:
     path: setfunc/xor_submask_lower_bound.hpp
     title: setfunc/xor_submask_lower_bound.hpp
   - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
+  - icon: ':warning:'
     path: string/enumerate_occurrence.hpp
     title: string/enumerate_occurrence.hpp
   - icon: ':heavy_check_mark:'
@@ -1728,6 +1731,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
@@ -2667,6 +2673,7 @@ data:
   - string/many_string_compare.hpp
   - string/wildcard_pattern_matching.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
+  - string/basic_substring_structure.hpp
   - string/suffix_tree.hpp
   - string/enumerate_occurrence.hpp
   - string/sort_substrings.hpp
@@ -2965,6 +2972,7 @@ data:
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
   - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/2_library_checker/sample/aplusb128.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp

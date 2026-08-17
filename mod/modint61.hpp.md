@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: alg/monoid/roling_hash.hpp
-    title: alg/monoid/roling_hash.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/rolling_hash.hpp
+    title: alg/monoid/rolling_hash.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
@@ -24,14 +24,17 @@ data:
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
+  - icon: ':warning:'
     path: string/deque_rolling_hash.hpp
     title: string/deque_rolling_hash.hpp
   - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rollinghash_2d.hpp
-    title: string/rollinghash_2d.hpp
+  - icon: ':x:'
+    path: string/rolling_hash_2d.hpp
+    title: string/rolling_hash_2d.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
@@ -60,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1397.test.cpp
     title: test/3_yukicoder/1397.test.cpp
@@ -93,12 +99,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/modint61.hpp\"\n\nstruct modint61 {\n  static constexpr\
@@ -166,13 +172,14 @@ data:
   - graph/ds/rolling_hash_on_tree.hpp
   - random/hash_vector.hpp
   - other/connected_dp.hpp
-  - string/rollinghash_2d.hpp
+  - string/basic_substring_structure.hpp
   - string/deque_rolling_hash.hpp
   - string/rolling_hash.hpp
-  - alg/monoid/roling_hash.hpp
+  - string/rolling_hash_2d.hpp
+  - alg/monoid/rolling_hash.hpp
   - mod/modular_subset_sum.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/tdpc_grid_dp.test.cpp
@@ -183,6 +190,7 @@ data:
   - test/2_library_checker/graph/general_matching.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp
   - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/4_aoj/ALDS1_14_C.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1397.test.cpp

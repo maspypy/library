@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
@@ -108,7 +111,8 @@ data:
   - mod/modint61.hpp
   isVerificationFile: false
   path: string/rolling_hash.hpp
-  requiredBy: []
+  requiredBy:
+  - string/basic_substring_structure.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

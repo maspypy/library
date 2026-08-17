@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
@@ -172,6 +178,7 @@ data:
   - string/suffix_lcp_change.hpp
   - string/many_string_compare.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
+  - string/basic_substring_structure.hpp
   - string/suffix_tree.hpp
   - string/sort_substrings.hpp
   - string/suffix_array.hpp
@@ -188,6 +195,7 @@ data:
   - test/2_library_checker/string/suffix_array.test.cpp
   - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1216.test.cpp

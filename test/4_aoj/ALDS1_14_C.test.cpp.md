@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rollinghash_2d.hpp
-    title: string/rollinghash_2d.hpp
+  - icon: ':x:'
+    path: string/rolling_hash_2d.hpp
+    title: string/rolling_hash_2d.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
@@ -303,7 +303,7 @@ data:
     \ u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 3 \"string/rollinghash_2d.hpp\"\n\n// https://codeforces.com/contest/958/problem/A2\n\
+    \ RNG_64() % (r - l); }\n#line 3 \"string/rolling_hash_2d.hpp\"\n\n// https://codeforces.com/contest/958/problem/A2\n\
     struct RollingHash_2D {\n  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61>\
     \ pow1;\n  vc<M61> pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()),\
     \ pow1{M61(1)}, pow2{M61(1)} {}\n\n  template <typename STRING> vvc<M61> build(const\
@@ -319,30 +319,30 @@ data:
     \ RNG(M61::get_mod()); }\n\n  void expand(vc<M61> &pow, const M61 &b, int n) {\n\
     \    while (len(pow) <= n)\n      pow.eb(pow.back() * b);\n  }\n};\n#line 8 \"\
     test/4_aoj/ALDS1_14_C.test.cpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
-    \ A, H);\n  RollingHash_2D RH;\n  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string,\
+    \ A, H);\n  Rolling_Hash_2D RH;\n  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string,\
     \ B, H2);\n  auto BH = RH.build(B);\n  auto b = RH.query(BH, 0, H2, 0, W2);\n\n\
     \  FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {\n    auto a = RH.query(AH, x, x + H2,\
-    \ y, y + W2);\n    if (a == b) { print(x, y); }\n  }\n}\n\nsigned main() {\n \
-    \ solve();\n  return 0;\n}\n"
+    \ y, y + W2);\n    if (a == b) {\n      print(x, y);\n    }\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint61.hpp\"\
-    \n#include \"string/rollinghash_2d.hpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
-    \ A, H);\n  RollingHash_2D RH;\n  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string,\
+    \n#include \"string/rolling_hash_2d.hpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
+    \ A, H);\n  Rolling_Hash_2D RH;\n  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string,\
     \ B, H2);\n  auto BH = RH.build(B);\n  auto b = RH.query(BH, 0, H2, 0, W2);\n\n\
     \  FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {\n    auto a = RH.query(AH, x, x + H2,\
-    \ y, y + W2);\n    if (a == b) { print(x, y); }\n  }\n}\n\nsigned main() {\n \
-    \ solve();\n  return 0;\n}\n"
+    \ y, y + W2);\n    if (a == b) {\n      print(x, y);\n    }\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - mod/modint61.hpp
-  - string/rollinghash_2d.hpp
+  - string/rolling_hash_2d.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/4_aoj/ALDS1_14_C.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-17 09:56:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ALDS1_14_C.test.cpp
 layout: document
