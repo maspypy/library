@@ -22,7 +22,7 @@ struct Dynamic_Upper_Hull {
   // 受け取ったインデックスとの対応
   vc<int> to_original_idx, to_seg_idx;
 
-  Dynamic_Upper_Hull(vc<Point> P) : DynamicUpperHull(P, 0) {}
+  Dynamic_Upper_Hull(vc<Point> P) : Dynamic_Upper_Hull(P, 0) {}
   Dynamic_Upper_Hull(vc<Point> P, bool b)
       : Dynamic_Upper_Hull(P, vc<bool>(len(P), b)) {}
 
