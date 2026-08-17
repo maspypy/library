@@ -67,7 +67,7 @@ void test_vertex() {
   using mint = modint61;
   mint base = RNG_64();
 
-  Rolling_Hash_On_Tree<decltype(tree), false> RH(
+  Rolling_Hash_on_Tree<decltype(tree), false> RH(
       tree, [&](int i) -> int { return A[i]; }, base);
 
   vvv(int, dat, N, N, 0);

@@ -1,5 +1,5 @@
 
-#include "ds/double_end_queue_const_add.hpp"
+#include "ds/double_ended_queue_const_add.hpp"
 #include "alg/monoid/add.hpp"
 
 struct Slope_Trick_1 {
@@ -43,8 +43,12 @@ struct Slope_Trick_1 {
   FUNC restrict_domain(FUNC &f, ll L, ll R) {
     auto [x0, x1] = domain(f);
     chmax(L, x0), chmin(R, x1);
-    while (!f.que_l.empty() && f.que_l.min() <= L) { f.que_l.pop_min(); }
-    while (!f.que_r.empty() && f.que_r.max() >= R) { f.que_r.pop_max(); }
+    while (!f.que_l.empty() && f.que_l.min() <= L) {
+      f.que_l.pop_min();
+    }
+    while (!f.que_r.empty() && f.que_r.max() >= R) {
+      f.que_r.pop_max();
+    }
     f.que_l.push(L);
     f.que_r.push(R);
     return f;
@@ -126,7 +130,7 @@ struct Slope_Trick_1 {
     restrict_domain(f, x0, x1), restrict_domain(g, x0, x1);
     if (len(f) < len(g)) swap(f, g);
     f.min_f += g.min_f;
-    for (auto l: g.que_l.dat) {
+    for (auto l : g.que_l.dat) {
       l += g.que_l.add;
       // (l-x)+
       if (l <= f.que_r.min()) {
@@ -151,15 +155,12 @@ struct Slope_Trick_1 {
 
   // h[z]=min(x+y==z)f(x)+g(y)
   // FUNC convolve(FUNC &f, FUNC &g) {
-  //   if (f.x0 > f.x1 || g.x0 > g.x1) { return {nullptr, infty<T>, -infty<T>, 0, 0}; }
-  //   if (len(f) < len(g)) swap(f, g);
-  //   shift(f, g.x0, g.y0), shift(g, -g.x0, -g.y0);
-  //   if (len(g) == 0) { return convolve_segment(f, 0, g.x1, g.a0, 0); }
-  //   auto tmp = ST.get_all(g.root);
-  //   ST.free_subtree(g.root);
-  //   f = convolve_segment(f, 0, tmp[0].fi, g.a0, 0);
-  //   T a = g.a0;
-  //   FOR(i, len(tmp)) {
+  //   if (f.x0 > f.x1 || g.x0 > g.x1) { return {nullptr, infty<T>, -infty<T>,
+  //   0, 0}; } if (len(f) < len(g)) swap(f, g); shift(f, g.x0, g.y0), shift(g,
+  //   -g.x0, -g.y0); if (len(g) == 0) { return convolve_segment(f, 0, g.x1,
+  //   g.a0, 0); } auto tmp = ST.get_all(g.root); ST.free_subtree(g.root); f =
+  //   convolve_segment(f, 0, tmp[0].fi, g.a0, 0); T a = g.a0; FOR(i, len(tmp))
+  //   {
   //     T nx = (i + 1 < len(tmp) ? tmp[i + 1].fi : g.x1);
   //     a += tmp[i].se;
   //     f = convolve_segment(f, 0, nx - tmp[i].fi, a, 0);
@@ -196,17 +197,15 @@ struct Slope_Trick_1 {
   //     return f;
   //   }
   //   // 間のどこかに挿入
-  //   auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < a; });
-  //   T asum = ST.prod(l).fi;
-  //   T a1 = a - (asum + f.a0);
-  //   auto [xx, aa] = ST.get(r, 0);
-  //   ST.apply(r, d);
-  //   ST.set(r, 0, {xx + d, aa - a1});
-  //   f.root = ST.merge3(l, ST.new_node({xx, a1}), r);
-  //   f.x1 += d;
+  //   auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool {
+  //   return f.a0 + prod.fi < a; }); T asum = ST.prod(l).fi; T a1 = a - (asum +
+  //   f.a0); auto [xx, aa] = ST.get(r, 0); ST.apply(r, d); ST.set(r, 0, {xx +
+  //   d, aa - a1}); f.root = ST.merge3(l, ST.new_node({xx, a1}), r); f.x1 += d;
   //   return f;
   // }
 
   // fx,x
-  tuple<i128, ll, ll> get_min(FUNC &f) { return {f.min_f, f.que_l.max(), f.que_r.min()}; }
+  tuple<i128, ll, ll> get_min(FUNC &f) {
+    return {f.min_f, f.que_l.max(), f.que_r.min()};
+  }
 };

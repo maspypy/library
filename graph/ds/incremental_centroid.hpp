@@ -1,4 +1,4 @@
-#include "graph/ds/tree_abelgroup.hpp"
+#include "graph/ds/tree_abeliangroup.hpp"
 #include "ds/fastset.hpp"
 
 // 木は固定。頂点重みを +1 できる。
