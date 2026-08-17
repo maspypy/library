@@ -1,8 +1,8 @@
 #include "ds/fenwicktree/fenwicktree.hpp"
 
-template <typename AbelianGruop, typename XY, bool SMALL_X = false>
+template <typename AbelianGroup, typename XY, bool SMALL_X = false>
 struct Point_Add_Rectangle_Sum {
-  using G = typename AbelianGruop::value_type;
+  using G = typename AbelianGroup::value_type;
   using Point = tuple<XY, XY, G>;
   vector<Point> point;
   vector<tuple<XY, XY, XY, XY>> rect;
@@ -14,7 +14,7 @@ struct Point_Add_Rectangle_Sum {
 
   vector<G> calc() {
     int N = point.size(), Q = rect.size();
-    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGruop::unit());
+    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::unit());
     // X 方向の座圧
     int NX = 0;
     if (!SMALL_X) {
@@ -54,8 +54,8 @@ struct Point_Add_Rectangle_Sum {
     sort(all(event),
          [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });
 
-    FenwickTree<AbelianGruop> bit(NX);
-    vc<G> res(Q, AbelianGruop::unit());
+    FenwickTree<AbelianGroup> bit(NX);
+    vc<G> res(Q, AbelianGroup::unit());
     int j = 0;
     for (auto &&[y, xl, xr, qq]: event) {
       while (j < N && get<1>(point[j]) < y) {
@@ -64,8 +64,8 @@ struct Point_Add_Rectangle_Sum {
       }
       G g = bit.sum(xl, xr);
       int q = qq / 2;
-      if (qq % 2 == 0) g = AbelianGruop::inverse(g);
-      res[q] = AbelianGruop::op(res[q], g);
+      if (qq % 2 == 0) g = AbelianGroup::inverse(g);
+      res[q] = AbelianGroup::op(res[q], g);
     }
     return res;
   }

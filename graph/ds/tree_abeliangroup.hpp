@@ -1,24 +1,25 @@
 #include "ds/fenwicktree/fenwicktree.hpp"
 #include "graph/tree.hpp"
 
-template <typename TREE, typename AbelianGruop, bool edge, bool path_query, bool subtree_query>
-struct Tree_AbelianGruop {
-  using MX = AbelianGruop;
+template <typename TREE, typename AbelianGroup, bool edge, bool path_query,
+          bool subtree_query>
+struct Tree_AbelianGroup {
+  using MX = AbelianGroup;
   using X = typename MX::value_type;
   TREE &tree;
   int N;
   FenwickTree<MX> bit, bit_subtree;
 
-  Tree_AbelianGruop(TREE &tree) : tree(tree), N(tree.N) {
+  Tree_AbelianGroup(TREE &tree) : tree(tree), N(tree.N) {
     build([](int i) -> X { return MX::unit(); });
   }
 
-  Tree_AbelianGruop(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
+  Tree_AbelianGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
     build([&](int i) -> X { return dat[i]; });
   }
 
   template <typename F>
-  Tree_AbelianGruop(TREE &tree, F f) : tree(tree), N(tree.N) {
+  Tree_AbelianGroup(TREE &tree, F f) : tree(tree), N(tree.N) {
     build(f);
   }
 
@@ -63,7 +64,7 @@ struct Tree_AbelianGruop {
     if (root == -1) return bit_subtree.prod(l + edge, r);
     if (root == u) return bit_subtree.prod_all();
     if (tree.in_subtree(u, root)) return bit_subtree.prod(l + edge, r);
-    assert(!edge); // さぼり
+    assert(!edge);  // さぼり
     u = tree.jump(u, root, 1);
     int L = tree.LID[u], R = tree.RID[u];
     return MX::op(bit_subtree.prod(0, L), bit_subtree.prod(R, N));
