@@ -12,7 +12,7 @@ void solve() {
   LL(Q);
   const int LIM = 200'000;
   vc<mint> POW = power_table_1<mint>(2, LIM + 10);
-  Prefix_Sum_Of_Binom<mint> X(LIM);
+  Prefix_Sum_ff_Binom<mint> X(LIM);
 
   FOR(Q) {
     INT(n, m);

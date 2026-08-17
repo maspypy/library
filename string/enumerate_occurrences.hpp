@@ -9,7 +9,7 @@
 // call f(i, vc<int>&pos)
 // O(T + Slog^2S + Ssqrt(T))
 template <typename STRING, int SIGMA = 26, int off = 'a', typename F>
-void enumerate_occurrence(STRING S, vc<STRING> T, F f) {
+void enumerate_occurrences(STRING S, vc<STRING> T, F f) {
   Trie<SIGMA> trie;
   FOR(i, len(T)) trie.add(T[i], off);
   trie.calc_suffix_link();

@@ -19,7 +19,7 @@ void solve() {
   A.eb(N + A[0]);
   A.eb(N + A[1]);
 
-  using Mono = Monoid_Add_Chmin_Chmax_With_Cost<ll>;
+  using Mono = Monoid_Add_Chmin_Chmax_with_Cost<ll>;
   using F = Mono::value_type;
 
   SHOW(A);

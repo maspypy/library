@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/double_end_queue.hpp"
+#include "ds/double_ended_queue.hpp"
 
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  Double_End_Queue<int> que(A);
+  Double_Ended_Queue<int> que(A);
   FOR(Q) {
     INT(t);
     if (t == 0) {

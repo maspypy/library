@@ -24,12 +24,12 @@ void test() {
       B.eb(RNG(-K, K), RNG(-K, K));
     }
   }
-  Count_Points_In_Triangles X(A, B);
+  Count_Points_in_Triangles X(A, B);
   FOR(100) {
     int i = RNG(0, N), j = RNG(0, N), k = RNG(0, N);
     int me = X.count3(i, j, k);
     int naive = 0;
-    for (auto&& p: B) {
+    for (auto&& p : B) {
       ll s1 = (A[j] - A[i]).det(p - A[i]);
       ll s2 = (A[k] - A[j]).det(p - A[j]);
       ll s3 = (A[i] - A[k]).det(p - A[k]);

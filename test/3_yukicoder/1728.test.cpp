@@ -11,7 +11,7 @@ void solve() {
 
   mint ANS = 0;
   // 回転
-  Array_On_Divisors<mint> f(N);
+  Array_on_Divisors<mint> f(N);
   f.set_euler_phi();
   f.enumerate(
       [&](ll d, mint phi) -> void { ANS += phi * mint(C).pow(2 * N / d); });

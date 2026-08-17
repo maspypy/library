@@ -8,7 +8,7 @@
 using mint = modint998;
 
 ll M;
-Array_On_Divisors<mint> X;
+Array_on_Divisors<mint> X;
 
 void solve() {
   LL(N);
@@ -19,12 +19,14 @@ void solve() {
   fill(all(X.dat), mint(1));
   FOR(N) {
     LL(a);
-    if (M % a == 0) { X[a] *= W + mint(1); }
+    if (M % a == 0) {
+      X[a] *= W + mint(1);
+    }
     W = W * C + D;
   }
 
   X.divisor_zeta([&](mint a, mint b) -> mint { return a * b; });
-  for (auto& x: X.dat) x -= mint(1);
+  for (auto& x : X.dat) x -= mint(1);
   X.divisor_mobius();
   print(X[M]);
 }

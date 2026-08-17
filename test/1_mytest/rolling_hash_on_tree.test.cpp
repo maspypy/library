@@ -9,7 +9,7 @@ void test_edge() {
   ll N = RNG(1, 20);
   auto edges = random_tree(N);
   Graph<int, 0> G(N);
-  for (auto& [a, b]: edges) {
+  for (auto& [a, b] : edges) {
     int x = RNG(0, 3);
     G.add(a, b, x);
   }
@@ -19,7 +19,7 @@ void test_edge() {
   using mint = modint61;
   mint base = RNG_64();
 
-  Rolling_Hash_On_Tree<decltype(tree), true> RH(
+  Rolling_Hash_on_Tree<decltype(tree), true> RH(
       tree, [&](int i) -> int { return G.edges[i].cost; }, base);
 
   vvv(int, dat, N, N, 0);
@@ -35,7 +35,9 @@ void test_edge() {
 
   FOR(a, N) FOR(b, N) {
     mint h = 0;
-    for (auto& x: dat[a][b]) { h = h * base + x; }
+    for (auto& x : dat[a][b]) {
+      h = h * base + x;
+    }
     assert(h == RH.get(a, b));
   }
   FOR(a, N) FOR(b, N) FOR(c, N) FOR(d, N) {
@@ -54,7 +56,9 @@ void test_vertex() {
   ll N = RNG(1, 20);
   auto edges = random_tree(N);
   Graph<int, 0> G(N);
-  for (auto& [a, b]: edges) { G.add(a, b); }
+  for (auto& [a, b] : edges) {
+    G.add(a, b);
+  }
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(0, 3);
   G.build();
@@ -70,13 +74,15 @@ void test_vertex() {
   FOR(a, N) FOR(b, N) {
     vc<int> P = tree.restore_path(a, b);
     vc<int> S;
-    for (auto& v: P) S.eb(A[v]);
+    for (auto& v : P) S.eb(A[v]);
     dat[a][b] = S;
   }
 
   FOR(a, N) FOR(b, N) {
     mint h = 0;
-    for (auto& x: dat[a][b]) { h = h * base + x; }
+    for (auto& x : dat[a][b]) {
+      h = h * base + x;
+    }
     assert(h == RH.get(a, b));
   }
 

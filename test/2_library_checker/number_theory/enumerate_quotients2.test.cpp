@@ -5,7 +5,7 @@
 
 void solve() {
   LL(N);
-  Array_On_Floor<int> A(N);
+  Array_on_Floor<int> A(N);
   print(len(A));
   FOR(i, len(A)) print(A.get_floor(i));
 }

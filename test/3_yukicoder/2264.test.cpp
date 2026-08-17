@@ -12,16 +12,16 @@ void solve() {
   LL(N, M);
   VEC(ll, A, N);
   ll lcm = 1;
-  for (auto&& x: A) lcm = lcm / gcd(lcm, x) * x;
+  for (auto&& x : A) lcm = lcm / gcd(lcm, x) * x;
 
-  Array_On_Divisors<int> X(lcm);
+  Array_on_Divisors<int> X(lcm);
   X.set_euler_phi();
 
   mint ANS = 0;
   X.enumerate([&](int d, int phi) {
     ll exp = 0;
     ll k = lcm / d;
-    for (auto&& a: A) {
+    for (auto&& a : A) {
       ll g = gcd(a, k);
       exp += g;
     }

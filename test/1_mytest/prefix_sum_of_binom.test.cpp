@@ -8,7 +8,7 @@ using mint = modint998;
 
 void test() {
   FOR(LIM, 0, 500) {
-    Prefix_Sum_Of_Binom<mint> X(LIM);
+    Prefix_Sum_of_Binom<mint> X(LIM);
     FOR(N, LIM + 1) {
       mint sm = 0;
       FOR(k, N + 10) {

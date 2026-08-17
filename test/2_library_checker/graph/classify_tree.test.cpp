@@ -14,13 +14,13 @@ void solve() {
   }
   G.build();
   Tree<decltype(G)> tree(G);
-  SubTree_Hash<decltype(tree)> X(tree);
+  Subtree_Hash<decltype(tree)> X(tree);
 
   vi ANS(N);
   FOR(v, N) ANS[v] = X.get(v, 0);
   vi key = ANS;
   UNIQUE(key);
-  for (auto&& x: ANS) x = LB(key, x);
+  for (auto&& x : ANS) x = LB(key, x);
   print(MAX(ANS) + 1);
   print(ANS);
 }
