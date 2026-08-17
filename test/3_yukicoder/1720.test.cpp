@@ -11,8 +11,8 @@ using mint = modint998;
 void solve() {
   LL(N, K);
   VEC(int, A, N);
-  for (auto&& x: A) --x;
-  Common_Inverval_Decomposition X(A);
+  for (auto&& x : A) --x;
+  Common_Interval_Decomposition X(A);
 
   auto dfs = [&](auto& dfs, auto n) -> vc<mint> {
     vc<mint> dp;
@@ -22,7 +22,7 @@ void solve() {
       return dp;
     }
     if (!n->inc && !n->dec) {
-      for (auto&& c: n->ch) {
+      for (auto&& c : n->ch) {
         auto dpc = dfs(dfs, c);
         if (dp.empty())
           dp = dpc;
@@ -35,7 +35,7 @@ void solve() {
       return dp;
     }
     vc<mint> dp1(K + 1);
-    for (auto&& c: n->ch) {
+    for (auto&& c : n->ch) {
       auto dpc = dfs(dfs, c);
       if (dp.empty()) {
         dp = dpc;

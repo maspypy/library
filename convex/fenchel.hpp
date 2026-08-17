@@ -3,11 +3,12 @@
 
 // (L,R,a,b)：傾きが [L,R) のとき (a,b) を通る
 template <typename T>
-vc<tuple<T, T, T, T>> Fenchel(vc<Point<T>> XY, string mode, bool sorted) {
+vc<tuple<T, T, T, T>> fenchel_transform(vc<Point<T>> XY, string mode,
+                                        bool sorted) {
   if (mode == "upper") {
     for (auto&& p : XY) p.y = -p.y;
     vc<tuple<T, T, T, T>> res;
-    for (auto&& [L, R, a, b] : Fenchel(XY, "lower", sorted)) {
+    for (auto&& [L, R, a, b] : fenchel_transform(XY, "lower", sorted)) {
       T l = (R == infty<T> ? -infty<T> : 1 - R);
       T r = (L == -infty<T> ? infty<T> : 1 - L);
       chmax(l, -infty<T>), chmin(r, infty<T>);
@@ -16,7 +17,7 @@ vc<tuple<T, T, T, T>> Fenchel(vc<Point<T>> XY, string mode, bool sorted) {
     reverse(all(res));
     return res;
   }
-  auto I = Convex_Hull(XY, "lower", sorted);
+  auto I = convex_hull(XY, "lower", sorted);
   XY = rearrange(XY, I);
   vc<tuple<T, T, T, T>> res;
 

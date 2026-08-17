@@ -63,6 +63,6 @@ ll discrete_log_acted(typename ActedSet::A x, typename ActedSet::S s,
 template <typename Monoid, typename F>
 ll discrete_log_monoid(typename Monoid::X a, typename Monoid::X b, F H, ll lb,
                        ll ub) {
-  using AM = ActedSet_From_Monoid<Monoid>;
+  using AM = ActedSet_from_Monoid<Monoid>;
   return discrete_log_acted<AM>(a, Monoid::unit(), b, H, lb, ub);
 }

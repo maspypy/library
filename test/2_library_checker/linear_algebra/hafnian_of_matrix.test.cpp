@@ -8,15 +8,11 @@ using mint = modint998;
 void solve() {
   LL(N);
   VV(mint, B, N, N);
-  auto ANS = Hufnian(B);
+  auto ANS = hafnian(B);
   print(ANS);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
 
   return 0;

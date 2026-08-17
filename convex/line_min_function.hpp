@@ -9,7 +9,7 @@ vc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T, T>> LINE) {
   using P = Point<T>;
   vc<P> point;
   for (auto& [x, y] : LINE) point.eb(P(x, y));
-  auto I = Convex_Hull(point, "lower");
+  auto I = convex_hull(point, "lower");
   point = rearrange(point, I);
   int N = len(point);
   if (N >= 2 && point[N - 1].x == point[N - 2].x) {

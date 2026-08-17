@@ -215,11 +215,11 @@ struct Functional_Graph {
     if ((tree.depth[i] - tree.depth[j]) % n != 0) return -1;
 
     if (tree.depth[i] == tree.depth[j]) {
-      int lca = tree.lca(i, j);
+      int lca = tree.LCA(i, j);
       return tree.depth[i] - tree.depth[lca];
     }
-    int ti = tree.depth[i] - tree.depth[tree.lca(b, i)];
-    int tj = tree.depth[j] - tree.depth[tree.lca(b, j)];
+    int ti = tree.depth[i] - tree.depth[tree.LCA(b, i)];
+    int tj = tree.depth[j] - tree.depth[tree.LCA(b, j)];
     return max(ti, tj);
   }
 };

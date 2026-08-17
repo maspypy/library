@@ -77,7 +77,6 @@ struct Tree {
       v = parent[u];
     }
   }
-  int la(int u, int v) { return LA(u, v); }
 
   int LCA(int u, int v) {
     static_assert(HLD);
@@ -91,7 +90,6 @@ struct Tree {
     static_assert(HLD);
     return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c);
   }
-  int lca(int u, int v) { return LCA(u, v); }
 
   int subtree_size(int v) { return RID[v] - LID[v]; }
 

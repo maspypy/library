@@ -274,7 +274,7 @@ struct BigInteger_Binary {
     }
   }
 
-  void substract_power_of_2(int k) { assert(0); }
+  void subtract_power_of_2(int k) { assert(0); }
 
   int topbit() {
     if (dat.empty()) return -1;

@@ -13,7 +13,7 @@ void test() {
   int N = RNG(3, 10);
   vc<P> point(N);
   FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));
-  auto I = Convex_Hull(point);
+  auto I = convex_hull(point);
   point = rearrange(point, I);
   N = len(point);
   if (N <= 2) return;

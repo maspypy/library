@@ -1,5 +1,5 @@
 template <typename Monoid>
-struct ActedSet_From_Monoid {
+struct ActedSet_from_Monoid {
   using Monoid_A = Monoid;
   using A = typename Monoid::value_type;
   using S = A;

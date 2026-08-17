@@ -13,7 +13,7 @@ pair<int, int> furthest_pair(vc<Point<T>> point) {
   };
   upd(0, 1);
 
-  auto I = Convex_Hull(point);
+  auto I = convex_hull(point);
   int n = len(I);
   if (n == 1) return ANS;
   if (n == 2) {

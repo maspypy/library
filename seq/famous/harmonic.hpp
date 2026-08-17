@@ -1,6 +1,6 @@
 
 // 誤差 O(N^{-6})
-long double Harmonic(ll N) {
+long double harmonic_number(ll N) {
   using Re = long double;
   static vc<Re> dp(1000);
   static bool prepare = 0;

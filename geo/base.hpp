@@ -134,7 +134,7 @@ struct Segment {
     return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;
   }
 
-  Line<T> to_Line() { return Line(A, B); }
+  Line<T> to_line() { return Line(A, B); }
 };
 
 template <typename REAL>

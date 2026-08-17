@@ -6,13 +6,13 @@
 void solve() {
   LL(N);
   VEC(int, P, N);
-  Common_Inverval_Decomposition X(P);
+  Common_Interval_Decomposition X(P);
   int nxt = 0;
   auto dfs = [&](auto& dfs, auto n, int p) -> void {
     string t = (n->inc || n->dec || (n->r - n->l == 1) ? "linear" : "prime");
     print(p, n->l, n->r - 1, t);
     int v = nxt++;
-    for (auto&& c: n->ch) dfs(dfs, c, v);
+    for (auto&& c : n->ch) dfs(dfs, c, v);
   };
   print(X.pid);
   dfs(dfs, X.root, -1);

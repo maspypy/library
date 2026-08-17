@@ -7,7 +7,7 @@ O(HW(H+W))
 同じ値が複数あってもよい
 操作回数を K として、長さ K+1 の空マスの座標列をかえす
 */
-struct Slinding_Puzzle_Solver {
+struct Sliding_Puzzle_Solver {
   using P = pair<int, int>;
   vc<P> solve(vvc<int> A, vvc<int> B) {
     int H = len(A), W = len(A[0]);
@@ -19,17 +19,25 @@ struct Slinding_Puzzle_Solver {
     auto [ax, ay] = find(A, -1);
     auto [bx, by] = find(B, -1);
     vc<P> ANS_1, ANS_2;
-    while (ax > 0) { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax - 1][ay]), --ax; }
-    while (ay > 0) { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax][ay - 1]), --ay; }
-    while (bx > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx - 1][by]), --bx; }
-    while (by > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx][by - 1]), --by; }
+    while (ax > 0) {
+      ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax - 1][ay]), --ax;
+    }
+    while (ay > 0) {
+      ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax][ay - 1]), --ay;
+    }
+    while (bx > 0) {
+      ANS_2.eb(bx, by), swap(B[bx][by], B[bx - 1][by]), --bx;
+    }
+    while (by > 0) {
+      ANS_2.eb(bx, by), swap(B[bx][by], B[bx][by - 1]), --by;
+    }
     vc<P> ANS = solve_00(A, B);
     if (ANS.empty()) return {};
     reverse(all(ANS_2));
     return concat(ANS_1, ANS, ANS_2);
   }
 
-private:
+ private:
   vc<P> solve_00(vvc<int> A, vvc<int> B) {
     assert(A[0][0] == -1 && B[0][0] == -1);
     int H = len(A), W = len(A[0]);
@@ -41,8 +49,12 @@ private:
     }
     vc<P> XYA, XYB;
     FOR(x, H) FOR(y, W) XYA.eb(x, y), XYB.eb(x, y);
-    sort(all(XYA), [&](auto& a, auto& b) -> bool { return A[a.fi][a.se] < A[b.fi][b.se]; });
-    sort(all(XYB), [&](auto& a, auto& b) -> bool { return B[a.fi][a.se] < B[b.fi][b.se]; });
+    sort(all(XYA), [&](auto& a, auto& b) -> bool {
+      return A[a.fi][a.se] < A[b.fi][b.se];
+    });
+    sort(all(XYB), [&](auto& a, auto& b) -> bool {
+      return B[a.fi][a.se] < B[b.fi][b.se];
+    });
     auto check = [&]() -> bool {
       vc<int> S, T;
       FOR(i, H * W) {
@@ -135,11 +147,18 @@ private:
       while (py > ty) ope(px, py - 1);
       if (px == tx + 1) ope(px - 1, py), tie(tx, ty) = pos[H - 1][y];
       assert(px == tx - 1 && py == ty);
-      while (ty < y) { ope(px, py + 1), ope(px + 1, py), ope(px, py - 1), ope(px - 1, py), ope(px, py + 1); }
-      while (ty > y) { ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py), ope(px, py - 1); }
+      while (ty < y) {
+        ope(px, py + 1), ope(px + 1, py), ope(px, py - 1), ope(px - 1, py),
+            ope(px, py + 1);
+      }
+      while (ty > y) {
+        ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py),
+            ope(px, py - 1);
+      }
       tie(tx, ty) = pos[H - 1][y];
       while (tx < H - 1) {
-        ope(px, py - 1), ope(px + 1, py), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py);
+        ope(px, py - 1), ope(px + 1, py), ope(px + 1, py), ope(px, py + 1),
+            ope(px - 1, py);
         tie(tx, ty) = pos[H - 1][y];
       }
       assert(A[H - 1][y] == (pair<int, int>{H - 1, y}));
@@ -162,9 +181,15 @@ private:
     tie(tx, ty) = pos[H - 1][0];
     if (tx < H - 1) {
       assert(px == tx - 1 && py == ty);
-      while (ty > 0) { ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py), ope(px, py - 1); }
+      while (ty > 0) {
+        ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py),
+            ope(px, py - 1);
+      }
       tie(tx, ty) = pos[H - 1][0];
-      while (tx < H - 2) { ope(px, py + 1), ope(px + 1, py), ope(px + 1, py), ope(px, py - 1), ope(px - 1, py); }
+      while (tx < H - 2) {
+        ope(px, py + 1), ope(px + 1, py), ope(px + 1, py), ope(px, py - 1),
+            ope(px - 1, py);
+      }
       ope(px + 1, py), ope(px + 1, py), ope(px, py + 1);
       ope(px - 1, py), ope(px, py - 1), ope(px - 1, py);
       ope(px, py + 1), ope(px + 1, py), ope(px + 1, py);

@@ -16,7 +16,7 @@ vc<Point<ll>> random_polygon(int N, int XY_ABS_MAX = 10) {
       S.insert(Point<ll>(x, y));
     }
     vc<P> point(all(S));
-    auto I = Convex_Hull<ll, true>(point);
+    auto I = convex_hull<ll, true>(point);
     Count_Points_In_Triangles CT(point, point);
     vc<int> other;
     vc<int> done(N);

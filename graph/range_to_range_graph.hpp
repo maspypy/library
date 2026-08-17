@@ -7,8 +7,8 @@ struct Range_to_Range_Graph {
   vc<tuple<int, int, T>> edges;
 
   Range_to_Range_Graph(int n) : n(n), n_node(n * 3) {
-    FOR3(i, 2, n + n) { edges.eb(to_upper_idx(i / 2), to_upper_idx(i), 0); }
-    FOR3(i, 2, n + n) { edges.eb(to_lower_idx(i), to_lower_idx(i / 2), 0); }
+    FOR(i, 2, n + n) { edges.eb(to_upper_idx(i / 2), to_upper_idx(i), 0); }
+    FOR(i, 2, n + n) { edges.eb(to_lower_idx(i), to_lower_idx(i / 2), 0); }
   }
 
   inline int to_upper_idx(const int& i) {
@@ -23,7 +23,7 @@ struct Range_to_Range_Graph {
 
   void add(int frm, int to, T wt) { edges.eb(frm, to, wt); }
 
-  void add_frm_range(int frm_l, int frm_r, int to, T wt) {
+  void add_from_range(int frm_l, int frm_r, int to, T wt) {
     int l = frm_l + n, r = frm_r + n;
     while (l < r) {
       if (l & 1) add(to_lower_idx(l++), to, wt);
@@ -43,7 +43,7 @@ struct Range_to_Range_Graph {
 
   void add_range_to_range(int frm_l, int frm_r, int to_l, int to_r, T wt) {
     int new_node = n_node++;
-    add_frm_range(frm_l, frm_r, new_node, wt);
+    add_from_range(frm_l, frm_r, new_node, wt);
     add_to_range(new_node, to_l, to_r, T(0));
   }
 
@@ -69,7 +69,7 @@ struct Range_to_Range_Graph {
 //   Range_to_Range_Graph(int n) : n(n), n_node(n), A(n) {}
 
 //   void add(int frm, int to, T wt = 1) { edges.eb(frm, to, wt); }
-//   void add_frm_range(int frm_l, int frm_r, int to, T wt = 1) {
+//   void add_from_range(int frm_l, int frm_r, int to, T wt = 1) {
 //     assert(0 <= frm_l && frm_l <= frm_r && frm_r <= n);
 //     if (frm_l == frm_r) return;
 //     if (frm_r == frm_l + 1) return add(frm_l, to, wt);

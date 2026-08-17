@@ -9,7 +9,7 @@ using P = Point<ll>;
 void solve() {
   LL(N);
   VEC(P, point, N);
-  vc<int> I = Convex_Hull(point);
+  vc<int> I = convex_hull(point);
   print(len(I));
   for (auto& i : I) print(point[i]);
 }

@@ -3,7 +3,7 @@
 // dist[i]: i から進める距離.
 // 区間に単調性があるとする. i+dist[i]<=(i+1)+dist[i+1]
 // https://codeforces.com/contest/526/problem/E
-pair<int, int> anulus_scheduling(int N, vc<int> dist) {
+pair<int, int> annulus_scheduling(int N, vc<int> dist) {
   assert(len(dist) == N);
   FOR(i, N - 1) assert(dist[i] <= 1 + dist[i + 1]);
   assert(dist[N - 1] <= 1 + dist[0]);

@@ -4,7 +4,7 @@
 // allow_180=true で同一座標点があるとこわれる
 // full なら I[0] が sorted で min になる
 template <typename T, bool allow_180 = false>
-vector<int> Convex_Hull(vector<Point<T>>& XY, string mode = "full",
+vector<int> convex_hull(vector<Point<T>>& XY, string mode = "full",
                         bool sorted = false) {
   assert(mode == "full" || mode == "lower" || mode == "upper");
   ll N = XY.size();

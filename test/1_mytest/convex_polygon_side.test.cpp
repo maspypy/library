@@ -17,7 +17,7 @@ void test() {
   Incremental_Convex_Hull<ll> Y;
   for (auto& p : point) Y.add(p);
 
-  auto I = Convex_Hull(point);
+  auto I = convex_hull(point);
   point = rearrange(point, I);
   N = len(point);
   if (N <= 2) return;
