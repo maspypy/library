@@ -1,4 +1,5 @@
 
+#include "mod/modint.hpp"
 #include "poly/convolution.hpp"
 
 template <typename mint>
@@ -8,7 +9,7 @@ vc<mint> power_projection_0_ntt(vc<mint> wt, vc<mint> f, int m) {
   int n = 1;
   while (n < len(f)) n *= 2;
 
-  for (auto& x: f) x = -x;
+  for (auto& x : f) x = -x;
   f.resize(n), wt.resize(n);
   reverse(all(wt));
   vc<mint>&P = wt, &Q = f;
@@ -24,7 +25,9 @@ vc<mint> power_projection_0_ntt(vc<mint> wt, vc<mint> f, int m) {
     mint r = mint::ntt_info().se;
     mint dw = r.inverse().pow((1 << t) / (2 * n));
     mint w = 1;
-    for (auto& i: btr) { W[i] = w, w *= dw; }
+    for (auto& i : btr) {
+      W[i] = w, w *= dw;
+    }
   }
 
   int k = 1;
@@ -97,7 +100,7 @@ vc<mint> power_projection_0_ntt(vc<mint> wt, vc<mint> f, int m) {
   FOR(i, k) P[i] = P[2 * i];
   P.resize(k);
   mint c = mint(1) / mint(k);
-  for (auto& x: P) x *= c;
+  for (auto& x : P) x *= c;
   ntt(P, 1);
   reverse(all(P));
   P.resize(m + 1);
@@ -130,21 +133,27 @@ vc<mint> power_projection_0_garner(vc<mint> wt, vc<mint> f, int m) {
       mint0 r = mint0::ntt_info().se;
       mint0 dw = r.inverse().pow((1 << t) / (4 * n));
       mint0 w = 1;
-      for (auto& i: btr) { W0[i] = w, w *= dw; }
+      for (auto& i : btr) {
+        W0[i] = w, w *= dw;
+      }
     }
     {
       int t = mint1::ntt_info().fi;
       mint1 r = mint1::ntt_info().se;
       mint1 dw = r.inverse().pow((1 << t) / (4 * n));
       mint1 w = 1;
-      for (auto& i: btr) { W1[i] = w, w *= dw; }
+      for (auto& i : btr) {
+        W1[i] = w, w *= dw;
+      }
     }
     {
       int t = mint2::ntt_info().fi;
       mint2 r = mint2::ntt_info().se;
       mint2 dw = r.inverse().pow((1 << t) / (4 * n));
       mint2 w = 1;
-      for (auto& i: btr) { W2[i] = w, w *= dw; }
+      for (auto& i : btr) {
+        W2[i] = w, w *= dw;
+      }
     }
   }
 
@@ -162,14 +171,14 @@ vc<mint> power_projection_0_garner(vc<mint> wt, vc<mint> f, int m) {
     Q0[2 * n * k] = 1, Q1[2 * n * k] = 1, Q2[2 * n * k] = 1;
     ntt(P0, 0), ntt(Q0, 0), ntt(P1, 0), ntt(Q1, 0), ntt(P2, 0), ntt(Q2, 0);
     FOR(i, 2 * n * k) {
-      P0[i] = inv<mint0>(2) * W0[i]
-              * (P0[2 * i] * Q0[2 * i + 1] - P0[2 * i + 1] * Q0[2 * i]);
+      P0[i] = inv<mint0>(2) * W0[i] *
+              (P0[2 * i] * Q0[2 * i + 1] - P0[2 * i + 1] * Q0[2 * i]);
       Q0[i] = Q0[2 * i] * Q0[2 * i + 1];
-      P1[i] = inv<mint1>(2) * W1[i]
-              * (P1[2 * i] * Q1[2 * i + 1] - P1[2 * i + 1] * Q1[2 * i]);
+      P1[i] = inv<mint1>(2) * W1[i] *
+              (P1[2 * i] * Q1[2 * i + 1] - P1[2 * i + 1] * Q1[2 * i]);
       Q1[i] = Q1[2 * i] * Q1[2 * i + 1];
-      P2[i] = inv<mint2>(2) * W2[i]
-              * (P2[2 * i] * Q2[2 * i + 1] - P2[2 * i + 1] * Q2[2 * i]);
+      P2[i] = inv<mint2>(2) * W2[i] *
+              (P2[2 * i] * Q2[2 * i + 1] - P2[2 * i + 1] * Q2[2 * i]);
       Q2[i] = Q2[2 * i] * Q2[2 * i + 1];
     }
     P0.resize(2 * n * k), Q0.resize(2 * n * k);
@@ -202,10 +211,54 @@ vc<mint> power_projection_0_garner(vc<mint> wt, vc<mint> f, int m) {
 }
 
 // \sum_j[x^j]f^i を i=0,1,...,m
+vc<modint<2>> power_projection_mod_2(vc<modint<2>> wt, vc<modint<2>> f, int m) {
+  using mint = modint<2>;
+  assert(len(f) == len(wt));
+  vc<mint>& g = wt;
+  reverse(all(g));
+  // [x^N]f(x)^ig(x)
+  vc<mint> ANS(m + 1);
+  auto dfs = [&](auto& dfs, vc<mint> f, vc<mint> g, int m, int i0,
+                 int step) -> void {
+    int N = len(f) - 1;
+    /*
+    [x^N]f(x)^ig(x), 0<=i<=m を ANS[i0], ANS[i0+step],... に書きこむ
+    */
+    if (m == 0) {
+      ANS[i0] = g[N];
+      return;
+    }
+    {  // even case
+      int n = N / 2;
+      vc<mint> nxtf(n + 1), nxtg(n + 1);
+      FOR(i, n + 1) nxtf[i] = f[i];
+      FOR(i, n + 1) nxtg[n - i] = g[N - 2 * i];
+      dfs(dfs, nxtf, nxtg, m / 2, i0, step * 2);
+    }
+    {  // odd case
+      g = convolution(f, g);
+      g.resize(N + 1);
+      int n = N / 2;
+      vc<mint> nxtf(n + 1), nxtg(n + 1);
+      FOR(i, n + 1) nxtf[i] = f[i];
+      FOR(i, n + 1) nxtg[n - i] = g[N - 2 * i];
+      dfs(dfs, nxtf, nxtg, (m - 1) / 2, i0 + step, step * 2);
+    }
+  };
+  dfs(dfs, f, g, m, 0, 1);
+  return ANS;
+}
+
+// \sum_j[x^j]f^i を i=0,1,...,m
 template <typename mint>
 vc<mint> power_projection(vc<mint> wt, vc<mint> f, int m) {
   assert(len(f) == len(wt));
-  if (f.empty()) { return vc<mint>(m + 1, mint(0)); }
+  if (f.empty()) {
+    return vc<mint>(m + 1, mint(0));
+  }
+  if constexpr (is_same_v<mint, modint<2>>) {
+    return power_projection_mod_2(wt, f, m);
+  }
   if (f[0] != mint(0)) {
     mint c = f[0];
     f[0] = 0;
@@ -219,6 +272,8 @@ vc<mint> power_projection(vc<mint> wt, vc<mint> f, int m) {
     FOR(i, m + 1) A[i] *= fact<mint>(i);
     return A;
   }
-  if (mint::can_ntt()) { return power_projection_0_ntt(wt, f, m); }
+  if (mint::can_ntt()) {
+    return power_projection_0_ntt(wt, f, m);
+  }
   return power_projection_0_garner(wt, f, m);
 }
