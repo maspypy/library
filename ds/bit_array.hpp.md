@@ -10,7 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: poly/convolution_mod_2.hpp
+    title: poly/convolution_mod_2.hpp
+  - icon: ':warning:'
+    path: poly/mod_2/convolution.hpp
+    title: poly/mod_2/convolution.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -563,7 +569,9 @@ data:
   - other/bit.hpp
   isVerificationFile: false
   path: ds/bit_array.hpp
-  requiredBy: []
+  requiredBy:
+  - poly/convolution_mod_2.hpp
+  - poly/mod_2/convolution.hpp
   timestamp: '2026-08-18 13:05:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

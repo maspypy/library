@@ -500,6 +500,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
+  - icon: ':warning:'
+    path: poly/convolution_mod_2.hpp
+    title: poly/convolution_mod_2.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution_u64.hpp
     title: poly/convolution_u64.hpp
@@ -536,6 +539,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
+  - icon: ':warning:'
+    path: poly/mod_2/convolution.hpp
+    title: poly/mod_2/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
@@ -2454,6 +2460,7 @@ data:
   - poly/middle_product.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/poly_gcd.hpp
+  - poly/convolution_mod_2.hpp
   - poly/typical_divide_conquer.hpp
   - poly/power_projection.hpp
   - poly/convolution_huge.hpp
@@ -2493,6 +2500,7 @@ data:
   - poly/composed_sum.hpp
   - poly/poly_divmod.hpp
   - poly/composed_product.hpp
+  - poly/mod_2/convolution.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/prefix_sum_of_polynomial.hpp
   - poly/egf_convolution.hpp

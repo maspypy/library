@@ -2213,6 +2213,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/typical_divide_conquer.hpp
       title: poly/typical_divide_conquer.hpp
+  - name: poly/mod_2
+    pages:
+    - icon: ':warning:'
+      path: poly/mod_2/convolution.hpp
+      title: poly/mod_2/convolution.hpp
   - name: poly/online
     pages:
     - icon: ':heavy_check_mark:'

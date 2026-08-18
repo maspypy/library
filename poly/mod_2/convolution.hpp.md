@@ -20,8 +20,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"poly/convolution_mod_2.hpp\"\n#include <wmmintrin.h>\n#line\
-    \ 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"poly/mod_2/convolution.hpp\"\n#include <wmmintrin.h>\n\n\
+    #line 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
     #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n// \u74B0\u5883\u306B\u3088\u3063\u3066\u306F\u30B3\u30F3\
     \u30D1\u30A4\u30EB\u6210\u529F\u304B\u3064\u5B9F\u884C\u6642\u30A8\u30E9\u30FC\
@@ -411,75 +411,89 @@ data:
     \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
     \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
     \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 3 \"poly/convolution_mod_2.hpp\"\
-    \n\n__attribute__((target(\"pclmul\"))) void clmul_naive(\n    const u64* a, int\
-    \ n, const u64* b, int m, u64* c) {\n  // c[0, n+m) \u306F\u3042\u3089\u304B\u3058\
-    \u3081 0 \u3068\u3059\u308B\n  FOR(i, n) FOR(j, m) {\n    __m128i A = _mm_set_epi64x(0,\
-    \ a[i]);\n    __m128i B = _mm_set_epi64x(0, b[j]);\n    __m128i C = _mm_clmulepi64_si128(A,\
-    \ B, 0x00);\n    alignas(16) u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n\
-    \    c[i + j] ^= w[0];\n    c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs,\
-    \ n \u306F 2 \u51AA\n// c: 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\
-    \u5168\u90E8 0\n// scratch \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\n__attribute__((target(\"\
+    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 4 \"poly/mod_2/convolution.hpp\"\
+    \n\nconstexpr int CLMUL_TH = 8;\n\n__attribute__((target(\"pclmul\"))) void clmul_naive(\n\
+    \    const u64* a, int n, const u64* b, int m, u64* c) {\n  FOR(i, n) FOR(j, m)\
+    \ {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i B = _mm_set_epi64x(0,\
+    \ b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\n    alignas(16)\
+    \ u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n\n    c[i + j] ^= w[0];\n \
+    \   c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n words, n \u306F 2 \u51AA\n// c:\
+    \ 2n words, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n// scratch:\
+    \ 4n words\n__attribute__((target(\"pclmul\"))) void clmul_karatsuba_rec(\n  \
+    \  const u64* a, const u64* b, u64* c, int n, u64* scratch) {\n  if (n <= CLMUL_TH)\
+    \ {\n    clmul_naive(a, n, b, n, c);\n    return;\n  }\n\n  int m = n / 2;\n\n\
+    \  // z0 = a0*b0\n  clmul_karatsuba_rec(a, b, c, m, scratch);\n  // z2 = a1*b1\n\
+    \  clmul_karatsuba_rec(a + m, b + m, c + 2 * m, m, scratch);\n  u64* sa = scratch;\n\
+    \  u64* sb = scratch + m;\n  u64* z1 = scratch + 2 * m;\n  u64* sub = scratch\
+    \ + 4 * m;\n  FOR(i, m) {\n    sa[i] = a[i] ^ a[m + i];\n    sb[i] = b[i] ^ b[m\
+    \ + i];\n  }\n  fill(z1, z1 + 2 * m, u64(0));\n  clmul_karatsuba_rec(sa, sb, z1,\
+    \ m, sub);\n  FOR(i, 2 * m) z1[i] ^= c[i] ^ c[2 * m + i];\n  FOR(i, 2 * m) c[m\
+    \ + i] ^= z1[i];\n}\n\n// c \u306F A+B words \u4EE5\u4E0A\u3042\u308A\u3001\u3042\
+    \u3089\u304B\u3058\u3081 0 \u306B\u3057\u3066\u304A\u304F\u3002\n__attribute__((target(\"\
+    pclmul\"))) void clmul_rec(\n    const u64* a, int A, const u64* b, int B, u64*\
+    \ c) {\n  if (A > B) {\n    clmul_rec(b, B, a, A, c);\n    return;\n  }\n\n  //\
+    \ A <= B\n  if (A <= CLMUL_TH) {\n    clmul_naive(a, A, b, B, c);\n    return;\n\
+    \  }\n\n  if (2 * A <= B) {\n    // b = b0 + x^(B-A) b1\n    // |b0| = B-A, |b1|\
+    \ = A\n    int M = B - A;\n\n    clmul_rec(a, A, b, M, c);\n    clmul_rec(a, A,\
+    \ b + M, A, c + M);\n    return;\n  }\n\n  // A <= B < 2A\n  assert(A <= B &&\
+    \ B < 2 * A);\n  int n = 1;\n  while (n < B) n <<= 1;\n  vc<u64> x(n), y(n), z(2\
+    \ * n), scratch(4 * n);\n  copy(a, a + A, x.begin());\n  copy(b, b + B, y.begin());\n\
+    \  clmul_karatsuba_rec(x.data(), y.data(), z.data(), n, scratch.data());\n  FOR(i,\
+    \ A + B) c[i] ^= z[i];\n}\n\n__attribute__((target(\"pclmul\"))) Bit_Array convolution(\n\
+    \    const Bit_Array& a, const Bit_Array& b) {\n  int na = a.size(), nb = b.size();\n\
+    \  if (!na || !nb) return {};\n\n  int A = len(a.dat), B = len(b.dat);\n  // clmul_rec\
+    \ \u306F A+B words \u306B\u66F8\u304D\u8FBC\u3080\u53EF\u80FD\u6027\u304C\u3042\
+    \u308B\u3002\n  Bit_Array res(64 * (A + B));\n  clmul_rec(a.dat.data(), A, b.dat.data(),\
+    \ B, res.dat.data());\n  res.resize(na + nb - 1);\n  return res;\n}\n"
+  code: "#include <wmmintrin.h>\n\n#include \"ds/bit_array.hpp\"\n\nconstexpr int\
+    \ CLMUL_TH = 8;\n\n__attribute__((target(\"pclmul\"))) void clmul_naive(\n   \
+    \ const u64* a, int n, const u64* b, int m, u64* c) {\n  FOR(i, n) FOR(j, m) {\n\
+    \    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i B = _mm_set_epi64x(0, b[j]);\n\
+    \    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\n    alignas(16) u64 w[2];\n\
+    \    _mm_store_si128((__m128i*)w, C);\n\n    c[i + j] ^= w[0];\n    c[i + j +\
+    \ 1] ^= w[1];\n  }\n}\n\n// a,b: n words, n \u306F 2 \u51AA\n// c: 2n words, \u547C\
+    \u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n// scratch: 4n words\n__attribute__((target(\"\
     pclmul\"))) void clmul_karatsuba_rec(\n    const u64* a, const u64* b, u64* c,\
-    \ int n, u64* scratch) {\n  constexpr int TH = 32;\n  if (n <= TH) {\n    clmul_naive(a,\
-    \ n, b, n, c);\n    return;\n  }\n  int m = n / 2;\n  clmul_karatsuba_rec(a, b,\
-    \ c, m, scratch);\n  clmul_karatsuba_rec(a + m, b + m, c + 2 * m, m, scratch);\n\
-    \  u64* sa = scratch;\n  u64* sb = scratch + m;\n  u64* z1 = scratch + 2 * m;\n\
-    \  u64* sub = scratch + 4 * m;\n  FOR(i, m) {\n    sa[i] = a[i] ^ a[m + i];\n\
-    \    sb[i] = b[i] ^ b[m + i];\n  }\n  fill(z1, z1 + 2 * m, u64(0));\n  clmul_karatsuba_rec(sa,\
-    \ sb, z1, m, sub);\n  FOR(i, 2 * m) z1[i] ^= c[i] ^ c[2 * m + i];\n  FOR(i, 2\
-    \ * m) c[m + i] ^= z1[i];\n}\n\n__attribute__((target(\"pclmul\"))) Bit_Array\
-    \ convolution(\n    const Bit_Array& a, const Bit_Array& b) {\n  int na = a.size(),\
-    \ nb = b.size();\n  if (!na || !nb) return {};\n  int A = len(a.dat), B = len(b.dat);\n\
-    \  int N = na + nb - 1;\n  Bit_Array res(64 * (A + B));\n  if (min(A, B) <= 16)\
-    \ {\n    clmul_naive(a.dat.data(), A, b.dat.data(), B, res.dat.data());\n    res.resize(N);\n\
-    \    return res;\n  }\n  int n = 1;\n  while (n < max(A, B)) n <<= 1;\n  vc<u64>\
-    \ x(n), y(n);\n  copy(all(a.dat), x.begin());\n  copy(all(b.dat), y.begin());\n\
-    \  res.resize(128 * n);\n  vc<u64> scratch(4 * n);\n  clmul_karatsuba_rec(x.data(),\
-    \ y.data(), res.dat.data(), n, scratch.data());\n  res.resize(N);\n  return res;\n\
-    }\n"
-  code: "#include <wmmintrin.h>\n#include \"ds/bit_array.hpp\"\n\n__attribute__((target(\"\
-    pclmul\"))) void clmul_naive(\n    const u64* a, int n, const u64* b, int m, u64*\
-    \ c) {\n  // c[0, n+m) \u306F\u3042\u3089\u304B\u3058\u3081 0 \u3068\u3059\u308B\
-    \n  FOR(i, n) FOR(j, m) {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i\
-    \ B = _mm_set_epi64x(0, b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\
-    \    alignas(16) u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n    c[i + j]\
-    \ ^= w[0];\n    c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs, n \u306F 2 \u51AA\
-    \n// c: 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n//\
-    \ scratch \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\n__attribute__((target(\"\
-    pclmul\"))) void clmul_karatsuba_rec(\n    const u64* a, const u64* b, u64* c,\
-    \ int n, u64* scratch) {\n  constexpr int TH = 32;\n  if (n <= TH) {\n    clmul_naive(a,\
-    \ n, b, n, c);\n    return;\n  }\n  int m = n / 2;\n  clmul_karatsuba_rec(a, b,\
-    \ c, m, scratch);\n  clmul_karatsuba_rec(a + m, b + m, c + 2 * m, m, scratch);\n\
-    \  u64* sa = scratch;\n  u64* sb = scratch + m;\n  u64* z1 = scratch + 2 * m;\n\
-    \  u64* sub = scratch + 4 * m;\n  FOR(i, m) {\n    sa[i] = a[i] ^ a[m + i];\n\
-    \    sb[i] = b[i] ^ b[m + i];\n  }\n  fill(z1, z1 + 2 * m, u64(0));\n  clmul_karatsuba_rec(sa,\
-    \ sb, z1, m, sub);\n  FOR(i, 2 * m) z1[i] ^= c[i] ^ c[2 * m + i];\n  FOR(i, 2\
-    \ * m) c[m + i] ^= z1[i];\n}\n\n__attribute__((target(\"pclmul\"))) Bit_Array\
-    \ convolution(\n    const Bit_Array& a, const Bit_Array& b) {\n  int na = a.size(),\
-    \ nb = b.size();\n  if (!na || !nb) return {};\n  int A = len(a.dat), B = len(b.dat);\n\
-    \  int N = na + nb - 1;\n  Bit_Array res(64 * (A + B));\n  if (min(A, B) <= 16)\
-    \ {\n    clmul_naive(a.dat.data(), A, b.dat.data(), B, res.dat.data());\n    res.resize(N);\n\
-    \    return res;\n  }\n  int n = 1;\n  while (n < max(A, B)) n <<= 1;\n  vc<u64>\
-    \ x(n), y(n);\n  copy(all(a.dat), x.begin());\n  copy(all(b.dat), y.begin());\n\
-    \  res.resize(128 * n);\n  vc<u64> scratch(4 * n);\n  clmul_karatsuba_rec(x.data(),\
-    \ y.data(), res.dat.data(), n, scratch.data());\n  res.resize(N);\n  return res;\n\
-    }\n"
+    \ int n, u64* scratch) {\n  if (n <= CLMUL_TH) {\n    clmul_naive(a, n, b, n,\
+    \ c);\n    return;\n  }\n\n  int m = n / 2;\n\n  // z0 = a0*b0\n  clmul_karatsuba_rec(a,\
+    \ b, c, m, scratch);\n  // z2 = a1*b1\n  clmul_karatsuba_rec(a + m, b + m, c +\
+    \ 2 * m, m, scratch);\n  u64* sa = scratch;\n  u64* sb = scratch + m;\n  u64*\
+    \ z1 = scratch + 2 * m;\n  u64* sub = scratch + 4 * m;\n  FOR(i, m) {\n    sa[i]\
+    \ = a[i] ^ a[m + i];\n    sb[i] = b[i] ^ b[m + i];\n  }\n  fill(z1, z1 + 2 * m,\
+    \ u64(0));\n  clmul_karatsuba_rec(sa, sb, z1, m, sub);\n  FOR(i, 2 * m) z1[i]\
+    \ ^= c[i] ^ c[2 * m + i];\n  FOR(i, 2 * m) c[m + i] ^= z1[i];\n}\n\n// c \u306F\
+    \ A+B words \u4EE5\u4E0A\u3042\u308A\u3001\u3042\u3089\u304B\u3058\u3081 0 \u306B\
+    \u3057\u3066\u304A\u304F\u3002\n__attribute__((target(\"pclmul\"))) void clmul_rec(\n\
+    \    const u64* a, int A, const u64* b, int B, u64* c) {\n  if (A > B) {\n   \
+    \ clmul_rec(b, B, a, A, c);\n    return;\n  }\n\n  // A <= B\n  if (A <= CLMUL_TH)\
+    \ {\n    clmul_naive(a, A, b, B, c);\n    return;\n  }\n\n  if (2 * A <= B) {\n\
+    \    // b = b0 + x^(B-A) b1\n    // |b0| = B-A, |b1| = A\n    int M = B - A;\n\
+    \n    clmul_rec(a, A, b, M, c);\n    clmul_rec(a, A, b + M, A, c + M);\n    return;\n\
+    \  }\n\n  // A <= B < 2A\n  assert(A <= B && B < 2 * A);\n  int n = 1;\n  while\
+    \ (n < B) n <<= 1;\n  vc<u64> x(n), y(n), z(2 * n), scratch(4 * n);\n  copy(a,\
+    \ a + A, x.begin());\n  copy(b, b + B, y.begin());\n  clmul_karatsuba_rec(x.data(),\
+    \ y.data(), z.data(), n, scratch.data());\n  FOR(i, A + B) c[i] ^= z[i];\n}\n\n\
+    __attribute__((target(\"pclmul\"))) Bit_Array convolution(\n    const Bit_Array&\
+    \ a, const Bit_Array& b) {\n  int na = a.size(), nb = b.size();\n  if (!na ||\
+    \ !nb) return {};\n\n  int A = len(a.dat), B = len(b.dat);\n  // clmul_rec \u306F\
+    \ A+B words \u306B\u66F8\u304D\u8FBC\u3080\u53EF\u80FD\u6027\u304C\u3042\u308B\
+    \u3002\n  Bit_Array res(64 * (A + B));\n  clmul_rec(a.dat.data(), A, b.dat.data(),\
+    \ B, res.dat.data());\n  res.resize(na + nb - 1);\n  return res;\n}"
   dependsOn:
   - ds/bit_array.hpp
   - my_template.hpp
   - other/io.hpp
   - other/bit.hpp
   isVerificationFile: false
-  path: poly/convolution_mod_2.hpp
+  path: poly/mod_2/convolution.hpp
   requiredBy: []
   timestamp: '2026-08-18 17:14:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: poly/convolution_mod_2.hpp
+documentation_of: poly/mod_2/convolution.hpp
 layout: document
 redirect_from:
-- /library/poly/convolution_mod_2.hpp
-- /library/poly/convolution_mod_2.hpp.html
-title: poly/convolution_mod_2.hpp
+- /library/poly/mod_2/convolution.hpp
+- /library/poly/mod_2/convolution.hpp.html
+title: poly/mod_2/convolution.hpp
 ---

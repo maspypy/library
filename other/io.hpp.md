@@ -15,6 +15,12 @@ data:
     path: other/mhc_template_directory/para2.cpp
     title: other/mhc_template_directory/para2.cpp
   - icon: ':warning:'
+    path: poly/convolution_mod_2.hpp
+    title: poly/convolution_mod_2.hpp
+  - icon: ':warning:'
+    path: poly/mod_2/convolution.hpp
+    title: poly/mod_2/convolution.hpp
+  - icon: ':warning:'
     path: test/2_library_checker/convolution/convolution_huge.test___.cpp
     title: test/2_library_checker/convolution/convolution_huge.test___.cpp
   _extendedVerifiedWith:
@@ -2181,6 +2187,8 @@ data:
   path: other/io.hpp
   requiredBy:
   - ds/bit_array.hpp
+  - poly/convolution_mod_2.hpp
+  - poly/mod_2/convolution.hpp
   - other/mhc_template_directory/main.cpp
   - other/mhc_template_directory/para.cpp
   - other/mhc_template_directory/para2.cpp
