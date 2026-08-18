@@ -7,46 +7,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -319,35 +319,36 @@ data:
     \ {\n    vc<X> X;\n    reverse(all(dat_l));\n    concat(X, dat_l, dat_r);\n  \
     \  clear();\n    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i,\
     \ m, len(X)) push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n#line 1 \"\
-    poly/convolution.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
-    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
-    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
-    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
-    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
-    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
-    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
-    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
-    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
-    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
-    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
-    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
-    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
-    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
-    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
-    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
-    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
-    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
-    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\n\
-    struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    poly/convolution.hpp\"\n#include <wmmintrin.h>\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
@@ -626,53 +627,91 @@ data:
     \  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\n\n  auto c1 = convolution_ntt<mint1>(a1,\
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
-    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  if (mint::get_mod() == 2) {\n    vc<modint998> aa, bb;\n    for (auto&\
-    \ x : a) aa.eb(x.val);\n    for (auto& x : b) bb.eb(x.val);\n    aa = convolution<modint998>(aa,\
-    \ bb);\n    vc<mint> ANS(len(aa));\n    FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\n\
-    \    return ANS;\n  }\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
-    #line 4 \"poly/lagrange_interpolate_iota.hpp\"\n\n// Input: f(0), ..., f(n-1)\
-    \ and c. Return: f(c)\ntemplate <typename T, typename enable_if<has_mod<T>::value>::type\
-    \ * = nullptr>\nT lagrange_interpolate_iota(vc<T> &f, T c) {\n  int n = len(f);\n\
-    \  if (int(c.val) < n) return f[c.val];\n  auto a = f;\n  FOR(i, n) {\n    a[i]\
-    \ = a[i] * fact_inv<T>(i) * fact_inv<T>(n - 1 - i);\n    if ((n - 1 - i) & 1)\
-    \ a[i] = -a[i];\n  }\n  vc<T> lp(n + 1), rp(n + 1);\n  lp[0] = rp[n] = 1;\n  FOR(i,\
-    \ n) lp[i + 1] = lp[i] * (c - i);\n  FOR_R(i, n) rp[i] = rp[i + 1] * (c - i);\n\
-    \  T ANS = 0;\n  FOR(i, n) ANS += a[i] * lp[i] * rp[i + 1];\n  return ANS;\n}\n\
-    \n// mod \u3058\u3083\u306A\u3044\u5834\u5408\u3002\u304B\u306A\u308A\u4F4E\u6B21\
-    \u306E\u591A\u9805\u5F0F\u3092\u60F3\u5B9A\u3057\u3066\u3044\u308B\u3002O(n^2)\n\
-    // Input: f(0), ..., f(n-1) and c. Return: f(c)\ntemplate <typename T, typename\
-    \ enable_if<!has_mod<T>::value>::type * = nullptr>\nT lagrange_interpolate_iota(vc<T>\
-    \ &f, T c) {\n  const int LIM = 10;\n  int n = len(f);\n  assert(n < LIM);\n\n\
-    \  // (-1)^{i-j} binom(i,j)\n  static vvc<int> C;\n  if (C.empty()) {\n    C.assign(LIM,\
-    \ vc<int>(LIM));\n    C[0][0] = 1;\n    FOR(n, 1, LIM) FOR(k, n + 1) {\n     \
-    \ C[n][k] += C[n - 1][k];\n      if (k) C[n][k] += C[n - 1][k - 1];\n    }\n \
-    \   FOR(n, LIM) FOR(k, n + 1) if ((n + k) % 2) C[n][k] = -C[n][k];\n  }\n  //\
-    \ f(x) = sum a_i binom(x,i)\n  vc<T> a(n);\n  FOR(i, n) FOR(j, i + 1) { a[i] +=\
-    \ f[j] * C[i][j]; }\n\n  T res = 0;\n  T b = 1;\n  FOR(i, n) {\n    res += a[i]\
-    \ * b;\n    b = b * (c - i) / (1 + i);\n  }\n  return res;\n}\n\n// Input: f(0),\
-    \ ..., f(n-1) and c, m\n// Return: f(c), f(c+1), ..., f(c+m-1)\n// Complexity:\
-    \ M(n, n + m)\ntemplate <typename mint>\nvc<mint> lagrange_interpolate_iota(vc<mint>\
-    \ &f, mint c, int m) {\n  if (m <= 60) {\n    vc<mint> ANS(m);\n    FOR(i, m)\
-    \ ANS[i] = lagrange_interpolate_iota(f, c + mint(i));\n    return ANS;\n  }\n\
-    \  ll n = len(f);\n  auto a = f;\n  FOR(i, n) {\n    a[i] = a[i] * fact_inv<mint>(i)\
-    \ * fact_inv<mint>(n - 1 - i);\n    if ((n - 1 - i) & 1) a[i] = -a[i];\n  }\n\
-    \  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066 a0/x + a1/(x-1) + ... \u3092\u6C42\
-    \u3081\u3066\u304A\u304F\n  vc<mint> b(n + m - 1);\n  FOR(i, n + m - 1) b[i] =\
-    \ mint(1) / (c + mint(i - n + 1));\n  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
-    \ swag;\n  vc<mint> ANS(m);\n  ll L = 0, R = 0;\n  FOR(i, m) {\n    while (L <\
-    \ i) { swag.pop(), ++L; }\n    while (R - L < n) { swag.push(c + mint((R++) -\
-    \ n + 1)); }\n    auto coef = swag.prod();\n    if (coef == 0) {\n      ANS[i]\
-    \ = f[(c + i).val];\n    } else {\n      ANS[i] = a[i + n - 1] * coef;\n    }\n\
-    \  }\n  return ANS;\n}\n#line 1 \"seq/interpolate_poly_exp.hpp\"\ntemplate <typename\
-    \ mint>\r\nmint interpolate_poly_exp(vc<mint> a, mint r, ll n) {\r\n  // a[i]\
-    \ = r^i * (polynomial of i) \u3068\u306A\u3063\u3066\u3044\u308B\u5834\u5408\u306E\
-    \u88DC\u9593\r\n  if (r == 0) return (n == 0 ? a[0] : 0);\r\n  mint inv_r = mint(1)\
-    \ / r;\r\n  mint p = 1;\r\n  for (auto&& x: a) {\r\n    x *= p;\r\n    p *= inv_r;\r\
-    \n  }\r\n  return lagrange_interpolate_iota(a, mint(n)) * r.pow(n);\r\n}\r\n#line\
+    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b);\n\
+    \n__attribute__((target(\"pclmul\"))) void clmul_schoolbook(const u64* a,\n  \
+    \                                                      const u64* b, u64* c,\n\
+    \                                                        int n) {\n  // c[0, 2n)\
+    \ \u306F\u3042\u3089\u304B\u3058\u3081 0 \u3068\u3059\u308B\n  FOR(i, n) FOR(j,\
+    \ n) {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i B = _mm_set_epi64x(0,\
+    \ b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\n    alignas(16)\
+    \ u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n\n    c[i + j] ^= w[0];\n \
+    \   c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs, n \u306F 2 \u51AA\n// c:\
+    \ 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n//\n// scratch\
+    \ \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\u3002\n__attribute__((target(\"\
+    pclmul\"))) void clmul_karatsuba_rec(const u64* a,\n                         \
+    \                                  const u64* b, u64* c,\n                   \
+    \                                        int n,\n                            \
+    \                               u64* scratch) {\n  // \u3053\u3053\u306F\u5B9F\
+    \u6E2C\u8ABF\u6574\n  constexpr int TH = 32;\n\n  if (n <= TH) {\n    clmul_schoolbook(a,\
+    \ b, c, n);\n    return;\n  }\n\n  int m = n / 2;\n\n  // z0 = a0*b0\n  clmul_karatsuba_rec(a,\
+    \ b, c, m, scratch);\n\n  // z2 = a1*b1\n  clmul_karatsuba_rec(a + m, b + m, c\
+    \ + 2 * m, m, scratch);\n\n  /*\n    scratch:\n      [0, m)     : a0+a1\n    \
+    \  [m, 2m)    : b0+b1\n      [2m, 4m)   : z1\n      [4m, ...)  : recursive scratch\n\
+    \  */\n  u64* sa = scratch;\n  u64* sb = scratch + m;\n  u64* z1 = scratch + 2\
+    \ * m;\n  u64* sub = scratch + 4 * m;\n\n  FOR(i, m) {\n    sa[i] = a[i] ^ a[m\
+    \ + i];\n    sb[i] = b[i] ^ b[m + i];\n  }\n\n  fill(z1, z1 + 2 * m, u64(0));\n\
+    \n  // z1 = (a0+a1)(b0+b1)\n  clmul_karatsuba_rec(sa, sb, z1, m, sub);\n\n  //\
+    \ cross = z1 + z0 + z2\n  // \u5148\u306B\u5168\u90E8 z1 \u5185\u3067\u5B8C\u6210\
+    \u3055\u305B\u308B\u3002\n  // c[m+i] \u306B\u66F8\u304D\u306A\u304C\u3089 c[i]\
+    \ \u3092\u8AAD\u3080\u3068 overlap \u3057\u3066\u58CA\u308C\u308B\u306E\u3067\u6CE8\
+    \u610F\u3002\n  FOR(i, 2 * m) { z1[i] ^= c[i] ^ c[2 * m + i]; }\n\n  // c = z0\
+    \ + x^m cross + x^(2m) z2\n  FOR(i, 2 * m) { c[m + i] ^= z1[i]; }\n}\n\n__attribute__((target(\"\
+    pclmul\"))) vc<modint<2>> convolution_mod_2(\n    const vc<modint<2>>& a, const\
+    \ vc<modint<2>>& b) {\n  int na = len(a), nb = len(b);\n  if (!na || !nb) return\
+    \ {};\n\n  int A = (na + 63) >> 6;\n  int B = (nb + 63) >> 6;\n\n  // \u3053\u306E\
+    \u5B9F\u88C5\u306F square \u306B padding \u3059\u308B\u306E\u3067\u3001\n  //\
+    \ \u6975\u7AEF\u306B\u975E\u5BFE\u79F0\u306A\u3089 rectangular schoolbook \u306E\
+    \u65B9\u304C\u3088\u3044\u3002\n  int n = 1;\n  while (n < max(A, B)) n <<= 1;\n\
+    \n  vc<u64> x(n), y(n), z(2 * n);\n  vc<u64> scratch(4 * n);\n\n  FOR(i, na) {\
+    \ x[i >> 6] |= u64(a[i].val) << (i & 63); }\n  FOR(i, nb) { y[i >> 6] |= u64(b[i].val)\
+    \ << (i & 63); }\n\n  clmul_karatsuba_rec(x.data(), y.data(), z.data(), n, scratch.data());\n\
+    \n  vc<modint<2>> res(na + nb - 1);\n  FOR(i, len(res)) { res[i] = modint<2>::raw((z[i\
+    \ >> 6] >> (i & 63)) & 1); }\n  return res;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ convolution(const vc<mint>& a, const vc<mint>& b) {\n  if constexpr (is_same_v<mint,\
+    \ modint<2>>) {\n    return convolution_mod_2(a, b);\n  }\n  int n = len(a), m\
+    \ = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt()) {\n    if (min(n,\
+    \ m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return convolution_ntt(a,\
+    \ b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\n\
+    \  return convolution_garner(a, b);\n}\n#line 4 \"poly/lagrange_interpolate_iota.hpp\"\
+    \n\n// Input: f(0), ..., f(n-1) and c. Return: f(c)\ntemplate <typename T, typename\
+    \ enable_if<has_mod<T>::value>::type * = nullptr>\nT lagrange_interpolate_iota(vc<T>\
+    \ &f, T c) {\n  int n = len(f);\n  if (int(c.val) < n) return f[c.val];\n  auto\
+    \ a = f;\n  FOR(i, n) {\n    a[i] = a[i] * fact_inv<T>(i) * fact_inv<T>(n - 1\
+    \ - i);\n    if ((n - 1 - i) & 1) a[i] = -a[i];\n  }\n  vc<T> lp(n + 1), rp(n\
+    \ + 1);\n  lp[0] = rp[n] = 1;\n  FOR(i, n) lp[i + 1] = lp[i] * (c - i);\n  FOR_R(i,\
+    \ n) rp[i] = rp[i + 1] * (c - i);\n  T ANS = 0;\n  FOR(i, n) ANS += a[i] * lp[i]\
+    \ * rp[i + 1];\n  return ANS;\n}\n\n// mod \u3058\u3083\u306A\u3044\u5834\u5408\
+    \u3002\u304B\u306A\u308A\u4F4E\u6B21\u306E\u591A\u9805\u5F0F\u3092\u60F3\u5B9A\
+    \u3057\u3066\u3044\u308B\u3002O(n^2)\n// Input: f(0), ..., f(n-1) and c. Return:\
+    \ f(c)\ntemplate <typename T, typename enable_if<!has_mod<T>::value>::type * =\
+    \ nullptr>\nT lagrange_interpolate_iota(vc<T> &f, T c) {\n  const int LIM = 10;\n\
+    \  int n = len(f);\n  assert(n < LIM);\n\n  // (-1)^{i-j} binom(i,j)\n  static\
+    \ vvc<int> C;\n  if (C.empty()) {\n    C.assign(LIM, vc<int>(LIM));\n    C[0][0]\
+    \ = 1;\n    FOR(n, 1, LIM) FOR(k, n + 1) {\n      C[n][k] += C[n - 1][k];\n  \
+    \    if (k) C[n][k] += C[n - 1][k - 1];\n    }\n    FOR(n, LIM) FOR(k, n + 1)\
+    \ if ((n + k) % 2) C[n][k] = -C[n][k];\n  }\n  // f(x) = sum a_i binom(x,i)\n\
+    \  vc<T> a(n);\n  FOR(i, n) FOR(j, i + 1) { a[i] += f[j] * C[i][j]; }\n\n  T res\
+    \ = 0;\n  T b = 1;\n  FOR(i, n) {\n    res += a[i] * b;\n    b = b * (c - i) /\
+    \ (1 + i);\n  }\n  return res;\n}\n\n// Input: f(0), ..., f(n-1) and c, m\n//\
+    \ Return: f(c), f(c+1), ..., f(c+m-1)\n// Complexity: M(n, n + m)\ntemplate <typename\
+    \ mint>\nvc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {\n  if\
+    \ (m <= 60) {\n    vc<mint> ANS(m);\n    FOR(i, m) ANS[i] = lagrange_interpolate_iota(f,\
+    \ c + mint(i));\n    return ANS;\n  }\n  ll n = len(f);\n  auto a = f;\n  FOR(i,\
+    \ n) {\n    a[i] = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\n   \
+    \ if ((n - 1 - i) & 1) a[i] = -a[i];\n  }\n  // x = c, c+1, ... \u306B\u5BFE\u3057\
+    \u3066 a0/x + a1/(x-1) + ... \u3092\u6C42\u3081\u3066\u304A\u304F\n  vc<mint>\
+    \ b(n + m - 1);\n  FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));\n\
+    \  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>> swag;\n\
+    \  vc<mint> ANS(m);\n  ll L = 0, R = 0;\n  FOR(i, m) {\n    while (L < i) { swag.pop(),\
+    \ ++L; }\n    while (R - L < n) { swag.push(c + mint((R++) - n + 1)); }\n    auto\
+    \ coef = swag.prod();\n    if (coef == 0) {\n      ANS[i] = f[(c + i).val];\n\
+    \    } else {\n      ANS[i] = a[i + n - 1] * coef;\n    }\n  }\n  return ANS;\n\
+    }\n#line 1 \"seq/interpolate_poly_exp.hpp\"\ntemplate <typename mint>\r\nmint\
+    \ interpolate_poly_exp(vc<mint> a, mint r, ll n) {\r\n  // a[i] = r^i * (polynomial\
+    \ of i) \u3068\u306A\u3063\u3066\u3044\u308B\u5834\u5408\u306E\u88DC\u9593\r\n\
+    \  if (r == 0) return (n == 0 ? a[0] : 0);\r\n  mint inv_r = mint(1) / r;\r\n\
+    \  mint p = 1;\r\n  for (auto&& x: a) {\r\n    x *= p;\r\n    p *= inv_r;\r\n\
+    \  }\r\n  return lagrange_interpolate_iota(a, mint(n)) * r.pow(n);\r\n}\r\n#line\
     \ 3 \"seq/interpolate_poly_exp_sum.hpp\"\n\r\ntemplate <typename mint>\r\nmint\
     \ interpolate_poly_exp_sum(vc<mint> a, mint r, ll n) {\r\n  /*\r\n  a[i] = (prefix\
     \ sum of r^i * (polynomial of i)) \u3068\u306A\u3063\u3066\u3044\u308B\u5834\u5408\
@@ -741,7 +780,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 12:11:00+09:00'
+  timestamp: '2026-08-18 11:37:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp

@@ -113,7 +113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abeliangroup.hpp
     title: graph/ds/tree_abeliangroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':warning:'
@@ -399,7 +399,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -483,9 +483,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
@@ -549,7 +549,7 @@ data:
   - alg/acted_monoid/max_add.hpp
   - convex/slope_trick/slope_trick_1.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/count_points_in_triangles.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp

@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -74,27 +74,134 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"poly/power_projection.hpp\"\n\n#line 1 \"poly/convolution.hpp\"\
-    \n\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
-    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
-    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
-    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+  bundledCode: "#line 1 \"poly/power_projection.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
+    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
+    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
+    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
+    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
+    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
+    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
+    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
+    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
+    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
+    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
+    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
+    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
+    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
+    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
+    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
+    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
+    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
+    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
+    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
+    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
+    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
+    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n\
+    \    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n    \
+    \  if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
+    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
+    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
+    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
+    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
+    \ (mod == 1012924417) return {21, 368093570};\n    if (mod == 1224736769) return\
+    \ {24, 1191450770};\n    if (mod == 2013265921) return {27, 244035102};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"poly/convolution.hpp\"\n#include <wmmintrin.h>\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
+    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
     \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
     \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
     \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
@@ -382,49 +489,87 @@ data:
     \  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\n\n  auto c1 = convolution_ntt<mint1>(a1,\
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
-    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  if (mint::get_mod() == 2) {\n    vc<modint998> aa, bb;\n    for (auto&\
-    \ x : a) aa.eb(x.val);\n    for (auto& x : b) bb.eb(x.val);\n    aa = convolution<modint998>(aa,\
-    \ bb);\n    vc<mint> ANS(len(aa));\n    FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\n\
-    \    return ANS;\n  }\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
-    #line 3 \"poly/power_projection.hpp\"\n\ntemplate <typename mint>\nvc<mint> power_projection_0_ntt(vc<mint>\
-    \ wt, vc<mint> f, int m) {\n  assert(len(f) == len(wt) && f[0] == mint(0));\n\n\
-    \  int n = 1;\n  while (n < len(f)) n *= 2;\n\n  for (auto& x: f) x = -x;\n  f.resize(n),\
-    \ wt.resize(n);\n  reverse(all(wt));\n  vc<mint>&P = wt, &Q = f;\n  P.resize(4\
-    \ * n), Q.resize(4 * n);\n\n  vc<mint> W(n);\n  {\n    // bit reverse order\n\
-    \    vc<int> btr(n);\n    int log = topbit(n);\n    FOR(i, n) { btr[i] = (btr[i\
-    \ >> 1] >> 1) + ((i & 1) << (log - 1)); }\n    int t = mint::ntt_info().fi;\n\
-    \    mint r = mint::ntt_info().se;\n    mint dw = r.inverse().pow((1 << t) / (2\
-    \ * n));\n    mint w = 1;\n    for (auto& i: btr) { W[i] = w, w *= dw; }\n  }\n\
-    \n  int k = 1;\n  while (n > 1) {\n    /*\n    FFT step\n    04.. -> 048c\n  \
-    \  15.. -> 159d\n    .... -> 26ae\n    .... -> 37bf\n    */\n\n    auto doubling_y\
-    \ = [&](vc<mint>& A, int l, int r) -> void {\n      mint z = W[k / 2].inverse();\n\
-    \      vc<mint> f(k);\n      FOR(i, l, r) {\n        FOR(j, k) f[j] = A[2 * n\
-    \ * j + i];\n        ntt(f, 1);\n        mint r = 1;\n        FOR(j, 1, k) r *=\
-    \ z, f[j] *= r;\n        ntt(f, 0);\n        FOR(j, k) A[2 * n * (k + j) + i]\
-    \ = f[j];\n      }\n    };\n\n    auto FFT_x = [&](vc<mint>& A, int l, int r)\
-    \ -> void {\n      vc<mint> f(2 * n);\n      FOR(j, l, r) {\n        move(A.begin()\
-    \ + 2 * n * j, A.begin() + 2 * n * (j + 1), f.begin());\n        ntt(f, 0);\n\
-    \        move(all(f), A.begin() + 2 * n * j);\n      }\n    };\n\n    if (n <=\
-    \ k) {\n      doubling_y(P, 0, n), doubling_y(Q, 1, n);\n      FFT_x(P, 0, 2 *\
-    \ k), FFT_x(Q, 0, 2 * k);\n    } else {\n      FFT_x(P, 0, k), FFT_x(Q, 0, k);\n\
-    \      doubling_y(P, 0, 2 * n), doubling_y(Q, 0, 2 * n);\n    }\n    FOR(i, 2\
-    \ * n * k) Q[i] += 1;\n    FOR(i, 2 * n * k, 4 * n * k) Q[i] -= 1;\n\n    /*\n\
-    \    048c -> 0248????\n    159d -> ....????\n    26ae\n    37bf\n    */\n    vc<mint>\
-    \ F(2 * n), G(2 * n), f(n), g(n);\n    FOR(j, 2 * k) {\n      move(P.begin() +\
-    \ 2 * n * j, P.begin() + 2 * n * j + 2 * n, F.begin());\n      move(Q.begin()\
-    \ + 2 * n * j, Q.begin() + 2 * n * j + 2 * n, G.begin());\n      FOR(i, n) {\n\
-    \        f[i] = W[i] * (F[2 * i] * G[2 * i + 1] - F[2 * i + 1] * G[2 * i]);\n\
-    \        g[i] = G[2 * i] * G[2 * i + 1];\n      }\n      ntt(f, 1), ntt(g, 1);\n\
-    \      fill(f.begin() + n / 2, f.end(), mint(0));\n      fill(g.begin() + n /\
-    \ 2, g.end(), mint(0));\n      move(all(f), P.begin() + n * j);\n      move(all(g),\
-    \ Q.begin() + n * j);\n    }\n    fill(P.begin() + 2 * n * k, P.end(), mint(0));\n\
-    \    fill(Q.begin() + 2 * n * k, Q.end(), mint(0));\n    FOR(j, 4 * k) Q[n * j]\
-    \ = 0;\n    n /= 2, k *= 2;\n  }\n  FOR(i, k) P[i] = P[2 * i];\n  P.resize(k);\n\
-    \  mint c = mint(1) / mint(k);\n  for (auto& x: P) x *= c;\n  ntt(P, 1);\n  reverse(all(P));\n\
+    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b);\n\
+    \n__attribute__((target(\"pclmul\"))) void clmul_schoolbook(const u64* a,\n  \
+    \                                                      const u64* b, u64* c,\n\
+    \                                                        int n) {\n  // c[0, 2n)\
+    \ \u306F\u3042\u3089\u304B\u3058\u3081 0 \u3068\u3059\u308B\n  FOR(i, n) FOR(j,\
+    \ n) {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i B = _mm_set_epi64x(0,\
+    \ b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\n    alignas(16)\
+    \ u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n\n    c[i + j] ^= w[0];\n \
+    \   c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs, n \u306F 2 \u51AA\n// c:\
+    \ 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n//\n// scratch\
+    \ \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\u3002\n__attribute__((target(\"\
+    pclmul\"))) void clmul_karatsuba_rec(const u64* a,\n                         \
+    \                                  const u64* b, u64* c,\n                   \
+    \                                        int n,\n                            \
+    \                               u64* scratch) {\n  // \u3053\u3053\u306F\u5B9F\
+    \u6E2C\u8ABF\u6574\n  constexpr int TH = 32;\n\n  if (n <= TH) {\n    clmul_schoolbook(a,\
+    \ b, c, n);\n    return;\n  }\n\n  int m = n / 2;\n\n  // z0 = a0*b0\n  clmul_karatsuba_rec(a,\
+    \ b, c, m, scratch);\n\n  // z2 = a1*b1\n  clmul_karatsuba_rec(a + m, b + m, c\
+    \ + 2 * m, m, scratch);\n\n  /*\n    scratch:\n      [0, m)     : a0+a1\n    \
+    \  [m, 2m)    : b0+b1\n      [2m, 4m)   : z1\n      [4m, ...)  : recursive scratch\n\
+    \  */\n  u64* sa = scratch;\n  u64* sb = scratch + m;\n  u64* z1 = scratch + 2\
+    \ * m;\n  u64* sub = scratch + 4 * m;\n\n  FOR(i, m) {\n    sa[i] = a[i] ^ a[m\
+    \ + i];\n    sb[i] = b[i] ^ b[m + i];\n  }\n\n  fill(z1, z1 + 2 * m, u64(0));\n\
+    \n  // z1 = (a0+a1)(b0+b1)\n  clmul_karatsuba_rec(sa, sb, z1, m, sub);\n\n  //\
+    \ cross = z1 + z0 + z2\n  // \u5148\u306B\u5168\u90E8 z1 \u5185\u3067\u5B8C\u6210\
+    \u3055\u305B\u308B\u3002\n  // c[m+i] \u306B\u66F8\u304D\u306A\u304C\u3089 c[i]\
+    \ \u3092\u8AAD\u3080\u3068 overlap \u3057\u3066\u58CA\u308C\u308B\u306E\u3067\u6CE8\
+    \u610F\u3002\n  FOR(i, 2 * m) { z1[i] ^= c[i] ^ c[2 * m + i]; }\n\n  // c = z0\
+    \ + x^m cross + x^(2m) z2\n  FOR(i, 2 * m) { c[m + i] ^= z1[i]; }\n}\n\n__attribute__((target(\"\
+    pclmul\"))) vc<modint<2>> convolution_mod_2(\n    const vc<modint<2>>& a, const\
+    \ vc<modint<2>>& b) {\n  int na = len(a), nb = len(b);\n  if (!na || !nb) return\
+    \ {};\n\n  int A = (na + 63) >> 6;\n  int B = (nb + 63) >> 6;\n\n  // \u3053\u306E\
+    \u5B9F\u88C5\u306F square \u306B padding \u3059\u308B\u306E\u3067\u3001\n  //\
+    \ \u6975\u7AEF\u306B\u975E\u5BFE\u79F0\u306A\u3089 rectangular schoolbook \u306E\
+    \u65B9\u304C\u3088\u3044\u3002\n  int n = 1;\n  while (n < max(A, B)) n <<= 1;\n\
+    \n  vc<u64> x(n), y(n), z(2 * n);\n  vc<u64> scratch(4 * n);\n\n  FOR(i, na) {\
+    \ x[i >> 6] |= u64(a[i].val) << (i & 63); }\n  FOR(i, nb) { y[i >> 6] |= u64(b[i].val)\
+    \ << (i & 63); }\n\n  clmul_karatsuba_rec(x.data(), y.data(), z.data(), n, scratch.data());\n\
+    \n  vc<modint<2>> res(na + nb - 1);\n  FOR(i, len(res)) { res[i] = modint<2>::raw((z[i\
+    \ >> 6] >> (i & 63)) & 1); }\n  return res;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ convolution(const vc<mint>& a, const vc<mint>& b) {\n  if constexpr (is_same_v<mint,\
+    \ modint<2>>) {\n    return convolution_mod_2(a, b);\n  }\n  int n = len(a), m\
+    \ = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt()) {\n    if (min(n,\
+    \ m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return convolution_ntt(a,\
+    \ b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\n\
+    \  return convolution_garner(a, b);\n}\n#line 4 \"poly/power_projection.hpp\"\n\
+    \ntemplate <typename mint>\nvc<mint> power_projection_0_ntt(vc<mint> wt, vc<mint>\
+    \ f, int m) {\n  assert(len(f) == len(wt) && f[0] == mint(0));\n\n  int n = 1;\n\
+    \  while (n < len(f)) n *= 2;\n\n  for (auto& x : f) x = -x;\n  f.resize(n), wt.resize(n);\n\
+    \  reverse(all(wt));\n  vc<mint>&P = wt, &Q = f;\n  P.resize(4 * n), Q.resize(4\
+    \ * n);\n\n  vc<mint> W(n);\n  {\n    // bit reverse order\n    vc<int> btr(n);\n\
+    \    int log = topbit(n);\n    FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i &\
+    \ 1) << (log - 1)); }\n    int t = mint::ntt_info().fi;\n    mint r = mint::ntt_info().se;\n\
+    \    mint dw = r.inverse().pow((1 << t) / (2 * n));\n    mint w = 1;\n    for\
+    \ (auto& i : btr) {\n      W[i] = w, w *= dw;\n    }\n  }\n\n  int k = 1;\n  while\
+    \ (n > 1) {\n    /*\n    FFT step\n    04.. -> 048c\n    15.. -> 159d\n    ....\
+    \ -> 26ae\n    .... -> 37bf\n    */\n\n    auto doubling_y = [&](vc<mint>& A,\
+    \ int l, int r) -> void {\n      mint z = W[k / 2].inverse();\n      vc<mint>\
+    \ f(k);\n      FOR(i, l, r) {\n        FOR(j, k) f[j] = A[2 * n * j + i];\n  \
+    \      ntt(f, 1);\n        mint r = 1;\n        FOR(j, 1, k) r *= z, f[j] *= r;\n\
+    \        ntt(f, 0);\n        FOR(j, k) A[2 * n * (k + j) + i] = f[j];\n      }\n\
+    \    };\n\n    auto FFT_x = [&](vc<mint>& A, int l, int r) -> void {\n      vc<mint>\
+    \ f(2 * n);\n      FOR(j, l, r) {\n        move(A.begin() + 2 * n * j, A.begin()\
+    \ + 2 * n * (j + 1), f.begin());\n        ntt(f, 0);\n        move(all(f), A.begin()\
+    \ + 2 * n * j);\n      }\n    };\n\n    if (n <= k) {\n      doubling_y(P, 0,\
+    \ n), doubling_y(Q, 1, n);\n      FFT_x(P, 0, 2 * k), FFT_x(Q, 0, 2 * k);\n  \
+    \  } else {\n      FFT_x(P, 0, k), FFT_x(Q, 0, k);\n      doubling_y(P, 0, 2 *\
+    \ n), doubling_y(Q, 0, 2 * n);\n    }\n    FOR(i, 2 * n * k) Q[i] += 1;\n    FOR(i,\
+    \ 2 * n * k, 4 * n * k) Q[i] -= 1;\n\n    /*\n    048c -> 0248????\n    159d ->\
+    \ ....????\n    26ae\n    37bf\n    */\n    vc<mint> F(2 * n), G(2 * n), f(n),\
+    \ g(n);\n    FOR(j, 2 * k) {\n      move(P.begin() + 2 * n * j, P.begin() + 2\
+    \ * n * j + 2 * n, F.begin());\n      move(Q.begin() + 2 * n * j, Q.begin() +\
+    \ 2 * n * j + 2 * n, G.begin());\n      FOR(i, n) {\n        f[i] = W[i] * (F[2\
+    \ * i] * G[2 * i + 1] - F[2 * i + 1] * G[2 * i]);\n        g[i] = G[2 * i] * G[2\
+    \ * i + 1];\n      }\n      ntt(f, 1), ntt(g, 1);\n      fill(f.begin() + n /\
+    \ 2, f.end(), mint(0));\n      fill(g.begin() + n / 2, g.end(), mint(0));\n  \
+    \    move(all(f), P.begin() + n * j);\n      move(all(g), Q.begin() + n * j);\n\
+    \    }\n    fill(P.begin() + 2 * n * k, P.end(), mint(0));\n    fill(Q.begin()\
+    \ + 2 * n * k, Q.end(), mint(0));\n    FOR(j, 4 * k) Q[n * j] = 0;\n    n /= 2,\
+    \ k *= 2;\n  }\n  FOR(i, k) P[i] = P[2 * i];\n  P.resize(k);\n  mint c = mint(1)\
+    \ / mint(k);\n  for (auto& x : P) x *= c;\n  ntt(P, 1);\n  reverse(all(P));\n\
     \  P.resize(m + 1);\n  return P;\n}\n\n// \\sum_jwt[j][x^j]f^i \u3092 i=0,1,...,m\n\
     template <typename mint>\nvc<mint> power_projection_0_garner(vc<mint> wt, vc<mint>\
     \ f, int m) {\n  assert(len(f) == len(wt) && f[0] == mint(0));\n  int n = 1;\n\
@@ -436,136 +581,170 @@ data:
     \ n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\n    {\n      int\
     \ t = mint0::ntt_info().fi;\n      mint0 r = mint0::ntt_info().se;\n      mint0\
     \ dw = r.inverse().pow((1 << t) / (4 * n));\n      mint0 w = 1;\n      for (auto&\
-    \ i: btr) { W0[i] = w, w *= dw; }\n    }\n    {\n      int t = mint1::ntt_info().fi;\n\
-    \      mint1 r = mint1::ntt_info().se;\n      mint1 dw = r.inverse().pow((1 <<\
-    \ t) / (4 * n));\n      mint1 w = 1;\n      for (auto& i: btr) { W1[i] = w, w\
-    \ *= dw; }\n    }\n    {\n      int t = mint2::ntt_info().fi;\n      mint2 r =\
-    \ mint2::ntt_info().se;\n      mint2 dw = r.inverse().pow((1 << t) / (4 * n));\n\
-    \      mint2 w = 1;\n      for (auto& i: btr) { W2[i] = w, w *= dw; }\n    }\n\
-    \  }\n\n  int k = 1;\n  vc<mint> P(2 * n), Q(2 * n);\n  FOR(i, n) P[i] = wt[i],\
-    \ Q[i] = -f[i];\n\n  while (n > 1) {\n    vc<mint0> P0(4 * n * k), Q0(4 * n *\
-    \ k);\n    vc<mint1> P1(4 * n * k), Q1(4 * n * k);\n    vc<mint2> P2(4 * n * k),\
-    \ Q2(4 * n * k);\n    FOR(i, 2 * n * k) P0[i] = P[i].val, Q0[i] = Q[i].val;\n\
-    \    FOR(i, 2 * n * k) P1[i] = P[i].val, Q1[i] = Q[i].val;\n    FOR(i, 2 * n *\
-    \ k) P2[i] = P[i].val, Q2[i] = Q[i].val;\n    Q0[2 * n * k] = 1, Q1[2 * n * k]\
-    \ = 1, Q2[2 * n * k] = 1;\n    ntt(P0, 0), ntt(Q0, 0), ntt(P1, 0), ntt(Q1, 0),\
-    \ ntt(P2, 0), ntt(Q2, 0);\n    FOR(i, 2 * n * k) {\n      P0[i] = inv<mint0>(2)\
-    \ * W0[i]\n              * (P0[2 * i] * Q0[2 * i + 1] - P0[2 * i + 1] * Q0[2 *\
-    \ i]);\n      Q0[i] = Q0[2 * i] * Q0[2 * i + 1];\n      P1[i] = inv<mint1>(2)\
-    \ * W1[i]\n              * (P1[2 * i] * Q1[2 * i + 1] - P1[2 * i + 1] * Q1[2 *\
-    \ i]);\n      Q1[i] = Q1[2 * i] * Q1[2 * i + 1];\n      P2[i] = inv<mint2>(2)\
-    \ * W2[i]\n              * (P2[2 * i] * Q2[2 * i + 1] - P2[2 * i + 1] * Q2[2 *\
-    \ i]);\n      Q2[i] = Q2[2 * i] * Q2[2 * i + 1];\n    }\n    P0.resize(2 * n *\
-    \ k), Q0.resize(2 * n * k);\n    P1.resize(2 * n * k), Q1.resize(2 * n * k);\n\
-    \    P2.resize(2 * n * k), Q2.resize(2 * n * k);\n    ntt(P0, 1), ntt(Q0, 1),\
-    \ ntt(P1, 1), ntt(Q1, 1), ntt(P2, 1), ntt(Q2, 1);\n\n    constexpr i128 K = u128(p[0])\
-    \ * p[1] * p[2];\n    auto get = [&](mint0 a, mint1 b, mint2 c) -> mint {\n  \
-    \    i128 x = CRT3<u128, p[0], p[1], p[2]>(a.val, b.val, c.val);\n      i128 y\
-    \ = K - x;\n      return (x < y ? mint(x) : -mint(y));\n    };\n\n    fill(all(P),\
-    \ mint(0));\n    fill(all(Q), mint(0));\n    FOR(j, 2 * k) FOR(i, n / 2) {\n \
-    \     int k = n * j + i;\n      P[k] = get(P0[k], P1[k], P2[k]);\n      Q[k] =\
-    \ get(Q0[k], Q1[k], Q2[k]);\n    }\n    Q[0] = 0;\n    n /= 2, k *= 2;\n  }\n\
-    \  vc<mint> F(k);\n  FOR(i, k) F[i] = P[2 * i];\n  reverse(all(F));\n  F.resize(m\
-    \ + 1);\n  return F;\n}\n\n// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\ntemplate <typename\
-    \ mint>\nvc<mint> power_projection(vc<mint> wt, vc<mint> f, int m) {\n  assert(len(f)\
-    \ == len(wt));\n  if (f.empty()) { return vc<mint>(m + 1, mint(0)); }\n  if (f[0]\
-    \ != mint(0)) {\n    mint c = f[0];\n    f[0] = 0;\n    vc<mint> A = power_projection(wt,\
-    \ f, m);\n    FOR(p, m + 1) A[p] *= fact_inv<mint>(p);\n    vc<mint> B(m + 1);\n\
-    \    mint pow = 1;\n    FOR(q, m + 1) B[q] = pow * fact_inv<mint>(q), pow *= c;\n\
-    \    A = convolution<mint>(A, B);\n    A.resize(m + 1);\n    FOR(i, m + 1) A[i]\
-    \ *= fact<mint>(i);\n    return A;\n  }\n  if (mint::can_ntt()) { return power_projection_0_ntt(wt,\
-    \ f, m); }\n  return power_projection_0_garner(wt, f, m);\n}\n"
-  code: "\n#include \"poly/convolution.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
-    \ power_projection_0_ntt(vc<mint> wt, vc<mint> f, int m) {\n  assert(len(f) ==\
-    \ len(wt) && f[0] == mint(0));\n\n  int n = 1;\n  while (n < len(f)) n *= 2;\n\
-    \n  for (auto& x: f) x = -x;\n  f.resize(n), wt.resize(n);\n  reverse(all(wt));\n\
-    \  vc<mint>&P = wt, &Q = f;\n  P.resize(4 * n), Q.resize(4 * n);\n\n  vc<mint>\
-    \ W(n);\n  {\n    // bit reverse order\n    vc<int> btr(n);\n    int log = topbit(n);\n\
-    \    FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\n   \
-    \ int t = mint::ntt_info().fi;\n    mint r = mint::ntt_info().se;\n    mint dw\
-    \ = r.inverse().pow((1 << t) / (2 * n));\n    mint w = 1;\n    for (auto& i: btr)\
-    \ { W[i] = w, w *= dw; }\n  }\n\n  int k = 1;\n  while (n > 1) {\n    /*\n   \
-    \ FFT step\n    04.. -> 048c\n    15.. -> 159d\n    .... -> 26ae\n    .... ->\
-    \ 37bf\n    */\n\n    auto doubling_y = [&](vc<mint>& A, int l, int r) -> void\
-    \ {\n      mint z = W[k / 2].inverse();\n      vc<mint> f(k);\n      FOR(i, l,\
-    \ r) {\n        FOR(j, k) f[j] = A[2 * n * j + i];\n        ntt(f, 1);\n     \
-    \   mint r = 1;\n        FOR(j, 1, k) r *= z, f[j] *= r;\n        ntt(f, 0);\n\
-    \        FOR(j, k) A[2 * n * (k + j) + i] = f[j];\n      }\n    };\n\n    auto\
-    \ FFT_x = [&](vc<mint>& A, int l, int r) -> void {\n      vc<mint> f(2 * n);\n\
-    \      FOR(j, l, r) {\n        move(A.begin() + 2 * n * j, A.begin() + 2 * n *\
-    \ (j + 1), f.begin());\n        ntt(f, 0);\n        move(all(f), A.begin() + 2\
-    \ * n * j);\n      }\n    };\n\n    if (n <= k) {\n      doubling_y(P, 0, n),\
-    \ doubling_y(Q, 1, n);\n      FFT_x(P, 0, 2 * k), FFT_x(Q, 0, 2 * k);\n    } else\
-    \ {\n      FFT_x(P, 0, k), FFT_x(Q, 0, k);\n      doubling_y(P, 0, 2 * n), doubling_y(Q,\
-    \ 0, 2 * n);\n    }\n    FOR(i, 2 * n * k) Q[i] += 1;\n    FOR(i, 2 * n * k, 4\
-    \ * n * k) Q[i] -= 1;\n\n    /*\n    048c -> 0248????\n    159d -> ....????\n\
-    \    26ae\n    37bf\n    */\n    vc<mint> F(2 * n), G(2 * n), f(n), g(n);\n  \
-    \  FOR(j, 2 * k) {\n      move(P.begin() + 2 * n * j, P.begin() + 2 * n * j +\
-    \ 2 * n, F.begin());\n      move(Q.begin() + 2 * n * j, Q.begin() + 2 * n * j\
-    \ + 2 * n, G.begin());\n      FOR(i, n) {\n        f[i] = W[i] * (F[2 * i] * G[2\
-    \ * i + 1] - F[2 * i + 1] * G[2 * i]);\n        g[i] = G[2 * i] * G[2 * i + 1];\n\
-    \      }\n      ntt(f, 1), ntt(g, 1);\n      fill(f.begin() + n / 2, f.end(),\
-    \ mint(0));\n      fill(g.begin() + n / 2, g.end(), mint(0));\n      move(all(f),\
-    \ P.begin() + n * j);\n      move(all(g), Q.begin() + n * j);\n    }\n    fill(P.begin()\
-    \ + 2 * n * k, P.end(), mint(0));\n    fill(Q.begin() + 2 * n * k, Q.end(), mint(0));\n\
-    \    FOR(j, 4 * k) Q[n * j] = 0;\n    n /= 2, k *= 2;\n  }\n  FOR(i, k) P[i] =\
-    \ P[2 * i];\n  P.resize(k);\n  mint c = mint(1) / mint(k);\n  for (auto& x: P)\
-    \ x *= c;\n  ntt(P, 1);\n  reverse(all(P));\n  P.resize(m + 1);\n  return P;\n\
-    }\n\n// \\sum_jwt[j][x^j]f^i \u3092 i=0,1,...,m\ntemplate <typename mint>\nvc<mint>\
-    \ power_projection_0_garner(vc<mint> wt, vc<mint> f, int m) {\n  assert(len(f)\
-    \ == len(wt) && f[0] == mint(0));\n  int n = 1;\n  while (n < len(f)) n *= 2;\n\
-    \  f.resize(n), wt.resize(n);\n  reverse(all(wt));\n\n  constexpr u32 p[] = {167772161,\
-    \ 469762049, 754974721};\n  using mint0 = modint<p[0]>;\n  using mint1 = modint<p[1]>;\n\
-    \  using mint2 = modint<p[2]>;\n  vc<mint0> W0(2 * n);\n  vc<mint1> W1(2 * n);\n\
-    \  vc<mint2> W2(2 * n);\n  {\n    // bit reverse order\n    vc<int> btr(2 * n);\n\
-    \    int log = topbit(2 * n);\n    FOR(i, 2 * n) { btr[i] = (btr[i >> 1] >> 1)\
-    \ + ((i & 1) << (log - 1)); }\n    {\n      int t = mint0::ntt_info().fi;\n  \
-    \    mint0 r = mint0::ntt_info().se;\n      mint0 dw = r.inverse().pow((1 << t)\
-    \ / (4 * n));\n      mint0 w = 1;\n      for (auto& i: btr) { W0[i] = w, w *=\
-    \ dw; }\n    }\n    {\n      int t = mint1::ntt_info().fi;\n      mint1 r = mint1::ntt_info().se;\n\
-    \      mint1 dw = r.inverse().pow((1 << t) / (4 * n));\n      mint1 w = 1;\n \
-    \     for (auto& i: btr) { W1[i] = w, w *= dw; }\n    }\n    {\n      int t =\
-    \ mint2::ntt_info().fi;\n      mint2 r = mint2::ntt_info().se;\n      mint2 dw\
-    \ = r.inverse().pow((1 << t) / (4 * n));\n      mint2 w = 1;\n      for (auto&\
-    \ i: btr) { W2[i] = w, w *= dw; }\n    }\n  }\n\n  int k = 1;\n  vc<mint> P(2\
-    \ * n), Q(2 * n);\n  FOR(i, n) P[i] = wt[i], Q[i] = -f[i];\n\n  while (n > 1)\
-    \ {\n    vc<mint0> P0(4 * n * k), Q0(4 * n * k);\n    vc<mint1> P1(4 * n * k),\
-    \ Q1(4 * n * k);\n    vc<mint2> P2(4 * n * k), Q2(4 * n * k);\n    FOR(i, 2 *\
-    \ n * k) P0[i] = P[i].val, Q0[i] = Q[i].val;\n    FOR(i, 2 * n * k) P1[i] = P[i].val,\
-    \ Q1[i] = Q[i].val;\n    FOR(i, 2 * n * k) P2[i] = P[i].val, Q2[i] = Q[i].val;\n\
-    \    Q0[2 * n * k] = 1, Q1[2 * n * k] = 1, Q2[2 * n * k] = 1;\n    ntt(P0, 0),\
-    \ ntt(Q0, 0), ntt(P1, 0), ntt(Q1, 0), ntt(P2, 0), ntt(Q2, 0);\n    FOR(i, 2 *\
-    \ n * k) {\n      P0[i] = inv<mint0>(2) * W0[i]\n              * (P0[2 * i] *\
-    \ Q0[2 * i + 1] - P0[2 * i + 1] * Q0[2 * i]);\n      Q0[i] = Q0[2 * i] * Q0[2\
-    \ * i + 1];\n      P1[i] = inv<mint1>(2) * W1[i]\n              * (P1[2 * i] *\
-    \ Q1[2 * i + 1] - P1[2 * i + 1] * Q1[2 * i]);\n      Q1[i] = Q1[2 * i] * Q1[2\
-    \ * i + 1];\n      P2[i] = inv<mint2>(2) * W2[i]\n              * (P2[2 * i] *\
-    \ Q2[2 * i + 1] - P2[2 * i + 1] * Q2[2 * i]);\n      Q2[i] = Q2[2 * i] * Q2[2\
-    \ * i + 1];\n    }\n    P0.resize(2 * n * k), Q0.resize(2 * n * k);\n    P1.resize(2\
-    \ * n * k), Q1.resize(2 * n * k);\n    P2.resize(2 * n * k), Q2.resize(2 * n *\
-    \ k);\n    ntt(P0, 1), ntt(Q0, 1), ntt(P1, 1), ntt(Q1, 1), ntt(P2, 1), ntt(Q2,\
-    \ 1);\n\n    constexpr i128 K = u128(p[0]) * p[1] * p[2];\n    auto get = [&](mint0\
-    \ a, mint1 b, mint2 c) -> mint {\n      i128 x = CRT3<u128, p[0], p[1], p[2]>(a.val,\
-    \ b.val, c.val);\n      i128 y = K - x;\n      return (x < y ? mint(x) : -mint(y));\n\
-    \    };\n\n    fill(all(P), mint(0));\n    fill(all(Q), mint(0));\n    FOR(j,\
-    \ 2 * k) FOR(i, n / 2) {\n      int k = n * j + i;\n      P[k] = get(P0[k], P1[k],\
-    \ P2[k]);\n      Q[k] = get(Q0[k], Q1[k], Q2[k]);\n    }\n    Q[0] = 0;\n    n\
-    \ /= 2, k *= 2;\n  }\n  vc<mint> F(k);\n  FOR(i, k) F[i] = P[2 * i];\n  reverse(all(F));\n\
-    \  F.resize(m + 1);\n  return F;\n}\n\n// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\n\
+    \ i : btr) {\n        W0[i] = w, w *= dw;\n      }\n    }\n    {\n      int t\
+    \ = mint1::ntt_info().fi;\n      mint1 r = mint1::ntt_info().se;\n      mint1\
+    \ dw = r.inverse().pow((1 << t) / (4 * n));\n      mint1 w = 1;\n      for (auto&\
+    \ i : btr) {\n        W1[i] = w, w *= dw;\n      }\n    }\n    {\n      int t\
+    \ = mint2::ntt_info().fi;\n      mint2 r = mint2::ntt_info().se;\n      mint2\
+    \ dw = r.inverse().pow((1 << t) / (4 * n));\n      mint2 w = 1;\n      for (auto&\
+    \ i : btr) {\n        W2[i] = w, w *= dw;\n      }\n    }\n  }\n\n  int k = 1;\n\
+    \  vc<mint> P(2 * n), Q(2 * n);\n  FOR(i, n) P[i] = wt[i], Q[i] = -f[i];\n\n \
+    \ while (n > 1) {\n    vc<mint0> P0(4 * n * k), Q0(4 * n * k);\n    vc<mint1>\
+    \ P1(4 * n * k), Q1(4 * n * k);\n    vc<mint2> P2(4 * n * k), Q2(4 * n * k);\n\
+    \    FOR(i, 2 * n * k) P0[i] = P[i].val, Q0[i] = Q[i].val;\n    FOR(i, 2 * n *\
+    \ k) P1[i] = P[i].val, Q1[i] = Q[i].val;\n    FOR(i, 2 * n * k) P2[i] = P[i].val,\
+    \ Q2[i] = Q[i].val;\n    Q0[2 * n * k] = 1, Q1[2 * n * k] = 1, Q2[2 * n * k] =\
+    \ 1;\n    ntt(P0, 0), ntt(Q0, 0), ntt(P1, 0), ntt(Q1, 0), ntt(P2, 0), ntt(Q2,\
+    \ 0);\n    FOR(i, 2 * n * k) {\n      P0[i] = inv<mint0>(2) * W0[i] *\n      \
+    \        (P0[2 * i] * Q0[2 * i + 1] - P0[2 * i + 1] * Q0[2 * i]);\n      Q0[i]\
+    \ = Q0[2 * i] * Q0[2 * i + 1];\n      P1[i] = inv<mint1>(2) * W1[i] *\n      \
+    \        (P1[2 * i] * Q1[2 * i + 1] - P1[2 * i + 1] * Q1[2 * i]);\n      Q1[i]\
+    \ = Q1[2 * i] * Q1[2 * i + 1];\n      P2[i] = inv<mint2>(2) * W2[i] *\n      \
+    \        (P2[2 * i] * Q2[2 * i + 1] - P2[2 * i + 1] * Q2[2 * i]);\n      Q2[i]\
+    \ = Q2[2 * i] * Q2[2 * i + 1];\n    }\n    P0.resize(2 * n * k), Q0.resize(2 *\
+    \ n * k);\n    P1.resize(2 * n * k), Q1.resize(2 * n * k);\n    P2.resize(2 *\
+    \ n * k), Q2.resize(2 * n * k);\n    ntt(P0, 1), ntt(Q0, 1), ntt(P1, 1), ntt(Q1,\
+    \ 1), ntt(P2, 1), ntt(Q2, 1);\n\n    constexpr i128 K = u128(p[0]) * p[1] * p[2];\n\
+    \    auto get = [&](mint0 a, mint1 b, mint2 c) -> mint {\n      i128 x = CRT3<u128,\
+    \ p[0], p[1], p[2]>(a.val, b.val, c.val);\n      i128 y = K - x;\n      return\
+    \ (x < y ? mint(x) : -mint(y));\n    };\n\n    fill(all(P), mint(0));\n    fill(all(Q),\
+    \ mint(0));\n    FOR(j, 2 * k) FOR(i, n / 2) {\n      int k = n * j + i;\n   \
+    \   P[k] = get(P0[k], P1[k], P2[k]);\n      Q[k] = get(Q0[k], Q1[k], Q2[k]);\n\
+    \    }\n    Q[0] = 0;\n    n /= 2, k *= 2;\n  }\n  vc<mint> F(k);\n  FOR(i, k)\
+    \ F[i] = P[2 * i];\n  reverse(all(F));\n  F.resize(m + 1);\n  return F;\n}\n\n\
+    // \\sum_j[x^j]f^i \u3092 i=0,1,...,m\nvc<modint<2>> power_projection_mod_2(vc<modint<2>>\
+    \ wt, vc<modint<2>> f, int m) {\n  using mint = modint<2>;\n  assert(len(f) ==\
+    \ len(wt));\n  vc<mint>& g = wt;\n  reverse(all(g));\n  // [x^N]f(x)^ig(x)\n \
+    \ vc<mint> ANS(m + 1);\n  auto dfs = [&](auto& dfs, vc<mint> f, vc<mint> g, int\
+    \ m, int i0,\n                 int step) -> void {\n    int N = len(f) - 1;\n\
+    \    /*\n    [x^N]f(x)^ig(x), 0<=i<=m \u3092 ANS[i0], ANS[i0+step],... \u306B\u66F8\
+    \u304D\u3053\u3080\n    */\n    if (m == 0) {\n      ANS[i0] = g[N];\n      return;\n\
+    \    }\n    {  // even case\n      int n = N / 2;\n      vc<mint> nxtf(n + 1),\
+    \ nxtg(n + 1);\n      FOR(i, n + 1) nxtf[i] = f[i];\n      FOR(i, n + 1) nxtg[n\
+    \ - i] = g[N - 2 * i];\n      dfs(dfs, nxtf, nxtg, m / 2, i0, step * 2);\n   \
+    \ }\n    {  // odd case\n      g = convolution(f, g);\n      g.resize(N + 1);\n\
+    \      int n = N / 2;\n      vc<mint> nxtf(n + 1), nxtg(n + 1);\n      FOR(i,\
+    \ n + 1) nxtf[i] = f[i];\n      FOR(i, n + 1) nxtg[n - i] = g[N - 2 * i];\n  \
+    \    dfs(dfs, nxtf, nxtg, (m - 1) / 2, i0 + step, step * 2);\n    }\n  };\n  dfs(dfs,\
+    \ f, g, m, 0, 1);\n  return ANS;\n}\n\n// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\n\
     template <typename mint>\nvc<mint> power_projection(vc<mint> wt, vc<mint> f, int\
-    \ m) {\n  assert(len(f) == len(wt));\n  if (f.empty()) { return vc<mint>(m + 1,\
-    \ mint(0)); }\n  if (f[0] != mint(0)) {\n    mint c = f[0];\n    f[0] = 0;\n \
-    \   vc<mint> A = power_projection(wt, f, m);\n    FOR(p, m + 1) A[p] *= fact_inv<mint>(p);\n\
-    \    vc<mint> B(m + 1);\n    mint pow = 1;\n    FOR(q, m + 1) B[q] = pow * fact_inv<mint>(q),\
-    \ pow *= c;\n    A = convolution<mint>(A, B);\n    A.resize(m + 1);\n    FOR(i,\
-    \ m + 1) A[i] *= fact<mint>(i);\n    return A;\n  }\n  if (mint::can_ntt()) {\
-    \ return power_projection_0_ntt(wt, f, m); }\n  return power_projection_0_garner(wt,\
-    \ f, m);\n}\n"
+    \ m) {\n  assert(len(f) == len(wt));\n  if (f.empty()) {\n    return vc<mint>(m\
+    \ + 1, mint(0));\n  }\n  if constexpr (is_same_v<mint, modint<2>>) {\n    return\
+    \ power_projection_mod_2(wt, f, m);\n  }\n  if (f[0] != mint(0)) {\n    mint c\
+    \ = f[0];\n    f[0] = 0;\n    vc<mint> A = power_projection(wt, f, m);\n    FOR(p,\
+    \ m + 1) A[p] *= fact_inv<mint>(p);\n    vc<mint> B(m + 1);\n    mint pow = 1;\n\
+    \    FOR(q, m + 1) B[q] = pow * fact_inv<mint>(q), pow *= c;\n    A = convolution<mint>(A,\
+    \ B);\n    A.resize(m + 1);\n    FOR(i, m + 1) A[i] *= fact<mint>(i);\n    return\
+    \ A;\n  }\n  if (mint::can_ntt()) {\n    return power_projection_0_ntt(wt, f,\
+    \ m);\n  }\n  return power_projection_0_garner(wt, f, m);\n}\n"
+  code: "\n#include \"mod/modint.hpp\"\n#include \"poly/convolution.hpp\"\n\ntemplate\
+    \ <typename mint>\nvc<mint> power_projection_0_ntt(vc<mint> wt, vc<mint> f, int\
+    \ m) {\n  assert(len(f) == len(wt) && f[0] == mint(0));\n\n  int n = 1;\n  while\
+    \ (n < len(f)) n *= 2;\n\n  for (auto& x : f) x = -x;\n  f.resize(n), wt.resize(n);\n\
+    \  reverse(all(wt));\n  vc<mint>&P = wt, &Q = f;\n  P.resize(4 * n), Q.resize(4\
+    \ * n);\n\n  vc<mint> W(n);\n  {\n    // bit reverse order\n    vc<int> btr(n);\n\
+    \    int log = topbit(n);\n    FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i &\
+    \ 1) << (log - 1)); }\n    int t = mint::ntt_info().fi;\n    mint r = mint::ntt_info().se;\n\
+    \    mint dw = r.inverse().pow((1 << t) / (2 * n));\n    mint w = 1;\n    for\
+    \ (auto& i : btr) {\n      W[i] = w, w *= dw;\n    }\n  }\n\n  int k = 1;\n  while\
+    \ (n > 1) {\n    /*\n    FFT step\n    04.. -> 048c\n    15.. -> 159d\n    ....\
+    \ -> 26ae\n    .... -> 37bf\n    */\n\n    auto doubling_y = [&](vc<mint>& A,\
+    \ int l, int r) -> void {\n      mint z = W[k / 2].inverse();\n      vc<mint>\
+    \ f(k);\n      FOR(i, l, r) {\n        FOR(j, k) f[j] = A[2 * n * j + i];\n  \
+    \      ntt(f, 1);\n        mint r = 1;\n        FOR(j, 1, k) r *= z, f[j] *= r;\n\
+    \        ntt(f, 0);\n        FOR(j, k) A[2 * n * (k + j) + i] = f[j];\n      }\n\
+    \    };\n\n    auto FFT_x = [&](vc<mint>& A, int l, int r) -> void {\n      vc<mint>\
+    \ f(2 * n);\n      FOR(j, l, r) {\n        move(A.begin() + 2 * n * j, A.begin()\
+    \ + 2 * n * (j + 1), f.begin());\n        ntt(f, 0);\n        move(all(f), A.begin()\
+    \ + 2 * n * j);\n      }\n    };\n\n    if (n <= k) {\n      doubling_y(P, 0,\
+    \ n), doubling_y(Q, 1, n);\n      FFT_x(P, 0, 2 * k), FFT_x(Q, 0, 2 * k);\n  \
+    \  } else {\n      FFT_x(P, 0, k), FFT_x(Q, 0, k);\n      doubling_y(P, 0, 2 *\
+    \ n), doubling_y(Q, 0, 2 * n);\n    }\n    FOR(i, 2 * n * k) Q[i] += 1;\n    FOR(i,\
+    \ 2 * n * k, 4 * n * k) Q[i] -= 1;\n\n    /*\n    048c -> 0248????\n    159d ->\
+    \ ....????\n    26ae\n    37bf\n    */\n    vc<mint> F(2 * n), G(2 * n), f(n),\
+    \ g(n);\n    FOR(j, 2 * k) {\n      move(P.begin() + 2 * n * j, P.begin() + 2\
+    \ * n * j + 2 * n, F.begin());\n      move(Q.begin() + 2 * n * j, Q.begin() +\
+    \ 2 * n * j + 2 * n, G.begin());\n      FOR(i, n) {\n        f[i] = W[i] * (F[2\
+    \ * i] * G[2 * i + 1] - F[2 * i + 1] * G[2 * i]);\n        g[i] = G[2 * i] * G[2\
+    \ * i + 1];\n      }\n      ntt(f, 1), ntt(g, 1);\n      fill(f.begin() + n /\
+    \ 2, f.end(), mint(0));\n      fill(g.begin() + n / 2, g.end(), mint(0));\n  \
+    \    move(all(f), P.begin() + n * j);\n      move(all(g), Q.begin() + n * j);\n\
+    \    }\n    fill(P.begin() + 2 * n * k, P.end(), mint(0));\n    fill(Q.begin()\
+    \ + 2 * n * k, Q.end(), mint(0));\n    FOR(j, 4 * k) Q[n * j] = 0;\n    n /= 2,\
+    \ k *= 2;\n  }\n  FOR(i, k) P[i] = P[2 * i];\n  P.resize(k);\n  mint c = mint(1)\
+    \ / mint(k);\n  for (auto& x : P) x *= c;\n  ntt(P, 1);\n  reverse(all(P));\n\
+    \  P.resize(m + 1);\n  return P;\n}\n\n// \\sum_jwt[j][x^j]f^i \u3092 i=0,1,...,m\n\
+    template <typename mint>\nvc<mint> power_projection_0_garner(vc<mint> wt, vc<mint>\
+    \ f, int m) {\n  assert(len(f) == len(wt) && f[0] == mint(0));\n  int n = 1;\n\
+    \  while (n < len(f)) n *= 2;\n  f.resize(n), wt.resize(n);\n  reverse(all(wt));\n\
+    \n  constexpr u32 p[] = {167772161, 469762049, 754974721};\n  using mint0 = modint<p[0]>;\n\
+    \  using mint1 = modint<p[1]>;\n  using mint2 = modint<p[2]>;\n  vc<mint0> W0(2\
+    \ * n);\n  vc<mint1> W1(2 * n);\n  vc<mint2> W2(2 * n);\n  {\n    // bit reverse\
+    \ order\n    vc<int> btr(2 * n);\n    int log = topbit(2 * n);\n    FOR(i, 2 *\
+    \ n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\n    {\n      int\
+    \ t = mint0::ntt_info().fi;\n      mint0 r = mint0::ntt_info().se;\n      mint0\
+    \ dw = r.inverse().pow((1 << t) / (4 * n));\n      mint0 w = 1;\n      for (auto&\
+    \ i : btr) {\n        W0[i] = w, w *= dw;\n      }\n    }\n    {\n      int t\
+    \ = mint1::ntt_info().fi;\n      mint1 r = mint1::ntt_info().se;\n      mint1\
+    \ dw = r.inverse().pow((1 << t) / (4 * n));\n      mint1 w = 1;\n      for (auto&\
+    \ i : btr) {\n        W1[i] = w, w *= dw;\n      }\n    }\n    {\n      int t\
+    \ = mint2::ntt_info().fi;\n      mint2 r = mint2::ntt_info().se;\n      mint2\
+    \ dw = r.inverse().pow((1 << t) / (4 * n));\n      mint2 w = 1;\n      for (auto&\
+    \ i : btr) {\n        W2[i] = w, w *= dw;\n      }\n    }\n  }\n\n  int k = 1;\n\
+    \  vc<mint> P(2 * n), Q(2 * n);\n  FOR(i, n) P[i] = wt[i], Q[i] = -f[i];\n\n \
+    \ while (n > 1) {\n    vc<mint0> P0(4 * n * k), Q0(4 * n * k);\n    vc<mint1>\
+    \ P1(4 * n * k), Q1(4 * n * k);\n    vc<mint2> P2(4 * n * k), Q2(4 * n * k);\n\
+    \    FOR(i, 2 * n * k) P0[i] = P[i].val, Q0[i] = Q[i].val;\n    FOR(i, 2 * n *\
+    \ k) P1[i] = P[i].val, Q1[i] = Q[i].val;\n    FOR(i, 2 * n * k) P2[i] = P[i].val,\
+    \ Q2[i] = Q[i].val;\n    Q0[2 * n * k] = 1, Q1[2 * n * k] = 1, Q2[2 * n * k] =\
+    \ 1;\n    ntt(P0, 0), ntt(Q0, 0), ntt(P1, 0), ntt(Q1, 0), ntt(P2, 0), ntt(Q2,\
+    \ 0);\n    FOR(i, 2 * n * k) {\n      P0[i] = inv<mint0>(2) * W0[i] *\n      \
+    \        (P0[2 * i] * Q0[2 * i + 1] - P0[2 * i + 1] * Q0[2 * i]);\n      Q0[i]\
+    \ = Q0[2 * i] * Q0[2 * i + 1];\n      P1[i] = inv<mint1>(2) * W1[i] *\n      \
+    \        (P1[2 * i] * Q1[2 * i + 1] - P1[2 * i + 1] * Q1[2 * i]);\n      Q1[i]\
+    \ = Q1[2 * i] * Q1[2 * i + 1];\n      P2[i] = inv<mint2>(2) * W2[i] *\n      \
+    \        (P2[2 * i] * Q2[2 * i + 1] - P2[2 * i + 1] * Q2[2 * i]);\n      Q2[i]\
+    \ = Q2[2 * i] * Q2[2 * i + 1];\n    }\n    P0.resize(2 * n * k), Q0.resize(2 *\
+    \ n * k);\n    P1.resize(2 * n * k), Q1.resize(2 * n * k);\n    P2.resize(2 *\
+    \ n * k), Q2.resize(2 * n * k);\n    ntt(P0, 1), ntt(Q0, 1), ntt(P1, 1), ntt(Q1,\
+    \ 1), ntt(P2, 1), ntt(Q2, 1);\n\n    constexpr i128 K = u128(p[0]) * p[1] * p[2];\n\
+    \    auto get = [&](mint0 a, mint1 b, mint2 c) -> mint {\n      i128 x = CRT3<u128,\
+    \ p[0], p[1], p[2]>(a.val, b.val, c.val);\n      i128 y = K - x;\n      return\
+    \ (x < y ? mint(x) : -mint(y));\n    };\n\n    fill(all(P), mint(0));\n    fill(all(Q),\
+    \ mint(0));\n    FOR(j, 2 * k) FOR(i, n / 2) {\n      int k = n * j + i;\n   \
+    \   P[k] = get(P0[k], P1[k], P2[k]);\n      Q[k] = get(Q0[k], Q1[k], Q2[k]);\n\
+    \    }\n    Q[0] = 0;\n    n /= 2, k *= 2;\n  }\n  vc<mint> F(k);\n  FOR(i, k)\
+    \ F[i] = P[2 * i];\n  reverse(all(F));\n  F.resize(m + 1);\n  return F;\n}\n\n\
+    // \\sum_j[x^j]f^i \u3092 i=0,1,...,m\nvc<modint<2>> power_projection_mod_2(vc<modint<2>>\
+    \ wt, vc<modint<2>> f, int m) {\n  using mint = modint<2>;\n  assert(len(f) ==\
+    \ len(wt));\n  vc<mint>& g = wt;\n  reverse(all(g));\n  // [x^N]f(x)^ig(x)\n \
+    \ vc<mint> ANS(m + 1);\n  auto dfs = [&](auto& dfs, vc<mint> f, vc<mint> g, int\
+    \ m, int i0,\n                 int step) -> void {\n    int N = len(f) - 1;\n\
+    \    /*\n    [x^N]f(x)^ig(x), 0<=i<=m \u3092 ANS[i0], ANS[i0+step],... \u306B\u66F8\
+    \u304D\u3053\u3080\n    */\n    if (m == 0) {\n      ANS[i0] = g[N];\n      return;\n\
+    \    }\n    {  // even case\n      int n = N / 2;\n      vc<mint> nxtf(n + 1),\
+    \ nxtg(n + 1);\n      FOR(i, n + 1) nxtf[i] = f[i];\n      FOR(i, n + 1) nxtg[n\
+    \ - i] = g[N - 2 * i];\n      dfs(dfs, nxtf, nxtg, m / 2, i0, step * 2);\n   \
+    \ }\n    {  // odd case\n      g = convolution(f, g);\n      g.resize(N + 1);\n\
+    \      int n = N / 2;\n      vc<mint> nxtf(n + 1), nxtg(n + 1);\n      FOR(i,\
+    \ n + 1) nxtf[i] = f[i];\n      FOR(i, n + 1) nxtg[n - i] = g[N - 2 * i];\n  \
+    \    dfs(dfs, nxtf, nxtg, (m - 1) / 2, i0 + step, step * 2);\n    }\n  };\n  dfs(dfs,\
+    \ f, g, m, 0, 1);\n  return ANS;\n}\n\n// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\n\
+    template <typename mint>\nvc<mint> power_projection(vc<mint> wt, vc<mint> f, int\
+    \ m) {\n  assert(len(f) == len(wt));\n  if (f.empty()) {\n    return vc<mint>(m\
+    \ + 1, mint(0));\n  }\n  if constexpr (is_same_v<mint, modint<2>>) {\n    return\
+    \ power_projection_mod_2(wt, f, m);\n  }\n  if (f[0] != mint(0)) {\n    mint c\
+    \ = f[0];\n    f[0] = 0;\n    vc<mint> A = power_projection(wt, f, m);\n    FOR(p,\
+    \ m + 1) A[p] *= fact_inv<mint>(p);\n    vc<mint> B(m + 1);\n    mint pow = 1;\n\
+    \    FOR(q, m + 1) B[q] = pow * fact_inv<mint>(q), pow *= c;\n    A = convolution<mint>(A,\
+    \ B);\n    A.resize(m + 1);\n    FOR(i, m + 1) A[i] *= fact<mint>(i);\n    return\
+    \ A;\n  }\n  if (mint::can_ntt()) {\n    return power_projection_0_ntt(wt, f,\
+    \ m);\n  }\n  return power_projection_0_garner(wt, f, m);\n}\n"
   dependsOn:
-  - poly/convolution.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
   - other/bit.hpp
+  - poly/convolution.hpp
   - mod/mod_inv.hpp
   - mod/crt3.hpp
   - poly/convolution_naive.hpp
@@ -579,7 +758,7 @@ data:
   - poly/schroder.hpp
   - poly/compositional_inverse.hpp
   - poly/2d/compositional_inverse_2d.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-18 11:37:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/power_projection.test.cpp

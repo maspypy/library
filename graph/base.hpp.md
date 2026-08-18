@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -74,7 +74,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition_old.hpp
     title: graph/centroid_decomposition_old.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -170,7 +170,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -212,7 +212,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -275,7 +275,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellman_ford.hpp
     title: graph/shortest_path/bellman_ford.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs_01.hpp
     title: graph/shortest_path/bfs_01.hpp
   - icon: ':heavy_check_mark:'
@@ -308,7 +308,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -338,7 +338,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
@@ -759,7 +759,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1983.test.cpp
     title: test/3_yukicoder/1983.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -789,7 +789,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
   - icon: ':heavy_check_mark:'
@@ -873,9 +873,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -1183,7 +1183,7 @@ data:
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp

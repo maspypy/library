@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'
     path: bigint/binary.hpp
     title: bigint/binary.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -137,35 +137,35 @@ data:
     \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
     \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
     }\n#endif\n#line 4 \"test/1_mytest/bigint.test.cpp\"\n\n#line 1 \"poly/convolution.hpp\"\
-    \n\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
-    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
-    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
-    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
-    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
-    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
-    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
-    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
-    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \n#include <wmmintrin.h>\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
+    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
+    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
+    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
+    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
+    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
+    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
+    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
+    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
+    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
+    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
+    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
+    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
+    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
+    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
+    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
+    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
+    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\n\
+    struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
@@ -444,20 +444,57 @@ data:
     \  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\n\n  auto c1 = convolution_ntt<mint1>(a1,\
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
-    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  if (mint::get_mod() == 2) {\n    vc<modint998> aa, bb;\n    for (auto&\
-    \ x : a) aa.eb(x.val);\n    for (auto& x : b) bb.eb(x.val);\n    aa = convolution<modint998>(aa,\
-    \ bb);\n    vc<mint> ANS(len(aa));\n    FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\n\
-    \    return ANS;\n  }\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
-    #line 1 \"nt/digit_sum.hpp\"\n\nint digit_sum(u64 x) {\n  const int K = 100'000;\n\
-    \  static vc<int> dp(K);\n  if (dp[1] == 0) { FOR(x, 1, K) dp[x] = dp[x / 10]\
-    \ + (x % 10); }\n  int res = 0;\n  while (x) {\n    res += dp[x % K];\n    x /=\
-    \ K;\n  }\n  return res;\n}\n#line 3 \"bigint/base.hpp\"\n\n// 15\u6841\u306E\
-    4\u7D20\u6570\u7573\u307F\u8FBC\u307F\u306B\u3057\u305F\u3051\u3069\u9AD8\u901F\
-    \u306B\u306A\u3089\u306A\u304B\u3063\u305F.\n// https://judge.yosupo.jp/submission/311757\n\
+    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b);\n\
+    \n__attribute__((target(\"pclmul\"))) void clmul_schoolbook(const u64* a,\n  \
+    \                                                      const u64* b, u64* c,\n\
+    \                                                        int n) {\n  // c[0, 2n)\
+    \ \u306F\u3042\u3089\u304B\u3058\u3081 0 \u3068\u3059\u308B\n  FOR(i, n) FOR(j,\
+    \ n) {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i B = _mm_set_epi64x(0,\
+    \ b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\n    alignas(16)\
+    \ u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n\n    c[i + j] ^= w[0];\n \
+    \   c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs, n \u306F 2 \u51AA\n// c:\
+    \ 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n//\n// scratch\
+    \ \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\u3002\n__attribute__((target(\"\
+    pclmul\"))) void clmul_karatsuba_rec(const u64* a,\n                         \
+    \                                  const u64* b, u64* c,\n                   \
+    \                                        int n,\n                            \
+    \                               u64* scratch) {\n  // \u3053\u3053\u306F\u5B9F\
+    \u6E2C\u8ABF\u6574\n  constexpr int TH = 32;\n\n  if (n <= TH) {\n    clmul_schoolbook(a,\
+    \ b, c, n);\n    return;\n  }\n\n  int m = n / 2;\n\n  // z0 = a0*b0\n  clmul_karatsuba_rec(a,\
+    \ b, c, m, scratch);\n\n  // z2 = a1*b1\n  clmul_karatsuba_rec(a + m, b + m, c\
+    \ + 2 * m, m, scratch);\n\n  /*\n    scratch:\n      [0, m)     : a0+a1\n    \
+    \  [m, 2m)    : b0+b1\n      [2m, 4m)   : z1\n      [4m, ...)  : recursive scratch\n\
+    \  */\n  u64* sa = scratch;\n  u64* sb = scratch + m;\n  u64* z1 = scratch + 2\
+    \ * m;\n  u64* sub = scratch + 4 * m;\n\n  FOR(i, m) {\n    sa[i] = a[i] ^ a[m\
+    \ + i];\n    sb[i] = b[i] ^ b[m + i];\n  }\n\n  fill(z1, z1 + 2 * m, u64(0));\n\
+    \n  // z1 = (a0+a1)(b0+b1)\n  clmul_karatsuba_rec(sa, sb, z1, m, sub);\n\n  //\
+    \ cross = z1 + z0 + z2\n  // \u5148\u306B\u5168\u90E8 z1 \u5185\u3067\u5B8C\u6210\
+    \u3055\u305B\u308B\u3002\n  // c[m+i] \u306B\u66F8\u304D\u306A\u304C\u3089 c[i]\
+    \ \u3092\u8AAD\u3080\u3068 overlap \u3057\u3066\u58CA\u308C\u308B\u306E\u3067\u6CE8\
+    \u610F\u3002\n  FOR(i, 2 * m) { z1[i] ^= c[i] ^ c[2 * m + i]; }\n\n  // c = z0\
+    \ + x^m cross + x^(2m) z2\n  FOR(i, 2 * m) { c[m + i] ^= z1[i]; }\n}\n\n__attribute__((target(\"\
+    pclmul\"))) vc<modint<2>> convolution_mod_2(\n    const vc<modint<2>>& a, const\
+    \ vc<modint<2>>& b) {\n  int na = len(a), nb = len(b);\n  if (!na || !nb) return\
+    \ {};\n\n  int A = (na + 63) >> 6;\n  int B = (nb + 63) >> 6;\n\n  // \u3053\u306E\
+    \u5B9F\u88C5\u306F square \u306B padding \u3059\u308B\u306E\u3067\u3001\n  //\
+    \ \u6975\u7AEF\u306B\u975E\u5BFE\u79F0\u306A\u3089 rectangular schoolbook \u306E\
+    \u65B9\u304C\u3088\u3044\u3002\n  int n = 1;\n  while (n < max(A, B)) n <<= 1;\n\
+    \n  vc<u64> x(n), y(n), z(2 * n);\n  vc<u64> scratch(4 * n);\n\n  FOR(i, na) {\
+    \ x[i >> 6] |= u64(a[i].val) << (i & 63); }\n  FOR(i, nb) { y[i >> 6] |= u64(b[i].val)\
+    \ << (i & 63); }\n\n  clmul_karatsuba_rec(x.data(), y.data(), z.data(), n, scratch.data());\n\
+    \n  vc<modint<2>> res(na + nb - 1);\n  FOR(i, len(res)) { res[i] = modint<2>::raw((z[i\
+    \ >> 6] >> (i & 63)) & 1); }\n  return res;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ convolution(const vc<mint>& a, const vc<mint>& b) {\n  if constexpr (is_same_v<mint,\
+    \ modint<2>>) {\n    return convolution_mod_2(a, b);\n  }\n  int n = len(a), m\
+    \ = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt()) {\n    if (min(n,\
+    \ m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return convolution_ntt(a,\
+    \ b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\n\
+    \  return convolution_garner(a, b);\n}\n#line 1 \"nt/digit_sum.hpp\"\n\nint digit_sum(u64\
+    \ x) {\n  const int K = 100'000;\n  static vc<int> dp(K);\n  if (dp[1] == 0) {\
+    \ FOR(x, 1, K) dp[x] = dp[x / 10] + (x % 10); }\n  int res = 0;\n  while (x) {\n\
+    \    res += dp[x % K];\n    x /= K;\n  }\n  return res;\n}\n#line 3 \"bigint/base.hpp\"\
+    \n\n// 15\u6841\u306E4\u7D20\u6570\u7573\u307F\u8FBC\u307F\u306B\u3057\u305F\u3051\
+    \u3069\u9AD8\u901F\u306B\u306A\u3089\u306A\u304B\u3063\u305F.\n// https://judge.yosupo.jp/submission/311757\n\
     struct BigInteger {\n  static constexpr int LOG = 9;\n  static constexpr int MOD\
     \ = TEN[LOG];\n  using bint = BigInteger;\n  int sgn;\n  vc<int> dat;\n\n  BigInteger()\
     \ : sgn(0) {}\n  BigInteger(i128 val) {\n    if (val == 0) {\n      sgn = 0;\n\
@@ -582,36 +619,35 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 1 \"poly/convolution.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
-    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
-    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
-    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
-    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
-    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
-    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
-    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ : (1ULL << n) - 1; }\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
+    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
+    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
+    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
+    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
+    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
+    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
+    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
+    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
+    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
+    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
+    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
+    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
+    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
+    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
+    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
+    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
+    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 3 \"mod/modint_common.hpp\"\n\n\
+    struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
@@ -890,91 +926,129 @@ data:
     \  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\n\n  auto c1 = convolution_ntt<mint1>(a1,\
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
-    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  if (mint::get_mod() == 2) {\n    vc<modint998> aa, bb;\n    for (auto&\
-    \ x : a) aa.eb(x.val);\n    for (auto& x : b) bb.eb(x.val);\n    aa = convolution<modint998>(aa,\
-    \ bb);\n    vc<mint> ANS(len(aa));\n    FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\n\
-    \    return ANS;\n  }\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
-    #line 3 \"bigint/binary.hpp\"\n\nstruct BigInteger_Binary {\n  static constexpr\
-    \ int LOG = 30;\n  static constexpr int MOD = 1 << LOG;\n  using bint = BigInteger_Binary;\n\
-    \  int sgn;\n  vc<int> dat;\n\n  BigInteger_Binary() : sgn(0) {}\n  BigInteger_Binary(i128\
-    \ val) {\n    if (val == 0) {\n      sgn = 0;\n      return;\n    }\n    sgn =\
-    \ 1;\n    if (val < 0) sgn = -1, val = -val;\n    while (val > 0) {\n      dat.eb(val\
-    \ % MOD);\n      val /= MOD;\n    }\n  }\n  BigInteger_Binary(string s) {\n  \
-    \  assert(!s.empty());\n    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n\
-    \      s.erase(s.begin());\n      assert(!s.empty());\n    }\n    int p = 0;\n\
-    \    while (p < len(s) && s[p] == '0') ++p;\n    s = s.substr(p);\n    if (s.empty())\
-    \ {\n      sgn = 0;\n      return;\n    }\n    reverse(all(s));\n    int n = len(s);\n\
-    \    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG]\
-    \ += ((s[i] - '0') << (i % LOG)); }\n  }\n  bint &operator=(const bint &p) {\n\
-    \    sgn = p.sgn;\n    dat = p.dat;\n    return *this;\n  }\n  bool operator<(const\
-    \ bint &p) const {\n    if (sgn != p.sgn) return sgn < p.sgn;\n    if (sgn ==\
-    \ 0) return false;\n    if (len(dat) != len(p.dat)) {\n      if (sgn == 1) return\
-    \ len(dat) < len(p.dat);\n      if (sgn == -1) return len(dat) > len(p.dat);\n\
-    \    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] == p.dat[i]) continue;\n  \
-    \    if (sgn == 1) return dat[i] < p.dat[i];\n      if (sgn == -1) return dat[i]\
-    \ > p.dat[i];\n    }\n    return false;\n  }\n  bool operator>(const bint &p)\
-    \ const { return p < *this; }\n  bool operator<=(const bint &p) const { return\
-    \ !(*this > p); }\n  bool operator>=(const bint &p) const { return !(*this < p);\
-    \ }\n  bint &operator+=(const bint p) {\n    if (sgn == 0) {\n      return *this\
-    \ = p;\n    }\n    if (p.sgn == 0) {\n      return *this;\n    }\n    if (sgn\
-    \ != p.sgn) {\n      *this -= (-p);\n      return *this;\n    }\n    int n = max(len(dat),\
-    \ len(p.dat));\n    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat))\
-    \ dat[i] += p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n\
-    \    }\n    while (len(dat) && dat.back() == 0) dat.pop_back();\n    return *this;\n\
-    \  }\n  bint &operator-=(const bint p) {\n    if (sgn == 0) return *this = (-p);\n\
-    \    if (p.sgn == 0) return *this;\n    if (sgn != p.sgn) {\n      *this += (-p);\n\
-    \      return *this;\n    }\n    if ((sgn == 1 && *this < p) || (sgn == -1 &&\
-    \ *this > p)) {\n      *this = p - *this;\n      sgn = -sgn;\n      return *this;\n\
-    \    }\n    FOR(i, len(p.dat)) { dat[i] -= p.dat[i]; }\n    FOR(i, len(dat) -\
-    \ 1) {\n      if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -= 1;\n    }\n    while\
-    \ (len(dat) && dat.back() == 0) {\n      dat.pop_back();\n    }\n    if (dat.empty())\
-    \ sgn = 0;\n    return *this;\n  }\n  bint &operator*=(const bint &p) {\n    sgn\
-    \ *= p.sgn;\n    dat = convolve(dat, p.dat);\n    return *this;\n  }\n  // bint\
-    \ &operator/=(const bint &p) { return *this; }\n  bint operator-() const {\n \
-    \   bint p = *this;\n    p.sgn *= -1;\n    return p;\n  }\n  bint operator+(const\
-    \ bint &p) const { return bint(*this) += p; }\n  bint operator-(const bint &p)\
-    \ const { return bint(*this) -= p; }\n  bint operator*(const bint &p) const {\
-    \ return bint(*this) *= p; }\n  // bint operator/(const modint &p) const { return\
-    \ modint(*this) /= p; }\n  bool operator==(const bint &p) const {\n    return\
-    \ (sgn == p.sgn && dat == p.dat);\n  }\n  bool operator!=(const bint &p) const\
-    \ {\n    return (sgn != p.sgn || dat != p.dat);\n  }\n\n  vc<int> convolve(const\
-    \ vc<int> &a, const vc<int> &b) {\n    int n = len(a), m = len(b);\n    if (!n\
-    \ || !m) return {};\n    if (min(n, m) <= 500) {\n      vc<int> c(n + m - 1);\n\
-    \      u128 x = 0;\n      FOR(k, n + m - 1) {\n        int s = max<int>(0, k +\
-    \ 1 - m), t = min<int>(k, n - 1);\n        FOR(i, s, t + 1) { x += u64(a[i]) *\
-    \ b[k - i]; }\n        c[k] = x % MOD, x = x / MOD;\n      }\n      while (x >\
-    \ 0) {\n        c.eb(x % MOD), x = x / MOD;\n      }\n      return c;\n    }\n\
-    \    static constexpr int p0 = 167772161;\n    static constexpr int p1 = 469762049;\n\
-    \    static constexpr int p2 = 754974721;\n    using mint0 = modint<p0>;\n   \
-    \ using mint1 = modint<p1>;\n    using mint2 = modint<p2>;\n    vc<mint0> a0(all(a)),\
-    \ b0(all(b));\n    vc<mint1> a1(all(a)), b1(all(b));\n    vc<mint2> a2(all(a)),\
-    \ b2(all(b));\n    auto c0 = convolution_ntt<mint0>(a0, b0);\n    auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\n    auto c2 = convolution_ntt<mint2>(a2, b2);\n    vc<int> c(len(c0));\n\
-    \    u128 x = 0;\n    FOR(i, n + m - 1) {\n      x += CRT3<u128, p0, p1, p2>(c0[i].val,\
-    \ c1[i].val, c2[i].val);\n      c[i] = x % MOD, x = x / MOD;\n    }\n    while\
-    \ (x) {\n      c.eb(x % MOD), x = x / MOD;\n    }\n    return c;\n  }\n\n  string\
-    \ to_string() {\n    if (dat.empty()) return \"0\";\n    string s;\n    for (int\
-    \ x : dat) {\n      FOR(LOG) {\n        s += '0' + (x & 1);\n        x /= 2;\n\
-    \      }\n    }\n    while (s.back() == '0') s.pop_back();\n    reverse(all(s));\n\
-    \    if (sgn == -1) s = \"-\" + s;\n    return s;\n  }\n\n  string to_decimal_string()\
-    \ {\n    string ANS;\n    vc<u64> A;\n    auto carry = [&]() -> void {\n     \
-    \ A.eb(0), A.eb(0);\n      FOR(i, len(A) - 1) {\n        A[i + 1] += A[i] / TEN[9];\n\
-    \        A[i] = A[i] % TEN[9];\n      }\n      while (len(A) && A.back() == 0)\
-    \ A.pop_back();\n    };\n    auto mul = [&]() -> void {\n      FOR(i, len(A))\
-    \ { A[i] *= MOD; }\n      carry();\n    };\n    FOR_R(i, len(dat)) {\n      mul();\n\
-    \      if (A.empty()) A.eb(0);\n      A[0] += dat[i];\n      carry();\n    }\n\
-    \    FOR_R(i, len(A)) {\n      string S = ::to_string(A[i]);\n      while (len(S)\
-    \ < 9) S = \"0\" + S;\n      ANS += S;\n    }\n    while (len(ANS) && ANS[0] ==\
-    \ '0') ANS.erase(ANS.begin());\n    if (ANS.empty()) ANS = \"0\";\n    if (sgn\
-    \ == -1) ANS = \"-\" + ANS;\n    return ANS;\n  }\n\n  // https://codeforces.com/contest/477/problem/D\n\
-    \  pair<bint, int> divmod(int p) {\n    assert(dat.empty() || sgn == 1);\n   \
-    \ vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD\
-    \ + dat[i];\n      after.eb(rm / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n\
-    \    while (len(after) && after.back() == 0) POP(after);\n    bint q;\n    q.sgn\
+    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b);\n\
+    \n__attribute__((target(\"pclmul\"))) void clmul_schoolbook(const u64* a,\n  \
+    \                                                      const u64* b, u64* c,\n\
+    \                                                        int n) {\n  // c[0, 2n)\
+    \ \u306F\u3042\u3089\u304B\u3058\u3081 0 \u3068\u3059\u308B\n  FOR(i, n) FOR(j,\
+    \ n) {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i B = _mm_set_epi64x(0,\
+    \ b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\n    alignas(16)\
+    \ u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n\n    c[i + j] ^= w[0];\n \
+    \   c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs, n \u306F 2 \u51AA\n// c:\
+    \ 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n//\n// scratch\
+    \ \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\u3002\n__attribute__((target(\"\
+    pclmul\"))) void clmul_karatsuba_rec(const u64* a,\n                         \
+    \                                  const u64* b, u64* c,\n                   \
+    \                                        int n,\n                            \
+    \                               u64* scratch) {\n  // \u3053\u3053\u306F\u5B9F\
+    \u6E2C\u8ABF\u6574\n  constexpr int TH = 32;\n\n  if (n <= TH) {\n    clmul_schoolbook(a,\
+    \ b, c, n);\n    return;\n  }\n\n  int m = n / 2;\n\n  // z0 = a0*b0\n  clmul_karatsuba_rec(a,\
+    \ b, c, m, scratch);\n\n  // z2 = a1*b1\n  clmul_karatsuba_rec(a + m, b + m, c\
+    \ + 2 * m, m, scratch);\n\n  /*\n    scratch:\n      [0, m)     : a0+a1\n    \
+    \  [m, 2m)    : b0+b1\n      [2m, 4m)   : z1\n      [4m, ...)  : recursive scratch\n\
+    \  */\n  u64* sa = scratch;\n  u64* sb = scratch + m;\n  u64* z1 = scratch + 2\
+    \ * m;\n  u64* sub = scratch + 4 * m;\n\n  FOR(i, m) {\n    sa[i] = a[i] ^ a[m\
+    \ + i];\n    sb[i] = b[i] ^ b[m + i];\n  }\n\n  fill(z1, z1 + 2 * m, u64(0));\n\
+    \n  // z1 = (a0+a1)(b0+b1)\n  clmul_karatsuba_rec(sa, sb, z1, m, sub);\n\n  //\
+    \ cross = z1 + z0 + z2\n  // \u5148\u306B\u5168\u90E8 z1 \u5185\u3067\u5B8C\u6210\
+    \u3055\u305B\u308B\u3002\n  // c[m+i] \u306B\u66F8\u304D\u306A\u304C\u3089 c[i]\
+    \ \u3092\u8AAD\u3080\u3068 overlap \u3057\u3066\u58CA\u308C\u308B\u306E\u3067\u6CE8\
+    \u610F\u3002\n  FOR(i, 2 * m) { z1[i] ^= c[i] ^ c[2 * m + i]; }\n\n  // c = z0\
+    \ + x^m cross + x^(2m) z2\n  FOR(i, 2 * m) { c[m + i] ^= z1[i]; }\n}\n\n__attribute__((target(\"\
+    pclmul\"))) vc<modint<2>> convolution_mod_2(\n    const vc<modint<2>>& a, const\
+    \ vc<modint<2>>& b) {\n  int na = len(a), nb = len(b);\n  if (!na || !nb) return\
+    \ {};\n\n  int A = (na + 63) >> 6;\n  int B = (nb + 63) >> 6;\n\n  // \u3053\u306E\
+    \u5B9F\u88C5\u306F square \u306B padding \u3059\u308B\u306E\u3067\u3001\n  //\
+    \ \u6975\u7AEF\u306B\u975E\u5BFE\u79F0\u306A\u3089 rectangular schoolbook \u306E\
+    \u65B9\u304C\u3088\u3044\u3002\n  int n = 1;\n  while (n < max(A, B)) n <<= 1;\n\
+    \n  vc<u64> x(n), y(n), z(2 * n);\n  vc<u64> scratch(4 * n);\n\n  FOR(i, na) {\
+    \ x[i >> 6] |= u64(a[i].val) << (i & 63); }\n  FOR(i, nb) { y[i >> 6] |= u64(b[i].val)\
+    \ << (i & 63); }\n\n  clmul_karatsuba_rec(x.data(), y.data(), z.data(), n, scratch.data());\n\
+    \n  vc<modint<2>> res(na + nb - 1);\n  FOR(i, len(res)) { res[i] = modint<2>::raw((z[i\
+    \ >> 6] >> (i & 63)) & 1); }\n  return res;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ convolution(const vc<mint>& a, const vc<mint>& b) {\n  if constexpr (is_same_v<mint,\
+    \ modint<2>>) {\n    return convolution_mod_2(a, b);\n  }\n  int n = len(a), m\
+    \ = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt()) {\n    if (min(n,\
+    \ m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return convolution_ntt(a,\
+    \ b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\n\
+    \  return convolution_garner(a, b);\n}\n#line 3 \"bigint/binary.hpp\"\n\nstruct\
+    \ BigInteger_Binary {\n  static constexpr int LOG = 30;\n  static constexpr int\
+    \ MOD = 1 << LOG;\n  using bint = BigInteger_Binary;\n  int sgn;\n  vc<int> dat;\n\
+    \n  BigInteger_Binary() : sgn(0) {}\n  BigInteger_Binary(i128 val) {\n    if (val\
+    \ == 0) {\n      sgn = 0;\n      return;\n    }\n    sgn = 1;\n    if (val < 0)\
+    \ sgn = -1, val = -val;\n    while (val > 0) {\n      dat.eb(val % MOD);\n   \
+    \   val /= MOD;\n    }\n  }\n  BigInteger_Binary(string s) {\n    assert(!s.empty());\n\
+    \    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n\
+    \      assert(!s.empty());\n    }\n    int p = 0;\n    while (p < len(s) && s[p]\
+    \ == '0') ++p;\n    s = s.substr(p);\n    if (s.empty()) {\n      sgn = 0;\n \
+    \     return;\n    }\n    reverse(all(s));\n    int n = len(s);\n    int m = ceil(n,\
+    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += ((s[i] - '0')\
+    \ << (i % LOG)); }\n  }\n  bint &operator=(const bint &p) {\n    sgn = p.sgn;\n\
+    \    dat = p.dat;\n    return *this;\n  }\n  bool operator<(const bint &p) const\
+    \ {\n    if (sgn != p.sgn) return sgn < p.sgn;\n    if (sgn == 0) return false;\n\
+    \    if (len(dat) != len(p.dat)) {\n      if (sgn == 1) return len(dat) < len(p.dat);\n\
+    \      if (sgn == -1) return len(dat) > len(p.dat);\n    }\n    FOR_R(i, len(dat))\
+    \ {\n      if (dat[i] == p.dat[i]) continue;\n      if (sgn == 1) return dat[i]\
+    \ < p.dat[i];\n      if (sgn == -1) return dat[i] > p.dat[i];\n    }\n    return\
+    \ false;\n  }\n  bool operator>(const bint &p) const { return p < *this; }\n \
+    \ bool operator<=(const bint &p) const { return !(*this > p); }\n  bool operator>=(const\
+    \ bint &p) const { return !(*this < p); }\n  bint &operator+=(const bint p) {\n\
+    \    if (sgn == 0) {\n      return *this = p;\n    }\n    if (p.sgn == 0) {\n\
+    \      return *this;\n    }\n    if (sgn != p.sgn) {\n      *this -= (-p);\n \
+    \     return *this;\n    }\n    int n = max(len(dat), len(p.dat));\n    dat.resize(n\
+    \ + 1);\n    FOR(i, n) {\n      if (i < len(p.dat)) dat[i] += p.dat[i];\n    \
+    \  if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n    }\n    while (len(dat)\
+    \ && dat.back() == 0) dat.pop_back();\n    return *this;\n  }\n  bint &operator-=(const\
+    \ bint p) {\n    if (sgn == 0) return *this = (-p);\n    if (p.sgn == 0) return\
+    \ *this;\n    if (sgn != p.sgn) {\n      *this += (-p);\n      return *this;\n\
+    \    }\n    if ((sgn == 1 && *this < p) || (sgn == -1 && *this > p)) {\n     \
+    \ *this = p - *this;\n      sgn = -sgn;\n      return *this;\n    }\n    FOR(i,\
+    \ len(p.dat)) { dat[i] -= p.dat[i]; }\n    FOR(i, len(dat) - 1) {\n      if (dat[i]\
+    \ < 0) dat[i] += MOD, dat[i + 1] -= 1;\n    }\n    while (len(dat) && dat.back()\
+    \ == 0) {\n      dat.pop_back();\n    }\n    if (dat.empty()) sgn = 0;\n    return\
+    \ *this;\n  }\n  bint &operator*=(const bint &p) {\n    sgn *= p.sgn;\n    dat\
+    \ = convolve(dat, p.dat);\n    return *this;\n  }\n  // bint &operator/=(const\
+    \ bint &p) { return *this; }\n  bint operator-() const {\n    bint p = *this;\n\
+    \    p.sgn *= -1;\n    return p;\n  }\n  bint operator+(const bint &p) const {\
+    \ return bint(*this) += p; }\n  bint operator-(const bint &p) const { return bint(*this)\
+    \ -= p; }\n  bint operator*(const bint &p) const { return bint(*this) *= p; }\n\
+    \  // bint operator/(const modint &p) const { return modint(*this) /= p; }\n \
+    \ bool operator==(const bint &p) const {\n    return (sgn == p.sgn && dat == p.dat);\n\
+    \  }\n  bool operator!=(const bint &p) const {\n    return (sgn != p.sgn || dat\
+    \ != p.dat);\n  }\n\n  vc<int> convolve(const vc<int> &a, const vc<int> &b) {\n\
+    \    int n = len(a), m = len(b);\n    if (!n || !m) return {};\n    if (min(n,\
+    \ m) <= 500) {\n      vc<int> c(n + m - 1);\n      u128 x = 0;\n      FOR(k, n\
+    \ + m - 1) {\n        int s = max<int>(0, k + 1 - m), t = min<int>(k, n - 1);\n\
+    \        FOR(i, s, t + 1) { x += u64(a[i]) * b[k - i]; }\n        c[k] = x % MOD,\
+    \ x = x / MOD;\n      }\n      while (x > 0) {\n        c.eb(x % MOD), x = x /\
+    \ MOD;\n      }\n      return c;\n    }\n    static constexpr int p0 = 167772161;\n\
+    \    static constexpr int p1 = 469762049;\n    static constexpr int p2 = 754974721;\n\
+    \    using mint0 = modint<p0>;\n    using mint1 = modint<p1>;\n    using mint2\
+    \ = modint<p2>;\n    vc<mint0> a0(all(a)), b0(all(b));\n    vc<mint1> a1(all(a)),\
+    \ b1(all(b));\n    vc<mint2> a2(all(a)), b2(all(b));\n    auto c0 = convolution_ntt<mint0>(a0,\
+    \ b0);\n    auto c1 = convolution_ntt<mint1>(a1, b1);\n    auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\n    vc<int> c(len(c0));\n    u128 x = 0;\n    FOR(i, n + m - 1) {\n  \
+    \    x += CRT3<u128, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\n      c[i]\
+    \ = x % MOD, x = x / MOD;\n    }\n    while (x) {\n      c.eb(x % MOD), x = x\
+    \ / MOD;\n    }\n    return c;\n  }\n\n  string to_string() {\n    if (dat.empty())\
+    \ return \"0\";\n    string s;\n    for (int x : dat) {\n      FOR(LOG) {\n  \
+    \      s += '0' + (x & 1);\n        x /= 2;\n      }\n    }\n    while (s.back()\
+    \ == '0') s.pop_back();\n    reverse(all(s));\n    if (sgn == -1) s = \"-\" +\
+    \ s;\n    return s;\n  }\n\n  string to_decimal_string() {\n    string ANS;\n\
+    \    vc<u64> A;\n    auto carry = [&]() -> void {\n      A.eb(0), A.eb(0);\n \
+    \     FOR(i, len(A) - 1) {\n        A[i + 1] += A[i] / TEN[9];\n        A[i] =\
+    \ A[i] % TEN[9];\n      }\n      while (len(A) && A.back() == 0) A.pop_back();\n\
+    \    };\n    auto mul = [&]() -> void {\n      FOR(i, len(A)) { A[i] *= MOD; }\n\
+    \      carry();\n    };\n    FOR_R(i, len(dat)) {\n      mul();\n      if (A.empty())\
+    \ A.eb(0);\n      A[0] += dat[i];\n      carry();\n    }\n    FOR_R(i, len(A))\
+    \ {\n      string S = ::to_string(A[i]);\n      while (len(S) < 9) S = \"0\" +\
+    \ S;\n      ANS += S;\n    }\n    while (len(ANS) && ANS[0] == '0') ANS.erase(ANS.begin());\n\
+    \    if (ANS.empty()) ANS = \"0\";\n    if (sgn == -1) ANS = \"-\" + ANS;\n  \
+    \  return ANS;\n  }\n\n  // https://codeforces.com/contest/477/problem/D\n  pair<bint,\
+    \ int> divmod(int p) {\n    assert(dat.empty() || sgn == 1);\n    vc<int> after;\n\
+    \    ll rm = 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD + dat[i];\n   \
+    \   after.eb(rm / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n \
+    \   while (len(after) && after.back() == 0) POP(after);\n    bint q;\n    q.sgn\
     \ = 1;\n    q.dat = after;\n    return {q, rm};\n  }\n\n  vc<int> base_p_representation(int\
     \ p) {\n    vc<u32> A(all(dat));\n    vc<int> res;\n    while (1) {\n      while\
     \ (len(A) && A.back() == u32(0)) POP(A);\n      if (A.empty()) break;\n      u64\
@@ -1052,7 +1126,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/bigint.test.cpp
   requiredBy: []
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-18 11:37:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/bigint.test.cpp

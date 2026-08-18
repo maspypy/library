@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
@@ -146,7 +146,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/2d/fps_pow_1_2d.hpp
     title: poly/2d/fps_pow_1_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -188,7 +188,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':warning:'
@@ -206,13 +206,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/find_roots_of_polynomial.hpp
     title: poly/find_roots_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -245,7 +245,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -254,7 +254,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -849,7 +849,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2108.test.cpp
     title: test/3_yukicoder/2108.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -879,7 +879,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
   - icon: ':heavy_check_mark:'
@@ -891,13 +891,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2649.test.cpp
     title: test/3_yukicoder/2649.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2801.test.cpp
     title: test/3_yukicoder/2801.test.cpp
   - icon: ':heavy_check_mark:'
@@ -939,32 +939,32 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"poly/convolution.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
-    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
-    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+  bundledCode: "#line 1 \"poly/convolution.hpp\"\n#include <wmmintrin.h>\n#line 1\
+    \ \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x)\
+    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
     \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
     \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
     \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
@@ -1252,61 +1252,137 @@ data:
     \  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\n\n  auto c1 = convolution_ntt<mint1>(a1,\
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
-    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  if (mint::get_mod() == 2) {\n    vc<modint998> aa, bb;\n    for (auto&\
-    \ x : a) aa.eb(x.val);\n    for (auto& x : b) bb.eb(x.val);\n    aa = convolution<modint998>(aa,\
-    \ bb);\n    vc<mint> ANS(len(aa));\n    FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\n\
-    \    return ANS;\n  }\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n"
-  code: "\n#include \"mod/modint.hpp\"\n#include \"mod/mod_inv.hpp\"\n#include \"\
-    mod/crt3.hpp\"\n#include \"poly/convolution_naive.hpp\"\n#include \"poly/convolution_karatsuba.hpp\"\
-    \n#include \"poly/ntt.hpp\"\n\ntemplate <class mint>\nvector<mint> convolution_ntt(vector<mint>\
-    \ a, vector<mint> b) {\n  assert(mint::can_ntt());\n  if (a.empty() || b.empty())\
-    \ return {};\n  int n = int(a.size()), m = int(b.size());\n  int sz = 1;\n  while\
-    \ (sz < n + m - 1) sz *= 2;\n\n  // sz = 2^k \u306E\u3068\u304D\u306E\u9AD8\u901F\
-    \u5316\u3002\u5206\u5272\u7D71\u6CBB\u7684\u306A\u3084\u3064\u3067\u640D\u3057\
-    \u307E\u304F\u308B\u306E\u3067\u3002\n  if ((n + m - 3) <= sz / 2) {\n    auto\
-    \ a_last = a.back(), b_last = b.back();\n    a.pop_back(), b.pop_back();\n   \
-    \ auto c = convolution(a, b);\n    c.resize(n + m - 1);\n    c[n + m - 2] = a_last\
-    \ * b_last;\n    FOR(i, len(a)) c[i + len(b)] += a[i] * b_last;\n    FOR(i, len(b))\
-    \ c[i + len(a)] += b[i] * a_last;\n    return c;\n  }\n\n  a.resize(sz), b.resize(sz);\n\
-    \  bool same = a == b;\n  ntt(a, 0);\n  if (same) {\n    b = a;\n  } else {\n\
-    \    ntt(b, 0);\n  }\n  FOR(i, sz) a[i] *= b[i];\n  ntt(a, 1);\n  a.resize(n +\
-    \ m - 1);\n  return a;\n}\n\ntemplate <typename mint>\nvector<mint> convolution_garner(const\
-    \ vector<mint>& a, const vector<mint>& b) {\n  int n = len(a), m = len(b);\n \
-    \ if (!n || !m) return {};\n  static constexpr int p0 = 167772161;\n  static constexpr\
-    \ int p1 = 469762049;\n  static constexpr int p2 = 754974721;\n  using mint0 =\
-    \ modint<p0>;\n  using mint1 = modint<p1>;\n  using mint2 = modint<p2>;\n  vc<mint0>\
-    \ a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n  vc<mint2> a2(n), b2(m);\n  FOR(i,\
-    \ n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i] = a[i].val;\n  FOR(i, m) b0[i]\
-    \ = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n  auto c0 = convolution_ntt<mint0>(a0,\
-    \ b0);\n  auto c1 = convolution_ntt<mint1>(a1, b1);\n  auto c2 = convolution_ntt<mint2>(a2,\
-    \ b2);\n  vc<mint> c(len(c0));\n  FOR(i, n + m - 1) {\n    c[i] = CRT3<mint, p0,\
-    \ p1, p2>(c0[i].val, c1[i].val, c2[i].val);\n  }\n  return c;\n}\n\nvector<ll>\
-    \ convolution(vector<ll> a, vector<ll> b) {\n  int n = len(a), m = len(b);\n \
-    \ if (!n || !m) return {};\n  if (min(n, m) <= 2500) return convolution_naive(a,\
-    \ b);\n\n  ll mi_a = MIN(a), mi_b = MIN(b);\n  for (auto& x : a) x -= mi_a;\n\
-    \  for (auto& x : b) x -= mi_b;\n  assert(MAX(a) * MAX(b) <= 1e18);\n\n  auto\
-    \ Ac = cumsum<ll>(a), Bc = cumsum<ll>(b);\n  vi res(n + m - 1);\n  for (int k\
-    \ = 0; k < n + m - 1; ++k) {\n    int s = max(0, k - m + 1);\n    int t = min(n,\
-    \ k + 1);\n    res[k] += (t - s) * mi_a * mi_b;\n    res[k] += mi_a * (Bc[k -\
-    \ s + 1] - Bc[k - t + 1]);\n    res[k] += mi_b * (Ac[t] - Ac[s]);\n  }\n\n  static\
-    \ constexpr u32 MOD1 = 1004535809;\n  static constexpr u32 MOD2 = 1012924417;\n\
-    \  using mint1 = modint<MOD1>;\n  using mint2 = modint<MOD2>;\n\n  vc<mint1> a1(n),\
-    \ b1(m);\n  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a1[i] = a[i], a2[i] = a[i];\n\
-    \  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\n\n  auto c1 = convolution_ntt<mint1>(a1,\
+    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b);\n\
+    \n__attribute__((target(\"pclmul\"))) void clmul_schoolbook(const u64* a,\n  \
+    \                                                      const u64* b, u64* c,\n\
+    \                                                        int n) {\n  // c[0, 2n)\
+    \ \u306F\u3042\u3089\u304B\u3058\u3081 0 \u3068\u3059\u308B\n  FOR(i, n) FOR(j,\
+    \ n) {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i B = _mm_set_epi64x(0,\
+    \ b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\n    alignas(16)\
+    \ u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n\n    c[i + j] ^= w[0];\n \
+    \   c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs, n \u306F 2 \u51AA\n// c:\
+    \ 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n//\n// scratch\
+    \ \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\u3002\n__attribute__((target(\"\
+    pclmul\"))) void clmul_karatsuba_rec(const u64* a,\n                         \
+    \                                  const u64* b, u64* c,\n                   \
+    \                                        int n,\n                            \
+    \                               u64* scratch) {\n  // \u3053\u3053\u306F\u5B9F\
+    \u6E2C\u8ABF\u6574\n  constexpr int TH = 32;\n\n  if (n <= TH) {\n    clmul_schoolbook(a,\
+    \ b, c, n);\n    return;\n  }\n\n  int m = n / 2;\n\n  // z0 = a0*b0\n  clmul_karatsuba_rec(a,\
+    \ b, c, m, scratch);\n\n  // z2 = a1*b1\n  clmul_karatsuba_rec(a + m, b + m, c\
+    \ + 2 * m, m, scratch);\n\n  /*\n    scratch:\n      [0, m)     : a0+a1\n    \
+    \  [m, 2m)    : b0+b1\n      [2m, 4m)   : z1\n      [4m, ...)  : recursive scratch\n\
+    \  */\n  u64* sa = scratch;\n  u64* sb = scratch + m;\n  u64* z1 = scratch + 2\
+    \ * m;\n  u64* sub = scratch + 4 * m;\n\n  FOR(i, m) {\n    sa[i] = a[i] ^ a[m\
+    \ + i];\n    sb[i] = b[i] ^ b[m + i];\n  }\n\n  fill(z1, z1 + 2 * m, u64(0));\n\
+    \n  // z1 = (a0+a1)(b0+b1)\n  clmul_karatsuba_rec(sa, sb, z1, m, sub);\n\n  //\
+    \ cross = z1 + z0 + z2\n  // \u5148\u306B\u5168\u90E8 z1 \u5185\u3067\u5B8C\u6210\
+    \u3055\u305B\u308B\u3002\n  // c[m+i] \u306B\u66F8\u304D\u306A\u304C\u3089 c[i]\
+    \ \u3092\u8AAD\u3080\u3068 overlap \u3057\u3066\u58CA\u308C\u308B\u306E\u3067\u6CE8\
+    \u610F\u3002\n  FOR(i, 2 * m) { z1[i] ^= c[i] ^ c[2 * m + i]; }\n\n  // c = z0\
+    \ + x^m cross + x^(2m) z2\n  FOR(i, 2 * m) { c[m + i] ^= z1[i]; }\n}\n\n__attribute__((target(\"\
+    pclmul\"))) vc<modint<2>> convolution_mod_2(\n    const vc<modint<2>>& a, const\
+    \ vc<modint<2>>& b) {\n  int na = len(a), nb = len(b);\n  if (!na || !nb) return\
+    \ {};\n\n  int A = (na + 63) >> 6;\n  int B = (nb + 63) >> 6;\n\n  // \u3053\u306E\
+    \u5B9F\u88C5\u306F square \u306B padding \u3059\u308B\u306E\u3067\u3001\n  //\
+    \ \u6975\u7AEF\u306B\u975E\u5BFE\u79F0\u306A\u3089 rectangular schoolbook \u306E\
+    \u65B9\u304C\u3088\u3044\u3002\n  int n = 1;\n  while (n < max(A, B)) n <<= 1;\n\
+    \n  vc<u64> x(n), y(n), z(2 * n);\n  vc<u64> scratch(4 * n);\n\n  FOR(i, na) {\
+    \ x[i >> 6] |= u64(a[i].val) << (i & 63); }\n  FOR(i, nb) { y[i >> 6] |= u64(b[i].val)\
+    \ << (i & 63); }\n\n  clmul_karatsuba_rec(x.data(), y.data(), z.data(), n, scratch.data());\n\
+    \n  vc<modint<2>> res(na + nb - 1);\n  FOR(i, len(res)) { res[i] = modint<2>::raw((z[i\
+    \ >> 6] >> (i & 63)) & 1); }\n  return res;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ convolution(const vc<mint>& a, const vc<mint>& b) {\n  if constexpr (is_same_v<mint,\
+    \ modint<2>>) {\n    return convolution_mod_2(a, b);\n  }\n  int n = len(a), m\
+    \ = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt()) {\n    if (min(n,\
+    \ m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return convolution_ntt(a,\
+    \ b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\n\
+    \  return convolution_garner(a, b);\n}\n"
+  code: "#include <wmmintrin.h>\n#include \"mod/modint.hpp\"\n#include \"mod/mod_inv.hpp\"\
+    \n#include \"mod/crt3.hpp\"\n#include \"poly/convolution_naive.hpp\"\n#include\
+    \ \"poly/convolution_karatsuba.hpp\"\n#include \"poly/ntt.hpp\"\n\ntemplate <class\
+    \ mint>\nvector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {\n  assert(mint::can_ntt());\n\
+    \  if (a.empty() || b.empty()) return {};\n  int n = int(a.size()), m = int(b.size());\n\
+    \  int sz = 1;\n  while (sz < n + m - 1) sz *= 2;\n\n  // sz = 2^k \u306E\u3068\
+    \u304D\u306E\u9AD8\u901F\u5316\u3002\u5206\u5272\u7D71\u6CBB\u7684\u306A\u3084\
+    \u3064\u3067\u640D\u3057\u307E\u304F\u308B\u306E\u3067\u3002\n  if ((n + m - 3)\
+    \ <= sz / 2) {\n    auto a_last = a.back(), b_last = b.back();\n    a.pop_back(),\
+    \ b.pop_back();\n    auto c = convolution(a, b);\n    c.resize(n + m - 1);\n \
+    \   c[n + m - 2] = a_last * b_last;\n    FOR(i, len(a)) c[i + len(b)] += a[i]\
+    \ * b_last;\n    FOR(i, len(b)) c[i + len(a)] += b[i] * a_last;\n    return c;\n\
+    \  }\n\n  a.resize(sz), b.resize(sz);\n  bool same = a == b;\n  ntt(a, 0);\n \
+    \ if (same) {\n    b = a;\n  } else {\n    ntt(b, 0);\n  }\n  FOR(i, sz) a[i]\
+    \ *= b[i];\n  ntt(a, 1);\n  a.resize(n + m - 1);\n  return a;\n}\n\ntemplate <typename\
+    \ mint>\nvector<mint> convolution_garner(const vector<mint>& a, const vector<mint>&\
+    \ b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  static constexpr\
+    \ int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n  static constexpr\
+    \ int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using mint1 = modint<p1>;\n\
+    \  using mint2 = modint<p2>;\n  vc<mint0> a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n\
+    \  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i]\
+    \ = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n\
+    \  auto c0 = convolution_ntt<mint0>(a0, b0);\n  auto c1 = convolution_ntt<mint1>(a1,\
+    \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n  vc<mint> c(len(c0));\n\
+    \  FOR(i, n + m - 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
+    \ c2[i].val);\n  }\n  return c;\n}\n\nvector<ll> convolution(vector<ll> a, vector<ll>\
+    \ b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (min(n,\
+    \ m) <= 2500) return convolution_naive(a, b);\n\n  ll mi_a = MIN(a), mi_b = MIN(b);\n\
+    \  for (auto& x : a) x -= mi_a;\n  for (auto& x : b) x -= mi_b;\n  assert(MAX(a)\
+    \ * MAX(b) <= 1e18);\n\n  auto Ac = cumsum<ll>(a), Bc = cumsum<ll>(b);\n  vi res(n\
+    \ + m - 1);\n  for (int k = 0; k < n + m - 1; ++k) {\n    int s = max(0, k - m\
+    \ + 1);\n    int t = min(n, k + 1);\n    res[k] += (t - s) * mi_a * mi_b;\n  \
+    \  res[k] += mi_a * (Bc[k - s + 1] - Bc[k - t + 1]);\n    res[k] += mi_b * (Ac[t]\
+    \ - Ac[s]);\n  }\n\n  static constexpr u32 MOD1 = 1004535809;\n  static constexpr\
+    \ u32 MOD2 = 1012924417;\n  using mint1 = modint<MOD1>;\n  using mint2 = modint<MOD2>;\n\
+    \n  vc<mint1> a1(n), b1(m);\n  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a1[i] = a[i],\
+    \ a2[i] = a[i];\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\n\n  auto c1 = convolution_ntt<mint1>(a1,\
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
-    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  if (mint::get_mod() == 2) {\n    vc<modint998> aa, bb;\n    for (auto&\
-    \ x : a) aa.eb(x.val);\n    for (auto& x : b) bb.eb(x.val);\n    aa = convolution<modint998>(aa,\
-    \ bb);\n    vc<mint> ANS(len(aa));\n    FOR(i, len(aa)) ANS[i] = aa[i].val & 1;\n\
-    \    return ANS;\n  }\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}"
+    \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b);\n\
+    \n__attribute__((target(\"pclmul\"))) void clmul_schoolbook(const u64* a,\n  \
+    \                                                      const u64* b, u64* c,\n\
+    \                                                        int n) {\n  // c[0, 2n)\
+    \ \u306F\u3042\u3089\u304B\u3058\u3081 0 \u3068\u3059\u308B\n  FOR(i, n) FOR(j,\
+    \ n) {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i B = _mm_set_epi64x(0,\
+    \ b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\n    alignas(16)\
+    \ u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n\n    c[i + j] ^= w[0];\n \
+    \   c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs, n \u306F 2 \u51AA\n// c:\
+    \ 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n//\n// scratch\
+    \ \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\u3002\n__attribute__((target(\"\
+    pclmul\"))) void clmul_karatsuba_rec(const u64* a,\n                         \
+    \                                  const u64* b, u64* c,\n                   \
+    \                                        int n,\n                            \
+    \                               u64* scratch) {\n  // \u3053\u3053\u306F\u5B9F\
+    \u6E2C\u8ABF\u6574\n  constexpr int TH = 32;\n\n  if (n <= TH) {\n    clmul_schoolbook(a,\
+    \ b, c, n);\n    return;\n  }\n\n  int m = n / 2;\n\n  // z0 = a0*b0\n  clmul_karatsuba_rec(a,\
+    \ b, c, m, scratch);\n\n  // z2 = a1*b1\n  clmul_karatsuba_rec(a + m, b + m, c\
+    \ + 2 * m, m, scratch);\n\n  /*\n    scratch:\n      [0, m)     : a0+a1\n    \
+    \  [m, 2m)    : b0+b1\n      [2m, 4m)   : z1\n      [4m, ...)  : recursive scratch\n\
+    \  */\n  u64* sa = scratch;\n  u64* sb = scratch + m;\n  u64* z1 = scratch + 2\
+    \ * m;\n  u64* sub = scratch + 4 * m;\n\n  FOR(i, m) {\n    sa[i] = a[i] ^ a[m\
+    \ + i];\n    sb[i] = b[i] ^ b[m + i];\n  }\n\n  fill(z1, z1 + 2 * m, u64(0));\n\
+    \n  // z1 = (a0+a1)(b0+b1)\n  clmul_karatsuba_rec(sa, sb, z1, m, sub);\n\n  //\
+    \ cross = z1 + z0 + z2\n  // \u5148\u306B\u5168\u90E8 z1 \u5185\u3067\u5B8C\u6210\
+    \u3055\u305B\u308B\u3002\n  // c[m+i] \u306B\u66F8\u304D\u306A\u304C\u3089 c[i]\
+    \ \u3092\u8AAD\u3080\u3068 overlap \u3057\u3066\u58CA\u308C\u308B\u306E\u3067\u6CE8\
+    \u610F\u3002\n  FOR(i, 2 * m) { z1[i] ^= c[i] ^ c[2 * m + i]; }\n\n  // c = z0\
+    \ + x^m cross + x^(2m) z2\n  FOR(i, 2 * m) { c[m + i] ^= z1[i]; }\n}\n\n__attribute__((target(\"\
+    pclmul\"))) vc<modint<2>> convolution_mod_2(\n    const vc<modint<2>>& a, const\
+    \ vc<modint<2>>& b) {\n  int na = len(a), nb = len(b);\n  if (!na || !nb) return\
+    \ {};\n\n  int A = (na + 63) >> 6;\n  int B = (nb + 63) >> 6;\n\n  // \u3053\u306E\
+    \u5B9F\u88C5\u306F square \u306B padding \u3059\u308B\u306E\u3067\u3001\n  //\
+    \ \u6975\u7AEF\u306B\u975E\u5BFE\u79F0\u306A\u3089 rectangular schoolbook \u306E\
+    \u65B9\u304C\u3088\u3044\u3002\n  int n = 1;\n  while (n < max(A, B)) n <<= 1;\n\
+    \n  vc<u64> x(n), y(n), z(2 * n);\n  vc<u64> scratch(4 * n);\n\n  FOR(i, na) {\
+    \ x[i >> 6] |= u64(a[i].val) << (i & 63); }\n  FOR(i, nb) { y[i >> 6] |= u64(b[i].val)\
+    \ << (i & 63); }\n\n  clmul_karatsuba_rec(x.data(), y.data(), z.data(), n, scratch.data());\n\
+    \n  vc<modint<2>> res(na + nb - 1);\n  FOR(i, len(res)) { res[i] = modint<2>::raw((z[i\
+    \ >> 6] >> (i & 63)) & 1); }\n  return res;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ convolution(const vc<mint>& a, const vc<mint>& b) {\n  if constexpr (is_same_v<mint,\
+    \ modint<2>>) {\n    return convolution_mod_2(a, b);\n  }\n  int n = len(a), m\
+    \ = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt()) {\n    if (min(n,\
+    \ m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return convolution_ntt(a,\
+    \ b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\n\
+    \  return convolution_garner(a, b);\n}"
   dependsOn:
   - mod/modint.hpp
   - mod/modint_common.hpp
@@ -1431,8 +1507,8 @@ data:
   - mod/multiplicative_convolution_mod_2n.hpp
   - mod/multiplicative_convolution_mod_p.hpp
   - new_poly/base.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-18 11:37:12+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/1_mytest/sparse_pow_2d.test.cpp
