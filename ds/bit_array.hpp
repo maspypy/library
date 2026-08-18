@@ -374,6 +374,12 @@ struct Bit_Array {
     return false;
   }
 
+  bool has_intersection(const T &other) const {
+    assert(N == other.N);
+    FOR(i, len(dat)) if (dat[i] & other.dat[i]) return true;
+    return false;
+  }
+
   bool ALL() const {
     int r = N & 63;
     if (r != 0 && dat.back() != full_mask(r)) return 0;
