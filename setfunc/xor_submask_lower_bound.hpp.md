@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -38,9 +38,15 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"setfunc/xor_submask_lower_bound.hpp\"\n\n//\
-    \ a <= b xor (submask S) \u3068\u306A\u308B\u4E2D\u3067\u53F3\u8FBA\u306E\u6700\
-    \u5C0F\n// \u306A\u3051\u308C\u3070 UINT(-1)\ntemplate <typename UINT>\nUINT xor_submask_lower_bound(UINT\
+    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
+    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
+    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
+    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
+    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
+    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
+    \  return x;\n}\n#line 2 \"setfunc/xor_submask_lower_bound.hpp\"\n\n// a <= b\
+    \ xor (submask S) \u3068\u306A\u308B\u4E2D\u3067\u53F3\u8FBA\u306E\u6700\u5C0F\
+    \n// \u306A\u3051\u308C\u3070 UINT(-1)\ntemplate <typename UINT>\nUINT xor_submask_lower_bound(UINT\
     \ a, UINT b, UINT S) {\n  // a <= (b ^ submask(S)), minimize rhs\n  b &= ~S;\n\
     \  if (a <= b) return b;\n  u32 c = b | S;\n  if (a > c) return -1;\n  u32 D =\
     \ (a ^ b) & ~S;\n  if (D == 0) return a;\n  int k = topbit(D);\n  if ((b >> k)\
@@ -61,7 +67,7 @@ data:
   isVerificationFile: false
   path: setfunc/xor_submask_lower_bound.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-19 06:34:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/xor_submask_lower_bound.hpp

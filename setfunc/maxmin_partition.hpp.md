@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -39,7 +39,13 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"setfunc/maxmin_partition.hpp\"\n\n// https://codeforces.com/blog/entry/153948?#comment-1367191\n\
+    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
+    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
+    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
+    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
+    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
+    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
+    \  return x;\n}\n#line 2 \"setfunc/maxmin_partition.hpp\"\n\n// https://codeforces.com/blog/entry/153948?#comment-1367191\n\
     // O(n 2^n)\ntemplate <typename WT>\nWT maxmin_partition(int K, vc<WT> A) {\n\
     \  int N = len(A);\n  if (N < K) return 0;\n  assert(1 <= K && K <= N);\n  vc<WT>\
     \ S(1 << N);\n  FOR(i, N) FOR(s, 1 << i) S[s | 1 << i] = S[s] + A[i];\n\n  WT\
@@ -66,7 +72,7 @@ data:
   isVerificationFile: false
   path: setfunc/maxmin_partition.hpp
   requiredBy: []
-  timestamp: '2026-08-17 12:47:36+09:00'
+  timestamp: '2026-08-19 06:34:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/maxmin_partition.hpp

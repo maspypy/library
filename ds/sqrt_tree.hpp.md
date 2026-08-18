@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -41,20 +41,26 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"ds/sqrt_tree.hpp\"\n\n// \u6298\u89D2\u306A\u306E\
-    \u3067\u4F5C\u3063\u3066\u307F\u305F\u304C\uFF0C\u4F7F\u308F\u306A\u3055\u305D\
-    \u3046\ntemplate <typename Monoid>\nstruct SQRT_Tree {\n  using MX = Monoid;\n\
-    \  using X = typename MX::value_type;\n\n  static constexpr int K = 3;\n  static\
-    \ constexpr u32 SZ[] = {8, 64, 4096};\n  static constexpr u32 MASK[] = {7, 63,\
-    \ 4095};\n\n  int N;\n  // \u5143\u3068\u306A\u308B\u9759\u7684\u306A\u5217\n\
-    \  vc<X> A;\n  // \u5404\u968E\u5C64\u306B\u5BFE\u3057\u3066\uFF0C\u30D6\u30ED\
-    \u30C3\u30AF\u5148\u982D\u304B\u3089\u3042\u308B\u8981\u7D20\u307E\u3067 [s,i]\n\
-    \  // \u5404\u968E\u5C64\u306B\u5BFE\u3057\u3066\uFF0C\u3042\u308B\u8981\u7D20\
-    \u304B\u3089\u30D6\u30ED\u30C3\u30AF\u672B\u5C3E\u307E\u3067 [i,t]\n  vvc<X> PREF,\
-    \ SUFF;\n  // \u5404\u968E\u5C64\u306B\u5BFE\u3057\u3066\uFF0C\u3042\u308B\u30D6\
-    \u30ED\u30C3\u30AF\u304B\u3089\u3042\u308B\u30D6\u30ED\u30C3\u30AF\u307E\u3067\
-    \n  vvc<X> BETWEEN;\n\n  SQRT_Tree() {}\n  template <typename F>\n  SQRT_Tree(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  SQRT_Tree(const vc<X>& v) {\n    build(len(v),\
+    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
+    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
+    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
+    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
+    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
+    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
+    \  return x;\n}\n#line 2 \"ds/sqrt_tree.hpp\"\n\n// \u6298\u89D2\u306A\u306E\u3067\
+    \u4F5C\u3063\u3066\u307F\u305F\u304C\uFF0C\u4F7F\u308F\u306A\u3055\u305D\u3046\
+    \ntemplate <typename Monoid>\nstruct SQRT_Tree {\n  using MX = Monoid;\n  using\
+    \ X = typename MX::value_type;\n\n  static constexpr int K = 3;\n  static constexpr\
+    \ u32 SZ[] = {8, 64, 4096};\n  static constexpr u32 MASK[] = {7, 63, 4095};\n\n\
+    \  int N;\n  // \u5143\u3068\u306A\u308B\u9759\u7684\u306A\u5217\n  vc<X> A;\n\
+    \  // \u5404\u968E\u5C64\u306B\u5BFE\u3057\u3066\uFF0C\u30D6\u30ED\u30C3\u30AF\
+    \u5148\u982D\u304B\u3089\u3042\u308B\u8981\u7D20\u307E\u3067 [s,i]\n  // \u5404\
+    \u968E\u5C64\u306B\u5BFE\u3057\u3066\uFF0C\u3042\u308B\u8981\u7D20\u304B\u3089\
+    \u30D6\u30ED\u30C3\u30AF\u672B\u5C3E\u307E\u3067 [i,t]\n  vvc<X> PREF, SUFF;\n\
+    \  // \u5404\u968E\u5C64\u306B\u5BFE\u3057\u3066\uFF0C\u3042\u308B\u30D6\u30ED\
+    \u30C3\u30AF\u304B\u3089\u3042\u308B\u30D6\u30ED\u30C3\u30AF\u307E\u3067\n  vvc<X>\
+    \ BETWEEN;\n\n  SQRT_Tree() {}\n  template <typename F>\n  SQRT_Tree(int n, F\
+    \ f) {\n    build(n, f);\n  }\n  SQRT_Tree(const vc<X>& v) {\n    build(len(v),\
     \ [&](int i) -> X { return v[i]; });\n  }\n\n  template <typename F>\n  void build(int\
     \ n_, F f) {\n    N = n_;\n    assert(N <= (1 << 24));\n    A.reserve(N);\n  \
     \  FOR(i, N) A.eb(f(i));\n    // \u307E\u305A prefix, suffix \u306E\u69CB\u7BC9\
@@ -133,7 +139,7 @@ data:
   isVerificationFile: false
   path: ds/sqrt_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-19 06:34:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp

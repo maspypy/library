@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy:
@@ -17,6 +17,12 @@ data:
   - icon: ':warning:'
     path: poly/mod_2/convolution.hpp
     title: poly/mod_2/convolution.hpp
+  - icon: ':warning:'
+    path: poly/mod_2/fps_inv.hpp
+    title: poly/mod_2/fps_inv.hpp
+  - icon: ':warning:'
+    path: poly/mod_2/power_projection.hpp
+    title: poly/mod_2/power_projection.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -265,15 +271,21 @@ data:
     \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
     \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
     \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 5 \"ds/bit_array.hpp\"\n\n/*\n01\
-    \ \u5217\u3092\u7BA1\u7406\u3059\u308B\uFF0E\u5185\u90E8\u3067\u306F 64 bit \u3054\
-    \u3068\u306B\u307E\u3068\u3081\u3066\u4FDD\u6301\u3059\u308B\uFF0E\u4E3B\u306A\
-    \u7528\u9014\u3068\u3057\u3066\uFF0C\n- \u53EF\u5909\u9577\u3067\u30B9\u30E9\u30A4\
-    \u30B9\u64CD\u4F5C\u304C\u53EF\u80FD\u306A bitset\n- F_2 \u4E0A\u306E\u591A\u9805\
-    \u5F0F\n\u306A\u3069\u3092\u60F3\u5B9A\u3057\u3066\u3044\u308B\uFF0E\n*/\nstruct\
-    \ Bit_Array {\n  using T = Bit_Array;\n  int N;\n  vc<u64> dat;\n\n  // x \u3067\
-    \u57CB\u3081\u308B\n  Bit_Array(int N = 0, int x = 0) : N(N) {\n    assert(N >=\
-    \ 0);\n    assert(x == 0 || x == 1);\n    u64 v = (x == 0 ? 0 : -1);\n    dat.assign((N\
+    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x\
+    \ & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x =\
+    \ ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n \
+    \ x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
+    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
+    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 5 \"ds/bit_array.hpp\"\n\n\
+    /*\n01 \u5217\u3092\u7BA1\u7406\u3059\u308B\uFF0E\u5185\u90E8\u3067\u306F 64 bit\
+    \ \u3054\u3068\u306B\u307E\u3068\u3081\u3066\u4FDD\u6301\u3059\u308B\uFF0E\u4E3B\
+    \u306A\u7528\u9014\u3068\u3057\u3066\uFF0C\n- \u53EF\u5909\u9577\u3067\u30B9\u30E9\
+    \u30A4\u30B9\u64CD\u4F5C\u304C\u53EF\u80FD\u306A bitset\n- F_2 \u4E0A\u306E\u591A\
+    \u9805\u5F0F\n\u306A\u3069\u3092\u60F3\u5B9A\u3057\u3066\u3044\u308B\uFF0E\n*/\n\
+    struct Bit_Array {\n  using T = Bit_Array;\n  int N;\n  vc<u64> dat;\n\n  // x\
+    \ \u3067\u57CB\u3081\u308B\n  Bit_Array(int N = 0, int x = 0) : N(N) {\n    assert(N\
+    \ >= 0);\n    assert(x == 0 || x == 1);\n    u64 v = (x == 0 ? 0 : -1);\n    dat.assign((N\
     \ + 63) >> 6, v);\n    resize(N);\n  }\n\n  int size() const { return N; }\n\n\
     \  void resize(int n) {\n    assert(n >= 0);\n    dat.resize((n + 63) >> 6);\n\
     \    int r = n & 63;\n    if (r) dat.back() &= full_mask(r);\n    N = n;\n  }\n\
@@ -395,25 +407,28 @@ data:
     \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  bool ALL()\
     \ const {\n    int r = N & 63;\n    if (r != 0 && dat.back() != full_mask(r))\
     \ return 0;\n    for (int i = 0; i < N / 64; ++i)\n      if (dat[i] != u64(-1))\
-    \ return false;\n    return true;\n  }\n\n  // bs[i]==true \u3067\u3042\u308B\u3088\
-    \u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx() const {\n    vc<int> I;\n\
-    \    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n  }\n\n  bool is_subset(const\
-    \ T &other) const {\n    assert(other.N == N);\n    FOR(i, len(dat)) {\n     \
-    \ u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a) return false;\n \
-    \   }\n    return true;\n  }\n\n  int _Find_first() const { return next(0); }\n\
-    \  int _Find_next(int p) const { return next(p + 1); }\n\n  template <typename\
-    \ F>\n  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R\
-    \ && R <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
-    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
-    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
-    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
-    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n"
+    \ return false;\n    return true;\n  }\n\n  Bit_Array reversed() const {\n   \
+    \ int M = ceil(N, 64) * 64;\n    Bit_Array a = *this;\n    a.resize(M);\n    reverse(all(a.dat));\n\
+    \    for (u64 &x : a.dat) x = bit_reverse(x);\n    return a.slice(M - N, M);\n\
+    \  }\n\n  // bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n\
+    \  vc<int> collect_idx() const {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i])\
+    \ I.eb(i);\n    return I;\n  }\n\n  bool is_subset(const T &other) const {\n \
+    \   assert(other.N == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n\
+    \      if ((a & b) != a) return false;\n    }\n    return true;\n  }\n\n  int\
+    \ _Find_first() const { return next(0); }\n  int _Find_next(int p) const { return\
+    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
+    \ f) const {\n    assert(0 <= L && L <= R && R <= N);\n    if (L == R) return;\n\
+    \    int p = ((*this)[L] ? L : _Find_next(L));\n    while (p < R) {\n      f(p);\n\
+    \      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
+    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n  }\n};\n"
   code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"other/bit.hpp\"\
     \n\n/*\n01 \u5217\u3092\u7BA1\u7406\u3059\u308B\uFF0E\u5185\u90E8\u3067\u306F\
     \ 64 bit \u3054\u3068\u306B\u307E\u3068\u3081\u3066\u4FDD\u6301\u3059\u308B\uFF0E\
@@ -544,25 +559,28 @@ data:
     \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  bool ALL()\
     \ const {\n    int r = N & 63;\n    if (r != 0 && dat.back() != full_mask(r))\
     \ return 0;\n    for (int i = 0; i < N / 64; ++i)\n      if (dat[i] != u64(-1))\
-    \ return false;\n    return true;\n  }\n\n  // bs[i]==true \u3067\u3042\u308B\u3088\
-    \u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx() const {\n    vc<int> I;\n\
-    \    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n  }\n\n  bool is_subset(const\
-    \ T &other) const {\n    assert(other.N == N);\n    FOR(i, len(dat)) {\n     \
-    \ u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a) return false;\n \
-    \   }\n    return true;\n  }\n\n  int _Find_first() const { return next(0); }\n\
-    \  int _Find_next(int p) const { return next(p + 1); }\n\n  template <typename\
-    \ F>\n  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R\
-    \ && R <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
-    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
-    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
-    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
-    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};"
+    \ return false;\n    return true;\n  }\n\n  Bit_Array reversed() const {\n   \
+    \ int M = ceil(N, 64) * 64;\n    Bit_Array a = *this;\n    a.resize(M);\n    reverse(all(a.dat));\n\
+    \    for (u64 &x : a.dat) x = bit_reverse(x);\n    return a.slice(M - N, M);\n\
+    \  }\n\n  // bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n\
+    \  vc<int> collect_idx() const {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i])\
+    \ I.eb(i);\n    return I;\n  }\n\n  bool is_subset(const T &other) const {\n \
+    \   assert(other.N == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n\
+    \      if ((a & b) != a) return false;\n    }\n    return true;\n  }\n\n  int\
+    \ _Find_first() const { return next(0); }\n  int _Find_next(int p) const { return\
+    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
+    \ f) const {\n    assert(0 <= L && L <= R && R <= N);\n    if (L == R) return;\n\
+    \    int p = ((*this)[L] ? L : _Find_next(L));\n    while (p < R) {\n      f(p);\n\
+    \      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
+    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n  }\n};"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -571,8 +589,10 @@ data:
   path: ds/bit_array.hpp
   requiredBy:
   - poly/convolution_mod_2.hpp
+  - poly/mod_2/power_projection.hpp
   - poly/mod_2/convolution.hpp
-  timestamp: '2026-08-18 13:05:19+09:00'
+  - poly/mod_2/fps_inv.hpp
+  timestamp: '2026-08-19 06:34:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/bit_array.hpp

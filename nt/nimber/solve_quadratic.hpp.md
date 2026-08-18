@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/xor/basis.hpp
     title: linalg/xor/basis.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/nimber/base.hpp
     title: nt/nimber/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -113,12 +113,18 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"linalg/xor/basis.hpp\"\n\n/*\n\u4F7F\u3044\u5206\
-    \u3051\u65B9\u91DD\nVector_Space: \u7DDA\u5F62\u7A7A\u9593\u305D\u306E\u3082\u306E\
-    \u3092\u7BA1\u7406\nBasis: \u5143\u306E\u57FA\u5E95\u306B\u3088\u308B\u7DDA\u5F62\
-    \u7D50\u5408\u8868\u793A\u3082\u7BA1\u7406\nbasis[i]: i \u756A\u76EE\u306B\u8FFD\
-    \u52A0\u6210\u529F\u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\
-    \u3042\u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\narray<UINT, MAX_DIM>\
+    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
+    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
+    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
+    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
+    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
+    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
+    \  return x;\n}\n#line 2 \"linalg/xor/basis.hpp\"\n\n/*\n\u4F7F\u3044\u5206\u3051\
+    \u65B9\u91DD\nVector_Space: \u7DDA\u5F62\u7A7A\u9593\u305D\u306E\u3082\u306E\u3092\
+    \u7BA1\u7406\nBasis: \u5143\u306E\u57FA\u5E95\u306B\u3088\u308B\u7DDA\u5F62\u7D50\
+    \u5408\u8868\u793A\u3082\u7BA1\u7406\nbasis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\
+    \u6210\u529F\u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\
+    \u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\narray<UINT, MAX_DIM>\
     \ rbasis: \u4E0A\u4E09\u89D2\u5316\u3055\u308C\u305F\u57FA\u5E95. [i][i]==1.\n\
     way<UINT,UINT> rbasis[i] \u3092 basis[j] \u3067\u4F5C\u308B\u65B9\u6CD5\n*/\n\
     template <int MAX_DIM>\nstruct Basis {\n  static_assert(MAX_DIM <= 128);\n  using\
@@ -183,7 +189,7 @@ data:
   isVerificationFile: false
   path: nt/nimber/solve_quadratic.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-19 06:34:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/nimber.test.cpp

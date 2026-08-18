@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/static_monoid_products.hpp
     title: ds/offline_query/static_monoid_products.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -274,9 +274,15 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"ds/offline_query/static_monoid_products.hpp\"\
-    \n\n// f(q, Lprod, Rprod)\n// f \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\
-    \u306E\u306F\u3059\u3079\u3066\u5358\u9805\u8FFD\u52A0\n// https://qoj.ac/contest/1784/problem/9245\n\
+    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
+    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
+    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
+    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
+    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
+    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
+    \  return x;\n}\n#line 2 \"ds/offline_query/static_monoid_products.hpp\"\n\n//\
+    \ f(q, Lprod, Rprod)\n// f \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\
+    \u306F\u3059\u3079\u3066\u5358\u9805\u8FFD\u52A0\n// https://qoj.ac/contest/1784/problem/9245\n\
     template <typename Mono, typename T, typename F>\nvoid static_monoid_products(vc<T>&\
     \ A, vc<pair<int, int>>& query, F f) {\n  int N = len(A), Q = len(query);\n  vvc<int>\
     \ IDS(N);\n  FOR(q, Q) {\n    auto [L, R] = query[q];\n    if (L == R) {\n   \
@@ -312,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-19 06:34:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_dc.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
@@ -47,14 +47,20 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 1 \"string/run_length.hpp\"\ntemplate <typename\
-    \ STRING = string>\nvc<pair<typename STRING::value_type, ll>> run_length(STRING&\
-    \ S) {\n  vc<pair<typename STRING::value_type, ll>> res;\n  for (auto&& x: S)\
-    \ {\n    if (res.empty() || res.back().fi != x) { res.emplace_back(x, 0); }\n\
-    \    res.back().se++;\n  }\n  return res;\n}\n#line 3 \"string/substring_abundant_string.hpp\"\
-    \n\n// \u90E8\u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u304C\u6700\u5927\
-    \u3067\u3042\u308B\u3088\u3046\u306A 01 \u6587\u5B57\u5217\u306E\u69CB\u6210\n\
-    // https://qoj.ac/contest/1096/problem/5434\n// https://oeis.org/A094913\n// https://www.mimuw.edu.pl/~rytter/MYPAPERS/paper.pdf\n\
+    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
+    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
+    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
+    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
+    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
+    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
+    \  return x;\n}\n#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING\
+    \ = string>\nvc<pair<typename STRING::value_type, ll>> run_length(STRING& S) {\n\
+    \  vc<pair<typename STRING::value_type, ll>> res;\n  for (auto&& x: S) {\n   \
+    \ if (res.empty() || res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n\
+    \  }\n  return res;\n}\n#line 3 \"string/substring_abundant_string.hpp\"\n\n//\
+    \ \u90E8\u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u304C\u6700\u5927\u3067\
+    \u3042\u308B\u3088\u3046\u306A 01 \u6587\u5B57\u5217\u306E\u69CB\u6210\n// https://qoj.ac/contest/1096/problem/5434\n\
+    // https://oeis.org/A094913\n// https://www.mimuw.edu.pl/~rytter/MYPAPERS/paper.pdf\n\
     string substring_abundant_string(ll N) {\n  ll N0 = N;\n  N = 1;\n  while ((1\
     \ << N) + (N - 1) < N0) ++N;\n\n  string S = [&]() -> string {\n    if (N == 1)\
     \ return \"01\";\n    if (N == 2) return \"00110\";\n\n    auto SHIFT = [&](string\
@@ -137,7 +143,7 @@ data:
   isVerificationFile: false
   path: string/substring_abundant_string.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-19 06:34:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/substring_abundant.test.cpp

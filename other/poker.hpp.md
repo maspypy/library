@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -38,9 +38,15 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 3 \"other/poker.hpp\"\n\nnamespace poker {\n\n//\
-    \ rank: 0=2, 1=3, ..., 8=T, 9=J, 10=Q, 11=K, 12=A\n// suit: 0=C, 1=D, 2=H, 3=S\n\
-    // card = 4 * rank + suit\n\nenum class Category : u8 {\n  HIGH_CARD,\n  ONE_PAIR,\n\
+    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
+    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
+    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
+    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
+    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
+    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
+    \  return x;\n}\n#line 3 \"other/poker.hpp\"\n\nnamespace poker {\n\n// rank:\
+    \ 0=2, 1=3, ..., 8=T, 9=J, 10=Q, 11=K, 12=A\n// suit: 0=C, 1=D, 2=H, 3=S\n// card\
+    \ = 4 * rank + suit\n\nenum class Category : u8 {\n  HIGH_CARD,\n  ONE_PAIR,\n\
     \  TWO_PAIR,\n  THREE_OF_A_KIND,\n  STRAIGHT,\n  FLUSH,\n  FULL_HOUSE,\n  FOUR_OF_A_KIND,\n\
     \  STRAIGHT_FLUSH\n};\n\ninline constexpr array<string_view, 9> CATEGORY_NAMES\
     \ = {\n    \"HIGH_CARD\", \"ONE_PAIR\",   \"TWO_PAIR\",       \"THREE_OF_A_KIND\"\
@@ -137,7 +143,7 @@ data:
   isVerificationFile: false
   path: other/poker.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-19 06:34:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/poker.hpp

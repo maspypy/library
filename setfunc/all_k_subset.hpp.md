@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ITP2_11_D.test.cpp
     title: test/4_aoj/ITP2_11_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -41,11 +41,17 @@ data:
     \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
     \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
     \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"setfunc/all_k_subset.hpp\"\n\n#ifdef _MSC_VER\n\
-    #include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\ntemplate <typename\
-    \ UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n \
-    \ struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT k)\n\
-    \        : n(UINT(1) << popcnt(s)), k(k), s(s), t(full_mask(k)) {}\n    __attribute__((target(\"\
+    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
+    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
+    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
+    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
+    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
+    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
+    \  return x;\n}\n#line 2 \"setfunc/all_k_subset.hpp\"\n\n#ifdef _MSC_VER\n#include\
+    \ <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\ntemplate <typename UINT>\n\
+    struct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n  struct iter\
+    \ {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT k)\n        :\
+    \ n(UINT(1) << popcnt(s)), k(k), s(s), t(full_mask(k)) {}\n    __attribute__((target(\"\
     bmi2\"))) auto operator*() const {\n      return _pdep_u64(t, s);\n    }\n   \
     \ auto operator++() {\n      if (k == 0) {\n        t = UINT(-1);\n      } else\
     \ {\n        UINT y = t + (-t & t);\n        t = y | ((y ^ t) >> lowbit(t << 2));\n\
@@ -73,8 +79,8 @@ data:
   isVerificationFile: false
   path: setfunc/all_k_subset.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-19 06:34:57+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/ITP2_11_D.test.cpp
 documentation_of: setfunc/all_k_subset.hpp
