@@ -211,53 +211,12 @@ vc<mint> power_projection_0_garner(vc<mint> wt, vc<mint> f, int m) {
 }
 
 // \sum_j[x^j]f^i を i=0,1,...,m
-vc<modint<2>> power_projection_mod_2(vc<modint<2>> wt, vc<modint<2>> f, int m) {
-  using mint = modint<2>;
-  assert(len(f) == len(wt));
-  vc<mint>& g = wt;
-  reverse(all(g));
-  // [x^N]f(x)^ig(x)
-  vc<mint> ANS(m + 1);
-  auto dfs = [&](auto& dfs, vc<mint> f, vc<mint> g, int m, int i0,
-                 int step) -> void {
-    int N = len(f) - 1;
-    /*
-    [x^N]f(x)^ig(x), 0<=i<=m を ANS[i0], ANS[i0+step],... に書きこむ
-    */
-    if (m == 0) {
-      ANS[i0] = g[N];
-      return;
-    }
-    {  // even case
-      int n = N / 2;
-      vc<mint> nxtf(n + 1), nxtg(n + 1);
-      FOR(i, n + 1) nxtf[i] = f[i];
-      FOR(i, n + 1) nxtg[n - i] = g[N - 2 * i];
-      dfs(dfs, nxtf, nxtg, m / 2, i0, step * 2);
-    }
-    {  // odd case
-      g = convolution(f, g);
-      g.resize(N + 1);
-      int n = N / 2;
-      vc<mint> nxtf(n + 1), nxtg(n + 1);
-      FOR(i, n + 1) nxtf[i] = f[i];
-      FOR(i, n + 1) nxtg[n - i] = g[N - 2 * i];
-      dfs(dfs, nxtf, nxtg, (m - 1) / 2, i0 + step, step * 2);
-    }
-  };
-  dfs(dfs, f, g, m, 0, 1);
-  return ANS;
-}
-
-// \sum_j[x^j]f^i を i=0,1,...,m
 template <typename mint>
 vc<mint> power_projection(vc<mint> wt, vc<mint> f, int m) {
   assert(len(f) == len(wt));
+  static_assert(!is_same_v<mint, modint<2>>, "use Bit_Array version for mod 2");
   if (f.empty()) {
     return vc<mint>(m + 1, mint(0));
-  }
-  if constexpr (is_same_v<mint, modint<2>>) {
-    return power_projection_mod_2(wt, f, m);
   }
   if (f[0] != mint(0)) {
     mint c = f[0];

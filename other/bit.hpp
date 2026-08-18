@@ -60,3 +60,13 @@ struct all_subset {
 };
 
 constexpr u64 full_mask(int n) { return n == 64 ? -1ULL : (1ULL << n) - 1; }
+
+u64 bit_reverse(u64 x) {
+  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);
+  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);
+  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);
+  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);
+  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);
+  x = (x << 32) | (x >> 32);
+  return x;
+}

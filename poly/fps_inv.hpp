@@ -42,33 +42,9 @@ vc<mint> fps_inv_dense_ntt(const vc<mint>& F) {
   return G;
 }
 
-vc<modint<2>> fps_inv_mod_2(const vc<modint<2>>& F) {
-  using mint = modint<2>;
-  auto dfs = [&](auto& dfs, int n) -> vc<mint> {
-    // 1/f を [0,n] で求める
-    if (n == 0) {
-      return {mint(1)};
-    }
-    int m = n / 2;
-    vc<mint> g = dfs(dfs, m);
-    g.resize(n + 1);
-    FOR_R(i, n + 1) g[i] = (i % 2 == 0 ? g[i / 2] : 0);
-    // g=[0,n] of 1/f(x)^2
-    vc<mint> h(n + 1);
-    FOR(i, n + 1) h[i] = F[i];
-    g = convolution(g, h);
-    g.resize(n + 1);
-    return g;
-  };
-  return dfs(dfs, len(F) - 1);
-}
-
 template <typename mint>
 vc<mint> fps_inv_dense(const vc<mint>& F) {
   if (mint::can_ntt()) return fps_inv_dense_ntt(F);
-  if constexpr (is_same_v<mint, modint<2>>) {
-    return fps_inv_mod_2(F);
-  }
   const int N = len(F);
   vc<mint> R = {mint(1) / F[0]};
   vc<mint> p;
@@ -88,6 +64,7 @@ vc<mint> fps_inv_dense(const vc<mint>& F) {
 
 template <typename mint>
 vc<mint> fps_inv(const vc<mint>& f) {
+  static_assert(!is_same_v<mint, modint<2>>, "use Bit_Array version for mod 2");
   assert(f[0] != mint(0));
   int n = count_terms(f);
   int t = (mint::can_ntt() ? 160 : 820);

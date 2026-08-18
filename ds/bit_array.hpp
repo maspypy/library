@@ -382,6 +382,15 @@ struct Bit_Array {
     return true;
   }
 
+  Bit_Array reversed() const {
+    int M = ceil(N, 64) * 64;
+    Bit_Array a = *this;
+    a.resize(M);
+    reverse(all(a.dat));
+    for (u64 &x : a.dat) x = bit_reverse(x);
+    return a.slice(M - N, M);
+  }
+
   // bs[i]==true であるような i 全体
   vc<int> collect_idx() const {
     vc<int> I;

@@ -3,7 +3,7 @@
 template <typename mint>
 pair<vc<mint>, vc<mint>> poly_divmod(vc<mint> f, vc<mint> g) {
   assert(g.back() != 0);
-  if (len(f) < len(g)) { return {{}, f}; }
+  if (len(f) < len(g)) return {{}, f};
   auto rf = f, rg = g;
   reverse(all(rf)), reverse(all(rg));
   ll deg = len(rf) - len(rg) + 1;
