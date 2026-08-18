@@ -3,8 +3,8 @@
 // 密グラフのscc
 // O(N^2/w)
 // https://codeforces.com/contest/641/problem/F
-pair<int, vc<int>> scc_bitset(vc<My_Bitset> G) {
-  using BS = My_Bitset;
+pair<int, vc<int>> scc_bitset(vc<Bit_Array> G) {
+  using BS = Bit_Array;
   const int N = len(G);
   vc<BS> RG(N, BS(N));
   FOR(i, N) FOR(j, N) RG[i][j] = 1 * G[j][i];

@@ -8,7 +8,7 @@
 template <int thresh = 200>
 struct Find_Coprime_Pair {
   // thresh 以上ある素数を bitset 管理
-  using BS = My_Bitset;
+  using BS = Bit_Array;
   int N;
   vc<int> A;
   vc<int> lpf;

@@ -3,8 +3,8 @@
 // 入力は DAG. reachability 関係を保つ最小辺集合を残す.
 // N^3/w.
 // https://codeforces.com/problemset/problem/1835/F
-vc<My_Bitset> transitive_reduction(vc<My_Bitset> G) {
-  using BS = My_Bitset;
+vc<Bit_Array> transitive_reduction(vc<Bit_Array> G) {
+  using BS = Bit_Array;
   int N = len(G);
   vc<BS> H = transitive_closure(G);
   FOR(v, N) H[v][v] = 0;

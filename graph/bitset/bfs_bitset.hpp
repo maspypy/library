@@ -10,7 +10,7 @@ vc<int> bfs_bitset(vc<BITSET>& G, int s) {
   assert(0 <= s && s < N);
   vc<int> dist(N, infty<int>);
   BITSET unused, que;
-  if constexpr (is_same_v<BITSET, My_Bitset>) {
+  if constexpr (is_same_v<BITSET, Bit_Array>) {
     unused = BITSET(N, 1);
     que = BITSET(N, 0);
   }
@@ -22,7 +22,7 @@ vc<int> bfs_bitset(vc<BITSET>& G, int s) {
     int p = que._Find_first();
     if (p >= N) break;
     BITSET nxt;
-    if constexpr (is_same_v<BITSET, My_Bitset>) { nxt = BITSET(N); }
+    if constexpr (is_same_v<BITSET, Bit_Array>) { nxt = BITSET(N); }
     while (p < N) {
       dist[p] = d;
       unused[p] = 0;

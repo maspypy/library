@@ -30,7 +30,7 @@ struct Sum_Over_Bit_Positions {
 
   // bitset の [l,r) 部分
   template <typename SUM_TYPE>
-  SUM_TYPE query(My_Bitset &x, int l, int r) {
+  SUM_TYPE query(Bit_Array &x, int l, int r) {
     SUM_TYPE ANS = 0;
     while (l < r && (l & 63)) {
       if (x[l]) ANS += base[l];

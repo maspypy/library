@@ -67,12 +67,12 @@ template <typename T>
 vc<int> subset_sum_solution_2(vc<T>& vals, int target) {
   int n = len(vals);
   auto I = argsort(vals);
-  My_Bitset dp(1, 1);
+  Bit_Array dp(1, 1);
   vc<int> last(target + 1, -1);
   FOR(k, n) {
     int v = vals[I[k]];
     if (v > target) continue;
-    My_Bitset newdp = dp;
+    Bit_Array newdp = dp;
     int new_size = len(dp) + v;
     newdp.resize(new_size);
     newdp.or_to_range(v, new_size, dp);

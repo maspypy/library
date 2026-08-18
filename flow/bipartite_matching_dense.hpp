@@ -9,7 +9,7 @@
 // (10000, 20000) で 3837ms
 // https://codeforces.com/contest/786/problem/E
 // (10000, 10000) 6500ms TLE. row, col とも shuffle で 3000ms AC.
-// bitset の方が My_Bitset より高速？(2024/05/27)
+// bitset の方が Bit_Array より高速？(2024/05/27)
 template <typename BS>
 struct Bipartite_Matching_Dense {
   int N1, N2;
@@ -21,7 +21,7 @@ struct Bipartite_Matching_Dense {
 
   Bipartite_Matching_Dense(vc<BS>& adj, int N1, int N2)
       : N1(N1), N2(N2), adj(adj), match_1(N1, -1), match_2(N2, -1) {
-    if constexpr (is_same_v<BS, My_Bitset>) vis.resize(N2);
+    if constexpr (is_same_v<BS, Bit_Array>) vis.resize(N2);
     FOR(s, N1) bfs(s);
   }
 

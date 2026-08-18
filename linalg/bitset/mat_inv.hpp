@@ -5,7 +5,7 @@ template <typename BS>
 vc<BS> mat_inv(vc<BS> A) {
   int N = len(A);
   vc<BS> B(N);
-  if constexpr (is_same_v<BS, My_Bitset>) { FOR(i, N) B[i] = BS(N); }
+  if constexpr (is_same_v<BS, Bit_Array>) { FOR(i, N) B[i] = BS(N); }
   FOR(i, N) B[i][i] = 1;
   FOR(i, N) {
     FOR(k, i + 1, N) if (A[k][i]) {
@@ -17,7 +17,7 @@ vc<BS> mat_inv(vc<BS> A) {
     FOR(k, N) {
       if (i == k) continue;
       if (A[k][i]) {
-        if constexpr (is_same_v<BS, My_Bitset>) {
+        if constexpr (is_same_v<BS, Bit_Array>) {
           A[k].xor_suffix(i, A[i]);
           B[k] ^= B[i];
         } else {

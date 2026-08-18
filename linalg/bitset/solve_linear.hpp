@@ -2,8 +2,8 @@
 
 // 行ベクトルを bitset にする
 // (2000, 8000) で 300ms 程度（ABC276H）
-vc<My_Bitset> solve_linear(int n, int m, vc<My_Bitset> A, My_Bitset b) {
-  using BS = My_Bitset;
+vc<Bit_Array> solve_linear(int n, int m, vc<Bit_Array> A, Bit_Array b) {
+  using BS = Bit_Array;
   assert(len(b) == n);
   int rk = 0;
   FOR(j, m) {

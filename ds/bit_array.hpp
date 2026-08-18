@@ -1,30 +1,33 @@
 #include "other/bit.hpp"
 
-// https://codeforces.com/contest/914/problem/F
-// https://yukicoder.me/problems/no/142
-// わずかに普通の bitset より遅いときもあるようだが，
-// 固定長にしたくないときや slice 操作が必要なときに使う
-struct My_Bitset {
-  using T = My_Bitset;
+/*
+01 列を管理する．内部では 64 bit ごとにまとめて保持する．主な用途として，
+- 可変長でスライス操作が可能な bitset
+- F_2 上の多項式
+などを想定している．
+*/
+struct Bit_Array {
+  using T = Bit_Array;
   int N;
   vc<u64> dat;
 
   // x で埋める
-  My_Bitset(int N = 0, int x = 0) : N(N) {
+  Bit_Array(int N = 0, int x = 0) : N(N) {
+    assert(N >= 0);
     assert(x == 0 || x == 1);
     u64 v = (x == 0 ? 0 : -1);
     dat.assign((N + 63) >> 6, v);
-    if (N) dat.back() >>= (64 * len(dat) - N);
+    resize(N);
   }
 
-  int size() { return N; }
+  int size() const { return N; }
 
   void resize(int size) {
+    assert(size >= 0);
     dat.resize((size + 63) >> 6);
     int remainingBits = size & 63;
     if (remainingBits != 0) {
-      u64 mask = (u64(1) << remainingBits) - 1;
-      dat.back() &= mask;
+      dat.back() &= full_mask(remainingBits);
     }
     N = size;
   }
@@ -35,12 +38,12 @@ struct My_Bitset {
     resize(N);
   }
 
-  void append(int idx, bool b) {
-    assert(N == idx);
-    resize(idx + 1), (*this)[idx] = b;
+  void push_back(bool b) {
+    resize(N + 1);
+    (*this)[N - 1] = b;
   }
 
-  static T from_string(string &S) {
+  static T from_string(const string &S) {
     int N = len(S);
     T ANS(N);
     FOR(i, N) ANS[i] = (S[i] == '1');
@@ -51,15 +54,42 @@ struct My_Bitset {
    public:
     Proxy(vc<u64> &d, int i) : dat(d), index(i) {}
     operator bool() const { return (dat[index >> 6] >> (index & 63)) & 1; }
-
-    Proxy &operator=(u64 value) {
-      dat[index >> 6] &= ~(u64(1) << (index & 63));
-      dat[index >> 6] |= (value & 1) << (index & 63);
+    Proxy &operator=(bool value) {
+      u64 mask = u64(1) << (index & 63);
+      if (value)
+        dat[index >> 6] |= mask;
+      else
+        dat[index >> 6] &= ~mask;
       return *this;
     }
-    void flip() {
-      dat[index >> 6] ^= (u64(1) << (index & 63));  // XOR to flip the bit
+    Proxy &operator=(const Proxy &p) { return *this = bool(p); }
+
+    // bit operations
+    Proxy &operator^=(bool x) {
+      if (x) dat[index >> 6] ^= u64(1) << (index & 63);
+      return *this;
     }
+    Proxy &operator|=(bool x) {
+      if (x) dat[index >> 6] |= u64(1) << (index & 63);
+      return *this;
+    }
+    Proxy &operator&=(bool x) {
+      if (!x) dat[index >> 6] &= ~(u64(1) << (index & 63));
+      return *this;
+    }
+    Proxy &operator/=(bool x) {
+      assert(x);
+      return *this;
+    }
+    bool inverse() const {
+      assert(bool(*this));
+      return true;
+    }
+    // finite field F_2
+    Proxy &operator+=(bool x) { return *this ^= x; }
+    Proxy &operator-=(bool x) { return *this ^= x; }
+    Proxy &operator*=(bool x) { return *this &= x; }
+    void flip() { *this ^= true; }
 
    private:
     vc<u64> &dat;
@@ -70,9 +100,13 @@ struct My_Bitset {
     assert(0 <= i && i < N);
     return Proxy(dat, i);
   }
+  bool operator[](int i) const {
+    assert(0 <= i && i < N);
+    return (dat[i >> 6] >> (i & 63)) & 1;
+  }
 
   bool operator==(const T &p) const {
-    assert(N == p.N);
+    if (N != p.N) return false;
     FOR(i, len(dat)) if (dat[i] != p.dat[i]) return false;
     return true;
   }
@@ -159,9 +193,9 @@ struct My_Bitset {
     return -1;
   }
 
-  My_Bitset range(int L, int R) {
+  Bit_Array range(int L, int R) {
     assert(L <= R);
-    My_Bitset p(R - L);
+    Bit_Array p(R - L);
     int rm = (R - L) & 63;
     FOR(rm) {
       p[R - L - 1] = bool((*this)[R - 1]);
@@ -179,7 +213,7 @@ struct My_Bitset {
     return p;
   }
 
-  My_Bitset slice(int L, int R) { return range(L, R); }
+  Bit_Array slice(int L, int R) { return range(L, R); }
 
   int count_range(int L, int R) {
     assert(L <= R);
@@ -192,7 +226,7 @@ struct My_Bitset {
   }
 
   // [L,R) に p を代入
-  void assign_to_range(int L, int R, My_Bitset &p) {
+  void assign_to_range(int L, int R, Bit_Array &p) {
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
@@ -215,7 +249,7 @@ struct My_Bitset {
   }
 
   // [L,R) に p を xor
-  void xor_to_range(int L, int R, My_Bitset &p) {
+  void xor_to_range(int L, int R, Bit_Array &p) {
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
@@ -241,13 +275,13 @@ struct My_Bitset {
 
   // 行列基本変形で使うやつ
   // p は [i:N) にしかないとして p を xor する
-  void xor_suffix(int i, My_Bitset &p) {
+  void xor_suffix(int i, Bit_Array &p) {
     assert(N == p.N && 0 <= i && i < N);
     FOR(k, i / 64, len(dat)) { dat[k] ^= p.dat[k]; }
   }
 
   // [L,R) に p を and
-  void and_to_range(int L, int R, My_Bitset &p) {
+  void and_to_range(int L, int R, Bit_Array &p) {
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
@@ -272,7 +306,7 @@ struct My_Bitset {
   }
 
   // [L,R) に p を or
-  void or_to_range(int L, int R, My_Bitset &p) {
+  void or_to_range(int L, int R, Bit_Array &p) {
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
@@ -297,7 +331,7 @@ struct My_Bitset {
   }
 
   // [L,R) or= p[Lp:Rp)
-  void or_to_range(int L, int R, My_Bitset &p, int Lp, int Rp) {
+  void or_to_range(int L, int R, Bit_Array &p, int Lp, int Rp) {
     assert(R - L == Rp - Lp);
     while (L < R && (L & 63)) {
       dat[L >> 6] |= (u64(p[Lp]) << (L & 63)), ++L, ++Lp;
@@ -325,7 +359,7 @@ struct My_Bitset {
 
   // 行列基本変形で使うやつ
   // p は [i:N) にしかないとして p を or する
-  void or_suffix(int i, My_Bitset &p) {
+  void or_suffix(int i, Bit_Array &p) {
     assert(N == p.N && 0 <= i && i < N);
     FOR(k, i / 64, len(dat)) { dat[k] |= p.dat[k]; }
   }
@@ -454,4 +488,4 @@ struct My_Bitset {
     return;
   }
 };
-string My_Bitset::TO_STR[256];
+string Bit_Array::TO_STR[256];
