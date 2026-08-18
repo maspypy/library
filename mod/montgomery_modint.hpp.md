@@ -56,9 +56,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':warning:'
-    path: nt/find_coprime_pair.hpp
-    title: nt/find_coprime_pair.hpp
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
@@ -283,9 +280,6 @@ data:
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/3229.test.cpp
-    title: test/3_yukicoder/3229.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
@@ -352,7 +346,6 @@ data:
   requiredBy:
   - nt/array_on_divisors.hpp
   - nt/all_lcm.hpp
-  - nt/find_coprime_pair.hpp
   - nt/two_square.hpp
   - nt/euler_phi.hpp
   - nt/crt.hpp
@@ -430,7 +423,6 @@ data:
   - test/4_aoj/ITP1_D_D.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp
   - test/4_aoj/ALDS1_1_C.test.cpp
-  - test/3_yukicoder/3229.test.cpp
   - test/3_yukicoder/2578.test.cpp
   - test/3_yukicoder/1262.test.cpp
   - test/3_yukicoder/590.test.cpp

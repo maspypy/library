@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
@@ -17,9 +17,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: knapsack/subset_sum.hpp
-    title: knapsack/subset_sum.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
@@ -40,9 +37,6 @@ data:
     path: test/1_mytest/enum_partitions.test.cpp
     title: test/1_mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/subset_sum.test.cpp
-    title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,9 +51,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/4_2.test.cpp
-    title: test/3_yukicoder/4_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_2_A.test.cpp
     title: test/4_aoj/DPL_2_A.test.cpp
@@ -127,18 +118,15 @@ data:
   - setfunc/online/online_or_convolution.hpp
   - setfunc/boolean_range_add_point_get.hpp
   - enumerate/partition.hpp
-  - knapsack/subset_sum.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/subset_sum.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   - test/4_aoj/DPL_2_A.test.cpp
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/2507.test.cpp
   - test/3_yukicoder/1263.test.cpp
-  - test/3_yukicoder/4_2.test.cpp
   - test/3_yukicoder/114.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document

@@ -31,9 +31,6 @@ data:
     path: test/3_yukicoder/1848.test.cpp
     title: test/3_yukicoder/1848.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2626_2.test.cpp
-    title: test/3_yukicoder/2626_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
   _isVerificationFailed: false
@@ -70,7 +67,6 @@ data:
   - test/2_library_checker/string/run_enumerate_vec.test.cpp
   - test/2_library_checker/string/zalgorithm.test.cpp
   - test/3_yukicoder/1848.test.cpp
-  - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/2858.test.cpp
 documentation_of: string/z_algorithm.hpp
 layout: document

@@ -32,7 +32,7 @@ data:
     \ v : ord) {\n    if (!vis[v]) dfs(dfs, v), ++nc;\n  }\n  return {nc, comp};\n\
     }\n#line 2 \"graph/bitset/scc_bitset.hpp\"\n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\
     scc\n// O(N^2/w)\n// https://codeforces.com/contest/641/problem/F\npair<int, vc<int>>\
-    \ scc_bitset(vc<My_Bitset> G) {\n  using BS = My_Bitset;\n  const int N = len(G);\n\
+    \ scc_bitset(vc<Bit_Array> G) {\n  using BS = Bit_Array;\n  const int N = len(G);\n\
     \  vc<BS> RG(N, BS(N));\n  FOR(i, N) FOR(j, N) RG[i][j] = 1 * G[j][i];\n\n  BS\
     \ b0(N, 1);\n  BS b1(N, 1);\n\n  auto set_used = [&](int v, bool rev) -> void\
     \ {\n    if (!rev) b0[v] = 0;\n    if (rev) b1[v] = 0;\n  };\n\n  auto find_unused\
@@ -43,7 +43,7 @@ data:
     \ blackbox_scc(N, set_used, find_unused);\n}\n"
   code: "#include \"graph/blackbox/scc.hpp\"\n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\
     scc\n// O(N^2/w)\n// https://codeforces.com/contest/641/problem/F\npair<int, vc<int>>\
-    \ scc_bitset(vc<My_Bitset> G) {\n  using BS = My_Bitset;\n  const int N = len(G);\n\
+    \ scc_bitset(vc<Bit_Array> G) {\n  using BS = Bit_Array;\n  const int N = len(G);\n\
     \  vc<BS> RG(N, BS(N));\n  FOR(i, N) FOR(j, N) RG[i][j] = 1 * G[j][i];\n\n  BS\
     \ b0(N, 1);\n  BS b1(N, 1);\n\n  auto set_used = [&](int v, bool rev) -> void\
     \ {\n    if (!rev) b0[v] = 0;\n    if (rev) b1[v] = 0;\n  };\n\n  auto find_unused\
@@ -57,7 +57,7 @@ data:
   isVerificationFile: false
   path: graph/bitset/scc_bitset.hpp
   requiredBy: []
-  timestamp: '2025-07-25 21:12:10+09:00'
+  timestamp: '2026-08-18 13:03:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bitset/scc_bitset.hpp

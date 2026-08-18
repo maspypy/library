@@ -1,306 +1,26 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/my_bitset.hpp
-    title: ds/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
-    path: enumerate/bits.hpp
-    title: enumerate/bits.hpp
-  - icon: ':question:'
-    path: other/bit.hpp
-    title: other/bit.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/subset_sum.test.cpp
-    title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/4_2.test.cpp
-    title: test/3_yukicoder/4_2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://codeforces.com/contest/755/problem/F
-  bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
-    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
-    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
-    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
-    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
-    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
-    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
-    // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
-    \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
-    \u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\u3057\u305F\u304F\u306A\u3044\u3068\
-    \u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\u8981\u306A\u3068\u304D\u306B\u4F7F\
-    \u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n  int N;\n  vc<u64> dat;\n\
-    \n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int N = 0, int x = 0) : N(N) {\n\
-    \    assert(x == 0 || x == 1);\n    u64 v = (x == 0 ? 0 : -1);\n    dat.assign((N\
-    \ + 63) >> 6, v);\n    if (N) dat.back() >>= (64 * len(dat) - N);\n  }\n\n  int\
-    \ size() { return N; }\n\n  void resize(int size) {\n    dat.resize((size + 63)\
-    \ >> 6);\n    int remainingBits = size & 63;\n    if (remainingBits != 0) {\n\
-    \      u64 mask = (u64(1) << remainingBits) - 1;\n      dat.back() &= mask;\n\
-    \    }\n    N = size;\n  }\n\n  void fill0() { fill(all(dat), u64(0)); }\n  void\
-    \ fill1() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n\n  void append(int\
-    \ idx, bool b) {\n    assert(N == idx);\n    resize(idx + 1), (*this)[idx] = b;\n\
-    \  }\n\n  static T from_string(string &S) {\n    int N = len(S);\n    T ANS(N);\n\
-    \    FOR(i, N) ANS[i] = (S[i] == '1');\n    return ANS;\n  }\n\n  class Proxy\
-    \ {\n   public:\n    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}\n    operator\
-    \ bool() const { return (dat[index >> 6] >> (index & 63)) & 1; }\n\n    Proxy\
-    \ &operator=(u64 value) {\n      dat[index >> 6] &= ~(u64(1) << (index & 63));\n\
-    \      dat[index >> 6] |= (value & 1) << (index & 63);\n      return *this;\n\
-    \    }\n    void flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63));\
-    \  // XOR to flip the bit\n    }\n\n   private:\n    vc<u64> &dat;\n    int index;\n\
-    \  };\n\n  Proxy operator[](int i) {\n    assert(0 <= i && i < N);\n    return\
-    \ Proxy(dat, i);\n  }\n\n  bool operator==(const T &p) const {\n    assert(N ==\
-    \ p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return false;\n    return\
-    \ true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N == p.N);\n    FOR(i,\
-    \ len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n  T &operator|=(const\
-    \ T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] |= p.dat[i];\n \
-    \   return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N == p.N);\n\
-    \    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n  T operator&(const\
-    \ T &p) const { return T(*this) &= p; }\n  T operator|(const T &p) const { return\
-    \ T(*this) |= p; }\n  T operator^(const T &p) const { return T(*this) ^= p; }\n\
-    \  T operator~() const {\n    T p = (*this);\n    p.flip_range(0, N);\n    return\
-    \ p;\n  }\n\n  void set_minus_inplace(T &other) {\n    assert(N == other.N);\n\
-    \    FOR(i, len(dat)) dat[i] = dat[i] & (~other.dat[i]);\n  }\n\n  T set_minus(T\
-    \ other) {\n    assert(N == other.N);\n    FOR(i, len(dat)) other.dat[i] = dat[i]\
-    \ & (~other.dat[i]);\n    return other;\n  }\n\n  int count() {\n    int ans =\
-    \ 0;\n    for (u64 val : dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int\
-    \ dot(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n    FOR(i, len(dat)) ans\
-    \ += popcnt(dat[i] & p.dat[i]);\n    return ans;\n  }\n\n  int next(int i) {\n\
-    \    chmax(i, 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n    {\n   \
-    \   u64 x = dat[k];\n      int s = i & 63;\n      x = (x >> s) << s;\n      if\
-    \ (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat)) {\n \
-    \     if (dat[idx] == 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n\
-    \    }\n    return N;\n  }\n\n  int prev(int i) {\n    chmin(i, N - 1);\n    if\
-    \ (i <= -1) return -1;\n    int k = i >> 6;\n    if ((i & 63) < 63) {\n      u64\
-    \ x = dat[k];\n      x &= (u64(1) << ((i & 63) + 1)) - 1;\n      if (x) return\
-    \ (k << 6) | topbit(x);\n      --k;\n    }\n    FOR_R(idx, k + 1) {\n      if\
-    \ (dat[idx] == 0) continue;\n      return (idx << 6) | topbit(dat[idx]);\n   \
-    \ }\n    return -1;\n  }\n\n  My_Bitset range(int L, int R) {\n    assert(L <=\
-    \ R);\n    My_Bitset p(R - L);\n    int rm = (R - L) & 63;\n    FOR(rm) {\n  \
-    \    p[R - L - 1] = bool((*this)[R - 1]);\n      --R;\n    }\n    int n = (R -\
-    \ L) >> 6;\n    int hi = L & 63;\n    int lo = 64 - hi;\n    int s = L >> 6;\n\
-    \    if (hi == 0) {\n      FOR(i, n) { p.dat[i] = dat[s + i]; }\n    } else {\n\
-    \      FOR(i, n) { p.dat[i] ^= (dat[s + i] >> hi) ^ (dat[s + i + 1] << lo); }\n\
-    \    }\n    return p;\n  }\n\n  My_Bitset slice(int L, int R) { return range(L,\
-    \ R); }\n\n  int count_range(int L, int R) {\n    assert(L <= R);\n    int cnt\
-    \ = 0;\n    while ((L < R) && (L & 63)) cnt += (*this)[L++];\n    while ((L <\
-    \ R) && (R & 63)) cnt += (*this)[--R];\n    int l = L >> 6, r = R >> 6;\n    FOR(i,\
-    \ l, r) cnt += popcnt(dat[i]);\n    return cnt;\n  }\n\n  // [L,R) \u306B p \u3092\
-    \u4EE3\u5165\n  void assign_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N\
-    \ == R - L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n     \
-    \ (*this)[L++] = bool(p[a++]);\n    }\n    while (L < R && (R & 63)) {\n     \
-    \ (*this)[--R] = bool(p[--b]);\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n   \
-    \ int l = L >> 6, r = R >> 6;\n    int s = a >> 6;\n    int n = r - l;\n    if\
-    \ (!(a & 63)) {\n      FOR(i, n) dat[l + i] = p.dat[s + i];\n    } else {\n  \
-    \    int hi = a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] = (p.dat[s\
-    \ + i] >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092\
-    \ xor\n  void xor_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N == R\
-    \ - L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n      dat[L\
-    \ >> 6] ^= u64(p[a]) << (L & 63);\n      ++a, ++L;\n    }\n    while (L < R &&\
-    \ (R & 63)) {\n      --b, --R;\n      dat[R >> 6] ^= u64(p[b]) << (R & 63);\n\
-    \    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n \
-    \   int s = a >> 6;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n)\
-    \ dat[l + i] ^= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int\
-    \ lo = 64 - hi;\n      FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1\
-    \ + s + i] << lo);\n    }\n  }\n\n  // \u884C\u5217\u57FA\u672C\u5909\u5F62\u3067\
-    \u4F7F\u3046\u3084\u3064\n  // p \u306F [i:N) \u306B\u3057\u304B\u306A\u3044\u3068\
-    \u3057\u3066 p \u3092 xor \u3059\u308B\n  void xor_suffix(int i, My_Bitset &p)\
-    \ {\n    assert(N == p.N && 0 <= i && i < N);\n    FOR(k, i / 64, len(dat)) {\
-    \ dat[k] ^= p.dat[k]; }\n  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int\
-    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
-    \    while (L < R && (L & 63)) {\n      if (!p[a]) (*this)[L] = 0;\n      a++,\
-    \ L++;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n      if (!p[b])\
-    \ (*this)[R] = 0;\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >>\
-    \ 6, r = R >> 6;\n    int s = a >> 6;\n    int n = r - l;\n    if (!(a & 63))\
-    \ {\n      FOR(i, n) dat[l + i] &= p.dat[s + i];\n    } else {\n      int hi =\
-    \ a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i]\
-    \ >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092\
-    \ or\n  void or_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N == R -\
-    \ L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n      dat[L >>\
-    \ 6] |= u64(p[a]) << (L & 63);\n      ++a, ++L;\n    }\n    while (L < R && (R\
-    \ & 63)) {\n      --b, --R;\n      dat[R >> 6] |= u64(p[b]) << (R & 63);\n   \
-    \ }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int\
-    \ s = a >> 6;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l\
-    \ + i] |= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int lo =\
-    \ 64 - hi;\n      FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s\
-    \ + i] << lo);\n    }\n  }\n\n  // [L,R) or= p[Lp:Rp)\n  void or_to_range(int\
-    \ L, int R, My_Bitset &p, int Lp, int Rp) {\n    assert(R - L == Rp - Lp);\n \
-    \   while (L < R && (L & 63)) {\n      dat[L >> 6] |= (u64(p[Lp]) << (L & 63)),\
-    \ ++L, ++Lp;\n    }\n    while (L < R && (R & 63)) {\n      --R, --Rp, dat[R >>\
-    \ 6] |= (u64(p[Rp]) << (R & 63));\n    }\n    int l = L >> 6, r = R >> 6;\n  \
-    \  int a = Lp, b = Rp;\n    int s = a >> 6;\n    int n = r - l;\n\n    if (!(a\
-    \ & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s + i];\n    } else {\n      int\
-    \ hi = a & 63, lo = 64 - hi;\n      int pw = (b + 63) >> 6;\n      FOR(i, n) {\n\
-    \        u64 w0 = (s + i < pw ? (p.dat[s + i] >> hi) : 0);\n        u64 w1 = (s\
-    \ + i + 1 < pw ? (p.dat[s + i + 1] << lo) : 0);\n        dat[l + i] |= (w0 | w1);\n\
-    \      }\n    }\n  }\n\n  // \u884C\u5217\u57FA\u672C\u5909\u5F62\u3067\u4F7F\u3046\
-    \u3084\u3064\n  // p \u306F [i:N) \u306B\u3057\u304B\u306A\u3044\u3068\u3057\u3066\
-    \ p \u3092 or \u3059\u308B\n  void or_suffix(int i, My_Bitset &p) {\n    assert(N\
-    \ == p.N && 0 <= i && i < N);\n    FOR(k, i / 64, len(dat)) { dat[k] |= p.dat[k];\
-    \ }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int L, int\
-    \ R) {\n    while (L < R && (L & 63)) {\n      set(L++);\n    }\n    while (L\
-    \ < R && (R & 63)) {\n      set(--R);\n    }\n    FOR(i, L >> 6, R >> 6) dat[i]\
-    \ = u64(-1);\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int\
-    \ L, int R) {\n    while (L < R && (L & 63)) {\n      reset(L++);\n    }\n   \
-    \ while (L < R && (R & 63)) {\n      reset(--R);\n    }\n    FOR(i, L >> 6, R\
-    \ >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R) \u3092 flip\n  void flip_range(int\
-    \ L, int R) {\n    while (L < R && (L & 63)) {\n      flip(L++);\n    }\n    while\
-    \ (L < R && (R & 63)) {\n      flip(--R);\n    }\n    FOR(i, L >> 6, R >> 6) dat[i]\
-    \ ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\
-    \n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0;\
-    \ }\n  void flip(int i) { (*this)[i].flip(); }\n  void set() { set_range(0, N);\
-    \ }\n  void reset() { reset_range(0, N); }\n  void flip() { flip_range(0, N);\
-    \ }\n  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n\
-    \    }\n    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n\
-    \    int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n\
-    \      if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
-    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n  //\
-    \ bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx()\
-    \ {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n \
-    \ }\n\n  bool is_subset(T &other) {\n    assert(len(other) == N);\n    FOR(i,\
-    \ len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a)\
-    \ return false;\n    }\n    return true;\n  }\n\n  int _Find_first() { return\
-    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  template <typename\
-    \ F>\n  void enumerate(int L, int R, F f) {\n    if (L >= size()) return;\n  \
-    \  int p = ((*this)[L] ? L : _Find_next(L));\n    while (p < R) {\n      f(p);\n\
-    \      p = _Find_next(p);\n    }\n  }\n\n  static string TO_STR[256];\n  string\
-    \ to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n\
-    \    for (auto &x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
-    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
-    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
-    \      TO_STR[s] = x;\n    }\n  }\n\n  // return: xor_sum\n  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour\n\
-    \  void prefix_xor_sum() {\n    int carry = 0;\n    for (u64 &a : dat) {\n   \
-    \   a ^= carry;\n      carry = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n\
-    \      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n\
-    \      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n    }\n    resize(N);\n\
-    \    return;\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 1 \"other/bit.hpp\"\
-    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
-    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
-    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
-    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
-    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
-    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
-    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
-    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
-    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
-    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
-    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
-    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
-    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
-    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
-    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
-    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
-    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
-    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n#line 2 \"enumerate/bits.hpp\"\ntemplate\
-    \ <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F&&\
-    \ f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
-    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
-    \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
-    \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
-    \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
-    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
-    \n\n// O(N MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>&\
-    \ vals, int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx\
-    \ = MAX(vals);\n  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target)\
-    \ {\n    sb += vals[b++];\n  }\n  if (b == n && sb != target) return {};\n\n \
-    \ int off = target - mx + 1;\n  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 *\
-    \ mx, -1);\n  dp[sb - off] = b;\n  FOR(i, b, n) {\n    auto newdp = dp;\n    auto&\
-    \ par = PAR[i];\n    int a = vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j\
-    \ + a], dp[j])) {\n        par[j + a] = -2;\n      }\n    }\n    FOR3_R(j, mx,\
-    \ 2 * mx) {\n      FOR3_R(k, max(dp[j], 0), newdp[j]) {\n        if (chmax(newdp[j\
-    \ - vals[k]], k)) par[j - vals[k]] = k;\n      }\n    }\n    swap(dp, newdp);\n\
-    \  }\n  if (dp[mx - 1] == -1) return {};\n  vc<bool> use(n);\n  int i = n - 1,\
-    \ j = mx - 1;\n  while (i >= b) {\n    int p = PAR[i][j];\n    if (p == -2) {\n\
-    \      use[i] = !use[i];\n      j -= vals[i--];\n    }\n    elif (p == -1) { --i;\
-    \ }\n    else {\n      use[p] = !use[p];\n      j += vals[p];\n    }\n  }\n  while\
-    \ (i >= 0) {\n    use[i] = !use[i];\n    --i;\n  }\n  vc<int> I;\n  FOR(i, n)\
-    \ if (use[i]) I.eb(i);\n\n  ll sm = 0;\n  for (auto&& i : I) sm += vals[i];\n\
-    \  assert(sm == target);\n\n  return I;\n}\n\n// O(N target / w)\ntemplate <typename\
-    \ T>\nvc<int> subset_sum_solution_2(vc<T>& vals, int target) {\n  int n = len(vals);\n\
-    \  auto I = argsort(vals);\n  My_Bitset dp(1, 1);\n  vc<int> last(target + 1,\
-    \ -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n    if (v > target) continue;\n\
-    \    My_Bitset newdp = dp;\n    int new_size = len(dp) + v;\n    newdp.resize(new_size);\n\
-    \    newdp.or_to_range(v, new_size, dp);\n    if (len(newdp) > target + 1) newdp.resize(target\
-    \ + 1);\n    // update \u3057\u305F\u3068\u3053\u308D\u3092\u30E1\u30E2\n    FOR(i,\
-    \ len(newdp.dat)) {\n      u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^\
-    \ newdp.dat[i];\n      enumerate_all_bit<u64>(upd,\n                         \
-    \    [&](int p) -> void { last[(i << 6) | p] = I[k]; });\n    }\n    swap(dp,\
-    \ newdp);\n  }\n  if (target >= len(dp) || !dp[target]) return {};\n  vc<int>\
-    \ ANS;\n  while (target > 0) {\n    int i = last[target];\n    ANS.eb(i);\n  \
-    \  target -= vals[i];\n  }\n  return ANS;\n}\n\n// O(sum^{1.5} / w)\n// sum=10^6\
-    \ \u3067 150ms\uFF1Ahttps://codeforces.com/contest/755/problem/F\ntemplate <typename\
-    \ T>\nvc<int> subset_sum_solution_3(vc<T>& vals, int target) {\n  int SM = SUM<int>(vals);\n\
-    \  int N = len(vals);\n  vvc<int> IDS(SM + 1);\n  FOR(i, N) IDS[vals[i]].eb(i);\n\
-    \  vc<pair<int, int>> par(N, {-1, -1});\n  vc<int> grp_vals;\n  vc<int> raw_idx;\n\
-    \  FOR(x, 1, SM + 1) {\n    auto& I = IDS[x];\n    while (len(I) >= 3) {\n   \
-    \   int a = POP(I), b = POP(I);\n      int c = len(par);\n      par.eb(a, b);\n\
-    \      IDS[2 * x].eb(c);\n    }\n    for (auto& i : I) {\n      grp_vals.eb(x);\n\
-    \      raw_idx.eb(i);\n    }\n  }\n  auto I = subset_sum_solution_2<int>(grp_vals,\
-    \ target);\n  vc<int> ANS;\n  for (auto& i : I) {\n    vc<int> st = {raw_idx[i]};\n\
-    \    while (len(st)) {\n      auto c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n\
-    \        continue;\n      }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n\
-    \    }\n  }\n  return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum_solution_4(vc<T>&\
-    \ vals, T target) {\n  if (target <= 0) return {};\n  int N = len(vals);\n  int\
-    \ M = N / 2;\n\n  auto calc = [&](int L, int R) -> vc<T> {\n    int n = R - L;\n\
-    \    vc<T> dp = {0};\n    FOR(i, n) {\n      T a = vals[L + i];\n      vc<T> dp1(len(dp));\n\
-    \      FOR(k, len(dp)) dp1[k] = dp[k] + a;\n      vc<T> newdp;\n      merge(all(dp),\
-    \ all(dp1), back_inserter(newdp));\n      swap(dp, newdp);\n    }\n    return\
-    \ dp;\n  };\n\n  auto restore = [&](int L, int R, T v) -> vc<int> {\n    int n\
-    \ = R - L;\n    vc<T> dp(1 << n);\n    FOR(i, n) FOR(s, 1 << i) dp[s | 1 << i]\
-    \ = dp[s] + vals[L + i];\n    FOR(s, 1 << n) {\n      if (dp[s] == v) {\n    \
-    \    vc<int> I;\n        FOR(i, n) if (s >> i & 1) I.eb(L + i);\n        return\
-    \ I;\n      }\n    }\n    assert(0);\n    return {};\n  };\n\n  auto dp1 = calc(0,\
-    \ M);\n  auto dp2 = calc(M, N);\n  int t = 0;\n  FOR_R(s, len(dp1)) {\n    while\
-    \ (t + 1 < len(dp2) && dp1[s] + dp2[t + 1] <= target) {\n      ++t;\n    }\n \
-    \   if (dp1[s] + dp2[t] == target) {\n      vc<int> I1 = restore(0, M, dp1[s]);\n\
-    \      vc<int> I2 = restore(M, N, dp2[t]);\n      concat(I1, I2);\n      return\
-    \ I1;\n    }\n  }\n  return {};\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>&\
-    \ vals, T target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if\
-    \ (n == 0) return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\
-    \u8ABF\u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n\
-    \  // solution 2: O(N target / w)\n  // solution 3: O(sum^1.5 / w)\n  // solution\
-    \ 4: O(2^(N/2))\n  double x1 = double(len(vals)) * mx;\n  double x2 = double(len(vals))\
-    \ * target / 500.0;\n  double x3 = pow(SUM<double>(vals), 1.5) / 500.0;\n  double\
-    \ x4 = pow(2.0, 0.5 * len(vals));\n  double mi = min({x1, x2, x3, x4});\n  if\
-    \ (x1 == mi) return subset_sum_solution_1(vals, target);\n  if (x2 == mi) return\
-    \ subset_sum_solution_2(vals, target);\n  if (x3 == mi) return subset_sum_solution_3(vals,\
-    \ target);\n  return subset_sum_solution_4(vals, target);\n}\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/my_bitset.hpp:\
+    \ line -1: no such header\n"
   code: "#include \"ds/my_bitset.hpp\"\n#include \"enumerate/bits.hpp\"\n\n// O(N\
     \ MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>& vals,\
     \ int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx = MAX(vals);\n\
@@ -320,8 +40,8 @@ data:
     \ I.eb(i);\n\n  ll sm = 0;\n  for (auto&& i : I) sm += vals[i];\n  assert(sm ==\
     \ target);\n\n  return I;\n}\n\n// O(N target / w)\ntemplate <typename T>\nvc<int>\
     \ subset_sum_solution_2(vc<T>& vals, int target) {\n  int n = len(vals);\n  auto\
-    \ I = argsort(vals);\n  My_Bitset dp(1, 1);\n  vc<int> last(target + 1, -1);\n\
-    \  FOR(k, n) {\n    int v = vals[I[k]];\n    if (v > target) continue;\n    My_Bitset\
+    \ I = argsort(vals);\n  Bit_Array dp(1, 1);\n  vc<int> last(target + 1, -1);\n\
+    \  FOR(k, n) {\n    int v = vals[I[k]];\n    if (v > target) continue;\n    Bit_Array\
     \ newdp = dp;\n    int new_size = len(dp) + v;\n    newdp.resize(new_size);\n\
     \    newdp.or_to_range(v, new_size, dp);\n    if (len(newdp) > target + 1) newdp.resize(target\
     \ + 1);\n    // update \u3057\u305F\u3068\u3053\u308D\u3092\u30E1\u30E2\n    FOR(i,\
@@ -368,18 +88,13 @@ data:
     \ (x1 == mi) return subset_sum_solution_1(vals, target);\n  if (x2 == mi) return\
     \ subset_sum_solution_2(vals, target);\n  if (x3 == mi) return subset_sum_solution_3(vals,\
     \ target);\n  return subset_sum_solution_4(vals, target);\n}\n"
-  dependsOn:
-  - ds/my_bitset.hpp
-  - other/bit.hpp
-  - enumerate/bits.hpp
+  dependsOn: []
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/subset_sum.test.cpp
-  - test/3_yukicoder/4_2.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: knapsack/subset_sum.hpp
 layout: document
 redirect_from:

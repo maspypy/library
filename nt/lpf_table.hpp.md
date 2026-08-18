@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy:
@@ -11,9 +11,6 @@ data:
   - icon: ':warning:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':warning:'
-    path: nt/find_coprime_pair.hpp
-    title: nt/find_coprime_pair.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
@@ -58,7 +55,6 @@ data:
   path: nt/lpf_table.hpp
   requiredBy:
   - nt/all_lcm.hpp
-  - nt/find_coprime_pair.hpp
   - mod/modfast.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
