@@ -6,3 +6,6 @@ AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: All
 SortIncludes: false
 ColumnLimit: 80
+
+BinPackParameters: true
+AlignAfterOpenBracket: false
