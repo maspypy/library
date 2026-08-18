@@ -1,3 +1,6 @@
+#include "my_template.hpp"
+#include "other/io.hpp"
+
 #include "other/bit.hpp"
 
 /*
@@ -22,14 +25,12 @@ struct Bit_Array {
 
   int size() const { return N; }
 
-  void resize(int size) {
-    assert(size >= 0);
-    dat.resize((size + 63) >> 6);
-    int remainingBits = size & 63;
-    if (remainingBits != 0) {
-      dat.back() &= full_mask(remainingBits);
-    }
-    N = size;
+  void resize(int n) {
+    assert(n >= 0);
+    dat.resize((n + 63) >> 6);
+    int r = n & 63;
+    if (r) dat.back() &= full_mask(r);
+    N = n;
   }
 
   void fill0() { fill(all(dat), u64(0)); }
@@ -77,6 +78,10 @@ struct Bit_Array {
       if (!x) dat[index >> 6] &= ~(u64(1) << (index & 63));
       return *this;
     }
+    // finite field F_2
+    Proxy &operator+=(bool x) { return *this ^= x; }
+    Proxy &operator-=(bool x) { return *this ^= x; }
+    Proxy &operator*=(bool x) { return *this &= x; }
     Proxy &operator/=(bool x) {
       assert(x);
       return *this;
@@ -85,10 +90,6 @@ struct Bit_Array {
       assert(bool(*this));
       return true;
     }
-    // finite field F_2
-    Proxy &operator+=(bool x) { return *this ^= x; }
-    Proxy &operator-=(bool x) { return *this ^= x; }
-    Proxy &operator*=(bool x) { return *this &= x; }
     void flip() { *this ^= true; }
 
    private:
@@ -135,31 +136,33 @@ struct Bit_Array {
     return p;
   }
 
-  void set_minus_inplace(T &other) {
+  void set_minus_inplace(const T &other) {
     assert(N == other.N);
     FOR(i, len(dat)) dat[i] = dat[i] & (~other.dat[i]);
   }
 
-  T set_minus(T other) {
+  T set_minus(T other) const {
     assert(N == other.N);
-    FOR(i, len(dat)) other.dat[i] = dat[i] & (~other.dat[i]);
+    FOR(i, len(dat)) other.dat[i] = dat[i] & ~other.dat[i];
     return other;
   }
 
-  int count() {
+  int count() const {
     int ans = 0;
     for (u64 val : dat) ans += popcnt(val);
     return ans;
   }
 
-  int dot(T &p) {
+  // size of set intersection, not modulo 2
+  int dot(const T &p) const {
     assert(N == p.N);
     int ans = 0;
     FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);
     return ans;
   }
 
-  int next(int i) {
+  // minimum j >= i with (*this)[j] = 1, or N if none
+  int next(int i) const {
     chmax(i, 0);
     if (i >= N) return N;
     int k = i >> 6;
@@ -176,7 +179,8 @@ struct Bit_Array {
     return N;
   }
 
-  int prev(int i) {
+  // maximum j <= i with (*this)[j] = 1, or -1 if none
+  int prev(int i) const {
     chmin(i, N - 1);
     if (i <= -1) return -1;
     int k = i >> 6;
@@ -193,8 +197,8 @@ struct Bit_Array {
     return -1;
   }
 
-  Bit_Array range(int L, int R) {
-    assert(L <= R);
+  Bit_Array slice(int L, int R) const {
+    assert(0 <= L && L <= R && R <= N);
     Bit_Array p(R - L);
     int rm = (R - L) & 63;
     FOR(rm) {
@@ -208,15 +212,13 @@ struct Bit_Array {
     if (hi == 0) {
       FOR(i, n) { p.dat[i] = dat[s + i]; }
     } else {
-      FOR(i, n) { p.dat[i] ^= (dat[s + i] >> hi) ^ (dat[s + i + 1] << lo); }
+      FOR(i, n) { p.dat[i] = (dat[s + i] >> hi) | (dat[s + i + 1] << lo); }
     }
     return p;
   }
 
-  Bit_Array slice(int L, int R) { return range(L, R); }
-
-  int count_range(int L, int R) {
-    assert(L <= R);
+  int count_range(int L, int R) const {
+    assert(0 <= L && L <= R && R <= N);
     int cnt = 0;
     while ((L < R) && (L & 63)) cnt += (*this)[L++];
     while ((L < R) && (R & 63)) cnt += (*this)[--R];
@@ -226,7 +228,8 @@ struct Bit_Array {
   }
 
   // [L,R) に p を代入
-  void assign_to_range(int L, int R, Bit_Array &p) {
+  void assign_to_range(int L, int R, const Bit_Array &p) {
+    assert(0 <= L && L <= R && R <= N);
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
@@ -249,7 +252,8 @@ struct Bit_Array {
   }
 
   // [L,R) に p を xor
-  void xor_to_range(int L, int R, Bit_Array &p) {
+  void xor_to_range(int L, int R, const Bit_Array &p) {
+    assert(0 <= L && L <= R && R <= N);
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
@@ -273,15 +277,9 @@ struct Bit_Array {
     }
   }
 
-  // 行列基本変形で使うやつ
-  // p は [i:N) にしかないとして p を xor する
-  void xor_suffix(int i, Bit_Array &p) {
-    assert(N == p.N && 0 <= i && i < N);
-    FOR(k, i / 64, len(dat)) { dat[k] ^= p.dat[k]; }
-  }
-
   // [L,R) に p を and
-  void and_to_range(int L, int R, Bit_Array &p) {
+  void and_to_range(int L, int R, const Bit_Array &p) {
+    assert(0 <= L && L <= R && R <= N);
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
@@ -306,7 +304,8 @@ struct Bit_Array {
   }
 
   // [L,R) に p を or
-  void or_to_range(int L, int R, Bit_Array &p) {
+  void or_to_range(int L, int R, const Bit_Array &p) {
+    assert(0 <= L && L <= R && R <= N);
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
@@ -330,70 +329,34 @@ struct Bit_Array {
     }
   }
 
-  // [L,R) or= p[Lp:Rp)
-  void or_to_range(int L, int R, Bit_Array &p, int Lp, int Rp) {
-    assert(R - L == Rp - Lp);
-    while (L < R && (L & 63)) {
-      dat[L >> 6] |= (u64(p[Lp]) << (L & 63)), ++L, ++Lp;
-    }
-    while (L < R && (R & 63)) {
-      --R, --Rp, dat[R >> 6] |= (u64(p[Rp]) << (R & 63));
-    }
-    int l = L >> 6, r = R >> 6;
-    int a = Lp, b = Rp;
-    int s = a >> 6;
-    int n = r - l;
-
-    if (!(a & 63)) {
-      FOR(i, n) dat[l + i] |= p.dat[s + i];
-    } else {
-      int hi = a & 63, lo = 64 - hi;
-      int pw = (b + 63) >> 6;
-      FOR(i, n) {
-        u64 w0 = (s + i < pw ? (p.dat[s + i] >> hi) : 0);
-        u64 w1 = (s + i + 1 < pw ? (p.dat[s + i + 1] << lo) : 0);
-        dat[l + i] |= (w0 | w1);
-      }
-    }
-  }
-
-  // 行列基本変形で使うやつ
-  // p は [i:N) にしかないとして p を or する
-  void or_suffix(int i, Bit_Array &p) {
+  // p は [i:N) にしかないとして p を xor する
+  // 行列基本変形などで利用可能
+  void xor_suffix(int i, const Bit_Array &p) {
     assert(N == p.N && 0 <= i && i < N);
-    FOR(k, i / 64, len(dat)) { dat[k] |= p.dat[k]; }
+    FOR(k, i / 64, len(dat)) { dat[k] ^= p.dat[k]; }
   }
 
   // [L,R) を 1 に変更
   void set_range(int L, int R) {
-    while (L < R && (L & 63)) {
-      set(L++);
-    }
-    while (L < R && (R & 63)) {
-      set(--R);
-    }
+    assert(0 <= L && L <= R && R <= N);
+    while (L < R && (L & 63)) set(L++);
+    while (L < R && (R & 63)) set(--R);
     FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);
   }
 
-  // [L,R) を 1 に変更
+  // [L,R) を 0 に変更
   void reset_range(int L, int R) {
-    while (L < R && (L & 63)) {
-      reset(L++);
-    }
-    while (L < R && (R & 63)) {
-      reset(--R);
-    }
+    assert(0 <= L && L <= R && R <= N);
+    while (L < R && (L & 63)) reset(L++);
+    while (L < R && (R & 63)) reset(--R);
     FOR(i, L >> 6, R >> 6) dat[i] = u64(0);
   }
 
   // [L,R) を flip
   void flip_range(int L, int R) {
-    while (L < R && (L & 63)) {
-      flip(L++);
-    }
-    while (L < R && (R & 63)) {
-      flip(--R);
-    }
+    assert(0 <= L && L <= R && R <= N);
+    while (L < R && (L & 63)) flip(L++);
+    while (L < R && (R & 63)) flip(--R);
     FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);
   }
 
@@ -404,33 +367,30 @@ struct Bit_Array {
   void set() { set_range(0, N); }
   void reset() { reset_range(0, N); }
   void flip() { flip_range(0, N); }
-  bool any() {
+  bool any() const {
     FOR(i, len(dat)) {
       if (dat[i]) return true;
     }
     return false;
   }
 
-  bool ALL() {
-    dat.resize((N + 63) >> 6);
+  bool ALL() const {
     int r = N & 63;
-    if (r != 0) {
-      u64 mask = (u64(1) << r) - 1;
-      if (dat.back() != mask) return 0;
-    }
+    if (r != 0 && dat.back() != full_mask(r)) return 0;
     for (int i = 0; i < N / 64; ++i)
       if (dat[i] != u64(-1)) return false;
     return true;
   }
+
   // bs[i]==true であるような i 全体
-  vc<int> collect_idx() {
+  vc<int> collect_idx() const {
     vc<int> I;
     FOR(i, N) if ((*this)[i]) I.eb(i);
     return I;
   }
 
-  bool is_subset(T &other) {
-    assert(len(other) == N);
+  bool is_subset(const T &other) const {
+    assert(other.N == N);
     FOR(i, len(dat)) {
       u64 a = dat[i], b = other.dat[i];
       if ((a & b) != a) return false;
@@ -438,12 +398,13 @@ struct Bit_Array {
     return true;
   }
 
-  int _Find_first() { return next(0); }
-  int _Find_next(int p) { return next(p + 1); }
+  int _Find_first() const { return next(0); }
+  int _Find_next(int p) const { return next(p + 1); }
 
   template <typename F>
-  void enumerate(int L, int R, F f) {
-    if (L >= size()) return;
+  void enumerate(int L, int R, F f) const {
+    assert(0 <= L && L <= R && R <= N);
+    if (L == R) return;
     int p = ((*this)[L] ? L : _Find_next(L));
     while (p < R) {
       f(p);
@@ -451,11 +412,11 @@ struct Bit_Array {
     }
   }
 
-  static string TO_STR[256];
+  inline static string TO_STR[256];
   string to_string() const {
     if (TO_STR[0].empty()) precompute();
     string S;
-    for (auto &x : dat) {
+    for (u64 x : dat) {
       FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];
     }
     S.resize(N);
@@ -470,8 +431,6 @@ struct Bit_Array {
     }
   }
 
-  // return: xor_sum
-  // https://slpc26.kattis.com/contests/slpc26open/problems/nineteeneightyfour
   void prefix_xor_sum() {
     int carry = 0;
     for (u64 &a : dat) {
@@ -485,7 +444,5 @@ struct Bit_Array {
       a ^= a << (1 << 5);
     }
     resize(N);
-    return;
   }
 };
-string Bit_Array::TO_STR[256];
