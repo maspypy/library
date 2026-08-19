@@ -28,7 +28,7 @@ void solve() {
   ll ANS = 0;
   FOR(i, len(X)) {
     if (Z[i] != M) continue;
-    BS x = X.range(i, i + M);
+    BS x = X.slice(i, i + M);
     int cnt = (x ^ Y).count();
     ANS += (1 <= cnt && cnt <= K);
   }
