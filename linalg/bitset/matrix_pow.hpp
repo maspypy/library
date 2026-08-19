@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 #include "linalg/bitset/matrix_mul_mod_2.hpp"
 
 vc<Bit_Array> matrix_pow(vc<Bit_Array> A, ll n) {

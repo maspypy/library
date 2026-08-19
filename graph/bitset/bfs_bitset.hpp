@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 // 密グラフの重みなし最短路問題
 // 01 行列を vc<bitset> の形で渡す

@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 // Boolean Matrix Multiplication C[i][k] |= A[i][j] && B[j][k]
 // https://contest.ucup.ac/contest/1784/problem/9246

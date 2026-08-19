@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 // Method of Four Russians O(NMK/wlogN)
 // (N1/K+2^K)/K N2 N3 / w

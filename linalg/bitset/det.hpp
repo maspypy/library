@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 template <typename BS>
 bool det(vc<BS> A) {

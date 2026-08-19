@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 // https://qoj.ac/contest/1784/problem/9244
 // sum bitset[i]*wt[i]

@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 // 行ベクトルを bitset にする
 // (2000, 8000) で 300ms 程度（ABC276H）

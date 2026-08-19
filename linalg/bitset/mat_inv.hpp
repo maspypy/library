@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 // det = 0 の場合には empty をかえす
 template <typename BS>

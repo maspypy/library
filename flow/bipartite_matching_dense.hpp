@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 // vc<bitset> で biadj matrix を渡す
 // N_1^2N_2/w.

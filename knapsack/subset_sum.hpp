@@ -1,4 +1,4 @@
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 #include "enumerate/bits.hpp"
 
 // O(N MAX(vals))
