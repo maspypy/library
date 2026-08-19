@@ -312,7 +312,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/bit_array.hpp
       title: ds/bit_array.hpp
     - icon: ':heavy_check_mark:'
@@ -751,7 +751,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1895,7 +1895,7 @@ data:
     - icon: ':warning:'
       path: other/binary_search_real_abs_rel.hpp
       title: other/binary_search_real_abs_rel.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/bit.hpp
       title: other/bit.hpp
     - icon: ':heavy_check_mark:'
@@ -1928,7 +1928,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -4374,7 +4374,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1418.test.cpp
       title: test/3_yukicoder/1418.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/142.test.cpp
       title: test/3_yukicoder/142.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4812,7 +4812,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2459.test.cpp
       title: test/3_yukicoder/2459.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2490.test.cpp
       title: test/3_yukicoder/2490.test.cpp
     - icon: ':heavy_check_mark:'
