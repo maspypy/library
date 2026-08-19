@@ -23,7 +23,7 @@ void solve() {
     for (auto& i: I) { other[i] = 0; }
     for (auto& i: I) {
       if (i >= 3 * N) break;
-      BS x = other.range(i + 1, i + N + 1);
+      BS x = other.slice(i + 1, i + N + 1);
       ng.or_to_range(2 * i + 1, 2 * i + N + 1, x);
     }
     for (auto& i: I) { other[i] = 1; }
