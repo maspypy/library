@@ -481,6 +481,9 @@ data:
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/mybitset.test.cpp
+    title: test/1_mytest/mybitset.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
   - icon: ':heavy_check_mark:'
@@ -648,6 +651,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/sum_over_bit_positions.test.cpp
+    title: test/1_mytest/sum_over_bit_positions.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/summax_add.test.cpp
     title: test/1_mytest/summax_add.test.cpp
@@ -1058,6 +1064,7 @@ data:
   - test/1_mytest/power_projection.test.cpp
   - test/1_mytest/slice_rational_fps.test.cpp
   - test/1_mytest/first_mod_range_of_linear.test.cpp
+  - test/1_mytest/sum_over_bit_positions.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
   - test/1_mytest/online_square.test.cpp
   - test/1_mytest/online_pow.test.cpp
@@ -1190,6 +1197,7 @@ data:
   - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/all_inverse.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
+  - test/1_mytest/mybitset.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/coprime_factorization.test.cpp
   - test/1_mytest/minidx_add.test.cpp

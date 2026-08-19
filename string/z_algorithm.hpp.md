@@ -30,12 +30,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1848.test.cpp
     title: test/3_yukicoder/1848.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2626_2.test.cpp
+    title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/z_algorithm.hpp\"\n\ntemplate <typename STRING> \
@@ -60,13 +63,14 @@ data:
   - string/non_dominated_suffix.hpp
   - string/is_substring.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/is_substring.test.cpp
   - test/2_library_checker/string/run_enumerate.test.cpp
   - test/2_library_checker/string/run_enumerate_vec.test.cpp
   - test/2_library_checker/string/zalgorithm.test.cpp
   - test/3_yukicoder/1848.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/2858.test.cpp
 documentation_of: string/z_algorithm.hpp
 layout: document

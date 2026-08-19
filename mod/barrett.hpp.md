@@ -253,6 +253,9 @@ data:
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/3229.test.cpp
+    title: test/3_yukicoder/3229.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
   _isVerificationFailed: false
@@ -372,6 +375,7 @@ data:
   - test/2_library_checker/number_theory/primitive_root.test.cpp
   - test/2_library_checker/number_theory/kth_root_mod.test.cpp
   - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
+  - test/3_yukicoder/3229.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1667.test.cpp

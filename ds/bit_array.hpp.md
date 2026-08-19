@@ -11,13 +11,13 @@ data:
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching_dense.hpp
     title: flow/bipartite_matching_dense.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/bitset/bfs_bitset.hpp
     title: graph/bitset/bfs_bitset.hpp
   - icon: ':warning:'
@@ -32,19 +32,19 @@ data:
   - icon: ':warning:'
     path: linalg/bitset/det.hpp
     title: linalg/bitset/det.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_and_or.hpp
     title: linalg/bitset/matrix_mul_and_or.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
   - icon: ':warning:'
     path: linalg/bitset/matrix_pow.hpp
     title: linalg/bitset/matrix_pow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   - icon: ':warning:'
@@ -64,20 +64,47 @@ data:
     title: poly/mod_2/power_projection.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/mybitset.test.cpp
+    title: test/1_mytest/mybitset.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/sum_over_bit_positions.test.cpp
+    title: test/1_mytest/sum_over_bit_positions.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1340.test.cpp
     title: test/3_yukicoder/1340.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1400.test.cpp
+    title: test/3_yukicoder/1400.test.cpp
   - icon: ':x:'
+    path: test/3_yukicoder/142.test.cpp
+    title: test/3_yukicoder/142.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1421.test.cpp
     title: test/3_yukicoder/1421.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2490.test.cpp
+    title: test/3_yukicoder/2490.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2626_2.test.cpp
+    title: test/3_yukicoder/2626_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/3229.test.cpp
+    title: test/3_yukicoder/3229.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/421.test.cpp
+    title: test/3_yukicoder/421.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/421_2.test.cpp
+    title: test/3_yukicoder/421_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
@@ -669,12 +696,21 @@ data:
   timestamp: '2026-08-19 08:58:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/1_mytest/sum_over_bit_positions.test.cpp
   - test/1_mytest/subset_sum.test.cpp
+  - test/1_mytest/mybitset.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
+  - test/3_yukicoder/3229.test.cpp
+  - test/3_yukicoder/1400.test.cpp
+  - test/3_yukicoder/142.test.cpp
   - test/3_yukicoder/1421.test.cpp
+  - test/3_yukicoder/421.test.cpp
+  - test/3_yukicoder/421_2.test.cpp
   - test/3_yukicoder/1340.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/4_2.test.cpp
+  - test/3_yukicoder/2490.test.cpp
 documentation_of: ds/bit_array.hpp
 layout: document
 redirect_from:

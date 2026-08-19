@@ -125,7 +125,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -1353,6 +1353,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2626.test.cpp
     title: test/3_yukicoder/2626.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2626_2.test.cpp
+    title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2649.test.cpp
     title: test/3_yukicoder/2649.test.cpp
@@ -1422,9 +1425,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\n\
@@ -1689,7 +1692,7 @@ data:
   - mod/dynamic_modint_64.hpp
   - new_poly/base.hpp
   timestamp: '2026-08-19 06:34:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/1_mytest/sparse_pow_2d.test.cpp
@@ -1982,6 +1985,7 @@ data:
   - test/3_yukicoder/2801.test.cpp
   - test/3_yukicoder/2459.test.cpp
   - test/3_yukicoder/2342_2.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2230.test.cpp

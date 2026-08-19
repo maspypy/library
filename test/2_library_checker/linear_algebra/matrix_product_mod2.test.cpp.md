@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product_mod_2
@@ -656,7 +656,7 @@ data:
     \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];\n\
     \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n\
     \      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}\n#line 6 \"test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp\"\
-    \n\nusing BS = My_Bitset;\n\nvoid solve() {\n  INT(N, M, K);\n  vc<BS> A(N, BS(M));\n\
+    \n\nusing BS = Bit_Array;\n\nvoid solve() {\n  INT(N, M, K);\n  vc<BS> A(N, BS(M));\n\
     \  vc<BS> B(M, BS(K));\n\n  FOR(i, N) {\n    FOR(j, M) {\n      CHAR(ch);\n  \
     \    A[i][j] = (ch - '0');\n    }\n  }\n  FOR(i, M) {\n    FOR(j, K) {\n     \
     \ CHAR(ch);\n      B[i][j] = (ch - '0');\n    }\n  }\n  vc<BS> C = matrix_mul_mod_2(A,\
@@ -664,7 +664,7 @@ data:
     \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"linalg/bitset/matrix_mul_mod_2.hpp\"\
-    \n\nusing BS = My_Bitset;\n\nvoid solve() {\n  INT(N, M, K);\n  vc<BS> A(N, BS(M));\n\
+    \n\nusing BS = Bit_Array;\n\nvoid solve() {\n  INT(N, M, K);\n  vc<BS> A(N, BS(M));\n\
     \  vc<BS> B(M, BS(K));\n\n  FOR(i, N) {\n    FOR(j, M) {\n      CHAR(ch);\n  \
     \    A[i][j] = (ch - '0');\n    }\n  }\n  FOR(i, M) {\n    FOR(j, K) {\n     \
     \ CHAR(ch);\n      B[i][j] = (ch - '0');\n    }\n  }\n  vc<BS> C = matrix_mul_mod_2(A,\
@@ -679,8 +679,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-19 12:41:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-19 12:45:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
 layout: document

@@ -14,10 +14,13 @@ data:
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/sum_over_bit_positions.test.cpp
+    title: test/1_mytest/sum_over_bit_positions.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://qoj.ac/contest/1784/problem/9244
@@ -474,8 +477,9 @@ data:
   path: ds/sum_over_bit_positions.hpp
   requiredBy: []
   timestamp: '2026-08-19 12:41:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/sum_over_bit_positions.test.cpp
 documentation_of: ds/sum_over_bit_positions.hpp
 layout: document
 redirect_from:

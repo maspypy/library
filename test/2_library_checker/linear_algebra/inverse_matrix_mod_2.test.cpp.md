@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix_mod_2
@@ -656,14 +656,14 @@ data:
     \ A[i]);\n          B[k] ^= B[i];\n        } else {\n          A[k] ^= A[i];\n\
     \          B[k] ^= B[i];\n        }\n      }\n    }\n  }\n  return B;\n}\n#line\
     \ 6 \"test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp\"\n\n\
-    using BS = My_Bitset;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
+    using BS = Bit_Array;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
     \ N) {\n    STR(S);\n    mat[i].resize(N);\n    FOR(j, N) mat[i][j] = (S[j] ==\
     \ '1');\n  }\n  mat = mat_inv(mat);\n  if (mat.empty()) return print(-1);\n  FOR(i,\
     \ N) print(mat[i].to_string());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix_mod_2\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"linalg/bitset/mat_inv.hpp\"\
-    \n\nusing BS = My_Bitset;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
+    \n\nusing BS = Bit_Array;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
     \ N) {\n    STR(S);\n    mat[i].resize(N);\n    FOR(j, N) mat[i][j] = (S[j] ==\
     \ '1');\n  }\n  mat = mat_inv(mat);\n  if (mat.empty()) return print(-1);\n  FOR(i,\
     \ N) print(mat[i].to_string());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
@@ -677,8 +677,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-19 12:41:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-19 12:45:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
 layout: document
