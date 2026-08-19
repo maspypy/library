@@ -17,7 +17,7 @@ void solve() {
   FOR(Q) {
     LL(a, b, c, d);
     --a, --c;
-    BS x = A.range(a, b);
+    BS x = A.slice(a, b);
     A.xor_to_range(c, d, x);
   }
   string ANS = A.to_string();
