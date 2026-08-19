@@ -3,10 +3,10 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 #include "mod/mod_pow.hpp"
 
-using BS = My_Bitset;
+using BS = Bit_Array;
 int matrix_rank(vc<BS> a, int N, int M) {
   int rk = 0;
   FOR(j, M) {

@@ -2,10 +2,10 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 #include "graph/bitset/bfs_bitset.hpp"
 
-using BS = My_Bitset;
+using BS = Bit_Array;
 
 void solve() {
   LL(N, T);

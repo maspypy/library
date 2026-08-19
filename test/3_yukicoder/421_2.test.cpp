@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 #include "flow/bipartite_matching_dense.hpp"
 
 using BS = bitset<1250>;

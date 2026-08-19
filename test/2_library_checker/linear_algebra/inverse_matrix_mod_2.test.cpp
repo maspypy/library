@@ -4,7 +4,7 @@
 
 #include "linalg/bitset/mat_inv.hpp"
 
-using BS = My_Bitset;
+using BS = Bit_Array;
 
 void solve() {
   LL(N);

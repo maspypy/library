@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "linalg/bitset/solve_linear.hpp"
 
-using BS = My_Bitset;
+using BS = Bit_Array;
 const int K = 30;
 
 void solve() {

@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 void solve() {
   LL(N, S, X, Y, Z);
   LL(Q);
-  using BS = My_Bitset;
+  using BS = Bit_Array;
   BS A(N);
   FOR(i, N) {
     A[i] = S & 1;

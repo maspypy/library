@@ -2,13 +2,13 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 void solve() {
   INT(N);
   VEC(int, A, 2 * N);
   FOR(i, 2 * N) A.eb(A[i]);
-  using BS = My_Bitset;
+  using BS = Bit_Array;
   BS ng(7 * N);
   BS other(4 * N);
   vvc<int> pos(2 * N + 1);

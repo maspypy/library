@@ -4,7 +4,7 @@
 
 #include "linalg/bitset/matrix_mul_and_or.hpp"
 
-using BS = My_Bitset;
+using BS = Bit_Array;
 
 void solve() {
   LL(N, M, T);

@@ -3,10 +3,10 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 #include "string/z_algorithm.hpp"
 
-using BS = My_Bitset;
+using BS = Bit_Array;
 
 void solve() {
   LL(N, M, K);

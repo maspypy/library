@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 #include "flow/bipartite_matching_dense.hpp"
 
 void solve() {
@@ -22,7 +22,7 @@ void solve() {
   int dx[] = {1, 0, -1, 0, 1, 1, -1, -1};
   int dy[] = {0, 1, 0, -1, 1, -1, 1, -1};
 
-  vc<My_Bitset> adj(a, My_Bitset(b));
+  vc<Bit_Array> adj(a, Bit_Array(b));
   FOR(x, H) FOR(y, W) {
     if ((x + y) & 1) continue;
     FOR(d, 4) {
@@ -35,7 +35,7 @@ void solve() {
     }
   }
 
-  Bipartite_Matching_Dense<My_Bitset> BM(adj, a, b);
+  Bipartite_Matching_Dense<Bit_Array> BM(adj, a, b);
   auto match = BM.matching();
   int n = len(match);
   int x = 0, y = 0;

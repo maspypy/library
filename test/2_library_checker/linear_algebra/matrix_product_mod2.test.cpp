@@ -4,7 +4,7 @@
 
 #include "linalg/bitset/matrix_mul_mod_2.hpp"
 
-using BS = My_Bitset;
+using BS = Bit_Array;
 
 void solve() {
   INT(N, M, K);

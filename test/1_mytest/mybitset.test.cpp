@@ -2,13 +2,13 @@
 #include "my_template.hpp"
 
 #include "random/base.hpp"
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 
 void test() {
   FOR(N, 2000) {
     int Q = 10 * N;
     vc<int> A(N);
-    My_Bitset B(N);
+    Bit_Array B(N);
     FOR(Q) {
       int t = RNG(0, 4);
       int i = RNG(0, N);

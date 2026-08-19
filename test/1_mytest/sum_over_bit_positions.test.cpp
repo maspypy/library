@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 
-#include "ds/my_bitset.hpp"
+#include "ds/bit_array.hpp"
 #include "random/base.hpp"
 #include "ds/sum_over_bit_positions.hpp"
 
 void test(int N, int Q, bool check = true) {
   vector<int> A(N);
-  My_Bitset bs(N);
+  Bit_Array bs(N);
   FOR(i, N) A[i] = RNG(0, N), bs[i] = RNG(0, 2);
   Sum_Over_Bit_Positions<int, 100'000> SB(N, [&](int i) -> int { return A[i]; });
 
