@@ -11,7 +11,9 @@ struct Point {
   Point(pair<A, B> p) : x(p.fi), y(p.se) {}
 
   template <typename U>
-  Point(Point<U> p) : x(p.x), y(p.y) {}
+  Point(Point<U> p) : x(p.x), y(p.y) {
+    static_assert(!is_integral_v<T> || is_integral_v<U>);
+  }
 
   Point operator+=(const Point p) {
     x += p.x, y += p.y;

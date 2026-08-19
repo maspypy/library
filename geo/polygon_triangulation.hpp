@@ -21,9 +21,9 @@ vc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<T>> point) {
   FOR(i, 2, N - 1) {
     int v = I[i], t = side(v);
     if (s == 0 && t == 0) {
-      while (len(stack) >= 2 &&
-             ccw(point[stack[len(stack) - 2]], point[stack[len(stack) - 1]],
-                 point[v]) == 1) {
+      while (
+          len(stack) >= 2 && ccw(point[stack[len(stack) - 2]],
+                                 point[stack[len(stack) - 1]], point[v]) == 1) {
         res.eb(stack[len(stack) - 2], stack[len(stack) - 1], v), POP(stack);
       }
       stack.eb(v);

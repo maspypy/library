@@ -6,8 +6,19 @@
 #include "geo/count_points_in_triangles.hpp"
 
 vc<Point<ll>> random_polygon(int N, int XY_ABS_MAX = 10) {
-  assert(N >= 3);
   using P = Point<ll>;
+  if (N <= 2) {
+    while (1) {
+      vc<P> A(N);
+      FOR(i, N) {
+        A[i].x = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);
+        A[i].y = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);
+      }
+      if (N == 1) return A;
+      if (N == 2 && A[0] != A[1]) return A;
+    }
+  }
+  assert(N >= 3);
   auto trial = [&]() -> vc<P> {
     set<Point<ll>> S;
     while (len(S) < N) {
