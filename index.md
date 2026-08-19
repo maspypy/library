@@ -312,7 +312,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: ds/bit_array.hpp
       title: ds/bit_array.hpp
     - icon: ':heavy_check_mark:'
@@ -751,7 +751,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1461,7 +1461,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: knapsack/knapsack_branch_bound.hpp
       title: knapsack/knapsack_branch_bound.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: knapsack/subset_sum.hpp
       title: knapsack/subset_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1534,19 +1534,19 @@ data:
     - icon: ':warning:'
       path: linalg/bitset/det.hpp
       title: linalg/bitset/det.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: linalg/bitset/mat_inv.hpp
       title: linalg/bitset/mat_inv.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: linalg/bitset/matrix_mul_and_or.hpp
       title: linalg/bitset/matrix_mul_and_or.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: linalg/bitset/matrix_mul_mod_2.hpp
       title: linalg/bitset/matrix_mul_mod_2.hpp
     - icon: ':warning:'
       path: linalg/bitset/matrix_pow.hpp
       title: linalg/bitset/matrix_pow.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: linalg/bitset/solve_linear.hpp
       title: linalg/bitset/solve_linear.hpp
   - name: linalg/blackbox
@@ -1895,7 +1895,7 @@ data:
     - icon: ':warning:'
       path: other/binary_search_real_abs_rel.hpp
       title: other/binary_search_real_abs_rel.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/bit.hpp
       title: other/bit.hpp
     - icon: ':heavy_check_mark:'
@@ -1928,7 +1928,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -3292,7 +3292,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/stirling_1_suffix.test.cpp
       title: test/1_mytest/stirling_1_suffix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/subset_sum.test.cpp
       title: test/1_mytest/subset_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4977,7 +4977,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/4_1.test.cpp
       title: test/3_yukicoder/4_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/4_2.test.cpp
       title: test/3_yukicoder/4_2.test.cpp
     - icon: ':heavy_check_mark:'

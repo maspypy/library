@@ -107,6 +107,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
@@ -640,6 +643,9 @@ data:
     path: test/1_mytest/stern_brocot.test.cpp
     title: test/1_mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/subset_sum.test.cpp
+    title: test/1_mytest/subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
   - icon: ':heavy_check_mark:'
@@ -970,6 +976,7 @@ data:
   requiredBy:
   - nt/array_on_divisors.hpp
   - nt/all_lcm.hpp
+  - nt/find_coprime_pair.hpp
   - nt/two_square.hpp
   - nt/euler_phi.hpp
   - nt/crt.hpp
@@ -1130,6 +1137,7 @@ data:
   - test/1_mytest/kinetic.test.cpp
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/typical_dc.test.cpp
+  - test/1_mytest/subset_sum.test.cpp
   - test/1_mytest/monge_shortest_path.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
   - test/1_mytest/count_K4.test.cpp

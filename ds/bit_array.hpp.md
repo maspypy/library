@@ -1,16 +1,55 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/sum_over_bit_positions.hpp
+    title: ds/sum_over_bit_positions.hpp
+  - icon: ':warning:'
+    path: flow/bipartite_matching_dense.hpp
+    title: flow/bipartite_matching_dense.hpp
+  - icon: ':warning:'
+    path: graph/bitset/bfs_bitset.hpp
+    title: graph/bitset/bfs_bitset.hpp
+  - icon: ':warning:'
+    path: graph/bitset/transitive_closure.hpp
+    title: graph/bitset/transitive_closure.hpp
+  - icon: ':warning:'
+    path: graph/bitset/transitive_reduction.hpp
+    title: graph/bitset/transitive_reduction.hpp
+  - icon: ':heavy_check_mark:'
+    path: knapsack/subset_sum.hpp
+    title: knapsack/subset_sum.hpp
+  - icon: ':warning:'
+    path: linalg/bitset/det.hpp
+    title: linalg/bitset/det.hpp
+  - icon: ':x:'
+    path: linalg/bitset/mat_inv.hpp
+    title: linalg/bitset/mat_inv.hpp
+  - icon: ':x:'
+    path: linalg/bitset/matrix_mul_and_or.hpp
+    title: linalg/bitset/matrix_mul_and_or.hpp
+  - icon: ':x:'
+    path: linalg/bitset/matrix_mul_mod_2.hpp
+    title: linalg/bitset/matrix_mul_mod_2.hpp
+  - icon: ':warning:'
+    path: linalg/bitset/matrix_pow.hpp
+    title: linalg/bitset/matrix_pow.hpp
+  - icon: ':x:'
+    path: linalg/bitset/solve_linear.hpp
+    title: linalg/bitset/solve_linear.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   - icon: ':warning:'
     path: poly/convolution_mod_2.hpp
     title: poly/convolution_mod_2.hpp
@@ -23,10 +62,28 @@ data:
   - icon: ':warning:'
     path: poly/mod_2/power_projection.hpp
     title: poly/mod_2/power_projection.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/subset_sum.test.cpp
+    title: test/1_mytest/subset_sum.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
+    title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
+    title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1340.test.cpp
+    title: test/3_yukicoder/1340.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1421.test.cpp
+    title: test/3_yukicoder/1421.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/4_2.test.cpp
+    title: test/3_yukicoder/4_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
@@ -592,13 +649,32 @@ data:
   isVerificationFile: false
   path: ds/bit_array.hpp
   requiredBy:
+  - nt/find_coprime_pair.hpp
+  - linalg/bitset/det.hpp
+  - linalg/bitset/matrix_mul_mod_2.hpp
+  - linalg/bitset/matrix_pow.hpp
+  - linalg/bitset/solve_linear.hpp
+  - linalg/bitset/matrix_mul_and_or.hpp
+  - linalg/bitset/mat_inv.hpp
+  - graph/bitset/bfs_bitset.hpp
+  - graph/bitset/transitive_reduction.hpp
+  - graph/bitset/transitive_closure.hpp
+  - ds/sum_over_bit_positions.hpp
   - poly/convolution_mod_2.hpp
   - poly/mod_2/power_projection.hpp
   - poly/mod_2/convolution.hpp
   - poly/mod_2/fps_inv.hpp
+  - flow/bipartite_matching_dense.hpp
+  - knapsack/subset_sum.hpp
   timestamp: '2026-08-19 08:58:15+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/1_mytest/subset_sum.test.cpp
+  - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
+  - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
+  - test/3_yukicoder/1421.test.cpp
+  - test/3_yukicoder/1340.test.cpp
+  - test/3_yukicoder/4_2.test.cpp
 documentation_of: ds/bit_array.hpp
 layout: document
 redirect_from:

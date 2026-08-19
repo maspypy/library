@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
@@ -53,6 +53,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
@@ -378,6 +381,7 @@ data:
   requiredBy:
   - nt/array_on_divisors.hpp
   - nt/all_lcm.hpp
+  - nt/find_coprime_pair.hpp
   - nt/two_square.hpp
   - nt/euler_phi.hpp
   - nt/crt.hpp

@@ -2,9 +2,48 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
+  - icon: ':warning:'
+    path: ds/sum_over_bit_positions.hpp
+    title: ds/sum_over_bit_positions.hpp
+  - icon: ':warning:'
+    path: flow/bipartite_matching_dense.hpp
+    title: flow/bipartite_matching_dense.hpp
+  - icon: ':warning:'
+    path: graph/bitset/bfs_bitset.hpp
+    title: graph/bitset/bfs_bitset.hpp
+  - icon: ':warning:'
+    path: graph/bitset/transitive_closure.hpp
+    title: graph/bitset/transitive_closure.hpp
+  - icon: ':warning:'
+    path: graph/bitset/transitive_reduction.hpp
+    title: graph/bitset/transitive_reduction.hpp
+  - icon: ':heavy_check_mark:'
+    path: knapsack/subset_sum.hpp
+    title: knapsack/subset_sum.hpp
+  - icon: ':warning:'
+    path: linalg/bitset/det.hpp
+    title: linalg/bitset/det.hpp
+  - icon: ':x:'
+    path: linalg/bitset/mat_inv.hpp
+    title: linalg/bitset/mat_inv.hpp
+  - icon: ':x:'
+    path: linalg/bitset/matrix_mul_and_or.hpp
+    title: linalg/bitset/matrix_mul_and_or.hpp
+  - icon: ':x:'
+    path: linalg/bitset/matrix_mul_mod_2.hpp
+    title: linalg/bitset/matrix_mul_mod_2.hpp
+  - icon: ':warning:'
+    path: linalg/bitset/matrix_pow.hpp
+    title: linalg/bitset/matrix_pow.hpp
+  - icon: ':x:'
+    path: linalg/bitset/solve_linear.hpp
+    title: linalg/bitset/solve_linear.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   - icon: ':warning:'
     path: other/mhc_template_directory/main.cpp
     title: other/mhc_template_directory/main.cpp
@@ -652,6 +691,9 @@ data:
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/subset_sum.test.cpp
+    title: test/1_mytest/subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/substring_abundant.test.cpp
     title: test/1_mytest/substring_abundant.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1143,12 +1185,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
+    title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_det.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_product.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_product.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
+    title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
@@ -1659,6 +1707,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1340.test.cpp
+    title: test/3_yukicoder/1340.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1341.test.cpp
     title: test/3_yukicoder/1341.test.cpp
@@ -1683,6 +1734,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1418.test.cpp
     title: test/3_yukicoder/1418.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1421.test.cpp
+    title: test/3_yukicoder/1421.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1435.test.cpp
     title: test/3_yukicoder/1435.test.cpp
@@ -2266,6 +2320,9 @@ data:
     path: test/3_yukicoder/4_1.test.cpp
     title: test/3_yukicoder/4_1.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/4_2.test.cpp
+    title: test/3_yukicoder/4_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/502.test.cpp
     title: test/3_yukicoder/502.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2541,9 +2598,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2717,6 +2774,17 @@ data:
   isVerificationFile: false
   path: my_template.hpp
   requiredBy:
+  - nt/find_coprime_pair.hpp
+  - linalg/bitset/det.hpp
+  - linalg/bitset/matrix_mul_mod_2.hpp
+  - linalg/bitset/matrix_pow.hpp
+  - linalg/bitset/solve_linear.hpp
+  - linalg/bitset/matrix_mul_and_or.hpp
+  - linalg/bitset/mat_inv.hpp
+  - graph/bitset/bfs_bitset.hpp
+  - graph/bitset/transitive_reduction.hpp
+  - graph/bitset/transitive_closure.hpp
+  - ds/sum_over_bit_positions.hpp
   - ds/bit_array.hpp
   - poly/convolution_mod_2.hpp
   - poly/mod_2/power_projection.hpp
@@ -2726,8 +2794,10 @@ data:
   - other/mhc_template_directory/para.cpp
   - other/mhc_template_directory/para2.cpp
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
+  - flow/bipartite_matching_dense.hpp
+  - knapsack/subset_sum.hpp
   timestamp: '2026-08-11 20:16:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/incremental_ch.test.cpp
   - test/1_mytest/manhattan_nns.test.cpp
@@ -2864,6 +2934,7 @@ data:
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/qoj5443.test.cpp
   - test/1_mytest/typical_dc.test.cpp
+  - test/1_mytest/subset_sum.test.cpp
   - test/1_mytest/monge_shortest_path.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
   - test/1_mytest/count_K4.test.cpp
@@ -3121,11 +3192,13 @@ data:
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/det_mod.test.cpp
   - test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
+  - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
   - test/2_library_checker/linear_algebra/matrix_det.test.cpp
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product.test.cpp
+  - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   - test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
   - test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
@@ -3394,6 +3467,7 @@ data:
   - test/3_yukicoder/2305.test.cpp
   - test/3_yukicoder/1524.test.cpp
   - test/3_yukicoder/2907.test.cpp
+  - test/3_yukicoder/1421.test.cpp
   - test/3_yukicoder/1790.test.cpp
   - test/3_yukicoder/1775.test.cpp
   - test/3_yukicoder/1167.test.cpp
@@ -3460,6 +3534,7 @@ data:
   - test/3_yukicoder/1526.test.cpp
   - test/3_yukicoder/2892.test.cpp
   - test/3_yukicoder/913.test.cpp
+  - test/3_yukicoder/1340.test.cpp
   - test/3_yukicoder/2935.test.cpp
   - test/3_yukicoder/2459.test.cpp
   - test/3_yukicoder/686.test.cpp
@@ -3543,6 +3618,7 @@ data:
   - test/3_yukicoder/1080.test.cpp
   - test/3_yukicoder/1533.test.cpp
   - test/3_yukicoder/1154.test.cpp
+  - test/3_yukicoder/4_2.test.cpp
   - test/3_yukicoder/187.test.cpp
   - test/3_yukicoder/255.test.cpp
   - test/3_yukicoder/1240.test.cpp
