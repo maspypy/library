@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy:
@@ -404,11 +404,13 @@ data:
     \  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
     \ }\n  void set() { set_range(0, N); }\n  void reset() { reset_range(0, N); }\n\
     \  void flip() { flip_range(0, N); }\n  bool any() const {\n    FOR(i, len(dat))\
-    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  bool ALL()\
-    \ const {\n    int r = N & 63;\n    if (r != 0 && dat.back() != full_mask(r))\
-    \ return 0;\n    for (int i = 0; i < N / 64; ++i)\n      if (dat[i] != u64(-1))\
-    \ return false;\n    return true;\n  }\n\n  Bit_Array reversed() const {\n   \
-    \ int M = ceil(N, 64) * 64;\n    Bit_Array a = *this;\n    a.resize(M);\n    reverse(all(a.dat));\n\
+    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  bool has_intersection(const\
+    \ T &other) const {\n    assert(N == other.N);\n    FOR(i, len(dat)) if (dat[i]\
+    \ & other.dat[i]) return true;\n    return false;\n  }\n\n  bool ALL() const {\n\
+    \    int r = N & 63;\n    if (r != 0 && dat.back() != full_mask(r)) return 0;\n\
+    \    for (int i = 0; i < N / 64; ++i)\n      if (dat[i] != u64(-1)) return false;\n\
+    \    return true;\n  }\n\n  Bit_Array reversed() const {\n    int M = ceil(N,\
+    \ 64) * 64;\n    Bit_Array a = *this;\n    a.resize(M);\n    reverse(all(a.dat));\n\
     \    for (u64 &x : a.dat) x = bit_reverse(x);\n    return a.slice(M - N, M);\n\
     \  }\n\n  // bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n\
     \  vc<int> collect_idx() const {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i])\
@@ -556,11 +558,13 @@ data:
     \  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
     \ }\n  void set() { set_range(0, N); }\n  void reset() { reset_range(0, N); }\n\
     \  void flip() { flip_range(0, N); }\n  bool any() const {\n    FOR(i, len(dat))\
-    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  bool ALL()\
-    \ const {\n    int r = N & 63;\n    if (r != 0 && dat.back() != full_mask(r))\
-    \ return 0;\n    for (int i = 0; i < N / 64; ++i)\n      if (dat[i] != u64(-1))\
-    \ return false;\n    return true;\n  }\n\n  Bit_Array reversed() const {\n   \
-    \ int M = ceil(N, 64) * 64;\n    Bit_Array a = *this;\n    a.resize(M);\n    reverse(all(a.dat));\n\
+    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  bool has_intersection(const\
+    \ T &other) const {\n    assert(N == other.N);\n    FOR(i, len(dat)) if (dat[i]\
+    \ & other.dat[i]) return true;\n    return false;\n  }\n\n  bool ALL() const {\n\
+    \    int r = N & 63;\n    if (r != 0 && dat.back() != full_mask(r)) return 0;\n\
+    \    for (int i = 0; i < N / 64; ++i)\n      if (dat[i] != u64(-1)) return false;\n\
+    \    return true;\n  }\n\n  Bit_Array reversed() const {\n    int M = ceil(N,\
+    \ 64) * 64;\n    Bit_Array a = *this;\n    a.resize(M);\n    reverse(all(a.dat));\n\
     \    for (u64 &x : a.dat) x = bit_reverse(x);\n    return a.slice(M - N, M);\n\
     \  }\n\n  // bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n\
     \  vc<int> collect_idx() const {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i])\
@@ -592,7 +596,7 @@ data:
   - poly/mod_2/power_projection.hpp
   - poly/mod_2/convolution.hpp
   - poly/mod_2/fps_inv.hpp
-  timestamp: '2026-08-19 06:34:57+09:00'
+  timestamp: '2026-08-19 08:58:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/bit_array.hpp
