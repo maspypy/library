@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
@@ -38,6 +38,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
+  - icon: ':warning:'
+    path: graph/annulus_walk_generating_function.hpp
+    title: graph/annulus_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
@@ -1352,6 +1355,7 @@ data:
   - graph/count/count_clique.hpp
   - graph/chromatic.hpp
   - graph/count_matching_on_tree.hpp
+  - graph/annulus_walk_generating_function.hpp
   - graph/tree_all_distances.hpp
   - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - graph/tree_walk_generating_function.hpp

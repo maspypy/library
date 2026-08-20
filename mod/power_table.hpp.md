@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
+  - icon: ':warning:'
+    path: graph/annulus_walk_generating_function.hpp
+    title: graph/annulus_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
@@ -234,6 +237,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - graph/annulus_walk_generating_function.hpp
   - poly/schroder.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/poly_taylor_shift.hpp

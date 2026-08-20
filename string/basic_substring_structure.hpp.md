@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -22,10 +22,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -492,18 +492,18 @@ data:
     \  down: \u884C\u304D\u5148\u306E\u5217\n  */\n\n  // topological \u9006\u9806\
     \ (\u6700\u5F8C\u306B S[0,N) \u304C\u6765\u308B)\n  vc<pair<int, int>> raw_index;\
     \  // \u5404 block \u306E\u4EE3\u8868\u5143\u306B\u5BFE\u5FDC\u3059\u308B [i,j]\n\
-    \  vc<int> X, Y;\n  vc<int> X_to_block, Y_to_block;\n  vc<int> width, height;\n\
-    \  vc<int> right, down;\n\n  int n_block() { return len(raw_index); }\n  pair<int,\
-    \ int> shape() { return {X.back(), Y.back()}; }\n\n  Basic_Substring_Structure(string\
+    \  vc<int> occurrence;\n  vc<int> X, Y;\n  vc<int> X_to_block, Y_to_block;\n \
+    \ vc<int> width, height;\n  vc<int> right, down;\n\n  int n_block() { return len(raw_index);\
+    \ }\n  pair<int, int> shape() { return {X.back(), Y.back()}; }\n\n  Basic_Substring_Structure(string\
     \ &S) { build(S); }\n\n  void build(string &S_) {\n    S = S_, T = {S_.rbegin(),\
     \ S_.rend()};\n    SH = RH.build(S);\n    S_SA = SA_t(S), T_SA = SA_t(T);\n  \
     \  S_SA.seg.build(S_SA.LCP), S_SA.build_seg = true;\n    T_SA.seg.build(T_SA.LCP),\
     \ T_SA.build_seg = true;\n    N = len(S);\n    if (N == 1) {\n      raw_index\
-    \ = {{0, 0}}, X = {0, 1}, Y = {0, 1}, X_to_block = {0},\n      Y_to_block = {0};\n\
-    \      width = {1}, height = {1}, right = {-1}, down = {-1};\n      return;\n\
-    \    }\n    X_to_block.reserve(2 * N - 1), Y_to_block.reserve(2 * N - 1);\n  \
-    \  width.reserve(2 * N - 1), height.reserve(2 * N - 1);\n    right.reserve(2 *\
-    \ N - 1), down.reserve(2 * N - 1);\n    X = {0}, Y = {0};\n\n    CartesianTree<int,\
+    \ = {{0, 0}}, X = {0, 1}, Y = {0, 1}, X_to_block = {0},\n      Y_to_block = {0},\
+    \ occurrence = {1};\n      width = {1}, height = {1}, right = {-1}, down = {-1};\n\
+    \      return;\n    }\n    X_to_block.reserve(2 * N - 1), Y_to_block.reserve(2\
+    \ * N - 1);\n    width.reserve(2 * N - 1), height.reserve(2 * N - 1);\n    right.reserve(2\
+    \ * N - 1), down.reserve(2 * N - 1);\n    X = {0}, Y = {0};\n\n    CartesianTree<int,\
     \ true> CS(S_SA.LCP);\n    CartesianTree<int, true> CT(T_SA.LCP);\n    hash_to_col.build(N\
     \ - 1);\n    HashMap<int> hash_to_row(N - 1);\n\n    auto is_node = [&](CartesianTree<int,\
     \ true> &CT, int i) -> bool {\n      return (CT.A[i] > 0 && (CT.par[i] == -1 ||\
@@ -512,44 +512,46 @@ data:
     \u304F\n    HashMap<int> tmp(N - 1);\n    FOR(i, N - 1) {\n      if (!is_node(CS,\
     \ i)) continue;\n      int s = S_SA.SA[i], n = S_SA.LCP[i];\n      tmp[RH.query(SH,\
     \ s, s + n).val] = i;\n    }\n\n    // occur \u304C\u5C0F\u3055\u3044\u884C\u304B\
-    \u3089\u4F5C\u3063\u3066\u3044\u304F\n    vc<int> ptr(N);\n    FOR(i, N - 1) {\n\
-    \      if (is_node(CT, i)) ptr[CT.range[i].se - CT.range[i].fi]++;\n    }\n  \
-    \  ptr = cumsum<int>(ptr);\n    vc<int> I(ptr.back(), -1);\n    FOR(i, N - 1)\
-    \ {\n      if (!is_node(CT, i)) continue;\n      int occ = CT.range[i].se - CT.range[i].fi;\n\
-    \      I[ptr[occ]++] = i;\n    }\n\n    auto new_block = [&](int h, int w, int\
-    \ i, int j) -> int {\n      int bid = len(raw_index);\n      raw_index.eb(i, j);\n\
-    \      X.eb(X.back() + h), Y.eb(Y.back() + w);\n      FOR(h) X_to_block.eb(bid),\
-    \ width.eb(-1), right.eb(-1);\n      FOR(w) Y_to_block.eb(bid), height.eb(-1),\
-    \ down.eb(-1);\n      return bid;\n    };\n\n    auto get_w = [&](int i) -> int\
-    \ {\n      return CT.A[i] - (CT.par[i] == -1 ? 0 : CT.A[CT.par[i]]);\n    };\n\
-    \    auto get_h = [&](int i) -> int {\n      return CS.A[i] - (CS.par[i] == -1\
-    \ ? 0 : CS.A[CS.par[i]]);\n    };\n\n    reverse(all(I));\n    for (int a0 : I)\
-    \ {\n      int j = N - T_SA.SA[a0], n = T_SA.LCP[a0];\n      u64 key = RH.query(SH,\
-    \ j - n, j).val;\n      int b0 = tmp.get(key, -1);\n      if (b0 == -1) continue;\n\
-    \      // occur>=2 \u306B\u5BFE\u5FDC\u3059\u308B block \u767A\u898B\n      int\
-    \ h = get_h(b0), w = get_w(a0);\n      int bid = new_block(h, w, j - n, j);\n\
-    \      FOR(x, X[bid], X[bid + 1]) {\n        hash_to_row[RH.query(SH, j - n, j\
-    \ - (x - X[bid])).val] = x;\n      }\n      FOR(y, Y[bid], Y[bid + 1]) {\n   \
-    \     hash_to_col[RH.query(SH, j - n + (y - Y[bid]), j).val] = y;\n      }\n \
-    \   }\n    FOR(i, N - 1) {\n      if (!is_node(CT, i)) continue;\n      int r\
-    \ = N - T_SA.SA[i], n = T_SA.LCP[i];\n      u64 key = RH.query(SH, r - n, r).val;\n\
-    \      int x = hash_to_row[key];\n      width[x] = get_w(i);\n      right[x] =\
-    \ hash_to_row.get(RH.query(SH, r - n + width[x], r).val, -1);\n    }\n    FOR(i,\
-    \ N - 1) {\n      if (!is_node(CS, i)) continue;\n      int l = S_SA.SA[i], n\
-    \ = S_SA.LCP[i];\n      u64 key = RH.query(SH, l, l + n).val;\n      int y = hash_to_col[key];\n\
-    \      height[y] = get_h(i);\n      down[y] = hash_to_col.get(RH.query(SH, l,\
-    \ l + n - height[y]).val, -1);\n    }\n\n    // occur==1\n    auto get_w2 = [&](int\
-    \ i) -> int {  // [0,i)\n      int k = T_SA.ISA[N - i];\n      int n = i, m =\
-    \ 0;\n      if (k > 0) chmax(m, T_SA.LCP[k - 1]);\n      if (k < N - 1) chmax(m,\
-    \ T_SA.LCP[k]);\n      return n - m;\n    };\n    auto get_h2 = [&](int i) ->\
-    \ int {  // [i,N)\n      int k = S_SA.ISA[i];\n      int n = N - i, m = 0;\n \
-    \     if (k > 0) chmax(m, S_SA.LCP[k - 1]);\n      if (k < N - 1) chmax(m, S_SA.LCP[k]);\n\
-    \      return n - m;\n    };\n    int h = get_h2(0), w = get_w2(N);\n    int bid\
-    \ = new_block(h, w, 0, N);\n    FOR(x, X[bid], X[bid + 1]) {\n      int r = N\
-    \ - (x - X[bid]);\n      width[x] = get_w2(r);\n      right[x] = hash_to_row.get(RH.query(SH,\
-    \ width[x], r).val, -1);\n    }\n    FOR(y, Y[bid], Y[bid + 1]) {\n      int l\
-    \ = y - Y[bid];\n      height[y] = get_h2(l);\n      down[y] = hash_to_col.get(RH.query(SH,\
-    \ l, N - height[y]).val, -1);\n    }\n  }\n\n  // S[i,j) \u306B\u5BFE\u5FDC\u3059\
+    \u3089\u4F5C\u3063\u3066\u3044\u304F\n    vc<int> ptr(N + 1);\n    FOR(i, N -\
+    \ 1) {\n      if (is_node(CT, i)) ptr[CT.range[i].se - CT.range[i].fi + 1]++;\n\
+    \    }\n    ptr = cumsum<int>(ptr);\n    vc<int> I(ptr.back(), -1);\n    FOR(i,\
+    \ N - 1) {\n      if (!is_node(CT, i)) continue;\n      int occ = CT.range[i].se\
+    \ - CT.range[i].fi + 1;\n      I[ptr[occ]++] = i;\n    }\n\n    auto new_block\
+    \ = [&](int h, int w, int i, int j, int occ) -> int {\n      int bid = len(raw_index);\n\
+    \      raw_index.eb(i, j);\n      occurrence.eb(occ);\n      X.eb(X.back() + h),\
+    \ Y.eb(Y.back() + w);\n      FOR(h) X_to_block.eb(bid), width.eb(-1), right.eb(-1);\n\
+    \      FOR(w) Y_to_block.eb(bid), height.eb(-1), down.eb(-1);\n      return bid;\n\
+    \    };\n\n    auto get_w = [&](int i) -> int {\n      return CT.A[i] - (CT.par[i]\
+    \ == -1 ? 0 : CT.A[CT.par[i]]);\n    };\n    auto get_h = [&](int i) -> int {\n\
+    \      return CS.A[i] - (CS.par[i] == -1 ? 0 : CS.A[CS.par[i]]);\n    };\n\n \
+    \   reverse(all(I));\n    for (int a0 : I) {\n      int j = N - T_SA.SA[a0], n\
+    \ = T_SA.LCP[a0];\n      int occ = CT.range[a0].se - CT.range[a0].fi + 1;\n  \
+    \    u64 key = RH.query(SH, j - n, j).val;\n      int b0 = tmp.get(key, -1);\n\
+    \      if (b0 == -1) continue;\n      // occur>=2 \u306B\u5BFE\u5FDC\u3059\u308B\
+    \ block \u767A\u898B\n      int h = get_h(b0), w = get_w(a0);\n      int bid =\
+    \ new_block(h, w, j - n, j, occ);\n      FOR(x, X[bid], X[bid + 1]) {\n      \
+    \  hash_to_row[RH.query(SH, j - n, j - (x - X[bid])).val] = x;\n      }\n    \
+    \  FOR(y, Y[bid], Y[bid + 1]) {\n        hash_to_col[RH.query(SH, j - n + (y -\
+    \ Y[bid]), j).val] = y;\n      }\n    }\n    FOR(i, N - 1) {\n      if (!is_node(CT,\
+    \ i)) continue;\n      int r = N - T_SA.SA[i], n = T_SA.LCP[i];\n      u64 key\
+    \ = RH.query(SH, r - n, r).val;\n      int x = hash_to_row[key];\n      width[x]\
+    \ = get_w(i);\n      right[x] = hash_to_row.get(RH.query(SH, r - n + width[x],\
+    \ r).val, -1);\n    }\n    FOR(i, N - 1) {\n      if (!is_node(CS, i)) continue;\n\
+    \      int l = S_SA.SA[i], n = S_SA.LCP[i];\n      u64 key = RH.query(SH, l, l\
+    \ + n).val;\n      int y = hash_to_col[key];\n      height[y] = get_h(i);\n  \
+    \    down[y] = hash_to_col.get(RH.query(SH, l, l + n - height[y]).val, -1);\n\
+    \    }\n\n    // occur==1\n    auto get_w2 = [&](int i) -> int {  // [0,i)\n \
+    \     int k = T_SA.ISA[N - i];\n      int n = i, m = 0;\n      if (k > 0) chmax(m,\
+    \ T_SA.LCP[k - 1]);\n      if (k < N - 1) chmax(m, T_SA.LCP[k]);\n      return\
+    \ n - m;\n    };\n    auto get_h2 = [&](int i) -> int {  // [i,N)\n      int k\
+    \ = S_SA.ISA[i];\n      int n = N - i, m = 0;\n      if (k > 0) chmax(m, S_SA.LCP[k\
+    \ - 1]);\n      if (k < N - 1) chmax(m, S_SA.LCP[k]);\n      return n - m;\n \
+    \   };\n    int h = get_h2(0), w = get_w2(N);\n    int bid = new_block(h, w, 0,\
+    \ N, 1);\n    FOR(x, X[bid], X[bid + 1]) {\n      int r = N - (x - X[bid]);\n\
+    \      width[x] = get_w2(r);\n      right[x] = hash_to_row.get(RH.query(SH, width[x],\
+    \ r).val, -1);\n    }\n    FOR(y, Y[bid], Y[bid + 1]) {\n      int l = y - Y[bid];\n\
+    \      height[y] = get_h2(l);\n      down[y] = hash_to_col.get(RH.query(SH, l,\
+    \ N - height[y]).val, -1);\n    }\n  }\n\n  // S[i,j) \u306B\u5BFE\u5FDC\u3059\
     \u308B (x,y).\n  pair<int, int> get_position(int i, int j) {\n    // occur \u3092\
     \u4FDD\u3063\u3066\u9577\u304F\u3059\u308B\n    auto &seg = S_SA.seg;\n    int\
     \ n = j - i, k = S_SA.ISA[i];\n    int m = N - i;\n    auto check = [&](int e)\
@@ -559,11 +561,12 @@ data:
     \ x = X[n_block() - 1] + (N - j), y = Y[n_block() - 1] + i;\n      return {x,\
     \ y};\n    }\n    int bid = Y_to_block[y];\n    auto [l, r] = raw_index[bid];\n\
     \    int x = (X[bid] + Y[bid]) + ((r - l) - (j - i)) - y;\n    return {x, y};\n\
-    \  }\n\n  void debug() {\n    auto [H, W] = shape();\n    FOR(x, H) {\n      string\
-    \ tmp(W, '.');\n      int k = X_to_block[x];\n      FOR(y, Y[k], Y[k] + width[x])\
-    \ tmp[y] = '#';\n      print(tmp);\n    }\n    SHOW(S);\n    SHOW(raw_index);\n\
-    \    SHOW(width);\n    SHOW(height);\n    SHOW(right);\n    SHOW(down);\n    print();\n\
-    \  }\n};\n"
+    \  }\n\n  // block -> x1,x2,y1,y2\n  tuple<int, int, int, int> get_rectangle(int\
+    \ k) {\n    return {X[k], X[k + 1], Y[k], Y[k + 1]};\n  }\n\n  void debug() {\n\
+    \    auto [H, W] = shape();\n    FOR(x, H) {\n      string tmp(W, '.');\n    \
+    \  int k = X_to_block[x];\n      FOR(y, Y[k], Y[k] + width[x]) tmp[y] = '#';\n\
+    \      print(tmp);\n    }\n    SHOW(S);\n    SHOW(raw_index);\n    SHOW(width);\n\
+    \    SHOW(height);\n    SHOW(right);\n    SHOW(down);\n    print();\n  }\n};\n"
   code: "\n#include \"ds/hashmap.hpp\"\n#include \"seq/cartesian_tree.hpp\"\n#include\
     \ \"string/rolling_hash.hpp\"\n#include \"string/suffix_array.hpp\"\n\n// https://arxiv.org/pdf/2312.11873\n\
     // https://uoj.ac/problem/697\nstruct Basic_Substring_Structure {\n  using SA_t\
@@ -578,18 +581,18 @@ data:
     \  down: \u884C\u304D\u5148\u306E\u5217\n  */\n\n  // topological \u9006\u9806\
     \ (\u6700\u5F8C\u306B S[0,N) \u304C\u6765\u308B)\n  vc<pair<int, int>> raw_index;\
     \  // \u5404 block \u306E\u4EE3\u8868\u5143\u306B\u5BFE\u5FDC\u3059\u308B [i,j]\n\
-    \  vc<int> X, Y;\n  vc<int> X_to_block, Y_to_block;\n  vc<int> width, height;\n\
-    \  vc<int> right, down;\n\n  int n_block() { return len(raw_index); }\n  pair<int,\
-    \ int> shape() { return {X.back(), Y.back()}; }\n\n  Basic_Substring_Structure(string\
+    \  vc<int> occurrence;\n  vc<int> X, Y;\n  vc<int> X_to_block, Y_to_block;\n \
+    \ vc<int> width, height;\n  vc<int> right, down;\n\n  int n_block() { return len(raw_index);\
+    \ }\n  pair<int, int> shape() { return {X.back(), Y.back()}; }\n\n  Basic_Substring_Structure(string\
     \ &S) { build(S); }\n\n  void build(string &S_) {\n    S = S_, T = {S_.rbegin(),\
     \ S_.rend()};\n    SH = RH.build(S);\n    S_SA = SA_t(S), T_SA = SA_t(T);\n  \
     \  S_SA.seg.build(S_SA.LCP), S_SA.build_seg = true;\n    T_SA.seg.build(T_SA.LCP),\
     \ T_SA.build_seg = true;\n    N = len(S);\n    if (N == 1) {\n      raw_index\
-    \ = {{0, 0}}, X = {0, 1}, Y = {0, 1}, X_to_block = {0},\n      Y_to_block = {0};\n\
-    \      width = {1}, height = {1}, right = {-1}, down = {-1};\n      return;\n\
-    \    }\n    X_to_block.reserve(2 * N - 1), Y_to_block.reserve(2 * N - 1);\n  \
-    \  width.reserve(2 * N - 1), height.reserve(2 * N - 1);\n    right.reserve(2 *\
-    \ N - 1), down.reserve(2 * N - 1);\n    X = {0}, Y = {0};\n\n    CartesianTree<int,\
+    \ = {{0, 0}}, X = {0, 1}, Y = {0, 1}, X_to_block = {0},\n      Y_to_block = {0},\
+    \ occurrence = {1};\n      width = {1}, height = {1}, right = {-1}, down = {-1};\n\
+    \      return;\n    }\n    X_to_block.reserve(2 * N - 1), Y_to_block.reserve(2\
+    \ * N - 1);\n    width.reserve(2 * N - 1), height.reserve(2 * N - 1);\n    right.reserve(2\
+    \ * N - 1), down.reserve(2 * N - 1);\n    X = {0}, Y = {0};\n\n    CartesianTree<int,\
     \ true> CS(S_SA.LCP);\n    CartesianTree<int, true> CT(T_SA.LCP);\n    hash_to_col.build(N\
     \ - 1);\n    HashMap<int> hash_to_row(N - 1);\n\n    auto is_node = [&](CartesianTree<int,\
     \ true> &CT, int i) -> bool {\n      return (CT.A[i] > 0 && (CT.par[i] == -1 ||\
@@ -598,44 +601,46 @@ data:
     \u304F\n    HashMap<int> tmp(N - 1);\n    FOR(i, N - 1) {\n      if (!is_node(CS,\
     \ i)) continue;\n      int s = S_SA.SA[i], n = S_SA.LCP[i];\n      tmp[RH.query(SH,\
     \ s, s + n).val] = i;\n    }\n\n    // occur \u304C\u5C0F\u3055\u3044\u884C\u304B\
-    \u3089\u4F5C\u3063\u3066\u3044\u304F\n    vc<int> ptr(N);\n    FOR(i, N - 1) {\n\
-    \      if (is_node(CT, i)) ptr[CT.range[i].se - CT.range[i].fi]++;\n    }\n  \
-    \  ptr = cumsum<int>(ptr);\n    vc<int> I(ptr.back(), -1);\n    FOR(i, N - 1)\
-    \ {\n      if (!is_node(CT, i)) continue;\n      int occ = CT.range[i].se - CT.range[i].fi;\n\
-    \      I[ptr[occ]++] = i;\n    }\n\n    auto new_block = [&](int h, int w, int\
-    \ i, int j) -> int {\n      int bid = len(raw_index);\n      raw_index.eb(i, j);\n\
-    \      X.eb(X.back() + h), Y.eb(Y.back() + w);\n      FOR(h) X_to_block.eb(bid),\
-    \ width.eb(-1), right.eb(-1);\n      FOR(w) Y_to_block.eb(bid), height.eb(-1),\
-    \ down.eb(-1);\n      return bid;\n    };\n\n    auto get_w = [&](int i) -> int\
-    \ {\n      return CT.A[i] - (CT.par[i] == -1 ? 0 : CT.A[CT.par[i]]);\n    };\n\
-    \    auto get_h = [&](int i) -> int {\n      return CS.A[i] - (CS.par[i] == -1\
-    \ ? 0 : CS.A[CS.par[i]]);\n    };\n\n    reverse(all(I));\n    for (int a0 : I)\
-    \ {\n      int j = N - T_SA.SA[a0], n = T_SA.LCP[a0];\n      u64 key = RH.query(SH,\
-    \ j - n, j).val;\n      int b0 = tmp.get(key, -1);\n      if (b0 == -1) continue;\n\
-    \      // occur>=2 \u306B\u5BFE\u5FDC\u3059\u308B block \u767A\u898B\n      int\
-    \ h = get_h(b0), w = get_w(a0);\n      int bid = new_block(h, w, j - n, j);\n\
-    \      FOR(x, X[bid], X[bid + 1]) {\n        hash_to_row[RH.query(SH, j - n, j\
-    \ - (x - X[bid])).val] = x;\n      }\n      FOR(y, Y[bid], Y[bid + 1]) {\n   \
-    \     hash_to_col[RH.query(SH, j - n + (y - Y[bid]), j).val] = y;\n      }\n \
-    \   }\n    FOR(i, N - 1) {\n      if (!is_node(CT, i)) continue;\n      int r\
-    \ = N - T_SA.SA[i], n = T_SA.LCP[i];\n      u64 key = RH.query(SH, r - n, r).val;\n\
-    \      int x = hash_to_row[key];\n      width[x] = get_w(i);\n      right[x] =\
-    \ hash_to_row.get(RH.query(SH, r - n + width[x], r).val, -1);\n    }\n    FOR(i,\
-    \ N - 1) {\n      if (!is_node(CS, i)) continue;\n      int l = S_SA.SA[i], n\
-    \ = S_SA.LCP[i];\n      u64 key = RH.query(SH, l, l + n).val;\n      int y = hash_to_col[key];\n\
-    \      height[y] = get_h(i);\n      down[y] = hash_to_col.get(RH.query(SH, l,\
-    \ l + n - height[y]).val, -1);\n    }\n\n    // occur==1\n    auto get_w2 = [&](int\
-    \ i) -> int {  // [0,i)\n      int k = T_SA.ISA[N - i];\n      int n = i, m =\
-    \ 0;\n      if (k > 0) chmax(m, T_SA.LCP[k - 1]);\n      if (k < N - 1) chmax(m,\
-    \ T_SA.LCP[k]);\n      return n - m;\n    };\n    auto get_h2 = [&](int i) ->\
-    \ int {  // [i,N)\n      int k = S_SA.ISA[i];\n      int n = N - i, m = 0;\n \
-    \     if (k > 0) chmax(m, S_SA.LCP[k - 1]);\n      if (k < N - 1) chmax(m, S_SA.LCP[k]);\n\
-    \      return n - m;\n    };\n    int h = get_h2(0), w = get_w2(N);\n    int bid\
-    \ = new_block(h, w, 0, N);\n    FOR(x, X[bid], X[bid + 1]) {\n      int r = N\
-    \ - (x - X[bid]);\n      width[x] = get_w2(r);\n      right[x] = hash_to_row.get(RH.query(SH,\
-    \ width[x], r).val, -1);\n    }\n    FOR(y, Y[bid], Y[bid + 1]) {\n      int l\
-    \ = y - Y[bid];\n      height[y] = get_h2(l);\n      down[y] = hash_to_col.get(RH.query(SH,\
-    \ l, N - height[y]).val, -1);\n    }\n  }\n\n  // S[i,j) \u306B\u5BFE\u5FDC\u3059\
+    \u3089\u4F5C\u3063\u3066\u3044\u304F\n    vc<int> ptr(N + 1);\n    FOR(i, N -\
+    \ 1) {\n      if (is_node(CT, i)) ptr[CT.range[i].se - CT.range[i].fi + 1]++;\n\
+    \    }\n    ptr = cumsum<int>(ptr);\n    vc<int> I(ptr.back(), -1);\n    FOR(i,\
+    \ N - 1) {\n      if (!is_node(CT, i)) continue;\n      int occ = CT.range[i].se\
+    \ - CT.range[i].fi + 1;\n      I[ptr[occ]++] = i;\n    }\n\n    auto new_block\
+    \ = [&](int h, int w, int i, int j, int occ) -> int {\n      int bid = len(raw_index);\n\
+    \      raw_index.eb(i, j);\n      occurrence.eb(occ);\n      X.eb(X.back() + h),\
+    \ Y.eb(Y.back() + w);\n      FOR(h) X_to_block.eb(bid), width.eb(-1), right.eb(-1);\n\
+    \      FOR(w) Y_to_block.eb(bid), height.eb(-1), down.eb(-1);\n      return bid;\n\
+    \    };\n\n    auto get_w = [&](int i) -> int {\n      return CT.A[i] - (CT.par[i]\
+    \ == -1 ? 0 : CT.A[CT.par[i]]);\n    };\n    auto get_h = [&](int i) -> int {\n\
+    \      return CS.A[i] - (CS.par[i] == -1 ? 0 : CS.A[CS.par[i]]);\n    };\n\n \
+    \   reverse(all(I));\n    for (int a0 : I) {\n      int j = N - T_SA.SA[a0], n\
+    \ = T_SA.LCP[a0];\n      int occ = CT.range[a0].se - CT.range[a0].fi + 1;\n  \
+    \    u64 key = RH.query(SH, j - n, j).val;\n      int b0 = tmp.get(key, -1);\n\
+    \      if (b0 == -1) continue;\n      // occur>=2 \u306B\u5BFE\u5FDC\u3059\u308B\
+    \ block \u767A\u898B\n      int h = get_h(b0), w = get_w(a0);\n      int bid =\
+    \ new_block(h, w, j - n, j, occ);\n      FOR(x, X[bid], X[bid + 1]) {\n      \
+    \  hash_to_row[RH.query(SH, j - n, j - (x - X[bid])).val] = x;\n      }\n    \
+    \  FOR(y, Y[bid], Y[bid + 1]) {\n        hash_to_col[RH.query(SH, j - n + (y -\
+    \ Y[bid]), j).val] = y;\n      }\n    }\n    FOR(i, N - 1) {\n      if (!is_node(CT,\
+    \ i)) continue;\n      int r = N - T_SA.SA[i], n = T_SA.LCP[i];\n      u64 key\
+    \ = RH.query(SH, r - n, r).val;\n      int x = hash_to_row[key];\n      width[x]\
+    \ = get_w(i);\n      right[x] = hash_to_row.get(RH.query(SH, r - n + width[x],\
+    \ r).val, -1);\n    }\n    FOR(i, N - 1) {\n      if (!is_node(CS, i)) continue;\n\
+    \      int l = S_SA.SA[i], n = S_SA.LCP[i];\n      u64 key = RH.query(SH, l, l\
+    \ + n).val;\n      int y = hash_to_col[key];\n      height[y] = get_h(i);\n  \
+    \    down[y] = hash_to_col.get(RH.query(SH, l, l + n - height[y]).val, -1);\n\
+    \    }\n\n    // occur==1\n    auto get_w2 = [&](int i) -> int {  // [0,i)\n \
+    \     int k = T_SA.ISA[N - i];\n      int n = i, m = 0;\n      if (k > 0) chmax(m,\
+    \ T_SA.LCP[k - 1]);\n      if (k < N - 1) chmax(m, T_SA.LCP[k]);\n      return\
+    \ n - m;\n    };\n    auto get_h2 = [&](int i) -> int {  // [i,N)\n      int k\
+    \ = S_SA.ISA[i];\n      int n = N - i, m = 0;\n      if (k > 0) chmax(m, S_SA.LCP[k\
+    \ - 1]);\n      if (k < N - 1) chmax(m, S_SA.LCP[k]);\n      return n - m;\n \
+    \   };\n    int h = get_h2(0), w = get_w2(N);\n    int bid = new_block(h, w, 0,\
+    \ N, 1);\n    FOR(x, X[bid], X[bid + 1]) {\n      int r = N - (x - X[bid]);\n\
+    \      width[x] = get_w2(r);\n      right[x] = hash_to_row.get(RH.query(SH, width[x],\
+    \ r).val, -1);\n    }\n    FOR(y, Y[bid], Y[bid + 1]) {\n      int l = y - Y[bid];\n\
+    \      height[y] = get_h2(l);\n      down[y] = hash_to_col.get(RH.query(SH, l,\
+    \ N - height[y]).val, -1);\n    }\n  }\n\n  // S[i,j) \u306B\u5BFE\u5FDC\u3059\
     \u308B (x,y).\n  pair<int, int> get_position(int i, int j) {\n    // occur \u3092\
     \u4FDD\u3063\u3066\u9577\u304F\u3059\u308B\n    auto &seg = S_SA.seg;\n    int\
     \ n = j - i, k = S_SA.ISA[i];\n    int m = N - i;\n    auto check = [&](int e)\
@@ -645,11 +650,12 @@ data:
     \ x = X[n_block() - 1] + (N - j), y = Y[n_block() - 1] + i;\n      return {x,\
     \ y};\n    }\n    int bid = Y_to_block[y];\n    auto [l, r] = raw_index[bid];\n\
     \    int x = (X[bid] + Y[bid]) + ((r - l) - (j - i)) - y;\n    return {x, y};\n\
-    \  }\n\n  void debug() {\n    auto [H, W] = shape();\n    FOR(x, H) {\n      string\
-    \ tmp(W, '.');\n      int k = X_to_block[x];\n      FOR(y, Y[k], Y[k] + width[x])\
-    \ tmp[y] = '#';\n      print(tmp);\n    }\n    SHOW(S);\n    SHOW(raw_index);\n\
-    \    SHOW(width);\n    SHOW(height);\n    SHOW(right);\n    SHOW(down);\n    print();\n\
-    \  }\n};\n"
+    \  }\n\n  // block -> x1,x2,y1,y2\n  tuple<int, int, int, int> get_rectangle(int\
+    \ k) {\n    return {X[k], X[k + 1], Y[k], Y[k + 1]};\n  }\n\n  void debug() {\n\
+    \    auto [H, W] = shape();\n    FOR(x, H) {\n      string tmp(W, '.');\n    \
+    \  int k = X_to_block[x];\n      FOR(y, Y[k], Y[k] + width[x]) tmp[y] = '#';\n\
+    \      print(tmp);\n    }\n    SHOW(S);\n    SHOW(raw_index);\n    SHOW(width);\n\
+    \    SHOW(height);\n    SHOW(right);\n    SHOW(down);\n    print();\n  }\n};\n"
   dependsOn:
   - ds/hashmap.hpp
   - seq/cartesian_tree.hpp
@@ -666,7 +672,7 @@ data:
   isVerificationFile: false
   path: string/basic_substring_structure.hpp
   requiredBy: []
-  timestamp: '2026-08-19 06:34:57+09:00'
+  timestamp: '2026-08-20 20:55:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/basic_substring_structure.hpp

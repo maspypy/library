@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
@@ -35,6 +35,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/annulus_walk_generating_function.hpp
+    title: graph/annulus_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
@@ -517,6 +520,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - graph/annulus_walk_generating_function.hpp
   - poly/schroder.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/composition_f_ex_minus_1.hpp

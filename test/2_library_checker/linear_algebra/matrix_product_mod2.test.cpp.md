@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -621,31 +621,35 @@ data:
     \  void flip() { flip_range(0, N); }\n  bool any() const {\n    FOR(i, len(dat))\
     \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  bool has_intersection(const\
     \ T &other) const {\n    assert(N == other.N);\n    FOR(i, len(dat)) if (dat[i]\
-    \ & other.dat[i]) return true;\n    return false;\n  }\n\n  bool ALL() const {\n\
-    \    int r = N & 63;\n    if (r != 0 && dat.back() != full_mask(r)) return 0;\n\
-    \    for (int i = 0; i < N / 64; ++i)\n      if (dat[i] != u64(-1)) return false;\n\
-    \    return true;\n  }\n\n  Bit_Array reversed() const {\n    int M = ceil(N,\
-    \ 64) * 64;\n    Bit_Array a = *this;\n    a.resize(M);\n    reverse(all(a.dat));\n\
-    \    for (u64 &x : a.dat) x = bit_reverse(x);\n    return a.slice(M - N, M);\n\
-    \  }\n\n  // bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n\
-    \  vc<int> collect_idx() const {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i])\
-    \ I.eb(i);\n    return I;\n  }\n\n  bool is_subset(const T &other) const {\n \
-    \   assert(other.N == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n\
-    \      if ((a & b) != a) return false;\n    }\n    return true;\n  }\n\n  int\
-    \ _Find_first() const { return next(0); }\n  int _Find_next(int p) const { return\
-    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
-    \ f) const {\n    assert(0 <= L && L <= R && R <= N);\n    if (L == R) return;\n\
-    \    int p = ((*this)[L] ? L : _Find_next(L));\n    while (p < R) {\n      f(p);\n\
-    \      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
-    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
-    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
-    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
-    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
-    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
-    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
-    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
-    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
-    \    }\n    resize(N);\n  }\n};\n#line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\
+    \ & other.dat[i]) return true;\n    return false;\n  }\n\n  template <typename\
+    \ F>\n  void enumerate_intersection(const T &other, F f) const {\n    assert(N\
+    \ == other.N);\n    bool end = false;\n    FOR(i, len(dat)) {\n      u64 x = dat[i]\
+    \ & other.dat[i];\n      while (x) {\n        int k = lowbit(x);\n        f(64\
+    \ * i + k, end);\n        if (end) return;\n        x &= x - 1;\n      }\n   \
+    \ }\n  }\n\n  bool ALL() const {\n    int r = N & 63;\n    if (r != 0 && dat.back()\
+    \ != full_mask(r)) return 0;\n    for (int i = 0; i < N / 64; ++i)\n      if (dat[i]\
+    \ != u64(-1)) return false;\n    return true;\n  }\n\n  Bit_Array reversed() const\
+    \ {\n    int M = ceil(N, 64) * 64;\n    Bit_Array a = *this;\n    a.resize(M);\n\
+    \    reverse(all(a.dat));\n    for (u64 &x : a.dat) x = bit_reverse(x);\n    return\
+    \ a.slice(M - N, M);\n  }\n\n  // bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A\
+    \ i \u5168\u4F53\n  vc<int> collect_idx() const {\n    vc<int> I;\n    FOR(i,\
+    \ N) if ((*this)[i]) I.eb(i);\n    return I;\n  }\n\n  bool is_subset(const T\
+    \ &other) const {\n    assert(other.N == N);\n    FOR(i, len(dat)) {\n      u64\
+    \ a = dat[i], b = other.dat[i];\n      if ((a & b) != a) return false;\n    }\n\
+    \    return true;\n  }\n\n  int _Find_first() const { return next(0); }\n  int\
+    \ _Find_next(int p) const { return next(p + 1); }\n\n  template <typename F>\n\
+    \  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R && R\
+    \ <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
+    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
+    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
+    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
+    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
+    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
+    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
+    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
+    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
+    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
+    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\
     \n\n// Method of Four Russians O(NMK/wlogN)\n// (N1/K+2^K)/K N2 N3 / w\nvc<Bit_Array>\
     \ matrix_mul_mod_2(vc<Bit_Array>& A, vc<Bit_Array>& B, int N1 = -1, int N2 = -1,\
     \ int N3 = -1) {\n  using BS = Bit_Array;\n  if (N1 == -1) { N1 = len(A), N2 =\
@@ -679,7 +683,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-19 12:45:52+09:00'
+  timestamp: '2026-08-20 20:55:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
