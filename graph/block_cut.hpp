@@ -1,57 +1,89 @@
 #include "graph/base.hpp"
 
-/*
-block-cut tree を、block に通常の頂点を隣接させて拡張しておく
-https://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg
-[0, n)：もとの頂点 [n, n + n_block)：block
-関節点：[0, n) のうちで、degree >= 2 を満たすもの
-孤立点は、1 点だけからなる block
-成分が欲しい場合：近傍を見ると点集合. 辺から成分を得るには tree.jump
-と思ったが非連結なときに注意がいるな…
-*/
-template <typename GT>
-Graph<int, 0> block_cut(GT& G) {
-  int n = G.N;
-  vc<int> low(n), ord(n), st;
-  vc<bool> used(n);
-  st.reserve(n);
-  int nxt = n;
-  int k = 0;
-  vc<pair<int, int>> edges;
+// 非連結でも動作する，BCT は森．
+// block とは辺の同値類のこととする. したがって
+// - loop は 1 辺からなる block
+// - 孤立点は block に接続しない
+struct Block_Cut {
+  int N, M, NB;
+  Graph<int, 0> BCT;
+  vc<int> comp_e;
+  vc<bool> art;
 
-  auto dfs = [&](auto& dfs, int v, int p) -> void {
-    st.eb(v);
-    used[v] = 1;
-    low[v] = ord[v] = k++;
-    int child = 0;
-    for (auto&& e: G[v]) {
-      if (e.to == p) continue;
-      if (!used[e.to]) {
-        ++child;
-        int s = len(st);
-        dfs(dfs, e.to, v);
-        chmin(low[v], low[e.to]);
-        if ((p == -1 && child > 1) || (p != -1 && low[e.to] >= ord[v])) {
-          edges.eb(nxt, v);
-          while (len(st) > s) {
-            edges.eb(nxt, st.back());
-            st.pop_back();
+  template <typename GT>
+  Block_Cut(const GT& G) {
+    N = G.N, M = G.M;
+    vc<int> low(N), ord(N), st;
+    vc<bool> used(N), used_e(M);
+    st.reserve(M);
+    art.assign(N, false);
+    int k = 0;
+    vvc<int> es;
+    FOR(r, N) if (!used[r]) {
+      auto dfs = [&](auto& dfs, int v) -> void {
+        used[v] = 1;
+        low[v] = ord[v] = k++;
+        int n_ch = 0;
+        for (auto&& e : G[v]) {
+          if (used_e[e.id]) continue;
+          used_e[e.id] = 1;
+          if (e.to == v) {
+            es.eb(vc<int>({e.id}));
+            continue;
           }
-          ++nxt;
+          if (!used[e.to]) {
+            ++n_ch;
+            int s = len(st);
+            st.eb(e.id);
+            dfs(dfs, e.to);
+            chmin(low[v], low[e.to]);
+            if (low[e.to] >= ord[v]) {
+              if (v != r) art[v] = 1;
+              vc<int> E;
+              while (len(st) > s) E.eb(POP(st));
+              es.eb(E);
+            }
+          } else {
+            // back edge
+            st.eb(e.id);
+            chmin(low[v], ord[e.to]);
+          }
         }
-      } else {
-        chmin(low[v], ord[e.to]);
-      }
+        if (v == r) art[v] = (n_ch >= 2);
+      };
+      dfs(dfs, r);
+      assert(st.empty());
     }
-  };
-  FOR(v, n) if (!used[v]) {
-    dfs(dfs, v, -1);
-    for (auto&& x: st) { edges.eb(nxt, x); }
-    ++nxt;
-    st.clear();
+
+    comp_e.resize(M);
+    FOR(v, N) used[v] = 0;
+    NB = len(es);
+    BCT.build(N + NB);
+    vc<int> V;
+    FOR(k, NB) {
+      V.clear();
+      for (int e : es[k]) {
+        comp_e[e] = N + k;
+        V.eb(G.edges[e].frm);
+        V.eb(G.edges[e].to);
+      }
+      for (int v : V) {
+        if (used[v]) continue;
+        used[v] = 1;
+        BCT.add(N + k, v);
+      }
+      for (int v : V) used[v] = 0;
+    }
+    BCT.build();
   }
-  Graph<int, 0> BCT(nxt);
-  for (auto&& [a, b]: edges) BCT.add(a, b);
-  BCT.build();
-  return BCT;
-}
+
+  int edge_to_block(int eid) const {
+    assert(0 <= eid && eid < M);
+    return comp_e[eid];
+  }
+
+  bool is_art(int v) const {
+    assert(0 <= v && v < N);
+    return art[v];
+  }
+};

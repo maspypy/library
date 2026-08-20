@@ -2,14 +2,21 @@
 
 // vc<bitset> で biadj matrix を渡す
 // N_1^2N_2/w.
+//
 // (5000,5000) で 300ms 程度で動く場合がある
 // https://qoj.ac/problem/6308
+//
 // (10000?, 5000) 655ms
 // https://codeforces.com/contest/1045/problem/A
+//
 // (10000, 20000) で 3837ms
 // https://codeforces.com/contest/786/problem/E
+//
 // (10000, 10000) 6500ms TLE. row, col とも shuffle で 3000ms AC.
-// bitset の方が Bit_Array より高速？(2024/05/27)
+// ↑このコメントがどの問題のことだかは行方不明
+//
+// (26,26) のような小さいサイズ：bitset の方が数倍高速
+// https://ac.nowcoder.com/acm/contest/133885/D
 template <typename BS>
 struct Bipartite_Matching_Dense {
   int N1, N2;
@@ -35,23 +42,41 @@ struct Bipartite_Matching_Dense {
     que[r++] = s;
     while (l < r) {
       int u = que[l++];
-      BS cand = vis & adj[u];
-      for (int v = cand._Find_first(); v < N2; v = cand._Find_next(v)) {
-        vis[v] = 0;
-        if (match_2[v] != -1) {
-          que[r++] = match_2[v];
-          prev[match_2[v]] = u;
-          continue;
+      if constexpr (is_same_v<BS, Bit_Array>) {
+        bool found = false;
+        vis.enumerate_intersection(adj[u], [&](int v, bool& end) {
+          vis[v] = 0;
+          if (match_2[v] != -1) {
+            que[r++] = match_2[v];
+            prev[match_2[v]] = u;
+            return;
+          }
+          int a = u, b = v;
+          while (a != -1) {
+            int t = match_1[a];
+            match_1[a] = b, match_2[b] = a, a = prev[a], b = t;
+          }
+          found = end = true;
+        });
+        if (found) return;
+      } else {
+        BS cand = vis & adj[u];
+        for (int v = cand._Find_first(); v < N2; v = cand._Find_next(v)) {
+          vis[v] = 0;
+          if (match_2[v] != -1) {
+            que[r++] = match_2[v];
+            prev[match_2[v]] = u;
+            continue;
+          }
+          int a = u, b = v;
+          while (a != -1) {
+            int t = match_1[a];
+            match_1[a] = b, match_2[b] = a, a = prev[a], b = t;
+          }
+          return;
         }
-        int a = u, b = v;
-        while (a != -1) {
-          int t = match_1[a];
-          match_1[a] = b, match_2[b] = a, a = prev[a], b = t;
-        }
-        return;
       }
     }
-    return;
   }
 
   vc<pair<int, int>> matching() {
@@ -70,12 +95,21 @@ struct Bipartite_Matching_Dense {
     }
     while (l < r) {
       int a = que[l++];
-      BS cand = adj[a] & vis;
-      for (int b = cand._Find_first(); b < N2; b = cand._Find_next(b)) {
-        vis[b] = 0;
-        int to = match_2[b];
-        assert(to != -1);
-        if (!done[to]) done[to] = 1, que[r++] = to;
+      if constexpr (is_same_v<BS, Bit_Array>) {
+        vis.enumerate_intersection(adj[a], [&](int b, bool&) {
+          vis[b] = 0;
+          int to = match_2[b];
+          assert(to != -1);
+          if (!done[to]) done[to] = 1, que[r++] = to;
+        });
+      } else {
+        BS cand = adj[a] & vis;
+        for (int b = cand._Find_first(); b < N2; b = cand._Find_next(b)) {
+          vis[b] = 0;
+          int to = match_2[b];
+          assert(to != -1);
+          if (!done[to]) done[to] = 1, que[r++] = to;
+        }
       }
     }
     vc<int> left, right;

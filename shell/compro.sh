@@ -94,7 +94,7 @@ test_samples() {
 }
 
 shrink_temp() {
-  python3 "$COMPRO_LIBRARY_DIR/shrink.py" temp.cpp > submit.cpp
+  python3 "$COMPRO_LIBRARY_DIR/shrink.py" --report temp.cpp > submit.cpp
 }
 
 precompile() {

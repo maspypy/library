@@ -380,6 +380,21 @@ struct Bit_Array {
     return false;
   }
 
+  template <typename F>
+  void enumerate_intersection(const T &other, F f) const {
+    assert(N == other.N);
+    bool end = false;
+    FOR(i, len(dat)) {
+      u64 x = dat[i] & other.dat[i];
+      while (x) {
+        int k = lowbit(x);
+        f(64 * i + k, end);
+        if (end) return;
+        x &= x - 1;
+      }
+    }
+  }
+
   bool ALL() const {
     int r = N & 63;
     if (r != 0 && dat.back() != full_mask(r)) return 0;

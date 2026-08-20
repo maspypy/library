@@ -26,6 +26,7 @@ struct Basic_Substring_Structure {
 
   // topological 逆順 (最後に S[0,N) が来る)
   vc<pair<int, int>> raw_index;  // 各 block の代表元に対応する [i,j]
+  vc<int> occurrence;
   vc<int> X, Y;
   vc<int> X_to_block, Y_to_block;
   vc<int> width, height;
@@ -45,7 +46,7 @@ struct Basic_Substring_Structure {
     N = len(S);
     if (N == 1) {
       raw_index = {{0, 0}}, X = {0, 1}, Y = {0, 1}, X_to_block = {0},
-      Y_to_block = {0};
+      Y_to_block = {0}, occurrence = {1};
       width = {1}, height = {1}, right = {-1}, down = {-1};
       return;
     }
@@ -72,21 +73,22 @@ struct Basic_Substring_Structure {
     }
 
     // occur が小さい行から作っていく
-    vc<int> ptr(N);
+    vc<int> ptr(N + 1);
     FOR(i, N - 1) {
-      if (is_node(CT, i)) ptr[CT.range[i].se - CT.range[i].fi]++;
+      if (is_node(CT, i)) ptr[CT.range[i].se - CT.range[i].fi + 1]++;
     }
     ptr = cumsum<int>(ptr);
     vc<int> I(ptr.back(), -1);
     FOR(i, N - 1) {
       if (!is_node(CT, i)) continue;
-      int occ = CT.range[i].se - CT.range[i].fi;
+      int occ = CT.range[i].se - CT.range[i].fi + 1;
       I[ptr[occ]++] = i;
     }
 
-    auto new_block = [&](int h, int w, int i, int j) -> int {
+    auto new_block = [&](int h, int w, int i, int j, int occ) -> int {
       int bid = len(raw_index);
       raw_index.eb(i, j);
+      occurrence.eb(occ);
       X.eb(X.back() + h), Y.eb(Y.back() + w);
       FOR(h) X_to_block.eb(bid), width.eb(-1), right.eb(-1);
       FOR(w) Y_to_block.eb(bid), height.eb(-1), down.eb(-1);
@@ -103,12 +105,13 @@ struct Basic_Substring_Structure {
     reverse(all(I));
     for (int a0 : I) {
       int j = N - T_SA.SA[a0], n = T_SA.LCP[a0];
+      int occ = CT.range[a0].se - CT.range[a0].fi + 1;
       u64 key = RH.query(SH, j - n, j).val;
       int b0 = tmp.get(key, -1);
       if (b0 == -1) continue;
       // occur>=2 に対応する block 発見
       int h = get_h(b0), w = get_w(a0);
-      int bid = new_block(h, w, j - n, j);
+      int bid = new_block(h, w, j - n, j, occ);
       FOR(x, X[bid], X[bid + 1]) {
         hash_to_row[RH.query(SH, j - n, j - (x - X[bid])).val] = x;
       }
@@ -149,7 +152,7 @@ struct Basic_Substring_Structure {
       return n - m;
     };
     int h = get_h2(0), w = get_w2(N);
-    int bid = new_block(h, w, 0, N);
+    int bid = new_block(h, w, 0, N, 1);
     FOR(x, X[bid], X[bid + 1]) {
       int r = N - (x - X[bid]);
       width[x] = get_w2(r);
@@ -183,6 +186,11 @@ struct Basic_Substring_Structure {
     auto [l, r] = raw_index[bid];
     int x = (X[bid] + Y[bid]) + ((r - l) - (j - i)) - y;
     return {x, y};
+  }
+
+  // block -> x1,x2,y1,y2
+  tuple<int, int, int, int> get_rectangle(int k) {
+    return {X[k], X[k + 1], Y[k], Y[k + 1]};
   }
 
   void debug() {
