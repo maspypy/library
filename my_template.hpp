@@ -40,10 +40,9 @@ constexpr u64 infty<u64> = infty<ll>;
 template <>
 constexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;
 template <>
-constexpr double infty<double> = numeric_limits<double>::infinity();
+constexpr double infty<double> = infty<i128>;
 template <>
-constexpr long double infty<long double> =
-    numeric_limits<long double>::infinity();
+constexpr long double infty<long double> = infty<i128>;
 
 using pi = pair<ll, ll>;
 using vi = vector<ll>;
@@ -221,7 +220,7 @@ vc<int> argsort(const vc<T> &A) {
   vc<int> ids(len(A));
   iota(all(ids), 0);
   sort(all(ids),
-       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });
+      [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });
   return ids;
 }
 

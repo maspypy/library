@@ -1,6 +1,6 @@
-
 #include "other/bit.hpp"
 #include "ds/rollback_array.hpp"
+
 // verify? https://qoj.ac/submission/114657
 template <typename ActedMonoid>
 struct Rollback_Lazy_SegTree {
@@ -62,8 +62,8 @@ struct Rollback_Lazy_SegTree {
   }
 
   vc<X> get_all() {
-    auto tmp = dat.get_all();
     FOR(k, 1, size) push(k);
+    auto tmp = dat.get_all();
     return {tmp.begin() + size, tmp.begin() + size + n};
   }
 
