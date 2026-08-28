@@ -684,9 +684,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/st_numbering.test.cpp
-    title: test/1_mytest/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/stern_brocot.test.cpp
     title: test/1_mytest/stern_brocot.test.cpp
@@ -1170,7 +1167,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/shortest_path.test.cpp
     title: test/2_library_checker/graph/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2947,7 +2944,6 @@ data:
   - test/1_mytest/online_inv.test.cpp
   - test/1_mytest/fibonacci_search.test.cpp
   - test/1_mytest/count_labeled_dag.test.cpp
-  - test/1_mytest/st_numbering.test.cpp
   - test/1_mytest/count_unbordered_string.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp

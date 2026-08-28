@@ -130,6 +130,9 @@ data:
       path: alg/monoid/bitwise_function.hpp
       title: alg/monoid/bitwise_function.hpp
     - icon: ':warning:'
+      path: alg/monoid/diameter.hpp
+      title: alg/monoid/diameter.hpp
+    - icon: ':warning:'
       path: alg/monoid/dihedral.hpp
       title: alg/monoid/dihedral.hpp
     - icon: ':heavy_check_mark:'
@@ -691,7 +694,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
@@ -977,7 +980,7 @@ data:
     - icon: ':warning:'
       path: graph/bipartite_vertex_coloring_ng1.hpp
       title: graph/bipartite_vertex_coloring_ng1.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/block_cut.hpp
       title: graph/block_cut.hpp
     - icon: ':heavy_check_mark:'
@@ -1127,7 +1130,7 @@ data:
     - icon: ':warning:'
       path: graph/series_parallel.hpp
       title: graph/series_parallel.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/st_numbering.hpp
       title: graph/st_numbering.hpp
     - icon: ':heavy_check_mark:'
@@ -1398,7 +1401,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bellman_ford.hpp
       title: graph/shortest_path/bellman_ford.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bfs_01.hpp
       title: graph/shortest_path/bfs_01.hpp
     - icon: ':heavy_check_mark:'
@@ -1413,7 +1416,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
       title: graph/shortest_path/nonzero_group_product_shortest_path.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/restore_path.hpp
       title: graph/shortest_path/restore_path.hpp
     - icon: ':warning:'
@@ -1962,6 +1965,9 @@ data:
       path: other/min_cost_cycle_interval_permutation.hpp
       title: other/min_cost_cycle_interval_permutation.hpp
     - icon: ':warning:'
+      path: other/optimize_1d_beam.hpp
+      title: other/optimize_1d_beam.hpp
+    - icon: ':warning:'
       path: other/optimize_2d.hpp
       title: other/optimize_2d.hpp
     - icon: ':warning:'
@@ -2258,7 +2264,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2270,7 +2276,7 @@ data:
     - icon: ':warning:'
       path: random/random_bracket.hpp
       title: random/random_bracket.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/random_graph.hpp
       title: random/random_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -2285,7 +2291,7 @@ data:
     - icon: ':warning:'
       path: random/random_real.hpp
       title: random/random_real.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
   - name: seq
@@ -3286,9 +3292,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/splay_monoid.test.cpp
       title: test/1_mytest/splay_monoid.test.cpp
-    - icon: ':x:'
-      path: test/1_mytest/st_numbering.test.cpp
-      title: test/1_mytest/st_numbering.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/stern_brocot.test.cpp
       title: test/1_mytest/stern_brocot.test.cpp
@@ -3784,7 +3787,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/graph/shortest_path.test.cpp
       title: test/2_library_checker/graph/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/graph/st_numbering.test.cpp
       title: test/2_library_checker/graph/st_numbering.test.cpp
     - icon: ':heavy_check_mark:'

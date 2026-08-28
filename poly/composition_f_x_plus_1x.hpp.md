@@ -399,18 +399,18 @@ data:
     \  reverse(all(f));\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\n  return f;\n}\n\
     #line 3 \"poly/composition_f_x_plus_1x.hpp\"\n\n// x^nf(x+1/x), O(logN) time\n\
     // 2^17: 0.1sec, 2^20: 0.8 sec\ntemplate <typename mint>\nvc<mint> composition_f_x_plus_1x(vc<mint>\
-    \ f) {\n  int n = len(f) - 1;\n  f = poly_taylor_shift<mint>(f, 2);\n  reverse(all(f));\n\
-    \  f = poly_taylor_shift(f, -inv<mint>(4));\n  f.resize(2 * n + 1);\n  FOR_R(i,\
-    \ n + 1) f[2 * i] = f[i];\n  FOR(i, n) f[2 * i + 1] = 0;\n  f = poly_taylor_shift(f,\
-    \ inv<mint>(2));\n  reverse(all(f));\n  f = poly_taylor_shift<mint>(f, -1);\n\
-    \  return f;\n}\n"
+    \ f) {\n  if (f.empty()) return {};\n  int n = len(f) - 1;\n  f = poly_taylor_shift<mint>(f,\
+    \ 2);\n  reverse(all(f));\n  f = poly_taylor_shift(f, -inv<mint>(4));\n  f.resize(2\
+    \ * n + 1);\n  FOR_R(i, n + 1) f[2 * i] = f[i];\n  FOR(i, n) f[2 * i + 1] = 0;\n\
+    \  f = poly_taylor_shift(f, inv<mint>(2));\n  reverse(all(f));\n  f = poly_taylor_shift<mint>(f,\
+    \ -1);\n  return f;\n}\n"
   code: "\n#include \"poly/poly_taylor_shift.hpp\"\n\n// x^nf(x+1/x), O(logN) time\n\
     // 2^17: 0.1sec, 2^20: 0.8 sec\ntemplate <typename mint>\nvc<mint> composition_f_x_plus_1x(vc<mint>\
-    \ f) {\n  int n = len(f) - 1;\n  f = poly_taylor_shift<mint>(f, 2);\n  reverse(all(f));\n\
-    \  f = poly_taylor_shift(f, -inv<mint>(4));\n  f.resize(2 * n + 1);\n  FOR_R(i,\
-    \ n + 1) f[2 * i] = f[i];\n  FOR(i, n) f[2 * i + 1] = 0;\n  f = poly_taylor_shift(f,\
-    \ inv<mint>(2));\n  reverse(all(f));\n  f = poly_taylor_shift<mint>(f, -1);\n\
-    \  return f;\n}\n"
+    \ f) {\n  if (f.empty()) return {};\n  int n = len(f) - 1;\n  f = poly_taylor_shift<mint>(f,\
+    \ 2);\n  reverse(all(f));\n  f = poly_taylor_shift(f, -inv<mint>(4));\n  f.resize(2\
+    \ * n + 1);\n  FOR_R(i, n + 1) f[2 * i] = f[i];\n  FOR(i, n) f[2 * i + 1] = 0;\n\
+    \  f = poly_taylor_shift(f, inv<mint>(2));\n  reverse(all(f));\n  f = poly_taylor_shift<mint>(f,\
+    \ -1);\n  return f;\n}\n"
   dependsOn:
   - poly/poly_taylor_shift.hpp
   - mod/power_table.hpp
@@ -427,7 +427,7 @@ data:
   isVerificationFile: false
   path: poly/composition_f_x_plus_1x.hpp
   requiredBy: []
-  timestamp: '2026-08-19 06:35:20+09:00'
+  timestamp: '2026-08-29 08:41:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/composition_f_x_plus_1x.test.cpp

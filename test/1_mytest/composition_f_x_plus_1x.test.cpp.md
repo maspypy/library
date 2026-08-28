@@ -43,7 +43,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -493,12 +493,12 @@ data:
     \  reverse(all(f));\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\n  return f;\n}\n\
     #line 3 \"poly/composition_f_x_plus_1x.hpp\"\n\n// x^nf(x+1/x), O(logN) time\n\
     // 2^17: 0.1sec, 2^20: 0.8 sec\ntemplate <typename mint>\nvc<mint> composition_f_x_plus_1x(vc<mint>\
-    \ f) {\n  int n = len(f) - 1;\n  f = poly_taylor_shift<mint>(f, 2);\n  reverse(all(f));\n\
-    \  f = poly_taylor_shift(f, -inv<mint>(4));\n  f.resize(2 * n + 1);\n  FOR_R(i,\
-    \ n + 1) f[2 * i] = f[i];\n  FOR(i, n) f[2 * i + 1] = 0;\n  f = poly_taylor_shift(f,\
-    \ inv<mint>(2));\n  reverse(all(f));\n  f = poly_taylor_shift<mint>(f, -1);\n\
-    \  return f;\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_\
-    \ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ f) {\n  if (f.empty()) return {};\n  int n = len(f) - 1;\n  f = poly_taylor_shift<mint>(f,\
+    \ 2);\n  reverse(all(f));\n  f = poly_taylor_shift(f, -inv<mint>(4));\n  f.resize(2\
+    \ * n + 1);\n  FOR_R(i, n + 1) f[2 * i] = f[i];\n  FOR(i, n) f[2 * i + 1] = 0;\n\
+    \  f = poly_taylor_shift(f, inv<mint>(2));\n  reverse(all(f));\n  f = poly_taylor_shift<mint>(f,\
+    \ -1);\n  return f;\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/composition_f_x_plus_1x.test.cpp\"\
@@ -535,7 +535,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/composition_f_x_plus_1x.test.cpp
   requiredBy: []
-  timestamp: '2026-08-19 06:35:20+09:00'
+  timestamp: '2026-08-29 08:41:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/composition_f_x_plus_1x.test.cpp

@@ -4,22 +4,22 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs_01.hpp
     title: graph/shortest_path/bfs_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/st_numbering
@@ -618,44 +618,36 @@ data:
     // \u9806\u5217 p \u3092\u6C42\u3081\u308B. p[s]=0,p[t]=n-1.\n// p[u]<p[v] \u3068\
     \u306A\u308B\u5411\u304D\u306B\u8FBA\u3092\u5411\u304D\u4ED8\u3051\u308B\u3068\
     \u4EFB\u610F\u306E v \u306B\u5BFE\u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728\
-    .\n// \u5B58\u5728\u6761\u4EF6\uFF1ABCT \u3067\u5168\u90E8\u306E\u6210\u5206\u3092\
-    \u901A\u308B st \u30D1\u30B9\u304C\u3042\u308B \u4E0D\u53EF\u80FD\u306A\u3089\u3070\
-    \ empty \u3092\u304B\u3048\u3059.\ntemplate <typename GT>\nvc<int> st_numbering(GT\
-    \ &G, int s, int t) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  if (N == 1) return {0};\n  if (s == t) return {};\n  vc<int>\
-    \ par(N, -1), pre(N, -1), low(N, -1);\n  vc<int> V;\n\n  auto dfs = [&](auto &dfs,\
-    \ int v) -> void {\n    pre[v] = len(V), V.eb(v);\n    low[v] = v;\n    for (auto\
-    \ &e : G[v]) {\n      int w = e.to;\n      if (v == w) continue;\n      if (pre[w]\
-    \ == -1) {\n        dfs(dfs, w);\n        par[w] = v;\n        if (pre[low[w]]\
-    \ < pre[low[v]]) {\n          low[v] = low[w];\n        }\n      }\n      elif\
-    \ (pre[w] < pre[low[v]]) { low[v] = w; }\n    }\n  };\n\n  pre[s] = 0, V.eb(s);\n\
-    \  dfs(dfs, t);\n  if (len(V) != N) return {};\n  vc<int> nxt(N, -1), prev(N);\n\
-    \  nxt[s] = t, prev[t] = s;\n\n  vc<int> sgn(N);\n  sgn[s] = -1;\n  FOR(i, 2,\
-    \ len(V)) {\n    int v = V[i];\n    int p = par[v];\n    if (sgn[low[v]] == -1)\
-    \ {\n      int q = prev[p];\n      if (q == -1) return {};\n      nxt[q] = v,\
-    \ nxt[v] = p;\n      prev[v] = q, prev[p] = v;\n      sgn[p] = 1;\n    } else\
-    \ {\n      int q = nxt[p];\n      if (q == -1) return {};\n      nxt[p] = v, nxt[v]\
-    \ = q;\n      prev[v] = p, prev[q] = v;\n      sgn[p] = -1;\n    }\n  }\n  vc<int>\
-    \ A = {s};\n  while (A.back() != t) {\n    A.eb(nxt[A.back()]);\n  }\n  // \u4F5C\
-    \u308C\u3066\u3044\u308B\u304B\u5224\u5B9A\n  if (len(A) < N) return {};\n  assert(A[0]\
-    \ == s && A.back() == t);\n  vc<int> rk(N, -1);\n  FOR(i, N) rk[A[i]] = i;\n \
-    \ assert(MIN(rk) != -1);\n  FOR(i, N) {\n    bool l = 0, r = 0;\n    int v = A[i];\n\
-    \    for (auto &e : G[v]) {\n      if (rk[e.to] < rk[v]) l = 1;\n      if (rk[v]\
-    \ < rk[e.to]) r = 1;\n    }\n    if (i > 0 && !l) return {};\n    if (i < N -\
-    \ 1 && !r) return {};\n  }\n  vc<int> res(N);\n  FOR(i, N) res[A[i]] = i;\n  return\
-    \ res;\n}\n\nbool check_st_numbering(Graph<int, 0> G, int s, int t) {\n  int N\
-    \ = G.N;\n  assert(N >= 2);\n  if (s == t) return 0;\n\n  UnionFind uf(N);\n \
-    \ for (auto &e : G.edges) uf.merge(e.frm, e.to);\n  if (uf.n_comp >= 2) return\
-    \ 0;  // disconnected\n\n  // BCT \u306B\u304A\u3044\u3066 st \u30D1\u30B9\u304C\
-    \u3059\u3079\u3066\u306E block \u3092\u901A\u308B\u3053\u3068\u304C\u5FC5\u8981\
-    \n  auto BCT = block_cut(G);\n  auto [dist, par] = bfs_01<int>(BCT, s);\n  vc<int>\
-    \ path = restore_path(par, t);\n\n  vc<int> vis(BCT.N);\n  for (auto &x : path)\
-    \ vis[x] = 1;\n\n  FOR(i, N, BCT.N) {\n    if (!vis[i]) return 0;\n  }\n  return\
-    \ 1;\n}\n#line 7 \"test/2_library_checker/graph/st_numbering.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, M, s, t);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\
-    \  auto p = st_numbering(G, s, t);\n  if (p.empty()) {\n    No();\n  } else {\n\
-    \    Yes();\n    print(p);\n  }\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
-    \  return 0;\n}\n"
+    .\n// \u5B58\u5728\u6761\u4EF6\uFF1ABCT \u3067 loop \u4EE5\u5916\u306E\u5168\u90E8\
+    \u306E\u6210\u5206\u3092\u901A\u308B st \u30D1\u30B9\u304C\u3042\u308B\n// \u4E0D\
+    \u53EF\u80FD\u306A\u3089\u3070 empty \u3092\u304B\u3048\u3059.\ntemplate <typename\
+    \ GT>\nvc<int> st_numbering(GT &G, int s, int t) {\n  static_assert(!GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  if (N == 1) return {0};\n  if (s\
+    \ == t) return {};\n  vc<int> par(N, -1), pre(N, -1), low(N, -1);\n  vc<int> V;\n\
+    \n  auto dfs = [&](auto &dfs, int v) -> void {\n    pre[v] = len(V), V.eb(v);\n\
+    \    low[v] = v;\n    for (auto &e : G[v]) {\n      int w = e.to;\n      if (v\
+    \ == w) continue;\n      if (pre[w] == -1) {\n        dfs(dfs, w);\n        par[w]\
+    \ = v;\n        if (pre[low[w]] < pre[low[v]]) {\n          low[v] = low[w];\n\
+    \        }\n      }\n      elif (pre[w] < pre[low[v]]) { low[v] = w; }\n    }\n\
+    \  };\n\n  pre[s] = 0, V.eb(s);\n  dfs(dfs, t);\n  if (len(V) != N) return {};\n\
+    \  vc<int> nxt(N, -1), prev(N);\n  nxt[s] = t, prev[t] = s;\n\n  vc<int> sgn(N);\n\
+    \  sgn[s] = -1;\n  FOR(i, 2, len(V)) {\n    int v = V[i];\n    int p = par[v];\n\
+    \    if (sgn[low[v]] == -1) {\n      int q = prev[p];\n      if (q == -1) return\
+    \ {};\n      nxt[q] = v, nxt[v] = p;\n      prev[v] = q, prev[p] = v;\n      sgn[p]\
+    \ = 1;\n    } else {\n      int q = nxt[p];\n      if (q == -1) return {};\n \
+    \     nxt[p] = v, nxt[v] = q;\n      prev[v] = p, prev[q] = v;\n      sgn[p] =\
+    \ -1;\n    }\n  }\n  vc<int> A = {s};\n  while (A.back() != t) {\n    A.eb(nxt[A.back()]);\n\
+    \  }\n  // \u4F5C\u308C\u3066\u3044\u308B\u304B\u5224\u5B9A\n  if (len(A) < N)\
+    \ return {};\n  assert(A[0] == s && A.back() == t);\n  vc<int> rk(N, -1);\n  FOR(i,\
+    \ N) rk[A[i]] = i;\n  assert(MIN(rk) != -1);\n  FOR(i, N) {\n    bool l = 0, r\
+    \ = 0;\n    int v = A[i];\n    for (auto &e : G[v]) {\n      if (rk[e.to] < rk[v])\
+    \ l = 1;\n      if (rk[v] < rk[e.to]) r = 1;\n    }\n    if (i > 0 && !l) return\
+    \ {};\n    if (i < N - 1 && !r) return {};\n  }\n  vc<int> res(N);\n  FOR(i, N)\
+    \ res[A[i]] = i;\n  return res;\n}\n#line 7 \"test/2_library_checker/graph/st_numbering.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M, s, t);\n  Graph<int, 0> G(N);\n  G.read_graph(M,\
+    \ 0, 0);\n  auto p = st_numbering(G, s, t);\n  if (p.empty()) {\n    No();\n \
+    \ } else {\n    Yes();\n    print(p);\n  }\n}\n\nsigned main() {\n  INT(T);\n\
+    \  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/st_numbering\"\n\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/st_numbering.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, s, t);\n  Graph<int, 0> G(N);\n  G.read_graph(M,\
@@ -675,8 +667,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/st_numbering.test.cpp
   requiredBy: []
-  timestamp: '2026-08-20 20:55:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-29 08:41:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/st_numbering.test.cpp
 layout: document

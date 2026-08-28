@@ -301,7 +301,7 @@ data:
     \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
     \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
     \ * L2.c + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n\
-    // return: x,y,D. point=(x/D,y/D)\ntemplate <typename T>\ntuple<T, T, T> cross_point_strict(const\
+    // return: x,y,D. point=(x/D,y/D)\ntemplate <typename T>\ntuple<T, T, T> cross_point_exact(const\
     \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
     \ != 0);\n  T x = -L1.c * L2.b + L1.b * L2.c;\n  T y = -L1.a * L2.c + L1.c * L2.a;\n\
     \  if (det < 0) x = -x, y = -y, det = -det;\n  return {x, y, det};\n}\n\n// \u6D6E\
@@ -363,7 +363,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2026-08-19 20:31:51+09:00'
+  timestamp: '2026-08-29 08:41:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_B.test.cpp
