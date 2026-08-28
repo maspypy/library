@@ -7,7 +7,7 @@ ll inversion(vc<T> A) {
   ll ANS = 0;
   FenwickTree_01 bit(N);
   auto I = argsort(A);
-  for (auto& i: I) {
+  for (auto& i : I) {
     ANS += bit.sum_all() - bit.sum(i);
     bit.add(i, 1);
   }
@@ -21,12 +21,12 @@ vi inversion_rotate(vc<T>& A) {
   if (!SMALL) {
     auto key = A;
     UNIQUE(key);
-    for (auto&& x: A) x = LB(key, x);
+    for (auto&& x : A) x = LB(key, x);
   }
   ll K = MAX(A) + 1;
   ll ANS = 0;
   FenwickTree<Monoid_Add<int>> bit(K);
-  for (auto&& x: A) {
+  for (auto&& x : A) {
     ANS += bit.sum(x + 1, K);
     bit.add(x, 1);
   }
@@ -41,7 +41,7 @@ vi inversion_rotate(vc<T>& A) {
 
 // inv[i][j] = inversion A[i:j) であるような (N+1, N+1) テーブル
 template <typename T>
-vvc<int> all_range_inversion(vc<T>& A) {
+vvc<int> all_range_inversion(const vc<T>& A) {
   int N = len(A);
   vv(int, dp, N + 1, N + 1);
   FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {

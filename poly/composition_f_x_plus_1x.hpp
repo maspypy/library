@@ -5,6 +5,7 @@
 // 2^17: 0.1sec, 2^20: 0.8 sec
 template <typename mint>
 vc<mint> composition_f_x_plus_1x(vc<mint> f) {
+  if (f.empty()) return {};
   int n = len(f) - 1;
   f = poly_taylor_shift<mint>(f, 2);
   reverse(all(f));

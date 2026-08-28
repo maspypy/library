@@ -13,7 +13,7 @@ Point<REAL> cross_point(const Line<T> L1, const Line<T> L2) {
 
 // return: x,y,D. point=(x/D,y/D)
 template <typename T>
-tuple<T, T, T> cross_point_strict(const Line<T> L1, const Line<T> L2) {
+tuple<T, T, T> cross_point_exact(const Line<T> L1, const Line<T> L2) {
   T det = L1.a * L2.b - L1.b * L2.a;
   assert(det != 0);
   T x = -L1.c * L2.b + L1.b * L2.c;

@@ -24,7 +24,7 @@ struct Tree {
       build_HLD(r);
   }
 
-  vc<int> heavy_path_at(int v) {
+  vc<int> heavy_path_at(int v) const {
     static_assert(HLD);
     assert(head[v] == v);
     int k = LID[v];
@@ -33,7 +33,7 @@ struct Tree {
     return P;
   }
 
-  int heavy_child(int v) {
+  int heavy_child(int v) const {
     static_assert(HLD);
     if (RID[v] == LID[v] + 1) return -1;
     return V[LID[v] + 1];
@@ -52,22 +52,22 @@ struct Tree {
     return memo_tail[v];
   }
 
-  int e_to_v(int eid) {
+  int e_to_v(int eid) const {
     auto e = G.edges[eid];
     return (parent[e.frm] == e.to ? e.frm : e.to);
   }
-  int v_to_e(int v) { return VtoE[v]; }
-  int get_eid(int u, int v) {
+  int v_to_e(int v) const { return VtoE[v]; }
+  int get_eid(int u, int v) const {
     if (parent[u] != v) swap(u, v);
     assert(parent[u] == v);
     return VtoE[u];
   }
 
-  int ELID(int v) { return 2 * LID[v] - depth[v]; }
-  int ERID(int v) { return 2 * RID[v] - depth[v] - 1; }
+  int ELID(int v) const { return 2 * LID[v] - depth[v]; }
+  int ERID(int v) const { return 2 * RID[v] - depth[v] - 1; }
 
   // 目標地点へ進む個数が k
-  int LA(int v, int k) {
+  int LA(int v, int k) const {
     static_assert(HLD);
     assert(k <= depth[v]);
     while (1) {
@@ -78,7 +78,7 @@ struct Tree {
     }
   }
 
-  int LCA(int u, int v) {
+  int LCA(int u, int v) const {
     static_assert(HLD);
     for (;; v = parent[head[v]]) {
       if (LID[u] > LID[v]) swap(u, v);
@@ -86,14 +86,14 @@ struct Tree {
     }
   }
 
-  int meet(int a, int b, int c) {
+  int meet(int a, int b, int c) const {
     static_assert(HLD);
     return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c);
   }
 
-  int subtree_size(int v) { return RID[v] - LID[v]; }
+  int subtree_size(int v) const { return RID[v] - LID[v]; }
 
-  int subtree_size(int v, int root) {
+  int subtree_size(int v, int root) const {
     static_assert(HLD);
     if (v == root) return N;
     int x = jump(v, root, 1);
@@ -101,22 +101,24 @@ struct Tree {
     return N - RID[x] + LID[x];
   }
 
-  int dist(int a, int b) {
+  int dist(int a, int b) const {
     static_assert(HLD);
     int c = LCA(a, b);
     return depth[a] + depth[b] - 2 * depth[c];
   }
 
-  WT dist_weighted(int a, int b) {
+  WT dist_weighted(int a, int b) const {
     static_assert(HLD);
     int c = LCA(a, b);
     return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];
   }
 
   // a is in b
-  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }
+  bool in_subtree(int a, int b) const {
+    return LID[b] <= LID[a] && LID[a] < RID[b];
+  }
 
-  int jump(int a, int b, ll k) {
+  int jump(int a, int b, ll k) const {
     static_assert(HLD);
     if (k == 1) {
       if (a == b) return -1;
@@ -130,18 +132,18 @@ struct Tree {
     return LA(b, d_ac + d_bc - k);
   }
 
-  vc<int> collect_child(int v) {
+  vc<int> collect_child(int v) const {
     vc<int> res;
     for (auto &&e : G[v])
       if (e.to != parent[v]) res.eb(e.to);
     return res;
   }
 
-  vc<int> collect_subtree(int v) {
+  vc<int> collect_subtree(int v) const {
     return {V.begin() + LID[v], V.begin() + RID[v]};
   }
 
-  vc<int> collect_light(int v) {
+  vc<int> collect_light(int v) const {
     static_assert(HLD);
     vc<int> res;
     for (auto &&e : G[v]) {
@@ -150,7 +152,7 @@ struct Tree {
     return res;
   }
 
-  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) {
+  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) const {
     static_assert(HLD);
     // [始点, 終点] の"閉"区間列。
     vc<pair<int, int>> up, down;
@@ -173,7 +175,8 @@ struct Tree {
 
   // 辺の列の情報 (frm,to,str)
   // str = "heavy_up", "heavy_down", "light_up", "light_down"
-  vc<tuple<int, int, string>> get_path_decomposition_detail(int u, int v) {
+  vc<tuple<int, int, string>> get_path_decomposition_detail(
+      int u, int v) const {
     static_assert(HLD);
     vc<tuple<int, int, string>> up, down;
     while (1) {
@@ -193,7 +196,7 @@ struct Tree {
     return up;
   }
 
-  vc<int> restore_path(int u, int v) {
+  vc<int> restore_path(int u, int v) const {
     vc<int> L, R;
     while (depth[u] > depth[v]) L.eb(u), u = parent[u];
     while (depth[u] < depth[v]) R.eb(v), v = parent[v];
@@ -205,7 +208,7 @@ struct Tree {
 
   // path [a,b] と [c,d] の交わり. 空ならば {-1,-1}.
   // https://codeforces.com/problemset/problem/500/G
-  pair<int, int> path_intersection(int a, int b, int c, int d) {
+  pair<int, int> path_intersection(int a, int b, int c, int d) const {
     static_assert(HLD);
     int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);
     int bc = LCA(b, c), bd = LCA(b, d), cd = LCA(c, d);
@@ -219,7 +222,7 @@ struct Tree {
   // uv path 上で check(v) を満たす最後の v
   // なければ （つまり check(v) が ng ）-1
   template <class F>
-  int max_path(F check, int u, int v) {
+  int max_path(F check, int u, int v) const {
     static_assert(HLD);
     if (!check(u)) return -1;
     auto pd = get_path_decomposition(u, v, false);

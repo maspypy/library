@@ -119,7 +119,7 @@ struct Array_on_Divisors {
 
   // ADD(Ta,Tb)->T : a+b
   template <typename F>
-  void multiplier_zeta(F ADD) {
+  void multiple_zeta(F ADD) {
     ll k = 1;
     for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
@@ -134,7 +134,7 @@ struct Array_on_Divisors {
 
   // SUB(Ta,Tb)->T : a-=b
   template <typename F>
-  void multiplier_mobius(F SUB) {
+  void multiple_mobius(F SUB) {
     ll k = 1;
     for (auto&& [p, e] : pf) {
       ll mod = k * (e + 1);
