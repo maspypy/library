@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/min_cost_flow.hpp
     title: flow/min_cost_flow.hpp
   - icon: ':question:'

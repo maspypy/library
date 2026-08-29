@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: convex/alien_trick.hpp
     title: convex/alien_trick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/monge/monge_shortest_path.hpp
     title: convex/monge/monge_shortest_path.hpp
   _extendedRequiredBy: []
