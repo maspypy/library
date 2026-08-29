@@ -8,14 +8,14 @@ data:
   - icon: ':x:'
     path: string/find_runs.hpp
     title: string/find_runs.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
   - icon: ':warning:'
     path: string/non_dominated_suffix.hpp
     title: string/non_dominated_suffix.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/is_substring.test.cpp
     title: test/1_mytest/is_substring.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test/3_yukicoder/2858.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/z_algorithm.hpp\"\n\ntemplate <typename STRING> \
@@ -63,7 +63,7 @@ data:
   - string/non_dominated_suffix.hpp
   - string/is_substring.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/is_substring.test.cpp
   - test/2_library_checker/string/run_enumerate.test.cpp

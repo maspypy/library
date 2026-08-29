@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/non_adj.test.cpp
     title: test/1_mytest/non_adj.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/abc464/tasks/abc464_g
@@ -67,7 +67,7 @@ data:
   path: convex/path_independent_set.hpp
   requiredBy: []
   timestamp: '2026-07-14 09:59:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/non_adj.test.cpp
 documentation_of: convex/path_independent_set.hpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_monoid.hpp
     title: ds/kdtree/kdtree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -80,84 +80,84 @@ data:
     \  return a;\n}\ntemplate <class T, class Container, class Compare>\nT POP(priority_queue<T,\
     \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
     }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
-    \  return a;\n}\n\ntemplate <typename F>\nll binary_search(F check, ll ok, ll\
-    \ ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while (1)\
-    \ {\n    ll x = (ok + ng) / 2;\n    if (x == ok || x == ng) break;\n    (check(x)\
-    \ ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
-    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
-    \ = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n\
-    }\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  T c\
-    \ = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\
-    template <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  T c = min<T>(a,\
-    \ b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F\
-    \ -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n\
-    \  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return\
-    \ A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int\
-    \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
-    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
-    \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
-    \  iota(all(ids), 0);\n  sort(all(ids),\n      [&](int i, int j) { return (A[i]\
-    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
-    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
-    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
-    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
-    \ &...others) {\n  first.reserve(first.size() + (others.size() + ... + 0));\n\
-    \  (first.insert(first.end(), others.begin(), others.end()), ...);\n}\n\n// i128\n\
-    template <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr i128 abs(T\
-    \ x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128 b) {\n\
-    \  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return abs(a);\n\
-    }\n#endif\n#line 3 \"test/1_mytest/kdtree_monoid.test.cpp\"\n\n#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\
-    \ntemplate <class Monoid, typename XY>\r\nstruct KDTree_Monoid {\r\n  using MX\
-    \ = Monoid;\r\n  using X = typename MX::value_type;\r\n  static_assert(MX::commute);\r\
-    \n\r\n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\
-    \u3064\u8A2D\u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\u3060\u3057\u3001\
-    \u30AF\u30A8\u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\
-    \r\n  vc<tuple<XY, XY, XY, XY>> closed_range;\r\n  vc<X> dat;\r\n  int n;\r\n\r\
-    \n  KDTree_Monoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n\
-    \ > 0);\r\n    int log = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1\
-    \ << (log + 1));\r\n    closed_range.resize(1 << (log + 1));\r\n    build(1, xs,\
-    \ ys, vs);\r\n  }\r\n\r\n  void multiply(XY x, XY y, const X& v) { multiply_rec(1,\
-    \ x, y, v); }\r\n\r\n  // [xl, xr) x [yl, yr)\r\n  X prod(XY xl, XY xr, XY yl,\
-    \ XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl,\
-    \ xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() { return dat[1]; }\r\n\r\nprivate:\r\
-    \n  void build(int idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {\r\n\
-    \    int n = len(xs);\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
-    \n    xmin = ymin = infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i,\
-    \ n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax,\
-    \ x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin\
-    \ == ymax) {\r\n      X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x,\
-    \ v);\r\n      dat[idx] = x;\r\n      return;\r\n    }\r\n\r\n    int m = n /\
-    \ 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\n    if (divx) {\r\n     \
-    \ nth_element(I.begin(), I.begin() + m, I.end(),\r\n                  [xs](int\
-    \ i, int j) { return xs[i] < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(),\
-    \ I.begin() + m, I.end(),\r\n                  [ys](int i, int j) { return ys[i]\
-    \ < ys[j]; });\r\n    }\r\n    xs = rearrange(xs, I), ys = rearrange(ys, I), vs\
-    \ = rearrange(vs, I);\r\n    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\
-    \n          {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);\r\
-    \n    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\r\
-    \n          {vs.begin() + m, vs.end()}, !divx);\r\n    dat[idx] = MX::op(dat[2\
-    \ * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n  inline bool is_leaf(int idx)\
-    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    return xmin\
-    \ == xmax && ymin == ymax;\r\n  }\r\n\r\n  inline bool isin(XY x, XY y, int idx)\
-    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    return (xmin\
-    \ <= x && x <= xmax && ymin <= y && y <= ymax);\r\n  }\r\n\r\n  bool multiply_rec(int\
-    \ idx, XY x, XY y, X v) {\r\n    if (!isin(x, y, idx)) return false;\r\n    if\
-    \ (is_leaf(idx)) {\r\n      dat[idx] = MX::op(dat[idx], v);\r\n      return true;\r\
-    \n    }\r\n    bool done = 0;\r\n    if (multiply_rec(2 * idx + 0, x, y, v)) done\
-    \ = 1;\r\n    if (!done && multiply_rec(2 * idx + 1, x, y, v)) done = 1;\r\n \
-    \   if (done) { dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]); }\r\n \
-    \   return done;\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2)\
-    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    if (x2 <=\
-    \ xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin || ymax < y1) return\
-    \ MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) {\
-    \ return dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\
-    \n                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\r\n#line\
-    \ 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct Monoid_SumMax {\n\
-    \  using value_type = pair<E, E>;\n  using X = value_type;\n  static X op(X x,\
-    \ X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static X from_element(E e)\
-    \ { return {e, e}; }\n  static constexpr X unit() { return {E(0), -infty<E>};\
-    \ }\n  static constexpr bool commute = 1;\n};\n#line 1 \"random/base.hpp\"\n\n\
-    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \  return a;\n}\n\ntemplate <typename F>\ni128 binary_search(F check, i128 ok,\
+    \ i128 ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while\
+    \ (1) {\n    i128 x = (ok + ng) / 2;\n    if (x == ok || x == ng) break;\n   \
+    \ (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\n\ntemplate <typename F>\ndouble\
+    \ binary_search_real(F check, double ok, double ng, int iter = 100) {\n  FOR(iter)\
+    \ {\n    double x = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return\
+    \ (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const\
+    \ S &b) {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return\
+    \ changed;\n}\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b)\
+    \ {\n  T c = min<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n\
+    }\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int>\
+    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char :\
+    \ -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const\
+    \ vc<U> &A, int off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N)\
+    \ { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n\
+    }\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n\
+    \  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n      [&](int\
+    \ i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n\
+    }\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T>\
+    \ &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
+    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
+    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
+    }\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr\
+    \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
+    \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
+    \ abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/kdtree_monoid.test.cpp\"\n\n#line\
+    \ 1 \"ds/kdtree/kdtree_monoid.hpp\"\ntemplate <class Monoid, typename XY>\r\n\
+    struct KDTree_Monoid {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
+    \n  static_assert(MX::commute);\r\n\r\n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\
+    \u308B\u3068\u3001\u9589\u3067\u6301\u3064\u8A2D\u8A08\u65B9\u91DD\u306B\u306A\
+    \u308B\u3002\u305F\u3060\u3057\u3001\u30AF\u30A8\u30EA\u306F\u3044\u3064\u3082\
+    \u306E\u534A\u958B\u3092\u4F7F\u3046\r\n  vc<tuple<XY, XY, XY, XY>> closed_range;\r\
+    \n  vc<X> dat;\r\n  int n;\r\n\r\n  KDTree_Monoid(vc<XY> xs, vc<XY> ys, vc<X>\
+    \ vs) : n(len(xs)) {\r\n    assert(n > 0);\r\n    int log = 0;\r\n    while ((1\
+    \ << log) < n) ++log;\r\n    dat.resize(1 << (log + 1));\r\n    closed_range.resize(1\
+    \ << (log + 1));\r\n    build(1, xs, ys, vs);\r\n  }\r\n\r\n  void multiply(XY\
+    \ x, XY y, const X& v) { multiply_rec(1, x, y, v); }\r\n\r\n  // [xl, xr) x [yl,\
+    \ yr)\r\n  X prod(XY xl, XY xr, XY yl, XY yr) {\r\n    assert(xl <= xr && yl <=\
+    \ yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n  X prod_all()\
+    \ { return dat[1]; }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY> xs, vc<XY>\
+    \ ys, vc<X> vs, bool divx = true) {\r\n    int n = len(xs);\r\n    auto& [xmin,\
+    \ xmax, ymin, ymax] = closed_range[idx];\r\n    xmin = ymin = infty<XY>;\r\n \
+    \   xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i, n) {\r\n      auto x = xs[i],\
+    \ y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin, y), chmax(ymax,\
+    \ y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n      X x = MX::unit();\r\
+    \n      for (auto&& v: vs) x = MX::op(x, v);\r\n      dat[idx] = x;\r\n      return;\r\
+    \n    }\r\n\r\n    int m = n / 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\
+    \n    if (divx) {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\n\
+    \                  [xs](int i, int j) { return xs[i] < xs[j]; });\r\n    } else\
+    \ {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\n              \
+    \    [ys](int i, int j) { return ys[i] < ys[j]; });\r\n    }\r\n    xs = rearrange(xs,\
+    \ I), ys = rearrange(ys, I), vs = rearrange(vs, I);\r\n    build(2 * idx + 0,\
+    \ {xs.begin(), xs.begin() + m},\r\n          {ys.begin(), ys.begin() + m}, {vs.begin(),\
+    \ vs.begin() + m}, !divx);\r\n    build(2 * idx + 1, {xs.begin() + m, xs.end()},\
+    \ {ys.begin() + m, ys.end()},\r\n          {vs.begin() + m, vs.end()}, !divx);\r\
+    \n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n  inline\
+    \ bool is_leaf(int idx) {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
+    \n    return xmin == xmax && ymin == ymax;\r\n  }\r\n\r\n  inline bool isin(XY\
+    \ x, XY y, int idx) {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
+    \n    return (xmin <= x && x <= xmax && ymin <= y && y <= ymax);\r\n  }\r\n\r\n\
+    \  bool multiply_rec(int idx, XY x, XY y, X v) {\r\n    if (!isin(x, y, idx))\
+    \ return false;\r\n    if (is_leaf(idx)) {\r\n      dat[idx] = MX::op(dat[idx],\
+    \ v);\r\n      return true;\r\n    }\r\n    bool done = 0;\r\n    if (multiply_rec(2\
+    \ * idx + 0, x, y, v)) done = 1;\r\n    if (!done && multiply_rec(2 * idx + 1,\
+    \ x, y, v)) done = 1;\r\n    if (done) { dat[idx] = MX::op(dat[2 * idx + 0], dat[2\
+    \ * idx + 1]); }\r\n    return done;\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1,\
+    \ XY x2, XY y1, XY y2) {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
+    \n    if (x2 <= xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin ||\
+    \ ymax < y1) return MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin\
+    \ && ymax < y2) { return dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0,\
+    \ x1, x2, y1, y2),\r\n                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\
+    \n  }\r\n};\r\n#line 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
+    \ Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
+    \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
+    \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
+    \ {E(0), -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 1 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/kdtree_monoid.test.cpp\"\n\n\
@@ -209,8 +209,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 08:55:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-29 09:00:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_monoid.test.cpp
 layout: document

@@ -4,13 +4,13 @@ data:
   - icon: ':warning:'
     path: ds/csr.hpp
     title: ds/csr.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []

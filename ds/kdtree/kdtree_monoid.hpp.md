@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_monoid.test.cpp
     title: test/1_mytest/kdtree_monoid.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/3_yukicoder/1625.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\ntemplate <class Monoid, typename\
@@ -110,7 +110,7 @@ data:
   path: ds/kdtree/kdtree_monoid.hpp
   requiredBy: []
   timestamp: '2023-02-01 23:31:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/kdtree_monoid.test.cpp
   - test/3_yukicoder/1625.test.cpp

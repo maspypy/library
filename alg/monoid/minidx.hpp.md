@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/manhattan_nns.test.cpp
     title: test/1_mytest/manhattan_nns.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/minidx_add.test.cpp
     title: test/1_mytest/minidx_add.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/3_yukicoder/2897.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/minidx.hpp\"\n\ntemplate <typename T, bool tie_is_left\
@@ -47,7 +47,7 @@ data:
   - geo/manhattan_nns.hpp
   - alg/acted_monoid/minidx_add.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/manhattan_nns.test.cpp
   - test/1_mytest/minidx_add.test.cpp

@@ -5,20 +5,20 @@ data:
   - icon: ':warning:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_segtree_sparse.test.cpp
     title: test/1_mytest/dynamic_segtree_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
     title: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test/3_yukicoder/789_3.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/671/D
@@ -214,7 +214,7 @@ data:
   - ds/my_multiset.hpp
   - ds/rmq/range_add_range_max.hpp
   timestamp: '2026-04-05 00:48:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/dynamic_segtree_sparse.test.cpp

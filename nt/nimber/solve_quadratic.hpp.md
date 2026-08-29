@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/xor/basis.hpp
     title: linalg/xor/basis.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/nimber/base.hpp
     title: nt/nimber/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/nimber/nimber_impl.hpp\"\nnamespace NIM_PRODUCT {\nu16\
@@ -190,7 +190,7 @@ data:
   path: nt/nimber/solve_quadratic.hpp
   requiredBy: []
   timestamp: '2026-08-19 06:34:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/nimber.test.cpp
 documentation_of: nt/nimber/solve_quadratic.hpp

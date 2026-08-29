@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/datetime.test.cpp
     title: test/1_mytest/datetime.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/3_yukicoder/779.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/698/E
@@ -95,7 +95,7 @@ data:
   path: datetime/datetime.hpp
   requiredBy: []
   timestamp: '2025-01-06 16:30:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/datetime.test.cpp
   - test/3_yukicoder/2109.test.cpp
