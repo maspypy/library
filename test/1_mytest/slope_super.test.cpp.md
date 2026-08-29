@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -315,15 +315,15 @@ data:
     \u3066\u3044\u305F\u3089 root == empty\n    T x0, x1, a0, y0;\n    int size()\
     \ { return (root ? root->size : 0); }\n  };\n\n  // (L,R,a,b) : [L,R] \u3067 y=ax+b\n\
     \  FUNC segment_func(T L, T R, T a, T b) {\n    return {nullptr, L, R, a, a *\
-    \ L + b};\n  }\n  FUNC from_points(vc<pair<T, T>> &point) {\n    return from_points(len(point),\n\
-    \                       [&](int i) -> pair<T, T> { return point[i]; });\n  }\n\
-    \  template <typename F>\n  FUNC from_points(int N, F f) {\n    vc<T> X(N), Y(N);\n\
-    \    FOR(i, N) tie(X[i], Y[i]) = f(i);\n    if (N == 1) return segment_func(X[0],\
-    \ X[0], 0, Y[0]);\n    T a0 = (Y[1] - Y[0]) / (X[1] - X[0]);\n    T x0 = X[0],\
-    \ x1 = X.back();\n    vc<pair<T, T>> dat;\n    T a = a0;\n    FOR(i, 1, N - 1)\
-    \ {\n      T a1 = (Y[i + 1] - Y[i]) / (X[i + 1] - X[i]);\n      dat.eb(X[i], a1\
-    \ - a), a = a1;\n    }\n    return FUNC{ST.new_node(dat), x0, x1, a0, Y[0]};\n\
-    \  }\n\n  pair<T, T> domain(FUNC &f) { return {f.x0, f.x1}; }\n  T eval(FUNC &f,\
+    \ L + b};\n  }\n  FUNC from_points(vc<pair<T, T>> &point) {\n    return from_points(\n\
+    \        len(point), [&](int i) -> pair<T, T> { return point[i]; });\n  }\n  template\
+    \ <typename F>\n  FUNC from_points(int N, F f) {\n    vc<T> X(N), Y(N);\n    FOR(i,\
+    \ N) tie(X[i], Y[i]) = f(i);\n    if (N == 1) return segment_func(X[0], X[0],\
+    \ 0, Y[0]);\n    T a0 = (Y[1] - Y[0]) / (X[1] - X[0]);\n    T x0 = X[0], x1 =\
+    \ X.back();\n    vc<pair<T, T>> dat;\n    T a = a0;\n    FOR(i, 1, N - 1) {\n\
+    \      T a1 = (Y[i + 1] - Y[i]) / (X[i + 1] - X[i]);\n      dat.eb(X[i], a1 -\
+    \ a), a = a1;\n    }\n    return FUNC{ST.new_node(dat), x0, x1, a0, Y[0]};\n \
+    \ }\n\n  pair<T, T> domain(FUNC &f) { return {f.x0, f.x1}; }\n  T eval(FUNC &f,\
     \ T x) {\n    auto [x0, x1] = domain(f);\n    if (!(x0 <= x && x <= x1)) return\
     \ infty<T>;\n    auto [l, r] = ST.split_max_right(\n        f.root, [&](auto dat)\
     \ -> bool { return dat.fi <= x; });\n    auto [a_sum, xa_sum] = ST.prod(l);\n\
@@ -349,30 +349,29 @@ data:
     \u306B tmp \u3092\u633F\u5165\u3057\u3066\u3044\u3051\u3070\u3044\u3044\n    auto\
     \ dfs = [&](auto &dfs, np root, int l, int r) -> void {\n      if (l == r) return;\n\
     \      root->push();\n      T x = root->x.fi;\n      // [l,m),[m,r)\n      int\
-    \ m = binary_search([&](int i) -> bool { return tmp[i].fi >= x; }, r,\n      \
-    \                      l - 1, 0);\n      if (l < m) {\n        if (!root->l) {\n\
-    \          root->l = ST.new_node({tmp.begin() + l, tmp.begin() + m});\n      \
-    \  } else {\n          dfs(dfs, root->l, l, m);\n        }\n        root->l->p\
-    \ = root;\n      }\n      if (m < r) {\n        if (!root->r) {\n          root->r\
-    \ = ST.new_node({tmp.begin() + m, tmp.begin() + r});\n        } else {\n     \
-    \     dfs(dfs, root->r, m, r);\n        }\n        root->r->p = root;\n      }\n\
-    \      root->update();\n    };\n    dfs(dfs, f.root, 0, len(tmp));\n    return\
-    \ f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n    assert(len(funcs) >= 1);\n \
-    \   T x0 = funcs[0].x0, x1 = funcs[0].x1;\n    for (auto &g : funcs) chmax(x0,\
-    \ g.x0), chmin(x1, g.x1);\n    if (x0 > x1) {\n      for (auto &f : funcs) {\n\
-    \        ST.free_subtree(f.root);\n      }\n      return {nullptr, infty<T>, -infty<T>,\
-    \ 0, 0};\n    }\n    for (auto &f : funcs) f = restrict_domain(f, x0, x1);\n \
-    \   int idx = 0;\n    FOR(i, 1, len(funcs)) if (len(funcs[idx]) < len(funcs[i]))\
-    \ idx = i;\n    swap(funcs[idx], funcs.back());\n    FUNC f = POP(funcs);\n  \
-    \  vc<pair<T, T>> dat;\n    for (auto &g : funcs) {\n      f.y0 += g.y0, f.a0\
-    \ += g.a0;\n      auto tmp = ST.get_all(g.root);\n      concat(dat, tmp);\n  \
-    \    ST.free_subtree(g.root);\n    }\n    sort(all(dat));\n    // \u3042\u3068\
-    \u306F\u5358\u306B dat \u3092\u633F\u5165\u3057\u3066\u3044\u3051\u3070\u3044\u3044\
-    \n    if (!f.root) {\n      f.root = ST.new_node(dat);\n      return f;\n    }\n\
-    \    auto dfs = [&](auto &dfs, np root, int l, int r) -> void {\n      if (l ==\
-    \ r) return;\n      root->push();\n      T x = root->x.fi;\n      // [l,m),[m,r)\n\
-    \      int m = binary_search([&](int i) -> bool { return dat[i].fi >= x; }, r,\n\
-    \                            l - 1, 0);\n      if (l < m) {\n        if (!root->l)\
+    \ m = binary_search(\n          [&](int i) -> bool { return tmp[i].fi >= x; },\
+    \ r, l - 1, 0);\n      if (l < m) {\n        if (!root->l) {\n          root->l\
+    \ = ST.new_node({tmp.begin() + l, tmp.begin() + m});\n        } else {\n     \
+    \     dfs(dfs, root->l, l, m);\n        }\n        root->l->p = root;\n      }\n\
+    \      if (m < r) {\n        if (!root->r) {\n          root->r = ST.new_node({tmp.begin()\
+    \ + m, tmp.begin() + r});\n        } else {\n          dfs(dfs, root->r, m, r);\n\
+    \        }\n        root->r->p = root;\n      }\n      root->update();\n    };\n\
+    \    dfs(dfs, f.root, 0, len(tmp));\n    return f;\n  }\n  FUNC sum_all(vc<FUNC>\
+    \ &funcs) {\n    assert(len(funcs) >= 1);\n    T x0 = funcs[0].x0, x1 = funcs[0].x1;\n\
+    \    for (auto &g : funcs) chmax(x0, g.x0), chmin(x1, g.x1);\n    if (x0 > x1)\
+    \ {\n      for (auto &f : funcs) {\n        ST.free_subtree(f.root);\n      }\n\
+    \      return {nullptr, infty<T>, -infty<T>, 0, 0};\n    }\n    for (auto &f :\
+    \ funcs) f = restrict_domain(f, x0, x1);\n    int idx = 0;\n    FOR(i, 1, len(funcs))\
+    \ if (len(funcs[idx]) < len(funcs[i])) idx = i;\n    swap(funcs[idx], funcs.back());\n\
+    \    FUNC f = POP(funcs);\n    vc<pair<T, T>> dat;\n    for (auto &g : funcs)\
+    \ {\n      f.y0 += g.y0, f.a0 += g.a0;\n      auto tmp = ST.get_all(g.root);\n\
+    \      concat(dat, tmp);\n      ST.free_subtree(g.root);\n    }\n    sort(all(dat));\n\
+    \    // \u3042\u3068\u306F\u5358\u306B dat \u3092\u633F\u5165\u3057\u3066\u3044\
+    \u3051\u3070\u3044\u3044\n    if (!f.root) {\n      f.root = ST.new_node(dat);\n\
+    \      return f;\n    }\n    auto dfs = [&](auto &dfs, np root, int l, int r)\
+    \ -> void {\n      if (l == r) return;\n      root->push();\n      T x = root->x.fi;\n\
+    \      // [l,m),[m,r)\n      int m = binary_search(\n          [&](int i) -> bool\
+    \ { return dat[i].fi >= x; }, r, l - 1, 0);\n      if (l < m) {\n        if (!root->l)\
     \ {\n          root->l = ST.new_node({dat.begin() + l, dat.begin() + m});\n  \
     \      } else {\n          dfs(dfs, root->l, l, m);\n        }\n        root->l->p\
     \ = root;\n      }\n      if (m < r) {\n        if (!root->r) {\n          root->r\
@@ -528,7 +527,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/slope_super.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 03:51:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/slope_super.test.cpp
