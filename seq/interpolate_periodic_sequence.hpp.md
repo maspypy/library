@@ -6,12 +6,12 @@ data:
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/interpolate_periodic_sequence.hpp\"\n\n#line 1 \"string/z_algorithm.hpp\"\
@@ -56,7 +56,7 @@ data:
   path: seq/interpolate_periodic_sequence.hpp
   requiredBy: []
   timestamp: '2026-08-17 09:36:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2858.test.cpp
 documentation_of: seq/interpolate_periodic_sequence.hpp

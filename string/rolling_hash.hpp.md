@@ -15,7 +15,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2102.test.cpp
     title: test/3_yukicoder/2102.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/3_yukicoder/263.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
@@ -114,7 +114,7 @@ data:
   requiredBy:
   - string/basic_substring_structure.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/3_yukicoder/2231.test.cpp

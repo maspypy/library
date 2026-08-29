@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/lct_node_commutative_monoid.hpp
     title: graph/ds/lct_node_commutative_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'

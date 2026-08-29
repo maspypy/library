@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/xor/basis.hpp
     title: linalg/xor/basis.hpp
   - icon: ':question:'
@@ -259,65 +259,67 @@ data:
     \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
     \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
     \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
-    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
-    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
-    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
-    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
-    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
-    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
-    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
-    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
-    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
-    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
-    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
-    \  return x;\n}\n#line 2 \"linalg/xor/basis.hpp\"\n\n/*\n\u4F7F\u3044\u5206\u3051\
-    \u65B9\u91DD\nVector_Space: \u7DDA\u5F62\u7A7A\u9593\u305D\u306E\u3082\u306E\u3092\
-    \u7BA1\u7406\nBasis: \u5143\u306E\u57FA\u5E95\u306B\u3088\u308B\u7DDA\u5F62\u7D50\
-    \u5408\u8868\u793A\u3082\u7BA1\u7406\nbasis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\
-    \u6210\u529F\u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\
-    \u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\narray<UINT, MAX_DIM>\
-    \ rbasis: \u4E0A\u4E09\u89D2\u5316\u3055\u308C\u305F\u57FA\u5E95. [i][i]==1.\n\
-    way<UINT,UINT> rbasis[i] \u3092 basis[j] \u3067\u4F5C\u308B\u65B9\u6CD5\n*/\n\
-    template <int MAX_DIM>\nstruct Basis {\n  static_assert(MAX_DIM <= 128);\n  using\
-    \ UINT = conditional_t<(MAX_DIM <= 32), u32,\n                             conditional_t<(MAX_DIM\
-    \ <= 64), u64, u128>>;\n  int rank;\n  array<UINT, MAX_DIM> basis;\n  array<UINT,\
-    \ MAX_DIM> rbasis;\n  array<UINT, MAX_DIM> way;\n  Basis() : rank(0), basis{},\
-    \ rbasis{}, way{} {}\n\n  // return : (sum==x \u306B\u3067\u304D\u308B\u304B,\
-    \ \u305D\u306E\u65B9\u6CD5)\n  pair<bool, UINT> solve(UINT x) {\n    UINT c =\
-    \ 0;\n    FOR(i, MAX_DIM) {\n      if ((x >> i & 1) && (rbasis[i] != 0)) {\n \
-    \       c ^= way[i], x ^= rbasis[i];\n      }\n    }\n    if (x == 0) return {true,\
-    \ c};\n    return {false, 0};\n  }\n\n  // return : (sum==x \u306B\u3067\u304D\
-    \u308B\u304B, \u305D\u306E\u65B9\u6CD5). false \u306E\u5834\u5408\u306B\u306F\u8FFD\
-    \u52A0\u3059\u308B\n  pair<bool, UINT> solve_or_add(UINT x) {\n    UINT y = x,\
-    \ c = 0;\n    FOR(i, MAX_DIM) {\n      if ((x >> i & 1) && (rbasis[i] != 0)) {\n\
-    \        c ^= way[i], x ^= rbasis[i];\n      }\n    }\n    if (x == 0) return\
-    \ {true, c};\n    int k = lowbit(x);\n    basis[rank] = y, rbasis[k] = x, way[k]\
-    \ = c | UINT(1) << rank, ++rank;\n    return {false, 0};\n  }\n};\n#line 3 \"\
-    nt/nimber/solve_quadratic.hpp\"\n\nnamespace NIMBER_QUADRATIC {\n// x^2+x==a \u3092\
-    \u89E3\u304F. Trace(a)==0 \u304C\u5FC5\u8981.\n// Nimber \u3067\u306F Trace \u306F\
-    \ topbit.\n// topbit==0 \u3067\u3042\u308B\u7A7A\u9593\u304B\u3089\u5076\u6570\
-    \u5168\u4F53\u3078\u306E\u5168\u5358\u5C04\u304C\u3042\u308B.\n// \u3053\u308C\
-    \u3092\u524D\u8A08\u7B97\u3057\u305F\u3044. \u7DDA\u5F62\u5199\u50CF\u306A\u306E\
-    \u3067\u9023\u7ACB\u65B9\u7A0B\u5F0F\u3092\u89E3\u3044\u3066\u57CB\u3081\u8FBC\
-    \u3080\u3060\u3051\u3067\u3088\u3044.\n\nu64 Q[4][65536];\n\nvoid __attribute__((constructor))\
-    \ precalc() {\n  Basis<63> B;\n  FOR(i, 63) {\n    Nimber64 x(u64(1) << (i + 1));\n\
-    \    x = x.square() + x;\n    assert(!B.solve_or_add(x.val).fi);\n  }\n  FOR(k,\
-    \ 63) {\n    int t = k / 16, i = k % 16;\n    u64 X = B.way[k] * 2;\n    FOR(s,\
-    \ 1 << i) Q[t][s | 1 << i] = Q[t][s] ^ X;\n  }\n}\n\nu16 f(u16 a) { return Q[0][a];\
-    \ }\nu32 f(u32 a) { return Q[0][a & 65535] ^ Q[1][a >> 16]; }\nu64 f(u64 a) {\
-    \ return Q[0][a & 65535] ^ Q[1][a >> 16 & 65535] ^ Q[2][a >> 32 & 65535] ^ Q[3][a\
-    \ >> 48 & 65535]; }\n\ntemplate <typename U>\nvc<U> solve_quadratic_1(U a) {\n\
-    \  constexpr int k = numeric_limits<U>::digits - 1;\n  if (a >> k & 1) return\
-    \ {};\n  return {f(a), U(f(a) | 1)};\n}\n} // namespace NIMBER_QUADRATIC\n\ntemplate\
-    \ <typename F>\nvc<F> solve_quadratic(F a, F b) {\n  if (a == F(0)) return {b.sqrt()};\n\
-    \  b /= a.square();\n  vc<F> ANS;\n  for (auto& x: NIMBER_QUADRATIC::solve_quadratic_1(b.val))\
+    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
+    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
+    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
+    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
+    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
+    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
+    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
+    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
+    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
+    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
+    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 2 \"linalg/xor/basis.hpp\"\
+    \n\n/*\n\u4F7F\u3044\u5206\u3051\u65B9\u91DD\nVector_Space: \u7DDA\u5F62\u7A7A\
+    \u9593\u305D\u306E\u3082\u306E\u3092\u7BA1\u7406\nBasis: \u5143\u306E\u57FA\u5E95\
+    \u306B\u3088\u308B\u7DDA\u5F62\u7D50\u5408\u8868\u793A\u3082\u7BA1\u7406\nbasis[i]:\
+    \ i \u756A\u76EE\u306B\u8FFD\u52A0\u6210\u529F\u3057\u305F\u3082\u306E. \u5225\
+    \u306E\u30E9\u30D9\u30EB\u304C\u3042\u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\
+    \u3059\u308B.\narray<UINT, MAX_DIM> rbasis: \u4E0A\u4E09\u89D2\u5316\u3055\u308C\
+    \u305F\u57FA\u5E95. [i][i]==1.\nway<UINT,UINT> rbasis[i] \u3092 basis[j] \u3067\
+    \u4F5C\u308B\u65B9\u6CD5\n*/\ntemplate <int MAX_DIM>\nstruct Basis {\n  static_assert(MAX_DIM\
+    \ <= 128);\n  using UINT = conditional_t<(MAX_DIM <= 32), u32,\n             \
+    \                conditional_t<(MAX_DIM <= 64), u64, u128>>;\n  int rank;\n  array<UINT,\
+    \ MAX_DIM> basis;\n  array<UINT, MAX_DIM> rbasis;\n  array<UINT, MAX_DIM> way;\n\
+    \  Basis() : rank(0), basis{}, rbasis{}, way{} {}\n\n  // return : (sum==x \u306B\
+    \u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5)\n  pair<bool, UINT> solve(UINT\
+    \ x) {\n    UINT c = 0;\n    FOR(i, MAX_DIM) {\n      if ((x >> i & 1) && (rbasis[i]\
+    \ != 0)) {\n        c ^= way[i], x ^= rbasis[i];\n      }\n    }\n    if (x ==\
+    \ 0) return {true, c};\n    return {false, 0};\n  }\n\n  // return : (sum==x \u306B\
+    \u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5). false \u306E\u5834\u5408\u306B\
+    \u306F\u8FFD\u52A0\u3059\u308B\n  pair<bool, UINT> solve_or_add(UINT x) {\n  \
+    \  UINT y = x, c = 0;\n    FOR(i, MAX_DIM) {\n      if ((x >> i & 1) && (rbasis[i]\
+    \ != 0)) {\n        c ^= way[i], x ^= rbasis[i];\n      }\n    }\n    if (x ==\
+    \ 0) return {true, c};\n    int k = lowbit(x);\n    basis[rank] = y, rbasis[k]\
+    \ = x, way[k] = c | UINT(1) << rank, ++rank;\n    return {false, 0};\n  }\n};\n\
+    #line 3 \"nt/nimber/solve_quadratic.hpp\"\n\nnamespace NIMBER_QUADRATIC {\n//\
+    \ x^2+x==a \u3092\u89E3\u304F. Trace(a)==0 \u304C\u5FC5\u8981.\n// Nimber \u3067\
+    \u306F Trace \u306F topbit.\n// topbit==0 \u3067\u3042\u308B\u7A7A\u9593\u304B\
+    \u3089\u5076\u6570\u5168\u4F53\u3078\u306E\u5168\u5358\u5C04\u304C\u3042\u308B\
+    .\n// \u3053\u308C\u3092\u524D\u8A08\u7B97\u3057\u305F\u3044. \u7DDA\u5F62\u5199\
+    \u50CF\u306A\u306E\u3067\u9023\u7ACB\u65B9\u7A0B\u5F0F\u3092\u89E3\u3044\u3066\
+    \u57CB\u3081\u8FBC\u3080\u3060\u3051\u3067\u3088\u3044.\n\nu64 Q[4][65536];\n\n\
+    void __attribute__((constructor)) precalc() {\n  Basis<63> B;\n  FOR(i, 63) {\n\
+    \    Nimber64 x(u64(1) << (i + 1));\n    x = x.square() + x;\n    assert(!B.solve_or_add(x.val).fi);\n\
+    \  }\n  FOR(k, 63) {\n    int t = k / 16, i = k % 16;\n    u64 X = B.way[k] *\
+    \ 2;\n    FOR(s, 1 << i) Q[t][s | 1 << i] = Q[t][s] ^ X;\n  }\n}\n\nu16 f(u16\
+    \ a) { return Q[0][a]; }\nu32 f(u32 a) { return Q[0][a & 65535] ^ Q[1][a >> 16];\
+    \ }\nu64 f(u64 a) { return Q[0][a & 65535] ^ Q[1][a >> 16 & 65535] ^ Q[2][a >>\
+    \ 32 & 65535] ^ Q[3][a >> 48 & 65535]; }\n\ntemplate <typename U>\nvc<U> solve_quadratic_1(U\
+    \ a) {\n  constexpr int k = numeric_limits<U>::digits - 1;\n  if (a >> k & 1)\
+    \ return {};\n  return {f(a), U(f(a) | 1)};\n}\n} // namespace NIMBER_QUADRATIC\n\
+    \ntemplate <typename F>\nvc<F> solve_quadratic(F a, F b) {\n  if (a == F(0)) return\
+    \ {b.sqrt()};\n  b /= a.square();\n  vc<F> ANS;\n  for (auto& x: NIMBER_QUADRATIC::solve_quadratic_1(b.val))\
     \ { ANS.eb(a * F(x)); }\n  return ANS;\n}\n#line 7 \"test/1_mytest/nimber.test.cpp\"\
     \n\ntemplate <typename U>\nvoid test() {\n  using F = Nimber<U>;\n  auto test\
     \ = [&](F x) -> void {\n    assert(x * x == x.square());\n    assert(x.sqrt().square()\
@@ -356,7 +358,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nimber.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-29 09:24:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/nimber.test.cpp

@@ -6,24 +6,24 @@ data:
     path: setfunc/boolean_range_add_point_get.hpp
     title: setfunc/boolean_range_add_point_get.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1602.test.cpp
     title: test/3_yukicoder/1602.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2293.test.cpp
     title: test/3_yukicoder/2293.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2294.test.cpp
     title: test/3_yukicoder/2294.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/xor.hpp\"\n\ntemplate <typename X>\nstruct Monoid_Xor\
@@ -43,7 +43,7 @@ data:
   requiredBy:
   - setfunc/boolean_range_add_point_get.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2294.test.cpp
   - test/3_yukicoder/1602.test.cpp

@@ -32,7 +32,7 @@ data:
   - icon: ':x:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
@@ -66,19 +66,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/scc.test.cpp
     title: test/2_library_checker/graph/scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/twosat.test.cpp
     title: test/2_library_checker/other/twosat.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1170.test.cpp
     title: test/3_yukicoder/1170.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1293.test.cpp
     title: test/3_yukicoder/1293.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1479.test.cpp
     title: test/3_yukicoder/1479.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1744.test.cpp
     title: test/3_yukicoder/1744.test.cpp
   - icon: ':heavy_check_mark:'

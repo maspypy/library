@@ -124,50 +124,52 @@ data:
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
     \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
     \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
-    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
-    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
-    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
-    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
-    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
-    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
-    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
-    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
-    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
-    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
-    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
-    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
-    \  return x;\n}\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\
-    \u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\
-    \u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot\
-    \ {\n    Node node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n\
-    \  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
-    \ chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\
-    \n  template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
-    \    return ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const\
-    \ np x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node)\
-    \ Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
-    \    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
-    \ = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n \
-    \ // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\
-    \u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n\
-    \    free_head = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n\
-    \  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE)); }\n\n  Slot*\
-    \ new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head\
-    \ = free_head->next;\n      return s;\n    }\n\n    if (chunk_id == len(chunks))\
-    \ alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE)\
-    \ {\n      ++chunk_id;\n      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3\
-    \ \"ds/binary_trie.hpp\"\n\n// \u975E\u6C38\u7D9A\u306A\u3089\u3070\u30012 * \u8981\
-    \u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\ntemplate <int LOG, bool PERSISTENT,\
-    \ typename UINT = u64,\n          typename SIZE_TYPE = u32>\nstruct Binary_Trie\
-    \ {\n  using T = SIZE_TYPE;\n  static_assert(is_same_v<T, u32> || is_same_v<T,\
-    \ u64>);\n  static_assert(0 < LOG && LOG <= numeric_limits<UINT>::digits);\n\n\
-    \  struct Node {\n    int width;\n    UINT val;\n    T cnt;\n    Node *l, *r;\n\
+    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
+    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
+    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
+    \ UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*()\
+    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
+    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
+    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
+    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool\
+    \ done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
+    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
+    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
+    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
+    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
+    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 1 \"ds/node_pool.hpp\"\n\
+    // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\
+    \u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\n\
+    struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
+    \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
+    \ = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  template <class... Args>\n  np create(Args&&...\
+    \ args) {\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if\
+    \ (!x) return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n \
+    \   s->next = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\
+    \u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\
+    \u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\
+    \u308B\u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n\
+    \    pos = 0;\n  }\n\n private:\n  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\
+    \ }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
+    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
+    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
+    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
+    \ s;\n  }\n};\n#line 3 \"ds/binary_trie.hpp\"\n\n// \u975E\u6C38\u7D9A\u306A\u3089\
+    \u3070\u30012 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\ntemplate <int\
+    \ LOG, bool PERSISTENT, typename UINT = u64,\n          typename SIZE_TYPE = u32>\n\
+    struct Binary_Trie {\n  using T = SIZE_TYPE;\n  static_assert(is_same_v<T, u32>\
+    \ || is_same_v<T, u64>);\n  static_assert(0 < LOG && LOG <= numeric_limits<UINT>::digits);\n\
+    \n  struct Node {\n    int width;\n    UINT val;\n    T cnt;\n    Node *l, *r;\n\
     \  };\n\n  Node_Pool<Node> pool;\n  using np = Node *;\n\n  void reset() { pool.reset();\
     \ }\n\n  np new_root() { return nullptr; }\n\n  np add(np root, UINT val, T cnt\
     \ = 1) {\n    if (!root) root = new_node(0, 0);\n    assert((val >> LOG) == 0);\n\
@@ -277,7 +279,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/binary_trie.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-29 09:24:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/binary_trie.test.cpp

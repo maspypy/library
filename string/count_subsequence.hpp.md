@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/number_of_subsequences.test.cpp
     title: test/2_library_checker/string/number_of_subsequences.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1493.test.cpp
     title: test/3_yukicoder/1493.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2023/02/26/135340
@@ -38,7 +38,7 @@ data:
   path: string/count_subsequence.hpp
   requiredBy: []
   timestamp: '2026-08-17 12:32:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/number_of_subsequences.test.cpp
   - test/3_yukicoder/1493.test.cpp

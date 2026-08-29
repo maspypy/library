@@ -273,39 +273,42 @@ data:
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
     \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
     \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
-    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
-    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
-    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
-    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
-    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
-    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
-    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
-    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
-    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
-    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
-    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
-    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
-    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
-    \  return x;\n}\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n\
-    \  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
-    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
-    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
-    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
-    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
-    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
-    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
-    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
-    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
-    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
+    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
+    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
+    \ UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*()\
+    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
+    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
+    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
+    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool\
+    \ done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
+    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
+    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
+    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
+    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
+    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 3 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
+    \ <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  if (len(dat) <= n)\
+    \ {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n  \
+    \  dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  if\
+    \ (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int now = len(dat);\n \
+    \   int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1]\
+    \ = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1]\
+    \ * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
     }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
     }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
@@ -452,84 +455,87 @@ data:
     \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
     \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
     \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int\
-    \ k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
-    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
-    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
-    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
-    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
-    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
-    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
-    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
-    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
-    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
-    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
-    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
-    \  return x;\n}\n#line 2 \"ds/fastset.hpp\"\n\n// 64-ary tree\n// space: (N/63)\
-    \ * u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log =\
-    \ 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int\
-    \ size() { return n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto&\
-    \ vs : seg) {\n      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n\
-    \      if (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n    }\n \
-    \ }\n\n  template <typename F>\n  FastSet(int n, F f) {\n    build(n, f);\n  }\n\
-    \n  void build(int m) {\n    seg.clear();\n    n = m;\n    do {\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\n      m = (m + B - 1) / B;\n    } while (m > 1);\n    log =\
-    \ len(seg);\n  }\n  template <typename F>\n  void build(int n, F f) {\n    build(n);\n\
-    \    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i % B); }\n    FOR(h, log - 1)\
-    \ {\n      FOR(i, len(seg[h])) {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
-    \ << (i % B);\n      }\n    }\n  }\n\n  bool operator[](int i) const { return\
-    \ seg[0][i / B] >> (i % B) & 1; }\n  void insert(int i) {\n    assert(0 <= i &&\
-    \ i < n);\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] |= u64(1)\
-    \ << (i % B), i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n  void erase(int\
-    \ i) {\n    assert(0 <= i && i < n);\n    u64 x = 0;\n    for (int h = 0; h <\
-    \ log; h++) {\n      seg[h][i / B] &= ~(u64(1) << (i % B));\n      seg[h][i /\
-    \ B] |= x << (i % B);\n      x = bool(seg[h][i / B]);\n      i /= B;\n    }\n\
-    \  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int\
-    \ i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++)\
-    \ {\n      if (i / B == seg[h].size()) break;\n      u64 d = seg[h][i / B] >>\
-    \ (i % B);\n      if (!d) {\n        i = i / B + 1;\n        continue;\n     \
-    \ }\n      i += lowbit(d);\n      for (int g = h - 1; g >= 0; g--) {\n       \
-    \ i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n      return i;\n   \
-    \ }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int i) {\n    assert(i\
-    \ >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0; h < log; h++) {\n \
-    \     if (i == -1) break;\n      u64 d = seg[h][i / B] << (63 - i % B);\n    \
-    \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
-    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
-    \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
-    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
-    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
-    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
-    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
-    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
-    };\n#line 4 \"ds/segtree/range_assignment_segtree.hpp\"\n\ntemplate <typename\
-    \ Monoid>\nstruct Range_Assignment_SegTree {\n  using MX = Monoid;\n  using X\
-    \ = typename MX::value_type;\n  int n;\n  SegTree<MX> seg;\n  FastSet cut;\n \
-    \ vc<X> dat;\n\n  Range_Assignment_SegTree() {}\n  Range_Assignment_SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  Range_Assignment_SegTree(int n,\
-    \ F f) {\n    build(n, f);\n  }\n  Range_Assignment_SegTree(const vc<X> &v) {\
-    \ build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit();\
-    \ });\n  }\n  void build(const vc<X> &v) {\n    build(len(v), [&](int i) -> X\
-    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    n = m;\n    seg.build(m, f), cut.build(n, [&](int i) -> int { return 1; });\n\
-    \    dat = seg.get_all();\n  }\n\n  X prod(int l, int r) {\n    int a = cut.prev(l),\
-    \ b = cut.next(l), c = cut.prev(r);\n    if (a == c) {\n      return monoid_pow<MX>(dat[a],\
-    \ r - l);\n    };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b - l);\n\
-    \    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n    return\
-    \ MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all(); }\n\
-    \n  void assign(int l, int r, X x) {\n    if (l == r) return;\n    int a = cut.prev(l),\
-    \ b = cut.next(r);\n    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));\n\
-    \    if (r < b) {\n      X y = dat[cut.prev(r)];\n      dat[r] = y, cut.insert(r),\
-    \ seg.set(r, monoid_pow<MX>(y, b - r));\n    }\n    cut.enumerate(l + 1, r,\n\
-    \                  [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i);\
-    \ });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));\n\
-    \  }\n\n  vc<X> get_all() {\n    vc<X> ANS(n);\n    int p = 0;\n    while (p <\
-    \ n) {\n      int q = cut.next(p + 1);\n      FOR(i, p, q) ANS[i] = dat[p];\n\
-    \      p = q;\n    }\n    return ANS;\n  }\n};\n#line 9 \"test/2_library_checker/data_structure/range_set_range_composite.test.cpp\"\
+    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
+    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
+    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
+    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
+    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
+    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
+    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
+    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
+    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
+    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
+    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 2 \"ds/fastset.hpp\"\n\n\
+    // 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32\
+    \ B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
+    \ n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int\
+    \ cur = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n\
+    \      FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur\
+    \ = (cur + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int n,\
+    \ F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n \
+    \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
+    \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
+    \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
+    \ / B] |= u64(f(i)) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
+    \    }\n  }\n\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B)\
+    \ & 1; }\n  void insert(int i) {\n    assert(0 <= i && i < n);\n    for (int h\
+    \ = 0; h < log; h++) {\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\n  \
+    \  }\n  }\n  void add(int i) { insert(i); }\n  void erase(int i) {\n    assert(0\
+    \ <= i && i < n);\n    u64 x = 0;\n    for (int h = 0; h < log; h++) {\n     \
+    \ seg[h][i / B] &= ~(u64(1) << (i % B));\n      seg[h][i / B] |= x << (i % B);\n\
+    \      x = bool(seg[h][i / B]);\n      i /= B;\n    }\n  }\n  void remove(int\
+    \ i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <=\
+    \ n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B\
+    \ == seg[h].size()) break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if\
+    \ (!d) {\n        i = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n\
+    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i\
+    \ / B]);\n      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x],\
+    \ or -1\n  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n\
+    \    for (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d =\
+    \ seg[h][i / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n  \
+    \      continue;\n      }\n      i -= __builtin_clzll(d);\n      for (int g =\
+    \ h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n\
+    \      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int\
+    \ r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int\
+    \ l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
+    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
+    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 4 \"\
+    ds/segtree/range_assignment_segtree.hpp\"\n\ntemplate <typename Monoid>\nstruct\
+    \ Range_Assignment_SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  int n;\n  SegTree<MX> seg;\n  FastSet cut;\n  vc<X> dat;\n\n  Range_Assignment_SegTree()\
+    \ {}\n  Range_Assignment_SegTree(int n) { build(n); }\n  template <typename F>\n\
+    \  Range_Assignment_SegTree(int n, F f) {\n    build(n, f);\n  }\n  Range_Assignment_SegTree(const\
+    \ vc<X> &v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
+    \ X { return MX::unit(); });\n  }\n  void build(const vc<X> &v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m;\n    seg.build(m, f), cut.build(n, [&](int i) -> int {\
+    \ return 1; });\n    dat = seg.get_all();\n  }\n\n  X prod(int l, int r) {\n \
+    \   int a = cut.prev(l), b = cut.next(l), c = cut.prev(r);\n    if (a == c) {\n\
+    \      return monoid_pow<MX>(dat[a], r - l);\n    };\n    assert(b <= c);\n  \
+    \  X x = monoid_pow<MX>(dat[a], b - l);\n    X y = seg.prod(b, c);\n    X z =\
+    \ monoid_pow<MX>(dat[c], r - c);\n    return MX::op(MX::op(x, y), z);\n  }\n\n\
+    \  X prod_all() { return seg.prod_all(); }\n\n  void assign(int l, int r, X x)\
+    \ {\n    if (l == r) return;\n    int a = cut.prev(l), b = cut.next(r);\n    if\
+    \ (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));\n    if (r < b) {\n     \
+    \ X y = dat[cut.prev(r)];\n      dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y,\
+    \ b - r));\n    }\n    cut.enumerate(l + 1, r,\n                  [&](int i) ->\
+    \ void { seg.set(i, MX::unit()), cut.erase(i); });\n    dat[l] = x, cut.insert(l),\
+    \ seg.set(l, monoid_pow<MX>(x, r - l));\n  }\n\n  vc<X> get_all() {\n    vc<X>\
+    \ ANS(n);\n    int p = 0;\n    while (p < n) {\n      int q = cut.next(p + 1);\n\
+    \      FOR(i, p, q) ANS[i] = dat[p];\n      p = q;\n    }\n    return ANS;\n \
+    \ }\n};\n#line 9 \"test/2_library_checker/data_structure/range_set_range_composite.test.cpp\"\
     \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\nusing AFF = typename\
     \ Mono::value_type;\n\nvoid solve() {\n  INT(N, Q);\n\n  Range_Assignment_SegTree<Mono>\
     \ seg(N, [&](int i) -> AFF {\n    INT(a, b);\n    return {mint(a), mint(b)};\n\
@@ -563,7 +569,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-29 09:24:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
