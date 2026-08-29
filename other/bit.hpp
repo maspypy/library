@@ -20,15 +20,18 @@ int lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 
 template <typename T>
 T kth_bit(int k) {
+  assert(0 <= k && k < int(8 * sizeof(T)));
   return T(1) << k;
 }
 template <typename T>
 bool has_kth_bit(T x, int k) {
+  assert(0 <= k && k < int(8 * sizeof(T)));
   return x >> k & 1;
 }
 
 template <typename UINT>
 struct all_bit {
+  static_assert(is_unsigned<UINT>::value);
   UINT s;
   all_bit(UINT s) : s(s) {}
   struct iter {
@@ -43,6 +46,7 @@ struct all_bit {
 
 template <typename UINT>
 struct all_subset {
+  static_assert(is_unsigned<UINT>::value);
   UINT s;
   all_subset(UINT s) : s(s) {}
   struct iter {
@@ -59,7 +63,10 @@ struct all_subset {
   nullptr_t end() const { return nullptr; }
 };
 
-constexpr u64 full_mask(int n) { return n == 64 ? -1ULL : (1ULL << n) - 1; }
+constexpr u64 full_mask(int n) {
+  assert(0 <= n && n <= 64);
+  return n == 64 ? -1ULL : (1ULL << n) - 1;
+}
 
 u64 bit_reverse(u64 x) {
   x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);
