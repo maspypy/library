@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/randomized_bst/rbst_commutative_monoid.hpp
     title: ds/randomized_bst/rbst_commutative_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -51,18 +51,17 @@ data:
     \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
     \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
     template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
-    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
-    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
-    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
-    template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
-    \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -109,7 +108,7 @@ data:
     \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
     \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
     \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
-    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n      [&](int i, int j) { return (A[i]\
     \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
     \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
@@ -239,58 +238,59 @@ data:
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\
     \u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\
-    \u3068\ntemplate <class Node>\nstruct Node_Pool {\n  struct Slot {\n    union\
-    \ alignas(Node) {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n\
-    \    };\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 <<\
-    \ 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used\
-    \ = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n \
-    \ template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
-    \    return ::new (s) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np\
-    \ x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (s) Node(*x);\
-    \  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u547C\u3073\
-    \u51FA\u3057\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
-    \    auto s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
-    \ = s;\n  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty())\
-    \ {\n      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
-    \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
-    \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
-    \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/randomized_bst/rbst_commutative_monoid.hpp\"\
-    \n\ntemplate <typename CommutativeMonoid, bool PERSISTENT>\nstruct RBST_CommutativeMonoid\
-    \ {\n  using Monoid = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\
-    \  static_assert(Monoid::commute);\n\n  struct Node {\n    Node *l, *r;\n    X\
-    \ x, prod;  // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\n\
-    \  Node_Pool<Node> pool;\n  using np = Node *;\n\n  void reset() { pool.reset();\
-    \ }\n\n  np new_node(const X &x) {\n    np c = pool.create();\n    c->l = c->r\
-    \ = nullptr;\n    c->x = x, c->prod = x, c->size = 1, c->rev = 0;\n    return\
-    \ c;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs,\
-    \ u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l +\
-    \ 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs,\
-    \ l, m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
-    \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
-    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np clone(np n) {\n\
-    \    if (!n || !PERSISTENT) return n;\n    return pool.clone(n);\n  }\n\n  np\
-    \ merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n  np merge3(np\
-    \ a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np\
-    \ c, np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np, np> split(np\
-    \ root, u32 k) {\n    if (!root) {\n      assert(k == 0);\n      return {nullptr,\
-    \ nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n    return split_rec(root,\
-    \ k);\n  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n\
-    \    tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n  \
-    \  return {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i,\
-    \ u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto [a,\
-    \ b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  X prod(np root,\
-    \ u32 l, u32 r) {\n    if (l == r) return Monoid::unit();\n    return prod_rec(root,\
-    \ l, r, false);\n  }\n  X prod(np root) { return (root ? root->prod : Monoid::unit());\
-    \ }\n\n  np reverse(np root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r\
-    \ <= root->size);\n    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root,\
-    \ l, r);\n    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    return merge3(nl, nm,\
-    \ nr);\n  }\n\n  np set(np root, u32 k, const X &x) { return set_rec(root, k,\
-    \ x); }\n  np multiply(np root, u32 k, const X &x) { return multiply_rec(root,\
-    \ k, x); }\n  X get(np root, u32 k) { return get_rec(root, k, false); }\n\n  vc<X>\
-    \ get_all(np root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root, bool\
-    \ rev) -> void {\n      if (!root) return;\n      dfs(dfs, (rev ? root->r : root->l),\
+    \u3068\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node node;\n\
+    \    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\
+    \n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n\
+    \  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\n  template\
+    \ <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
+    \    return ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const\
+    \ np x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node)\
+    \ Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
+    \    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
+    \ = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n \
+    \ // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\
+    \u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n\
+    \    free_head = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n\
+    \  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE)); }\n\n  Slot*\
+    \ new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head\
+    \ = free_head->next;\n      return s;\n    }\n\n    if (chunk_id == len(chunks))\
+    \ alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE)\
+    \ {\n      ++chunk_id;\n      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2\
+    \ \"ds/randomized_bst/rbst_commutative_monoid.hpp\"\n\ntemplate <typename CommutativeMonoid,\
+    \ bool PERSISTENT>\nstruct RBST_CommutativeMonoid {\n  using Monoid = CommutativeMonoid;\n\
+    \  using X = typename Monoid::value_type;\n  static_assert(Monoid::commute);\n\
+    \n  struct Node {\n    Node *l, *r;\n    X x, prod;  // rev \u53CD\u6620\u6E08\
+    \n    u32 size;\n    bool rev;\n  };\n\n  Node_Pool<Node> pool;\n  using np =\
+    \ Node *;\n\n  void reset() { pool.reset(); }\n\n  np new_node(const X &x) {\n\
+    \    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x = x, c->prod\
+    \ = x, c->size = 1, c->rev = 0;\n    return c;\n  }\n\n  np new_node(const vc<X>\
+    \ &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l ==\
+    \ r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32\
+    \ m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs,\
+    \ m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r\
+    \ = r_root;\n      update(root);\n      return root;\n    };\n    return dfs(dfs,\
+    \ 0, len(dat));\n  }\n\n  np clone(np n) {\n    if (!n || !PERSISTENT) return\
+    \ n;\n    return pool.clone(n);\n  }\n\n  np merge(np l_root, np r_root) { return\
+    \ merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a,\
+    \ b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
+    \ b), c), d); }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n  \
+    \    assert(k == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0 <=\
+    \ k && k <= root->size);\n    return split_rec(root, k);\n  }\n  tuple<np, np,\
+    \ np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root,\
+    \ r);\n    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n\
+    \  tuple<np, np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n \
+    \   tie(root, d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n\
+    \    return {a, b, c, d};\n  }\n\n  X prod(np root, u32 l, u32 r) {\n    if (l\
+    \ == r) return Monoid::unit();\n    return prod_rec(root, l, r, false);\n  }\n\
+    \  X prod(np root) { return (root ? root->prod : Monoid::unit()); }\n\n  np reverse(np\
+    \ root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n  \
+    \  if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
+    \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    return merge3(nl, nm, nr);\n\
+    \  }\n\n  np set(np root, u32 k, const X &x) { return set_rec(root, k, x); }\n\
+    \  np multiply(np root, u32 k, const X &x) { return multiply_rec(root, k, x);\
+    \ }\n  X get(np root, u32 k) { return get_rec(root, k, false); }\n\n  vc<X> get_all(np\
+    \ root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root, bool rev) ->\
+    \ void {\n      if (!root) return;\n      dfs(dfs, (rev ? root->r : root->l),\
     \ rev ^ root->rev);\n      res.eb(root->x);\n      dfs(dfs, (rev ? root->l : root->r),\
     \ rev ^ root->rev);\n    };\n    dfs(dfs, root, 0);\n    return res;\n  }\n\n\
     \  template <typename F>\n  pair<np, np> split_max_right(np root, const F check)\
@@ -420,8 +420,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_commutative_persistent.test.cpp
   requiredBy: []
-  timestamp: '2026-08-19 06:34:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-29 08:55:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_commutative_persistent.test.cpp
 layout: document

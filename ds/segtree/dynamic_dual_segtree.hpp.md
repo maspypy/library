@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
@@ -14,42 +14,43 @@ data:
     - https://qoj.ac/contest/1516/problem/8240
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
     \u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\
-    \u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  struct Slot {\n\
-    \    union alignas(Node) {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n\
-    \    };\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 <<\
-    \ 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used\
-    \ = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n \
-    \ template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
-    \    return ::new (s) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np\
-    \ x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (s) Node(*x);\
-    \  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u547C\u3073\
-    \u51FA\u3057\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
-    \    auto s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
-    \ = s;\n  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty())\
-    \ {\n      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
-    \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
-    \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
-    \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/segtree/dynamic_dual_segtree.hpp\"\n\
-    \n// Q*2logN \u7A0B\u5EA6\u5FC5\u8981\n// https://qoj.ac/contest/1516/problem/8240\n\
-    template <typename Monoid, bool PERSISTENT>\nstruct Dynamic_Dual_SegTree {\n \
-    \ using MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node {\n\
-    \    Node *l, *r;\n    X x;\n  };\n\n  const ll L0, R0;\n  Node_Pool<Node> pool;\n\
-    \  using np = Node *;\n\n  Dynamic_Dual_SegTree(ll L0, ll R0) : L0(L0), R0(R0)\
-    \ {}\n\n  np new_root() { return new_node(MX::unit()); }\n\n  np new_node(const\
-    \ X x = MX::unit()) {\n    np c = pool.create();\n    c->l = c->r = nullptr, c->x\
-    \ = x;\n    return c;\n  }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0\
-    \ == 0 && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node\
-    \ * {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
-    \      ll m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
-    \ m, r);\n      X x = MX::op(l_root->x, r_root->x);\n      np root = new_node();\n\
-    \      root->l = l_root, root->r = r_root;\n      return root;\n    };\n    return\
-    \ dfs(dfs, 0, len(dat));\n  }\n\n  X get(np root, ll i) {\n    if (!root) return\
-    \ MX::unit();\n    X x = MX::unit();\n    get_rec(root, L0, R0, i, x);\n    return\
-    \ x;\n  }\n\n  np apply(np root, ll l, ll r, const X &x) {\n    if (l == r) return\
-    \ root;\n    assert(root && L0 <= l && l < r && r <= R0);\n    root = clone(root);\n\
-    \    apply_rec(root, L0, R0, l, r, x);\n    return root;\n  }\n\n  // root[l:r)\
+    \u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n\
+    \    Node node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using\
+    \ np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
+    \ chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\
+    \n  template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
+    \    return ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const\
+    \ np x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node)\
+    \ Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
+    \    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
+    \ = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n \
+    \ // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\
+    \u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n\
+    \    free_head = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n\
+    \  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE)); }\n\n  Slot*\
+    \ new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head\
+    \ = free_head->next;\n      return s;\n    }\n\n    if (chunk_id == len(chunks))\
+    \ alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE)\
+    \ {\n      ++chunk_id;\n      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2\
+    \ \"ds/segtree/dynamic_dual_segtree.hpp\"\n\n// Q*2logN \u7A0B\u5EA6\u5FC5\u8981\
+    \n// https://qoj.ac/contest/1516/problem/8240\ntemplate <typename Monoid, bool\
+    \ PERSISTENT>\nstruct Dynamic_Dual_SegTree {\n  using MX = Monoid;\n  using X\
+    \ = typename MX::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x;\n\
+    \  };\n\n  const ll L0, R0;\n  Node_Pool<Node> pool;\n  using np = Node *;\n\n\
+    \  Dynamic_Dual_SegTree(ll L0, ll R0) : L0(L0), R0(R0) {}\n\n  np new_root() {\
+    \ return new_node(MX::unit()); }\n\n  np new_node(const X x = MX::unit()) {\n\
+    \    np c = pool.create();\n    c->l = c->r = nullptr, c->x = x;\n    return c;\n\
+    \  }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0 == 0 && R0 == len(dat));\n\
+    \    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {\n      if (l == r) return\
+    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      ll m = (l +\
+    \ r) / 2;\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs, m, r);\n      X\
+    \ x = MX::op(l_root->x, r_root->x);\n      np root = new_node();\n      root->l\
+    \ = l_root, root->r = r_root;\n      return root;\n    };\n    return dfs(dfs,\
+    \ 0, len(dat));\n  }\n\n  X get(np root, ll i) {\n    if (!root) return MX::unit();\n\
+    \    X x = MX::unit();\n    get_rec(root, L0, R0, i, x);\n    return x;\n  }\n\
+    \n  np apply(np root, ll l, ll r, const X &x) {\n    if (l == r) return root;\n\
+    \    assert(root && L0 <= l && l < r && r <= R0);\n    root = clone(root);\n \
+    \   apply_rec(root, L0, R0, l, r, x);\n    return root;\n  }\n\n  // root[l:r)\
     \ \u3092 other[l:r)*x \u3067\u4E0A\u66F8\u304D\u3057\u305F\u3082\u306E\u3092\u8FD4\
     \u3059\n  np copy_interval(np root, np other, ll l, ll r, X x) {\n    if (root\
     \ == other) return root;\n    root = clone(root);\n    copy_interval_rec(root,\
@@ -141,7 +142,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_dual_segtree.hpp
   requiredBy: []
-  timestamp: '2026-08-10 04:00:31+09:00'
+  timestamp: '2026-08-29 08:51:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/dynamic_dual_segtree.hpp

@@ -1,63 +1,64 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rbst.test.cpp
     title: test/1_mytest/rbst.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
     \u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\
-    \u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  struct Slot {\n\
-    \    union alignas(Node) {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n\
-    \    };\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 <<\
-    \ 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used\
-    \ = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n \
-    \ template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
-    \    return ::new (s) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np\
-    \ x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (s) Node(*x);\
-    \  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u547C\u3073\
-    \u51FA\u3057\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
-    \    auto s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
-    \ = s;\n  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty())\
-    \ {\n      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
-    \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
-    \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
-    \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 2 \"ds/randomized_bst/rbst.hpp\"\n\n// \u5358\
-    \u306B S \u306E\u5143\u306E\u5217\u3092\u7BA1\u7406\u3059\u308B\ntemplate <typename\
-    \ S, bool PERSISTENT>\nstruct RBST {\n  struct Node {\n    Node *l, *r;\n    S\
-    \ s;\n    u32 size;\n    bool rev;\n  };\n\n  Node_Pool<Node> pool;\n  using np\
-    \ = Node *;\n\n  void reset() { pool.reset(); }\n\n  np new_node(const S &s) {\n\
-    \    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->s = s, c->size\
-    \ = 1, c->rev = 0;\n    return c;\n  }\n\n  np new_node(const vc<S> &dat) {\n\
-    \    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return\
-    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l +\
-    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
-    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
-    \      update(root);\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
-    \  }\n\n  np clone(np n) {\n    if (!n || !PERSISTENT) return n;\n    return pool.clone(n);\n\
-    \  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n\
-    \  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np\
-    \ a, np b, np c, np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np,\
-    \ np> split(np root, u32 k) {\n    if (!root) {\n      assert(k == 0);\n     \
-    \ return {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n\
-    \    return split_rec(root, k);\n  }\n  tuple<np, np, np> split3(np root, u32\
-    \ l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n    tie(root,\
-    \ nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np, np, np,\
-    \ np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root,\
-    \ k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\
-    \n  np reverse(np root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n\
-    \    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
+    \u308B\u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n\
+    \    Node node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using\
+    \ np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
+    \ chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\
+    \n  template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
+    \    return ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const\
+    \ np x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node)\
+    \ Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
+    \    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
+    \ = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n \
+    \ // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\
+    \u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n\
+    \    free_head = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n\
+    \  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE)); }\n\n  Slot*\
+    \ new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head\
+    \ = free_head->next;\n      return s;\n    }\n\n    if (chunk_id == len(chunks))\
+    \ alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE)\
+    \ {\n      ++chunk_id;\n      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2\
+    \ \"ds/randomized_bst/rbst.hpp\"\n\n// \u5358\u306B S \u306E\u5143\u306E\u5217\
+    \u3092\u7BA1\u7406\u3059\u308B\ntemplate <typename S, bool PERSISTENT>\nstruct\
+    \ RBST {\n  struct Node {\n    Node *l, *r;\n    S s;\n    u32 size;\n    bool\
+    \ rev;\n  };\n\n  Node_Pool<Node> pool;\n  using np = Node *;\n\n  void reset()\
+    \ { pool.reset(); }\n\n  np new_node(const S &s) {\n    np c = pool.create();\n\
+    \    c->l = c->r = nullptr;\n    c->s = s, c->size = 1, c->rev = 0;\n    return\
+    \ c;\n  }\n\n  np new_node(const vc<S> &dat) {\n    auto dfs = [&](auto &dfs,\
+    \ u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l +\
+    \ 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs,\
+    \ l, m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
+    \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
+    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np clone(np n) {\n\
+    \    if (!n || !PERSISTENT) return n;\n    return pool.clone(n);\n  }\n\n  np\
+    \ merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n  np merge3(np\
+    \ a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np\
+    \ c, np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np, np> split(np\
+    \ root, u32 k) {\n    if (!root) {\n      assert(k == 0);\n      return {nullptr,\
+    \ nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n    return split_rec(root,\
+    \ k);\n  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n\
+    \    tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n  \
+    \  return {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i,\
+    \ u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto [a,\
+    \ b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  np reverse(np\
+    \ root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n  \
+    \  if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
     \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    return merge3(nl, nm, nr);\n\
     \  }\n\n  np set(np root, u32 k, const S &s) { return set_rec(root, k, s); }\n\
     \  S get(np root, u32 k) { return get_rec(root, k, false); }\n\n  vc<S> get_all(np\
@@ -194,8 +195,8 @@ data:
   isVerificationFile: false
   path: ds/randomized_bst/rbst.hpp
   requiredBy: []
-  timestamp: '2025-11-18 00:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-29 08:51:03+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/rbst.test.cpp
 documentation_of: ds/randomized_bst/rbst.hpp

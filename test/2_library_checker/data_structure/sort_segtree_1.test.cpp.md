@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
@@ -57,18 +57,17 @@ data:
     template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
     constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
     \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
-    template <>\nconstexpr double infty<double> = numeric_limits<double>::infinity();\n\
-    template <>\nconstexpr long double infty<long double> =\n    numeric_limits<long\
-    \ double>::infinity();\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing pq_max = priority_queue<T>;\n\
-    template <class T>\nusing pq_min = priority_queue<T, vector<T>, greater<T>>;\n\
-    \n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -115,7 +114,7 @@ data:
     \ off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
     \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
     \ sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n\
-    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n      [&](int i, int j) { return (A[i]\
     \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
     \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
@@ -374,142 +373,142 @@ data:
     \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\
     \u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067\
     \ static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct\
-    \ Node_Pool {\n  struct Slot {\n    union alignas(Node) {\n      Slot* next;\n\
-    \      unsigned char storage[sizeof(Node)];\n    };\n  };\n  using np = Node*;\n\
-    \n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n\
-    \  Slot* cur = nullptr;\n  int cur_used = 0;\n  Slot* free_head = nullptr;\n\n\
-    \  Node_Pool() { alloc_chunk(); }\n\n  template <class... Args>\n  np create(Args&&...\
-    \ args) {\n    Slot* s = new_slot();\n    return ::new (s) Node(forward<Args>(args)...);\n\
+    \ Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot() {}\n\
+    \    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
+    \ = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  template <class... Args>\n  np create(Args&&...\
+    \ args) {\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n\
     \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
-    \    return ::new (s) Node(*x);  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\
-    \u30E9\u30AF\u30BF\u547C\u3073\u51FA\u3057\n  }\n\n  void destroy(np x) {\n  \
-    \  if (!x) return;\n    x->~Node();\n    auto s = reinterpret_cast<Slot*>(x);\n\
-    \    s->next = free_head;\n    free_head = s;\n  }\n\n  void reset() {\n    free_head\
-    \ = nullptr;\n    if (!chunks.empty()) {\n      cur = chunks[0].get();\n     \
-    \ cur_used = 0;\n    }\n  }\n\n private:\n  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
-    \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
-    \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
-    \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 4 \"ds/segtree/sortable_segtree.hpp\"\n\n\
-    template <typename Monoid>\nstruct Sortable_SegTree {\n  using MX = Monoid;\n\
-    \  using X = typename MX::value_type;\n  const int N, KEY_MAX;\n\n  struct Node\
-    \ {\n    X x, rev_x;\n    int size;\n    Node *l, *r;\n  };\n  Node_Pool<Node>\
-    \ pool;\n  using np = Node*;\n\n  FastSet ss;       // \u533A\u9593\u306E\u5DE6\
-    \u7AEF\u5168\u4F53\u3092\u8868\u3059 fastset\n  SegTree<MX> seg;  // \u533A\u9593\
-    \u3092\u96C6\u7D04\u3057\u305F\u5024\u3092\u533A\u9593\u306E\u5DE6\u7AEF\u306B\
-    \u306E\u305B\u305F segtree\n  vector<np> root;  // \u533A\u9593\u306E\u5DE6\u7AEF\
-    \u306B\u3001dynamic segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool>\
-    \ rev;\n\n  Sortable_SegTree(int KEY_MAX, vector<int> key, vector<X> dat)\n  \
-    \    : N(key.size()), KEY_MAX(KEY_MAX), ss(key.size()), seg(dat) {\n    init(key,\
-    \ dat);\n  }\n  void set(int i, int key, const X& x) {\n    assert(key < KEY_MAX);\n\
-    \    split_at(i), split_at(i + 1);\n    rev[i] = 0, root[i] = new_node();\n  \
-    \  set_rec(root[i], 0, KEY_MAX, key, x);\n    seg.set(i, x);\n  }\n\n  X prod_all()\
-    \ { return seg.prod_all(); }\n\n  X prod(int l, int r) {\n    split_at(l), split_at(r);\n\
-    \    return seg.prod(l, r);\n  }\n\n  void sort_inc(int l, int r) {\n    split_at(l),\
-    \ split_at(r);\n    while (1) {\n      np c = root[l];\n      int i = ss.next(l\
-    \ + 1);\n      if (i == r) break;\n      root[l] = merge(c, root[i]);\n      ss.erase(i),\
-    \ seg.set(i, MX::unit());\n    }\n    rev[l] = 0, seg.set(l, root[l]->x);\n  };\n\
-    \n  void sort_dec(int l, int r) {\n    sort_inc(l, r), rev[l] = 1;\n    seg.set(l,\
-    \ root[l]->rev_x);\n  };\n\n  pair<vc<int>, vc<X>> get_all() {\n    vector<int>\
-    \ key;\n    vector<X> dat;\n    key.reserve(N);\n    dat.reserve(N);\n    auto\
-    \ dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n      if (!n)\
-    \ return;\n      if (r == l + 1) {\n        key.eb(l), dat.eb(n->x);\n       \
-    \ return;\n      }\n      int m = (l + r) / 2;\n      if (!rev) {\n        dfs(dfs,\
-    \ n->l, l, m, rev), dfs(dfs, n->r, m, r, rev);\n      }\n      if (rev) {\n  \
-    \      dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev);\n      }\n    };\n\
-    \    for (int i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX,\
-    \ rev[i]);\n    }\n    return {key, dat};\n  }\n\n private:\n  void init(vector<int>&\
-    \ key, vector<X>& dat) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n\
-    \    seg.build(N, [&](int i) -> X { return dat[i]; });\n    for (int i = 0; i\
-    \ < N; ++i) {\n      ss.insert(i);\n      root.eb(new_node(MX::unit()));\n   \
-    \   assert(key[i] < KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i], dat[i]);\n\
-    \    }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  void split_at(int x) {\n    if (x == N || ss[x]) return;\n    int a\
-    \ = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n    if (!rev[a]) {\n \
-    \     auto [nl, nr] = split(root[a], x - a);\n      root[a] = nl, root[x] = nr;\n\
-    \      rev[a] = rev[x] = 0;\n      seg.set(a, root[a]->x), seg.set(x, root[x]->x);\n\
-    \    } else {\n      auto [nl, nr] = split(root[a], b - x);\n      root[a] = nr,\
-    \ root[x] = nl;\n      rev[a] = rev[x] = 1;\n      seg.set(a, root[a]->rev_x),\
-    \ seg.set(x, root[x]->rev_x);\n    }\n  }\n\n  void rebuild() {\n    auto [key,\
-    \ dat] = get_all();\n    pool.reset();\n    init(key, dat);\n  }\n\n  np new_node(X\
-    \ x = MX::unit()) {\n    np c = pool.create();\n    c->x = c->rev_x = x;\n   \
-    \ c->l = c->r = nullptr;\n    c->size = 1;\n    return c;\n  }\n\n  pair<np, np>\
-    \ split(np n, int k) {\n    if (k == 0) {\n      return {nullptr, n};\n    }\n\
-    \    if (k == n->size) {\n      return {n, nullptr};\n    }\n    int s = (n->l\
-    \ ? n->l->size : 0);\n    Node* b = new_node();\n    if (k <= s) {\n      auto\
-    \ [nl, nr] = split(n->l, k);\n      b->l = nr, b->r = n->r, n->l = nl, n->r =\
-    \ nullptr;\n    }\n    if (k > s) {\n      auto [nl, nr] = split(n->r, k - s);\n\
-    \      n->l = n->l, n->r = nl, b->l = nullptr, b->r = nr;\n    }\n    update(n),\
-    \ update(b);\n    return {n, b};\n  }\n\n  np merge(np a, np b) {\n    if (!a)\
-    \ return b;\n    if (!b) return a;\n    a->l = merge(a->l, b->l), a->r = merge(a->r,\
-    \ b->r);\n    update(a);\n    return a;\n  }\n\n  void update(np n) {\n    if\
-    \ (!(n->l) && !(n->r)) {\n      return;\n    }\n    if (!(n->l)) {\n      n->x\
-    \ = n->r->x, n->rev_x = n->r->rev_x, n->size = n->r->size;\n      return;\n  \
-    \  }\n    if (!(n->r)) {\n      n->x = n->l->x, n->rev_x = n->l->rev_x, n->size\
-    \ = n->l->size;\n      return;\n    }\n    n->x = MX::op(n->l->x, n->r->x);\n\
-    \    n->rev_x = MX::op(n->r->rev_x, n->l->rev_x);\n    n->size = n->l->size +\
-    \ n->r->size;\n  }\n\n  void set_rec(np n, int l, int r, int k, const X& x) {\n\
-    \    if (r == l + 1) {\n      n->x = n->rev_x = x;\n      return;\n    }\n   \
-    \ int m = (l + r) / 2;\n    if (k < m) {\n      if (!(n->l)) n->l = new_node();\n\
-    \      set_rec(n->l, l, m, k, x);\n    }\n    if (m <= k) {\n      if (!(n->r))\
-    \ n->r = new_node();\n      set_rec(n->r, m, r, k, x);\n    }\n    update(n);\n\
-    \  }\n};\n#line 1 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\
-    \u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F\
-    \ = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n  static constexpr\
-    \ F op(const F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second\
-    \ * y.first + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n \
-    \   auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static\
-    \ constexpr K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n\
-    \  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr\
-    \ bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
-    \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
-    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
-    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
-    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
-    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
-    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
-    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
-    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
-    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
-    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
-    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate\
-    \ <typename T>\nbool has_kth_bit(T x, int k) {\n  return x >> k & 1;\n}\n\ntemplate\
-    \ <typename UINT>\nstruct all_bit {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n\
-    \  struct iter {\n    UINT s;\n    int operator*() const { return lowbit(s); }\n\
-    \    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t) const {\
-    \ return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset {\n \
-    \ UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n \
-    \   bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return\
-    \ n == 64 ? -1ULL : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x\
-    \ & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x =\
-    \ ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n \
-    \ x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
-    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
-    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 3 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n  assert(0\
-    \ <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  if (len(dat) <= n)\
-    \ {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n  \
-    \  dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  if\
-    \ (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int now = len(dat);\n \
-    \   int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1]\
-    \ = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1]\
-    \ * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    \    return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if\
+    \ (!x) return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n \
+    \   s->next = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\
+    \u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\
+    \u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\
+    \u308B\u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n\
+    \    pos = 0;\n  }\n\n private:\n  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\
+    \ }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
+    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
+    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
+    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
+    \ s;\n  }\n};\n#line 4 \"ds/segtree/sortable_segtree.hpp\"\n\ntemplate <typename\
+    \ Monoid>\nstruct Sortable_SegTree {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  const int N, KEY_MAX;\n\n  struct Node {\n    X x, rev_x;\n\
+    \    int size;\n    Node *l, *r;\n  };\n  Node_Pool<Node> pool;\n  using np =\
+    \ Node*;\n\n  FastSet ss;       // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\u3092\
+    \u8868\u3059 fastset\n  SegTree<MX> seg;  // \u533A\u9593\u3092\u96C6\u7D04\u3057\
+    \u305F\u5024\u3092\u533A\u9593\u306E\u5DE6\u7AEF\u306B\u306E\u305B\u305F segtree\n\
+    \  vector<np> root;  // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic segtree\
+    \ \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_SegTree(int\
+    \ KEY_MAX, vector<int> key, vector<X> dat)\n      : N(key.size()), KEY_MAX(KEY_MAX),\
+    \ ss(key.size()), seg(dat) {\n    init(key, dat);\n  }\n  void set(int i, int\
+    \ key, const X& x) {\n    assert(key < KEY_MAX);\n    split_at(i), split_at(i\
+    \ + 1);\n    rev[i] = 0, root[i] = new_node();\n    set_rec(root[i], 0, KEY_MAX,\
+    \ key, x);\n    seg.set(i, x);\n  }\n\n  X prod_all() { return seg.prod_all();\
+    \ }\n\n  X prod(int l, int r) {\n    split_at(l), split_at(r);\n    return seg.prod(l,\
+    \ r);\n  }\n\n  void sort_inc(int l, int r) {\n    split_at(l), split_at(r);\n\
+    \    while (1) {\n      np c = root[l];\n      int i = ss.next(l + 1);\n     \
+    \ if (i == r) break;\n      root[l] = merge(c, root[i]);\n      ss.erase(i), seg.set(i,\
+    \ MX::unit());\n    }\n    rev[l] = 0, seg.set(l, root[l]->x);\n  };\n\n  void\
+    \ sort_dec(int l, int r) {\n    sort_inc(l, r), rev[l] = 1;\n    seg.set(l, root[l]->rev_x);\n\
+    \  };\n\n  pair<vc<int>, vc<X>> get_all() {\n    vector<int> key;\n    vector<X>\
+    \ dat;\n    key.reserve(N);\n    dat.reserve(N);\n    auto dfs = [&](auto& dfs,\
+    \ np n, int l, int r, bool rev) -> void {\n      if (!n) return;\n      if (r\
+    \ == l + 1) {\n        key.eb(l), dat.eb(n->x);\n        return;\n      }\n  \
+    \    int m = (l + r) / 2;\n      if (!rev) {\n        dfs(dfs, n->l, l, m, rev),\
+    \ dfs(dfs, n->r, m, r, rev);\n      }\n      if (rev) {\n        dfs(dfs, n->r,\
+    \ m, r, rev), dfs(dfs, n->l, l, m, rev);\n      }\n    };\n    for (int i = 0;\
+    \ i < N; ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n   \
+    \ }\n    return {key, dat};\n  }\n\n private:\n  void init(vector<int>& key, vector<X>&\
+    \ dat) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n    seg.build(N,\
+    \ [&](int i) -> X { return dat[i]; });\n    for (int i = 0; i < N; ++i) {\n  \
+    \    ss.insert(i);\n      root.eb(new_node(MX::unit()));\n      assert(key[i]\
+    \ < KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i], dat[i]);\n    }\n  }\n\
+    \n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
+    \  void split_at(int x) {\n    if (x == N || ss[x]) return;\n    int a = ss.prev(x),\
+    \ b = ss.next(a + 1);\n    ss.insert(x);\n    if (!rev[a]) {\n      auto [nl,\
+    \ nr] = split(root[a], x - a);\n      root[a] = nl, root[x] = nr;\n      rev[a]\
+    \ = rev[x] = 0;\n      seg.set(a, root[a]->x), seg.set(x, root[x]->x);\n    }\
+    \ else {\n      auto [nl, nr] = split(root[a], b - x);\n      root[a] = nr, root[x]\
+    \ = nl;\n      rev[a] = rev[x] = 1;\n      seg.set(a, root[a]->rev_x), seg.set(x,\
+    \ root[x]->rev_x);\n    }\n  }\n\n  void rebuild() {\n    auto [key, dat] = get_all();\n\
+    \    pool.reset();\n    init(key, dat);\n  }\n\n  np new_node(X x = MX::unit())\
+    \ {\n    np c = pool.create();\n    c->x = c->rev_x = x;\n    c->l = c->r = nullptr;\n\
+    \    c->size = 1;\n    return c;\n  }\n\n  pair<np, np> split(np n, int k) {\n\
+    \    if (k == 0) {\n      return {nullptr, n};\n    }\n    if (k == n->size) {\n\
+    \      return {n, nullptr};\n    }\n    int s = (n->l ? n->l->size : 0);\n   \
+    \ Node* b = new_node();\n    if (k <= s) {\n      auto [nl, nr] = split(n->l,\
+    \ k);\n      b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n    }\n    if\
+    \ (k > s) {\n      auto [nl, nr] = split(n->r, k - s);\n      n->l = n->l, n->r\
+    \ = nl, b->l = nullptr, b->r = nr;\n    }\n    update(n), update(b);\n    return\
+    \ {n, b};\n  }\n\n  np merge(np a, np b) {\n    if (!a) return b;\n    if (!b)\
+    \ return a;\n    a->l = merge(a->l, b->l), a->r = merge(a->r, b->r);\n    update(a);\n\
+    \    return a;\n  }\n\n  void update(np n) {\n    if (!(n->l) && !(n->r)) {\n\
+    \      return;\n    }\n    if (!(n->l)) {\n      n->x = n->r->x, n->rev_x = n->r->rev_x,\
+    \ n->size = n->r->size;\n      return;\n    }\n    if (!(n->r)) {\n      n->x\
+    \ = n->l->x, n->rev_x = n->l->rev_x, n->size = n->l->size;\n      return;\n  \
+    \  }\n    n->x = MX::op(n->l->x, n->r->x);\n    n->rev_x = MX::op(n->r->rev_x,\
+    \ n->l->rev_x);\n    n->size = n->l->size + n->r->size;\n  }\n\n  void set_rec(np\
+    \ n, int l, int r, int k, const X& x) {\n    if (r == l + 1) {\n      n->x = n->rev_x\
+    \ = x;\n      return;\n    }\n    int m = (l + r) / 2;\n    if (k < m) {\n   \
+    \   if (!(n->l)) n->l = new_node();\n      set_rec(n->l, l, m, k, x);\n    }\n\
+    \    if (m <= k) {\n      if (!(n->r)) n->r = new_node();\n      set_rec(n->r,\
+    \ m, r, k, x);\n    }\n    update(n);\n  }\n};\n#line 1 \"alg/monoid/affine.hpp\"\
+    \n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename\
+    \ K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
+    \  using X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept\
+    \ {\n    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n\
+    \  static constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1)\
+    \ / a;\n    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f,\
+    \ K x) noexcept {\n    return f.first * x + f.second;\n  }\n  static constexpr\
+    \ F unit() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
+    };\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit\
+    \ {\n  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n  \
+    \  int operator*() const { return lowbit(s); }\n    void operator++() { s &= s\
+    \ - 1; }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  UINT s;\n  all_subset(UINT s) : s(s)\
+    \ {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT operator*()\
+    \ const { return t; }\n    void operator++() {\n      done = (t == 0);\n     \
+    \ t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return !done;\
+    \ }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const {\
+    \ return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) { return n == 64 ? -1ULL\
+    \ : (1ULL << n) - 1; }\n\nu64 bit_reverse(u64 x) {\n  x = ((x & 0x5555555555555555ULL)\
+    \ << 1) | ((x >> 1) & 0x5555555555555555ULL);\n  x = ((x & 0x3333333333333333ULL)\
+    \ << 2) | ((x >> 2) & 0x3333333333333333ULL);\n  x = ((x & 0x0f0f0f0f0f0f0f0fULL)\
+    \ << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n  x = ((x & 0x00ff00ff00ff00ffULL)\
+    \ << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n  x = ((x & 0x0000ffff0000ffffULL)\
+    \ << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n  x = (x << 32) | (x >> 32);\n\
+    \  return x;\n}\n#line 3 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n\
+    \  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i\
+    \ - 1] * mint::raw(i);\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\n\
+    mint fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n < 0) return mint(0);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
+    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
+    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
     }\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(1 <= n && n < mod);\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
     }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
@@ -625,8 +624,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2026-08-19 06:34:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-29 08:55:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
 layout: document

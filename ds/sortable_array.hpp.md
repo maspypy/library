@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -94,48 +94,48 @@ data:
     \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
     };\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
     \u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\u308B\
-    \u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  struct Slot {\n   \
-    \ union alignas(Node) {\n      Slot* next;\n      unsigned char storage[sizeof(Node)];\n\
-    \    };\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 <<\
-    \ 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  Slot* cur = nullptr;\n  int cur_used\
-    \ = 0;\n  Slot* free_head = nullptr;\n\n  Node_Pool() { alloc_chunk(); }\n\n \
-    \ template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
-    \    return ::new (s) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np\
-    \ x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (s) Node(*x);\
-    \  // \u30B3\u30D4\u30FC\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u547C\u3073\
-    \u51FA\u3057\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
-    \    auto s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
-    \ = s;\n  }\n\n  void reset() {\n    free_head = nullptr;\n    if (!chunks.empty())\
-    \ {\n      cur = chunks[0].get();\n      cur_used = 0;\n    }\n  }\n\n private:\n\
-    \  void alloc_chunk() {\n    chunks.emplace_back(make_unique<Slot[]>(CHUNK_SIZE));\n\
-    \    cur = chunks.back().get();\n    cur_used = 0;\n  }\n\n  Slot* new_slot()\
-    \ {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head = free_head->next;\n\
-    \      return s;\n    }\n    if (cur_used == CHUNK_SIZE) alloc_chunk();\n    return\
-    \ &cur[cur_used++];\n  }\n};\n#line 3 \"ds/sortable_array.hpp\"\n\n// int \u5217\
-    \u3092\u6271\u3046. key \u306E\u91CD\u8907\u53EF.\nstruct Sortable_Array {\n \
-    \ const int N, KEY_MAX;\n\n  struct Node {\n    int size;\n    Node *l, *r;\n\
-    \  };\n  Node_Pool<Node> pool;\n  using np = Node*;\n\n  FastSet ss;       //\
-    \ \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\u3092\u8868\u3059 fastset\n  vector<np>\
-    \ root;  // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic segtree \u306E node\
-    \ \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_Array(int NODES,\
-    \ int KEY_MAX, vector<int> key)\n      : N(key.size()), KEY_MAX(KEY_MAX), ss(key.size())\
-    \ {\n    init(key);\n  }\n\n  void set(int i, int key) {\n    assert(0 <= key\
-    \ && key < KEY_MAX);\n    split_at(i), split_at(i + 1);\n    rev[i] = 0, root[i]\
-    \ = new_node(0);\n    set_rec(root[i], 0, KEY_MAX, key);\n  }\n\n  void sort_inc(int\
-    \ l, int r) {\n    if (l == r) return;\n    split_at(l), split_at(r);\n    while\
-    \ (1) {\n      np c = root[l];\n      int i = ss.next(l + 1);\n      if (i ==\
-    \ r) break;\n      root[l] = merge(0, KEY_MAX, c, root[i]);\n      ss.erase(i);\n\
-    \    }\n    rev[l] = 0;\n  };\n\n  void sort_dec(int l, int r) {\n    if (l ==\
-    \ r) return;\n    sort_inc(l, r), rev[l] = 1;\n  };\n\n  vc<int> get_all() {\n\
-    \    vector<int> key;\n    key.reserve(N);\n    auto dfs = [&](auto& dfs, np n,\
-    \ int l, int r, bool rev) -> void {\n      if (!n || !n->size) return;\n     \
-    \ if (r == l + 1) {\n        FOR(n->size) key.eb(l);\n        return;\n      }\n\
-    \      int m = (l + r) / 2;\n      if (!rev) {\n        dfs(dfs, n->l, l, m, rev),\
-    \ dfs(dfs, n->r, m, r, rev);\n      }\n      if (rev) {\n        dfs(dfs, n->r,\
-    \ m, r, rev), dfs(dfs, n->l, l, m, rev);\n      }\n    };\n    for (int i = 0;\
-    \ i < N; ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n   \
-    \ }\n    return key;\n  }\n\n  int get(int idx) {\n    auto dfs = [&](auto& dfs,\
-    \ np n, int l, int r, int k) -> int {\n      if (r == l + 1) {\n        return\
+    \u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node\
+    \ node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np =\
+    \ Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
+    \ chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\
+    \n  template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
+    \    return ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const\
+    \ np x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node)\
+    \ Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
+    \    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
+    \ = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n \
+    \ // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\
+    \u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n\
+    \    free_head = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n\
+    \  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE)); }\n\n  Slot*\
+    \ new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head\
+    \ = free_head->next;\n      return s;\n    }\n\n    if (chunk_id == len(chunks))\
+    \ alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE)\
+    \ {\n      ++chunk_id;\n      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3\
+    \ \"ds/sortable_array.hpp\"\n\n// int \u5217\u3092\u6271\u3046. key \u306E\u91CD\
+    \u8907\u53EF.\nstruct Sortable_Array {\n  const int N, KEY_MAX;\n\n  struct Node\
+    \ {\n    int size;\n    Node *l, *r;\n  };\n  Node_Pool<Node> pool;\n  using np\
+    \ = Node*;\n\n  FastSet ss;       // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\
+    \u3092\u8868\u3059 fastset\n  vector<np> root;  // \u533A\u9593\u306E\u5DE6\u7AEF\
+    \u306B\u3001dynamic segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool>\
+    \ rev;\n\n  Sortable_Array(int NODES, int KEY_MAX, vector<int> key)\n      : N(key.size()),\
+    \ KEY_MAX(KEY_MAX), ss(key.size()) {\n    init(key);\n  }\n\n  void set(int i,\
+    \ int key) {\n    assert(0 <= key && key < KEY_MAX);\n    split_at(i), split_at(i\
+    \ + 1);\n    rev[i] = 0, root[i] = new_node(0);\n    set_rec(root[i], 0, KEY_MAX,\
+    \ key);\n  }\n\n  void sort_inc(int l, int r) {\n    if (l == r) return;\n   \
+    \ split_at(l), split_at(r);\n    while (1) {\n      np c = root[l];\n      int\
+    \ i = ss.next(l + 1);\n      if (i == r) break;\n      root[l] = merge(0, KEY_MAX,\
+    \ c, root[i]);\n      ss.erase(i);\n    }\n    rev[l] = 0;\n  };\n\n  void sort_dec(int\
+    \ l, int r) {\n    if (l == r) return;\n    sort_inc(l, r), rev[l] = 1;\n  };\n\
+    \n  vc<int> get_all() {\n    vector<int> key;\n    key.reserve(N);\n    auto dfs\
+    \ = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n      if (!n || !n->size)\
+    \ return;\n      if (r == l + 1) {\n        FOR(n->size) key.eb(l);\n        return;\n\
+    \      }\n      int m = (l + r) / 2;\n      if (!rev) {\n        dfs(dfs, n->l,\
+    \ l, m, rev), dfs(dfs, n->r, m, r, rev);\n      }\n      if (rev) {\n        dfs(dfs,\
+    \ n->r, m, r, rev), dfs(dfs, n->l, l, m, rev);\n      }\n    };\n    for (int\
+    \ i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n\
+    \    }\n    return key;\n  }\n\n  int get(int idx) {\n    auto dfs = [&](auto&\
+    \ dfs, np n, int l, int r, int k) -> int {\n      if (r == l + 1) {\n        return\
     \ l;\n      }\n      int m = (l + r) / 2;\n      int s = (n->l ? n->l->size :\
     \ 0);\n      if (k < s) return dfs(dfs, n->l, l, m, k);\n      return dfs(dfs,\
     \ n->r, m, r, k - s);\n    };\n    int i = ss.prev(idx);\n    int k = idx - i;\n\
@@ -244,8 +244,8 @@ data:
   isVerificationFile: false
   path: ds/sortable_array.hpp
   requiredBy: []
-  timestamp: '2026-08-19 06:34:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-29 08:51:03+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/sortable_array.test.cpp
   - test/3_yukicoder/2809.test.cpp
