@@ -165,15 +165,16 @@ T POP(vc<T> &que) {
 }
 
 template <typename F>
-ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {
+i128 binary_search(F check, i128 ok, i128 ng, bool check_ok = true) {
   if (check_ok) assert(check(ok));
   while (1) {
-    ll x = (ok + ng) / 2;
+    i128 x = (ok + ng) / 2;
     if (x == ok || x == ng) break;
     (check(x) ? ok : ng) = x;
   }
   return ok;
 }
+
 template <typename F>
 double binary_search_real(F check, double ok, double ng, int iter = 100) {
   FOR(iter) {
