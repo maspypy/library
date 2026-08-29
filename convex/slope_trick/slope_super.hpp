@@ -89,8 +89,8 @@ struct Slope_Trick_Super {
     return {nullptr, L, R, a, a * L + b};
   }
   FUNC from_points(vc<pair<T, T>> &point) {
-    return from_points(len(point),
-                       [&](int i) -> pair<T, T> { return point[i]; });
+    return from_points(
+        len(point), [&](int i) -> pair<T, T> { return point[i]; });
   }
   template <typename F>
   FUNC from_points(int N, F f) {
@@ -162,8 +162,8 @@ struct Slope_Trick_Super {
       root->push();
       T x = root->x.fi;
       // [l,m),[m,r)
-      int m = binary_search([&](int i) -> bool { return tmp[i].fi >= x; }, r,
-                            l - 1, 0);
+      int m = binary_search(
+          [&](int i) -> bool { return tmp[i].fi >= x; }, r, l - 1, 0);
       if (l < m) {
         if (!root->l) {
           root->l = ST.new_node({tmp.begin() + l, tmp.begin() + m});
@@ -218,8 +218,8 @@ struct Slope_Trick_Super {
       root->push();
       T x = root->x.fi;
       // [l,m),[m,r)
-      int m = binary_search([&](int i) -> bool { return dat[i].fi >= x; }, r,
-                            l - 1, 0);
+      int m = binary_search(
+          [&](int i) -> bool { return dat[i].fi >= x; }, r, l - 1, 0);
       if (l < m) {
         if (!root->l) {
           root->l = ST.new_node({dat.begin() + l, dat.begin() + m});
