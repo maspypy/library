@@ -1,4 +1,4 @@
-
+// require: all values x satisfy x <= infty<E>
 template <typename E>
 struct Monoid_Min {
   using X = E;
