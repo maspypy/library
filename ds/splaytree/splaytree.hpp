@@ -149,7 +149,7 @@ struct SplayTree {
   X prod(np &root, u32 l, u32 r) {
     assert(root == nullptr || !root->p);
     using Mono = typename Node::Monoid_X;
-    if (l == r) return Mono::unit();
+    if (l == r) return Mono::id();
     assert(0 <= l && l < r && r <= root->size);
     goto_between(root, l, r);
     X res = root->prod;
@@ -160,7 +160,7 @@ struct SplayTree {
   X prod(np &root) {
     assert(root == nullptr || !root->p);
     using Mono = typename Node::Monoid_X;
-    return (root ? root->prod : Mono::unit());
+    return (root ? root->prod : Mono::id());
   }
 
   void apply(np &root, u32 l, u32 r, const A &a) {
@@ -355,7 +355,7 @@ struct SplayTree {
   template <typename F>
   np find_max_right_prod(np root, const F &check) {
     using Mono = typename Node::Monoid_X;
-    X prod = Mono::unit();
+    X prod = Mono::id();
     // 最後に見つけた ok の点、最後に探索した点
     np last_ok = nullptr, last = nullptr;
     while (root) {

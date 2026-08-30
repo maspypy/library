@@ -32,7 +32,7 @@ struct Sparse_Table_on_SegTree {
   X prod(int xl, int xr, int yl, int yr) {
     assert(0 <= xl && xl <= xr && xr <= H);
     assert(0 <= yl && yl <= yr && yr <= W);
-    X res = MX::unit();
+    X res = MX::id();
     xl += H, xr += H;
     while (xl < xr) {
       if (xl & 1) res = MX::op(res, dat[xl++].prod(yl, yr));

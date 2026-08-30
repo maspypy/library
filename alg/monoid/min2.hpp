@@ -30,6 +30,6 @@ struct Monoid_Min2 {
     x.add_element(y.key2, y.min2);
     return x;
   }
-  static constexpr X unit() { return {infty<T>, infty<T>, -1, -1}; }
+  static constexpr X id() { return {infty<T>, infty<T>, -1, -1}; }
   static constexpr bool commute = true;
 };

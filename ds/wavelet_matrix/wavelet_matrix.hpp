@@ -23,7 +23,7 @@ struct Uncompressed_Wavelet_Matrix {
   Uncompressed_Wavelet_Matrix(const vc<Y>& A, int log = -1) {
     static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);
     build(
-        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::unit()}; }, log);
+        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::id()}; }, log);
   }
 
   template <typename F>
@@ -144,7 +144,7 @@ struct Uncompressed_Wavelet_Matrix {
 
   // [L,R) x [0,y)
   T prefix_prod(int L, int R, Y y) const {
-    T ans = Mono::unit();
+    T ans = Mono::id();
     work_prefix(
         [&](int d, int a, int b) { ans = Mono::op(ans, seg[d].prod(a, b)); }, L,
         R, y);
@@ -152,7 +152,7 @@ struct Uncompressed_Wavelet_Matrix {
   }
   // [L,R) x [y1,y2)
   T prod(int L, int R, Y y1, Y y2) const {
-    T ans = Mono::unit();
+    T ans = Mono::id();
     work_range(
         [&](int d, int a, int b) { ans = Mono::op(ans, seg[d].prod(a, b)); }, L,
         R, y1, y2);
@@ -162,7 +162,7 @@ struct Uncompressed_Wavelet_Matrix {
 
   // [L,R) x [0,y)
   pair<int, T> prefix_count_and_prod(int L, int R, Y y) const {
-    pair<int, T> ans = {0, Mono::unit()};
+    pair<int, T> ans = {0, Mono::id()};
     work_prefix(
         [&](int d, int a, int b) {
           ans.fi += b - a;
@@ -173,7 +173,7 @@ struct Uncompressed_Wavelet_Matrix {
   }
   // [L,R) x [y1,y2)
   pair<int, T> count_and_prod(int L, int R, Y y1, Y y2) const {
-    pair<int, T> ans = {0, Mono::unit()};
+    pair<int, T> ans = {0, Mono::id()};
     work_range(
         [&](int d, int a, int b) {
           ans.fi += b - a;
@@ -226,9 +226,9 @@ struct Uncompressed_Wavelet_Matrix {
     assert(limit < infty<Y>);
     int cnt = 0;
     Y y = 0;
-    T t = Mono::unit();
+    T t = Mono::id();
     T t_all = seg[log].prod(L, R);
-    assert(check(0, 0, Mono::unit()));
+    assert(check(0, 0, Mono::id()));
     if (check(limit, R - L, t_all)) {
       y = binary_search([&](Y y) -> bool { return check(y, R - L, t_all); },
                         limit, infty<Y> + 1);
@@ -254,12 +254,12 @@ struct Uncompressed_Wavelet_Matrix {
     assert(limit < infty<Y>);
     int cnt = 0;
     Y y = 0;
-    T t = Mono::unit();
-    T t_all = Mono::unit();
+    T t = Mono::id();
+    T t_all = Mono::id();
     int cnt_all = 0;
     for (auto& [l, r] : LR)
       t_all = Mono::op(t_all, prod_all(l, r)), cnt_all += r - l;
-    assert(check(0, 0, Mono::unit()));
+    assert(check(0, 0, Mono::id()));
     if (check(limit, cnt_all, t_all)) {
       y = binary_search([&](Y y) -> bool { return check(y, cnt_all, t_all); },
                         limit, infty<Y> + 1);
@@ -295,11 +295,11 @@ struct Uncompressed_Wavelet_Matrix {
   // https://qoj.ac/contest/1047/problem/5094
   template <typename F>
   tuple<Y, int, T> min_left_many(F check, vc<pair<int, int>> LR) const {
-    assert(check(limit, 0, Mono::unit()));
+    assert(check(limit, 0, Mono::id()));
     int cnt = 0;
     Y y = limit;
-    T t = Mono::unit();
-    T t_all = Mono::unit();
+    T t = Mono::id();
+    T t_all = Mono::id();
     int cnt_all = 0;
     for (auto& [l, r] : LR)
       t_all = Mono::op(t_all, prod_all(l, r)), cnt_all += r - l;
@@ -380,7 +380,7 @@ struct Compressed_Wavelet_Matrix {
 
     wm.build(n, [&](int i) -> pair<int, T> {
       int k = LB(key, A[i]);
-      return {k, Mono::unit()};
+      return {k, Mono::id()};
     });
   }
 

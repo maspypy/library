@@ -32,7 +32,7 @@ void solve() {
   SegTree<Mono> seg(N);
   vi dat(N - 1);
   vi dat_v(N);                  // 子方向の min
-  vi dat_par(N, Mono::unit());  // 親方向
+  vi dat_par(N, Mono::id());  // 親方向
 
   auto build_at = [&](int v) -> void {
     for (auto&& e : G[v]) {
@@ -43,7 +43,7 @@ void solve() {
   auto reset_at = [&](int v) -> void {
     for (auto&& e : G[v]) {
       if (e.to == par[v]) continue;
-      seg.set(e.to, Mono::unit());
+      seg.set(e.to, Mono::id());
     }
   };
 
@@ -66,7 +66,7 @@ void solve() {
       auto [S, T] = query[q];
       if (S > T) swap(S, T);
       ll base = tree.dist_weighted(S, T);
-      ll best = Mono::unit();
+      ll best = Mono::id();
 
       // S, T での寄り道
       if (S != lca) chmin(best, dat_v[S]);
@@ -87,7 +87,7 @@ void solve() {
         int v = tree.jump(lca, T, 1);
         chmin(best, X.prod_path(T, v));
       }
-      ANS[q] = (best == Mono::unit() ? -1 : base + 2 * best);
+      ANS[q] = (best == Mono::id() ? -1 : base + 2 * best);
     }
     reset_at(lca);
   }

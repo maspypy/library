@@ -7,6 +7,6 @@ struct Monoid_Add_Pair {
     return {x.fi + y.fi, x.se + y.se};
   }
   static constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }
-  static constexpr X unit() { return {0, 0}; }
+  static constexpr X id() { return {0, 0}; }
   static constexpr bool commute = true;
 };

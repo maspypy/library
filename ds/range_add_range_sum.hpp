@@ -9,7 +9,7 @@ struct Range_Add_Range_Sum {
     using value_type = pair<E, E>;
     using X = value_type;
     static X op(X x, X y) { return {MX::op(x.fi, y.fi), MX::op(x.se, y.se)}; }
-    static constexpr X unit() { return {MX::unit(), MX::unit()}; }
+    static constexpr X id() { return {MX::id(), MX::id()}; }
     static constexpr bool commute = 1;
   };
   FenwickTree<Mono> bit;
@@ -23,14 +23,14 @@ struct Range_Add_Range_Sum {
   Range_Add_Range_Sum(const vc<E>& v) { build(v); }
 
   void build(int m) {
-    build(m, [](int i) -> E { return MX::unit(); });
+    build(m, [](int i) -> E { return MX::id(); });
   }
   void build(const vc<E>& v) {
     build(len(v), [&](int i) -> E { return v[i]; });
   }
   template <typename F>
   void build(int m, F f) {
-    bit.build(m, [&](int i) -> pair<E, E> { return {f(i), MX::unit()}; });
+    bit.build(m, [&](int i) -> pair<E, E> { return {f(i), MX::id()}; });
   }
 
   void add(int L, int R, E a) {

@@ -12,7 +12,7 @@ struct Mono {
   using value_type = array<array<mint, 2>, 2>;
   using X = value_type;
   static X op(X L, X R) { return matrix_mul<mint, 2>(L, R); }
-  static constexpr X unit() { return {mint(1), mint(0), mint(0), mint(1)}; }
+  static constexpr X id() { return {mint(1), mint(0), mint(0), mint(1)}; }
   static X inverse(X& x) { return {x[1][1], -x[0][1], -x[1][0], x[0][0]}; }
   static constexpr bool commute = 0;
 };

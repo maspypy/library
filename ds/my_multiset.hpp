@@ -6,7 +6,7 @@ struct My_Multiset {
     using value_type = pair<ll, i128>;  // cnt, sum
     using X = value_type;
     static X op(X x, X y) { return {x.fi + y.fi, x.se + y.se}; }
-    static constexpr X unit() { return {0, 0}; }
+    static constexpr X id() { return {0, 0}; }
     static constexpr bool commute = 1;
   };
   Dynamic_SegTree_Sparse<Mono, false> seg;

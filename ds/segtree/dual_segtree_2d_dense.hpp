@@ -10,10 +10,10 @@ struct Dual_SegTree_2D_Dense {
 
   Dual_SegTree_2D_Dense() : Dual_SegTree_2D_Dense(0, 0) {}
   Dual_SegTree_2D_Dense(int H, int W)
-      : H(H), W(W), dat(4 * H * W, MX::unit()) {}
+      : H(H), W(W), dat(4 * H * W, MX::id()) {}
 
   X get(int x, int y) {
-    X t = MX::unit();
+    X t = MX::id();
     int a = x + H;
     while (a) {
       int b = y + W;
@@ -31,10 +31,10 @@ struct Dual_SegTree_2D_Dense {
       FOR(y, 2 * W) {
         dat[idx(2 * x + 0, y)] = MX::op(dat[idx(2 * x + 0, y)], dat[idx(x, y)]);
         dat[idx(2 * x + 1, y)] = MX::op(dat[idx(2 * x + 1, y)], dat[idx(x, y)]);
-        dat[idx(x, y)] = MX::unit();
+        dat[idx(x, y)] = MX::id();
       }
     }
-    vv(X, res, H, W, MX::unit());
+    vv(X, res, H, W, MX::id());
     FOR(x, H) FOR(y, W) { res[x][y] = dat[idx(x + H, y + W)]; }
     return res;
   }
@@ -42,7 +42,7 @@ struct Dual_SegTree_2D_Dense {
   X apply(int xl, int xr, int yl, int yr, X x) {
     assert(0 <= xl && xl <= xr && xr <= H);
     assert(0 <= yl && yl <= yr && yr <= W);
-    X res = MX::unit();
+    X res = MX::id();
     xl += H, xr += H;
     while (xl < xr) {
       if (xl & 1) apply_x(xl++, yl, yr, x);
@@ -70,6 +70,6 @@ struct Dual_SegTree_2D_Dense {
   void push_x(int x, int k) {
     dat[idx(x, 2 * k + 0)] = MX::op(dat[idx(x, 2 * k + 0)], dat[idx(x, k)]);
     dat[idx(x, 2 * k + 1)] = MX::op(dat[idx(x, 2 * k + 1)], dat[idx(x, k)]);
-    dat[idx(x, k)] = MX::unit();
+    dat[idx(x, k)] = MX::id();
   }
 };

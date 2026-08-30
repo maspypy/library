@@ -10,7 +10,7 @@ void solve() {
 
   // 部分木の大きさ、その中の部分木の大きさの和
   using Data = pi;
-  Data unit = {0, 0};
+  Data id = {0, 0};
   auto fee = [&](Data x, Data y) -> Data { return {x.fi + y.fi, x.se + y.se}; };
   auto fev = [&](Data x, int v) -> Data {
     return {x.fi + 1, x.se + (x.fi + 1)};
@@ -19,7 +19,7 @@ void solve() {
   auto fve = [&](Data x, auto& e) -> Data { return x; };
 
   Tree<decltype(G)> tree(G);
-  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, id);
   ll ANS = 0;
   FOR(v, N) ANS += dp[v].se;
   print(ANS);

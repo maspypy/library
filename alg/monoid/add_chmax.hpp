@@ -17,6 +17,6 @@ struct Monoid_Add_Chmax {
   static X add(E a) { return {a, -infty<E>}; }
   static X chmax(E c) { return {0, c}; }
 
-  static constexpr X unit() { return {0, -infty<E>}; }
+  static constexpr X id() { return {0, -infty<E>}; }
   static constexpr bool commute = 0;
 };

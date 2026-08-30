@@ -29,17 +29,17 @@ struct Prefix_Max_SegTree {
   Prefix_Max_SegTree(const vc<X>& v) { build(v); }
 
   void build(int m) {
-    build(m, [](int i) -> pair<KEY, X> { return {-infty<int>, MX::unit()}; });
+    build(m, [](int i) -> pair<KEY, X> { return {-infty<int>, MX::id()}; });
   }
   template <typename F>
   void build(int m, F f) {
     n = m, log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
-    dat.assign(size << 1, {-infty<int>, MX::unit(), MX::unit()});
+    dat.assign(size << 1, {-infty<int>, MX::id(), MX::id()});
     FOR(i, n) {
       auto [k, x] = f(i);
-      dat[size + i] = {k, x, MX::unit()};
+      dat[size + i] = {k, x, MX::id()};
     }
     FOR_R(i, 1, size) update(i);
   }
@@ -48,7 +48,7 @@ struct Prefix_Max_SegTree {
     int k = p.fi;
     X x = p.se;
     i += size;
-    dat[i] = {k, x, MX::unit()};
+    dat[i] = {k, x, MX::id()};
     while (i > 1) i /= 2, update(i);
   }
 
@@ -57,7 +57,7 @@ struct Prefix_Max_SegTree {
     KEY k = -infty<KEY>;
     vc<int> suff;
     L += size, R += size;
-    X prod = MX::unit();
+    X prod = MX::id();
     while (L < R) {
       if (L & 1) { prod = MX::op(prod, dfs(L, k)), chmax(k, dat[L].max), ++L; }
       if (R & 1) { suff.eb(--R); }
@@ -86,7 +86,7 @@ private:
 
   X dfs(int v, KEY k) {
     // prefix に k を置いた場合の subtree(v) での値
-    if (size <= v) { return (k <= dat[v].max ? dat[v].prod : MX::unit()); }
+    if (size <= v) { return (k <= dat[v].max ? dat[v].prod : MX::id()); }
     if (k <= dat[2 * v + 0].max) { return MX::op(dfs(2 * v + 0, k), dat[v].rprod); }
     return dfs(2 * v + 1, k);
   }

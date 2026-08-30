@@ -25,7 +25,7 @@ struct Convex_Polygon_Edge_Voronoi {
 
   // polygon edge i:
   //   U[i].dot(x) <= H[i]
-  // where U[i] is the unit outward normal.
+  // where U[i] is the id outward normal.
   vc<RP> U;
   vc<Re> H;
 

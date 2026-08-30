@@ -9,6 +9,6 @@ struct Monoid_MaxIdx {
     if (x.se > y.se) swap(x, y);
     return (tie_is_left ? x : y);
   }
-  static constexpr X unit() { return {-infty<T>, -1}; }
+  static constexpr X id() { return {-infty<T>, -1}; }
   static constexpr bool commute = true;
 };

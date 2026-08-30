@@ -48,7 +48,7 @@ void test() {
       for (auto&& [a, b]: query) mo.add(a, b);
 
       if constexpr (!EDGE) {
-        AFF f = Mono::unit();
+        AFF f = Mono::id();
         auto init = [&]() -> void { f = dat[0]; };
         auto add_l = [&](int v) -> void { f = Mono::op(dat[v], f); };
         auto rm_l = [&](int v) -> void { f = Mono::op(Mono::inverse(dat[v]), f); };
@@ -57,7 +57,7 @@ void test() {
         auto ans = [&](int q) -> void { assert(f == TM.prod_path(query[q].fi, query[q].se)); };
         mo.calc_vertex(init, add_l, add_r, rm_l, rm_r, ans);
       } else {
-        AFF f = Mono::unit();
+        AFF f = Mono::id();
         auto get = [&](int a, int b) -> int { return tree.v_to_e((tree.parent[a] == b ? a : b)); };
         auto init = [&]() -> void {};
         auto add_l = [&](int a, int b) -> void { f = Mono::op(dat[get(a, b)], f); };

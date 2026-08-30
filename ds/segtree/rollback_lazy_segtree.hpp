@@ -22,7 +22,7 @@ struct Rollback_Lazy_SegTree {
   Rollback_Lazy_SegTree(const vc<X>& v) { build(v); }
 
   void build(int m) {
-    build(m, [](int i) -> X { return MX::unit(); });
+    build(m, [](int i) -> X { return MX::id(); });
   }
   void build(const vc<X>& v) {
     build(len(v), [&](int i) -> X { return v[i]; });
@@ -32,8 +32,8 @@ struct Rollback_Lazy_SegTree {
     n = m, log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
-    dat = Rollback_Array<X>(vc<X>(size << 1, MX::unit()));
-    laz = Rollback_Array<A>(vc<A>(size, MA::unit()));
+    dat = Rollback_Array<X>(vc<X>(size << 1, MX::id()));
+    laz = Rollback_Array<A>(vc<A>(size, MA::id()));
     FOR(i, n) dat.set(size + i, f(i));
     FOR_R(i, 1, size) update(i);
   }
@@ -69,13 +69,13 @@ struct Rollback_Lazy_SegTree {
 
   X prod(int l, int r) {
     assert(0 <= l && l <= r && r <= n);
-    if (l == r) return MX::unit();
+    if (l == r) return MX::id();
     l += size, r += size;
     for (int i = log; i >= 1; i--) {
       if (((l >> i) << i) != l) push(l >> i);
       if (((r >> i) << i) != r) push((r - 1) >> i);
     }
-    X xl = MX::unit(), xr = MX::unit();
+    X xl = MX::id(), xr = MX::id();
     while (l < r) {
       if (l & 1) xl = MX::op(xl, dat.get(l++));
       if (r & 1) xr = MX::op(dat.get(--r), xr);
@@ -110,11 +110,11 @@ struct Rollback_Lazy_SegTree {
   template <typename F>
   int max_right(const F check, int l) {
     assert(0 <= l && l <= n);
-    assert(check(MX::unit()));
+    assert(check(MX::id()));
     if (l == n) return n;
     l += size;
     for (int i = log; i >= 1; i--) push(l >> i);
-    X sm = MX::unit();
+    X sm = MX::id();
     do {
       while (l % 2 == 0) l >>= 1;
       if (!check(MX::op(sm, dat.get(l)))) {
@@ -135,11 +135,11 @@ struct Rollback_Lazy_SegTree {
   template <typename F>
   int min_left(const F check, int r) {
     assert(0 <= r && r <= n);
-    assert(check(MX::unit()));
+    assert(check(MX::id()));
     if (r == 0) return 0;
     r += size;
     for (int i = log; i >= 1; i--) push((r - 1) >> i);
-    X sm = MX::unit();
+    X sm = MX::id();
     do {
       r--;
       while (r > 1 && (r % 2)) r >>= 1;
@@ -162,9 +162,9 @@ struct Rollback_Lazy_SegTree {
   void rollback(pair<int, int> t) { dat.rollback(t.fi), laz.rollback(t.se); }
 
   void push(int k) {
-    if (laz.get(k) == MA::unit()) return;
+    if (laz.get(k) == MA::id()) return;
     apply_at(2 * k, laz.get(k)), apply_at(2 * k + 1, laz.get(k));
-    laz.set(k, MA::unit());
+    laz.set(k, MA::id());
   }
 
  private:

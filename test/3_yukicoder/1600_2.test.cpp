@@ -63,7 +63,7 @@ void solve() {
     // 木の外に出る移動が必要
     int l = tree.LID[x], r = tree.RID[x];
     int min_i = Mono::op(seg.prod(0, l, l, r), seg.prod(l, r, r, N));
-    if (min_i == Mono::unit()) {
+    if (min_i == Mono::id()) {
       print(-1);
       continue;
     }

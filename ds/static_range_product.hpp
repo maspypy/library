@@ -46,7 +46,7 @@ struct Static_Range_Product {
 
   // O(1) or O(R-L)
   X prod(int L, int R) const {
-    if (L == R) return MX::unit();
+    if (L == R) return MX::id();
     R -= 1;
     int a = L >> LOG, b = R >> LOG;
     if (a < b) {
@@ -62,7 +62,7 @@ struct Static_Range_Product {
 
   template <class F>
   int max_right(const F check, int L) const {
-    assert(0 <= L && L <= N && check(MX::unit()));
+    assert(0 <= L && L <= N && check(MX::id()));
     if (L == N) return N;
     int ok = L, ng = N + 1;
     while (ok + 1 < ng) {
@@ -76,7 +76,7 @@ struct Static_Range_Product {
 
   template <class F>
   int min_left(const F check, int R) const {
-    assert(0 <= R && R <= N && check(MX::unit()));
+    assert(0 <= R && R <= N && check(MX::id()));
     if (R == 0) return 0;
     int ok = R, ng = -1;
     while (ng + 1 < ok) {

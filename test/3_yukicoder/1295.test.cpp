@@ -16,7 +16,7 @@ void solve() {
     int x_mi, x_ma;
     int mi, ma;
   };
-  Data unit = {0, 0, 0, 2, 2, infty<int>, -infty<int>};
+  Data id = {0, 0, 0, 2, 2, infty<int>, -infty<int>};
   auto fee = [&](Data x, Data y) -> Data {
     if (x.mi == infty<int>) return y;
     if (y.mi == infty<int>) return x;
@@ -64,7 +64,7 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_tree();
   Tree<decltype(G)> tree(G);
-  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, id);
 
   FOR(v, N) {
     auto x = dp[v];

@@ -14,7 +14,7 @@ struct Subtree_Hash {
   Subtree_Hash(TREE& tree) : tree(tree) {
     int N = tree.N;
     using T = pair<int, mint>;
-    T unit = {0, mint(1)};
+    T id = {0, mint(1)};
 
     auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };
     auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };
@@ -22,7 +22,7 @@ struct Subtree_Hash {
       return {A.fi, A.se + hash_base(A.fi)};
     };
 
-    Rerooting_DP<TREE, T> DP(tree, f_ee, f_ev, f_ve, unit);
+    Rerooting_DP<TREE, T> DP(tree, f_ee, f_ev, f_ve, id);
     dp.resize(N), dp_1.resize(N), dp_2.resize(N);
     FOR(v, N) dp[v] = DP.dp[v].se.val;
     FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;

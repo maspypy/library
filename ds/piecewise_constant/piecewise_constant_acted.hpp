@@ -40,14 +40,14 @@ struct Node_Piecewise_Constant_Acted {
     lazy = AS::Monoid_A::op(lazy, a);
   }
   void push() {
-    if (lazy != Monoid_A::unit()) {
+    if (lazy != Monoid_A::id()) {
       if (l) {
         l->apply(lazy);
       }
       if (r) {
         r->apply(lazy);
       }
-      lazy = Monoid_A::unit();
+      lazy = Monoid_A::id();
     }
     if (rev) {
       if (l) {

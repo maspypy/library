@@ -22,9 +22,9 @@ struct LCT_Node_Commutative_Monoid {
         idx(i),
         size(1),
         rev(0),
-        x(MX::unit()),
-        vx(MX::unit()),
-        mid(MX::unit()) {}
+        x(MX::id()),
+        vx(MX::id()),
+        mid(MX::id()) {}
 
   void update() {
     size = 1;

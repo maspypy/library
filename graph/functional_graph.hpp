@@ -18,9 +18,9 @@ struct Functional_Graph {
 
   Functional_Graph() {}
   Functional_Graph(int N)
-      : N(N), M(0), TO(N, -1), wt(N, MX::unit()), root(N, -1) {}
+      : N(N), M(0), TO(N, -1), wt(N, MX::id()), root(N, -1) {}
 
-  void add(int a, int b, X c = MX::unit()) {
+  void add(int a, int b, X c = MX::id()) {
     assert(0 <= a && a < N);
     assert(TO[a] == -1);
     ++M;
@@ -44,7 +44,7 @@ struct Functional_Graph {
     }
     G.build();
     Tree<Graph<int, 1>> tree(G, N);
-    dp.assign(N, MX::unit());
+    dp.assign(N, MX::id());
     FOR(i, 1, N + 1) {
       int v = tree.V[i];
       int p = tree.parent[v];
@@ -99,7 +99,7 @@ struct Functional_Graph {
   // check(to, prod). infty<ll> 以下. step をかえす
   template <typename TREE, typename F>
   ll max_jump(TREE& tree, F check, int v) {
-    X prod = MX::unit();
+    X prod = MX::id();
     assert(check(v, prod));
     ll ans = 0;
     if (check(root[v], dp[v])) {

@@ -22,7 +22,7 @@ struct Dynamic_Lazy_SegTree {
   using np = Node *;
 
   Dynamic_Lazy_SegTree(
-      ll L0, ll R0, F default_prod = [](ll, ll) -> X { return MX::unit(); })
+      ll L0, ll R0, F default_prod = [](ll, ll) -> X { return MX::id(); })
       : default_prod(default_prod), L0(L0), R0(R0) {}
 
   np new_root() { return new_node(L0, R0); }
@@ -30,7 +30,7 @@ struct Dynamic_Lazy_SegTree {
   np new_node(const X x) {
     np c = pool.create();
     c->l = c->r = nullptr;
-    c->x = x, c->lazy = MA::unit();
+    c->x = x, c->lazy = MA::id();
     return c;
   }
 
@@ -56,10 +56,10 @@ struct Dynamic_Lazy_SegTree {
   }
 
   X prod(np root, ll l, ll r) {
-    if (l == r || !root) return MX::unit();
+    if (l == r || !root) return MX::id();
     assert(L0 <= l && l < r && r <= R0);
-    X x = MX::unit();
-    prod_rec(root, L0, R0, l, r, x, MA::unit());
+    X x = MX::id();
+    prod_rec(root, L0, R0, l, r, x, MA::id());
     return x;
   }
 
@@ -83,15 +83,15 @@ struct Dynamic_Lazy_SegTree {
 
   template <typename F>
   ll max_right(np root, F check, ll L) {
-    assert(root && L0 <= L && L <= R0 && check(MX::unit()));
-    X x = MX::unit();
+    assert(root && L0 <= L && L <= R0 && check(MX::id()));
+    X x = MX::id();
     return max_right_rec(root, check, L0, R0, L, x);
   }
 
   template <typename F>
   ll min_left(np root, F check, ll R) {
-    assert(root && L0 <= R && R <= R0 && check(MX::unit()));
-    X x = MX::unit();
+    assert(root && L0 <= R && R <= R0 && check(MX::id()));
+    X x = MX::id();
     return min_left_rec(root, check, L0, R0, R, x);
   }
 
@@ -109,7 +109,7 @@ struct Dynamic_Lazy_SegTree {
       dfs(dfs, c->l, l, m, a);
       dfs(dfs, c->r, m, r, a);
     };
-    dfs(dfs, root, L0, R0, MA::unit());
+    dfs(dfs, root, L0, R0, MA::id());
   }
 
   void reset() { pool.reset(); }
@@ -131,14 +131,14 @@ struct Dynamic_Lazy_SegTree {
   void push(np c, ll l, ll r) {
     assert(r - l >= 2);
     ll m = (l + r) / 2;
-    if (c->lazy == MA::unit()) return;
+    if (c->lazy == MA::id()) return;
     c->l = (c->l ? clone(c->l) : new_node(l, m));
     c->l->x = AM::act(c->l->x, c->lazy, m - l);
     c->l->lazy = MA::op(c->l->lazy, c->lazy);
     c->r = (c->r ? clone(c->r) : new_node(m, r));
     c->r->x = AM::act(c->r->x, c->lazy, r - m);
     c->r->lazy = MA::op(c->r->lazy, c->lazy);
-    c->lazy = MA::unit();
+    c->lazy = MA::id();
   }
 
   void copy_interval_rec(np c, np d, ll l, ll r, ll ql, ll qr, A a) {
@@ -165,7 +165,7 @@ struct Dynamic_Lazy_SegTree {
     c->l->lazy = MA::op(c->l->lazy, c->lazy);
     c->r->x = AM::act(c->r->x, c->lazy, r - m);
     c->r->lazy = MA::op(c->r->lazy, c->lazy);
-    c->lazy = MA::unit();
+    c->lazy = MA::id();
     if (d) a = MA::op(d->lazy, a);
     copy_interval_rec(c->l, (d && d->l ? d->l : nullptr), l, m, ql, qr, a);
     copy_interval_rec(c->r, (d && d->r ? d->r : nullptr), m, r, ql, qr, a);
@@ -177,7 +177,7 @@ struct Dynamic_Lazy_SegTree {
     if (r == l + 1) {
       c = clone(c);
       c->x = x;
-      c->lazy = MA::unit();
+      c->lazy = MA::id();
       return c;
     }
     push(c, l, r);
@@ -199,7 +199,7 @@ struct Dynamic_Lazy_SegTree {
     if (r == l + 1) {
       c = clone(c);
       c->x = MX::op(c->x, x);
-      c->lazy = MA::unit();
+      c->lazy = MA::id();
       return c;
     }
     push(c, l, r);

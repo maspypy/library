@@ -18,7 +18,7 @@
 template <typename GT, typename T, typename F1, typename F2, typename F3,
           typename F4>
 vc<T> O_NK_rerooting_tree_dp(GT& G, int K, F1 f_ee, F2 f_ev, F3 f_ve,
-                             F4 get_ANS, const T unit) {
+                             F4 get_ANS, const T id) {
   int N = G.N;
   vc<int> V(N), par(N, -1), sz(N, 1);
   vvc<int> ch(N);
@@ -53,7 +53,7 @@ vc<T> O_NK_rerooting_tree_dp(GT& G, int K, F1 f_ee, F2 f_ev, F3 f_ve,
   // calc dp_down, dp_prefix
   FOR_R(i, N) {
     int v = V[i];
-    D X(0, 1, unit);
+    D X(0, 1, id);
     int n = 0;
     for (int c : ch[v]) {
       dp_prefix[c] = X;
@@ -65,7 +65,7 @@ vc<T> O_NK_rerooting_tree_dp(GT& G, int K, F1 f_ee, F2 f_ev, F3 f_ve,
     dp_down[v] = X;
   }
 
-  dp_up[0] = D(0, 1, unit);
+  dp_up[0] = D(0, 1, id);
   FOR(i, N) {
     int v = V[i];
     int nc = len(ch[v]);

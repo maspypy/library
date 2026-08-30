@@ -14,7 +14,7 @@ struct Mono {
     auto& [y0, y1, y2] = y;
     return {x0 + y0, x1 + y1, x2 + y2};
   }
-  static constexpr X unit() { return {mint(0), mint(0), mint(0)}; }
+  static constexpr X id() { return {mint(0), mint(0), mint(0)}; }
   static constexpr bool commute = true;
 };
 

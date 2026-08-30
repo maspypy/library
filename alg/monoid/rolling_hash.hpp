@@ -18,6 +18,6 @@ struct Monoid_Rolling_Hash {
     return {get_param(), x};
   }
   static X op(X x, X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }
-  static constexpr X unit() { return {1, 0}; }
+  static constexpr X id() { return {1, 0}; }
   static constexpr bool commute = false;
 };

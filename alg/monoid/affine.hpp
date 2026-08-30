@@ -16,6 +16,6 @@ struct Monoid_Affine {
   static constexpr K eval(const F &f, K x) noexcept {
     return f.first * x + f.second;
   }
-  static constexpr F unit() { return {K(1), K(0)}; }
+  static constexpr F id() { return {K(1), K(0)}; }
   static constexpr bool commute = false;
 };

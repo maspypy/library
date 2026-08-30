@@ -7,7 +7,7 @@ struct Monoid_Add_Array {
     FOR(i, K) x[i] += y[i];
     return x;
   }
-  static constexpr X unit() { return X{}; }
+  static constexpr X id() { return X{}; }
   static constexpr X inverse(X x) {
     for (auto& v: x) v = -v;
     return x;

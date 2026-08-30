@@ -14,7 +14,7 @@ struct Xor_Disjoint_Sparse_Table {
   Xor_Disjoint_Sparse_Table(const vc<X>& v) { build(v); }
 
   void build(int m) {
-    build(m, [](int i) -> X { return MX::unit(); });
+    build(m, [](int i) -> X { return MX::id(); });
   }
   void build(const vc<X>& v) {
     build(len(v), [&](int i) -> X { return v[i]; });
@@ -29,7 +29,7 @@ struct Xor_Disjoint_Sparse_Table {
     dat[0].reserve(1 << log);
     FOR(i, 1 << log) dat[0].eb(f(i));
     FOR(k, log) {
-      dat[k + 1].assign(1 << log, MX::unit());
+      dat[k + 1].assign(1 << log, MX::id());
       FOR(i, 1 << log) {
         dat[k + 1][i] = MX::op(dat[k][i], dat[k][i ^ (1 << k)]);
       }
@@ -38,7 +38,7 @@ struct Xor_Disjoint_Sparse_Table {
 
   // calculate prod_{l<=i<r} A[x xor i], in O(log N) time.
   X prod(int l, int r, int xor_val) {
-    X xl = MX::unit(), xr = MX::unit();
+    X xl = MX::id(), xr = MX::id();
     FOR(k, log + 1) {
       if (l >= r) break;
       if (l & 1 << k) {

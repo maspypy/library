@@ -17,7 +17,7 @@ struct Mono {
     return {max(xma, yma), ymi1, min(ymi2, xmi1)};
   }
   static X from_element(int x) { return {x, x, 1 << 30}; }
-  static constexpr X unit() { return {-1, -1, -1}; }
+  static constexpr X id() { return {-1, -1, -1}; }
   static constexpr bool commute = 0;
 };
 

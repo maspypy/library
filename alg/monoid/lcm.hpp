@@ -10,6 +10,6 @@ struct Monoid_Lcm {
     if (x >= ceil(infty<T>, y)) return infty<T>;
     return x * y;
   }
-  static constexpr X unit() { return 1; }
+  static constexpr X id() { return 1; }
   static constexpr bool commute = 1;
 };

@@ -10,9 +10,9 @@ struct Rerooting_DP {
   vc<Data> dp;    // full tree
 
   template <typename F1, typename F2, typename F3>
-  Rerooting_DP(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
+  Rerooting_DP(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data id)
       : tree(tree) {
-    build(f_ee, f_ev, f_ve, unit);
+    build(f_ee, f_ev, f_ve, id);
   }
 
   // v を根としたときの full tree
@@ -29,10 +29,10 @@ struct Rerooting_DP {
   }
 
   template <typename F1, typename F2, typename F3>
-  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {
+  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data id) {
     int N = tree.N;
     // dp1: subtree
-    dp_1.assign(N, unit);
+    dp_1.assign(N, id);
     FOR_R(i, N) {
       int v = tree.V[i];
       for (auto&& e : tree.G[v]) {
@@ -43,14 +43,14 @@ struct Rerooting_DP {
     }
 
     // dp2[v]: subtree of p, rooted at v
-    dp_2.assign(N, unit);
+    dp_2.assign(N, id);
     // dp[v]: fulltree, rooted at v
-    dp.assign(N, unit);
+    dp.assign(N, id);
     FOR(i, N) {
       int p = tree.V[i];
       vc<int> ch;
       vc<Data> ch_data;
-      Data x = unit;
+      Data x = id;
       for (auto&& e : tree.G[p]) {
         if (e.to == tree.parent[p]) {
           x = f_ve(dp_2[p], e);
@@ -66,7 +66,7 @@ struct Rerooting_DP {
       }
       vc<Data> prod_left(n, x);
       FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);
-      Data prod_right = unit;
+      Data prod_right = id;
       FOR_R(i, n) {
         dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);
         prod_right = f_ee(prod_right, ch_data[i]);

@@ -14,7 +14,7 @@ struct Dual_UnionFind {
     N = n;
     n_comp = N;
     dat.assign(N, -1);
-    val.assign(N, MA::unit());
+    val.assign(N, MA::id());
     dat.reserve(2 * N);
     val.reserve(2 * N);
   }
@@ -28,7 +28,7 @@ struct Dual_UnionFind {
       r = dat[r];
     }
 
-    A prod = MA::unit();
+    A prod = MA::id();
     FOR_R(i, len(buf)) {
       int v = buf[i];
       prod = val[v] = MA::op(val[v], prod);
@@ -55,7 +55,7 @@ struct Dual_UnionFind {
 
     dat[x] = z, dat[y] = z;
     dat.eb(-sz);
-    val.eb(MA::unit());
+    val.eb(MA::id());
     --n_comp;
     return true;
   }

@@ -8,7 +8,7 @@ struct Range_Add_Range_Min {
     using value_type = pair<T, T>;
     using X = value_type;
     static X op(X L, X R) { return {L.fi + R.fi, min(L.se, L.fi + R.se)}; }
-    static constexpr X unit() { return {0, 2 * infty<T>}; }
+    static constexpr X id() { return {0, 2 * infty<T>}; }
     static constexpr bool commute = false;
   };
   int n;

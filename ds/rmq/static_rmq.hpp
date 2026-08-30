@@ -57,7 +57,7 @@ struct Static_RMQ {
 
   X prod(int L, int R) {
     assert(0 <= L && L <= R && R <= N);
-    if (L == R) return MX::unit();
+    if (L == R) return MX::id();
     if (R - L <= 16) {
       u32 d = dat[L] & ((u32(1) << (R - L)) - 1);
       return A[L + topbit(d)];

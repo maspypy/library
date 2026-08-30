@@ -9,6 +9,6 @@ struct Monoid_MinIdx {
     return (tie_is_left ? (x.se < y.se) : (x.se >= y.se));
   }
   static X op(X x, X y) { return (is_small(x, y) ? x : y); }
-  static constexpr X unit() { return {infty<T>, -1}; }
+  static constexpr X id() { return {infty<T>, -1}; }
   static constexpr bool commute = true;
 };

@@ -25,7 +25,7 @@ struct Beats_SumMin_Chmax {
       z.fail = 0;
       return z;
     }
-    static constexpr X unit() { return {0, infty<T>, 0, infty<T>, 0}; }
+    static constexpr X id() { return {0, infty<T>, 0, infty<T>, 0}; }
     bool commute = true;
   };
   struct AddChmax {
@@ -37,7 +37,7 @@ struct Beats_SumMin_Chmax {
       a += d, c += d, c = max(c, f);
       return {a, c};
     }
-    static constexpr X unit() { return {0, -infty<T>}; }
+    static constexpr X id() { return {0, -infty<T>}; }
     bool commute = false;
   };
   struct Beats {

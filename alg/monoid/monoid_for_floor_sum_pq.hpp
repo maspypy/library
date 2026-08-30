@@ -52,15 +52,15 @@ struct Monoid_for_floor_sum_pq {
   }
 
   static X to_x() {
-    X x = unit();
+    X x = id();
     x.dp[0][0] = 1, x.dx = 1, x.prod = get_pq().fi;
     return x;
   }
   static X to_y() {
-    X x = unit();
+    X x = id();
     x.dy = 1, x.prod = get_pq().se;
     return x;
   }
-  static constexpr X unit() { return {ARR{}, T(0), T(0), T(1)}; }
+  static constexpr X id() { return {ARR{}, T(0), T(0), T(1)}; }
   static constexpr bool commute = 0;
 };

@@ -20,7 +20,7 @@ struct Mono {
     if (len(z) > LIM + 1) z.resize(LIM + 1);
     return z;
   }
-  static X unit() { return {1}; }
+  static X id() { return {1}; }
   static constexpr bool commute = 1;
 };
 

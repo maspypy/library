@@ -6,12 +6,12 @@
 
 void test() {
   using Mono = Monoid_Min<int>;
-  int unit = Mono::unit();
+  int id = Mono::id();
 
   FOR(100) {
     int N = RNG(1, 100);
 
-    vc<int> A(N, unit);
+    vc<int> A(N, id);
     Dynamic_SegTree_Sparse<Mono, false> X(0, N);
     int root = 0;
 
@@ -44,7 +44,7 @@ void test() {
         int LIM = RNG(1, 100);
         auto check = [&](auto e) -> bool { return e >= LIM; };
         int naive = [&]() -> int {
-          ll mi = unit;
+          ll mi = id;
           FOR(i, L, N) {
             chmin(mi, A[i]);
             if (mi < LIM) return i;

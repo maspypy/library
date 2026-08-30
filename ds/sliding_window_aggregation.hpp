@@ -8,7 +8,7 @@ struct Sliding_Window_Aggregation {
   X cum_r;
 
   Sliding_Window_Aggregation()
-      : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}
+      : cum_l({Monoid::id()}), cum_r(Monoid::id()) {}
 
   int size() { return sz; }
 
@@ -22,8 +22,8 @@ struct Sliding_Window_Aggregation {
     --sz;
     cum_l.pop_back();
     if (len(cum_l) == 0) {
-      cum_l = {Monoid::unit()};
-      cum_r = Monoid::unit();
+      cum_l = {Monoid::id()};
+      cum_r = Monoid::id();
       while (len(dat) > 1) {
         cum_l.eb(Monoid::op(dat.back(), cum_l.back()));
         dat.pop_back();
@@ -48,7 +48,7 @@ struct Sliding_Window_Aggregation_Deque {
   vc<X> cum_l, cum_r;
 
   Sliding_Window_Aggregation_Deque()
-      : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}
+      : sz(0), cum_l({Monoid::id()}), cum_r({Monoid::id()}) {}
 
   int size() { return sz; }
 
@@ -69,7 +69,7 @@ struct Sliding_Window_Aggregation_Deque {
   void clear() {
     sz = 0;
     dat_l.clear(), dat_r.clear();
-    cum_l = {Monoid::unit()}, cum_r = {Monoid::unit()};
+    cum_l = {Monoid::id()}, cum_r = {Monoid::id()};
   }
 
   void pop_front() {

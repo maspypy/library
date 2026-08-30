@@ -30,6 +30,6 @@ struct Monoid_Max2 {
     x.add_element(y.max2, y.key2);
     return x;
   }
-  static constexpr X unit() { return {-infty<T>, -infty<T>, -1, -1}; }
+  static constexpr X id() { return {-infty<T>, -infty<T>, -1, -1}; }
   static constexpr bool commute = true;
 };

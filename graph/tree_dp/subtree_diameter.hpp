@@ -17,7 +17,7 @@ struct Subtree_Diameter {
 
   Subtree_Diameter(TREE& tree) : tree(tree) {
     int N = tree.N;
-    Data unit = {-1, -1, -1, -1, -1};
+    Data id = {-1, -1, -1, -1, -1};
     auto f_ee = [&](Data A, Data B) -> Data {
       if (A.diam == -1) return B;
       if (B.diam == -1) return A;
@@ -42,7 +42,7 @@ struct Subtree_Diameter {
       return A;
     };
 
-    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);
+    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, id);
     dp.resize(N), dp_1.resize(N), dp_2.resize(N);
     FOR(v, N) {
       dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};

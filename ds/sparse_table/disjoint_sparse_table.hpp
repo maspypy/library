@@ -16,7 +16,7 @@ struct Disjoint_Sparse_Table {
   Disjoint_Sparse_Table(const vc<X>& v) { build(v); }
 
   void build(int m) {
-    build(m, [](int i) -> X { return MX::unit(); });
+    build(m, [](int i) -> X { return MX::id(); });
   }
   void build(const vc<X>& v) {
     build(len(v), [&](int i) -> X { return v[i]; });
@@ -41,7 +41,7 @@ struct Disjoint_Sparse_Table {
   }
 
   X prod(int L, int R) const {
-    if (L == R) return MX::unit();
+    if (L == R) return MX::id();
     --R;
     if (L == R) return dat[0][L];
     int k = topbit(L ^ R);
@@ -50,7 +50,7 @@ struct Disjoint_Sparse_Table {
 
   template <class F>
   int max_right(const F check, int L) const {
-    assert(0 <= L && L <= n && check(MX::unit()));
+    assert(0 <= L && L <= n && check(MX::id()));
     if (L == n) return n;
     int ok = L, ng = n + 1;
     while (ok + 1 < ng) {
@@ -64,7 +64,7 @@ struct Disjoint_Sparse_Table {
 
   template <class F>
   int min_left(const F check, int R) const {
-    assert(0 <= R && R <= n && check(MX::unit()));
+    assert(0 <= R && R <= n && check(MX::id()));
     if (R == 0) return 0;
     int ok = R, ng = -1;
     while (ng + 1 < ok) {

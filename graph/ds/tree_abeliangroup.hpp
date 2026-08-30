@@ -11,7 +11,7 @@ struct Tree_AbelianGroup {
   FenwickTree<MX> bit, bit_subtree;
 
   Tree_AbelianGroup(TREE &tree) : tree(tree), N(tree.N) {
-    build([](int i) -> X { return MX::unit(); });
+    build([](int i) -> X { return MX::id(); });
   }
 
   Tree_AbelianGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
@@ -28,9 +28,9 @@ struct Tree_AbelianGroup {
     vc<X> bit_raw_1(2 * N);
     vc<X> bit_raw_2(N);
     FOR(v, N) {
-      X x = MX::unit();
+      X x = MX::id();
       if (!edge) x = f(v);
-      if (edge) x = (v == 0 ? MX::unit() : f(tree.v_to_e(v)));
+      if (edge) x = (v == 0 ? MX::id() : f(tree.v_to_e(v)));
       bit_raw_1[tree.ELID(v)] = x;
       bit_raw_1[tree.ERID(v)] = MX::inverse(x);
       bit_raw_2[tree.LID[v]] = x;

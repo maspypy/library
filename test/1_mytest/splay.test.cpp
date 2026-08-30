@@ -49,7 +49,7 @@ void test() {
       if (t == 2) {
         // prod
         auto [l, r] = get_lr(N);
-        X a = Mono::unit();
+        X a = Mono::id();
         FOR(i, l, r) a = Mono::op(a, A[i]);
         X b = ST.prod(root, l, r);
         assert(a == b);

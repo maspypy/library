@@ -55,7 +55,7 @@ struct FenwickTree_2D {
     }
     FOR(i, N) indptr[i + 1] += indptr[i];
     keyY.resize(indptr.back());
-    dat.assign(indptr.back(), G::unit());
+    dat.assign(indptr.back(), G::id());
     fill(all(last_y), -infty<XY> - 1);
     vc<int> prog = indptr;
     FOR(i, len(X)) {
@@ -112,7 +112,7 @@ struct FenwickTree_2D {
     }
     FOR(i, N) indptr[i + 1] += indptr[i];
     keyY.resize(indptr.back());
-    dat.assign(indptr.back(), G::unit());
+    dat.assign(indptr.back(), G::id());
     fill(all(last_y), -infty<XY> - 1);
     vc<int> prog = indptr;
     FOR(i, len(X)) {
@@ -134,7 +134,7 @@ struct FenwickTree_2D {
 
   E sum(XY lx, XY rx, XY ly, XY ry) { return prod(lx, rx, ly, ry); }
   E prod(XY lx, XY rx, XY ly, XY ry) {
-    E pos = G::unit(), neg = G::unit();
+    E pos = G::id(), neg = G::id();
     int L = xtoi(lx) - 1, R = xtoi(rx) - 1;
     while (L < R) { pos = G::op(pos, prod_i(R, ly, ry)), R = prev(R); }
     while (R < L) { neg = G::op(neg, prod_i(L, ly, ry)), L = prev(L); }
@@ -143,7 +143,7 @@ struct FenwickTree_2D {
 
   E prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }
   E prefix_prod(XY rx, XY ry) {
-    E pos = G::unit();
+    E pos = G::id();
     int R = xtoi(rx) - 1;
     while (R >= 0) { pos = G::op(pos, prefix_prod_i(R, ry)), R = prev(R); }
     return pos;
@@ -158,7 +158,7 @@ private:
   }
 
   E prod_i(int i, XY ly, XY ry) {
-    E pos = G::unit(), neg = G::unit();
+    E pos = G::id(), neg = G::id();
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
     auto it = keyY.begin() + LID;
     int L = lower_bound(it, it + n, ly) - it - 1;
@@ -169,7 +169,7 @@ private:
   }
 
   E prefix_prod_i(int i, XY ry) {
-    E pos = G::unit();
+    E pos = G::id();
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
     auto it = keyY.begin() + LID;
     int R = lower_bound(it, it + n, ry) - it - 1;

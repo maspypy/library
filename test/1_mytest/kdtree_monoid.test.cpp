@@ -39,7 +39,7 @@ void test() {
     }
     if (t == 1) {
       // prod
-      int sm = 0, mx = MX::unit().se;
+      int sm = 0, mx = MX::id().se;
       FOR(i, xl, xr) FOR(j, yl, yr) {
         for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);
       }
@@ -48,7 +48,7 @@ void test() {
     }
     if (t == 2) {
       // prod all
-      int sm = 0, mx = MX::unit().se;
+      int sm = 0, mx = MX::id().se;
       FOR(i, LIM) FOR(j, LIM) {
         for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);
       }

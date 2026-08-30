@@ -40,7 +40,7 @@ struct Greedy_Subtract_SegTree {
     log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
-    cost.assign(size, 0), cnt.assign(size, 0), element.assign(size, MX::unit());
+    cost.assign(size, 0), cnt.assign(size, 0), element.assign(size, MX::id());
     FOR(i, n) {
       tie(cost[i], cnt[i], element[i]) = f(i);
       assert(0 <= cost[i] && cost[i] < (1LL << LOG));
@@ -55,7 +55,7 @@ struct Greedy_Subtract_SegTree {
       if (n <= i || cnt[i] == 0) {
         fill(all(dat[idx].SM_A), infty<ll>);
         fill(all(dat[idx].SM_B), 0);
-        fill(all(dat[idx].prod_B), MX::unit());
+        fill(all(dat[idx].prod_B), MX::id());
         return;
       }
       FOR(k, LOG + 1) {
@@ -66,7 +66,7 @@ struct Greedy_Subtract_SegTree {
         } else {
           dat[idx].SM_A[k] = cost[i];
           dat[idx].SM_B[k] = 0;
-          dat[idx].prod_B[k] = MX::unit();
+          dat[idx].prod_B[k] = MX::id();
         }
       }
       return;
@@ -87,7 +87,7 @@ struct Greedy_Subtract_SegTree {
 
   // return: 残金, モノイド積
   pair<ll, X> query(int L, int R, ll x) {
-    X prod = MX::unit();
+    X prod = MX::id();
     int k = LOG;
     auto upd_k = [&]() -> void {
       while (k > 0 && (x < (1LL << (k - 1)))) --k;

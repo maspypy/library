@@ -6,11 +6,11 @@ struct Rollback_Potentialized_UnionFind {
   using P = pair<int, E>;
   Rollback_Array<P> dat; // parent or -size
 
-  Rollback_Potentialized_UnionFind(int n) : dat(vc<P>(n, P(-1, Group::unit()))) {}
+  Rollback_Potentialized_UnionFind(int n) : dat(vc<P>(n, P(-1, Group::id()))) {}
 
   P get(int v) {
     // 経路圧縮はしないように
-    E val = Group::unit();
+    E val = Group::id();
     while (1) {
       auto [p, x] = dat.get(v);
       if (p < 0) { break; }
@@ -37,7 +37,7 @@ struct Rollback_Potentialized_UnionFind {
     x = Group::op(x1, x);
     x = Group::op(x, Group::inverse(x2));
     dat.set(v2, P({v1, x}));
-    dat.set(v1, P({-(s1 + s2), Group::unit()}));
+    dat.set(v1, P({-(s1 + s2), Group::id()}));
     return true;
   }
 };

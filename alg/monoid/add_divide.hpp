@@ -29,6 +29,6 @@ struct Monoid_Add_Divide {
     return floor<ll>(x + a, b) + c;
   }
 
-  static constexpr X unit() { return {0, 1, 0}; }
+  static constexpr X id() { return {0, 1, 0}; }
   static constexpr bool commute = 0;
 };

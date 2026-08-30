@@ -17,7 +17,7 @@ struct Sparse_Table {
   Sparse_Table(const vc<X>& v) { build(v); }
 
   void build(int m) {
-    build(m, [](int i) -> X { return MX::unit(); });
+    build(m, [](int i) -> X { return MX::id(); });
   }
   void build(const vc<X>& v) {
     build(len(v), [&](int i) -> X { return v[i]; });
@@ -39,7 +39,7 @@ struct Sparse_Table {
   }
 
   X prod(int L, int R) const {
-    if (L == R) return MX::unit();
+    if (L == R) return MX::id();
     if (R == L + 1) return dat[0][L];
     int k = topbit(R - L - 1);
     return MX::op(dat[k][L], dat[k][R - (1 << k)]);
@@ -47,7 +47,7 @@ struct Sparse_Table {
 
   template <class F>
   int max_right(const F check, int L) const {
-    assert(0 <= L && L <= n && check(MX::unit()));
+    assert(0 <= L && L <= n && check(MX::id()));
     if (L == n) return n;
     int ok = L, ng = n + 1;
     while (ok + 1 < ng) {
@@ -61,7 +61,7 @@ struct Sparse_Table {
 
   template <class F>
   int min_left(const F check, int R) const {
-    assert(0 <= R && R <= n && check(MX::unit()));
+    assert(0 <= R && R <= n && check(MX::id()));
     if (R == 0) return 0;
     int ok = R, ng = -1;
     while (ng + 1 < ok) {

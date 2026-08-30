@@ -47,7 +47,7 @@ struct Sortable_SegTree {
       int i = ss.next(l + 1);
       if (i == r) break;
       root[l] = merge(c, root[i]);
-      ss.erase(i), seg.set(i, MX::unit());
+      ss.erase(i), seg.set(i, MX::id());
     }
     rev[l] = 0, seg.set(l, root[l]->x);
   };
@@ -88,7 +88,7 @@ struct Sortable_SegTree {
     seg.build(N, [&](int i) -> X { return dat[i]; });
     for (int i = 0; i < N; ++i) {
       ss.insert(i);
-      root.eb(new_node(MX::unit()));
+      root.eb(new_node(MX::id()));
       assert(key[i] < KEY_MAX);
       set_rec(root[i], 0, KEY_MAX, key[i], dat[i]);
     }
@@ -118,7 +118,7 @@ struct Sortable_SegTree {
     init(key, dat);
   }
 
-  np new_node(X x = MX::unit()) {
+  np new_node(X x = MX::id()) {
     np c = pool.create();
     c->x = c->rev_x = x;
     c->l = c->r = nullptr;

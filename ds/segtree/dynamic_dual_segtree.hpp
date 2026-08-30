@@ -18,9 +18,9 @@ struct Dynamic_Dual_SegTree {
 
   Dynamic_Dual_SegTree(ll L0, ll R0) : L0(L0), R0(R0) {}
 
-  np new_root() { return new_node(MX::unit()); }
+  np new_root() { return new_node(MX::id()); }
 
-  np new_node(const X x = MX::unit()) {
+  np new_node(const X x = MX::id()) {
     np c = pool.create();
     c->l = c->r = nullptr, c->x = x;
     return c;
@@ -42,8 +42,8 @@ struct Dynamic_Dual_SegTree {
   }
 
   X get(np root, ll i) {
-    if (!root) return MX::unit();
-    X x = MX::unit();
+    if (!root) return MX::id();
+    X x = MX::id();
     get_rec(root, L0, R0, i, x);
     return x;
   }
@@ -82,7 +82,7 @@ struct Dynamic_Dual_SegTree {
       dfs(dfs, c->l, L, M, x);
       dfs(dfs, c->r, M, R, x);
     };
-    dfs(dfs, root, L0, R0, MX::unit());
+    dfs(dfs, root, L0, R0, MX::id());
     return res;
   }
 
@@ -106,7 +106,7 @@ struct Dynamic_Dual_SegTree {
     c->r = (c->r ? clone(c->r) : new_node());
     c->l->x = MX::op(c->l->x, c->x);
     c->r->x = MX::op(c->r->x, c->x);
-    c->x = MX::unit();
+    c->x = MX::id();
     ll m = (l + r) / 2;
     apply_rec(c->l, l, m, ql, qr, a), apply_rec(c->r, m, r, ql, qr, a);
     return;
@@ -130,7 +130,7 @@ struct Dynamic_Dual_SegTree {
     c->r = (c->r ? clone(c->r) : new_node());
     c->l->x = MX::op(c->l->x, c->x);
     c->r->x = MX::op(c->r->x, c->x);
-    c->x = MX::unit();
+    c->x = MX::id();
     ll m = (l + r) / 2;
     if (d) x = MX::op(d->x, x);
     copy_interval_rec(c->l, (d && d->l ? d->l : nullptr), l, m, ql, qr, x);

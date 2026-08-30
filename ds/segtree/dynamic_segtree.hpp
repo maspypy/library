@@ -19,7 +19,7 @@ struct Dynamic_SegTree {
   using np = Node *;
 
   Dynamic_SegTree(
-      ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return MX::unit(); })
+      ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return MX::id(); })
       : default_prod(default_prod), L0(L0), R0(R0) {}
 
   np new_root() { return new_node(L0, R0); }
@@ -50,8 +50,8 @@ struct Dynamic_SegTree {
 
   X prod(np root, ll l, ll r) {
     assert(L0 <= l && l <= r && r <= R0);
-    if (!root || l == r) return MX::unit();
-    X x = MX::unit();
+    if (!root || l == r) return MX::id();
+    X x = MX::id();
     prod_rec(root, L0, R0, l, r, x);
     return x;
   }
@@ -72,15 +72,15 @@ struct Dynamic_SegTree {
 
   template <typename F>
   ll max_right(np root, F check, ll L) {
-    assert(root && L0 <= L && L <= R0 && check(MX::unit()));
-    X x = MX::unit();
+    assert(root && L0 <= L && L <= R0 && check(MX::id()));
+    X x = MX::id();
     return max_right_rec(root, check, L0, R0, L, x);
   }
 
   template <typename F>
   ll min_left(np root, F check, ll R) {
-    assert(L0 <= R && R <= R0 && check(MX::unit()));
-    X x = MX::unit();
+    assert(L0 <= R && R <= R0 && check(MX::id()));
+    X x = MX::id();
     return min_left_rec(root, check, L0, R0, R, x);
   }
 

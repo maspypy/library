@@ -23,7 +23,7 @@ struct RBST_ActedMonoid {
   np new_node(const X &x) {
     np c = pool.create();
     c->l = c->r = nullptr;
-    c->x = x, c->prod = x, c->lazy = Monoid_A::unit();
+    c->x = x, c->prod = x, c->lazy = Monoid_A::id();
     c->size = 1, c->rev = 0;
     return c;
   }
@@ -73,10 +73,10 @@ struct RBST_ActedMonoid {
   }
 
   X prod(np root, u32 l, u32 r) {
-    if (l == r) return Monoid_X::unit();
+    if (l == r) return Monoid_X::id();
     return prod_rec(root, l, r, false);
   }
-  X prod(np root) { return (root ? root->prod : Monoid_X::unit()); }
+  X prod(np root) { return (root ? root->prod : Monoid_X::id()); }
 
   np reverse(np root, u32 l, u32 r) {
     assert(Monoid_X::commute);
@@ -99,7 +99,7 @@ struct RBST_ActedMonoid {
 
   np set(np root, u32 k, const X &x) { return set_rec(root, k, x); }
   np multiply(np root, u32 k, const X &x) { return multiply_rec(root, k, x); }
-  X get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::unit()); }
+  X get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::id()); }
 
   vc<X> get_all(np root) {
     vc<X> res;
@@ -111,14 +111,14 @@ struct RBST_ActedMonoid {
       res.eb(me);
       dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev, lazy);
     };
-    dfs(dfs, root, 0, Monoid_A::unit());
+    dfs(dfs, root, 0, Monoid_A::id());
     return res;
   }
 
   template <typename F>
   pair<np, np> split_max_right(np root, const F check) {
-    assert(check(Monoid_X::unit()));
-    X x = Monoid_X::unit();
+    assert(check(Monoid_X::id()));
+    X x = Monoid_X::id();
     return split_max_right_rec(root, check, x);
   }
 
@@ -138,13 +138,13 @@ struct RBST_ActedMonoid {
   void push(np c) {
     // 自身をコピーする必要はない。
     // 子をコピーする必要がある。複数の親を持つ可能性があるため。
-    bool bl_lazy = (c->lazy != Monoid_A::unit());
+    bool bl_lazy = (c->lazy != Monoid_A::id());
     bool bl_rev = c->rev;
     if (bl_lazy || bl_rev) {
       c->l = clone(c->l);
       c->r = clone(c->r);
     }
-    if (c->lazy != Monoid_A::unit()) {
+    if (c->lazy != Monoid_A::id()) {
       if (c->l) {
         c->l->x = ActedMonoid::act(c->l->x, c->lazy, 1);
         c->l->prod = ActedMonoid::act(c->l->prod, c->lazy, c->l->size);
@@ -155,7 +155,7 @@ struct RBST_ActedMonoid {
         c->r->prod = ActedMonoid::act(c->r->prod, c->lazy, c->r->size);
         c->r->lazy = Monoid_A::op(c->r->lazy, c->lazy);
       }
-      c->lazy = Monoid_A::unit();
+      c->lazy = Monoid_A::id();
     }
     if (c->rev) {
       if (c->l) {
@@ -271,7 +271,7 @@ struct RBST_ActedMonoid {
     np left = (rev ? root->r : root->l);
     np right = (rev ? root->l : root->r);
     u32 sl = (left ? left->size : 0);
-    X res = Monoid_X::unit();
+    X res = Monoid_X::id();
     if (l < sl) {
       X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);
       res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy, min(r, sl) - l));

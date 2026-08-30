@@ -44,7 +44,7 @@ struct Mono {
     }
     return z;
   }
-  static X unit() {
+  static X id() {
     MAT x;
     x[0][0] = x[1][1] = {mint(1)};
     x[0][1] = x[1][0] = {};
@@ -89,7 +89,7 @@ void solve_1(int Q) {
 
   vc<mint> ANS(Q);
 
-  MAT suffix_prod = Mono::unit();
+  MAT suffix_prod = Mono::id();
   FOR(b, b_num) {
     // suffix_prod に必要なものたちを ME する
     vc<mint> X;

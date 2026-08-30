@@ -16,7 +16,7 @@ struct Group {
     return {(x.fi).inverse(), -x.se};
   }
   // static constexpr X power(const X &x, ll n) noexcept { return n * x; }
-  static constexpr X unit() { return {mint(1), 0}; }
+  static constexpr X id() { return {mint(1), 0}; }
   static constexpr bool commute = true;
 };
 
@@ -32,7 +32,7 @@ void solve() {
   FOR(Q) {
     LL(a, b);
     --a, --b;
-    auto x = Group::unit();
+    auto x = Group::id();
     x = Group::op(x, CS.sum(0, a, 0, b));
     x = Group::op(x, CS.sum(a + 1, H, 0, b));
     x = Group::op(x, CS.sum(0, a, b + 1, W));

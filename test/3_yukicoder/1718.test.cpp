@@ -36,7 +36,7 @@ void solve() {
   for (auto&& x : D) isin[x] = 1;
 
   using Data = ll;
-  Data unit = -infty<ll>;
+  Data id = -infty<ll>;
   auto fee = [&](Data x, Data y) -> Data { return max(x, y); };
   auto fev = [&](Data x, int v) -> Data {
     if (isin[v]) chmax(x, 0);
@@ -44,7 +44,7 @@ void solve() {
   };
   // e は v から出る有向辺
   auto fve = [&](Data x, auto& e) -> Data { return x + 1; };
-  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, id);
 
   // span される部分からの距離
   vc<int> V;

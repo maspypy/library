@@ -37,7 +37,7 @@ void solve() {
       N + Q, [&](int i) -> tuple<int, int, ll> {
         auto [a, b, c] = query[i];
         if (i < N) return {a, b, c};
-        return {a, b, Mono::unit()};
+        return {a, b, Mono::id()};
       });
 
   FOR(q, N, N + Q) {
@@ -46,7 +46,7 @@ void solve() {
       WM.multiply(q, c);
     } else {
       ll ANS = WM.prod(b, c, b, c);
-      if (ANS == Mono::unit()) ANS = -1;
+      if (ANS == Mono::id()) ANS = -1;
       print(ANS);
     }
   }

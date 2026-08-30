@@ -15,7 +15,7 @@ ll discrete_log_acted(typename ActedSet::A x, typename ActedSet::S s,
   if (lb >= ub) return -1;
   auto xpow = [&](ll n) -> X {
     X p = x;
-    X res = Mono::unit();
+    X res = Mono::id();
     while (n) {
       if (n & 1) res = Mono::op(res, p);
       p = Mono::op(p, p);
@@ -64,5 +64,5 @@ template <typename Monoid, typename F>
 ll discrete_log_monoid(typename Monoid::X a, typename Monoid::X b, F H, ll lb,
                        ll ub) {
   using AM = ActedSet_from_Monoid<Monoid>;
-  return discrete_log_acted<AM>(a, Monoid::unit(), b, H, lb, ub);
+  return discrete_log_acted<AM>(a, Monoid::id(), b, H, lb, ub);
 }

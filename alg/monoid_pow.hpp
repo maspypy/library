@@ -24,9 +24,9 @@ typename Monoid::X monoid_pow(typename Monoid::X x, ll exp) {
     return Monoid::power(x, exp);
   } else {
     assert(exp >= 0);
-    if (exp == 0) return Monoid::unit();
+    if (exp == 0) return Monoid::id();
     if (exp == 1) return x;
-    X res = Monoid::unit();
+    X res = Monoid::id();
     while (exp) {
       if (exp & 1) res = Monoid::op(res, x);
       x = Monoid::op(x, x);

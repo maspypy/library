@@ -38,7 +38,7 @@ void test() {
     }
     if (t == 1) {
       // prod
-      int sm = 0, mx = MX::unit().se;
+      int sm = 0, mx = MX::id().se;
       FOR(k, N) {
         if (xl <= X[k] && X[k] < xr && yl <= Y[k] && Y[k] < yr) { sm += val[k].fi, chmax(mx, val[k].se); }
       }
@@ -47,7 +47,7 @@ void test() {
     }
     if (t == 2) {
       // prod all
-      int sm = 0, mx = MX::unit().se;
+      int sm = 0, mx = MX::id().se;
       FOR(k, N) { sm += val[k].fi, chmax(mx, val[k].se); }
       auto res = KDT.prod_all();
       assert(res.fi == sm && res.se == mx);

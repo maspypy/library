@@ -10,7 +10,7 @@ struct Subtree_Depth_Sum {
   vc<Data> dp, dp_1, dp_2;
 
   Subtree_Depth_Sum(TREE& tree) : tree(tree) {
-    Data unit = {0, 0};
+    Data id = {0, 0};
     auto f_ee = [&](Data A, Data B) -> Data {
       return {A.fi + B.fi, A.se + B.se};
     };
@@ -19,7 +19,7 @@ struct Subtree_Depth_Sum {
       return {A.fi, A.se + A.fi * e.cost};
     };
 
-    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);
+    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, id);
     dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;
   }
 

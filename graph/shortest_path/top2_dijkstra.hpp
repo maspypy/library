@@ -8,7 +8,7 @@ vc<typename Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {
   int N = G.N;
   using Mono = Monoid_Min2<T, int>;
   using Data = typename Mono::Data;
-  vc<Data> dist(N, Mono::unit());
+  vc<Data> dist(N, Mono::id());
   pq_min<tuple<T, int, int>> que;  // 距離、町、色
 
   auto upd = [&](int v, int c, T x) -> void {

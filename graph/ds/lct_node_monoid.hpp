@@ -20,9 +20,9 @@ struct LCT_Node_Monoid {
         idx(i),
         size(1),
         rev(0),
-        x(MX::unit()),
-        rx(MX::unit()),
-        vx(MX::unit()) {}
+        x(MX::id()),
+        rx(MX::id()),
+        vx(MX::id()) {}
 
   void update() {
     size = 1;

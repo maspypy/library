@@ -51,7 +51,7 @@ void test() {
         if (L > R) swap(L, R);
         ++R;
         vc<T> B = {A.begin() + L, A.begin() + R};
-        T t = Mono::unit();
+        T t = Mono::id();
         for (auto&& b : B) t = Mono::op(t, b);
         assert(X.prod(root, L, R) == t);
       }

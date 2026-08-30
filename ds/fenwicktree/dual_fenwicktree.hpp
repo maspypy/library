@@ -13,11 +13,11 @@ struct Dual_FenwickTree {
 
   void build(int m) {
     n = m;
-    dat.assign(m, G::unit());
+    dat.assign(m, G::id());
   }
 
   E get(int k) {
-    E x = G::unit();
+    E x = G::id();
     for (++k; k <= n; k += k & -k) x = G::op(x, dat[k - 1]);
     return x;
   }

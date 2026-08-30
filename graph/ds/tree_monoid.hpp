@@ -13,7 +13,7 @@ struct Tree_Monoid {
   SegTree<Monoid_Reverse<MX>> seg_r;
 
   Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {
-    build([](int i) -> X { return MX::unit(); });
+    build([](int i) -> X { return MX::id(); });
   }
 
   Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
@@ -35,7 +35,7 @@ struct Tree_Monoid {
       }
     } else {
       auto f_e = [&](int i) -> X {
-        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));
+        return (i == 0 ? MX::id() : f(tree.v_to_e(tree.V[i])));
       };
       seg.build(N, f_e);
       if constexpr (!MX::commute) {
@@ -60,7 +60,7 @@ struct Tree_Monoid {
 
   X prod_path(int u, int v) {
     auto pd = tree.get_path_decomposition(u, v, edge);
-    X val = MX::unit();
+    X val = MX::id();
     for (auto &&[a, b] : pd) {
       val = MX::op(val, _get_prod(a, b));
     }
@@ -74,7 +74,7 @@ struct Tree_Monoid {
     if constexpr (edge) return max_path_edge(check, u, v);
     if (!check(prod_path(u, u))) return -1;
     auto pd = tree.get_path_decomposition(u, v, edge);
-    X val = MX::unit();
+    X val = MX::id();
     for (auto &&[a, b] : pd) {
       X x = _get_prod(a, b);
       if (check(MX::op(val, x))) {
@@ -124,10 +124,10 @@ struct Tree_Monoid {
   template <class F>
   int max_path_edge(F check, int u, int v) {
     static_assert(edge);
-    if (!check(MX::unit())) return -1;
+    if (!check(MX::id())) return -1;
     int lca = tree.lca(u, v);
     auto pd = tree.get_path_decomposition(u, lca, edge);
-    X val = MX::unit();
+    X val = MX::id();
 
     // climb
     for (auto &&[a, b] : pd) {

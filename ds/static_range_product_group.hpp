@@ -17,12 +17,12 @@ struct Static_Range_Product_Group {
   template <typename F>
   void build(int m, F f) {
     n = m;
-    dat.assign(n + 1, MX::unit());
+    dat.assign(n + 1, MX::id());
     for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));
   }
   void build(vc<X>& A) {
     n = len(A);
-    dat.assign(n + 1, MX::unit());
+    dat.assign(n + 1, MX::id());
     for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);
   }
   X prod(int l, int r) const { return MX::op(MX::inverse(dat[l]), dat[r]); }

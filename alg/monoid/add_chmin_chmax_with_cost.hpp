@@ -31,6 +31,6 @@ struct Monoid_Add_Chmin_Chmax_with_Cost {
     return M;
   }
 
-  static constexpr X unit() { return F(); }
+  static constexpr X id() { return F(); }
   static constexpr bool commute = 0;
 };

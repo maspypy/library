@@ -70,10 +70,10 @@ struct RBST_CommutativeMonoid {
   }
 
   X prod(np root, u32 l, u32 r) {
-    if (l == r) return Monoid::unit();
+    if (l == r) return Monoid::id();
     return prod_rec(root, l, r, false);
   }
-  X prod(np root) { return (root ? root->prod : Monoid::unit()); }
+  X prod(np root) { return (root ? root->prod : Monoid::id()); }
 
   np reverse(np root, u32 l, u32 r) {
     assert(0 <= l && l <= r && r <= root->size);
@@ -102,8 +102,8 @@ struct RBST_CommutativeMonoid {
 
   template <typename F>
   pair<np, np> split_max_right(np root, const F check) {
-    assert(check(Monoid::unit()));
-    X x = Monoid::unit();
+    assert(check(Monoid::id()));
+    X x = Monoid::id();
     return split_max_right_rec(root, check, x);
   }
 
@@ -237,7 +237,7 @@ struct RBST_CommutativeMonoid {
     np left = (rev ? root->r : root->l);
     np right = (rev ? root->l : root->r);
     u32 sl = (left ? left->size : 0);
-    X res = Monoid::unit();
+    X res = Monoid::id();
     if (l < sl) {
       X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);
       res = Monoid::op(res, y);

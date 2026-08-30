@@ -18,7 +18,7 @@ struct Range_Add_Range_MaxIdx {
       }
       return {L.sum + R.sum, L.sum + R.max, R.idx};
     }
-    static constexpr X unit() { return {0, -2 * infty<T>, -1}; }
+    static constexpr X id() { return {0, -2 * infty<T>, -1}; }
     static constexpr bool commute = false;
   };
   int n;

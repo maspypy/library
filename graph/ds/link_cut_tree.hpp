@@ -269,7 +269,7 @@ struct Link_Cut_Tree {
     using MX = typename Node::MX;
     using X = typename MX::value_type;
     Node *last_ok = nullptr, *last = nullptr;
-    X lprod = MX::unit();
+    X lprod = MX::id();
     while (c) {
       last = c;
       c->push();

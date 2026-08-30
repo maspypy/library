@@ -27,7 +27,7 @@ void solve() {
     using Grp = Monoid_Add_Pair<mint>;
     Wavelet_Matrix_2D_Range<int, 1, 1, FenwickTree<Grp>> WM(
         N, [&](int i) -> tuple<int, int, pair<mint, mint>> {
-          return {X[i], Y[i], Grp::unit()};
+          return {X[i], Y[i], Grp::id()};
         });
     FOR(i, N) {
       WM.multiply(i, {mint(1), mint(A[i])});

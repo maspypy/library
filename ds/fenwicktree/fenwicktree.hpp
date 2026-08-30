@@ -20,8 +20,8 @@ struct FenwickTree {
 
   void build(int m) {
     n = m;
-    dat.assign(m, G::unit());
-    total = G::unit();
+    dat.assign(m, G::id());
+    total = G::id();
   }
   void build(const vc<E>& v) {
     build(len(v), [&](int i) -> E { return v[i]; });
@@ -31,7 +31,7 @@ struct FenwickTree {
     n = m;
     dat.clear();
     dat.reserve(n);
-    total = G::unit();
+    total = G::id();
     FOR(i, n) { dat.eb(f(i)); }
     for (int i = 1; i <= n; ++i) {
       int j = i + (i & -i);
@@ -47,7 +47,7 @@ struct FenwickTree {
   E prefix_sum(int k) const { return prefix_prod(k); }
   E prefix_prod(int k) const {
     chmin(k, n);
-    E ret = G::unit();
+    E ret = G::id();
     for (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);
     return ret;
   }
@@ -56,7 +56,7 @@ struct FenwickTree {
     chmax(L, 0), chmin(R, n);
     if (L == 0) return prefix_prod(R);
     assert(0 <= L && L <= R && R <= n);
-    E pos = G::unit(), neg = G::unit();
+    E pos = G::id(), neg = G::id();
     while (L < R) {
       pos = G::op(pos, dat[R - 1]), R -= R & -R;
     }
@@ -82,8 +82,8 @@ struct FenwickTree {
 
   template <class F>
   int max_right(const F check, int L = 0) const {
-    assert(check(G::unit()));
-    E s = G::unit();
+    assert(check(G::id()));
+    E s = G::id();
     int i = L;
     // 2^k 進むとダメ
     int k = [&]() {
@@ -118,8 +118,8 @@ struct FenwickTree {
   // check(i, x)
   template <class F>
   int max_right_with_index(const F check, int L = 0) const {
-    assert(check(L, G::unit()));
-    E s = G::unit();
+    assert(check(L, G::id()));
+    E s = G::id();
     int i = L;
     // 2^k 進むとダメ
     int k = [&]() {
@@ -153,8 +153,8 @@ struct FenwickTree {
 
   template <class F>
   int min_left(const F check, int R) const {
-    assert(check(G::unit()));
-    E s = G::unit();
+    assert(check(G::id()));
+    E s = G::id();
     int i = R;
     // false になるところまで戻る
     int k = 0;

@@ -29,7 +29,7 @@ struct Beats_Kinetic_Max {
       M.fail = 0;
       return M;
     }
-    static constexpr X unit() { return {-1, 0, -infty<T2>, infty<T1>, 0}; }
+    static constexpr X id() { return {-1, 0, -infty<T2>, infty<T1>, 0}; }
     bool commute = true;
   };
   struct Mono_A {
@@ -38,7 +38,7 @@ struct Beats_Kinetic_Max {
     static constexpr X op(const X& x, const X& y) {
       return {x.fi + y.fi, x.se + y.se};
     }
-    static constexpr X unit() { return {0, 0}; }
+    static constexpr X id() { return {0, 0}; }
     bool commute = true;
   };
   struct Beats {
@@ -116,7 +116,7 @@ struct Beats_Kinetic_Min {
       M.fail = 0;
       return M;
     }
-    static constexpr X unit() { return {-1, 0, infty<T2>, infty<T1>, 0}; }
+    static constexpr X id() { return {-1, 0, infty<T2>, infty<T1>, 0}; }
     bool commute = true;
   };
   struct Mono_A {
@@ -125,7 +125,7 @@ struct Beats_Kinetic_Min {
     static constexpr X op(const X& x, const X& y) {
       return {x.fi + y.fi, x.se + y.se};
     }
-    static constexpr X unit() { return {0, 0}; }
+    static constexpr X id() { return {0, 0}; }
     bool commute = true;
   };
   struct Beats {

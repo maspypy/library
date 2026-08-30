@@ -20,7 +20,7 @@ struct Boolean_Range_Add_Point_Get {
   */
 
   Boolean_Range_Add_Point_Get(int LOG) : LOG(LOG), mask{} {
-    S.assign(1 << LOG, MX::unit());
+    S.assign(1 << LOG, MX::id());
     init_by_random();
   }
 
@@ -99,7 +99,7 @@ struct Boolean_Range_Add_Point_Get {
     s ^= (~i) & mask[1];
     s ^= i & mask[2];
 
-    X ANS = MX::unit();
+    X ANS = MX::id();
     enumerate_all_subset<u32, true>(
         s, [&](u32 t) -> void { ANS = MX::op(ANS, S[a | t]); });
     return ANS;

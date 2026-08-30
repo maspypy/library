@@ -11,6 +11,6 @@ struct Bitwise_Function {
   static X func_or(UINT x) { return {x, UINT(-1)}; }
   static X func_and(UINT x) { return {0, x}; }
   static X func_xor(UINT x) { return {x, UINT(-1) ^ x}; }
-  static constexpr X unit() { return {UINT(0), UINT(-1)}; }
+  static constexpr X id() { return {UINT(0), UINT(-1)}; }
   static constexpr bool commute = 0;
 };

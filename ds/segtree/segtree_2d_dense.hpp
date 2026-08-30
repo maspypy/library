@@ -9,10 +9,10 @@ struct SegTree_2D_Dense {
   vc<X> dat;
 
   SegTree_2D_Dense() : SegTree_2D_Dense(0, 0) {}
-  SegTree_2D_Dense(int H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}
+  SegTree_2D_Dense(int H, int W) : H(H), W(W), dat(4 * H * W, MX::id()) {}
   SegTree_2D_Dense(vc<vc<X>> &v) {
     H = len(v), W = (H == 0 ? 0 : len(v[0]));
-    dat.assign(4 * H * W, MX::unit());
+    dat.assign(4 * H * W, MX::id());
     FOR(x, H) FOR(y, W) { dat[idx(H + x, W + y)] = v[x][y]; }
     FOR(y, W, W + W) FOR_R(x, H) {
       dat[idx(x, y)] = MX::op(dat[idx(2 * x + 0, y)], dat[idx(2 * x + 1, y)]);
@@ -42,7 +42,7 @@ struct SegTree_2D_Dense {
   X prod(int xl, int xr, int yl, int yr) {
     assert(0 <= xl && xl <= xr && xr <= H);
     assert(0 <= yl && yl <= yr && yr <= W);
-    X res = MX::unit();
+    X res = MX::id();
     xl += H, xr += H;
     while (xl < xr) {
       if (xl & 1) res = MX::op(res, prod_x(xl++, yl, yr));
@@ -55,7 +55,7 @@ struct SegTree_2D_Dense {
 private:
   inline int idx(int x, int y) { return x * 2 * W + y; }
   X prod_x(int x, int yl, int yr) {
-    X res = MX::unit();
+    X res = MX::id();
     yl += W, yr += W;
     while (yl < yr) {
       if (yl & 1) res = MX::op(res, dat[idx(x, yl++)]);

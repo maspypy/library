@@ -12,7 +12,7 @@ struct Beats {
       // fail は 0 のまま。
       return X({});
     }
-    static constexpr X unit() {
+    static constexpr X id() {
       // size を 0 にしておけばなんでもよい
       return X({});
     }
@@ -24,7 +24,7 @@ struct Beats {
     using value_type = ;
     using X = value_type;
     static X op(X x, X y) {}
-    static constexpr X unit() {}
+    static constexpr X id() {}
     static constexpr bool commute = ;
   };
 

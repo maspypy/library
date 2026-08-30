@@ -15,7 +15,7 @@ struct Coefficient_Query_2D {
       FOR(i, A * B) x[i] += y[i];
       return x;
     }
-    static constexpr X unit() { return X{}; }
+    static constexpr X id() { return X{}; }
     static constexpr bool commute = 1;
   };
   vc<tuple<ll, ll, T, int>> query;

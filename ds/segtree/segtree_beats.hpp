@@ -20,7 +20,7 @@ struct SegTree_Beats {
   SegTree_Beats(const vc<X>& v) { build(v); }
 
   void build(int m) {
-    build(m, [](int i) -> X { return MX::unit(); });
+    build(m, [](int i) -> X { return MX::id(); });
   }
   void build(const vc<X>& v) {
     build(len(v), [&](int i) -> X { return v[i]; });
@@ -30,8 +30,8 @@ struct SegTree_Beats {
     n = m, log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
-    dat.assign(size << 1, MX::unit());
-    laz.assign(size, MA::unit());
+    dat.assign(size << 1, MX::id());
+    laz.assign(size, MA::id());
     FOR(i, n) dat[size + i] = f(i);
     FOR_R(i, 1, size) update(i);
   }
@@ -69,13 +69,13 @@ struct SegTree_Beats {
 
   X prod(int l, int r) {
     assert(0 <= l && l <= r && r <= n);
-    if (l == r) return MX::unit();
+    if (l == r) return MX::id();
     l += size, r += size;
     for (int i = log; i >= 1; i--) {
       if (((l >> i) << i) != l) push(l >> i);
       if (((r >> i) << i) != r) push((r - 1) >> i);
     }
-    X xl = MX::unit(), xr = MX::unit();
+    X xl = MX::id(), xr = MX::id();
     while (l < r) {
       if (l & 1) xl = MX::op(xl, dat[l++]);
       if (r & 1) xr = MX::op(dat[--r], xr);
@@ -118,8 +118,8 @@ struct SegTree_Beats {
   }
 
   void push(int k) {
-    if (laz[k] == MA::unit()) return;
+    if (laz[k] == MA::id()) return;
     apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);
-    laz[k] = MA::unit();
+    laz[k] = MA::id();
   }
 };

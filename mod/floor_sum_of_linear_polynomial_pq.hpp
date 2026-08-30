@@ -39,7 +39,7 @@ array<array<T, K2 + 1>, K1 + 1> floor_sum_of_linear_polynomial_pq(T p, T q, I L,
   using Data = typename Mono::Data;
   using U = std::conditional_t<is_same_v<I, ll>, u64, u128>;
   Data A = floor_monoid_product<Mono, Data, U>(Mono::to_x(), Mono::to_y(), N, a, b, mod);
-  Data offset = Mono::unit();
+  Data offset = Mono::id();
   offset.dx = T(ADD_X), offset.dy = T(ADD_Y);
   A = Mono::op(offset, A);
   T mul = p.pow(ADD_X) * q.pow(ADD_Y);

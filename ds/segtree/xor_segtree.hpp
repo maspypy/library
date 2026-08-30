@@ -19,7 +19,7 @@ struct Xor_SegTree {
   Xor_SegTree(const vc<X>& v) { build(v); }
 
   void build(int m) {
-    build(m, [](int i) -> X { return MX::unit(); });
+    build(m, [](int i) -> X { return MX::id(); });
   }
   void build(const vc<X>& v) {
     build(len(v), [&](int i) -> X { return v[i]; });
@@ -69,7 +69,7 @@ struct Xor_SegTree {
   }
 
   X prod(int L, int R, int xor_val) {
-    X x1 = MX::unit(), x2 = MX::unit();
+    X x1 = MX::id(), x2 = MX::id();
     FOR(h, H) {
       if (L >= R) break;
       if (L & (1 << h)) {

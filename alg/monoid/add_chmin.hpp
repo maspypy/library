@@ -19,6 +19,6 @@ struct Monoid_Add_Chmin {
   static X add(E a) { return {a, infty<E>}; }
   static X chmin(E b) { return {0, b}; }
 
-  static constexpr X unit() { return {0, infty<E>}; }
+  static constexpr X id() { return {0, infty<E>}; }
   static constexpr bool commute = 0;
 };

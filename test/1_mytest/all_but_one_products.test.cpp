@@ -6,7 +6,7 @@ struct Mono {
   using value_type = string;
   using X = value_type;
   static X op(X x, X y) { return x + y; }
-  static X unit() { return ""; }
+  static X id() { return ""; }
   static constexpr bool commute = 0;
 };
 

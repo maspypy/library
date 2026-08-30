@@ -11,7 +11,7 @@ void test() {
   int Q = RNG(0, 10);
   using Mono = Monoid_Add_Chmin_Chmax<int>;
   using F = typename Mono::value_type;
-  F f = Mono::unit();
+  F f = Mono::id();
 
   FOR(Q) {
     int t = RNG(0, 3);

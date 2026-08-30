@@ -83,6 +83,6 @@ struct Monoid_Arithmetic_Expression {
     }
     return ANS;
   }
-  static constexpr X unit() { return X(); }
+  static constexpr X id() { return X(); }
   static constexpr bool commute = 0;
 };

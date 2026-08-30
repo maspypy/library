@@ -13,7 +13,7 @@ struct Doubling {
 
   Doubling(int N) : N(N), is_prepared(0) {
     TO.assign(LOG, vc<int>(N, -1));
-    DP.assign(LOG, vc<X>(N, Monoid::unit()));
+    DP.assign(LOG, vc<X>(N, Monoid::id()));
   }
 
   void add(int i, int to, X x) {
@@ -44,7 +44,7 @@ struct Doubling {
   pair<int, X> calc(int i, ll step) {
     assert(is_prepared);
     assert(0 <= step && step < (1LL << LOG));
-    X x = Monoid::unit();
+    X x = Monoid::id();
     while (step && i != -1) {
       int k = topbit(step);
       step ^= 1LL << k;
@@ -58,7 +58,7 @@ struct Doubling {
   template <typename F>
   ll max_step(F check, int i) {
     assert(is_prepared);
-    X x = Monoid::unit();
+    X x = Monoid::id();
     ll step = 0;
     assert(check(i, x));
     FOR_R(k, LOG) {

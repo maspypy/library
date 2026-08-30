@@ -20,7 +20,7 @@ struct Mono {
     auto R = matrix_mul(C, F);
     return {P, Q, R};
   }
-  static X unit() {
+  static X id() {
     mat P(3), Q(2), R(2);
     P[0] = {1, 0, 0};
     P[1] = {0, 1, 0};

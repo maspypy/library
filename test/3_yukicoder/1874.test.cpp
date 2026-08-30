@@ -16,7 +16,7 @@ struct Grp {
     return {-ax, -bx, -cx, -dx};
   }
   // static X power(const X &x, ll n) { return n * x; }
-  static constexpr X unit() { return {0, 0, 0, 0}; }
+  static constexpr X id() { return {0, 0, 0, 0}; }
   static constexpr bool commute = 1;
 };
 

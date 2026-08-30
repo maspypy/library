@@ -40,15 +40,15 @@ struct Monoid_for_floor_sum {
   }
 
   static X to_x() {
-    X x = unit();
+    X x = id();
     x.dp[0][0] = 1, x.dx = 1;
     return x;
   }
   static X to_y() {
-    X x = unit();
+    X x = id();
     x.dy = 1;
     return x;
   }
-  static constexpr X unit() { return {ARR{}, T(0), T(0)}; }
+  static constexpr X id() { return {ARR{}, T(0), T(0)}; }
   static constexpr bool commute = 0;
 };

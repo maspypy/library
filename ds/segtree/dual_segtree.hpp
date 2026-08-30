@@ -9,7 +9,7 @@ struct Dual_SegTree {
 
   Dual_SegTree() : Dual_SegTree(0) {}
   Dual_SegTree(int n) {
-    build(n, [&](int i) -> A { return MA::unit(); });
+    build(n, [&](int i) -> A { return MA::id(); });
   }
   template <typename F>
   Dual_SegTree(int n, F f) {
@@ -22,12 +22,12 @@ struct Dual_SegTree {
     log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
-    laz.assign(size << 1, MA::unit());
+    laz.assign(size << 1, MA::id());
     FOR(i, n) laz[size + i] = f(i);
     has_laz.assign(size, false);
   }
   void build(int n) {
-    build(n, [&](int i) -> A { return MA::unit(); });
+    build(n, [&](int i) -> A { return MA::id(); });
   }
 
   A get(int p) {
@@ -69,7 +69,7 @@ struct Dual_SegTree {
     if (!has_laz[k]) return;
     has_laz[k] = false;
     all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);
-    laz[k] = MA::unit();
+    laz[k] = MA::id();
   }
   void all_apply(int k, A a) {
     laz[k] = MA::op(laz[k], a);

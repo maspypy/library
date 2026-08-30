@@ -40,7 +40,7 @@ private:
       chmin(xmin, x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);
     }
     if (xmin == xmax && ymin == ymax) {
-      X x = MX::unit();
+      X x = MX::id();
       for (auto&& v: vs) x = MX::op(x, v);
       dat[idx] = x;
       return;
@@ -89,8 +89,8 @@ private:
 
   X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2) {
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
-    if (x2 <= xmin || xmax < x1) return MX::unit();
-    if (y2 <= ymin || ymax < y1) return MX::unit();
+    if (x2 <= xmin || xmax < x1) return MX::id();
+    if (y2 <= ymin || ymax < y1) return MX::id();
     if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return dat[idx]; }
     return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),
                   prod_rec(2 * idx + 1, x1, x2, y1, y2));

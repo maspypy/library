@@ -22,7 +22,7 @@ vc<WT> nonzero_group_product_shortest_path(
 
   // shortest path tree
   vc<WT> dist(N, infty<WT>);
-  vc<X> phi(N, Monoid::unit());
+  vc<X> phi(N, Monoid::id());
   vc<int> par(N, -1);
   vc<int> depth(N);
   dist[s] = 0;
@@ -87,6 +87,6 @@ vc<WT> nonzero_group_product_shortest_path(
   }
 
   vc<WT> ANS(N, infty<WT>);
-  FOR(v, N) ANS[v] = (phi[v] == Monoid::unit() ? q[v] : dist[v]);
+  FOR(v, N) ANS[v] = (phi[v] == Monoid::id() ? q[v] : dist[v]);
   return ANS;
 }

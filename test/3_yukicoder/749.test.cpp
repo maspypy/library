@@ -19,7 +19,7 @@ struct MonoA {
     auto [d, e, f] = x;
     return {a * d, a * e + b, a * f + c};
   }
-  static constexpr X unit() { return {mint(1), mint(0), mint(0)}; }
+  static constexpr X id() { return {mint(1), mint(0), mint(0)}; }
   static constexpr bool commute = true;
 };
 

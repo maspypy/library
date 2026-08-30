@@ -31,6 +31,6 @@ struct Monoid_Diameter {
     return tree->dist(D.fi, D.se);
   }
 
-  static constexpr X unit() { return {-1, -1}; }
+  static constexpr X id() { return {-1, -1}; }
   static constexpr bool commute = true;
 };

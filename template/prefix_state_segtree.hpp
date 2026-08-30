@@ -50,21 +50,21 @@ struct Prefix_State_SegTree {
     while ((1 << log) < n) ++log;
     size = 1 << log;
 
-    dat.assign(2 * size, {MS::unit(), MX::unit()});
+    dat.assign(2 * size, {MS::id(), MX::id()});
     FOR(i, n) dat[size + i].state = f(i);
     FOR_R(i, 1, size) update(i);
   }
 
   void set(int i, S s) {
     i += size;
-    dat[i] = {s, MX::unit()};
+    dat[i] = {s, MX::id()};
     while (i > 1) i /= 2, update(i);
   }
 
   // prefix state = s から [L,R) を読んだときの finish state, ANS
-  pair<S, X> prod(int L, int R, S s = MS::unit()) {
+  pair<S, X> prod(int L, int R, S s = MS::id()) {
     vc<int> suff;
-    X ans = MX::unit();
+    X ans = MX::id();
 
     L += size, R += size;
     while (L < R) {
@@ -90,7 +90,7 @@ struct Prefix_State_SegTree {
     auto& L = dat[2 * v];
     auto& R = dat[2 * v + 1];
     dat[v].state = MS::op(L.state, R.state);
-    dat[v].r_ans = MX::unit();
+    dat[v].r_ans = MX::id();
     dfs(2 * v + 1, L.state, dat[v].r_ans);
   }
 

@@ -22,7 +22,7 @@ struct RBST_ActedSet {
   np new_node(const S &s) {
     np c = pool.create();
     c->l = c->r = nullptr;
-    c->s = s, c->lazy = Monoid_A::unit();
+    c->s = s, c->lazy = Monoid_A::id();
     c->size = 1, c->rev = 0;
     return c;
   }
@@ -90,7 +90,7 @@ struct RBST_ActedSet {
   }
 
   np set(np root, u32 k, const S &s) { return set_rec(root, k, s); }
-  S get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::unit()); }
+  S get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::id()); }
 
   vc<S> get_all(np root) {
     vc<S> res;
@@ -102,7 +102,7 @@ struct RBST_ActedSet {
       res.eb(me);
       dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev, lazy);
     };
-    dfs(dfs, root, 0, Monoid_A::unit());
+    dfs(dfs, root, 0, Monoid_A::id());
     return res;
   }
 
@@ -128,13 +128,13 @@ struct RBST_ActedSet {
   void push(np c) {
     // 自身をコピーする必要はない。
     // 子をコピーする必要がある。複数の親を持つ可能性があるため。
-    bool bl_lazy = (c->lazy != Monoid_A::unit());
+    bool bl_lazy = (c->lazy != Monoid_A::id());
     bool bl_rev = c->rev;
     if (bl_lazy || bl_rev) {
       c->l = clone(c->l);
       c->r = clone(c->r);
     }
-    if (c->lazy != Monoid_A::unit()) {
+    if (c->lazy != Monoid_A::id()) {
       if (c->l) {
         c->l->s = ActedSet::act(c->l->s, c->lazy);
         c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);
@@ -143,7 +143,7 @@ struct RBST_ActedSet {
         c->r->s = ActedSet::act(c->r->s, c->lazy);
         c->r->lazy = Monoid_A::op(c->r->lazy, c->lazy);
       }
-      c->lazy = Monoid_A::unit();
+      c->lazy = Monoid_A::id();
     }
     if (c->rev) {
       if (c->l) {

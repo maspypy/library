@@ -26,7 +26,7 @@ struct Dihedral {
     if (x.fi == 1) x.se = bmod<int>(n - x.se, n);
     return x;
   }
-  static constexpr X unit() { return {1, 0}; }
+  static constexpr X id() { return {1, 0}; }
   static constexpr bool commute = 0;
 
   static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k); }

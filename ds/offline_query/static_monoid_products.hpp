@@ -10,12 +10,12 @@ void static_monoid_products(vc<T>& A, vc<pair<int, int>>& query, F f) {
   FOR(q, Q) {
     auto [L, R] = query[q];
     if (L == R) {
-      f(q, Mono::unit(), Mono::unit());
+      f(q, Mono::id(), Mono::id());
     }
     elif (R <= L + 16) {
       T ans = A[L];
       FOR(i, L + 1, R) ans = Mono::op(ans, A[i]);
-      f(q, ans, Mono::unit());
+      f(q, ans, Mono::id());
     }
     else {
       --R;
@@ -35,7 +35,7 @@ void static_monoid_products(vc<T>& A, vc<pair<int, int>>& query, F f) {
       min_a = min(min_a, a), max_b = max(max_b, b);
     }
     // 累積積の計算
-    dp[M] = Mono::unit();
+    dp[M] = Mono::id();
     for (int i = M; i > min_a; --i) dp[i - 1] = Mono::op(A[i - 1], dp[i]);
     for (int i = M; i < max_b; ++i) dp[i + 1] = Mono::op(dp[i], A[i]);
     // 答の計算

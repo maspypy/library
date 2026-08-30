@@ -20,7 +20,7 @@ struct SegTree_2D {
 
   SegTree_2D(vc<XY>& X, vc<XY>& Y)
       : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {
-          return {X[i], Y[i], MX::unit()};
+          return {X[i], Y[i], MX::id()};
         }) {}
 
   SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S>& vals)
@@ -58,7 +58,7 @@ struct SegTree_2D {
       while (i) indptr[i]++, i /= 2;
     }
     indptr = cumsum<int>(indptr);
-    dat.assign(2 * indptr.back(), MX::unit());
+    dat.assign(2 * indptr.back(), MX::id());
     to_left.assign(indptr[size], 0);
 
     vc<int> ptr = indptr;
@@ -127,7 +127,7 @@ struct SegTree_2D {
   S prod(XY lx, XY rx, XY ly, XY ry) {
     assert(lx <= rx && ly <= ry);
     int L = xtoi(lx), R = xtoi(rx);
-    S res = MX::unit();
+    S res = MX::id();
     auto dfs = [&](auto& dfs, int i, int l, int r, int a, int b) -> void {
       if (a == b || R <= l || r <= L) return;
       if (L <= l && r <= R) {
@@ -179,7 +179,7 @@ private:
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
     int off = 2 * LID;
     int L = n + a, R = n + b;
-    S val = MX::unit();
+    S val = MX::id();
     while (L < R) {
       if (L & 1) val = MX::op(val, dat[off + (L++)]);
       if (R & 1) val = MX::op(dat[off + (--R)], val);

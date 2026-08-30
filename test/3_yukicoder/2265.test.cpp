@@ -16,7 +16,7 @@ struct Mono {
     return {x.fi + y.fi, x.se * pow11[y.fi] + y.se * pow2[x.fi]};
   }
   static X from_element(mint x) { return {1, x}; }
-  static constexpr X unit() { return {0, mint(0)}; }
+  static constexpr X id() { return {0, mint(0)}; }
   static constexpr bool commute = 0;
 };
 

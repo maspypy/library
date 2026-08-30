@@ -10,7 +10,7 @@ using mint = modint<1'000'000'009>;
 
 void solve() {
   LL(N);
-  // imaginary unit
+  // imaginary id
   mint I = [&]() -> mint {
     while (1) {
       mint x = RNG(mint::get_mod());

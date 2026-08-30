@@ -9,7 +9,7 @@
 template <typename Monoid, typename X, typename U>
 X floor_monoid_product(X x, X y, U N, U a, U b, U m) {
   U c = (a * N + b) / m;
-  X pre = Monoid::unit(), suf = Monoid::unit();
+  X pre = Monoid::id(), suf = Monoid::id();
   while (1) {
     const U p = a / m, q = b / m;
     a %= m, b %= m;

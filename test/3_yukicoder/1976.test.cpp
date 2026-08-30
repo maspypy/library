@@ -10,14 +10,14 @@ void solve() {
   Tree<decltype(G)> tree(G);
 
   using Data = pair<int, int>;
-  Data unit = {0, 0};
+  Data id = {0, 0};
   auto fee = [&](Data x, Data y) -> Data {
     return {max({x.fi, y.fi, x.se + y.se}), max(x.se, y.se)};
   };
   auto fev = [&](Data x, int v) -> Data { return x; };
   // e は v から出る有向辺
   auto fve = [&](Data x, auto& e) -> Data { return {x.fi, x.se + 1}; };
-  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, id);
 
   int ANS = N;
 

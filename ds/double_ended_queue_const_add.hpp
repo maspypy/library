@@ -7,8 +7,8 @@ struct Double_Ended_Queue_Const_Add {
   vector<T> dat;
   T add;
 
-  Double_Ended_Queue_Const_Add() : add(MX::unit()) {}
-  Double_Ended_Queue_Const_Add(vc<T>& A) : add(MX::unit()) { build(A); }
+  Double_Ended_Queue_Const_Add() : add(MX::id()) {}
+  Double_Ended_Queue_Const_Add(vc<T>& A) : add(MX::id()) { build(A); }
 
   int size() { return dat.size(); }
   bool empty() { return dat.empty(); }
@@ -16,7 +16,7 @@ struct Double_Ended_Queue_Const_Add {
   T max() { return MX::op(add, (len(dat) == 1 ? dat[0] : dat[1])); }
 
   void build(vc<T>& A) {
-    add = MX::unit();
+    add = MX::id();
     dat = A;
     int n = len(dat);
     FOR_R(i, n) { down(i); }

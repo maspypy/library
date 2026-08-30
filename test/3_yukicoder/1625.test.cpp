@@ -40,7 +40,7 @@ void solve() {
   }
   FOR(i, N, N + Q) {
     auto&& [a, b, c] = query[i];
-    if (a != -1) X.eb(a), Y.eb(b), V.eb(Mono::unit());
+    if (a != -1) X.eb(a), Y.eb(b), V.eb(Mono::id());
   }
   KDTree_Monoid<Mono, int> seg(X, Y, V);
 
@@ -50,7 +50,7 @@ void solve() {
       seg.multiply(a, b, c);
     } else {
       ll ANS = seg.prod(b, c, b, c);
-      if (ANS == Mono::unit()) ANS = -1;
+      if (ANS == Mono::id()) ANS = -1;
       print(ANS);
     }
   }

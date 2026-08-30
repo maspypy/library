@@ -14,7 +14,7 @@ void solve() {
 
   // 消費した S の文字数 → LCS
   using Data = vc<int>;
-  Data unit = vc<int>(len(S) + 1);
+  Data id = vc<int>(len(S) + 1);
 
   auto fee = [&](Data x, Data y) -> Data {
     FOR(i, len(S) + 1) chmax(x[i], y[i]);
@@ -30,7 +30,7 @@ void solve() {
     FOR(j, len(S)) chmax(x[j + 1], x[j]);
     return x;
   };
-  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
+  Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, id);
 
   ll ANS = 0;
   FOR(v, N) {

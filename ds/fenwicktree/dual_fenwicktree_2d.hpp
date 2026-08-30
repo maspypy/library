@@ -54,7 +54,7 @@ struct Dual_FenwickTree_2D {
     }
     FOR(i, N) indptr[i + 1] += indptr[i];
     keyY.resize(indptr.back());
-    dat.assign(indptr.back(), G::unit());
+    dat.assign(indptr.back(), G::id());
     fill(all(last_y), -infty<XY> - 1);
     vc<int> prog = indptr;
     FOR(i, len(X)) {
@@ -68,7 +68,7 @@ struct Dual_FenwickTree_2D {
   }
 
   E get(XY x, XY y) {
-    E val = G::unit();
+    E val = G::id();
     int i = xtoi(x);
     assert(keyX[i] == x);
     while (i < N) { val = G::op(val, get_i(i, y)), i = nxt(i); }
@@ -84,7 +84,7 @@ struct Dual_FenwickTree_2D {
 
 private:
   E get_i(int i, XY y) {
-    E val = G::unit();
+    E val = G::id();
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
     auto it = keyY.begin() + LID;
     int j = lower_bound(it, it + n, y) - it;

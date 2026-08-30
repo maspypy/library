@@ -15,7 +15,7 @@ struct Dual_KDTree_Monoid {
     assert(n > 0);
     log = 0;
     while ((1 << log) < n) ++log;
-    lazy.resize(1 << (log + 1), MA::unit());
+    lazy.resize(1 << (log + 1), MA::id());
     closed_range.resize(1 << (log + 1));
     size.resize(1 << (log + 1));
     where.resize(n);
@@ -87,9 +87,9 @@ private:
   void apply_at(int idx, A a) { lazy[idx] = MA::op(lazy[idx], a); }
 
   void push(int idx) {
-    if (lazy[idx] == MA::unit()) return;
+    if (lazy[idx] == MA::id()) return;
     apply_at(2 * idx + 0, lazy[idx]), apply_at(2 * idx + 1, lazy[idx]);
-    lazy[idx] = MA::unit();
+    lazy[idx] = MA::id();
   }
 
   void apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {

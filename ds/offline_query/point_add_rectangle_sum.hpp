@@ -14,7 +14,7 @@ struct Point_Add_Rectangle_Sum {
 
   vector<G> calc() {
     int N = point.size(), Q = rect.size();
-    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::unit());
+    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::id());
     // X 方向の座圧
     int NX = 0;
     if (!SMALL_X) {
@@ -55,7 +55,7 @@ struct Point_Add_Rectangle_Sum {
          [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });
 
     FenwickTree<AbelianGroup> bit(NX);
-    vc<G> res(Q, AbelianGroup::unit());
+    vc<G> res(Q, AbelianGroup::id());
     int j = 0;
     for (auto &&[y, xl, xr, qq]: event) {
       while (j < N && get<1>(point[j]) < y) {

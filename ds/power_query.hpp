@@ -9,7 +9,7 @@ struct Power_Query {
   Power_Query(X a) { dat.eb(make_pow(a)); }
 
   X operator()(ll n) {
-    X res = Mono::unit();
+    X res = Mono::id();
     int k = 0;
     while (n) {
       int r = n % B;
@@ -39,7 +39,7 @@ struct Power_Query {
 
 private:
   vc<X> make_pow(X a) {
-    vc<X> res = {Mono::unit()};
+    vc<X> res = {Mono::id()};
     FOR(B) { res.eb(Mono::op(res.back(), a)); }
     return res;
   }

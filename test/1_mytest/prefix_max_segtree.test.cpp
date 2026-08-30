@@ -29,7 +29,7 @@ void test(ll N) {
 
   auto naive = [&](int L, int R) -> F {
     int mx = -infty<int>;
-    F prod = Mono::unit();
+    F prod = Mono::id();
     FOR(i, L, R) {
       if (mx <= key[i]) {
         mx = key[i];

@@ -1,5 +1,5 @@
 
-// 常にほとんどの要素が unit であることが保証されるような動的セグ木
+// 常にほとんどの要素が id であることが保証されるような動的セグ木
 // したがって、default_prod の類は持たせられず、acted monoid も一般には扱えない
 // 追加 N 回のときノード数 N 以下が保証される
 template <typename Monoid, bool PERSISTENT>
@@ -21,7 +21,7 @@ struct Dynamic_SegTree_Sparse {
   void reserve(int n) { node.reserve(n + 1); }
   void reset() {
     node.clear(), FREE.clear();
-    node.eb(Node{{NIL, NIL}, 0, MX::unit(), MX::unit()});  // NIL
+    node.eb(Node{{NIL, NIL}, 0, MX::id(), MX::id()});  // NIL
   }
 
   // 木 dp のマージのときなどに使用すると MLE 回避できることがある
@@ -52,13 +52,13 @@ struct Dynamic_SegTree_Sparse {
 
   X prod(int root, ll l, ll r) {
     assert(L0 <= l && l <= r && r <= R0);
-    if (root == NIL || l == r) return MX::unit();
-    X x = MX::unit();
+    if (root == NIL || l == r) return MX::id();
+    X x = MX::id();
     prod_rec(root, L0, R0, l, r, x);
     return x;
   }
 
-  X prod_all(int root) { return (root == NIL ? MX::unit() : node[root].prod); }
+  X prod_all(int root) { return (root == NIL ? MX::id() : node[root].prod); }
 
   int set(int root, ll i, const X &x) {
     assert(L0 <= i && i < R0);
@@ -72,15 +72,15 @@ struct Dynamic_SegTree_Sparse {
 
   template <typename F>
   ll max_right(int root, F check, ll L) {
-    assert(L0 <= L && L <= R0 && check(MX::unit()));
-    X x = MX::unit();
+    assert(L0 <= L && L <= R0 && check(MX::id()));
+    X x = MX::id();
     return max_right_rec(root, check, L0, R0, L, x);
   }
 
   template <typename F>
   ll min_left(int root, F check, ll R) {
-    assert(L0 <= R && R <= R0 && check(MX::unit()));
-    X x = MX::unit();
+    assert(L0 <= R && R <= R0 && check(MX::id()));
+    X x = MX::id();
     return min_left_rec(root, check, L0, R0, R, x);
   }
 
@@ -98,7 +98,7 @@ struct Dynamic_SegTree_Sparse {
 
   X get(int root, ll idx) {
     auto dfs = [&](auto &dfs, int c) -> X {
-      if (c == NIL) return MX::unit();
+      if (c == NIL) return MX::id();
       if (idx == node[c].idx) return node[c].x;
       return dfs(dfs, node[c].ch[idx > node[c].idx]);
     };

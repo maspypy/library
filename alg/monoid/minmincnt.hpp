@@ -11,6 +11,6 @@ struct Monoid_MinMincnt {
     if (xmin < ymin) return x;
     return {xmin, xmincnt + ymincnt};
   }
-  static constexpr X unit() { return {infty<E>, 0}; }
+  static constexpr X id() { return {infty<E>, 0}; }
   static constexpr bool commute = true;
 };

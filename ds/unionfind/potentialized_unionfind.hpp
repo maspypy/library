@@ -7,14 +7,14 @@ struct Potentialized_UnionFind {
   vc<int> par;
   vc<int> size;
 
-  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N, Group::unit()), size(N, 1) {
+  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N, Group::id()), size(N, 1) {
     par.resize(N);
     iota(all(par), 0);
   }
 
   // (root, P[root]^{-1}P[v])
   pair<int, E> get(int v) {
-    E res = Group::unit();
+    E res = Group::id();
     while (v != par[v]) {
       res = Group::op(vals[v], res);
       res = Group::op(vals[par[v]], res);
@@ -30,7 +30,7 @@ struct Potentialized_UnionFind {
   pair<bool, E> get_path(int u, int v) {
     auto [ru, xu] = get(u);
     auto [rv, xv] = get(v);
-    if (ru != rv) return {false, Group::unit()};
+    if (ru != rv) return {false, Group::id()};
     return {true, Group::op(Group::inverse(xu), xv)};
   }
 

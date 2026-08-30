@@ -20,7 +20,7 @@ struct Node_AM {
   static void new_node(np n, const X &x) {
     n->p = n->l = n->r = nullptr;
     n->x = n->prod = x;
-    n->lazy = Monoid_A::unit();
+    n->lazy = Monoid_A::id();
     n->size = 1;
     n->rev = 0;
   }
@@ -39,14 +39,14 @@ struct Node_AM {
   }
 
   void push() {
-    if (lazy != Monoid_A::unit()) {
+    if (lazy != Monoid_A::id()) {
       if (l) {
         l->apply(lazy);
       }
       if (r) {
         r->apply(lazy);
       }
-      lazy = Monoid_A::unit();
+      lazy = Monoid_A::id();
     }
     if (rev) {
       if (l) {

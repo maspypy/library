@@ -14,9 +14,9 @@ struct Rerooting_DP_2 {
   vc<Data> dp_4;  // dp_3 の左閉区間での累積
 
   template <typename F1, typename F2, typename F3>
-  Rerooting_DP_2(TREE &tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
+  Rerooting_DP_2(TREE &tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data id)
       : tree(tree) {
-    build(f_ee, f_ev, f_ve, unit);
+    build(f_ee, f_ev, f_ve, id);
   }
 
   // v を根としたときの full tree
@@ -33,14 +33,14 @@ struct Rerooting_DP_2 {
   }
 
   template <typename F1, typename F2, typename F3>
-  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {
+  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data id) {
     using Edge = typename TREE::Graph_type::edge_type;
     int N = tree.N;
     // dp_1: subtree
     // dp_3: v までの左閉区間
-    dp_1.assign(N, unit);
-    dp_3.assign(N, unit);
-    dp_4.assign(N, unit);
+    dp_1.assign(N, id);
+    dp_3.assign(N, id);
+    dp_4.assign(N, id);
     FOR_R(i, N) {
       int v = tree.V[i];
       vc<Edge> ch;
@@ -53,24 +53,24 @@ struct Rerooting_DP_2 {
         dp_3[c] = f_ve(dp_1[c], e);
         dp_4[c] = (i == 0 ? dp_3[c] : f_ee(dp_4[ch[i - 1].to], dp_3[c]));
       }
-      dp_1[v] = (n == 0 ? f_ev(unit, v) : f_ev(dp_4[ch[n - 1].to], v));
+      dp_1[v] = (n == 0 ? f_ev(id, v) : f_ev(dp_4[ch[n - 1].to], v));
     }
 
     // dp2[v]: subtree of p, rooted at v
-    dp_2.assign(N, unit);
+    dp_2.assign(N, id);
     // dp[v]: fulltree, rooted at v
-    dp.assign(N, unit);
+    dp.assign(N, id);
     FOR(i, N) {
       int v = tree.V[i];
       vc<Edge> ch;
-      Data x = unit;
+      Data x = id;
       for (auto &e : tree.G[v]) {
         if (e.to != tree.parent[v]) ch.eb(e);
         if (e.to == tree.parent[v]) x = f_ve(dp_2[v], e);
       }
       int n = len(ch);
       FOR_R(i, n) {
-        Data lprod = (i > 0 ? dp_4[ch[i - 1].to] : unit);
+        Data lprod = (i > 0 ? dp_4[ch[i - 1].to] : id);
         dp_2[ch[i].to] = f_ev(f_ee(lprod, x), v);
         x = f_ee(x, dp_3[ch[i].to]);
       }

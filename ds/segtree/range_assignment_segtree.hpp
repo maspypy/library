@@ -20,7 +20,7 @@ struct Range_Assignment_SegTree {
   Range_Assignment_SegTree(const vc<X> &v) { build(v); }
 
   void build(int m) {
-    build(m, [](int i) -> X { return MX::unit(); });
+    build(m, [](int i) -> X { return MX::id(); });
   }
   void build(const vc<X> &v) {
     build(len(v), [&](int i) -> X { return v[i]; });
@@ -55,7 +55,7 @@ struct Range_Assignment_SegTree {
       dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y, b - r));
     }
     cut.enumerate(l + 1, r,
-                  [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i); });
+                  [&](int i) -> void { seg.set(i, MX::id()), cut.erase(i); });
     dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));
   }
 

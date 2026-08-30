@@ -21,7 +21,7 @@ struct Mono {
     z.x0 = x.x0 + y.x0, z.x1 = x.x1 + y.x1;
     return z;
   }
-  static constexpr X unit() { return Data{0, 0, 0}; }
+  static constexpr X id() { return Data{0, 0, 0}; }
   static constexpr bool commute = 0;
 };
 
