@@ -108,14 +108,14 @@ data:
     \ push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = false;\n    all_apply(2\
     \ * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n \
     \ void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k], a);\n    if (k < size)\
-    \ has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename\
-    \ E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 5 \"geo/range_closest_pair_query.hpp\"\n\n// \u70B9\u7FA4 {p_i | i in [l, r)}\
-    \ \u306B\u5BFE\u3059\u308B\u6700\u8FD1\u70B9\u5BFE\u306E\u8A08\u7B97\u3092\u884C\
-    \u3046\u30AF\u30A8\u30EA\n// O(KNlogKN + QlogN)\n// https://qoj.ac/problem/5463\n\
-    // https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf\n\
+    \ has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n// require: all\
+    \ values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n\
+    \  using X = E;\n  using value_type = X;\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return min(x, y); }\n  static constexpr X id() { return\
+    \ infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 5 \"geo/range_closest_pair_query.hpp\"\
+    \n\n// \u70B9\u7FA4 {p_i | i in [l, r)} \u306B\u5BFE\u3059\u308B\u6700\u8FD1\u70B9\
+    \u5BFE\u306E\u8A08\u7B97\u3092\u884C\u3046\u30AF\u30A8\u30EA\n// O(KNlogKN + QlogN)\n\
+    // https://qoj.ac/problem/5463\n// https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf\n\
     // \u70B9\u7FA4\u304C 1 \u6B21\u5143\uFF1Ahttps://codeforces.com/problemset/problem/765/F\n\
     struct Range_Closest_Pair_Query {\n  /*\n  \u30FBR \u3092\u5897\u3084\u3057\u306A\
     \u304C\u3089\u3001L \u3054\u3068\u306E\u7B54\u3092\u7BA1\u7406\u3059\u308B\n \
@@ -247,7 +247,7 @@ data:
   isVerificationFile: false
   path: geo/range_closest_pair_query.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:27:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_closest_pair.test.cpp

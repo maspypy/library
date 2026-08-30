@@ -956,30 +956,31 @@ data:
     \ x) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l\
     \ + edge, r, x);\r\n  }\r\n\r\n  void apply_outtree(int u, X a) {\r\n    int l\
     \ = tree.LID[u], r = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n\
-    \    seg.apply(r, N, a);\r\n  }\r\n};\r\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate\
-    \ <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
-    \ }\n  static constexpr X id() { return infty<E>; }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 1 \"alg/monoid/max.hpp\"\n\ntemplate <typename E>\nstruct\
-    \ Monoid_Max {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return max(x, y); }\n  static constexpr\
-    \ X id() { return -infty<E>; }\n  static constexpr bool commute = true;\n};\n\
-    #line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n// return : {T mst_cost, vc<bool>\
-    \ in_mst, Graph MST}\r\ntemplate <typename T, typename GT>\r\ntuple<T, vc<bool>,\
-    \ GT> minimum_spanning_tree(GT& G) {\r\n  int N = G.N;\r\n  int M = len(G.edges);\r\
-    \n  vc<int> I(M);\r\n  FOR(i, M) I[i] = i;\r\n  sort(all(I), [&](auto& a, auto&\
-    \ b) -> bool {\r\n    return (G.edges[a].cost) < (G.edges[b].cost);\r\n  });\r\
-    \n\r\n  vc<bool> in_mst(M);\r\n  UnionFind uf(N);\r\n  T mst_cost = T(0);\r\n\
-    \  GT MST(N);\r\n  for (auto& i: I) {\r\n    auto& e = G.edges[i];\r\n    if (uf.merge(e.frm,\
-    \ e.to)) {\r\n      in_mst[i] = 1;\r\n      mst_cost += e.cost;\r\n    }\r\n \
-    \ }\r\n  FOR(i, M) if (in_mst[i]) {\r\n    auto& e = G.edges[i];\r\n    MST.add(e.frm,\
-    \ e.to, e.cost);\r\n  }\r\n  MST.build();\r\n  return {mst_cost, in_mst, MST};\r\
-    \n}\r\n\r\n// https://codeforces.com/contest/828/problem/F\r\n// return : {T mst_cost,\
-    \ vc<bool> in_mst, Graph MST, vc<T> dat}\r\n// dat : \u8FBA\u3054\u3068\u306B\u3001\
-    \u4ED6\u306E\u8FBA\u3092\u4FDD\u3063\u305F\u3068\u304D\u306B MST \u8FBA\u306B\u306A\
-    \u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename T, typename GT>\r\ntuple<T,\
-    \ vc<bool>, GT, vc<T>> minimum_spanning_tree_cycle_data(GT& G) {\r\n  int M =\
-    \ len(G.edges);\r\n  auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);\r\
+    \    seg.apply(r, N, a);\r\n  }\r\n};\r\n#line 1 \"alg/monoid/min.hpp\"\n// require:\
+    \ all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
+    alg/monoid/max.hpp\"\n// require: all values x satisfy x >= -infty<E>\ntemplate\
+    \ <typename E>\nstruct Monoid_Max {\n  using X = E;\n  using value_type = X;\n\
+    \  static constexpr X op(const X &x, const X &y) noexcept { return max(x, y);\
+    \ }\n  static constexpr X id() { return -infty<E>; }\n  static constexpr bool\
+    \ commute = true;\n};\n#line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n// return\
+    \ : {T mst_cost, vc<bool> in_mst, Graph MST}\r\ntemplate <typename T, typename\
+    \ GT>\r\ntuple<T, vc<bool>, GT> minimum_spanning_tree(GT& G) {\r\n  int N = G.N;\r\
+    \n  int M = len(G.edges);\r\n  vc<int> I(M);\r\n  FOR(i, M) I[i] = i;\r\n  sort(all(I),\
+    \ [&](auto& a, auto& b) -> bool {\r\n    return (G.edges[a].cost) < (G.edges[b].cost);\r\
+    \n  });\r\n\r\n  vc<bool> in_mst(M);\r\n  UnionFind uf(N);\r\n  T mst_cost = T(0);\r\
+    \n  GT MST(N);\r\n  for (auto& i: I) {\r\n    auto& e = G.edges[i];\r\n    if\
+    \ (uf.merge(e.frm, e.to)) {\r\n      in_mst[i] = 1;\r\n      mst_cost += e.cost;\r\
+    \n    }\r\n  }\r\n  FOR(i, M) if (in_mst[i]) {\r\n    auto& e = G.edges[i];\r\n\
+    \    MST.add(e.frm, e.to, e.cost);\r\n  }\r\n  MST.build();\r\n  return {mst_cost,\
+    \ in_mst, MST};\r\n}\r\n\r\n// https://codeforces.com/contest/828/problem/F\r\n\
+    // return : {T mst_cost, vc<bool> in_mst, Graph MST, vc<T> dat}\r\n// dat : \u8FBA\
+    \u3054\u3068\u306B\u3001\u4ED6\u306E\u8FBA\u3092\u4FDD\u3063\u305F\u3068\u304D\
+    \u306B MST \u8FBA\u306B\u306A\u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename\
+    \ T, typename GT>\r\ntuple<T, vc<bool>, GT, vc<T>> minimum_spanning_tree_cycle_data(GT&\
+    \ G) {\r\n  int M = len(G.edges);\r\n  auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);\r\
     \n  Tree<GT> tree(MST);\r\n  vc<T> dat;\r\n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\
     \n  Tree_Monoid<decltype(tree), Monoid_Max<T>, 1> TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree),\
     \ Monoid_Min<T>, 1> TM2(tree);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n \
@@ -1029,7 +1030,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:27:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/mst.test.cpp

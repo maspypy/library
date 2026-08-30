@@ -367,15 +367,15 @@ data:
     \    if (R - L <= 16) {\n      u32 d = dat[L] & ((u32(1) << (R - L)) - 1);\n \
     \     return A[L + topbit(d)];\n    }\n    --R;\n    int a = L >> LOG, b = R >>\
     \ LOG;\n    X x = ST.prod(a + 1, b);\n    x = MX::op(suf[L], x);\n    x = MX::op(x,\
-    \ pre[R]);\n    return x;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate\
-    \ <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
-    \ }\n  static constexpr X id() { return infty<E>; }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 7 \"test/2_library_checker/data_structure/staticrmq_x.test.cpp\"\
-    \n\nvoid solve() {\n  INT(N, Q);\n  Static_RMQ<Monoid_Min<int>> seg(N, [&](int\
-    \ i) -> int {\n    INT(x);\n    return x;\n  });\n  FOR(Q) {\n    INT(l, r);\n\
-    \    print(seg.prod(l, r));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \ pre[R]);\n    return x;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n// require:\
+    \ all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 7 \"\
+    test/2_library_checker/data_structure/staticrmq_x.test.cpp\"\n\nvoid solve() {\n\
+    \  INT(N, Q);\n  Static_RMQ<Monoid_Min<int>> seg(N, [&](int i) -> int {\n    INT(x);\n\
+    \    return x;\n  });\n  FOR(Q) {\n    INT(l, r);\n    print(seg.prod(l, r));\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/rmq/static_rmq.hpp\"\
     \n#include \"alg/monoid/min.hpp\"\n\nvoid solve() {\n  INT(N, Q);\n  Static_RMQ<Monoid_Min<int>>\
@@ -392,7 +392,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:27:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_x.test.cpp

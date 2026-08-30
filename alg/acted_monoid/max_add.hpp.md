@@ -26,15 +26,16 @@ data:
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/max.hpp\"\n\
-    \ntemplate <typename E>\nstruct Monoid_Max {\n  using X = E;\n  using value_type\
-    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return max(x,\
-    \ y); }\n  static constexpr X id() { return -infty<E>; }\n  static constexpr bool\
-    \ commute = true;\n};\n#line 3 \"alg/acted_monoid/max_add.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct ActedMonoid_Max_Add {\r\n  using Monoid_X = Monoid_Max<E>;\r\
-    \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    if (x == -infty<E>) return x;\r\n\
-    \    return x + a;\r\n  }\r\n};\r\n"
+    // require: all values x satisfy x >= -infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Max {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return max(x, y); }\n  static constexpr\
+    \ X id() { return -infty<E>; }\n  static constexpr bool commute = true;\n};\n\
+    #line 3 \"alg/acted_monoid/max_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ ActedMonoid_Max_Add {\r\n  using Monoid_X = Monoid_Max<E>;\r\n  using Monoid_A\
+    \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
+    \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
+    \ A &a, const ll &size) {\r\n    if (x == -infty<E>) return x;\r\n    return x\
+    \ + a;\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/max.hpp\"\r\n\r\n\
     template <typename E>\r\nstruct ActedMonoid_Max_Add {\r\n  using Monoid_X = Monoid_Max<E>;\r\
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
@@ -47,7 +48,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/max_add.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:27:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp

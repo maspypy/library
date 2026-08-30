@@ -302,12 +302,12 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Min\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
-    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 6 \"\
-    test/2_library_checker/data_structure/staticrmq_dst.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  VEC(int, A, N);\n\n  Disjoint_Sparse_Table<Monoid_Min<int>>\
+    \  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n// require: all values x satisfy x <=\
+    \ infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using\
+    \ value_type = X;\n  static constexpr X op(const X &x, const X &y) noexcept {\
+    \ return min(x, y); }\n  static constexpr X id() { return infty<E>; }\n  static\
+    \ constexpr bool commute = true;\n};\n#line 6 \"test/2_library_checker/data_structure/staticrmq_dst.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n\n  Disjoint_Sparse_Table<Monoid_Min<int>>\
     \ seg(A);\n\n  FOR(Q) {\n    LL(a, b);\n    print(seg.prod(a, b));\n  }\n}\n\n\
     signed main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
@@ -325,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:27:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_dst.test.cpp

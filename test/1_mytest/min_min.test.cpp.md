@@ -247,16 +247,17 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate\
-    \ <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
-    \ }\n  static constexpr X id() { return infty<E>; }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 2 \"alg/acted_monoid/min_min.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct ActedMonoid_Min_Min {\r\n  using Monoid_X = Monoid_Min<E>;\r\n\
-    \  using Monoid_A = Monoid_Min<E>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    return min(x, a);\r\n  }\r\n};\r\n\
-    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"alg/monoid/min.hpp\"\n// require:\
+    \ all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 2 \"\
+    alg/acted_monoid/min_min.hpp\"\n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Min_Min\
+    \ {\r\n  using Monoid_X = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Min<E>;\r\
+    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
+    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return\
+    \ min(x, a);\r\n  }\r\n};\r\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n \
+    \ static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
@@ -396,7 +397,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/min_min.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:27:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/min_min.test.cpp

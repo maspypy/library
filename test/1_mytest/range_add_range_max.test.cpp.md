@@ -130,41 +130,41 @@ data:
     \ const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const X\
     \ &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n) noexcept\
     \ { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n  static constexpr\
-    \ bool commute = true;\n};\n#line 1 \"alg/monoid/max.hpp\"\n\ntemplate <typename\
-    \ E>\nstruct Monoid_Max {\n  using X = E;\n  using value_type = X;\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return max(x, y); }\n  static constexpr\
-    \ X id() { return -infty<E>; }\n  static constexpr bool commute = true;\n};\n\
-    #line 3 \"alg/acted_monoid/max_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ ActedMonoid_Max_Add {\r\n  using Monoid_X = Monoid_Max<E>;\r\n  using Monoid_A\
-    \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
-    \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a, const ll &size) {\r\n    if (x == -infty<E>) return x;\r\n    return x\
-    \ + a;\r\n  }\r\n};\r\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
-    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
-    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
-    \ UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
-    \ s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*()\
-    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
-    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
-    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
-    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
-    \ s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool\
-    \ done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ bool commute = true;\n};\n#line 1 \"alg/monoid/max.hpp\"\n// require: all values\
+    \ x satisfy x >= -infty<E>\ntemplate <typename E>\nstruct Monoid_Max {\n  using\
+    \ X = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return max(x, y); }\n  static constexpr X id() { return -infty<E>;\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 3 \"alg/acted_monoid/max_add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Max_Add {\r\n  using Monoid_X\
+    \ = Monoid_Max<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
+    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
+    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if (x == -infty<E>)\
+    \ return x;\r\n    return x + a;\r\n  }\r\n};\r\n#line 1 \"other/bit.hpp\"\n\n\
+    int popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
+    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
+    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
+    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
+    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
+    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
+    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
+    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
+    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
+    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
+    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
+    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
+    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  assert(0 <= k && k < int(8\
+    \ * sizeof(T)));\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return x >> k &\
+    \ 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
+    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
+    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
+    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
+    \ <typename UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n\
+    \    bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
     \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
     \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
     \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
@@ -485,7 +485,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_max.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:27:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_max.test.cpp

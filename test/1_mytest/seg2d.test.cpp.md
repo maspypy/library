@@ -189,26 +189,26 @@ data:
     \  int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    int off = 2 * LID;\r\
     \n    j += n;\r\n    dat[off + j] = val;\r\n    while (j > 1) {\r\n      j /=\
     \ 2;\r\n      dat[off + j] = MX::op(dat[off + 2 * j + 0], dat[off + 2 * j + 1]);\r\
-    \n    }\r\n  }\r\n};\r\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename E>\n\
-    struct Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 7 \"test/1_mytest/seg2d.test.cpp\"\n\nvoid test() {\n  FOR(N, 100) {\n    FOR(Q,\
-    \ 100) {\n      vc<int> X(N), Y(N), val(N);\n      FOR(i, N) X[i] = RNG(0, 5),\
-    \ Y[i] = RNG(0, 5), val[i] = RNG(0, 100);\n      SegTree_2D<Monoid_Min<int>, int,\
-    \ true> seg(X, Y, val);\n      FOR(Q) {\n        int t = RNG(0, 3);\n        if\
-    \ (N == 0) t = 2;\n        if (t == 0) {\n          int i = RNG(0, N);\n     \
-    \     val[i] = RNG(0, 100);\n          seg.set(i, val[i]);\n        }\n      \
-    \  if (t == 1) {\n          int i = RNG(0, N);\n          int x = RNG(0, 100);\n\
-    \          chmin(val[i], x);\n          seg.multiply(i, val[i]);\n        }\n\
-    \        if (t == 2) {\n          int a = RNG(0, 5), b = RNG(0, 5), c = RNG(0,\
-    \ 5), d = RNG(0, 5);\n          if (a > b) swap(a, b);\n          if (c > d) swap(c,\
-    \ d);\n          int ans = infty<int>;\n          FOR(i, N) {\n            if\
-    \ (a <= X[i] && X[i] < b && c <= Y[i] && Y[i] < d)\n              chmin(ans, val[i]);\n\
-    \          }\n          assert(ans == seg.prod(a, b, c, d));\n        }\n    \
-    \  }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
-    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
-    }\n"
+    \n    }\r\n  }\r\n};\r\n#line 1 \"alg/monoid/min.hpp\"\n// require: all values\
+    \ x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n  using\
+    \ X = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return min(x, y); }\n  static constexpr X id() { return infty<E>;\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 7 \"test/1_mytest/seg2d.test.cpp\"\
+    \n\nvoid test() {\n  FOR(N, 100) {\n    FOR(Q, 100) {\n      vc<int> X(N), Y(N),\
+    \ val(N);\n      FOR(i, N) X[i] = RNG(0, 5), Y[i] = RNG(0, 5), val[i] = RNG(0,\
+    \ 100);\n      SegTree_2D<Monoid_Min<int>, int, true> seg(X, Y, val);\n      FOR(Q)\
+    \ {\n        int t = RNG(0, 3);\n        if (N == 0) t = 2;\n        if (t ==\
+    \ 0) {\n          int i = RNG(0, N);\n          val[i] = RNG(0, 100);\n      \
+    \    seg.set(i, val[i]);\n        }\n        if (t == 1) {\n          int i =\
+    \ RNG(0, N);\n          int x = RNG(0, 100);\n          chmin(val[i], x);\n  \
+    \        seg.multiply(i, val[i]);\n        }\n        if (t == 2) {\n        \
+    \  int a = RNG(0, 5), b = RNG(0, 5), c = RNG(0, 5), d = RNG(0, 5);\n         \
+    \ if (a > b) swap(a, b);\n          if (c > d) swap(c, d);\n          int ans\
+    \ = infty<int>;\n          FOR(i, N) {\n            if (a <= X[i] && X[i] < b\
+    \ && c <= Y[i] && Y[i] < d)\n              chmin(ans, val[i]);\n          }\n\
+    \          assert(ans == seg.prod(a, b, c, d));\n        }\n      }\n    }\n \
+    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"ds/segtree/segtree_2d.hpp\"\n#include\
     \ \"alg/monoid/min.hpp\"\n\nvoid test() {\n  FOR(N, 100) {\n    FOR(Q, 100) {\n\
@@ -234,7 +234,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/seg2d.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:27:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/seg2d.test.cpp

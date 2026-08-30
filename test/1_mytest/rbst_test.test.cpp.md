@@ -108,40 +108,40 @@ data:
     }\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr\
     \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
     \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
-    \ abs(a);\n}\n#endif\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename E>\n\
-    struct Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\
-    \u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\
-    \ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node node;\n\
-    \    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\
-    \n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n\
-    \  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\n  template\
-    \ <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
-    \    return ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const\
-    \ np x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node)\
-    \ Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
-    \    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
-    \ = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n \
-    \ // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\
-    \u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n\
-    \    free_head = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n\
-    \  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE)); }\n\n  Slot*\
-    \ new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head\
-    \ = free_head->next;\n      return s;\n    }\n\n    if (chunk_id == len(chunks))\
-    \ alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE)\
-    \ {\n      ++chunk_id;\n      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2\
-    \ \"ds/randomized_bst/rbst_monoid.hpp\"\n\ntemplate <typename Monoid, bool PERSISTENT>\n\
-    struct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\n  struct Node\
-    \ {\n    Node *l, *r;\n    X x, prod, rev_prod;  // rev \u53CD\u6620\u6E08\n \
-    \   u32 size;\n    bool rev;\n  };\n\n  Node_Pool<Node> pool;\n  using np = Node\
-    \ *;\n\n  void reset() { pool.reset(); }\n\n  np new_node(const X &x) {\n    np\
-    \ c = pool.create();\n    c->l = c->r = nullptr;\n    c->x = x, c->prod = x, c->rev_prod\
-    \ = x;\n    c->size = 1, c->rev = 0;\n    return c;\n  }\n\n  np new_node(const\
-    \ vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if\
-    \ (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n \
-    \     u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
+    \ abs(a);\n}\n#endif\n#line 1 \"alg/monoid/min.hpp\"\n// require: all values x\
+    \ satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n  using X\
+    \ = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X &y)\
+    \ noexcept { return min(x, y); }\n  static constexpr X id() { return infty<E>;\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 1 \"ds/node_pool.hpp\"\
+    \n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\
+    \u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\n\
+    struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
+    \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
+    \ = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  template <class... Args>\n  np create(Args&&...\
+    \ args) {\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if\
+    \ (!x) return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n \
+    \   s->next = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\
+    \u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\
+    \u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\
+    \u308B\u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n\
+    \    pos = 0;\n  }\n\n private:\n  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\
+    \ }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
+    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
+    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
+    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
+    \ s;\n  }\n};\n#line 2 \"ds/randomized_bst/rbst_monoid.hpp\"\n\ntemplate <typename\
+    \ Monoid, bool PERSISTENT>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
+    \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod;  // rev \u53CD\u6620\
+    \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node_Pool<Node> pool;\n  using\
+    \ np = Node *;\n\n  void reset() { pool.reset(); }\n\n  np new_node(const X &x)\
+    \ {\n    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x = x, c->prod\
+    \ = x, c->rev_prod = x;\n    c->size = 1, c->rev = 0;\n    return c;\n  }\n\n\
+    \  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r)\
+    \ -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
+    \      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
     \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
     \ root->r = r_root;\n      update(root);\n      return root;\n    };\n    return\
     \ dfs(dfs, 0, len(dat));\n  }\n\n  np clone(np n) {\n    if (!n || !PERSISTENT)\
@@ -287,7 +287,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_test.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:27:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_test.test.cpp
