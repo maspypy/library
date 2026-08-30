@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -190,29 +190,31 @@ data:
     \ Monoid_A::value_type;\n  static constexpr X act(const X& x, const A& a, const\
     \ ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == -infty<E> ? xm : xm + a);\n\
     \    return {xs + E(size) * a, xm};\n  }\n};\n#line 1 \"random/base.hpp\"\n\n\
-    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/kdtree_am.test.cpp\"\n\nvoid\
-    \ test() {\n  ll LIM = RNG(1, 100);\n  int N = RNG(1, 100);\n  using AM = ActedMonoid_SumMax_Add<int>;\n\
-    \  using MX = AM::Monoid_X;\n\n  vc<int> X, Y, W;\n  vc<typename MX::value_type>\
-    \ val;\n  FOR(i, N) {\n    int x = RNG(0, LIM);\n    int y = RNG(0, LIM);\n  \
-    \  int v = RNG(0, 100);\n    X.eb(x), Y.eb(y), val.eb(v, v);\n  }\n  KDTree_ActedMonoid<AM,\
-    \ int> KDT(X, Y, val);\n\n  int Q = 100;\n  FOR(Q) {\n    int t = RNG(0, 4);\n\
-    \    int xl = RNG(0, LIM), xr = RNG(0, LIM), yl = RNG(0, LIM), yr = RNG(0, LIM);\n\
-    \    if (xl > xr) swap(xl, xr);\n    if (yl > yr) swap(yl, yr);\n    if (t ==\
-    \ 0) {\n      // multiply\n      int k = RNG(0, N);\n      int a = RNG(0, 100);\n\
-    \      int b = RNG(0, 100);\n      KDT.multiply(k, {a, b});\n      val[k].fi +=\
-    \ a;\n      chmax(val[k].se, b);\n    }\n    if (t == 1) {\n      // prod\n  \
-    \    int sm = 0, mx = MX::id().se;\n      FOR(k, N) {\n        if (xl <= X[k]\
-    \ && X[k] < xr && yl <= Y[k] && Y[k] < yr) { sm += val[k].fi, chmax(mx, val[k].se);\
-    \ }\n      }\n      auto res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi\
-    \ == sm && res.se == mx);\n    }\n    if (t == 2) {\n      // prod all\n     \
-    \ int sm = 0, mx = MX::id().se;\n      FOR(k, N) { sm += val[k].fi, chmax(mx,\
-    \ val[k].se); }\n      auto res = KDT.prod_all();\n      assert(res.fi == sm &&\
-    \ res.se == mx);\n    }\n    if (t == 3) {\n      // apply\n      int a = RNG(0,\
-    \ 10);\n      FOR(k, N) {\n        if (xl <= X[k] && X[k] < xr && yl <= Y[k] &&\
-    \ Y[k] < yr) { val[k].fi += a, val[k].se += a; }\n      }\n      KDT.apply(xl,\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 7 \"test/1_mytest/kdtree_am.test.cpp\"\
+    \n\nvoid test() {\n  ll LIM = RNG(1, 100);\n  int N = RNG(1, 100);\n  using AM\
+    \ = ActedMonoid_SumMax_Add<int>;\n  using MX = AM::Monoid_X;\n\n  vc<int> X, Y,\
+    \ W;\n  vc<typename MX::value_type> val;\n  FOR(i, N) {\n    int x = RNG(0, LIM);\n\
+    \    int y = RNG(0, LIM);\n    int v = RNG(0, 100);\n    X.eb(x), Y.eb(y), val.eb(v,\
+    \ v);\n  }\n  KDTree_ActedMonoid<AM, int> KDT(X, Y, val);\n\n  int Q = 100;\n\
+    \  FOR(Q) {\n    int t = RNG(0, 4);\n    int xl = RNG(0, LIM), xr = RNG(0, LIM),\
+    \ yl = RNG(0, LIM), yr = RNG(0, LIM);\n    if (xl > xr) swap(xl, xr);\n    if\
+    \ (yl > yr) swap(yl, yr);\n    if (t == 0) {\n      // multiply\n      int k =\
+    \ RNG(0, N);\n      int a = RNG(0, 100);\n      int b = RNG(0, 100);\n      KDT.multiply(k,\
+    \ {a, b});\n      val[k].fi += a;\n      chmax(val[k].se, b);\n    }\n    if (t\
+    \ == 1) {\n      // prod\n      int sm = 0, mx = MX::id().se;\n      FOR(k, N)\
+    \ {\n        if (xl <= X[k] && X[k] < xr && yl <= Y[k] && Y[k] < yr) { sm += val[k].fi,\
+    \ chmax(mx, val[k].se); }\n      }\n      auto res = KDT.prod(xl, xr, yl, yr);\n\
+    \      assert(res.fi == sm && res.se == mx);\n    }\n    if (t == 2) {\n     \
+    \ // prod all\n      int sm = 0, mx = MX::id().se;\n      FOR(k, N) { sm += val[k].fi,\
+    \ chmax(mx, val[k].se); }\n      auto res = KDT.prod_all();\n      assert(res.fi\
+    \ == sm && res.se == mx);\n    }\n    if (t == 3) {\n      // apply\n      int\
+    \ a = RNG(0, 10);\n      FOR(k, N) {\n        if (xl <= X[k] && X[k] < xr && yl\
+    \ <= Y[k] && Y[k] < yr) { val[k].fi += a, val[k].se += a; }\n      }\n      KDT.apply(xl,\
     \ xr, yl, yr, a);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
     \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n\
     \  solve();\n  return 0;\n}\n"
@@ -250,7 +252,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_am.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_am.test.cpp

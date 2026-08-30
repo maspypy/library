@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -696,10 +696,12 @@ data:
     \ ANS.eb(C[i]);\n\n  if (ANS.empty()) return {};\n  vc<int> V;\n  FOR(v, N) if\
     \ (v != ANS[0]) V.eb(v);\n  {\n    Graph<int, 1> H = G.rearrange(V);\n    if (toposort(H).empty())\
     \ return {};\n  }\n  return ANS;\n}\n#line 8 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\
-    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 10 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\
+    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 10 \"test/1_mytest/all_cycle_common_vertex.test.cpp\"\
     \n\nvc<int> naive(Graph<int, 1> G) {\n  int N = G.N;\n  vc<int> ANS;\n  auto dag\
     \ = [&](vc<int> V) -> bool {\n    Graph<int, 1> H = G.rearrange(V);\n    return\
     \ V.empty() || (!toposort(H).empty());\n  };\n  vc<int> V;\n  FOR(i, N) V.eb(i);\n\
@@ -741,7 +743,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/all_cycle_common_vertex.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/all_cycle_common_vertex.test.cpp

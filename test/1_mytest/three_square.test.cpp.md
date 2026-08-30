@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -193,11 +193,13 @@ data:
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
     \ false;\n    }\n  }\n  return true;\n}\n#line 1 \"nt/factor.hpp\"\n\n#line 1\
-    \ \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
@@ -417,19 +419,21 @@ data:
     \ b, x};\n      }\n    }\n    assert(0);\n    return {-1, -1, -1};\n  };\n  ll\
     \ e = 0;\n  while (N % 4 == 0) N /= 4, ++e;\n  if (N % 8 == 7) return {-1, -1,\
     \ -1};\n  auto [a, b, c] = F(N);\n  return {a << e, b << e, c << e};\n}\n#line\
-    \ 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/three_square.test.cpp\"\n\nvoid\
-    \ test() {\n  FOR(N, 1, 1000000) {\n    if (N % 4 == 0) continue;\n    ll n =\
-    \ N;\n    while (n % 4 == 0) n /= 4;\n    if (n % 8 == 7) continue;\n    auto\
-    \ [a, b, c] = three_square(N);\n    assert(N == a * a + b * b + c * c);\n  }\n\
-    \  vi TEN = {1};\n  FOR(18) TEN.eb(TEN.back() * 10);\n  FOR(100000) {\n    ll\
-    \ K = RNG(0, 18);\n    ll N = RNG(TEN[K], TEN[K + 1]);\n    ll n = N;\n    while\
-    \ (n % 4 == 0) n /= 4;\n    if (n % 8 == 7) continue;\n    auto [a, b, c] = three_square(N);\n\
-    \    assert(a * a + b * b + c * c == N);\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 6 \"test/1_mytest/three_square.test.cpp\"\
+    \n\nvoid test() {\n  FOR(N, 1, 1000000) {\n    if (N % 4 == 0) continue;\n   \
+    \ ll n = N;\n    while (n % 4 == 0) n /= 4;\n    if (n % 8 == 7) continue;\n \
+    \   auto [a, b, c] = three_square(N);\n    assert(N == a * a + b * b + c * c);\n\
+    \  }\n  vi TEN = {1};\n  FOR(18) TEN.eb(TEN.back() * 10);\n  FOR(100000) {\n \
+    \   ll K = RNG(0, 18);\n    ll N = RNG(TEN[K], TEN[K + 1]);\n    ll n = N;\n \
+    \   while (n % 4 == 0) n /= 4;\n    if (n % 8 == 7) continue;\n    auto [a, b,\
+    \ c] = three_square(N);\n    assert(a * a + b * b + c * c == N);\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"nt/three_square.hpp\"\n#include \"random/base.hpp\"\n\nvoid test()\
     \ {\n  FOR(N, 1, 1000000) {\n    if (N % 4 == 0) continue;\n    ll n = N;\n  \
@@ -455,7 +459,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/three_square.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/three_square.test.cpp

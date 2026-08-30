@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -368,11 +368,13 @@ data:
     \ (!check(y)) {\n      root->l = nullptr;\n      update(root);\n      return {left,\
     \ root};\n    }\n    x = y;\n    auto [n1, n2] = split_max_right_rec(right, check,\
     \ x);\n    root->r = n1;\n    update(root);\n    return {root, n2};\n  }\n};\n\
-    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/rbst_monoid_2.test.cpp\"\n\n\
-    using mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Affine<mint>;\n\
+    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 7 \"test/1_mytest/rbst_monoid_2.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Affine<mint>;\n\
     \  RBST_Monoid<Mono, false> X;\n  auto rnd_affine = [&]() -> pair<mint, mint>\
     \ {\n    int a = RNG(0, 3);\n    int b = RNG(0, 3);\n    return {a, b};\n  };\n\
     \n  using T = typename Mono::value_type;\n\n  FOR(1000) {\n    X.reset();\n  \
@@ -431,7 +433,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid_2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_2.test.cpp

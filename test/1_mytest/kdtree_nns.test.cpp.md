@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -104,33 +104,35 @@ data:
     \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
     \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
     \ abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/kdtree_nns.test.cpp\"\n\n#line 1\
-    \ \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"ds/kdtree/kdtree.hpp\"\ntemplate <typename\
-    \ XY>\nstruct KDTree {\n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\
-    \u9589\u3067\u6301\u3064\u8A2D\u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\
-    \u3060\u3057\u3001\u30AF\u30A8\u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\
-    \u3092\u4F7F\u3046\n  vc<tuple<XY, XY, XY, XY>> closed_range;\n  // \u540C\u3058\
-    \u5EA7\u6A19\u306E\u70B9\u3082\u96C6\u7D04\u3057\u306A\u3044\u3088\u3046\u306B\
-    \u3057\u3066\u3001\u5EA7\u6A19\u3054\u3068\u306B unique \u306A\u30C7\u30FC\u30BF\
-    \u3092\u4F7F\u3046\n  vc<int> dat;\n  int n;\n\n  KDTree(vc<XY> xs, vc<XY> ys)\
-    \ : n(len(xs)) {\n    int log = 0;\n    while ((1 << log) < n) ++log;\n    dat.assign(1\
-    \ << (log + 1), -1);\n    closed_range.resize(1 << (log + 1));\n    vc<int> vs(n);\n\
-    \    iota(all(vs), 0);\n    if (n > 0) build(1, xs, ys, vs);\n  }\n\n  // [xl,\
-    \ xr) x [yl, yr)\n  vc<int> collect_rect(XY xl, XY xr, XY yl, XY yr, int max_size\
-    \ = -1) {\n    assert(xl <= xr && yl <= yr);\n    if (max_size == -1) max_size\
-    \ = n;\n    vc<int> res;\n    rect_rec(1, xl, xr, yl, yr, res, max_size);\n  \
-    \  return res;\n  }\n\n  // \u8A08\u7B97\u91CF\u4FDD\u8A3C\u306A\u3057\u3001\u70B9\
-    \u7FA4\u304C\u30E9\u30F3\u30C0\u30E0\u306A\u3089 O(logN)\n  // N = Q = 10^5 \u3067\
-    \u3001\u7D04 1 \u79D2\n  // T \u306F\u5EA7\u6A19\u306E 2 \u4E57\u304C\u30AA\u30FC\
-    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3082\u306E\u3092\u4F7F\u3046\
-    \u3002XY=int, T=long \u306A\u3069\u3002\n  // return \u3059\u308B\u306E\u306F\
-    \ index\n  template <typename T>\n  int nearest_neighbor_search(XY x, XY y) {\n\
-    \    if (n == 0) return -1;\n    pair<int, T> res = {-1, -1};\n    nns_rec(1,\
-    \ x, y, res);\n    return res.fi;\n  }\n\nprivate:\n  void build(int idx, vc<XY>\
-    \ xs, vc<XY> ys, vc<int> vs, bool divx = true) {\n    int n = len(xs);\n    auto&\
-    \ [xmin, xmax, ymin, ymax] = closed_range[idx];\n    xmin = ymin = infty<XY>;\n\
+    \ \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"ds/kdtree/kdtree.hpp\"\ntemplate\
+    \ <typename XY>\nstruct KDTree {\n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\u308B\
+    \u3068\u3001\u9589\u3067\u6301\u3064\u8A2D\u8A08\u65B9\u91DD\u306B\u306A\u308B\
+    \u3002\u305F\u3060\u3057\u3001\u30AF\u30A8\u30EA\u306F\u3044\u3064\u3082\u306E\
+    \u534A\u958B\u3092\u4F7F\u3046\n  vc<tuple<XY, XY, XY, XY>> closed_range;\n  //\
+    \ \u540C\u3058\u5EA7\u6A19\u306E\u70B9\u3082\u96C6\u7D04\u3057\u306A\u3044\u3088\
+    \u3046\u306B\u3057\u3066\u3001\u5EA7\u6A19\u3054\u3068\u306B unique \u306A\u30C7\
+    \u30FC\u30BF\u3092\u4F7F\u3046\n  vc<int> dat;\n  int n;\n\n  KDTree(vc<XY> xs,\
+    \ vc<XY> ys) : n(len(xs)) {\n    int log = 0;\n    while ((1 << log) < n) ++log;\n\
+    \    dat.assign(1 << (log + 1), -1);\n    closed_range.resize(1 << (log + 1));\n\
+    \    vc<int> vs(n);\n    iota(all(vs), 0);\n    if (n > 0) build(1, xs, ys, vs);\n\
+    \  }\n\n  // [xl, xr) x [yl, yr)\n  vc<int> collect_rect(XY xl, XY xr, XY yl,\
+    \ XY yr, int max_size = -1) {\n    assert(xl <= xr && yl <= yr);\n    if (max_size\
+    \ == -1) max_size = n;\n    vc<int> res;\n    rect_rec(1, xl, xr, yl, yr, res,\
+    \ max_size);\n    return res;\n  }\n\n  // \u8A08\u7B97\u91CF\u4FDD\u8A3C\u306A\
+    \u3057\u3001\u70B9\u7FA4\u304C\u30E9\u30F3\u30C0\u30E0\u306A\u3089 O(logN)\n \
+    \ // N = Q = 10^5 \u3067\u3001\u7D04 1 \u79D2\n  // T \u306F\u5EA7\u6A19\u306E\
+    \ 2 \u4E57\u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3082\
+    \u306E\u3092\u4F7F\u3046\u3002XY=int, T=long \u306A\u3069\u3002\n  // return \u3059\
+    \u308B\u306E\u306F index\n  template <typename T>\n  int nearest_neighbor_search(XY\
+    \ x, XY y) {\n    if (n == 0) return -1;\n    pair<int, T> res = {-1, -1};\n \
+    \   nns_rec(1, x, y, res);\n    return res.fi;\n  }\n\nprivate:\n  void build(int\
+    \ idx, vc<XY> xs, vc<XY> ys, vc<int> vs, bool divx = true) {\n    int n = len(xs);\n\
+    \    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n    xmin = ymin = infty<XY>;\n\
     \    xmax = ymax = -infty<XY>;\n\n    FOR(i, n) {\n      auto x = xs[i], y = ys[i];\n\
     \      chmin(xmin, x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);\n    }\n\
     \    if (n == 1) {\n      dat[idx] = vs[0];\n      return;\n    }\n\n    int m\
@@ -196,7 +198,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_nns.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_nns.test.cpp

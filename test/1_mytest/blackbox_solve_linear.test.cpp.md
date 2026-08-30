@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -126,10 +126,12 @@ data:
     \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
     \ abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/blackbox_solve_linear.test.cpp\"\
     \n\n#line 1 \"random/random_matrix.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64\
-    \ RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    \ RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -308,55 +310,58 @@ data:
     \ = random_matrix<mint>(m, m, m);\n  vv(mint, A, n, m);\n  FOR(i, rk) A[i][i]\
     \ = 1;\n  A = matrix_mul<mint>(L, A, n, n, m);\n  A = matrix_mul<mint>(A, R, n,\
     \ m, m);\n  return A;\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"linalg/blackbox/solve_linear.hpp\"\n\n// https://arxiv.org/pdf/1204.3735\n\
-    template <typename mint, typename F1, typename F2>\nvc<mint> blackbox_solve_linear(int\
-    \ N, int M, F1 apply_A, F2 apply_AT,\n                               vc<mint>\
-    \ b) {\n  assert(len(b) == N);\n  vc<mint> D1(M), D2(N);\n  FOR(i, M) D1[i] =\
-    \ RNG(0, mint::get_mod());\n  FOR(i, N) D2[i] = RNG(0, mint::get_mod());\n  auto\
-    \ apply_D1 = [&](vc<mint> &v) -> void { FOR(i, M) v[i] *= D1[i]; };\n  auto apply_D2\
-    \ = [&](vc<mint> &v) -> void { FOR(i, N) v[i] *= D2[i]; };\n  auto apply_tilde_A\
-    \ = [&](vc<mint> v) -> vc<mint> {\n    apply_D1(v);\n    v = apply_A(v);\n   \
-    \ apply_D2(v);\n    v = apply_AT(v);\n    apply_D1(v);\n    return v;\n  };\n\
-    \  vc<mint> v(M);\n  FOR(i, M) v[i] = RNG(0, mint::get_mod());\n  vc<mint> tilde_b\
-    \ = apply_tilde_A(v);\n  vc<mint> c = b;\n  apply_D2(c);\n  c = apply_AT(c);\n\
-    \  apply_D1(c);\n  FOR(i, M) tilde_b[i] += c[i];\n\n  auto dot = [&](vc<mint>\
-    \ &a, vc<mint> &b) -> mint {\n    mint ans = 0;\n    FOR(i, len(a)) ans += a[i]\
-    \ * b[i];\n    return ans;\n  };\n  auto is_zero = [&](vc<mint> &a) -> bool {\n\
-    \    FOR(i, M) if (a[i] != mint(0)) return false;\n    return true;\n  };\n\n\
-    \  auto solve_symmetric = [&](vc<mint> b) -> vc<mint> {\n    if (is_zero(b)) return\
-    \ vc<mint>(M);\n    vc<mint> w0(M), v0(M);\n    mint t0 = 1;\n    vc<mint> w1\
-    \ = b, v1 = apply_tilde_A(b);\n    mint t1 = dot(v1, w1);\n    if (t1 == mint(0))\
-    \ return {};\n    vc<mint> x(M);\n    mint c = dot(b, w1) / t1;\n    FOR(i, M)\
-    \ x[i] = c * w1[i];\n    while (1) {\n      vc<mint> w2(M);\n      mint c1 = dot(v1,\
-    \ v1) / t1, c0 = dot(v1, v0) / t0;\n      FOR(i, M) w2[i] = v1[i] - c1 * w1[i]\
-    \ - c0 * w0[i];\n      if (is_zero(w2)) return x;\n      vc<mint> v2 = apply_tilde_A(w2);\n\
-    \      mint t2 = dot(w2, v2);\n      if (t2 == mint(0)) return {};\n      mint\
-    \ c = dot(b, w2) / t2;\n      FOR(i, M) x[i] += c * w2[i];\n      swap(v0, v1),\
-    \ swap(v1, v2);\n      swap(w0, w1), swap(w1, w2);\n      swap(t0, t1), swap(t1,\
-    \ t2);\n    }\n  };\n\n  // tilde(A)x=tilde(b)\n  vc<mint> x = solve_symmetric(tilde_b);\n\
-    \  if (x.empty()) return {};\n  FOR(i, M) x[i] -= v[i];\n  apply_D1(x);\n\n  //\
-    \ check\n  if (apply_A(x) != b) return {};\n  return x;\n}\n\n// Ax=b\ntemplate\
-    \ <typename mint>\nvc<mint> sparse_solve_linear(int N, int M, vc<tuple<int, int,\
-    \ mint>> mat,\n                             vc<mint> b) {\n  assert(len(b) ==\
-    \ N);\n  auto apply = [&](vc<mint> a) -> vc<mint> {\n    assert(len(a) == M);\n\
-    \    vc<mint> b(N);\n    for (auto &[i, j, x]: mat) b[i] += a[j] * x;\n    return\
-    \ b;\n  };\n  auto apply_T = [&](vc<mint> a) -> vc<mint> {\n    assert(len(a)\
-    \ == N);\n    vc<mint> b(M);\n    for (auto &[i, j, x]: mat) b[j] += a[i] * x;\n\
-    \    return b;\n  };\n  return blackbox_solve_linear<mint>(N, M, apply, apply_T,\
-    \ b);\n}\n#line 7 \"test/1_mytest/blackbox_solve_linear.test.cpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid test() {\n  FOR(100) {\n    FOR(N, 1, 10) FOR(M, 1, 10)\
-    \ FOR(R, 0, 10) {\n      if (R > N || R > M) continue;\n      vvc<mint> A = random_matrix<mint>(N,\
-    \ M, R);\n      vc<tuple<int, int, mint>> mat;\n      FOR(i, N) FOR(j, M) mat.eb(i,\
-    \ j, A[i][j]);\n      vc<mint> x(N), y(M);\n      FOR(i, M) y[i] = RNG(0, mint::get_mod());\n\
-    \      FOR(i, N) FOR(j, M) x[i] += A[i][j] * y[j];\n      if (RNG(0, 2) == 0)\
-    \ { FOR(i, M) y[i] = RNG(0, 2); }\n      int fail = 0;\n      FOR(5) {\n     \
-    \   vc<mint> ans = sparse_solve_linear<mint>(N, M, mat, x);\n        if (ans.empty())\
-    \ ++fail;\n      }\n      assert(fail <= 1);\n    }\n  }\n}\n\nvoid solve() {\n\
-    \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n                 \
+    \     chrono::high_resolution_clock::now().time_since_epoch())\n             \
+    \             .count()) *\n                  10150724397891781847ULL;\n  x_ ^=\
+    \ x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim > 0);\n\
+    \  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n  return\
+    \ l + RNG_64() % (r - l);\n}\n#line 2 \"linalg/blackbox/solve_linear.hpp\"\n\n\
+    // https://arxiv.org/pdf/1204.3735\ntemplate <typename mint, typename F1, typename\
+    \ F2>\nvc<mint> blackbox_solve_linear(int N, int M, F1 apply_A, F2 apply_AT,\n\
+    \                               vc<mint> b) {\n  assert(len(b) == N);\n  vc<mint>\
+    \ D1(M), D2(N);\n  FOR(i, M) D1[i] = RNG(0, mint::get_mod());\n  FOR(i, N) D2[i]\
+    \ = RNG(0, mint::get_mod());\n  auto apply_D1 = [&](vc<mint> &v) -> void { FOR(i,\
+    \ M) v[i] *= D1[i]; };\n  auto apply_D2 = [&](vc<mint> &v) -> void { FOR(i, N)\
+    \ v[i] *= D2[i]; };\n  auto apply_tilde_A = [&](vc<mint> v) -> vc<mint> {\n  \
+    \  apply_D1(v);\n    v = apply_A(v);\n    apply_D2(v);\n    v = apply_AT(v);\n\
+    \    apply_D1(v);\n    return v;\n  };\n  vc<mint> v(M);\n  FOR(i, M) v[i] = RNG(0,\
+    \ mint::get_mod());\n  vc<mint> tilde_b = apply_tilde_A(v);\n  vc<mint> c = b;\n\
+    \  apply_D2(c);\n  c = apply_AT(c);\n  apply_D1(c);\n  FOR(i, M) tilde_b[i] +=\
+    \ c[i];\n\n  auto dot = [&](vc<mint> &a, vc<mint> &b) -> mint {\n    mint ans\
+    \ = 0;\n    FOR(i, len(a)) ans += a[i] * b[i];\n    return ans;\n  };\n  auto\
+    \ is_zero = [&](vc<mint> &a) -> bool {\n    FOR(i, M) if (a[i] != mint(0)) return\
+    \ false;\n    return true;\n  };\n\n  auto solve_symmetric = [&](vc<mint> b) ->\
+    \ vc<mint> {\n    if (is_zero(b)) return vc<mint>(M);\n    vc<mint> w0(M), v0(M);\n\
+    \    mint t0 = 1;\n    vc<mint> w1 = b, v1 = apply_tilde_A(b);\n    mint t1 =\
+    \ dot(v1, w1);\n    if (t1 == mint(0)) return {};\n    vc<mint> x(M);\n    mint\
+    \ c = dot(b, w1) / t1;\n    FOR(i, M) x[i] = c * w1[i];\n    while (1) {\n   \
+    \   vc<mint> w2(M);\n      mint c1 = dot(v1, v1) / t1, c0 = dot(v1, v0) / t0;\n\
+    \      FOR(i, M) w2[i] = v1[i] - c1 * w1[i] - c0 * w0[i];\n      if (is_zero(w2))\
+    \ return x;\n      vc<mint> v2 = apply_tilde_A(w2);\n      mint t2 = dot(w2, v2);\n\
+    \      if (t2 == mint(0)) return {};\n      mint c = dot(b, w2) / t2;\n      FOR(i,\
+    \ M) x[i] += c * w2[i];\n      swap(v0, v1), swap(v1, v2);\n      swap(w0, w1),\
+    \ swap(w1, w2);\n      swap(t0, t1), swap(t1, t2);\n    }\n  };\n\n  // tilde(A)x=tilde(b)\n\
+    \  vc<mint> x = solve_symmetric(tilde_b);\n  if (x.empty()) return {};\n  FOR(i,\
+    \ M) x[i] -= v[i];\n  apply_D1(x);\n\n  // check\n  if (apply_A(x) != b) return\
+    \ {};\n  return x;\n}\n\n// Ax=b\ntemplate <typename mint>\nvc<mint> sparse_solve_linear(int\
+    \ N, int M, vc<tuple<int, int, mint>> mat,\n                             vc<mint>\
+    \ b) {\n  assert(len(b) == N);\n  auto apply = [&](vc<mint> a) -> vc<mint> {\n\
+    \    assert(len(a) == M);\n    vc<mint> b(N);\n    for (auto &[i, j, x]: mat)\
+    \ b[i] += a[j] * x;\n    return b;\n  };\n  auto apply_T = [&](vc<mint> a) ->\
+    \ vc<mint> {\n    assert(len(a) == N);\n    vc<mint> b(M);\n    for (auto &[i,\
+    \ j, x]: mat) b[j] += a[i] * x;\n    return b;\n  };\n  return blackbox_solve_linear<mint>(N,\
+    \ M, apply, apply_T, b);\n}\n#line 7 \"test/1_mytest/blackbox_solve_linear.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(100) {\n    FOR(N, 1, 10)\
+    \ FOR(M, 1, 10) FOR(R, 0, 10) {\n      if (R > N || R > M) continue;\n      vvc<mint>\
+    \ A = random_matrix<mint>(N, M, R);\n      vc<tuple<int, int, mint>> mat;\n  \
+    \    FOR(i, N) FOR(j, M) mat.eb(i, j, A[i][j]);\n      vc<mint> x(N), y(M);\n\
+    \      FOR(i, M) y[i] = RNG(0, mint::get_mod());\n      FOR(i, N) FOR(j, M) x[i]\
+    \ += A[i][j] * y[j];\n      if (RNG(0, 2) == 0) { FOR(i, M) y[i] = RNG(0, 2);\
+    \ }\n      int fail = 0;\n      FOR(5) {\n        vc<mint> ans = sparse_solve_linear<mint>(N,\
+    \ M, mat, x);\n        if (ans.empty()) ++fail;\n      }\n      assert(fail <=\
+    \ 1);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"random/random_matrix.hpp\"\n#include \"linalg/blackbox/solve_linear.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(100) {\n    FOR(N, 1, 10)\
@@ -384,7 +389,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/blackbox_solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/blackbox_solve_linear.test.cpp

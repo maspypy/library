@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -243,23 +243,25 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/1_mytest/palindrome_decomposition_dp.test.cpp\"\
-    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"string/palindromic_tree.hpp\"\ntemplate <int\
-    \ sigma>\nstruct Palindromic_Tree {\n  struct Node {\n    array<int, sigma> TO;\n\
-    \    int link;\n    int length;\n    int diff;            // link \u3068\u306E\
-    \u5DEE\u5206\n    int slink;           // series link, diff \u3067\u306A\u308B\
-    \u3079\u304F\u305F\u3069\u3063\u305F\u5148\n    pair<int, int> pos;  // one occurrence\
-    \ [l, r)\n\n    Node(int link = -1, int length = 0, int l = 0, int r = 0)\n  \
-    \      : link(link), length(length), diff(0), slink(0), pos({l, r}) {\n      fill(all(TO),\
-    \ -1);\n    }\n  };\n\n  vc<Node> nodes;\n  // |path|=|S|+1\n  // path[i]: longest\
-    \ palindromic suffix of S[0, i)\n  vc<int> path;\n\n  Palindromic_Tree() {}\n\n\
-    \  template <typename STRING>\n  Palindromic_Tree(const STRING& S, char off) {\n\
-    \    build(S, off);\n  }\n\n  int size() const { return len(nodes); }\n\n  template\
-    \ <typename STRING>\n  void build(const STRING& S, char off) {\n    nodes.clear();\n\
-    \    path.clear();\n\n    // 0: imaginary root (length = -1)\n    // 1: empty\
-    \ root (length = 0)\n    nodes.eb(Node(-1, -1, 0, -1));\n    nodes.eb(Node(0,\
+    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"string/palindromic_tree.hpp\"\n\
+    template <int sigma>\nstruct Palindromic_Tree {\n  struct Node {\n    array<int,\
+    \ sigma> TO;\n    int link;\n    int length;\n    int diff;            // link\
+    \ \u3068\u306E\u5DEE\u5206\n    int slink;           // series link, diff \u3067\
+    \u306A\u308B\u3079\u304F\u305F\u3069\u3063\u305F\u5148\n    pair<int, int> pos;\
+    \  // one occurrence [l, r)\n\n    Node(int link = -1, int length = 0, int l =\
+    \ 0, int r = 0)\n        : link(link), length(length), diff(0), slink(0), pos({l,\
+    \ r}) {\n      fill(all(TO), -1);\n    }\n  };\n\n  vc<Node> nodes;\n  // |path|=|S|+1\n\
+    \  // path[i]: longest palindromic suffix of S[0, i)\n  vc<int> path;\n\n  Palindromic_Tree()\
+    \ {}\n\n  template <typename STRING>\n  Palindromic_Tree(const STRING& S, char\
+    \ off) {\n    build(S, off);\n  }\n\n  int size() const { return len(nodes); }\n\
+    \n  template <typename STRING>\n  void build(const STRING& S, char off) {\n  \
+    \  nodes.clear();\n    path.clear();\n\n    // 0: imaginary root (length = -1)\n\
+    \    // 1: empty root (length = 0)\n    nodes.eb(Node(-1, -1, 0, -1));\n    nodes.eb(Node(0,\
     \ 0, 0, 0));\n    nodes[0].diff = nodes[1].diff = 0;\n    nodes[0].slink = nodes[1].slink\
     \ = 0;\n\n    int p = 1;\n    FOR(i, len(S)) {\n      path.eb(p);\n      int x\
     \ = S[i] - off;\n      assert(0 <= x && x < sigma);\n\n      while (p) {\n   \
@@ -387,7 +389,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/palindrome_decomposition_dp.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/palindrome_decomposition_dp.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/reduce_intervals.hpp
     title: other/reduce_intervals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -122,17 +122,19 @@ data:
     \ L[a] > L[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty()) {\n\
     \        int i = ANS.back();\n        if (L[j] <= L[i])\n          continue;\n\
     \      }\n      ANS.eb(j);\n    }\n  }\n  return ANS;\n}\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/reduce_intervals.test.cpp\"\n\
-    \nvoid test(bool rm_included) {\n  FOR(mx, 100) {\n    FOR(NN, 100) {\n      set<pair<int,\
-    \ int>> st;\n      vc<int> L, R;\n      FOR(i, NN) {\n        int a = RNG(0, mx\
-    \ + 1);\n        int b = RNG(0, mx + 1);\n        if (a > b)\n          swap(a,\
-    \ b);\n        pair<int, int> p = {a, b};\n        if (st.count(p))\n        \
-    \  continue;\n        st.insert(p);\n        L.eb(a), R.eb(b);\n      }\n    \
-    \  int N = len(L);\n      auto I = reduce_intervals(L, R, rm_included);\n    \
-    \  vc<int> er(N, 1);\n      for (auto &i : I)\n        er[i] = 0;\n      FOR(i,\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 6 \"test/1_mytest/reduce_intervals.test.cpp\"\
+    \n\nvoid test(bool rm_included) {\n  FOR(mx, 100) {\n    FOR(NN, 100) {\n    \
+    \  set<pair<int, int>> st;\n      vc<int> L, R;\n      FOR(i, NN) {\n        int\
+    \ a = RNG(0, mx + 1);\n        int b = RNG(0, mx + 1);\n        if (a > b)\n \
+    \         swap(a, b);\n        pair<int, int> p = {a, b};\n        if (st.count(p))\n\
+    \          continue;\n        st.insert(p);\n        L.eb(a), R.eb(b);\n     \
+    \ }\n      int N = len(L);\n      auto I = reduce_intervals(L, R, rm_included);\n\
+    \      vc<int> er(N, 1);\n      for (auto &i : I)\n        er[i] = 0;\n      FOR(i,\
     \ N) if (er[i]) {\n        bool ok = 0;\n        for (auto &j : I) {\n       \
     \   if (rm_included && L[j] <= L[i] && R[i] <= R[j])\n            ok = 1;\n  \
     \        if (!rm_included && L[i] <= L[j] && R[j] <= R[i])\n            ok = 1;\n\
@@ -165,7 +167,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/reduce_intervals.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/reduce_intervals.test.cpp

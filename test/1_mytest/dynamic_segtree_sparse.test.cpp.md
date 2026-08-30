@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -193,10 +193,12 @@ data:
     \    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
     \ x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n    return min_left_rec(node[c].ch[0],\
     \ check, l, m, qr, x);\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
-    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/dynamic_segtree_sparse.test.cpp\"\
+    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \             chrono::high_resolution_clock::now().time_since_epoch())\n     \
+    \                     .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 6 \"test/1_mytest/dynamic_segtree_sparse.test.cpp\"\
     \n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n  int id = Mono::id();\n\n\
     \  FOR(100) {\n    int N = RNG(1, 100);\n\n    vc<int> A(N, id);\n    Dynamic_SegTree_Sparse<Mono,\
     \ false> X(0, N);\n    int root = 0;\n\n    int Q = RNG(1, 1000);\n\n    FOR(Q)\
@@ -243,7 +245,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:27:49+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_segtree_sparse.test.cpp

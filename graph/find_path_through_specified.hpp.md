@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -126,13 +126,15 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
     \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"nt/GF2.hpp\"\n#include <emmintrin.h>\n#include\
-    \ <smmintrin.h>\n#include <wmmintrin.h>\n\n__attribute__((target(\"pclmul\")))\
-    \ inline __m128i myclmul(const __m128i &a,\n                                 \
-    \                        const __m128i &b) {\n  return _mm_clmulepi64_si128(a,\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/GF2.hpp\"\n#include <emmintrin.h>\n\
+    #include <smmintrin.h>\n#include <wmmintrin.h>\n\n__attribute__((target(\"pclmul\"\
+    ))) inline __m128i myclmul(const __m128i &a,\n                               \
+    \                          const __m128i &b) {\n  return _mm_clmulepi64_si128(a,\
     \ b, 0);\n}\n\n// 2^n \u5143\u4F53\ntemplate <int K>\nstruct GF2 {\n  // https://oeis.org/A344141\n\
     \  // irreducible poly x^K + ...\n  static constexpr int POLY[65]\n      = {0,\
     \  0, 3,  3,   3,  5,   3,  3,  27,  3,  9,  5,   9, 27, 33, 3,   43,\n      \
@@ -224,7 +226,7 @@ data:
   isVerificationFile: false
   path: graph/find_path_through_specified.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1776.test.cpp

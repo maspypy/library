@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -212,11 +212,13 @@ data:
     \ + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1 << k), s = t;\n\
     \      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) const {\n\
     \    return max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line\
-    \ 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/fenwick_max_right.test.cpp\"\n\
-    \nvoid test(int N) {\n  FenwickTree<Monoid_Add<int>> bit(N);\n\n  FOR(1 << 15)\
+    \ 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 7 \"test/1_mytest/fenwick_max_right.test.cpp\"\
+    \n\nvoid test(int N) {\n  FenwickTree<Monoid_Add<int>> bit(N);\n\n  FOR(1 << 15)\
     \ {\n    bit.set(RNG(0, N), RNG(0, 10));\n    ll s = RNG(0, N + 1);\n    ll sm\
     \ = bit.sum(s, N);\n    ll K = RNG(0, 2 * sm + 1);\n    {\n      ll god = bit.max_right([&](ll\
     \ x) -> bool { return x <= K; }, s);\n      ll ans = binary_search([&](ll r) ->\
@@ -254,7 +256,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fenwick_max_right.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/fenwick_max_right.test.cpp

@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -332,11 +332,13 @@ data:
     \ N) {\n    int v = I[i];\n    ANS[v] = nxt;\n    // I[0:i] \u304C\u3072\u3068\
     \u3064\u306E\u6210\u5206\u304B\u3069\u3046\u304B\n    sm += indeg[v];\n    ll\
     \ TS = sm - (i + 1) * i / 2;\n    if (TS == 0) ++nxt;\n  }\n  return {nxt, ANS};\n\
-    }\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 8 \"test/1_mytest/scc_tournament.test.cpp\"\n\n\
-    void test() {\n  FOR(N, 1, 50) {\n    FOR(100) {\n      Graph<int, 1> G(N);\n\
+    }\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 8 \"test/1_mytest/scc_tournament.test.cpp\"\
+    \n\nvoid test() {\n  FOR(N, 1, 50) {\n    FOR(100) {\n      Graph<int, 1> G(N);\n\
     \      FOR(b, N) FOR(a, b) {\n        int x = RNG(0, 2);\n        if (x) G.add(a,\
     \ b);\n        if (!x) G.add(b, a);\n      }\n      G.build();\n\n      auto [indeg,\
     \ outdeg] = G.deg_array_inout();\n      assert(strongly_connected_component(G)\
@@ -363,7 +365,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/scc_tournament.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/scc_tournament.test.cpp

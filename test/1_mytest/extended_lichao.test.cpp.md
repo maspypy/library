@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -167,16 +167,20 @@ data:
     \ node_m) { chmin(res, query_rec(2 * i + 0, x, node_l, node_m, laz)); }\n    if\
     \ (x >= node_m) { chmin(res, query_rec(2 * i + 1, x, node_m, node_r, laz)); }\n\
     \    return res;\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\n\ntemplate <typename\
-    \ T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0, i + 1);\n\
-    \    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 7 \"test/1_mytest/extended_lichao.test.cpp\"\
+    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n                 \
+    \     chrono::high_resolution_clock::now().time_since_epoch())\n             \
+    \             .count()) *\n                  10150724397891781847ULL;\n  x_ ^=\
+    \ x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim > 0);\n\
+    \  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n  return\
+    \ l + RNG_64() % (r - l);\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \             chrono::high_resolution_clock::now().time_since_epoch())\n     \
+    \                     .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 2 \"random/shuffle.hpp\"\n\ntemplate\
+    \ <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0,\
+    \ i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 7 \"test/1_mytest/extended_lichao.test.cpp\"\
     \n\nvoid test_minimize() {\n  ll N = RNG(1, 100);\n\n  vi X(201);\n  FOR(i, 201)\
     \ X[i] = i - 100;\n  shuffle(X);\n  X.resize(N);\n\n  Extended_LiChao_Tree_1<true>\
     \ LCT(X);\n  vi A(N, infty<ll>);\n\n  ll Q = 100;\n  FOR(Q) {\n    ll t = RNG(0,\
@@ -243,7 +247,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/extended_lichao.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/extended_lichao.test.cpp

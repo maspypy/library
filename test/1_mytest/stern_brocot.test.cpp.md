@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/stern_brocot_tree.hpp
     title: nt/stern_brocot_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -104,10 +104,12 @@ data:
     \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
     \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
     \ abs(a);\n}\n#endif\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"nt/stern_brocot_tree.hpp\"\n\nstruct Stern_Brocot_Tree\
+    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n                 \
+    \     chrono::high_resolution_clock::now().time_since_epoch())\n             \
+    \             .count()) *\n                  10150724397891781847ULL;\n  x_ ^=\
+    \ x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim > 0);\n\
+    \  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n  return\
+    \ l + RNG_64() % (r - l);\n}\n#line 1 \"nt/stern_brocot_tree.hpp\"\n\nstruct Stern_Brocot_Tree\
     \ {\n  using PATH = vi; // \u306F\u3058\u3081\u306F R\n\n  static tuple<PATH,\
     \ pi, pi> get_path_and_range(pi x) {\n    PATH path;\n    pi l = {0, 1}, r = {1,\
     \ 0};\n    pi m = {1, 1};\n    ll det_l = l.fi * x.se - l.se * x.fi;\n    ll det_r\
@@ -247,7 +249,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/stern_brocot.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/stern_brocot.test.cpp

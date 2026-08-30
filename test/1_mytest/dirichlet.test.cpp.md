@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -230,17 +230,19 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"nt/integer_kth_root.hpp\"\nu64 integer_kth_root(u64\
-    \ k, u64 a) {\r\n  assert(k >= 1);\r\n  if (a == 0 || a == 1 || k == 1) return\
-    \ a;\r\n  if (k >= 64) return 1;\r\n  if (k == 2) return sqrtl(a);\r\n  if (a\
-    \ == u64(-1)) --a;\r\n  struct S {\r\n    u64 v;\r\n    S& operator*=(const S&\
-    \ o) {\r\n      v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\r\n      return *this;\r\
-    \n    }\r\n  };\r\n  auto power = [&](S x, ll n) -> S {\r\n    S v{1};\r\n   \
-    \ while (n) {\r\n      if (n & 1) v *= x;\r\n      x *= x;\r\n      n /= 2;\r\n\
-    \    }\r\n    return v;\r\n  };\r\n  u64 res = pow(a, nextafter(1 / double(k),\
+    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/integer_kth_root.hpp\"\nu64\
+    \ integer_kth_root(u64 k, u64 a) {\r\n  assert(k >= 1);\r\n  if (a == 0 || a ==\
+    \ 1 || k == 1) return a;\r\n  if (k >= 64) return 1;\r\n  if (k == 2) return sqrtl(a);\r\
+    \n  if (a == u64(-1)) --a;\r\n  struct S {\r\n    u64 v;\r\n    S& operator*=(const\
+    \ S& o) {\r\n      v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\r\n      return\
+    \ *this;\r\n    }\r\n  };\r\n  auto power = [&](S x, ll n) -> S {\r\n    S v{1};\r\
+    \n    while (n) {\r\n      if (n & 1) v *= x;\r\n      x *= x;\r\n      n /= 2;\r\
+    \n    }\r\n    return v;\r\n  };\r\n  u64 res = pow(a, nextafter(1 / double(k),\
     \ 0));\r\n  while (power(S{res + 1}, k).v <= a) ++res;\r\n  return res;\r\n}\r\
     \n#line 2 \"nt/dirichlet.hpp\"\n\n// Dirichlet \u7D1A\u6570\u81EA\u4F53\u306F\
     \ vc<T> \u3067\u6301\u3064\u3053\u3068\u306B\u3059\u308B.\n// \u3053\u306E\u69CB\
@@ -328,7 +330,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dirichlet.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dirichlet.test.cpp

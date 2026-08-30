@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -106,15 +106,18 @@ data:
     \  const int K = 100'000;\n  static vc<int> dp(K);\n  if (dp[1] == 0) { FOR(x,\
     \ 1, K) dp[x] = dp[x / 10] + (x % 10); }\n  int res = 0;\n  while (x) {\n    res\
     \ += dp[x % K];\n    x /= K;\n  }\n  return res;\n}\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 5 \"test/1_mytest/digit_sum.test.cpp\"\n\nint naive(u64\
-    \ x) {\n  int res = 0;\n  while (x) {\n    res += x % 10;\n    x /= 10;\n  }\n\
-    \  return res;\n}\n\nvoid test() {\n  FOR(x, 1000000) { assert(naive(x) == digit_sum(x));\
-    \ }\n  FOR(1000000) {\n    u64 x = RNG_64();\n    assert(naive(x) == digit_sum(x));\n\
-    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 5 \"test/1_mytest/digit_sum.test.cpp\"\
+    \n\nint naive(u64 x) {\n  int res = 0;\n  while (x) {\n    res += x % 10;\n  \
+    \  x /= 10;\n  }\n  return res;\n}\n\nvoid test() {\n  FOR(x, 1000000) { assert(naive(x)\
+    \ == digit_sum(x)); }\n  FOR(1000000) {\n    u64 x = RNG_64();\n    assert(naive(x)\
+    \ == digit_sum(x));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"nt/digit_sum.hpp\"\n#include \"random/base.hpp\"\n\nint naive(u64\
     \ x) {\n  int res = 0;\n  while (x) {\n    res += x % 10;\n    x /= 10;\n  }\n\
@@ -129,7 +132,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/digit_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/digit_sum.test.cpp

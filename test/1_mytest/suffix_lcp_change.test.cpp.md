@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -485,11 +485,13 @@ data:
     \ [l, r, x]: S) {\n      if (!change[i].empty() && get<2>(change[i].back()) ==\
     \ x) {\n        get<1>(change[i].back()) = r;\n      } else {\n        change[i].eb(l,\
     \ r, x);\n      }\n    }\n  }\n  return {init, change};\n}\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/suffix_lcp_change.test.cpp\"\n\
-    \n/*\nsuffix array \u9806 suffix s[0],...,s[n-1]. L_p: s[p] \u3068\u306E lcp.\n\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 6 \"test/1_mytest/suffix_lcp_change.test.cpp\"\
+    \n\n/*\nsuffix array \u9806 suffix s[0],...,s[n-1]. L_p: s[p] \u3068\u306E lcp.\n\
     sum_k min(L_p[k], r-l) * [l<=SA[k]<r].\n\nL_p[] \u304C\u5927\u304D\u3044\u306E\
     \u306F\u533A\u9593 [L,R)\n\nsum_{0<=k<L} (r-l) * [l<=SA[k]<r]\nsum_{L<=k<R} L_p[k]\
     \ * [l<=SA[k]<r]\nsum_{R<=k<N} (r-l) * [l<=SA[k]<r]\n*/\nvoid test() {\n  FOR(N,\
@@ -533,7 +535,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/suffix_lcp_change.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:27:49+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/suffix_lcp_change.test.cpp

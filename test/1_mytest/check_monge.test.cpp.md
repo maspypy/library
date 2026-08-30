@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -243,22 +243,24 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/1_mytest/check_monge.test.cpp\"\
-    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"random/random_monge.hpp\"\n\n// A[i1][j1] +\
-    \ A[i2][j2] <= A[i1][j2] + A[i2][j1] for i1 < i2, j1 < j2.\nvvc<ll> random_monge_matrix(int\
-    \ H, int W) {\n  ll LIM = 10;\n  vv(ll, D, H, W);\n  FOR(i, H) FOR(j, W) D[i][j]\
-    \ = RNG(0, LIM + 1);\n\n  vv(ll, A, H, W);\n  FOR(i, H) FOR(j, W) {\n    ll x\
-    \ = D[i][j];\n    if (i) x += A[i - 1][j];\n    if (j) x += A[i][j - 1];\n   \
-    \ if (i && j) x -= A[i - 1][j - 1];\n    A[i][j] = x;\n  }\n\n  vc<ll> row(H),\
-    \ col(W);\n  FOR(i, H) row[i] = RNG(-LIM * W, LIM * W + 1);\n  FOR(j, W) col[j]\
-    \ = RNG(-LIM * H, LIM * H + 1);\n\n  FOR(i, H) FOR(j, W) A[i][j] = -A[i][j] +\
-    \ row[i] + col[j];\n  return A;\n}\n#line 1 \"convex/monge/check_monge.hpp\"\n\
-    \n// check Monge property on [0, N]:\n// f(a,d) + f(b,c) >= f(a,c) + f(b,d) for\
-    \ a < b < c < d\ntemplate <typename T, typename F>\nbool check_monge(int N, F\
-    \ f) {\n  FOR(d, N + 1) FOR(c, d) FOR(b, c) FOR(a, b) {\n    T lhs = f(a, d) +\
-    \ f(b, c);\n    T rhs = f(a, c) + f(b, d);\n    if (lhs < rhs) {\n      print(\"\
+    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 2 \"random/random_monge.hpp\"\n\n\
+    // A[i1][j1] + A[i2][j2] <= A[i1][j2] + A[i2][j1] for i1 < i2, j1 < j2.\nvvc<ll>\
+    \ random_monge_matrix(int H, int W) {\n  ll LIM = 10;\n  vv(ll, D, H, W);\n  FOR(i,\
+    \ H) FOR(j, W) D[i][j] = RNG(0, LIM + 1);\n\n  vv(ll, A, H, W);\n  FOR(i, H) FOR(j,\
+    \ W) {\n    ll x = D[i][j];\n    if (i) x += A[i - 1][j];\n    if (j) x += A[i][j\
+    \ - 1];\n    if (i && j) x -= A[i - 1][j - 1];\n    A[i][j] = x;\n  }\n\n  vc<ll>\
+    \ row(H), col(W);\n  FOR(i, H) row[i] = RNG(-LIM * W, LIM * W + 1);\n  FOR(j,\
+    \ W) col[j] = RNG(-LIM * H, LIM * H + 1);\n\n  FOR(i, H) FOR(j, W) A[i][j] = -A[i][j]\
+    \ + row[i] + col[j];\n  return A;\n}\n#line 1 \"convex/monge/check_monge.hpp\"\
+    \n\n// check Monge property on [0, N]:\n// f(a,d) + f(b,c) >= f(a,c) + f(b,d)\
+    \ for a < b < c < d\ntemplate <typename T, typename F>\nbool check_monge(int N,\
+    \ F f) {\n  FOR(d, N + 1) FOR(c, d) FOR(b, c) FOR(a, b) {\n    T lhs = f(a, d)\
+    \ + f(b, c);\n    T rhs = f(a, c) + f(b, d);\n    if (lhs < rhs) {\n      print(\"\
     monge ng\");\n      print(\"a,b,c,d = \", a, b, c, d);\n      print(\"f(a, d)=\"\
     , f(a, d));\n      print(\"f(b, c)=\", f(b, c));\n      print(\"f(a, c)=\", f(a,\
     \ c));\n      print(\"f(b, d)=\", f(b, d));\n      return false;\n    }\n  }\n\
@@ -283,7 +285,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/check_monge.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/check_monge.test.cpp

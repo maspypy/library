@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: bigint/binary.hpp
     title: bigint/binary.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -28,19 +28,19 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -1044,20 +1044,21 @@ data:
     \   }\n\n      while (len(dat) && dat.back() == 0) dat.pop_back();\n      if (dat.empty())\
     \ sgn = 0;\n    }\n  }\n};\n\n#ifdef FASTIO\nvoid wt(BigInteger_Binary x) { fastio::wt(x.to_string());\
     \ }\n#endif\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ =\
-    \ u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 8 \"test/1_mytest/bigint.test.cpp\"\n\ntemplate\
-    \ <typename B>\nvoid test() {\n  int x = 0, y = 0;\n  B X(x), Y(y);\n  FOR(100)\
-    \ {\n    FOR(1000) {\n      int a = RNG(-3, 4);\n      int b = RNG(-3, 4);\n \
-    \     if (RNG(0, 2)) {\n        x += a, y += b;\n        X += a, Y += b;\n   \
-    \   } else {\n        x -= a, y -= b;\n        X -= a, Y -= b;\n      }\n    \
-    \  assert(X == B(x) && Y == B(y));\n      assert((x == y) == (X == Y));\n    \
-    \  assert((x != y) == (X != Y));\n      assert((x < y) == (X < Y));\n      assert((x\
-    \ <= y) == (X <= Y));\n      assert((x > y) == (X > Y));\n      assert((x >= y)\
-    \ == (X >= Y));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test<BigInteger>();\n  test<BigInteger_Binary>();\n\
-    \  solve();\n  return 0;\n}\n"
+    \ u64(chrono::duration_cast<chrono::nanoseconds>(\n                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 8 \"test/1_mytest/bigint.test.cpp\"\
+    \n\ntemplate <typename B>\nvoid test() {\n  int x = 0, y = 0;\n  B X(x), Y(y);\n\
+    \  FOR(100) {\n    FOR(1000) {\n      int a = RNG(-3, 4);\n      int b = RNG(-3,\
+    \ 4);\n      if (RNG(0, 2)) {\n        x += a, y += b;\n        X += a, Y += b;\n\
+    \      } else {\n        x -= a, y -= b;\n        X -= a, Y -= b;\n      }\n \
+    \     assert(X == B(x) && Y == B(y));\n      assert((x == y) == (X == Y));\n \
+    \     assert((x != y) == (X != Y));\n      assert((x < y) == (X < Y));\n     \
+    \ assert((x <= y) == (X <= Y));\n      assert((x > y) == (X > Y));\n      assert((x\
+    \ >= y) == (X >= Y));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test<BigInteger>();\n\
+    \  test<BigInteger_Binary>();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"bigint/base.hpp\"\n#include \"bigint/binary.hpp\"\
     \n#include \"random/base.hpp\"\n\ntemplate <typename B>\nvoid test() {\n  int\
@@ -1089,7 +1090,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/bigint.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/bigint.test.cpp

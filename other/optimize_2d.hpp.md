@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -77,13 +77,15 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 4 \"other/optimize_2d.hpp\"\n\n// \u3069\u306E\u304F\
-    \u3089\u3044\u4F7F\u3048\u308B\u3053\u3068\u304C\u3042\u308B\u306E\u304B\u4E0D\
-    \u660E\n// https://atcoder.jp/contests/ajo2025-final/submissions/71727945\n//\
-    \ return: f(x,y),x,y\ntemplate <typename T, bool MINIMIZE, typename F>\ntuple<T,\
+    \  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 4 \"other/optimize_2d.hpp\"\n\n//\
+    \ \u3069\u306E\u304F\u3089\u3044\u4F7F\u3048\u308B\u3053\u3068\u304C\u3042\u308B\
+    \u306E\u304B\u4E0D\u660E\n// https://atcoder.jp/contests/ajo2025-final/submissions/71727945\n\
+    // return: f(x,y),x,y\ntemplate <typename T, bool MINIMIZE, typename F>\ntuple<T,\
     \ ll, ll> optimize_2d(ll x1, ll x2, ll y1, ll y2, F f, int beam_width) {\n  assert(x1\
     \ < x2 && y1 < y2);\n\n  HashMap<T> MP;\n  u64 rnd = RNG_64();\n  auto eval =\
     \ [&](ll x, ll y) -> T {\n    T ans = f(x1 + x, y1 + y);\n    if (!MINIMIZE) ans\
@@ -131,7 +133,7 @@ data:
   isVerificationFile: false
   path: other/optimize_2d.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/optimize_2d.hpp
