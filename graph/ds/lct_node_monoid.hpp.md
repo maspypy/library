@@ -18,7 +18,7 @@ data:
     \u3059\u308B.\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
     \ VX = X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int i = 0)\n      : l(nullptr),\n\
     \        r(nullptr),\n        p(nullptr),\n        idx(i),\n        size(1),\n\
-    \        rev(0),\n        x(MX::unit()),\n        rx(MX::unit()),\n        vx(MX::unit())\
+    \        rev(0),\n        x(MX::id()),\n        rx(MX::id()),\n        vx(MX::id())\
     \ {}\n\n  void update() {\n    size = 1;\n    x = vx, rx = vx;\n    if (l) {\n\
     \      size += l->size, x = Monoid::op(l->x, x), rx = Monoid::op(rx, l->rx);\n\
     \    }\n    if (r) {\n      size += r->size, x = Monoid::op(x, r->x), rx = Monoid::op(r->rx,\
@@ -35,9 +35,9 @@ data:
     \u3054\u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n  using MX = Monoid;\n  using X =\
     \ typename MX::value_type;\n  using VX = X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int\
     \ i = 0)\n      : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n    \
-    \    idx(i),\n        size(1),\n        rev(0),\n        x(MX::unit()),\n    \
-    \    rx(MX::unit()),\n        vx(MX::unit()) {}\n\n  void update() {\n    size\
-    \ = 1;\n    x = vx, rx = vx;\n    if (l) {\n      size += l->size, x = Monoid::op(l->x,\
+    \    idx(i),\n        size(1),\n        rev(0),\n        x(MX::id()),\n      \
+    \  rx(MX::id()),\n        vx(MX::id()) {}\n\n  void update() {\n    size = 1;\n\
+    \    x = vx, rx = vx;\n    if (l) {\n      size += l->size, x = Monoid::op(l->x,\
     \ x), rx = Monoid::op(rx, l->rx);\n    }\n    if (r) {\n      size += r->size,\
     \ x = Monoid::op(x, r->x), rx = Monoid::op(r->rx, rx);\n    }\n  }\n\n  void push()\
     \ {\n    if (rev) {\n      if (l) l->reverse();\n      if (r) r->reverse();\n\
@@ -50,7 +50,7 @@ data:
   isVerificationFile: false
   path: graph/ds/lct_node_monoid.hpp
   requiredBy: []
-  timestamp: '2023-12-03 14:26:27+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp

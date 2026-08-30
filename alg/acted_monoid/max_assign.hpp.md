@@ -19,11 +19,11 @@ data:
     links: []
   bundledCode: "#line 1 \"alg/monoid/max.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Max\
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return max(x, y); }\n  static constexpr X unit()\
-    \ { return -infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1\
-    \ \"alg/monoid/assign.hpp\"\n\ntemplate <typename X, int none_val>\nstruct Monoid_Assign\
+    \ &x, const X &y) noexcept { return max(x, y); }\n  static constexpr X id() {\
+    \ return -infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
+    alg/monoid/assign.hpp\"\n\ntemplate <typename X, int none_val>\nstruct Monoid_Assign\
     \ {\n  using value_type = X;\n  static X op(X x, X y) { return (y == X(none_val)\
-    \ ? x : y); }\n  static constexpr X unit() { return X(none_val); }\n  static constexpr\
+    \ ? x : y); }\n  static constexpr X id() { return X(none_val); }\n  static constexpr\
     \ bool commute = false;\n};\n#line 3 \"alg/acted_monoid/max_assign.hpp\"\n\r\n\
     template <typename E, E none_val>\r\nstruct ActedMonoid_Max_Assign {\r\n  using\
     \ Monoid_X = Monoid_Max<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/max_assign.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/max_assign.test.cpp

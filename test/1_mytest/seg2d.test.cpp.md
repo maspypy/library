@@ -118,7 +118,7 @@ data:
     \u70B9\u5217\r\n  vc<XY> all_Y;\r\n  vc<int> pos;\r\n  // segtree data\r\n  int\
     \ NX, log, size;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\n  // fractional cascading\r\
     \n  vc<int> to_left;\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y)\r\n      : SegTree_2D(len(X),\
-    \ [&](int i) -> tuple<XY, XY, S> {\r\n          return {X[i], Y[i], MX::unit()};\r\
+    \ [&](int i) -> tuple<XY, XY, S> {\r\n          return {X[i], Y[i], MX::id()};\r\
     \n        }) {}\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S>& vals)\r\n   \
     \   : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {\r\n          return\
     \ {X[i], Y[i], vals[i]};\r\n        }) {}\r\n\r\n  // f(i) = (x,y,val)\r\n  template\
@@ -131,7 +131,7 @@ data:
     \ = (1 << log);\r\n\r\n    vc<int> IX(N);\r\n    FOR(i, N) IX[i] = xtoi(X[i]);\r\
     \n    indptr.assign(2 * size, 0);\r\n    for (auto i: IX) {\r\n      i += size;\r\
     \n      while (i) indptr[i]++, i /= 2;\r\n    }\r\n    indptr = cumsum<int>(indptr);\r\
-    \n    dat.assign(2 * indptr.back(), MX::unit());\r\n    to_left.assign(indptr[size],\
+    \n    dat.assign(2 * indptr.back(), MX::id());\r\n    to_left.assign(indptr[size],\
     \ 0);\r\n\r\n    vc<int> ptr = indptr;\r\n    vc<int> I = argsort(Y);\r\n    pos.resize(N);\r\
     \n    FOR(i, N) pos[I[i]] = i;\r\n    for (auto raw_idx: I) {\r\n      int i =\
     \ IX[raw_idx] + size;\r\n      int j = -1;\r\n      while (i) {\r\n        int\
@@ -156,7 +156,7 @@ data:
     \  p = indptr[2 * i + 0] + lc;\r\n        i = 2 * i + 0;\r\n      } else {\r\n\
     \        p = indptr[2 * i + 1] + rc;\r\n        i = 2 * i + 1;\r\n      }\r\n\
     \    }\r\n  }\r\n\r\n  S prod(XY lx, XY rx, XY ly, XY ry) {\r\n    assert(lx <=\
-    \ rx && ly <= ry);\r\n    int L = xtoi(lx), R = xtoi(rx);\r\n    S res = MX::unit();\r\
+    \ rx && ly <= ry);\r\n    int L = xtoi(lx), R = xtoi(rx);\r\n    S res = MX::id();\r\
     \n    auto dfs = [&](auto& dfs, int i, int l, int r, int a, int b) -> void {\r\
     \n      if (a == b || R <= l || r <= L) return;\r\n      if (L <= l && r <= R)\
     \ {\r\n        res = MX::op(res, prod_i(i, a, b));\r\n        return;\r\n    \
@@ -179,7 +179,7 @@ data:
     \n    if constexpr (SMALL_X) return clamp<XY>(x - minX, 0, NX);\r\n    return\
     \ LB(keyX, x);\r\n  }\r\n\r\n  S prod_i(int i, int a, int b) {\r\n    int LID\
     \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    int off = 2 * LID;\r\n  \
-    \  int L = n + a, R = n + b;\r\n    S val = MX::unit();\r\n    while (L < R) {\r\
+    \  int L = n + a, R = n + b;\r\n    S val = MX::id();\r\n    while (L < R) {\r\
     \n      if (L & 1) val = MX::op(val, dat[off + (L++)]);\r\n      if (R & 1) val\
     \ = MX::op(dat[off + (--R)], val);\r\n      L >>= 1, R >>= 1;\r\n    }\r\n   \
     \ return val;\r\n  }\r\n  void multiply_i(int i, int j, S val) {\r\n    int LID\
@@ -192,23 +192,23 @@ data:
     \n    }\r\n  }\r\n};\r\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename E>\n\
     struct Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X unit() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n\
-    #line 7 \"test/1_mytest/seg2d.test.cpp\"\n\nvoid test() {\n  FOR(N, 100) {\n \
-    \   FOR(Q, 100) {\n      vc<int> X(N), Y(N), val(N);\n      FOR(i, N) X[i] = RNG(0,\
-    \ 5), Y[i] = RNG(0, 5), val[i] = RNG(0, 100);\n      SegTree_2D<Monoid_Min<int>,\
-    \ int, true> seg(X, Y, val);\n      FOR(Q) {\n        int t = RNG(0, 3);\n   \
-    \     if (N == 0) t = 2;\n        if (t == 0) {\n          int i = RNG(0, N);\n\
-    \          val[i] = RNG(0, 100);\n          seg.set(i, val[i]);\n        }\n \
-    \       if (t == 1) {\n          int i = RNG(0, N);\n          int x = RNG(0,\
-    \ 100);\n          chmin(val[i], x);\n          seg.multiply(i, val[i]);\n   \
-    \     }\n        if (t == 2) {\n          int a = RNG(0, 5), b = RNG(0, 5), c\
-    \ = RNG(0, 5), d = RNG(0, 5);\n          if (a > b) swap(a, b);\n          if\
-    \ (c > d) swap(c, d);\n          int ans = infty<int>;\n          FOR(i, N) {\n\
-    \            if (a <= X[i] && X[i] < b && c <= Y[i] && Y[i] < d)\n           \
-    \   chmin(ans, val[i]);\n          }\n          assert(ans == seg.prod(a, b, c,\
-    \ d));\n        }\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
-    \ solve();\n  return 0;\n}\n"
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 7 \"test/1_mytest/seg2d.test.cpp\"\n\nvoid test() {\n  FOR(N, 100) {\n    FOR(Q,\
+    \ 100) {\n      vc<int> X(N), Y(N), val(N);\n      FOR(i, N) X[i] = RNG(0, 5),\
+    \ Y[i] = RNG(0, 5), val[i] = RNG(0, 100);\n      SegTree_2D<Monoid_Min<int>, int,\
+    \ true> seg(X, Y, val);\n      FOR(Q) {\n        int t = RNG(0, 3);\n        if\
+    \ (N == 0) t = 2;\n        if (t == 0) {\n          int i = RNG(0, N);\n     \
+    \     val[i] = RNG(0, 100);\n          seg.set(i, val[i]);\n        }\n      \
+    \  if (t == 1) {\n          int i = RNG(0, N);\n          int x = RNG(0, 100);\n\
+    \          chmin(val[i], x);\n          seg.multiply(i, val[i]);\n        }\n\
+    \        if (t == 2) {\n          int a = RNG(0, 5), b = RNG(0, 5), c = RNG(0,\
+    \ 5), d = RNG(0, 5);\n          if (a > b) swap(a, b);\n          if (c > d) swap(c,\
+    \ d);\n          int ans = infty<int>;\n          FOR(i, N) {\n            if\
+    \ (a <= X[i] && X[i] < b && c <= Y[i] && Y[i] < d)\n              chmin(ans, val[i]);\n\
+    \          }\n          assert(ans == seg.prod(a, b, c, d));\n        }\n    \
+    \  }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
+    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"ds/segtree/segtree_2d.hpp\"\n#include\
     \ \"alg/monoid/min.hpp\"\n\nvoid test() {\n  FOR(N, 100) {\n    FOR(Q, 100) {\n\
@@ -234,7 +234,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/seg2d.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/seg2d.test.cpp

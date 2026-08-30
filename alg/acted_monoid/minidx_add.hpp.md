@@ -21,14 +21,14 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/minidx.hpp\"\
     \n\ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_MinIdx {\n \
     \ using value_type = pair<T, int>;\n  using X = value_type;\n  static constexpr\
     \ bool is_small(const X& x, const X& y) {\n    if (x.fi < y.fi) return true;\n\
     \    if (x.fi > y.fi) return false;\n    return (tie_is_left ? (x.se < y.se) :\
     \ (x.se >= y.se));\n  }\n  static X op(X x, X y) { return (is_small(x, y) ? x\
-    \ : y); }\n  static constexpr X unit() { return {infty<T>, -1}; }\n  static constexpr\
+    \ : y); }\n  static constexpr X id() { return {infty<T>, -1}; }\n  static constexpr\
     \ bool commute = true;\n};\n#line 3 \"alg/acted_monoid/minidx_add.hpp\"\n\r\n\
     template <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MinIdx_Add\
     \ {\r\n  using Monoid_X = Monoid_MinIdx<E, tie_is_left>;\r\n  using Monoid_A =\
@@ -49,7 +49,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/minidx_add.hpp
   requiredBy: []
-  timestamp: '2026-08-17 09:25:20+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/minidx_add.test.cpp

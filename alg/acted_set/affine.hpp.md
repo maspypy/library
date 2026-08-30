@@ -18,12 +18,12 @@ data:
     \ * y.first + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n \
     \   auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static\
     \ constexpr K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n\
-    \  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr\
-    \ bool commute = false;\n};\n#line 2 \"alg/acted_set/affine.hpp\"\n\n// 1 \u6B21\
-    \u5143\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593\u306B\u3001\u30A2\u30D5\u30A3\u30F3\
-    \u5909\u63DB\u304C\u4F5C\u7528\ntemplate <typename T>\nstruct ActedSet_Affine\
-    \ {\n  using Monoid_A = Monoid_Affine<T>;\n  using A = typename Monoid_A::value_type;\n\
-    \  using S = T;\n  static S act(const S &x, const A &g) { return g.fi * x + g.se;\
+    \  }\n  static constexpr F id() { return {K(1), K(0)}; }\n  static constexpr bool\
+    \ commute = false;\n};\n#line 2 \"alg/acted_set/affine.hpp\"\n\n// 1 \u6B21\u5143\
+    \u30D9\u30AF\u30C8\u30EB\u7A7A\u9593\u306B\u3001\u30A2\u30D5\u30A3\u30F3\u5909\
+    \u63DB\u304C\u4F5C\u7528\ntemplate <typename T>\nstruct ActedSet_Affine {\n  using\
+    \ Monoid_A = Monoid_Affine<T>;\n  using A = typename Monoid_A::value_type;\n \
+    \ using S = T;\n  static S act(const S &x, const A &g) { return g.fi * x + g.se;\
     \ }\n};\n"
   code: "#include \"alg/monoid/affine.hpp\"\n\n// 1 \u6B21\u5143\u30D9\u30AF\u30C8\
     \u30EB\u7A7A\u9593\u306B\u3001\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\u304C\u4F5C\
@@ -35,7 +35,7 @@ data:
   isVerificationFile: false
   path: alg/acted_set/affine.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/acted_set/affine.hpp

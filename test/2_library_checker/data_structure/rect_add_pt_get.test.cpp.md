@@ -244,7 +244,7 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 2 \"ds/fenwicktree/dual_fenwicktree_2d.hpp\"\
     \n\ntemplate <typename Monoid, typename XY, bool SMALL_X = false>\nstruct Dual_FenwickTree_2D\
     \ {\n  using G = Monoid;\n  using E = typename G::value_type;\n  static_assert(G::commute);\n\
@@ -264,16 +264,16 @@ data:
     \     while (ix < N) {\n        if (last_y[ix] == y) break;\n        last_y[ix]\
     \ = y, indptr[ix + 1]++, ix = nxt(ix);\n      }\n    }\n    FOR(i, N) indptr[i\
     \ + 1] += indptr[i];\n    keyY.resize(indptr.back());\n    dat.assign(indptr.back(),\
-    \ G::unit());\n    fill(all(last_y), -infty<XY> - 1);\n    vc<int> prog = indptr;\n\
+    \ G::id());\n    fill(all(last_y), -infty<XY> - 1);\n    vc<int> prog = indptr;\n\
     \    FOR(i, len(X)) {\n      int ix = X[i];\n      XY y = Y[i];\n      while (ix\
     \ < N) {\n        if (last_y[ix] == y) break;\n        last_y[ix] = y, keyY[prog[ix]++]\
     \ = y, ix = nxt(ix);\n      }\n    }\n  }\n\n  E get(XY x, XY y) {\n    E val\
-    \ = G::unit();\n    int i = xtoi(x);\n    assert(keyX[i] == x);\n    while (i\
-    \ < N) { val = G::op(val, get_i(i, y)), i = nxt(i); }\n    return val;\n  }\n\n\
+    \ = G::id();\n    int i = xtoi(x);\n    assert(keyX[i] == x);\n    while (i <\
+    \ N) { val = G::op(val, get_i(i, y)), i = nxt(i); }\n    return val;\n  }\n\n\
     \  void apply(XY lx, XY rx, XY ly, XY ry, E val) {\n    int L = xtoi(lx) - 1,\
     \ R = xtoi(rx) - 1;\n    E neg = G::inverse(val);\n    while (L < R) { apply_i(R,\
     \ ly, ry, val), R = prev(R); }\n    while (R < L) { apply_i(L, ly, ry, neg), L\
-    \ = prev(L); }\n  }\n\nprivate:\n  E get_i(int i, XY y) {\n    E val = G::unit();\n\
+    \ = prev(L); }\n  }\n\nprivate:\n  E get_i(int i, XY y) {\n    E val = G::id();\n\
     \    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n    auto it = keyY.begin()\
     \ + LID;\n    int j = lower_bound(it, it + n, y) - it;\n    vc<int> Y_sub = {it,\
     \ it + n};\n    while (j < n) { val = G::op(val, dat[LID + j]), j = nxt(j); }\n\
@@ -312,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp

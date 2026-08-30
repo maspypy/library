@@ -371,15 +371,15 @@ data:
     \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
     \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
     \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
-    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate\
-    \ <class Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
+    \  static constexpr F id() { return {K(1), K(0)}; }\n  static constexpr bool commute\
+    \ = false;\n};\n#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class\
+    \ Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
     \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
-    \n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
+    \n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::id()}), cum_r(Monoid::id())\
     \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
     \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
-    \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n\
-    \      cum_r = Monoid::unit();\n      while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(),\
+    \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::id()};\n\
+    \      cum_r = Monoid::id();\n      while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(),\
     \ cum_l.back()));\n        dat.pop_back();\n      }\n      dat.pop_back();\n \
     \   }\n  }\n\n  X lprod() { return cum_l.back(); }\n  X rprod() { return cum_r;\
     \ }\n\n  X prod() { return Monoid::op(cum_l.back(), cum_r); }\n};\n\n// \u5B9A\
@@ -388,13 +388,13 @@ data:
     \ntemplate <class Monoid>\nstruct Sliding_Window_Aggregation_Deque {\n  using\
     \ X = typename Monoid::value_type;\n  using value_type = X;\n  int sz;\n  vc<X>\
     \ dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  Sliding_Window_Aggregation_Deque()\n\
-    \      : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}\n\n  int size()\
+    \      : sz(0), cum_l({Monoid::id()}), cum_r({Monoid::id()}) {}\n\n  int size()\
     \ { return sz; }\n\n  void push_back(X x) {\n    ++sz;\n    dat_r.eb(x);\n   \
     \ cum_r.eb(Monoid::op(cum_r.back(), x));\n  }\n\n  void push_front(X x) {\n  \
     \  ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x, cum_l.back()));\n  }\n\n\
     \  void push(X x) { push_back(x); }\n\n  void clear() {\n    sz = 0;\n    dat_l.clear(),\
-    \ dat_r.clear();\n    cum_l = {Monoid::unit()}, cum_r = {Monoid::unit()};\n  }\n\
-    \n  void pop_front() {\n    if (sz == 1) return clear();\n    if (dat_l.empty())\
+    \ dat_r.clear();\n    cum_l = {Monoid::id()}, cum_r = {Monoid::id()};\n  }\n\n\
+    \  void pop_front() {\n    if (sz == 1) return clear();\n    if (dat_l.empty())\
     \ rebuild();\n    --sz;\n    dat_l.pop_back();\n    cum_l.pop_back();\n  }\n\n\
     \  void pop_back() {\n    if (sz == 1) return clear();\n    if (dat_r.empty())\
     \ rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n  }\n\n\
@@ -433,7 +433,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp

@@ -286,7 +286,7 @@ data:
     \ u64 base = 0;\n    return base;\n  }\n  static void set_param(u64 base) { get_param()\
     \ = base; }\n\n  static X from_element(u64 x) {\n    while (get_param() == 0)\
     \ set_param(RNG_64());\n    return {get_param(), x};\n  }\n  static X op(X x,\
-    \ X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\n  static constexpr X unit()\
+    \ X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\n  static constexpr X id()\
     \ { return {1, 0}; }\n  static constexpr bool commute = false;\n};\n#line 1 \"\
     other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32\
     \ x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
@@ -328,7 +328,7 @@ data:
     \ {}\n  Disjoint_Sparse_Table(int n) { build(n); }\n  template <typename F>\n\
     \  Disjoint_Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n  Disjoint_Sparse_Table(const\
     \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
-    \ X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ X { return MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
     \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
     \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
     \    dat[0].reserve(n);\n    FOR(i, n) dat[0].eb(f(i));\n    FOR(i, 1, log) {\n\
@@ -336,16 +336,16 @@ data:
     \ (int m = b; m <= n; m += 2 * b) {\n        int L = m - b, R = min(n, m + b);\n\
     \        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\n        FOR(j,\
     \ m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\n      }\n    }\n  }\n\n  X prod(int\
-    \ L, int R) const {\n    if (L == R) return MX::unit();\n    --R;\n    if (L ==\
+    \ L, int R) const {\n    if (L == R) return MX::id();\n    --R;\n    if (L ==\
     \ R) return dat[0][L];\n    int k = topbit(L ^ R);\n    return MX::op(dat[k][L],\
     \ dat[k][R]);\n  }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L) const {\n    assert(0 <= L && L <= n && check(MX::unit()));\n    if (L ==\
-    \ n) return n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n     \
-    \ int k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok\
-    \ = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class\
-    \ F>\n  int min_left(const F check, int R) const {\n    assert(0 <= R && R <=\
-    \ n && check(MX::unit()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n\
-    \    while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
+    \ L) const {\n    assert(0 <= L && L <= n && check(MX::id()));\n    if (L == n)\
+    \ return n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int\
+    \ k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n\
+    \      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n\
+    \  int min_left(const F check, int R) const {\n    assert(0 <= R && R <= n &&\
+    \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
+    \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
     \  }\n};\n#line 7 \"test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp\"\
     \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  using Mono = Monoid_Rolling_Hash;\n\
@@ -374,7 +374,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp

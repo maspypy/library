@@ -44,7 +44,7 @@ data:
     \ = L.ten;\n    }\n    if (L.type == 3 && R.type == 3) {\n      ANS.type = 3;\n\
     \      ANS.a = L.a, ANS.b = L.b, ANS.c = L.c + L.d * (L.e * R.ten + R.a) * R.b\
     \ + R.c, ANS.d = R.d, ANS.e = R.e;\n      ANS.ten = L.ten;\n    }\n    return\
-    \ ANS;\n  }\n  static constexpr X unit() { return X(); }\n  static constexpr bool\
+    \ ANS;\n  }\n  static constexpr X id() { return X(); }\n  static constexpr bool\
     \ commute = 0;\n};\n"
   code: "// https://ac.nowcoder.com/acm/contest/81599/K\n\n/*\ntype=0: empty\ntype=1:\
     \ a\ntype=2: a*b*c\ntype=3: a*b+c+d*e\n\u5DE6\u7AEF(a,c,e)\u306E\u6841\u6570\u306E\
@@ -81,12 +81,12 @@ data:
     \    if (L.type == 3 && R.type == 3) {\n      ANS.type = 3;\n      ANS.a = L.a,\
     \ ANS.b = L.b, ANS.c = L.c + L.d * (L.e * R.ten + R.a) * R.b + R.c, ANS.d = R.d,\
     \ ANS.e = R.e;\n      ANS.ten = L.ten;\n    }\n    return ANS;\n  }\n  static\
-    \ constexpr X unit() { return X(); }\n  static constexpr bool commute = 0;\n};\n"
+    \ constexpr X id() { return X(); }\n  static constexpr bool commute = 0;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/arithmetic_expression.hpp
   requiredBy: []
-  timestamp: '2024-10-16 22:34:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/arithmetic_expression.hpp

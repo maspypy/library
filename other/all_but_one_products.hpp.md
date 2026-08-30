@@ -13,20 +13,20 @@ data:
     links: []
   bundledCode: "#line 1 \"other/all_but_one_products.hpp\"\ntemplate <typename Monoid,\
     \ typename X = typename Monoid::value_type>\nvector<X> all_but_one_products(const\
-    \ vc<X>& A) {\n  int N = len(A);\n  vc<X> res(N, Monoid::unit());\n  FOR(i, N\
-    \ - 1) res[i + 1] = Monoid::op(res[i], A[i]);\n  X x = Monoid::unit();\n  FOR_R(i,\
+    \ vc<X>& A) {\n  int N = len(A);\n  vc<X> res(N, Monoid::id());\n  FOR(i, N -\
+    \ 1) res[i + 1] = Monoid::op(res[i], A[i]);\n  X x = Monoid::id();\n  FOR_R(i,\
     \ N) {\n    res[i] = Monoid::op(res[i], x);\n    x = Monoid::op(A[i], x);\n  }\n\
     \  return res;\n}\n"
   code: "template <typename Monoid, typename X = typename Monoid::value_type>\nvector<X>\
-    \ all_but_one_products(const vc<X>& A) {\n  int N = len(A);\n  vc<X> res(N, Monoid::unit());\n\
-    \  FOR(i, N - 1) res[i + 1] = Monoid::op(res[i], A[i]);\n  X x = Monoid::unit();\n\
+    \ all_but_one_products(const vc<X>& A) {\n  int N = len(A);\n  vc<X> res(N, Monoid::id());\n\
+    \  FOR(i, N - 1) res[i + 1] = Monoid::op(res[i], A[i]);\n  X x = Monoid::id();\n\
     \  FOR_R(i, N) {\n    res[i] = Monoid::op(res[i], x);\n    x = Monoid::op(A[i],\
     \ x);\n  }\n  return res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: other/all_but_one_products.hpp
   requiredBy: []
-  timestamp: '2022-10-01 13:28:06+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/all_but_one_products.test.cpp

@@ -25,7 +25,7 @@ data:
     \ {infty<ll> / 2, infty<ll>, c};\n  }\n  static X add(ll x) { return {x, 1, 0};\
     \ }\n  static X divide(ll x) { return {0, 1, x}; }\n\n  static ll eval(X f, ll\
     \ x) {\n    auto [a, b, c] = f;\n    return floor<ll>(x + a, b) + c;\n  }\n\n\
-    \  static constexpr X unit() { return {0, 1, 0}; }\n  static constexpr bool commute\
+    \  static constexpr X id() { return {0, 1, 0}; }\n  static constexpr bool commute\
     \ = 0;\n};\n"
   code: "\n// x -> (x+a)/b+c\n// \u5408\u6210\u306E\u3044\u305F\u308B\u3068\u3053\u308D\
     \u3067infty<ll>/2\u4EE5\u4E0A\u306B\u306A\u3089\u306A\u3044\u3053\u3068\u3092\u4EEE\
@@ -41,13 +41,13 @@ data:
     \ c};\n    return {infty<ll> / 2, infty<ll>, c};\n  }\n  static X add(ll x) {\
     \ return {x, 1, 0}; }\n  static X divide(ll x) { return {0, 1, x}; }\n\n  static\
     \ ll eval(X f, ll x) {\n    auto [a, b, c] = f;\n    return floor<ll>(x + a, b)\
-    \ + c;\n  }\n\n  static constexpr X unit() { return {0, 1, 0}; }\n  static constexpr\
+    \ + c;\n  }\n\n  static constexpr X id() { return {0, 1, 0}; }\n  static constexpr\
     \ bool commute = 0;\n};"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/add_divide.hpp
   requiredBy: []
-  timestamp: '2026-03-14 08:28:15+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/add_divide.hpp

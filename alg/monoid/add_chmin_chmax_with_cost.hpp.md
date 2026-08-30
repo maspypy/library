@@ -26,8 +26,8 @@ data:
     \ x1;\n    elif (y1 < x2) M.b = L.b + R.b, M.x1 = y1;\n    else M.b = L.b + R.b\
     \ + y1 - x2, M.x1 = x2;\n    if (y2 < x1) M.c = L.c + R.c + x1 - y2, M.x2 = x1;\n\
     \    elif (y2 < x2) M.c = L.c + R.c, M.x2 = y2;\n    else M.c = L.c + R.c, M.x2\
-    \ = x2;\n    return M;\n  }\n\n  static constexpr X unit() { return F(); }\n \
-    \ static constexpr bool commute = 0;\n};\n"
+    \ = x2;\n    return M;\n  }\n\n  static constexpr X id() { return F(); }\n  static\
+    \ constexpr bool commute = 0;\n};\n"
   code: "template <typename T>\nstruct Monoid_Add_Chmin_Chmax_with_Cost {\n  // clamp(x+a,l,r)\
     \ \u306F (a,0,0,l-a,r-a) \u3068\u3059\u308B\n  // eval_cost(f,x) \u3059\u308B\u3068\
     \u3001add, chmax, chmin \u306B\u3088\u308B x \u306E\u5909\u5316\u91CF\u304C\u5165\
@@ -43,12 +43,12 @@ data:
     \    else M.b = L.b + R.b + y1 - x2, M.x1 = x2;\n    if (y2 < x1) M.c = L.c +\
     \ R.c + x1 - y2, M.x2 = x1;\n    elif (y2 < x2) M.c = L.c + R.c, M.x2 = y2;\n\
     \    else M.c = L.c + R.c, M.x2 = x2;\n    return M;\n  }\n\n  static constexpr\
-    \ X unit() { return F(); }\n  static constexpr bool commute = 0;\n};\n"
+    \ X id() { return F(); }\n  static constexpr bool commute = 0;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/add_chmin_chmax_with_cost.hpp
   requiredBy: []
-  timestamp: '2026-08-17 17:13:54+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2890.test.cpp

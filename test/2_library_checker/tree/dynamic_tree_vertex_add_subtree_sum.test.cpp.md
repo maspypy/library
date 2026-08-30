@@ -341,7 +341,7 @@ data:
     \  template <class F>\n  int max_path(F check, int u, int v) {\n    evert(u),\
     \ expose(v);\n    Node *c = (*this)[v];\n    using MX = typename Node::MX;\n \
     \   using X = typename MX::value_type;\n    Node *last_ok = nullptr, *last = nullptr;\n\
-    \    X lprod = MX::unit();\n    while (c) {\n      last = c;\n      c->push();\n\
+    \    X lprod = MX::id();\n    while (c) {\n      last = c;\n      c->push();\n\
     \      X x = (c->l ? MX::op(c->l->x, c->vx) : c->vx);\n      x = MX::op(lprod,\
     \ x);\n      if (!check(x)) {\n        c = c->l;\n      } else {\n        last_ok\
     \ = c, c = c->r, lprod = x;\n      }\n    }\n    splay(last);\n    if (!last_ok)\
@@ -368,7 +368,7 @@ data:
     \ Monoid_Add {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
     \ op(const X &x, const X &y) noexcept { return x + y; }\n  static constexpr X\
     \ inverse(const X &x) noexcept { return -x; }\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr X unit() { return\
+    \ X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr X id() { return\
     \ X(0); }\n  static constexpr bool commute = true;\n};\n#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\
     \n\n// SUBTREE : cluster \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\
     \ntemplate <typename Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid\
@@ -379,9 +379,9 @@ data:
     \u3059\u308B.\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
     \ VX = X;\n  X x, vx, mid;\n\n  LCT_Node_Commutative_Monoid(int i = 0)\n     \
     \ : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n        idx(i),\n \
-    \       size(1),\n        rev(0),\n        x(MX::unit()),\n        vx(MX::unit()),\n\
-    \        mid(MX::unit()) {}\n\n  void update() {\n    size = 1;\n    x = vx;\n\
-    \    if constexpr (SUBTREE) x = MX::op(x, mid);\n    if (l) { size += l->size,\
+    \       size(1),\n        rev(0),\n        x(MX::id()),\n        vx(MX::id()),\n\
+    \        mid(MX::id()) {}\n\n  void update() {\n    size = 1;\n    x = vx;\n \
+    \   if constexpr (SUBTREE) x = MX::op(x, mid);\n    if (l) { size += l->size,\
     \ x = Monoid::op(l->x, x); }\n    if (r) { size += r->size, x = Monoid::op(x,\
     \ r->x); }\n  }\n\n  void push() {\n    if (rev) {\n      if (l) l->reverse();\n\
     \      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n  // data \u306E reverse\
@@ -420,7 +420,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp

@@ -371,17 +371,17 @@ data:
     \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
     \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
     \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
-    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class\
-    \ Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  static constexpr F id() { return {K(1), K(0)}; }\n  static constexpr bool commute\
+    \ = false;\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\n\
+    struct SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
     \  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n\
     \  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f)\
     \ {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void\
-    \ build(int m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n\
-    \  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i];\
-    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log\
-    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, MX::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
+    \ build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void\
+    \ build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n\
+    \  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n\
+    \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, MX::id());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
     \ update(i);\n  }\n\n  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all()\
     \ const { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
     \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
@@ -389,32 +389,32 @@ data:
     \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
     \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
     \  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n   \
-    \ X vl = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n   \
-    \ while (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R\
-    \ & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return\
-    \ Monoid::op(vl, vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0\
-    \ <= L && L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n \
-    \   while (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n\
-    \      L >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n   \
-    \ return I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class\
-    \ F>\n  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n &&\
-    \ check(Monoid::unit()));\n    if (L == n) return n;\n    L += size;\n    X sm\
-    \ = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm,\
-    \ dat[L]))) {\n        while (L < size) {\n          L = 2 * L;\n          if\
-    \ (check(Monoid::op(sm, dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n\
-    \          }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
-    \ dat[L++]);\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
-    \ F>\n  int min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
-    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
+    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
+    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
+    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L &&\
+    \ L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while\
+    \ (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L\
+    \ >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return\
+    \ I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class F>\n\
+    \  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n\
+    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n\
+    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
+    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
+    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
+    \ min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n\
+    \      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
     \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
     \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
     \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
     \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r}\
     \ A[i xor x]\n  X xor_prod(int l, int r, int xor_val) const {\n    static_assert(Monoid::commute);\n\
-    \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
-    \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
-    \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
+    \    X x = Monoid::id();\n    for (int k = 0; k < log + 1; ++k) {\n      if (l\
+    \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
+    \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
     \ /= 2;\n    }\n    return x;\n  }\n};\n#line 8 \"test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp\"\
     \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\n\nvoid solve()\
@@ -443,7 +443,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp

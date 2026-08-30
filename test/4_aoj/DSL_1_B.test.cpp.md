@@ -243,19 +243,19 @@ data:
     \  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\n\
     \  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static constexpr\
     \ X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr\
-    \ X unit() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
+    \ X id() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
     \ 1 \"ds/unionfind/potentialized_unionfind.hpp\"\ntemplate <typename Group>\r\n\
     struct Potentialized_UnionFind {\r\n  using E = typename Group::value_type;\r\n\
     \  int N;\r\n  int n_comp;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int> size;\r\
-    \n\r\n  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N, Group::unit()),\
+    \n\r\n  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N, Group::id()),\
     \ size(N, 1) {\r\n    par.resize(N);\r\n    iota(all(par), 0);\r\n  }\r\n\r\n\
-    \  // (root, P[root]^{-1}P[v])\r\n  pair<int, E> get(int v) {\r\n    E res = Group::unit();\r\
+    \  // (root, P[root]^{-1}P[v])\r\n  pair<int, E> get(int v) {\r\n    E res = Group::id();\r\
     \n    while (v != par[v]) {\r\n      res = Group::op(vals[v], res);\r\n      res\
     \ = Group::op(vals[par[v]], res);\r\n      vals[v] = Group::op(vals[par[v]], vals[v]);\r\
     \n      v = par[v] = par[par[v]];\r\n    }\r\n    return {v, res};\r\n  }\r\n\r\
     \n  pair<int, E> operator[](int v) { return get(v); }\r\n\r\n  // is_same / path\
     \ value\r\n  pair<bool, E> get_path(int u, int v) {\r\n    auto [ru, xu] = get(u);\r\
-    \n    auto [rv, xv] = get(v);\r\n    if (ru != rv) return {false, Group::unit()};\r\
+    \n    auto [rv, xv] = get(v);\r\n    if (ru != rv) return {false, Group::id()};\r\
     \n    return {true, Group::op(Group::inverse(xu), xv)};\r\n  }\r\n\r\n  // if\
     \ same : do nothing.\r\n  // P[to]==P[frm]x\r\n  bool merge(int frm, int to, E\
     \ x) {\r\n    auto [v1, x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n  \
@@ -286,7 +286,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_1_B.test.cpp

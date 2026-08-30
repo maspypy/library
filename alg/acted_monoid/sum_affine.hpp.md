@@ -33,7 +33,7 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/affine.hpp\"\
     \n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename\
     \ K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
@@ -42,7 +42,7 @@ data:
     \  static constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1)\
     \ / a;\n    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f,\
     \ K x) noexcept {\n    return f.first * x + f.second;\n  }\n  static constexpr\
-    \ F unit() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
+    \ F id() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
     };\n#line 3 \"alg/acted_monoid/sum_affine.hpp\"\n\r\ntemplate <typename E>\r\n\
     struct ActedMonoid_Sum_Affine {\r\n  using Monoid_X = Monoid_Add<E>;\r\n  using\
     \ Monoid_A = Monoid_Affine<E>;\r\n  using X = typename Monoid_X::value_type;\r\
@@ -61,7 +61,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/sum_affine.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp

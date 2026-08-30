@@ -30,28 +30,28 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 2 \"ds/static_range_product_group.hpp\"\
     \n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group {\n  using MX\
     \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group()\
     \ {}\n  template <typename F>\n  Static_Range_Product_Group(int m, F f) {\n  \
     \  build(m, f);\n  }\n  Static_Range_Product_Group(vc<X>& A) {\n    build(len(A),\
     \ [&](int i) -> X { return A[i]; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    n = m;\n    dat.assign(n + 1, MX::unit());\n    for (int i =\
-    \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>&\
-    \ A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n    for (int i =\
-    \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int\
-    \ r) const { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
-    \ T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n"
+    \ m, F f) {\n    n = m;\n    dat.assign(n + 1, MX::id());\n    for (int i = 0;\
+    \ i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A)\
+    \ {\n    n = len(A);\n    dat.assign(n + 1, MX::id());\n    for (int i = 0; i\
+    \ < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) const\
+    \ { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename T>\n\
+    using Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n"
   code: "#include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group\
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X>\
     \ dat;\n  Static_Range_Product_Group() {}\n  template <typename F>\n  Static_Range_Product_Group(int\
     \ m, F f) {\n    build(m, f);\n  }\n  Static_Range_Product_Group(vc<X>& A) {\n\
     \    build(len(A), [&](int i) -> X { return A[i]; });\n  }\n  template <typename\
-    \ F>\n  void build(int m, F f) {\n    n = m;\n    dat.assign(n + 1, MX::unit());\n\
+    \ F>\n  void build(int m, F f) {\n    n = m;\n    dat.assign(n + 1, MX::id());\n\
     \    for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void\
-    \ build(vc<X>& A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n   \
-    \ for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int\
+    \ build(vc<X>& A) {\n    n = len(A);\n    dat.assign(n + 1, MX::id());\n    for\
+    \ (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int\
     \ l, int r) const { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate\
     \ <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n"
   dependsOn:
@@ -59,7 +59,7 @@ data:
   isVerificationFile: false
   path: ds/static_range_product_group.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/static_range_sum.test.cpp

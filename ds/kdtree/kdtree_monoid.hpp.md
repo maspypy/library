@@ -33,8 +33,8 @@ data:
     \ infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i, n) {\r\n     \
     \ auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin,\
     \ y), chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n\
-    \      X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x, v);\r\n   \
-    \   dat[idx] = x;\r\n      return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int>\
+    \      X x = MX::id();\r\n      for (auto&& v: vs) x = MX::op(x, v);\r\n     \
+    \ dat[idx] = x;\r\n      return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int>\
     \ I(n);\r\n    iota(all(I), 0);\r\n    if (divx) {\r\n      nth_element(I.begin(),\
     \ I.begin() + m, I.end(),\r\n                  [xs](int i, int j) { return xs[i]\
     \ < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(), I.begin() + m,\
@@ -56,7 +56,7 @@ data:
     \ { dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]); }\r\n    return done;\r\
     \n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2) {\r\n    auto&\
     \ [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    if (x2 <= xmin || xmax\
-    \ < x1) return MX::unit();\r\n    if (y2 <= ymin || ymax < y1) return MX::unit();\r\
+    \ < x1) return MX::id();\r\n    if (y2 <= ymin || ymax < y1) return MX::id();\r\
     \n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return dat[idx];\
     \ }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\n          \
     \        prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\r\n"
@@ -78,7 +78,7 @@ data:
     \n    xmin = ymin = infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i,\
     \ n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax,\
     \ x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin\
-    \ == ymax) {\r\n      X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x,\
+    \ == ymax) {\r\n      X x = MX::id();\r\n      for (auto&& v: vs) x = MX::op(x,\
     \ v);\r\n      dat[idx] = x;\r\n      return;\r\n    }\r\n\r\n    int m = n /\
     \ 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\n    if (divx) {\r\n     \
     \ nth_element(I.begin(), I.begin() + m, I.end(),\r\n                  [xs](int\
@@ -101,15 +101,15 @@ data:
     \   if (done) { dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]); }\r\n \
     \   return done;\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2)\
     \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    if (x2 <=\
-    \ xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin || ymax < y1) return\
-    \ MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) {\
-    \ return dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\
-    \n                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\r\n"
+    \ xmin || xmax < x1) return MX::id();\r\n    if (y2 <= ymin || ymax < y1) return\
+    \ MX::id();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return\
+    \ dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\n\
+    \                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/kdtree/kdtree_monoid.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/kdtree_monoid.test.cpp

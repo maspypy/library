@@ -40,7 +40,7 @@ data:
     \ Node {\n    Node *l, *r;\n    S s;\n    A lazy;\n    u32 size;\n    bool rev;\n\
     \  };\n\n  Node_Pool<Node> pool;\n  using np = Node *;\n\n  void reset() { pool.reset();\
     \ }\n\n  np new_node(const S &s) {\n    np c = pool.create();\n    c->l = c->r\
-    \ = nullptr;\n    c->s = s, c->lazy = Monoid_A::unit();\n    c->size = 1, c->rev\
+    \ = nullptr;\n    c->s = s, c->lazy = Monoid_A::id();\n    c->size = 1, c->rev\
     \ = 0;\n    return c;\n  }\n\n  np new_node(const vc<S> &dat) {\n    auto dfs\
     \ = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n\
     \      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n\
@@ -65,13 +65,13 @@ data:
     \ <= r && r <= root->size);\n    return apply_rec(root, l, r, a);\n  }\n  np apply(np\
     \ root, const A a) {\n    if (!root) return root;\n    return apply_rec(root,\
     \ 0, root->size, a);\n  }\n\n  np set(np root, u32 k, const S &s) { return set_rec(root,\
-    \ k, s); }\n  S get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::unit());\
+    \ k, s); }\n  S get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::id());\
     \ }\n\n  vc<S> get_all(np root) {\n    vc<S> res;\n    auto dfs = [&](auto &dfs,\
     \ np root, bool rev, A lazy) -> void {\n      if (!root) return;\n      S me =\
     \ ActedSet::act(root->s, lazy);\n      lazy = Monoid_A::op(root->lazy, lazy);\n\
     \      dfs(dfs, (rev ? root->r : root->l), rev ^ root->rev, lazy);\n      res.eb(me);\n\
     \      dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev, lazy);\n    };\n \
-    \   dfs(dfs, root, 0, Monoid_A::unit());\n    return res;\n  }\n\n  // \u6700\u5F8C\
+    \   dfs(dfs, root, 0, Monoid_A::id());\n    return res;\n  }\n\n  // \u6700\u5F8C\
     \u306B check(s) \u304C\u6210\u308A\u7ACB\u3064\u3068\u3053\u308D\u307E\u3067\u3092\
     \u5DE6\u3068\u3057\u3066 split\n  template <typename F>\n  pair<np, np> split_max_right(np\
     \ root, const F check) {\n    return split_max_right_rec(root, check);\n  }\n\n\
@@ -82,13 +82,13 @@ data:
     \u8EAB\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\
     \n    // \u5B50\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\
     \u3002\u8907\u6570\u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\
-    \u308B\u305F\u3081\u3002\n    bool bl_lazy = (c->lazy != Monoid_A::unit());\n\
-    \    bool bl_rev = c->rev;\n    if (bl_lazy || bl_rev) {\n      c->l = clone(c->l);\n\
-    \      c->r = clone(c->r);\n    }\n    if (c->lazy != Monoid_A::unit()) {\n  \
-    \    if (c->l) {\n        c->l->s = ActedSet::act(c->l->s, c->lazy);\n       \
-    \ c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);\n      }\n      if (c->r) {\n\
-    \        c->r->s = ActedSet::act(c->r->s, c->lazy);\n        c->r->lazy = Monoid_A::op(c->r->lazy,\
-    \ c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n    }\n    if (c->rev)\
+    \u308B\u305F\u3081\u3002\n    bool bl_lazy = (c->lazy != Monoid_A::id());\n  \
+    \  bool bl_rev = c->rev;\n    if (bl_lazy || bl_rev) {\n      c->l = clone(c->l);\n\
+    \      c->r = clone(c->r);\n    }\n    if (c->lazy != Monoid_A::id()) {\n    \
+    \  if (c->l) {\n        c->l->s = ActedSet::act(c->l->s, c->lazy);\n        c->l->lazy\
+    \ = Monoid_A::op(c->l->lazy, c->lazy);\n      }\n      if (c->r) {\n        c->r->s\
+    \ = ActedSet::act(c->r->s, c->lazy);\n        c->r->lazy = Monoid_A::op(c->r->lazy,\
+    \ c->lazy);\n      }\n      c->lazy = Monoid_A::id();\n    }\n    if (c->rev)\
     \ {\n      if (c->l) {\n        c->l->rev ^= 1;\n        swap(c->l->l, c->l->r);\n\
     \      }\n      if (c->r) {\n        c->r->rev ^= 1;\n        swap(c->r->l, c->r->r);\n\
     \      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n    // \u30C7\
@@ -138,7 +138,7 @@ data:
     \ {\n    Node *l, *r;\n    S s;\n    A lazy;\n    u32 size;\n    bool rev;\n \
     \ };\n\n  Node_Pool<Node> pool;\n  using np = Node *;\n\n  void reset() { pool.reset();\
     \ }\n\n  np new_node(const S &s) {\n    np c = pool.create();\n    c->l = c->r\
-    \ = nullptr;\n    c->s = s, c->lazy = Monoid_A::unit();\n    c->size = 1, c->rev\
+    \ = nullptr;\n    c->s = s, c->lazy = Monoid_A::id();\n    c->size = 1, c->rev\
     \ = 0;\n    return c;\n  }\n\n  np new_node(const vc<S> &dat) {\n    auto dfs\
     \ = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n\
     \      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n\
@@ -163,13 +163,13 @@ data:
     \ <= r && r <= root->size);\n    return apply_rec(root, l, r, a);\n  }\n  np apply(np\
     \ root, const A a) {\n    if (!root) return root;\n    return apply_rec(root,\
     \ 0, root->size, a);\n  }\n\n  np set(np root, u32 k, const S &s) { return set_rec(root,\
-    \ k, s); }\n  S get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::unit());\
+    \ k, s); }\n  S get(np root, u32 k) { return get_rec(root, k, false, Monoid_A::id());\
     \ }\n\n  vc<S> get_all(np root) {\n    vc<S> res;\n    auto dfs = [&](auto &dfs,\
     \ np root, bool rev, A lazy) -> void {\n      if (!root) return;\n      S me =\
     \ ActedSet::act(root->s, lazy);\n      lazy = Monoid_A::op(root->lazy, lazy);\n\
     \      dfs(dfs, (rev ? root->r : root->l), rev ^ root->rev, lazy);\n      res.eb(me);\n\
     \      dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev, lazy);\n    };\n \
-    \   dfs(dfs, root, 0, Monoid_A::unit());\n    return res;\n  }\n\n  // \u6700\u5F8C\
+    \   dfs(dfs, root, 0, Monoid_A::id());\n    return res;\n  }\n\n  // \u6700\u5F8C\
     \u306B check(s) \u304C\u6210\u308A\u7ACB\u3064\u3068\u3053\u308D\u307E\u3067\u3092\
     \u5DE6\u3068\u3057\u3066 split\n  template <typename F>\n  pair<np, np> split_max_right(np\
     \ root, const F check) {\n    return split_max_right_rec(root, check);\n  }\n\n\
@@ -180,13 +180,13 @@ data:
     \u8EAB\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\
     \n    // \u5B50\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\
     \u3002\u8907\u6570\u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\
-    \u308B\u305F\u3081\u3002\n    bool bl_lazy = (c->lazy != Monoid_A::unit());\n\
-    \    bool bl_rev = c->rev;\n    if (bl_lazy || bl_rev) {\n      c->l = clone(c->l);\n\
-    \      c->r = clone(c->r);\n    }\n    if (c->lazy != Monoid_A::unit()) {\n  \
-    \    if (c->l) {\n        c->l->s = ActedSet::act(c->l->s, c->lazy);\n       \
-    \ c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);\n      }\n      if (c->r) {\n\
-    \        c->r->s = ActedSet::act(c->r->s, c->lazy);\n        c->r->lazy = Monoid_A::op(c->r->lazy,\
-    \ c->lazy);\n      }\n      c->lazy = Monoid_A::unit();\n    }\n    if (c->rev)\
+    \u308B\u305F\u3081\u3002\n    bool bl_lazy = (c->lazy != Monoid_A::id());\n  \
+    \  bool bl_rev = c->rev;\n    if (bl_lazy || bl_rev) {\n      c->l = clone(c->l);\n\
+    \      c->r = clone(c->r);\n    }\n    if (c->lazy != Monoid_A::id()) {\n    \
+    \  if (c->l) {\n        c->l->s = ActedSet::act(c->l->s, c->lazy);\n        c->l->lazy\
+    \ = Monoid_A::op(c->l->lazy, c->lazy);\n      }\n      if (c->r) {\n        c->r->s\
+    \ = ActedSet::act(c->r->s, c->lazy);\n        c->r->lazy = Monoid_A::op(c->r->lazy,\
+    \ c->lazy);\n      }\n      c->lazy = Monoid_A::id();\n    }\n    if (c->rev)\
     \ {\n      if (c->l) {\n        c->l->rev ^= 1;\n        swap(c->l->l, c->l->r);\n\
     \      }\n      if (c->r) {\n        c->r->rev ^= 1;\n        swap(c->r->l, c->r->r);\n\
     \      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n    // \u30C7\
@@ -235,7 +235,7 @@ data:
   isVerificationFile: false
   path: ds/randomized_bst/rbst_acted_set.hpp
   requiredBy: []
-  timestamp: '2026-08-29 08:51:03+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/cf702_F.test.cpp

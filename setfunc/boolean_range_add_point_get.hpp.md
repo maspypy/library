@@ -36,13 +36,13 @@ data:
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
-    \ constexpr X unit() { return X(0); }\n  static constexpr bool commute = true;\n\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 1 \"alg/monoid/xor.hpp\"\n\ntemplate <typename X>\nstruct Monoid_Xor\
     \ {\n  using value_type = X;\n  static X op(X x, X y) { return x ^ y; }\n  static\
     \ constexpr X inverse(const X &x) noexcept { return x; }\n  static constexpr X\
     \ power(const X &x, ll n) noexcept {\n    return (n & 1 ? x : 0);\n  }\n  static\
-    \ constexpr X unit(){return X(0);};\n  static constexpr bool commute = true;\n\
-    };\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ constexpr X id(){return X(0);};\n  static constexpr bool commute = true;\n};\n\
+    #line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -90,37 +90,7 @@ data:
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\n  const int\
     \ LOG;\n  vc<X> S;\n  array<u32, 3> mask;\n\n  /*\n  0: [x0,x1]\n  1: [x0+x1,x0]\n\
     \  2: [x0+x1,x1]\n  */\n\n  Boolean_Range_Add_Point_Get(int LOG) : LOG(LOG), mask{}\
-    \ {\n    S.assign(1 << LOG, MX::unit());\n    init_by_random();\n  }\n\n  void\
-    \ init_by_random() {\n    mask[0] = mask[1] = mask[2] = 0;\n    FOR(i, LOG) {\
-    \ mask[RNG(0, 3)] |= u32(1) << i; }\n  }\n\n  void init_by_query(const vc<pair<u32,\
-    \ u32>>& ADD, const vc<u32>& GET) {\n    for (auto& [lo, hi] : ADD) assert((lo\
-    \ & ~hi) == 0);\n    mask[0] = mask[1] = mask[2] = 0;\n\n    auto eval = [&]()\
-    \ -> ll {\n      ll ans = 0;\n\n      for (auto& [lo, hi] : ADD) {\n        u32\
-    \ s = 0;\n        s ^= (lo ^ hi) & mask[0];\n        s ^= lo & mask[1];\n    \
-    \    s ^= (~hi) & mask[2];\n        ans += 1 << popcnt(s);\n      }\n\n      for\
-    \ (u32 i : GET) {\n        u32 s = 0;\n        s ^= (~i) & mask[1];\n        s\
-    \ ^= i & mask[2];\n        ans += 1 << popcnt(s);\n      }\n\n      return ans;\n\
-    \    };\n\n    vc<int> I(LOG);\n    FOR(i, LOG) I[i] = i;\n    shuffle(I);\n\n\
-    \    array<ll, 3> c;\n    for (int i : I) {\n      FOR(k, 3) {\n        mask[k]\
-    \ |= u32(1) << i, c[k] = eval(), mask[k] &= ~(u32(1) << i);\n      }\n      int\
-    \ k = min_element(all(c)) - c.begin();\n      mask[k] |= u32(1) << i;\n    }\n\
-    \  }\n\n  void add(u32 lo, u32 hi, X x) {\n    assert((lo & ~hi) == 0);\n\n  \
-    \  u32 a = 0;\n    u32 s = 0;\n    u32 b = 0;\n\n    a ^= lo & mask[0];\n    s\
-    \ ^= (lo ^ hi) & mask[0];\n\n    a ^= (~hi) & mask[1];\n    s ^= lo & mask[1];\n\
-    \    b ^= lo & mask[1];\n\n    a ^= lo & mask[2];\n    s ^= (~hi) & mask[2];\n\
-    \    b ^= (~hi) & mask[2];\n\n    enumerate_all_subset<u32, true>(s, [&](u32 t)\
-    \ -> void {\n      X y = (__builtin_parity(t & b) ? MX::inverse(x) : x);\n   \
-    \   S[a | t] = MX::op(S[a | t], y);\n    });\n  }\n\n  X get(u32 i) {\n    u32\
-    \ a = i & mask[0];\n    u32 s = 0;\n\n    s ^= (~i) & mask[1];\n    s ^= i & mask[2];\n\
-    \n    X ANS = MX::unit();\n    enumerate_all_subset<u32, true>(\n        s, [&](u32\
-    \ t) -> void { ANS = MX::op(ANS, S[a | t]); });\n    return ANS;\n  }\n};\n"
-  code: "#include \"random/shuffle.hpp\"\n#include \"alg/monoid/add.hpp\"\n#include\
-    \ \"alg/monoid/xor.hpp\"\n#include \"enumerate/bits.hpp\"\n\n// O((4/3)^LOG) per\
-    \ query\ntemplate <typename Monoid>\nstruct Boolean_Range_Add_Point_Get {\n  using\
-    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  const int LOG;\n  vc<X>\
-    \ S;\n  array<u32, 3> mask;\n\n  /*\n  0: [x0,x1]\n  1: [x0+x1,x0]\n  2: [x0+x1,x1]\n\
-    \  */\n\n  Boolean_Range_Add_Point_Get(int LOG) : LOG(LOG), mask{} {\n    S.assign(1\
-    \ << LOG, MX::unit());\n    init_by_random();\n  }\n\n  void init_by_random()\
+    \ {\n    S.assign(1 << LOG, MX::id());\n    init_by_random();\n  }\n\n  void init_by_random()\
     \ {\n    mask[0] = mask[1] = mask[2] = 0;\n    FOR(i, LOG) { mask[RNG(0, 3)] |=\
     \ u32(1) << i; }\n  }\n\n  void init_by_query(const vc<pair<u32, u32>>& ADD, const\
     \ vc<u32>& GET) {\n    for (auto& [lo, hi] : ADD) assert((lo & ~hi) == 0);\n \
@@ -141,9 +111,39 @@ data:
     \n    enumerate_all_subset<u32, true>(s, [&](u32 t) -> void {\n      X y = (__builtin_parity(t\
     \ & b) ? MX::inverse(x) : x);\n      S[a | t] = MX::op(S[a | t], y);\n    });\n\
     \  }\n\n  X get(u32 i) {\n    u32 a = i & mask[0];\n    u32 s = 0;\n\n    s ^=\
-    \ (~i) & mask[1];\n    s ^= i & mask[2];\n\n    X ANS = MX::unit();\n    enumerate_all_subset<u32,\
+    \ (~i) & mask[1];\n    s ^= i & mask[2];\n\n    X ANS = MX::id();\n    enumerate_all_subset<u32,\
     \ true>(\n        s, [&](u32 t) -> void { ANS = MX::op(ANS, S[a | t]); });\n \
-    \   return ANS;\n  }\n};"
+    \   return ANS;\n  }\n};\n"
+  code: "#include \"random/shuffle.hpp\"\n#include \"alg/monoid/add.hpp\"\n#include\
+    \ \"alg/monoid/xor.hpp\"\n#include \"enumerate/bits.hpp\"\n\n// O((4/3)^LOG) per\
+    \ query\ntemplate <typename Monoid>\nstruct Boolean_Range_Add_Point_Get {\n  using\
+    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  const int LOG;\n  vc<X>\
+    \ S;\n  array<u32, 3> mask;\n\n  /*\n  0: [x0,x1]\n  1: [x0+x1,x0]\n  2: [x0+x1,x1]\n\
+    \  */\n\n  Boolean_Range_Add_Point_Get(int LOG) : LOG(LOG), mask{} {\n    S.assign(1\
+    \ << LOG, MX::id());\n    init_by_random();\n  }\n\n  void init_by_random() {\n\
+    \    mask[0] = mask[1] = mask[2] = 0;\n    FOR(i, LOG) { mask[RNG(0, 3)] |= u32(1)\
+    \ << i; }\n  }\n\n  void init_by_query(const vc<pair<u32, u32>>& ADD, const vc<u32>&\
+    \ GET) {\n    for (auto& [lo, hi] : ADD) assert((lo & ~hi) == 0);\n    mask[0]\
+    \ = mask[1] = mask[2] = 0;\n\n    auto eval = [&]() -> ll {\n      ll ans = 0;\n\
+    \n      for (auto& [lo, hi] : ADD) {\n        u32 s = 0;\n        s ^= (lo ^ hi)\
+    \ & mask[0];\n        s ^= lo & mask[1];\n        s ^= (~hi) & mask[2];\n    \
+    \    ans += 1 << popcnt(s);\n      }\n\n      for (u32 i : GET) {\n        u32\
+    \ s = 0;\n        s ^= (~i) & mask[1];\n        s ^= i & mask[2];\n        ans\
+    \ += 1 << popcnt(s);\n      }\n\n      return ans;\n    };\n\n    vc<int> I(LOG);\n\
+    \    FOR(i, LOG) I[i] = i;\n    shuffle(I);\n\n    array<ll, 3> c;\n    for (int\
+    \ i : I) {\n      FOR(k, 3) {\n        mask[k] |= u32(1) << i, c[k] = eval(),\
+    \ mask[k] &= ~(u32(1) << i);\n      }\n      int k = min_element(all(c)) - c.begin();\n\
+    \      mask[k] |= u32(1) << i;\n    }\n  }\n\n  void add(u32 lo, u32 hi, X x)\
+    \ {\n    assert((lo & ~hi) == 0);\n\n    u32 a = 0;\n    u32 s = 0;\n    u32 b\
+    \ = 0;\n\n    a ^= lo & mask[0];\n    s ^= (lo ^ hi) & mask[0];\n\n    a ^= (~hi)\
+    \ & mask[1];\n    s ^= lo & mask[1];\n    b ^= lo & mask[1];\n\n    a ^= lo &\
+    \ mask[2];\n    s ^= (~hi) & mask[2];\n    b ^= (~hi) & mask[2];\n\n    enumerate_all_subset<u32,\
+    \ true>(s, [&](u32 t) -> void {\n      X y = (__builtin_parity(t & b) ? MX::inverse(x)\
+    \ : x);\n      S[a | t] = MX::op(S[a | t], y);\n    });\n  }\n\n  X get(u32 i)\
+    \ {\n    u32 a = i & mask[0];\n    u32 s = 0;\n\n    s ^= (~i) & mask[1];\n  \
+    \  s ^= i & mask[2];\n\n    X ANS = MX::id();\n    enumerate_all_subset<u32, true>(\n\
+    \        s, [&](u32 t) -> void { ANS = MX::op(ANS, S[a | t]); });\n    return\
+    \ ANS;\n  }\n};"
   dependsOn:
   - random/shuffle.hpp
   - random/base.hpp
@@ -154,7 +154,7 @@ data:
   isVerificationFile: false
   path: setfunc/boolean_range_add_point_get.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/boolean_range_add_point_get.hpp

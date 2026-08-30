@@ -29,7 +29,7 @@ data:
   bundledCode: "#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct Monoid_Mul\
     \ {\n  using value_type = T;\n  using X = T;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x * y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return X(1) / x; }\n  static constexpr X unit() { return X(1);\
+    \ X &x) noexcept { return X(1) / x; }\n  static constexpr X id() { return X(1);\
     \ }\n  static constexpr bool commute = true;\n};\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
     \ntemplate <typename Monoid>\nstruct ActedSet_from_Monoid {\n  using Monoid_A\
     \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
@@ -67,7 +67,7 @@ data:
     \ ll ub) {\r\n  using Mono = typename ActedSet::Monoid_A;\r\n  using X = typename\
     \ Mono::value_type;\r\n  using S = typename ActedSet::S;\r\n\r\n  if (lb >= ub)\
     \ return -1;\r\n  auto xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res =\
-    \ Mono::unit();\r\n    while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\
+    \ Mono::id();\r\n    while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\
     \n      p = Mono::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n \
     \ };\r\n\r\n  auto Ht = H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM\
     \ = ub - lb;\r\n\r\n  ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<char> MP(K);\r\n\r\
@@ -83,7 +83,7 @@ data:
     \u3092\u304B\u3048\u3059\u3001\u306A\u3051\u308C\u3070 -1\r\ntemplate <typename\
     \ Monoid, typename F>\r\nll discrete_log_monoid(typename Monoid::X a, typename\
     \ Monoid::X b, F H, ll lb,\r\n                       ll ub) {\r\n  using AM =\
-    \ ActedSet_from_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a, Monoid::unit(),\
+    \ ActedSet_from_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a, Monoid::id(),\
     \ b, H, lb, ub);\r\n}\r\n"
   code: "#include \"alg/monoid/mul.hpp\"\r\n#include \"alg/acted_set/from_monoid.hpp\"\
     \r\n#include \"ds/hashmap.hpp\"\r\n\r\n// \u30E2\u30CE\u30A4\u30C9 X \u306E\u4F5C\
@@ -95,24 +95,24 @@ data:
     \ s,\r\n                      typename ActedSet::S t, F H, ll lb, ll ub) {\r\n\
     \  using Mono = typename ActedSet::Monoid_A;\r\n  using X = typename Mono::value_type;\r\
     \n  using S = typename ActedSet::S;\r\n\r\n  if (lb >= ub) return -1;\r\n  auto\
-    \ xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res = Mono::unit();\r\n   \
-    \ while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\n      p = Mono::op(p,\
-    \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  auto Ht =\
-    \ H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM = ub - lb;\r\n\r\n \
-    \ ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<char> MP(K);\r\n\r\n  FOR(k, K) {\r\n\
-    \    t = ActedSet::act(t, x);\r\n    MP[H(t)] = 1;\r\n  }\r\n\r\n  X y = xpow(K);\r\
-    \n  int failed = 0;\r\n  FOR(k, K + 1) {\r\n    S s1 = ActedSet::act(s, y);\r\n\
-    \    if (MP.count(H(s1))) {\r\n      FOR(i, K) {\r\n        if (H(s) == Ht) {\r\
-    \n          ll ans = k * K + i + lb;\r\n          return (ans >= ub ? -1 : ans);\r\
-    \n        }\r\n        s = ActedSet::act(s, x);\r\n      }\r\n      if (failed)\
-    \ return -1;\r\n      failed = 1;\r\n    }\r\n    s = s1;\r\n  }\r\n  return -1;\r\
-    \n}\r\n\r\n// \u7FA4 X \u306B\u304A\u3051\u308B log_a b \u306E\u8A08\u7B97\r\n\
-    // \u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\
-    \u308B\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3001\
-    \u306A\u3051\u308C\u3070 -1\r\ntemplate <typename Monoid, typename F>\r\nll discrete_log_monoid(typename\
+    \ xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res = Mono::id();\r\n    while\
+    \ (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\n      p = Mono::op(p, p);\r\
+    \n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  auto Ht = H(t);\r\
+    \n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM = ub - lb;\r\n\r\n  ll K = sqrt(LIM)\
+    \ + 1;\r\n\r\n  HashMap<char> MP(K);\r\n\r\n  FOR(k, K) {\r\n    t = ActedSet::act(t,\
+    \ x);\r\n    MP[H(t)] = 1;\r\n  }\r\n\r\n  X y = xpow(K);\r\n  int failed = 0;\r\
+    \n  FOR(k, K + 1) {\r\n    S s1 = ActedSet::act(s, y);\r\n    if (MP.count(H(s1)))\
+    \ {\r\n      FOR(i, K) {\r\n        if (H(s) == Ht) {\r\n          ll ans = k\
+    \ * K + i + lb;\r\n          return (ans >= ub ? -1 : ans);\r\n        }\r\n \
+    \       s = ActedSet::act(s, x);\r\n      }\r\n      if (failed) return -1;\r\n\
+    \      failed = 1;\r\n    }\r\n    s = s1;\r\n  }\r\n  return -1;\r\n}\r\n\r\n\
+    // \u7FA4 X \u306B\u304A\u3051\u308B log_a b \u306E\u8A08\u7B97\r\n// \u30CF\u30C3\
+    \u30B7\u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n\
+    // [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3001\u306A\
+    \u3051\u308C\u3070 -1\r\ntemplate <typename Monoid, typename F>\r\nll discrete_log_monoid(typename\
     \ Monoid::X a, typename Monoid::X b, F H, ll lb,\r\n                       ll\
     \ ub) {\r\n  using AM = ActedSet_from_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a,\
-    \ Monoid::unit(), b, H, lb, ub);\r\n}\r\n"
+    \ Monoid::id(), b, H, lb, ub);\r\n}\r\n"
   dependsOn:
   - alg/monoid/mul.hpp
   - alg/acted_set/from_monoid.hpp
@@ -121,7 +121,7 @@ data:
   path: nt/discrete_log.hpp
   requiredBy:
   - mod/mod_log.hpp
-  timestamp: '2026-08-17 16:26:58+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp

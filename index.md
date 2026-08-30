@@ -1620,6 +1620,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
+    - icon: ':warning:'
+      path: mod/binomial_u64.hpp
+      title: mod/binomial_u64.hpp
     - icon: ':heavy_check_mark:'
       path: mod/crt3.hpp
       title: mod/crt3.hpp
@@ -1677,6 +1680,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
+    - icon: ':warning:'
+      path: mod/mod_pow_u64.hpp
+      title: mod/mod_pow_u64.hpp
     - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp

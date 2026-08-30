@@ -21,19 +21,19 @@ data:
     \ {\n  using P = pair<X, X>;\n  using value_type = P;\n  static constexpr P op(const\
     \ P x, const P y) noexcept {\n    return {min(x.fi, y.fi), max(x.se, y.se)};\n\
     \  }\n  static constexpr P from_element(const X x) { return {x, x}; }\n  static\
-    \ constexpr P unit() { return {infty<X>, -infty<X>}; }\n  static constexpr bool\
+    \ constexpr P id() { return {infty<X>, -infty<X>}; }\n  static constexpr bool\
     \ commute = true;\n};\n"
   code: "\ntemplate <class X>\nstruct Monoid_MinMax {\n  using P = pair<X, X>;\n \
     \ using value_type = P;\n  static constexpr P op(const P x, const P y) noexcept\
     \ {\n    return {min(x.fi, y.fi), max(x.se, y.se)};\n  }\n  static constexpr P\
-    \ from_element(const X x) { return {x, x}; }\n  static constexpr P unit() { return\
+    \ from_element(const X x) { return {x, x}; }\n  static constexpr P id() { return\
     \ {infty<X>, -infty<X>}; }\n  static constexpr bool commute = true;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/minmax.hpp
   requiredBy:
   - alg/acted_monoid/minmax_add.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/minmax_add.test.cpp

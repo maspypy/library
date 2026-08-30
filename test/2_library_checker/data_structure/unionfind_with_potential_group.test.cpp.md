@@ -252,15 +252,15 @@ data:
     \n\n#line 1 \"ds/unionfind/potentialized_unionfind.hpp\"\ntemplate <typename Group>\r\
     \nstruct Potentialized_UnionFind {\r\n  using E = typename Group::value_type;\r\
     \n  int N;\r\n  int n_comp;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int> size;\r\
-    \n\r\n  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N, Group::unit()),\
+    \n\r\n  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N, Group::id()),\
     \ size(N, 1) {\r\n    par.resize(N);\r\n    iota(all(par), 0);\r\n  }\r\n\r\n\
-    \  // (root, P[root]^{-1}P[v])\r\n  pair<int, E> get(int v) {\r\n    E res = Group::unit();\r\
+    \  // (root, P[root]^{-1}P[v])\r\n  pair<int, E> get(int v) {\r\n    E res = Group::id();\r\
     \n    while (v != par[v]) {\r\n      res = Group::op(vals[v], res);\r\n      res\
     \ = Group::op(vals[par[v]], res);\r\n      vals[v] = Group::op(vals[par[v]], vals[v]);\r\
     \n      v = par[v] = par[par[v]];\r\n    }\r\n    return {v, res};\r\n  }\r\n\r\
     \n  pair<int, E> operator[](int v) { return get(v); }\r\n\r\n  // is_same / path\
     \ value\r\n  pair<bool, E> get_path(int u, int v) {\r\n    auto [ru, xu] = get(u);\r\
-    \n    auto [rv, xv] = get(v);\r\n    if (ru != rv) return {false, Group::unit()};\r\
+    \n    auto [rv, xv] = get(v);\r\n    if (ru != rv) return {false, Group::id()};\r\
     \n    return {true, Group::op(Group::inverse(xu), xv)};\r\n  }\r\n\r\n  // if\
     \ same : do nothing.\r\n  // P[to]==P[frm]x\r\n  bool merge(int frm, int to, E\
     \ x) {\r\n    auto [v1, x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n  \
@@ -528,7 +528,7 @@ data:
     \  return C;\n}\n#line 8 \"test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp\"\
     \n\nusing mint = modint998;\n\nstruct Mono {\n  using value_type = array<array<mint,\
     \ 2>, 2>;\n  using X = value_type;\n  static X op(X L, X R) { return matrix_mul<mint,\
-    \ 2>(L, R); }\n  static constexpr X unit() { return {mint(1), mint(0), mint(0),\
+    \ 2>(L, R); }\n  static constexpr X id() { return {mint(1), mint(0), mint(0),\
     \ mint(1)}; }\n  static X inverse(X& x) { return {x[1][1], -x[0][1], -x[1][0],\
     \ x[0][0]}; }\n  static constexpr bool commute = 0;\n};\n\nvoid solve() {\n  INT(N,\
     \ Q);\n  Potentialized_UnionFind<Mono> uf(N);\n\n  FOR(Q) {\n    INT(t, u, v);\n\
@@ -543,7 +543,7 @@ data:
     \n#include \"mod/modint.hpp\"\n#include \"linalg/matrix_mul.hpp\"\n\nusing mint\
     \ = modint998;\n\nstruct Mono {\n  using value_type = array<array<mint, 2>, 2>;\n\
     \  using X = value_type;\n  static X op(X L, X R) { return matrix_mul<mint, 2>(L,\
-    \ R); }\n  static constexpr X unit() { return {mint(1), mint(0), mint(0), mint(1)};\
+    \ R); }\n  static constexpr X id() { return {mint(1), mint(0), mint(0), mint(1)};\
     \ }\n  static X inverse(X& x) { return {x[1][1], -x[0][1], -x[1][0], x[0][0]};\
     \ }\n  static constexpr bool commute = 0;\n};\n\nvoid solve() {\n  INT(N, Q);\n\
     \  Potentialized_UnionFind<Mono> uf(N);\n\n  FOR(Q) {\n    INT(t, u, v);\n   \
@@ -564,7 +564,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp

@@ -18,7 +18,7 @@ data:
     \ = (c == -infty<E> ? c : c + d);\n    c = max(c, f);\n    return {a, c};\n  }\n\
     \n  static E eval(X f, E x) { return max(x + f.fi, f.se); }\n  static X add(E\
     \ a) { return {a, -infty<E>}; }\n  static X chmax(E c) { return {0, c}; }\n\n\
-    \  static constexpr X unit() { return {0, -infty<E>}; }\n  static constexpr bool\
+    \  static constexpr X id() { return {0, -infty<E>}; }\n  static constexpr bool\
     \ commute = 0;\n};\n"
   code: "\n// max(x+a,b) \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\n\
     template <typename E>\nstruct Monoid_Add_Chmax {\n  using value_type = pair<E,\
@@ -26,13 +26,13 @@ data:
     \    auto [d, f] = y;\n    a = a + d;\n    c = (c == -infty<E> ? c : c + d);\n\
     \    c = max(c, f);\n    return {a, c};\n  }\n\n  static E eval(X f, E x) { return\
     \ max(x + f.fi, f.se); }\n  static X add(E a) { return {a, -infty<E>}; }\n  static\
-    \ X chmax(E c) { return {0, c}; }\n\n  static constexpr X unit() { return {0,\
-    \ -infty<E>}; }\n  static constexpr bool commute = 0;\n};"
+    \ X chmax(E c) { return {0, c}; }\n\n  static constexpr X id() { return {0, -infty<E>};\
+    \ }\n  static constexpr bool commute = 0;\n};"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/add_chmax.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1524.test.cpp

@@ -371,6 +371,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
+  - icon: ':warning:'
+    path: mod/binomial_u64.hpp
+    title: mod/binomial_u64.hpp
   - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
@@ -2737,6 +2740,7 @@ data:
   - mod/primitive_root.hpp
   - mod/modint_common.hpp
   - mod/modfast.hpp
+  - mod/binomial_u64.hpp
   - new_poly/base.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-08-29 09:24:19+09:00'

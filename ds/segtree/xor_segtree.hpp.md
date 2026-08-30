@@ -20,7 +20,7 @@ data:
     \u3053\u308D\u307E\u3067\u4F5C\u308B\n\n  Xor_SegTree() {}\n  Xor_SegTree(int\
     \ n) { build(n); }\n  template <typename F>\n  Xor_SegTree(int n, F f) {\n   \
     \ build(n, f);\n  }\n  Xor_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
+    \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
     \ << log) < n) ++log;\n    size = 1 << log;\n    assert(n == size);\n    H = log\
@@ -35,12 +35,12 @@ data:
     \ 2;\n      update(h, i);\n    }\n  }\n\n  void multiply(int i, const X& x) {\n\
     \    assert(i < n);\n    dat[0][i] = MX::op(dat[0][i], x);\n    FOR(h, 1, H +\
     \ 1) {\n      i /= 2;\n      update(h, i);\n    }\n  }\n\n  X prod(int L, int\
-    \ R, int xor_val) {\n    X x1 = MX::unit(), x2 = MX::unit();\n    FOR(h, H) {\n\
-    \      if (L >= R) break;\n      if (L & (1 << h)) {\n        x1 = MX::op(x1,\
-    \ dat[h][L ^ xor_val]);\n        L += 1 << h;\n      }\n      if (R & (1 << h))\
-    \ {\n        R -= 1 << h;\n        x2 = MX::op(dat[h][R ^ xor_val], x2);\n   \
-    \   }\n    }\n    while (L < R) {\n      x1 = MX::op(x1, dat[H][L ^ xor_val]);\n\
-    \      L += 1 << H;\n    }\n    return MX::op(x1, x2);\n  }\n};\n"
+    \ R, int xor_val) {\n    X x1 = MX::id(), x2 = MX::id();\n    FOR(h, H) {\n  \
+    \    if (L >= R) break;\n      if (L & (1 << h)) {\n        x1 = MX::op(x1, dat[h][L\
+    \ ^ xor_val]);\n        L += 1 << h;\n      }\n      if (R & (1 << h)) {\n   \
+    \     R -= 1 << h;\n        x2 = MX::op(dat[h][R ^ xor_val], x2);\n      }\n \
+    \   }\n    while (L < R) {\n      x1 = MX::op(x1, dat[H][L ^ xor_val]);\n    \
+    \  L += 1 << H;\n    }\n    return MX::op(x1, x2);\n  }\n};\n"
   code: "// set,prod \u3069\u3061\u3089\u3082 O(sqrt(N)) \u6642\u9593\u3002\n// \u30E2\
     \u30CE\u30A4\u30C9\u304C\u53EF\u63DB\u306A\u3089\u666E\u901A\u306E\u30BB\u30B0\
     \u6728\u3092\u4F7F\u3046\u3053\u3068\u3002\ntemplate <class Monoid>\nstruct Xor_SegTree\
@@ -50,7 +50,7 @@ data:
     \ Xor_SegTree() {}\n  Xor_SegTree(int n) { build(n); }\n  template <typename F>\n\
     \  Xor_SegTree(int n, F f) {\n    build(n, f);\n  }\n  Xor_SegTree(const vc<X>&\
     \ v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
-    \ MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
+    \ MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
     \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
     \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
     \ << log;\n    assert(n == size);\n    H = log / 2;\n    dat.assign(H + 1, vc<X>(size));\n\
@@ -64,7 +64,7 @@ data:
     \    FOR(h, 1, H + 1) {\n      i /= 2;\n      update(h, i);\n    }\n  }\n\n  void\
     \ multiply(int i, const X& x) {\n    assert(i < n);\n    dat[0][i] = MX::op(dat[0][i],\
     \ x);\n    FOR(h, 1, H + 1) {\n      i /= 2;\n      update(h, i);\n    }\n  }\n\
-    \n  X prod(int L, int R, int xor_val) {\n    X x1 = MX::unit(), x2 = MX::unit();\n\
+    \n  X prod(int L, int R, int xor_val) {\n    X x1 = MX::id(), x2 = MX::id();\n\
     \    FOR(h, H) {\n      if (L >= R) break;\n      if (L & (1 << h)) {\n      \
     \  x1 = MX::op(x1, dat[h][L ^ xor_val]);\n        L += 1 << h;\n      }\n    \
     \  if (R & (1 << h)) {\n        R -= 1 << h;\n        x2 = MX::op(dat[h][R ^ xor_val],\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/xor_segtree.hpp
   requiredBy: []
-  timestamp: '2023-04-08 04:27:21+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2265.test.cpp

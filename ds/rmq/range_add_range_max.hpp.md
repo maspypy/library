@@ -19,21 +19,21 @@ data:
     links:
     - https://codeforces.com/contest/542/problem/B
   bundledCode: "#line 1 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\
-    \u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\u3053\
-    \u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\
-    \u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod \u306E\u985E\
-    \u306F\u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\u822C\
-    \u306B\u306F\u6271\u3048\u306A\u3044\n// \u8FFD\u52A0 N \u56DE\u306E\u3068\u304D\
-    \u30CE\u30FC\u30C9\u6570 N \u4EE5\u4E0B\u304C\u4FDD\u8A3C\u3055\u308C\u308B\n\
-    template <typename Monoid, bool PERSISTENT>\nstruct Dynamic_SegTree_Sparse {\n\
-    \  using MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node {\n\
-    \    int ch[2];\n    ll idx;\n    X prod, x;\n  };\n  const ll L0, R0;\n  static\
-    \ constexpr int NIL = 0;\n  vc<Node> node;\n  vc<int> FREE;\n\n  Dynamic_SegTree_Sparse(ll\
+    \u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C id \u3067\u3042\u308B\u3053\u3068\
+    \u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\u30B0\
+    \u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod \u306E\u985E\u306F\
+    \u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\u822C\u306B\
+    \u306F\u6271\u3048\u306A\u3044\n// \u8FFD\u52A0 N \u56DE\u306E\u3068\u304D\u30CE\
+    \u30FC\u30C9\u6570 N \u4EE5\u4E0B\u304C\u4FDD\u8A3C\u3055\u308C\u308B\ntemplate\
+    \ <typename Monoid, bool PERSISTENT>\nstruct Dynamic_SegTree_Sparse {\n  using\
+    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node {\n    int\
+    \ ch[2];\n    ll idx;\n    X prod, x;\n  };\n  const ll L0, R0;\n  static constexpr\
+    \ int NIL = 0;\n  vc<Node> node;\n  vc<int> FREE;\n\n  Dynamic_SegTree_Sparse(ll\
     \ L0, ll R0) : L0(L0), R0(R0) { reset(); }\n  void reserve(int n) { node.reserve(n\
     \ + 1); }\n  void reset() {\n    node.clear(), FREE.clear();\n    node.eb(Node{{NIL,\
-    \ NIL}, 0, MX::unit(), MX::unit()});  // NIL\n  }\n\n  // \u6728 dp \u306E\u30DE\
-    \u30FC\u30B8\u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\u7528\u3059\u308B\u3068\
-    \ MLE \u56DE\u907F\u3067\u304D\u308B\u3053\u3068\u304C\u3042\u308B\n  // https://codeforces.com/problemset/problem/671/D\n\
+    \ NIL}, 0, MX::id(), MX::id()});  // NIL\n  }\n\n  // \u6728 dp \u306E\u30DE\u30FC\
+    \u30B8\u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\u7528\u3059\u308B\u3068 MLE \u56DE\
+    \u907F\u3067\u304D\u308B\u3053\u3068\u304C\u3042\u308B\n  // https://codeforces.com/problemset/problem/671/D\n\
     \  void free_subtree(int c) {\n    assert(c != NIL);\n    auto dfs = [&](auto\
     \ &dfs, int c) -> void {\n      if (c == NIL) return;\n      dfs(dfs, node[c].ch[0]),\
     \ dfs(dfs, node[c].ch[1]);\n      FREE.eb(c);\n    };\n    dfs(dfs, c);\n  }\n\
@@ -43,23 +43,23 @@ data:
     \ = x;\n      return id;\n    }\n    node.eb(Node{{NIL, NIL}, idx, x, x});\n \
     \   return int(node.size()) - 1;\n  }\n  inline Node operator[](int i) const {\
     \ return node[i]; }\n\n  X prod(int root, ll l, ll r) {\n    assert(L0 <= l &&\
-    \ l <= r && r <= R0);\n    if (root == NIL || l == r) return MX::unit();\n   \
-    \ X x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x);\n    return x;\n  }\n\
-    \n  X prod_all(int root) { return (root == NIL ? MX::unit() : node[root].prod);\
-    \ }\n\n  int set(int root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n\
-    \    return set_rec(root, L0, R0, i, x);\n  }\n\n  int multiply(int root, ll i,\
+    \ l <= r && r <= R0);\n    if (root == NIL || l == r) return MX::id();\n    X\
+    \ x = MX::id();\n    prod_rec(root, L0, R0, l, r, x);\n    return x;\n  }\n\n\
+    \  X prod_all(int root) { return (root == NIL ? MX::id() : node[root].prod); }\n\
+    \n  int set(int root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n  \
+    \  return set_rec(root, L0, R0, i, x);\n  }\n\n  int multiply(int root, ll i,\
     \ const X &x) {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root,\
     \ L0, R0, i, x);\n  }\n\n  template <typename F>\n  ll max_right(int root, F check,\
-    \ ll L) {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
+    \ ll L) {\n    assert(L0 <= L && L <= R0 && check(MX::id()));\n    X x = MX::id();\n\
     \    return max_right_rec(root, check, L0, R0, L, x);\n  }\n\n  template <typename\
     \ F>\n  ll min_left(int root, F check, ll R) {\n    assert(L0 <= R && R <= R0\
-    \ && check(MX::unit()));\n    X x = MX::unit();\n    return min_left_rec(root,\
-    \ check, L0, R0, R, x);\n  }\n\n  vc<pair<ll, X>> get_all(int root) {\n    vc<pair<ll,\
+    \ && check(MX::id()));\n    X x = MX::id();\n    return min_left_rec(root, check,\
+    \ L0, R0, R, x);\n  }\n\n  vc<pair<ll, X>> get_all(int root) {\n    vc<pair<ll,\
     \ X>> res;\n    auto dfs = [&](auto &dfs, int c) -> void {\n      if (c == NIL)\
     \ return;\n      dfs(dfs, node[c].ch[0]);\n      res.eb(node[c].idx, node[c].x);\n\
     \      dfs(dfs, node[c].ch[1]);\n    };\n    dfs(dfs, root);\n    return res;\n\
     \  }\n\n  X get(int root, ll idx) {\n    auto dfs = [&](auto &dfs, int c) -> X\
-    \ {\n      if (c == NIL) return MX::unit();\n      if (idx == node[c].idx) return\
+    \ {\n      if (c == NIL) return MX::id();\n      if (idx == node[c].idx) return\
     \ node[c].x;\n      return dfs(dfs, node[c].ch[idx > node[c].idx]);\n    };\n\
     \    return dfs(dfs, root);\n  }\n\n private:\n  inline void update(int c) {\n\
     \    node[c].prod = node[c].x;\n    node[c].prod = MX::op(node[node[c].ch[0]].prod,\
@@ -105,11 +105,11 @@ data:
     \ MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\
     \n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int\
     \ n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n\
-    \  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n\
-    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
+    \  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n \
+    \ }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
     \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
     \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, MX::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
+    \ << 1, MX::id());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
     \ update(i);\n  }\n\n  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all()\
     \ const { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
     \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
@@ -117,32 +117,32 @@ data:
     \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
     \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
     \  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n   \
-    \ X vl = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n   \
-    \ while (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R\
-    \ & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return\
-    \ Monoid::op(vl, vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0\
-    \ <= L && L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n \
-    \   while (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n\
-    \      L >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n   \
-    \ return I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class\
-    \ F>\n  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n &&\
-    \ check(Monoid::unit()));\n    if (L == n) return n;\n    L += size;\n    X sm\
-    \ = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm,\
-    \ dat[L]))) {\n        while (L < size) {\n          L = 2 * L;\n          if\
-    \ (check(Monoid::op(sm, dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n\
-    \          }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
-    \ dat[L++]);\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
-    \ F>\n  int min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
-    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
+    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
+    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
+    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L &&\
+    \ L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while\
+    \ (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L\
+    \ >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return\
+    \ I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class F>\n\
+    \  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n\
+    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n\
+    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
+    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
+    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
+    \ min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n\
+    \      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
     \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
     \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
     \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
     \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r}\
     \ A[i xor x]\n  X xor_prod(int l, int r, int xor_val) const {\n    static_assert(Monoid::commute);\n\
-    \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
-    \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
-    \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
+    \    X x = Monoid::id();\n    for (int k = 0; k < log + 1; ++k) {\n      if (l\
+    \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
+    \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
     \ /= 2;\n    }\n    return x;\n  }\n};\n#line 3 \"ds/rmq/range_add_range_max.hpp\"\
     \n\n// INF+x==INF \u307F\u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\
@@ -150,8 +150,8 @@ data:
     \u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Max {\n  struct Mono\
     \ {\n    using value_type = pair<T, T>;\n    using X = value_type;\n    static\
     \ X op(X L, X R) { return {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static\
-    \ constexpr X unit() { return {0, -2 * infty<T>}; }\n    static constexpr bool\
-    \ commute = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_Max()\
+    \ constexpr X id() { return {0, -2 * infty<T>}; }\n    static constexpr bool commute\
+    \ = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_Max()\
     \ {}\n  // (n) \u3060\u3051\u3060\u3068 0 \u57CB\u3081\u3067\u521D\u671F\u5316\
     \u3057\u307E\u3059\n  Range_Add_Range_Max(int n) { build(n); }\n  template <typename\
     \ F>\n  Range_Add_Range_Max(int n, F f) {\n    build(n, f);\n  }\n  Range_Add_Range_Max(const\
@@ -178,7 +178,7 @@ data:
     \u306A\u3044\n// https://codeforces.com/contest/542/problem/B\ntemplate <typename\
     \ T>\nstruct Dynamic_Range_Add_Range_Max {\n  struct Mono {\n    using value_type\
     \ = pair<T, T>;\n    using X = value_type;\n    static X op(X L, X R) { return\
-    \ {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return\
+    \ {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X id() { return\
     \ {0, 0}; }\n    static constexpr bool commute = false;\n  };\n  int n;\n  Dynamic_SegTree_Sparse<Mono,\
     \ false> seg;\n  T lazy;\n  using np = typename decltype(seg)::np;\n  np root;\n\
     \n  // range apply * 2 \u304F\u3089\u3044\u306E\u30CE\u30FC\u30C9\u6570\n  Dynamic_Range_Add_Range_Max(int\
@@ -195,8 +195,8 @@ data:
     \u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Max {\n  struct Mono\
     \ {\n    using value_type = pair<T, T>;\n    using X = value_type;\n    static\
     \ X op(X L, X R) { return {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static\
-    \ constexpr X unit() { return {0, -2 * infty<T>}; }\n    static constexpr bool\
-    \ commute = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_Max()\
+    \ constexpr X id() { return {0, -2 * infty<T>}; }\n    static constexpr bool commute\
+    \ = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_Max()\
     \ {}\n  // (n) \u3060\u3051\u3060\u3068 0 \u57CB\u3081\u3067\u521D\u671F\u5316\
     \u3057\u307E\u3059\n  Range_Add_Range_Max(int n) { build(n); }\n  template <typename\
     \ F>\n  Range_Add_Range_Max(int n, F f) {\n    build(n, f);\n  }\n  Range_Add_Range_Max(const\
@@ -223,7 +223,7 @@ data:
     \u306A\u3044\n// https://codeforces.com/contest/542/problem/B\ntemplate <typename\
     \ T>\nstruct Dynamic_Range_Add_Range_Max {\n  struct Mono {\n    using value_type\
     \ = pair<T, T>;\n    using X = value_type;\n    static X op(X L, X R) { return\
-    \ {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return\
+    \ {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X id() { return\
     \ {0, 0}; }\n    static constexpr bool commute = false;\n  };\n  int n;\n  Dynamic_SegTree_Sparse<Mono,\
     \ false> seg;\n  T lazy;\n  using np = typename decltype(seg)::np;\n  np root;\n\
     \n  // range apply * 2 \u304F\u3089\u3044\u306E\u30CE\u30FC\u30C9\u6570\n  Dynamic_Range_Add_Range_Max(int\
@@ -240,7 +240,7 @@ data:
   isVerificationFile: false
   path: ds/rmq/range_add_range_max.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp

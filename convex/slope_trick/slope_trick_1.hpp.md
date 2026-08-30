@@ -23,11 +23,11 @@ data:
     \ \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\u308B\u5FC5\u8981\u3042\u308A.\n\
     template <typename Monoid>\nstruct Double_Ended_Queue_Const_Add {\n  using MX\
     \ = Monoid;\n  using T = typename MX::value_type;\n  vector<T> dat;\n  T add;\n\
-    \n  Double_Ended_Queue_Const_Add() : add(MX::unit()) {}\n  Double_Ended_Queue_Const_Add(vc<T>&\
-    \ A) : add(MX::unit()) { build(A); }\n\n  int size() { return dat.size(); }\n\
-    \  bool empty() { return dat.empty(); }\n  T min() { return MX::op(dat[0], add);\
-    \ }\n  T max() { return MX::op(add, (len(dat) == 1 ? dat[0] : dat[1])); }\n\n\
-    \  void build(vc<T>& A) {\n    add = MX::unit();\n    dat = A;\n    int n = len(dat);\n\
+    \n  Double_Ended_Queue_Const_Add() : add(MX::id()) {}\n  Double_Ended_Queue_Const_Add(vc<T>&\
+    \ A) : add(MX::id()) { build(A); }\n\n  int size() { return dat.size(); }\n  bool\
+    \ empty() { return dat.empty(); }\n  T min() { return MX::op(dat[0], add); }\n\
+    \  T max() { return MX::op(add, (len(dat) == 1 ? dat[0] : dat[1])); }\n\n  void\
+    \ build(vc<T>& A) {\n    add = MX::id();\n    dat = A;\n    int n = len(dat);\n\
     \    FOR_R(i, n) { down(i); }\n  }\n  void clear() {\n    dat.clear(), dat.shrink_to_fit();\n\
     \    add = 0;\n  }\n\n  void push(T x) { dat.eb(x - add), up(); }\n\n  T pop_min()\
     \ {\n    assert(!dat.empty());\n    swap(dat[0], dat.back());\n    T res = POP(dat);\n\
@@ -58,7 +58,7 @@ data:
     \  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\n\
     \  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static constexpr\
     \ X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr\
-    \ X unit() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
+    \ X id() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
     \ 4 \"convex/slope_trick/slope_trick_1.hpp\"\n\nstruct Slope_Trick_1 {\n  struct\
     \ FUNC {\n    // \u5B9A\u7FA9\u57DF\u306E\u4E21\u7AEF\u306F que \u306B\u5165\u308C\
     \u308B\u3053\u3068\u306B\u3057\u3066 que \u304C\u7A7A\u3067\u306A\u3044\u72B6\u614B\
@@ -227,7 +227,7 @@ data:
   isVerificationFile: false
   path: convex/slope_trick/slope_trick_1.hpp
   requiredBy: []
-  timestamp: '2026-08-17 18:59:41+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1077_2.test.cpp

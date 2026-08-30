@@ -253,34 +253,34 @@ data:
     \ Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
     \  int n, log, size;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() :\
     \ Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A {\
-    \ return MA::unit(); });\n  }\n  template <typename F>\n  Dual_SegTree(int n,\
-    \ F f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int m,\
+    \ return MA::id(); });\n  }\n  template <typename F>\n  Dual_SegTree(int n, F\
+    \ f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int m,\
     \ F f) {\n    n = m;\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
-    \ = 1 << log;\n    laz.assign(size << 1, MA::unit());\n    FOR(i, n) laz[size\
-    \ + i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void build(int n) {\n\
-    \    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n\n  A get(int p)\
-    \ {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >=\
-    \ 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i,\
-    \ size) push(i);\n    return {laz.begin() + size, laz.begin() + size + n};\n \
-    \ }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size] = x;\n  }\n\n\
-    \  void apply(int l, int r, const A& a) {\n    assert(0 <= l && l <= r && r <=\
-    \ n);\n    if (l == r) return;\n    l += size, r += size;\n    if (!MA::commute)\
-    \ {\n      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l)\
-    \ push(l >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n     \
-    \ }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++, a);\n      if\
-    \ (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  }\n\n private:\n\
-    \  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = false;\n\
-    \    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
-    \  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k], a);\n    if\
-    \ (k < size) has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/affine.hpp\"\n\n\
-    // op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\n\
-    struct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using\
-    \ X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
-    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
-    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
-    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
-    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
-    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
+    \ = 1 << log;\n    laz.assign(size << 1, MA::id());\n    FOR(i, n) laz[size +\
+    \ i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void build(int n) {\n \
+    \   build(n, [&](int i) -> A { return MA::id(); });\n  }\n\n  A get(int p) {\n\
+    \    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size)\
+    \ push(i);\n    return {laz.begin() + size, laz.begin() + size + n};\n  }\n\n\
+    \  void set(int p, A x) {\n    get(p);\n    laz[p + size] = x;\n  }\n\n  void\
+    \ apply(int l, int r, const A& a) {\n    assert(0 <= l && l <= r && r <= n);\n\
+    \    if (l == r) return;\n    l += size, r += size;\n    if (!MA::commute) {\n\
+    \      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l) push(l\
+    \ >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n      }\n   \
+    \ }\n    while (l < r) {\n      if (l & 1) all_apply(l++, a);\n      if (r & 1)\
+    \ all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  }\n\n private:\n  void\
+    \ push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = false;\n    all_apply(2\
+    \ * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n \
+    \ void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k], a);\n    if (k < size)\
+    \ has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/affine.hpp\"\n\n// op(F, G)\
+    \ = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine\
+    \ {\n  using F = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n\
+    \  static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
+    \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
+    \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
+    \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
+    \ * x + f.second;\n  }\n  static constexpr F id() { return {K(1), K(0)}; }\n \
+    \ static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
     \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
@@ -425,7 +425,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_affine_point_add.test.cpp

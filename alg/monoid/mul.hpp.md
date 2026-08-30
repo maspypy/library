@@ -89,12 +89,12 @@ data:
   bundledCode: "#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct Monoid_Mul\
     \ {\n  using value_type = T;\n  using X = T;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x * y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return X(1) / x; }\n  static constexpr X unit() { return X(1);\
+    \ X &x) noexcept { return X(1) / x; }\n  static constexpr X id() { return X(1);\
     \ }\n  static constexpr bool commute = true;\n};\n"
   code: "\ntemplate <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using\
     \ X = T;\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
     \ * y; }\n  static constexpr X inverse(const X &x) noexcept { return X(1) / x;\
-    \ }\n  static constexpr X unit() { return X(1); }\n  static constexpr bool commute\
+    \ }\n  static constexpr X id() { return X(1); }\n  static constexpr bool commute\
     \ = true;\n};\n"
   dependsOn: []
   isVerificationFile: false
@@ -112,7 +112,7 @@ data:
   - seq/interpolate_poly_exp_sum.hpp
   - alg/acted_monoid/sum_mul.hpp
   - mod/mod_log.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp

@@ -263,7 +263,7 @@ data:
     \n  vc<int> size;\r\n  vc<int> pos; // raw data -> index\r\n  int n, log;\r\n\r\
     \n  KDTree_ActedMonoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n\
     \ > 0);\r\n    log = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1\
-    \ << (log + 1));\r\n    lazy.assign(1 << log, MA::unit());\r\n    closed_range.assign(1\
+    \ << (log + 1));\r\n    lazy.assign(1 << log, MA::id());\r\n    closed_range.assign(1\
     \ << (log + 1), {infty<XY>, -infty<XY>, infty<XY>, -infty<XY>});\r\n    size.resize(1\
     \ << (log + 1));\r\n    vc<int> ids(n);\r\n    pos.resize(n);\r\n    FOR(i, n)\
     \ ids[i] = i;\r\n    build(1, xs, ys, vs, ids);\r\n  }\r\n\r\n  void set(int i,\
@@ -298,14 +298,14 @@ data:
     \n    return (xmin <= x && x <= xmax && ymin <= y && y <= ymax);\r\n  }\r\n\r\n\
     \  void apply_at(int idx, A a) {\r\n    dat[idx] = AM::act(dat[idx], a, size[idx]);\r\
     \n    if (idx < (1 << log)) lazy[idx] = MA::op(lazy[idx], a);\r\n  }\r\n\r\n \
-    \ void push(int idx) {\r\n    if (lazy[idx] == MA::unit()) return;\r\n    apply_at(2\
+    \ void push(int idx) {\r\n    if (lazy[idx] == MA::id()) return;\r\n    apply_at(2\
     \ * idx + 0, lazy[idx]), apply_at(2 * idx + 1, lazy[idx]);\r\n    lazy[idx] =\
-    \ MA::unit();\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2)\
-    \ {\r\n    if (idx >= len(closed_range)) return MX::unit();\r\n    auto& [xmin,\
-    \ xmax, ymin, ymax] = closed_range[idx];\r\n    if (xmin > xmax) return MX::unit();\r\
-    \n    if (x2 <= xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin ||\
-    \ ymax < y1) return MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin\
-    \ && ymax < y2) { return dat[idx]; }\r\n    push(idx);\r\n    return MX::op(prod_rec(2\
+    \ MA::id();\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2) {\r\
+    \n    if (idx >= len(closed_range)) return MX::id();\r\n    auto& [xmin, xmax,\
+    \ ymin, ymax] = closed_range[idx];\r\n    if (xmin > xmax) return MX::id();\r\n\
+    \    if (x2 <= xmin || xmax < x1) return MX::id();\r\n    if (y2 <= ymin || ymax\
+    \ < y1) return MX::id();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax\
+    \ < y2) { return dat[idx]; }\r\n    push(idx);\r\n    return MX::op(prod_rec(2\
     \ * idx + 0, x1, x2, y1, y2), prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\
     \n\r\n  void apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {\r\n    if (idx\
     \ >= len(closed_range)) return;\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
@@ -436,13 +436,13 @@ data:
     \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
     \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
     \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
-    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n#line 1 \"alg/monoid/add_pair.hpp\"\n\ntemplate <typename\
-    \ E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E, E>;\n  using X =\
-    \ value_type;\n  static constexpr X op(const X &x, const X &y) {\n    return {x.fi\
-    \ + y.fi, x.se + y.se};\n  }\n  static constexpr X inverse(const X &x) { return\
-    \ {-x.fi, -x.se}; }\n  static constexpr X unit() { return {0, 0}; }\n  static\
-    \ constexpr bool commute = true;\n};\n#line 9 \"test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp\"\
+    \  static constexpr F id() { return {K(1), K(0)}; }\n  static constexpr bool commute\
+    \ = false;\n};\n#line 1 \"alg/monoid/add_pair.hpp\"\n\ntemplate <typename E>\n\
+    struct Monoid_Add_Pair {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
+    \  static constexpr X op(const X &x, const X &y) {\n    return {x.fi + y.fi, x.se\
+    \ + y.se};\n  }\n  static constexpr X inverse(const X &x) { return {-x.fi, -x.se};\
+    \ }\n  static constexpr X id() { return {0, 0}; }\n  static constexpr bool commute\
+    \ = true;\n};\n#line 9 \"test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp\"\
     \n\nusing mint = modint998;\nstruct ActedMonoid {\n  using Monoid_X = Monoid_Add_Pair<mint>;\n\
     \  using Monoid_A = Monoid_Affine<mint>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static X act(const X &x, const\
@@ -494,7 +494,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp

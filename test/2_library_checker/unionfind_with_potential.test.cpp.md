@@ -253,30 +253,29 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 1 \"ds/unionfind/potentialized_unionfind.hpp\"\
     \ntemplate <typename Group>\r\nstruct Potentialized_UnionFind {\r\n  using E =\
     \ typename Group::value_type;\r\n  int N;\r\n  int n_comp;\r\n  vc<E> vals;\r\n\
     \  vc<int> par;\r\n  vc<int> size;\r\n\r\n  Potentialized_UnionFind(int N) : N(N),\
-    \ n_comp(N), vals(N, Group::unit()), size(N, 1) {\r\n    par.resize(N);\r\n  \
-    \  iota(all(par), 0);\r\n  }\r\n\r\n  // (root, P[root]^{-1}P[v])\r\n  pair<int,\
-    \ E> get(int v) {\r\n    E res = Group::unit();\r\n    while (v != par[v]) {\r\
-    \n      res = Group::op(vals[v], res);\r\n      res = Group::op(vals[par[v]],\
-    \ res);\r\n      vals[v] = Group::op(vals[par[v]], vals[v]);\r\n      v = par[v]\
-    \ = par[par[v]];\r\n    }\r\n    return {v, res};\r\n  }\r\n\r\n  pair<int, E>\
-    \ operator[](int v) { return get(v); }\r\n\r\n  // is_same / path value\r\n  pair<bool,\
-    \ E> get_path(int u, int v) {\r\n    auto [ru, xu] = get(u);\r\n    auto [rv,\
-    \ xv] = get(v);\r\n    if (ru != rv) return {false, Group::unit()};\r\n    return\
-    \ {true, Group::op(Group::inverse(xu), xv)};\r\n  }\r\n\r\n  // if same : do nothing.\r\
-    \n  // P[to]==P[frm]x\r\n  bool merge(int frm, int to, E x) {\r\n    auto [v1,\
-    \ x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n    if (v1 == v2) return\
-    \ false; // same\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1, v2);\r\n\
-    \      swap(x1, x2);\r\n      x = Group::inverse(x);\r\n    }\r\n    x = Group::op(x1,\
-    \ x);\r\n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2] = x;\r\n  \
-    \  par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    --n_comp;\r\n    return true;\r\
-    \n  }\r\n};\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\n\
-    int popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
+    \ n_comp(N), vals(N, Group::id()), size(N, 1) {\r\n    par.resize(N);\r\n    iota(all(par),\
+    \ 0);\r\n  }\r\n\r\n  // (root, P[root]^{-1}P[v])\r\n  pair<int, E> get(int v)\
+    \ {\r\n    E res = Group::id();\r\n    while (v != par[v]) {\r\n      res = Group::op(vals[v],\
+    \ res);\r\n      res = Group::op(vals[par[v]], res);\r\n      vals[v] = Group::op(vals[par[v]],\
+    \ vals[v]);\r\n      v = par[v] = par[par[v]];\r\n    }\r\n    return {v, res};\r\
+    \n  }\r\n\r\n  pair<int, E> operator[](int v) { return get(v); }\r\n\r\n  // is_same\
+    \ / path value\r\n  pair<bool, E> get_path(int u, int v) {\r\n    auto [ru, xu]\
+    \ = get(u);\r\n    auto [rv, xv] = get(v);\r\n    if (ru != rv) return {false,\
+    \ Group::id()};\r\n    return {true, Group::op(Group::inverse(xu), xv)};\r\n \
+    \ }\r\n\r\n  // if same : do nothing.\r\n  // P[to]==P[frm]x\r\n  bool merge(int\
+    \ frm, int to, E x) {\r\n    auto [v1, x1] = get(frm);\r\n    auto [v2, x2] =\
+    \ get(to);\r\n    if (v1 == v2) return false; // same\r\n    if (size[v1] < size[v2])\
+    \ {\r\n      swap(v1, v2);\r\n      swap(x1, x2);\r\n      x = Group::inverse(x);\r\
+    \n    }\r\n    x = Group::op(x1, x);\r\n    x = Group::op(x, Group::inverse(x2));\r\
+    \n    vals[v2] = x;\r\n    par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    --n_comp;\r\
+    \n    return true;\r\n  }\r\n};\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1\
+    \ \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\nint\
+    \ popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
     \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
     \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
@@ -418,7 +417,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/unionfind_with_potential.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/unionfind_with_potential.test.cpp

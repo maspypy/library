@@ -76,12 +76,12 @@ data:
     links: []
   bundledCode: "#line 1 \"alg/monoid/assign.hpp\"\n\ntemplate <typename X, int none_val>\n\
     struct Monoid_Assign {\n  using value_type = X;\n  static X op(X x, X y) { return\
-    \ (y == X(none_val) ? x : y); }\n  static constexpr X unit() { return X(none_val);\
+    \ (y == X(none_val) ? x : y); }\n  static constexpr X id() { return X(none_val);\
     \ }\n  static constexpr bool commute = false;\n};\n"
   code: "\ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
     \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
-    \ constexpr X unit() { return X(none_val); }\n  static constexpr bool commute\
-    \ = false;\n};\n"
+    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
+    \ false;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/assign.hpp
@@ -92,7 +92,7 @@ data:
   - alg/acted_monoid/powersums_assign.hpp
   - alg/acted_monoid/summax_assign.hpp
   - alg/acted_monoid/summin_assign.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/rbst_monoid_persistent.test.cpp

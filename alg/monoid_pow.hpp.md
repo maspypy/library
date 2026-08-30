@@ -76,10 +76,10 @@ data:
     \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
     \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
     \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::unit();\n\
-    \    if (exp == 1) return x;\n    X res = Monoid::unit();\n    while (exp) {\n\
-    \      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n \
-    \     exp >>= 1;\n    }\n    return res;\n  }\n}\n"
+    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::id();\n\
+    \    if (exp == 1) return x;\n    X res = Monoid::id();\n    while (exp) {\n \
+    \     if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n  \
+    \    exp >>= 1;\n    }\n    return res;\n  }\n}\n"
   code: "\n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct\
     \ has_power_method {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\
     \u5B9F\u88C5\n  template <typename V, typename A1, typename A2>\n  static auto\
@@ -91,10 +91,10 @@ data:
     \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
     \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
     \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::unit();\n\
-    \    if (exp == 1) return x;\n    X res = Monoid::unit();\n    while (exp) {\n\
-    \      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n \
-    \     exp >>= 1;\n    }\n    return res;\n  }\n}"
+    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::id();\n\
+    \    if (exp == 1) return x;\n    X res = Monoid::id();\n    while (exp) {\n \
+    \     if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n  \
+    \    exp >>= 1;\n    }\n    return res;\n  }\n}"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid_pow.hpp
@@ -107,7 +107,7 @@ data:
   - mod/floor_sum_of_linear_polynomial_pq.hpp
   - mod/floor_monoid_product.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp

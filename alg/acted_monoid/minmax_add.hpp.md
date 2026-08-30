@@ -21,12 +21,12 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/minmax.hpp\"\
     \n\ntemplate <class X>\nstruct Monoid_MinMax {\n  using P = pair<X, X>;\n  using\
     \ value_type = P;\n  static constexpr P op(const P x, const P y) noexcept {\n\
     \    return {min(x.fi, y.fi), max(x.se, y.se)};\n  }\n  static constexpr P from_element(const\
-    \ X x) { return {x, x}; }\n  static constexpr P unit() { return {infty<X>, -infty<X>};\
+    \ X x) { return {x, x}; }\n  static constexpr P id() { return {infty<X>, -infty<X>};\
     \ }\n  static constexpr bool commute = true;\n};\n#line 3 \"alg/acted_monoid/minmax_add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMax_Add {\r\n  using Monoid_X\
     \ = Monoid_MinMax<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
@@ -47,7 +47,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/minmax_add.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/minmax_add.test.cpp

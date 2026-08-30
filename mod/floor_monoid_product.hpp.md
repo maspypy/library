@@ -54,10 +54,10 @@ data:
     \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
     \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
     \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::unit();\n\
-    \    if (exp == 1) return x;\n    X res = Monoid::unit();\n    while (exp) {\n\
-    \      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n \
-    \     exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"mod/floor_monoid_product.hpp\"\
+    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::id();\n\
+    \    if (exp == 1) return x;\n    X res = Monoid::id();\n    while (exp) {\n \
+    \     if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n  \
+    \    exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"mod/floor_monoid_product.hpp\"\
     \n\n// https://yukicoder.me/submissions/883884\n// https://qoj.ac/contest/1411/problem/7620\n\
     // U \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\
     \u30FC\u3057\u306A\u3044\u7A0B\u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092\
@@ -65,8 +65,8 @@ data:
     \u306E y \u304C\u3042\u308B\n// my<=ax+b \u306B\u304A\u3051\u308B lattice path\
     \ \u306B\u304A\u3051\u308B\u8FBA\u306E\u5217\u3068\u898B\u306A\u305B\u308B\ntemplate\
     \ <typename Monoid, typename X, typename U>\nX floor_monoid_product(X x, X y,\
-    \ U N, U a, U b, U m) {\n  U c = (a * N + b) / m;\n  X pre = Monoid::unit(), suf\
-    \ = Monoid::unit();\n  while (1) {\n    const U p = a / m, q = b / m;\n    a %=\
+    \ U N, U a, U b, U m) {\n  U c = (a * N + b) / m;\n  X pre = Monoid::id(), suf\
+    \ = Monoid::id();\n  while (1) {\n    const U p = a / m, q = b / m;\n    a %=\
     \ m, b %= m;\n    x = Monoid::op(x, monoid_pow<Monoid>(y, p));\n    pre = Monoid::op(pre,\
     \ monoid_pow<Monoid>(y, q));\n    c -= (p * N + q);\n    if (c == 0) break;\n\
     \    const U d = (m * c - b - 1) / a + 1;\n    suf = Monoid::op(y, Monoid::op(monoid_pow<Monoid>(x,\
@@ -81,8 +81,8 @@ data:
     \ \u306B\u304A\u3051\u308B lattice path \u306B\u304A\u3051\u308B\u8FBA\u306E\u5217\
     \u3068\u898B\u306A\u305B\u308B\ntemplate <typename Monoid, typename X, typename\
     \ U>\nX floor_monoid_product(X x, X y, U N, U a, U b, U m) {\n  U c = (a * N +\
-    \ b) / m;\n  X pre = Monoid::unit(), suf = Monoid::unit();\n  while (1) {\n  \
-    \  const U p = a / m, q = b / m;\n    a %= m, b %= m;\n    x = Monoid::op(x, monoid_pow<Monoid>(y,\
+    \ b) / m;\n  X pre = Monoid::id(), suf = Monoid::id();\n  while (1) {\n    const\
+    \ U p = a / m, q = b / m;\n    a %= m, b %= m;\n    x = Monoid::op(x, monoid_pow<Monoid>(y,\
     \ p));\n    pre = Monoid::op(pre, monoid_pow<Monoid>(y, q));\n    c -= (p * N\
     \ + q);\n    if (c == 0) break;\n    const U d = (m * c - b - 1) / a + 1;\n  \
     \  suf = Monoid::op(y, Monoid::op(monoid_pow<Monoid>(x, N - d), suf));\n    b\
@@ -97,7 +97,7 @@ data:
   - convex/lattice_point_sum_polynomial_pq.hpp
   - mod/floor_sum_of_linear_polynomial_pq.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp

@@ -1888,34 +1888,33 @@ data:
     \ return g;\r\n}\r\n#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct\
     \ Monoid_Mul {\n  using value_type = T;\n  using X = T;\n  static constexpr X\
     \ op(const X &x, const X &y) noexcept { return x * y; }\n  static constexpr X\
-    \ inverse(const X &x) noexcept { return X(1) / x; }\n  static constexpr X unit()\
+    \ inverse(const X &x) noexcept { return X(1) / x; }\n  static constexpr X id()\
     \ { return X(1); }\n  static constexpr bool commute = true;\n};\n#line 2 \"ds/power_query.hpp\"\
     \n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002\
     \ B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono,\
     \ int B = 1024>\nstruct Power_Query {\n  using X = typename Mono::value_type;\n\
     \  vvc<X> dat;\n\n  Power_Query(X a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll\
-    \ n) {\n    X res = Mono::unit();\n    int k = 0;\n    while (n) {\n      int\
-    \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
-    \ - 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n      ++k;\n    }\n\
-    \    return res;\n  }\n\n  // n \u4E57\u8A08\u7B97\u306E\u3068\u304D\u306B\u304B\
+    \ n) {\n    X res = Mono::id();\n    int k = 0;\n    while (n) {\n      int r\
+    \ = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k -\
+    \ 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n      ++k;\n    }\n \
+    \   return res;\n  }\n\n  // n \u4E57\u8A08\u7B97\u306E\u3068\u304D\u306B\u304B\
     \u3051\u308B\u3082\u306E\u3092\u5217\u6319. \u884C\u5217\u30D9\u30AF\u30C8\u30EB\
     \u7A4D\u3068\u304B\u3067\u4F7F\u7528\u53EF.\n  vc<X> get_list(ll n) {\n    vc<X>\
     \ lst;\n    int k = 0;\n    while (n) {\n      int r = n % B;\n      n /= B;\n\
     \      if (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }\n      lst.eb(dat[k][r]);\n\
     \      ++k;\n    }\n    return lst;\n  }\n\n  X operator[](ll n) { return (*this)(n);\
-    \ }\n\nprivate:\n  vc<X> make_pow(X a) {\n    vc<X> res = {Mono::unit()};\n  \
-    \  FOR(B) { res.eb(Mono::op(res.back(), a)); }\n    return res;\n  }\n};\n#line\
-    \ 4 \"graph/count/count_labeled_bipartite.hpp\"\n\n// connected = false: https://oeis.org/A047864\n\
-    // connected = true: https://oeis.org/A001832\ntemplate <typename mint>\nvc<mint>\
-    \ count_labeled_bipartite(int N, bool connected) {\n  // colored bipartite\n \
-    \ vc<mint> F(N + 1);\n  mint ipow = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] =\
-    \ F[i - 1] * ipow, ipow *= inv<mint>(2);\n  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n\
-    \  F = convolution(F, F);\n  F.resize(N + 1);\n  mint pow = 1, c = 1;\n  FOR(i,\
-    \ N + 1) F[i] *= c, c *= pow, pow += pow;\n\n  if (connected) {\n    F = fps_log(F);\n\
-    \    FOR(i, N + 1) F[i] *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
-    \    return F;\n  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
-    \  return F;\n}\n#line 6 \"test/1_mytest/count_bipartite.test.cpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid test() {\n  vc<mint> A = count_labeled_bipartite<mint>(10,\
+    \ }\n\nprivate:\n  vc<X> make_pow(X a) {\n    vc<X> res = {Mono::id()};\n    FOR(B)\
+    \ { res.eb(Mono::op(res.back(), a)); }\n    return res;\n  }\n};\n#line 4 \"graph/count/count_labeled_bipartite.hpp\"\
+    \n\n// connected = false: https://oeis.org/A047864\n// connected = true: https://oeis.org/A001832\n\
+    template <typename mint>\nvc<mint> count_labeled_bipartite(int N, bool connected)\
+    \ {\n  // colored bipartite\n  vc<mint> F(N + 1);\n  mint ipow = 1;\n  F[0] =\
+    \ 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * ipow, ipow *= inv<mint>(2);\n  FOR(i,\
+    \ N + 1) F[i] *= fact_inv<mint>(i);\n  F = convolution(F, F);\n  F.resize(N +\
+    \ 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;\n\
+    \n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i] *= inv<mint>(2);\n\
+    \    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n  }\n  F = fps_sqrt(F);\n\
+    \  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n#line 6 \"test/1_mytest/count_bipartite.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> A = count_labeled_bipartite<mint>(10,\
     \ true);\n  vc<mint> B = {0LL,    1LL,     1LL,       3LL,        19LL,      \
     \  195LL,\n                3031LL, 67263LL, 2086099LL, 89224635LL, 5254054111LL};\n\
     \  assert(A == B);\n  A = count_labeled_bipartite<mint>(10, false);\n  B = {1LL,\
@@ -1963,7 +1962,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_bipartite.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_bipartite.test.cpp

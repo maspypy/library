@@ -130,7 +130,7 @@ data:
     \ {}\n  Disjoint_Sparse_Table(int n) { build(n); }\n  template <typename F>\n\
     \  Disjoint_Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n  Disjoint_Sparse_Table(const\
     \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
-    \ X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ X { return MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
     \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
     \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
     \    dat[0].reserve(n);\n    FOR(i, n) dat[0].eb(f(i));\n    FOR(i, 1, log) {\n\
@@ -138,16 +138,16 @@ data:
     \ (int m = b; m <= n; m += 2 * b) {\n        int L = m - b, R = min(n, m + b);\n\
     \        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\n        FOR(j,\
     \ m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\n      }\n    }\n  }\n\n  X prod(int\
-    \ L, int R) const {\n    if (L == R) return MX::unit();\n    --R;\n    if (L ==\
+    \ L, int R) const {\n    if (L == R) return MX::id();\n    --R;\n    if (L ==\
     \ R) return dat[0][L];\n    int k = topbit(L ^ R);\n    return MX::op(dat[k][L],\
     \ dat[k][R]);\n  }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L) const {\n    assert(0 <= L && L <= n && check(MX::unit()));\n    if (L ==\
-    \ n) return n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n     \
-    \ int k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok\
-    \ = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class\
-    \ F>\n  int min_left(const F check, int R) const {\n    assert(0 <= R && R <=\
-    \ n && check(MX::unit()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n\
-    \    while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
+    \ L) const {\n    assert(0 <= L && L <= n && check(MX::id()));\n    if (L == n)\
+    \ return n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int\
+    \ k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n\
+    \      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n\
+    \  int min_left(const F check, int R) const {\n    assert(0 <= R && R <= n &&\
+    \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
+    \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
     \  }\n};\n"
   code: "#include \"other/bit.hpp\"\n\ntemplate <class Monoid>\nstruct Disjoint_Sparse_Table\
@@ -155,27 +155,26 @@ data:
     \  vvc<X> dat;\n\n  Disjoint_Sparse_Table() {}\n  Disjoint_Sparse_Table(int n)\
     \ { build(n); }\n  template <typename F>\n  Disjoint_Sparse_Table(int n, F f)\
     \ {\n    build(n, f);\n  }\n  Disjoint_Sparse_Table(const vc<X>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit();\
-    \ });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X\
-    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
-    \    dat[0].reserve(n);\n    FOR(i, n) dat[0].eb(f(i));\n    FOR(i, 1, log) {\n\
-    \      auto& v = dat[i];\n      v = dat[0];\n      int b = 1 << i;\n      for\
-    \ (int m = b; m <= n; m += 2 * b) {\n        int L = m - b, R = min(n, m + b);\n\
-    \        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\n        FOR(j,\
-    \ m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\n      }\n    }\n  }\n\n  X prod(int\
-    \ L, int R) const {\n    if (L == R) return MX::unit();\n    --R;\n    if (L ==\
-    \ R) return dat[0][L];\n    int k = topbit(L ^ R);\n    return MX::op(dat[k][L],\
-    \ dat[k][R]);\n  }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L) const {\n    assert(0 <= L && L <= n && check(MX::unit()));\n    if (L ==\
-    \ n) return n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n     \
-    \ int k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok\
-    \ = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class\
-    \ F>\n  int min_left(const F check, int R) const {\n    assert(0 <= R && R <=\
-    \ n && check(MX::unit()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n\
-    \    while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
-    \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};"
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
+    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
+    \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n    dat[0].reserve(n);\n\
+    \    FOR(i, n) dat[0].eb(f(i));\n    FOR(i, 1, log) {\n      auto& v = dat[i];\n\
+    \      v = dat[0];\n      int b = 1 << i;\n      for (int m = b; m <= n; m +=\
+    \ 2 * b) {\n        int L = m - b, R = min(n, m + b);\n        FOR_R(j, L + 1,\
+    \ m) v[j - 1] = MX::op(v[j - 1], v[j]);\n        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j],\
+    \ v[j + 1]);\n      }\n    }\n  }\n\n  X prod(int L, int R) const {\n    if (L\
+    \ == R) return MX::id();\n    --R;\n    if (L == R) return dat[0][L];\n    int\
+    \ k = topbit(L ^ R);\n    return MX::op(dat[k][L], dat[k][R]);\n  }\n\n  template\
+    \ <class F>\n  int max_right(const F check, int L) const {\n    assert(0 <= L\
+    \ && L <= n && check(MX::id()));\n    if (L == n) return n;\n    int ok = L, ng\
+    \ = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok + ng) / 2;\n      bool\
+    \ bl = check(prod(L, k));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n   \
+    \ }\n    return ok;\n  }\n\n  template <class F>\n  int min_left(const F check,\
+    \ int R) const {\n    assert(0 <= R && R <= n && check(MX::id()));\n    if (R\
+    \ == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok) {\n     \
+    \ int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl) ok\
+    \ = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};"
   dependsOn:
   - other/bit.hpp
   isVerificationFile: false
@@ -192,7 +191,7 @@ data:
   - string/suffix_array.hpp
   - string/longest_common_substring.hpp
   - string/substring_shortest_border.hpp
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lex_minmax_suffix.test.cpp

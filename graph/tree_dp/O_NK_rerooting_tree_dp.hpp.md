@@ -138,7 +138,7 @@ data:
     \ v \u304B\u3089\u7B54\u3092\u5F97\u308B. [K-1,K]\ntemplate <typename GT, typename\
     \ T, typename F1, typename F2, typename F3,\n          typename F4>\nvc<T> O_NK_rerooting_tree_dp(GT&\
     \ G, int K, F1 f_ee, F2 f_ev, F3 f_ve,\n                             F4 get_ANS,\
-    \ const T unit) {\n  int N = G.N;\n  vc<int> V(N), par(N, -1), sz(N, 1);\n  vvc<int>\
+    \ const T id) {\n  int N = G.N;\n  vc<int> V(N), par(N, -1), sz(N, 1);\n  vvc<int>\
     \ ch(N);\n  {\n    int t = 0;\n    V[t++] = 0;\n    FOR(i, N) {\n      int v =\
     \ V[i];\n      for (auto& e : G[v]) {\n        if (e.to == par[v]) continue;\n\
     \        V[t++] = e.to;\n        par[e.to] = v;\n        ch[v].eb(e.to);\n   \
@@ -147,18 +147,18 @@ data:
     \ virtual tree at v, before c. (c: not included)\n  dp_up[v]: virtual tree at\
     \ v, upward.\n  */\n\n  using D = OffsetVector<T>;\n  vc<D> dp_down(N), dp_prefix(N),\
     \ dp_up(N);\n  vc<T> ANS(N);\n\n  // calc dp_down, dp_prefix\n  FOR_R(i, N) {\n\
-    \    int v = V[i];\n    D X(0, 1, unit);\n    int n = 0;\n    for (int c : ch[v])\
+    \    int v = V[i];\n    D X(0, 1, id);\n    int n = 0;\n    for (int c : ch[v])\
     \ {\n      dp_prefix[c] = X;\n      D Y = f_ev(dp_down[c], c, 0, min<int>(K, sz[c])\
     \ + 1);\n      Y = f_ve(Y, c, v, 0, min<int>(K, sz[c]) + 1);\n      n += sz[c];\n\
     \      X = f_ee(X, Y, 0, min<int>(n, K) + 1);\n    }\n    dp_down[v] = X;\n  }\n\
-    \n  dp_up[0] = D(0, 1, unit);\n  FOR(i, N) {\n    int v = V[i];\n    int nc =\
-    \ len(ch[v]);\n    D X = dp_up[v];\n    int s = sz[v];\n    FOR_R(k, nc) {\n \
-    \     int c = ch[v][k];\n      D Y = f_ee(X, dp_prefix[c], max(K - sz[c] - 1,\
-    \ 0), K + 1);\n      Y = f_ev(Y, v, max(K - sz[c], 0), K + 1);\n      dp_up[c]\
-    \ = f_ve(Y, v, c, max(K - sz[c], 0), K + 1);\n      s -= sz[c];\n      Y = f_ev(dp_down[c],\
-    \ c, 0, min(K, sz[c]) + 1);\n      Y = f_ve(Y, c, v, 0, min(K, sz[c]) + 1);\n\
-    \      X = f_ee(X, Y, max(K - s, 0), K + 1);\n    }\n    ANS[v] = get_ANS(X, v);\n\
-    \  }\n  return ANS;\n}\n"
+    \n  dp_up[0] = D(0, 1, id);\n  FOR(i, N) {\n    int v = V[i];\n    int nc = len(ch[v]);\n\
+    \    D X = dp_up[v];\n    int s = sz[v];\n    FOR_R(k, nc) {\n      int c = ch[v][k];\n\
+    \      D Y = f_ee(X, dp_prefix[c], max(K - sz[c] - 1, 0), K + 1);\n      Y = f_ev(Y,\
+    \ v, max(K - sz[c], 0), K + 1);\n      dp_up[c] = f_ve(Y, v, c, max(K - sz[c],\
+    \ 0), K + 1);\n      s -= sz[c];\n      Y = f_ev(dp_down[c], c, 0, min(K, sz[c])\
+    \ + 1);\n      Y = f_ve(Y, c, v, 0, min(K, sz[c]) + 1);\n      X = f_ee(X, Y,\
+    \ max(K - s, 0), K + 1);\n    }\n    ANS[v] = get_ANS(X, v);\n  }\n  return ANS;\n\
+    }\n"
   code: "#include \"graph/base.hpp\"\n#include \"ds/offset_vector.hpp\"\n\n// 2\u4E57\
     \u306E\u6728DP\u578B\u306EO(NK)\u5168\u65B9\u4F4D.\n// \u5404\u9802\u70B9 v \u3092\
     \u6839\u3068\u3057\u305F\u3068\u304D\u306E\u30B5\u30A4\u30BA K \u306E DP \u5024\
@@ -173,22 +173,22 @@ data:
     \ tree, v \u304B\u3089\u7B54\u3092\u5F97\u308B. [K-1,K]\ntemplate <typename GT,\
     \ typename T, typename F1, typename F2, typename F3,\n          typename F4>\n\
     vc<T> O_NK_rerooting_tree_dp(GT& G, int K, F1 f_ee, F2 f_ev, F3 f_ve,\n      \
-    \                       F4 get_ANS, const T unit) {\n  int N = G.N;\n  vc<int>\
-    \ V(N), par(N, -1), sz(N, 1);\n  vvc<int> ch(N);\n  {\n    int t = 0;\n    V[t++]\
-    \ = 0;\n    FOR(i, N) {\n      int v = V[i];\n      for (auto& e : G[v]) {\n \
-    \       if (e.to == par[v]) continue;\n        V[t++] = e.to;\n        par[e.to]\
+    \                       F4 get_ANS, const T id) {\n  int N = G.N;\n  vc<int> V(N),\
+    \ par(N, -1), sz(N, 1);\n  vvc<int> ch(N);\n  {\n    int t = 0;\n    V[t++] =\
+    \ 0;\n    FOR(i, N) {\n      int v = V[i];\n      for (auto& e : G[v]) {\n   \
+    \     if (e.to == par[v]) continue;\n        V[t++] = e.to;\n        par[e.to]\
     \ = v;\n        ch[v].eb(e.to);\n      }\n    }\n    FOR_R(i, 1, N) {\n      int\
     \ v = V[i];\n      sz[par[v]] += sz[v];\n    }\n  }\n\n  /*\n  dp_down[v]: virtual\
     \ tree at v.\n  dp_prefix[c]: prefix virtual tree at v, before c. (c: not included)\n\
     \  dp_up[v]: virtual tree at v, upward.\n  */\n\n  using D = OffsetVector<T>;\n\
     \  vc<D> dp_down(N), dp_prefix(N), dp_up(N);\n  vc<T> ANS(N);\n\n  // calc dp_down,\
-    \ dp_prefix\n  FOR_R(i, N) {\n    int v = V[i];\n    D X(0, 1, unit);\n    int\
-    \ n = 0;\n    for (int c : ch[v]) {\n      dp_prefix[c] = X;\n      D Y = f_ev(dp_down[c],\
+    \ dp_prefix\n  FOR_R(i, N) {\n    int v = V[i];\n    D X(0, 1, id);\n    int n\
+    \ = 0;\n    for (int c : ch[v]) {\n      dp_prefix[c] = X;\n      D Y = f_ev(dp_down[c],\
     \ c, 0, min<int>(K, sz[c]) + 1);\n      Y = f_ve(Y, c, v, 0, min<int>(K, sz[c])\
     \ + 1);\n      n += sz[c];\n      X = f_ee(X, Y, 0, min<int>(n, K) + 1);\n   \
-    \ }\n    dp_down[v] = X;\n  }\n\n  dp_up[0] = D(0, 1, unit);\n  FOR(i, N) {\n\
-    \    int v = V[i];\n    int nc = len(ch[v]);\n    D X = dp_up[v];\n    int s =\
-    \ sz[v];\n    FOR_R(k, nc) {\n      int c = ch[v][k];\n      D Y = f_ee(X, dp_prefix[c],\
+    \ }\n    dp_down[v] = X;\n  }\n\n  dp_up[0] = D(0, 1, id);\n  FOR(i, N) {\n  \
+    \  int v = V[i];\n    int nc = len(ch[v]);\n    D X = dp_up[v];\n    int s = sz[v];\n\
+    \    FOR_R(k, nc) {\n      int c = ch[v][k];\n      D Y = f_ee(X, dp_prefix[c],\
     \ max(K - sz[c] - 1, 0), K + 1);\n      Y = f_ev(Y, v, max(K - sz[c], 0), K +\
     \ 1);\n      dp_up[c] = f_ve(Y, v, c, max(K - sz[c], 0), K + 1);\n      s -= sz[c];\n\
     \      Y = f_ev(dp_down[c], c, 0, min(K, sz[c]) + 1);\n      Y = f_ve(Y, c, v,\
@@ -201,7 +201,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/O_NK_rerooting_tree_dp.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/O_NK_rerooting_tree_dp.hpp

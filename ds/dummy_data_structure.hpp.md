@@ -67,7 +67,7 @@ data:
     links: []
   bundledCode: "#line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy {\n  using value_type\
     \ = char;\n  static constexpr bool commute = true;\n  static value_type op(value_type,\
-    \ value_type) { return 0; }\n  static value_type unit() { return 0; }\n};\n#line\
+    \ value_type) { return 0; }\n  static value_type id() { return 0; }\n};\n#line\
     \ 2 \"ds/dummy_data_structure.hpp\"\n\nstruct Dummy_Data_Structure {\n  using\
     \ MX = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void build(const\
     \ vc<T>& A) {}\n};\n"
@@ -83,7 +83,7 @@ data:
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - string/prefix_substring_LCS.hpp
-  timestamp: '2026-04-13 08:42:22+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp

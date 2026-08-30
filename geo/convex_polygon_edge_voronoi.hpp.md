@@ -76,7 +76,7 @@ data:
     \ Re>\nstruct Convex_Polygon_Edge_Voronoi {\n  using RP = Point<Re>;\n  struct\
     \ Edge {\n    int i, j;\n    RP p1, p2;\n    Re r1, r2;\n  };\n\n  int N;\n  vc<P>\
     \ A;\n\n  // polygon edge i:\n  //   U[i].dot(x) <= H[i]\n  // where U[i] is the\
-    \ unit outward normal.\n  vc<RP> U;\n  vc<Re> H;\n\n  vc<Edge> edges;\n  vc<vc<int>>\
+    \ id outward normal.\n  vc<RP> U;\n  vc<Re> H;\n\n  vc<Edge> edges;\n  vc<vc<int>>\
     \ incident;\n\n  Convex_Polygon_Edge_Voronoi(vc<P> A) : N(len(A)), A(A) { build();\
     \ }\n\n  RP point(const Edge& e, Re t) const { return e.p1 + (e.p2 - e.p1) * t;\
     \ }\n  Re radius(const Edge& e, Re t) const { return e.r1 + (e.r2 - e.r1) * t;\
@@ -140,15 +140,15 @@ data:
     \ arbitrarily by floating errors.\ntemplate <typename P, typename Re>\nstruct\
     \ Convex_Polygon_Edge_Voronoi {\n  using RP = Point<Re>;\n  struct Edge {\n  \
     \  int i, j;\n    RP p1, p2;\n    Re r1, r2;\n  };\n\n  int N;\n  vc<P> A;\n\n\
-    \  // polygon edge i:\n  //   U[i].dot(x) <= H[i]\n  // where U[i] is the unit\
-    \ outward normal.\n  vc<RP> U;\n  vc<Re> H;\n\n  vc<Edge> edges;\n  vc<vc<int>>\
-    \ incident;\n\n  Convex_Polygon_Edge_Voronoi(vc<P> A) : N(len(A)), A(A) { build();\
-    \ }\n\n  RP point(const Edge& e, Re t) const { return e.p1 + (e.p2 - e.p1) * t;\
-    \ }\n  Re radius(const Edge& e, Re t) const { return e.r1 + (e.r2 - e.r1) * t;\
-    \ }\n  pair<RP, RP> segment(const Edge& e) const { return {e.p1, e.p2}; }\n\n\
-    \  // Voronoi cell of polygon edge i.\n  // Collinear points on the boundary may\
-    \ be removed.\n  vc<RP> cell(int i) const {\n    vc<RP> X;\n    X.eb(RP(A[i]));\n\
-    \    X.eb(RP(A[(i + 1) % N]));\n\n    for (int k : incident[i]) {\n      X.eb(edges[k].p1);\n\
+    \  // polygon edge i:\n  //   U[i].dot(x) <= H[i]\n  // where U[i] is the id outward\
+    \ normal.\n  vc<RP> U;\n  vc<Re> H;\n\n  vc<Edge> edges;\n  vc<vc<int>> incident;\n\
+    \n  Convex_Polygon_Edge_Voronoi(vc<P> A) : N(len(A)), A(A) { build(); }\n\n  RP\
+    \ point(const Edge& e, Re t) const { return e.p1 + (e.p2 - e.p1) * t; }\n  Re\
+    \ radius(const Edge& e, Re t) const { return e.r1 + (e.r2 - e.r1) * t; }\n  pair<RP,\
+    \ RP> segment(const Edge& e) const { return {e.p1, e.p2}; }\n\n  // Voronoi cell\
+    \ of polygon edge i.\n  // Collinear points on the boundary may be removed.\n\
+    \  vc<RP> cell(int i) const {\n    vc<RP> X;\n    X.eb(RP(A[i]));\n    X.eb(RP(A[(i\
+    \ + 1) % N]));\n\n    for (int k : incident[i]) {\n      X.eb(edges[k].p1);\n\
     \      X.eb(edges[k].p2);\n    }\n\n    sort(all(X), [&](const RP& a, const RP&\
     \ b) -> bool {\n      if (a.x != b.x) return a.x < b.x;\n      return a.y < b.y;\n\
     \    });\n    X.erase(unique(all(X),\n                   [&](const RP& a, const\
@@ -201,7 +201,7 @@ data:
   isVerificationFile: false
   path: geo/convex_polygon_edge_voronoi.hpp
   requiredBy: []
-  timestamp: '2026-08-19 20:31:51+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/convex_polygon_edge_voronoi.hpp

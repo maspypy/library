@@ -21,8 +21,8 @@ data:
     \u3042\u3068 y\n    auto [t1, k1] = x;\n    auto [t2, k2] = y;\n    int t = t1\
     \ * t2;\n    int k = bmod<int>(t2 * k1 + k2, n);\n    return {t, k};\n  }\n  static\
     \ X inverse(X x) {\n    if (x.fi == 1) x.se = bmod<int>(n - x.se, n);\n    return\
-    \ x;\n  }\n  static constexpr X unit() { return {1, 0}; }\n  static constexpr\
-    \ bool commute = 0;\n\n  static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k);\
+    \ x;\n  }\n  static constexpr X id() { return {1, 0}; }\n  static constexpr bool\
+    \ commute = 0;\n\n  static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k);\
     \ }\n  static X cyclic_shift_right(ll k) {\n    k = bmod<ll>(k, n);\n    return\
     \ {1, k};\n  }\n  static X reverse() { return {-1, n - 1}; }\n  template <typename\
     \ STRING>\n  static STRING apply(X f, STRING A) {\n    assert(len(A) == n);\n\
@@ -40,8 +40,8 @@ data:
     \u3042\u3068 y\n    auto [t1, k1] = x;\n    auto [t2, k2] = y;\n    int t = t1\
     \ * t2;\n    int k = bmod<int>(t2 * k1 + k2, n);\n    return {t, k};\n  }\n  static\
     \ X inverse(X x) {\n    if (x.fi == 1) x.se = bmod<int>(n - x.se, n);\n    return\
-    \ x;\n  }\n  static constexpr X unit() { return {1, 0}; }\n  static constexpr\
-    \ bool commute = 0;\n\n  static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k);\
+    \ x;\n  }\n  static constexpr X id() { return {1, 0}; }\n  static constexpr bool\
+    \ commute = 0;\n\n  static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k);\
     \ }\n  static X cyclic_shift_right(ll k) {\n    k = bmod<ll>(k, n);\n    return\
     \ {1, k};\n  }\n  static X reverse() { return {-1, n - 1}; }\n  template <typename\
     \ STRING>\n  static STRING apply(X f, STRING A) {\n    assert(len(A) == n);\n\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/dihedral.hpp
   requiredBy: []
-  timestamp: '2026-08-06 23:33:10+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/dihedral.hpp

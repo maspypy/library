@@ -102,12 +102,12 @@ data:
     \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
     \ abs(a);\n}\n#endif\n#line 1 \"other/all_but_one_products.hpp\"\ntemplate <typename\
     \ Monoid, typename X = typename Monoid::value_type>\nvector<X> all_but_one_products(const\
-    \ vc<X>& A) {\n  int N = len(A);\n  vc<X> res(N, Monoid::unit());\n  FOR(i, N\
-    \ - 1) res[i + 1] = Monoid::op(res[i], A[i]);\n  X x = Monoid::unit();\n  FOR_R(i,\
+    \ vc<X>& A) {\n  int N = len(A);\n  vc<X> res(N, Monoid::id());\n  FOR(i, N -\
+    \ 1) res[i + 1] = Monoid::op(res[i], A[i]);\n  X x = Monoid::id();\n  FOR_R(i,\
     \ N) {\n    res[i] = Monoid::op(res[i], x);\n    x = Monoid::op(A[i], x);\n  }\n\
     \  return res;\n}\n#line 4 \"test/1_mytest/all_but_one_products.test.cpp\"\n\n\
     struct Mono {\n  using value_type = string;\n  using X = value_type;\n  static\
-    \ X op(X x, X y) { return x + y; }\n  static X unit() { return \"\"; }\n  static\
+    \ X op(X x, X y) { return x + y; }\n  static X id() { return \"\"; }\n  static\
     \ constexpr bool commute = 0;\n};\n\nvoid test() {\n  vc<string> A = {\"a\", \"\
     b\", \"c\", \"d\", \"e\"};\n  auto B = all_but_one_products<Mono>(A);\n  assert(B[0]\
     \ == \"bcde\");\n  assert(B[1] == \"acde\");\n  assert(B[2] == \"abde\");\n  assert(B[3]\
@@ -117,7 +117,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/all_but_one_products.hpp\"\n\nstruct Mono {\n  using value_type\
     \ = string;\n  using X = value_type;\n  static X op(X x, X y) { return x + y;\
-    \ }\n  static X unit() { return \"\"; }\n  static constexpr bool commute = 0;\n\
+    \ }\n  static X id() { return \"\"; }\n  static constexpr bool commute = 0;\n\
     };\n\nvoid test() {\n  vc<string> A = {\"a\", \"b\", \"c\", \"d\", \"e\"};\n \
     \ auto B = all_but_one_products<Mono>(A);\n  assert(B[0] == \"bcde\");\n  assert(B[1]\
     \ == \"acde\");\n  assert(B[2] == \"abde\");\n  assert(B[3] == \"abce\");\n  assert(B[4]\
@@ -130,7 +130,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/all_but_one_products.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/all_but_one_products.test.cpp

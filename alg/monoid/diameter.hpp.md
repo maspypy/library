@@ -18,7 +18,7 @@ data:
     \    int ma = max({ab, av, bv});\n      if (ma == ab) {\n      }\n      elif (ma\
     \ == av) { b = v; }\n      else {\n        a = v;\n      }\n    }\n    return\
     \ {a, b};\n  }\n  static int eval(const X& D) {\n    assert(tree != nullptr);\n\
-    \    return tree->dist(D.fi, D.se);\n  }\n\n  static constexpr X unit() { return\
+    \    return tree->dist(D.fi, D.se);\n  }\n\n  static constexpr X id() { return\
     \ {-1, -1}; }\n  static constexpr bool commute = true;\n};\n"
   code: "\ntemplate <typename TREE>\nstruct Monoid_Diameter {\n  using value_type\
     \ = pair<int, int>;\n  using X = value_type;\n  static inline const TREE* tree\
@@ -30,13 +30,13 @@ data:
     \     if (ma == ab) {\n      }\n      elif (ma == av) { b = v; }\n      else {\n\
     \        a = v;\n      }\n    }\n    return {a, b};\n  }\n  static int eval(const\
     \ X& D) {\n    assert(tree != nullptr);\n    return tree->dist(D.fi, D.se);\n\
-    \  }\n\n  static constexpr X unit() { return {-1, -1}; }\n  static constexpr bool\
+    \  }\n\n  static constexpr X id() { return {-1, -1}; }\n  static constexpr bool\
     \ commute = true;\n};"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/diameter.hpp
   requiredBy: []
-  timestamp: '2026-08-29 08:41:49+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/diameter.hpp

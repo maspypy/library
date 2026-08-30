@@ -32,19 +32,19 @@ data:
     \ Prefix_State_SegTree() {}\n\n  template <typename F>\n  Prefix_State_SegTree(int\
     \ n, F f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int\
     \ m, F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size\
-    \ = 1 << log;\n\n    dat.assign(2 * size, {MS::unit(), MX::unit()});\n    FOR(i,\
-    \ n) dat[size + i].state = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void\
-    \ set(int i, S s) {\n    i += size;\n    dat[i] = {s, MX::unit()};\n    while\
-    \ (i > 1) i /= 2, update(i);\n  }\n\n  // prefix state = s \u304B\u3089 [L,R)\
-    \ \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E finish state, ANS\n  pair<S, X> prod(int\
-    \ L, int R, S s = MS::unit()) {\n    vc<int> suff;\n    X ans = MX::unit();\n\n\
-    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) {\n        dfs(L,\
+    \ = 1 << log;\n\n    dat.assign(2 * size, {MS::id(), MX::id()});\n    FOR(i, n)\
+    \ dat[size + i].state = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void\
+    \ set(int i, S s) {\n    i += size;\n    dat[i] = {s, MX::id()};\n    while (i\
+    \ > 1) i /= 2, update(i);\n  }\n\n  // prefix state = s \u304B\u3089 [L,R) \u3092\
+    \u8AAD\u3093\u3060\u3068\u304D\u306E finish state, ANS\n  pair<S, X> prod(int\
+    \ L, int R, S s = MS::id()) {\n    vc<int> suff;\n    X ans = MX::id();\n\n  \
+    \  L += size, R += size;\n    while (L < R) {\n      if (L & 1) {\n        dfs(L,\
     \ s, ans);\n        s = MS::op(s, dat[L].state);\n        ++L;\n      }\n    \
     \  if (R & 1) suff.eb(--R);\n      L /= 2, R /= 2;\n    }\n\n    reverse(all(suff));\n\
     \    for (int v : suff) {\n      dfs(v, s, ans);\n      s = MS::op(s, dat[v].state);\n\
     \    }\n    return {s, ans};\n  }\n\n private:\n  void update(int v) {\n    auto&\
     \ L = dat[2 * v];\n    auto& R = dat[2 * v + 1];\n    dat[v].state = MS::op(L.state,\
-    \ R.state);\n    dat[v].r_ans = MX::unit();\n    dfs(2 * v + 1, L.state, dat[v].r_ans);\n\
+    \ R.state);\n    dat[v].r_ans = MX::id();\n    dfs(2 * v + 1, L.state, dat[v].r_ans);\n\
     \  }\n\n  // prefix state = s \u304B\u3089 subtree v \u3092\u8AAD\u3093\u3060\u3068\
     \u304D\u306E\u7B54\u3048\n  void dfs(int v, S s, X& ans) {\n    // TODO: problem\
     \ specific\n    /* typically:\n    if (size <= v) {\n      // process leaf\n \
@@ -78,18 +78,18 @@ data:
     \ <typename F>\n  Prefix_State_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n\
     \  template <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n  \
     \  while ((1 << log) < n) ++log;\n    size = 1 << log;\n\n    dat.assign(2 * size,\
-    \ {MS::unit(), MX::unit()});\n    FOR(i, n) dat[size + i].state = f(i);\n    FOR_R(i,\
+    \ {MS::id(), MX::id()});\n    FOR(i, n) dat[size + i].state = f(i);\n    FOR_R(i,\
     \ 1, size) update(i);\n  }\n\n  void set(int i, S s) {\n    i += size;\n    dat[i]\
-    \ = {s, MX::unit()};\n    while (i > 1) i /= 2, update(i);\n  }\n\n  // prefix\
-    \ state = s \u304B\u3089 [L,R) \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E finish\
-    \ state, ANS\n  pair<S, X> prod(int L, int R, S s = MS::unit()) {\n    vc<int>\
-    \ suff;\n    X ans = MX::unit();\n\n    L += size, R += size;\n    while (L <\
-    \ R) {\n      if (L & 1) {\n        dfs(L, s, ans);\n        s = MS::op(s, dat[L].state);\n\
+    \ = {s, MX::id()};\n    while (i > 1) i /= 2, update(i);\n  }\n\n  // prefix state\
+    \ = s \u304B\u3089 [L,R) \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E finish state,\
+    \ ANS\n  pair<S, X> prod(int L, int R, S s = MS::id()) {\n    vc<int> suff;\n\
+    \    X ans = MX::id();\n\n    L += size, R += size;\n    while (L < R) {\n   \
+    \   if (L & 1) {\n        dfs(L, s, ans);\n        s = MS::op(s, dat[L].state);\n\
     \        ++L;\n      }\n      if (R & 1) suff.eb(--R);\n      L /= 2, R /= 2;\n\
     \    }\n\n    reverse(all(suff));\n    for (int v : suff) {\n      dfs(v, s, ans);\n\
     \      s = MS::op(s, dat[v].state);\n    }\n    return {s, ans};\n  }\n\n private:\n\
     \  void update(int v) {\n    auto& L = dat[2 * v];\n    auto& R = dat[2 * v +\
-    \ 1];\n    dat[v].state = MS::op(L.state, R.state);\n    dat[v].r_ans = MX::unit();\n\
+    \ 1];\n    dat[v].state = MS::op(L.state, R.state);\n    dat[v].r_ans = MX::id();\n\
     \    dfs(2 * v + 1, L.state, dat[v].r_ans);\n  }\n\n  // prefix state = s \u304B\
     \u3089 subtree v \u3092\u8AAD\u3093\u3060\u3068\u304D\u306E\u7B54\u3048\n  void\
     \ dfs(int v, S s, X& ans) {\n    // TODO: problem specific\n    /* typically:\n\
@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: template/prefix_state_segtree.hpp
   requiredBy: []
-  timestamp: '2026-08-12 15:29:18+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/prefix_state_segtree.hpp

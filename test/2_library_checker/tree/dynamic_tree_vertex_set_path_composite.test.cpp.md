@@ -350,7 +350,7 @@ data:
     \  template <class F>\n  int max_path(F check, int u, int v) {\n    evert(u),\
     \ expose(v);\n    Node *c = (*this)[v];\n    using MX = typename Node::MX;\n \
     \   using X = typename MX::value_type;\n    Node *last_ok = nullptr, *last = nullptr;\n\
-    \    X lprod = MX::unit();\n    while (c) {\n      last = c;\n      c->push();\n\
+    \    X lprod = MX::id();\n    while (c) {\n      last = c;\n      c->push();\n\
     \      X x = (c->l ? MX::op(c->l->x, c->vx) : c->vx);\n      x = MX::op(lprod,\
     \ x);\n      if (!check(x)) {\n        c = c->l;\n      } else {\n        last_ok\
     \ = c, c = c->r, lprod = x;\n      }\n    }\n    splay(last);\n    if (!last_ok)\
@@ -380,7 +380,7 @@ data:
     \u5B9A\u7FA9\u3059\u308B.\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
     \  using VX = X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int i = 0)\n      : l(nullptr),\n\
     \        r(nullptr),\n        p(nullptr),\n        idx(i),\n        size(1),\n\
-    \        rev(0),\n        x(MX::unit()),\n        rx(MX::unit()),\n        vx(MX::unit())\
+    \        rev(0),\n        x(MX::id()),\n        rx(MX::id()),\n        vx(MX::id())\
     \ {}\n\n  void update() {\n    size = 1;\n    x = vx, rx = vx;\n    if (l) {\n\
     \      size += l->size, x = Monoid::op(l->x, x), rx = Monoid::op(rx, l->rx);\n\
     \    }\n    if (r) {\n      size += r->size, x = Monoid::op(x, r->x), rx = Monoid::op(r->rx,\
@@ -397,8 +397,8 @@ data:
     \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
     \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
     \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
-    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
-    \  static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
+    \ * x + f.second;\n  }\n  static constexpr F id() { return {K(1), K(0)}; }\n \
+    \ static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
     \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
@@ -550,7 +550,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp

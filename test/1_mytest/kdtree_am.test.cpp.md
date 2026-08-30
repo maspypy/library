@@ -123,7 +123,7 @@ data:
     \n  vc<int> size;\r\n  vc<int> pos; // raw data -> index\r\n  int n, log;\r\n\r\
     \n  KDTree_ActedMonoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n\
     \ > 0);\r\n    log = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1\
-    \ << (log + 1));\r\n    lazy.assign(1 << log, MA::unit());\r\n    closed_range.assign(1\
+    \ << (log + 1));\r\n    lazy.assign(1 << log, MA::id());\r\n    closed_range.assign(1\
     \ << (log + 1), {infty<XY>, -infty<XY>, infty<XY>, -infty<XY>});\r\n    size.resize(1\
     \ << (log + 1));\r\n    vc<int> ids(n);\r\n    pos.resize(n);\r\n    FOR(i, n)\
     \ ids[i] = i;\r\n    build(1, xs, ys, vs, ids);\r\n  }\r\n\r\n  void set(int i,\
@@ -158,14 +158,14 @@ data:
     \n    return (xmin <= x && x <= xmax && ymin <= y && y <= ymax);\r\n  }\r\n\r\n\
     \  void apply_at(int idx, A a) {\r\n    dat[idx] = AM::act(dat[idx], a, size[idx]);\r\
     \n    if (idx < (1 << log)) lazy[idx] = MA::op(lazy[idx], a);\r\n  }\r\n\r\n \
-    \ void push(int idx) {\r\n    if (lazy[idx] == MA::unit()) return;\r\n    apply_at(2\
+    \ void push(int idx) {\r\n    if (lazy[idx] == MA::id()) return;\r\n    apply_at(2\
     \ * idx + 0, lazy[idx]), apply_at(2 * idx + 1, lazy[idx]);\r\n    lazy[idx] =\
-    \ MA::unit();\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2)\
-    \ {\r\n    if (idx >= len(closed_range)) return MX::unit();\r\n    auto& [xmin,\
-    \ xmax, ymin, ymax] = closed_range[idx];\r\n    if (xmin > xmax) return MX::unit();\r\
-    \n    if (x2 <= xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin ||\
-    \ ymax < y1) return MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin\
-    \ && ymax < y2) { return dat[idx]; }\r\n    push(idx);\r\n    return MX::op(prod_rec(2\
+    \ MA::id();\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2) {\r\
+    \n    if (idx >= len(closed_range)) return MX::id();\r\n    auto& [xmin, xmax,\
+    \ ymin, ymax] = closed_range[idx];\r\n    if (xmin > xmax) return MX::id();\r\n\
+    \    if (x2 <= xmin || xmax < x1) return MX::id();\r\n    if (y2 <= ymin || ymax\
+    \ < y1) return MX::id();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax\
+    \ < y2) { return dat[idx]; }\r\n    push(idx);\r\n    return MX::op(prod_rec(2\
     \ * idx + 0, x1, x2, y1, y2), prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\
     \n\r\n  void apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {\r\n    if (idx\
     \ >= len(closed_range)) return;\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
@@ -177,13 +177,13 @@ data:
     \ 1]);\r\n  }\r\n};\r\n#line 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename\
     \ E>\nstruct Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
     \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
-    \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
-    \ {E(0), -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 1 \"alg/monoid/add.hpp\"\
+    \ X from_element(E e) { return {e, e}; }\n  static constexpr X id() { return {E(0),\
+    \ -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 1 \"alg/monoid/add.hpp\"\
     \n\ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
-    \ constexpr X unit() { return X(0); }\n  static constexpr bool commute = true;\n\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 3 \"alg/acted_monoid/summax_add.hpp\"\n\ntemplate <typename E>\nstruct\
     \ ActedMonoid_SumMax_Add {\n  using Monoid_X = Monoid_SumMax<E>;\n  using Monoid_A\
     \ = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n  using A = typename\
@@ -204,11 +204,11 @@ data:
     \ 0) {\n      // multiply\n      int k = RNG(0, N);\n      int a = RNG(0, 100);\n\
     \      int b = RNG(0, 100);\n      KDT.multiply(k, {a, b});\n      val[k].fi +=\
     \ a;\n      chmax(val[k].se, b);\n    }\n    if (t == 1) {\n      // prod\n  \
-    \    int sm = 0, mx = MX::unit().se;\n      FOR(k, N) {\n        if (xl <= X[k]\
+    \    int sm = 0, mx = MX::id().se;\n      FOR(k, N) {\n        if (xl <= X[k]\
     \ && X[k] < xr && yl <= Y[k] && Y[k] < yr) { sm += val[k].fi, chmax(mx, val[k].se);\
     \ }\n      }\n      auto res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi\
     \ == sm && res.se == mx);\n    }\n    if (t == 2) {\n      // prod all\n     \
-    \ int sm = 0, mx = MX::unit().se;\n      FOR(k, N) { sm += val[k].fi, chmax(mx,\
+    \ int sm = 0, mx = MX::id().se;\n      FOR(k, N) { sm += val[k].fi, chmax(mx,\
     \ val[k].se); }\n      auto res = KDT.prod_all();\n      assert(res.fi == sm &&\
     \ res.se == mx);\n    }\n    if (t == 3) {\n      // apply\n      int a = RNG(0,\
     \ 10);\n      FOR(k, N) {\n        if (xl <= X[k] && X[k] < xr && yl <= Y[k] &&\
@@ -228,11 +228,11 @@ data:
     \ xr);\n    if (yl > yr) swap(yl, yr);\n    if (t == 0) {\n      // multiply\n\
     \      int k = RNG(0, N);\n      int a = RNG(0, 100);\n      int b = RNG(0, 100);\n\
     \      KDT.multiply(k, {a, b});\n      val[k].fi += a;\n      chmax(val[k].se,\
-    \ b);\n    }\n    if (t == 1) {\n      // prod\n      int sm = 0, mx = MX::unit().se;\n\
+    \ b);\n    }\n    if (t == 1) {\n      // prod\n      int sm = 0, mx = MX::id().se;\n\
     \      FOR(k, N) {\n        if (xl <= X[k] && X[k] < xr && yl <= Y[k] && Y[k]\
     \ < yr) { sm += val[k].fi, chmax(mx, val[k].se); }\n      }\n      auto res =\
     \ KDT.prod(xl, xr, yl, yr);\n      assert(res.fi == sm && res.se == mx);\n   \
-    \ }\n    if (t == 2) {\n      // prod all\n      int sm = 0, mx = MX::unit().se;\n\
+    \ }\n    if (t == 2) {\n      // prod all\n      int sm = 0, mx = MX::id().se;\n\
     \      FOR(k, N) { sm += val[k].fi, chmax(mx, val[k].se); }\n      auto res =\
     \ KDT.prod_all();\n      assert(res.fi == sm && res.se == mx);\n    }\n    if\
     \ (t == 3) {\n      // apply\n      int a = RNG(0, 10);\n      FOR(k, N) {\n \
@@ -250,7 +250,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_am.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_am.test.cpp

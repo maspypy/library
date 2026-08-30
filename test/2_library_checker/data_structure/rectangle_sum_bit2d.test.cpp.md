@@ -244,7 +244,7 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 2 \"ds/fenwicktree/fenwicktree_2d.hpp\"\
     \n\r\ntemplate <typename Monoid, typename XY, bool SMALL_X = false>\r\nstruct\
     \ FenwickTree_2D {\r\n  using G = Monoid;\r\n  using E = typename G::value_type;\r\
@@ -266,7 +266,7 @@ data:
     \ = X[i];\r\n      XY y = Y[i];\r\n      while (ix < N) {\r\n        if (last_y[ix]\
     \ == y) break;\r\n        last_y[ix] = y, indptr[ix + 1]++, ix = nxt(ix);\r\n\
     \      }\r\n    }\r\n    FOR(i, N) indptr[i + 1] += indptr[i];\r\n    keyY.resize(indptr.back());\r\
-    \n    dat.assign(indptr.back(), G::unit());\r\n    fill(all(last_y), -infty<XY>\
+    \n    dat.assign(indptr.back(), G::id());\r\n    fill(all(last_y), -infty<XY>\
     \ - 1);\r\n    vc<int> prog = indptr;\r\n    FOR(i, len(X)) {\r\n      int ix\
     \ = X[i];\r\n      XY y = Y[i];\r\n      E w = wt[i];\r\n      while (ix < N)\
     \ {\r\n        if (last_y[ix] != y) {\r\n          last_y[ix] = y, keyY[prog[ix]]\
@@ -287,32 +287,32 @@ data:
     \ (ix < N) {\r\n        if (last_y[ix] == y) break;\r\n        last_y[ix] = y,\
     \ indptr[ix + 1]++, ix = nxt(ix);\r\n      }\r\n    }\r\n    FOR(i, N) indptr[i\
     \ + 1] += indptr[i];\r\n    keyY.resize(indptr.back());\r\n    dat.assign(indptr.back(),\
-    \ G::unit());\r\n    fill(all(last_y), -infty<XY> - 1);\r\n    vc<int> prog =\
-    \ indptr;\r\n    FOR(i, len(X)) {\r\n      int ix = X[i];\r\n      XY y = Y[i];\r\
-    \n      while (ix < N) {\r\n        if (last_y[ix] == y) break;\r\n        last_y[ix]\
+    \ G::id());\r\n    fill(all(last_y), -infty<XY> - 1);\r\n    vc<int> prog = indptr;\r\
+    \n    FOR(i, len(X)) {\r\n      int ix = X[i];\r\n      XY y = Y[i];\r\n     \
+    \ while (ix < N) {\r\n        if (last_y[ix] == y) break;\r\n        last_y[ix]\
     \ = y, keyY[prog[ix]++] = y, ix = nxt(ix);\r\n      }\r\n    }\r\n  }\r\n\r\n\
     \  void add(XY x, XY y, E val) { multiply(x, y, val); }\r\n  void multiply(XY\
     \ x, XY y, E val) {\r\n    int i = xtoi(x);\r\n    assert(keyX[i] == x);\r\n \
     \   while (i < N) { multiply_i(i, y, val), i = nxt(i); }\r\n  }\r\n\r\n  E sum(XY\
     \ lx, XY rx, XY ly, XY ry) { return prod(lx, rx, ly, ry); }\r\n  E prod(XY lx,\
-    \ XY rx, XY ly, XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int\
-    \ L = xtoi(lx) - 1, R = xtoi(rx) - 1;\r\n    while (L < R) { pos = G::op(pos,\
-    \ prod_i(R, ly, ry)), R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, prod_i(L,\
-    \ ly, ry)), L = prev(L); }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\
-    \n\r\n  E prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }\r\n  E prefix_prod(XY\
-    \ rx, XY ry) {\r\n    E pos = G::unit();\r\n    int R = xtoi(rx) - 1;\r\n    while\
+    \ XY rx, XY ly, XY ry) {\r\n    E pos = G::id(), neg = G::id();\r\n    int L =\
+    \ xtoi(lx) - 1, R = xtoi(rx) - 1;\r\n    while (L < R) { pos = G::op(pos, prod_i(R,\
+    \ ly, ry)), R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, prod_i(L, ly,\
+    \ ry)), L = prev(L); }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n\r\
+    \n  E prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }\r\n  E prefix_prod(XY\
+    \ rx, XY ry) {\r\n    E pos = G::id();\r\n    int R = xtoi(rx) - 1;\r\n    while\
     \ (R >= 0) { pos = G::op(pos, prefix_prod_i(R, ry)), R = prev(R); }\r\n    return\
     \ pos;\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i, XY y, E val) {\r\n \
     \   int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin()\
     \ + LID;\r\n    int j = lower_bound(it, it + n, y) - it;\r\n    while (j < n)\
     \ { dat[LID + j] = G::op(dat[LID + j], val), j = nxt(j); }\r\n  }\r\n\r\n  E prod_i(int\
-    \ i, XY ly, XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int LID\
-    \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() +\
-    \ LID;\r\n    int L = lower_bound(it, it + n, ly) - it - 1;\r\n    int R = lower_bound(it,\
-    \ it + n, ry) - it - 1;\r\n    while (L < R) { pos = G::op(pos, dat[LID + R]),\
-    \ R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, dat[LID + L]), L = prev(L);\
+    \ i, XY ly, XY ry) {\r\n    E pos = G::id(), neg = G::id();\r\n    int LID = indptr[i],\
+    \ n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int\
+    \ L = lower_bound(it, it + n, ly) - it - 1;\r\n    int R = lower_bound(it, it\
+    \ + n, ry) - it - 1;\r\n    while (L < R) { pos = G::op(pos, dat[LID + R]), R\
+    \ = prev(R); }\r\n    while (R < L) { neg = G::op(neg, dat[LID + L]), L = prev(L);\
     \ }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n\r\n  E prefix_prod_i(int\
-    \ i, XY ry) {\r\n    E pos = G::unit();\r\n    int LID = indptr[i], n = indptr[i\
+    \ i, XY ry) {\r\n    E pos = G::id();\r\n    int LID = indptr[i], n = indptr[i\
     \ + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int R = lower_bound(it,\
     \ it + n, ry) - it - 1;\r\n    while (R >= 0) { pos = G::op(pos, dat[LID + R]),\
     \ R = prev(R); }\r\n    return pos;\r\n  }\r\n};\r\n#line 7 \"test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp\"\
@@ -336,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp

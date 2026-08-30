@@ -37,10 +37,10 @@ data:
     \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
     \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
     \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::unit();\n\
-    \    if (exp == 1) return x;\n    X res = Monoid::unit();\n    while (exp) {\n\
-    \      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n \
-    \     exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"mod/floor_monoid_product.hpp\"\
+    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::id();\n\
+    \    if (exp == 1) return x;\n    X res = Monoid::id();\n    while (exp) {\n \
+    \     if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n  \
+    \    exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"mod/floor_monoid_product.hpp\"\
     \n\n// https://yukicoder.me/submissions/883884\n// https://qoj.ac/contest/1411/problem/7620\n\
     // U \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\
     \u30FC\u3057\u306A\u3044\u7A0B\u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092\
@@ -48,8 +48,8 @@ data:
     \u306E y \u304C\u3042\u308B\n// my<=ax+b \u306B\u304A\u3051\u308B lattice path\
     \ \u306B\u304A\u3051\u308B\u8FBA\u306E\u5217\u3068\u898B\u306A\u305B\u308B\ntemplate\
     \ <typename Monoid, typename X, typename U>\nX floor_monoid_product(X x, X y,\
-    \ U N, U a, U b, U m) {\n  U c = (a * N + b) / m;\n  X pre = Monoid::unit(), suf\
-    \ = Monoid::unit();\n  while (1) {\n    const U p = a / m, q = b / m;\n    a %=\
+    \ U N, U a, U b, U m) {\n  U c = (a * N + b) / m;\n  X pre = Monoid::id(), suf\
+    \ = Monoid::id();\n  while (1) {\n    const U p = a / m, q = b / m;\n    a %=\
     \ m, b %= m;\n    x = Monoid::op(x, monoid_pow<Monoid>(y, p));\n    pre = Monoid::op(pre,\
     \ monoid_pow<Monoid>(y, q));\n    c -= (p * N + q);\n    if (c == 0) break;\n\
     \    const U d = (m * c - b - 1) / a + 1;\n    suf = Monoid::op(y, Monoid::op(monoid_pow<Monoid>(x,\
@@ -74,10 +74,10 @@ data:
     \ - j] * x;\n      }\n    }\n\n    // +dx\n    FOR(j, K2 + 1) {\n      FOR_R(i,\
     \ K1 + 1) { FOR(k, i, K1 + 1) a.dp[k][j] += comb[k][i] * pow_x[k - i] * b.dp[i][j];\
     \ }\n    }\n\n    a.dx += b.dx, a.dy += b.dy, a.prod *= b.prod;\n    return a;\n\
-    \  }\n\n  static X to_x() {\n    X x = unit();\n    x.dp[0][0] = 1, x.dx = 1,\
-    \ x.prod = get_pq().fi;\n    return x;\n  }\n  static X to_y() {\n    X x = unit();\n\
-    \    x.dy = 1, x.prod = get_pq().se;\n    return x;\n  }\n  static constexpr X\
-    \ unit() { return {ARR{}, T(0), T(0), T(1)}; }\n  static constexpr bool commute\
+    \  }\n\n  static X to_x() {\n    X x = id();\n    x.dp[0][0] = 1, x.dx = 1, x.prod\
+    \ = get_pq().fi;\n    return x;\n  }\n  static X to_y() {\n    X x = id();\n \
+    \   x.dy = 1, x.prod = get_pq().se;\n    return x;\n  }\n  static constexpr X\
+    \ id() { return {ARR{}, T(0), T(0), T(1)}; }\n  static constexpr bool commute\
     \ = 0;\n};\n#line 3 \"mod/floor_sum_of_linear_polynomial_pq.hpp\"\n\n// \u5168\
     \u90E8\u975E\u8CA0, T \u306F\u7B54, U \u306F ax+b \u304C\u30AA\u30FC\u30D0\u30FC\
     \u30D5\u30ED\u30FC\u3057\u306A\u3044\ntemplate <typename T, int K1, int K2, typename\
@@ -99,7 +99,7 @@ data:
     \ && b >= 0);\n\n  using Mono = Monoid_for_floor_sum_pq<T, K1, K2>;\n  using Data\
     \ = typename Mono::Data;\n  using U = std::conditional_t<is_same_v<I, ll>, u64,\
     \ u128>;\n  Data A = floor_monoid_product<Mono, Data, U>(Mono::to_x(), Mono::to_y(),\
-    \ N, a, b, mod);\n  Data offset = Mono::unit();\n  offset.dx = T(ADD_X), offset.dy\
+    \ N, a, b, mod);\n  Data offset = Mono::id();\n  offset.dx = T(ADD_X), offset.dy\
     \ = T(ADD_Y);\n  A = Mono::op(offset, A);\n  T mul = p.pow(ADD_X) * q.pow(ADD_Y);\n\
     \  FOR(i, K1 + 1) FOR(j, K2 + 1) A.dp[i][j] *= mul;\n  return A.dp;\n};\n"
   code: "#include \"mod/floor_monoid_product.hpp\"\n#include \"alg/monoid/monoid_for_floor_sum_pq.hpp\"\
@@ -123,7 +123,7 @@ data:
     \ && b >= 0);\n\n  using Mono = Monoid_for_floor_sum_pq<T, K1, K2>;\n  using Data\
     \ = typename Mono::Data;\n  using U = std::conditional_t<is_same_v<I, ll>, u64,\
     \ u128>;\n  Data A = floor_monoid_product<Mono, Data, U>(Mono::to_x(), Mono::to_y(),\
-    \ N, a, b, mod);\n  Data offset = Mono::unit();\n  offset.dx = T(ADD_X), offset.dy\
+    \ N, a, b, mod);\n  Data offset = Mono::id();\n  offset.dx = T(ADD_X), offset.dy\
     \ = T(ADD_Y);\n  A = Mono::op(offset, A);\n  T mul = p.pow(ADD_X) * q.pow(ADD_Y);\n\
     \  FOR(i, K1 + 1) FOR(j, K2 + 1) A.dp[i][j] *= mul;\n  return A.dp;\n};\n"
   dependsOn:
@@ -134,7 +134,7 @@ data:
   path: mod/floor_sum_of_linear_polynomial_pq.hpp
   requiredBy:
   - convex/lattice_point_sum_polynomial_pq.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp

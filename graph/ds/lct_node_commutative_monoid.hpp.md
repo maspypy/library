@@ -33,9 +33,9 @@ data:
     \u3059\u308B.\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
     \ VX = X;\n  X x, vx, mid;\n\n  LCT_Node_Commutative_Monoid(int i = 0)\n     \
     \ : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n        idx(i),\n \
-    \       size(1),\n        rev(0),\n        x(MX::unit()),\n        vx(MX::unit()),\n\
-    \        mid(MX::unit()) {}\n\n  void update() {\n    size = 1;\n    x = vx;\n\
-    \    if constexpr (SUBTREE) x = MX::op(x, mid);\n    if (l) { size += l->size,\
+    \       size(1),\n        rev(0),\n        x(MX::id()),\n        vx(MX::id()),\n\
+    \        mid(MX::id()) {}\n\n  void update() {\n    size = 1;\n    x = vx;\n \
+    \   if constexpr (SUBTREE) x = MX::op(x, mid);\n    if (l) { size += l->size,\
     \ x = Monoid::op(l->x, x); }\n    if (r) { size += r->size, x = Monoid::op(x,\
     \ r->x); }\n  }\n\n  void push() {\n    if (rev) {\n      if (l) l->reverse();\n\
     \      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n  // data \u306E reverse\
@@ -55,9 +55,9 @@ data:
     \u3059\u308B.\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
     \ VX = X;\n  X x, vx, mid;\n\n  LCT_Node_Commutative_Monoid(int i = 0)\n     \
     \ : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n        idx(i),\n \
-    \       size(1),\n        rev(0),\n        x(MX::unit()),\n        vx(MX::unit()),\n\
-    \        mid(MX::unit()) {}\n\n  void update() {\n    size = 1;\n    x = vx;\n\
-    \    if constexpr (SUBTREE) x = MX::op(x, mid);\n    if (l) { size += l->size,\
+    \       size(1),\n        rev(0),\n        x(MX::id()),\n        vx(MX::id()),\n\
+    \        mid(MX::id()) {}\n\n  void update() {\n    size = 1;\n    x = vx;\n \
+    \   if constexpr (SUBTREE) x = MX::op(x, mid);\n    if (l) { size += l->size,\
     \ x = Monoid::op(l->x, x); }\n    if (r) { size += r->size, x = Monoid::op(x,\
     \ r->x); }\n  }\n\n  void push() {\n    if (rev) {\n      if (l) l->reverse();\n\
     \      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n  // data \u306E reverse\
@@ -73,7 +73,7 @@ data:
   path: graph/ds/lct_node_commutative_monoid.hpp
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
-  timestamp: '2023-12-03 14:24:05+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp

@@ -492,13 +492,13 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n"
   code: "\ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
-    \ constexpr X unit() { return X(0); }\n  static constexpr bool commute = true;\n\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n"
   dependsOn: []
   isVerificationFile: false
@@ -548,7 +548,7 @@ data:
   - alg/acted_monoid/sum_add.hpp
   - alg/acted_monoid/max_add.hpp
   - convex/slope_trick/slope_trick_1.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/count_points_in_triangles.test.cpp

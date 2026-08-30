@@ -21,8 +21,8 @@ data:
     \    min2 = x, key2 = key;\n        return 1;\n      }\n      return 0;\n    }\n\
     \  };\n  using value_type = Data;\n  using X = value_type;\n\n  static X op(X\
     \ x, X y) {\n    x.add_element(y.key1, y.min1);\n    x.add_element(y.key2, y.min2);\n\
-    \    return x;\n  }\n  static constexpr X unit() { return {infty<T>, infty<T>,\
-    \ -1, -1}; }\n  static constexpr bool commute = true;\n};\n"
+    \    return x;\n  }\n  static constexpr X id() { return {infty<T>, infty<T>, -1,\
+    \ -1}; }\n  static constexpr bool commute = true;\n};\n"
   code: "\ntemplate <typename T, typename KEY>\nstruct Monoid_Min2 {\n  struct Data\
     \ {\n    T min1, min2;\n    KEY key1, key2;\n    bool add_element(KEY key, T x)\
     \ {\n      if (key1 == key) { return chmin(min1, x); }\n      if (key2 == key)\
@@ -33,14 +33,14 @@ data:
     \ 1;\n      }\n      return 0;\n    }\n  };\n  using value_type = Data;\n  using\
     \ X = value_type;\n\n  static X op(X x, X y) {\n    x.add_element(y.key1, y.min1);\n\
     \    x.add_element(y.key2, y.min2);\n    return x;\n  }\n  static constexpr X\
-    \ unit() { return {infty<T>, infty<T>, -1, -1}; }\n  static constexpr bool commute\
+    \ id() { return {infty<T>, infty<T>, -1, -1}; }\n  static constexpr bool commute\
     \ = true;\n};"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/min2.hpp
   requiredBy:
   - graph/shortest_path/top2_dijkstra.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/min2.hpp

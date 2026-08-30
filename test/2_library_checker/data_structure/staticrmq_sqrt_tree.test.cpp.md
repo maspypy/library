@@ -245,8 +245,8 @@ data:
     void Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp\"\
     \n\n#line 1 \"alg/monoid/min.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Min\
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X unit()\
-    \ { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
     other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32\
     \ x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
@@ -310,7 +310,7 @@ data:
     \      }\n    }\n  }\n\n  static constexpr int BIT_TO_LAYER[] = {0, 0, 0, 1, 1,\
     \ 1, 2, 2, 2, 2, 2, 2,\n                                         3, 3, 3, 3, 3,\
     \ 3, 3, 3, 3, 3, 3, 3};\n\n  X prod(int L, int R) {\n    assert(0 <= L && L <=\
-    \ R && R <= N);\n    if (L == R) return MX::unit();\n    if (L + 1 == R) return\
+    \ R && R <= N);\n    if (L == R) return MX::id();\n    if (L + 1 == R) return\
     \ A[L];\n    --R;\n    int k = BIT_TO_LAYER[topbit(L ^ R)];\n    if (k == 0) {\n\
     \      // \u9577\u3055 SZ[0] \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u30AF\u30A8\u30EA\
     \u304C\u53CE\u307E\u3063\u3066\u3044\u308B. \u611A\u76F4\u306B.\n      X x = A[L];\n\
@@ -342,7 +342,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp

@@ -92,14 +92,14 @@ data:
     \  void multiply(np &root, u32 k, const X &x) {\n    assert(root != nullptr &&\
     \ !root->p);\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\n  X prod(np\
     \ &root, u32 l, u32 r) {\n    assert(root == nullptr || !root->p);\n    using\
-    \ Mono = typename Node::Monoid_X;\n    if (l == r) return Mono::unit();\n    assert(0\
+    \ Mono = typename Node::Monoid_X;\n    if (l == r) return Mono::id();\n    assert(0\
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    X res\
     \ = root->prod;\n    splay(root, true);\n    return res;\n  }\n\n  X prod(np &root)\
     \ {\n    assert(root == nullptr || !root->p);\n    using Mono = typename Node::Monoid_X;\n\
-    \    return (root ? root->prod : Mono::unit());\n  }\n\n  void apply(np &root,\
-    \ u32 l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l\
-    \ < r && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n\
-    \    splay(root, true);\n  }\n  void apply(np &root, const A &a) {\n    if (!root)\
+    \    return (root ? root->prod : Mono::id());\n  }\n\n  void apply(np &root, u32\
+    \ l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l < r\
+    \ && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n \
+    \   splay(root, true);\n  }\n  void apply(np &root, const A &a) {\n    if (!root)\
     \ return;\n    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r)\
     \ {\n    assert(root == nullptr || !root->p);\n    if (l == r) return;\n    assert(0\
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
@@ -165,7 +165,7 @@ data:
     \ n += k;\n        root = root->r;\n      } else {\n        root = root->l;\n\
     \      }\n    }\n    splay(last, true);\n    return last_ok;\n  }\n\n  template\
     \ <typename F>\n  np find_max_right_prod(np root, const F &check) {\n    using\
-    \ Mono = typename Node::Monoid_X;\n    X prod = Mono::unit();\n    // \u6700\u5F8C\
+    \ Mono = typename Node::Monoid_X;\n    X prod = Mono::id();\n    // \u6700\u5F8C\
     \u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\
     \u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root)\
     \ {\n      last = root;\n      root->push();\n      np tmp = root->r;\n      root->r\
@@ -294,18 +294,18 @@ data:
     \  x.y_min = min(x.y_min, r->x.y_min), x.y_max = max(x.y_max, r->x.y_max);\n \
     \   }\n  }\n  void apply(const A& a) {\n    x.y = AS::act(x.y, a);\n    x.y_min\
     \ = AS::act(x.y_min, a);\n    x.y_max = AS::act(x.y_max, a);\n    lazy = AS::Monoid_A::op(lazy,\
-    \ a);\n  }\n  void push() {\n    if (lazy != Monoid_A::unit()) {\n      if (l)\
-    \ {\n        l->apply(lazy);\n      }\n      if (r) {\n        r->apply(lazy);\n\
-    \      }\n      lazy = Monoid_A::unit();\n    }\n    if (rev) {\n      if (l)\
-    \ {\n        l->rev ^= 1, swap(l->l, l->r);\n      }\n      if (r) {\n       \
-    \ r->rev ^= 1, swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  //\
-    \ update, push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001\
-    splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\
-    \u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\
-    \u3067 update, push \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\
-    \u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void set(const S& xx) {\n\
-    \    x = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev\
-    \ ^= 1;\n  }\n};\n"
+    \ a);\n  }\n  void push() {\n    if (lazy != Monoid_A::id()) {\n      if (l) {\n\
+    \        l->apply(lazy);\n      }\n      if (r) {\n        r->apply(lazy);\n \
+    \     }\n      lazy = Monoid_A::id();\n    }\n    if (rev) {\n      if (l) {\n\
+    \        l->rev ^= 1, swap(l->l, l->r);\n      }\n      if (r) {\n        r->rev\
+    \ ^= 1, swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  // update,\
+    \ push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay\
+    \ \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\
+    \u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067\
+    \ update, push \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\
+    \u3088\u3044\u3002\n  S get() { return x; }\n  void set(const S& xx) {\n    x\
+    \ = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n\
+    \  }\n};\n"
   code: "#include \"ds/piecewise_constant/piecewise_constant.hpp\"\n\n// Y_type \u306B\
     \u4F5C\u7528\u3059\u308B\uFF0C\u4F5C\u7528\u304C\u9806\u5E8F\u3092\u4FDD\u3064\
     \u3068\u3059\u308B\n// \u533A\u9593\u3067\u306E y \u306E min,max \u3092\u3068\u308C\
@@ -328,18 +328,18 @@ data:
     \  x.y_min = min(x.y_min, r->x.y_min), x.y_max = max(x.y_max, r->x.y_max);\n \
     \   }\n  }\n  void apply(const A& a) {\n    x.y = AS::act(x.y, a);\n    x.y_min\
     \ = AS::act(x.y_min, a);\n    x.y_max = AS::act(x.y_max, a);\n    lazy = AS::Monoid_A::op(lazy,\
-    \ a);\n  }\n  void push() {\n    if (lazy != Monoid_A::unit()) {\n      if (l)\
-    \ {\n        l->apply(lazy);\n      }\n      if (r) {\n        r->apply(lazy);\n\
-    \      }\n      lazy = Monoid_A::unit();\n    }\n    if (rev) {\n      if (l)\
-    \ {\n        l->rev ^= 1, swap(l->l, l->r);\n      }\n      if (r) {\n       \
-    \ r->rev ^= 1, swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  //\
-    \ update, push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001\
-    splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\
-    \u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\
-    \u3067 update, push \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\
-    \u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void set(const S& xx) {\n\
-    \    x = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev\
-    \ ^= 1;\n  }\n};\n"
+    \ a);\n  }\n  void push() {\n    if (lazy != Monoid_A::id()) {\n      if (l) {\n\
+    \        l->apply(lazy);\n      }\n      if (r) {\n        r->apply(lazy);\n \
+    \     }\n      lazy = Monoid_A::id();\n    }\n    if (rev) {\n      if (l) {\n\
+    \        l->rev ^= 1, swap(l->l, l->r);\n      }\n      if (r) {\n        r->rev\
+    \ ^= 1, swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  // update,\
+    \ push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay\
+    \ \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\
+    \u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067\
+    \ update, push \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\
+    \u3088\u3044\u3002\n  S get() { return x; }\n  void set(const S& xx) {\n    x\
+    \ = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n\
+    \  }\n};\n"
   dependsOn:
   - ds/piecewise_constant/piecewise_constant.hpp
   - ds/splaytree/splaytree.hpp
@@ -347,7 +347,7 @@ data:
   isVerificationFile: false
   path: ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
   requiredBy: []
-  timestamp: '2026-08-29 08:51:03+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp

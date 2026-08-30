@@ -382,11 +382,11 @@ data:
     #line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct Monoid_Mul {\n  using\
     \ value_type = T;\n  using X = T;\n  static constexpr X op(const X &x, const X\
     \ &y) noexcept { return x * y; }\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return X(1) / x; }\n  static constexpr X unit() { return X(1); }\n  static\
-    \ constexpr bool commute = true;\n};\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
-    \ntemplate <typename Monoid>\nstruct ActedSet_from_Monoid {\n  using Monoid_A\
-    \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
-    \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 1 \"ds/hashmap.hpp\"\
+    \ { return X(1) / x; }\n  static constexpr X id() { return X(1); }\n  static constexpr\
+    \ bool commute = true;\n};\n#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate\
+    \ <typename Monoid>\nstruct ActedSet_from_Monoid {\n  using Monoid_A = Monoid;\n\
+    \  using A = typename Monoid::value_type;\n  using S = A;\n  static S act(const\
+    \ S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 1 \"ds/hashmap.hpp\"\
     \n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
     \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
@@ -420,7 +420,7 @@ data:
     \ ll ub) {\r\n  using Mono = typename ActedSet::Monoid_A;\r\n  using X = typename\
     \ Mono::value_type;\r\n  using S = typename ActedSet::S;\r\n\r\n  if (lb >= ub)\
     \ return -1;\r\n  auto xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res =\
-    \ Mono::unit();\r\n    while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\
+    \ Mono::id();\r\n    while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\
     \n      p = Mono::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n \
     \ };\r\n\r\n  auto Ht = H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM\
     \ = ub - lb;\r\n\r\n  ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<char> MP(K);\r\n\r\
@@ -436,11 +436,11 @@ data:
     \u3092\u304B\u3048\u3059\u3001\u306A\u3051\u308C\u3070 -1\r\ntemplate <typename\
     \ Monoid, typename F>\r\nll discrete_log_monoid(typename Monoid::X a, typename\
     \ Monoid::X b, F H, ll lb,\r\n                       ll ub) {\r\n  using AM =\
-    \ ActedSet_from_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a, Monoid::unit(),\
+    \ ActedSet_from_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a, Monoid::id(),\
     \ b, H, lb, ub);\r\n}\r\n#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\n\
     struct Monoid_Mul {\n  using value_type = T;\n  using X = T;\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return x * y; }\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return X(1) / x; }\n  static constexpr X unit()\
+    \ X inverse(const X &x) noexcept { return X(1) / x; }\n  static constexpr X id()\
     \ { return X(1); }\n  static constexpr bool commute = true;\n};\n#line 4 \"mod/mod_log.hpp\"\
     \n\r\nint mod_log(int mod, ll a, ll b) {\r\n  dmint::set_mod(mod);\r\n  return\
     \ discrete_log_monoid<Monoid_Mul<dmint>>(\r\n      dmint(a), dmint(b), [](auto\
@@ -467,7 +467,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp

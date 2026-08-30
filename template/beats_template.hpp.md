@@ -13,12 +13,12 @@ data:
     \ size;\n    };\n    using value_type = X;\n    static X op(X x, X y) {\n    \
     \  if (!x.size) return y;\n      if (!y.size) return x;\n      // fail \u306F\
     \ 0 \u306E\u307E\u307E\u3002\n      return X({});\n    }\n    static constexpr\
-    \ X unit() {\n      // size \u3092 0 \u306B\u3057\u3066\u304A\u3051\u3070\u306A\
-    \u3093\u3067\u3082\u3088\u3044\n      return X({});\n    }\n    static constexpr\
-    \ bool commute = ;\n  };\n\n  struct MonoA {\n    // \u4F5C\u7528\u30E2\u30CE\u30A4\
+    \ X id() {\n      // size \u3092 0 \u306B\u3057\u3066\u304A\u3051\u3070\u306A\u3093\
+    \u3067\u3082\u3088\u3044\n      return X({});\n    }\n    static constexpr bool\
+    \ commute = ;\n  };\n\n  struct MonoA {\n    // \u4F5C\u7528\u30E2\u30CE\u30A4\
     \u30C9\u306F\u7279\u306B\u6C17\u306B\u305B\u305A\u5B9F\u88C5\n    using value_type\
     \ = ;\n    using X = value_type;\n    static X op(X x, X y) {}\n    static constexpr\
-    \ X unit() {}\n    static constexpr bool commute = ;\n  };\n\n  using MX = MonoX;\n\
+    \ X id() {}\n    static constexpr bool commute = ;\n  };\n\n  using MX = MonoX;\n\
     \  using MA = MonoA;\n  using X_structure = MX;\n  using A_structure = MA;\n \
     \ using X = typename MX::value_type;\n  using A = typename MA::value_type;\n\n\
     \  template <typename T>\n  static X from_element(T a) {\n    // fail = 0, size\
@@ -29,12 +29,12 @@ data:
     \ X {\n      bool fail;\n      int size;\n    };\n    using value_type = X;\n\
     \    static X op(X x, X y) {\n      if (!x.size) return y;\n      if (!y.size)\
     \ return x;\n      // fail \u306F 0 \u306E\u307E\u307E\u3002\n      return X({});\n\
-    \    }\n    static constexpr X unit() {\n      // size \u3092 0 \u306B\u3057\u3066\
+    \    }\n    static constexpr X id() {\n      // size \u3092 0 \u306B\u3057\u3066\
     \u304A\u3051\u3070\u306A\u3093\u3067\u3082\u3088\u3044\n      return X({});\n\
     \    }\n    static constexpr bool commute = ;\n  };\n\n  struct MonoA {\n    //\
     \ \u4F5C\u7528\u30E2\u30CE\u30A4\u30C9\u306F\u7279\u306B\u6C17\u306B\u305B\u305A\
     \u5B9F\u88C5\n    using value_type = ;\n    using X = value_type;\n    static\
-    \ X op(X x, X y) {}\n    static constexpr X unit() {}\n    static constexpr bool\
+    \ X op(X x, X y) {}\n    static constexpr X id() {}\n    static constexpr bool\
     \ commute = ;\n  };\n\n  using MX = MonoX;\n  using MA = MonoA;\n  using X_structure\
     \ = MX;\n  using A_structure = MA;\n  using X = typename MX::value_type;\n  using\
     \ A = typename MA::value_type;\n\n  template <typename T>\n  static X from_element(T\
@@ -46,7 +46,7 @@ data:
   isVerificationFile: false
   path: template/beats_template.hpp
   requiredBy: []
-  timestamp: '2026-08-17 09:25:20+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/beats_template.hpp

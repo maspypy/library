@@ -22,16 +22,16 @@ data:
     links: []
   bundledCode: "#line 1 \"alg/monoid/gcd.hpp\"\n\ntemplate <typename X>\nstruct Monoid_Gcd\
     \ {\n  using value_type = X;\n  static X op(X x, X y) { return gcd(x, y); }\n\
-    \  static constexpr X unit() { return 0; }\n  static constexpr bool commute =\
-    \ true;\n};\n"
+    \  static constexpr X id() { return 0; }\n  static constexpr bool commute = true;\n\
+    };\n"
   code: "\ntemplate <typename X>\nstruct Monoid_Gcd {\n  using value_type = X;\n \
-    \ static X op(X x, X y) { return gcd(x, y); }\n  static constexpr X unit() { return\
+    \ static X op(X x, X y) { return gcd(x, y); }\n  static constexpr X id() { return\
     \ 0; }\n  static constexpr bool commute = true;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/gcd.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1036_3.test.cpp

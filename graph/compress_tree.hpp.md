@@ -539,7 +539,7 @@ data:
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
     alg/monoid/min.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Min {\n  using X\
     \ = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X &y)\
-    \ noexcept { return min(x, y); }\n  static constexpr X unit() { return infty<E>;\
+    \ noexcept { return min(x, y); }\n  static constexpr X id() { return infty<E>;\
     \ }\n  static constexpr bool commute = true;\n};\n#line 1 \"other/bit.hpp\"\n\n\
     int popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
     \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
@@ -582,42 +582,42 @@ data:
     \ X = typename MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table()\
     \ {}\n  Sparse_Table(int n) { build(n); }\n  template <typename F>\n  Sparse_Table(int\
     \ n, F f) {\n    build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit();\
-    \ });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X\
-    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
-    \    dat[0].resize(n);\n    FOR(i, n) dat[0][i] = f(i);\n\n    FOR(i, log - 1)\
-    \ {\n      dat[i + 1].resize(len(dat[i]) - (1 << i));\n      FOR(j, len(dat[i])\
-    \ - (1 << i)) {\n        dat[i + 1][j] = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n\
-    \      }\n    }\n  }\n\n  X prod(int L, int R) const {\n    if (L == R) return\
-    \ MX::unit();\n    if (R == L + 1) return dat[0][L];\n    int k = topbit(R - L\
-    \ - 1);\n    return MX::op(dat[k][L], dat[k][R - (1 << k)]);\n  }\n\n  template\
-    \ <class F>\n  int max_right(const F check, int L) const {\n    assert(0 <= L\
-    \ && L <= n && check(MX::unit()));\n    if (L == n) return n;\n    int ok = L,\
-    \ ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok + ng) / 2;\n     \
-    \ bool bl = check(prod(L, k));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n\
-    \    }\n    return ok;\n  }\n\n  template <class F>\n  int min_left(const F check,\
-    \ int R) const {\n    assert(0 <= R && R <= n && check(MX::unit()));\n    if (R\
-    \ == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok) {\n     \
-    \ int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl) ok\
-    \ = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line 4 \"graph/fast_lca.hpp\"\
-    \n\ntemplate <typename TREE>\nstruct Fast_LCA {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>>\
-    \ seg;\n  vc<int> pos;\n\n  Fast_LCA(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
-    \    pos.resize(N);\n    vc<int> dat(2 * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n\
-    \      int b = tree.ERID(v);\n      pos[v] = a;\n      dat[a] = tree.LID[v];\n\
-    \      dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n   \
-    \ seg.build(dat);\n  }\n\n  int dist(int a, int b) const {\n    int c = LCA(a,\
-    \ b);\n    return tree.depth[a] + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n\
-    \  using WT = typename TREE::WT;\n  WT dist_weighted(int a, int b) const {\n \
-    \   int c = LCA(a, b);\n    return tree.depth_weighted[a] + tree.depth_weighted[b]\
-    \ -\n           2 * tree.depth_weighted[c];\n  }\n\n  int LCA(int a, int b) const\
-    \ {\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p,\
-    \ q + 1)];\n  }\n};\n#line 4 \"graph/compress_tree.hpp\"\n\ntemplate <typename\
-    \ TREE>\nstruct Compress_Tree {\n  FastSet FS;\n  TREE& tree;\n  Compress_Tree(TREE&\
-    \ tree) : tree(tree) {}\n\n  using GT = typename TREE::Graph_type;\n  using WT\
-    \ = typename GT::cost_type;\n\n  pair<vc<int>, GT> compress(vc<int>& V, bool sorted\
-    \ = false) {\n    return compress_impl(V, sorted,\n                         [&](int\
-    \ a, int b) -> int { return tree.LCA(a, b); });\n  }\n\n  pair<vc<int>, GT> compress_fast(vc<int>&\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
+    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
+    \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n\
+    \    FOR(i, n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
+    \ - (1 << i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j]\
+    \ = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int\
+    \ L, int R) const {\n    if (L == R) return MX::id();\n    if (R == L + 1) return\
+    \ dat[0][L];\n    int k = topbit(R - L - 1);\n    return MX::op(dat[k][L], dat[k][R\
+    \ - (1 << k)]);\n  }\n\n  template <class F>\n  int max_right(const F check, int\
+    \ L) const {\n    assert(0 <= L && L <= n && check(MX::id()));\n    if (L == n)\
+    \ return n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int\
+    \ k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n\
+    \      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n\
+    \  int min_left(const F check, int R) const {\n    assert(0 <= R && R <= n &&\
+    \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
+    \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
+    \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
+    \  }\n};\n#line 4 \"graph/fast_lca.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_LCA\
+    \ {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>> seg;\n  vc<int> pos;\n\n \
+    \ Fast_LCA(TREE& tree) : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n\
+    \    vc<int> dat(2 * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n     \
+    \ int b = tree.ERID(v);\n      pos[v] = a;\n      dat[a] = tree.LID[v];\n    \
+    \  dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n    seg.build(dat);\n\
+    \  }\n\n  int dist(int a, int b) const {\n    int c = LCA(a, b);\n    return tree.depth[a]\
+    \ + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  using WT = typename TREE::WT;\n\
+    \  WT dist_weighted(int a, int b) const {\n    int c = LCA(a, b);\n    return\
+    \ tree.depth_weighted[a] + tree.depth_weighted[b] -\n           2 * tree.depth_weighted[c];\n\
+    \  }\n\n  int LCA(int a, int b) const {\n    int p = pos[a], q = pos[b];\n   \
+    \ if (p > q) swap(p, q);\n    return tree.V[seg.prod(p, q + 1)];\n  }\n};\n#line\
+    \ 4 \"graph/compress_tree.hpp\"\n\ntemplate <typename TREE>\nstruct Compress_Tree\
+    \ {\n  FastSet FS;\n  TREE& tree;\n  Compress_Tree(TREE& tree) : tree(tree) {}\n\
+    \n  using GT = typename TREE::Graph_type;\n  using WT = typename GT::cost_type;\n\
+    \n  pair<vc<int>, GT> compress(vc<int>& V, bool sorted = false) {\n    return\
+    \ compress_impl(V, sorted,\n                         [&](int a, int b) -> int\
+    \ { return tree.LCA(a, b); });\n  }\n\n  pair<vc<int>, GT> compress_fast(vc<int>&\
     \ V, Fast_LCA<TREE>& LCA,\n                                  bool sorted = false)\
     \ {\n    return compress_impl(V, sorted,\n                         [&](int a,\
     \ int b) -> int { return LCA.LCA(a, b); });\n  }\n\n  void sort_vertices(vc<int>&\
@@ -683,7 +683,7 @@ data:
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp

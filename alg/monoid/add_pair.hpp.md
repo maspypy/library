@@ -54,12 +54,12 @@ data:
     \ Monoid_Add_Pair {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
     \  static constexpr X op(const X &x, const X &y) {\n    return {x.fi + y.fi, x.se\
     \ + y.se};\n  }\n  static constexpr X inverse(const X &x) { return {-x.fi, -x.se};\
-    \ }\n  static constexpr X unit() { return {0, 0}; }\n  static constexpr bool commute\
+    \ }\n  static constexpr X id() { return {0, 0}; }\n  static constexpr bool commute\
     \ = true;\n};\n"
   code: "\ntemplate <typename E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E,\
     \ E>;\n  using X = value_type;\n  static constexpr X op(const X &x, const X &y)\
     \ {\n    return {x.fi + y.fi, x.se + y.se};\n  }\n  static constexpr X inverse(const\
-    \ X &x) { return {-x.fi, -x.se}; }\n  static constexpr X unit() { return {0, 0};\
+    \ X &x) { return {-x.fi, -x.se}; }\n  static constexpr X id() { return {0, 0};\
     \ }\n  static constexpr bool commute = true;\n};\n"
   dependsOn: []
   isVerificationFile: false
@@ -68,7 +68,7 @@ data:
   - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/cntsum_add.hpp
   - convex/slope_trick/slope_super.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/cf702_F_splay.test.cpp

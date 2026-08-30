@@ -26,9 +26,9 @@ data:
     \ all_Y;\r\n  vc<int> pos;\r\n  // segtree data\r\n  int NX, log, size;\r\n  vc<int>\
     \ indptr;\r\n  vc<S> dat;\r\n  // fractional cascading\r\n  vc<int> to_left;\r\
     \n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y)\r\n      : SegTree_2D(len(X), [&](int\
-    \ i) -> tuple<XY, XY, S> {\r\n          return {X[i], Y[i], MX::unit()};\r\n \
-    \       }) {}\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S>& vals)\r\n     \
-    \ : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {\r\n          return {X[i],\
+    \ i) -> tuple<XY, XY, S> {\r\n          return {X[i], Y[i], MX::id()};\r\n   \
+    \     }) {}\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S>& vals)\r\n      :\
+    \ SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {\r\n          return {X[i],\
     \ Y[i], vals[i]};\r\n        }) {}\r\n\r\n  // f(i) = (x,y,val)\r\n  template\
     \ <typename F>\r\n  SegTree_2D(int N, F f) {\r\n    vc<XY> X(N), Y(N);\r\n   \
     \ vc<S> wt(N);\r\n    FOR(i, N) {\r\n      auto [a, b, c] = f(i);\r\n      X[i]\
@@ -39,7 +39,7 @@ data:
     \ = (1 << log);\r\n\r\n    vc<int> IX(N);\r\n    FOR(i, N) IX[i] = xtoi(X[i]);\r\
     \n    indptr.assign(2 * size, 0);\r\n    for (auto i: IX) {\r\n      i += size;\r\
     \n      while (i) indptr[i]++, i /= 2;\r\n    }\r\n    indptr = cumsum<int>(indptr);\r\
-    \n    dat.assign(2 * indptr.back(), MX::unit());\r\n    to_left.assign(indptr[size],\
+    \n    dat.assign(2 * indptr.back(), MX::id());\r\n    to_left.assign(indptr[size],\
     \ 0);\r\n\r\n    vc<int> ptr = indptr;\r\n    vc<int> I = argsort(Y);\r\n    pos.resize(N);\r\
     \n    FOR(i, N) pos[I[i]] = i;\r\n    for (auto raw_idx: I) {\r\n      int i =\
     \ IX[raw_idx] + size;\r\n      int j = -1;\r\n      while (i) {\r\n        int\
@@ -64,7 +64,7 @@ data:
     \  p = indptr[2 * i + 0] + lc;\r\n        i = 2 * i + 0;\r\n      } else {\r\n\
     \        p = indptr[2 * i + 1] + rc;\r\n        i = 2 * i + 1;\r\n      }\r\n\
     \    }\r\n  }\r\n\r\n  S prod(XY lx, XY rx, XY ly, XY ry) {\r\n    assert(lx <=\
-    \ rx && ly <= ry);\r\n    int L = xtoi(lx), R = xtoi(rx);\r\n    S res = MX::unit();\r\
+    \ rx && ly <= ry);\r\n    int L = xtoi(lx), R = xtoi(rx);\r\n    S res = MX::id();\r\
     \n    auto dfs = [&](auto& dfs, int i, int l, int r, int a, int b) -> void {\r\
     \n      if (a == b || R <= l || r <= L) return;\r\n      if (L <= l && r <= R)\
     \ {\r\n        res = MX::op(res, prod_i(i, a, b));\r\n        return;\r\n    \
@@ -87,7 +87,7 @@ data:
     \n    if constexpr (SMALL_X) return clamp<XY>(x - minX, 0, NX);\r\n    return\
     \ LB(keyX, x);\r\n  }\r\n\r\n  S prod_i(int i, int a, int b) {\r\n    int LID\
     \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    int off = 2 * LID;\r\n  \
-    \  int L = n + a, R = n + b;\r\n    S val = MX::unit();\r\n    while (L < R) {\r\
+    \  int L = n + a, R = n + b;\r\n    S val = MX::id();\r\n    while (L < R) {\r\
     \n      if (L & 1) val = MX::op(val, dat[off + (L++)]);\r\n      if (R & 1) val\
     \ = MX::op(dat[off + (--R)], val);\r\n      L >>= 1, R >>= 1;\r\n    }\r\n   \
     \ return val;\r\n  }\r\n  void multiply_i(int i, int j, S val) {\r\n    int LID\
@@ -107,7 +107,7 @@ data:
     \n  int NX, log, size;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\n  // fractional\
     \ cascading\r\n  vc<int> to_left;\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y)\r\n\
     \      : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {\r\n          return\
-    \ {X[i], Y[i], MX::unit()};\r\n        }) {}\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>&\
+    \ {X[i], Y[i], MX::id()};\r\n        }) {}\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>&\
     \ Y, vc<S>& vals)\r\n      : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S>\
     \ {\r\n          return {X[i], Y[i], vals[i]};\r\n        }) {}\r\n\r\n  // f(i)\
     \ = (x,y,val)\r\n  template <typename F>\r\n  SegTree_2D(int N, F f) {\r\n   \
@@ -119,7 +119,7 @@ data:
     \ < NX) ++log;\r\n    size = (1 << log);\r\n\r\n    vc<int> IX(N);\r\n    FOR(i,\
     \ N) IX[i] = xtoi(X[i]);\r\n    indptr.assign(2 * size, 0);\r\n    for (auto i:\
     \ IX) {\r\n      i += size;\r\n      while (i) indptr[i]++, i /= 2;\r\n    }\r\
-    \n    indptr = cumsum<int>(indptr);\r\n    dat.assign(2 * indptr.back(), MX::unit());\r\
+    \n    indptr = cumsum<int>(indptr);\r\n    dat.assign(2 * indptr.back(), MX::id());\r\
     \n    to_left.assign(indptr[size], 0);\r\n\r\n    vc<int> ptr = indptr;\r\n  \
     \  vc<int> I = argsort(Y);\r\n    pos.resize(N);\r\n    FOR(i, N) pos[I[i]] =\
     \ i;\r\n    for (auto raw_idx: I) {\r\n      int i = IX[raw_idx] + size;\r\n \
@@ -145,7 +145,7 @@ data:
     \ lc;\r\n        i = 2 * i + 0;\r\n      } else {\r\n        p = indptr[2 * i\
     \ + 1] + rc;\r\n        i = 2 * i + 1;\r\n      }\r\n    }\r\n  }\r\n\r\n  S prod(XY\
     \ lx, XY rx, XY ly, XY ry) {\r\n    assert(lx <= rx && ly <= ry);\r\n    int L\
-    \ = xtoi(lx), R = xtoi(rx);\r\n    S res = MX::unit();\r\n    auto dfs = [&](auto&\
+    \ = xtoi(lx), R = xtoi(rx);\r\n    S res = MX::id();\r\n    auto dfs = [&](auto&\
     \ dfs, int i, int l, int r, int a, int b) -> void {\r\n      if (a == b || R <=\
     \ l || r <= L) return;\r\n      if (L <= l && r <= R) {\r\n        res = MX::op(res,\
     \ prod_i(i, a, b));\r\n        return;\r\n      }\r\n      int la = to_left[indptr[i]\
@@ -168,7 +168,7 @@ data:
     \ return clamp<XY>(x - minX, 0, NX);\r\n    return LB(keyX, x);\r\n  }\r\n\r\n\
     \  S prod_i(int i, int a, int b) {\r\n    int LID = indptr[i], n = indptr[i +\
     \ 1] - indptr[i];\r\n    int off = 2 * LID;\r\n    int L = n + a, R = n + b;\r\
-    \n    S val = MX::unit();\r\n    while (L < R) {\r\n      if (L & 1) val = MX::op(val,\
+    \n    S val = MX::id();\r\n    while (L < R) {\r\n      if (L & 1) val = MX::op(val,\
     \ dat[off + (L++)]);\r\n      if (R & 1) val = MX::op(dat[off + (--R)], val);\r\
     \n      L >>= 1, R >>= 1;\r\n    }\r\n    return val;\r\n  }\r\n  void multiply_i(int\
     \ i, int j, S val) {\r\n    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\
@@ -182,7 +182,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_2d.hpp
   requiredBy: []
-  timestamp: '2024-01-26 19:43:43+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/seg2d.test.cpp

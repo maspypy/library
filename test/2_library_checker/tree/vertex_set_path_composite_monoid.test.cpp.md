@@ -271,8 +271,8 @@ data:
     \ * y.first + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n \
     \   auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static\
     \ constexpr K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n\
-    \  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr\
-    \ bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
+    \  }\n  static constexpr F id() { return {K(1), K(0)}; }\n  static constexpr bool\
+    \ commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
     \n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
     \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
     \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
@@ -392,11 +392,11 @@ data:
     \ MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\
     \n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int\
     \ n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n\
-    \  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n\
-    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
+    \  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n \
+    \ }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
     \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
     \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, MX::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
+    \ << 1, MX::id());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
     \ update(i);\n  }\n\n  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all()\
     \ const { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
     \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
@@ -404,32 +404,32 @@ data:
     \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
     \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
     \  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n   \
-    \ X vl = Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n   \
-    \ while (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R\
-    \ & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return\
-    \ Monoid::op(vl, vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0\
-    \ <= L && L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n \
-    \   while (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n\
-    \      L >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n   \
-    \ return I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class\
-    \ F>\n  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n &&\
-    \ check(Monoid::unit()));\n    if (L == n) return n;\n    L += size;\n    X sm\
-    \ = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm,\
-    \ dat[L]))) {\n        while (L < size) {\n          L = 2 * L;\n          if\
-    \ (check(Monoid::op(sm, dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n\
-    \          }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
-    \ dat[L++]);\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
-    \ F>\n  int min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
-    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
+    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
+    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
+    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L &&\
+    \ L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while\
+    \ (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L\
+    \ >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return\
+    \ I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class F>\n\
+    \  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n\
+    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n\
+    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
+    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
+    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
+    \ min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n\
+    \      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
     \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
     \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
     \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
     \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r}\
     \ A[i xor x]\n  X xor_prod(int l, int r, int xor_val) const {\n    static_assert(Monoid::commute);\n\
-    \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
-    \ (l >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >>\
-    \ k) + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
+    \    X x = Monoid::id();\n    for (int k = 0; k < log + 1; ++k) {\n      if (l\
+    \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
+    \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
     \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"graph/tree.hpp\"\n\n#line 1\
     \ \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap\
@@ -651,19 +651,19 @@ data:
     alg/monoid/monoid_reverse.hpp\"\n\ntemplate <class Monoid>\nstruct Monoid_Reverse\
     \ {\n  using value_type = typename Monoid::value_type;\n  using X = value_type;\n\
     \  static constexpr X op(const X &x, const X &y) { return Monoid::op(y, x); }\n\
-    \  static constexpr X unit() { return Monoid::unit(); }\n  static const bool commute\
+    \  static constexpr X id() { return Monoid::id(); }\n  static const bool commute\
     \ = Monoid::commute;\n};\n#line 5 \"graph/ds/tree_monoid.hpp\"\n\ntemplate <typename\
     \ TREE, typename Monoid, bool edge>\nstruct Tree_Monoid {\n  using MX = Monoid;\n\
     \  using X = typename MX::value_type;\n  TREE &tree;\n  int N;\n  SegTree<MX>\
     \ seg;\n  SegTree<Monoid_Reverse<MX>> seg_r;\n\n  Tree_Monoid(TREE &tree) : tree(tree),\
-    \ N(tree.N) {\n    build([](int i) -> X { return MX::unit(); });\n  }\n\n  Tree_Monoid(TREE\
+    \ N(tree.N) {\n    build([](int i) -> X { return MX::id(); });\n  }\n\n  Tree_Monoid(TREE\
     \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\n    build([&](int i) -> X { return\
     \ dat[i]; });\n  }\n\n  template <typename F>\n  Tree_Monoid(TREE &tree, F f)\
     \ : tree(tree), N(tree.N) {\n    build(f);\n  }\n\n  template <typename F>\n \
     \ void build(F f) {\n    if (!edge) {\n      auto f_v = [&](int i) -> X { return\
     \ f(tree.V[i]); };\n      seg.build(N, f_v);\n      if constexpr (!MX::commute)\
     \ {\n        seg_r.build(N, f_v);\n      }\n    } else {\n      auto f_e = [&](int\
-    \ i) -> X {\n        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\n\
+    \ i) -> X {\n        return (i == 0 ? MX::id() : f(tree.v_to_e(tree.V[i])));\n\
     \      };\n      seg.build(N, f_e);\n      if constexpr (!MX::commute) {\n   \
     \     seg_r.build(N, f_e);\n      }\n    }\n  }\n\n  void set(int i, X x) {\n\
     \    if constexpr (edge) i = tree.e_to_v(i);\n    i = tree.LID[i];\n    seg.set(i,\
@@ -671,14 +671,14 @@ data:
     \ i, X x) {\n    if constexpr (edge) i = tree.e_to_v(i);\n    i = tree.LID[i];\n\
     \    seg.multiply(i, x);\n    if constexpr (!MX::commute) seg_r.multiply(i, x);\n\
     \  }\n\n  X prod_path(int u, int v) {\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\n    X val = MX::unit();\n    for (auto &&[a, b] : pd) {\n      val\
+    \ v, edge);\n    X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      val\
     \ = MX::op(val, _get_prod(a, b));\n    }\n    return val;\n  }\n\n  // uv path\
     \ \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\u305F\u3059\u6700\u5F8C\
     \u306E x\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A path(u,u) \u304C\
     \ ng \uFF09-1\n  template <class F>\n  int max_path(F check, int u, int v) {\n\
     \    if constexpr (edge) return max_path_edge(check, u, v);\n    if (!check(prod_path(u,\
     \ u))) return -1;\n    auto pd = tree.get_path_decomposition(u, v, edge);\n  \
-    \  X val = MX::unit();\n    for (auto &&[a, b] : pd) {\n      X x = _get_prod(a,\
+    \  X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      X x = _get_prod(a,\
     \ b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val, x);\n   \
     \     u = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp = [&](X\
     \ x) -> bool { return check(MX::op(val, x)); };\n      if (a <= b) {\n       \
@@ -697,10 +697,10 @@ data:
     \      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\n    }\n   \
     \ return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\n  }\n\n private:\n\
     \  template <class F>\n  int max_path_edge(F check, int u, int v) {\n    static_assert(edge);\n\
-    \    if (!check(MX::unit())) return -1;\n    int lca = tree.lca(u, v);\n    auto\
-    \ pd = tree.get_path_decomposition(u, lca, edge);\n    X val = MX::unit();\n\n\
-    \    // climb\n    for (auto &&[a, b] : pd) {\n      assert(a >= b);\n      X\
-    \ x = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
+    \    if (!check(MX::id())) return -1;\n    int lca = tree.lca(u, v);\n    auto\
+    \ pd = tree.get_path_decomposition(u, lca, edge);\n    X val = MX::id();\n\n \
+    \   // climb\n    for (auto &&[a, b] : pd) {\n      assert(a >= b);\n      X x\
+    \ = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
     \ x);\n        u = (tree.parent[tree.V[b]]);\n        continue;\n      }\n   \
     \   auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x)); };\n   \
     \   int i = 0;\n      if constexpr (MX::commute) i = seg.min_left(check_tmp, a\
@@ -750,7 +750,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp

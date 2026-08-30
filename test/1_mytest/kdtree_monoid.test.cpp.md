@@ -125,7 +125,7 @@ data:
     \ xmax, ymin, ymax] = closed_range[idx];\r\n    xmin = ymin = infty<XY>;\r\n \
     \   xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i, n) {\r\n      auto x = xs[i],\
     \ y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin, y), chmax(ymax,\
-    \ y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n      X x = MX::unit();\r\
+    \ y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n      X x = MX::id();\r\
     \n      for (auto&& v: vs) x = MX::op(x, v);\r\n      dat[idx] = x;\r\n      return;\r\
     \n    }\r\n\r\n    int m = n / 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\
     \n    if (divx) {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\n\
@@ -148,16 +148,16 @@ data:
     \ x, y, v)) done = 1;\r\n    if (done) { dat[idx] = MX::op(dat[2 * idx + 0], dat[2\
     \ * idx + 1]); }\r\n    return done;\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1,\
     \ XY x2, XY y1, XY y2) {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
-    \n    if (x2 <= xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin ||\
-    \ ymax < y1) return MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin\
-    \ && ymax < y2) { return dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0,\
-    \ x1, x2, y1, y2),\r\n                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\
-    \n  }\r\n};\r\n#line 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
-    \ Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
-    \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
-    \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
-    \ {E(0), -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \n    if (x2 <= xmin || xmax < x1) return MX::id();\r\n    if (y2 <= ymin || ymax\
+    \ < y1) return MX::id();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax\
+    \ < y2) { return dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2,\
+    \ y1, y2),\r\n                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\
+    \n};\r\n#line 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct Monoid_SumMax\
+    \ {\n  using value_type = pair<E, E>;\n  using X = value_type;\n  static X op(X\
+    \ x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static X from_element(E\
+    \ e) { return {e, e}; }\n  static constexpr X id() { return {E(0), -infty<E>};\
+    \ }\n  static constexpr bool commute = 1;\n};\n#line 1 \"random/base.hpp\"\n\n\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/kdtree_monoid.test.cpp\"\n\n\
@@ -171,10 +171,10 @@ data:
     \ yr);\n    if (t == 0) {\n      // multiply\n      int k = RNG(0, N);\n     \
     \ int x = X[k], y = Y[k];\n      int v = RNG(0, 100);\n      dat[x][y].eb(v);\n\
     \      KDT.multiply(x, y, {v, v});\n    }\n    if (t == 1) {\n      // prod\n\
-    \      int sm = 0, mx = MX::unit().se;\n      FOR(i, xl, xr) FOR(j, yl, yr) {\n\
+    \      int sm = 0, mx = MX::id().se;\n      FOR(i, xl, xr) FOR(j, yl, yr) {\n\
     \        for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);\n      }\n      auto\
     \ res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi == sm && res.se == mx);\n\
-    \    }\n    if (t == 2) {\n      // prod all\n      int sm = 0, mx = MX::unit().se;\n\
+    \    }\n    if (t == 2) {\n      // prod all\n      int sm = 0, mx = MX::id().se;\n\
     \      FOR(i, LIM) FOR(j, LIM) {\n        for (auto&& x: dat[i][j]) sm += x, chmax(mx,\
     \ x);\n      }\n      auto res = KDT.prod_all();\n      assert(res.fi == sm &&\
     \ res.se == mx);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
@@ -192,11 +192,11 @@ data:
     \ swap(xl, xr);\n    if (yl > yr) swap(yl, yr);\n    if (t == 0) {\n      // multiply\n\
     \      int k = RNG(0, N);\n      int x = X[k], y = Y[k];\n      int v = RNG(0,\
     \ 100);\n      dat[x][y].eb(v);\n      KDT.multiply(x, y, {v, v});\n    }\n  \
-    \  if (t == 1) {\n      // prod\n      int sm = 0, mx = MX::unit().se;\n     \
-    \ FOR(i, xl, xr) FOR(j, yl, yr) {\n        for (auto&& x: dat[i][j]) sm += x,\
-    \ chmax(mx, x);\n      }\n      auto res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi\
+    \  if (t == 1) {\n      // prod\n      int sm = 0, mx = MX::id().se;\n      FOR(i,\
+    \ xl, xr) FOR(j, yl, yr) {\n        for (auto&& x: dat[i][j]) sm += x, chmax(mx,\
+    \ x);\n      }\n      auto res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi\
     \ == sm && res.se == mx);\n    }\n    if (t == 2) {\n      // prod all\n     \
-    \ int sm = 0, mx = MX::unit().se;\n      FOR(i, LIM) FOR(j, LIM) {\n        for\
+    \ int sm = 0, mx = MX::id().se;\n      FOR(i, LIM) FOR(j, LIM) {\n        for\
     \ (auto&& x: dat[i][j]) sm += x, chmax(mx, x);\n      }\n      auto res = KDT.prod_all();\n\
     \      assert(res.fi == sm && res.se == mx);\n    }\n  }\n}\n\nvoid solve() {\n\
     \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
@@ -209,7 +209,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_monoid.test.cpp

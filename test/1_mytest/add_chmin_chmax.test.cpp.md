@@ -117,13 +117,13 @@ data:
     \ b, c] = f;\n    return max(min(x + a, b), c);\n  }\n\n  static X add(E a) {\
     \ return {a, infty<E>, -infty<E>}; }\n  static X chmin(E b) { return {0, b, -infty<E>};\
     \ }\n  static X chmax(E c) { return {0, infty<E>, c}; }\n\n  static constexpr\
-    \ X unit() { return {0, infty<E>, -infty<E>}; }\n  static constexpr bool commute\
+    \ X id() { return {0, infty<E>, -infty<E>}; }\n  static constexpr bool commute\
     \ = 0;\n};\n#line 5 \"test/1_mytest/add_chmin_chmax.test.cpp\"\n\nvoid test()\
     \ {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(-100, 100);\n\
     \  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin_Chmax<int>;\n\
-    \  using F = typename Mono::value_type;\n  F f = Mono::unit();\n\n  FOR(Q) {\n\
-    \    int t = RNG(0, 3);\n    int a = RNG(-100, 100);\n    if (t == 0) {\n    \
-    \  FOR(i, N) Y[i] += a;\n      f = Mono::op(f, Mono::add(a));\n    }\n    if (t\
+    \  using F = typename Mono::value_type;\n  F f = Mono::id();\n\n  FOR(Q) {\n \
+    \   int t = RNG(0, 3);\n    int a = RNG(-100, 100);\n    if (t == 0) {\n     \
+    \ FOR(i, N) Y[i] += a;\n      f = Mono::op(f, Mono::add(a));\n    }\n    if (t\
     \ == 1) {\n      FOR(i, N) chmin(Y[i], a);\n      f = Mono::op(f, Mono::chmin(a));\n\
     \    }\n    if (t == 2) {\n      FOR(i, N) chmax(Y[i], a);\n      f = Mono::op(f,\
     \ Mono::chmax(a));\n    }\n  }\n  FOR(i, N) assert(Y[i] == Mono::eval(f, X[i]));\n\
@@ -133,9 +133,9 @@ data:
     \n#include \"random/base.hpp\"\n#include \"alg/monoid/add_chmin_chmax.hpp\"\n\n\
     void test() {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(-100,\
     \ 100);\n  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin_Chmax<int>;\n\
-    \  using F = typename Mono::value_type;\n  F f = Mono::unit();\n\n  FOR(Q) {\n\
-    \    int t = RNG(0, 3);\n    int a = RNG(-100, 100);\n    if (t == 0) {\n    \
-    \  FOR(i, N) Y[i] += a;\n      f = Mono::op(f, Mono::add(a));\n    }\n    if (t\
+    \  using F = typename Mono::value_type;\n  F f = Mono::id();\n\n  FOR(Q) {\n \
+    \   int t = RNG(0, 3);\n    int a = RNG(-100, 100);\n    if (t == 0) {\n     \
+    \ FOR(i, N) Y[i] += a;\n      f = Mono::op(f, Mono::add(a));\n    }\n    if (t\
     \ == 1) {\n      FOR(i, N) chmin(Y[i], a);\n      f = Mono::op(f, Mono::chmin(a));\n\
     \    }\n    if (t == 2) {\n      FOR(i, N) chmax(Y[i], a);\n      f = Mono::op(f,\
     \ Mono::chmax(a));\n    }\n  }\n  FOR(i, N) assert(Y[i] == Mono::eval(f, X[i]));\n\
@@ -148,7 +148,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/add_chmin_chmax.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/add_chmin_chmax.test.cpp

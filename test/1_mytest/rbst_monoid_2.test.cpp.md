@@ -125,8 +125,8 @@ data:
     \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
     \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
     \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
-    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
-    \  static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
+    \ * x + f.second;\n  }\n  static constexpr F id() { return {K(1), K(0)}; }\n \
+    \ static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
     \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
@@ -286,8 +286,8 @@ data:
     \  tuple<np, np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n \
     \   tie(root, d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n\
     \    return {a, b, c, d};\n  }\n\n  X prod(np root, u32 l, u32 r) {\n    if (l\
-    \ == r) return Monoid::unit();\n    return prod_rec(root, l, r, false);\n  }\n\
-    \  X prod(np root) { return (root ? root->prod : Monoid::unit()); }\n\n  np reverse(np\
+    \ == r) return Monoid::id();\n    return prod_rec(root, l, r, false);\n  }\n \
+    \ X prod(np root) { return (root ? root->prod : Monoid::id()); }\n\n  np reverse(np\
     \ root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n  \
     \  if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
     \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    swap(nm->prod, nm->rev_prod);\n\
@@ -299,7 +299,7 @@ data:
     \ (rev ? root->r : root->l), rev ^ root->rev);\n      res.eb(root->x);\n     \
     \ dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev);\n    };\n    dfs(dfs,\
     \ root, 0);\n    return res;\n  }\n\n  template <typename F>\n  pair<np, np> split_max_right(np\
-    \ root, const F check) {\n    assert(check(Monoid::unit()));\n    X x = Monoid::unit();\n\
+    \ root, const F check) {\n    assert(check(Monoid::id()));\n    X x = Monoid::id();\n\
     \    return split_max_right_rec(root, check, x);\n  }\n\n private:\n  inline u32\
     \ xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n \
     \   static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x\
@@ -348,8 +348,8 @@ data:
     \ root, u32 l, u32 r, bool rev) {\n    if (l == 0 && r == root->size) {\n    \
     \  return (rev ? root->rev_prod : root->prod);\n    }\n    np left = (rev ? root->r\
     \ : root->l);\n    np right = (rev ? root->l : root->r);\n    u32 sl = (left ?\
-    \ left->size : 0);\n    X res = Monoid::unit();\n    if (l < sl) {\n      X y\
-    \ = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n      res = Monoid::op(res,\
+    \ left->size : 0);\n    X res = Monoid::id();\n    if (l < sl) {\n      X y =\
+    \ prod_rec(left, l, min(r, sl), rev ^ root->rev);\n      res = Monoid::op(res,\
     \ y);\n    }\n    if (l <= sl && sl < r) res = Monoid::op(res, root->x);\n   \
     \ u32 k = 1 + sl;\n    if (k < r) {\n      X y = prod_rec(right, max(k, l) - k,\
     \ r - k, rev ^ root->rev);\n      res = Monoid::op(res, y);\n    }\n    return\
@@ -386,14 +386,14 @@ data:
     \ = X.multiply(root, i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n    \
     \  if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n   \
     \     if (L > R) swap(L, R);\n        ++R;\n        vc<T> B = {A.begin() + L,\
-    \ A.begin() + R};\n        T t = Mono::unit();\n        for (auto&& b : B) t =\
-    \ Mono::op(t, b);\n        assert(X.prod(root, L, R) == t);\n      }\n      if\
-    \ (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n       \
-    \ if (L > R) swap(L, R);\n        ++R;\n        root = X.reverse(root, L, R);\n\
-    \        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t == 5) {\n\
-    \        vc<T> B = X.get_all(root);\n        assert(A == B);\n      }\n    }\n\
-    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ A.begin() + R};\n        T t = Mono::id();\n        for (auto&& b : B) t = Mono::op(t,\
+    \ b);\n        assert(X.prod(root, L, R) == t);\n      }\n      if (t == 4) {\n\
+    \        int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
+    \ R);\n        ++R;\n        root = X.reverse(root, L, R);\n        reverse(A.begin()\
+    \ + L, A.begin() + R);\n      }\n      if (t == 5) {\n        vc<T> B = X.get_all(root);\n\
+    \        assert(A == B);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
     ds/randomized_bst/rbst_monoid.hpp\"\n#include \"random/base.hpp\"\n\nusing mint\
@@ -411,8 +411,8 @@ data:
     \ i, x);\n        A[i] = Mono::op(A[i], x);\n      }\n      if (t == 3) {\n  \
     \      int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
     \ R);\n        ++R;\n        vc<T> B = {A.begin() + L, A.begin() + R};\n     \
-    \   T t = Mono::unit();\n        for (auto&& b : B) t = Mono::op(t, b);\n    \
-    \    assert(X.prod(root, L, R) == t);\n      }\n      if (t == 4) {\n        int\
+    \   T t = Mono::id();\n        for (auto&& b : B) t = Mono::op(t, b);\n      \
+    \  assert(X.prod(root, L, R) == t);\n      }\n      if (t == 4) {\n        int\
     \ L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n\
     \        ++R;\n        root = X.reverse(root, L, R);\n        reverse(A.begin()\
     \ + L, A.begin() + R);\n      }\n      if (t == 5) {\n        vc<T> B = X.get_all(root);\n\
@@ -431,7 +431,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid_2.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_2.test.cpp

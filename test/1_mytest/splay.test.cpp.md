@@ -127,8 +127,8 @@ data:
     \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
     \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
     \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
-    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
-    \  static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
+    \ * x + f.second;\n  }\n  static constexpr F id() { return {K(1), K(0)}; }\n \
+    \ static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
     \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
@@ -321,14 +321,14 @@ data:
     \  void multiply(np &root, u32 k, const X &x) {\n    assert(root != nullptr &&\
     \ !root->p);\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\n  X prod(np\
     \ &root, u32 l, u32 r) {\n    assert(root == nullptr || !root->p);\n    using\
-    \ Mono = typename Node::Monoid_X;\n    if (l == r) return Mono::unit();\n    assert(0\
+    \ Mono = typename Node::Monoid_X;\n    if (l == r) return Mono::id();\n    assert(0\
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    X res\
     \ = root->prod;\n    splay(root, true);\n    return res;\n  }\n\n  X prod(np &root)\
     \ {\n    assert(root == nullptr || !root->p);\n    using Mono = typename Node::Monoid_X;\n\
-    \    return (root ? root->prod : Mono::unit());\n  }\n\n  void apply(np &root,\
-    \ u32 l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l\
-    \ < r && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n\
-    \    splay(root, true);\n  }\n  void apply(np &root, const A &a) {\n    if (!root)\
+    \    return (root ? root->prod : Mono::id());\n  }\n\n  void apply(np &root, u32\
+    \ l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l < r\
+    \ && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n \
+    \   splay(root, true);\n  }\n  void apply(np &root, const A &a) {\n    if (!root)\
     \ return;\n    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r)\
     \ {\n    assert(root == nullptr || !root->p);\n    if (l == r) return;\n    assert(0\
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
@@ -394,7 +394,7 @@ data:
     \ n += k;\n        root = root->r;\n      } else {\n        root = root->l;\n\
     \      }\n    }\n    splay(last, true);\n    return last_ok;\n  }\n\n  template\
     \ <typename F>\n  np find_max_right_prod(np root, const F &check) {\n    using\
-    \ Mono = typename Node::Monoid_X;\n    X prod = Mono::unit();\n    // \u6700\u5F8C\
+    \ Mono = typename Node::Monoid_X;\n    X prod = Mono::id();\n    // \u6700\u5F8C\
     \u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\
     \u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root)\
     \ {\n      last = root;\n      root->push();\n      np tmp = root->r;\n      root->r\
@@ -440,7 +440,7 @@ data:
     \    A[i] = x;\n        ST.set(root, i, x);\n      }\n      if (t == 1) {\n  \
     \      // reverse\n        auto [l, r] = get_lr(N);\n        reverse(A.begin()\
     \ + l, A.begin() + r);\n        ST.reverse(root, l, r);\n      }\n      if (t\
-    \ == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n        X a = Mono::unit();\n\
+    \ == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n        X a = Mono::id();\n\
     \        FOR(i, l, r) a = Mono::op(a, A[i]);\n        X b = ST.prod(root, l, r);\n\
     \        assert(a == b);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
     \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
@@ -460,7 +460,7 @@ data:
     \ = rnd_X();\n        A[i] = x;\n        ST.set(root, i, x);\n      }\n      if\
     \ (t == 1) {\n        // reverse\n        auto [l, r] = get_lr(N);\n        reverse(A.begin()\
     \ + l, A.begin() + r);\n        ST.reverse(root, l, r);\n      }\n      if (t\
-    \ == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n        X a = Mono::unit();\n\
+    \ == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n        X a = Mono::id();\n\
     \        FOR(i, l, r) a = Mono::op(a, A[i]);\n        X b = ST.prod(root, l, r);\n\
     \        assert(a == b);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
     \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
@@ -478,7 +478,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/splay.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/splay.test.cpp

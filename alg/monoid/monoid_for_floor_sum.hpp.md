@@ -48,10 +48,10 @@ data:
     \      }\n    }\n    // +dx\n    FOR(j, K2 + 1) {\n      FOR_R(i, K1 + 1) { FOR(k,\
     \ i, K1 + 1) a.dp[k][j] += comb[k][i] * pow_x[k - i] * b.dp[i][j]; }\n    }\n\n\
     \    a.dx += b.dx, a.dy += b.dy;\n    return a;\n  }\n\n  static X to_x() {\n\
-    \    X x = unit();\n    x.dp[0][0] = 1, x.dx = 1;\n    return x;\n  }\n  static\
-    \ X to_y() {\n    X x = unit();\n    x.dy = 1;\n    return x;\n  }\n  static constexpr\
-    \ X unit() { return {ARR{}, T(0), T(0)}; }\n  static constexpr bool commute =\
-    \ 0;\n};\n"
+    \    X x = id();\n    x.dp[0][0] = 1, x.dx = 1;\n    return x;\n  }\n  static\
+    \ X to_y() {\n    X x = id();\n    x.dy = 1;\n    return x;\n  }\n  static constexpr\
+    \ X id() { return {ARR{}, T(0), T(0)}; }\n  static constexpr bool commute = 0;\n\
+    };\n"
   code: "// sum i^k1floor^k2: floor path \u3067 (x,y) \u304B\u3089 x \u65B9\u5411\u306B\
     \u9032\u3080\u3068\u304D\u306B x^k1y^k2 \u3092\u8DB3\u3059\ntemplate <typename\
     \ T, int K1, int K2>\nstruct Monoid_for_floor_sum {\n  using ARR = array<array<T,\
@@ -67,9 +67,9 @@ data:
     \ 1) b.dp[i][k] += comb[k][j] * pow_y[k - j] * x;\n      }\n    }\n    // +dx\n\
     \    FOR(j, K2 + 1) {\n      FOR_R(i, K1 + 1) { FOR(k, i, K1 + 1) a.dp[k][j] +=\
     \ comb[k][i] * pow_x[k - i] * b.dp[i][j]; }\n    }\n\n    a.dx += b.dx, a.dy +=\
-    \ b.dy;\n    return a;\n  }\n\n  static X to_x() {\n    X x = unit();\n    x.dp[0][0]\
-    \ = 1, x.dx = 1;\n    return x;\n  }\n  static X to_y() {\n    X x = unit();\n\
-    \    x.dy = 1;\n    return x;\n  }\n  static constexpr X unit() { return {ARR{},\
+    \ b.dy;\n    return a;\n  }\n\n  static X to_x() {\n    X x = id();\n    x.dp[0][0]\
+    \ = 1, x.dx = 1;\n    return x;\n  }\n  static X to_y() {\n    X x = id();\n \
+    \   x.dy = 1;\n    return x;\n  }\n  static constexpr X id() { return {ARR{},\
     \ T(0), T(0)}; }\n  static constexpr bool commute = 0;\n};\n"
   dependsOn: []
   isVerificationFile: false
@@ -78,7 +78,7 @@ data:
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp

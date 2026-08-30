@@ -20,12 +20,12 @@ data:
     \u308C\u3066\u3044\u308B\u5FC5\u8981\u3042\u308A.\ntemplate <typename Monoid>\n\
     struct Double_Ended_Queue_Const_Add {\n  using MX = Monoid;\n  using T = typename\
     \ MX::value_type;\n  vector<T> dat;\n  T add;\n\n  Double_Ended_Queue_Const_Add()\
-    \ : add(MX::unit()) {}\n  Double_Ended_Queue_Const_Add(vc<T>& A) : add(MX::unit())\
+    \ : add(MX::id()) {}\n  Double_Ended_Queue_Const_Add(vc<T>& A) : add(MX::id())\
     \ { build(A); }\n\n  int size() { return dat.size(); }\n  bool empty() { return\
     \ dat.empty(); }\n  T min() { return MX::op(dat[0], add); }\n  T max() { return\
     \ MX::op(add, (len(dat) == 1 ? dat[0] : dat[1])); }\n\n  void build(vc<T>& A)\
-    \ {\n    add = MX::unit();\n    dat = A;\n    int n = len(dat);\n    FOR_R(i,\
-    \ n) { down(i); }\n  }\n  void clear() {\n    dat.clear(), dat.shrink_to_fit();\n\
+    \ {\n    add = MX::id();\n    dat = A;\n    int n = len(dat);\n    FOR_R(i, n)\
+    \ { down(i); }\n  }\n  void clear() {\n    dat.clear(), dat.shrink_to_fit();\n\
     \    add = 0;\n  }\n\n  void push(T x) { dat.eb(x - add), up(); }\n\n  T pop_min()\
     \ {\n    assert(!dat.empty());\n    swap(dat[0], dat.back());\n    T res = POP(dat);\n\
     \    down(0);\n    return res + add;\n  }\n\n  T pop_max() {\n    assert(!dat.empty());\n\
@@ -56,11 +56,11 @@ data:
     \ operator< \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\u308B\u5FC5\u8981\u3042\
     \u308A.\ntemplate <typename Monoid>\nstruct Double_Ended_Queue_Const_Add {\n \
     \ using MX = Monoid;\n  using T = typename MX::value_type;\n  vector<T> dat;\n\
-    \  T add;\n\n  Double_Ended_Queue_Const_Add() : add(MX::unit()) {}\n  Double_Ended_Queue_Const_Add(vc<T>&\
-    \ A) : add(MX::unit()) { build(A); }\n\n  int size() { return dat.size(); }\n\
-    \  bool empty() { return dat.empty(); }\n  T min() { return MX::op(dat[0], add);\
-    \ }\n  T max() { return MX::op(add, (len(dat) == 1 ? dat[0] : dat[1])); }\n\n\
-    \  void build(vc<T>& A) {\n    add = MX::unit();\n    dat = A;\n    int n = len(dat);\n\
+    \  T add;\n\n  Double_Ended_Queue_Const_Add() : add(MX::id()) {}\n  Double_Ended_Queue_Const_Add(vc<T>&\
+    \ A) : add(MX::id()) { build(A); }\n\n  int size() { return dat.size(); }\n  bool\
+    \ empty() { return dat.empty(); }\n  T min() { return MX::op(dat[0], add); }\n\
+    \  T max() { return MX::op(add, (len(dat) == 1 ? dat[0] : dat[1])); }\n\n  void\
+    \ build(vc<T>& A) {\n    add = MX::id();\n    dat = A;\n    int n = len(dat);\n\
     \    FOR_R(i, n) { down(i); }\n  }\n  void clear() {\n    dat.clear(), dat.shrink_to_fit();\n\
     \    add = 0;\n  }\n\n  void push(T x) { dat.eb(x - add), up(); }\n\n  T pop_min()\
     \ {\n    assert(!dat.empty());\n    swap(dat[0], dat.back());\n    T res = POP(dat);\n\
@@ -92,7 +92,7 @@ data:
   path: ds/double_ended_queue_const_add.hpp
   requiredBy:
   - convex/slope_trick/slope_trick_1.hpp
-  timestamp: '2026-08-17 18:40:13+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1077_2.test.cpp

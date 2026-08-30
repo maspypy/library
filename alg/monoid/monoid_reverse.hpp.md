@@ -65,12 +65,12 @@ data:
   bundledCode: "#line 1 \"alg/monoid/monoid_reverse.hpp\"\n\ntemplate <class Monoid>\n\
     struct Monoid_Reverse {\n  using value_type = typename Monoid::value_type;\n \
     \ using X = value_type;\n  static constexpr X op(const X &x, const X &y) { return\
-    \ Monoid::op(y, x); }\n  static constexpr X unit() { return Monoid::unit(); }\n\
-    \  static const bool commute = Monoid::commute;\n};\n"
+    \ Monoid::op(y, x); }\n  static constexpr X id() { return Monoid::id(); }\n  static\
+    \ const bool commute = Monoid::commute;\n};\n"
   code: "\ntemplate <class Monoid>\nstruct Monoid_Reverse {\n  using value_type =\
     \ typename Monoid::value_type;\n  using X = value_type;\n  static constexpr X\
     \ op(const X &x, const X &y) { return Monoid::op(y, x); }\n  static constexpr\
-    \ X unit() { return Monoid::unit(); }\n  static const bool commute = Monoid::commute;\n\
+    \ X id() { return Monoid::id(); }\n  static const bool commute = Monoid::commute;\n\
     };\n"
   dependsOn: []
   isVerificationFile: false
@@ -80,7 +80,7 @@ data:
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_monoid.hpp
   - graph/ds/static_tree_monoid.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/mo_on_tree.test.cpp

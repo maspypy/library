@@ -121,7 +121,7 @@ data:
     \ abs(a);\n}\n#endif\n#line 1 \"alg/monoid/assign.hpp\"\n\ntemplate <typename\
     \ X, int none_val>\nstruct Monoid_Assign {\n  using value_type = X;\n  static\
     \ X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static constexpr X\
-    \ unit() { return X(none_val); }\n  static constexpr bool commute = false;\n};\n\
+    \ id() { return X(none_val); }\n  static constexpr bool commute = false;\n};\n\
     #line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
     \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
@@ -281,8 +281,8 @@ data:
     \  tuple<np, np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n \
     \   tie(root, d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n\
     \    return {a, b, c, d};\n  }\n\n  X prod(np root, u32 l, u32 r) {\n    if (l\
-    \ == r) return Monoid::unit();\n    return prod_rec(root, l, r, false);\n  }\n\
-    \  X prod(np root) { return (root ? root->prod : Monoid::unit()); }\n\n  np reverse(np\
+    \ == r) return Monoid::id();\n    return prod_rec(root, l, r, false);\n  }\n \
+    \ X prod(np root) { return (root ? root->prod : Monoid::id()); }\n\n  np reverse(np\
     \ root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n  \
     \  if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
     \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    swap(nm->prod, nm->rev_prod);\n\
@@ -294,7 +294,7 @@ data:
     \ (rev ? root->r : root->l), rev ^ root->rev);\n      res.eb(root->x);\n     \
     \ dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev);\n    };\n    dfs(dfs,\
     \ root, 0);\n    return res;\n  }\n\n  template <typename F>\n  pair<np, np> split_max_right(np\
-    \ root, const F check) {\n    assert(check(Monoid::unit()));\n    X x = Monoid::unit();\n\
+    \ root, const F check) {\n    assert(check(Monoid::id()));\n    X x = Monoid::id();\n\
     \    return split_max_right_rec(root, check, x);\n  }\n\n private:\n  inline u32\
     \ xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n \
     \   static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x\
@@ -343,8 +343,8 @@ data:
     \ root, u32 l, u32 r, bool rev) {\n    if (l == 0 && r == root->size) {\n    \
     \  return (rev ? root->rev_prod : root->prod);\n    }\n    np left = (rev ? root->r\
     \ : root->l);\n    np right = (rev ? root->l : root->r);\n    u32 sl = (left ?\
-    \ left->size : 0);\n    X res = Monoid::unit();\n    if (l < sl) {\n      X y\
-    \ = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n      res = Monoid::op(res,\
+    \ left->size : 0);\n    X res = Monoid::id();\n    if (l < sl) {\n      X y =\
+    \ prod_rec(left, l, min(r, sl), rev ^ root->rev);\n      res = Monoid::op(res,\
     \ y);\n    }\n    if (l <= sl && sl < r) res = Monoid::op(res, root->x);\n   \
     \ u32 k = 1 + sl;\n    if (k < r) {\n      X y = prod_rec(right, max(k, l) - k,\
     \ r - k, rev ^ root->rev);\n      res = Monoid::op(res, y);\n    }\n    return\
@@ -422,7 +422,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid.test.cpp

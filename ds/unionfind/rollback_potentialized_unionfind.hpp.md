@@ -27,8 +27,8 @@ data:
     \n\ntemplate <typename Group>\nstruct Rollback_Potentialized_UnionFind {\n  using\
     \ E = typename Group::value_type;\n  using P = pair<int, E>;\n  Rollback_Array<P>\
     \ dat; // parent or -size\n\n  Rollback_Potentialized_UnionFind(int n) : dat(vc<P>(n,\
-    \ P(-1, Group::unit()))) {}\n\n  P get(int v) {\n    // \u7D4C\u8DEF\u5727\u7E2E\
-    \u306F\u3057\u306A\u3044\u3088\u3046\u306B\n    E val = Group::unit();\n    while\
+    \ P(-1, Group::id()))) {}\n\n  P get(int v) {\n    // \u7D4C\u8DEF\u5727\u7E2E\
+    \u306F\u3057\u306A\u3044\u3088\u3046\u306B\n    E val = Group::id();\n    while\
     \ (1) {\n      auto [p, x] = dat.get(v);\n      if (p < 0) { break; }\n      val\
     \ = Group::op(x, val);\n      v = p;\n    }\n    return {v, val};\n  }\n\n  int\
     \ time() { return dat.time(); }\n  void rollback(int t) { dat.rollback(t); }\n\
@@ -37,13 +37,13 @@ data:
     \    int s2 = -dat.get(v2).fi;\n    if (s1 < s2) {\n      swap(s1, s2), swap(v1,\
     \ v2), swap(x1, x2);\n      x = Group::inverse(x);\n    }\n    // v1 <- v2\n \
     \   x = Group::op(x1, x);\n    x = Group::op(x, Group::inverse(x2));\n    dat.set(v2,\
-    \ P({v1, x}));\n    dat.set(v1, P({-(s1 + s2), Group::unit()}));\n    return true;\n\
+    \ P({v1, x}));\n    dat.set(v1, P({-(s1 + s2), Group::id()}));\n    return true;\n\
     \  }\n};\n"
   code: "#include \"ds/rollback_array.hpp\"\n\ntemplate <typename Group>\nstruct Rollback_Potentialized_UnionFind\
     \ {\n  using E = typename Group::value_type;\n  using P = pair<int, E>;\n  Rollback_Array<P>\
     \ dat; // parent or -size\n\n  Rollback_Potentialized_UnionFind(int n) : dat(vc<P>(n,\
-    \ P(-1, Group::unit()))) {}\n\n  P get(int v) {\n    // \u7D4C\u8DEF\u5727\u7E2E\
-    \u306F\u3057\u306A\u3044\u3088\u3046\u306B\n    E val = Group::unit();\n    while\
+    \ P(-1, Group::id()))) {}\n\n  P get(int v) {\n    // \u7D4C\u8DEF\u5727\u7E2E\
+    \u306F\u3057\u306A\u3044\u3088\u3046\u306B\n    E val = Group::id();\n    while\
     \ (1) {\n      auto [p, x] = dat.get(v);\n      if (p < 0) { break; }\n      val\
     \ = Group::op(x, val);\n      v = p;\n    }\n    return {v, val};\n  }\n\n  int\
     \ time() { return dat.time(); }\n  void rollback(int t) { dat.rollback(t); }\n\
@@ -52,14 +52,14 @@ data:
     \    int s2 = -dat.get(v2).fi;\n    if (s1 < s2) {\n      swap(s1, s2), swap(v1,\
     \ v2), swap(x1, x2);\n      x = Group::inverse(x);\n    }\n    // v1 <- v2\n \
     \   x = Group::op(x1, x);\n    x = Group::op(x, Group::inverse(x2));\n    dat.set(v2,\
-    \ P({v1, x}));\n    dat.set(v1, P({-(s1 + s2), Group::unit()}));\n    return true;\n\
+    \ P({v1, x}));\n    dat.set(v1, P({-(s1 + s2), Group::id()}));\n    return true;\n\
     \  }\n};\n"
   dependsOn:
   - ds/rollback_array.hpp
   isVerificationFile: false
   path: ds/unionfind/rollback_potentialized_unionfind.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2293.test.cpp

@@ -21,20 +21,20 @@ data:
     \ = true>\nstruct Monoid_MaxIdx {\n  using value_type = pair<T, int>;\n  using\
     \ X = value_type;\n  static X op(X x, X y) {\n    if (x.fi > y.fi) return x;\n\
     \    if (x.fi < y.fi) return y;\n    if (x.se > y.se) swap(x, y);\n    return\
-    \ (tie_is_left ? x : y);\n  }\n  static constexpr X unit() { return {-infty<T>,\
+    \ (tie_is_left ? x : y);\n  }\n  static constexpr X id() { return {-infty<T>,\
     \ -1}; }\n  static constexpr bool commute = true;\n};\n"
   code: "\ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_MaxIdx {\n\
     \  using value_type = pair<T, int>;\n  using X = value_type;\n  static X op(X\
     \ x, X y) {\n    if (x.fi > y.fi) return x;\n    if (x.fi < y.fi) return y;\n\
     \    if (x.se > y.se) swap(x, y);\n    return (tie_is_left ? x : y);\n  }\n  static\
-    \ constexpr X unit() { return {-infty<T>, -1}; }\n  static constexpr bool commute\
+    \ constexpr X id() { return {-infty<T>, -1}; }\n  static constexpr bool commute\
     \ = true;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/maxidx.hpp
   requiredBy:
   - alg/acted_monoid/maxidx_add.hpp
-  timestamp: '2026-08-17 08:30:43+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/maxidx_add.test.cpp

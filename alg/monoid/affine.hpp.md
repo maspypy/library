@@ -99,8 +99,8 @@ data:
     \ * y.first + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n \
     \   auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static\
     \ constexpr K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n\
-    \  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr\
-    \ bool commute = false;\n};\n"
+    \  }\n  static constexpr F id() { return {K(1), K(0)}; }\n  static constexpr bool\
+    \ commute = false;\n};\n"
   code: "\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename\
     \ K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
     \  using X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept\
@@ -108,7 +108,7 @@ data:
     \  static constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1)\
     \ / a;\n    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f,\
     \ K x) noexcept {\n    return f.first * x + f.second;\n  }\n  static constexpr\
-    \ F unit() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
+    \ F id() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
     };\n"
   dependsOn: []
   isVerificationFile: false
@@ -117,7 +117,7 @@ data:
   - alg/acted_set/affine.hpp
   - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/sum_affine.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/splay.test.cpp

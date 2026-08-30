@@ -129,31 +129,30 @@ data:
     \ n) { build(n); }\n  template <typename F>\n  Prefix_Max_SegTree(int n, F f)\
     \ {\n    build(n, f);\n  }\n  Prefix_Max_SegTree(const vc<X>& v) { build(v); }\n\
     \n  void build(int m) {\n    build(m, [](int i) -> pair<KEY, X> { return {-infty<int>,\
-    \ MX::unit()}; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
-    \    dat.assign(size << 1, {-infty<int>, MX::unit(), MX::unit()});\n    FOR(i,\
-    \ n) {\n      auto [k, x] = f(i);\n      dat[size + i] = {k, x, MX::unit()};\n\
-    \    }\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void set(int i, pair<KEY, X>\
-    \ p) {\n    int k = p.fi;\n    X x = p.se;\n    i += size;\n    dat[i] = {k, x,\
-    \ MX::unit()};\n    while (i > 1) i /= 2, update(i);\n  }\n\n  X prod_all() {\
-    \ return dat[1].prod; }\n  X prod(int L, int R) {\n    KEY k = -infty<KEY>;\n\
-    \    vc<int> suff;\n    L += size, R += size;\n    X prod = MX::unit();\n    while\
-    \ (L < R) {\n      if (L & 1) { prod = MX::op(prod, dfs(L, k)), chmax(k, dat[L].max),\
-    \ ++L; }\n      if (R & 1) { suff.eb(--R); }\n      L /= 2, R /= 2;\n    }\n \
-    \   reverse(all(suff));\n    for (auto& v: suff) { prod = MX::op(prod, dfs(v,\
-    \ k)), chmax(k, dat[v].max); }\n    return prod;\n  }\n\n  pair<KEY, X> get(int\
-    \ i) { return {dat[size + i].max, dat[size + i].prod}; }\n  pair<vc<KEY>, vc<X>>\
-    \ get_all() {\n    vc<KEY> key(n);\n    vc<X> x(n);\n    FOR(i, n) key[i] = dat[size\
-    \ + i].max, x[i] = dat[size + i].prod;\n    return {key, x};\n  }\n\nprivate:\n\
-    \  void update(int i) {\n    assert(0 <= i && i < size);\n    dat[i].max = max(dat[2\
-    \ * i + 0].max, dat[2 * i + 1].max);\n    dat[i].rprod = dfs(2 * i + 1, dat[2\
-    \ * i + 0].max);\n    dat[i].prod = MX::op(dat[2 * i + 0].prod, dat[i].rprod);\n\
-    \  }\n\n  X dfs(int v, KEY k) {\n    // prefix \u306B k \u3092\u7F6E\u3044\u305F\
-    \u5834\u5408\u306E subtree(v) \u3067\u306E\u5024\n    if (size <= v) { return\
-    \ (k <= dat[v].max ? dat[v].prod : MX::unit()); }\n    if (k <= dat[2 * v + 0].max)\
-    \ { return MX::op(dfs(2 * v + 0, k), dat[v].rprod); }\n    return dfs(2 * v +\
-    \ 1, k);\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64\
-    \ x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ MX::id()}; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n \
+    \   n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
+    \    dat.assign(size << 1, {-infty<int>, MX::id(), MX::id()});\n    FOR(i, n)\
+    \ {\n      auto [k, x] = f(i);\n      dat[size + i] = {k, x, MX::id()};\n    }\n\
+    \    FOR_R(i, 1, size) update(i);\n  }\n\n  void set(int i, pair<KEY, X> p) {\n\
+    \    int k = p.fi;\n    X x = p.se;\n    i += size;\n    dat[i] = {k, x, MX::id()};\n\
+    \    while (i > 1) i /= 2, update(i);\n  }\n\n  X prod_all() { return dat[1].prod;\
+    \ }\n  X prod(int L, int R) {\n    KEY k = -infty<KEY>;\n    vc<int> suff;\n \
+    \   L += size, R += size;\n    X prod = MX::id();\n    while (L < R) {\n     \
+    \ if (L & 1) { prod = MX::op(prod, dfs(L, k)), chmax(k, dat[L].max), ++L; }\n\
+    \      if (R & 1) { suff.eb(--R); }\n      L /= 2, R /= 2;\n    }\n    reverse(all(suff));\n\
+    \    for (auto& v: suff) { prod = MX::op(prod, dfs(v, k)), chmax(k, dat[v].max);\
+    \ }\n    return prod;\n  }\n\n  pair<KEY, X> get(int i) { return {dat[size + i].max,\
+    \ dat[size + i].prod}; }\n  pair<vc<KEY>, vc<X>> get_all() {\n    vc<KEY> key(n);\n\
+    \    vc<X> x(n);\n    FOR(i, n) key[i] = dat[size + i].max, x[i] = dat[size +\
+    \ i].prod;\n    return {key, x};\n  }\n\nprivate:\n  void update(int i) {\n  \
+    \  assert(0 <= i && i < size);\n    dat[i].max = max(dat[2 * i + 0].max, dat[2\
+    \ * i + 1].max);\n    dat[i].rprod = dfs(2 * i + 1, dat[2 * i + 0].max);\n   \
+    \ dat[i].prod = MX::op(dat[2 * i + 0].prod, dat[i].rprod);\n  }\n\n  X dfs(int\
+    \ v, KEY k) {\n    // prefix \u306B k \u3092\u7F6E\u3044\u305F\u5834\u5408\u306E\
+    \ subtree(v) \u3067\u306E\u5024\n    if (size <= v) { return (k <= dat[v].max\
+    \ ? dat[v].prod : MX::id()); }\n    if (k <= dat[2 * v + 0].max) { return MX::op(dfs(2\
+    \ * v + 0, k), dat[v].rprod); }\n    return dfs(2 * v + 1, k);\n  }\n};\n#line\
+    \ 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 1 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F),\
@@ -163,8 +162,8 @@ data:
     \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
     \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
     \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
-    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
-    \  static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
+    \ * x + f.second;\n  }\n  static constexpr F id() { return {K(1), K(0)}; }\n \
+    \ static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
     \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
@@ -287,8 +286,8 @@ data:
     \ {k, {a, b}};\n  };\n\n  FOR(i, N) tie(key[i], X[i]) = get();\n\n  auto segf\
     \ = [&](int i) -> pair<int, F> { return {key[i], X[i]}; };\n\n  using Mono = Monoid_Affine<mint>;\n\
     \  Prefix_Max_SegTree<int, Mono> seg(N, segf);\n\n  auto naive = [&](int L, int\
-    \ R) -> F {\n    int mx = -infty<int>;\n    F prod = Mono::unit();\n    FOR(i,\
-    \ L, R) {\n      if (mx <= key[i]) {\n        mx = key[i];\n        prod = Mono::op(prod,\
+    \ R) -> F {\n    int mx = -infty<int>;\n    F prod = Mono::id();\n    FOR(i, L,\
+    \ R) {\n      if (mx <= key[i]) {\n        mx = key[i];\n        prod = Mono::op(prod,\
     \ X[i]);\n      }\n    }\n    return prod;\n  };\n\n  /*\n  set\n  get\n  get_all\n\
     \  prod\n  prod_all\n  */\n  int Q = 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n\
     \    int i = RNG(0, N);\n    int L = RNG(0, N), R = RNG(0, N);\n    auto [k, x]\
@@ -311,7 +310,7 @@ data:
     \ X[i]) = get();\n\n  auto segf = [&](int i) -> pair<int, F> { return {key[i],\
     \ X[i]}; };\n\n  using Mono = Monoid_Affine<mint>;\n  Prefix_Max_SegTree<int,\
     \ Mono> seg(N, segf);\n\n  auto naive = [&](int L, int R) -> F {\n    int mx =\
-    \ -infty<int>;\n    F prod = Mono::unit();\n    FOR(i, L, R) {\n      if (mx <=\
+    \ -infty<int>;\n    F prod = Mono::id();\n    FOR(i, L, R) {\n      if (mx <=\
     \ key[i]) {\n        mx = key[i];\n        prod = Mono::op(prod, X[i]);\n    \
     \  }\n    }\n    return prod;\n  };\n\n  /*\n  set\n  get\n  get_all\n  prod\n\
     \  prod_all\n  */\n  int Q = 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n    int\
@@ -336,7 +335,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_max_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_max_segtree.test.cpp

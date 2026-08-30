@@ -19,36 +19,36 @@ data:
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
-    \ constexpr X unit() { return X(0); }\n  static constexpr bool commute = true;\n\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 3 \"ds/fenwicktree/dual_fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Dual_FenwickTree {\n  using G = Monoid;\n  using E = typename G::value_type;\n\
     \  int n;\n  vector<E> dat;\n\n  Dual_FenwickTree() {}\n  Dual_FenwickTree(int\
-    \ n) { build(n); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n\
-    \  }\n\n  E get(int k) {\n    E x = G::unit();\n    for (++k; k <= n; k += k &\
-    \ -k) x = G::op(x, dat[k - 1]);\n    return x;\n  }\n  vc<E> get_all() {\n   \
-    \ vc<E> A = dat;\n    FOR_R(i, 1, len(A) + 1) {\n      int j = i + (i & -i);\n\
-    \      if (j <= len(A)) A[i - 1] += A[j - 1];\n    }\n    return A;\n  }\n\n \
-    \ void apply(int L, int R, E x) {\n    assert(0 <= L && L <= R && R <= n);\n \
-    \   E neg_x = G::inverse(x);\n    while (L < R) { dat[R - 1] = G::op(x, dat[R\
-    \ - 1]), R -= R & -R; };\n    while (R < L) { dat[L - 1] = G::op(neg_x, dat[L\
-    \ - 1]), L -= L & -L; };\n  }\n};\n"
+    \ n) { build(n); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::id());\n\
+    \  }\n\n  E get(int k) {\n    E x = G::id();\n    for (++k; k <= n; k += k & -k)\
+    \ x = G::op(x, dat[k - 1]);\n    return x;\n  }\n  vc<E> get_all() {\n    vc<E>\
+    \ A = dat;\n    FOR_R(i, 1, len(A) + 1) {\n      int j = i + (i & -i);\n     \
+    \ if (j <= len(A)) A[i - 1] += A[j - 1];\n    }\n    return A;\n  }\n\n  void\
+    \ apply(int L, int R, E x) {\n    assert(0 <= L && L <= R && R <= n);\n    E neg_x\
+    \ = G::inverse(x);\n    while (L < R) { dat[R - 1] = G::op(x, dat[R - 1]), R -=\
+    \ R & -R; };\n    while (R < L) { dat[L - 1] = G::op(neg_x, dat[L - 1]), L -=\
+    \ L & -L; };\n  }\n};\n"
   code: "\n#include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid>\nstruct Dual_FenwickTree\
     \ {\n  using G = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E>\
     \ dat;\n\n  Dual_FenwickTree() {}\n  Dual_FenwickTree(int n) { build(n); }\n\n\
-    \  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n  }\n\n  E\
-    \ get(int k) {\n    E x = G::unit();\n    for (++k; k <= n; k += k & -k) x = G::op(x,\
-    \ dat[k - 1]);\n    return x;\n  }\n  vc<E> get_all() {\n    vc<E> A = dat;\n\
-    \    FOR_R(i, 1, len(A) + 1) {\n      int j = i + (i & -i);\n      if (j <= len(A))\
-    \ A[i - 1] += A[j - 1];\n    }\n    return A;\n  }\n\n  void apply(int L, int\
-    \ R, E x) {\n    assert(0 <= L && L <= R && R <= n);\n    E neg_x = G::inverse(x);\n\
-    \    while (L < R) { dat[R - 1] = G::op(x, dat[R - 1]), R -= R & -R; };\n    while\
+    \  void build(int m) {\n    n = m;\n    dat.assign(m, G::id());\n  }\n\n  E get(int\
+    \ k) {\n    E x = G::id();\n    for (++k; k <= n; k += k & -k) x = G::op(x, dat[k\
+    \ - 1]);\n    return x;\n  }\n  vc<E> get_all() {\n    vc<E> A = dat;\n    FOR_R(i,\
+    \ 1, len(A) + 1) {\n      int j = i + (i & -i);\n      if (j <= len(A)) A[i -\
+    \ 1] += A[j - 1];\n    }\n    return A;\n  }\n\n  void apply(int L, int R, E x)\
+    \ {\n    assert(0 <= L && L <= R && R <= n);\n    E neg_x = G::inverse(x);\n \
+    \   while (L < R) { dat[R - 1] = G::op(x, dat[R - 1]), R -= R & -R; };\n    while\
     \ (R < L) { dat[L - 1] = G::op(neg_x, dat[L - 1]), L -= L & -L; };\n  }\n};\n"
   dependsOn:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/fenwicktree/dual_fenwicktree.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/dual_fenwick.test.cpp

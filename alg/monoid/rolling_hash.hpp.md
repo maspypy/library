@@ -54,7 +54,7 @@ data:
     \ u64 base = 0;\n    return base;\n  }\n  static void set_param(u64 base) { get_param()\
     \ = base; }\n\n  static X from_element(u64 x) {\n    while (get_param() == 0)\
     \ set_param(RNG_64());\n    return {get_param(), x};\n  }\n  static X op(X x,\
-    \ X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\n  static constexpr X unit()\
+    \ X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\n  static constexpr X id()\
     \ { return {1, 0}; }\n  static constexpr bool commute = false;\n};\n"
   code: "\n#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\n// pow of\
     \ base, val\nstruct Monoid_Rolling_Hash {\n  using value_type = pair<modint61,\
@@ -62,7 +62,7 @@ data:
     \ u64 base = 0;\n    return base;\n  }\n  static void set_param(u64 base) { get_param()\
     \ = base; }\n\n  static X from_element(u64 x) {\n    while (get_param() == 0)\
     \ set_param(RNG_64());\n    return {get_param(), x};\n  }\n  static X op(X x,\
-    \ X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\n  static constexpr X unit()\
+    \ X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\n  static constexpr X id()\
     \ { return {1, 0}; }\n  static constexpr bool commute = false;\n};"
   dependsOn:
   - random/base.hpp
@@ -70,7 +70,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2026-08-17 09:52:06+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp

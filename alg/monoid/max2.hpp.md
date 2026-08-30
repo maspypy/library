@@ -18,7 +18,7 @@ data:
     \    max2 = x, key2 = key;\n        return 1;\n      }\n      return 0;\n    }\n\
     \  };\n  using value_type = Data;\n  using X = value_type;\n\n  static X op(X\
     \ x, X y) {\n    x.add_element(y.max1, y.key1);\n    x.add_element(y.max2, y.key2);\n\
-    \    return x;\n  }\n  static constexpr X unit() { return {-infty<T>, -infty<T>,\
+    \    return x;\n  }\n  static constexpr X id() { return {-infty<T>, -infty<T>,\
     \ -1, -1}; }\n  static constexpr bool commute = true;\n};\n"
   code: "\ntemplate <typename T, typename KEY>\nstruct Monoid_Max2 {\n  struct Data\
     \ {\n    T max1, max2;\n    KEY key1, key2;\n    bool add_element(T x, KEY key)\
@@ -30,13 +30,13 @@ data:
     \ 1;\n      }\n      return 0;\n    }\n  };\n  using value_type = Data;\n  using\
     \ X = value_type;\n\n  static X op(X x, X y) {\n    x.add_element(y.max1, y.key1);\n\
     \    x.add_element(y.max2, y.key2);\n    return x;\n  }\n  static constexpr X\
-    \ unit() { return {-infty<T>, -infty<T>, -1, -1}; }\n  static constexpr bool commute\
+    \ id() { return {-infty<T>, -infty<T>, -1, -1}; }\n  static constexpr bool commute\
     \ = true;\n};"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/max2.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/max2.hpp

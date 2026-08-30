@@ -127,32 +127,32 @@ data:
     \ 1;\n      }\n      return 0;\n    }\n  };\n  using value_type = Data;\n  using\
     \ X = value_type;\n\n  static X op(X x, X y) {\n    x.add_element(y.key1, y.min1);\n\
     \    x.add_element(y.key2, y.min2);\n    return x;\n  }\n  static constexpr X\
-    \ unit() { return {infty<T>, infty<T>, -1, -1}; }\n  static constexpr bool commute\
+    \ id() { return {infty<T>, infty<T>, -1, -1}; }\n  static constexpr bool commute\
     \ = true;\n};\n#line 3 \"graph/shortest_path/top2_dijkstra.hpp\"\n\n// \u7D4C\u8DEF\
     \u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\u985E\u3060\u3051\
     \u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T, typename GT>\nvc<typename\
     \ Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
     \  int N = G.N;\n  using Mono = Monoid_Min2<T, int>;\n  using Data = typename\
-    \ Mono::Data;\n  vc<Data> dist(N, Mono::unit());\n  pq_min<tuple<T, int, int>>\
-    \ que;  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int\
-    \ c, T x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n\
-    \  };\n\n  for (auto& v : vs) {\n    upd(v, v, 0);\n  }\n\n  while (len(que))\
-    \ {\n    auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n\
-    \    if (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2\
-    \ == c) ok = 1;\n    if (!ok) continue;\n    for (auto&& e : G[v]) {\n      upd(e.to,\
+    \ Mono::Data;\n  vc<Data> dist(N, Mono::id());\n  pq_min<tuple<T, int, int>> que;\
+    \  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int c, T\
+    \ x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n  };\n\
+    \n  for (auto& v : vs) {\n    upd(v, v, 0);\n  }\n\n  while (len(que)) {\n   \
+    \ auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n    if\
+    \ (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2 == c)\
+    \ ok = 1;\n    if (!ok) continue;\n    for (auto&& e : G[v]) {\n      upd(e.to,\
     \ c, dv + e.cost);\n    }\n  }\n  return dist;\n}\n"
   code: "#include \"graph/base.hpp\"\n#include \"alg/monoid/min2.hpp\"\n\n// \u7D4C\
     \u8DEF\u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\u985E\u3060\
     \u3051\u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T, typename GT>\n\
     vc<typename Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
     \  int N = G.N;\n  using Mono = Monoid_Min2<T, int>;\n  using Data = typename\
-    \ Mono::Data;\n  vc<Data> dist(N, Mono::unit());\n  pq_min<tuple<T, int, int>>\
-    \ que;  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int\
-    \ c, T x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n\
-    \  };\n\n  for (auto& v : vs) {\n    upd(v, v, 0);\n  }\n\n  while (len(que))\
-    \ {\n    auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n\
-    \    if (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2\
-    \ == c) ok = 1;\n    if (!ok) continue;\n    for (auto&& e : G[v]) {\n      upd(e.to,\
+    \ Mono::Data;\n  vc<Data> dist(N, Mono::id());\n  pq_min<tuple<T, int, int>> que;\
+    \  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int c, T\
+    \ x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n  };\n\
+    \n  for (auto& v : vs) {\n    upd(v, v, 0);\n  }\n\n  while (len(que)) {\n   \
+    \ auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n    if\
+    \ (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2 == c)\
+    \ ok = 1;\n    if (!ok) continue;\n    for (auto&& e : G[v]) {\n      upd(e.to,\
     \ c, dv + e.cost);\n    }\n  }\n  return dist;\n}"
   dependsOn:
   - graph/base.hpp
@@ -161,7 +161,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/top2_dijkstra.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/shortest_path/top2_dijkstra.hpp

@@ -135,7 +135,7 @@ data:
     \  template <class F>\n  int max_path(F check, int u, int v) {\n    evert(u),\
     \ expose(v);\n    Node *c = (*this)[v];\n    using MX = typename Node::MX;\n \
     \   using X = typename MX::value_type;\n    Node *last_ok = nullptr, *last = nullptr;\n\
-    \    X lprod = MX::unit();\n    while (c) {\n      last = c;\n      c->push();\n\
+    \    X lprod = MX::id();\n    while (c) {\n      last = c;\n      c->push();\n\
     \      X x = (c->l ? MX::op(c->l->x, c->vx) : c->vx);\n      x = MX::op(lprod,\
     \ x);\n      if (!check(x)) {\n        c = c->l;\n      } else {\n        last_ok\
     \ = c, c = c->r, lprod = x;\n      }\n    }\n    splay(last);\n    if (!last_ok)\
@@ -256,7 +256,7 @@ data:
     \  template <class F>\n  int max_path(F check, int u, int v) {\n    evert(u),\
     \ expose(v);\n    Node *c = (*this)[v];\n    using MX = typename Node::MX;\n \
     \   using X = typename MX::value_type;\n    Node *last_ok = nullptr, *last = nullptr;\n\
-    \    X lprod = MX::unit();\n    while (c) {\n      last = c;\n      c->push();\n\
+    \    X lprod = MX::id();\n    while (c) {\n      last = c;\n      c->push();\n\
     \      X x = (c->l ? MX::op(c->l->x, c->vx) : c->vx);\n      x = MX::op(lprod,\
     \ x);\n      if (!check(x)) {\n        c = c->l;\n      } else {\n        last_ok\
     \ = c, c = c->r, lprod = x;\n      }\n    }\n    splay(last);\n    if (!last_ok)\
@@ -285,7 +285,7 @@ data:
   path: graph/ds/link_cut_tree.hpp
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
-  timestamp: '2026-08-17 16:42:09+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp

@@ -18,7 +18,7 @@ data:
     \ {eval(y, x.fi), eval(y, x.se)}; }\n  static UINT eval(X f, UINT x) { return\
     \ (f.fi & (~x)) | (f.se & x); }\n  static X func_or(UINT x) { return {x, UINT(-1)};\
     \ }\n  static X func_and(UINT x) { return {0, x}; }\n  static X func_xor(UINT\
-    \ x) { return {x, UINT(-1) ^ x}; }\n  static constexpr X unit() { return {UINT(0),\
+    \ x) { return {x, UINT(-1) ^ x}; }\n  static constexpr X id() { return {UINT(0),\
     \ UINT(-1)}; }\n  static constexpr bool commute = 0;\n};\n"
   code: "\n// composition of bitwise operation\n// 0 -> a, -1 -> b\ntemplate <typename\
     \ UINT>\nstruct Bitwise_Function {\n  static_assert(is_same_v<UINT, u32> || is_same_v<UINT,\
@@ -27,13 +27,13 @@ data:
     \ f, UINT x) { return (f.fi & (~x)) | (f.se & x); }\n  static X func_or(UINT x)\
     \ { return {x, UINT(-1)}; }\n  static X func_and(UINT x) { return {0, x}; }\n\
     \  static X func_xor(UINT x) { return {x, UINT(-1) ^ x}; }\n  static constexpr\
-    \ X unit() { return {UINT(0), UINT(-1)}; }\n  static constexpr bool commute =\
-    \ 0;\n};\n"
+    \ X id() { return {UINT(0), UINT(-1)}; }\n  static constexpr bool commute = 0;\n\
+    };\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/bitwise_function.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2498.test.cpp

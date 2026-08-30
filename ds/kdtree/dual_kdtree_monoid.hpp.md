@@ -20,7 +20,7 @@ data:
     \ XY, XY, XY>> closed_range;\n  vc<A> lazy;\n  vc<int> size;\n  vc<int> where;\n\
     \  int n, log;\n\n  Dual_KDTree_Monoid(vc<XY> xs, vc<XY> ys) : n(len(xs)) {\n\
     \    assert(n > 0);\n    log = 0;\n    while ((1 << log) < n) ++log;\n    lazy.resize(1\
-    \ << (log + 1), MA::unit());\n    closed_range.resize(1 << (log + 1));\n    size.resize(1\
+    \ << (log + 1), MA::id());\n    closed_range.resize(1 << (log + 1));\n    size.resize(1\
     \ << (log + 1));\n    where.resize(n);\n    vc<int> I(n);\n    iota(all(I), 0);\n\
     \    build(1, xs, ys, I);\n  }\n\n  // [xl, xr) x [yl, yr)\n  void apply(XY xl,\
     \ XY xr, XY yl, XY yr, A a) {\n    assert(xl <= xr && yl <= yr);\n    return apply_rec(1,\
@@ -48,8 +48,8 @@ data:
     \ y, int idx) {\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n   \
     \ return (xmin <= x && x <= xmax && ymin <= y && y <= ymax);\n  }\n\n  void apply_at(int\
     \ idx, A a) { lazy[idx] = MA::op(lazy[idx], a); }\n\n  void push(int idx) {\n\
-    \    if (lazy[idx] == MA::unit()) return;\n    apply_at(2 * idx + 0, lazy[idx]),\
-    \ apply_at(2 * idx + 1, lazy[idx]);\n    lazy[idx] = MA::unit();\n  }\n\n  void\
+    \    if (lazy[idx] == MA::id()) return;\n    apply_at(2 * idx + 0, lazy[idx]),\
+    \ apply_at(2 * idx + 1, lazy[idx]);\n    lazy[idx] = MA::id();\n  }\n\n  void\
     \ apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {\n    auto& [xmin, xmax,\
     \ ymin, ymax] = closed_range[idx];\n    if (x2 <= xmin || xmax < x1) return;\n\
     \    if (y2 <= ymin || ymax < y1) return;\n    if (x1 <= xmin && xmax < x2 &&\
@@ -64,7 +64,7 @@ data:
     \u534A\u958B\u3092\u4F7F\u3046\n  vc<tuple<XY, XY, XY, XY>> closed_range;\n  vc<A>\
     \ lazy;\n  vc<int> size;\n  vc<int> where;\n  int n, log;\n\n  Dual_KDTree_Monoid(vc<XY>\
     \ xs, vc<XY> ys) : n(len(xs)) {\n    assert(n > 0);\n    log = 0;\n    while ((1\
-    \ << log) < n) ++log;\n    lazy.resize(1 << (log + 1), MA::unit());\n    closed_range.resize(1\
+    \ << log) < n) ++log;\n    lazy.resize(1 << (log + 1), MA::id());\n    closed_range.resize(1\
     \ << (log + 1));\n    size.resize(1 << (log + 1));\n    where.resize(n);\n   \
     \ vc<int> I(n);\n    iota(all(I), 0);\n    build(1, xs, ys, I);\n  }\n\n  // [xl,\
     \ xr) x [yl, yr)\n  void apply(XY xl, XY xr, XY yl, XY yr, A a) {\n    assert(xl\
@@ -92,8 +92,8 @@ data:
     \ y, int idx) {\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n   \
     \ return (xmin <= x && x <= xmax && ymin <= y && y <= ymax);\n  }\n\n  void apply_at(int\
     \ idx, A a) { lazy[idx] = MA::op(lazy[idx], a); }\n\n  void push(int idx) {\n\
-    \    if (lazy[idx] == MA::unit()) return;\n    apply_at(2 * idx + 0, lazy[idx]),\
-    \ apply_at(2 * idx + 1, lazy[idx]);\n    lazy[idx] = MA::unit();\n  }\n\n  void\
+    \    if (lazy[idx] == MA::id()) return;\n    apply_at(2 * idx + 0, lazy[idx]),\
+    \ apply_at(2 * idx + 1, lazy[idx]);\n    lazy[idx] = MA::id();\n  }\n\n  void\
     \ apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {\n    auto& [xmin, xmax,\
     \ ymin, ymax] = closed_range[idx];\n    if (x2 <= xmin || xmax < x1) return;\n\
     \    if (y2 <= ymin || ymax < y1) return;\n    if (x1 <= xmin && xmax < x2 &&\
@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: ds/kdtree/dual_kdtree_monoid.hpp
   requiredBy: []
-  timestamp: '2023-06-03 10:19:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2342_2.test.cpp

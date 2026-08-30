@@ -319,14 +319,14 @@ data:
     \  void multiply(np &root, u32 k, const X &x) {\n    assert(root != nullptr &&\
     \ !root->p);\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\n  X prod(np\
     \ &root, u32 l, u32 r) {\n    assert(root == nullptr || !root->p);\n    using\
-    \ Mono = typename Node::Monoid_X;\n    if (l == r) return Mono::unit();\n    assert(0\
+    \ Mono = typename Node::Monoid_X;\n    if (l == r) return Mono::id();\n    assert(0\
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    X res\
     \ = root->prod;\n    splay(root, true);\n    return res;\n  }\n\n  X prod(np &root)\
     \ {\n    assert(root == nullptr || !root->p);\n    using Mono = typename Node::Monoid_X;\n\
-    \    return (root ? root->prod : Mono::unit());\n  }\n\n  void apply(np &root,\
-    \ u32 l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l\
-    \ < r && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n\
-    \    splay(root, true);\n  }\n  void apply(np &root, const A &a) {\n    if (!root)\
+    \    return (root ? root->prod : Mono::id());\n  }\n\n  void apply(np &root, u32\
+    \ l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l < r\
+    \ && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n \
+    \   splay(root, true);\n  }\n  void apply(np &root, const A &a) {\n    if (!root)\
     \ return;\n    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r)\
     \ {\n    assert(root == nullptr || !root->p);\n    if (l == r) return;\n    assert(0\
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
@@ -392,7 +392,7 @@ data:
     \ n += k;\n        root = root->r;\n      } else {\n        root = root->l;\n\
     \      }\n    }\n    splay(last, true);\n    return last_ok;\n  }\n\n  template\
     \ <typename F>\n  np find_max_right_prod(np root, const F &check) {\n    using\
-    \ Mono = typename Node::Monoid_X;\n    X prod = Mono::unit();\n    // \u6700\u5F8C\
+    \ Mono = typename Node::Monoid_X;\n    X prod = Mono::id();\n    // \u6700\u5F8C\
     \u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\
     \u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root)\
     \ {\n      last = root;\n      root->push();\n      np tmp = root->r;\n      root->r\
@@ -426,8 +426,8 @@ data:
     \  using X = E;\n  using value_type = X;\n  static constexpr X op(const X &x,\
     \ const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const X\
     \ &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n) noexcept\
-    \ { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n  static\
-    \ constexpr bool commute = true;\n};\n#line 7 \"test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp\"\
+    \ { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n  static constexpr\
+    \ bool commute = true;\n};\n#line 7 \"test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n\n  SplayTree_Commutative_Monoid<Monoid_Add<ll>>\
     \ ST;\n  auto root = ST.new_node(A);\n\n  FOR(Q) {\n    LL(t, L, R);\n    if (t\
     \ == 0) {\n      ST.reverse(root, L, R);\n    } else {\n      print(ST.prod(root,\
@@ -449,7 +449,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp

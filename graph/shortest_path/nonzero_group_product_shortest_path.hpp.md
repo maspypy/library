@@ -254,7 +254,7 @@ data:
     \  auto get = [&](int eid, int frm) -> X {\n    auto& e = G.edges[eid];\n    X\
     \ x = edge_label[e.id];\n    return (e.frm == frm ? x : Monoid::inverse(x));\n\
     \  };\n\n  // shortest path tree\n  vc<WT> dist(N, infty<WT>);\n  vc<X> phi(N,\
-    \ Monoid::unit());\n  vc<int> par(N, -1);\n  vc<int> depth(N);\n  dist[s] = 0;\n\
+    \ Monoid::id());\n  vc<int> par(N, -1);\n  vc<int> depth(N);\n  dist[s] = 0;\n\
     \  pq_min<pair<WT, int>> que;\n  que.emplace(0, s);\n  while (len(que)) {\n  \
     \  auto [dv, v] = POP(que);\n    if (dv != dist[v]) continue;\n    for (auto&\
     \ e : G[v]) {\n      if (chmin(dist[e.to], dv + e.cost)) {\n        phi[e.to]\
@@ -275,7 +275,7 @@ data:
     \ = x - dist[w];\n      for (auto& e : G[w]) {\n        if (cons[e.id] && chmin(h[e.id],\
     \ q[w] + dist[e.to] + e.cost)) {\n          que.emplace(h[e.id], e.id);\n    \
     \    }\n      }\n    }\n  }\n\n  vc<WT> ANS(N, infty<WT>);\n  FOR(v, N) ANS[v]\
-    \ = (phi[v] == Monoid::unit() ? q[v] : dist[v]);\n  return ANS;\n}\n"
+    \ = (phi[v] == Monoid::id() ? q[v] : dist[v]);\n  return ANS;\n}\n"
   code: "\n#include \"graph/base.hpp\"\n#include \"graph/shortest_path/dijkstra.hpp\"\
     \n\n// given: group-labeled undirected graph G, and s.\n// return: shortest path\
     \ length from s to v, for each v.\n// remark: path is not a walk. directed case\
@@ -286,7 +286,7 @@ data:
     \  auto get = [&](int eid, int frm) -> X {\n    auto& e = G.edges[eid];\n    X\
     \ x = edge_label[e.id];\n    return (e.frm == frm ? x : Monoid::inverse(x));\n\
     \  };\n\n  // shortest path tree\n  vc<WT> dist(N, infty<WT>);\n  vc<X> phi(N,\
-    \ Monoid::unit());\n  vc<int> par(N, -1);\n  vc<int> depth(N);\n  dist[s] = 0;\n\
+    \ Monoid::id());\n  vc<int> par(N, -1);\n  vc<int> depth(N);\n  dist[s] = 0;\n\
     \  pq_min<pair<WT, int>> que;\n  que.emplace(0, s);\n  while (len(que)) {\n  \
     \  auto [dv, v] = POP(que);\n    if (dv != dist[v]) continue;\n    for (auto&\
     \ e : G[v]) {\n      if (chmin(dist[e.to], dv + e.cost)) {\n        phi[e.to]\
@@ -307,7 +307,7 @@ data:
     \ = x - dist[w];\n      for (auto& e : G[w]) {\n        if (cons[e.id] && chmin(h[e.id],\
     \ q[w] + dist[e.to] + e.cost)) {\n          que.emplace(h[e.id], e.id);\n    \
     \    }\n      }\n    }\n  }\n\n  vc<WT> ANS(N, infty<WT>);\n  FOR(v, N) ANS[v]\
-    \ = (phi[v] == Monoid::unit() ? q[v] : dist[v]);\n  return ANS;\n}"
+    \ = (phi[v] == Monoid::id() ? q[v] : dist[v]);\n  return ANS;\n}"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -315,7 +315,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1602.test.cpp

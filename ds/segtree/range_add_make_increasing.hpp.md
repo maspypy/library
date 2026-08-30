@@ -26,12 +26,12 @@ data:
     ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\nstruct Dual_SegTree\
     \ {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n  int n, log,\
     \ size;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0)\
-    \ {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A { return MA::unit();\
+    \ {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A { return MA::id();\
     \ });\n  }\n  template <typename F>\n  Dual_SegTree(int n, F f) {\n    build(n,\
     \ f);\n  }\n\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
     \    log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
-    \ << 1, MA::unit());\n    FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size,\
-    \ false);\n  }\n  void build(int n) {\n    build(n, [&](int i) -> A { return MA::unit();\
+    \ << 1, MA::id());\n    FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size,\
+    \ false);\n  }\n  void build(int n) {\n    build(n, [&](int i) -> A { return MA::id();\
     \ });\n  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n\
     \    for (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n\
     \  vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin() + size,\
@@ -44,13 +44,13 @@ data:
     \ a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n \
     \ }\n\n private:\n  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k]\
     \ = false;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k],\
+    \ = MA::id();\n  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k],\
     \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/add.hpp\"\
     \n\ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
-    \ constexpr X unit() { return X(0); }\n  static constexpr bool commute = true;\n\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
@@ -198,7 +198,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_add_make_increasing.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/range_add_make_increasing.hpp

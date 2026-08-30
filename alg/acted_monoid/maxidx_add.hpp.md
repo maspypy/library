@@ -21,13 +21,13 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/maxidx.hpp\"\
     \n\ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_MaxIdx {\n \
     \ using value_type = pair<T, int>;\n  using X = value_type;\n  static X op(X x,\
     \ X y) {\n    if (x.fi > y.fi) return x;\n    if (x.fi < y.fi) return y;\n   \
     \ if (x.se > y.se) swap(x, y);\n    return (tie_is_left ? x : y);\n  }\n  static\
-    \ constexpr X unit() { return {-infty<T>, -1}; }\n  static constexpr bool commute\
+    \ constexpr X id() { return {-infty<T>, -1}; }\n  static constexpr bool commute\
     \ = true;\n};\n#line 3 \"alg/acted_monoid/maxidx_add.hpp\"\n\r\ntemplate <typename\
     \ E, bool tie_is_left = true>\r\nstruct ActedMonoid_MaxIdx_Add {\r\n  using Monoid_X\
     \ = Monoid_MaxIdx<E, tie_is_left>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using\
@@ -48,7 +48,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/maxidx_add.hpp
   requiredBy: []
-  timestamp: '2026-08-17 09:25:20+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/maxidx_add.test.cpp

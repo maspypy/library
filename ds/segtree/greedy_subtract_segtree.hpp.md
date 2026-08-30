@@ -23,10 +23,10 @@ data:
     \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
     \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
     \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::unit();\n\
-    \    if (exp == 1) return x;\n    X res = Monoid::unit();\n    while (exp) {\n\
-    \      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n \
-    \     exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"ds/segtree/greedy_subtract_segtree.hpp\"\
+    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::id();\n\
+    \    if (exp == 1) return x;\n    X res = Monoid::id();\n    while (exp) {\n \
+    \     if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n  \
+    \    exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"ds/segtree/greedy_subtract_segtree.hpp\"\
     \n\n/*\n\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 i \u306B\u30B3\u30B9\u30C8 cost_i\
     \ \u306E\u7269\u304C cnt_i \u500B\u3042\u308B. dat_i in Monoid \u3082\u3042\u308B\
     .\n\u6240\u6301\u91D1 x \u304B\u3089\u306F\u3058\u3081\u3066 i=l,l+1,...,r-1 \u306B\
@@ -43,27 +43,27 @@ data:
     \ = (cost_i, cnt_i, x_i)\n  template <typename F>\n  void build(int n_, F f) {\n\
     \    n = n_;\n    if (n == 0) return;\n    log = 0;\n    while ((1 << log) < n)\
     \ ++log;\n    size = 1 << log;\n    cost.assign(size, 0), cnt.assign(size, 0),\
-    \ element.assign(size, MX::unit());\n    FOR(i, n) {\n      tie(cost[i], cnt[i],\
+    \ element.assign(size, MX::id());\n    FOR(i, n) {\n      tie(cost[i], cnt[i],\
     \ element[i]) = f(i);\n      assert(0 <= cost[i] && cost[i] < (1LL << LOG));\n\
     \    }\n    dat.resize(2 * size);\n    FOR_R(i, 2 * size) update(i);\n  }\n\n\
     \  void update(int idx) {\n    if (size <= idx) {\n      int i = idx - size;\n\
     \      if (n <= i || cnt[i] == 0) {\n        fill(all(dat[idx].SM_A), infty<ll>);\n\
-    \        fill(all(dat[idx].SM_B), 0);\n        fill(all(dat[idx].prod_B), MX::unit());\n\
+    \        fill(all(dat[idx].SM_B), 0);\n        fill(all(dat[idx].prod_B), MX::id());\n\
     \        return;\n      }\n      FOR(k, LOG + 1) {\n        if (cost[i] < (1LL\
     \ << k)) {\n          dat[idx].SM_A[k] = infty<ll>;\n          dat[idx].SM_B[k]\
     \ = cost[i] * cnt[i];\n          dat[idx].prod_B[k] = monoid_pow<MX>(element[i],\
     \ cnt[i]);\n        } else {\n          dat[idx].SM_A[k] = cost[i];\n        \
-    \  dat[idx].SM_B[k] = 0;\n          dat[idx].prod_B[k] = MX::unit();\n       \
-    \ }\n      }\n      return;\n    }\n    int l = 2 * idx + 0, r = 2 * idx + 1;\n\
-    \    FOR(k, LOG + 1) {\n      dat[idx].SM_A[k] = min(dat[l].SM_A[k], dat[l].SM_B[k]\
+    \  dat[idx].SM_B[k] = 0;\n          dat[idx].prod_B[k] = MX::id();\n        }\n\
+    \      }\n      return;\n    }\n    int l = 2 * idx + 0, r = 2 * idx + 1;\n  \
+    \  FOR(k, LOG + 1) {\n      dat[idx].SM_A[k] = min(dat[l].SM_A[k], dat[l].SM_B[k]\
     \ + dat[r].SM_A[k]);\n      dat[idx].SM_B[k] = dat[l].SM_B[k] + dat[r].SM_B[k];\n\
     \      dat[idx].prod_B[k] = MX::op(dat[l].prod_B[k], dat[r].prod_B[k]);\n    }\n\
     \  }\n\n  void set(int i, ll cost_i, ll cnt_i, X x_i) {\n    cost[i] = cost_i,\
     \ cnt[i] = cnt_i, element[i] = x_i;\n    i += size;\n    while (i >= 1) update(i),\
     \ i /= 2;\n  }\n\n  // return: \u6B8B\u91D1, \u30E2\u30CE\u30A4\u30C9\u7A4D\n\
-    \  pair<ll, X> query(int L, int R, ll x) {\n    X prod = MX::unit();\n    int\
-    \ k = LOG;\n    auto upd_k = [&]() -> void {\n      while (k > 0 && (x < (1LL\
-    \ << (k - 1)))) --k;\n    };\n    auto dfs = [&](auto& dfs, int idx, int nl, int\
+    \  pair<ll, X> query(int L, int R, ll x) {\n    X prod = MX::id();\n    int k\
+    \ = LOG;\n    auto upd_k = [&]() -> void {\n      while (k > 0 && (x < (1LL <<\
+    \ (k - 1)))) --k;\n    };\n    auto dfs = [&](auto& dfs, int idx, int nl, int\
     \ nr) -> void {\n      if (nr <= L || R <= nl) return;\n      if (size <= idx)\
     \ {\n        int i = idx - size;\n        ll take = (cost[i] == 0 ? cnt[i] : min<ll>(x\
     \ / cost[i], cnt[i]));\n        x -= take * cost[i], prod = MX::op(prod, monoid_pow<MX>(element[i],\
@@ -95,27 +95,27 @@ data:
     \ N, F f) {\n    build(N, f);\n  }\n\n  // f(i) = (cost_i, cnt_i, x_i)\n  template\
     \ <typename F>\n  void build(int n_, F f) {\n    n = n_;\n    if (n == 0) return;\n\
     \    log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    cost.assign(size,\
-    \ 0), cnt.assign(size, 0), element.assign(size, MX::unit());\n    FOR(i, n) {\n\
+    \ 0), cnt.assign(size, 0), element.assign(size, MX::id());\n    FOR(i, n) {\n\
     \      tie(cost[i], cnt[i], element[i]) = f(i);\n      assert(0 <= cost[i] &&\
     \ cost[i] < (1LL << LOG));\n    }\n    dat.resize(2 * size);\n    FOR_R(i, 2 *\
     \ size) update(i);\n  }\n\n  void update(int idx) {\n    if (size <= idx) {\n\
     \      int i = idx - size;\n      if (n <= i || cnt[i] == 0) {\n        fill(all(dat[idx].SM_A),\
     \ infty<ll>);\n        fill(all(dat[idx].SM_B), 0);\n        fill(all(dat[idx].prod_B),\
-    \ MX::unit());\n        return;\n      }\n      FOR(k, LOG + 1) {\n        if\
-    \ (cost[i] < (1LL << k)) {\n          dat[idx].SM_A[k] = infty<ll>;\n        \
-    \  dat[idx].SM_B[k] = cost[i] * cnt[i];\n          dat[idx].prod_B[k] = monoid_pow<MX>(element[i],\
+    \ MX::id());\n        return;\n      }\n      FOR(k, LOG + 1) {\n        if (cost[i]\
+    \ < (1LL << k)) {\n          dat[idx].SM_A[k] = infty<ll>;\n          dat[idx].SM_B[k]\
+    \ = cost[i] * cnt[i];\n          dat[idx].prod_B[k] = monoid_pow<MX>(element[i],\
     \ cnt[i]);\n        } else {\n          dat[idx].SM_A[k] = cost[i];\n        \
-    \  dat[idx].SM_B[k] = 0;\n          dat[idx].prod_B[k] = MX::unit();\n       \
-    \ }\n      }\n      return;\n    }\n    int l = 2 * idx + 0, r = 2 * idx + 1;\n\
-    \    FOR(k, LOG + 1) {\n      dat[idx].SM_A[k] = min(dat[l].SM_A[k], dat[l].SM_B[k]\
+    \  dat[idx].SM_B[k] = 0;\n          dat[idx].prod_B[k] = MX::id();\n        }\n\
+    \      }\n      return;\n    }\n    int l = 2 * idx + 0, r = 2 * idx + 1;\n  \
+    \  FOR(k, LOG + 1) {\n      dat[idx].SM_A[k] = min(dat[l].SM_A[k], dat[l].SM_B[k]\
     \ + dat[r].SM_A[k]);\n      dat[idx].SM_B[k] = dat[l].SM_B[k] + dat[r].SM_B[k];\n\
     \      dat[idx].prod_B[k] = MX::op(dat[l].prod_B[k], dat[r].prod_B[k]);\n    }\n\
     \  }\n\n  void set(int i, ll cost_i, ll cnt_i, X x_i) {\n    cost[i] = cost_i,\
     \ cnt[i] = cnt_i, element[i] = x_i;\n    i += size;\n    while (i >= 1) update(i),\
     \ i /= 2;\n  }\n\n  // return: \u6B8B\u91D1, \u30E2\u30CE\u30A4\u30C9\u7A4D\n\
-    \  pair<ll, X> query(int L, int R, ll x) {\n    X prod = MX::unit();\n    int\
-    \ k = LOG;\n    auto upd_k = [&]() -> void {\n      while (k > 0 && (x < (1LL\
-    \ << (k - 1)))) --k;\n    };\n    auto dfs = [&](auto& dfs, int idx, int nl, int\
+    \  pair<ll, X> query(int L, int R, ll x) {\n    X prod = MX::id();\n    int k\
+    \ = LOG;\n    auto upd_k = [&]() -> void {\n      while (k > 0 && (x < (1LL <<\
+    \ (k - 1)))) --k;\n    };\n    auto dfs = [&](auto& dfs, int idx, int nl, int\
     \ nr) -> void {\n      if (nr <= L || R <= nl) return;\n      if (size <= idx)\
     \ {\n        int i = idx - size;\n        ll take = (cost[i] == 0 ? cnt[i] : min<ll>(x\
     \ / cost[i], cnt[i]));\n        x -= take * cost[i], prod = MX::op(prod, monoid_pow<MX>(element[i],\
@@ -136,7 +136,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/greedy_subtract_segtree.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/greedy_subtract_segtree.hpp

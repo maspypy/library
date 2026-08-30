@@ -61,14 +61,14 @@ data:
     \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  SegTree_Beats() {}\n  SegTree_Beats(int\
     \ n) { build(n); }\n  template <typename F>\n  SegTree_Beats(int n, F f) {\n \
     \   build(n, f);\n  }\n  SegTree_Beats(const vc<X>& v) { build(v); }\n\n  void\
-    \ build(int m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n\
-    \  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i];\
-    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log\
-    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, MX::unit());\n    laz.assign(size, MA::unit());\n    FOR(i, n) dat[size\
-    \ + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void update(int k)\
-    \ { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void set(int p, X x) {\n\
-    \    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
+    \ build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void\
+    \ build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n\
+    \  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n\
+    \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, MX::id());\n    laz.assign(size, MA::id());\n    FOR(i, n) dat[size +\
+    \ i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void update(int k) {\
+    \ dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void set(int p, X x) {\n \
+    \   assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
     \ push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p\
     \ >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n\
     \    for (int i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n\
@@ -77,25 +77,25 @@ data:
     \ push(k), update(k);\n    }\n  }\n  */\n\n  vc<X> get_all() {\n    FOR(k, 1,\
     \ size) { push(k); }\n    return {dat.begin() + size, dat.begin() + size + n};\n\
     \  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n  \
-    \  if (l == r) return MX::unit();\n    l += size, r += size;\n    for (int i =\
-    \ log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n      if\
-    \ (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    X xl = MX::unit(), xr\
-    \ = MX::unit();\n    while (l < r) {\n      if (l & 1) xl = MX::op(xl, dat[l++]);\n\
-    \      if (r & 1) xr = MX::op(dat[--r], xr);\n      l >>= 1, r >>= 1;\n    }\n\
-    \    return MX::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void\
-    \ apply(int l, int r, A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if\
-    \ (l == r) return;\n    l += size, r += size;\n    for (int i = log; i >= 1; i--)\
-    \ {\n      if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i)\
-    \ != r) push((r - 1) >> i);\n    }\n    int l2 = l, r2 = r;\n    while (l < r)\
-    \ {\n      if (l & 1) apply_at(l++, a);\n      if (r & 1) apply_at(--r, a);\n\
-    \      l >>= 1, r >>= 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1; i <=\
-    \ log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if (((r\
-    \ >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n private:\n  void apply_at(int\
-    \ k, A a) {\n    int sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
-    \ a, sz);\n    if (k < size) {\n      laz[k] = MA::op(laz[k], a);\n      if (dat[k].fail)\
-    \ push(k), update(k);\n    }\n  }\n\n  void push(int k) {\n    if (laz[k] == MA::unit())\
+    \  if (l == r) return MX::id();\n    l += size, r += size;\n    for (int i = log;\
+    \ i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n      if (((r\
+    \ >> i) << i) != r) push((r - 1) >> i);\n    }\n    X xl = MX::id(), xr = MX::id();\n\
+    \    while (l < r) {\n      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r\
+    \ & 1) xr = MX::op(dat[--r], xr);\n      l >>= 1, r >>= 1;\n    }\n    return\
+    \ MX::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int\
+    \ l, int r, A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\
+    \    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
+    \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
+    \ >> i);\n    }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1)\
+    \ apply_at(l++, a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>=\
+    \ 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n     \
+    \ if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r\
+    \ - 1) >> i);\n    }\n  }\n\n private:\n  void apply_at(int k, A a) {\n    int\
+    \ sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k\
+    \ < size) {\n      laz[k] = MA::op(laz[k], a);\n      if (dat[k].fail) push(k),\
+    \ update(k);\n    }\n  }\n\n  void push(int k) {\n    if (laz[k] == MA::id())\
     \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n#line 2 \"ds/segtree/beats_kinetic.hpp\"\n\n// (x[i],y[i])\
+    \ = MA::id();\n  }\n};\n#line 2 \"ds/segtree/beats_kinetic.hpp\"\n\n// (x[i],y[i])\
     \ \u304B\u3089\u306A\u308B\u5217. a>=0 \u3067\u3042\u308B\u3068\u304D\u306B y[i]\
     \ := y[i] + ax[i] + b\n// \u3068\u3044\u3046\u4F5C\u7528\u304C\u3067\u304D\u308B\
     \ x \u306B\u306F\u5358\u8ABF\u6027\u306F\u8981\u3089\u306A\u3044. x,sum(a):T1,\
@@ -108,11 +108,11 @@ data:
     \ M.x = L.x, M.y = L.y;\n      M.nxt_change = min(L.nxt_change, R.nxt_change);\n\
     \      if (L.x < R.x) {\n        T2 t = floor<T2>(L.y - R.y, R.x - L.x);\n   \
     \     M.nxt_change = min<T2>(M.nxt_change, t + 1);\n      }\n      M.fail = 0;\n\
-    \      return M;\n    }\n    static constexpr X unit() { return {-1, 0, -infty<T2>,\
+    \      return M;\n    }\n    static constexpr X id() { return {-1, 0, -infty<T2>,\
     \ infty<T1>, 0}; }\n    bool commute = true;\n  };\n  struct Mono_A {\n    using\
     \ X = pair<T1, T2>;\n    using value_type = X;\n    static constexpr X op(const\
     \ X& x, const X& y) {\n      return {x.fi + y.fi, x.se + y.se};\n    }\n    static\
-    \ constexpr X unit() { return {0, 0}; }\n    bool commute = true;\n  };\n  struct\
+    \ constexpr X id() { return {0, 0}; }\n    bool commute = true;\n  };\n  struct\
     \ Beats {\n    using Monoid_X = Mono_X;\n    using Monoid_A = Mono_A;\n    using\
     \ X = typename Monoid_X::value_type;\n    using A = typename Monoid_A::value_type;\n\
     \    static X act(X& M, const A& a, int cnt) {\n      assert(!M.fail && a.fi >=\
@@ -140,11 +140,11 @@ data:
     \ = L.idx, M.x = L.x, M.y = L.y;\n      M.nxt_change = min(L.nxt_change, R.nxt_change);\n\
     \      if (L.x > R.x) {\n        T2 t = floor<T2>(R.y - L.y, L.x - R.x);\n   \
     \     M.nxt_change = min<T2>(M.nxt_change, t + 1);\n      }\n      M.fail = 0;\n\
-    \      return M;\n    }\n    static constexpr X unit() { return {-1, 0, infty<T2>,\
+    \      return M;\n    }\n    static constexpr X id() { return {-1, 0, infty<T2>,\
     \ infty<T1>, 0}; }\n    bool commute = true;\n  };\n  struct Mono_A {\n    using\
     \ X = pair<T1, T2>;\n    using value_type = X;\n    static constexpr X op(const\
     \ X& x, const X& y) {\n      return {x.fi + y.fi, x.se + y.se};\n    }\n    static\
-    \ constexpr X unit() { return {0, 0}; }\n    bool commute = true;\n  };\n  struct\
+    \ constexpr X id() { return {0, 0}; }\n    bool commute = true;\n  };\n  struct\
     \ Beats {\n    using Monoid_X = Mono_X;\n    using Monoid_A = Mono_A;\n    using\
     \ X = typename Monoid_X::value_type;\n    using A = typename Monoid_A::value_type;\n\
     \    static X act(X& M, const A& a, int cnt) {\n      assert(!M.fail && a.fi >=\
@@ -173,11 +173,11 @@ data:
     \ = L.idx, M.x = L.x, M.y = L.y;\n      M.nxt_change = min(L.nxt_change, R.nxt_change);\n\
     \      if (L.x < R.x) {\n        T2 t = floor<T2>(L.y - R.y, R.x - L.x);\n   \
     \     M.nxt_change = min<T2>(M.nxt_change, t + 1);\n      }\n      M.fail = 0;\n\
-    \      return M;\n    }\n    static constexpr X unit() { return {-1, 0, -infty<T2>,\
+    \      return M;\n    }\n    static constexpr X id() { return {-1, 0, -infty<T2>,\
     \ infty<T1>, 0}; }\n    bool commute = true;\n  };\n  struct Mono_A {\n    using\
     \ X = pair<T1, T2>;\n    using value_type = X;\n    static constexpr X op(const\
     \ X& x, const X& y) {\n      return {x.fi + y.fi, x.se + y.se};\n    }\n    static\
-    \ constexpr X unit() { return {0, 0}; }\n    bool commute = true;\n  };\n  struct\
+    \ constexpr X id() { return {0, 0}; }\n    bool commute = true;\n  };\n  struct\
     \ Beats {\n    using Monoid_X = Mono_X;\n    using Monoid_A = Mono_A;\n    using\
     \ X = typename Monoid_X::value_type;\n    using A = typename Monoid_A::value_type;\n\
     \    static X act(X& M, const A& a, int cnt) {\n      assert(!M.fail && a.fi >=\
@@ -205,11 +205,11 @@ data:
     \ = L.idx, M.x = L.x, M.y = L.y;\n      M.nxt_change = min(L.nxt_change, R.nxt_change);\n\
     \      if (L.x > R.x) {\n        T2 t = floor<T2>(R.y - L.y, L.x - R.x);\n   \
     \     M.nxt_change = min<T2>(M.nxt_change, t + 1);\n      }\n      M.fail = 0;\n\
-    \      return M;\n    }\n    static constexpr X unit() { return {-1, 0, infty<T2>,\
+    \      return M;\n    }\n    static constexpr X id() { return {-1, 0, infty<T2>,\
     \ infty<T1>, 0}; }\n    bool commute = true;\n  };\n  struct Mono_A {\n    using\
     \ X = pair<T1, T2>;\n    using value_type = X;\n    static constexpr X op(const\
     \ X& x, const X& y) {\n      return {x.fi + y.fi, x.se + y.se};\n    }\n    static\
-    \ constexpr X unit() { return {0, 0}; }\n    bool commute = true;\n  };\n  struct\
+    \ constexpr X id() { return {0, 0}; }\n    bool commute = true;\n  };\n  struct\
     \ Beats {\n    using Monoid_X = Mono_X;\n    using Monoid_A = Mono_A;\n    using\
     \ X = typename Monoid_X::value_type;\n    using A = typename Monoid_A::value_type;\n\
     \    static X act(X& M, const A& a, int cnt) {\n      assert(!M.fail && a.fi >=\
@@ -232,7 +232,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/beats_kinetic.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/kinetic.test.cpp

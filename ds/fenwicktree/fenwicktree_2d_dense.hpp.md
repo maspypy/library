@@ -21,12 +21,12 @@ data:
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X unit() { return X(0); }\n\
+    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
     \  static constexpr bool commute = true;\n};\n#line 2 \"ds/fenwicktree/fenwicktree_2d_dense.hpp\"\
     \n\r\ntemplate <typename Monoid>\r\nstruct FenwickTree_2D_Dense {\r\n  using G\
     \ = Monoid;\r\n  using E = typename G::value_type;\r\n  static_assert(G::commute);\r\
     \n  int H, W;\r\n  vc<E> dat;\r\n\r\n  FenwickTree_2D_Dense() {}\r\n  FenwickTree_2D_Dense(int\
-    \ H, int W) : H(H), W(W), dat(H * W, G::unit()) {}\r\n  FenwickTree_2D_Dense(int\
+    \ H, int W) : H(H), W(W), dat(H * W, G::id()) {}\r\n  FenwickTree_2D_Dense(int\
     \ H, int W, vvc<E>& dat_raw) : H(H), W(W) {\r\n    build(H, W, [&](int x, int\
     \ y) -> E { return dat_raw[x][y]; });\r\n  }\r\n  template <typename F>\r\n  FenwickTree_2D_Dense(int\
     \ H, int W, F f) : H(H), W(W) {\r\n    build(H, W, f);\r\n  }\r\n\r\n  template\
@@ -40,25 +40,25 @@ data:
     \r\n  void add(int x, int y, E val) {\r\n    ++x;\r\n    while (x <= H) { add_x(x,\
     \ y, val), x += x & -x; }\r\n  }\r\n\r\n  E sum(int lx, int rx, int ly, int ry)\
     \ { return prod(lx, rx, ly, ry); }\r\n  E prod(int lx, int rx, int ly, int ry)\
-    \ {\r\n    E pos = G::unit(), neg = G::unit();\r\n    while (lx < rx) { pos =\
-    \ G::op(pos, sum_x(rx, ly, ry)), rx -= rx & -rx; }\r\n    while (rx < lx) { neg\
-    \ = G::op(neg, sum_x(lx, ly, ry)), lx -= lx & -lx; }\r\n    return G::op(pos,\
-    \ G::inverse(neg));\r\n  }\r\n\r\n  E prefix_prod(int rx, int ry) { return prod(0,\
-    \ rx, 0, ry); }\r\n  E prefix_sum(int rx, int ry) {\r\n    E pos = G::unit();\r\
-    \n    while (rx) { pos = G::op(pos, prefix_sum_x(rx, ry)), rx -= rx & -rx; }\r\
-    \n    return pos;\r\n  }\r\n\r\nprivate:\r\n  inline int idx(int x, int y) { return\
-    \ W * (x - 1) + (y - 1); }\r\n\r\n  void add_x(int x, int y, E val) {\r\n    ++y;\r\
-    \n    while (y <= W) { dat[idx(x, y)] = G::op(dat[idx(x, y)], val), y += y & -y;\
-    \ }\r\n  }\r\n  E sum_x(int x, int ly, int ry) {\r\n    E pos = G::unit(), neg\
-    \ = G::unit();\r\n    while (ly < ry) { pos = G::op(pos, dat[idx(x, ry)]), ry\
-    \ -= ry & -ry; }\r\n    while (ry < ly) { neg = G::op(neg, dat[idx(x, ly)]), ly\
-    \ -= ly & -ly; }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n  E prefix_sum_x(int\
-    \ x, int ry) {\r\n    E pos = G::unit();\r\n    while (ry) { pos = G::op(pos,\
-    \ dat[idx(x, ry)]), ry -= ry & -ry; }\r\n    return pos;\r\n  }\r\n};\r\n"
+    \ {\r\n    E pos = G::id(), neg = G::id();\r\n    while (lx < rx) { pos = G::op(pos,\
+    \ sum_x(rx, ly, ry)), rx -= rx & -rx; }\r\n    while (rx < lx) { neg = G::op(neg,\
+    \ sum_x(lx, ly, ry)), lx -= lx & -lx; }\r\n    return G::op(pos, G::inverse(neg));\r\
+    \n  }\r\n\r\n  E prefix_prod(int rx, int ry) { return prod(0, rx, 0, ry); }\r\n\
+    \  E prefix_sum(int rx, int ry) {\r\n    E pos = G::id();\r\n    while (rx) {\
+    \ pos = G::op(pos, prefix_sum_x(rx, ry)), rx -= rx & -rx; }\r\n    return pos;\r\
+    \n  }\r\n\r\nprivate:\r\n  inline int idx(int x, int y) { return W * (x - 1) +\
+    \ (y - 1); }\r\n\r\n  void add_x(int x, int y, E val) {\r\n    ++y;\r\n    while\
+    \ (y <= W) { dat[idx(x, y)] = G::op(dat[idx(x, y)], val), y += y & -y; }\r\n \
+    \ }\r\n  E sum_x(int x, int ly, int ry) {\r\n    E pos = G::id(), neg = G::id();\r\
+    \n    while (ly < ry) { pos = G::op(pos, dat[idx(x, ry)]), ry -= ry & -ry; }\r\
+    \n    while (ry < ly) { neg = G::op(neg, dat[idx(x, ly)]), ly -= ly & -ly; }\r\
+    \n    return G::op(pos, G::inverse(neg));\r\n  }\r\n  E prefix_sum_x(int x, int\
+    \ ry) {\r\n    E pos = G::id();\r\n    while (ry) { pos = G::op(pos, dat[idx(x,\
+    \ ry)]), ry -= ry & -ry; }\r\n    return pos;\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n\r\ntemplate <typename Monoid>\r\nstruct\
     \ FenwickTree_2D_Dense {\r\n  using G = Monoid;\r\n  using E = typename G::value_type;\r\
     \n  static_assert(G::commute);\r\n  int H, W;\r\n  vc<E> dat;\r\n\r\n  FenwickTree_2D_Dense()\
-    \ {}\r\n  FenwickTree_2D_Dense(int H, int W) : H(H), W(W), dat(H * W, G::unit())\
+    \ {}\r\n  FenwickTree_2D_Dense(int H, int W) : H(H), W(W), dat(H * W, G::id())\
     \ {}\r\n  FenwickTree_2D_Dense(int H, int W, vvc<E>& dat_raw) : H(H), W(W) {\r\
     \n    build(H, W, [&](int x, int y) -> E { return dat_raw[x][y]; });\r\n  }\r\n\
     \  template <typename F>\r\n  FenwickTree_2D_Dense(int H, int W, F f) : H(H),\
@@ -72,28 +72,28 @@ data:
     \ y)], dat[idx(x, y)]);\r\n      }\r\n    }\r\n  }\r\n\r\n  void add(int x, int\
     \ y, E val) {\r\n    ++x;\r\n    while (x <= H) { add_x(x, y, val), x += x & -x;\
     \ }\r\n  }\r\n\r\n  E sum(int lx, int rx, int ly, int ry) { return prod(lx, rx,\
-    \ ly, ry); }\r\n  E prod(int lx, int rx, int ly, int ry) {\r\n    E pos = G::unit(),\
-    \ neg = G::unit();\r\n    while (lx < rx) { pos = G::op(pos, sum_x(rx, ly, ry)),\
+    \ ly, ry); }\r\n  E prod(int lx, int rx, int ly, int ry) {\r\n    E pos = G::id(),\
+    \ neg = G::id();\r\n    while (lx < rx) { pos = G::op(pos, sum_x(rx, ly, ry)),\
     \ rx -= rx & -rx; }\r\n    while (rx < lx) { neg = G::op(neg, sum_x(lx, ly, ry)),\
     \ lx -= lx & -lx; }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n\r\n\
     \  E prefix_prod(int rx, int ry) { return prod(0, rx, 0, ry); }\r\n  E prefix_sum(int\
-    \ rx, int ry) {\r\n    E pos = G::unit();\r\n    while (rx) { pos = G::op(pos,\
-    \ prefix_sum_x(rx, ry)), rx -= rx & -rx; }\r\n    return pos;\r\n  }\r\n\r\nprivate:\r\
-    \n  inline int idx(int x, int y) { return W * (x - 1) + (y - 1); }\r\n\r\n  void\
-    \ add_x(int x, int y, E val) {\r\n    ++y;\r\n    while (y <= W) { dat[idx(x,\
-    \ y)] = G::op(dat[idx(x, y)], val), y += y & -y; }\r\n  }\r\n  E sum_x(int x,\
-    \ int ly, int ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    while (ly\
-    \ < ry) { pos = G::op(pos, dat[idx(x, ry)]), ry -= ry & -ry; }\r\n    while (ry\
-    \ < ly) { neg = G::op(neg, dat[idx(x, ly)]), ly -= ly & -ly; }\r\n    return G::op(pos,\
-    \ G::inverse(neg));\r\n  }\r\n  E prefix_sum_x(int x, int ry) {\r\n    E pos =\
-    \ G::unit();\r\n    while (ry) { pos = G::op(pos, dat[idx(x, ry)]), ry -= ry &\
-    \ -ry; }\r\n    return pos;\r\n  }\r\n};\r\n"
+    \ rx, int ry) {\r\n    E pos = G::id();\r\n    while (rx) { pos = G::op(pos, prefix_sum_x(rx,\
+    \ ry)), rx -= rx & -rx; }\r\n    return pos;\r\n  }\r\n\r\nprivate:\r\n  inline\
+    \ int idx(int x, int y) { return W * (x - 1) + (y - 1); }\r\n\r\n  void add_x(int\
+    \ x, int y, E val) {\r\n    ++y;\r\n    while (y <= W) { dat[idx(x, y)] = G::op(dat[idx(x,\
+    \ y)], val), y += y & -y; }\r\n  }\r\n  E sum_x(int x, int ly, int ry) {\r\n \
+    \   E pos = G::id(), neg = G::id();\r\n    while (ly < ry) { pos = G::op(pos,\
+    \ dat[idx(x, ry)]), ry -= ry & -ry; }\r\n    while (ry < ly) { neg = G::op(neg,\
+    \ dat[idx(x, ly)]), ly -= ly & -ly; }\r\n    return G::op(pos, G::inverse(neg));\r\
+    \n  }\r\n  E prefix_sum_x(int x, int ry) {\r\n    E pos = G::id();\r\n    while\
+    \ (ry) { pos = G::op(pos, dat[idx(x, ry)]), ry -= ry & -ry; }\r\n    return pos;\r\
+    \n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_2d_dense.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2842.test.cpp

@@ -122,7 +122,7 @@ data:
     struct Monoid_Add {\n  using X = E;\n  using value_type = X;\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return x + y; }\n  static constexpr\
     \ X inverse(const X &x) noexcept { return -x; }\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr X unit() { return\
+    \ X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr X id() { return\
     \ X(0); }\n  static constexpr bool commute = true;\n};\n#line 1 \"mod/modint_common.hpp\"\
     \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
@@ -284,8 +284,8 @@ data:
     \  tuple<np, np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n \
     \   tie(root, d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n\
     \    return {a, b, c, d};\n  }\n\n  X prod(np root, u32 l, u32 r) {\n    if (l\
-    \ == r) return Monoid::unit();\n    return prod_rec(root, l, r, false);\n  }\n\
-    \  X prod(np root) { return (root ? root->prod : Monoid::unit()); }\n\n  np reverse(np\
+    \ == r) return Monoid::id();\n    return prod_rec(root, l, r, false);\n  }\n \
+    \ X prod(np root) { return (root ? root->prod : Monoid::id()); }\n\n  np reverse(np\
     \ root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n  \
     \  if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
     \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    return merge3(nl, nm, nr);\n\
@@ -297,54 +297,54 @@ data:
     \ rev ^ root->rev);\n      res.eb(root->x);\n      dfs(dfs, (rev ? root->l : root->r),\
     \ rev ^ root->rev);\n    };\n    dfs(dfs, root, 0);\n    return res;\n  }\n\n\
     \  template <typename F>\n  pair<np, np> split_max_right(np root, const F check)\
-    \ {\n    assert(check(Monoid::unit()));\n    X x = Monoid::unit();\n    return\
-    \ split_max_right_rec(root, check, x);\n  }\n\n private:\n  inline u32 xor128()\
-    \ {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n    static\
-    \ u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n\
-    \    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t\
-    \ >> 8));\n  }\n\n  void push(np c) {\n    // \u81EA\u8EAB\u3092\u30B3\u30D4\u30FC\
-    \u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\n    // \u5B50\u3092\u30B3\u30D4\
-    \u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\u8907\u6570\u306E\u89AA\
-    \u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\u3002\n   \
-    \ if (c->rev) {\n      if (c->l) {\n        c->l = clone(c->l);\n        c->l->rev\
-    \ ^= 1;\n        swap(c->l->l, c->l->r);\n      }\n      if (c->r) {\n       \
-    \ c->r = clone(c->r);\n        c->r->rev ^= 1;\n        swap(c->r->l, c->r->r);\n\
-    \      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n    // \u30C7\
-    \u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\u3059\u308B\
-    \u3060\u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\n    c->size\
-    \ = 1;\n    c->prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n \
-    \     c->prod = Monoid::op(c->l->prod, c->prod);\n    }\n    if (c->r) {\n   \
-    \   c->size += c->r->size;\n      c->prod = Monoid::op(c->prod, c->r->prod);\n\
-    \    }\n  }\n\n  np merge_rec(np l_root, np r_root) {\n    if (!l_root) return\
-    \ r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size, sr = r_root->size;\n\
-    \    if (xor128() % (sl + sr) < sl) {\n      push(l_root);\n      l_root = clone(l_root);\n\
-    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
-    \  return l_root;\n    }\n    push(r_root);\n    r_root = clone(r_root);\n   \
-    \ r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n    return r_root;\n\
-    \  }\n\n  pair<np, np> split_rec(np root, u32 k) {\n    if (!root) return {nullptr,\
-    \ nullptr};\n    push(root);\n    u32 sl = (root->l ? root->l->size : 0);\n  \
-    \  if (k <= sl) {\n      auto [nl, nr] = split_rec(root->l, k);\n      root =\
-    \ clone(root);\n      root->l = nr;\n      update(root);\n      return {nl, root};\n\
-    \    }\n    auto [nl, nr] = split_rec(root->r, k - (1 + sl));\n    root = clone(root);\n\
-    \    root->r = nl;\n    update(root);\n    return {root, nr};\n  }\n\n  np set_rec(np\
+    \ {\n    assert(check(Monoid::id()));\n    X x = Monoid::id();\n    return split_max_right_rec(root,\
+    \ check, x);\n  }\n\n private:\n  inline u32 xor128() {\n    static u32 x = 123456789;\n\
+    \    static u32 y = 362436069;\n    static u32 z = 521288629;\n    static u32\
+    \ w = 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n\
+    \    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void push(np c) {\n\
+    \    // \u81EA\u8EAB\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\
+    \u3044\u3002\n    // \u5B50\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\
+    \u3042\u308B\u3002\u8907\u6570\u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\
+    \u304C\u3042\u308B\u305F\u3081\u3002\n    if (c->rev) {\n      if (c->l) {\n \
+    \       c->l = clone(c->l);\n        c->l->rev ^= 1;\n        swap(c->l->l, c->l->r);\n\
+    \      }\n      if (c->r) {\n        c->r = clone(c->r);\n        c->r->rev ^=\
+    \ 1;\n        swap(c->r->l, c->r->r);\n      }\n      c->rev = 0;\n    }\n  }\n\
+    \n  void update(np c) {\n    // \u30C7\u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\
+    \u307E\u6B63\u5E38\u5316\u3059\u308B\u3060\u3051\u306A\u306E\u3067\u3001\u30B3\
+    \u30D4\u30FC\u4E0D\u8981\n    c->size = 1;\n    c->prod = c->x;\n    if (c->l)\
+    \ {\n      c->size += c->l->size;\n      c->prod = Monoid::op(c->l->prod, c->prod);\n\
+    \    }\n    if (c->r) {\n      c->size += c->r->size;\n      c->prod = Monoid::op(c->prod,\
+    \ c->r->prod);\n    }\n  }\n\n  np merge_rec(np l_root, np r_root) {\n    if (!l_root)\
+    \ return r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size,\
+    \ sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n      push(l_root);\n\
+    \      l_root = clone(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n\
+    \      update(l_root);\n      return l_root;\n    }\n    push(r_root);\n    r_root\
+    \ = clone(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n\
+    \    return r_root;\n  }\n\n  pair<np, np> split_rec(np root, u32 k) {\n    if\
+    \ (!root) return {nullptr, nullptr};\n    push(root);\n    u32 sl = (root->l ?\
+    \ root->l->size : 0);\n    if (k <= sl) {\n      auto [nl, nr] = split_rec(root->l,\
+    \ k);\n      root = clone(root);\n      root->l = nr;\n      update(root);\n \
+    \     return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1\
+    \ + sl));\n    root = clone(root);\n    root->r = nl;\n    update(root);\n   \
+    \ return {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const X &x) {\n    if\
+    \ (!root) return root;\n    push(root);\n    u32 sl = (root->l ? root->l->size\
+    \ : 0);\n    if (k < sl) {\n      root = clone(root);\n      root->l = set_rec(root->l,\
+    \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
+    \      root = clone(root);\n      root->x = x;\n      update(root);\n      return\
+    \ root;\n    }\n    root = clone(root);\n    root->r = set_rec(root->r, k - (1\
+    \ + sl), x);\n    update(root);\n    return root;\n  }\n\n  np multiply_rec(np\
     \ root, u32 k, const X &x) {\n    if (!root) return root;\n    push(root);\n \
     \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) {\n      root = clone(root);\n\
-    \      root->l = set_rec(root->l, k, x);\n      update(root);\n      return root;\n\
-    \    }\n    if (k == sl) {\n      root = clone(root);\n      root->x = x;\n  \
-    \    update(root);\n      return root;\n    }\n    root = clone(root);\n    root->r\
-    \ = set_rec(root->r, k - (1 + sl), x);\n    update(root);\n    return root;\n\
-    \  }\n\n  np multiply_rec(np root, u32 k, const X &x) {\n    if (!root) return\
-    \ root;\n    push(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if\
-    \ (k < sl) {\n      root = clone(root);\n      root->l = multiply_rec(root->l,\
-    \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
-    \      root = clone(root);\n      root->x = Monoid::op(root->x, x);\n      update(root);\n\
-    \      return root;\n    }\n    root = clone(root);\n    root->r = multiply_rec(root->r,\
-    \ k - (1 + sl), x);\n    update(root);\n    return root;\n  }\n\n  X prod_rec(np\
-    \ root, u32 l, u32 r, bool rev) {\n    if (l == 0 && r == root->size) return root->prod;\n\
-    \    np left = (rev ? root->r : root->l);\n    np right = (rev ? root->l : root->r);\n\
-    \    u32 sl = (left ? left->size : 0);\n    X res = Monoid::unit();\n    if (l\
-    \ < sl) {\n      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n     \
-    \ res = Monoid::op(res, y);\n    }\n    if (l <= sl && sl < r) res = Monoid::op(res,\
+    \      root->l = multiply_rec(root->l, k, x);\n      update(root);\n      return\
+    \ root;\n    }\n    if (k == sl) {\n      root = clone(root);\n      root->x =\
+    \ Monoid::op(root->x, x);\n      update(root);\n      return root;\n    }\n  \
+    \  root = clone(root);\n    root->r = multiply_rec(root->r, k - (1 + sl), x);\n\
+    \    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l, u32\
+    \ r, bool rev) {\n    if (l == 0 && r == root->size) return root->prod;\n    np\
+    \ left = (rev ? root->r : root->l);\n    np right = (rev ? root->l : root->r);\n\
+    \    u32 sl = (left ? left->size : 0);\n    X res = Monoid::id();\n    if (l <\
+    \ sl) {\n      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n      res\
+    \ = Monoid::op(res, y);\n    }\n    if (l <= sl && sl < r) res = Monoid::op(res,\
     \ root->x);\n    u32 k = 1 + sl;\n    if (k < r) {\n      X y = prod_rec(right,\
     \ max(k, l) - k, r - k, rev ^ root->rev);\n      res = Monoid::op(res, y);\n \
     \   }\n    return res;\n  }\n\n  X get_rec(np root, u32 k, bool rev) {\n    np\
@@ -423,7 +423,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_commutative_persistent.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_commutative_persistent.test.cpp
