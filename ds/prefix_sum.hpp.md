@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
   _extendedRequiredBy: []
@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
+    title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_sum.test.cpp
     title: test/2_library_checker/data_structure/static_range_sum.test.cpp
@@ -55,6 +58,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/static_range_sum.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
 documentation_of: ds/prefix_sum.hpp
 layout: document
