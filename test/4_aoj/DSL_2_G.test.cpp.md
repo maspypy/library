@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G
@@ -357,11 +357,12 @@ data:
     \ n, F f) {\n    build(n, f);\n  }\n  Range_Add_Range_Sum(const vc<E>& v) { build(v);\
     \ }\n\n  void build(int m) {\n    build(m, [](int i) -> E { return MX::id(); });\n\
     \  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    bit.build(m,\
-    \ [&](int i) -> pair<E, E> { return {f(i), MX::id()}; });\n  }\n\n  void add(int\
-    \ L, int R, E a) {\n    E b = MX::inverse(a);\n    bit.add(L, {MX::power(b, L),\
-    \ a});\n    bit.add(R, {MX::power(a, R), b});\n  }\n\n  E sum(int L, int R) {\n\
-    \    auto [x0, x1] = bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n    E x = MX::op(MX::power(x1,\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    bit.build(m\
+    \ + 1, [&](int i) -> pair<E, E> {\n      if (i == m) return {MX::id(), MX::id()};\n\
+    \      return {f(i), MX::id()};\n    });\n  }\n\n  void add(int L, int R, E a)\
+    \ {\n    E b = MX::inverse(a);\n    bit.add(L, {MX::power(b, L), a});\n    bit.add(R,\
+    \ {MX::power(a, R), b});\n  }\n\n  E sum(int L, int R) {\n    auto [x0, x1] =\
+    \ bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n    E x = MX::op(MX::power(x1,\
     \ L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n    return MX::op(MX::inverse(x),\
     \ y);\n  }\n};\n#line 6 \"test/4_aoj/DSL_2_G.test.cpp\"\n\r\nvoid solve() {\r\n\
     \  LL(N, Q);\r\n  Range_Add_Range_Sum<Monoid_Add<ll>> bit(N);\r\n  FOR(_, Q) {\r\
@@ -388,8 +389,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 22:36:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-01 01:04:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_G.test.cpp
 layout: document
