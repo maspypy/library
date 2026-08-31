@@ -11,7 +11,7 @@ void solve() {
   G.read_graph(M);
   Block_Cut X(G);
   auto &BCT = X.BCT;
-  Tree<decltype(BCT)> tree(BCT);
+  Tree<decltype(X.BCT)> tree(X.BCT);
 
   vc<int> dat(tree.N);
   FOR(v, N) if (BCT.deg(v) > 1) dat[v] = 1;
