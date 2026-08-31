@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/offline_query/rectangle_add_point_sum.hpp
     title: ds/offline_query/rectangle_add_point_sum.hpp
   - icon: ':question:'
@@ -236,18 +236,19 @@ data:
     \ x, y); }\n\n  vector<G> calc() {\n    int N = rect.size(), Q = point.size();\n\
     \    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::id());\n    // X\
     \ \u65B9\u5411\u306E\u5EA7\u5727\n    int NX = 0;\n    if (!SMALL_X) {\n     \
-    \ sort(all(point),\n           [&](auto &x, auto &y) -> bool { return get<1>(x)\
+    \ sort(all(point),\n          [&](auto &x, auto &y) -> bool { return get<1>(x)\
     \ < get<1>(y); });\n      vc<XY> keyX;\n      keyX.reserve(Q);\n      for (auto\
-    \ &&[i, a, b]: point) {\n        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a);\
-    \ }\n        a = len(keyX) - 1;\n      }\n      for (auto &&[y, x1, x2, g]: rect)\
-    \ x1 = LB(keyX, x1), x2 = LB(keyX, x2);\n      NX = len(keyX);\n    }\n    if\
-    \ (SMALL_X) {\n      XY mx = infty<XY>;\n      for (auto &&[i, x, y]: point) chmin(mx,\
-    \ x);\n      for (auto &&[i, x, y]: point) x -= mx, chmax(NX, x + 1);\n      for\
-    \ (auto &&[y, x1, x2, g]: rect) {\n        x1 -= mx, x2 -= mx;\n        x1 = max(0,\
-    \ min<int>(x1, NX)), x2 = max(0, min<int>(x2, NX));\n      }\n    }\n\n    sort(all(point),\n\
-    \         [&](auto &x, auto &y) -> bool { return get<2>(x) < get<2>(y); });\n\
-    \    sort(all(rect),\n         [&](auto &x, auto &y) -> bool { return get<0>(x)\
-    \ < get<0>(y); });\n    FenwickTree<AbelianGroup> bit(NX);\n    vc<G> res(Q, AbelianGroup::id());\n\
+    \ &&[i, a, b] : point) {\n        if (len(keyX) == 0 || keyX.back() != a) {\n\
+    \          keyX.eb(a);\n        }\n        a = len(keyX) - 1;\n      }\n     \
+    \ for (auto &&[y, x1, x2, g] : rect) x1 = LB(keyX, x1), x2 = LB(keyX, x2);\n \
+    \     NX = len(keyX);\n    }\n    if (SMALL_X) {\n      XY mx = infty<XY>;\n \
+    \     for (auto &&[i, x, y] : point) chmin(mx, x);\n      for (auto &&[i, x, y]\
+    \ : point) x -= mx, chmax(NX, x + 1);\n      for (auto &&[y, x1, x2, g] : rect)\
+    \ {\n        x1 -= mx, x2 -= mx;\n        x1 = max(0, min<int>(x1, NX)), x2 =\
+    \ max(0, min<int>(x2, NX));\n      }\n    }\n\n    sort(all(point),\n        [&](auto\
+    \ &x, auto &y) -> bool { return get<2>(x) < get<2>(y); });\n    sort(all(rect),\n\
+    \        [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\n \
+    \   FenwickTree<AbelianGroup> bit(NX + 1);\n    vc<G> res(Q, AbelianGroup::id());\n\
     \    int j = 0;\n    FOR(i, Q) {\n      auto [q, x, y] = point[i];\n      while\
     \ (j < N && get<0>(rect[j]) <= y) {\n        auto [yy, x1, x2, g] = rect[j++];\n\
     \        bit.add(x1, g), bit.add(x2, AbelianGroup::inverse(g));\n      }\n   \
@@ -441,7 +442,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 22:36:55+09:00'
+  timestamp: '2026-09-01 01:42:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rect_add_pt_sum.test.cpp
