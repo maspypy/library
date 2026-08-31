@@ -5,7 +5,7 @@ data:
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_super.hpp
     title: convex/slope_trick/slope_trick_super.hpp
   - icon: ':warning:'
@@ -48,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/slope_super.test.cpp
+    title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay.test.cpp
     title: test/1_mytest/splay.test.cpp
@@ -400,6 +403,7 @@ data:
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/splay_monoid.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
+  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp

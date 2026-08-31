@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
