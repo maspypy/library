@@ -16,6 +16,9 @@ data:
   - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/prefix_sum.hpp
+    title: ds/prefix_sum.hpp
   - icon: ':question:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
@@ -36,9 +39,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -567,16 +570,18 @@ data:
     \ i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A)\
     \ {\n    n = len(A);\n    dat.assign(n + 1, MX::id());\n    for (int i = 0; i\
     \ < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) const\
-    \ { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n#line 7 \"test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i],\
+    \ { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n#line 2 \"ds/prefix_sum.hpp\"\
+    \n\ntemplate <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
+    #line 7 \"test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp\"\n\n\
+    void solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i],\
     \ Y[i], W[i]);\n  Wavelet_Matrix_2D_Range<int, true, true, Prefix_Sum<ll>> WM(\n\
     \      N, [&](int i) -> tuple<int, int, ll> { return {X[i], Y[i], W[i]}; });\n\
     \  FOR(q, Q) {\n    LL(a, c, b, d);\n    print(WM.prod(a, b, c, d));\n  }\n}\n\
     \nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix/wavelet_matrix_2d_range.hpp\"\
-    \n#include \"ds/static_range_product_group.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
-    \  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i], Y[i], W[i]);\n  Wavelet_Matrix_2D_Range<int,\
+    \n#include \"ds/prefix_sum.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N),\
+    \ Y(N), W(N);\n  FOR(i, N) read(X[i], Y[i], W[i]);\n  Wavelet_Matrix_2D_Range<int,\
     \ true, true, Prefix_Sum<ll>> WM(\n      N, [&](int i) -> tuple<int, int, ll>\
     \ { return {X[i], Y[i], W[i]}; });\n  FOR(q, Q) {\n    LL(a, c, b, d);\n    print(WM.prod(a,\
     \ b, c, d));\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
@@ -590,13 +595,14 @@ data:
   - ds/dummy_data_structure.hpp
   - alg/monoid/dummy.hpp
   - ds/index_compression.hpp
+  - ds/prefix_sum.hpp
   - ds/static_range_product_group.hpp
   - alg/monoid/add.hpp
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 20:38:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-01 06:35:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
 layout: document

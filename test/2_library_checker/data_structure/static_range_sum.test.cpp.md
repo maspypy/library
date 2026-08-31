@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/prefix_sum.hpp
+    title: ds/prefix_sum.hpp
   - icon: ':question:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
@@ -15,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -255,27 +258,30 @@ data:
     \ i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A)\
     \ {\n    n = len(A);\n    dat.assign(n + 1, MX::id());\n    for (int i = 0; i\
     \ < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) const\
-    \ { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n#line 7 \"test/2_library_checker/data_structure/static_range_sum.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  Prefix_Sum<u64> seg(N, [&](int i)\
-    \ -> u32 {\r\n    U32(x);\r\n    return x;\r\n  });\r\n  FOR(Q) {\r\n    INT(l,\
-    \ r);\r\n    print(seg.prod(l, r));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
+    \ { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n#line 2 \"ds/prefix_sum.hpp\"\
+    \n\ntemplate <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
+    #line 7 \"test/2_library_checker/data_structure/static_range_sum.test.cpp\"\n\r\
+    \nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  Prefix_Sum<u64> seg(N, [&](int i) ->\
+    \ u32 {\r\n    U32(x);\r\n    return x;\r\n  });\r\n  FOR(Q) {\r\n    INT(l, r);\r\
+    \n    print(seg.prod(l, r));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
     \n  return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\r\n\r\
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
-    ds/static_range_product_group.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\
-    \n  Prefix_Sum<u64> seg(N, [&](int i) -> u32 {\r\n    U32(x);\r\n    return x;\r\
-    \n  });\r\n  FOR(Q) {\r\n    INT(l, r);\r\n    print(seg.prod(l, r));\r\n  }\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}"
+    ds/prefix_sum.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  Prefix_Sum<u64>\
+    \ seg(N, [&](int i) -> u32 {\r\n    U32(x);\r\n    return x;\r\n  });\r\n  FOR(Q)\
+    \ {\r\n    INT(l, r);\r\n    print(seg.prod(l, r));\r\n  }\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  solve();\r\n  return 0;\r\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - ds/prefix_sum.hpp
   - ds/static_range_product_group.hpp
   - alg/monoid/add.hpp
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 20:38:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-01 06:35:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_sum.test.cpp
 layout: document

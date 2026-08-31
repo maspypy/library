@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/csr.hpp
     title: ds/csr.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/EGZ.hpp
     title: nt/EGZ.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -170,8 +170,8 @@ data:
     \ A);\n    ll sm = 0;\n    for (int i : I) sm += A[i];\n    assert(len(I) == N\
     \ && sm % N == 0);\n    sort(all(I));\n    FOR(i, len(I) - 1) assert(I[i] != I[i\
     \ + 1]);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
-    \ + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 1, 100) test(N);\n  return 0;\n\
-    }\n"
+    \ + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 1, 100) test(N);\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"nt/EGZ.hpp\"\n\nvoid test(int N)\
     \ {\n  FOR(1000) {\n    vc<ll> A(2 * N - 1);\n    FOR(i, len(A)) A[i] = RNG(0,\
@@ -179,7 +179,7 @@ data:
     \    assert(len(I) == N && sm % N == 0);\n    sort(all(I));\n    FOR(i, len(I)\
     \ - 1) assert(I[i] != I[i + 1]);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
     \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 1, 100)\
-    \ test(N);\n  return 0;\n}\n"
+    \ test(N);\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -189,8 +189,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/EGZ.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 22:36:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-01 06:31:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/EGZ.test.cpp
 layout: document

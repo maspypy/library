@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
@@ -471,19 +471,19 @@ data:
     \ <= eid && eid < M);\n    return comp_e[eid];\n  }\n\n  bool is_art(int v) const\
     \ {\n    assert(0 <= v && v < N);\n    return art[v];\n  }\n};\n#line 6 \"test/2_library_checker/graph/biconnected_component.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\
-    \n  auto T = block_cut<decltype(G)>(G);\n\n  print(T.N - N);\n  FOR(k, N, T.N)\
-    \ {\n    vc<int> ANS;\n    for (auto&& e: T[k]) ANS.eb(e.to);\n    print(len(ANS),\
-    \ ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \n  Block_Cut X(G);\n  auto T = X.BCT;\n\n  int single = 0;\n  FOR(v, N) if (G.deg(v)\
+    \ == 0)++ single;\n\n  print(T.N - N + single);\n  FOR(k, N, T.N) {\n    vc<int>\
+    \ ANS;\n    for (auto&& e : T[k]) ANS.eb(e.to);\n    print(len(ANS), ANS);\n \
+    \ }\n  FOR(v, N) if (G.deg(v) == 0) print(1, v);\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\
     \n#include \"graph/block_cut.hpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph<int,\
-    \ 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto T = block_cut<decltype(G)>(G);\n\
-    \n  print(T.N - N);\n  FOR(k, N, T.N) {\n    vc<int> ANS;\n    for (auto&& e:\
-    \ T[k]) ANS.eb(e.to);\n    print(len(ANS), ANS);\n  }\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}"
+    \ 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  Block_Cut X(G);\n  auto T = X.BCT;\n\
+    \n  int single = 0;\n  FOR(v, N) if (G.deg(v) == 0)++ single;\n\n  print(T.N -\
+    \ N + single);\n  FOR(k, N, T.N) {\n    vc<int> ANS;\n    for (auto&& e : T[k])\
+    \ ANS.eb(e.to);\n    print(len(ANS), ANS);\n  }\n  FOR(v, N) if (G.deg(v) == 0)\
+    \ print(1, v);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -493,8 +493,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/biconnected_component.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-01 06:41:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/biconnected_component.test.cpp
 layout: document

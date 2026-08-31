@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
   - icon: ':question:'
@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -22,14 +22,14 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -342,16 +342,17 @@ data:
     \  FenwickTree<G> bit1;\n\n  FenwickTree_Range_Add() {}\n  FenwickTree_Range_Add(int\
     \ n) { build(n); }\n  template <typename F>\n  FenwickTree_Range_Add(int n, F\
     \ f) {\n    build(n, f);\n  }\n  FenwickTree_Range_Add(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    n = m;\n    bit0.build(n), bit1.build(n);\n\
-    \  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m;\n    bit0.build(m, f);\n    bit1.build(m);\n  }\n\n  void add_at(int i, E\
-    \ val) { bit0.add(i, val); }\n\n  void add(int L, int R, E val) {\n    bit0.add(L,\
-    \ G::power(val, -L));\n    bit0.add(R, G::power(val, R));\n    bit1.add(L, val);\n\
-    \    bit1.add(R, G::inverse(val));\n  }\n\n  E prod(int L, int R) {\n    E prod_R\
-    \ = G::op(G::power(bit1.prod(R), R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L),\
-    \ L), bit0.prod(L));\n    return G::op(G::inverse(prod_L), prod_R);\n  }\n};\n\
-    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ }\n\n  void build(int m) {\n    n = m;\n    bit0.build(n + 1), bit1.build(n\
+    \ + 1);\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i) ->\
+    \ E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f)\
+    \ {\n    n = m;\n    bit0.build(m + 1, [&](int i) -> E { return (i < m ? f(i)\
+    \ : 0); });\n    bit1.build(m + 1);\n  }\n\n  void add_at(int i, E val) { bit0.add(i,\
+    \ val); }\n\n  void add(int L, int R, E val) {\n    bit0.add(L, G::power(val,\
+    \ -L));\n    bit0.add(R, G::power(val, R));\n    bit1.add(L, val);\n    bit1.add(R,\
+    \ G::inverse(val));\n  }\n\n  E prod(int L, int R) {\n    E prod_R = G::op(G::power(bit1.prod(R),\
+    \ R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L), L), bit0.prod(L));\n\
+    \    return G::op(G::inverse(prod_L), prod_R);\n  }\n};\n#line 1 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
@@ -410,8 +411,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2026-09-01 06:26:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-01 06:35:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/fenwick_raq.test.cpp
 layout: document

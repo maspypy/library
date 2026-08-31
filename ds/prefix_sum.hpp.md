@@ -8,10 +8,16 @@ data:
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+    title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/static_range_sum.test.cpp
+    title: test/2_library_checker/data_structure/static_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
@@ -46,8 +52,10 @@ data:
   path: ds/prefix_sum.hpp
   requiredBy: []
   timestamp: '2026-08-31 20:38:07+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/data_structure/static_range_sum.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
 documentation_of: ds/prefix_sum.hpp
 layout: document
 redirect_from:
