@@ -20,31 +20,33 @@ struct Rectangle_Add_Point_Sum {
     int NX = 0;
     if (!SMALL_X) {
       sort(all(point),
-           [&](auto &x, auto &y) -> bool { return get<1>(x) < get<1>(y); });
+          [&](auto &x, auto &y) -> bool { return get<1>(x) < get<1>(y); });
       vc<XY> keyX;
       keyX.reserve(Q);
-      for (auto &&[i, a, b]: point) {
-        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }
+      for (auto &&[i, a, b] : point) {
+        if (len(keyX) == 0 || keyX.back() != a) {
+          keyX.eb(a);
+        }
         a = len(keyX) - 1;
       }
-      for (auto &&[y, x1, x2, g]: rect) x1 = LB(keyX, x1), x2 = LB(keyX, x2);
+      for (auto &&[y, x1, x2, g] : rect) x1 = LB(keyX, x1), x2 = LB(keyX, x2);
       NX = len(keyX);
     }
     if (SMALL_X) {
       XY mx = infty<XY>;
-      for (auto &&[i, x, y]: point) chmin(mx, x);
-      for (auto &&[i, x, y]: point) x -= mx, chmax(NX, x + 1);
-      for (auto &&[y, x1, x2, g]: rect) {
+      for (auto &&[i, x, y] : point) chmin(mx, x);
+      for (auto &&[i, x, y] : point) x -= mx, chmax(NX, x + 1);
+      for (auto &&[y, x1, x2, g] : rect) {
         x1 -= mx, x2 -= mx;
         x1 = max(0, min<int>(x1, NX)), x2 = max(0, min<int>(x2, NX));
       }
     }
 
     sort(all(point),
-         [&](auto &x, auto &y) -> bool { return get<2>(x) < get<2>(y); });
+        [&](auto &x, auto &y) -> bool { return get<2>(x) < get<2>(y); });
     sort(all(rect),
-         [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });
-    FenwickTree<AbelianGroup> bit(NX);
+        [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });
+    FenwickTree<AbelianGroup> bit(NX + 1);
     vc<G> res(Q, AbelianGroup::id());
     int j = 0;
     FOR(i, Q) {
