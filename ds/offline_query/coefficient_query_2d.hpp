@@ -57,7 +57,6 @@ struct Coefficient_Query_2D {
       }
       IY.build(tmp);
     }
-
     FenwickTree<Mono> bit(len(IY));
 
     array<T, A> CX;

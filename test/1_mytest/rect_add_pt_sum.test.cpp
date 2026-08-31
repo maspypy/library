@@ -29,19 +29,19 @@ pair<vc<QT>, vc<pi>> gen(int H, int W, int Q) {
 
 vc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query) {
   vv(mint, A, H, W);
-  for (auto&& [a, b, c, d, x]: add_query) {
+  for (auto&& [a, b, c, d, x] : add_query) {
     FOR(i, a, b) FOR(j, c, d) { A[i][j] += mint(x); }
   }
   vc<mint> ANS;
-  for (auto&& [x, y]: sum_query) ANS.eb(A[x][y]);
+  for (auto&& [x, y] : sum_query) ANS.eb(A[x][y]);
   return ANS;
 }
 
 vc<mint> sol_2(int H, int W, vc<QT> add_query, vc<pi> sum_query) {
   vc<mint> ANS;
-  for (auto&& [x, y]: sum_query) {
+  for (auto&& [x, y] : sum_query) {
     mint ans = 0;
-    for (auto&& [a, b, c, d, v]: add_query) {
+    for (auto&& [a, b, c, d, v] : add_query) {
       if (a <= x && x < b && c <= y && y < d) ans += mint(v);
     }
     ANS.eb(ans);
@@ -53,15 +53,15 @@ void test() {
   FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q, 10) {
     auto [add_query, sum_query] = gen(H, W, Q);
     Rectangle_Add_Point_Sum<Monoid_Add<mint>, int, 0> X;
-    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);
-    for (auto&& [a, b]: sum_query) X.sum_query(a, b);
+    for (auto&& [a, b, c, d, v] : add_query) X.add_query(a, b, c, d, v);
+    for (auto&& [a, b] : sum_query) X.sum_query(a, b);
     assert(X.calc() == sol_1(H, W, add_query, sum_query));
   }
   FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q, 10) {
     auto [add_query, sum_query] = gen(H, W, Q);
     Rectangle_Add_Point_Sum<Monoid_Add<mint>, int, 1> X;
-    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);
-    for (auto&& [a, b]: sum_query) X.sum_query(a, b);
+    for (auto&& [a, b, c, d, v] : add_query) X.add_query(a, b, c, d, v);
+    for (auto&& [a, b] : sum_query) X.sum_query(a, b);
     assert(X.calc() == sol_1(H, W, add_query, sum_query));
   }
   FOR(10) {
@@ -70,8 +70,8 @@ void test() {
     int Q = 100;
     auto [add_query, sum_query] = gen(H, W, Q);
     Rectangle_Add_Point_Sum<Monoid_Add<mint>, int, 0> X;
-    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);
-    for (auto&& [a, b]: sum_query) X.sum_query(a, b);
+    for (auto&& [a, b, c, d, v] : add_query) X.add_query(a, b, c, d, v);
+    for (auto&& [a, b] : sum_query) X.sum_query(a, b);
     assert(X.calc() == sol_2(H, W, add_query, sum_query));
   }
 }
