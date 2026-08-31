@@ -1,4 +1,4 @@
-// マルチテストケースに弱いので static で確保すること
+// マルチテストケースでも確保済み chunk を再利用する
 template <class Node>
 struct Node_Pool {
   union Slot {
@@ -16,6 +16,11 @@ struct Node_Pool {
   int chunk_id = 0;
   int pos = 0;
   Slot* free_head = nullptr;
+
+  ~Node_Pool() {
+    auto& cache = chunk_cache();
+    for (auto& p : chunks) cache.eb(std::move(p));
+  }
 
   template <class... Args>
   np create(Args&&... args) {
@@ -46,7 +51,21 @@ struct Node_Pool {
   }
 
  private:
-  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE)); }
+  static vc<unique_ptr<Slot[]>>& chunk_cache() {
+    // static Node_Pool の destructor より先に破棄されないようにする。
+    static auto* cache = new vc<unique_ptr<Slot[]>>();
+    return *cache;
+  }
+
+  void alloc_chunk() {
+    auto& cache = chunk_cache();
+    if (cache.empty()) {
+      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));
+    } else {
+      chunks.eb(std::move(cache.back()));
+      cache.pop_back();
+    }
+  }
 
   Slot* new_slot() {
     if (free_head) {

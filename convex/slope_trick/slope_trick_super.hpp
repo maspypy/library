@@ -404,7 +404,7 @@ struct Slope_Trick_Super {
       f.y0 = y, f.a0 = 0;
       return f;
     }
-    T x = ST.get(f.root, 0).fi;
+    T x = ST.get(r, 0).fi;
     T y = f.y0 + f.a0 * (x - f.x0) + x * asum - xasum;
     T a = f.a0 + asum + ST.get(r, 0).se;
     ST.free_subtree(l);
