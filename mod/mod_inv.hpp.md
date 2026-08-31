@@ -113,6 +113,9 @@ data:
   - icon: ':warning:'
     path: new_poly/base.hpp
     title: new_poly/base.hpp
+  - icon: ':x:'
+    path: nt/EGZ.hpp
+    title: nt/EGZ.hpp
   - icon: ':heavy_check_mark:'
     path: nt/crt.hpp
     title: nt/crt.hpp
@@ -360,6 +363,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/31bit_modint.test.cpp
     title: test/1_mytest/31bit_modint.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/EGZ.test.cpp
+    title: test/1_mytest/EGZ.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
     title: test/1_mytest/bell.test.cpp
@@ -957,9 +963,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/mod_inv.hpp\"\n\n// long \u3067\u3082\u5927\u4E08\u592B\
@@ -980,6 +986,7 @@ data:
   isVerificationFile: false
   path: mod/mod_inv.hpp
   requiredBy:
+  - nt/EGZ.hpp
   - nt/crt.hpp
   - linalg/adjugate_matrix.hpp
   - linalg/det_A_plus_xB.hpp
@@ -1099,7 +1106,7 @@ data:
   - mod/mod_kth_root.hpp
   - new_poly/base.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/1_mytest/sparse_pow_2d.test.cpp
@@ -1108,6 +1115,7 @@ data:
   - test/1_mytest/online_square.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/online_pow.test.cpp
+  - test/1_mytest/EGZ.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/bigint.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: ds/csr.hpp
     title: ds/csr.hpp
   - icon: ':heavy_check_mark:'

@@ -321,7 +321,7 @@ data:
     - icon: ':question:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/csr.hpp
       title: ds/csr.hpp
     - icon: ':heavy_check_mark:'
@@ -369,7 +369,7 @@ data:
     - icon: ':warning:'
       path: ds/my_multiset.hpp
       title: ds/my_multiset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/node_pool.hpp
       title: ds/node_pool.hpp
     - icon: ':warning:'
@@ -446,7 +446,7 @@ data:
     - icon: ':question:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwicktree/fenwicktree_01.hpp
       title: ds/fenwicktree/fenwicktree_01.hpp
     - icon: ':heavy_check_mark:'
@@ -659,7 +659,7 @@ data:
       title: ds/sparse_table/xor_disjoint_sparse_table.hpp
   - name: ds/splaytree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splaytree/splaytree.hpp
       title: ds/splaytree/splaytree.hpp
     - icon: ':heavy_check_mark:'
@@ -668,7 +668,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree_acted_set.hpp
       title: ds/splaytree/splaytree_acted_set.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/splaytree/splaytree_basic.hpp
       title: ds/splaytree/splaytree_basic.hpp
     - icon: ':heavy_check_mark:'
@@ -832,19 +832,19 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
     - icon: ':warning:'
       path: geo/apollonian_circle.hpp
       title: geo/apollonian_circle.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':heavy_check_mark:'
       path: geo/closest_pair.hpp
       title: geo/closest_pair.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/convex_hull.hpp
       title: geo/convex_hull.hpp
     - icon: ':heavy_check_mark:'
@@ -862,10 +862,10 @@ data:
     - icon: ':warning:'
       path: geo/convex_polygon_union_area.hpp
       title: geo/convex_polygon_union_area.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
     - icon: ':heavy_check_mark:'
@@ -934,7 +934,7 @@ data:
     - icon: ':warning:'
       path: geo/polygon.hpp
       title: geo/polygon.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geo/polygon_triangulation.hpp
       title: geo/polygon_triangulation.hpp
     - icon: ':heavy_check_mark:'
@@ -1109,7 +1109,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/path_cycle_decomposition.hpp
       title: graph/path_cycle_decomposition.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/planar_graph.hpp
       title: graph/planar_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -1665,7 +1665,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':warning:'
@@ -1747,6 +1747,9 @@ data:
       title: new_poly/base.hpp
   - name: nt
     pages:
+    - icon: ':x:'
+      path: nt/EGZ.hpp
+      title: nt/EGZ.hpp
     - icon: ':heavy_check_mark:'
       path: nt/GF2.hpp
       title: nt/GF2.hpp
@@ -2294,7 +2297,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/random_monge.hpp
       title: random/random_monge.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: random/random_polygon.hpp
       title: random/random_polygon.hpp
     - icon: ':warning:'
@@ -2320,7 +2323,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/domino_standard_tableaux.hpp
       title: seq/domino_standard_tableaux.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/factorial_digit_system.hpp
       title: seq/factorial_digit_system.hpp
     - icon: ':heavy_check_mark:'
@@ -2692,6 +2695,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/ARC30D.test.cpp
       title: test/1_mytest/ARC30D.test.cpp
+    - icon: ':x:'
+      path: test/1_mytest/EGZ.test.cpp
+      title: test/1_mytest/EGZ.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/O1_inv.test.cpp
       title: test/1_mytest/O1_inv.test.cpp
@@ -2836,7 +2842,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
       title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/count_points_in_triangles.test.cpp
       title: test/1_mytest/count_points_in_triangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2905,16 +2911,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/factorial_998.test.cpp
       title: test/1_mytest/factorial_998.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/factorial_digit.test.cpp
       title: test/1_mytest/factorial_digit.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/faulhaber.test.cpp
       title: test/1_mytest/faulhaber.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/fenwick01.test.cpp
       title: test/1_mytest/fenwick01.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/fenwick_max_right.test.cpp
       title: test/1_mytest/fenwick_max_right.test.cpp
     - icon: ':x:'
@@ -3157,7 +3163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/poly_root_finding.test.cpp
       title: test/1_mytest/poly_root_finding.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/polygon_triangulation.test.cpp
       title: test/1_mytest/polygon_triangulation.test.cpp
     - icon: ':heavy_check_mark:'

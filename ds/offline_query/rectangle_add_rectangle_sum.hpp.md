@@ -133,29 +133,29 @@ data:
     \ - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n  }\n\n\
     \  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
     \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
-    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    assert(0 <=\
-    \ k && k < n);\n    total = G::op(total, x);\n    for (++k; k <= n; k += k & -k)\
-    \ dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k,\
-    \ k + 1)), x)); }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L = 0) const {\n    assert(check(G::id()));\n    E s = G::id();\n    int i =\
-    \ L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while\
-    \ (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i -\
-    \ 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
+    \  void multiply(int k, E x) {\n    SHOW(n, k);\n    static_assert(G::commute);\n\
+    \    assert(0 <= k && k < n);\n    total = G::op(total, x);\n    for (++k; k <=\
+    \ n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int k, E\
+    \ x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\n  template <class F>\n\
+    \  int max_right(const F check, int L = 0) const {\n    assert(check(G::id()));\n\
+    \    E s = G::id();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
+    \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) {\n        \
+    \  s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n        if (i ==\
+    \ 0) {\n          return topbit(n) + 1;\n        }\n        int k = lowbit(i)\
+    \ - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i\
+    \ + (1 << k) - 1]);\n        if (!check(t)) {\n          return k;\n        }\n\
+    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
+    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
+    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i + (1 << k) <= L || check(t))\
+    \ {\n          i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n\
+    \  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) const {\n    assert(check(L, G::id()));\n    E s = G::id();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
     \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
-    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t))\
-    \ {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])),\
-    \ i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i +\
-    \ (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n\
-    \        if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
-    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
-    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
-    \  assert(check(L, G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k\
-    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
-    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
-    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
-    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
-    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1 <<\
-    \ k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
+    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i\
+    \ + (1 << k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
     \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
     \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
     \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
@@ -195,7 +195,7 @@ data:
     \ GET_I.empty()) return;\n    Index_Compression<ll, true, false> IY;\n    {\n\
     \      vc<ll> tmp;\n      for (int q : ADD_I) {\n        auto [a, b, w, qid] =\
     \ query[q];\n        if (qid == -1) tmp.eb(b);\n      }\n      IY.build(tmp);\n\
-    \    }\n\n    FenwickTree<Mono> bit(len(IY));\n\n    array<T, A> CX;\n    array<T,\
+    \    }\n    FenwickTree<Mono> bit(len(IY));\n\n    array<T, A> CX;\n    array<T,\
     \ B> CY;\n    array<T, A * B> tmp;\n\n    int ptr = 0;\n    for (int q : GET_I)\
     \ {\n      auto [a, b, w, qid] = query[q];\n      while (ptr < len(ADD_I) && (get<0>(query[ADD_I[ptr]]))\
     \ <= a) {\n        int q = ADD_I[ptr++];\n        auto [a, b, w, qid] = query[q];\n\
@@ -246,7 +246,7 @@ data:
   isVerificationFile: false
   path: ds/offline_query/rectangle_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-08-31 22:36:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
