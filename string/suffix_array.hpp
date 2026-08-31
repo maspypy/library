@@ -1,4 +1,4 @@
-
+#include "ds/index_compression.hpp"
 #include "alg/monoid/min.hpp"
 #include "ds/sparse_table/sparse_table.hpp"
 #include "ds/segtree/segtree.hpp"
@@ -19,28 +19,30 @@ struct Suffix_Array {
   using SEG2 = Static_Range_Product<Mono, Sparse_Table<Mono>, 4>;
   static_assert(SEG_TYPE == 0 || SEG_TYPE == 1 || SEG_TYPE == 2);
   using SegType = conditional_t<SEG_TYPE == 0, SEG0,
-                                conditional_t<SEG_TYPE == 1, SEG1, SEG2> >;
+      conditional_t<SEG_TYPE == 1, SEG1, SEG2> >;
   SegType seg;
   bool build_seg;
 
   Suffix_Array() {}
-  Suffix_Array(string& s) {
+
+  template <typename STRING>
+  Suffix_Array(const STRING& s) {
     build_seg = 0;
-    assert(len(s) > 0);
-    char first = 127, last = 0;
-    for (auto&& c : s) {
-      chmin(first, c);
-      chmax(last, c);
-    }
-    SA = calc_suffix_array(s, first, last);
-    calc_LCP(s);
+    auto a = to_compressed_vector(s);
+    SA = SA_IS(a);
+    calc_LCP(a);
   }
 
-  Suffix_Array(vc<int> s) {
-    build_seg = 0;
-    assert(len(s) > 0);
-    SA = calc_suffix_array(s);
-    calc_LCP(s);
+  vc<int> to_compressed_vector(const string& s) {
+    vc<int> a(len(s));
+    FOR(i, len(s)) a[i] = (unsigned char)s[i];
+    Index_Compression<int, 1, 1> I;
+    return I.build(a);
+  }
+
+  vc<int> to_compressed_vector(const vc<int>& s) {
+    Index_Compression<int, 1, 0> I;
+    return I.build(s);
   }
 
   // lcp(S[i:], S[j:])
@@ -85,7 +87,7 @@ struct Suffix_Array {
 
  private:
   void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA,
-                    const vc<bool>& sl, const vc<int>& lms_idx) {
+      const vc<bool>& sl, const vc<int>& lms_idx) {
     vc<int> l(val_range, 0), r(val_range, 0);
     for (int c : vect) {
       if (c + 1 < val_range) ++l[c + 1];
@@ -107,7 +109,10 @@ struct Suffix_Array {
       }
   }
 
-  vc<int> SA_IS(const vc<int>& vect, int val_range) {
+  vc<int> SA_IS(vc<int> vect) {
+    for (auto& x : vect) ++x;
+    vect.eb(0);
+    int val_range = MAX(vect) + 1;
     const int n = vect.size();
     vc<int> SA(n), lms_idx;
     vc<bool> sl(n);
@@ -146,44 +151,21 @@ struct Suffix_Array {
     }
     for (size_t i = 0; i < lms_idx.size(); ++i) lms_vec[i] = SA[lms_idx[i]];
     if (cur + 1 < (int)lms_idx.size()) {
-      auto lms_SA = SA_IS(lms_vec, cur + 1);
+      auto lms_SA = SA_IS(lms_vec);
       for (size_t i = 0; i < lms_idx.size(); ++i) {
         new_lms_idx[i] = lms_idx[lms_SA[i]];
       }
     }
     induced_sort(vect, val_range, SA, sl, new_lms_idx);
+    SA.erase(SA.begin());
     return SA;
   }
 
-  vc<int> calc_suffix_array(const string& s, const char first = 'a',
-                            const char last = 'z') {
-    vc<int> vect(s.size() + 1);
-    copy(begin(s), end(s), begin(vect));
-    for (auto& x : vect) x -= (int)first - 1;
-    vect.back() = 0;
-    auto ret = SA_IS(vect, (int)last - (int)first + 2);
-    ret.erase(ret.begin());
-    return ret;
-  }
-
-  vc<int> calc_suffix_array(const vc<int>& s) {
-    vc<int> ss = s;
-    UNIQUE(ss);
-
-    vc<int> vect(s.size() + 1);
-    copy(all(s), vect.begin());
-    for (auto& x : vect) x = LB(ss, x) + 1;
-    vect.back() = 0;
-    auto ret = SA_IS(vect, MAX(vect) + 2);
-    ret.erase(ret.begin());
-    return ret;
-  }
-
-  template <typename STRING>
-  void calc_LCP(const STRING& s) {
+  void calc_LCP(const vc<int>& s) {
     int n = s.size(), k = 0;
     ISA.resize(n);
     LCP.resize(n);
+    if (n == 0) return;
     for (int i = 0; i < n; i++) ISA[SA[i]] = i;
     for (int i = 0; i < n; i++, k ? k-- : 0) {
       if (ISA[i] == n - 1) {

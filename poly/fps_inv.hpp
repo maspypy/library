@@ -3,6 +3,7 @@
 
 template <typename mint>
 vc<mint> fps_inv_sparse(const vc<mint>& f) {
+  if (f.empty()) return {};
   int N = len(f);
   vc<pair<int, mint>> dat;
   FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);
@@ -22,6 +23,7 @@ vc<mint> fps_inv_sparse(const vc<mint>& f) {
 
 template <typename mint>
 vc<mint> fps_inv_dense_ntt(const vc<mint>& F) {
+  if (F.empty()) return {};
   vc<mint> G = {mint(1) / F[0]};
   ll N = len(F), n = 1;
   G.reserve(N);
@@ -44,6 +46,7 @@ vc<mint> fps_inv_dense_ntt(const vc<mint>& F) {
 
 template <typename mint>
 vc<mint> fps_inv_dense(const vc<mint>& F) {
+  if (F.empty()) return {};
   if (mint::can_ntt()) return fps_inv_dense_ntt(F);
   const int N = len(F);
   vc<mint> R = {mint(1) / F[0]};
@@ -64,6 +67,7 @@ vc<mint> fps_inv_dense(const vc<mint>& F) {
 
 template <typename mint>
 vc<mint> fps_inv(const vc<mint>& f) {
+  if (f.empty()) return {};
   static_assert(!is_same_v<mint, modint<2>>, "use Bit_Array version for mod 2");
   assert(f[0] != mint(0));
   int n = count_terms(f);

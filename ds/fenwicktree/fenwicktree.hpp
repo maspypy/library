@@ -75,6 +75,7 @@ struct FenwickTree {
   void add(int k, E x) { multiply(k, x); }
   void multiply(int k, E x) {
     static_assert(G::commute);
+    assert(0 <= k && k < n);
     total = G::op(total, x);
     for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);
   }

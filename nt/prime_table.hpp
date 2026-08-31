@@ -26,6 +26,6 @@ vc<T> prime_table(int LIM) {
       FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);
     }
   }
-  int k = LB(primes, LIM + 1);
+  int k = LB(primes, LIM);
   return {primes.begin(), primes.begin() + k};
 }
