@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/wavelet_matrix/wavelet_matrix_2d_range.hpp"
-#include "ds/static_range_product_group.hpp"
+#include "ds/prefix_sum.hpp"
 #include "alg/monoid/add.hpp"
 
 void solve() {

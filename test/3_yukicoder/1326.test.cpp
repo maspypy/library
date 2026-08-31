@@ -9,7 +9,8 @@ void solve() {
   LL(N, M);
   Graph<int> G(N);
   G.read_graph(M);
-  auto BCT = block_cut<decltype(G)>(G);
+  Block_Cut X(G);
+  auto &BCT = X.BCT;
   Tree<decltype(BCT)> tree(BCT);
 
   vc<int> dat(tree.N);
@@ -32,13 +33,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
