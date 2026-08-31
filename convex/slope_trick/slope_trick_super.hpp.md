@@ -11,13 +11,10 @@ data:
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/slope_super.test.cpp
-    title: test/1_mytest/slope_super.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
@@ -180,11 +177,11 @@ data:
     \ value_type;\n  static constexpr X op(const X &x, const X &y) {\n    return {x.fi\
     \ + y.fi, x.se + y.se};\n  }\n  static constexpr X inverse(const X &x) { return\
     \ {-x.fi, -x.se}; }\n  static constexpr X id() { return {0, 0}; }\n  static constexpr\
-    \ bool commute = true;\n};\n#line 3 \"convex/slope_trick/slope_super.hpp\"\n\n\
-    namespace SLOPE_TRICK_SUPER {\n/*\n\u50BE\u304D\u3068\u5EA7\u6A19\u304C\u5168\u90E8\
-    \ T.\n(x0,y0,a0) / \u50BE\u304D\u5909\u5316\u3092 splay tree \u3067\u6301\u3064\
-    .\n\u672B\u5C3E\u306B\u306F\u5FC5\u305A infty \u304C\u5165\u3063\u3066\u3044\u308B\
-    \u3088\u3046\u306B\u3059\u308B.\n(0,10),(1,6),(3,4),(6,7)\n->\n(x0,y0,a0)=(0,10,-4)\n\
+    \ bool commute = true;\n};\n#line 3 \"convex/slope_trick/slope_trick_super.hpp\"\
+    \n\nnamespace SLOPE_TRICK_SUPER {\n/*\n\u50BE\u304D\u3068\u5EA7\u6A19\u304C\u5168\
+    \u90E8 T.\n(x0,y0,a0) / \u50BE\u304D\u5909\u5316\u3092 splay tree \u3067\u6301\
+    \u3064.\n\u672B\u5C3E\u306B\u306F\u5FC5\u305A infty \u304C\u5165\u3063\u3066\u3044\
+    \u308B\u3088\u3046\u306B\u3059\u308B.\n(0,10),(1,6),(3,4),(6,7)\n->\n(x0,y0,a0)=(0,10,-4)\n\
     dat = ([1,3],[3,2])\n\nf(x) \u306E\u8A08\u7B97, (min,argmin) \u306E\u8A08\u7B97\
     \n\u52A0\u6CD5, \u7573\u307F\u8FBC\u307F\n\n\u52A0\u6CD5: easy\nf(x) \u306E\u8A08\
     \u7B97: sum(a), sum(xa) \u304C\u8981\u308B\n\u7573\u307F\u8FBC\u307F: x->x+c \u304C\
@@ -511,16 +508,15 @@ data:
   - ds/node_pool.hpp
   - alg/monoid/add_pair.hpp
   isVerificationFile: false
-  path: convex/slope_trick/slope_super.hpp
+  path: convex/slope_trick/slope_trick_super.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/slope_super.test.cpp
-documentation_of: convex/slope_trick/slope_super.hpp
+  timestamp: '2026-08-31 11:27:20+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: convex/slope_trick/slope_trick_super.hpp
 layout: document
 redirect_from:
-- /library/convex/slope_trick/slope_super.hpp
-- /library/convex/slope_trick/slope_super.hpp.html
-title: convex/slope_trick/slope_super.hpp
+- /library/convex/slope_trick/slope_trick_super.hpp
+- /library/convex/slope_trick/slope_trick_super.hpp.html
+title: convex/slope_trick/slope_trick_super.hpp
 ---

@@ -5,9 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/slope_trick/slope_super.hpp
-    title: convex/slope_trick/slope_super.hpp
+  - icon: ':warning:'
+    path: convex/slope_trick/slope_trick_super.hpp
+    title: convex/slope_trick/slope_trick_super.hpp
   - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
@@ -141,9 +141,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_test.test.cpp
     title: test/1_mytest/rbst_test.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/slope_super.test.cpp
-    title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
@@ -320,7 +317,7 @@ data:
   - geo/polygon_triangulation.hpp
   - seq/cycle_decomposition.hpp
   - string/aho_corasick_for_general_trie.hpp
-  - convex/slope_trick/slope_super.hpp
+  - convex/slope_trick/slope_trick_super.hpp
   - convex/dynamic_lichao.hpp
   timestamp: '2026-08-29 08:51:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -336,7 +333,6 @@ data:
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/cf702_F.test.cpp
-  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/rbst_commutative_persistent.test.cpp

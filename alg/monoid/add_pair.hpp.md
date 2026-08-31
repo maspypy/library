@@ -8,9 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/slope_trick/slope_super.hpp
-    title: convex/slope_trick/slope_super.hpp
+  - icon: ':warning:'
+    path: convex/slope_trick/slope_trick_super.hpp
+    title: convex/slope_trick/slope_trick_super.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/cf702_F.test.cpp
@@ -21,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/slope_super.test.cpp
-    title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
@@ -67,14 +64,13 @@ data:
   requiredBy:
   - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/cntsum_add.hpp
-  - convex/slope_trick/slope_super.hpp
+  - convex/slope_trick/slope_trick_super.hpp
   timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/cf702_F.test.cpp
-  - test/1_mytest/slope_super.test.cpp
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/1919.test.cpp

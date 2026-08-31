@@ -297,14 +297,14 @@ data:
   - name: convex/slope_trick
     pages:
     - icon: ':heavy_check_mark:'
-      path: convex/slope_trick/slope_super.hpp
-      title: convex/slope_trick/slope_super.hpp
-    - icon: ':heavy_check_mark:'
       path: convex/slope_trick/slope_trick_0.hpp
       title: convex/slope_trick/slope_trick_0.hpp
     - icon: ':heavy_check_mark:'
       path: convex/slope_trick/slope_trick_1.hpp
       title: convex/slope_trick/slope_trick_1.hpp
+    - icon: ':warning:'
+      path: convex/slope_trick/slope_trick_super.hpp
+      title: convex/slope_trick/slope_trick_super.hpp
   - name: datetime
     pages:
     - icon: ':heavy_check_mark:'
@@ -3274,7 +3274,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/slice_rational_fps.test.cpp
       title: test/1_mytest/slice_rational_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/slope_super.test.cpp
       title: test/1_mytest/slope_super.test.cpp
     - icon: ':heavy_check_mark:'

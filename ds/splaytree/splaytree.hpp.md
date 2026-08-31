@@ -5,9 +5,9 @@ data:
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convex/slope_trick/slope_super.hpp
-    title: convex/slope_trick/slope_super.hpp
+  - icon: ':warning:'
+    path: convex/slope_trick/slope_trick_super.hpp
+    title: convex/slope_trick/slope_trick_super.hpp
   - icon: ':warning:'
     path: ds/piecewise_constant/piecewise_constant.hpp
     title: ds/piecewise_constant/piecewise_constant.hpp
@@ -48,9 +48,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/slope_super.test.cpp
-    title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay.test.cpp
     title: test/1_mytest/splay.test.cpp
@@ -388,7 +385,7 @@ data:
   - ds/piecewise_constant/piecewise_constant_basic.hpp
   - geo/polygon_triangulation.hpp
   - seq/cycle_decomposition.hpp
-  - convex/slope_trick/slope_super.hpp
+  - convex/slope_trick/slope_trick_super.hpp
   timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -397,7 +394,6 @@ data:
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/splay_monoid.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
-  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp

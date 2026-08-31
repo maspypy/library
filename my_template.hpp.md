@@ -661,9 +661,6 @@ data:
     path: test/1_mytest/slice_rational_fps.test.cpp
     title: test/1_mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/slope_super.test.cpp
-    title: test/1_mytest/slope_super.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/smawk.test.cpp
     title: test/1_mytest/smawk.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2949,7 +2946,6 @@ data:
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/find_even_cycle.test.cpp
   - test/1_mytest/conv2d.test.cpp
-  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/kinetic.test.cpp
   - test/1_mytest/count_labeled_connected.test.cpp
   - test/1_mytest/enumerate_products.test.cpp
