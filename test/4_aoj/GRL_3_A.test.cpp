@@ -8,20 +8,11 @@ void solve() {
   LL(N, M);
   Graph<int, 0> G(N);
   G.read_graph(M, 0, 0);
-  auto BCT = block_cut(G);
-  FOR(v, N) {
-    if (BCT.deg(v) != 1) print(v);
-  }
+  Block_Cut X(G);
+  FOR(v, N) if (X.is_art(v)) print(v);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

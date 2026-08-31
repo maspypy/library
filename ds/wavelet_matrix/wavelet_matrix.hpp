@@ -22,8 +22,7 @@ struct Uncompressed_Wavelet_Matrix {
   }
   Uncompressed_Wavelet_Matrix(const vc<Y>& A, int log = -1) {
     static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);
-    build(
-        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::id()}; }, log);
+    build(len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::id()}; }, log);
   }
 
   template <typename F>
@@ -223,16 +222,13 @@ struct Uncompressed_Wavelet_Matrix {
   // prod の方を見る必要がある
   template <typename F>
   tuple<Y, int, T> max_right(F check, int L, int R) const {
-    assert(limit < infty<Y>);
     int cnt = 0;
     Y y = 0;
     T t = Mono::id();
     T t_all = seg[log].prod(L, R);
     assert(check(0, 0, Mono::id()));
-    if (check(limit, R - L, t_all)) {
-      y = binary_search([&](Y y) -> bool { return check(y, R - L, t_all); },
-                        limit, infty<Y> + 1);
-      return {y, R - L, t_all};
+    if (check(infty<Y>, R - L, t_all)) {
+      return {infty<Y>, R - L, t_all};
     }
     for (int d = log - 1; d >= 0; --d) {
       auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);
@@ -251,7 +247,6 @@ struct Uncompressed_Wavelet_Matrix {
   // [L,R) x [0,y) での check(y, cnt, prod) が true となる最大の (Y,cnt,prod)
   template <typename F>
   tuple<Y, int, T> max_right_many(F check, vc<pair<int, int>> LR) const {
-    assert(limit < infty<Y>);
     int cnt = 0;
     Y y = 0;
     T t = Mono::id();
@@ -260,10 +255,8 @@ struct Uncompressed_Wavelet_Matrix {
     for (auto& [l, r] : LR)
       t_all = Mono::op(t_all, prod_all(l, r)), cnt_all += r - l;
     assert(check(0, 0, Mono::id()));
-    if (check(limit, cnt_all, t_all)) {
-      y = binary_search([&](Y y) -> bool { return check(y, cnt_all, t_all); },
-                        limit, infty<Y> + 1);
-      return {y, cnt_all, t_all};
+    if (check(infty<Y>, cnt_all, t_all)) {
+      return {infty<Y>, cnt_all, t_all};
     }
     for (int d = log - 1; d >= 0; --d) {
       Y y1 = Y(1) << d;
@@ -433,4 +426,4 @@ struct Compressed_Wavelet_Matrix {
 template <typename Y, bool compress, typename SEGTREE = Dummy_Data_Structure>
 using Wavelet_Matrix =
     conditional_t<compress, Compressed_Wavelet_Matrix<Y, SEGTREE>,
-                  Uncompressed_Wavelet_Matrix<Y, SEGTREE>>;
+        Uncompressed_Wavelet_Matrix<Y, SEGTREE>>;
