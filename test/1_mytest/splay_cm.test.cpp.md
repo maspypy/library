@@ -242,72 +242,78 @@ data:
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\
-    \u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\
-    \u3068\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node node;\n\
+    \u30B9\u3067\u3082\u78BA\u4FDD\u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\
+    \u308B\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node node;\n\
     \    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\
     \n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n\
-    \  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\n  template\
-    \ <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
-    \    return ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const\
-    \ np x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node)\
-    \ Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
-    \    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
-    \ = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n \
-    \ // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\
-    \u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n\
-    \    free_head = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n\
-    \  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE)); }\n\n  Slot*\
-    \ new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head\
-    \ = free_head->next;\n      return s;\n    }\n\n    if (chunk_id == len(chunks))\
-    \ alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE)\
-    \ {\n      ++chunk_id;\n      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2\
-    \ \"ds/splaytree/splaytree.hpp\"\n\n// Node \u578B\u3092\u5225\u306B\u5B9A\u7FA9\
-    \u3057\u3066\u4F7F\u3046\ntemplate <typename Node>\nstruct SplayTree {\n  Node_Pool<Node>\
-    \ pool;\n  using np = Node *;\n  using X = typename Node::value_type;\n  using\
-    \ A = typename Node::operator_type;\n\n  void free_subtree(np c) {\n    if (!c)\
-    \ return;\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (c->l) dfs(dfs,\
-    \ c->l);\n      if (c->r) dfs(dfs, c->r);\n      c->p = c->l = c->r = nullptr;\n\
-    \      pool.destroy(c);\n    };\n    dfs(dfs, c);\n  }\n\n  void reset() { pool.reset();\
-    \ }\n\n  np new_root() { return nullptr; }\n\n  np new_node(const X &x) {\n  \
-    \  np n = pool.create();\n    Node::new_node(n, x);\n    return n;\n  }\n\n  np\
-    \ new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, int l, int r) ->\
-    \ np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
-    \      int m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
-    \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
-    \ root->r = r_root;\n      if (l_root) l_root->p = root;\n      if (r_root) r_root->p\
-    \ = root;\n      root->update();\n      return root;\n    };\n    return dfs(dfs,\
-    \ 0, len(dat));\n  }\n\n  u32 get_size(np root) { return (root ? root->size :\
-    \ 0); }\n\n  np merge(np l_root, np r_root) {\n    if (!l_root) return r_root;\n\
-    \    if (!r_root) return l_root;\n    assert((!l_root->p) && (!r_root->p));\n\
-    \    splay_kth(r_root, 0);  // splay \u3057\u305F\u306E\u3067 push \u6E08\n  \
-    \  r_root->l = l_root;\n    l_root->p = r_root;\n    r_root->update();\n    return\
-    \ r_root;\n  }\n  np merge3(np a, np b, np c) { return merge(merge(a, b), c);\
-    \ }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c),\
-    \ d); }\n\n  pair<np, np> split(np root, u32 k) {\n    assert(!root || !root->p);\n\
-    \    if (k == 0) return {nullptr, root};\n    if (k == (root->size)) return {root,\
-    \ nullptr};\n    splay_kth(root, k - 1);\n    np right = root->r;\n    root->r\
-    \ = nullptr, right->p = nullptr;\n    root->update();\n    return {root, right};\n\
-    \  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n  \
-    \  tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n    return\
-    \ {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i, u32 j,\
-    \ u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto [a, b, c]\
-    \ = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  tuple<np, np, np>\
-    \ split_L_root_R(np root) {\n    u32 s = (root->l ? root->l->size : 0);\n    return\
-    \ split3(root, s, s + 1);\n  }\n\n  // \u90E8\u5206\u6728\u304C\u533A\u9593 [l,r)\
-    \ \u306B\u5BFE\u5FDC\u3059\u308B\u3088\u3046\u306A\u30CE\u30FC\u30C9\u3092\u4F5C\
-    \u3063\u3066\u8FD4\u3059\n  // \u305D\u306E\u30CE\u30FC\u30C9\u304C root \u306B\
-    \u306A\u308B\u308F\u3051\u3067\u306F\u306A\u3044\u306E\u3067\u3001\n  // \u3053\
-    \u306E\u30CE\u30FC\u30C9\u3092\u53C2\u7167\u3057\u305F\u5F8C\u306B\u3059\u3050\
-    \u306B splay \u3057\u3066\u6839\u306B\u6301\u3061\u4E0A\u3052\u308B\u3053\u3068\
-    \n  void goto_between(np &root, u32 l, u32 r) {\n    if (l == 0 && r == root->size)\
-    \ return;\n    if (l == 0) {\n      splay_kth(root, r);\n      root = root->l;\n\
-    \      return;\n    }\n    if (r == root->size) {\n      splay_kth(root, l - 1);\n\
-    \      root = root->r;\n      return;\n    }\n    splay_kth(root, r);\n    np\
-    \ rp = root;\n    root = rp->l;\n    root->p = nullptr;\n    splay_kth(root, l\
-    \ - 1);\n    root->p = rp;\n    rp->l = root;\n    rp->update();\n    root = root->r;\n\
-    \  }\n\n  vc<X> get_all(const np &root) {\n    vc<X> res;\n    auto dfs = [&](auto\
-    \ &dfs, np root) -> void {\n      if (!root) return;\n      root->push();\n  \
-    \    dfs(dfs, root->l);\n      res.eb(root->get());\n      dfs(dfs, root->r);\n\
+    \  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\n  ~Node_Pool()\
+    \ {\n    auto& cache = chunk_cache();\n    for (auto& p : chunks) cache.eb(std::move(p));\n\
+    \  }\n\n  template <class... Args>\n  np create(Args&&... args) {\n    Slot* s\
+    \ = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n \
+    \ }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n \
+    \   return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x)\
+    \ return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next\
+    \ = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\
+    \u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\
+    \u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\
+    \u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n    pos\
+    \ = 0;\n  }\n\n private:\n  static vc<unique_ptr<Slot[]>>& chunk_cache() {\n \
+    \   // static Node_Pool \u306E destructor \u3088\u308A\u5148\u306B\u7834\u68C4\
+    \u3055\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\n    static auto*\
+    \ cache = new vc<unique_ptr<Slot[]>>();\n    return *cache;\n  }\n\n  void alloc_chunk()\
+    \ {\n    auto& cache = chunk_cache();\n    if (cache.empty()) {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \    } else {\n      chunks.eb(std::move(cache.back()));\n      cache.pop_back();\n\
+    \    }\n  }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
+    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
+    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
+    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
+    \ s;\n  }\n};\n#line 2 \"ds/splaytree/splaytree.hpp\"\n\n// Node \u578B\u3092\u5225\
+    \u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node>\nstruct SplayTree\
+    \ {\n  Node_Pool<Node> pool;\n  using np = Node *;\n  using X = typename Node::value_type;\n\
+    \  using A = typename Node::operator_type;\n\n  void free_subtree(np c) {\n  \
+    \  if (!c) return;\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (c->l)\
+    \ dfs(dfs, c->l);\n      if (c->r) dfs(dfs, c->r);\n      c->p = c->l = c->r =\
+    \ nullptr;\n      pool.destroy(c);\n    };\n    dfs(dfs, c);\n  }\n\n  void reset()\
+    \ { pool.reset(); }\n\n  np new_root() { return nullptr; }\n\n  np new_node(const\
+    \ X &x) {\n    np n = pool.create();\n    Node::new_node(n, x);\n    return n;\n\
+    \  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, int l,\
+    \ int r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
+    \ new_node(dat[l]);\n      int m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
+    \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
+    \      root->l = l_root, root->r = r_root;\n      if (l_root) l_root->p = root;\n\
+    \      if (r_root) r_root->p = root;\n      root->update();\n      return root;\n\
+    \    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  u32 get_size(np root) { return\
+    \ (root ? root->size : 0); }\n\n  np merge(np l_root, np r_root) {\n    if (!l_root)\
+    \ return r_root;\n    if (!r_root) return l_root;\n    assert((!l_root->p) &&\
+    \ (!r_root->p));\n    splay_kth(r_root, 0);  // splay \u3057\u305F\u306E\u3067\
+    \ push \u6E08\n    r_root->l = l_root;\n    l_root->p = r_root;\n    r_root->update();\n\
+    \    return r_root;\n  }\n  np merge3(np a, np b, np c) { return merge(merge(a,\
+    \ b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
+    \ b), c), d); }\n\n  pair<np, np> split(np root, u32 k) {\n    assert(!root ||\
+    \ !root->p);\n    if (k == 0) return {nullptr, root};\n    if (k == (root->size))\
+    \ return {root, nullptr};\n    splay_kth(root, k - 1);\n    np right = root->r;\n\
+    \    root->r = nullptr, right->p = nullptr;\n    root->update();\n    return {root,\
+    \ right};\n  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm,\
+    \ nr;\n    tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n\
+    \    return {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32\
+    \ i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto\
+    \ [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  tuple<np,\
+    \ np, np> split_L_root_R(np root) {\n    u32 s = (root->l ? root->l->size : 0);\n\
+    \    return split3(root, s, s + 1);\n  }\n\n  // \u90E8\u5206\u6728\u304C\u533A\
+    \u9593 [l,r) \u306B\u5BFE\u5FDC\u3059\u308B\u3088\u3046\u306A\u30CE\u30FC\u30C9\
+    \u3092\u4F5C\u3063\u3066\u8FD4\u3059\n  // \u305D\u306E\u30CE\u30FC\u30C9\u304C\
+    \ root \u306B\u306A\u308B\u308F\u3051\u3067\u306F\u306A\u3044\u306E\u3067\u3001\
+    \n  // \u3053\u306E\u30CE\u30FC\u30C9\u3092\u53C2\u7167\u3057\u305F\u5F8C\u306B\
+    \u3059\u3050\u306B splay \u3057\u3066\u6839\u306B\u6301\u3061\u4E0A\u3052\u308B\
+    \u3053\u3068\n  void goto_between(np &root, u32 l, u32 r) {\n    if (l == 0 &&\
+    \ r == root->size) return;\n    if (l == 0) {\n      splay_kth(root, r);\n   \
+    \   root = root->l;\n      return;\n    }\n    if (r == root->size) {\n      splay_kth(root,\
+    \ l - 1);\n      root = root->r;\n      return;\n    }\n    splay_kth(root, r);\n\
+    \    np rp = root;\n    root = rp->l;\n    root->p = nullptr;\n    splay_kth(root,\
+    \ l - 1);\n    root->p = rp;\n    rp->l = root;\n    rp->update();\n    root =\
+    \ root->r;\n  }\n\n  vc<X> get_all(const np &root) {\n    vc<X> res;\n    auto\
+    \ dfs = [&](auto &dfs, np root) -> void {\n      if (!root) return;\n      root->push();\n\
+    \      dfs(dfs, root->l);\n      res.eb(root->get());\n      dfs(dfs, root->r);\n\
     \    };\n    dfs(dfs, root);\n    return res;\n  }\n\n  X get(np &root, u32 k)\
     \ {\n    assert(root == nullptr || !root->p);\n    splay_kth(root, k);\n    return\
     \ root->get();\n  }\n\n  void set(np &root, u32 k, const X &x) {\n    assert(root\
@@ -479,7 +485,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/splay_cm.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-08-31 12:03:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/splay_cm.test.cpp

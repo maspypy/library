@@ -374,72 +374,78 @@ data:
     \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
     \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\
-    \u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067\
-    \ static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\nstruct\
+    \u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\u6E08\
+    \u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\nstruct\
     \ Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot() {}\n\
     \    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
     \ = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos\
-    \ = 0;\n  Slot* free_head = nullptr;\n\n  template <class... Args>\n  np create(Args&&...\
-    \ args) {\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n\
-    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
-    \    return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if\
-    \ (!x) return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n \
-    \   s->next = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\
-    \u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\
-    \u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\
-    \u308B\u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n\
-    \    pos = 0;\n  }\n\n private:\n  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\
-    \ }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
-    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
-    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
-    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
-    \ s;\n  }\n};\n#line 4 \"ds/segtree/sortable_segtree.hpp\"\n\ntemplate <typename\
-    \ Monoid>\nstruct Sortable_SegTree {\n  using MX = Monoid;\n  using X = typename\
-    \ MX::value_type;\n  const int N, KEY_MAX;\n\n  struct Node {\n    X x, rev_x;\n\
-    \    int size;\n    Node *l, *r;\n  };\n  Node_Pool<Node> pool;\n  using np =\
-    \ Node*;\n\n  FastSet ss;       // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\u3092\
-    \u8868\u3059 fastset\n  SegTree<MX> seg;  // \u533A\u9593\u3092\u96C6\u7D04\u3057\
-    \u305F\u5024\u3092\u533A\u9593\u306E\u5DE6\u7AEF\u306B\u306E\u305B\u305F segtree\n\
-    \  vector<np> root;  // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic segtree\
-    \ \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_SegTree(int\
-    \ KEY_MAX, vector<int> key, vector<X> dat)\n      : N(key.size()), KEY_MAX(KEY_MAX),\
-    \ ss(key.size()), seg(dat) {\n    init(key, dat);\n  }\n  void set(int i, int\
-    \ key, const X& x) {\n    assert(key < KEY_MAX);\n    split_at(i), split_at(i\
-    \ + 1);\n    rev[i] = 0, root[i] = new_node();\n    set_rec(root[i], 0, KEY_MAX,\
-    \ key, x);\n    seg.set(i, x);\n  }\n\n  X prod_all() { return seg.prod_all();\
-    \ }\n\n  X prod(int l, int r) {\n    split_at(l), split_at(r);\n    return seg.prod(l,\
-    \ r);\n  }\n\n  void sort_inc(int l, int r) {\n    split_at(l), split_at(r);\n\
-    \    while (1) {\n      np c = root[l];\n      int i = ss.next(l + 1);\n     \
-    \ if (i == r) break;\n      root[l] = merge(c, root[i]);\n      ss.erase(i), seg.set(i,\
-    \ MX::id());\n    }\n    rev[l] = 0, seg.set(l, root[l]->x);\n  };\n\n  void sort_dec(int\
-    \ l, int r) {\n    sort_inc(l, r), rev[l] = 1;\n    seg.set(l, root[l]->rev_x);\n\
-    \  };\n\n  pair<vc<int>, vc<X>> get_all() {\n    vector<int> key;\n    vector<X>\
-    \ dat;\n    key.reserve(N);\n    dat.reserve(N);\n    auto dfs = [&](auto& dfs,\
-    \ np n, int l, int r, bool rev) -> void {\n      if (!n) return;\n      if (r\
-    \ == l + 1) {\n        key.eb(l), dat.eb(n->x);\n        return;\n      }\n  \
-    \    int m = (l + r) / 2;\n      if (!rev) {\n        dfs(dfs, n->l, l, m, rev),\
-    \ dfs(dfs, n->r, m, r, rev);\n      }\n      if (rev) {\n        dfs(dfs, n->r,\
-    \ m, r, rev), dfs(dfs, n->l, l, m, rev);\n      }\n    };\n    for (int i = 0;\
-    \ i < N; ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n   \
-    \ }\n    return {key, dat};\n  }\n\n private:\n  void init(vector<int>& key, vector<X>&\
-    \ dat) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n    seg.build(N,\
-    \ [&](int i) -> X { return dat[i]; });\n    for (int i = 0; i < N; ++i) {\n  \
-    \    ss.insert(i);\n      root.eb(new_node(MX::id()));\n      assert(key[i] <\
-    \ KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i], dat[i]);\n    }\n  }\n\
-    \n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
-    \  void split_at(int x) {\n    if (x == N || ss[x]) return;\n    int a = ss.prev(x),\
-    \ b = ss.next(a + 1);\n    ss.insert(x);\n    if (!rev[a]) {\n      auto [nl,\
-    \ nr] = split(root[a], x - a);\n      root[a] = nl, root[x] = nr;\n      rev[a]\
-    \ = rev[x] = 0;\n      seg.set(a, root[a]->x), seg.set(x, root[x]->x);\n    }\
-    \ else {\n      auto [nl, nr] = split(root[a], b - x);\n      root[a] = nr, root[x]\
-    \ = nl;\n      rev[a] = rev[x] = 1;\n      seg.set(a, root[a]->rev_x), seg.set(x,\
-    \ root[x]->rev_x);\n    }\n  }\n\n  void rebuild() {\n    auto [key, dat] = get_all();\n\
-    \    pool.reset();\n    init(key, dat);\n  }\n\n  np new_node(X x = MX::id())\
-    \ {\n    np c = pool.create();\n    c->x = c->rev_x = x;\n    c->l = c->r = nullptr;\n\
-    \    c->size = 1;\n    return c;\n  }\n\n  pair<np, np> split(np n, int k) {\n\
-    \    if (k == 0) {\n      return {nullptr, n};\n    }\n    if (k == n->size) {\n\
-    \      return {n, nullptr};\n    }\n    int s = (n->l ? n->l->size : 0);\n   \
-    \ Node* b = new_node();\n    if (k <= s) {\n      auto [nl, nr] = split(n->l,\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n\
+    \    for (auto& p : chunks) cache.eb(std::move(p));\n  }\n\n  template <class...\
+    \ Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n    return\
+    \ ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np x)\
+    \ {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(*x);\n\
+    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    Slot*\
+    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
+    \  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\
+    \u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\
+    \u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n    free_head\
+    \ = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n  static vc<unique_ptr<Slot[]>>&\
+    \ chunk_cache() {\n    // static Node_Pool \u306E destructor \u3088\u308A\u5148\
+    \u306B\u7834\u68C4\u3055\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\
+    \n    static auto* cache = new vc<unique_ptr<Slot[]>>();\n    return *cache;\n\
+    \  }\n\n  void alloc_chunk() {\n    auto& cache = chunk_cache();\n    if (cache.empty())\
+    \ {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n    } else {\n      chunks.eb(std::move(cache.back()));\n\
+    \      cache.pop_back();\n    }\n  }\n\n  Slot* new_slot() {\n    if (free_head)\
+    \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
+    \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
+    \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 4 \"ds/segtree/sortable_segtree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct Sortable_SegTree {\n  using MX = Monoid;\n\
+    \  using X = typename MX::value_type;\n  const int N, KEY_MAX;\n\n  struct Node\
+    \ {\n    X x, rev_x;\n    int size;\n    Node *l, *r;\n  };\n  Node_Pool<Node>\
+    \ pool;\n  using np = Node*;\n\n  FastSet ss;       // \u533A\u9593\u306E\u5DE6\
+    \u7AEF\u5168\u4F53\u3092\u8868\u3059 fastset\n  SegTree<MX> seg;  // \u533A\u9593\
+    \u3092\u96C6\u7D04\u3057\u305F\u5024\u3092\u533A\u9593\u306E\u5DE6\u7AEF\u306B\
+    \u306E\u305B\u305F segtree\n  vector<np> root;  // \u533A\u9593\u306E\u5DE6\u7AEF\
+    \u306B\u3001dynamic segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool>\
+    \ rev;\n\n  Sortable_SegTree(int KEY_MAX, vector<int> key, vector<X> dat)\n  \
+    \    : N(key.size()), KEY_MAX(KEY_MAX), ss(key.size()), seg(dat) {\n    init(key,\
+    \ dat);\n  }\n  void set(int i, int key, const X& x) {\n    assert(key < KEY_MAX);\n\
+    \    split_at(i), split_at(i + 1);\n    rev[i] = 0, root[i] = new_node();\n  \
+    \  set_rec(root[i], 0, KEY_MAX, key, x);\n    seg.set(i, x);\n  }\n\n  X prod_all()\
+    \ { return seg.prod_all(); }\n\n  X prod(int l, int r) {\n    split_at(l), split_at(r);\n\
+    \    return seg.prod(l, r);\n  }\n\n  void sort_inc(int l, int r) {\n    split_at(l),\
+    \ split_at(r);\n    while (1) {\n      np c = root[l];\n      int i = ss.next(l\
+    \ + 1);\n      if (i == r) break;\n      root[l] = merge(c, root[i]);\n      ss.erase(i),\
+    \ seg.set(i, MX::id());\n    }\n    rev[l] = 0, seg.set(l, root[l]->x);\n  };\n\
+    \n  void sort_dec(int l, int r) {\n    sort_inc(l, r), rev[l] = 1;\n    seg.set(l,\
+    \ root[l]->rev_x);\n  };\n\n  pair<vc<int>, vc<X>> get_all() {\n    vector<int>\
+    \ key;\n    vector<X> dat;\n    key.reserve(N);\n    dat.reserve(N);\n    auto\
+    \ dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n      if (!n)\
+    \ return;\n      if (r == l + 1) {\n        key.eb(l), dat.eb(n->x);\n       \
+    \ return;\n      }\n      int m = (l + r) / 2;\n      if (!rev) {\n        dfs(dfs,\
+    \ n->l, l, m, rev), dfs(dfs, n->r, m, r, rev);\n      }\n      if (rev) {\n  \
+    \      dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev);\n      }\n    };\n\
+    \    for (int i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX,\
+    \ rev[i]);\n    }\n    return {key, dat};\n  }\n\n private:\n  void init(vector<int>&\
+    \ key, vector<X>& dat) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n\
+    \    seg.build(N, [&](int i) -> X { return dat[i]; });\n    for (int i = 0; i\
+    \ < N; ++i) {\n      ss.insert(i);\n      root.eb(new_node(MX::id()));\n     \
+    \ assert(key[i] < KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i], dat[i]);\n\
+    \    }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
+    \u308B\n  void split_at(int x) {\n    if (x == N || ss[x]) return;\n    int a\
+    \ = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n    if (!rev[a]) {\n \
+    \     auto [nl, nr] = split(root[a], x - a);\n      root[a] = nl, root[x] = nr;\n\
+    \      rev[a] = rev[x] = 0;\n      seg.set(a, root[a]->x), seg.set(x, root[x]->x);\n\
+    \    } else {\n      auto [nl, nr] = split(root[a], b - x);\n      root[a] = nr,\
+    \ root[x] = nl;\n      rev[a] = rev[x] = 1;\n      seg.set(a, root[a]->rev_x),\
+    \ seg.set(x, root[x]->rev_x);\n    }\n  }\n\n  void rebuild() {\n    auto [key,\
+    \ dat] = get_all();\n    pool.reset();\n    init(key, dat);\n  }\n\n  np new_node(X\
+    \ x = MX::id()) {\n    np c = pool.create();\n    c->x = c->rev_x = x;\n    c->l\
+    \ = c->r = nullptr;\n    c->size = 1;\n    return c;\n  }\n\n  pair<np, np> split(np\
+    \ n, int k) {\n    if (k == 0) {\n      return {nullptr, n};\n    }\n    if (k\
+    \ == n->size) {\n      return {n, nullptr};\n    }\n    int s = (n->l ? n->l->size\
+    \ : 0);\n    Node* b = new_node();\n    if (k <= s) {\n      auto [nl, nr] = split(n->l,\
     \ k);\n      b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n    }\n    if\
     \ (k > s) {\n      auto [nl, nr] = split(n->r, k - s);\n      n->l = n->l, n->r\
     \ = nl, b->l = nullptr, b->r = nr;\n    }\n    update(n), update(b);\n    return\
@@ -630,7 +636,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-31 12:03:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/sort_segtree_1.test.cpp

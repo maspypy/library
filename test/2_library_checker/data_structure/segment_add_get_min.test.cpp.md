@@ -241,40 +241,46 @@ data:
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
     void Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/data_structure/segment_add_get_min.test.cpp\"\
     \n\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
-    \u30FC\u30B9\u306B\u5F31\u3044\u306E\u3067 static \u3067\u78BA\u4FDD\u3059\u308B\
-    \u3053\u3068\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node\
+    \u30FC\u30B9\u3067\u3082\u78BA\u4FDD\u6E08\u307F chunk \u3092\u518D\u5229\u7528\
+    \u3059\u308B\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node\
     \ node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np =\
     \ Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
     \ chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\
-    \n  template <class... Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n\
-    \    return ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const\
-    \ np x) {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node)\
-    \ Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n\
-    \    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head\
-    \ = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n \
-    \ // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\
-    \u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n\
-    \    free_head = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n\
-    \  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE)); }\n\n  Slot*\
-    \ new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n      free_head\
-    \ = free_head->next;\n      return s;\n    }\n\n    if (chunk_id == len(chunks))\
-    \ alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE)\
-    \ {\n      ++chunk_id;\n      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2\
-    \ \"convex/dynamic_lichao.hpp\"\n\n/*\nstruct F {\n  using value_type = ll;  //\
-    \ operator() \u306E\u623B\u308A\u5024\n  int a;\n  ll b;\n  ll operator()(ll x)\
-    \ { return a * x + b; }\n};\n*/\n\n// \u76F4\u7DDA\u8FFD\u52A0\u304B\u3064\u975E\
-    \u6C38\u7D9A\u306A\u3089\u7A7A\u9593 Q \u3067\u3088\u3044\u3002\n// \u95A2\u6570\
-    \u306F ll -> T\u3002[L, R) \u4E0A f \u304C overflow \u3057\u306A\u3044\u3088\u3046\
-    \u306B\u6CE8\u610F\u3002\n// evaluate \u3092\u66F8\u304D\u5909\u3048\u308B\u3068\
-    \u3001totally monotone \u306A\u95A2\u6570\u7FA4\u306B\u3082\u4F7F\u3048\u308B\n\
-    template <typename FUNC, bool PERSISTENT, bool MINIMIZE>\nstruct Dynamic_LiChao_Tree\
-    \ {\n  using T = typename FUNC::value_type;\n  vc<FUNC> funcs;\n\n  static inline\
-    \ T evaluate(FUNC &f, ll x) { return f(x); }\n\n  struct Node {\n    int fid;\n\
-    \    Node *l, *r;\n  };\n  Node_Pool<Node> pool;\n  ll L, R;\n\n  using np = Node\
-    \ *;\n\n  Dynamic_LiChao_Tree(ll L, ll R) : L(L), R(R) {}\n\n  void reset() {\
-    \ funcs.clear(), pool.reset(); }\n\n  np new_root() { return nullptr; }\n\n  np\
-    \ new_node() {\n    np c = pool.create();\n    c->fid = -1, c->l = c->r = nullptr;\n\
-    \    return c;\n  }\n\n  np chmin_line(np root, FUNC f) {\n    static_assert(MINIMIZE);\n\
+    \n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n    for (auto& p : chunks)\
+    \ cache.eb(std::move(p));\n  }\n\n  template <class... Args>\n  np create(Args&&...\
+    \ args) {\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if\
+    \ (!x) return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n \
+    \   s->next = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\
+    \u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\
+    \u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\
+    \u308B\u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n\
+    \    pos = 0;\n  }\n\n private:\n  static vc<unique_ptr<Slot[]>>& chunk_cache()\
+    \ {\n    // static Node_Pool \u306E destructor \u3088\u308A\u5148\u306B\u7834\u68C4\
+    \u3055\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\n    static auto*\
+    \ cache = new vc<unique_ptr<Slot[]>>();\n    return *cache;\n  }\n\n  void alloc_chunk()\
+    \ {\n    auto& cache = chunk_cache();\n    if (cache.empty()) {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \    } else {\n      chunks.eb(std::move(cache.back()));\n      cache.pop_back();\n\
+    \    }\n  }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
+    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
+    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
+    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
+    \ s;\n  }\n};\n#line 2 \"convex/dynamic_lichao.hpp\"\n\n/*\nstruct F {\n  using\
+    \ value_type = ll;  // operator() \u306E\u623B\u308A\u5024\n  int a;\n  ll b;\n\
+    \  ll operator()(ll x) { return a * x + b; }\n};\n*/\n\n// \u76F4\u7DDA\u8FFD\u52A0\
+    \u304B\u3064\u975E\u6C38\u7D9A\u306A\u3089\u7A7A\u9593 Q \u3067\u3088\u3044\u3002\
+    \n// \u95A2\u6570\u306F ll -> T\u3002[L, R) \u4E0A f \u304C overflow \u3057\u306A\
+    \u3044\u3088\u3046\u306B\u6CE8\u610F\u3002\n// evaluate \u3092\u66F8\u304D\u5909\
+    \u3048\u308B\u3068\u3001totally monotone \u306A\u95A2\u6570\u7FA4\u306B\u3082\u4F7F\
+    \u3048\u308B\ntemplate <typename FUNC, bool PERSISTENT, bool MINIMIZE>\nstruct\
+    \ Dynamic_LiChao_Tree {\n  using T = typename FUNC::value_type;\n  vc<FUNC> funcs;\n\
+    \n  static inline T evaluate(FUNC &f, ll x) { return f(x); }\n\n  struct Node\
+    \ {\n    int fid;\n    Node *l, *r;\n  };\n  Node_Pool<Node> pool;\n  ll L, R;\n\
+    \n  using np = Node *;\n\n  Dynamic_LiChao_Tree(ll L, ll R) : L(L), R(R) {}\n\n\
+    \  void reset() { funcs.clear(), pool.reset(); }\n\n  np new_root() { return nullptr;\
+    \ }\n\n  np new_node() {\n    np c = pool.create();\n    c->fid = -1, c->l = c->r\
+    \ = nullptr;\n    return c;\n  }\n\n  np chmin_line(np root, FUNC f) {\n    static_assert(MINIMIZE);\n\
     \    int fid = len(funcs);\n    funcs.eb(f);\n    if (!root) root = new_node();\n\
     \    return add_line_rec(root, fid, L, R);\n  }\n  np chmax_line(np root, FUNC\
     \ f) {\n    static_assert(!MINIMIZE);\n    int fid = len(funcs);\n    funcs.eb(f);\n\
@@ -351,7 +357,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-31 12:03:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min.test.cpp

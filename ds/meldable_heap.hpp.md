@@ -25,63 +25,70 @@ data:
     links:
     - https://qoj.ac/contest/1699/problem/8518
   bundledCode: "#line 1 \"ds/meldable_heap.hpp\"\n\n#line 1 \"ds/node_pool.hpp\"\n\
-    // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u306B\u5F31\u3044\u306E\
-    \u3067 static \u3067\u78BA\u4FDD\u3059\u308B\u3053\u3068\ntemplate <class Node>\n\
+    // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
+    \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
     struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
     \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
     \ = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos\
-    \ = 0;\n  Slot* free_head = nullptr;\n\n  template <class... Args>\n  np create(Args&&...\
-    \ args) {\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n\
-    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
-    \    return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if\
-    \ (!x) return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n \
-    \   s->next = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\
-    \u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\
-    \u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\
-    \u308B\u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n\
-    \    pos = 0;\n  }\n\n private:\n  void alloc_chunk() { chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\
-    \ }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
-    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
-    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
-    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
-    \ s;\n  }\n};\n#line 3 \"ds/meldable_heap.hpp\"\n\n// Lazy \u3060\u3051\u3067\u3082\
-    \u3044\u3044\u3088\u3046\u306A\u6C17\u304C\u3057\u305F\u304C,\n// \u52A0\u7B97\
-    \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\u306A\u3044\u578B\u3067\u4F7F\u3046\
-    \u304B\u3082\u3057\u308C\u306A\u3044\u304B\u3089\u6B8B\u3057\u3066\u3042\u308B\
-    \ntemplate <typename VAL, bool PERSISTENT, bool TOP_IS_MIN>\nstruct Meldable_Heap\
-    \ {\n  struct Node {\n    Node *l, *r;\n    VAL x;\n    u32 size, dist;  // dist:\
-    \ leaf \u307E\u3067\u306E\u8DDD\u96E2\n  };\n  Node_Pool<Node> pool;\n  int pid;\n\
-    \  using np = Node *;\n\n  np new_root() { return nullptr; }\n  np new_node(const\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n\
+    \    for (auto& p : chunks) cache.eb(std::move(p));\n  }\n\n  template <class...\
+    \ Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n    return\
+    \ ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np x)\
+    \ {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(*x);\n\
+    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    Slot*\
+    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
+    \  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\
+    \u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\
+    \u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n    free_head\
+    \ = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n  static vc<unique_ptr<Slot[]>>&\
+    \ chunk_cache() {\n    // static Node_Pool \u306E destructor \u3088\u308A\u5148\
+    \u306B\u7834\u68C4\u3055\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\
+    \n    static auto* cache = new vc<unique_ptr<Slot[]>>();\n    return *cache;\n\
+    \  }\n\n  void alloc_chunk() {\n    auto& cache = chunk_cache();\n    if (cache.empty())\
+    \ {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n    } else {\n      chunks.eb(std::move(cache.back()));\n\
+    \      cache.pop_back();\n    }\n  }\n\n  Slot* new_slot() {\n    if (free_head)\
+    \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
+    \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
+    \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/meldable_heap.hpp\"\
+    \n\n// Lazy \u3060\u3051\u3067\u3082\u3044\u3044\u3088\u3046\u306A\u6C17\u304C\
+    \u3057\u305F\u304C,\n// \u52A0\u7B97\u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\
+    \u306A\u3044\u578B\u3067\u4F7F\u3046\u304B\u3082\u3057\u308C\u306A\u3044\u304B\
+    \u3089\u6B8B\u3057\u3066\u3042\u308B\ntemplate <typename VAL, bool PERSISTENT,\
+    \ bool TOP_IS_MIN>\nstruct Meldable_Heap {\n  struct Node {\n    Node *l, *r;\n\
+    \    VAL x;\n    u32 size, dist;  // dist: leaf \u307E\u3067\u306E\u8DDD\u96E2\
+    \n  };\n  Node_Pool<Node> pool;\n  int pid;\n  using np = Node *;\n\n  np new_root()\
+    \ { return nullptr; }\n  np new_node(const VAL &x) {\n    np c = pool.create();\n\
+    \    c->l = c->r = nullptr;\n    c->x = x, c->size = 1, c->dist = 1;\n    return\
+    \ c;\n  }\n  np clone(np a) {\n    if (!a || !PERSISTENT) return a;\n    return\
+    \ pool.clone(a);\n  }\n  np meld(np a, np b) {\n    if (!a) return b;\n    if\
+    \ (!b) return a;\n    a = clone(a);\n    b = clone(b);\n    if constexpr (TOP_IS_MIN)\
+    \ {\n      if ((a->x) > (b->x)) swap(a, b);\n    } else {\n      if ((a->x) <\
+    \ (b->x)) swap(a, b);\n    }\n    a->r = meld(a->r, b);\n    if (!(a->l) || (a->l->dist\
+    \ < a->r->dist)) swap(a->l, a->r);\n    a->dist = (a->r ? a->r->dist : 0) + 1;\n\
+    \    a->size = 1;\n    if (a->l) a->size += a->l->size;\n    if (a->r) a->size\
+    \ += a->r->size;\n    return a;\n  }\n  np push(np a, VAL x) { return meld(a,\
+    \ new_node(x)); }\n  np pop(np a) { return meld(a->l, a->r); }\n  VAL top(np a)\
+    \ { return a->x; }\n  vc<VAL> get_all(np a) {\n    vc<VAL> A;\n    auto dfs =\
+    \ [&](auto &dfs, np a) -> void {\n      if (!a) return;\n      A.eb(a->x), dfs(dfs,\
+    \ a->l), dfs(dfs, a->r);\n    };\n    dfs(dfs, a);\n    sort(all(A));\n    if\
+    \ (!TOP_IS_MIN) reverse(all(A));\n    return A;\n  }\n};\n\n// \u5168\u4F53\u52A0\
+    \u7B97\u304C\u3067\u304D\u308B\u3088\u3046\u306B\u3059\u308B\n// path sum \u304C\
+    \u5B9F\u969B\u306E\u5024\u3068\u306A\u308B\u3088\u3046\u306B\u3059\u308C\u3070\
+    \u8FFD\u52A0\u30D5\u30A3\u30FC\u30EB\u30C9\u306A\u3057\u306B\u5B9F\u73FE\u3067\
+    \u304D\u308B\n// https://qoj.ac/contest/1699/problem/8518\ntemplate <typename\
+    \ VAL, bool PERSISTENT, bool TOP_IS_MIN>\nstruct Lazy_Meldable_Heap {\n  struct\
+    \ Node {\n    Node *l, *r;\n    VAL x;\n    u32 size, dist;\n  };\n  Node_Pool<Node>\
+    \ pool;\n  using np = Node *;\n\n  np new_root() { return nullptr; }\n  np new_node(const\
     \ VAL &x) {\n    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x =\
     \ x, c->size = 1, c->dist = 1;\n    return c;\n  }\n  np clone(np a) {\n    if\
-    \ (!a || !PERSISTENT) return a;\n    return pool.clone(a);\n  }\n  np meld(np\
-    \ a, np b) {\n    if (!a) return b;\n    if (!b) return a;\n    a = clone(a);\n\
-    \    b = clone(b);\n    if constexpr (TOP_IS_MIN) {\n      if ((a->x) > (b->x))\
-    \ swap(a, b);\n    } else {\n      if ((a->x) < (b->x)) swap(a, b);\n    }\n \
-    \   a->r = meld(a->r, b);\n    if (!(a->l) || (a->l->dist < a->r->dist)) swap(a->l,\
-    \ a->r);\n    a->dist = (a->r ? a->r->dist : 0) + 1;\n    a->size = 1;\n    if\
-    \ (a->l) a->size += a->l->size;\n    if (a->r) a->size += a->r->size;\n    return\
-    \ a;\n  }\n  np push(np a, VAL x) { return meld(a, new_node(x)); }\n  np pop(np\
-    \ a) { return meld(a->l, a->r); }\n  VAL top(np a) { return a->x; }\n  vc<VAL>\
-    \ get_all(np a) {\n    vc<VAL> A;\n    auto dfs = [&](auto &dfs, np a) -> void\
-    \ {\n      if (!a) return;\n      A.eb(a->x), dfs(dfs, a->l), dfs(dfs, a->r);\n\
-    \    };\n    dfs(dfs, a);\n    sort(all(A));\n    if (!TOP_IS_MIN) reverse(all(A));\n\
-    \    return A;\n  }\n};\n\n// \u5168\u4F53\u52A0\u7B97\u304C\u3067\u304D\u308B\
-    \u3088\u3046\u306B\u3059\u308B\n// path sum \u304C\u5B9F\u969B\u306E\u5024\u3068\
-    \u306A\u308B\u3088\u3046\u306B\u3059\u308C\u3070\u8FFD\u52A0\u30D5\u30A3\u30FC\
-    \u30EB\u30C9\u306A\u3057\u306B\u5B9F\u73FE\u3067\u304D\u308B\n// https://qoj.ac/contest/1699/problem/8518\n\
-    template <typename VAL, bool PERSISTENT, bool TOP_IS_MIN>\nstruct Lazy_Meldable_Heap\
-    \ {\n  struct Node {\n    Node *l, *r;\n    VAL x;\n    u32 size, dist;\n  };\n\
-    \  Node_Pool<Node> pool;\n  using np = Node *;\n\n  np new_root() { return nullptr;\
-    \ }\n  np new_node(const VAL &x) {\n    np c = pool.create();\n    c->l = c->r\
-    \ = nullptr;\n    c->x = x, c->size = 1, c->dist = 1;\n    return c;\n  }\n  np\
-    \ clone(np a) {\n    if (!a || !PERSISTENT) return a;\n    np b = new_node(a->x);\n\
-    \    b->l = a->l, b->r = a->r;\n    b->size = a->size, b->dist = a->dist;\n  \
-    \  return b;\n  }\n  np apply(np a, VAL x) {\n    if (!a) return a;\n    a = clone(a);\n\
-    \    a->x += x;\n    return a;\n  }\n  np meld(np a, np b, VAL add_a = 0, VAL\
-    \ add_b = 0) {\n    if (!a) {\n      return (add_b == 0 ? b : apply(b, add_b));\n\
-    \    }\n    if (!b) {\n      return (add_a == 0 ? a : apply(a, add_a));\n    }\n\
-    \    if constexpr (TOP_IS_MIN) {\n      if ((a->x + add_a) > (b->x + add_b)) swap(a,\
+    \ (!a || !PERSISTENT) return a;\n    np b = new_node(a->x);\n    b->l = a->l,\
+    \ b->r = a->r;\n    b->size = a->size, b->dist = a->dist;\n    return b;\n  }\n\
+    \  np apply(np a, VAL x) {\n    if (!a) return a;\n    a = clone(a);\n    a->x\
+    \ += x;\n    return a;\n  }\n  np meld(np a, np b, VAL add_a = 0, VAL add_b =\
+    \ 0) {\n    if (!a) {\n      return (add_b == 0 ? b : apply(b, add_b));\n    }\n\
+    \    if (!b) {\n      return (add_a == 0 ? a : apply(a, add_a));\n    }\n    if\
+    \ constexpr (TOP_IS_MIN) {\n      if ((a->x + add_a) > (b->x + add_b)) swap(a,\
     \ b), swap(add_a, add_b);\n    } else {\n      if ((a->x + add_a) < (b->x + add_b))\
     \ swap(a, b), swap(add_a, add_b);\n    }\n    a = clone(a);\n    a->x += add_a;\n\
     \    a->r = meld(a->r, b, 0, -a->x + add_b);\n    if (!(a->l) || (a->l->dist <\
@@ -150,7 +157,7 @@ data:
   path: ds/meldable_heap.hpp
   requiredBy:
   - graph/shortest_path/K_shortest_walk.hpp
-  timestamp: '2026-08-29 08:51:03+09:00'
+  timestamp: '2026-08-31 12:03:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
