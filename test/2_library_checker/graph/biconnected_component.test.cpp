@@ -9,24 +9,23 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_graph(M, 0, 0);
 
-  auto T = block_cut<decltype(G)>(G);
+  Block_Cut X(G);
+  auto T = X.BCT;
 
-  print(T.N - N);
+  int single = 0;
+  FOR(v, N) if (G.deg(v) == 0)++ single;
+
+  print(T.N - N + single);
   FOR(k, N, T.N) {
     vc<int> ANS;
-    for (auto&& e: T[k]) ANS.eb(e.to);
+    for (auto&& e : T[k]) ANS.eb(e.to);
     print(len(ANS), ANS);
   }
+  FOR(v, N) if (G.deg(v) == 0) print(1, v);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
+  solve();
 
   return 0;
 }
