@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -255,8 +255,7 @@ data:
     \ i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A)\
     \ {\n    n = len(A);\n    dat.assign(n + 1, MX::id());\n    for (int i = 0; i\
     \ < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) const\
-    \ { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename T>\n\
-    using Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n#line 7 \"test/2_library_checker/data_structure/static_range_sum.test.cpp\"\
+    \ { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n#line 7 \"test/2_library_checker/data_structure/static_range_sum.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  Prefix_Sum<u64> seg(N, [&](int i)\
     \ -> u32 {\r\n    U32(x);\r\n    return x;\r\n  });\r\n  FOR(Q) {\r\n    INT(l,\
     \ r);\r\n    print(seg.prod(l, r));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
@@ -275,8 +274,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-08-31 20:38:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_sum.test.cpp
 layout: document

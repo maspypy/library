@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_sum.hpp
     title: nt/prime_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'

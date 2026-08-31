@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
@@ -372,17 +372,13 @@ data:
     \ <= eid && eid < M);\n    return comp_e[eid];\n  }\n\n  bool is_art(int v) const\
     \ {\n    assert(0 <= v && v < N);\n    return art[v];\n  }\n};\n#line 6 \"test/4_aoj/GRL_3_A.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\
-    \  auto BCT = block_cut(G);\n  FOR(v, N) {\n    if (BCT.deg(v) != 1) print(v);\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \  Block_Cut X(G);\n  FOR(v, N) if (X.is_art(v)) print(v);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/block_cut.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\
-    \  auto BCT = block_cut(G);\n  FOR(v, N) {\n    if (BCT.deg(v) != 1) print(v);\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}"
+    \  Block_Cut X(G);\n  FOR(v, N) if (X.is_art(v)) print(v);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -392,8 +388,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_3_A.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-08-31 20:38:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_3_A.test.cpp
 layout: document

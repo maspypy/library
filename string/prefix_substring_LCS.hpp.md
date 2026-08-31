@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -90,12 +90,12 @@ data:
     \n\r\n  // f(i) = {A[i], dat[i]}\r\n  template <typename F>\r\n  Uncompressed_Wavelet_Matrix(int\
     \ n, F f, int log = -1) {\r\n    build(n, f, log);\r\n  }\r\n  Uncompressed_Wavelet_Matrix(const\
     \ vc<Y>& A, int log = -1) {\r\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\r\
-    \n    build(\r\n        len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::id()};\
-    \ }, log);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(int n, F f, int\
-    \ log = -1) {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n  \
-    \  FOR(i, n) tie(A[i], S[i]) = f(i);\r\n    if (log == -1) {\r\n      log = (n\
-    \ == 0 ? 0 : topbit(MAX(A)) + 1);\r\n    } else {\r\n      for (auto& x : A) assert(0\
-    \ <= x && topbit(x) < log);\r\n    }\r\n    this->log = log;\r\n    limit = Y(1)\
+    \n    build(len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::id()}; }, log);\r\
+    \n  }\r\n\r\n  template <typename F>\r\n  void build(int n, F f, int log = -1)\
+    \ {\r\n    this->n = n;\r\n    vc<Y> A(n);\r\n    vc<T> S(n);\r\n    FOR(i, n)\
+    \ tie(A[i], S[i]) = f(i);\r\n    if (log == -1) {\r\n      log = (n == 0 ? 0 :\
+    \ topbit(MAX(A)) + 1);\r\n    } else {\r\n      for (auto& x : A) assert(0 <=\
+    \ x && topbit(x) < log);\r\n    }\r\n    this->log = log;\r\n    limit = Y(1)\
     \ << log;\r\n    if constexpr (is_same_v<Y, int>) assert(0 <= log && log <= 30);\r\
     \n    if constexpr (is_same_v<Y, ll>) assert(0 <= log && log <= 62);\r\n    mid.resize(log),\
     \ bv.assign(log, Bit_Vector(n));\r\n    vc<Y> A0(n), A1(n);\r\n    vc<T> S0(n),\
@@ -168,38 +168,34 @@ data:
     , activate/deactivate \u3092\u8003\u616E\u3059\u308B\u5834\u5408\u306B\u306F\r\
     \n  // prod \u306E\u65B9\u3092\u898B\u308B\u5FC5\u8981\u304C\u3042\u308B\r\n \
     \ template <typename F>\r\n  tuple<Y, int, T> max_right(F check, int L, int R)\
-    \ const {\r\n    assert(limit < infty<Y>);\r\n    int cnt = 0;\r\n    Y y = 0;\r\
-    \n    T t = Mono::id();\r\n    T t_all = seg[log].prod(L, R);\r\n    assert(check(0,\
-    \ 0, Mono::id()));\r\n    if (check(limit, R - L, t_all)) {\r\n      y = binary_search([&](Y\
-    \ y) -> bool { return check(y, R - L, t_all); },\r\n                        limit,\
-    \ infty<Y> + 1);\r\n      return {y, R - L, t_all};\r\n    }\r\n    for (int d\
-    \ = log - 1; d >= 0; --d) {\r\n      auto [L0, R0, L1, R1] = get_subtree(d + 1,\
-    \ L, R);\r\n      Y y1 = y | Y(1) << d;\r\n      int cnt1 = cnt + R0 - L0;\r\n\
-    \      T t1 = Mono::op(t, seg[d].prod(L0, R0));\r\n      if (check(y1, cnt1, t1))\
-    \ {\r\n        y = y1, cnt = cnt1, t = t1, L = L1, R = R1;\r\n      } else {\r\
-    \n        L = L0, R = R0;\r\n      }\r\n    }\r\n    return {y, cnt, t};\r\n \
-    \ }\r\n\r\n  // [L,R) x [0,y) \u3067\u306E check(y, cnt, prod) \u304C true \u3068\
-    \u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\r\n  template <typename F>\r\n  tuple<Y,\
-    \ int, T> max_right_many(F check, vc<pair<int, int>> LR) const {\r\n    assert(limit\
-    \ < infty<Y>);\r\n    int cnt = 0;\r\n    Y y = 0;\r\n    T t = Mono::id();\r\n\
-    \    T t_all = Mono::id();\r\n    int cnt_all = 0;\r\n    for (auto& [l, r] :\
+    \ const {\r\n    int cnt = 0;\r\n    Y y = 0;\r\n    T t = Mono::id();\r\n   \
+    \ T t_all = seg[log].prod(L, R);\r\n    assert(check(0, 0, Mono::id()));\r\n \
+    \   if (check(infty<Y>, R - L, t_all)) {\r\n      return {infty<Y>, R - L, t_all};\r\
+    \n    }\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      auto [L0, R0, L1,\
+    \ R1] = get_subtree(d + 1, L, R);\r\n      Y y1 = y | Y(1) << d;\r\n      int\
+    \ cnt1 = cnt + R0 - L0;\r\n      T t1 = Mono::op(t, seg[d].prod(L0, R0));\r\n\
+    \      if (check(y1, cnt1, t1)) {\r\n        y = y1, cnt = cnt1, t = t1, L = L1,\
+    \ R = R1;\r\n      } else {\r\n        L = L0, R = R0;\r\n      }\r\n    }\r\n\
+    \    return {y, cnt, t};\r\n  }\r\n\r\n  // [L,R) x [0,y) \u3067\u306E check(y,\
+    \ cnt, prod) \u304C true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\r\n\
+    \  template <typename F>\r\n  tuple<Y, int, T> max_right_many(F check, vc<pair<int,\
+    \ int>> LR) const {\r\n    int cnt = 0;\r\n    Y y = 0;\r\n    T t = Mono::id();\r\
+    \n    T t_all = Mono::id();\r\n    int cnt_all = 0;\r\n    for (auto& [l, r] :\
     \ LR)\r\n      t_all = Mono::op(t_all, prod_all(l, r)), cnt_all += r - l;\r\n\
-    \    assert(check(0, 0, Mono::id()));\r\n    if (check(limit, cnt_all, t_all))\
-    \ {\r\n      y = binary_search([&](Y y) -> bool { return check(y, cnt_all, t_all);\
-    \ },\r\n                        limit, infty<Y> + 1);\r\n      return {y, cnt_all,\
-    \ t_all};\r\n    }\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      Y y1 =\
-    \ Y(1) << d;\r\n      T t1 = t;\r\n      int cnt1 = 0;\r\n      for (auto& [L,\
-    \ R] : LR) {\r\n        auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\r\n\
-    \        cnt1 += R0 - L0;\r\n        t1 = Mono::op(t1, seg[d].prod(L0, R0));\r\
-    \n      }\r\n      if (check(y1, cnt1, t1)) {\r\n        y = y1, cnt = cnt1, t\
-    \ = t1;\r\n        for (auto& [L, R] : LR) {\r\n          auto [L0, R0, L1, R1]\
-    \ = get_subtree(d + 1, L, R);\r\n          L = L1, R = R1;\r\n        }\r\n  \
-    \    } else {\r\n        for (auto& [L, R] : LR) {\r\n          auto [L0, R0,\
-    \ L1, R1] = get_subtree(d + 1, L, R);\r\n          L = L0, R = R0;\r\n       \
-    \ }\r\n      }\r\n    }\r\n    return {y, cnt, t};\r\n  }\r\n\r\n  // [L,R) x\
-    \ [y, inf) \u3067\u306E check(y, cnt, prod) \u304C true \u3068\u306A\u308B\u6700\
-    \u5C0F\u306E (y,cnt,prod)\r\n  // cnt==0 \u3060\u3068 true \u3067\u3042\u308B\u3053\
-    \u3068\u306F\u4EEE\u5B9A\u3059\u308B\r\n  // https://qoj.ac/contest/1047/problem/5094\r\
+    \    assert(check(0, 0, Mono::id()));\r\n    if (check(infty<Y>, cnt_all, t_all))\
+    \ {\r\n      return {infty<Y>, cnt_all, t_all};\r\n    }\r\n    for (int d = log\
+    \ - 1; d >= 0; --d) {\r\n      Y y1 = Y(1) << d;\r\n      T t1 = t;\r\n      int\
+    \ cnt1 = 0;\r\n      for (auto& [L, R] : LR) {\r\n        auto [L0, R0, L1, R1]\
+    \ = get_subtree(d + 1, L, R);\r\n        cnt1 += R0 - L0;\r\n        t1 = Mono::op(t1,\
+    \ seg[d].prod(L0, R0));\r\n      }\r\n      if (check(y1, cnt1, t1)) {\r\n   \
+    \     y = y1, cnt = cnt1, t = t1;\r\n        for (auto& [L, R] : LR) {\r\n   \
+    \       auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\r\n          L = L1,\
+    \ R = R1;\r\n        }\r\n      } else {\r\n        for (auto& [L, R] : LR) {\r\
+    \n          auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\r\n          L =\
+    \ L0, R = R0;\r\n        }\r\n      }\r\n    }\r\n    return {y, cnt, t};\r\n\
+    \  }\r\n\r\n  // [L,R) x [y, inf) \u3067\u306E check(y, cnt, prod) \u304C true\
+    \ \u3068\u306A\u308B\u6700\u5C0F\u306E (y,cnt,prod)\r\n  // cnt==0 \u3060\u3068\
+    \ true \u3067\u3042\u308B\u3053\u3068\u306F\u4EEE\u5B9A\u3059\u308B\r\n  // https://qoj.ac/contest/1047/problem/5094\r\
     \n  template <typename F>\r\n  tuple<Y, int, T> min_left_many(F check, vc<pair<int,\
     \ int>> LR) const {\r\n    assert(check(limit, 0, Mono::id()));\r\n    int cnt\
     \ = 0;\r\n    Y y = limit;\r\n    T t = Mono::id();\r\n    T t_all = Mono::id();\r\
@@ -248,7 +244,7 @@ data:
     \r\n  void multiply(int i, T t) { wm.multiply(i, t); }\r\n\r\n  void add(int i,\
     \ T t) { wm.add(i, t); }\r\n};\r\n\r\ntemplate <typename Y, bool compress, typename\
     \ SEGTREE = Dummy_Data_Structure>\r\nusing Wavelet_Matrix =\r\n    conditional_t<compress,\
-    \ Compressed_Wavelet_Matrix<Y, SEGTREE>,\r\n                  Uncompressed_Wavelet_Matrix<Y,\
+    \ Compressed_Wavelet_Matrix<Y, SEGTREE>,\r\n        Uncompressed_Wavelet_Matrix<Y,\
     \ SEGTREE>>;\r\n#line 2 \"string/prefix_substring_LCS.hpp\"\n\n// https://codeforces.com/blog/entry/111625\n\
     struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, false>> WM;\n\
     \n  template <typename STRING>\n  Prefix_Substring_LCS(STRING S, STRING T) {\n\
@@ -282,7 +278,7 @@ data:
   isVerificationFile: false
   path: string/prefix_substring_LCS.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-31 20:38:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp

@@ -83,6 +83,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - icon: ':warning:'
+    path: ds/prefix_sum.hpp
+    title: ds/prefix_sum.hpp
   - icon: ':x:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
@@ -95,7 +98,7 @@ data:
   - icon: ':warning:'
     path: ds/segtree/range_add_make_increasing.hpp
     title: ds/segtree/range_add_make_increasing.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
   - icon: ':heavy_check_mark:'
@@ -113,7 +116,7 @@ data:
   - icon: ':question:'
     path: graph/ds/tree_abeliangroup.hpp
     title: graph/ds/tree_abeliangroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':warning:'
@@ -276,10 +279,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -291,7 +294,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_sum.test.cpp
     title: test/2_library_checker/data_structure/static_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -399,7 +402,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -509,6 +512,7 @@ data:
   - graph/ds/incremental_centroid.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abeliangroup.hpp
+  - ds/prefix_sum.hpp
   - ds/range_add_range_sum.hpp
   - ds/rectangle_union.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
