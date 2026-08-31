@@ -25,5 +25,6 @@ void solve() {
 
 signed main() {
   FOR(N, 1, 100) test(N);
+  solve();
   return 0;
 }
