@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/static_range_product_group.hpp"
+#include "ds/prefix_sum.hpp"
 
 void solve() {
   LL(N, Q);

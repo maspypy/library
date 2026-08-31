@@ -22,7 +22,7 @@ struct FenwickTree_Range_Add {
 
   void build(int m) {
     n = m;
-    bit0.build(n), bit1.build(n);
+    bit0.build(n + 1), bit1.build(n + 1);
   }
   void build(const vc<E>& v) {
     build(len(v), [&](int i) -> E { return v[i]; });
@@ -30,8 +30,8 @@ struct FenwickTree_Range_Add {
   template <typename F>
   void build(int m, F f) {
     n = m;
-    bit0.build(m, f);
-    bit1.build(m);
+    bit0.build(m + 1, [&](int i) -> E { return (i < m ? f(i) : 0); });
+    bit1.build(m + 1);
   }
 
   void add_at(int i, E val) { bit0.add(i, val); }
