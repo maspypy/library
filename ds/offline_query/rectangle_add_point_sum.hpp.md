@@ -12,15 +12,15 @@ data:
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rect_add_pt_sum.test.cpp
     title: test/1_mytest/rect_add_pt_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2338.test.cpp
     title: test/3_yukicoder/2338.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -88,60 +88,60 @@ data:
     \ - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n  }\n\n\
     \  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
     \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
-    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    total = G::op(total,\
-    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
-    \  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\
-    \n  template <class F>\n  int max_right(const F check, int L = 0) const {\n  \
-    \  assert(check(G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\
-    \u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i\
-    \ % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n     \
-    \   }\n        if (i == 0) {\n          return topbit(n) + 1;\n        }\n   \
-    \     int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n      \
-    \  E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) {\n        \
-    \  return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i\
-    \ & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k)\
-    \ - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if\
-    \ (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n       \
-    \ }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class\
-    \ F>\n  int max_right_with_index(const F check, int L = 0) const {\n    assert(check(L,\
-    \ G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\
-    \u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1)\
-    \ {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n    \
-    \    if (i == 0) {\n          return topbit(n) + 1;\n        }\n        int k\
-    \ = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
-    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) {\n          return\
-    \ k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n\
-    \      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 <\
-    \ len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i +\
-    \ (1 << k) <= L || check(i + (1 << k), t)) {\n          i += (1 << k), s = t;\n\
-    \        }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
-    \ min_left(const F check, int R) const {\n    assert(check(G::id()));\n    E s\
-    \ = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\
-    \u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n  \
-    \    s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n   \
-    \ }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n    //\
-    \ 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\
-    \u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i\
-    \ + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1 << k), s = t;\n\
-    \      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) const {\n\
-    \    return max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line\
-    \ 2 \"ds/offline_query/rectangle_add_point_sum.hpp\"\n\ntemplate <typename AbelianGroup,\
-    \ typename XY, bool SMALL_X = false>\nstruct Rectangle_Add_Point_Sum {\n  using\
-    \ G = typename AbelianGroup::value_type;\n  vector<tuple<XY, XY, XY, G>> rect;\n\
-    \  vector<tuple<int, XY, XY>> point;\n\n  Rectangle_Add_Point_Sum() {}\n\n  void\
-    \ add_query(XY x1, XY x2, XY y1, XY y2, G g) {\n    rect.eb(y1, x1, x2, g), rect.eb(y2,\
-    \ x2, x1, g);\n  }\n  void sum_query(XY x, XY y) { point.eb(len(point), x, y);\
-    \ }\n\n  vector<G> calc() {\n    int N = rect.size(), Q = point.size();\n    if\
-    \ (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::id());\n    // X \u65B9\
-    \u5411\u306E\u5EA7\u5727\n    int NX = 0;\n    if (!SMALL_X) {\n      sort(all(point),\n\
-    \           [&](auto &x, auto &y) -> bool { return get<1>(x) < get<1>(y); });\n\
-    \      vc<XY> keyX;\n      keyX.reserve(Q);\n      for (auto &&[i, a, b]: point)\
-    \ {\n        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }\n       \
-    \ a = len(keyX) - 1;\n      }\n      for (auto &&[y, x1, x2, g]: rect) x1 = LB(keyX,\
-    \ x1), x2 = LB(keyX, x2);\n      NX = len(keyX);\n    }\n    if (SMALL_X) {\n\
-    \      XY mx = infty<XY>;\n      for (auto &&[i, x, y]: point) chmin(mx, x);\n\
-    \      for (auto &&[i, x, y]: point) x -= mx, chmax(NX, x + 1);\n      for (auto\
-    \ &&[y, x1, x2, g]: rect) {\n        x1 -= mx, x2 -= mx;\n        x1 = max(0,\
+    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    assert(0 <=\
+    \ k && k < n);\n    total = G::op(total, x);\n    for (++k; k <= n; k += k & -k)\
+    \ dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k,\
+    \ k + 1)), x)); }\n\n  template <class F>\n  int max_right(const F check, int\
+    \ L = 0) const {\n    assert(check(G::id()));\n    E s = G::id();\n    int i =\
+    \ L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while\
+    \ (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i -\
+    \ 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
+    \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
+    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t))\
+    \ {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])),\
+    \ i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i +\
+    \ (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n\
+    \        if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
+    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
+    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
+    \  assert(check(L, G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k\
+    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
+    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
+    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
+    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
+    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1 <<\
+    \ k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
+    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
+    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
+    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
+    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::id()));\n\
+    \    E s = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
+    \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
+    \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
+    \    }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n \
+    \   // 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\
+    \u6301\u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s,\
+    \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
+    \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
+    \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
+    \  }\n};\n#line 2 \"ds/offline_query/rectangle_add_point_sum.hpp\"\n\ntemplate\
+    \ <typename AbelianGroup, typename XY, bool SMALL_X = false>\nstruct Rectangle_Add_Point_Sum\
+    \ {\n  using G = typename AbelianGroup::value_type;\n  vector<tuple<XY, XY, XY,\
+    \ G>> rect;\n  vector<tuple<int, XY, XY>> point;\n\n  Rectangle_Add_Point_Sum()\
+    \ {}\n\n  void add_query(XY x1, XY x2, XY y1, XY y2, G g) {\n    rect.eb(y1, x1,\
+    \ x2, g), rect.eb(y2, x2, x1, g);\n  }\n  void sum_query(XY x, XY y) { point.eb(len(point),\
+    \ x, y); }\n\n  vector<G> calc() {\n    int N = rect.size(), Q = point.size();\n\
+    \    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::id());\n    // X\
+    \ \u65B9\u5411\u306E\u5EA7\u5727\n    int NX = 0;\n    if (!SMALL_X) {\n     \
+    \ sort(all(point),\n           [&](auto &x, auto &y) -> bool { return get<1>(x)\
+    \ < get<1>(y); });\n      vc<XY> keyX;\n      keyX.reserve(Q);\n      for (auto\
+    \ &&[i, a, b]: point) {\n        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a);\
+    \ }\n        a = len(keyX) - 1;\n      }\n      for (auto &&[y, x1, x2, g]: rect)\
+    \ x1 = LB(keyX, x1), x2 = LB(keyX, x2);\n      NX = len(keyX);\n    }\n    if\
+    \ (SMALL_X) {\n      XY mx = infty<XY>;\n      for (auto &&[i, x, y]: point) chmin(mx,\
+    \ x);\n      for (auto &&[i, x, y]: point) x -= mx, chmax(NX, x + 1);\n      for\
+    \ (auto &&[y, x1, x2, g]: rect) {\n        x1 -= mx, x2 -= mx;\n        x1 = max(0,\
     \ min<int>(x1, NX)), x2 = max(0, min<int>(x2, NX));\n      }\n    }\n\n    sort(all(point),\n\
     \         [&](auto &x, auto &y) -> bool { return get<2>(x) < get<2>(y); });\n\
     \    sort(all(rect),\n         [&](auto &x, auto &y) -> bool { return get<0>(x)\
@@ -182,8 +182,8 @@ data:
   isVerificationFile: false
   path: ds/offline_query/rectangle_add_point_sum.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-31 13:26:17+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/rect_add_pt_sum.test.cpp
   - test/3_yukicoder/2338.test.cpp

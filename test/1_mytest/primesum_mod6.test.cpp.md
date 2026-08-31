@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_sum_mod6.hpp
     title: nt/prime_sum_mod6.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy: []
@@ -117,7 +117,7 @@ data:
     \ array<bool, S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i\
     \ = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R -\
     \ L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/prime_sum.hpp\"\
+    \ LIM);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/prime_sum.hpp\"\
     \n\n/*\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix sum\
     \ \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\u3002\nn = floor(N/d) \u3068\u306A\u308B\
     \ n \u306B\u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\
@@ -151,34 +151,33 @@ data:
     \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
     \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
     \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
-    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 3 \"nt/prime_sum_mod6.hpp\"\n\ntemplate <typename T>\nstruct\
-    \ Prime_Sum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T> A, B;\n  Prime_Sum_Mod_6(ll\
-    \ N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n\
-    \    T a = A[x], b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\
-    \n  void calc_count() {\n    A.calc([](ll x) -> T { return ((x + 2) / 3 - (x %\
-    \ 6 == 4)); });\n    B.calc([](ll x) -> T { return ((x + 5) % 6 <= 3 ? 1 : 0);\
-    \ });\n  }\n\n  void calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n = (x\
-    \ + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) {\n   \
-    \     return T(6 * k) * T(k);\n      }\n      return T(6 * k) * T(k) + T(6 * k\
-    \ + 1);\n    });\n    B.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x %\
-    \ 6 == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) {\n        return T(-4\
-    \ * k);\n      }\n      return T(-4 * k + 6 * k + 1);\n    });\n  }\n};\n#line\
-    \ 4 \"test/1_mytest/primesum_mod6.test.cpp\"\n\nvoid test_count() {\n  ll LIM\
-    \ = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for (auto&& p : prime_table(LIM))\n\
-    \    if (p % 6 == 1) {\n      A1[p]++;\n    }\n  for (auto&& p : prime_table(LIM))\n\
-    \    if (p % 6 == 5) {\n      A5[p]++;\n    }\n  A1 = cumsum<int>(A1, 0);\n  A5\
-    \ = cumsum<int>(A5, 0);\n\n  FOR(N, LIM) {\n    Prime_Sum_Mod_6<int> X(N);\n \
-    \   X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K],\
-    \ A5[N / K])); }\n  }\n}\n\nvoid test_sum() {\n  ll LIM = 10000;\n  vc<int> A1(LIM),\
-    \ A5(LIM);\n  for (auto&& p : prime_table(LIM))\n    if (p % 6 == 1) {\n     \
-    \ A1[p] += p;\n    }\n  for (auto&& p : prime_table(LIM))\n    if (p % 6 == 5)\
-    \ {\n      A5[p] += p;\n    }\n  A1 = cumsum<int>(A1, 0);\n  A5 = cumsum<int>(A5,\
-    \ 0);\n\n  FOR(N, LIM) {\n    Prime_Sum_Mod_6<int> X(N);\n    X.calc_sum();\n\
-    \    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test_count();\n  test_sum();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 3 \"nt/prime_sum_mod6.hpp\"\n\ntemplate <typename T>\nstruct Prime_Sum_Mod_6\
+    \ {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T> A, B;\n  Prime_Sum_Mod_6(ll N) : N(N),\
+    \ sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n    T a = A[x],\
+    \ b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\n  void calc_count()\
+    \ {\n    A.calc([](ll x) -> T { return ((x + 2) / 3 - (x % 6 == 4)); });\n   \
+    \ B.calc([](ll x) -> T { return ((x + 5) % 6 <= 3 ? 1 : 0); });\n  }\n\n  void\
+    \ calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x % 6\
+    \ == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) {\n        return T(6 * k)\
+    \ * T(k);\n      }\n      return T(6 * k) * T(k) + T(6 * k + 1);\n    });\n  \
+    \  B.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll\
+    \ k = n / 2;\n      if (n % 2 == 0) {\n        return T(-4 * k);\n      }\n  \
+    \    return T(-4 * k + 6 * k + 1);\n    });\n  }\n};\n#line 4 \"test/1_mytest/primesum_mod6.test.cpp\"\
+    \n\nvoid test_count() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for\
+    \ (auto&& p : prime_table(LIM))\n    if (p % 6 == 1) {\n      A1[p]++;\n    }\n\
+    \  for (auto&& p : prime_table(LIM))\n    if (p % 6 == 5) {\n      A5[p]++;\n\
+    \    }\n  A1 = cumsum<int>(A1, 0);\n  A5 = cumsum<int>(A5, 0);\n\n  FOR(N, LIM)\
+    \ {\n    Prime_Sum_Mod_6<int> X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10)\
+    \ { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n}\n\nvoid test_sum()\
+    \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for (auto&& p : prime_table(LIM))\n\
+    \    if (p % 6 == 1) {\n      A1[p] += p;\n    }\n  for (auto&& p : prime_table(LIM))\n\
+    \    if (p % 6 == 5) {\n      A5[p] += p;\n    }\n  A1 = cumsum<int>(A1, 0);\n\
+    \  A5 = cumsum<int>(A5, 0);\n\n  FOR(N, LIM) {\n    Prime_Sum_Mod_6<int> X(N);\n\
+    \    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N\
+    \ / K])); }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
+    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test_count();\n  test_sum();\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"nt/prime_sum_mod6.hpp\"\n\nvoid test_count() {\n  ll LIM = 10000;\n\
     \  vc<int> A1(LIM), A5(LIM);\n  for (auto&& p : prime_table(LIM))\n    if (p %\
@@ -202,7 +201,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/primesum_mod6.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/primesum_mod6.test.cpp

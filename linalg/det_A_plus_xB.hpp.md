@@ -10,43 +10,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -255,13 +255,13 @@ data:
     \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
     \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
     \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
-    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 2 \"mod/power_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename\
-    \ mint>\nvc<mint> power_table_1(mint a, ll N) {\n  // table of a^i\n  vc<mint>\
-    \ f(N + 1, 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n// 0^e, ...,\
-    \ N^e\ntemplate <typename mint>\nvc<mint> power_table_2(ll e, ll N) {\n  auto\
-    \ primes = prime_table(N);\n  vc<mint> f(N + 1, 1);\n  f[0] = mint(0).pow(e);\n\
-    \  for (auto&& p : primes) {\n    if (p > N) break;\n    mint xp = mint(p).pow(e);\n\
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 2 \"mod/power_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename mint>\n\
+    vc<mint> power_table_1(mint a, ll N) {\n  // table of a^i\n  vc<mint> f(N + 1,\
+    \ 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n// 0^e, ..., N^e\n\
+    template <typename mint>\nvc<mint> power_table_2(ll e, ll N) {\n  auto primes\
+    \ = prime_table(N);\n  vc<mint> f(N + 1, 1);\n  f[0] = mint(0).pow(e);\n  for\
+    \ (auto&& p : primes) {\n    if (p > N) break;\n    mint xp = mint(p).pow(e);\n\
     \    ll pp = p;\n    while (pp <= N) {\n      ll i = pp;\n      while (i <= N)\
     \ {\n        f[i] *= xp;\n        i += pp;\n      }\n      pp *= p;\n    }\n \
     \ }\n  return f;\n}\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\
@@ -641,7 +641,7 @@ data:
   isVerificationFile: false
   path: linalg/det_A_plus_xB.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1907.test.cpp

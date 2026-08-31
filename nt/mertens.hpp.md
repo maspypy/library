@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':heavy_check_mark:'
@@ -52,7 +52,7 @@ data:
     \      array<bool, S> block{};\n      for (auto& [p, idx] : cp)\n        for (int\
     \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
     \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/zeta.hpp\"\
+    \ LIM);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/zeta.hpp\"\
     \n\ntemplate <typename T>\nvoid divisor_zeta(vc<T>& A) {\n  assert(A[0] == 0);\n\
     \  int N = len(A) - 1;\n  auto P = prime_table(N);\n  for (auto&& p : P) {\n \
     \   FOR3(x, 1, N / p + 1) A[p * x] += A[x];\n  }\n}\n\ntemplate <typename T>\n\
@@ -105,7 +105,7 @@ data:
   path: nt/mertens.hpp
   requiredBy:
   - nt/range_rational_count.hpp
-  timestamp: '2026-08-17 17:13:54+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp

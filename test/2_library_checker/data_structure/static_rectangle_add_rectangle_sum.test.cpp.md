@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -362,49 +362,49 @@ data:
     \ - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n  }\n\n\
     \  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
     \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
-    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    total = G::op(total,\
-    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
-    \  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\
-    \n  template <class F>\n  int max_right(const F check, int L = 0) const {\n  \
-    \  assert(check(G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\
-    \u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i\
-    \ % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n     \
-    \   }\n        if (i == 0) {\n          return topbit(n) + 1;\n        }\n   \
-    \     int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n      \
-    \  E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) {\n        \
-    \  return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i\
-    \ & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k)\
-    \ - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if\
-    \ (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n       \
-    \ }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class\
-    \ F>\n  int max_right_with_index(const F check, int L = 0) const {\n    assert(check(L,\
-    \ G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\
-    \u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1)\
-    \ {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n    \
-    \    if (i == 0) {\n          return topbit(n) + 1;\n        }\n        int k\
-    \ = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
-    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) {\n          return\
-    \ k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n\
-    \      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 <\
-    \ len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i +\
-    \ (1 << k) <= L || check(i + (1 << k), t)) {\n          i += (1 << k), s = t;\n\
-    \        }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
-    \ min_left(const F check, int R) const {\n    assert(check(G::id()));\n    E s\
-    \ = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\
-    \u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n  \
-    \    s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n   \
-    \ }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n    //\
-    \ 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\
-    \u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i\
-    \ + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1 << k), s = t;\n\
-    \      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) const {\n\
-    \    return max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line\
-    \ 3 \"ds/offline_query/coefficient_query_2d.hpp\"\n\n// A, B\uFF1A\u5B9A\u6570\
-    \n// \u5EA7\u6A19\u306F ll \u3067\u4FC2\u6570\u306F T\n// Sparse Laurent Polynomial\
-    \ f(x,y) \u3092\u4E0E\u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B \u3092\u305F\
-    \u304F\u3055\u3093\u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\ntemplate <int\
-    \ A, int B, typename T, bool STATIC>\nstruct Coefficient_Query_2D {\n  struct\
-    \ Mono {\n    using value_type = array<T, A * B>;\n    using X = value_type;\n\
+    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    assert(0 <=\
+    \ k && k < n);\n    total = G::op(total, x);\n    for (++k; k <= n; k += k & -k)\
+    \ dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k,\
+    \ k + 1)), x)); }\n\n  template <class F>\n  int max_right(const F check, int\
+    \ L = 0) const {\n    assert(check(G::id()));\n    E s = G::id();\n    int i =\
+    \ L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while\
+    \ (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i -\
+    \ 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
+    \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
+    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t))\
+    \ {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])),\
+    \ i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i +\
+    \ (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n\
+    \        if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
+    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
+    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
+    \  assert(check(L, G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k\
+    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
+    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
+    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
+    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
+    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1 <<\
+    \ k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
+    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
+    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
+    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
+    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::id()));\n\
+    \    E s = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
+    \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
+    \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
+    \    }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n \
+    \   // 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\
+    \u6301\u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s,\
+    \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
+    \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
+    \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
+    \  }\n};\n#line 3 \"ds/offline_query/coefficient_query_2d.hpp\"\n\n// A, B\uFF1A\
+    \u5B9A\u6570\n// \u5EA7\u6A19\u306F ll \u3067\u4FC2\u6570\u306F T\n// Sparse Laurent\
+    \ Polynomial f(x,y) \u3092\u4E0E\u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B\
+    \ \u3092\u305F\u304F\u3055\u3093\u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\
+    \ntemplate <int A, int B, typename T, bool STATIC>\nstruct Coefficient_Query_2D\
+    \ {\n  struct Mono {\n    using value_type = array<T, A * B>;\n    using X = value_type;\n\
     \    static X op(X x, X y) {\n      FOR(i, A * B) x[i] += y[i];\n      return\
     \ x;\n    }\n    static constexpr X id() { return X{}; }\n    static constexpr\
     \ bool commute = 1;\n  };\n  vc<tuple<ll, ll, T, int>> query;\n\n  int nsum =\
@@ -601,7 +601,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp

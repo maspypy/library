@@ -12,12 +12,12 @@ data:
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/fenwick_raq.test.cpp
     title: test/1_mytest/fenwick_raq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/860/submission/228355081
@@ -87,45 +87,45 @@ data:
     \ - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n  }\n\n\
     \  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
     \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
-    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    total = G::op(total,\
-    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
-    \  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\
-    \n  template <class F>\n  int max_right(const F check, int L = 0) const {\n  \
-    \  assert(check(G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\
-    \u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i\
-    \ % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n     \
-    \   }\n        if (i == 0) {\n          return topbit(n) + 1;\n        }\n   \
-    \     int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n      \
-    \  E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) {\n        \
-    \  return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i\
-    \ & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k)\
-    \ - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if\
-    \ (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n       \
-    \ }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class\
-    \ F>\n  int max_right_with_index(const F check, int L = 0) const {\n    assert(check(L,\
-    \ G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\
-    \u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1)\
-    \ {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n    \
-    \    if (i == 0) {\n          return topbit(n) + 1;\n        }\n        int k\
-    \ = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
-    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) {\n          return\
-    \ k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n\
-    \      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 <\
-    \ len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i +\
-    \ (1 << k) <= L || check(i + (1 << k), t)) {\n          i += (1 << k), s = t;\n\
-    \        }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
-    \ min_left(const F check, int R) const {\n    assert(check(G::id()));\n    E s\
-    \ = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\
-    \u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n  \
-    \    s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n   \
-    \ }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n    //\
-    \ 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\
-    \u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i\
-    \ + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1 << k), s = t;\n\
-    \      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) const {\n\
-    \    return max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line\
-    \ 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n// \u9045\u5EF6\u30BB\u30B0\
-    \u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\uFF1F\n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n\
+    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    assert(0 <=\
+    \ k && k < n);\n    total = G::op(total, x);\n    for (++k; k <= n; k += k & -k)\
+    \ dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k,\
+    \ k + 1)), x)); }\n\n  template <class F>\n  int max_right(const F check, int\
+    \ L = 0) const {\n    assert(check(G::id()));\n    E s = G::id();\n    int i =\
+    \ L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while\
+    \ (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i -\
+    \ 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
+    \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
+    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t))\
+    \ {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])),\
+    \ i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i +\
+    \ (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n\
+    \        if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
+    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
+    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
+    \  assert(check(L, G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k\
+    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
+    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
+    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
+    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
+    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1 <<\
+    \ k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
+    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
+    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
+    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
+    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::id()));\n\
+    \    E s = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
+    \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
+    \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
+    \    }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n \
+    \   // 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\
+    \u6301\u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s,\
+    \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
+    \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
+    \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
+    \  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n// \u9045\u5EF6\
+    \u30BB\u30B0\u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\uFF1F\n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n\
     // https://codeforces.com/contest/860/submission/228355081\ntemplate <typename\
     \ AbelianGroup>\nstruct FenwickTree_Range_Add {\n  using G = AbelianGroup;\n \
     \ using E = typename AbelianGroup::value_type;\n  int n;\n  FenwickTree<G> bit0;\n\
@@ -165,8 +165,8 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_range_add.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-31 13:26:17+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/fenwick_raq.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_range_add.hpp

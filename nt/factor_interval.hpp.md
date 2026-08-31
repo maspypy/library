@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy: []
@@ -21,7 +21,7 @@ data:
     \ = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool,\
     \ S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i = idx; i <\
     \ S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
-    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return\
+    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM);\n  return\
     \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/factor_interval.hpp\"\
     \n\n// n \u304C p \u3092\u6301\u3064\u3068\u304D f(n, p) \u3092\u547C\u3076\n\
     template <typename F>\nvoid factor_interval(ll L, ll R, F f) {\n  int n = R -\
@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: nt/factor_interval.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: nt/factor_interval.hpp

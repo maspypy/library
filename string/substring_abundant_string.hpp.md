@@ -57,9 +57,9 @@ data:
     \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
     \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 1 \"string/run_length.hpp\"\
     \ntemplate <typename STRING = string>\nvc<pair<typename STRING::value_type, ll>>\
-    \ run_length(STRING& S) {\n  vc<pair<typename STRING::value_type, ll>> res;\n\
-    \  for (auto&& x: S) {\n    if (res.empty() || res.back().fi != x) { res.emplace_back(x,\
-    \ 0); }\n    res.back().se++;\n  }\n  return res;\n}\n#line 3 \"string/substring_abundant_string.hpp\"\
+    \ run_length(const STRING& S) {\n  vc<pair<typename STRING::value_type, ll>> res;\n\
+    \  for (auto&& x : S) {\n    if (res.empty() || res.back().fi != x) {\n      res.emplace_back(x,\
+    \ 0);\n    }\n    res.back().se++;\n  }\n  return res;\n}\n#line 3 \"string/substring_abundant_string.hpp\"\
     \n\n// \u90E8\u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u304C\u6700\u5927\
     \u3067\u3042\u308B\u3088\u3046\u306A 01 \u6587\u5B57\u5217\u306E\u69CB\u6210\n\
     // https://qoj.ac/contest/1096/problem/5434\n// https://oeis.org/A094913\n// https://www.mimuw.edu.pl/~rytter/MYPAPERS/paper.pdf\n\
@@ -145,7 +145,7 @@ data:
   isVerificationFile: false
   path: string/substring_abundant_string.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/substring_abundant.test.cpp

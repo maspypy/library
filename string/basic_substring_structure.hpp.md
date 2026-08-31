@@ -8,9 +8,12 @@ data:
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/index_compression.hpp
+    title: ds/index_compression.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +28,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -149,41 +152,79 @@ data:
     \ - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high - low > 1)\
     \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
     \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
-    \    return low;\n  }\n};\n#line 1 \"string/suffix_array.hpp\"\n\n#line 1 \"alg/monoid/min.hpp\"\
-    \n// require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
-    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
-    int popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
-    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
-    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
-    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
-    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \    return low;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\ntemplate <typename\
+    \ T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi, ma;\n  vc<T> dat;\n\
+    \  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X),\
+    \ ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x : X) dat[x -\
+    \ mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n    for (auto& x\
+    \ : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat)) dat[i] =\
+    \ dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int size() const { return\
+    \ len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma\
+    \ - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate\
+    \ <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int mi, ma;\n  vc<T>\
+    \ dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty()) mi\
+    \ = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x :\
+    \ X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
+    \  for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n  int\
+    \ size() const { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x\
+    \ - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T> dat;\n\
+    \  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n    vc<pair<T, int>>\
+    \ tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n\
+    \    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n      if (dat.empty()\
+    \ || dat.back() != x) dat.eb(x);\n      ANS[j] = len(dat) - 1;\n    }\n    return\
+    \ ANS;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T x) const\
+    \ { return LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\
+    \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE {\n  vc<T> dat;\n\
+    \  vc<int> build(vc<T> X) {\n    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n\
+    \    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n\
+    \    for (auto [x, j] : tmp) {\n      dat.eb(x);\n      ANS[j] = len(dat) - 1;\n\
+    \    }\n    return ANS;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T\
+    \ x) const { return LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i];\
+    \ }\n};\n\ntemplate <typename T, bool SMALL>\nusing Index_Compression_DISTINCT\
+    \ =\n    typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,\n\
+    \                              Index_Compression_DISTINCT_LARGE<T>>::type;\ntemplate\
+    \ <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename std::conditional<SMALL,\
+    \ Index_Compression_SAME_SMALL<T>,\n                              Index_Compression_SAME_LARGE<T>>::type;\n\
+    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\
+    \u5217\u3092\u5727\u7E2E\u3057\u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\
+    \n// (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename T, bool\
+    \ SAME, bool SMALL>\nusing Index_Compression =\n    typename std::conditional<SAME,\
+    \ Index_Compression_SAME<T, SMALL>,\n                              Index_Compression_DISTINCT<T,\
+    \ SMALL>>::type;\n#line 1 \"alg/monoid/min.hpp\"\n// require: all values x satisfy\
+    \ x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n  using X = E;\n\
+    \  using value_type = X;\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return min(x, y); }\n  static constexpr X id() { return infty<E>; }\n  static\
+    \ constexpr bool commute = true;\n};\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
+    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
+    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
+    \ UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*()\
+    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
+    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
+    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
+    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool\
+    \ done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
+    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
     \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
     \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
     \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
@@ -421,48 +462,50 @@ data:
     \  using SEG0 = SegTree<Mono>;\n  using SEG1 = Sparse_Table<Mono>;\n  using SEG2\
     \ = Static_Range_Product<Mono, Sparse_Table<Mono>, 4>;\n  static_assert(SEG_TYPE\
     \ == 0 || SEG_TYPE == 1 || SEG_TYPE == 2);\n  using SegType = conditional_t<SEG_TYPE\
-    \ == 0, SEG0,\n                                conditional_t<SEG_TYPE == 1, SEG1,\
-    \ SEG2> >;\n  SegType seg;\n  bool build_seg;\n\n  Suffix_Array() {}\n  Suffix_Array(string&\
-    \ s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n    char first = 127, last\
-    \ = 0;\n    for (auto&& c : s) {\n      chmin(first, c);\n      chmax(last, c);\n\
-    \    }\n    SA = calc_suffix_array(s, first, last);\n    calc_LCP(s);\n  }\n\n\
-    \  Suffix_Array(vc<int> s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n  \
-    \  SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // lcp(S[i:], S[j:])\n\
-    \  int lcp(int i, int j) {\n    if (!build_seg) {\n      build_seg = true;\n \
-    \     seg.build(LCP);\n    }\n    int n = len(SA);\n    if (i == n || j == n)\
-    \ return 0;\n    if (i == j) return n - i;\n    i = ISA[i], j = ISA[j];\n    if\
-    \ (i > j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\n  // S[i:] \u3068\u306E\
-    \ lcp \u304C n \u4EE5\u4E0A\u3067\u3042\u308B\u3088\u3046\u306A\u534A\u958B\u533A\
-    \u9593\n  pair<int, int> lcp_range(int i, int n) {\n    if (!build_seg) {\n  \
-    \    build_seg = true;\n      seg.build(LCP);\n    }\n    i = ISA[i];\n    int\
-    \ a = seg.min_left([&](auto e) -> bool { return e >= n; }, i);\n    int b = seg.max_right([&](auto\
-    \ e) -> bool { return e >= n; }, i);\n    return {a, b + 1};\n  }\n\n  // -1:\
-    \ S[L1:R1) < S[L2, R2)\n  //  0: S[L1:R1) = S[L2, R2)\n  // +1: S[L1:R1) > S[L2,\
-    \ R2)\n  int compare(int L1, int R1, int L2, int R2) {\n    int n1 = R1 - L1,\
-    \ n2 = R2 - L2;\n    int n = lcp(L1, L2);\n    chmin(n, n1);\n    chmin(n, n2);\n\
-    \    if (n == n1 && n == n2) return 0;\n    if (n == n1) return -1;\n    if (n\
-    \ == n2) return 1;\n    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\n\
-    \ private:\n  void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA,\n\
-    \                    const vc<bool>& sl, const vc<int>& lms_idx) {\n    vc<int>\
-    \ l(val_range, 0), r(val_range, 0);\n    for (int c : vect) {\n      if (c + 1\
-    \ < val_range) ++l[c + 1];\n      ++r[c];\n    }\n    partial_sum(l.begin(), l.end(),\
-    \ l.begin());\n    partial_sum(r.begin(), r.end(), r.begin());\n    fill(SA.begin(),\
-    \ SA.end(), -1);\n    for (int i = (int)lms_idx.size() - 1; i >= 0; --i)\n   \
-    \   SA[--r[vect[lms_idx[i]]]] = lms_idx[i];\n    for (int i : SA)\n      if (i\
-    \ >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i - 1;\n    fill(r.begin(), r.end(),\
-    \ 0);\n    for (int c : vect) ++r[c];\n    partial_sum(r.begin(), r.end(), r.begin());\n\
-    \    for (int k = (int)SA.size() - 1, i = SA[k]; k >= 1; --k, i = SA[k])\n   \
-    \   if (i >= 1 && !sl[i - 1]) {\n        SA[--r[vect[i - 1]]] = i - 1;\n     \
-    \ }\n  }\n\n  vc<int> SA_IS(const vc<int>& vect, int val_range) {\n    const int\
-    \ n = vect.size();\n    vc<int> SA(n), lms_idx;\n    vc<bool> sl(n);\n    sl[n\
-    \ - 1] = false;\n    for (int i = n - 2; i >= 0; --i) {\n      sl[i] = (vect[i]\
-    \ > vect[i + 1] || (vect[i] == vect[i + 1] && sl[i + 1]));\n      if (sl[i] &&\
-    \ !sl[i + 1]) lms_idx.push_back(i + 1);\n    }\n    reverse(lms_idx.begin(), lms_idx.end());\n\
-    \    induced_sort(vect, val_range, SA, sl, lms_idx);\n    vc<int> new_lms_idx(lms_idx.size()),\
-    \ lms_vec(lms_idx.size());\n    for (int i = 0, k = 0; i < n; ++i)\n      if (!sl[SA[i]]\
-    \ && SA[i] >= 1 && sl[SA[i] - 1]) {\n        new_lms_idx[k++] = SA[i];\n     \
-    \ }\n    int cur = 0;\n    SA[n - 1] = cur;\n    for (size_t k = 1; k < new_lms_idx.size();\
-    \ ++k) {\n      int i = new_lms_idx[k - 1], j = new_lms_idx[k];\n      if (vect[i]\
+    \ == 0, SEG0,\n      conditional_t<SEG_TYPE == 1, SEG1, SEG2> >;\n  SegType seg;\n\
+    \  bool build_seg;\n\n  Suffix_Array() {}\n\n  template <typename STRING>\n  Suffix_Array(const\
+    \ STRING& s) {\n    build_seg = 0;\n    auto a = to_compressed_vector(s);\n  \
+    \  SA = SA_IS(a);\n    calc_LCP(a);\n  }\n\n  vc<int> to_compressed_vector(const\
+    \ string& s) {\n    vc<int> a(len(s));\n    FOR(i, len(s)) a[i] = (unsigned char)s[i];\n\
+    \    Index_Compression<int, 1, 1> I;\n    return I.build(a);\n  }\n\n  vc<int>\
+    \ to_compressed_vector(const vc<int>& s) {\n    Index_Compression<int, 1, 0> I;\n\
+    \    return I.build(s);\n  }\n\n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j)\
+    \ {\n    if (!build_seg) {\n      build_seg = true;\n      seg.build(LCP);\n \
+    \   }\n    int n = len(SA);\n    if (i == n || j == n) return 0;\n    if (i ==\
+    \ j) return n - i;\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i, j);\n\
+    \    return seg.prod(i, j);\n  }\n\n  // S[i:] \u3068\u306E lcp \u304C n \u4EE5\
+    \u4E0A\u3067\u3042\u308B\u3088\u3046\u306A\u534A\u958B\u533A\u9593\n  pair<int,\
+    \ int> lcp_range(int i, int n) {\n    if (!build_seg) {\n      build_seg = true;\n\
+    \      seg.build(LCP);\n    }\n    i = ISA[i];\n    int a = seg.min_left([&](auto\
+    \ e) -> bool { return e >= n; }, i);\n    int b = seg.max_right([&](auto e) ->\
+    \ bool { return e >= n; }, i);\n    return {a, b + 1};\n  }\n\n  // -1: S[L1:R1)\
+    \ < S[L2, R2)\n  //  0: S[L1:R1) = S[L2, R2)\n  // +1: S[L1:R1) > S[L2, R2)\n\
+    \  int compare(int L1, int R1, int L2, int R2) {\n    int n1 = R1 - L1, n2 = R2\
+    \ - L2;\n    int n = lcp(L1, L2);\n    chmin(n, n1);\n    chmin(n, n2);\n    if\
+    \ (n == n1 && n == n2) return 0;\n    if (n == n1) return -1;\n    if (n == n2)\
+    \ return 1;\n    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\n private:\n\
+    \  void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA,\n      const\
+    \ vc<bool>& sl, const vc<int>& lms_idx) {\n    vc<int> l(val_range, 0), r(val_range,\
+    \ 0);\n    for (int c : vect) {\n      if (c + 1 < val_range) ++l[c + 1];\n  \
+    \    ++r[c];\n    }\n    partial_sum(l.begin(), l.end(), l.begin());\n    partial_sum(r.begin(),\
+    \ r.end(), r.begin());\n    fill(SA.begin(), SA.end(), -1);\n    for (int i =\
+    \ (int)lms_idx.size() - 1; i >= 0; --i)\n      SA[--r[vect[lms_idx[i]]]] = lms_idx[i];\n\
+    \    for (int i : SA)\n      if (i >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i\
+    \ - 1;\n    fill(r.begin(), r.end(), 0);\n    for (int c : vect) ++r[c];\n   \
+    \ partial_sum(r.begin(), r.end(), r.begin());\n    for (int k = (int)SA.size()\
+    \ - 1, i = SA[k]; k >= 1; --k, i = SA[k])\n      if (i >= 1 && !sl[i - 1]) {\n\
+    \        SA[--r[vect[i - 1]]] = i - 1;\n      }\n  }\n\n  vc<int> SA_IS(vc<int>\
+    \ vect) {\n    for (auto& x : vect) ++x;\n    vect.eb(0);\n    int val_range =\
+    \ MAX(vect) + 1;\n    const int n = vect.size();\n    vc<int> SA(n), lms_idx;\n\
+    \    vc<bool> sl(n);\n    sl[n - 1] = false;\n    for (int i = n - 2; i >= 0;\
+    \ --i) {\n      sl[i] = (vect[i] > vect[i + 1] || (vect[i] == vect[i + 1] && sl[i\
+    \ + 1]));\n      if (sl[i] && !sl[i + 1]) lms_idx.push_back(i + 1);\n    }\n \
+    \   reverse(lms_idx.begin(), lms_idx.end());\n    induced_sort(vect, val_range,\
+    \ SA, sl, lms_idx);\n    vc<int> new_lms_idx(lms_idx.size()), lms_vec(lms_idx.size());\n\
+    \    for (int i = 0, k = 0; i < n; ++i)\n      if (!sl[SA[i]] && SA[i] >= 1 &&\
+    \ sl[SA[i] - 1]) {\n        new_lms_idx[k++] = SA[i];\n      }\n    int cur =\
+    \ 0;\n    SA[n - 1] = cur;\n    for (size_t k = 1; k < new_lms_idx.size(); ++k)\
+    \ {\n      int i = new_lms_idx[k - 1], j = new_lms_idx[k];\n      if (vect[i]\
     \ != vect[j]) {\n        SA[j] = ++cur;\n        continue;\n      }\n      bool\
     \ flag = false;\n      for (int a = i + 1, b = j + 1;; ++a, ++b) {\n        if\
     \ (vect[a] != vect[b]) {\n          flag = true;\n          break;\n        }\n\
@@ -470,51 +513,43 @@ data:
     \ = !((!sl[a] && sl[a - 1]) && (!sl[b] && sl[b - 1]));\n          break;\n   \
     \     }\n      }\n      SA[j] = (flag ? ++cur : cur);\n    }\n    for (size_t\
     \ i = 0; i < lms_idx.size(); ++i) lms_vec[i] = SA[lms_idx[i]];\n    if (cur +\
-    \ 1 < (int)lms_idx.size()) {\n      auto lms_SA = SA_IS(lms_vec, cur + 1);\n \
-    \     for (size_t i = 0; i < lms_idx.size(); ++i) {\n        new_lms_idx[i] =\
-    \ lms_idx[lms_SA[i]];\n      }\n    }\n    induced_sort(vect, val_range, SA, sl,\
-    \ new_lms_idx);\n    return SA;\n  }\n\n  vc<int> calc_suffix_array(const string&\
-    \ s, const char first = 'a',\n                            const char last = 'z')\
-    \ {\n    vc<int> vect(s.size() + 1);\n    copy(begin(s), end(s), begin(vect));\n\
-    \    for (auto& x : vect) x -= (int)first - 1;\n    vect.back() = 0;\n    auto\
-    \ ret = SA_IS(vect, (int)last - (int)first + 2);\n    ret.erase(ret.begin());\n\
-    \    return ret;\n  }\n\n  vc<int> calc_suffix_array(const vc<int>& s) {\n   \
-    \ vc<int> ss = s;\n    UNIQUE(ss);\n\n    vc<int> vect(s.size() + 1);\n    copy(all(s),\
-    \ vect.begin());\n    for (auto& x : vect) x = LB(ss, x) + 1;\n    vect.back()\
-    \ = 0;\n    auto ret = SA_IS(vect, MAX(vect) + 2);\n    ret.erase(ret.begin());\n\
-    \    return ret;\n  }\n\n  template <typename STRING>\n  void calc_LCP(const STRING&\
+    \ 1 < (int)lms_idx.size()) {\n      auto lms_SA = SA_IS(lms_vec);\n      for (size_t\
+    \ i = 0; i < lms_idx.size(); ++i) {\n        new_lms_idx[i] = lms_idx[lms_SA[i]];\n\
+    \      }\n    }\n    induced_sort(vect, val_range, SA, sl, new_lms_idx);\n   \
+    \ SA.erase(SA.begin());\n    return SA;\n  }\n\n  void calc_LCP(const vc<int>&\
     \ s) {\n    int n = s.size(), k = 0;\n    ISA.resize(n);\n    LCP.resize(n);\n\
-    \    for (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for (int i = 0; i < n; i++,\
-    \ k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n        k = 0;\n        continue;\n\
-    \      }\n      int j = SA[ISA[i] + 1];\n      while (i + k < n && j + k < n &&\
-    \ s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n    }\n    LCP.resize(n\
-    \ - 1);\n  }\n};\n#line 6 \"string/basic_substring_structure.hpp\"\n\n// https://arxiv.org/pdf/2312.11873\n\
-    // https://uoj.ac/problem/697\nstruct Basic_Substring_Structure {\n  using SA_t\
-    \ = Suffix_Array<false>;\n  int N;\n  string S, T;  // T = rev(S)\n  Rolling_Hash\
-    \ RH;\n  vc<decltype(RH)::mint> SH;\n  SA_t S_SA, T_SA;\n  HashMap<int> hash_to_col;\n\
-    \n  /*\n  block \u3092 diagonal \u306B\u914D\u7F6E\u3057\u305F\u9577\u65B9\u5F62\
-    \u3092\u4F5C\u308B\u611F\u3058\u306B\u3059\u308B.\n  X, Y: i \u756A\u76EE\u306E\
-    \ block \u304C [X[i],X[i+1]) x [Y[i],Y[i+1]) \u306B\u306A\u308B.\n  X_to_block,\
-    \ Y_to_block: \u884C\u756A\u53F7\u3084\u5217\u756A\u53F7\u306B\u5BFE\u5FDC\u3059\
-    \u308B block.\n  width, height: \u884C\u306E\u5E45, \u5217\u306E\u9AD8\u3055.\
-    \ [X[i],X[i]+width[i]) \u306A\u3069.\n  right: \u884C\u304D\u5148\u306E\u884C\n\
-    \  down: \u884C\u304D\u5148\u306E\u5217\n  */\n\n  // topological \u9006\u9806\
-    \ (\u6700\u5F8C\u306B S[0,N) \u304C\u6765\u308B)\n  vc<pair<int, int>> raw_index;\
-    \  // \u5404 block \u306E\u4EE3\u8868\u5143\u306B\u5BFE\u5FDC\u3059\u308B [i,j]\n\
-    \  vc<int> occurrence;\n  vc<int> X, Y;\n  vc<int> X_to_block, Y_to_block;\n \
-    \ vc<int> width, height;\n  vc<int> right, down;\n\n  int n_block() { return len(raw_index);\
-    \ }\n  pair<int, int> shape() { return {X.back(), Y.back()}; }\n\n  Basic_Substring_Structure(string\
-    \ &S) { build(S); }\n\n  void build(string &S_) {\n    S = S_, T = {S_.rbegin(),\
-    \ S_.rend()};\n    SH = RH.build(S);\n    S_SA = SA_t(S), T_SA = SA_t(T);\n  \
-    \  S_SA.seg.build(S_SA.LCP), S_SA.build_seg = true;\n    T_SA.seg.build(T_SA.LCP),\
-    \ T_SA.build_seg = true;\n    N = len(S);\n    if (N == 1) {\n      raw_index\
-    \ = {{0, 0}}, X = {0, 1}, Y = {0, 1}, X_to_block = {0},\n      Y_to_block = {0},\
-    \ occurrence = {1};\n      width = {1}, height = {1}, right = {-1}, down = {-1};\n\
-    \      return;\n    }\n    X_to_block.reserve(2 * N - 1), Y_to_block.reserve(2\
-    \ * N - 1);\n    width.reserve(2 * N - 1), height.reserve(2 * N - 1);\n    right.reserve(2\
-    \ * N - 1), down.reserve(2 * N - 1);\n    X = {0}, Y = {0};\n\n    CartesianTree<int,\
-    \ true> CS(S_SA.LCP);\n    CartesianTree<int, true> CT(T_SA.LCP);\n    hash_to_col.build(N\
-    \ - 1);\n    HashMap<int> hash_to_row(N - 1);\n\n    auto is_node = [&](CartesianTree<int,\
+    \    if (n == 0) return;\n    for (int i = 0; i < n; i++) ISA[SA[i]] = i;\n  \
+    \  for (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n\
+    \        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n \
+    \     while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]]\
+    \ = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n#line 6 \"string/basic_substring_structure.hpp\"\
+    \n\n// https://arxiv.org/pdf/2312.11873\n// https://uoj.ac/problem/697\nstruct\
+    \ Basic_Substring_Structure {\n  using SA_t = Suffix_Array<false>;\n  int N;\n\
+    \  string S, T;  // T = rev(S)\n  Rolling_Hash RH;\n  vc<decltype(RH)::mint> SH;\n\
+    \  SA_t S_SA, T_SA;\n  HashMap<int> hash_to_col;\n\n  /*\n  block \u3092 diagonal\
+    \ \u306B\u914D\u7F6E\u3057\u305F\u9577\u65B9\u5F62\u3092\u4F5C\u308B\u611F\u3058\
+    \u306B\u3059\u308B.\n  X, Y: i \u756A\u76EE\u306E block \u304C [X[i],X[i+1]) x\
+    \ [Y[i],Y[i+1]) \u306B\u306A\u308B.\n  X_to_block, Y_to_block: \u884C\u756A\u53F7\
+    \u3084\u5217\u756A\u53F7\u306B\u5BFE\u5FDC\u3059\u308B block.\n  width, height:\
+    \ \u884C\u306E\u5E45, \u5217\u306E\u9AD8\u3055. [X[i],X[i]+width[i]) \u306A\u3069\
+    .\n  right: \u884C\u304D\u5148\u306E\u884C\n  down: \u884C\u304D\u5148\u306E\u5217\
+    \n  */\n\n  // topological \u9006\u9806 (\u6700\u5F8C\u306B S[0,N) \u304C\u6765\
+    \u308B)\n  vc<pair<int, int>> raw_index;  // \u5404 block \u306E\u4EE3\u8868\u5143\
+    \u306B\u5BFE\u5FDC\u3059\u308B [i,j]\n  vc<int> occurrence;\n  vc<int> X, Y;\n\
+    \  vc<int> X_to_block, Y_to_block;\n  vc<int> width, height;\n  vc<int> right,\
+    \ down;\n\n  int n_block() { return len(raw_index); }\n  pair<int, int> shape()\
+    \ { return {X.back(), Y.back()}; }\n\n  Basic_Substring_Structure(string &S) {\
+    \ build(S); }\n\n  void build(string &S_) {\n    S = S_, T = {S_.rbegin(), S_.rend()};\n\
+    \    SH = RH.build(S);\n    S_SA = SA_t(S), T_SA = SA_t(T);\n    S_SA.seg.build(S_SA.LCP),\
+    \ S_SA.build_seg = true;\n    T_SA.seg.build(T_SA.LCP), T_SA.build_seg = true;\n\
+    \    N = len(S);\n    if (N == 1) {\n      raw_index = {{0, 0}}, X = {0, 1}, Y\
+    \ = {0, 1}, X_to_block = {0},\n      Y_to_block = {0}, occurrence = {1};\n   \
+    \   width = {1}, height = {1}, right = {-1}, down = {-1};\n      return;\n   \
+    \ }\n    X_to_block.reserve(2 * N - 1), Y_to_block.reserve(2 * N - 1);\n    width.reserve(2\
+    \ * N - 1), height.reserve(2 * N - 1);\n    right.reserve(2 * N - 1), down.reserve(2\
+    \ * N - 1);\n    X = {0}, Y = {0};\n\n    CartesianTree<int, true> CS(S_SA.LCP);\n\
+    \    CartesianTree<int, true> CT(T_SA.LCP);\n    hash_to_col.build(N - 1);\n \
+    \   HashMap<int> hash_to_row(N - 1);\n\n    auto is_node = [&](CartesianTree<int,\
     \ true> &CT, int i) -> bool {\n      return (CT.A[i] > 0 && (CT.par[i] == -1 ||\
     \ CT.A[CT.par[i]] != CT.A[i]));\n    };\n\n    // \u5217\u306E\u5148\u982D\u306B\
     \u76F8\u5F53\u3059\u308B\u30CF\u30C3\u30B7\u30E5\u3092\u96C6\u3081\u3066\u304A\
@@ -672,6 +707,7 @@ data:
   - random/base.hpp
   - mod/modint61.hpp
   - string/suffix_array.hpp
+  - ds/index_compression.hpp
   - alg/monoid/min.hpp
   - ds/sparse_table/sparse_table.hpp
   - other/bit.hpp
@@ -681,7 +717,7 @@ data:
   isVerificationFile: false
   path: string/basic_substring_structure.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/basic_substring_structure.hpp

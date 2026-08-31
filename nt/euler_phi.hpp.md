@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -51,7 +51,7 @@ data:
     \ = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool,\
     \ S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i = idx; i <\
     \ S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
-    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return\
+    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM);\n  return\
     \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/zeta.hpp\"\n\ntemplate\
     \ <typename T>\nvoid divisor_zeta(vc<T>& A) {\n  assert(A[0] == 0);\n  int N =\
     \ len(A) - 1;\n  auto P = prime_table(N);\n  for (auto&& p : P) {\n    FOR3(x,\
@@ -181,7 +181,7 @@ data:
   path: nt/euler_phi.hpp
   requiredBy:
   - mod/tetration.hpp
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/tetration.test.cpp

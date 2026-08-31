@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -98,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/2d/fps_pow_1_2d.hpp
     title: poly/2d/fps_pow_1_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -134,7 +134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/find_roots_of_polynomial.hpp
     title: poly/find_roots_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
@@ -158,7 +158,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -522,7 +522,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2097.test.cpp
     title: test/3_yukicoder/2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -543,7 +543,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
   - icon: ':heavy_check_mark:'
@@ -576,9 +576,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/count_terms.hpp\"\ntemplate<typename mint>\nint count_terms(const\
@@ -913,53 +913,55 @@ data:
     \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
     \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
     \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"poly/fps_inv.hpp\"\n\n\
-    template <typename mint>\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\n  int\
-    \ N = len(f);\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0))\
-    \ dat.eb(i, f[i]);\n  vc<mint> g(N);\n  mint g0 = mint(1) / f[0];\n  g[0] = g0;\n\
-    \  FOR(n, 1, N) {\n    mint rhs = 0;\n    for (auto&& [k, fk] : dat) {\n     \
-    \ if (k > n) break;\n      rhs -= fk * g[n - k];\n    }\n    g[n] = rhs * g0;\n\
-    \  }\n  return g;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv_dense_ntt(const\
-    \ vc<mint>& F) {\n  vc<mint> G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n\
-    \  G.reserve(N);\n  while (n < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i,\
-    \ min(N, 2 * n)) f[i] = F[i];\n    FOR(i, n) g[i] = G[i];\n    ntt(f, false),\
-    \ ntt(g, false);\n    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i,\
-    \ n) f[i] = 0;\n    ntt(f, false);\n    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f,\
-    \ true);\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return\
-    \ G;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv_dense(const vc<mint>& F)\
-    \ {\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int N = len(F);\n\
-    \  vc<mint> R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n  while (m < N)\
-    \ {\n    p = convolution(R, R);\n    p.resize(m + m);\n    vc<mint> f = {F.begin(),\
-    \ F.begin() + min(m + m, N)};\n    p = convolution(p, f);\n    R.resize(m + m);\n\
-    \    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n  }\n  R.resize(N);\n\
-    \  return R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const vc<mint>&\
-    \ f) {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  assert(f[0] != mint(0));\n  int n = count_terms(f);\n  int t =\
-    \ (mint::can_ntt() ? 160 : 820);\n  return (n <= t ? fps_inv_sparse<mint>(f) :\
-    \ fps_inv_dense<mint>(f));\n}\n"
+    template <typename mint>\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\n  if (f.empty())\
+    \ return {};\n  int N = len(f);\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if\
+    \ (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint> g(N);\n  mint g0 = mint(1) /\
+    \ f[0];\n  g[0] = g0;\n  FOR(n, 1, N) {\n    mint rhs = 0;\n    for (auto&& [k,\
+    \ fk] : dat) {\n      if (k > n) break;\n      rhs -= fk * g[n - k];\n    }\n\
+    \    g[n] = rhs * g0;\n  }\n  return g;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ fps_inv_dense_ntt(const vc<mint>& F) {\n  if (F.empty()) return {};\n  vc<mint>\
+    \ G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n  G.reserve(N);\n  while (n\
+    \ < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\n\
+    \    FOR(i, n) g[i] = G[i];\n    ntt(f, false), ntt(g, false);\n    FOR(i, 2 *\
+    \ n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n) f[i] = 0;\n    ntt(f, false);\n\
+    \    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n, min(N, 2 *\
+    \ n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return G;\n}\n\ntemplate <typename mint>\n\
+    vc<mint> fps_inv_dense(const vc<mint>& F) {\n  if (F.empty()) return {};\n  if\
+    \ (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int N = len(F);\n  vc<mint>\
+    \ R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n  while (m < N) {\n    p\
+    \ = convolution(R, R);\n    p.resize(m + m);\n    vc<mint> f = {F.begin(), F.begin()\
+    \ + min(m + m, N)};\n    p = convolution(p, f);\n    R.resize(m + m);\n    FOR(i,\
+    \ m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n  }\n  R.resize(N);\n  return\
+    \ R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const vc<mint>& f) {\n \
+    \ if (f.empty()) return {};\n  static_assert(!is_same_v<mint, modint<2>>, \"use\
+    \ Bit_Array version for mod 2\");\n  assert(f[0] != mint(0));\n  int n = count_terms(f);\n\
+    \  int t = (mint::can_ntt() ? 160 : 820);\n  return (n <= t ? fps_inv_sparse<mint>(f)\
+    \ : fps_inv_dense<mint>(f));\n}\n"
   code: "#include \"poly/count_terms.hpp\"\n#include \"poly/convolution.hpp\"\n\n\
-    template <typename mint>\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\n  int\
-    \ N = len(f);\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0))\
-    \ dat.eb(i, f[i]);\n  vc<mint> g(N);\n  mint g0 = mint(1) / f[0];\n  g[0] = g0;\n\
-    \  FOR(n, 1, N) {\n    mint rhs = 0;\n    for (auto&& [k, fk] : dat) {\n     \
-    \ if (k > n) break;\n      rhs -= fk * g[n - k];\n    }\n    g[n] = rhs * g0;\n\
-    \  }\n  return g;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv_dense_ntt(const\
-    \ vc<mint>& F) {\n  vc<mint> G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n\
-    \  G.reserve(N);\n  while (n < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i,\
-    \ min(N, 2 * n)) f[i] = F[i];\n    FOR(i, n) g[i] = G[i];\n    ntt(f, false),\
-    \ ntt(g, false);\n    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i,\
-    \ n) f[i] = 0;\n    ntt(f, false);\n    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f,\
-    \ true);\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return\
-    \ G;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv_dense(const vc<mint>& F)\
-    \ {\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int N = len(F);\n\
-    \  vc<mint> R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n  while (m < N)\
-    \ {\n    p = convolution(R, R);\n    p.resize(m + m);\n    vc<mint> f = {F.begin(),\
-    \ F.begin() + min(m + m, N)};\n    p = convolution(p, f);\n    R.resize(m + m);\n\
-    \    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n  }\n  R.resize(N);\n\
-    \  return R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const vc<mint>&\
-    \ f) {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  assert(f[0] != mint(0));\n  int n = count_terms(f);\n  int t =\
-    \ (mint::can_ntt() ? 160 : 820);\n  return (n <= t ? fps_inv_sparse<mint>(f) :\
-    \ fps_inv_dense<mint>(f));\n}\n"
+    template <typename mint>\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\n  if (f.empty())\
+    \ return {};\n  int N = len(f);\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if\
+    \ (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint> g(N);\n  mint g0 = mint(1) /\
+    \ f[0];\n  g[0] = g0;\n  FOR(n, 1, N) {\n    mint rhs = 0;\n    for (auto&& [k,\
+    \ fk] : dat) {\n      if (k > n) break;\n      rhs -= fk * g[n - k];\n    }\n\
+    \    g[n] = rhs * g0;\n  }\n  return g;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ fps_inv_dense_ntt(const vc<mint>& F) {\n  if (F.empty()) return {};\n  vc<mint>\
+    \ G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n  G.reserve(N);\n  while (n\
+    \ < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\n\
+    \    FOR(i, n) g[i] = G[i];\n    ntt(f, false), ntt(g, false);\n    FOR(i, 2 *\
+    \ n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n) f[i] = 0;\n    ntt(f, false);\n\
+    \    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n, min(N, 2 *\
+    \ n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return G;\n}\n\ntemplate <typename mint>\n\
+    vc<mint> fps_inv_dense(const vc<mint>& F) {\n  if (F.empty()) return {};\n  if\
+    \ (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int N = len(F);\n  vc<mint>\
+    \ R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n  while (m < N) {\n    p\
+    \ = convolution(R, R);\n    p.resize(m + m);\n    vc<mint> f = {F.begin(), F.begin()\
+    \ + min(m + m, N)};\n    p = convolution(p, f);\n    R.resize(m + m);\n    FOR(i,\
+    \ m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n  }\n  R.resize(N);\n  return\
+    \ R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const vc<mint>& f) {\n \
+    \ if (f.empty()) return {};\n  static_assert(!is_same_v<mint, modint<2>>, \"use\
+    \ Bit_Array version for mod 2\");\n  assert(f[0] != mint(0));\n  int n = count_terms(f);\n\
+    \  int t = (mint::can_ntt() ? 160 : 820);\n  return (n <= t ? fps_inv_sparse<mint>(f)\
+    \ : fps_inv_dense<mint>(f));\n}\n"
   dependsOn:
   - poly/count_terms.hpp
   - poly/convolution.hpp
@@ -1039,8 +1041,8 @@ data:
   - seq/find_linear_rec.hpp
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
-  timestamp: '2026-08-29 09:24:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-08-31 13:26:17+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/sparse_pow_2d.test.cpp
   - test/1_mytest/power_projection.test.cpp

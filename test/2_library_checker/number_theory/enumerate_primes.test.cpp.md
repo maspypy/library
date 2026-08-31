@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
@@ -247,7 +247,7 @@ data:
     \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
     \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
     \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
-    \    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
+    \    }\n  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin()\
     \ + k};\n}\n#line 6 \"test/2_library_checker/number_theory/enumerate_primes.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, A, B);\n  auto primes = prime_table(N);\n  int pi_N\
     \ = UB(primes, N);\n\n  vc<int> ANS;\n  while (B < pi_N) {\n    ANS.eb(primes[B]);\n\
@@ -266,7 +266,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/enumerate_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/enumerate_primes.test.cpp

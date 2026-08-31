@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_sum.hpp
     title: nt/prime_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
@@ -250,7 +250,7 @@ data:
     \      array<bool, S> block{};\n      for (auto& [p, idx] : cp)\n        for (int\
     \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
     \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/prime_sum.hpp\"\
+    \ LIM);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/prime_sum.hpp\"\
     \n\n/*\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix sum\
     \ \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\u3002\nn = floor(N/d) \u3068\u306A\u308B\
     \ n \u306B\u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\
@@ -290,7 +290,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/counting_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/counting_primes.test.cpp

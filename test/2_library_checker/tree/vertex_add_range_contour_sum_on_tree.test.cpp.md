@@ -320,80 +320,81 @@ data:
     \ - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n  }\n\n\
     \  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
     \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
-    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    total = G::op(total,\
-    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
-    \  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\
-    \n  template <class F>\n  int max_right(const F check, int L = 0) const {\n  \
-    \  assert(check(G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\
-    \u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i\
-    \ % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n     \
-    \   }\n        if (i == 0) {\n          return topbit(n) + 1;\n        }\n   \
-    \     int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n      \
-    \  E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) {\n        \
-    \  return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i\
-    \ & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k)\
-    \ - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if\
-    \ (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n       \
-    \ }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class\
-    \ F>\n  int max_right_with_index(const F check, int L = 0) const {\n    assert(check(L,\
-    \ G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\
-    \u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1)\
-    \ {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n    \
-    \    if (i == 0) {\n          return topbit(n) + 1;\n        }\n        int k\
-    \ = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
-    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) {\n          return\
-    \ k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n\
-    \      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 <\
-    \ len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i +\
-    \ (1 << k) <= L || check(i + (1 << k), t)) {\n          i += (1 << k), s = t;\n\
-    \        }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
-    \ min_left(const F check, int R) const {\n    assert(check(G::id()));\n    E s\
-    \ = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\
-    \u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n  \
-    \    s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n   \
-    \ }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n    //\
-    \ 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\
-    \u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i\
-    \ + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1 << k), s = t;\n\
-    \      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) const {\n\
-    \    return max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line\
-    \ 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap\
-    \ {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067\
-    \ ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n\
-    \    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const u64& k) {\n\
-    \    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i]) { used[i]\
-    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\n  Val\
-    \ get(const u64& k, Val default_value) {\n    int i = index(k);\n    return (used[i]\
-    \ ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n    int i =\
-    \ index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key, val)\n  template\
-    \ <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used)) if (used[i])\
-    \ f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
-    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\n    x += FIXED_RANDOM;\n\
-    \    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
-    \    return (x ^ (x >> 31)) & mask;\n  }\n\n  void extend() {\n    vc<pair<u64,\
-    \ Val>> dat;\n    dat.reserve(len(used) / 2 - cap);\n    FOR(i, len(used)) {\n\
-    \      if (used[i]) dat.eb(key[i], val[i]);\n    }\n    build(2 * len(dat));\n\
-    \    for (auto& [a, b]: dat) (*this)[a] = b;\n  }\n};\n#line 2 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
-    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int>\
-    \ MP_FOR_EID;\n  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
-    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
-    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
-    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\
-    \n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    assert(0 <=\
+    \ k && k < n);\n    total = G::op(total, x);\n    for (++k; k <= n; k += k & -k)\
+    \ dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k,\
+    \ k + 1)), x)); }\n\n  template <class F>\n  int max_right(const F check, int\
+    \ L = 0) const {\n    assert(check(G::id()));\n    E s = G::id();\n    int i =\
+    \ L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while\
+    \ (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i -\
+    \ 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
+    \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
+    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t))\
+    \ {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])),\
+    \ i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i +\
+    \ (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n\
+    \        if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
+    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
+    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
+    \  assert(check(L, G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k\
+    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
+    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
+    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
+    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
+    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1 <<\
+    \ k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
+    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
+    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
+    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
+    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::id()));\n\
+    \    E s = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
+    \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
+    \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
+    \    }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n \
+    \   // 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\
+    \u6301\u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s,\
+    \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
+    \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
+    \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
+    \  }\n};\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
+    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
+    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
+    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
+    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
+    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
+    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
+    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
+    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
+    \ key[i] != k; i = (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i])\
+    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
+    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
+    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
+    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
+    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
+    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -608,7 +609,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp

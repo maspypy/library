@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy: []
@@ -30,7 +30,7 @@ data:
     \ = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool,\
     \ S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i = idx; i <\
     \ S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
-    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return\
+    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM);\n  return\
     \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/multiplicative_sum.hpp\"\
     \n\r\n// f_pe\uFF1AT(int p,int e), f(p^e)\r\n// f_psum\uFF1A[1, x] \u3067\u306E\
     \ f(p) \u306E\u548C\r\ntemplate <typename T, typename F1, typename F2>\r\nT multiplicative_sum(ll\
@@ -65,7 +65,7 @@ data:
   isVerificationFile: false
   path: nt/multiplicative_sum.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/totient_sum.test.cpp
