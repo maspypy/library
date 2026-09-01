@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -140,21 +140,21 @@ data:
     \ { return 0; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
     \    vi v(m);\n    FOR(i, m) v[i] = f(i);\n    build(v);\n  }\n  void build(const\
     \ vi& v) {\n    n = len(v);\n    seg.build(n, [&](int i) -> ll { return v[i];\
-    \ }), S.build(n), DEC.build(n + 1);\n    FOR(i, n) S.insert(i);\n    FOR(i, 1,\
-    \ n) if (v[i - 1] > v[i]) DEC.insert(i);\n  }\n\n  ll get(int i) { return seg.get(S.prev(i));\
-    \ }\n  vi get_all() {\n    auto A = seg.get_all();\n    int p = 0;\n    FOR(i,\
-    \ n) {\n      if (S[i]) p = i;\n      A[i] = A[p];\n    }\n    return A;\n  }\n\
-    \  void set(int i, ll x) {\n    split(i), split(i + 1);\n    seg.set(i, x);\n\
-    \    DEC.insert(i), DEC.insert(i + 1);\n  }\n  void range_add(int L, int R, ll\
-    \ x) {\n    split(L), split(R);\n    if (x < 0) DEC.insert(L);\n    if (x > 0)\
-    \ DEC.insert(R);\n    seg.apply(L, R, x);\n  }\n  void range_assign(int L, int\
-    \ R, ll x) {\n    split(L), split(R);\n    INC.insert(L), INC.insert(R);\n   \
-    \ S.enumerate(L, R, [&](int i) -> void { S.erase(i); });\n    S.insert(L);\n \
-    \   seg.set(L, x);\n  }\n  void make_increasing(int L, int R) {\n    split(L),\
+    \ }), S.build(n),\n        DEC.build(n + 1);\n    FOR(i, n) S.insert(i);\n   \
+    \ FOR(i, 1, n) if (v[i - 1] > v[i]) DEC.insert(i);\n  }\n\n  ll get(int i) { return\
+    \ seg.get(S.prev(i)); }\n  vi get_all() {\n    auto A = seg.get_all();\n    int\
+    \ p = 0;\n    FOR(i, n) {\n      if (S[i]) p = i;\n      A[i] = A[p];\n    }\n\
+    \    return A;\n  }\n  void set(int i, ll x) {\n    split(i), split(i + 1);\n\
+    \    seg.set(i, x);\n    DEC.insert(i), DEC.insert(i + 1);\n  }\n  void range_add(int\
+    \ L, int R, ll x) {\n    split(L), split(R);\n    if (x < 0) DEC.insert(L);\n\
+    \    if (x > 0) DEC.insert(R);\n    seg.apply(L, R, x);\n  }\n  void range_assign(int\
+    \ L, int R, ll x) {\n    split(L), split(R);\n    DEC.insert(L), DEC.insert(R);\n\
+    \    S.enumerate(L, R, [&](int i) -> void { S.erase(i); });\n    S.insert(L);\n\
+    \    seg.set(L, x);\n  }\n  void make_increasing(int L, int R) {\n    split(L),\
     \ split(R);\n    DEC.enumerate(L + 1, R, [&](int i) -> void {\n      ll mx = get(i\
     \ - 1);\n      while (i < R) {\n        DEC.erase(i);\n        ll now = get(i);\n\
     \        if (mx < now) break;\n        S.erase(i);\n        i = S.next(i);\n \
-    \     }\n    });\n  }\n\nprivate:\n  void split(int p) {\n    if (p == 0 || p\
+    \     }\n    });\n  }\n\n private:\n  void split(int p) {\n    if (p == 0 || p\
     \ == n || S[p]) return;\n    seg.set(p, get(p));\n    S.insert(p);\n  }\n};\n"
   code: "\n#include \"ds/segtree/dual_segtree.hpp\"\n#include \"alg/monoid/add.hpp\"\
     \n#include \"ds/fastset.hpp\"\n\n// \u533A\u9593\u52A0\u7B97 / \u3042\u308B\u7BC4\
@@ -173,8 +173,8 @@ data:
     \ build(int m) {\n    build(m, [](int i) -> ll { return 0; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    vi v(m);\n    FOR(i, m) v[i] =\
     \ f(i);\n    build(v);\n  }\n  void build(const vi& v) {\n    n = len(v);\n  \
-    \  seg.build(n, [&](int i) -> ll { return v[i]; }), S.build(n), DEC.build(n +\
-    \ 1);\n    FOR(i, n) S.insert(i);\n    FOR(i, 1, n) if (v[i - 1] > v[i]) DEC.insert(i);\n\
+    \  seg.build(n, [&](int i) -> ll { return v[i]; }), S.build(n),\n        DEC.build(n\
+    \ + 1);\n    FOR(i, n) S.insert(i);\n    FOR(i, 1, n) if (v[i - 1] > v[i]) DEC.insert(i);\n\
     \  }\n\n  ll get(int i) { return seg.get(S.prev(i)); }\n  vi get_all() {\n   \
     \ auto A = seg.get_all();\n    int p = 0;\n    FOR(i, n) {\n      if (S[i]) p\
     \ = i;\n      A[i] = A[p];\n    }\n    return A;\n  }\n  void set(int i, ll x)\
@@ -182,14 +182,14 @@ data:
     \ + 1);\n  }\n  void range_add(int L, int R, ll x) {\n    split(L), split(R);\n\
     \    if (x < 0) DEC.insert(L);\n    if (x > 0) DEC.insert(R);\n    seg.apply(L,\
     \ R, x);\n  }\n  void range_assign(int L, int R, ll x) {\n    split(L), split(R);\n\
-    \    INC.insert(L), INC.insert(R);\n    S.enumerate(L, R, [&](int i) -> void {\
+    \    DEC.insert(L), DEC.insert(R);\n    S.enumerate(L, R, [&](int i) -> void {\
     \ S.erase(i); });\n    S.insert(L);\n    seg.set(L, x);\n  }\n  void make_increasing(int\
     \ L, int R) {\n    split(L), split(R);\n    DEC.enumerate(L + 1, R, [&](int i)\
     \ -> void {\n      ll mx = get(i - 1);\n      while (i < R) {\n        DEC.erase(i);\n\
     \        ll now = get(i);\n        if (mx < now) break;\n        S.erase(i);\n\
-    \        i = S.next(i);\n      }\n    });\n  }\n\nprivate:\n  void split(int p)\
-    \ {\n    if (p == 0 || p == n || S[p]) return;\n    seg.set(p, get(p));\n    S.insert(p);\n\
-    \  }\n};\n"
+    \        i = S.next(i);\n      }\n    });\n  }\n\n private:\n  void split(int\
+    \ p) {\n    if (p == 0 || p == n || S[p]) return;\n    seg.set(p, get(p));\n \
+    \   S.insert(p);\n  }\n};\n"
   dependsOn:
   - ds/segtree/dual_segtree.hpp
   - alg/monoid/add.hpp
@@ -198,7 +198,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_add_make_increasing.hpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-02 04:29:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/range_add_make_increasing.hpp

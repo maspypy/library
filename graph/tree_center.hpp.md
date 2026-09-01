@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs_01.hpp
     title: graph/shortest_path/bfs_01.hpp
   - icon: ':heavy_check_mark:'
@@ -132,7 +132,7 @@ data:
     template <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> bfs_01(GT&\
     \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
     \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\
-    \n  for (auto&& v : vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n\
+    \n  for (auto&& v : vs) {\n    if (chmin(dist[v], 0)) root[v] = v, que.push_front(v);\n\
     \  }\n\n  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n\
     \    for (auto&& e : G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] >\
     \ dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n      \
@@ -148,7 +148,7 @@ data:
     \ 2 \u500D\u3057\u3066\u304A\u304F\u3053\u3068\uFF09\ntemplate <typename T, typename\
     \ GT>\ntuple<int, int, T> tree_center(GT& G) {\n  assert(G.is_prepared());\n \
     \ auto [distA, parA] = bfs_01<T>(G, 0);\n  int a = max_element(all(distA)) - distA.begin();\n\
-    \  auto [dist, par] = bfs_01<T>(G, A);\n  int b = max_element(all(dist)) - dist.begin();\n\
+    \  auto [dist, par] = bfs_01<T>(G, a);\n  int b = max_element(all(dist)) - dist.begin();\n\
     \  T d = dist[b];\n  assert(d % 2 == 0);\n  vc<int> path = restore_path(par, b);\n\
     \  FOR(i, len(path)) {\n    int v = path[i];\n    if (dist[v] == d / 2) return\
     \ {v, v, 0};\n  }\n  FOR(i, len(path) - 1) {\n    int a = path[i], b = path[i\
@@ -162,7 +162,7 @@ data:
     template <typename T, typename GT>\ntuple<int, int, T> tree_center(GT& G) {\n\
     \  assert(G.is_prepared());\n  auto [distA, parA] = bfs_01<T>(G, 0);\n  int a\
     \ = max_element(all(distA)) - distA.begin();\n  auto [dist, par] = bfs_01<T>(G,\
-    \ A);\n  int b = max_element(all(dist)) - dist.begin();\n  T d = dist[b];\n  assert(d\
+    \ a);\n  int b = max_element(all(dist)) - dist.begin();\n  T d = dist[b];\n  assert(d\
     \ % 2 == 0);\n  vc<int> path = restore_path(par, b);\n  FOR(i, len(path)) {\n\
     \    int v = path[i];\n    if (dist[v] == d / 2) return {v, v, 0};\n  }\n  FOR(i,\
     \ len(path) - 1) {\n    int a = path[i], b = path[i + 1];\n    if (dist[a] < d\
@@ -176,7 +176,7 @@ data:
   isVerificationFile: false
   path: graph/tree_center.hpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-02 04:29:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_center.hpp

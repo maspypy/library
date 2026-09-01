@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs_01.hpp
     title: graph/shortest_path/bfs_01.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -607,7 +607,7 @@ data:
     template <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> bfs_01(GT&\
     \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
     \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\
-    \n  for (auto&& v : vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n\
+    \n  for (auto&& v : vs) {\n    if (chmin(dist[v], 0)) root[v] = v, que.push_front(v);\n\
     \  }\n\n  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n\
     \    for (auto&& e : G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] >\
     \ dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n      \
@@ -669,7 +669,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/st_numbering.test.cpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-02 04:29:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/st_numbering.test.cpp
