@@ -38,9 +38,7 @@ tuple<vc<T>, vc<int>, vc<int>> bfs_01(GT& G, vc<int> vs) {
   deque<int> que;
 
   for (auto&& v : vs) {
-    dist[v] = 0;
-    root[v] = v;
-    que.push_front(v);
+    if (chmin(dist[v], 0)) root[v] = v, que.push_front(v);
   }
 
   while (!que.empty()) {

@@ -9,7 +9,7 @@ tuple<int, int, T> tree_center(GT& G) {
   assert(G.is_prepared());
   auto [distA, parA] = bfs_01<T>(G, 0);
   int a = max_element(all(distA)) - distA.begin();
-  auto [dist, par] = bfs_01<T>(G, A);
+  auto [dist, par] = bfs_01<T>(G, a);
   int b = max_element(all(dist)) - dist.begin();
   T d = dist[b];
   assert(d % 2 == 0);

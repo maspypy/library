@@ -33,7 +33,8 @@ struct Range_Add_Make_Monotonic_Increasing {
   }
   void build(const vi& v) {
     n = len(v);
-    seg.build(n, [&](int i) -> ll { return v[i]; }), S.build(n), DEC.build(n + 1);
+    seg.build(n, [&](int i) -> ll { return v[i]; }), S.build(n),
+        DEC.build(n + 1);
     FOR(i, n) S.insert(i);
     FOR(i, 1, n) if (v[i - 1] > v[i]) DEC.insert(i);
   }
@@ -61,7 +62,7 @@ struct Range_Add_Make_Monotonic_Increasing {
   }
   void range_assign(int L, int R, ll x) {
     split(L), split(R);
-    INC.insert(L), INC.insert(R);
+    DEC.insert(L), DEC.insert(R);
     S.enumerate(L, R, [&](int i) -> void { S.erase(i); });
     S.insert(L);
     seg.set(L, x);
@@ -80,7 +81,7 @@ struct Range_Add_Make_Monotonic_Increasing {
     });
   }
 
-private:
+ private:
   void split(int p) {
     if (p == 0 || p == n || S[p]) return;
     seg.set(p, get(p));
