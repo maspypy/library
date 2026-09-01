@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/dynamic_upper_hull.hpp
     title: geo/dynamic_upper_hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

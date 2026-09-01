@@ -327,7 +327,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_ceil.test.cpp
     title: test/1_mytest/floor_ceil.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_ceil_ranges.test.cpp
     title: test/1_mytest/floor_ceil_ranges.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2625,9 +2625,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2822,7 +2822,7 @@ data:
   - flow/bipartite_matching_dense.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-08-29 09:00:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/incremental_ch.test.cpp
   - test/1_mytest/manhattan_nns.test.cpp

@@ -719,13 +719,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/ceil_range.hpp
       title: enumerate/ceil_range.hpp
     - icon: ':heavy_check_mark:'
       path: enumerate/clique.hpp
       title: enumerate/clique.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/floor_range.hpp
       title: enumerate/floor_range.hpp
     - icon: ':heavy_check_mark:'
@@ -757,7 +757,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -2947,7 +2947,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/floor_ceil.test.cpp
       title: test/1_mytest/floor_ceil.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/floor_ceil_ranges.test.cpp
       title: test/1_mytest/floor_ceil_ranges.test.cpp
     - icon: ':heavy_check_mark:'

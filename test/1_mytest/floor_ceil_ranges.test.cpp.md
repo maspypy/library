@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/ceil_range.hpp
     title: enumerate/ceil_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -106,20 +106,20 @@ data:
     \ abs(a);\n}\n#endif\n#line 1 \"enumerate/ceil_range.hpp\"\n// \u5546\u304C q\
     \ \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\ntemplate\
     \ <typename F>\nvoid ceil_range(ll N, F f) {\n  assert(N <= (1LL << 50));\n  ll\
-    \ sq = sqrtl(N);\n  ll prev = infty<ll>;\n  bool end = 0;\n  for (int q = 1; q\
-    \ <= sq; ++q) {\n    ll x = (N + q - 1) / q;\n    f(q, x, prev, end), prev = x;\n\
-    \    if (end) return;\n  }\n  int n = (N <= sq * sq + sq ? sq : sq + 1);\n  if\
-    \ (N == sq * sq) --n;\n  for (int l = n; l >= 1; --l) {\n    f((N + l - 1) / l,\
-    \ l, l + 1, end);\n    if (end) return;\n  }\n}\n#line 1 \"enumerate/floor_range.hpp\"\
+    \ sq = sqrtl(N);\n  ll prev = infty<ll>;\n  for (int q = 1; q <= sq; ++q) {\n\
+    \    ll x = (N + q - 1) / q;\n    f(q, x, prev), prev = x;\n  }\n  int n = (N\
+    \ <= sq * sq + sq ? sq : sq + 1);\n  if (N == sq * sq) --n;\n  for (int l = n;\
+    \ l >= 1; --l) {\n    f((N + l - 1) / l, l, l + 1);\n  }\n}\n#line 1 \"enumerate/floor_range.hpp\"\
     \n// \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\
     \u6607\u9806\r\ntemplate <typename F>\r\nvoid floor_range(u64 N, F f, bool Q_ASC\
     \ = true, bool INCLUDE_Q_IS_0 = false) {\r\n  u64 sq = sqrtl(N);\r\n  u32 n =\
     \ (sq * sq + sq <= N ? sq : sq - 1);\r\n  if (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0)\
-    \ f(0, N + 1, infty<ll>);\r\n    for (u32 q = 1; q <= n; ++q) { f(q, N / (q +\
-    \ 1) + 1, N / q + 1); }\r\n    for (u32 l = sq; l >= 1; --l) { f(N / l, l, l +\
-    \ 1); }\r\n  } else {\r\n    for (u32 l = 1; l <= sq; ++l) { f(N / l, l, l + 1);\
-    \ }\r\n    for (u32 q = n; q >= 1; --q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\
-    \n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n  }\r\n}\r\n#line 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\
+    \ f(0, N + 1, infty<ll>);\r\n    for (u32 q = 1; q <= n; ++q) {\r\n      f(q,\
+    \ N / (q + 1) + 1, N / q + 1);\r\n    }\r\n    for (u32 l = sq; l >= 1; --l) {\r\
+    \n      f(N / l, l, l + 1);\r\n    }\r\n  } else {\r\n    for (u32 l = 1; l <=\
+    \ sq; ++l) {\r\n      f(N / l, l, l + 1);\r\n    }\r\n    for (u32 q = n; q >=\
+    \ 1; --q) {\r\n      f(q, N / (q + 1) + 1, N / q + 1);\r\n    }\r\n    if (INCLUDE_Q_IS_0)\
+    \ f(0, N + 1, infty<ll>);\r\n  }\r\n}\r\n#line 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
     \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
     \ l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll\
@@ -165,8 +165,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-02 05:55:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/floor_ceil_ranges.test.cpp
 layout: document
