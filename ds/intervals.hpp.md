@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -61,61 +61,61 @@ data:
     \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
     \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
     \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
-    \ / B] |= u64(f(i)) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
     \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
-    \    }\n  }\n\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B)\
-    \ & 1; }\n  void insert(int i) {\n    assert(0 <= i && i < n);\n    for (int h\
-    \ = 0; h < log; h++) {\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\n  \
-    \  }\n  }\n  void add(int i) { insert(i); }\n  void erase(int i) {\n    assert(0\
-    \ <= i && i < n);\n    u64 x = 0;\n    for (int h = 0; h < log; h++) {\n     \
-    \ seg[h][i / B] &= ~(u64(1) << (i % B));\n      seg[h][i / B] |= x << (i % B);\n\
-    \      x = bool(seg[h][i / B]);\n      i /= B;\n    }\n  }\n  void remove(int\
-    \ i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <=\
-    \ n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B\
-    \ == seg[h].size()) break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if\
-    \ (!d) {\n        i = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n\
-    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i\
-    \ / B]);\n      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x],\
-    \ or -1\n  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n\
-    \    for (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d =\
-    \ seg[h][i / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n  \
-    \      continue;\n      }\n      i -= __builtin_clzll(d);\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int\
-    \ r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int\
-    \ l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
-    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
-    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
-    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 2 \"\
-    ds/intervals.hpp\"\n\n// FastSet \u3067\u9AD8\u901F\u5316\u3057\u305F\u3082\u306E\
-    \ntemplate <typename T>\nstruct Intervals_Fast {\n  const int LLIM, RLIM;\n  const\
-    \ T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\u500B\u6570\u3068\
-    \u9577\u3055\u5408\u8A08\n  int total_num;\n  int total_len;\n  vc<T> dat;\n \
-    \ FastSet ss;\n\n  Intervals_Fast(int N, T none_val)\n      : LLIM(0),\n     \
-    \   RLIM(N),\n        none_val(none_val),\n        total_num(0),\n        total_len(0),\n\
-    \        dat(N, none_val),\n        ss(N) {\n    ss.insert(0);\n  }\n\n  // x\
-    \ \u3092\u542B\u3080\u533A\u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97 l, r, t\n\
-    \  tuple<int, int, T> get(int x, bool ERASE = false) {\n    int l = ss.prev(x);\n\
-    \    int r = ss.next(x + 1);\n    T t = dat[l];\n    if (t != none_val && ERASE)\
-    \ {\n      --total_num, total_len -= r - l;\n      dat[l] = none_val;\n      merge_at(l);\n\
-    \      merge_at(r);\n    }\n    return {l, r, t};\n  }\n\n  // [L, R) \u5185\u306E\
-    \u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  // f(l,r,x)\n  template <typename\
-    \ F>\n  void enumerate_range(int L, int R, F f, bool ERASE = false) {\n    assert(LLIM\
-    \ <= L && L <= R && R <= RLIM);\n    if (L == R) return;\n    if (!ERASE) {\n\
-    \      int l = ss.prev(L);\n      while (l < R) {\n        int r = ss.next(l +\
-    \ 1);\n        f(max(l, L), min(r, R), dat[l]);\n        l = r;\n      }\n   \
-    \   return;\n    }\n    // \u534A\u7AEF\u306A\u3068\u3053\u308D\u306E\u5206\u5272\
-    \n    int p = ss.prev(L);\n    if (p < L) {\n      ss.insert(L);\n      dat[L]\
-    \ = dat[p];\n      if (dat[L] != none_val) ++total_num;\n    }\n    p = ss.next(R);\n\
-    \    if (R < p) {\n      dat[R] = dat[ss.prev(R)];\n      ss.insert(R);\n    \
-    \  if (dat[R] != none_val) ++total_num;\n    }\n    p = L;\n    while (p < R)\
-    \ {\n      int q = ss.next(p + 1);\n      T x = dat[p];\n      f(p, q, x);\n \
-    \     if (dat[p] != none_val) --total_num, total_len -= q - p;\n      ss.erase(p);\n\
-    \      p = q;\n    }\n    ss.insert(L);\n    dat[L] = none_val;\n  }\n\n  void\
-    \ set(int L, int R, T t) {\n    if (L == R) return;\n    enumerate_range(L, R,\
-    \ [](int l, int r, T x) -> void {}, true);\n    ss.insert(L);\n    dat[L] = t;\n\
-    \    if (t != none_val) total_num++, total_len += R - L;\n    merge_at(L);\n \
-    \   merge_at(R);\n  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n\
+    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
+    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] |=\
+    \ u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n \
+    \ void erase(int i) {\n    assert(0 <= i && i < n);\n    u64 x = 0;\n    for (int\
+    \ h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1) << (i % B));\n     \
+    \ seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i / B]);\n      i /= B;\n\
+    \    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int\
+    \ i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++)\
+    \ {\n      if (i / B == seg[h].size()) break;\n      u64 d = seg[h][i / B] >>\
+    \ (i % B);\n      if (!d) {\n        i = i / B + 1;\n        continue;\n     \
+    \ }\n      i += lowbit(d);\n      for (int g = h - 1; g >= 0; g--) {\n       \
+    \ i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n      return i;\n   \
+    \ }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int i) {\n    assert(i\
+    \ >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0; h < log; h++) {\n \
+    \     if (i == -1) break;\n      u64 d = seg[h][i / B] << (63 - i % B);\n    \
+    \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
+    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
+    \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
+    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
+    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
+    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
+    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
+    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
+    };\n#line 2 \"ds/intervals.hpp\"\n\n// FastSet \u3067\u9AD8\u901F\u5316\u3057\u305F\
+    \u3082\u306E\ntemplate <typename T>\nstruct Intervals_Fast {\n  const int LLIM,\
+    \ RLIM;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\
+    \u500B\u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n  int total_len;\n\
+    \  vc<T> dat;\n  FastSet ss;\n\n  Intervals_Fast(int N, T none_val)\n      : LLIM(0),\n\
+    \        RLIM(N),\n        none_val(none_val),\n        total_num(0),\n      \
+    \  total_len(0),\n        dat(N, none_val),\n        ss(N) {\n    ss.insert(0);\n\
+    \  }\n\n  // x \u3092\u542B\u3080\u533A\u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\
+    \ l, r, t\n  tuple<int, int, T> get(int x, bool ERASE = false) {\n    int l =\
+    \ ss.prev(x);\n    int r = ss.next(x + 1);\n    T t = dat[l];\n    if (t != none_val\
+    \ && ERASE) {\n      --total_num, total_len -= r - l;\n      dat[l] = none_val;\n\
+    \      merge_at(l);\n      merge_at(r);\n    }\n    return {l, r, t};\n  }\n\n\
+    \  // [L, R) \u5185\u306E\u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  // f(l,r,x)\n\
+    \  template <typename F>\n  void enumerate_range(int L, int R, F f, bool ERASE\
+    \ = false) {\n    assert(LLIM <= L && L <= R && R <= RLIM);\n    if (L == R) return;\n\
+    \    if (!ERASE) {\n      int l = ss.prev(L);\n      while (l < R) {\n       \
+    \ int r = ss.next(l + 1);\n        f(max(l, L), min(r, R), dat[l]);\n        l\
+    \ = r;\n      }\n      return;\n    }\n    // \u534A\u7AEF\u306A\u3068\u3053\u308D\
+    \u306E\u5206\u5272\n    int p = ss.prev(L);\n    if (p < L) {\n      ss.insert(L);\n\
+    \      dat[L] = dat[p];\n      if (dat[L] != none_val) ++total_num;\n    }\n \
+    \   p = ss.next(R);\n    if (R < p) {\n      dat[R] = dat[ss.prev(R)];\n     \
+    \ ss.insert(R);\n      if (dat[R] != none_val) ++total_num;\n    }\n    p = L;\n\
+    \    while (p < R) {\n      int q = ss.next(p + 1);\n      T x = dat[p];\n   \
+    \   f(p, q, x);\n      if (dat[p] != none_val) --total_num, total_len -= q - p;\n\
+    \      ss.erase(p);\n      p = q;\n    }\n    ss.insert(L);\n    dat[L] = none_val;\n\
+    \  }\n\n  void set(int L, int R, T t) {\n    if (L == R) return;\n    enumerate_range(L,\
+    \ R, [](int l, int r, T x) -> void {}, true);\n    ss.insert(L);\n    dat[L] =\
+    \ t;\n    if (t != none_val) total_num++, total_len += R - L;\n    merge_at(L);\n\
+    \    merge_at(R);\n  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n\
     \    enumerate_range(0, RLIM, f, false);\n  }\n\n  void merge_at(int p) {\n  \
     \  if (p <= 0 || RLIM <= p) return;\n    int q = ss.prev(p - 1);\n    if (dat[p]\
     \ == dat[q]) {\n      if (dat[p] != none_val) --total_num;\n      ss.erase(p);\n\
@@ -235,7 +235,7 @@ data:
   isVerificationFile: false
   path: ds/intervals.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-01 10:19:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/intervals.hpp

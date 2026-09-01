@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/nimber/nimber_log.hpp
     title: nt/nimber/nimber_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -193,54 +193,55 @@ data:
     \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
     \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
     \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const u64& k) {\n\
-    \    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i]) { used[i]\
-    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\n  Val\
-    \ get(const u64& k, Val default_value) {\n    int i = index(k);\n    return (used[i]\
-    \ ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n    int i =\
-    \ index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key, val)\n  template\
-    \ <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used)) if (used[i])\
-    \ f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
-    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\n    x += FIXED_RANDOM;\n\
-    \    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
-    \    return (x ^ (x >> 31)) & mask;\n  }\n\n  void extend() {\n    vc<pair<u64,\
-    \ Val>> dat;\n    dat.reserve(len(used) / 2 - cap);\n    FOR(i, len(used)) {\n\
-    \      if (used[i]) dat.eb(key[i], val[i]);\n    }\n    build(2 * len(dat));\n\
-    \    for (auto& [a, b]: dat) (*this)[a] = b;\n  }\n};\n#line 1 \"mod/crt3.hpp\"\
-    \n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n  u64\
-    \ res = 1;\n  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a * a %\
-    \ mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32 p1>\n\
-    T CRT2(u64 a0, u64 a1) {\n  static_assert(p0 < p1);\n  static constexpr u64 x0_1\
-    \ = mod_pow_constexpr(p0, p1 - 2, p1);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n\
-    \  return a0 + c * p0;\n}\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2>\nT\
-    \ CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0 < p1 && p1 < p2);\n  static\
-    \ constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr u64\
-    \ x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr u64\
-    \ p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 +\
-    \ c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  return T(ans_1) + T(c) *\
-    \ T(p01);\n}\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2, u32 p3>\nT CRT4(u64\
-    \ a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0 < p1 && p1 < p2 && p2 < p3);\n\
-    \  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr\
-    \ u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr\
-    \ u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 * p2 % p3, p3 - 2, p3);\n  static\
-    \ constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n  u64\
-    \ ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  u128 ans_2\
-    \ = ans_1 + c * static_cast<u128>(p01);\n  c = (a3 - ans_2 % p3 + p3) * x3 % p3;\n\
-    \  return T(ans_2) + T(c) * T(p01) * T(p2);\n}\n\ntemplate <typename T, u32 p0,\
-    \ u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64 a0, u64 a1, u64 a2, u64 a3, u64\
-    \ a4) {\n  static_assert(p0 < p1 && p1 < p2 && p2 < p3 && p3 < p4);\n  static\
-    \ constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr u64\
-    \ x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr u64\
-    \ x3 = mod_pow_constexpr(u64(p0) * p1 % p3 * p2 % p3, p3 - 2, p3);\n  static constexpr\
-    \ u64 x4 = mod_pow_constexpr(u64(p0) * p1 % p4 * p2 % p4 * p3 % p4, p4 - 2, p4);\n\
-    \  static constexpr u64 p01 = u64(p0) * p1;\n  static constexpr u64 p23 = u64(p2)\
-    \ * p3;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c\
-    \ = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n\
-    \  c = static_cast<u64>(a3 - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2\
-    \ + static_cast<u128>(c * p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 +\
-    \ p4) * x4 % p4;\n  return T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 4 \"nt/nimber/nimber_log.hpp\"\
-    \n\n// primitive root\nconst Nimber64 root_64 = u64(1) << 32 | 6;\nconst Nimber32\
+    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
+    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
+    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
+    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
+    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
+    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
+    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 1 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a, u64\
+    \ n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res\
+    \ = res * a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate\
+    \ <typename T, u32 p0, u32 p1>\nT CRT2(u64 a0, u64 a1) {\n  static_assert(p0 <\
+    \ p1);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  u64\
+    \ c = (a1 - a0 + p1) * x0_1 % p1;\n  return a0 + c * p0;\n}\n\ntemplate <typename\
+    \ T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0\
+    \ < p1 && p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2,\
+    \ p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 -\
+    \ 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1)\
+    \ * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 %\
+    \ p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32 p0,\
+    \ u32 p1, u32 p2, u32 p3>\nT CRT4(u64 a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0\
+    \ < p1 && p1 < p2 && p2 < p3);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
+    \ p2 - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3\
+    \ * p2 % p3, p3 - 2, p3);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c\
+    \ = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 %\
+    \ p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c\
+    \ = (a3 - ans_2 % p3 + p3) * x3 % p3;\n  return T(ans_2) + T(c) * T(p01) * T(p2);\n\
+    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64\
+    \ a0, u64 a1, u64 a2, u64 a3, u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 &&\
+    \ p2 < p3 && p3 < p4);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
+    \ 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2\
+    \ - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 *\
+    \ p2 % p3, p3 - 2, p3);\n  static constexpr u64 x4 = mod_pow_constexpr(u64(p0)\
+    \ * p1 % p4 * p2 % p4 * p3 % p4, p4 - 2, p4);\n  static constexpr u64 p01 = u64(p0)\
+    \ * p1;\n  static constexpr u64 p23 = u64(p2) * p3;\n  u64 c = (a1 - a0 + p1)\
+    \ * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 %\
+    \ p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3\
+    \ - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c *\
+    \ p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 + p4) * x4 % p4;\n  return\
+    \ T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 4 \"nt/nimber/nimber_log.hpp\"\n\
+    \n// primitive root\nconst Nimber64 root_64 = u64(1) << 32 | 6;\nconst Nimber32\
     \ root_32 = 2147483651;\nconst Nimber16 root_16 = 41899;\n\nu64 nimber_log(Nimber16\
     \ x) {\n  assert(x != 0);\n  u32 ans = u32(37991) * NIM_PRODUCT::L[x.val];\n \
     \ return ans % 65535;\n}\n\nu64 nimber_log(Nimber32 x) {\n  using F = Nimber32;\n\
@@ -309,7 +310,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nimber_log.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-09-01 10:19:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/nimber_log.test.cpp

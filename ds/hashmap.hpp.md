@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: flow/longest_shortest_path.hpp
     title: flow/longest_shortest_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/all_cycle_common_vertices.hpp
     title: graph/all_cycle_common_vertices.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':warning:'
@@ -272,7 +272,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -290,7 +290,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellman_ford.hpp
     title: graph/shortest_path/bellman_ford.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs_01.hpp
     title: graph/shortest_path/bfs_01.hpp
   - icon: ':heavy_check_mark:'
@@ -305,7 +305,7 @@ data:
   - icon: ':warning:'
     path: graph/shortest_path/top2_dijkstra.hpp
     title: graph/shortest_path/top2_dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/warshall_floyd.hpp
     title: graph/shortest_path/warshall_floyd.hpp
   - icon: ':heavy_check_mark:'
@@ -323,7 +323,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -338,7 +338,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/O_NK_rerooting_tree_dp.hpp
     title: graph/tree_dp/O_NK_rerooting_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':warning:'
@@ -383,7 +383,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -395,7 +395,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/dice.hpp
     title: other/dice.hpp
   - icon: ':warning:'
@@ -801,16 +801,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/17.test.cpp
     title: test/3_yukicoder/17.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1726.test.cpp
     title: test/3_yukicoder/1726.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
@@ -822,7 +822,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1752.test.cpp
     title: test/3_yukicoder/1752.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/177.test.cpp
     title: test/3_yukicoder/177.test.cpp
   - icon: ':heavy_check_mark:'
@@ -837,7 +837,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1778.test.cpp
     title: test/3_yukicoder/1778.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1789.test.cpp
     title: test/3_yukicoder/1789.test.cpp
   - icon: ':heavy_check_mark:'
@@ -852,7 +852,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1813.test.cpp
     title: test/3_yukicoder/1813.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1868.test.cpp
     title: test/3_yukicoder/1868.test.cpp
   - icon: ':heavy_check_mark:'
@@ -963,7 +963,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2835.test.cpp
     title: test/4_aoj/2835.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1002,15 +1002,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_B.test.cpp
     title: test/4_aoj/ITP1_11_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ITP1_11_C.test.cpp
     title: test/4_aoj/ITP1_11_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -1022,21 +1022,21 @@ data:
     \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
     \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
     \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i])\
-    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\
-    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
-    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
-    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
+    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
+    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
+    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
+    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
+    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
-    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
     \  }\n};\n"
   code: "\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\
     \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32\
@@ -1047,21 +1047,22 @@ data:
     \ clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n\
     \  int size() { return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n\
     \    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask)\
-    \ {}\n    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    if (cap ==\
-    \ 0) extend();\n    int i = index(k);\n    if (!used[i]) { used[i] = 1, key[i]\
-    \ = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\n  Val get(const u64&\
-    \ k, Val default_value) {\n    int i = index(k);\n    return (used[i] ? val[i]\
-    \ : default_value);\n  }\n\n  bool count(const u64& k) {\n    int i = index(k);\n\
-    \    return used[i] && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename\
-    \ F>\n  void enumerate_all(F f) {\n    FOR(i, len(used)) if (used[i]) f(key[i],\
-    \ val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n\
-    \  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM =\
-    \ std::chrono::steady_clock::now().time_since_epoch().count();\n    x += FIXED_RANDOM;\n\
-    \    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
-    \    return (x ^ (x >> 31)) & mask;\n  }\n\n  void extend() {\n    vc<pair<u64,\
-    \ Val>> dat;\n    dat.reserve(len(used) / 2 - cap);\n    FOR(i, len(used)) {\n\
-    \      if (used[i]) dat.eb(key[i], val[i]);\n    }\n    build(2 * len(dat));\n\
-    \    for (auto& [a, b]: dat) (*this)[a] = b;\n  }\n};"
+    \ {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i\
+    \ = index(k);\n    if (used[i]) return val[i];\n    if (cap == 0) extend(), i\
+    \ = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return\
+    \ val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n\
+    \    return (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64&\
+    \ k) {\n    int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  //\
+    \ f(key, val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i,\
+    \ len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n\
+    \  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n   \
+    \ static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
+    \  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/hashmap.hpp
@@ -1205,8 +1206,8 @@ data:
   - mod/modfast.hpp
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-01 10:19:35+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp

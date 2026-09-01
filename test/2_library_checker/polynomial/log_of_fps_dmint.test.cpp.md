@@ -16,31 +16,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -64,7 +64,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -486,10 +486,10 @@ data:
     \ && g == 1; k += m) {\n      z = y;\n      FOR(min(m, r - k)) y = f(y), q *=\
     \ x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n      z\
     \ = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return g;\n\
-    }\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (is_prime(n)) return\
-    \ n;\n  FOR(100) {\n    ll m = 0;\n    if (n < (1 << 30)) {\n      using mint\
-    \ = Montgomery_modint_32<20231025>;\n      mint::set_mod(n);\n      m = rho<mint>(n,\
-    \ RNG(0, n));\n    } else {\n      using mint = Montgomery_modint_64<20231025>;\n\
+    }\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (n % 2 == 0) return\
+    \ 2;\n  if (is_prime(n)) return n;\n  FOR(100) {\n    ll m = 0;\n    if (n < (1\
+    \ << 30)) {\n      using mint = Montgomery_modint_32<20231025>;\n      mint::set_mod(n);\n\
+    \      m = rho<mint>(n, RNG(0, n));\n    } else {\n      using mint = Montgomery_modint_64<20231025>;\n\
     \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    }\n    if (is_prime(m))\
     \ return m;\n    n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\
     \u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n\
@@ -1031,7 +1031,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-09-01 10:19:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp

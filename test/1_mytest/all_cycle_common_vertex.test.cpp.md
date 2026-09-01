@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: graph/all_cycle_common_vertices.hpp
     title: graph/all_cycle_common_vertices.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -22,13 +22,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -134,21 +134,21 @@ data:
     \u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used),\
     \ 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap;\
     \ }\n\n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i]\
-    \ && key[i] != k; i = (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i])\
-    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\
-    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
-    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
-    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ && key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
+    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
+    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
+    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
+    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
+    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
-    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
     \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
@@ -233,21 +233,22 @@ data:
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
     \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
-    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\n    return\
-    \ i;\n  }\n\n  Val& operator[](const u64& k) {\n    if (cap == 0) extend();\n\
-    \    int i = index(k);\n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] =\
-    \ Val{}, --cap; }\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
-    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
     \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
@@ -348,21 +349,21 @@ data:
     \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
     \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
     \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i])\
-    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\
-    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
-    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
-    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
+    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
+    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
+    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
+    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
+    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
-    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
     \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
@@ -484,38 +485,39 @@ data:
     \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
     \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
     \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
-    \ / B] |= u64(f(i)) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
     \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
-    \    }\n  }\n\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B)\
-    \ & 1; }\n  void insert(int i) {\n    assert(0 <= i && i < n);\n    for (int h\
-    \ = 0; h < log; h++) {\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\n  \
-    \  }\n  }\n  void add(int i) { insert(i); }\n  void erase(int i) {\n    assert(0\
-    \ <= i && i < n);\n    u64 x = 0;\n    for (int h = 0; h < log; h++) {\n     \
-    \ seg[h][i / B] &= ~(u64(1) << (i % B));\n      seg[h][i / B] |= x << (i % B);\n\
-    \      x = bool(seg[h][i / B]);\n      i /= B;\n    }\n  }\n  void remove(int\
-    \ i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <=\
-    \ n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B\
-    \ == seg[h].size()) break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if\
-    \ (!d) {\n        i = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n\
-    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i\
-    \ / B]);\n      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x],\
-    \ or -1\n  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n\
-    \    for (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d =\
-    \ seg[h][i / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n  \
-    \      continue;\n      }\n      i -= __builtin_clzll(d);\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int\
-    \ r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int\
-    \ l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
-    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
-    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
-    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 3 \"\
-    graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u306E toposort \u3092\
-    \u8FD4\u3059\ntemplate <typename GT>\nvc<int> toposort(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n\
-    \  FastSet que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n\
-    \  while (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v),\
-    \ V.eb(v);\n    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
+    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] |=\
+    \ u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n \
+    \ void erase(int i) {\n    assert(0 <= i && i < n);\n    u64 x = 0;\n    for (int\
+    \ h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1) << (i % B));\n     \
+    \ seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i / B]);\n      i /= B;\n\
+    \    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int\
+    \ i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++)\
+    \ {\n      if (i / B == seg[h].size()) break;\n      u64 d = seg[h][i / B] >>\
+    \ (i % B);\n      if (!d) {\n        i = i / B + 1;\n        continue;\n     \
+    \ }\n      i += lowbit(d);\n      for (int g = h - 1; g >= 0; g--) {\n       \
+    \ i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n      return i;\n   \
+    \ }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int i) {\n    assert(i\
+    \ >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0; h < log; h++) {\n \
+    \     if (i == -1) break;\n      u64 d = seg[h][i / B] << (63 - i % B);\n    \
+    \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
+    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
+    \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
+    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
+    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
+    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
+    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
+    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
+    };\n#line 3 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u306E\
+    \ toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\nvc<int> toposort(GT& G)\
+    \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  const int\
+    \ N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
+    \  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while (1) {\n\
+    \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n\n// inv_perm=true: inv\
     \ perm \u304C\u8F9E\u66F8\u6700\u5C0F\uFF08\u5404\u30A4\u30F3\u30C7\u30C3\u30AF\
     \u30B9\u306E\u73FE\u308C\u308B\u5834\u6240\u306E\u5217\u304C\u6700\u5C0F\uFF09\
@@ -537,21 +539,22 @@ data:
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
     \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
-    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\n    return\
-    \ i;\n  }\n\n  Val& operator[](const u64& k) {\n    if (cap == 0) extend();\n\
-    \    int i = index(k);\n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] =\
-    \ Val{}, --cap; }\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\nprivate:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
-    \    }\n    build(2 * len(dat));\n    for (auto& [a, b]: dat) (*this)[a] = b;\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
     \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
@@ -743,7 +746,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/all_cycle_common_vertex.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-09-01 10:19:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/all_cycle_common_vertex.test.cpp

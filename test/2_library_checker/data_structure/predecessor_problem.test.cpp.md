@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -285,39 +285,39 @@ data:
     \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
     \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
     \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
-    \ / B] |= u64(f(i)) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
     \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
-    \    }\n  }\n\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B)\
-    \ & 1; }\n  void insert(int i) {\n    assert(0 <= i && i < n);\n    for (int h\
-    \ = 0; h < log; h++) {\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\n  \
-    \  }\n  }\n  void add(int i) { insert(i); }\n  void erase(int i) {\n    assert(0\
-    \ <= i && i < n);\n    u64 x = 0;\n    for (int h = 0; h < log; h++) {\n     \
-    \ seg[h][i / B] &= ~(u64(1) << (i % B));\n      seg[h][i / B] |= x << (i % B);\n\
-    \      x = bool(seg[h][i / B]);\n      i /= B;\n    }\n  }\n  void remove(int\
-    \ i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <=\
-    \ n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B\
-    \ == seg[h].size()) break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if\
-    \ (!d) {\n        i = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n\
-    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i\
-    \ / B]);\n      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x],\
-    \ or -1\n  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n\
-    \    for (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d =\
-    \ seg[h][i / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n  \
-    \      continue;\n      }\n      i -= __builtin_clzll(d);\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int\
-    \ r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int\
-    \ l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
-    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
-    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
-    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 5 \"\
-    test/2_library_checker/data_structure/predecessor_problem.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  FastSet ss(N);\n  STR(S);\n  FOR(x, N) {\n    if (S[x] ==\
-    \ '1') ss.insert(x);\n  }\n\n  FOR(Q) {\n    LL(t, k);\n    if (t == 0) { ss.insert(k);\
-    \ }\n    elif (t == 1) { ss.erase(k); }\n    elif (t == 2) { print(ss[k]); }\n\
-    \    elif (t == 3) {\n      ll x = ss.next(k);\n      if (x == N) x = -1;\n  \
-    \    print(x);\n    }\n    elif (t == 4) { print(ss.prev(k)); }\n  }\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}\n"
+    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
+    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] |=\
+    \ u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n \
+    \ void erase(int i) {\n    assert(0 <= i && i < n);\n    u64 x = 0;\n    for (int\
+    \ h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1) << (i % B));\n     \
+    \ seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i / B]);\n      i /= B;\n\
+    \    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int\
+    \ i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++)\
+    \ {\n      if (i / B == seg[h].size()) break;\n      u64 d = seg[h][i / B] >>\
+    \ (i % B);\n      if (!d) {\n        i = i / B + 1;\n        continue;\n     \
+    \ }\n      i += lowbit(d);\n      for (int g = h - 1; g >= 0; g--) {\n       \
+    \ i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n      return i;\n   \
+    \ }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int i) {\n    assert(i\
+    \ >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0; h < log; h++) {\n \
+    \     if (i == -1) break;\n      u64 d = seg[h][i / B] << (63 - i % B);\n    \
+    \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
+    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
+    \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
+    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
+    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
+    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
+    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
+    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
+    };\n#line 5 \"test/2_library_checker/data_structure/predecessor_problem.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  FastSet ss(N);\n  STR(S);\n  FOR(x, N) {\n\
+    \    if (S[x] == '1') ss.insert(x);\n  }\n\n  FOR(Q) {\n    LL(t, k);\n    if\
+    \ (t == 0) { ss.insert(k); }\n    elif (t == 1) { ss.erase(k); }\n    elif (t\
+    \ == 2) { print(ss[k]); }\n    elif (t == 3) {\n      ll x = ss.next(k);\n   \
+    \   if (x == N) x = -1;\n      print(x);\n    }\n    elif (t == 4) { print(ss.prev(k));\
+    \ }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/fastset.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  FastSet ss(N);\n  STR(S);\n  FOR(x, N) {\n\
@@ -334,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-01 10:19:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/predecessor_problem.test.cpp

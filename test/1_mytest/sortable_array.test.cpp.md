@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -159,50 +159,50 @@ data:
     \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
     \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
     \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
-    \ / B] |= u64(f(i)) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
     \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
-    \    }\n  }\n\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B)\
-    \ & 1; }\n  void insert(int i) {\n    assert(0 <= i && i < n);\n    for (int h\
-    \ = 0; h < log; h++) {\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\n  \
-    \  }\n  }\n  void add(int i) { insert(i); }\n  void erase(int i) {\n    assert(0\
-    \ <= i && i < n);\n    u64 x = 0;\n    for (int h = 0; h < log; h++) {\n     \
-    \ seg[h][i / B] &= ~(u64(1) << (i % B));\n      seg[h][i / B] |= x << (i % B);\n\
-    \      x = bool(seg[h][i / B]);\n      i /= B;\n    }\n  }\n  void remove(int\
-    \ i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <=\
-    \ n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B\
-    \ == seg[h].size()) break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if\
-    \ (!d) {\n        i = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n\
-    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i\
-    \ / B]);\n      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x],\
-    \ or -1\n  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n\
-    \    for (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d =\
-    \ seg[h][i / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n  \
-    \      continue;\n      }\n      i -= __builtin_clzll(d);\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int\
-    \ r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int\
-    \ l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
-    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
-    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
-    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 1 \"\
-    ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\
-    \u3082\u78BA\u4FDD\u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate\
-    \ <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node node;\n    Slot*\
-    \ next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static\
-    \ constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int\
-    \ chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\n  ~Node_Pool()\
-    \ {\n    auto& cache = chunk_cache();\n    for (auto& p : chunks) cache.eb(std::move(p));\n\
-    \  }\n\n  template <class... Args>\n  np create(Args&&... args) {\n    Slot* s\
-    \ = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n \
-    \ }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n \
-    \   return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x)\
-    \ return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next\
-    \ = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\
-    \u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\
-    \u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\
-    \u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n    pos\
-    \ = 0;\n  }\n\n private:\n  static vc<unique_ptr<Slot[]>>& chunk_cache() {\n \
-    \   // static Node_Pool \u306E destructor \u3088\u308A\u5148\u306B\u7834\u68C4\
+    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
+    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] |=\
+    \ u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n \
+    \ void erase(int i) {\n    assert(0 <= i && i < n);\n    u64 x = 0;\n    for (int\
+    \ h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1) << (i % B));\n     \
+    \ seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i / B]);\n      i /= B;\n\
+    \    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int\
+    \ i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++)\
+    \ {\n      if (i / B == seg[h].size()) break;\n      u64 d = seg[h][i / B] >>\
+    \ (i % B);\n      if (!d) {\n        i = i / B + 1;\n        continue;\n     \
+    \ }\n      i += lowbit(d);\n      for (int g = h - 1; g >= 0; g--) {\n       \
+    \ i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n      return i;\n   \
+    \ }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int i) {\n    assert(i\
+    \ >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0; h < log; h++) {\n \
+    \     if (i == -1) break;\n      u64 d = seg[h][i / B] << (63 - i % B);\n    \
+    \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
+    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
+    \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
+    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
+    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
+    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
+    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
+    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
+    };\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
+    \u30FC\u30B9\u3067\u3082\u78BA\u4FDD\u6E08\u307F chunk \u3092\u518D\u5229\u7528\
+    \u3059\u308B\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node\
+    \ node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np =\
+    \ Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
+    \ chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\
+    \n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n    for (auto& p : chunks)\
+    \ cache.eb(std::move(p));\n  }\n\n  template <class... Args>\n  np create(Args&&...\
+    \ args) {\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n\
+    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
+    \    return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if\
+    \ (!x) return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n \
+    \   s->next = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\
+    \u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\
+    \u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\
+    \u308B\u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n\
+    \    pos = 0;\n  }\n\n private:\n  static vc<unique_ptr<Slot[]>>& chunk_cache()\
+    \ {\n    // static Node_Pool \u306E destructor \u3088\u308A\u5148\u306B\u7834\u68C4\
     \u3055\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\n    static auto*\
     \ cache = new vc<unique_ptr<Slot[]>>();\n    return *cache;\n  }\n\n  void alloc_chunk()\
     \ {\n    auto& cache = chunk_cache();\n    if (cache.empty()) {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n\
@@ -319,7 +319,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sortable_array.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 12:03:33+09:00'
+  timestamp: '2026-09-01 10:19:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sortable_array.test.cpp

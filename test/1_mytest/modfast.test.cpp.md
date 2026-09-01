@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -13,25 +13,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   - icon: ':heavy_check_mark:'
@@ -40,10 +40,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -220,10 +220,10 @@ data:
     \ && g == 1; k += m) {\n      z = y;\n      FOR(min(m, r - k)) y = f(y), q *=\
     \ x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n      z\
     \ = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return g;\n\
-    }\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (is_prime(n)) return\
-    \ n;\n  FOR(100) {\n    ll m = 0;\n    if (n < (1 << 30)) {\n      using mint\
-    \ = Montgomery_modint_32<20231025>;\n      mint::set_mod(n);\n      m = rho<mint>(n,\
-    \ RNG(0, n));\n    } else {\n      using mint = Montgomery_modint_64<20231025>;\n\
+    }\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (n % 2 == 0) return\
+    \ 2;\n  if (is_prime(n)) return n;\n  FOR(100) {\n    ll m = 0;\n    if (n < (1\
+    \ << 30)) {\n      using mint = Montgomery_modint_32<20231025>;\n      mint::set_mod(n);\n\
+    \      m = rho<mint>(n, RNG(0, n));\n    } else {\n      using mint = Montgomery_modint_64<20231025>;\n\
     \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    }\n    if (is_prime(m))\
     \ return m;\n    n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\
     \u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n\
@@ -326,75 +326,75 @@ data:
     \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
     \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
     \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const u64& k) {\n\
-    \    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i]) { used[i]\
-    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\n  Val\
-    \ get(const u64& k, Val default_value) {\n    int i = index(k);\n    return (used[i]\
-    \ ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n    int i =\
-    \ index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key, val)\n  template\
-    \ <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used)) if (used[i])\
-    \ f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
-    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\n    x += FIXED_RANDOM;\n\
-    \    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
-    \    return (x ^ (x >> 31)) & mask;\n  }\n\n  void extend() {\n    vc<pair<u64,\
-    \ Val>> dat;\n    dat.reserve(len(used) / 2 - cap);\n    FOR(i, len(used)) {\n\
-    \      if (used[i]) dat.eb(key[i], val[i]);\n    }\n    build(2 * len(dat));\n\
-    \    for (auto& [a, b]: dat) (*this)[a] = b;\n  }\n};\n#line 4 \"mod/modfast.hpp\"\
-    \n\ntemplate <int p>\nstruct ModFast {\n  static_assert(p < (1 << 30));\n\n  u32\
-    \ root;\n  array<u32, 65537> POW[2];\n  array<pair<u16, u16>, 1 + (1 << 20)> FRAC;\n\
-    \n  static constexpr int K = 1 << 21;\n  array<u32, 2 * K + 1> LOG;\n  array<u32,\
-    \ 2 * K + 1> INV;\n\n  ModFast() {\n    root = (p == 998244353 ? 3 : primitive_root(p));\n\
-    \    build_pow();\n    build_inv();\n    build_log();\n    build_frac();\n  }\n\
-    \n  void build_inv() {\n    INV[K + 1] = 1;\n    for (u32 i = 2; i <= K; ++i)\
-    \ {\n      u64 q = (p + i - 1) / i;\n      INV[K + i] = INV[K + i * q - p] * u64(q)\
-    \ % p;\n    }\n    FOR(i, 1, K + 1) INV[K - i] = p - INV[K + i];\n  }\n\n  u32\
-    \ pow(u32 a, ll exp) {\n    assert(0 <= a && a < p && 0 <= exp && exp < (1 <<\
-    \ 30));\n    if (a == 0) return (exp == 0 ? 1 : 0);\n    return pow_r_32(log_r(a)\
-    \ * exp % (p - 1));\n  }\n\n  u32 pow_r_32(u32 exp) {\n    assert(0 <= exp &&\
-    \ exp <= p - 1);\n    return u64(POW[0][exp & 32767]) * POW[1][exp >> 15] % p;\n\
-    \  }\n  u32 pow_r(ll exp) {\n    exp %= p - 1;\n    if (exp < 0) exp += p - 1;\n\
-    \    return u64(POW[0][exp & 32767]) * POW[1][exp >> 15] % p;\n  }\n\n  // [0,\
-    \ 2p-2)\n  u32 log_r(u32 x) {\n    assert(1 <= x && x < p);\n    auto [a, b] =\
-    \ FRAC[x >> 10];\n    u32 t = x * b - a * p;\n    return LOG[K + t] + (p - 1)\
-    \ - LOG[K + b];\n  }\n\n  u32 inverse(u32 x) {\n    assert(1 <= x && x < p);\n\
-    \    auto [a, b] = FRAC[x >> 10];\n    u32 t = x * b - a * p;\n    return INV[K\
-    \ + t] * u64(b) % p;\n  }\n\n  template <typename T>\n  vc<T> get_log_table(int\
-    \ n) {\n    assert(n <= K);\n    return {LOG.begin() + K, LOG.begin() + K + n\
-    \ + 1};\n  }\n\n private:\n  void build_pow() {\n    POW[0][0] = POW[1][0] = 1;\n\
-    \    FOR(i, (1 << 15)) POW[0][i + 1] = POW[0][i] * u64(root) % p;\n    FOR(i,\
-    \ (1 << 15)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1 << 15]) % p;\n  }\n\n  //\
-    \ 0.085 sec.\n  void build_log() {\n    const int LIM = 1 << 21;\n    auto lpf\
-    \ = lpf_table(LIM);\n\n    const int S = 1 << 17;\n    HashMap<u32> MP(S);\n \
-    \   u32 pw = 1;\n    for (int k = 0; k < S; ++k, pw = u64(root) * pw % p) {\n\
-    \      MP[pw] = k;\n    }\n    u32 q = pow_r_32(p - 1 - S);\n    auto BSGS = [&](u32\
-    \ s) -> u32 {\n      u32 ans = 0;\n      while (1) {\n        u32 v = MP.get(s,\
-    \ -1);\n        if (v != u32(-1)) {\n          return ans + v;\n        }\n  \
-    \      ans += S, s = u64(s) * q % p;\n      }\n      return 0;\n    };\n\n   \
-    \ LOG[K + 1] = 0;\n    FOR(i, 2, 1 + (1 << 21)) {\n      if (lpf[i] < i) {\n \
-    \       LOG[K + i] = (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p - 1);\n    \
-    \    continue;\n      }\n      if (i < 100) {\n        LOG[K + i] = BSGS(i);\n\
-    \        continue;\n      }\n      if (i * i > p) {\n        auto [j, k] = divmod<int>(p,\
-    \ i);\n        // i = (-k)/j\n        LOG[K + i] =\n            (LOG[K + k] +\
-    \ (p - 1) / 2 + (p - 1) - LOG[K + j]) % (p - 1);\n        continue;\n      }\n\
-    \      while (1) {\n        u32 k = RNG(0, p - 1);\n        u64 ans = p - 1 -\
-    \ k;\n        u32 x = u64(i) * pow_r_32(k) % p;\n        auto div = [&](u32 q)\
-    \ -> void { x /= q, ans += LOG[K + q]; };\n        for (u32 q : {2, 3, 5, 7, 11,\
-    \ 13, 17, 19}) {\n          while (x % q == 0) div(q);\n        }\n        if\
-    \ (x >= LIM) continue;\n        while (i < x && x < LIM && lpf[x] < i) div(lpf[x]);\n\
-    \        if (1 < x && x < i) div(x);\n        if (x == 1) {\n          LOG[K +\
-    \ i] = ans % (p - 1);\n          break;\n        }\n      }\n    }\n    FOR(i,\
-    \ 1, 1 + (1 << 21)) {\n      LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1);\n\
-    \    }\n  }\n\n  void build_frac() {\n    vc<tuple<u16, u16, u16, u16>> que;\n\
-    \    que.eb(0, 1, 1, 1);\n    while (len(que)) {\n      auto [a, b, c, d] = POP(que);\n\
-    \      if (b + d < 2048) {\n        que.eb(a + c, b + d, c, d), que.eb(a, b, a\
-    \ + c, b + d);\n        continue;\n      }\n      u32 s = (u64(a) * p) / (1024\
-    \ * b);\n      u32 t = (u64(c) * p) / (1024 * d);\n      FRAC[s] = {a, b}, FRAC[t]\
-    \ = {c, d};\n      a = min(a, c), b = min(b, d);\n      FOR(i, s + 1, t) FRAC[i]\
-    \ = {a, b};\n    }\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n \
-    \ static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n          \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \                    .count()) *\n                  10150724397891781847ULL;\n\
+    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
+    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
+    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
+    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
+    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
+    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
+    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 4 \"mod/modfast.hpp\"\n\ntemplate <int p>\nstruct ModFast {\n\
+    \  static_assert(p < (1 << 30));\n\n  u32 root;\n  array<u32, 65537> POW[2];\n\
+    \  array<pair<u16, u16>, 1 + (1 << 20)> FRAC;\n\n  static constexpr int K = 1\
+    \ << 21;\n  array<u32, 2 * K + 1> LOG;\n  array<u32, 2 * K + 1> INV;\n\n  ModFast()\
+    \ {\n    root = (p == 998244353 ? 3 : primitive_root(p));\n    build_pow();\n\
+    \    build_inv();\n    build_log();\n    build_frac();\n  }\n\n  void build_inv()\
+    \ {\n    INV[K + 1] = 1;\n    for (u32 i = 2; i <= K; ++i) {\n      u64 q = (p\
+    \ + i - 1) / i;\n      INV[K + i] = INV[K + i * q - p] * u64(q) % p;\n    }\n\
+    \    FOR(i, 1, K + 1) INV[K - i] = p - INV[K + i];\n  }\n\n  u32 pow(u32 a, ll\
+    \ exp) {\n    assert(0 <= a && a < p && 0 <= exp && exp < (1 << 30));\n    if\
+    \ (a == 0) return (exp == 0 ? 1 : 0);\n    return pow_r_32(log_r(a) * exp % (p\
+    \ - 1));\n  }\n\n  u32 pow_r_32(u32 exp) {\n    assert(0 <= exp && exp <= p -\
+    \ 1);\n    return u64(POW[0][exp & 32767]) * POW[1][exp >> 15] % p;\n  }\n  u32\
+    \ pow_r(ll exp) {\n    exp %= p - 1;\n    if (exp < 0) exp += p - 1;\n    return\
+    \ u64(POW[0][exp & 32767]) * POW[1][exp >> 15] % p;\n  }\n\n  // [0, 2p-2)\n \
+    \ u32 log_r(u32 x) {\n    assert(1 <= x && x < p);\n    auto [a, b] = FRAC[x >>\
+    \ 10];\n    u32 t = x * b - a * p;\n    return LOG[K + t] + (p - 1) - LOG[K +\
+    \ b];\n  }\n\n  u32 inverse(u32 x) {\n    assert(1 <= x && x < p);\n    auto [a,\
+    \ b] = FRAC[x >> 10];\n    u32 t = x * b - a * p;\n    return INV[K + t] * u64(b)\
+    \ % p;\n  }\n\n  template <typename T>\n  vc<T> get_log_table(int n) {\n    assert(n\
+    \ <= K);\n    return {LOG.begin() + K, LOG.begin() + K + n + 1};\n  }\n\n private:\n\
+    \  void build_pow() {\n    POW[0][0] = POW[1][0] = 1;\n    FOR(i, (1 << 15)) POW[0][i\
+    \ + 1] = POW[0][i] * u64(root) % p;\n    FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i]\
+    \ * u64(POW[0][1 << 15]) % p;\n  }\n\n  // 0.085 sec.\n  void build_log() {\n\
+    \    const int LIM = 1 << 21;\n    auto lpf = lpf_table(LIM);\n\n    const int\
+    \ S = 1 << 17;\n    HashMap<u32> MP(S);\n    u32 pw = 1;\n    for (int k = 0;\
+    \ k < S; ++k, pw = u64(root) * pw % p) {\n      MP[pw] = k;\n    }\n    u32 q\
+    \ = pow_r_32(p - 1 - S);\n    auto BSGS = [&](u32 s) -> u32 {\n      u32 ans =\
+    \ 0;\n      while (1) {\n        u32 v = MP.get(s, -1);\n        if (v != u32(-1))\
+    \ {\n          return ans + v;\n        }\n        ans += S, s = u64(s) * q %\
+    \ p;\n      }\n      return 0;\n    };\n\n    LOG[K + 1] = 0;\n    FOR(i, 2, 1\
+    \ + (1 << 21)) {\n      if (lpf[i] < i) {\n        LOG[K + i] = (LOG[K + lpf[i]]\
+    \ + LOG[K + i / lpf[i]]) % (p - 1);\n        continue;\n      }\n      if (i <\
+    \ 100) {\n        LOG[K + i] = BSGS(i);\n        continue;\n      }\n      if\
+    \ (i * i > p) {\n        auto [j, k] = divmod<int>(p, i);\n        // i = (-k)/j\n\
+    \        LOG[K + i] =\n            (LOG[K + k] + (p - 1) / 2 + (p - 1) - LOG[K\
+    \ + j]) % (p - 1);\n        continue;\n      }\n      while (1) {\n        u32\
+    \ k = RNG(0, p - 1);\n        u64 ans = p - 1 - k;\n        u32 x = u64(i) * pow_r_32(k)\
+    \ % p;\n        auto div = [&](u32 q) -> void { x /= q, ans += LOG[K + q]; };\n\
+    \        for (u32 q : {2, 3, 5, 7, 11, 13, 17, 19}) {\n          while (x % q\
+    \ == 0) div(q);\n        }\n        if (x >= LIM) continue;\n        while (i\
+    \ < x && x < LIM && lpf[x] < i) div(lpf[x]);\n        if (1 < x && x < i) div(x);\n\
+    \        if (x == 1) {\n          LOG[K + i] = ans % (p - 1);\n          break;\n\
+    \        }\n      }\n    }\n    FOR(i, 1, 1 + (1 << 21)) {\n      LOG[K - i] =\
+    \ (LOG[K + i] + (p - 1) / 2) % (p - 1);\n    }\n  }\n\n  void build_frac() {\n\
+    \    vc<tuple<u16, u16, u16, u16>> que;\n    que.eb(0, 1, 1, 1);\n    while (len(que))\
+    \ {\n      auto [a, b, c, d] = POP(que);\n      if (b + d < 2048) {\n        que.eb(a\
+    \ + c, b + d, c, d), que.eb(a, b, a + c, b + d);\n        continue;\n      }\n\
+    \      u32 s = (u64(a) * p) / (1024 * b);\n      u32 t = (u64(c) * p) / (1024\
+    \ * d);\n      FRAC[s] = {a, b}, FRAC[t] = {c, d};\n      a = min(a, c), b = min(b,\
+    \ d);\n      FOR(i, s + 1, t) FRAC[i] = {a, b};\n    }\n  }\n};\n#line 1 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint_common.hpp\"\n\n#line\
@@ -549,7 +549,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/modfast.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-09-01 10:19:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/modfast.test.cpp

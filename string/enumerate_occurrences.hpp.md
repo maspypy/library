@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
@@ -39,34 +39,35 @@ data:
     \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
     \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
     \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {}\n    return i;\n  }\n\n  Val& operator[](const u64& k) {\n\
-    \    if (cap == 0) extend();\n    int i = index(k);\n    if (!used[i]) { used[i]\
-    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\n    return val[i];\n  }\n\n  Val\
-    \ get(const u64& k, Val default_value) {\n    int i = index(k);\n    return (used[i]\
-    \ ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n    int i =\
-    \ index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key, val)\n  template\
-    \ <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used)) if (used[i])\
-    \ f(key[i], val[i]);\n  }\n\nprivate:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
-    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\n    x += FIXED_RANDOM;\n\
-    \    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
-    \    return (x ^ (x >> 31)) & mask;\n  }\n\n  void extend() {\n    vc<pair<u64,\
-    \ Val>> dat;\n    dat.reserve(len(used) / 2 - cap);\n    FOR(i, len(used)) {\n\
-    \      if (used[i]) dat.eb(key[i], val[i]);\n    }\n    build(2 * len(dat));\n\
-    \    for (auto& [a, b]: dat) (*this)[a] = b;\n  }\n};\n#line 2 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
-    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  HashMap<int>\
-    \ MP_FOR_EID;\n  bool prepared;\n\n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
-    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
-    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
-    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\
-    \n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
+    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
+    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
+    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
+    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
+    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
+    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
+    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
+    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
+    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
+    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
+    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
+    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -317,69 +318,70 @@ data:
     \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
     \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
     \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
-    \ / B] |= u64(f(i)) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
     \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
-    \    }\n  }\n\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B)\
-    \ & 1; }\n  void insert(int i) {\n    assert(0 <= i && i < n);\n    for (int h\
-    \ = 0; h < log; h++) {\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\n  \
-    \  }\n  }\n  void add(int i) { insert(i); }\n  void erase(int i) {\n    assert(0\
-    \ <= i && i < n);\n    u64 x = 0;\n    for (int h = 0; h < log; h++) {\n     \
-    \ seg[h][i / B] &= ~(u64(1) << (i % B));\n      seg[h][i / B] |= x << (i % B);\n\
-    \      x = bool(seg[h][i / B]);\n      i /= B;\n    }\n  }\n  void remove(int\
-    \ i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <=\
-    \ n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B\
-    \ == seg[h].size()) break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if\
-    \ (!d) {\n        i = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n\
-    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i\
-    \ / B]);\n      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x],\
-    \ or -1\n  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n\
-    \    for (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d =\
-    \ seg[h][i / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n  \
-    \      continue;\n      }\n      i -= __builtin_clzll(d);\n      for (int g =\
-    \ h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int\
-    \ r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int\
-    \ l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
-    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
-    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
-    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 1 \"\
-    ds/csr.hpp\"\n\ntemplate <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n\
-    \  vc<int> ptr;\n  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false)\
-    \ {}\n  void reserve(int n) { dat.reserve(n); }\n\n  void add(int i, const T&\
-    \ x) {\n    assert(0 <= i && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n \
-    \ }\n\n  void build() {\n    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n\
-    \ + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i\
-    \ + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int\
-    \ i = I[k];\n      tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n\
-    \    ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n  \
-    \  T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
-    \ { return last; }\n    bool empty() const { return first == last; }\n    int\
-    \ size() const { return last - first; }\n  };\n\n  range operator[](int i) {\n\
-    \    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data() + ptr[i\
-    \ + 1]};\n  }\n};\n#line 6 \"string/enumerate_occurrences.hpp\"\n\n// T[i] distinct\
-    \ \u304C\u5FC5\u8981\n// T[i] \u304C S \u306B\u73FE\u308C\u308B\u4F4D\u7F6E\u3092\
-    \u6607\u9806\u5217\u6319\n// call f(i, vc<int>&pos)\n// O(T + Slog^2S + Ssqrt(T))\n\
-    template <typename STRING, int SIGMA = 26, int off = 'a', typename F>\nvoid enumerate_occurrences(STRING\
-    \ S, vc<STRING> T, F f) {\n  Trie<SIGMA> trie;\n  FOR(i, len(T)) trie.add(T[i],\
-    \ off);\n  trie.calc_suffix_link();\n\n  int n = trie.n_node;\n  Graph<int, 1>\
-    \ G(n);\n  FOR(i, 1, n) G.add(trie.nodes[i].suffix_link, i);\n  G.build();\n \
-    \ Tree<decltype(G)> tree(G);\n\n  vc<int> TID(n, -1);\n  FOR(i, len(T)) { TID[trie.words[i]]\
-    \ = i; }\n  CSR<int> csr(n);\n  {\n    int v = 0;\n    FOR(i, len(S)) {\n    \
-    \  v = trie.nodes[v].nxt[S[i] - off];\n      csr.add(v, i);\n    }\n  }\n  csr.build();\n\
-    \n  FastSet FS(len(S));\n  vc<int> nxt(len(S));\n  vc<int> pos;\n  auto dfs =\
-    \ [&](auto& dfs, int h) -> void {\n    auto path = tree.heavy_path_at(h);\n  \
-    \  for (auto& v : path) {\n      for (auto& e : G[v]) {\n        if (tree.head[e.to]\
-    \ != h) dfs(dfs, e.to);\n      }\n    }\n\n    FS.reset();\n    auto ins = [&](int\
-    \ i) -> void {\n      int a = FS.prev(i), b = FS.next(i);\n      if (a != -1)\
-    \ nxt[a] = i;\n      nxt[i] = b;\n      FS.insert(i);\n    };\n    auto ins_v\
-    \ = [&](int v) -> void {\n      for (int i : csr[v]) ins(i);\n    };\n\n    int\
-    \ prv = -1;\n    FOR_R(k, len(path)) {\n      int v = path[k];\n      ins_v(v);\n\
-    \      int L = 0, R = 0;\n      if (prv != -1) L = tree.RID[prv], R = tree.RID[v];\n\
-    \      FOR(i, L, R) ins_v(tree.V[i]);\n      prv = v;\n\n      int t = TID[v];\n\
-    \      if (t != -1) {\n        int M = len(T[t]);\n        pos.clear();\n    \
-    \    for (int i = FS.next(0); i < len(S); i = nxt[i]) {\n          // [i-M+1,i]\n\
-    \          pos.eb(i - M + 1);\n        }\n        f(t, pos);\n      }\n    }\n\
-    \  };\n  dfs(dfs, 0);\n}\n"
+    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
+    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] |=\
+    \ u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n \
+    \ void erase(int i) {\n    assert(0 <= i && i < n);\n    u64 x = 0;\n    for (int\
+    \ h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1) << (i % B));\n     \
+    \ seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i / B]);\n      i /= B;\n\
+    \    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int\
+    \ i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++)\
+    \ {\n      if (i / B == seg[h].size()) break;\n      u64 d = seg[h][i / B] >>\
+    \ (i % B);\n      if (!d) {\n        i = i / B + 1;\n        continue;\n     \
+    \ }\n      i += lowbit(d);\n      for (int g = h - 1; g >= 0; g--) {\n       \
+    \ i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n      return i;\n   \
+    \ }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int i) {\n    assert(i\
+    \ >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0; h < log; h++) {\n \
+    \     if (i == -1) break;\n      u64 d = seg[h][i / B] << (63 - i % B);\n    \
+    \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
+    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
+    \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
+    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
+    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
+    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
+    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
+    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
+    };\n#line 1 \"ds/csr.hpp\"\n\ntemplate <typename T>\nstruct CSR {\n  int n;\n\
+    \  bool prepared;\n  vc<int> ptr;\n  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n =\
+    \ 0) : n(n), prepared(false) {}\n  void reserve(int n) { dat.reserve(n); }\n\n\
+    \  void add(int i, const T& x) {\n    assert(0 <= i && i < n && !prepared);\n\
+    \    I.eb(i), dat.eb(x);\n  }\n\n  void build() {\n    assert(!prepared);\n  \
+    \  prepared = 1;\n    ptr.assign(n + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n\
+    \    FOR(i, len(ptr) - 1) ptr[i + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n  \
+    \  FOR(k, len(dat)) {\n      int i = I[k];\n      tmp[ptr[i]++] = dat[k];\n  \
+    \  }\n    swap(dat, tmp);\n    ptr.pop_back();\n    ptr.insert(ptr.begin(), 0);\n\
+    \    I.clear();\n  }\n\n  struct range {\n    T *first, *last;\n    T* begin()\
+    \ const { return first; }\n    T* end() const { return last; }\n    bool empty()\
+    \ const { return first == last; }\n    int size() const { return last - first;\
+    \ }\n  };\n\n  range operator[](int i) {\n    assert(prepared);\n    return range{dat.data()\
+    \ + ptr[i], dat.data() + ptr[i + 1]};\n  }\n};\n#line 6 \"string/enumerate_occurrences.hpp\"\
+    \n\n// T[i] distinct \u304C\u5FC5\u8981\n// T[i] \u304C S \u306B\u73FE\u308C\u308B\
+    \u4F4D\u7F6E\u3092\u6607\u9806\u5217\u6319\n// call f(i, vc<int>&pos)\n// O(T\
+    \ + Slog^2S + Ssqrt(T))\ntemplate <typename STRING, int SIGMA = 26, int off =\
+    \ 'a', typename F>\nvoid enumerate_occurrences(STRING S, vc<STRING> T, F f) {\n\
+    \  Trie<SIGMA> trie;\n  FOR(i, len(T)) trie.add(T[i], off);\n  trie.calc_suffix_link();\n\
+    \n  int n = trie.n_node;\n  Graph<int, 1> G(n);\n  FOR(i, 1, n) G.add(trie.nodes[i].suffix_link,\
+    \ i);\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  vc<int> TID(n, -1);\n \
+    \ FOR(i, len(T)) { TID[trie.words[i]] = i; }\n  CSR<int> csr(n);\n  {\n    int\
+    \ v = 0;\n    FOR(i, len(S)) {\n      v = trie.nodes[v].nxt[S[i] - off];\n   \
+    \   csr.add(v, i);\n    }\n  }\n  csr.build();\n\n  FastSet FS(len(S));\n  vc<int>\
+    \ nxt(len(S));\n  vc<int> pos;\n  auto dfs = [&](auto& dfs, int h) -> void {\n\
+    \    auto path = tree.heavy_path_at(h);\n    for (auto& v : path) {\n      for\
+    \ (auto& e : G[v]) {\n        if (tree.head[e.to] != h) dfs(dfs, e.to);\n    \
+    \  }\n    }\n\n    FS.reset();\n    auto ins = [&](int i) -> void {\n      int\
+    \ a = FS.prev(i), b = FS.next(i);\n      if (a != -1) nxt[a] = i;\n      nxt[i]\
+    \ = b;\n      FS.insert(i);\n    };\n    auto ins_v = [&](int v) -> void {\n \
+    \     for (int i : csr[v]) ins(i);\n    };\n\n    int prv = -1;\n    FOR_R(k,\
+    \ len(path)) {\n      int v = path[k];\n      ins_v(v);\n      int L = 0, R =\
+    \ 0;\n      if (prv != -1) L = tree.RID[prv], R = tree.RID[v];\n      FOR(i, L,\
+    \ R) ins_v(tree.V[i]);\n      prv = v;\n\n      int t = TID[v];\n      if (t !=\
+    \ -1) {\n        int M = len(T[t]);\n        pos.clear();\n        for (int i\
+    \ = FS.next(0); i < len(S); i = nxt[i]) {\n          // [i-M+1,i]\n          pos.eb(i\
+    \ - M + 1);\n        }\n        f(t, pos);\n      }\n    }\n  };\n  dfs(dfs, 0);\n\
+    }\n"
   code: "\n#include \"graph/tree.hpp\"\n#include \"string/trie.hpp\"\n#include \"\
     ds/fastset.hpp\"\n#include \"ds/csr.hpp\"\n\n// T[i] distinct \u304C\u5FC5\u8981\
     \n// T[i] \u304C S \u306B\u73FE\u308C\u308B\u4F4D\u7F6E\u3092\u6607\u9806\u5217\
@@ -416,7 +418,7 @@ data:
   isVerificationFile: false
   path: string/enumerate_occurrences.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-01 10:19:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/enumerate_occurrences.hpp

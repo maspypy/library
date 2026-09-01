@@ -327,7 +327,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_ceil.test.cpp
     title: test/1_mytest/floor_ceil.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/floor_ceil_ranges.test.cpp
     title: test/1_mytest/floor_ceil_ranges.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1872,10 +1872,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1685.test.cpp
     title: test/3_yukicoder/1685.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/17.test.cpp
     title: test/3_yukicoder/17.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1884,7 +1884,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1726.test.cpp
     title: test/3_yukicoder/1726.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1908,7 +1908,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1760.test.cpp
     title: test/3_yukicoder/1760.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/177.test.cpp
     title: test/3_yukicoder/177.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1932,7 +1932,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1783.test.cpp
     title: test/3_yukicoder/1783.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1789.test.cpp
     title: test/3_yukicoder/1789.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1980,7 +1980,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1867.test.cpp
     title: test/3_yukicoder/1867.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1868.test.cpp
     title: test/3_yukicoder/1868.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2457,7 +2457,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2835.test.cpp
     title: test/4_aoj/2835.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2595,7 +2595,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_B.test.cpp
     title: test/4_aoj/ITP1_11_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ITP1_11_C.test.cpp
     title: test/4_aoj/ITP1_11_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2625,9 +2625,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2822,7 +2822,7 @@ data:
   - flow/bipartite_matching_dense.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-08-29 09:00:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/incremental_ch.test.cpp
   - test/1_mytest/manhattan_nns.test.cpp
