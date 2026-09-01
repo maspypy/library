@@ -28,6 +28,7 @@ ll rho(ll n, ll c) {
 
 ll find_prime_factor(ll n) {
   assert(n > 1);
+  if (n % 2 == 0) return 2;
   if (is_prime(n)) return n;
   FOR(100) {
     ll m = 0;
