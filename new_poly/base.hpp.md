@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -360,15 +360,15 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 2 \"new_poly/base.hpp\"\n\n\
-    template <typename mint>\nstruct Polynomial : vector<mint> {\n  using vector<mint>::vector;\n\
-    \  using Poly = Polynomial;\n  vc<mint> NTT;\n\n  Poly &operator*=(const Poly\
-    \ &r) {\n    vc<mint> f = convolution(*this, r);\n    return *this = {f.begin(),\
-    \ f.end()};\n  }\n};\n"
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 2 \"new_poly/base.hpp\"\n\ntemplate <typename mint>\nstruct Polynomial :\
+    \ vector<mint> {\n  using vector<mint>::vector;\n  using Poly = Polynomial;\n\
+    \  vc<mint> NTT;\n\n  Poly &operator*=(const Poly &r) {\n    vc<mint> f = convolution(*this,\
+    \ r);\n    return *this = {f.begin(), f.end()};\n  }\n};\n"
   code: "#include \"poly/convolution.hpp\"\n\ntemplate <typename mint>\nstruct Polynomial\
     \ : vector<mint> {\n  using vector<mint>::vector;\n  using Poly = Polynomial;\n\
     \  vc<mint> NTT;\n\n  Poly &operator*=(const Poly &r) {\n    vc<mint> f = convolution(*this,\
@@ -386,7 +386,7 @@ data:
   isVerificationFile: false
   path: new_poly/base.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: new_poly/base.hpp

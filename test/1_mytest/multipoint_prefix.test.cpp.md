@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
@@ -46,7 +46,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multipoint_evaluation_for_prefix_product.hpp
     title: poly/multipoint_evaluation_for_prefix_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -598,41 +598,41 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 1 \"poly/middle_product.hpp\"\
-    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
-    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
-    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
-    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
-    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 1 \"poly/middle_product.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
+    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
+    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
+    \ UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*()\
+    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
+    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
+    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
+    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool\
+    \ done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
+    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
     \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
     \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
     \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
@@ -1216,41 +1216,41 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 1 \"poly/ntt_doubling.hpp\"\
-    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
-    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
-    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
-    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
-    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 1 \"poly/ntt_doubling.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
+    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
+    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
+    \ UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*()\
+    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
+    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
+    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
+    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
+    \ s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool\
+    \ done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
+    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
     \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
     \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
     \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
@@ -1678,71 +1678,72 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"poly/fps_inv.hpp\"\n\n\
-    template <typename mint>\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\n  if (f.empty())\
-    \ return {};\n  int N = len(f);\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if\
-    \ (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint> g(N);\n  mint g0 = mint(1) /\
-    \ f[0];\n  g[0] = g0;\n  FOR(n, 1, N) {\n    mint rhs = 0;\n    for (auto&& [k,\
-    \ fk] : dat) {\n      if (k > n) break;\n      rhs -= fk * g[n - k];\n    }\n\
-    \    g[n] = rhs * g0;\n  }\n  return g;\n}\n\ntemplate <typename mint>\nvc<mint>\
-    \ fps_inv_dense_ntt(const vc<mint>& F) {\n  if (F.empty()) return {};\n  vc<mint>\
-    \ G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n  G.reserve(N);\n  while (n\
-    \ < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\n\
-    \    FOR(i, n) g[i] = G[i];\n    ntt(f, false), ntt(g, false);\n    FOR(i, 2 *\
-    \ n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n) f[i] = 0;\n    ntt(f, false);\n\
-    \    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n, min(N, 2 *\
-    \ n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return G;\n}\n\ntemplate <typename mint>\n\
-    vc<mint> fps_inv_dense(const vc<mint>& F) {\n  if (F.empty()) return {};\n  if\
-    \ (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int N = len(F);\n  vc<mint>\
-    \ R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n  while (m < N) {\n    p\
-    \ = convolution(R, R);\n    p.resize(m + m);\n    vc<mint> f = {F.begin(), F.begin()\
-    \ + min(m + m, N)};\n    p = convolution(p, f);\n    R.resize(m + m);\n    FOR(i,\
-    \ m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n  }\n  R.resize(N);\n  return\
-    \ R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const vc<mint>& f) {\n \
-    \ if (f.empty()) return {};\n  static_assert(!is_same_v<mint, modint<2>>, \"use\
-    \ Bit_Array version for mod 2\");\n  assert(f[0] != mint(0));\n  int n = count_terms(f);\n\
-    \  int t = (mint::can_ntt() ? 160 : 820);\n  return (n <= t ? fps_inv_sparse<mint>(f)\
-    \ : fps_inv_dense<mint>(f));\n}\n#line 4 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\
-    \u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool\
-    \ SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE ||\
-    \ count_terms(g) < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n\
-    \  g = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n\
-    }\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint>\
-    \ fps_div_sparse(vc<mint> f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint\
-    \ cf = g[0].inverse();\n    for (auto&& x: f) x *= cf;\n    for (auto&& x: g)\
-    \ x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] !=\
-    \ mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]: dat)\
-    \ {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n}\n#line\
-    \ 4 \"poly/multipoint_evaluation_for_prefix_product.hpp\"\n\n// F[0](point[i])\
-    \ ... F[CNT[i]-1](point[i])\ntemplate <typename mint>\nvc<mint> multipoint_evaluation_for_prefix_product(vvc<mint>\
-    \ F, vc<mint> point, vc<int> CNT) {\n  int N = len(point);\n  if (N == 0) return\
-    \ {};\n  auto I = argsort(CNT);\n  point = rearrange(point, I), CNT = rearrange(CNT,\
-    \ I);\n  vvc<mint> G1, G2;\n  vvvc<mint> L(N), R(N);\n  FOR(i, N) {\n    vc<mint>\
-    \ f{mint(1), -point[i]};\n    L[i].eb(f), R[i].eb(f), G2.eb(f);\n  }\n  int K\
-    \ = 0;\n  for (auto& f: F) reverse(all(f));\n  FOR(i, CNT[0]) { G1.eb(F[i]), K\
-    \ += len(F[i]) - 1; }\n  FOR(j, N - 1) {\n    FOR(k, CNT[j], CNT[j + 1]) {\n \
-    \     vc<mint> g(len(F[k]));\n      g.back() = 1;\n      L[j].eb(F[k]), R[j +\
-    \ 1].eb(g), K += len(g) - 1;\n    }\n  }\n  Typical_Divide_Conquer<mint> TDC(N);\n\
-    \  FOR(i, N - 1) TDC.set_L(i, convolution_all<mint>(L[i]));\n  FOR(i, 1, N) TDC.set_R(i,\
-    \ convolution_all<mint>(R[i]));\n  vc<mint> g1 = convolution_all<mint>(G1);\n\
-    \  vc<mint> g2 = convolution_all<mint>(G2);\n  g1.resize(K + 1), g2.resize(K +\
-    \ 1);\n  vc<mint> ANS = TDC.calc(K, fps_div<mint>(g1, g2));\n  I = argsort(I);\n\
-    \  ANS = rearrange(ANS, I);\n  return ANS;\n}\n#line 7 \"test/1_mytest/multipoint_prefix.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  int N = RNG(0, 10);\n  int M =\
-    \ RNG(0, 10);\n  vvc<mint> poly(M);\n  vc<mint> point(N);\n  vc<int> CNT(N);\n\
-    \  FOR(i, M) {\n    int d = RNG(0, 5);\n    vc<mint> f(d + 1);\n    FOR(k, d +\
-    \ 1) f[k] = RNG(0, 2);\n    poly[i] = f;\n  }\n  FOR(i, N) point[i] = RNG(0, 10);\n\
-    \  FOR(i, N) CNT[i] = RNG(0, M + 1);\n\n  vc<mint> god(N);\n  FOR(i, N) {\n  \
-    \  mint ans = 1;\n    FOR(j, CNT[i]) {\n      mint p = 1;\n      mint y = 0;\n\
-    \      for (auto& x: poly[j]) { y += x * p, p *= point[i]; }\n      ans *= y;\n\
-    \    }\n    god[i] = ans;\n  }\n  vc<mint> Y = multipoint_evaluation_for_prefix_product<mint>(poly,\
-    \ point, CNT);\n  assert(god == Y);\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100000) test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"poly/fps_inv.hpp\"\n\ntemplate <typename mint>\nvc<mint> fps_inv_sparse(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  int N = len(f);\n  vc<pair<int,\
+    \ mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint>\
+    \ g(N);\n  mint g0 = mint(1) / f[0];\n  g[0] = g0;\n  FOR(n, 1, N) {\n    mint\
+    \ rhs = 0;\n    for (auto&& [k, fk] : dat) {\n      if (k > n) break;\n      rhs\
+    \ -= fk * g[n - k];\n    }\n    g[n] = rhs * g0;\n  }\n  return g;\n}\n\ntemplate\
+    \ <typename mint>\nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\n  if (F.empty())\
+    \ return {};\n  vc<mint> G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n  G.reserve(N);\n\
+    \  while (n < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i, min(N, 2 * n))\
+    \ f[i] = F[i];\n    FOR(i, n) g[i] = G[i];\n    ntt(f, false), ntt(g, false);\n\
+    \    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n) f[i] = 0;\n\
+    \    ntt(f, false);\n    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i,\
+    \ n, min(N, 2 * n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return G;\n}\n\ntemplate\
+    \ <typename mint>\nvc<mint> fps_inv_dense(const vc<mint>& F) {\n  if (F.empty())\
+    \ return {};\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int\
+    \ N = len(F);\n  vc<mint> R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n\
+    \  while (m < N) {\n    p = convolution(R, R);\n    p.resize(m + m);\n    vc<mint>\
+    \ f = {F.begin(), F.begin() + min(m + m, N)};\n    p = convolution(p, f);\n  \
+    \  R.resize(m + m);\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n\
+    \  }\n  R.resize(N);\n  return R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  // static_assert(!is_same_v<mint,\
+    \ modint<2>>, \"use Bit_Array version for mod\n  // 2\");\n  assert(f[0] != mint(0));\n\
+    \  int n = count_terms(f);\n  int t = (mint::can_ntt() ? 160 : 820);\n  return\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\n}\n#line 4 \"\
+    poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\
+    \u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
+    \ f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
+    \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
+    \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
+    template <typename mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n\
+    \  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n    for (auto&& x: f)\
+    \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
+    \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
+    \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
+    \    }\n  }\n  return f;\n}\n#line 4 \"poly/multipoint_evaluation_for_prefix_product.hpp\"\
+    \n\n// F[0](point[i]) ... F[CNT[i]-1](point[i])\ntemplate <typename mint>\nvc<mint>\
+    \ multipoint_evaluation_for_prefix_product(vvc<mint> F, vc<mint> point, vc<int>\
+    \ CNT) {\n  int N = len(point);\n  if (N == 0) return {};\n  auto I = argsort(CNT);\n\
+    \  point = rearrange(point, I), CNT = rearrange(CNT, I);\n  vvc<mint> G1, G2;\n\
+    \  vvvc<mint> L(N), R(N);\n  FOR(i, N) {\n    vc<mint> f{mint(1), -point[i]};\n\
+    \    L[i].eb(f), R[i].eb(f), G2.eb(f);\n  }\n  int K = 0;\n  for (auto& f: F)\
+    \ reverse(all(f));\n  FOR(i, CNT[0]) { G1.eb(F[i]), K += len(F[i]) - 1; }\n  FOR(j,\
+    \ N - 1) {\n    FOR(k, CNT[j], CNT[j + 1]) {\n      vc<mint> g(len(F[k]));\n \
+    \     g.back() = 1;\n      L[j].eb(F[k]), R[j + 1].eb(g), K += len(g) - 1;\n \
+    \   }\n  }\n  Typical_Divide_Conquer<mint> TDC(N);\n  FOR(i, N - 1) TDC.set_L(i,\
+    \ convolution_all<mint>(L[i]));\n  FOR(i, 1, N) TDC.set_R(i, convolution_all<mint>(R[i]));\n\
+    \  vc<mint> g1 = convolution_all<mint>(G1);\n  vc<mint> g2 = convolution_all<mint>(G2);\n\
+    \  g1.resize(K + 1), g2.resize(K + 1);\n  vc<mint> ANS = TDC.calc(K, fps_div<mint>(g1,\
+    \ g2));\n  I = argsort(I);\n  ANS = rearrange(ANS, I);\n  return ANS;\n}\n#line\
+    \ 7 \"test/1_mytest/multipoint_prefix.test.cpp\"\n\nusing mint = modint998;\n\n\
+    void test() {\n  int N = RNG(0, 10);\n  int M = RNG(0, 10);\n  vvc<mint> poly(M);\n\
+    \  vc<mint> point(N);\n  vc<int> CNT(N);\n  FOR(i, M) {\n    int d = RNG(0, 5);\n\
+    \    vc<mint> f(d + 1);\n    FOR(k, d + 1) f[k] = RNG(0, 2);\n    poly[i] = f;\n\
+    \  }\n  FOR(i, N) point[i] = RNG(0, 10);\n  FOR(i, N) CNT[i] = RNG(0, M + 1);\n\
+    \n  vc<mint> god(N);\n  FOR(i, N) {\n    mint ans = 1;\n    FOR(j, CNT[i]) {\n\
+    \      mint p = 1;\n      mint y = 0;\n      for (auto& x: poly[j]) { y += x *\
+    \ p, p *= point[i]; }\n      ans *= y;\n    }\n    god[i] = ans;\n  }\n  vc<mint>\
+    \ Y = multipoint_evaluation_for_prefix_product<mint>(poly, point, CNT);\n  assert(god\
+    \ == Y);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  FOR(100000) test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\n#include \"poly/multipoint_evaluation_for_prefix_product.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  int N = RNG(0, 10);\n  int M =\
@@ -1779,7 +1780,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/multipoint_prefix.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/multipoint_prefix.test.cpp

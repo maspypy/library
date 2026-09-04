@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
     path: poly/2d/convolution2d.hpp
     title: poly/2d/convolution2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -577,33 +577,33 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"poly/2d/convolution2d.hpp\"\
-    \n\ntemplate <typename T>\nvc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>& g,\
-    \ bool truncate = false) {\n  auto shape = [&](vc<vc<T>>& f) -> pi {\n    ll H\
-    \ = len(f);\n    ll W = (H == 0 ? 0 : len(f[0]));\n    return {H, W};\n  };\n\
-    \  auto [H1, W1] = shape(f);\n  auto [H2, W2] = shape(g);\n  ll H = H1 + H2 -\
-    \ 1;\n  ll W = W1 + W2 - 1;\n\n  vc<T> ff(H1 * W);\n  vc<T> gg(H2 * W);\n  FOR(x,\
-    \ H1) FOR(y, W1) ff[W * x + y] = f[x][y];\n  FOR(x, H2) FOR(y, W2) gg[W * x +\
-    \ y] = g[x][y];\n  auto hh = convolution(ff, gg);\n  int N = H, M = W;\n  if (truncate)\
-    \ {\n    assert(H1 == H2 && W1 == W2);\n    N = H1, M = W1;\n  }\n  vc<vc<T>>\
-    \ h(N, vc<T>(M));\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W * x + y];\n  return h;\n\
-    }\n#line 7 \"test/1_mytest/conv2d.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
-    \ test() {\n  auto gen = [&](ll H, ll W) -> vvc<mint> {\n    vv(mint, A, H, W);\n\
-    \    FOR(i, H) FOR(j, W) A[i][j] = RNG(mint::get_mod());\n    return A;\n  };\n\
-    \n  auto naive_conv = [&](vvc<mint> A, vvc<mint> B) -> vvc<mint> {\n    ll H =\
-    \ len(A) + len(B) - 1;\n    ll W = len(A[0]) + len(B[0]) - 1;\n    vv(mint, C,\
-    \ H, W);\n    FOR(a, len(A)) FOR(b, len(A[0])) {\n      FOR(c, len(B)) FOR(d,\
-    \ len(B[0])) { C[a + c][b + d] += A[a][b] * B[c][d]; }\n    }\n    return C;\n\
-    \  };\n\n  ll LIM = 10;\n  FOR(H1, 1, LIM) FOR(W1, 1, LIM) FOR(H2, 1, LIM) FOR(W2,\
-    \ 1, LIM) {\n    auto A = gen(H1, W1);\n    auto B = gen(H2, W2);\n    auto C1\
-    \ = naive_conv(A, B);\n    auto C2 = convolution2d<mint>(A, B);\n    assert(C1\
-    \ == C2);\n  }\n\n  ll H1 = RNG(50, 100);\n  ll W1 = RNG(50, 100);\n  ll H2 =\
-    \ RNG(50, 100);\n  ll W2 = RNG(50, 100);\n  auto A = gen(H1, W1);\n  auto B =\
-    \ gen(H2, W2);\n  auto C1 = naive_conv(A, B);\n  auto C2 = convolution2d<mint>(A,\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"poly/2d/convolution2d.hpp\"\n\ntemplate <typename T>\nvc<vc<T>> convolution2d(vc<vc<T>>&\
+    \ f, vc<vc<T>>& g, bool truncate = false) {\n  auto shape = [&](vc<vc<T>>& f)\
+    \ -> pi {\n    ll H = len(f);\n    ll W = (H == 0 ? 0 : len(f[0]));\n    return\
+    \ {H, W};\n  };\n  auto [H1, W1] = shape(f);\n  auto [H2, W2] = shape(g);\n  ll\
+    \ H = H1 + H2 - 1;\n  ll W = W1 + W2 - 1;\n\n  vc<T> ff(H1 * W);\n  vc<T> gg(H2\
+    \ * W);\n  FOR(x, H1) FOR(y, W1) ff[W * x + y] = f[x][y];\n  FOR(x, H2) FOR(y,\
+    \ W2) gg[W * x + y] = g[x][y];\n  auto hh = convolution(ff, gg);\n  int N = H,\
+    \ M = W;\n  if (truncate) {\n    assert(H1 == H2 && W1 == W2);\n    N = H1, M\
+    \ = W1;\n  }\n  vc<vc<T>> h(N, vc<T>(M));\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W\
+    \ * x + y];\n  return h;\n}\n#line 7 \"test/1_mytest/conv2d.test.cpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid test() {\n  auto gen = [&](ll H, ll W) -> vvc<mint>\
+    \ {\n    vv(mint, A, H, W);\n    FOR(i, H) FOR(j, W) A[i][j] = RNG(mint::get_mod());\n\
+    \    return A;\n  };\n\n  auto naive_conv = [&](vvc<mint> A, vvc<mint> B) -> vvc<mint>\
+    \ {\n    ll H = len(A) + len(B) - 1;\n    ll W = len(A[0]) + len(B[0]) - 1;\n\
+    \    vv(mint, C, H, W);\n    FOR(a, len(A)) FOR(b, len(A[0])) {\n      FOR(c,\
+    \ len(B)) FOR(d, len(B[0])) { C[a + c][b + d] += A[a][b] * B[c][d]; }\n    }\n\
+    \    return C;\n  };\n\n  ll LIM = 10;\n  FOR(H1, 1, LIM) FOR(W1, 1, LIM) FOR(H2,\
+    \ 1, LIM) FOR(W2, 1, LIM) {\n    auto A = gen(H1, W1);\n    auto B = gen(H2, W2);\n\
+    \    auto C1 = naive_conv(A, B);\n    auto C2 = convolution2d<mint>(A, B);\n \
+    \   assert(C1 == C2);\n  }\n\n  ll H1 = RNG(50, 100);\n  ll W1 = RNG(50, 100);\n\
+    \  ll H2 = RNG(50, 100);\n  ll W2 = RNG(50, 100);\n  auto A = gen(H1, W1);\n \
+    \ auto B = gen(H2, W2);\n  auto C1 = naive_conv(A, B);\n  auto C2 = convolution2d<mint>(A,\
     \ B);\n  assert(C1 == C2);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
     \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
     \ 0;\n}\n"
@@ -640,7 +640,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/conv2d.test.cpp
   requiredBy: []
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/conv2d.test.cpp

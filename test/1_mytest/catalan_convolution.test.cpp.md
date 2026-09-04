@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -568,17 +568,18 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 1 \"seq/famous/catalan_convolution.hpp\"\
-    \n// [x^n]C(x)^pow\ntemplate <typename mint>\nmint catalan_convolution(ll pow,\
-    \ ll n) {\n  if (pow == 0) return (n == 0 ? mint(1) : mint(0));\n  return mint(pow)\
-    \ * inv<mint>(n + n + pow) * C<mint>(n + n + pow, n);\n}\n#line 7 \"test/1_mytest/catalan_convolution.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  ll N = 10;\n  vc<mint> A(N);\n\
-    \  A[0] = 1;\n  vc<mint> B(N);\n  FOR(i, N) B[i] = C<mint>(i + i, i) * inv<mint>(1\
-    \ + i);\n  FOR(k, 10) {\n    FOR(n, N) { assert(A[n] == catalan_convolution<mint>(k,\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 1 \"seq/famous/catalan_convolution.hpp\"\n// [x^n]C(x)^pow\ntemplate <typename\
+    \ mint>\nmint catalan_convolution(ll pow, ll n) {\n  if (pow == 0) return (n ==\
+    \ 0 ? mint(1) : mint(0));\n  return mint(pow) * inv<mint>(n + n + pow) * C<mint>(n\
+    \ + n + pow, n);\n}\n#line 7 \"test/1_mytest/catalan_convolution.test.cpp\"\n\n\
+    using mint = modint998;\n\nvoid test() {\n  ll N = 10;\n  vc<mint> A(N);\n  A[0]\
+    \ = 1;\n  vc<mint> B(N);\n  FOR(i, N) B[i] = C<mint>(i + i, i) * inv<mint>(1 +\
+    \ i);\n  FOR(k, 10) {\n    FOR(n, N) { assert(A[n] == catalan_convolution<mint>(k,\
     \ n)); }\n    A = convolution<mint>(A, B);\n    A.resize(N);\n  }\n}\n\nvoid solve()\
     \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
     \ {\n  test();\n  solve();\n  return 0;\n}\n"
@@ -606,7 +607,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/catalan_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/catalan_convolution.test.cpp

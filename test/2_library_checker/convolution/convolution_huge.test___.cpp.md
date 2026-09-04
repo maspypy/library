@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':warning:'
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -702,24 +702,25 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 2 \"poly/convolution_huge.hpp\"\
-    \ntemplate <typename mint>\r\nvc<mint> convolution_huge(const vc<mint>& A, const\
-    \ vc<mint>& B) {\r\n  int N = len(A), M = len(B);\r\n  if (N + M - 1 <= (1 <<\
-    \ 22)) return convolution(A, B);\r\n  ll L = 22;\r\n  vv(mint, C, 4, 2 << L);\r\
-    \n  vv(mint, D, 4, 2 << L);\r\n  int mask = (1 << L) - 1;\r\n  FOR(i, N) C[i >>\
-    \ L][i & mask] = A[i];\r\n  FOR(i, M) D[i >> L][i & mask] = B[i];\r\n  FOR(i,\
-    \ 4) ntt(C[i], false);\r\n  FOR(i, 4) ntt(D[i], false);\r\n\r\n  vc<mint> ANS(8\
-    \ << L);\r\n\r\n  FOR(i, 7) {\r\n    vc<mint> E(2 << L);\r\n    FOR(c, 4) FOR(d,\
-    \ 4) if (c + d == i) {\r\n      FOR(k, 2 << L) E[k] += C[c][k] * D[d][k];\r\n\
-    \    }\r\n    ntt(E, true);\r\n    FOR(k, 2 << L) ANS[(i << L) + k] += E[k];\r\
-    \n  }\r\n  ANS.resize(N + M - 1);\r\n  return ANS;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/convolution_huge.test___.cpp\"\
-    \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint,\
-    \ A, N);\r\n  VEC(mint, B, M);\r\n  print(convolution_huge(A, B));\r\n}\r\n\r\n\
-    signed main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 2 \"poly/convolution_huge.hpp\"\ntemplate <typename mint>\r\nvc<mint> convolution_huge(const\
+    \ vc<mint>& A, const vc<mint>& B) {\r\n  int N = len(A), M = len(B);\r\n  if (N\
+    \ + M - 1 <= (1 << 22)) return convolution(A, B);\r\n  ll L = 22;\r\n  vv(mint,\
+    \ C, 4, 2 << L);\r\n  vv(mint, D, 4, 2 << L);\r\n  int mask = (1 << L) - 1;\r\n\
+    \  FOR(i, N) C[i >> L][i & mask] = A[i];\r\n  FOR(i, M) D[i >> L][i & mask] =\
+    \ B[i];\r\n  FOR(i, 4) ntt(C[i], false);\r\n  FOR(i, 4) ntt(D[i], false);\r\n\r\
+    \n  vc<mint> ANS(8 << L);\r\n\r\n  FOR(i, 7) {\r\n    vc<mint> E(2 << L);\r\n\
+    \    FOR(c, 4) FOR(d, 4) if (c + d == i) {\r\n      FOR(k, 2 << L) E[k] += C[c][k]\
+    \ * D[d][k];\r\n    }\r\n    ntt(E, true);\r\n    FOR(k, 2 << L) ANS[(i << L)\
+    \ + k] += E[k];\r\n  }\r\n  ANS.resize(N + M - 1);\r\n  return ANS;\r\n}\r\n#line\
+    \ 7 \"test/2_library_checker/convolution/convolution_huge.test___.cpp\"\nusing\
+    \ mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint, A, N);\r\
+    \n  VEC(mint, B, M);\r\n  print(convolution_huge(A, B));\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_large\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"mod/modint.hpp\"\r\n#include \"poly/convolution_huge.hpp\"\r\nusing mint =\
@@ -742,7 +743,7 @@ data:
   isVerificationFile: false
   path: test/2_library_checker/convolution/convolution_huge.test___.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/convolution_huge.test___.cpp

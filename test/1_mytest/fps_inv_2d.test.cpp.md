@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
@@ -25,13 +25,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/2d/fps_inv_2d.hpp
     title: poly/2d/fps_inv_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -589,83 +589,84 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"poly/fps_inv.hpp\"\n\n\
-    template <typename mint>\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\n  if (f.empty())\
-    \ return {};\n  int N = len(f);\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if\
-    \ (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint> g(N);\n  mint g0 = mint(1) /\
-    \ f[0];\n  g[0] = g0;\n  FOR(n, 1, N) {\n    mint rhs = 0;\n    for (auto&& [k,\
-    \ fk] : dat) {\n      if (k > n) break;\n      rhs -= fk * g[n - k];\n    }\n\
-    \    g[n] = rhs * g0;\n  }\n  return g;\n}\n\ntemplate <typename mint>\nvc<mint>\
-    \ fps_inv_dense_ntt(const vc<mint>& F) {\n  if (F.empty()) return {};\n  vc<mint>\
-    \ G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n  G.reserve(N);\n  while (n\
-    \ < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\n\
-    \    FOR(i, n) g[i] = G[i];\n    ntt(f, false), ntt(g, false);\n    FOR(i, 2 *\
-    \ n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n) f[i] = 0;\n    ntt(f, false);\n\
-    \    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n, min(N, 2 *\
-    \ n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return G;\n}\n\ntemplate <typename mint>\n\
-    vc<mint> fps_inv_dense(const vc<mint>& F) {\n  if (F.empty()) return {};\n  if\
-    \ (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int N = len(F);\n  vc<mint>\
-    \ R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n  while (m < N) {\n    p\
-    \ = convolution(R, R);\n    p.resize(m + m);\n    vc<mint> f = {F.begin(), F.begin()\
-    \ + min(m + m, N)};\n    p = convolution(p, f);\n    R.resize(m + m);\n    FOR(i,\
-    \ m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n  }\n  R.resize(N);\n  return\
-    \ R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const vc<mint>& f) {\n \
-    \ if (f.empty()) return {};\n  static_assert(!is_same_v<mint, modint<2>>, \"use\
-    \ Bit_Array version for mod 2\");\n  assert(f[0] != mint(0));\n  int n = count_terms(f);\n\
-    \  int t = (mint::can_ntt() ? 160 : 820);\n  return (n <= t ? fps_inv_sparse<mint>(f)\
-    \ : fps_inv_dense<mint>(f));\n}\n#line 3 \"poly/2d/fps_inv_2d.hpp\"\n\ntemplate\
-    \ <typename mint>\nvvc<mint> fps_inv_2d(vvc<mint> F) {\n  int n = len(F), m =\
-    \ len(F[0]);\n  assert(F[0][0] != mint(0));\n\n  auto ntt_x = [&](vvc<mint>& F,\
-    \ bool inverse) -> void {\n    FOR(j, len(F[0])) {\n      vc<mint> f(len(F));\n\
-    \      FOR(i, len(F)) f[i] = F[i][j];\n      ntt(f, inverse);\n      FOR(i, len(F))\
-    \ F[i][j] = f[i];\n    }\n  };\n\n  int W = 1;\n  while (W < 2 * len(F[0])) W\
-    \ *= 2;\n\n  FOR(i, n) F[i].resize(W);\n  vv(mint, G, n, W);\n\n  G[0] = fps_inv(F[0]);\n\
-    \  G[0].resize(W);\n  FOR(j, m, W) G[0][j] = 0;\n\n  FOR(i, n) ntt(F[i], false);\n\
-    \  ntt(G[0], false);\n\n  int H = 1;\n  while (H < n) {\n    vv(mint, f, 2 * H,\
-    \ W);\n    vv(mint, g, 2 * H, W);\n    FOR(i, min(n, 2 * H)) FOR(j, W) f[i][j]\
-    \ = F[i][j];\n    FOR(i, H) FOR(j, W) g[i][j] = G[i][j];\n\n    ntt_x(f, false),\
-    \ ntt_x(g, false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f,\
-    \ true);\n\n    FOR(i, H, 2 * H) ntt(f[i], true);\n    FOR(i, H) FOR(j, W) f[i][j]\
-    \ = 0;\n    FOR(i, H, 2 * H) FOR(j, m, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i],\
-    \ false);\n\n    ntt_x(f, false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n\
-    \    ntt_x(f, true);\n\n    FOR(i, H, min(n, 2 * H)) {\n      ntt(f[i], true);\n\
-    \      FOR(j, m, W) f[i][j] = 0;\n      ntt(f[i], false);\n      FOR(j, W) G[i][j]\
-    \ -= f[i][j];\n    }\n    H *= 2;\n  }\n\n  FOR(i, n) ntt(G[i], true);\n  FOR(i,\
-    \ n) G[i].resize(m);\n  return G;\n}\n#line 1 \"poly/2d/convolution2d.hpp\"\n\n\
-    #line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
-    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
-    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
-    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
-    \ UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
-    \ s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*()\
-    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
-    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
-    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
-    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
-    \ s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool\
-    \ done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
-    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"poly/fps_inv.hpp\"\n\ntemplate <typename mint>\nvc<mint> fps_inv_sparse(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  int N = len(f);\n  vc<pair<int,\
+    \ mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint>\
+    \ g(N);\n  mint g0 = mint(1) / f[0];\n  g[0] = g0;\n  FOR(n, 1, N) {\n    mint\
+    \ rhs = 0;\n    for (auto&& [k, fk] : dat) {\n      if (k > n) break;\n      rhs\
+    \ -= fk * g[n - k];\n    }\n    g[n] = rhs * g0;\n  }\n  return g;\n}\n\ntemplate\
+    \ <typename mint>\nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\n  if (F.empty())\
+    \ return {};\n  vc<mint> G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n  G.reserve(N);\n\
+    \  while (n < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i, min(N, 2 * n))\
+    \ f[i] = F[i];\n    FOR(i, n) g[i] = G[i];\n    ntt(f, false), ntt(g, false);\n\
+    \    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n) f[i] = 0;\n\
+    \    ntt(f, false);\n    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i,\
+    \ n, min(N, 2 * n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return G;\n}\n\ntemplate\
+    \ <typename mint>\nvc<mint> fps_inv_dense(const vc<mint>& F) {\n  if (F.empty())\
+    \ return {};\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int\
+    \ N = len(F);\n  vc<mint> R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n\
+    \  while (m < N) {\n    p = convolution(R, R);\n    p.resize(m + m);\n    vc<mint>\
+    \ f = {F.begin(), F.begin() + min(m + m, N)};\n    p = convolution(p, f);\n  \
+    \  R.resize(m + m);\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n\
+    \  }\n  R.resize(N);\n  return R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  // static_assert(!is_same_v<mint,\
+    \ modint<2>>, \"use Bit_Array version for mod\n  // 2\");\n  assert(f[0] != mint(0));\n\
+    \  int n = count_terms(f);\n  int t = (mint::can_ntt() ? 160 : 820);\n  return\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\n}\n#line 3 \"\
+    poly/2d/fps_inv_2d.hpp\"\n\ntemplate <typename mint>\nvvc<mint> fps_inv_2d(vvc<mint>\
+    \ F) {\n  int n = len(F), m = len(F[0]);\n  assert(F[0][0] != mint(0));\n\n  auto\
+    \ ntt_x = [&](vvc<mint>& F, bool inverse) -> void {\n    FOR(j, len(F[0])) {\n\
+    \      vc<mint> f(len(F));\n      FOR(i, len(F)) f[i] = F[i][j];\n      ntt(f,\
+    \ inverse);\n      FOR(i, len(F)) F[i][j] = f[i];\n    }\n  };\n\n  int W = 1;\n\
+    \  while (W < 2 * len(F[0])) W *= 2;\n\n  FOR(i, n) F[i].resize(W);\n  vv(mint,\
+    \ G, n, W);\n\n  G[0] = fps_inv(F[0]);\n  G[0].resize(W);\n  FOR(j, m, W) G[0][j]\
+    \ = 0;\n\n  FOR(i, n) ntt(F[i], false);\n  ntt(G[0], false);\n\n  int H = 1;\n\
+    \  while (H < n) {\n    vv(mint, f, 2 * H, W);\n    vv(mint, g, 2 * H, W);\n \
+    \   FOR(i, min(n, 2 * H)) FOR(j, W) f[i][j] = F[i][j];\n    FOR(i, H) FOR(j, W)\
+    \ g[i][j] = G[i][j];\n\n    ntt_x(f, false), ntt_x(g, false);\n    FOR(i, 2 *\
+    \ H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\n    FOR(i, H, 2 * H)\
+    \ ntt(f[i], true);\n    FOR(i, H) FOR(j, W) f[i][j] = 0;\n    FOR(i, H, 2 * H)\
+    \ FOR(j, m, W) f[i][j] = 0;\n    FOR(i, H, 2 * H) ntt(f[i], false);\n\n    ntt_x(f,\
+    \ false);\n    FOR(i, 2 * H) FOR(j, W) f[i][j] *= g[i][j];\n    ntt_x(f, true);\n\
+    \n    FOR(i, H, min(n, 2 * H)) {\n      ntt(f[i], true);\n      FOR(j, m, W) f[i][j]\
+    \ = 0;\n      ntt(f[i], false);\n      FOR(j, W) G[i][j] -= f[i][j];\n    }\n\
+    \    H *= 2;\n  }\n\n  FOR(i, n) ntt(G[i], true);\n  FOR(i, n) G[i].resize(m);\n\
+    \  return G;\n}\n#line 1 \"poly/2d/convolution2d.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
+    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
+    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
+    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
+    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
+    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
+    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
     \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
     \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
     \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
@@ -961,25 +962,25 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"poly/2d/convolution2d.hpp\"\
-    \n\ntemplate <typename T>\nvc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>& g,\
-    \ bool truncate = false) {\n  auto shape = [&](vc<vc<T>>& f) -> pi {\n    ll H\
-    \ = len(f);\n    ll W = (H == 0 ? 0 : len(f[0]));\n    return {H, W};\n  };\n\
-    \  auto [H1, W1] = shape(f);\n  auto [H2, W2] = shape(g);\n  ll H = H1 + H2 -\
-    \ 1;\n  ll W = W1 + W2 - 1;\n\n  vc<T> ff(H1 * W);\n  vc<T> gg(H2 * W);\n  FOR(x,\
-    \ H1) FOR(y, W1) ff[W * x + y] = f[x][y];\n  FOR(x, H2) FOR(y, W2) gg[W * x +\
-    \ y] = g[x][y];\n  auto hh = convolution(ff, gg);\n  int N = H, M = W;\n  if (truncate)\
-    \ {\n    assert(H1 == H2 && W1 == W2);\n    N = H1, M = W1;\n  }\n  vc<vc<T>>\
-    \ h(N, vc<T>(M));\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W * x + y];\n  return h;\n\
-    }\n#line 8 \"test/1_mytest/fps_inv_2d.test.cpp\"\n\nusing mint = modint998;\n\n\
-    void test() {\n  auto gen = [&](ll H, ll W) -> vvc<mint> {\n    vv(mint, F, H,\
-    \ W);\n    FOR(i, H) FOR(j, W) F[i][j] = RNG(mint::get_mod());\n    if (F[0][0]\
-    \ == mint(0)) F[0][0] = mint(1);\n    return F;\n  };\n\n  auto check = [&](ll\
-    \ H, ll W) -> void {\n    auto F = gen(H, W);\n    auto G = fps_inv_2d<mint>(F);\n\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"poly/2d/convolution2d.hpp\"\n\ntemplate <typename T>\nvc<vc<T>> convolution2d(vc<vc<T>>&\
+    \ f, vc<vc<T>>& g, bool truncate = false) {\n  auto shape = [&](vc<vc<T>>& f)\
+    \ -> pi {\n    ll H = len(f);\n    ll W = (H == 0 ? 0 : len(f[0]));\n    return\
+    \ {H, W};\n  };\n  auto [H1, W1] = shape(f);\n  auto [H2, W2] = shape(g);\n  ll\
+    \ H = H1 + H2 - 1;\n  ll W = W1 + W2 - 1;\n\n  vc<T> ff(H1 * W);\n  vc<T> gg(H2\
+    \ * W);\n  FOR(x, H1) FOR(y, W1) ff[W * x + y] = f[x][y];\n  FOR(x, H2) FOR(y,\
+    \ W2) gg[W * x + y] = g[x][y];\n  auto hh = convolution(ff, gg);\n  int N = H,\
+    \ M = W;\n  if (truncate) {\n    assert(H1 == H2 && W1 == W2);\n    N = H1, M\
+    \ = W1;\n  }\n  vc<vc<T>> h(N, vc<T>(M));\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W\
+    \ * x + y];\n  return h;\n}\n#line 8 \"test/1_mytest/fps_inv_2d.test.cpp\"\n\n\
+    using mint = modint998;\n\nvoid test() {\n  auto gen = [&](ll H, ll W) -> vvc<mint>\
+    \ {\n    vv(mint, F, H, W);\n    FOR(i, H) FOR(j, W) F[i][j] = RNG(mint::get_mod());\n\
+    \    if (F[0][0] == mint(0)) F[0][0] = mint(1);\n    return F;\n  };\n\n  auto\
+    \ check = [&](ll H, ll W) -> void {\n    auto F = gen(H, W);\n    auto G = fps_inv_2d<mint>(F);\n\
     \    auto C = convolution2d<mint>(F, G, true);\n\n    FOR(i, H) FOR(j, W) {\n\
     \      mint expected = (i == 0 && j == 0 ? mint(1) : mint(0));\n      assert(C[i][j]\
     \ == expected);\n    }\n  };\n\n  FOR(H, 1, 20) FOR(W, 1, 20) { FOR(100) check(H,\
@@ -1020,7 +1021,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fps_inv_2d.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/fps_inv_2d.test.cpp

@@ -4,34 +4,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -800,29 +800,29 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 4 \"graph/count/count_unlabeled_tree.hpp\"\
-    \n\n// https://oeis.org/A000055\n// https://oeis.org/A000081\ntemplate <typename\
-    \ mint>\nvc<mint> count_unlabeled_tree(int N, bool rooted) {\n  // f: rooted tree\n\
-    \  // f(x) = x prod (1+x^n+x^{2n}+...)^f_n\n  // g(x) = f(x)/x\n  // log g(x)\
-    \ = sum f[n]log(1+x^n+x^{2n}+...)\n  // f[n] given -> [x^n]g(x) given -> f[n+1]\
-    \ given\n  vc<mint> f(N + 1);\n  vc<mint> log_g(N);\n  Online_Exp<mint> X;\n \
-    \ FOR(n, 1, N + 1) {\n    f[n] = X.query(n - 1, log_g[n - 1]);\n    // -log(1-x)=x+xx/2+...\n\
-    \    FOR(k, 1, (N - 1) / n + 1) { log_g[n * k] += f[n] * inv<mint>(k); }\n  }\n\
-    \  if (rooted) return f;\n  // \u3053\u306E\u6642\u70B9\u3067 f \u306F unlabeled\
-    \ rooted tree (OEIS A000081)\n  // unlabeled tree \u306E\u6BCD\u95A2\u6570\u306F\
-    \ f(x) - 1/2(f(x)^2-f(x^2))\n  vc<mint> ff = convolution<mint>(f, f);\n  vc<mint>\
-    \ ANS = f;\n  FOR(i, N + 1) ANS[i] -= inv<mint>(2) * ff[i];\n  FOR(i, N + 1) {\n\
-    \    if (2 * i <= N) ANS[2 * i] += inv<mint>(2) * f[i];\n  }\n  return ANS;\n\
-    }\n#line 5 \"test/1_mytest/count_unlabeled_tree.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10, false);\n  vc<mint>\
-    \ B = {mint(0), mint(1),  mint(1),  mint(1),  mint(2),  mint(3),\n           \
-    \     mint(6), mint(11), mint(23), mint(47), mint(106)};\n  assert(A == B);\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n\
-    }\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 4 \"graph/count/count_unlabeled_tree.hpp\"\n\n// https://oeis.org/A000055\n\
+    // https://oeis.org/A000081\ntemplate <typename mint>\nvc<mint> count_unlabeled_tree(int\
+    \ N, bool rooted) {\n  // f: rooted tree\n  // f(x) = x prod (1+x^n+x^{2n}+...)^f_n\n\
+    \  // g(x) = f(x)/x\n  // log g(x) = sum f[n]log(1+x^n+x^{2n}+...)\n  // f[n]\
+    \ given -> [x^n]g(x) given -> f[n+1] given\n  vc<mint> f(N + 1);\n  vc<mint> log_g(N);\n\
+    \  Online_Exp<mint> X;\n  FOR(n, 1, N + 1) {\n    f[n] = X.query(n - 1, log_g[n\
+    \ - 1]);\n    // -log(1-x)=x+xx/2+...\n    FOR(k, 1, (N - 1) / n + 1) { log_g[n\
+    \ * k] += f[n] * inv<mint>(k); }\n  }\n  if (rooted) return f;\n  // \u3053\u306E\
+    \u6642\u70B9\u3067 f \u306F unlabeled rooted tree (OEIS A000081)\n  // unlabeled\
+    \ tree \u306E\u6BCD\u95A2\u6570\u306F f(x) - 1/2(f(x)^2-f(x^2))\n  vc<mint> ff\
+    \ = convolution<mint>(f, f);\n  vc<mint> ANS = f;\n  FOR(i, N + 1) ANS[i] -= inv<mint>(2)\
+    \ * ff[i];\n  FOR(i, N + 1) {\n    if (2 * i <= N) ANS[2 * i] += inv<mint>(2)\
+    \ * f[i];\n  }\n  return ANS;\n}\n#line 5 \"test/1_mytest/count_unlabeled_tree.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10,\
+    \ false);\n  vc<mint> B = {mint(0), mint(1),  mint(1),  mint(1),  mint(2),  mint(3),\n\
+    \                mint(6), mint(11), mint(23), mint(47), mint(106)};\n  assert(A\
+    \ == B);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << '\\n';\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/count/count_unlabeled_tree.hpp\"\n\nusing mint = modint998;\n\
     \nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10, false);\n  vc<mint>\
@@ -847,7 +847,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_unlabeled_tree.test.cpp

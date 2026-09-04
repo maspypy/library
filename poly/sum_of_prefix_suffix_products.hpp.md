@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -361,16 +361,16 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 2 \"poly/sum_of_prefix_suffix_products.hpp\"\
-    \n\n/*\n\u591A\u9805\u5F0F\u306E\u5217 f0, f1, ..., f{N-1} \u304A\u3088\u3073\
-    \ g0, g1, ..., g{N-1} \u3092\u4E0E\u3048\u308B\u3002\nf0f1f2f3 + f0f1f2g3 + f0f1g2g3\
-    \ + f0g1g2g3 + g0g1g2g3\n\u306E\u3088\u3046\u306A\u7DCF\u548C\u3092\u6C42\u3081\
-    \u308B\u3002\u5206\u5272\u7D71\u6CBB\u3067 O(Nlog^2N)\u3002N \u306F\u6B21\u6570\
-    \u306E\u7DCF\u548C\u3002\nhttps://atcoder.jp/contests/nadafes2022_day1/tasks/nadafes2022_day1_p\n\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 2 \"poly/sum_of_prefix_suffix_products.hpp\"\n\n/*\n\u591A\u9805\u5F0F\u306E\
+    \u5217 f0, f1, ..., f{N-1} \u304A\u3088\u3073 g0, g1, ..., g{N-1} \u3092\u4E0E\
+    \u3048\u308B\u3002\nf0f1f2f3 + f0f1f2g3 + f0f1g2g3 + f0g1g2g3 + g0g1g2g3\n\u306E\
+    \u3088\u3046\u306A\u7DCF\u548C\u3092\u6C42\u3081\u308B\u3002\u5206\u5272\u7D71\
+    \u6CBB\u3067 O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u7DCF\u548C\u3002\nhttps://atcoder.jp/contests/nadafes2022_day1/tasks/nadafes2022_day1_p\n\
     */\ntemplate <typename mint>\nvc<mint> sum_of_prefix_suffix_products(vvc<mint>\
     \ F, vvc<mint> G) {\n  int n = len(F);\n  using poly = vc<mint>;\n  auto add =\
     \ [&](poly f, poly g) -> poly {\n    poly h(max(len(f), len(g)));\n    FOR(i,\
@@ -409,7 +409,7 @@ data:
   isVerificationFile: false
   path: poly/sum_of_prefix_suffix_products.hpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/sum_of_prefix_suffix_products.hpp

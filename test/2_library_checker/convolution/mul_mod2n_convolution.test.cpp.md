@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -740,44 +740,44 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"mod/multiplicative_convolution_mod_2n.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> multiplicative_convolution_mod_2n(vc<mint>\
-    \ &A, vc<mint> &B) {\r\n  int N = 0;\r\n  while ((1 << N) < len(A)) ++N;\r\n \
-    \ assert((1 << N) == len(A) && (1 << N) == len(B));\r\n\r\n  vc<vc<vc<mint>>>\
-    \ AA(N + 1);\r\n  vc<vc<vc<mint>>> BB(N + 1);\r\n  vc<vc<vc<mint>>> CC(N + 1);\r\
-    \n\r\n  auto shape = [&](int n) -> pair<int, int> {\r\n    int H = (N - n >= 2\
-    \ ? 2 : 1);\r\n    int W = 1 << max(N - n - 2, 0);\r\n    return {H, W};\r\n \
-    \ };\r\n\r\n  FOR(n, N + 1) {\r\n    // 2 \u3067 n \u56DE\u5272\u308C\u308B\u3068\
-    \u3053\u308D\r\n    auto [H, W] = shape(n);\r\n    AA[n].assign(H, vc<mint>(W));\r\
-    \n    BB[n].assign(H, vc<mint>(W));\r\n    CC[n].assign(H, vc<mint>(W));\r\n \
-    \   int x = (1 << n) & full_mask(N);\r\n    auto &a = AA[n], &b = BB[n];\r\n \
-    \   FOR(j, W) {\r\n      a[0][j] = A[x];\r\n      b[0][j] = B[x];\r\n      if\
-    \ (H == 2) {\r\n        a[1][j] = A[(1 << N) - x];\r\n        b[1][j] = B[(1 <<\
-    \ N) - x];\r\n      }\r\n      x = (5 * x) & full_mask(N);\r\n    }\r\n  }\r\n\
-    \  // n \u3092\u56FA\u5B9A\u3057\u3066\u5404\u8EF8\u65B9\u5411\u306B fft\u3002\
-    \u5408\u8A08 O(N2^N)\r\n  FOR(n, N + 1) {\r\n    auto &a = AA[n], &b = BB[n];\r\
-    \n    auto [H, W] = shape(n);\r\n    FOR(i, H) {\r\n      ntt(a[i], false);\r\n\
-    \      ntt(b[i], false);\r\n    }\r\n    if (H == 2) {\r\n      FOR(j, W) {\r\n\
-    \        tie(a[0][j], a[1][j]) = mp(a[0][j] + a[1][j], a[0][j] - a[1][j]);\r\n\
-    \        tie(b[0][j], b[1][j]) = mp(b[0][j] + b[1][j], b[0][j] - b[1][j]);\r\n\
-    \      }\r\n    }\r\n  }\r\n  FOR(n1, N + 1) FOR(n2, N + 1) {\r\n    // \u5FC5\
-    \u8981\u306A\u9577\u3055\u306E fft \u5404\u70B9\u7A4D\u3092\u5FC5\u8981\u306A\u5834\
-    \u6240\u306B\u8DB3\u3057\u3053\u3080\u3002\u5408\u8A08 O(2^N)\r\n    int n3 =\
-    \ min(N, int(n1 + n2));\r\n    auto [H, W] = shape(n3);\r\n    FOR(i, H) FOR(j,\
-    \ W) CC[n3][i][j] += AA[n1][i][j] * BB[n2][i][j];\r\n  }\r\n\r\n  FOR(n, N + 1)\
-    \ {\r\n    // inverse fft\r\n    auto &c = CC[n];\r\n    auto [H, W] = shape(n);\r\
-    \n    FOR(i, H) ntt(c[i], true);\r\n    if (H == 2) {\r\n      FOR(j, W) {\r\n\
-    \        tie(c[0][j], c[1][j]) = mp(c[0][j] + c[1][j], c[0][j] - c[1][j]);\r\n\
-    \      }\r\n    }\r\n    mint coef = mint(1) / mint(H);\r\n    FOR(i, H) FOR(j,\
-    \ W) c[i][j] *= coef;\r\n  }\r\n\r\n  vc<mint> C(1 << N);\r\n  FOR(n, N + 1) {\r\
-    \n    auto [H, W] = shape(n);\r\n    int x = (1 << n) & full_mask(N);\r\n    auto\
-    \ &c = CC[n];\r\n    FOR(j, W) {\r\n      C[x] = c[0][j];\r\n      if (H == 2)\
-    \ {\r\n        C[(1 << N) - x] = c[1][j];\r\n      }\r\n      x = (5 * x) & full_mask(N);\r\
-    \n    }\r\n  }\r\n  return C;\r\n}\n#line 7 \"test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp\"\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"mod/multiplicative_convolution_mod_2n.hpp\"\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> multiplicative_convolution_mod_2n(vc<mint> &A, vc<mint> &B)\
+    \ {\r\n  int N = 0;\r\n  while ((1 << N) < len(A)) ++N;\r\n  assert((1 << N) ==\
+    \ len(A) && (1 << N) == len(B));\r\n\r\n  vc<vc<vc<mint>>> AA(N + 1);\r\n  vc<vc<vc<mint>>>\
+    \ BB(N + 1);\r\n  vc<vc<vc<mint>>> CC(N + 1);\r\n\r\n  auto shape = [&](int n)\
+    \ -> pair<int, int> {\r\n    int H = (N - n >= 2 ? 2 : 1);\r\n    int W = 1 <<\
+    \ max(N - n - 2, 0);\r\n    return {H, W};\r\n  };\r\n\r\n  FOR(n, N + 1) {\r\n\
+    \    // 2 \u3067 n \u56DE\u5272\u308C\u308B\u3068\u3053\u308D\r\n    auto [H,\
+    \ W] = shape(n);\r\n    AA[n].assign(H, vc<mint>(W));\r\n    BB[n].assign(H, vc<mint>(W));\r\
+    \n    CC[n].assign(H, vc<mint>(W));\r\n    int x = (1 << n) & full_mask(N);\r\n\
+    \    auto &a = AA[n], &b = BB[n];\r\n    FOR(j, W) {\r\n      a[0][j] = A[x];\r\
+    \n      b[0][j] = B[x];\r\n      if (H == 2) {\r\n        a[1][j] = A[(1 << N)\
+    \ - x];\r\n        b[1][j] = B[(1 << N) - x];\r\n      }\r\n      x = (5 * x)\
+    \ & full_mask(N);\r\n    }\r\n  }\r\n  // n \u3092\u56FA\u5B9A\u3057\u3066\u5404\
+    \u8EF8\u65B9\u5411\u306B fft\u3002\u5408\u8A08 O(N2^N)\r\n  FOR(n, N + 1) {\r\n\
+    \    auto &a = AA[n], &b = BB[n];\r\n    auto [H, W] = shape(n);\r\n    FOR(i,\
+    \ H) {\r\n      ntt(a[i], false);\r\n      ntt(b[i], false);\r\n    }\r\n    if\
+    \ (H == 2) {\r\n      FOR(j, W) {\r\n        tie(a[0][j], a[1][j]) = mp(a[0][j]\
+    \ + a[1][j], a[0][j] - a[1][j]);\r\n        tie(b[0][j], b[1][j]) = mp(b[0][j]\
+    \ + b[1][j], b[0][j] - b[1][j]);\r\n      }\r\n    }\r\n  }\r\n  FOR(n1, N + 1)\
+    \ FOR(n2, N + 1) {\r\n    // \u5FC5\u8981\u306A\u9577\u3055\u306E fft \u5404\u70B9\
+    \u7A4D\u3092\u5FC5\u8981\u306A\u5834\u6240\u306B\u8DB3\u3057\u3053\u3080\u3002\
+    \u5408\u8A08 O(2^N)\r\n    int n3 = min(N, int(n1 + n2));\r\n    auto [H, W] =\
+    \ shape(n3);\r\n    FOR(i, H) FOR(j, W) CC[n3][i][j] += AA[n1][i][j] * BB[n2][i][j];\r\
+    \n  }\r\n\r\n  FOR(n, N + 1) {\r\n    // inverse fft\r\n    auto &c = CC[n];\r\
+    \n    auto [H, W] = shape(n);\r\n    FOR(i, H) ntt(c[i], true);\r\n    if (H ==\
+    \ 2) {\r\n      FOR(j, W) {\r\n        tie(c[0][j], c[1][j]) = mp(c[0][j] + c[1][j],\
+    \ c[0][j] - c[1][j]);\r\n      }\r\n    }\r\n    mint coef = mint(1) / mint(H);\r\
+    \n    FOR(i, H) FOR(j, W) c[i][j] *= coef;\r\n  }\r\n\r\n  vc<mint> C(1 << N);\r\
+    \n  FOR(n, N + 1) {\r\n    auto [H, W] = shape(n);\r\n    int x = (1 << n) & full_mask(N);\r\
+    \n    auto &c = CC[n];\r\n    FOR(j, W) {\r\n      C[x] = c[0][j];\r\n      if\
+    \ (H == 2) {\r\n        C[(1 << N) - x] = c[1][j];\r\n      }\r\n      x = (5\
+    \ * x) & full_mask(N);\r\n    }\r\n  }\r\n  return C;\r\n}\n#line 7 \"test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = multiplicative_convolution_mod_2n(A,\
     \ B);\r\n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\
@@ -805,7 +805,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp

@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -376,21 +376,21 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"poly/2d/convolution2d.hpp\"\
-    \n\ntemplate <typename T>\nvc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>& g,\
-    \ bool truncate = false) {\n  auto shape = [&](vc<vc<T>>& f) -> pi {\n    ll H\
-    \ = len(f);\n    ll W = (H == 0 ? 0 : len(f[0]));\n    return {H, W};\n  };\n\
-    \  auto [H1, W1] = shape(f);\n  auto [H2, W2] = shape(g);\n  ll H = H1 + H2 -\
-    \ 1;\n  ll W = W1 + W2 - 1;\n\n  vc<T> ff(H1 * W);\n  vc<T> gg(H2 * W);\n  FOR(x,\
-    \ H1) FOR(y, W1) ff[W * x + y] = f[x][y];\n  FOR(x, H2) FOR(y, W2) gg[W * x +\
-    \ y] = g[x][y];\n  auto hh = convolution(ff, gg);\n  int N = H, M = W;\n  if (truncate)\
-    \ {\n    assert(H1 == H2 && W1 == W2);\n    N = H1, M = W1;\n  }\n  vc<vc<T>>\
-    \ h(N, vc<T>(M));\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W * x + y];\n  return h;\n\
-    }\n"
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"poly/2d/convolution2d.hpp\"\n\ntemplate <typename T>\nvc<vc<T>> convolution2d(vc<vc<T>>&\
+    \ f, vc<vc<T>>& g, bool truncate = false) {\n  auto shape = [&](vc<vc<T>>& f)\
+    \ -> pi {\n    ll H = len(f);\n    ll W = (H == 0 ? 0 : len(f[0]));\n    return\
+    \ {H, W};\n  };\n  auto [H1, W1] = shape(f);\n  auto [H2, W2] = shape(g);\n  ll\
+    \ H = H1 + H2 - 1;\n  ll W = W1 + W2 - 1;\n\n  vc<T> ff(H1 * W);\n  vc<T> gg(H2\
+    \ * W);\n  FOR(x, H1) FOR(y, W1) ff[W * x + y] = f[x][y];\n  FOR(x, H2) FOR(y,\
+    \ W2) gg[W * x + y] = g[x][y];\n  auto hh = convolution(ff, gg);\n  int N = H,\
+    \ M = W;\n  if (truncate) {\n    assert(H1 == H2 && W1 == W2);\n    N = H1, M\
+    \ = W1;\n  }\n  vc<vc<T>> h(N, vc<T>(M));\n  FOR(x, N) FOR(y, M) h[x][y] = hh[W\
+    \ * x + y];\n  return h;\n}\n"
   code: "\n#include \"poly/convolution.hpp\"\n\ntemplate <typename T>\nvc<vc<T>> convolution2d(vc<vc<T>>&\
     \ f, vc<vc<T>>& g, bool truncate = false) {\n  auto shape = [&](vc<vc<T>>& f)\
     \ -> pi {\n    ll H = len(f);\n    ll W = (H == 0 ? 0 : len(f[0]));\n    return\
@@ -416,7 +416,7 @@ data:
   requiredBy:
   - poly/2d/fps_exp_2d.hpp
   - poly/2d/fps_log_2d.hpp
-  timestamp: '2026-08-29 09:24:19+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/fps_inv_2d.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -19,19 +19,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -389,31 +389,31 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 4 \"poly/poly_taylor_shift.hpp\"\
-    \n\n// f(x) -> f(x+c)\ntemplate <typename mint>\nvc<mint> poly_taylor_shift(vc<mint>\
-    \ f, mint c) {\n  if (c == mint(0)) return f;\n  ll N = len(f);\n  FOR(i, N) f[i]\
-    \ *= fact<mint>(i);\n  auto b = power_table_1<mint>(c, N);\n  FOR(i, N) b[i] *=\
-    \ fact_inv<mint>(i);\n  reverse(all(f));\n  f = convolution(f, b);\n  f.resize(N);\n\
-    \  reverse(all(f));\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\n  return f;\n}\n\
-    #line 2 \"graph/annulus_walk_generating_function.hpp\"\n\n// return: P,Q such\
-    \ that (# of walk s->t of step K)=[x^K]P(x)/Q(x)\n// stay==0: O(N)time\n// stay!=0:\
-    \ O(NlogN)time\ntemplate <typename mint>\npair<vc<mint>, vc<mint>> annulus_walk_generating_function(\n\
-    \    int N, int s, int t, mint stay) {\n  int k = bmod<int>(t - s, N);\n  auto\
-    \ get_D = [&](int m) -> vc<mint> {\n    if (m < 0) return vc<mint>{mint(0)};\n\
-    \    vc<mint> f(m + 1);\n    for (int j = 0; 2 * j <= m; ++j) {\n      f[2 * j]\
-    \ = (j & 1 ? -mint(1) : mint(1)) * C<mint>(m - j, j);\n    }\n    return f;\n\
-    \  };\n\n  vc<mint> P(N), Q(N + 1);\n\n  auto add = [&](vc<mint>& f, const vc<mint>&\
-    \ g, int shift, mint coef) {\n    FOR(i, len(g)) {\n      if (i + shift >= len(f))\
-    \ break;\n      f[i + shift] += coef * g[i];\n    }\n  };\n\n  add(P, get_D(N\
-    \ - k - 1), k, 1);\n  add(P, get_D(k - 1), N - k, 1);\n  add(Q, get_D(N), 0, 1);\n\
-    \  add(Q, get_D(N - 2), 2, -1);\n  Q[N] -= 2;\n  auto conv = [&](vc<mint>& f)\
-    \ -> void {\n    reverse(all(f));\n    f = poly_taylor_shift<mint>(f, -stay);\n\
-    \    reverse(all(f));\n  };\n  if (stay != 0) {\n    conv(P), conv(Q);\n  }\n\
-    \  return {P, Q};\n}\n"
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 4 \"poly/poly_taylor_shift.hpp\"\n\n// f(x) -> f(x+c)\ntemplate <typename\
+    \ mint>\nvc<mint> poly_taylor_shift(vc<mint> f, mint c) {\n  if (c == mint(0))\
+    \ return f;\n  ll N = len(f);\n  FOR(i, N) f[i] *= fact<mint>(i);\n  auto b =\
+    \ power_table_1<mint>(c, N);\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\n  reverse(all(f));\n\
+    \  f = convolution(f, b);\n  f.resize(N);\n  reverse(all(f));\n  FOR(i, N) f[i]\
+    \ *= fact_inv<mint>(i);\n  return f;\n}\n#line 2 \"graph/annulus_walk_generating_function.hpp\"\
+    \n\n// return: P,Q such that (# of walk s->t of step K)=[x^K]P(x)/Q(x)\n// stay==0:\
+    \ O(N)time\n// stay!=0: O(NlogN)time\ntemplate <typename mint>\npair<vc<mint>,\
+    \ vc<mint>> annulus_walk_generating_function(\n    int N, int s, int t, mint stay)\
+    \ {\n  int k = bmod<int>(t - s, N);\n  auto get_D = [&](int m) -> vc<mint> {\n\
+    \    if (m < 0) return vc<mint>{mint(0)};\n    vc<mint> f(m + 1);\n    for (int\
+    \ j = 0; 2 * j <= m; ++j) {\n      f[2 * j] = (j & 1 ? -mint(1) : mint(1)) * C<mint>(m\
+    \ - j, j);\n    }\n    return f;\n  };\n\n  vc<mint> P(N), Q(N + 1);\n\n  auto\
+    \ add = [&](vc<mint>& f, const vc<mint>& g, int shift, mint coef) {\n    FOR(i,\
+    \ len(g)) {\n      if (i + shift >= len(f)) break;\n      f[i + shift] += coef\
+    \ * g[i];\n    }\n  };\n\n  add(P, get_D(N - k - 1), k, 1);\n  add(P, get_D(k\
+    \ - 1), N - k, 1);\n  add(Q, get_D(N), 0, 1);\n  add(Q, get_D(N - 2), 2, -1);\n\
+    \  Q[N] -= 2;\n  auto conv = [&](vc<mint>& f) -> void {\n    reverse(all(f));\n\
+    \    f = poly_taylor_shift<mint>(f, -stay);\n    reverse(all(f));\n  };\n  if\
+    \ (stay != 0) {\n    conv(P), conv(Q);\n  }\n  return {P, Q};\n}\n"
   code: "#include \"poly/poly_taylor_shift.hpp\"\n\n// return: P,Q such that (# of\
     \ walk s->t of step K)=[x^K]P(x)/Q(x)\n// stay==0: O(N)time\n// stay!=0: O(NlogN)time\n\
     template <typename mint>\npair<vc<mint>, vc<mint>> annulus_walk_generating_function(\n\
@@ -445,7 +445,7 @@ data:
   isVerificationFile: false
   path: graph/annulus_walk_generating_function.hpp
   requiredBy: []
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/annulus_walk_generating_function.hpp

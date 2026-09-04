@@ -10,34 +10,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -577,47 +577,47 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 4 \"poly/lagrange_interpolate_iota.hpp\"\
-    \n\n// Input: f(0), ..., f(n-1) and c. Return: f(c)\ntemplate <typename T, typename\
-    \ enable_if<has_mod<T>::value>::type * = nullptr>\nT lagrange_interpolate_iota(vc<T>\
-    \ &f, T c) {\n  int n = len(f);\n  if (int(c.val) < n) return f[c.val];\n  auto\
-    \ a = f;\n  FOR(i, n) {\n    a[i] = a[i] * fact_inv<T>(i) * fact_inv<T>(n - 1\
-    \ - i);\n    if ((n - 1 - i) & 1) a[i] = -a[i];\n  }\n  vc<T> lp(n + 1), rp(n\
-    \ + 1);\n  lp[0] = rp[n] = 1;\n  FOR(i, n) lp[i + 1] = lp[i] * (c - i);\n  FOR_R(i,\
-    \ n) rp[i] = rp[i + 1] * (c - i);\n  T ANS = 0;\n  FOR(i, n) ANS += a[i] * lp[i]\
-    \ * rp[i + 1];\n  return ANS;\n}\n\n// mod \u3058\u3083\u306A\u3044\u5834\u5408\
-    \u3002\u304B\u306A\u308A\u4F4E\u6B21\u306E\u591A\u9805\u5F0F\u3092\u60F3\u5B9A\
-    \u3057\u3066\u3044\u308B\u3002O(n^2)\n// Input: f(0), ..., f(n-1) and c. Return:\
-    \ f(c)\ntemplate <typename T, typename enable_if<!has_mod<T>::value>::type * =\
-    \ nullptr>\nT lagrange_interpolate_iota(vc<T> &f, T c) {\n  const int LIM = 10;\n\
-    \  int n = len(f);\n  assert(n < LIM);\n\n  // (-1)^{i-j} binom(i,j)\n  static\
-    \ vvc<int> C;\n  if (C.empty()) {\n    C.assign(LIM, vc<int>(LIM));\n    C[0][0]\
-    \ = 1;\n    FOR(n, 1, LIM) FOR(k, n + 1) {\n      C[n][k] += C[n - 1][k];\n  \
-    \    if (k) C[n][k] += C[n - 1][k - 1];\n    }\n    FOR(n, LIM) FOR(k, n + 1)\
-    \ if ((n + k) % 2) C[n][k] = -C[n][k];\n  }\n  // f(x) = sum a_i binom(x,i)\n\
-    \  vc<T> a(n);\n  FOR(i, n) FOR(j, i + 1) { a[i] += f[j] * C[i][j]; }\n\n  T res\
-    \ = 0;\n  T b = 1;\n  FOR(i, n) {\n    res += a[i] * b;\n    b = b * (c - i) /\
-    \ (1 + i);\n  }\n  return res;\n}\n\n// Input: f(0), ..., f(n-1) and c, m\n//\
-    \ Return: f(c), f(c+1), ..., f(c+m-1)\n// Complexity: M(n, n + m)\ntemplate <typename\
-    \ mint>\nvc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {\n  if\
-    \ (m <= 60) {\n    vc<mint> ANS(m);\n    FOR(i, m) ANS[i] = lagrange_interpolate_iota(f,\
-    \ c + mint(i));\n    return ANS;\n  }\n  ll n = len(f);\n  auto a = f;\n  FOR(i,\
-    \ n) {\n    a[i] = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1 - i);\n   \
-    \ if ((n - 1 - i) & 1) a[i] = -a[i];\n  }\n  // x = c, c+1, ... \u306B\u5BFE\u3057\
-    \u3066 a0/x + a1/(x-1) + ... \u3092\u6C42\u3081\u3066\u304A\u304F\n  vc<mint>\
-    \ b(n + m - 1);\n  FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));\n\
-    \  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>> swag;\n\
-    \  vc<mint> ANS(m);\n  ll L = 0, R = 0;\n  FOR(i, m) {\n    while (L < i) { swag.pop(),\
-    \ ++L; }\n    while (R - L < n) { swag.push(c + mint((R++) - n + 1)); }\n    auto\
-    \ coef = swag.prod();\n    if (coef == 0) {\n      ANS[i] = f[(c + i).val];\n\
-    \    } else {\n      ANS[i] = a[i + n - 1] * coef;\n    }\n  }\n  return ANS;\n\
-    }\n#line 3 \"poly/prefix_product_of_poly.hpp\"\n\n// A[k-1]...A[0] \u3092\u8A08\
-    \u7B97\u3059\u308B\n// \u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\u53C2\u8003\uFF1A\
-    https://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs\n\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 4 \"poly/lagrange_interpolate_iota.hpp\"\n\n// Input: f(0), ..., f(n-1)\
+    \ and c. Return: f(c)\ntemplate <typename T, typename enable_if<has_mod<T>::value>::type\
+    \ * = nullptr>\nT lagrange_interpolate_iota(vc<T> &f, T c) {\n  int n = len(f);\n\
+    \  if (int(c.val) < n) return f[c.val];\n  auto a = f;\n  FOR(i, n) {\n    a[i]\
+    \ = a[i] * fact_inv<T>(i) * fact_inv<T>(n - 1 - i);\n    if ((n - 1 - i) & 1)\
+    \ a[i] = -a[i];\n  }\n  vc<T> lp(n + 1), rp(n + 1);\n  lp[0] = rp[n] = 1;\n  FOR(i,\
+    \ n) lp[i + 1] = lp[i] * (c - i);\n  FOR_R(i, n) rp[i] = rp[i + 1] * (c - i);\n\
+    \  T ANS = 0;\n  FOR(i, n) ANS += a[i] * lp[i] * rp[i + 1];\n  return ANS;\n}\n\
+    \n// mod \u3058\u3083\u306A\u3044\u5834\u5408\u3002\u304B\u306A\u308A\u4F4E\u6B21\
+    \u306E\u591A\u9805\u5F0F\u3092\u60F3\u5B9A\u3057\u3066\u3044\u308B\u3002O(n^2)\n\
+    // Input: f(0), ..., f(n-1) and c. Return: f(c)\ntemplate <typename T, typename\
+    \ enable_if<!has_mod<T>::value>::type * = nullptr>\nT lagrange_interpolate_iota(vc<T>\
+    \ &f, T c) {\n  const int LIM = 10;\n  int n = len(f);\n  assert(n < LIM);\n\n\
+    \  // (-1)^{i-j} binom(i,j)\n  static vvc<int> C;\n  if (C.empty()) {\n    C.assign(LIM,\
+    \ vc<int>(LIM));\n    C[0][0] = 1;\n    FOR(n, 1, LIM) FOR(k, n + 1) {\n     \
+    \ C[n][k] += C[n - 1][k];\n      if (k) C[n][k] += C[n - 1][k - 1];\n    }\n \
+    \   FOR(n, LIM) FOR(k, n + 1) if ((n + k) % 2) C[n][k] = -C[n][k];\n  }\n  //\
+    \ f(x) = sum a_i binom(x,i)\n  vc<T> a(n);\n  FOR(i, n) FOR(j, i + 1) { a[i] +=\
+    \ f[j] * C[i][j]; }\n\n  T res = 0;\n  T b = 1;\n  FOR(i, n) {\n    res += a[i]\
+    \ * b;\n    b = b * (c - i) / (1 + i);\n  }\n  return res;\n}\n\n// Input: f(0),\
+    \ ..., f(n-1) and c, m\n// Return: f(c), f(c+1), ..., f(c+m-1)\n// Complexity:\
+    \ M(n, n + m)\ntemplate <typename mint>\nvc<mint> lagrange_interpolate_iota(vc<mint>\
+    \ &f, mint c, int m) {\n  if (m <= 60) {\n    vc<mint> ANS(m);\n    FOR(i, m)\
+    \ ANS[i] = lagrange_interpolate_iota(f, c + mint(i));\n    return ANS;\n  }\n\
+    \  ll n = len(f);\n  auto a = f;\n  FOR(i, n) {\n    a[i] = a[i] * fact_inv<mint>(i)\
+    \ * fact_inv<mint>(n - 1 - i);\n    if ((n - 1 - i) & 1) a[i] = -a[i];\n  }\n\
+    \  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066 a0/x + a1/(x-1) + ... \u3092\u6C42\
+    \u3081\u3066\u304A\u304F\n  vc<mint> b(n + m - 1);\n  FOR(i, n + m - 1) b[i] =\
+    \ mint(1) / (c + mint(i - n + 1));\n  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
+    \ swag;\n  vc<mint> ANS(m);\n  ll L = 0, R = 0;\n  FOR(i, m) {\n    while (L <\
+    \ i) { swag.pop(), ++L; }\n    while (R - L < n) { swag.push(c + mint((R++) -\
+    \ n + 1)); }\n    auto coef = swag.prod();\n    if (coef == 0) {\n      ANS[i]\
+    \ = f[(c + i).val];\n    } else {\n      ANS[i] = a[i + n - 1] * coef;\n    }\n\
+    \  }\n  return ANS;\n}\n#line 3 \"poly/prefix_product_of_poly.hpp\"\n\n// A[k-1]...A[0]\
+    \ \u3092\u8A08\u7B97\u3059\u308B\n// \u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\u53C2\
+    \u8003\uFF1Ahttps://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs\n\
     // \u5B9F\u88C5\u53C2\u8003\uFF1Ahttps://nyaannyaan.github.io/library/matrix/polynomial-matrix-prefix-prod.hpp\n\
     template <typename T>\nvc<vc<T>> prefix_product_of_poly_matrix(vc<vc<vc<T>>>&\
     \ A, ll k) {\n  int n = len(A);\n\n  using MAT = vc<vc<T>>;\n  auto shift = [&](vc<MAT>&\
@@ -691,7 +691,7 @@ data:
   - seq/p_recursive.hpp
   - poly/from_log_differentiation.hpp
   - poly/sparse_exp_of_div.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/factorial_998.test.cpp

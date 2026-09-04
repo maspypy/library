@@ -7,31 +7,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -541,53 +541,54 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"poly/fps_inv.hpp\"\n\n\
-    template <typename mint>\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\n  if (f.empty())\
-    \ return {};\n  int N = len(f);\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if\
-    \ (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint> g(N);\n  mint g0 = mint(1) /\
-    \ f[0];\n  g[0] = g0;\n  FOR(n, 1, N) {\n    mint rhs = 0;\n    for (auto&& [k,\
-    \ fk] : dat) {\n      if (k > n) break;\n      rhs -= fk * g[n - k];\n    }\n\
-    \    g[n] = rhs * g0;\n  }\n  return g;\n}\n\ntemplate <typename mint>\nvc<mint>\
-    \ fps_inv_dense_ntt(const vc<mint>& F) {\n  if (F.empty()) return {};\n  vc<mint>\
-    \ G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n  G.reserve(N);\n  while (n\
-    \ < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\n\
-    \    FOR(i, n) g[i] = G[i];\n    ntt(f, false), ntt(g, false);\n    FOR(i, 2 *\
-    \ n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n) f[i] = 0;\n    ntt(f, false);\n\
-    \    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n, min(N, 2 *\
-    \ n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return G;\n}\n\ntemplate <typename mint>\n\
-    vc<mint> fps_inv_dense(const vc<mint>& F) {\n  if (F.empty()) return {};\n  if\
-    \ (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int N = len(F);\n  vc<mint>\
-    \ R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n  while (m < N) {\n    p\
-    \ = convolution(R, R);\n    p.resize(m + m);\n    vc<mint> f = {F.begin(), F.begin()\
-    \ + min(m + m, N)};\n    p = convolution(p, f);\n    R.resize(m + m);\n    FOR(i,\
-    \ m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n  }\n  R.resize(N);\n  return\
-    \ R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const vc<mint>& f) {\n \
-    \ if (f.empty()) return {};\n  static_assert(!is_same_v<mint, modint<2>>, \"use\
-    \ Bit_Array version for mod 2\");\n  assert(f[0] != mint(0));\n  int n = count_terms(f);\n\
-    \  int t = (mint::can_ntt() ? 160 : 820);\n  return (n <= t ? fps_inv_sparse<mint>(f)\
-    \ : fps_inv_dense<mint>(f));\n}\n#line 2 \"seq/famous/partition_number.hpp\"\n\
-    \r\ntemplate <typename T>\r\nvc<T> partition_number(int N) {\r\n  ll M = sqrt(N)\
-    \ + 10;\r\n  vc<T> f(N + 1);\r\n  FOR3(x, -M, M) {\r\n    ll d = x * (3 * x -\
-    \ 1) / 2;\r\n    if (d > N) continue;\r\n    f[d] += (x % 2 == 0 ? 1 : -1);\r\n\
-    \  }\r\n  return fps_inv<T>(f);\r\n}\r\n\r\n// n \u3092 k \u500B\u306B\u5206\u5272\
-    \u3059\u308B\u65B9\u6CD5 P[n][k] \u306E\u30C6\u30FC\u30D6\u30EB\r\ntemplate <typename\
-    \ T>\r\nvvc<T> partition_number_2d(int n_max, int k_max) {\r\n  vv(T, dp, n_max\
-    \ + 1, k_max + 1);\r\n  dp[0][0] = 1;\r\n  FOR3(n, 1, n_max + 1) FOR3(k, 1, k_max\
-    \ + 1) {\r\n    // min = 1\r\n    dp[n][k] += dp[n - 1][k - 1];\r\n    // min\
-    \ >= 2\r\n    if (n >= k) dp[n][k] += dp[n - k][k];\r\n  }\r\n  return dp;\r\n\
-    }\r\n#line 7 \"test/1_mytest/enum_partitions.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  FOR(N, 1, 10) {\n    vc<mint> P = partition_number<mint>(N);\n\
-    \    set<vc<int>> ss;\n    auto f = [&](vc<int>& P) -> void {\n      assert(SUM<int>(P)\
-    \ == N);\n      assert(!ss.count(P));\n      ss.insert(P);\n    };\n    enumerate_partition<decltype(f)>(N,\
-    \ f);\n    assert(P[N] == len(ss));\n  }\n  FOR(N, 1, 10) {\n    FOR(LIM_len,\
-    \ 10) FOR(LIM_val, 10) {\n      int a = 0;\n      auto f = [&](vc<int>& P) ->\
-    \ void {\n        if (len(P) <= LIM_len && MAX(P) <= LIM_val) ++a;\n      };\n\
-    \      int b = 0;\n      auto g = [&](vc<int>& P) -> void {\n        assert(len(P)\
-    \ <= LIM_len && MAX(P) <= LIM_val);\n        ++b;\n      };\n      enumerate_partition<decltype(f)>(N,\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"poly/fps_inv.hpp\"\n\ntemplate <typename mint>\nvc<mint> fps_inv_sparse(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  int N = len(f);\n  vc<pair<int,\
+    \ mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint>\
+    \ g(N);\n  mint g0 = mint(1) / f[0];\n  g[0] = g0;\n  FOR(n, 1, N) {\n    mint\
+    \ rhs = 0;\n    for (auto&& [k, fk] : dat) {\n      if (k > n) break;\n      rhs\
+    \ -= fk * g[n - k];\n    }\n    g[n] = rhs * g0;\n  }\n  return g;\n}\n\ntemplate\
+    \ <typename mint>\nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\n  if (F.empty())\
+    \ return {};\n  vc<mint> G = {mint(1) / F[0]};\n  ll N = len(F), n = 1;\n  G.reserve(N);\n\
+    \  while (n < N) {\n    vc<mint> f(2 * n), g(2 * n);\n    FOR(i, min(N, 2 * n))\
+    \ f[i] = F[i];\n    FOR(i, n) g[i] = G[i];\n    ntt(f, false), ntt(g, false);\n\
+    \    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i, n) f[i] = 0;\n\
+    \    ntt(f, false);\n    FOR(i, 2 * n) f[i] *= g[i];\n    ntt(f, true);\n    FOR(i,\
+    \ n, min(N, 2 * n)) G.eb(-f[i]);\n    n *= 2;\n  }\n  return G;\n}\n\ntemplate\
+    \ <typename mint>\nvc<mint> fps_inv_dense(const vc<mint>& F) {\n  if (F.empty())\
+    \ return {};\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\n  const int\
+    \ N = len(F);\n  vc<mint> R = {mint(1) / F[0]};\n  vc<mint> p;\n  int m = 1;\n\
+    \  while (m < N) {\n    p = convolution(R, R);\n    p.resize(m + m);\n    vc<mint>\
+    \ f = {F.begin(), F.begin() + min(m + m, N)};\n    p = convolution(p, f);\n  \
+    \  R.resize(m + m);\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\n    m += m;\n\
+    \  }\n  R.resize(N);\n  return R;\n}\n\ntemplate <typename mint>\nvc<mint> fps_inv(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  // static_assert(!is_same_v<mint,\
+    \ modint<2>>, \"use Bit_Array version for mod\n  // 2\");\n  assert(f[0] != mint(0));\n\
+    \  int n = count_terms(f);\n  int t = (mint::can_ntt() ? 160 : 820);\n  return\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\n}\n#line 2 \"\
+    seq/famous/partition_number.hpp\"\n\r\ntemplate <typename T>\r\nvc<T> partition_number(int\
+    \ N) {\r\n  ll M = sqrt(N) + 10;\r\n  vc<T> f(N + 1);\r\n  FOR3(x, -M, M) {\r\n\
+    \    ll d = x * (3 * x - 1) / 2;\r\n    if (d > N) continue;\r\n    f[d] += (x\
+    \ % 2 == 0 ? 1 : -1);\r\n  }\r\n  return fps_inv<T>(f);\r\n}\r\n\r\n// n \u3092\
+    \ k \u500B\u306B\u5206\u5272\u3059\u308B\u65B9\u6CD5 P[n][k] \u306E\u30C6\u30FC\
+    \u30D6\u30EB\r\ntemplate <typename T>\r\nvvc<T> partition_number_2d(int n_max,\
+    \ int k_max) {\r\n  vv(T, dp, n_max + 1, k_max + 1);\r\n  dp[0][0] = 1;\r\n  FOR3(n,\
+    \ 1, n_max + 1) FOR3(k, 1, k_max + 1) {\r\n    // min = 1\r\n    dp[n][k] += dp[n\
+    \ - 1][k - 1];\r\n    // min >= 2\r\n    if (n >= k) dp[n][k] += dp[n - k][k];\r\
+    \n  }\r\n  return dp;\r\n}\r\n#line 7 \"test/1_mytest/enum_partitions.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(N, 1, 10) {\n    vc<mint>\
+    \ P = partition_number<mint>(N);\n    set<vc<int>> ss;\n    auto f = [&](vc<int>&\
+    \ P) -> void {\n      assert(SUM<int>(P) == N);\n      assert(!ss.count(P));\n\
+    \      ss.insert(P);\n    };\n    enumerate_partition<decltype(f)>(N, f);\n  \
+    \  assert(P[N] == len(ss));\n  }\n  FOR(N, 1, 10) {\n    FOR(LIM_len, 10) FOR(LIM_val,\
+    \ 10) {\n      int a = 0;\n      auto f = [&](vc<int>& P) -> void {\n        if\
+    \ (len(P) <= LIM_len && MAX(P) <= LIM_val) ++a;\n      };\n      int b = 0;\n\
+    \      auto g = [&](vc<int>& P) -> void {\n        assert(len(P) <= LIM_len &&\
+    \ MAX(P) <= LIM_val);\n        ++b;\n      };\n      enumerate_partition<decltype(f)>(N,\
     \ f);\n      enumerate_partition<decltype(g)>(N, g, LIM_len, LIM_val);\n     \
     \ assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
     \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
@@ -627,7 +628,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enum_partitions.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enum_partitions.test.cpp

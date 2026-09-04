@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -19,19 +19,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -396,22 +396,22 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"seq/famous/eulerian_number.hpp\"\
-    \n\n// Eulerian number, https://oeis.org/A123125\n// sum n^dx^n = A_d(x) / (1-x)^{d+1}\
-    \ \u3068\u306A\u308B d \u6B21\u591A\u9805\u5F0F\u306E\u4FC2\u6570\u5217\n// ascent\
-    \ \u306E\u500B\u6570\u3054\u3068\u306B\u9806\u5217\u3092\u6570\u3048\u305F\u3082\
-    \u306E\n// 1/n!, (1-y)/(1-y*exp((1-y)x))\ntemplate <typename mint>\nvvc<mint>\
-    \ eulerian_number_2d(int N, int K) {\n  vv(mint, A, N + 1, K + 1);\n  A[0][0]\
-    \ = mint(1);\n  FOR(d, N) FOR(k, 1, K + 1) {\n    A[d + 1][k] = mint(k) * A[d][k]\
-    \ + mint(d - k + 2) * A[d][k - 1];\n  }\n  return A;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> eulerian_number_n(int n) {\n  vc<mint> f = power_table_2<mint>(n,\
-    \ n);\n  vc<mint> g(n + 1);\n  FOR(k, n + 1) g[k] = C<mint>(n + 1, k);\n  FOR(k,\
-    \ 1, n + 1, 2) g[k] = -g[k];\n  f = convolution(f, g);\n  f.resize(n + 1);\n \
-    \ return f;\n}\n"
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"seq/famous/eulerian_number.hpp\"\n\n// Eulerian number, https://oeis.org/A123125\n\
+    // sum n^dx^n = A_d(x) / (1-x)^{d+1} \u3068\u306A\u308B d \u6B21\u591A\u9805\u5F0F\
+    \u306E\u4FC2\u6570\u5217\n// ascent \u306E\u500B\u6570\u3054\u3068\u306B\u9806\
+    \u5217\u3092\u6570\u3048\u305F\u3082\u306E\n// 1/n!, (1-y)/(1-y*exp((1-y)x))\n\
+    template <typename mint>\nvvc<mint> eulerian_number_2d(int N, int K) {\n  vv(mint,\
+    \ A, N + 1, K + 1);\n  A[0][0] = mint(1);\n  FOR(d, N) FOR(k, 1, K + 1) {\n  \
+    \  A[d + 1][k] = mint(k) * A[d][k] + mint(d - k + 2) * A[d][k - 1];\n  }\n  return\
+    \ A;\n}\n\ntemplate <typename mint>\nvc<mint> eulerian_number_n(int n) {\n  vc<mint>\
+    \ f = power_table_2<mint>(n, n);\n  vc<mint> g(n + 1);\n  FOR(k, n + 1) g[k] =\
+    \ C<mint>(n + 1, k);\n  FOR(k, 1, n + 1, 2) g[k] = -g[k];\n  f = convolution(f,\
+    \ g);\n  f.resize(n + 1);\n  return f;\n}\n"
   code: "#include \"mod/power_table.hpp\"\n#include \"poly/convolution.hpp\"\n\n//\
     \ Eulerian number, https://oeis.org/A123125\n// sum n^dx^n = A_d(x) / (1-x)^{d+1}\
     \ \u3068\u306A\u308B d \u6B21\u591A\u9805\u5F0F\u306E\u4FC2\u6570\u5217\n// ascent\
@@ -439,7 +439,7 @@ data:
   isVerificationFile: false
   path: seq/famous/eulerian_number.hpp
   requiredBy: []
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/eulerian_number.test.cpp

@@ -37,10 +37,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -1195,7 +1195,7 @@ data:
     \n  int M = len(G.edges);\r\n  vc<int> I(M);\r\n  FOR(i, M) I[i] = i;\r\n  sort(all(I),\
     \ [&](auto& a, auto& b) -> bool {\r\n    return (G.edges[a].cost) < (G.edges[b].cost);\r\
     \n  });\r\n\r\n  vc<bool> in_mst(M);\r\n  UnionFind uf(N);\r\n  T mst_cost = T(0);\r\
-    \n  GT MST(N);\r\n  for (auto& i: I) {\r\n    auto& e = G.edges[i];\r\n    if\
+    \n  GT MST(N);\r\n  for (auto& i : I) {\r\n    auto& e = G.edges[i];\r\n    if\
     \ (uf.merge(e.frm, e.to)) {\r\n      in_mst[i] = 1;\r\n      mst_cost += e.cost;\r\
     \n    }\r\n  }\r\n  FOR(i, M) if (in_mst[i]) {\r\n    auto& e = G.edges[i];\r\n\
     \    MST.add(e.frm, e.to, e.cost);\r\n  }\r\n  MST.build();\r\n  return {mst_cost,\
@@ -1204,7 +1204,7 @@ data:
     \u3054\u3068\u306B\u3001\u4ED6\u306E\u8FBA\u3092\u4FDD\u3063\u305F\u3068\u304D\
     \u306B MST \u8FBA\u306B\u306A\u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename\
     \ T, typename GT>\r\ntuple<T, vc<bool>, GT, vc<T>> minimum_spanning_tree_cycle_data(GT&\
-    \ G) {\r\n  int M = len(G.edges);\r\n  auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);\r\
+    \ G) {\r\n  int M = len(G.edges);\r\n  auto [mst_cost, in_mst, MST] = minimum_spanning_tree<T>(G);\r\
     \n  Tree<GT> tree(MST);\r\n  vc<T> dat;\r\n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\
     \n  Tree_Monoid<decltype(tree), Monoid_Max<T>, 1> TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree),\
     \ Monoid_Min<T>, 1> TM2(tree);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n \
@@ -1239,7 +1239,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-05 04:01:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_2_A.test.cpp

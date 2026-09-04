@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -485,29 +485,29 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 4 \"poly/poly_taylor_shift.hpp\"\
-    \n\n// f(x) -> f(x+c)\ntemplate <typename mint>\nvc<mint> poly_taylor_shift(vc<mint>\
-    \ f, mint c) {\n  if (c == mint(0)) return f;\n  ll N = len(f);\n  FOR(i, N) f[i]\
-    \ *= fact<mint>(i);\n  auto b = power_table_1<mint>(c, N);\n  FOR(i, N) b[i] *=\
-    \ fact_inv<mint>(i);\n  reverse(all(f));\n  f = convolution(f, b);\n  f.resize(N);\n\
-    \  reverse(all(f));\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\n  return f;\n}\n\
-    #line 3 \"poly/composition_f_x_plus_1x.hpp\"\n\n// x^nf(x+1/x), O(logN) time\n\
-    // 2^17: 0.1sec, 2^20: 0.8 sec\ntemplate <typename mint>\nvc<mint> composition_f_x_plus_1x(vc<mint>\
-    \ f) {\n  if (f.empty()) return {};\n  int n = len(f) - 1;\n  f = poly_taylor_shift<mint>(f,\
-    \ 2);\n  reverse(all(f));\n  f = poly_taylor_shift(f, -inv<mint>(4));\n  f.resize(2\
-    \ * n + 1);\n  FOR_R(i, n + 1) f[2 * i] = f[i];\n  FOR(i, n) f[2 * i + 1] = 0;\n\
-    \  f = poly_taylor_shift(f, inv<mint>(2));\n  reverse(all(f));\n  f = poly_taylor_shift<mint>(f,\
-    \ -1);\n  return f;\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n                 \
-    \     chrono::high_resolution_clock::now().time_since_epoch())\n             \
-    \             .count()) *\n                  10150724397891781847ULL;\n  x_ ^=\
-    \ x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim > 0);\n\
-    \  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n  return\
-    \ l + RNG_64() % (r - l);\n}\n#line 6 \"test/1_mytest/composition_f_x_plus_1x.test.cpp\"\
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 4 \"poly/poly_taylor_shift.hpp\"\n\n// f(x) -> f(x+c)\ntemplate <typename\
+    \ mint>\nvc<mint> poly_taylor_shift(vc<mint> f, mint c) {\n  if (c == mint(0))\
+    \ return f;\n  ll N = len(f);\n  FOR(i, N) f[i] *= fact<mint>(i);\n  auto b =\
+    \ power_table_1<mint>(c, N);\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\n  reverse(all(f));\n\
+    \  f = convolution(f, b);\n  f.resize(N);\n  reverse(all(f));\n  FOR(i, N) f[i]\
+    \ *= fact_inv<mint>(i);\n  return f;\n}\n#line 3 \"poly/composition_f_x_plus_1x.hpp\"\
+    \n\n// x^nf(x+1/x), O(logN) time\n// 2^17: 0.1sec, 2^20: 0.8 sec\ntemplate <typename\
+    \ mint>\nvc<mint> composition_f_x_plus_1x(vc<mint> f) {\n  if (f.empty()) return\
+    \ {};\n  int n = len(f) - 1;\n  f = poly_taylor_shift<mint>(f, 2);\n  reverse(all(f));\n\
+    \  f = poly_taylor_shift(f, -inv<mint>(4));\n  f.resize(2 * n + 1);\n  FOR_R(i,\
+    \ n + 1) f[2 * i] = f[i];\n  FOR(i, n) f[2 * i + 1] = 0;\n  f = poly_taylor_shift(f,\
+    \ inv<mint>(2));\n  reverse(all(f));\n  f = poly_taylor_shift<mint>(f, -1);\n\
+    \  return f;\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_\
+    \ = u64(chrono::duration_cast<chrono::nanoseconds>(\n                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 6 \"test/1_mytest/composition_f_x_plus_1x.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(N, 0, 1000) {\n    vc<mint>\
     \ f(N + 1);\n    FOR(i, N + 1) f[i] = RNG(0, mint::get_mod());\n    vc<mint> F(2\
     \ * N + 1);\n    FOR(i, N + 1) {\n      FOR(j, i + 1) { F[N + j - (i - j)] +=\
@@ -541,7 +541,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/composition_f_x_plus_1x.test.cpp
   requiredBy: []
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/composition_f_x_plus_1x.test.cpp

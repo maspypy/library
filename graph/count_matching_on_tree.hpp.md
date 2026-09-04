@@ -13,31 +13,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -636,37 +636,38 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"graph/count_matching_on_tree.hpp\"\
-    \n\n// ans[k] := #(matching on G, size=k)\n// \u96A3\u63A5\u884C\u5217\u306E\u7279\
-    \u6027\u591A\u9805\u5F0F\u3092\u6C42\u3081\u308B\u3053\u3068\u3068\u7B49\u4FA1\
-    \ntemplate <typename mint>\nvc<mint> count_matching_on_tree(Graph<int, 0>& G)\
-    \ {\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n  Static_TopTree<decltype(tree)>\
-    \ STT(tree);\n\n  using Data = array<array<poly, 2>, 2>;\n  auto add = [&](poly&\
-    \ f, poly& g, int s) -> void {\n    if (g.empty()) return;\n    if (len(f) < len(g)\
-    \ + s) f.resize(len(g) + s);\n    FOR(i, len(g)) f[s + i] += g[i];\n  };\n  auto\
-    \ from_vertex = [&](int v) -> Data {\n    Data X;\n    X[0][0] = poly{mint(1)};\n\
-    \    return X;\n  };\n  auto add_vertex = [&](Data& X, int v) -> Data { return\
-    \ X; };\n  auto add_edge = [&](Data& X, int u, int v) -> Data {\n    Data Y;\n\
-    \    FOR(a, 2) {\n      add(Y[0][0], X[a][0], 0);\n      add(Y[1][1], X[a][0],\
-    \ 1);\n      add(Y[0][0], X[a][1], 0);\n    }\n    return Y;\n  };\n  auto merge_light\
-    \ = [&](Data& X, Data& Y) -> Data {\n    poly &X0 = X[0][0], &X1 = X[1][1];\n\
-    \    poly &Y0 = Y[0][0], &Y1 = Y[1][1];\n    poly A = convolution(X0, Y0);\n \
-    \   poly B = convolution(X0, Y1);\n    poly C = convolution(X1, Y0);\n    Data\
-    \ Z;\n    add(Z[0][0], A, 0), add(Z[1][1], B, 0), add(Z[1][1], C, 0);\n    return\
-    \ Z;\n  };\n  auto merge_heavy\n      = [&](Data& X, Data& Y, int va, int vb,\
-    \ int vc, int vd) -> Data {\n    Data Z;\n    FOR(a, 2) FOR(d, 2) {\n      poly\
-    \ f0 = X[a][0], &f1 = X[a][1];\n      poly g0 = Y[0][d], &g1 = Y[1][d];\n    \
-    \  // \u8FBA\u3092\u4F7F\u3046\n      poly f = convolution(f0, g0);\n      int\
-    \ x = (va != vb ? a : 1);\n      int y = (vc != vd ? d : 1);\n      add(Z[x][y],\
-    \ f, 1);\n      // \u8FBA\u3092\u4F7F\u308F\u306A\u3044\n      add(f0, f1, 0),\
-    \ add(g0, g1, 0);\n      f = convolution(f0, g0);\n      add(Z[a][d], f, 0);\n\
-    \    }\n    return Z;\n  };\n\n  Data X = STT.tree_dp<Data>(from_vertex, add_vertex,\
-    \ add_edge, merge_light,\n                             merge_heavy);\n  vc<mint>\
-    \ ANS;\n  FOR(a, 2) FOR(b, 2) { add(ANS, X[a][b], 0); }\n  return ANS;\n}\n"
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"graph/count_matching_on_tree.hpp\"\n\n// ans[k] := #(matching on G,\
+    \ size=k)\n// \u96A3\u63A5\u884C\u5217\u306E\u7279\u6027\u591A\u9805\u5F0F\u3092\
+    \u6C42\u3081\u308B\u3053\u3068\u3068\u7B49\u4FA1\ntemplate <typename mint>\nvc<mint>\
+    \ count_matching_on_tree(Graph<int, 0>& G) {\n  using poly = vc<mint>;\n  Tree<Graph<int,\
+    \ 0>> tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n\n  using Data =\
+    \ array<array<poly, 2>, 2>;\n  auto add = [&](poly& f, poly& g, int s) -> void\
+    \ {\n    if (g.empty()) return;\n    if (len(f) < len(g) + s) f.resize(len(g)\
+    \ + s);\n    FOR(i, len(g)) f[s + i] += g[i];\n  };\n  auto from_vertex = [&](int\
+    \ v) -> Data {\n    Data X;\n    X[0][0] = poly{mint(1)};\n    return X;\n  };\n\
+    \  auto add_vertex = [&](Data& X, int v) -> Data { return X; };\n  auto add_edge\
+    \ = [&](Data& X, int u, int v) -> Data {\n    Data Y;\n    FOR(a, 2) {\n     \
+    \ add(Y[0][0], X[a][0], 0);\n      add(Y[1][1], X[a][0], 1);\n      add(Y[0][0],\
+    \ X[a][1], 0);\n    }\n    return Y;\n  };\n  auto merge_light = [&](Data& X,\
+    \ Data& Y) -> Data {\n    poly &X0 = X[0][0], &X1 = X[1][1];\n    poly &Y0 = Y[0][0],\
+    \ &Y1 = Y[1][1];\n    poly A = convolution(X0, Y0);\n    poly B = convolution(X0,\
+    \ Y1);\n    poly C = convolution(X1, Y0);\n    Data Z;\n    add(Z[0][0], A, 0),\
+    \ add(Z[1][1], B, 0), add(Z[1][1], C, 0);\n    return Z;\n  };\n  auto merge_heavy\n\
+    \      = [&](Data& X, Data& Y, int va, int vb, int vc, int vd) -> Data {\n   \
+    \ Data Z;\n    FOR(a, 2) FOR(d, 2) {\n      poly f0 = X[a][0], &f1 = X[a][1];\n\
+    \      poly g0 = Y[0][d], &g1 = Y[1][d];\n      // \u8FBA\u3092\u4F7F\u3046\n\
+    \      poly f = convolution(f0, g0);\n      int x = (va != vb ? a : 1);\n    \
+    \  int y = (vc != vd ? d : 1);\n      add(Z[x][y], f, 1);\n      // \u8FBA\u3092\
+    \u4F7F\u308F\u306A\u3044\n      add(f0, f1, 0), add(g0, g1, 0);\n      f = convolution(f0,\
+    \ g0);\n      add(Z[a][d], f, 0);\n    }\n    return Z;\n  };\n\n  Data X = STT.tree_dp<Data>(from_vertex,\
+    \ add_vertex, add_edge, merge_light,\n                             merge_heavy);\n\
+    \  vc<mint> ANS;\n  FOR(a, 2) FOR(b, 2) { add(ANS, X[a][b], 0); }\n  return ANS;\n\
+    }\n"
   code: "#include \"graph/ds/static_toptree.hpp\"\n#include \"poly/convolution.hpp\"\
     \n\n// ans[k] := #(matching on G, size=k)\n// \u96A3\u63A5\u884C\u5217\u306E\u7279\
     \u6027\u591A\u9805\u5F0F\u3092\u6C42\u3081\u308B\u3053\u3068\u3068\u7B49\u4FA1\
@@ -711,7 +712,7 @@ data:
   isVerificationFile: false
   path: graph/count_matching_on_tree.hpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count_matching_on_tree.hpp

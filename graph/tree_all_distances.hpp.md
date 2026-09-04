@@ -10,31 +10,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -554,21 +554,21 @@ data:
     \ b1);\n  auto c2 = convolution_ntt<mint2>(a2, b2);\n\n  FOR(i, n + m - 1) { res[i]\
     \ += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\n  return res;\n}\n\ntemplate\
     \ <typename mint>\nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b)\
-    \ {\n  static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
-    \ mod 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  if (mint::can_ntt())\
-    \ {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\n    return\
-    \ convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\n  return convolution_garner(a, b);\n}\n#line 3 \"graph/tree_all_distances.hpp\"\
-    \n\r\n// sum of result array = binom(N,2)\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT&\
-    \ G) {\r\n  assert(G.is_prepared());\r\n  int N = G.N;\r\n  vi ANS(N);\r\n  auto\
-    \ f = [&](vc<int>& par, vc<int>& V, int L1, int R1, int L2, int R2) -> void {\r\
-    \n    int N = len(par);\r\n    vc<int> dist(N);\r\n    FOR(i, 1, N) { dist[i]\
-    \ = 1 + dist[par[i]]; }\r\n    int mx = MAX(dist);\r\n    vi f(1 + mx), g(1 +\
-    \ mx);\r\n    FOR(i, L1, R1) f[dist[i]]++;\r\n    FOR(i, L2, R2) g[dist[i]]++;\r\
-    \n    while (len(f) && f.back() == 0) POP(f);\r\n    while (len(g) && g.back()\
-    \ == 0) POP(g);\r\n    f = convolution(f, g);\r\n    FOR(i, len(f)) ANS[i] +=\
-    \ f[i];\r\n  };\r\n  centroid_decomposition<1>(G, f);\r\n  ANS[1] = N - 1;\r\n\
-    \  return ANS;\r\n}\r\n"
+    \ {\n  // static_assert(!is_same_v<mint, modint<2>>, \"use Bit_Array version for\
+    \ mod\n  // 2\");\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
+    \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
+    #line 3 \"graph/tree_all_distances.hpp\"\n\r\n// sum of result array = binom(N,2)\r\
+    \ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\n  assert(G.is_prepared());\r\
+    \n  int N = G.N;\r\n  vi ANS(N);\r\n  auto f = [&](vc<int>& par, vc<int>& V, int\
+    \ L1, int R1, int L2, int R2) -> void {\r\n    int N = len(par);\r\n    vc<int>\
+    \ dist(N);\r\n    FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }\r\n    int mx =\
+    \ MAX(dist);\r\n    vi f(1 + mx), g(1 + mx);\r\n    FOR(i, L1, R1) f[dist[i]]++;\r\
+    \n    FOR(i, L2, R2) g[dist[i]]++;\r\n    while (len(f) && f.back() == 0) POP(f);\r\
+    \n    while (len(g) && g.back() == 0) POP(g);\r\n    f = convolution(f, g);\r\n\
+    \    FOR(i, len(f)) ANS[i] += f[i];\r\n  };\r\n  centroid_decomposition<1>(G,\
+    \ f);\r\n  ANS[1] = N - 1;\r\n  return ANS;\r\n}\r\n"
   code: "#include \"graph/centroid_decomposition.hpp\"\r\n#include \"poly/convolution.hpp\"\
     \r\n\r\n// sum of result array = binom(N,2)\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT&\
     \ G) {\r\n  assert(G.is_prepared());\r\n  int N = G.N;\r\n  vi ANS(N);\r\n  auto\
@@ -596,7 +596,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-05 04:29:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
