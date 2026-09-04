@@ -112,11 +112,15 @@ struct FastSet {
     return -1;
   }
 
-  bool any(int l, int r) { return next(l) < r; }
+  bool any(int l, int r) {
+    assert(0 <= l && l <= r && r <= n);
+    return next(l) < r;
+  }
 
   // [l, r)
   template <typename F>
   void enumerate(int l, int r, F f) {
+    assert(0 <= l && l <= r && r <= n);
     for (int x = next(l); x < r; x = next(x + 1)) f(x);
   }
 

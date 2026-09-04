@@ -27,7 +27,7 @@ ll rho(ll n, ll c) {
 }
 
 ll find_prime_factor(ll n) {
-  assert(n > 1);
+  assert(1 < n && n < (1LL << 62));
   if (n % 2 == 0) return 2;
   if (is_prime(n)) return n;
   FOR(100) {
@@ -50,7 +50,7 @@ ll find_prime_factor(ll n) {
 
 // ソートしてくれる
 vc<pair<ll, int>> factor(ll n) {
-  assert(n >= 1);
+  assert(1 <= n && n < (1LL << 62));
   vc<pair<ll, int>> pf;
   FOR(p, 2, 100) {
     if (p * p > n) break;

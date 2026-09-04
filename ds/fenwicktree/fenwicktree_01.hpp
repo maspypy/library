@@ -28,7 +28,11 @@ struct FenwickTree_01 {
     N = m;
     n = ceil<int>(N + 1, 64);
     dat.assign(n, u64(0));
-    FOR(i, N) { dat[i / 64] |= u64(f(i)) << (i % 64); }
+    FOR(i, N) {
+      u64 x = f(i);
+      assert(x == 0 || x == 1);
+      dat[i / 64] |= x << (i % 64);
+    }
     bit.build(n, [&](int i) -> int { return popcnt(dat[i]); });
   }
 
@@ -40,6 +44,7 @@ struct FenwickTree_01 {
     return ans;
   }
   int sum(int L, int R) {
+    assert(0 <= L && L <= R && R <= N);
     if (L == 0) return prefix_sum(R);
     int ans = 0;
     ans -= popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));
@@ -57,24 +62,20 @@ struct FenwickTree_01 {
     assert(0 <= k && k < N);
     if (x == 1) {
       assert(sum(k, k + 1) == 0);
-      add(k);
+      dat[k / 64] |= u64(1) << (k % 64);
+      bit.add(k / 64, 1);
     }
     elif (x == -1) {
       assert(sum(k, k + 1) == 1);
-      remove(k);
+      dat[k / 64] &= ~(u64(1) << (k % 64));
+      bit.add(k / 64, -1);
     }
     else assert(0);
   }
   void multiply(int k, int x) { add(k, x); }
 
-  void add(int k) {
-    dat[k / 64] |= u64(1) << (k % 64);
-    bit.add(k / 64, 1);
-  }
-  void remove(int k) {
-    dat[k / 64] &= ~(u64(1) << (k % 64));
-    bit.add(k / 64, -1);
-  }
+  void add(int k) { add(k, 1); }
+  void remove(int k) { add(k, -1); }
 
   int kth(int k, int L = 0) {
     if (k >= sum_all()) return N;
@@ -91,8 +92,8 @@ struct FenwickTree_01 {
     u64 x = dat[idx];
     int p = popcnt(x);
     if (p <= k) return N;
-    k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },
-                      0, 64, 0);
+    k = binary_search(
+        [&](int n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);
     return 64 * idx + k;
   }
 

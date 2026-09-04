@@ -64,7 +64,7 @@ tuple<vc<T>, vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {
   FOR(k, len(vs)) {
     int v = vs[k];
     dist[v] = 0;
-    root[v] = k;
+    root[v] = v;
     que.emplace(T(0), v);
   }
 

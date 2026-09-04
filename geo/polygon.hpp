@@ -75,14 +75,16 @@ struct Polygon {
     int n = len(point);
     FOR(i, n) {
       Segment<T> S2(point[i], point[(i + 1) % n]);
-      if (count_cross(S, S2, false) == 1) { return {1, 1}; }
+      if (count_cross(S, S2, false) == 1) {
+        return {1, 1};
+      }
     }
     bool in = 0, out = 0;
     if (side(L) == 1 || side(R) == 1) in = 1;
     if (side(L) == -1 || side(R) == -1) out = 1;
     FOR(i, n) {
       if (!S.contain(point[i])) continue;
-      for (auto& p: {L, R}) {
+      for (auto& p : {L, R}) {
         int k = side_at(i, p);
         if (k == 1) in = 1;
         if (k == -1) out = 1;
@@ -91,13 +93,82 @@ struct Polygon {
     return {in, out};
   }
 
-private:
+  // polygon と line の共通部分を line 上の区間列として返す。
+  // return される Segment：退化ケースもある
+  // https://codeforces.com/contest/598/problem/F
+  template <typename REAL>
+  vc<Segment<REAL>> cross_line(Line<T> L, bool allow_perimeter) {
+    static_assert(is_integral_v<T>);
+    using RP = Point<REAL>;
+    int N = len(point);
+    vc<int> side(N);
+    auto sgn = [&](T x) -> int { return (x > 0 ? 1 : x < 0 ? -1 : 0); };
+
+    FOR(i, N) side[i] = sgn(L.eval(point[i]));
+    vc<pair<RP, int>> event;
+
+    FOR(i, N) {
+      int j = (i + 1) % N;
+
+      if (side[i] == 0) {
+        int k = (i + N - 1) % N;
+        int c = side[k] - side[j];
+        event.eb(RP(point[i]), c);
+      }
+
+      if (side[i] * side[j] < 0) {
+        RP p = cross_point<REAL>(L, Line<T>(point[i], point[j]));
+        int c = side[i] - side[j];
+        event.eb(p, c);
+      }
+    }
+
+    if (L.b != 0) {
+      sort(all(event), [&](auto& x, auto& y) {
+        if (x.fi.x != y.fi.x) return x.fi.x < y.fi.x;
+        return x.fi.y < y.fi.y;
+      });
+    } else {
+      sort(all(event), [&](auto& x, auto& y) {
+        if (x.fi.y != y.fi.y) return x.fi.y < y.fi.y;
+        return x.fi.x < y.fi.x;
+      });
+    }
+
+    vc<Segment<REAL>> ANS;
+    int in = 0;
+
+    if (allow_perimeter) {
+      int l = 0;
+      FOR(i, len(event)) {
+        in += event[i].se;
+        if (i + 1 == len(event) || in == 0) {
+          ANS.eb(event[l].fi, event[i].fi);
+          l = i + 1;
+        }
+      }
+    } else {
+      FOR(i, len(event)) {
+        in += event[i].se;
+        if (i + 1 < len(event) && abs(in) == 2) {
+          ANS.eb(event[i].fi, event[i + 1].fi);
+        }
+      }
+    }
+
+    assert(in == 0);
+    return ANS;
+  }
+
+ private:
   void build() {
     a = 0;
     FOR(i, len(point)) {
       int j = (i + 1 == len(point) ? 0 : i + 1);
       a += point[i].det(point[j]);
     }
-    assert(a > 0);
+    if (a < 0) {
+      reverse(all(point));
+    }
   }
 };
