@@ -21,7 +21,7 @@ tuple<T, vc<bool>, GT> minimum_spanning_tree(GT& G) {
   UnionFind uf(N);
   T mst_cost = T(0);
   GT MST(N);
-  for (auto& i: I) {
+  for (auto& i : I) {
     auto& e = G.edges[i];
     if (uf.merge(e.frm, e.to)) {
       in_mst[i] = 1;
@@ -42,7 +42,7 @@ tuple<T, vc<bool>, GT> minimum_spanning_tree(GT& G) {
 template <typename T, typename GT>
 tuple<T, vc<bool>, GT, vc<T>> minimum_spanning_tree_cycle_data(GT& G) {
   int M = len(G.edges);
-  auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);
+  auto [mst_cost, in_mst, MST] = minimum_spanning_tree<T>(G);
   Tree<GT> tree(MST);
   vc<T> dat;
   FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);
