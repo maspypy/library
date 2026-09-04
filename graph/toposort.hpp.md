@@ -195,15 +195,16 @@ data:
     \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
     \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
     \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
-    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
-    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
-    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
-    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
-    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
-    };\n#line 3 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u306E\
-    \ toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\nvc<int> toposort(GT& G)\
-    \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  const int\
-    \ N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    return next(l) < r;\n\
+    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F\
+    \ f) {\n    assert(0 <= l && l <= r && r <= n);\n    for (int x = next(l); x <\
+    \ r; x = next(x + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int\
+    \ i) -> void { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n\
+    \    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return\
+    \ s;\n  }\n};\n#line 3 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\
+    \u306E toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\nvc<int> toposort(GT&\
+    \ G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  const\
+    \ int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
     \  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while (1) {\n\
     \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
     \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
@@ -249,7 +250,7 @@ data:
   path: graph/toposort.hpp
   requiredBy:
   - graph/all_cycle_common_vertices.hpp
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/all_cycle_common_vertex.test.cpp

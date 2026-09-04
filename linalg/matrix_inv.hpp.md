@@ -65,16 +65,16 @@ data:
   path: linalg/matrix_inv.hpp
   requiredBy:
   - linalg/adjugate_matrix.hpp
-  - linalg/matrix_lowrank_update.hpp
-  - linalg/det_A_plus_xB.hpp
   - linalg/diagonalize_triangular_matrix.hpp
   - linalg/frobenius.hpp
+  - linalg/det_A_plus_xB.hpp
+  - linalg/matrix_lowrank_update.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
-  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1774.test.cpp

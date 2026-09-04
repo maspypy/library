@@ -180,35 +180,35 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/disjoint_sparse_table.hpp
   requiredBy:
-  - graph/ds/static_tree_monoid.hpp
-  - ds/static_range_product.hpp
-  - string/suffix_lcp_change.hpp
-  - string/many_string_compare.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
   - string/basic_substring_structure.hpp
-  - string/suffix_tree.hpp
   - string/sort_substrings.hpp
   - string/suffix_array.hpp
-  - string/longest_common_substring.hpp
+  - string/suffix_lcp_change.hpp
+  - string/suffix_tree.hpp
+  - string/many_string_compare.hpp
   - string/substring_shortest_border.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
+  - string/longest_common_substring.hpp
+  - graph/ds/static_tree_monoid.hpp
+  - ds/static_range_product.hpp
   timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
+  - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
-  - test/2_library_checker/data_structure/staticrmq.test.cpp
   - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
+  - test/2_library_checker/data_structure/staticrmq.test.cpp
   - test/2_library_checker/string/suffix_array.test.cpp
   - test/2_library_checker/string/longest_common_substring.test.cpp
-  - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
-  - test/3_yukicoder/2361.test.cpp
-  - test/3_yukicoder/1216.test.cpp
-  - test/3_yukicoder/2005.test.cpp
-  - test/3_yukicoder/1216_2.test.cpp
+  - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/1216_2.test.cpp
+  - test/3_yukicoder/2005.test.cpp
+  - test/3_yukicoder/1216.test.cpp
+  - test/3_yukicoder/2361.test.cpp
 documentation_of: ds/sparse_table/disjoint_sparse_table.hpp
 layout: document
 redirect_from:

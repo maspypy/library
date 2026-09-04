@@ -210,12 +210,13 @@ data:
     \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
     \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
     \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
-    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
-    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
-    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
-    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
-    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
-    };\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    return next(l) < r;\n\
+    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F\
+    \ f) {\n    assert(0 <= l && l <= r && r <= n);\n    for (int x = next(l); x <\
+    \ r; x = next(x + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int\
+    \ i) -> void { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n\
+    \    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return\
+    \ s;\n  }\n};\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
     \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
@@ -358,7 +359,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/decremental_fastset.test.cpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/decremental_fastset.test.cpp

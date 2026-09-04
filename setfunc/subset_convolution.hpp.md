@@ -165,22 +165,22 @@ data:
   path: setfunc/subset_convolution.hpp
   requiredBy:
   - linalg/hafnian.hpp
-  - graph/count/count_bridgeless_subgraph.hpp
-  - graph/count/count_tree_subgraph.hpp
-  - graph/chromatic.hpp
-  - graph/tutte_polynomial.hpp
   - setfunc/power_projection_of_sps.hpp
   - setfunc/sps_exp.hpp
+  - graph/chromatic.hpp
+  - graph/count/count_tree_subgraph.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
+  - graph/tutte_polynomial.hpp
   timestamp: '2026-08-29 09:24:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
-  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
   - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
   - test/2_library_checker/set_power_series/powproj_sps.test.cpp
   - test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
+  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/3_yukicoder/2507.test.cpp
 documentation_of: setfunc/subset_convolution.hpp
 layout: document

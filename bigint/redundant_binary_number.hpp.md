@@ -82,14 +82,15 @@ data:
     \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
     \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
     \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
-    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
-    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
-    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
-    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
-    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
-    };\n#line 2 \"bigint/redundant_binary_number.hpp\"\n\n// 2^i \u3092\u8DB3\u3057\
-    \u305F\u308A\u5F15\u3044\u305F\u308A. k-th digit \u306E\u53D6\u5F97.\n// fastset\
-    \ \u4F7F\u7528\u7248.\n// https://qoj.ac/problem/382\nstruct Redundant_Binary_Number_Fast\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    return next(l) < r;\n\
+    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F\
+    \ f) {\n    assert(0 <= l && l <= r && r <= n);\n    for (int x = next(l); x <\
+    \ r; x = next(x + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int\
+    \ i) -> void { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n\
+    \    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return\
+    \ s;\n  }\n};\n#line 2 \"bigint/redundant_binary_number.hpp\"\n\n// 2^i \u3092\
+    \u8DB3\u3057\u305F\u308A\u5F15\u3044\u305F\u308A. k-th digit \u306E\u53D6\u5F97\
+    .\n// fastset \u4F7F\u7528\u7248.\n// https://qoj.ac/problem/382\nstruct Redundant_Binary_Number_Fast\
     \ {\n  const int n;\n  vc<char> dat;\n  FastSet S;\n  Redundant_Binary_Number_Fast(int\
     \ n) : n(n), dat(n), S(n) {}\n\n  int sgn() {\n    int k = S.prev(n - 1);\n  \
     \  return (k == -1 ? 0 : dat[k]);\n  }\n\n  // k-th bit in [0,1]\n  int kth(int\
@@ -149,7 +150,7 @@ data:
   isVerificationFile: false
   path: bigint/redundant_binary_number.hpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: bigint/redundant_binary_number.hpp

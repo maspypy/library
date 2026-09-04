@@ -180,16 +180,17 @@ data:
     \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
     \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
     \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
-    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
-    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
-    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
-    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
-    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
-    };\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
-    \u30FC\u30B9\u3067\u3082\u78BA\u4FDD\u6E08\u307F chunk \u3092\u518D\u5229\u7528\
-    \u3059\u308B\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node\
-    \ node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np =\
-    \ Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    return next(l) < r;\n\
+    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F\
+    \ f) {\n    assert(0 <= l && l <= r && r <= n);\n    for (int x = next(l); x <\
+    \ r; x = next(x + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int\
+    \ i) -> void { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n\
+    \    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return\
+    \ s;\n  }\n};\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\
+    \u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\u6E08\u307F chunk \u3092\u518D\
+    \u5229\u7528\u3059\u308B\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot\
+    \ {\n    Node node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n\
+    \  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
     \ chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\
     \n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n    for (auto& p : chunks)\
     \ cache.eb(std::move(p));\n  }\n\n  template <class... Args>\n  np create(Args&&...\
@@ -319,7 +320,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sortable_array.test.cpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sortable_array.test.cpp

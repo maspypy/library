@@ -91,9 +91,9 @@ data:
   timestamp: '2026-08-30 21:41:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/matching.test.cpp
   - test/1_mytest/tutte.test.cpp
-  - test/1_mytest/matching_line_graph.test.cpp
   - test/2_library_checker/graph/general_matching.test.cpp
 documentation_of: graph/maximum_matching_size.hpp
 layout: document

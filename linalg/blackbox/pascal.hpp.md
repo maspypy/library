@@ -413,8 +413,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/pascal.test.cpp
-  - test/3_yukicoder/2243.test.cpp
   - test/3_yukicoder/2108.test.cpp
+  - test/3_yukicoder/2243.test.cpp
 documentation_of: linalg/blackbox/pascal.hpp
 layout: document
 redirect_from:

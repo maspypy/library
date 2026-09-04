@@ -59,8 +59,8 @@ data:
   - test/2_library_checker/number_theory/dirichlet_inv.test.cpp
   - test/2_library_checker/number_theory/kth_root_integer.test.cpp
   - test/2_library_checker/number_theory/dirichlet.test.cpp
-  - test/3_yukicoder/1260.test.cpp
   - test/3_yukicoder/1666.test.cpp
+  - test/3_yukicoder/1260.test.cpp
 documentation_of: nt/integer_kth_root.hpp
 layout: document
 redirect_from:

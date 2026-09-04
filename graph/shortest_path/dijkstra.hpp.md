@@ -164,7 +164,7 @@ data:
     \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int>\
     \ root(N, -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
     \ greater<P>> que;\n\n  FOR(k, len(vs)) {\n    int v = vs[k];\n    dist[v] = 0;\n\
-    \    root[v] = k;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n\
+    \    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n\
     \    auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
     \    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
     \ {\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
@@ -189,7 +189,7 @@ data:
     \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int>\
     \ root(N, -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
     \ greater<P>> que;\n\n  FOR(k, len(vs)) {\n    int v = vs[k];\n    dist[v] = 0;\n\
-    \    root[v] = k;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n\
+    \    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n\
     \    auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
     \    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
     \ {\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
@@ -203,16 +203,16 @@ data:
   - graph/shortest_path/K_shortest_walk.hpp
   - graph/shortest_path/nonzero_group_product_shortest_path.hpp
   - flow/longest_shortest_path.hpp
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/shortest_path.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
-  - test/4_aoj/2251_1.test.cpp
-  - test/4_aoj/2251_2.test.cpp
-  - test/4_aoj/0275.test.cpp
+  - test/2_library_checker/graph/shortest_path.test.cpp
   - test/3_yukicoder/1601.test.cpp
   - test/3_yukicoder/1602.test.cpp
+  - test/4_aoj/2251_2.test.cpp
+  - test/4_aoj/2251_1.test.cpp
+  - test/4_aoj/0275.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document
 redirect_from:

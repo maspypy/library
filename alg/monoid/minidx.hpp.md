@@ -44,13 +44,13 @@ data:
   isVerificationFile: false
   path: alg/monoid/minidx.hpp
   requiredBy:
-  - geo/manhattan_nns.hpp
   - alg/acted_monoid/minidx_add.hpp
+  - geo/manhattan_nns.hpp
   timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/manhattan_nns.test.cpp
   - test/1_mytest/minidx_add.test.cpp
+  - test/1_mytest/manhattan_nns.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2897.test.cpp
 documentation_of: alg/monoid/minidx.hpp

@@ -54,8 +54,8 @@ data:
   isVerificationFile: false
   path: linalg/xor/transpose.hpp
   requiredBy:
-  - linalg/xor/vector_space.hpp
   - linalg/xor/solve_linear.hpp
+  - linalg/xor/vector_space.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

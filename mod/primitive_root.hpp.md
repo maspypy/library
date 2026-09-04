@@ -237,14 +237,15 @@ data:
     \ && g == 1; k += m) {\n      z = y;\n      FOR(min(m, r - k)) y = f(y), q *=\
     \ x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n      z\
     \ = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return g;\n\
-    }\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (n % 2 == 0) return\
-    \ 2;\n  if (is_prime(n)) return n;\n  FOR(100) {\n    ll m = 0;\n    if (n < (1\
-    \ << 30)) {\n      using mint = Montgomery_modint_32<20231025>;\n      mint::set_mod(n);\n\
-    \      m = rho<mint>(n, RNG(0, n));\n    } else {\n      using mint = Montgomery_modint_64<20231025>;\n\
-    \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    }\n    if (is_prime(m))\
-    \ return m;\n    n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\
-    \u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n\
-    \ >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2, 100) {\n    if (p * p > n) break;\n\
+    }\n\nll find_prime_factor(ll n) {\n  assert(1 < n && n < (1LL << 62));\n  if (n\
+    \ % 2 == 0) return 2;\n  if (is_prime(n)) return n;\n  FOR(100) {\n    ll m =\
+    \ 0;\n    if (n < (1 << 30)) {\n      using mint = Montgomery_modint_32<20231025>;\n\
+    \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    } else {\n \
+    \     using mint = Montgomery_modint_64<20231025>;\n      mint::set_mod(n);\n\
+    \      m = rho<mint>(n, RNG(0, n));\n    }\n    if (is_prime(m)) return m;\n \
+    \   n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\
+    \u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(1 <= n && n < (1LL\
+    \ << 62));\n  vc<pair<ll, int>> pf;\n  FOR(p, 2, 100) {\n    if (p * p > n) break;\n\
     \    if (n % p == 0) {\n      ll e = 0;\n      do {\n        n /= p, e += 1;\n\
     \      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1)\
     \ {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n      n /= p,\
@@ -344,51 +345,51 @@ data:
   isVerificationFile: false
   path: mod/primitive_root.hpp
   requiredBy:
-  - poly/multivar_convolution_cyclic.hpp
-  - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
-  - mod/mod_log.hpp
-  - mod/dynamic_modint.hpp
+  - seq/reeds_sloane.hpp
   - mod/multiplicative_convolution_mod_p.hpp
-  - mod/binomial.hpp
   - mod/mod_kth_root.hpp
   - mod/modfast.hpp
-  timestamp: '2026-09-01 10:19:35+09:00'
+  - mod/binomial.hpp
+  - mod/dynamic_modint.hpp
+  - mod/mod_log.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/O1_inv.test.cpp
-  - test/1_mytest/reeds_sloane.test.cpp
-  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
-  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - test/1_mytest/reeds_sloane.test.cpp
+  - test/1_mytest/O1_inv.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
   - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
   - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
+  - test/2_library_checker/number_theory/kth_root_mod.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/2_library_checker/number_theory/primitive_root.test.cpp
-  - test/2_library_checker/number_theory/kth_root_mod.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
-  - test/3_yukicoder/1667.test.cpp
+  - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/2613.test.cpp
-  - test/3_yukicoder/2120.test.cpp
-  - test/3_yukicoder/2181.test.cpp
-  - test/3_yukicoder/1025.test.cpp
   - test/3_yukicoder/1339.test.cpp
   - test/3_yukicoder/1783.test.cpp
-  - test/3_yukicoder/2877.test.cpp
+  - test/3_yukicoder/1025.test.cpp
+  - test/3_yukicoder/2181.test.cpp
+  - test/3_yukicoder/1667.test.cpp
+  - test/3_yukicoder/2120.test.cpp
 documentation_of: mod/primitive_root.hpp
 layout: document
 redirect_from:

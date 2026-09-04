@@ -121,11 +121,11 @@ data:
   isVerificationFile: false
   path: setfunc/sps_composition.hpp
   requiredBy:
-  - graph/count/count_bridgeless_subgraph.hpp
+  - setfunc/sps_log.hpp
   - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_connected_subgraph.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
   - graph/tutte_polynomial.hpp
-  - setfunc/sps_log.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -96,8 +96,8 @@ data:
   timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/2842.test.cpp
   - test/3_yukicoder/2003.test.cpp
+  - test/4_aoj/2842.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_2d_dense.hpp
 layout: document
 redirect_from:

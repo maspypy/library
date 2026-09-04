@@ -439,9 +439,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - test/4_aoj/2636.test.cpp
-  - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/1326.test.cpp
+  - test/3_yukicoder/1641.test.cpp
+  - test/4_aoj/2636.test.cpp
 documentation_of: graph/ds/tree_abeliangroup.hpp
 layout: document
 redirect_from:

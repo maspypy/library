@@ -359,31 +359,32 @@ data:
     \ u64(0));\n    bit.build(n);\n  }\n  void build(vc<int> dat) {\n    build(len(dat),\
     \ [&](int i) -> int { return dat[i]; });\n  }\n\n  template <typename F>\n  void\
     \ build(int m, F f) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n,\
-    \ u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(f(i)) << (i % 64); }\n    bit.build(n,\
-    \ [&](int i) -> int { return popcnt(dat[i]); });\n  }\n\n  int sum_all() { return\
-    \ bit.sum_all(); }\n  int sum(int k) { return prefix_sum(k); }\n  int prefix_sum(int\
-    \ k) {\n    int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k / 64] & ((u64(1)\
-    \ << (k % 64)) - 1));\n    return ans;\n  }\n  int sum(int L, int R) {\n    if\
-    \ (L == 0) return prefix_sum(R);\n    int ans = 0;\n    ans -= popcnt(dat[L /\
-    \ 64] & ((u64(1) << (L % 64)) - 1));\n    ans += popcnt(dat[R / 64] & ((u64(1)\
-    \ << (R % 64)) - 1));\n    ans += bit.sum(L / 64, R / 64);\n    return ans;\n\
-    \  }\n  int get(int i) {\n    assert(0 <= i && i < N);\n    return sum(i, i +\
-    \ 1);\n  }\n  int prod(int L, int R) { return sum(L, R); }\n\n  void add(int k,\
-    \ int x) {\n    assert(0 <= k && k < N);\n    if (x == 1) {\n      assert(sum(k,\
-    \ k + 1) == 0);\n      add(k);\n    }\n    elif (x == -1) {\n      assert(sum(k,\
-    \ k + 1) == 1);\n      remove(k);\n    }\n    else assert(0);\n  }\n  void multiply(int\
-    \ k, int x) { add(k, x); }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) <<\
-    \ (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int k) {\n    dat[k /\
-    \ 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int\
-    \ k, int L = 0) {\n    if (k >= sum_all()) return N;\n    k += popcnt(dat[L /\
-    \ 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n    int mid = 0;\n    auto\
-    \ check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid, e);\n      return\
-    \ e <= k;\n    };\n    int idx = bit.max_right(check, L);\n    if (idx == n) return\
-    \ N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p\
-    \ <= k) return N;\n    k = binary_search([&](int n) -> bool { return (p - popcnt(x\
-    \ >> n)) <= k; },\n                      0, 64, 0);\n    return 64 * idx + k;\n\
-    \  }\n\n  int next(int k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x =\
-    \ dat[idx] & ~((u64(1) << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n\
+    \ u64(0));\n    FOR(i, N) {\n      u64 x = f(i);\n      assert(x == 0 || x ==\
+    \ 1);\n      dat[i / 64] |= x << (i % 64);\n    }\n    bit.build(n, [&](int i)\
+    \ -> int { return popcnt(dat[i]); });\n  }\n\n  int sum_all() { return bit.sum_all();\
+    \ }\n  int sum(int k) { return prefix_sum(k); }\n  int prefix_sum(int k) {\n \
+    \   int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k / 64] & ((u64(1) << (k\
+    \ % 64)) - 1));\n    return ans;\n  }\n  int sum(int L, int R) {\n    assert(0\
+    \ <= L && L <= R && R <= N);\n    if (L == 0) return prefix_sum(R);\n    int ans\
+    \ = 0;\n    ans -= popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n    ans\
+    \ += popcnt(dat[R / 64] & ((u64(1) << (R % 64)) - 1));\n    ans += bit.sum(L /\
+    \ 64, R / 64);\n    return ans;\n  }\n  int get(int i) {\n    assert(0 <= i &&\
+    \ i < N);\n    return sum(i, i + 1);\n  }\n  int prod(int L, int R) { return sum(L,\
+    \ R); }\n\n  void add(int k, int x) {\n    assert(0 <= k && k < N);\n    if (x\
+    \ == 1) {\n      assert(sum(k, k + 1) == 0);\n      dat[k / 64] |= u64(1) << (k\
+    \ % 64);\n      bit.add(k / 64, 1);\n    }\n    elif (x == -1) {\n      assert(sum(k,\
+    \ k + 1) == 1);\n      dat[k / 64] &= ~(u64(1) << (k % 64));\n      bit.add(k\
+    \ / 64, -1);\n    }\n    else assert(0);\n  }\n  void multiply(int k, int x) {\
+    \ add(k, x); }\n\n  void add(int k) { add(k, 1); }\n  void remove(int k) { add(k,\
+    \ -1); }\n\n  int kth(int k, int L = 0) {\n    if (k >= sum_all()) return N;\n\
+    \    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n  \
+    \  int mid = 0;\n    auto check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid,\
+    \ e);\n      return e <= k;\n    };\n    int idx = bit.max_right(check, L);\n\
+    \    if (idx == n) return N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p\
+    \ = popcnt(x);\n    if (p <= k) return N;\n    k = binary_search(\n        [&](int\
+    \ n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);\n    return 64\
+    \ * idx + k;\n  }\n\n  int next(int k) {\n    int idx = k / 64;\n    k %= 64;\n\
+    \    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n\
     \    idx = bit.kth(0, idx + 1);\n    if (idx == n || !dat[idx]) return N;\n  \
     \  return 64 * idx + lowbit(dat[idx]);\n  }\n\n  int prev(int k) {\n    if (k\
     \ == N) --k;\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx];\n   \
@@ -430,7 +431,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ALDS1_5.test.cpp
   requiredBy: []
-  timestamp: '2026-09-01 06:26:41+09:00'
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/ALDS1_5.test.cpp

@@ -191,20 +191,20 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/bfs_01.hpp
   requiredBy:
-  - graph/st_numbering.hpp
-  - graph/tree_diameter.hpp
-  - graph/tree_walk_generating_function.hpp
   - graph/tree_center.hpp
+  - graph/tree_diameter.hpp
+  - graph/st_numbering.hpp
+  - graph/tree_walk_generating_function.hpp
   timestamp: '2026-09-02 04:29:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/tree_walk_gf.test.cpp
-  - test/2_library_checker/graph/st_numbering.test.cpp
   - test/2_library_checker/tree/tree_diameter.test.cpp
-  - test/3_yukicoder/1868.test.cpp
+  - test/2_library_checker/graph/st_numbering.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/1718.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/1868.test.cpp
 documentation_of: graph/shortest_path/bfs_01.hpp
 layout: document
 redirect_from:

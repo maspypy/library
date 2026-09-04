@@ -467,8 +467,8 @@ data:
   timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/fps_inv_2d.test.cpp
+  - test/1_mytest/fps_exp_2d.test.cpp
 documentation_of: poly/2d/fps_inv_2d.hpp
 layout: document
 redirect_from:

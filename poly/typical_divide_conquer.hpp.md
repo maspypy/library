@@ -713,8 +713,8 @@ data:
   timestamp: '2026-08-29 09:24:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/typical_dc.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
 documentation_of: poly/typical_divide_conquer.hpp
 layout: document
 redirect_from:

@@ -272,10 +272,10 @@ data:
   timestamp: '2026-08-31 12:03:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/rbst_monoid_persistent.test.cpp
-  - test/1_mytest/rbst_monoid.test.cpp
   - test/1_mytest/rbst_monoid_2.test.cpp
+  - test/1_mytest/rbst_test.test.cpp
+  - test/1_mytest/rbst_monoid.test.cpp
   - test/4_aoj/1508_2.test.cpp
 documentation_of: ds/randomized_bst/rbst_monoid.hpp
 layout: document

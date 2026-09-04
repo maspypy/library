@@ -150,8 +150,8 @@ data:
   timestamp: '2026-08-29 09:24:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/dyadic_rational.test.cpp
   - test/1_mytest/partizan.test.cpp
+  - test/1_mytest/dyadic_rational.test.cpp
 documentation_of: game/dyadic_rational.hpp
 layout: document
 redirect_from:

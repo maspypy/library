@@ -162,12 +162,13 @@ data:
     \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
     \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
     \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
-    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
-    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
-    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
-    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
-    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
-    };\n"
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    return next(l) < r;\n\
+    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F\
+    \ f) {\n    assert(0 <= l && l <= r && r <= n);\n    for (int x = next(l); x <\
+    \ r; x = next(x + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int\
+    \ i) -> void { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n\
+    \    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return\
+    \ s;\n  }\n};\n"
   code: "#include \"other/bit.hpp\"\n\n// 64-ary tree\n// space: (N/63) * u64\nstruct\
     \ FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n  vvc<u64>\
     \ seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int size() { return\
@@ -199,48 +200,49 @@ data:
     \ / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n\
     \      }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--)\
     \ {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return\
-    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) { return next(l)\
-    \ < r; }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int\
-    \ r, F f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n  }\n\n\
-    \  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n  }\n\
-    \n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i < n; ++i)\
-    \ s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};"
+    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <=\
+    \ l && l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r)\n  template\
+    \ <typename F>\n  void enumerate(int l, int r, F f) {\n    assert(0 <= l && l\
+    \ <= r && r <= n);\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
+    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
+    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};"
   dependsOn:
   - other/bit.hpp
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
+  - other/cuboid_union_volume.hpp
   - bigint/redundant_binary_number.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
+  - string/suffix_tree.hpp
+  - string/enumerate_occurrences.hpp
+  - graph/toposort.hpp
+  - graph/compress_tree.hpp
   - graph/all_cycle_common_vertices.hpp
   - graph/ds/incremental_centroid.hpp
-  - graph/compress_tree.hpp
-  - graph/toposort.hpp
-  - ds/incremental_rectangle_union.hpp
-  - ds/intervals.hpp
   - ds/sortable_array.hpp
-  - ds/segtree/range_add_make_increasing.hpp
   - ds/segtree/range_assignment_segtree.hpp
+  - ds/segtree/range_add_make_increasing.hpp
   - ds/segtree/range_add_make_decreasing.hpp
   - ds/segtree/sortable_segtree.hpp
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
-  - other/cuboid_union_volume.hpp
-  - string/enumerate_occurrences.hpp
-  - string/suffix_tree.hpp
-  timestamp: '2026-09-01 10:19:35+09:00'
+  - ds/incremental_rectangle_union.hpp
+  - ds/intervals.hpp
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
-  - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/sortable_array.test.cpp
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem.test.cpp
-  - test/4_aoj/2251_1.test.cpp
-  - test/4_aoj/2636.test.cpp
-  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2809.test.cpp
+  - test/3_yukicoder/2361.test.cpp
+  - test/4_aoj/2636.test.cpp
+  - test/4_aoj/2251_1.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:

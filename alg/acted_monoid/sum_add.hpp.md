@@ -57,12 +57,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/splay_am.test.cpp
-  - test/1_mytest/fenwick_raq.test.cpp
-  - test/1_mytest/rbst_am_2.test.cpp
   - test/1_mytest/ARC30D.test.cpp
-  - test/4_aoj/GRL_5_E.test.cpp
+  - test/1_mytest/rbst_am_2.test.cpp
+  - test/1_mytest/fenwick_raq.test.cpp
   - test/3_yukicoder/1197.test.cpp
   - test/3_yukicoder/789_2.test.cpp
+  - test/4_aoj/GRL_5_E.test.cpp
 documentation_of: alg/acted_monoid/sum_add.hpp
 layout: document
 redirect_from:

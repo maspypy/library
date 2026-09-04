@@ -225,8 +225,8 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree_basic.hpp
   requiredBy:
-  - geo/polygon_triangulation.hpp
   - seq/cycle_decomposition.hpp
+  - geo/polygon_triangulation.hpp
   timestamp: '2026-08-31 12:03:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -436,8 +436,8 @@ data:
   timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/2580.test.cpp
 documentation_of: poly/composition_f_a_plus_bx.hpp
 layout: document
 redirect_from:

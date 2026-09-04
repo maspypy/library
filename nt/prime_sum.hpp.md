@@ -109,15 +109,15 @@ data:
   path: nt/prime_sum.hpp
   requiredBy:
   - nt/prime_sum_mod4.hpp
-  - nt/prime_sum_mod6.hpp
   - nt/count_by_factor_type.hpp
+  - nt/prime_sum_mod6.hpp
   timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/prime_sum.test.cpp
   - test/1_mytest/primesum_mod6.test.cpp
-  - test/1_mytest/primesum_mod4.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
+  - test/1_mytest/primesum_mod4.test.cpp
   - test/2_library_checker/number_theory/counting_primes.test.cpp
   - test/2_library_checker/number_theory/totient_sum.test.cpp
   - test/3_yukicoder/1276.test.cpp

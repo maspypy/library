@@ -16,6 +16,7 @@ data:
     links:
     - https://atcoder.jp/contests/JAG2014Spring/tasks/icpc2014spring_f
     - https://atcoder.jp/contests/jag2016-domestic/tasks/jag2016secretspring_e
+    - https://codeforces.com/contest/598/problem/F
     - https://github.com/maspypy/library/blob/main/geo/polygon_side.png
   bundledCode: "#line 1 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
     \  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n\
@@ -206,14 +207,38 @@ data:
     \ \u307E\u305A\u7DDA\u5206\u3068\u975E\u81EA\u660E\u306B\u4EA4\u308F\u308B\u30D1\
     \u30BF\u30FC\u30F3\n    int n = len(point);\n    FOR(i, n) {\n      Segment<T>\
     \ S2(point[i], point[(i + 1) % n]);\n      if (count_cross(S, S2, false) == 1)\
-    \ { return {1, 1}; }\n    }\n    bool in = 0, out = 0;\n    if (side(L) == 1 ||\
-    \ side(R) == 1) in = 1;\n    if (side(L) == -1 || side(R) == -1) out = 1;\n  \
-    \  FOR(i, n) {\n      if (!S.contain(point[i])) continue;\n      for (auto& p:\
-    \ {L, R}) {\n        int k = side_at(i, p);\n        if (k == 1) in = 1;\n   \
-    \     if (k == -1) out = 1;\n      }\n    }\n    return {in, out};\n  }\n\nprivate:\n\
-    \  void build() {\n    a = 0;\n    FOR(i, len(point)) {\n      int j = (i + 1\
-    \ == len(point) ? 0 : i + 1);\n      a += point[i].det(point[j]);\n    }\n   \
-    \ assert(a > 0);\n  }\n};\n"
+    \ {\n        return {1, 1};\n      }\n    }\n    bool in = 0, out = 0;\n    if\
+    \ (side(L) == 1 || side(R) == 1) in = 1;\n    if (side(L) == -1 || side(R) ==\
+    \ -1) out = 1;\n    FOR(i, n) {\n      if (!S.contain(point[i])) continue;\n \
+    \     for (auto& p : {L, R}) {\n        int k = side_at(i, p);\n        if (k\
+    \ == 1) in = 1;\n        if (k == -1) out = 1;\n      }\n    }\n    return {in,\
+    \ out};\n  }\n\n  // polygon \u3068 line \u306E\u5171\u901A\u90E8\u5206\u3092\
+    \ line \u4E0A\u306E\u533A\u9593\u5217\u3068\u3057\u3066\u8FD4\u3059\u3002\n  //\
+    \ return \u3055\u308C\u308B Segment\uFF1A\u9000\u5316\u30B1\u30FC\u30B9\u3082\u3042\
+    \u308B\n  // https://codeforces.com/contest/598/problem/F\n  template <typename\
+    \ REAL>\n  vc<Segment<REAL>> cross_line(Line<T> L, bool allow_perimeter) {\n \
+    \   static_assert(is_integral_v<T>);\n    using RP = Point<REAL>;\n    int N =\
+    \ len(point);\n    vc<int> side(N);\n    auto sgn = [&](T x) -> int { return (x\
+    \ > 0 ? 1 : x < 0 ? -1 : 0); };\n\n    FOR(i, N) side[i] = sgn(L.eval(point[i]));\n\
+    \    vc<pair<RP, int>> event;\n\n    FOR(i, N) {\n      int j = (i + 1) % N;\n\
+    \n      if (side[i] == 0) {\n        int k = (i + N - 1) % N;\n        int c =\
+    \ side[k] - side[j];\n        event.eb(RP(point[i]), c);\n      }\n\n      if\
+    \ (side[i] * side[j] < 0) {\n        RP p = cross_point<REAL>(L, Line<T>(point[i],\
+    \ point[j]));\n        int c = side[i] - side[j];\n        event.eb(p, c);\n \
+    \     }\n    }\n\n    if (L.b != 0) {\n      sort(all(event), [&](auto& x, auto&\
+    \ y) {\n        if (x.fi.x != y.fi.x) return x.fi.x < y.fi.x;\n        return\
+    \ x.fi.y < y.fi.y;\n      });\n    } else {\n      sort(all(event), [&](auto&\
+    \ x, auto& y) {\n        if (x.fi.y != y.fi.y) return x.fi.y < y.fi.y;\n     \
+    \   return x.fi.x < y.fi.x;\n      });\n    }\n\n    vc<Segment<REAL>> ANS;\n\
+    \    int in = 0;\n\n    if (allow_perimeter) {\n      int l = 0;\n      FOR(i,\
+    \ len(event)) {\n        in += event[i].se;\n        if (i + 1 == len(event) ||\
+    \ in == 0) {\n          ANS.eb(event[l].fi, event[i].fi);\n          l = i + 1;\n\
+    \        }\n      }\n    } else {\n      FOR(i, len(event)) {\n        in += event[i].se;\n\
+    \        if (i + 1 < len(event) && abs(in) == 2) {\n          ANS.eb(event[i].fi,\
+    \ event[i + 1].fi);\n        }\n      }\n    }\n\n    assert(in == 0);\n    return\
+    \ ANS;\n  }\n\n private:\n  void build() {\n    a = 0;\n    FOR(i, len(point))\
+    \ {\n      int j = (i + 1 == len(point) ? 0 : i + 1);\n      a += point[i].det(point[j]);\n\
+    \    }\n    if (a < 0) {\n      reverse(all(point));\n    }\n  }\n};\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/cross_point.hpp\"\n\ntemplate <typename\
     \ T>\nstruct Polygon {\n  vc<Point<T>> point;\n  T a;\n\n  Polygon(vc<Point<T>>\
     \ point) : point(point) { build(); }\n\n  int size() { return len(point); }\n\n\
@@ -246,21 +271,45 @@ data:
     \ \u307E\u305A\u7DDA\u5206\u3068\u975E\u81EA\u660E\u306B\u4EA4\u308F\u308B\u30D1\
     \u30BF\u30FC\u30F3\n    int n = len(point);\n    FOR(i, n) {\n      Segment<T>\
     \ S2(point[i], point[(i + 1) % n]);\n      if (count_cross(S, S2, false) == 1)\
-    \ { return {1, 1}; }\n    }\n    bool in = 0, out = 0;\n    if (side(L) == 1 ||\
-    \ side(R) == 1) in = 1;\n    if (side(L) == -1 || side(R) == -1) out = 1;\n  \
-    \  FOR(i, n) {\n      if (!S.contain(point[i])) continue;\n      for (auto& p:\
-    \ {L, R}) {\n        int k = side_at(i, p);\n        if (k == 1) in = 1;\n   \
-    \     if (k == -1) out = 1;\n      }\n    }\n    return {in, out};\n  }\n\nprivate:\n\
-    \  void build() {\n    a = 0;\n    FOR(i, len(point)) {\n      int j = (i + 1\
-    \ == len(point) ? 0 : i + 1);\n      a += point[i].det(point[j]);\n    }\n   \
-    \ assert(a > 0);\n  }\n};"
+    \ {\n        return {1, 1};\n      }\n    }\n    bool in = 0, out = 0;\n    if\
+    \ (side(L) == 1 || side(R) == 1) in = 1;\n    if (side(L) == -1 || side(R) ==\
+    \ -1) out = 1;\n    FOR(i, n) {\n      if (!S.contain(point[i])) continue;\n \
+    \     for (auto& p : {L, R}) {\n        int k = side_at(i, p);\n        if (k\
+    \ == 1) in = 1;\n        if (k == -1) out = 1;\n      }\n    }\n    return {in,\
+    \ out};\n  }\n\n  // polygon \u3068 line \u306E\u5171\u901A\u90E8\u5206\u3092\
+    \ line \u4E0A\u306E\u533A\u9593\u5217\u3068\u3057\u3066\u8FD4\u3059\u3002\n  //\
+    \ return \u3055\u308C\u308B Segment\uFF1A\u9000\u5316\u30B1\u30FC\u30B9\u3082\u3042\
+    \u308B\n  // https://codeforces.com/contest/598/problem/F\n  template <typename\
+    \ REAL>\n  vc<Segment<REAL>> cross_line(Line<T> L, bool allow_perimeter) {\n \
+    \   static_assert(is_integral_v<T>);\n    using RP = Point<REAL>;\n    int N =\
+    \ len(point);\n    vc<int> side(N);\n    auto sgn = [&](T x) -> int { return (x\
+    \ > 0 ? 1 : x < 0 ? -1 : 0); };\n\n    FOR(i, N) side[i] = sgn(L.eval(point[i]));\n\
+    \    vc<pair<RP, int>> event;\n\n    FOR(i, N) {\n      int j = (i + 1) % N;\n\
+    \n      if (side[i] == 0) {\n        int k = (i + N - 1) % N;\n        int c =\
+    \ side[k] - side[j];\n        event.eb(RP(point[i]), c);\n      }\n\n      if\
+    \ (side[i] * side[j] < 0) {\n        RP p = cross_point<REAL>(L, Line<T>(point[i],\
+    \ point[j]));\n        int c = side[i] - side[j];\n        event.eb(p, c);\n \
+    \     }\n    }\n\n    if (L.b != 0) {\n      sort(all(event), [&](auto& x, auto&\
+    \ y) {\n        if (x.fi.x != y.fi.x) return x.fi.x < y.fi.x;\n        return\
+    \ x.fi.y < y.fi.y;\n      });\n    } else {\n      sort(all(event), [&](auto&\
+    \ x, auto& y) {\n        if (x.fi.y != y.fi.y) return x.fi.y < y.fi.y;\n     \
+    \   return x.fi.x < y.fi.x;\n      });\n    }\n\n    vc<Segment<REAL>> ANS;\n\
+    \    int in = 0;\n\n    if (allow_perimeter) {\n      int l = 0;\n      FOR(i,\
+    \ len(event)) {\n        in += event[i].se;\n        if (i + 1 == len(event) ||\
+    \ in == 0) {\n          ANS.eb(event[l].fi, event[i].fi);\n          l = i + 1;\n\
+    \        }\n      }\n    } else {\n      FOR(i, len(event)) {\n        in += event[i].se;\n\
+    \        if (i + 1 < len(event) && abs(in) == 2) {\n          ANS.eb(event[i].fi,\
+    \ event[i + 1].fi);\n        }\n      }\n    }\n\n    assert(in == 0);\n    return\
+    \ ANS;\n  }\n\n private:\n  void build() {\n    a = 0;\n    FOR(i, len(point))\
+    \ {\n      int j = (i + 1 == len(point) ? 0 : i + 1);\n      a += point[i].det(point[j]);\n\
+    \    }\n    if (a < 0) {\n      reverse(all(point));\n    }\n  }\n};"
   dependsOn:
   - geo/base.hpp
   - geo/cross_point.hpp
   isVerificationFile: false
   path: geo/polygon.hpp
   requiredBy: []
-  timestamp: '2026-08-29 08:41:49+09:00'
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/polygon.hpp

@@ -118,15 +118,16 @@ data:
     \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
     \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
     \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
-    \ l, int r) { return next(l) < r; }\n\n  // [l, r)\n  template <typename F>\n\
-    \  void enumerate(int l, int r, F f) {\n    for (int x = next(l); x < r; x = next(x\
-    \ + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void\
-    \ { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for\
-    \ (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\
-    };\n#line 5 \"ds/segtree/range_add_make_decreasing.hpp\"\n\n// \u533A\u9593\u52A0\
-    \u7B97 / \u3042\u308B\u7BC4\u56F2\u3092 prefix \u5074\u304B\u3089\u5358\u8ABF\
-    (\u5897\u52A0/\u6E1B\u5C11)\u306B\u306A\u308B\u3088\u3046\u306B\u4FEE\u6B63\n\
-    // \u6307\u5B9A\u3057\u306A\u304B\u3063\u305F\u5834\u5408 0 \u57CB\u3081\u3067\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    return next(l) < r;\n\
+    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F\
+    \ f) {\n    assert(0 <= l && l <= r && r <= n);\n    for (int x = next(l); x <\
+    \ r; x = next(x + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int\
+    \ i) -> void { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n\
+    \    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return\
+    \ s;\n  }\n};\n#line 5 \"ds/segtree/range_add_make_decreasing.hpp\"\n\n// \u533A\
+    \u9593\u52A0\u7B97 / \u3042\u308B\u7BC4\u56F2\u3092 prefix \u5074\u304B\u3089\u5358\
+    \u8ABF(\u5897\u52A0/\u6E1B\u5C11)\u306B\u306A\u308B\u3088\u3046\u306B\u4FEE\u6B63\
+    \n// \u6307\u5B9A\u3057\u306A\u304B\u3063\u305F\u5834\u5408 0 \u57CB\u3081\u3067\
     \u521D\u671F\u5316\u3055\u308C\u308B\n// https://atcoder.jp/contests/joisc2019/tasks/joisc2019_e\n\
     // https://atcoder.jp/contests/joisp2024/tasks/joisp2024_i\nstruct Range_Add_Make_Monotonic_Decreasing\
     \ {\n  // \u4EE3\u8868\u70B9\u306E\u96C6\u5408\u3092\u6301\u3064. \u4EE3\u8868\
@@ -198,7 +199,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_add_make_decreasing.hpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/range_add_make_decreasing.hpp
