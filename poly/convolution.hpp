@@ -103,7 +103,8 @@ vector<ll> convolution(vector<ll> a, vector<ll> b) {
 
 template <typename mint>
 vc<mint> convolution(const vc<mint>& a, const vc<mint>& b) {
-  static_assert(!is_same_v<mint, modint<2>>, "use Bit_Array version for mod 2");
+  // static_assert(!is_same_v<mint, modint<2>>, "use Bit_Array version for mod
+  // 2");
   int n = len(a), m = len(b);
   if (!n || !m) return {};
   if (mint::can_ntt()) {
