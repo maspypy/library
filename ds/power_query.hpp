@@ -3,6 +3,7 @@
 // 定数をべき乗するクエリ。 B 乗分ずつ前計算。
 template <typename Mono, int B = 1024>
 struct Power_Query {
+  static_assert(2 <= B);
   using X = typename Mono::value_type;
   vvc<X> dat;
 
@@ -14,7 +15,9 @@ struct Power_Query {
     while (n) {
       int r = n % B;
       n /= B;
-      if (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }
+      if (len(dat) == k) {
+        dat.eb(make_pow(dat[k - 1].back()));
+      }
       res = Mono::op(res, dat[k][r]);
       ++k;
     }
@@ -28,7 +31,9 @@ struct Power_Query {
     while (n) {
       int r = n % B;
       n /= B;
-      if (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }
+      if (len(dat) == k) {
+        dat.eb(make_pow(dat[k - 1].back()));
+      }
       lst.eb(dat[k][r]);
       ++k;
     }
@@ -37,7 +42,7 @@ struct Power_Query {
 
   X operator[](ll n) { return (*this)(n); }
 
-private:
+ private:
   vc<X> make_pow(X a) {
     vc<X> res = {Mono::id()};
     FOR(B) { res.eb(Mono::op(res.back(), a)); }
