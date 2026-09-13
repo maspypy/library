@@ -16,7 +16,7 @@ void solve() {
   };
   auto fev = [&](Data x, int v) -> Data { return x; };
   // e は v から出る有向辺
-  auto fve = [&](Data x, auto& e) -> Data { return {x.fi, x.se + 1}; };
+  auto fve = [&](Data x, int r, int nxt_r) -> Data { return {x.fi, x.se + 1}; };
   Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, id);
 
   int ANS = N;

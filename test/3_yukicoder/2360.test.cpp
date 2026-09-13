@@ -26,7 +26,7 @@ void solve() {
     return {x.fi + mint(1), x.se * pow + val * (x.fi + mint(1))};
   };
   // e は v に入る有向辺
-  auto fve = [&](Data x, auto& e) -> Data { return x; };
+  auto fve = [&](Data x, int r, int nxt_r) -> Data { return x; };
   Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, id);
 
   vc<mint> ANS(N);

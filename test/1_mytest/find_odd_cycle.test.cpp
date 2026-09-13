@@ -12,7 +12,7 @@ vc<int> find_odd_cycle_naive(Graph<int, 1> G) {
   vc<int> ANS;
   auto dfs = [&](auto& dfs, int v) -> void {
     if (!ANS.empty()) return;
-    for (auto& e: G[v]) {
+    for (auto& e : G[v]) {
       if (e.to == path[0] && len(path) % 2 == 1) {
         ANS = path;
         return;
@@ -40,7 +40,7 @@ void test() {
   FOR(N, 1, 30) {
     FOR(100) {
       Graph<int, 0> G(N);
-      for (auto& [a, b]: random_graph<0>(N, false)) G.add(a, b);
+      for (auto& [a, b] : random_graph<0>(N, false)) G.add(a, b);
       G.build();
       auto color = bipartite_vertex_coloring(G);
       if (!color.empty()) continue;
@@ -61,7 +61,7 @@ void test() {
   FOR(N, 1, 20) {
     FOR(100) {
       Graph<int, 1> G(N);
-      for (auto& [a, b]: random_graph<1>(N, false)) G.add(a, b);
+      for (auto& [a, b] : random_graph<1>(N, false)) G.add(a, b);
       G.build();
       auto [vs, es] = find_odd_cycle(G);
       vc<int> ans = find_odd_cycle_naive(G);
