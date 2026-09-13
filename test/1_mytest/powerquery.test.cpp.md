@@ -129,17 +129,18 @@ data:
     \ bool commute = true;\n};\n#line 2 \"ds/power_query.hpp\"\n\n// \u5B9A\u6570\u3092\
     \u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002 B \u4E57\u5206\u305A\u3064\
     \u524D\u8A08\u7B97\u3002\ntemplate <typename Mono, int B = 1024>\nstruct Power_Query\
-    \ {\n  using X = typename Mono::value_type;\n  vvc<X> dat;\n\n  Power_Query(X\
-    \ a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll n) {\n    X res = Mono::id();\n\
-    \    int k = 0;\n    while (n) {\n      int r = n % B;\n      n /= B;\n      if\
-    \ (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }\n      res = Mono::op(res,\
-    \ dat[k][r]);\n      ++k;\n    }\n    return res;\n  }\n\n  // n \u4E57\u8A08\u7B97\
-    \u306E\u3068\u304D\u306B\u304B\u3051\u308B\u3082\u306E\u3092\u5217\u6319. \u884C\
-    \u5217\u30D9\u30AF\u30C8\u30EB\u7A4D\u3068\u304B\u3067\u4F7F\u7528\u53EF.\n  vc<X>\
-    \ get_list(ll n) {\n    vc<X> lst;\n    int k = 0;\n    while (n) {\n      int\
-    \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
-    \ - 1].back())); }\n      lst.eb(dat[k][r]);\n      ++k;\n    }\n    return lst;\n\
-    \  }\n\n  X operator[](ll n) { return (*this)(n); }\n\nprivate:\n  vc<X> make_pow(X\
+    \ {\n  static_assert(2 <= B);\n  using X = typename Mono::value_type;\n  vvc<X>\
+    \ dat;\n\n  Power_Query(X a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll n)\
+    \ {\n    X res = Mono::id();\n    int k = 0;\n    while (n) {\n      int r = n\
+    \ % B;\n      n /= B;\n      if (len(dat) == k) {\n        dat.eb(make_pow(dat[k\
+    \ - 1].back()));\n      }\n      res = Mono::op(res, dat[k][r]);\n      ++k;\n\
+    \    }\n    return res;\n  }\n\n  // n \u4E57\u8A08\u7B97\u306E\u3068\u304D\u306B\
+    \u304B\u3051\u308B\u3082\u306E\u3092\u5217\u6319. \u884C\u5217\u30D9\u30AF\u30C8\
+    \u30EB\u7A4D\u3068\u304B\u3067\u4F7F\u7528\u53EF.\n  vc<X> get_list(ll n) {\n\
+    \    vc<X> lst;\n    int k = 0;\n    while (n) {\n      int r = n % B;\n     \
+    \ n /= B;\n      if (len(dat) == k) {\n        dat.eb(make_pow(dat[k - 1].back()));\n\
+    \      }\n      lst.eb(dat[k][r]);\n      ++k;\n    }\n    return lst;\n  }\n\n\
+    \  X operator[](ll n) { return (*this)(n); }\n\n private:\n  vc<X> make_pow(X\
     \ a) {\n    vc<X> res = {Mono::id()};\n    FOR(B) { res.eb(Mono::op(res.back(),\
     \ a)); }\n    return res;\n  }\n};\n#line 1 \"mod/modint_common.hpp\"\n\n#line\
     \ 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\n\
@@ -284,7 +285,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/powerquery.test.cpp
   requiredBy: []
-  timestamp: '2026-09-13 10:50:58+09:00'
+  timestamp: '2026-09-13 17:20:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/powerquery.test.cpp
