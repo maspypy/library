@@ -6,22 +6,26 @@
 template <typename GT, bool HLD = true>
 struct Tree {
   using Graph_type = GT;
-  GT &G;
   using WT = typename GT::cost_type;
-  int N;
-  vector<int> LID, RID, head, V, parent, VtoE;
+  int N = 0;
+  vector<int> LID, RID, head, V, parent, VtoE, EtoV;
   vc<int> depth;
   vc<WT> depth_weighted;
   vc<int> memo_tail;
 
-  Tree(GT &G, int r = 0) : G(G) { build(r); }
+  Tree() = default;
+  Tree(const GT &G, int r = 0) { build(G, r); }
 
-  void build(int r = 0) {
-    if (r == -1) return;  // build を遅延したいとき
+  void build(const GT &G, int r = 0) {
+    N = G.N;
+    assert(G.is_prepared());
+    assert(G.M == N - 1);
+    FOR(i, N - 1) assert(G.edges[i].eid == i);
+    assert(0 <= r && r < N);
     if constexpr (!HLD)
-      build_simple(r);
+      build_simple(G, r);
     else
-      build_HLD(r);
+      build_HLD(G, r);
   }
 
   vc<int> heavy_path_at(int v) const {
@@ -52,10 +56,7 @@ struct Tree {
     return memo_tail[v];
   }
 
-  int e_to_v(int eid) const {
-    auto e = G.edges[eid];
-    return (parent[e.frm] == e.to ? e.frm : e.to);
-  }
+  int e_to_v(int eid) const { return EtoV[eid]; }
   int v_to_e(int v) const { return VtoE[v]; }
   int get_eid(int u, int v) const {
     if (parent[u] != v) swap(u, v);
@@ -134,8 +135,9 @@ struct Tree {
 
   vc<int> collect_child(int v) const {
     vc<int> res;
-    for (auto &&e : G[v])
-      if (e.to != parent[v]) res.eb(e.to);
+    for (int k = LID[v] + 1; k < RID[v];) {
+      res.eb(V[k]), k = RID[V[k]];
+    }
     return res;
   }
 
@@ -146,8 +148,8 @@ struct Tree {
   vc<int> collect_light(int v) const {
     static_assert(HLD);
     vc<int> res;
-    for (auto &&e : G[v]) {
-      if (e.to != parent[v] && head[e.to] == e.to) res.eb(e.to);
+    for (int k = LID[v] + 1; k < RID[v];) {
+      if (head[V[k]] == V[k]) res.eb(V[k]), k = RID[V[k]];
     }
     return res;
   }
@@ -240,12 +242,12 @@ struct Tree {
   }
 
  private:
-  void build_simple(int r = 0) {
+  void build_simple(const GT &G, int r = 0) {
     N = G.N;
     LID.assign(N, 0), RID.assign(N, 0);
-    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);
+    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1),
+        EtoV.assign(N - 1, -1);
     depth.assign(N, 0), depth_weighted.assign(N, 0);
-    assert(G.is_prepared());
 
     // 1st dfs.
     int k = 0;
@@ -262,7 +264,7 @@ struct Tree {
         parent[e.to] = v;
         depth[e.to] = depth[v] + 1;
         depth_weighted[e.to] = depth_weighted[v] + e.cost;
-        VtoE[e.to] = e.id;
+        VtoE[e.to] = e.id, EtoV[e.id] = e.to;
         st.eb(e.to);
       }
     }
@@ -274,13 +276,13 @@ struct Tree {
     }
   }
 
-  void build_HLD(int r = 0) {
+  void build_HLD(const GT &G, int r = 0) {
     N = G.N;
     LID.assign(N, 0), RID.assign(N, 0), head.assign(N, r);
-    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);
+    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1),
+        EtoV.assign(N - 1, -1);
     depth.assign(N, 0), depth_weighted.assign(N, 0);
     memo_tail.clear();
-    assert(G.is_prepared());
 
     // 1st dfs.
     {
@@ -295,7 +297,7 @@ struct Tree {
           if (e.to == parent[v]) continue;
           parent[e.to] = v, st.eb(e.to), depth[e.to] = depth[v] + 1;
           depth_weighted[e.to] = depth_weighted[v] + e.cost;
-          VtoE[e.to] = e.id;
+          VtoE[e.to] = e.id, EtoV[e.id] = e.to;
         }
       }
       // 一時的に RID[v] := sz[v]
