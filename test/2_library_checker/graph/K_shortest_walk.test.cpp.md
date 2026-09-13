@@ -282,16 +282,16 @@ data:
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
-    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
-    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
-    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  mutable vc<int>\
+    \ vc_deg, vc_indeg, vc_outdeg;\n  mutable HashMap<int> MP_FOR_EID;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
+    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
+    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
+    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() const { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -310,19 +310,19 @@ data:
     \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
     \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
     \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ vc<int> deg_array() const {\n    if (vc_deg.empty()) calc_deg();\n    return\
+    \ vc_deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() const {\n    if (vc_indeg.empty())\
     \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n#ifdef LOCAL\n\
-    \    print(\"Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n\
-    \      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n\
-    \      print(\"indptr\", indptr);\n      print(\"frm to cost id\");\n      FOR(v,\
-    \ N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n    }\n  \
-    \  flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n\
-    \  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \ const {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n\
+    \  int in_deg(int v) const {\n    if (vc_indeg.empty()) calc_deg_inout();\n  \
+    \  return vc_indeg[v];\n  }\n\n  int out_deg(int v) const {\n    if (vc_outdeg.empty())\
+    \ calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug()\
+    \ {\n#ifdef LOCAL\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n    flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
+    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
     \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
     \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
     \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
@@ -337,87 +337,88 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
-    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) const {\n    if (root == -1)\
+    \ root = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T,\
+    \ true> G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v)\
+    \ -> void {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
     \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
     \    for (auto& e : edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
     \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
-    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) {\n\
-    \    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for (auto&\
-    \ e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) const\
+    \ {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for\
+    \ (auto& e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
     \ b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n    return MP_FOR_EID.get(to_eid_key(a,\
-    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) {\n    if (!directed && a >\
-    \ b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 1 \"ds/meldable_heap.hpp\"\
-    \n\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
-    \u30FC\u30B9\u3067\u3082\u78BA\u4FDD\u6E08\u307F chunk \u3092\u518D\u5229\u7528\
-    \u3059\u308B\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node\
-    \ node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np =\
-    \ Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
-    \ chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\
-    \n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n    for (auto& p : chunks)\
-    \ cache.eb(std::move(p));\n  }\n\n  template <class... Args>\n  np create(Args&&...\
-    \ args) {\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n\
-    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
-    \    return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if\
-    \ (!x) return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n \
-    \   s->next = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\
-    \u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\
-    \u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\
-    \u308B\u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n\
-    \    pos = 0;\n  }\n\n private:\n  static vc<unique_ptr<Slot[]>>& chunk_cache()\
-    \ {\n    // static Node_Pool \u306E destructor \u3088\u308A\u5148\u306B\u7834\u68C4\
-    \u3055\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\n    static auto*\
-    \ cache = new vc<unique_ptr<Slot[]>>();\n    return *cache;\n  }\n\n  void alloc_chunk()\
-    \ {\n    auto& cache = chunk_cache();\n    if (cache.empty()) {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n\
-    \    } else {\n      chunks.eb(std::move(cache.back()));\n      cache.pop_back();\n\
-    \    }\n  }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
-    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
-    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
-    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
-    \ s;\n  }\n};\n#line 3 \"ds/meldable_heap.hpp\"\n\n// Lazy \u3060\u3051\u3067\u3082\
-    \u3044\u3044\u3088\u3046\u306A\u6C17\u304C\u3057\u305F\u304C,\n// \u52A0\u7B97\
-    \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\u306A\u3044\u578B\u3067\u4F7F\u3046\
-    \u304B\u3082\u3057\u308C\u306A\u3044\u304B\u3089\u6B8B\u3057\u3066\u3042\u308B\
-    \ntemplate <typename VAL, bool PERSISTENT, bool TOP_IS_MIN>\nstruct Meldable_Heap\
-    \ {\n  struct Node {\n    Node *l, *r;\n    VAL x;\n    u32 size, dist;  // dist:\
-    \ leaf \u307E\u3067\u306E\u8DDD\u96E2\n  };\n  Node_Pool<Node> pool;\n  int pid;\n\
-    \  using np = Node *;\n\n  np new_root() { return nullptr; }\n  np new_node(const\
+    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) const {\n    if (!directed &&\
+    \ a > b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg()\
+    \ const {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&&\
+    \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
+    \   }\n  }\n};\n#line 1 \"ds/meldable_heap.hpp\"\n\n#line 1 \"ds/node_pool.hpp\"\
+    \n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
+    \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
+    struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
+    \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
+    \ = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n\
+    \    for (auto& p : chunks) cache.eb(std::move(p));\n  }\n\n  template <class...\
+    \ Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n    return\
+    \ ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np x)\
+    \ {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(*x);\n\
+    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    Slot*\
+    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
+    \  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\
+    \u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\
+    \u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n    free_head\
+    \ = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n private:\n  static vc<unique_ptr<Slot[]>>&\
+    \ chunk_cache() {\n    // static Node_Pool \u306E destructor \u3088\u308A\u5148\
+    \u306B\u7834\u68C4\u3055\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\
+    \n    static auto* cache = new vc<unique_ptr<Slot[]>>();\n    return *cache;\n\
+    \  }\n\n  void alloc_chunk() {\n    auto& cache = chunk_cache();\n    if (cache.empty())\
+    \ {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n    } else {\n      chunks.eb(std::move(cache.back()));\n\
+    \      cache.pop_back();\n    }\n  }\n\n  Slot* new_slot() {\n    if (free_head)\
+    \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
+    \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
+    \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/meldable_heap.hpp\"\
+    \n\n// Lazy \u3060\u3051\u3067\u3082\u3044\u3044\u3088\u3046\u306A\u6C17\u304C\
+    \u3057\u305F\u304C,\n// \u52A0\u7B97\u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\
+    \u306A\u3044\u578B\u3067\u4F7F\u3046\u304B\u3082\u3057\u308C\u306A\u3044\u304B\
+    \u3089\u6B8B\u3057\u3066\u3042\u308B\ntemplate <typename VAL, bool PERSISTENT,\
+    \ bool TOP_IS_MIN>\nstruct Meldable_Heap {\n  struct Node {\n    Node *l, *r;\n\
+    \    VAL x;\n    u32 size, dist;  // dist: leaf \u307E\u3067\u306E\u8DDD\u96E2\
+    \n  };\n  Node_Pool<Node> pool;\n  int pid;\n  using np = Node *;\n\n  np new_root()\
+    \ { return nullptr; }\n  np new_node(const VAL &x) {\n    np c = pool.create();\n\
+    \    c->l = c->r = nullptr;\n    c->x = x, c->size = 1, c->dist = 1;\n    return\
+    \ c;\n  }\n  np clone(np a) {\n    if (!a || !PERSISTENT) return a;\n    return\
+    \ pool.clone(a);\n  }\n  np meld(np a, np b) {\n    if (!a) return b;\n    if\
+    \ (!b) return a;\n    a = clone(a);\n    b = clone(b);\n    if constexpr (TOP_IS_MIN)\
+    \ {\n      if ((a->x) > (b->x)) swap(a, b);\n    } else {\n      if ((a->x) <\
+    \ (b->x)) swap(a, b);\n    }\n    a->r = meld(a->r, b);\n    if (!(a->l) || (a->l->dist\
+    \ < a->r->dist)) swap(a->l, a->r);\n    a->dist = (a->r ? a->r->dist : 0) + 1;\n\
+    \    a->size = 1;\n    if (a->l) a->size += a->l->size;\n    if (a->r) a->size\
+    \ += a->r->size;\n    return a;\n  }\n  np push(np a, VAL x) { return meld(a,\
+    \ new_node(x)); }\n  np pop(np a) { return meld(a->l, a->r); }\n  VAL top(np a)\
+    \ { return a->x; }\n  vc<VAL> get_all(np a) {\n    vc<VAL> A;\n    auto dfs =\
+    \ [&](auto &dfs, np a) -> void {\n      if (!a) return;\n      A.eb(a->x), dfs(dfs,\
+    \ a->l), dfs(dfs, a->r);\n    };\n    dfs(dfs, a);\n    sort(all(A));\n    if\
+    \ (!TOP_IS_MIN) reverse(all(A));\n    return A;\n  }\n};\n\n// \u5168\u4F53\u52A0\
+    \u7B97\u304C\u3067\u304D\u308B\u3088\u3046\u306B\u3059\u308B\n// path sum \u304C\
+    \u5B9F\u969B\u306E\u5024\u3068\u306A\u308B\u3088\u3046\u306B\u3059\u308C\u3070\
+    \u8FFD\u52A0\u30D5\u30A3\u30FC\u30EB\u30C9\u306A\u3057\u306B\u5B9F\u73FE\u3067\
+    \u304D\u308B\n// https://qoj.ac/contest/1699/problem/8518\ntemplate <typename\
+    \ VAL, bool PERSISTENT, bool TOP_IS_MIN>\nstruct Lazy_Meldable_Heap {\n  struct\
+    \ Node {\n    Node *l, *r;\n    VAL x;\n    u32 size, dist;\n  };\n  Node_Pool<Node>\
+    \ pool;\n  using np = Node *;\n\n  np new_root() { return nullptr; }\n  np new_node(const\
     \ VAL &x) {\n    np c = pool.create();\n    c->l = c->r = nullptr;\n    c->x =\
     \ x, c->size = 1, c->dist = 1;\n    return c;\n  }\n  np clone(np a) {\n    if\
-    \ (!a || !PERSISTENT) return a;\n    return pool.clone(a);\n  }\n  np meld(np\
-    \ a, np b) {\n    if (!a) return b;\n    if (!b) return a;\n    a = clone(a);\n\
-    \    b = clone(b);\n    if constexpr (TOP_IS_MIN) {\n      if ((a->x) > (b->x))\
-    \ swap(a, b);\n    } else {\n      if ((a->x) < (b->x)) swap(a, b);\n    }\n \
-    \   a->r = meld(a->r, b);\n    if (!(a->l) || (a->l->dist < a->r->dist)) swap(a->l,\
-    \ a->r);\n    a->dist = (a->r ? a->r->dist : 0) + 1;\n    a->size = 1;\n    if\
-    \ (a->l) a->size += a->l->size;\n    if (a->r) a->size += a->r->size;\n    return\
-    \ a;\n  }\n  np push(np a, VAL x) { return meld(a, new_node(x)); }\n  np pop(np\
-    \ a) { return meld(a->l, a->r); }\n  VAL top(np a) { return a->x; }\n  vc<VAL>\
-    \ get_all(np a) {\n    vc<VAL> A;\n    auto dfs = [&](auto &dfs, np a) -> void\
-    \ {\n      if (!a) return;\n      A.eb(a->x), dfs(dfs, a->l), dfs(dfs, a->r);\n\
-    \    };\n    dfs(dfs, a);\n    sort(all(A));\n    if (!TOP_IS_MIN) reverse(all(A));\n\
-    \    return A;\n  }\n};\n\n// \u5168\u4F53\u52A0\u7B97\u304C\u3067\u304D\u308B\
-    \u3088\u3046\u306B\u3059\u308B\n// path sum \u304C\u5B9F\u969B\u306E\u5024\u3068\
-    \u306A\u308B\u3088\u3046\u306B\u3059\u308C\u3070\u8FFD\u52A0\u30D5\u30A3\u30FC\
-    \u30EB\u30C9\u306A\u3057\u306B\u5B9F\u73FE\u3067\u304D\u308B\n// https://qoj.ac/contest/1699/problem/8518\n\
-    template <typename VAL, bool PERSISTENT, bool TOP_IS_MIN>\nstruct Lazy_Meldable_Heap\
-    \ {\n  struct Node {\n    Node *l, *r;\n    VAL x;\n    u32 size, dist;\n  };\n\
-    \  Node_Pool<Node> pool;\n  using np = Node *;\n\n  np new_root() { return nullptr;\
-    \ }\n  np new_node(const VAL &x) {\n    np c = pool.create();\n    c->l = c->r\
-    \ = nullptr;\n    c->x = x, c->size = 1, c->dist = 1;\n    return c;\n  }\n  np\
-    \ clone(np a) {\n    if (!a || !PERSISTENT) return a;\n    np b = new_node(a->x);\n\
-    \    b->l = a->l, b->r = a->r;\n    b->size = a->size, b->dist = a->dist;\n  \
-    \  return b;\n  }\n  np apply(np a, VAL x) {\n    if (!a) return a;\n    a = clone(a);\n\
-    \    a->x += x;\n    return a;\n  }\n  np meld(np a, np b, VAL add_a = 0, VAL\
-    \ add_b = 0) {\n    if (!a) {\n      return (add_b == 0 ? b : apply(b, add_b));\n\
-    \    }\n    if (!b) {\n      return (add_a == 0 ? a : apply(a, add_a));\n    }\n\
-    \    if constexpr (TOP_IS_MIN) {\n      if ((a->x + add_a) > (b->x + add_b)) swap(a,\
+    \ (!a || !PERSISTENT) return a;\n    np b = new_node(a->x);\n    b->l = a->l,\
+    \ b->r = a->r;\n    b->size = a->size, b->dist = a->dist;\n    return b;\n  }\n\
+    \  np apply(np a, VAL x) {\n    if (!a) return a;\n    a = clone(a);\n    a->x\
+    \ += x;\n    return a;\n  }\n  np meld(np a, np b, VAL add_a = 0, VAL add_b =\
+    \ 0) {\n    if (!a) {\n      return (add_b == 0 ? b : apply(b, add_b));\n    }\n\
+    \    if (!b) {\n      return (add_a == 0 ? a : apply(a, add_a));\n    }\n    if\
+    \ constexpr (TOP_IS_MIN) {\n      if ((a->x + add_a) > (b->x + add_b)) swap(a,\
     \ b), swap(add_a, add_b);\n    } else {\n      if ((a->x + add_a) < (b->x + add_b))\
     \ swap(a, b), swap(add_a, add_b);\n    }\n    a = clone(a);\n    a->x += add_a;\n\
     \    a->r = meld(a->r, b, 0, -a->x + add_b);\n    if (!(a->l) || (a->l->dist <\
@@ -458,16 +459,16 @@ data:
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
-    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
-    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
-    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  mutable vc<int>\
+    \ vc_deg, vc_indeg, vc_outdeg;\n  mutable HashMap<int> MP_FOR_EID;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
+    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
+    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
+    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() const { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -486,19 +487,19 @@ data:
     \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
     \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
     \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ vc<int> deg_array() const {\n    if (vc_deg.empty()) calc_deg();\n    return\
+    \ vc_deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() const {\n    if (vc_indeg.empty())\
     \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n#ifdef LOCAL\n\
-    \    print(\"Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n\
-    \      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n\
-    \      print(\"indptr\", indptr);\n      print(\"frm to cost id\");\n      FOR(v,\
-    \ N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n    }\n  \
-    \  flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n\
-    \  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \ const {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n\
+    \  int in_deg(int v) const {\n    if (vc_indeg.empty()) calc_deg_inout();\n  \
+    \  return vc_indeg[v];\n  }\n\n  int out_deg(int v) const {\n    if (vc_outdeg.empty())\
+    \ calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug()\
+    \ {\n#ifdef LOCAL\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n    flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
+    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
     \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
     \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
     \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
@@ -513,67 +514,67 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
-    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) const {\n    if (root == -1)\
+    \ root = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T,\
+    \ true> G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v)\
+    \ -> void {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
     \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
     \    for (auto& e : edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
     \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
-    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) {\n\
-    \    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for (auto&\
-    \ e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) const\
+    \ {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for\
+    \ (auto& e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
     \ b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n    return MP_FOR_EID.get(to_eid_key(a,\
-    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) {\n    if (!directed && a >\
-    \ b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"graph/shortest_path/dijkstra.hpp\"\
-    \n\ntemplate <typename T, typename GT>\npair<vc<T>, vc<int>> dijkstra_dense(GT&\
-    \ G, int s) {\n  const int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N,\
-    \ -1);\n  vc<bool> done(N);\n  dist[s] = 0;\n  while (1) {\n    int v = -1;\n\
-    \    T mi = infty<T>;\n    FOR(i, N) {\n      if (!done[i] && chmin(mi, dist[i]))\
-    \ v = i;\n    }\n    if (v == -1) break;\n    done[v] = 1;\n    for (auto&& e\
-    \ : G[v]) {\n      if (chmin(dist[e.to], dist[v] + e.cost)) par[e.to] = v;\n \
-    \   }\n  }\n  return {dist, par};\n}\n\ntemplate <typename T, typename GT, bool\
-    \ DENSE = false>\npair<vc<T>, vc<int>> dijkstra(GT& G, int v) {\n  if (DENSE)\
-    \ return dijkstra_dense<T>(G, v);\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n\
-    \  vector<int> par(N, -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
-    \ greater<P>> que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty())\
-    \ {\n    auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
-    \    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
-    \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
-    \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
-    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
-    \ vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int>\
-    \ root(N, -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
-    \ greater<P>> que;\n\n  FOR(k, len(vs)) {\n    int v = vs[k];\n    dist[v] = 0;\n\
-    \    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n\
-    \    auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
-    \    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
-    \ {\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
-    \ e.to));\n      }\n    }\n  }\n  return {dist, par, root};\n}\n#line 1 \"ds/hashmap.hpp\"\
-    \n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
-    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
-    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
-    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
-    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
-    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
-    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
-    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
-    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
-    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
-    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
-    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
-    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
-    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
-    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) const {\n    if (!directed &&\
+    \ a > b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg()\
+    \ const {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&&\
+    \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
+    \   }\n  }\n};\n#line 2 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename\
+    \ T, typename GT>\npair<vc<T>, vc<int>> dijkstra_dense(GT& G, int s) {\n  const\
+    \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<bool>\
+    \ done(N);\n  dist[s] = 0;\n  while (1) {\n    int v = -1;\n    T mi = infty<T>;\n\
+    \    FOR(i, N) {\n      if (!done[i] && chmin(mi, dist[i])) v = i;\n    }\n  \
+    \  if (v == -1) break;\n    done[v] = 1;\n    for (auto&& e : G[v]) {\n      if\
+    \ (chmin(dist[e.to], dist[v] + e.cost)) par[e.to] = v;\n    }\n  }\n  return {dist,\
+    \ par};\n}\n\ntemplate <typename T, typename GT, bool DENSE = false>\npair<vc<T>,\
+    \ vc<int>> dijkstra(GT& G, int v) {\n  if (DENSE) return dijkstra_dense<T>(G,\
+    \ v);\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n  vector<int> par(N, -1);\n\
+    \  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\
+    \n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv,\
+    \ v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&&\
+    \ e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to]\
+    \ = e.frm;\n        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return\
+    \ {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par,\
+    \ root]\ntemplate <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
+    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
+    \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
+    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  FOR(k, len(vs))\
+    \ {\n    int v = vs[k];\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
+    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
+    \    if (dv > dist[v]) continue;\n    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to],\
+    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
+    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
+    \ {dist, par, root};\n}\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate\
+    \ <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\
+    \u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void\
+    \ build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k /\
+    \ 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\
+    \n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\
+    \u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used),\
+    \ 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap;\
+    \ }\n\n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i]\
+    \ && key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
+    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
+    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
+    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
+    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
+    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
@@ -583,16 +584,16 @@ data:
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
-    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
-    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
-    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  mutable vc<int>\
+    \ vc_deg, vc_indeg, vc_outdeg;\n  mutable HashMap<int> MP_FOR_EID;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
+    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
+    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
+    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() const { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -611,19 +612,19 @@ data:
     \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
     \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
     \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ vc<int> deg_array() const {\n    if (vc_deg.empty()) calc_deg();\n    return\
+    \ vc_deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() const {\n    if (vc_indeg.empty())\
     \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n#ifdef LOCAL\n\
-    \    print(\"Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n\
-    \      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n\
-    \      print(\"indptr\", indptr);\n      print(\"frm to cost id\");\n      FOR(v,\
-    \ N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n    }\n  \
-    \  flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n\
-    \  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \ const {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n\
+    \  int in_deg(int v) const {\n    if (vc_indeg.empty()) calc_deg_inout();\n  \
+    \  return vc_indeg[v];\n  }\n\n  int out_deg(int v) const {\n    if (vc_outdeg.empty())\
+    \ calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug()\
+    \ {\n#ifdef LOCAL\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n    flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
+    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
     \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
     \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
     \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
@@ -638,29 +639,30 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
-    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) const {\n    if (root == -1)\
+    \ root = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T,\
+    \ true> G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v)\
+    \ -> void {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
     \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
     \    for (auto& e : edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
     \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
-    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) {\n\
-    \    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for (auto&\
-    \ e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) const\
+    \ {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for\
+    \ (auto& e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
     \ b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n    return MP_FOR_EID.get(to_eid_key(a,\
-    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) {\n    if (!directed && a >\
-    \ b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\
-    \n\r\ntemplate <typename GT>\r\nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\
-    \n  GT G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id);\
-    \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
-    \n\n// infty<T> \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\
-    \u305F\u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename\
-    \ GT>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
+    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) const {\n    if (!directed &&\
+    \ a > b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg()\
+    \ const {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&&\
+    \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
+    \   }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
+    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
+    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
+    \n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\n\n\
+    // infty<T> \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\
+    \u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename GT>\n\
+    vc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T,\
     \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) {\n    return vc<T>(K, infty<T>);\n\
     \  }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X;\n  using\
@@ -706,7 +708,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2026-09-04 09:44:55+09:00'
+  timestamp: '2026-09-13 16:05:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/K_shortest_walk.test.cpp

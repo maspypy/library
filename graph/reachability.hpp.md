@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
@@ -91,16 +91,16 @@ data:
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
-    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
-    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
-    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  mutable vc<int>\
+    \ vc_deg, vc_indeg, vc_outdeg;\n  mutable HashMap<int> MP_FOR_EID;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
+    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
+    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
+    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() const { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -119,19 +119,19 @@ data:
     \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
     \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
     \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ vc<int> deg_array() const {\n    if (vc_deg.empty()) calc_deg();\n    return\
+    \ vc_deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() const {\n    if (vc_indeg.empty())\
     \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n#ifdef LOCAL\n\
-    \    print(\"Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n\
-    \      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n\
-    \      print(\"indptr\", indptr);\n      print(\"frm to cost id\");\n      FOR(v,\
-    \ N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n    }\n  \
-    \  flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n\
-    \  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \ const {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n\
+    \  int in_deg(int v) const {\n    if (vc_indeg.empty()) calc_deg_inout();\n  \
+    \  return vc_indeg[v];\n  }\n\n  int out_deg(int v) const {\n    if (vc_outdeg.empty())\
+    \ calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug()\
+    \ {\n#ifdef LOCAL\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n    flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
+    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
     \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
     \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
     \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
@@ -146,57 +146,58 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
-    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) const {\n    if (root == -1)\
+    \ root = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T,\
+    \ true> G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v)\
+    \ -> void {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
     \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
     \    for (auto& e : edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
     \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
-    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) {\n\
-    \    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for (auto&\
-    \ e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) const\
+    \ {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for\
+    \ (auto& e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
     \ b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n    return MP_FOR_EID.get(to_eid_key(a,\
-    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) {\n    if (!directed && a >\
-    \ b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"graph/strongly_connected_component.hpp\"\
-    \n\ntemplate <typename GT>\npair<int, vc<int>> strongly_connected_component(GT&\
-    \ G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N\
-    \ = G.N;\n  int C = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  int now\
-    \ = 0;\n\n  auto dfs = [&](auto& dfs, int v) -> void {\n    low[v] = ord[v] =\
-    \ now++;\n    path.eb(v);\n    for (auto&& [frm, to, cost, id]: G[v]) {\n    \
-    \  if (ord[to] == -1) {\n        dfs(dfs, to), chmin(low[v], low[to]);\n     \
-    \ } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] ==\
-    \ ord[v]) {\n      while (1) {\n        int u = POP(path);\n        ord[u] = N,\
-    \ comp[u] = C;\n        if (u == v) break;\n      }\n      ++C;\n    }\n  };\n\
-    \  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] =\
-    \ C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int,\
-    \ 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int>\
-    \ edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n\
-    \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
-    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) const {\n    if (!directed &&\
+    \ a > b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg()\
+    \ const {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&&\
+    \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
+    \   }\n  }\n};\n#line 2 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
+    \ <typename GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
+    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
+    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
+    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
+    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
+    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
+    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
+    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
+    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
+    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
+    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
+    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
+    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
+    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 1 \"ds/hashmap.hpp\"\n\n\
+    // u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
+    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
+    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
+    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
@@ -206,16 +207,16 @@ data:
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  HashMap<int> MP_FOR_EID;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) {\n        return 0;\n\
-    \      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const Graph*\
-    \ G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph()\
-    \ : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  mutable vc<int>\
+    \ vc_deg, vc_indeg, vc_outdeg;\n  mutable HashMap<int> MP_FOR_EID;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
+    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
+    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
+    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() const { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
     \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
@@ -234,19 +235,19 @@ data:
     \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
     \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
     \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ vc<int> deg_array() const {\n    if (vc_deg.empty()) calc_deg();\n    return\
+    \ vc_deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() const {\n    if (vc_indeg.empty())\
     \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n#ifdef LOCAL\n\
-    \    print(\"Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n\
-    \      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n\
-    \      print(\"indptr\", indptr);\n      print(\"frm to cost id\");\n      FOR(v,\
-    \ N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n    }\n  \
-    \  flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n\
-    \  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \ const {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n\
+    \  int in_deg(int v) const {\n    if (vc_indeg.empty()) calc_deg_inout();\n  \
+    \  return vc_indeg[v];\n  }\n\n  int out_deg(int v) const {\n    if (vc_outdeg.empty())\
+    \ calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug()\
+    \ {\n#ifdef LOCAL\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n    flush();\n#endif\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
+    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
     \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
     \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
     \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
@@ -261,45 +262,45 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
-    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) const {\n    if (root == -1)\
+    \ root = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T,\
+    \ true> G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v)\
+    \ -> void {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
     \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
     \    for (auto& e : edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
     \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
-    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) {\n\
-    \    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for (auto&\
-    \ e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) const\
+    \ {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for\
+    \ (auto& e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
     \ b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n    return MP_FOR_EID.get(to_eid_key(a,\
-    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) {\n    if (!directed && a >\
-    \ b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e : edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e : edges)\
-    \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\
-    \n\r\ntemplate <typename GT>\r\nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\
-    \n  GT G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id);\
-    \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/reachability.hpp\"\
-    \n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\
-    \u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int>\
-    \ reachability(GT& G, vc<P> query) {\n  using U = u64;\n  constexpr int W = 64;\n\
-    \n  auto [C, comp] = strongly_connected_component(G);\n\n  vc<pair<int, int>>\
-    \ edges;\n  for (auto&& e : G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n\
-    \    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n  UNIQUE(edges);\n\
-    \  for (auto& [a, b] : query) a = comp[a], b = comp[b];\n\n  int Q = len(query);\n\
-    \  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n  FOR(q, Q) {\n    auto\
-    \ [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] = (a == b);\n      continue;\n\
-    \    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n  UNIQUE(S);\n  vc<U> dp(C);\n\
-    \  int p = 0;\n  for (int l = 0; l < len(S); l += W) {\n    int r = min<int>(l\
-    \ + W, len(S));\n    fill(dp.begin() + S[l], dp.end(), U(0));\n    FOR(i, r -\
-    \ l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges) && edges[p].fi\
-    \ < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |= dp[edges[i].fi];\
-    \ }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for (auto& qid : QID[s])\
-    \ {\n        int t = query[qid].se;\n        ANS[qid] = dp[t] >> i & 1;\n    \
-    \  }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable from v).\n\
-    // (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\u69CB\u5B9F\
-    \u884C\u6642\u9593\u304C\u3076\u308C\u308B.\n// https://codeforces.com/contest/2041/problem/K\n\
+    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) const {\n    if (!directed &&\
+    \ a > b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg()\
+    \ const {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&&\
+    \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
+    \   }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
+    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
+    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
+    \n  return G1;\r\n}\r\n#line 4 \"graph/reachability.hpp\"\n\n// \u6709\u5411\u30B0\
+    \u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\u3002O((N+M)Q/w)\u3002\
+    \ntemplate <typename GT, typename P>\nvc<int> reachability(GT& G, vc<P> query)\
+    \ {\n  using U = u64;\n  constexpr int W = 64;\n\n  auto [C, comp] = strongly_connected_component(G);\n\
+    \n  vc<pair<int, int>> edges;\n  for (auto&& e : G.edges) {\n    auto a = comp[e.frm],\
+    \ b = comp[e.to];\n    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n\
+    \  UNIQUE(edges);\n  for (auto& [a, b] : query) a = comp[a], b = comp[b];\n\n\
+    \  int Q = len(query);\n  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n\
+    \  FOR(q, Q) {\n    auto [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] =\
+    \ (a == b);\n      continue;\n    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n\
+    \  UNIQUE(S);\n  vc<U> dp(C);\n  int p = 0;\n  for (int l = 0; l < len(S); l +=\
+    \ W) {\n    int r = min<int>(l + W, len(S));\n    fill(dp.begin() + S[l], dp.end(),\
+    \ U(0));\n    FOR(i, r - l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges)\
+    \ && edges[p].fi < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |=\
+    \ dp[edges[i].fi]; }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for\
+    \ (auto& qid : QID[s]) {\n        int t = query[qid].se;\n        ANS[qid] = dp[t]\
+    \ >> i & 1;\n      }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable\
+    \ from v).\n// (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\
+    \u69CB\u5B9F\u884C\u6642\u9593\u304C\u3076\u308C\u308B.\n// https://codeforces.com/contest/2041/problem/K\n\
     vc<int> count_reachable(Graph<int, 1> G) {\n  G = reverse_graph(G);\n  int N =\
     \ G.N;\n  auto [nc, comp] = strongly_connected_component(G);\n  vc<int> sz(nc);\n\
     \  FOR(v, N) sz[comp[v]]++;\n\n  // sorted pairs\n  vc<pair<int, int>> E;\n  for\
@@ -355,7 +356,7 @@ data:
   isVerificationFile: false
   path: graph/reachability.hpp
   requiredBy: []
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-09-13 16:05:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/0275.test.cpp
