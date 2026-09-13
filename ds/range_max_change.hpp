@@ -22,7 +22,7 @@ struct Range_Max_Change {
   // f(L,R,before,after)
   template <typename F>
   void right_change(int i, F f) {
-    assert(pr == i);
+    assert(0 <= i && i < N && pr == i);
     ++pr;
     int R = i;
     f(i, i + 1, -infty<T>, A[i]);
@@ -40,7 +40,7 @@ struct Range_Max_Change {
   // f(L,R,before,after)
   template <typename F>
   void left_change(int i, F f) {
-    assert(pl == i && prepared);
+    assert(0 <= i && i < N && pl == i && prepared);
     ++pl;
     while (len(event_left) && get<0>(event_left.back()) == i) {
       auto [j, L, R, a, b] = POP(event_left);

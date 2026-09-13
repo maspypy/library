@@ -37,11 +37,11 @@ struct Rolling_Hash_Field {
 
   F combine(F h1, F h2, size_t h2len) {
     expand(h2len);
-    return add(mul(h1, power[h2len]), h2);
+    return h1 * power[h2len] + h2;
   }
 
-  int lcp(const vector<F> &a, int l1, int r1, const vector<F> &b, int l2,
-          int r2) {
+  int lcp(
+      const vector<F> &a, int l1, int r1, const vector<F> &b, int l2, int r2) {
     int len = min(r1 - l1, r2 - l2);
     int low = 0, high = len + 1;
     while (high - low > 1) {

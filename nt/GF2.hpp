@@ -102,7 +102,7 @@ struct GF2 {
 template <int K>
 void rd(GF2<K> &x) {
   fastio::rd(x.val);
-  x &= GF2<K>::mask;
+  x.val &= GF2<K>::mask;
 }
 template <int K>
 void wt(GF2<K> x) {
