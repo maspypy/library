@@ -12,32 +12,23 @@ struct Dual_Tree_Monoid {
   Dual_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {}
 
   X get(int i) {
-    int v = i;
-    if (edge) {
-      auto &&e = tree.G.edges[i];
-      v = (tree.parent[e.frm] == e.to ? e.frm : e.to);
-    }
+    int v = (edge ? tree.e_to_v(i) : i);
     return seg.get(tree.LID[v]);
   }
 
   vc<X> get_all() {
     vc<X> tmp = seg.get_all();
-    vc<X> res;
-    FOR(i, N) {
-      if (edge && i == N - 1) break;
-      int v = i;
-      if (edge) {
-        auto &&e = tree.G.edges[i];
-        v = (tree.parent[e.frm] == e.to ? e.frm : e.to);
-      }
-      res.eb(tmp[tree.LID[v]]);
+    vc<X> res(N - edge);
+    FOR(i, N - edge) {
+      int v = (edge ? tree.e_to_v(i) : i);
+      res[i] = tmp[tree.LID[v]];
     }
     return res;
   }
 
   void apply_path(int u, int v, X x) {
     auto pd = tree.get_path_decomposition(u, v, edge);
-    for (auto &&[a, b]: pd) {
+    for (auto &&[a, b] : pd) {
       (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));
     }
     return;

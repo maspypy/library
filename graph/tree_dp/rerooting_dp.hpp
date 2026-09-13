@@ -1,13 +1,17 @@
-#include "graph/base.hpp"
 #include "graph/tree.hpp"
 
 template <typename TREE, typename Data>
 struct Rerooting_DP {
-  static_assert(!TREE::Graph_type::is_directed);
   TREE& tree;
-  vc<Data> dp_1;  // 辺 pv に対して、部分木 v
-  vc<Data> dp_2;  // 辺 pv に対して、部分木 p
-  vc<Data> dp;    // full tree
+
+  // virtual tree at v, downward
+  vc<Data> dp_down;
+  // virtual tree at parent[c], consisting of children before c
+  vc<Data> dp_prefix;
+  // virtual tree at v, upward
+  vc<Data> dp_up;
+  // full tree rooted at v
+  vc<Data> dp;
 
   template <typename F1, typename F2, typename F3>
   Rerooting_DP(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data id)
@@ -15,63 +19,53 @@ struct Rerooting_DP {
     build(f_ee, f_ev, f_ve, id);
   }
 
-  // v を根としたときの full tree
-  Data operator[](int v) { return dp[v]; }
-
-  // root を根としたときの部分木 v
-  Data get(int v, int root) {
-    if (root == v) return dp[v];
-    if (!tree.in_subtree(root, v)) {
-      return dp_1[v];
-    }
-    int w = tree.jump(v, root, 1);
-    return dp_2[w];
-  }
+  Data operator[](int v) const { return dp[v]; }
 
   template <typename F1, typename F2, typename F3>
   void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data id) {
     int N = tree.N;
-    // dp1: subtree
-    dp_1.assign(N, id);
+    dp_down.assign(N, id);
+    dp_prefix.assign(N, id);
+    dp_up.assign(N, id);
+    dp.assign(N, id);
+
+    // dp_down, dp_prefix
     FOR_R(i, N) {
       int v = tree.V[i];
-      for (auto&& e : tree.G[v]) {
-        if (e.to == tree.parent[v]) continue;
-        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));
+      Data X = id;
+      for (int c : tree.collect_child(v)) {
+        dp_prefix[c] = X;
+        Data Y = f_ev(dp_down[c], c);
+        Y = f_ve(Y, c, v);
+        X = f_ee(X, Y);
       }
-      dp_1[v] = f_ev(dp_1[v], v);
+      dp_down[v] = X;
     }
 
-    // dp2[v]: subtree of p, rooted at v
-    dp_2.assign(N, id);
-    // dp[v]: fulltree, rooted at v
-    dp.assign(N, id);
+    // dp_up, dp
+    int root = tree.V[0];
+    dp_up[root] = id;
+
     FOR(i, N) {
-      int p = tree.V[i];
-      vc<int> ch;
-      vc<Data> ch_data;
-      Data x = id;
-      for (auto&& e : tree.G[p]) {
-        if (e.to == tree.parent[p]) {
-          x = f_ve(dp_2[p], e);
-        } else {
-          ch.eb(e.to);
-          ch_data.eb(f_ve(dp_1[e.to], e));
-        }
+      int v = tree.V[i];
+      auto ch = tree.collect_child(v);
+
+      Data X = dp_up[v];
+      FOR_R(k, len(ch)) {
+        int c = ch[k];
+
+        // v -> c に渡す親側
+        Data Y = f_ee(dp_prefix[c], X);
+        Y = f_ev(Y, v);
+        dp_up[c] = f_ve(Y, v, c);
+
+        // c の寄与を suffix 側に追加
+        Y = f_ev(dp_down[c], c);
+        Y = f_ve(Y, c, v);
+        X = f_ee(Y, X);
       }
-      int n = len(ch);
-      if (!n) {
-        dp[p] = f_ev(x, p);
-        continue;
-      }
-      vc<Data> prod_left(n, x);
-      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);
-      Data prod_right = id;
-      FOR_R(i, n) {
-        dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);
-        prod_right = f_ee(prod_right, ch_data[i]);
-      }
-      dp[p] = f_ev(f_ee(x, prod_right), p);
+
+      dp[v] = f_ev(X, v);
     }
   }
 };

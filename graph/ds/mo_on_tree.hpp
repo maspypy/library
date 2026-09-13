@@ -21,9 +21,9 @@ struct Mo_on_Tree {
   // rm_l(v), rm_r(v)：パスの先頭 / 末尾から v を削除
   // query(qid)
   template <typename F1, typename F2, typename F3, typename F4, typename F5,
-            typename F6>
+      typename F6>
   void calc_vertex(F1 init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {
-    const int N = tree.G.N;
+    const int N = tree.N;
     auto I = Mo::get_mo_order(LR);
 
     vc<int> FRM(2 * N), TO(2 * N), idx(2 * N);
@@ -62,12 +62,20 @@ struct Mo_on_Tree {
     init();
 
     int l = 1, r = 1;
-    for (auto idx: I) {
+    for (auto idx : I) {
       int L = LR[idx].fi, R = LR[idx].se;
-      while (l > L) { flip_left(--l); }
-      while (r < R) { flip_right(r++); }
-      while (l < L) { flip_left(l++); }
-      while (r > R) { flip_right(--r); }
+      while (l > L) {
+        flip_left(--l);
+      }
+      while (r < R) {
+        flip_right(r++);
+      }
+      while (l < L) {
+        flip_left(l++);
+      }
+      while (r > R) {
+        flip_right(--r);
+      }
       query(idx);
     }
   }
@@ -77,7 +85,7 @@ struct Mo_on_Tree {
   // rm_l(frm, to), rm_r(frm, to)：パスの先頭 / 末尾に (frm,to) を追加
   // query(qid)
   template <typename F1, typename F2, typename F3, typename F4, typename F5,
-            typename F6>
+      typename F6>
   void calc_edge(F1 init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {
     const int N = tree.G.N;
     auto I = Mo::get_mo_order(LR);
@@ -118,12 +126,20 @@ struct Mo_on_Tree {
     init();
 
     int l = 1, r = 1;
-    for (auto idx: I) {
+    for (auto idx : I) {
       int L = LR[idx].fi, R = LR[idx].se;
-      while (l > L) { flip_left(--l); }
-      while (r < R) { flip_right(r++); }
-      while (l < L) { flip_left(l++); }
-      while (r > R) { flip_right(--r); }
+      while (l > L) {
+        flip_left(--l);
+      }
+      while (r < R) {
+        flip_right(r++);
+      }
+      while (l < L) {
+        flip_left(l++);
+      }
+      while (r > R) {
+        flip_right(--r);
+      }
       query(idx);
     }
   }
