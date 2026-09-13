@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy: []
@@ -399,36 +399,37 @@ data:
     \ 1);\n      dat[i / 64] |= x << (i % 64);\n    }\n    bit.build(n, [&](int i)\
     \ -> int { return popcnt(dat[i]); });\n  }\n\n  int sum_all() { return bit.sum_all();\
     \ }\n  int sum(int k) { return prefix_sum(k); }\n  int prefix_sum(int k) {\n \
-    \   int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k / 64] & ((u64(1) << (k\
-    \ % 64)) - 1));\n    return ans;\n  }\n  int sum(int L, int R) {\n    assert(0\
-    \ <= L && L <= R && R <= N);\n    if (L == 0) return prefix_sum(R);\n    int ans\
-    \ = 0;\n    ans -= popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n    ans\
-    \ += popcnt(dat[R / 64] & ((u64(1) << (R % 64)) - 1));\n    ans += bit.sum(L /\
-    \ 64, R / 64);\n    return ans;\n  }\n  int get(int i) {\n    assert(0 <= i &&\
-    \ i < N);\n    return sum(i, i + 1);\n  }\n  int prod(int L, int R) { return sum(L,\
-    \ R); }\n\n  void add(int k, int x) {\n    assert(0 <= k && k < N);\n    if (x\
-    \ == 1) {\n      assert(sum(k, k + 1) == 0);\n      dat[k / 64] |= u64(1) << (k\
-    \ % 64);\n      bit.add(k / 64, 1);\n    }\n    elif (x == -1) {\n      assert(sum(k,\
-    \ k + 1) == 1);\n      dat[k / 64] &= ~(u64(1) << (k % 64));\n      bit.add(k\
-    \ / 64, -1);\n    }\n    else assert(0);\n  }\n  void multiply(int k, int x) {\
-    \ add(k, x); }\n\n  void add(int k) { add(k, 1); }\n  void remove(int k) { add(k,\
-    \ -1); }\n\n  int kth(int k, int L = 0) {\n    if (k >= sum_all()) return N;\n\
-    \    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n  \
-    \  int mid = 0;\n    auto check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid,\
-    \ e);\n      return e <= k;\n    };\n    int idx = bit.max_right(check, L);\n\
-    \    if (idx == n) return N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p\
-    \ = popcnt(x);\n    if (p <= k) return N;\n    k = binary_search(\n        [&](int\
-    \ n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);\n    return 64\
-    \ * idx + k;\n  }\n\n  int next(int k) {\n    int idx = k / 64;\n    k %= 64;\n\
-    \    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n\
-    \    idx = bit.kth(0, idx + 1);\n    if (idx == n || !dat[idx]) return N;\n  \
-    \  return 64 * idx + lowbit(dat[idx]);\n  }\n\n  int prev(int k) {\n    if (k\
-    \ == N) --k;\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx];\n   \
-    \ if (k < 63) x &= (u64(1) << (k + 1)) - 1;\n    if (x) return 64 * idx + topbit(x);\n\
-    \    idx = bit.min_left([&](auto e) -> bool { return e <= 0; }, idx) - 1;\n  \
-    \  if (idx == -1) return -1;\n    return 64 * idx + topbit(dat[idx]);\n  }\n\n\
-    \  string to_string() {\n    string out;\n    FOR(i, N) out += '0' + (dat[i /\
-    \ 64] >> (i & 63) & 1);\n    return out;\n  }\n};\n#line 7 \"graph/ds/range_edge_connected_component_query.hpp\"\
+    \   assert(0 <= k && k <= N);\n    int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k\
+    \ / 64] & ((u64(1) << (k % 64)) - 1));\n    return ans;\n  }\n  int sum(int L,\
+    \ int R) {\n    assert(0 <= L && L <= R && R <= N);\n    if (L == 0) return prefix_sum(R);\n\
+    \    int ans = 0;\n    ans -= popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n\
+    \    ans += popcnt(dat[R / 64] & ((u64(1) << (R % 64)) - 1));\n    ans += bit.sum(L\
+    \ / 64, R / 64);\n    return ans;\n  }\n  int get(int i) {\n    assert(0 <= i\
+    \ && i < N);\n    return sum(i, i + 1);\n  }\n  int prod(int L, int R) { return\
+    \ sum(L, R); }\n\n  void add(int k, int x) {\n    assert(0 <= k && k < N);\n \
+    \   if (x == 1) {\n      assert(sum(k, k + 1) == 0);\n      dat[k / 64] |= u64(1)\
+    \ << (k % 64);\n      bit.add(k / 64, 1);\n    }\n    elif (x == -1) {\n     \
+    \ assert(sum(k, k + 1) == 1);\n      dat[k / 64] &= ~(u64(1) << (k % 64));\n \
+    \     bit.add(k / 64, -1);\n    }\n    else assert(0);\n  }\n  void multiply(int\
+    \ k, int x) { add(k, x); }\n\n  void add(int k) { add(k, 1); }\n  void remove(int\
+    \ k) { add(k, -1); }\n\n  int kth(int k, int L = 0) {\n    assert(0 <= k && k\
+    \ < sum_all());\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n\
+    \    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool {\n    \
+    \  if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx = bit.max_right(check,\
+    \ L);\n    if (idx == n) return N;\n    k -= mid;\n    u64 x = dat[idx];\n   \
+    \ int p = popcnt(x);\n    if (p <= k) return N;\n    k = binary_search(\n    \
+    \    [&](int n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);\n  \
+    \  return 64 * idx + k;\n  }\n\n  int next(int k) {\n    assert(0 <= k && k <=\
+    \ N);\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1) <<\
+    \ k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
+    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
+    \  }\n\n  int prev(int k) {\n    assert(0 <= k && k <= N);\n    if (k == N) --k;\n\
+    \    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x\
+    \ &= (u64(1) << (k + 1)) - 1;\n    if (x) return 64 * idx + topbit(x);\n    idx\
+    \ = bit.min_left([&](auto e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx\
+    \ == -1) return -1;\n    return 64 * idx + topbit(dat[idx]);\n  }\n\n  string\
+    \ to_string() {\n    string out;\n    FOR(i, N) out += '0' + (dat[i / 64] >> (i\
+    \ & 63) & 1);\n    return out;\n  }\n};\n#line 7 \"graph/ds/range_edge_connected_component_query.hpp\"\
     \n\n// https://codeforces.com/problemset/problem/1386/C (TLE)\n// query(L,R) =\
     \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Connected_Component_Query\
     \ {\n  Graph<int, 0>& G;\n  vc<pair<int, int>> query;\n\n  Range_Edge_Connected_Component_Query(Graph<int,\
@@ -478,7 +479,7 @@ data:
   isVerificationFile: false
   path: graph/ds/range_edge_connected_component_query.hpp
   requiredBy: []
-  timestamp: '2026-09-04 09:44:55+09:00'
+  timestamp: '2026-09-13 10:50:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/range_edge_connected_component_query.hpp

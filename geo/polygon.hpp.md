@@ -238,7 +238,8 @@ data:
     \ event[i + 1].fi);\n        }\n      }\n    }\n\n    assert(in == 0);\n    return\
     \ ANS;\n  }\n\n private:\n  void build() {\n    a = 0;\n    FOR(i, len(point))\
     \ {\n      int j = (i + 1 == len(point) ? 0 : i + 1);\n      a += point[i].det(point[j]);\n\
-    \    }\n    if (a < 0) {\n      reverse(all(point));\n    }\n  }\n};\n"
+    \    }\n    if (a < 0) {\n      reverse(all(point));\n      a = -a;\n    }\n \
+    \ }\n};\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/cross_point.hpp\"\n\ntemplate <typename\
     \ T>\nstruct Polygon {\n  vc<Point<T>> point;\n  T a;\n\n  Polygon(vc<Point<T>>\
     \ point) : point(point) { build(); }\n\n  int size() { return len(point); }\n\n\
@@ -302,14 +303,15 @@ data:
     \ event[i + 1].fi);\n        }\n      }\n    }\n\n    assert(in == 0);\n    return\
     \ ANS;\n  }\n\n private:\n  void build() {\n    a = 0;\n    FOR(i, len(point))\
     \ {\n      int j = (i + 1 == len(point) ? 0 : i + 1);\n      a += point[i].det(point[j]);\n\
-    \    }\n    if (a < 0) {\n      reverse(all(point));\n    }\n  }\n};"
+    \    }\n    if (a < 0) {\n      reverse(all(point));\n      a = -a;\n    }\n \
+    \ }\n};"
   dependsOn:
   - geo/base.hpp
   - geo/cross_point.hpp
   isVerificationFile: false
   path: geo/polygon.hpp
   requiredBy: []
-  timestamp: '2026-09-04 09:44:55+09:00'
+  timestamp: '2026-09-13 10:50:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/polygon.hpp
