@@ -9,7 +9,7 @@ template <typename TREE>
 struct Subtree_Hash {
   using mint = modint61;
   TREE& tree;
-  vc<u64> dp, dp_1, dp_2;
+  vc<u64> dp, dp_subtree, dp_parent;
 
   Subtree_Hash(TREE& tree) : tree(tree) {
     int N = tree.N;
@@ -23,23 +23,24 @@ struct Subtree_Hash {
     };
 
     Rerooting_DP<TREE, T> DP(tree, f_ee, f_ev, f_ve, id);
-    dp.resize(N), dp_1.resize(N), dp_2.resize(N);
-    FOR(v, N) dp[v] = DP.dp[v].se.val;
-    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;
-    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;
+
+    dp.resize(N), dp_subtree.resize(N), dp_parent.resize(N);
+    FOR(v, N) {
+      dp[v] = DP.dp[v].se.val;
+      dp_subtree[v] = DP.dp_subtree[v].se.val;
+      dp_parent[v] = DP.dp_parent[v].se.val;
+    }
   }
 
   // v を根としたときの full tree
-  u64 operator[](int v) { return dp[v]; }
+  u64 operator[](int v) const { return dp[v]; }
 
   // root を根としたときの部分木 v
-  u64 get(int v, int root) {
+  u64 get(int v, int root) const {
     if (root == v) return dp[v];
-    if (!tree.in_subtree(root, v)) {
-      return dp_1[v];
-    }
+    if (!tree.in_subtree(root, v)) return dp_subtree[v];
     int w = tree.jump(v, root, 1);
-    return dp_2[w];
+    return dp_parent[w];
   }
 
   static mint hash_base(int k) {
