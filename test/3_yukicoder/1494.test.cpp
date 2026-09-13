@@ -22,8 +22,9 @@ void solve() {
   };
   auto fev = [&](Data x, int v) -> Data { return x; };
   // e は v から出る有向辺
-  auto fve = [&](Data x, auto& e) -> Data {
-    char c = e.cost;
+  auto fve = [&](Data x, int r, int nxt_r) -> Data {
+    int eid = tree.get_eid(r, nxt_r);
+    char c = G.edges[eid].cost;
     FOR_R(j, len(S)) {
       if (S[j] == c) chmax(x[j + 1], x[j] + 1);
     }

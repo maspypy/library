@@ -18,7 +18,7 @@ void test(int n) {
     if (n >= 2 && A.back() != n - 1) return;
     Graph<int, 0> G = from_prufer_code(A);
     UnionFind uf(n);
-    for (auto& e: G.edges) assert(uf.merge(e.frm, e.to));
+    for (auto& e : G.edges) assert(uf.merge(e.frm, e.to));
     assert(uf.n_comp == 1);
     vc<int> B = to_prufer_code(G);
     assert(A == B);

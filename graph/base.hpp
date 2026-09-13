@@ -228,13 +228,13 @@ struct Graph {
   }
 
  private:
-  void calc_deg() {
+  void calc_deg() const {
     assert(vc_deg.empty());
     vc_deg.resize(N);
     for (auto&& e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;
   }
 
-  void calc_deg_inout() {
+  void calc_deg_inout() const {
     assert(vc_indeg.empty());
     vc_indeg.resize(N);
     vc_outdeg.resize(N);
