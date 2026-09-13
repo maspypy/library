@@ -275,8 +275,8 @@ data:
     \u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B v \u3092\u8FFD\u52A0\n  //\
     \ rm_l(v), rm_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u304B\u3089\
     \ v \u3092\u524A\u9664\n  // query(qid)\n  template <typename F1, typename F2,\
-    \ typename F3, typename F4, typename F5,\n            typename F6>\n  void calc_vertex(F1\
-    \ init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {\n    const int N = tree.G.N;\n\
+    \ typename F3, typename F4, typename F5,\n      typename F6>\n  void calc_vertex(F1\
+    \ init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {\n    const int N = tree.N;\n\
     \    auto I = Mo::get_mo_order(LR);\n\n    vc<int> FRM(2 * N), TO(2 * N), idx(2\
     \ * N);\n    vc<int> cnt(N);\n    deque<int> path = {0};\n    FOR(v, N) {\n  \
     \    int a = tree.ELID(v), b = tree.ERID(v);\n      FRM[a] = tree.parent[v], TO[a]\
@@ -290,16 +290,69 @@ data:
     \ path.back() ^ a ^ b;\n        path.emplace_back(v), add_r(v);\n      } else\
     \ {\n        int v = path.back();\n        path.pop_back(), rm_r(v);\n      }\n\
     \      cnt[c] ^= 1;\n    };\n\n    init();\n\n    int l = 1, r = 1;\n    for (auto\
-    \ idx: I) {\n      int L = LR[idx].fi, R = LR[idx].se;\n      while (l > L) {\
-    \ flip_left(--l); }\n      while (r < R) { flip_right(r++); }\n      while (l\
-    \ < L) { flip_left(l++); }\n      while (r > R) { flip_right(--r); }\n      query(idx);\n\
+    \ idx : I) {\n      int L = LR[idx].fi, R = LR[idx].se;\n      while (l > L) {\n\
+    \        flip_left(--l);\n      }\n      while (r < R) {\n        flip_right(r++);\n\
+    \      }\n      while (l < L) {\n        flip_left(l++);\n      }\n      while\
+    \ (r > R) {\n        flip_right(--r);\n      }\n      query(idx);\n    }\n  }\n\
+    \n  // init(): root \u3060\u3051\u304B\u3089\u306A\u308B path\n  // add_l(frm,\
+    \ to), add_r(frm, to)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B\
+    \ (frm,to) \u3092\u8FFD\u52A0\n  // rm_l(frm, to), rm_r(frm, to)\uFF1A\u30D1\u30B9\
+    \u306E\u5148\u982D / \u672B\u5C3E\u306B (frm,to) \u3092\u8FFD\u52A0\n  // query(qid)\n\
+    \  template <typename F1, typename F2, typename F3, typename F4, typename F5,\n\
+    \      typename F6>\n  void calc_edge(F1 init, F2 add_l, F3 add_r, F4 rm_l, F5\
+    \ rm_r, F6 query) {\n    const int N = tree.G.N;\n    auto I = Mo::get_mo_order(LR);\n\
+    \n    vc<int> FRM(2 * N), TO(2 * N), idx(2 * N);\n    vc<int> cnt(N);\n    deque<int>\
+    \ path = {0};\n    FOR(v, N) {\n      int a = tree.ELID(v), b = tree.ERID(v);\n\
+    \      FRM[a] = tree.parent[v], TO[a] = v;\n      FRM[b] = v, TO[b] = tree.parent[v];\n\
+    \      idx[a] = idx[b] = v;\n    }\n\n    auto flip_left = [&](int i) -> void\
+    \ {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0)\
+    \ {\n        int v = path.front() ^ a ^ b;\n        path.emplace_front(v), add_l(v,\
+    \ v ^ a ^ b);\n      } else {\n        int v = path.front();\n        path.pop_front(),\
+    \ rm_l(v, v ^ a ^ b);\n      }\n      cnt[c] ^= 1;\n    };\n    auto flip_right\
+    \ = [&](int i) -> void {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n\
+    \      if (cnt[c] == 0) {\n        int v = path.back() ^ a ^ b;\n        path.emplace_back(v),\
+    \ add_r(v ^ a ^ b, v);\n      } else {\n        int v = path.back();\n       \
+    \ path.pop_back(), rm_r(v ^ a ^ b, v);\n      }\n      cnt[c] ^= 1;\n    };\n\n\
+    \    init();\n\n    int l = 1, r = 1;\n    for (auto idx : I) {\n      int L =\
+    \ LR[idx].fi, R = LR[idx].se;\n      while (l > L) {\n        flip_left(--l);\n\
+    \      }\n      while (r < R) {\n        flip_right(r++);\n      }\n      while\
+    \ (l < L) {\n        flip_left(l++);\n      }\n      while (r > R) {\n       \
+    \ flip_right(--r);\n      }\n      query(idx);\n    }\n  }\n};\n"
+  code: "#include \"graph/tree.hpp\"\n#include \"ds/offline_query/mo.hpp\"\n\n// https://codeforces.com/contest/852/problem/I\n\
+    template <typename TREE, bool ORIENTED = false>\nstruct Mo_on_Tree {\n  TREE&\
+    \ tree;\n  vc<pair<int, int>> LR;\n\n  Mo mo;\n  Mo_on_Tree(TREE& tree) : tree(tree)\
+    \ {}\n  void add(int u, int v) {\n    if constexpr (!ORIENTED) {\n      if (tree.LID[u]\
+    \ > tree.LID[v]) swap(u, v);\n    }\n    LR.eb(tree.ELID(u) + 1, tree.ELID(v)\
+    \ + 1);\n  }\n\n  // init(): root \u3060\u3051\u304B\u3089\u306A\u308B path\n\
+    \  // add_l(v), add_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B\
+    \ v \u3092\u8FFD\u52A0\n  // rm_l(v), rm_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D\
+    \ / \u672B\u5C3E\u304B\u3089 v \u3092\u524A\u9664\n  // query(qid)\n  template\
+    \ <typename F1, typename F2, typename F3, typename F4, typename F5,\n      typename\
+    \ F6>\n  void calc_vertex(F1 init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query)\
+    \ {\n    const int N = tree.N;\n    auto I = Mo::get_mo_order(LR);\n\n    vc<int>\
+    \ FRM(2 * N), TO(2 * N), idx(2 * N);\n    vc<int> cnt(N);\n    deque<int> path\
+    \ = {0};\n    FOR(v, N) {\n      int a = tree.ELID(v), b = tree.ERID(v);\n   \
+    \   FRM[a] = tree.parent[v], TO[a] = v;\n      FRM[b] = v, TO[b] = tree.parent[v];\n\
+    \      idx[a] = idx[b] = v;\n    }\n\n    auto flip_left = [&](int i) -> void\
+    \ {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0)\
+    \ {\n        int v = path.front() ^ a ^ b;\n        path.emplace_front(v), add_l(v);\n\
+    \      } else {\n        int v = path.front();\n        path.pop_front(), rm_l(v);\n\
+    \      }\n      cnt[c] ^= 1;\n    };\n    auto flip_right = [&](int i) -> void\
+    \ {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0)\
+    \ {\n        int v = path.back() ^ a ^ b;\n        path.emplace_back(v), add_r(v);\n\
+    \      } else {\n        int v = path.back();\n        path.pop_back(), rm_r(v);\n\
+    \      }\n      cnt[c] ^= 1;\n    };\n\n    init();\n\n    int l = 1, r = 1;\n\
+    \    for (auto idx : I) {\n      int L = LR[idx].fi, R = LR[idx].se;\n      while\
+    \ (l > L) {\n        flip_left(--l);\n      }\n      while (r < R) {\n       \
+    \ flip_right(r++);\n      }\n      while (l < L) {\n        flip_left(l++);\n\
+    \      }\n      while (r > R) {\n        flip_right(--r);\n      }\n      query(idx);\n\
     \    }\n  }\n\n  // init(): root \u3060\u3051\u304B\u3089\u306A\u308B path\n \
     \ // add_l(frm, to), add_r(frm, to)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\
     \u5C3E\u306B (frm,to) \u3092\u8FFD\u52A0\n  // rm_l(frm, to), rm_r(frm, to)\uFF1A\
     \u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B (frm,to) \u3092\u8FFD\u52A0\
     \n  // query(qid)\n  template <typename F1, typename F2, typename F3, typename\
-    \ F4, typename F5,\n            typename F6>\n  void calc_edge(F1 init, F2 add_l,\
-    \ F3 add_r, F4 rm_l, F5 rm_r, F6 query) {\n    const int N = tree.G.N;\n    auto\
+    \ F4, typename F5,\n      typename F6>\n  void calc_edge(F1 init, F2 add_l, F3\
+    \ add_r, F4 rm_l, F5 rm_r, F6 query) {\n    const int N = tree.G.N;\n    auto\
     \ I = Mo::get_mo_order(LR);\n\n    vc<int> FRM(2 * N), TO(2 * N), idx(2 * N);\n\
     \    vc<int> cnt(N);\n    deque<int> path = {0};\n    FOR(v, N) {\n      int a\
     \ = tree.ELID(v), b = tree.ERID(v);\n      FRM[a] = tree.parent[v], TO[a] = v;\n\
@@ -313,61 +366,11 @@ data:
     \        int v = path.back() ^ a ^ b;\n        path.emplace_back(v), add_r(v ^\
     \ a ^ b, v);\n      } else {\n        int v = path.back();\n        path.pop_back(),\
     \ rm_r(v ^ a ^ b, v);\n      }\n      cnt[c] ^= 1;\n    };\n\n    init();\n\n\
-    \    int l = 1, r = 1;\n    for (auto idx: I) {\n      int L = LR[idx].fi, R =\
-    \ LR[idx].se;\n      while (l > L) { flip_left(--l); }\n      while (r < R) {\
-    \ flip_right(r++); }\n      while (l < L) { flip_left(l++); }\n      while (r\
-    \ > R) { flip_right(--r); }\n      query(idx);\n    }\n  }\n};\n"
-  code: "#include \"graph/tree.hpp\"\n#include \"ds/offline_query/mo.hpp\"\n\n// https://codeforces.com/contest/852/problem/I\n\
-    template <typename TREE, bool ORIENTED = false>\nstruct Mo_on_Tree {\n  TREE&\
-    \ tree;\n  vc<pair<int, int>> LR;\n\n  Mo mo;\n  Mo_on_Tree(TREE& tree) : tree(tree)\
-    \ {}\n  void add(int u, int v) {\n    if constexpr (!ORIENTED) {\n      if (tree.LID[u]\
-    \ > tree.LID[v]) swap(u, v);\n    }\n    LR.eb(tree.ELID(u) + 1, tree.ELID(v)\
-    \ + 1);\n  }\n\n  // init(): root \u3060\u3051\u304B\u3089\u306A\u308B path\n\
-    \  // add_l(v), add_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B\
-    \ v \u3092\u8FFD\u52A0\n  // rm_l(v), rm_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D\
-    \ / \u672B\u5C3E\u304B\u3089 v \u3092\u524A\u9664\n  // query(qid)\n  template\
-    \ <typename F1, typename F2, typename F3, typename F4, typename F5,\n        \
-    \    typename F6>\n  void calc_vertex(F1 init, F2 add_l, F3 add_r, F4 rm_l, F5\
-    \ rm_r, F6 query) {\n    const int N = tree.G.N;\n    auto I = Mo::get_mo_order(LR);\n\
-    \n    vc<int> FRM(2 * N), TO(2 * N), idx(2 * N);\n    vc<int> cnt(N);\n    deque<int>\
-    \ path = {0};\n    FOR(v, N) {\n      int a = tree.ELID(v), b = tree.ERID(v);\n\
-    \      FRM[a] = tree.parent[v], TO[a] = v;\n      FRM[b] = v, TO[b] = tree.parent[v];\n\
-    \      idx[a] = idx[b] = v;\n    }\n\n    auto flip_left = [&](int i) -> void\
-    \ {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0)\
-    \ {\n        int v = path.front() ^ a ^ b;\n        path.emplace_front(v), add_l(v);\n\
-    \      } else {\n        int v = path.front();\n        path.pop_front(), rm_l(v);\n\
-    \      }\n      cnt[c] ^= 1;\n    };\n    auto flip_right = [&](int i) -> void\
-    \ {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0)\
-    \ {\n        int v = path.back() ^ a ^ b;\n        path.emplace_back(v), add_r(v);\n\
-    \      } else {\n        int v = path.back();\n        path.pop_back(), rm_r(v);\n\
-    \      }\n      cnt[c] ^= 1;\n    };\n\n    init();\n\n    int l = 1, r = 1;\n\
-    \    for (auto idx: I) {\n      int L = LR[idx].fi, R = LR[idx].se;\n      while\
-    \ (l > L) { flip_left(--l); }\n      while (r < R) { flip_right(r++); }\n    \
-    \  while (l < L) { flip_left(l++); }\n      while (r > R) { flip_right(--r); }\n\
-    \      query(idx);\n    }\n  }\n\n  // init(): root \u3060\u3051\u304B\u3089\u306A\
-    \u308B path\n  // add_l(frm, to), add_r(frm, to)\uFF1A\u30D1\u30B9\u306E\u5148\
-    \u982D / \u672B\u5C3E\u306B (frm,to) \u3092\u8FFD\u52A0\n  // rm_l(frm, to), rm_r(frm,\
-    \ to)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B (frm,to) \u3092\
-    \u8FFD\u52A0\n  // query(qid)\n  template <typename F1, typename F2, typename\
-    \ F3, typename F4, typename F5,\n            typename F6>\n  void calc_edge(F1\
-    \ init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {\n    const int N = tree.G.N;\n\
-    \    auto I = Mo::get_mo_order(LR);\n\n    vc<int> FRM(2 * N), TO(2 * N), idx(2\
-    \ * N);\n    vc<int> cnt(N);\n    deque<int> path = {0};\n    FOR(v, N) {\n  \
-    \    int a = tree.ELID(v), b = tree.ERID(v);\n      FRM[a] = tree.parent[v], TO[a]\
-    \ = v;\n      FRM[b] = v, TO[b] = tree.parent[v];\n      idx[a] = idx[b] = v;\n\
-    \    }\n\n    auto flip_left = [&](int i) -> void {\n      const int a = FRM[i],\
-    \ b = TO[i], c = idx[i];\n      if (cnt[c] == 0) {\n        int v = path.front()\
-    \ ^ a ^ b;\n        path.emplace_front(v), add_l(v, v ^ a ^ b);\n      } else\
-    \ {\n        int v = path.front();\n        path.pop_front(), rm_l(v, v ^ a ^\
-    \ b);\n      }\n      cnt[c] ^= 1;\n    };\n    auto flip_right = [&](int i) ->\
-    \ void {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c]\
-    \ == 0) {\n        int v = path.back() ^ a ^ b;\n        path.emplace_back(v),\
-    \ add_r(v ^ a ^ b, v);\n      } else {\n        int v = path.back();\n       \
-    \ path.pop_back(), rm_r(v ^ a ^ b, v);\n      }\n      cnt[c] ^= 1;\n    };\n\n\
-    \    init();\n\n    int l = 1, r = 1;\n    for (auto idx: I) {\n      int L =\
-    \ LR[idx].fi, R = LR[idx].se;\n      while (l > L) { flip_left(--l); }\n     \
-    \ while (r < R) { flip_right(r++); }\n      while (l < L) { flip_left(l++); }\n\
-    \      while (r > R) { flip_right(--r); }\n      query(idx);\n    }\n  }\n};\n"
+    \    int l = 1, r = 1;\n    for (auto idx : I) {\n      int L = LR[idx].fi, R\
+    \ = LR[idx].se;\n      while (l > L) {\n        flip_left(--l);\n      }\n   \
+    \   while (r < R) {\n        flip_right(r++);\n      }\n      while (l < L) {\n\
+    \        flip_left(l++);\n      }\n      while (r > R) {\n        flip_right(--r);\n\
+    \      }\n      query(idx);\n    }\n  }\n};\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -376,7 +379,7 @@ data:
   isVerificationFile: false
   path: graph/ds/mo_on_tree.hpp
   requiredBy: []
-  timestamp: '2026-09-13 14:30:38+09:00'
+  timestamp: '2026-09-13 15:10:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/mo_on_tree.test.cpp

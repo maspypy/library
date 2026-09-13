@@ -1173,28 +1173,25 @@ data:
     \ {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  TREE\
     \ &tree;\r\n  int N;\r\n  Dual_SegTree<MX> seg;\r\n\r\n  Dual_Tree_Monoid(TREE\
     \ &tree) : tree(tree), N(tree.N), seg(tree.N) {}\r\n\r\n  X get(int i) {\r\n \
-    \   int v = i;\r\n    if (edge) {\r\n      auto &&e = tree.G.edges[i];\r\n   \
-    \   v = (tree.parent[e.frm] == e.to ? e.frm : e.to);\r\n    }\r\n    return seg.get(tree.LID[v]);\r\
+    \   int v = (edge ? tree.e_to_v(i) : i);\r\n    return seg.get(tree.LID[v]);\r\
     \n  }\r\n\r\n  vc<X> get_all() {\r\n    vc<X> tmp = seg.get_all();\r\n    vc<X>\
-    \ res;\r\n    FOR(i, N) {\r\n      if (edge && i == N - 1) break;\r\n      int\
-    \ v = i;\r\n      if (edge) {\r\n        auto &&e = tree.G.edges[i];\r\n     \
-    \   v = (tree.parent[e.frm] == e.to ? e.frm : e.to);\r\n      }\r\n      res.eb(tmp[tree.LID[v]]);\r\
-    \n    }\r\n    return res;\r\n  }\r\n\r\n  void apply_path(int u, int v, X x)\
-    \ {\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto\
-    \ &&[a, b]: pd) {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a +\
-    \ 1, x));\r\n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X\
-    \ x) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l\
-    \ + edge, r, x);\r\n  }\r\n\r\n  void apply_outtree(int u, X a) {\r\n    int l\
-    \ = tree.LID[u], r = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n\
-    \    seg.apply(r, N, a);\r\n  }\r\n};\r\n#line 1 \"alg/monoid/min.hpp\"\n// require:\
-    \ all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
-    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
-    alg/monoid/max.hpp\"\n// require: all values x satisfy x >= -infty<E>\ntemplate\
-    \ <typename E>\nstruct Monoid_Max {\n  using X = E;\n  using value_type = X;\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return max(x, y);\
-    \ }\n  static constexpr X id() { return -infty<E>; }\n  static constexpr bool\
+    \ res(N - edge);\r\n    FOR(i, N - edge) {\r\n      int v = (edge ? tree.e_to_v(i)\
+    \ : i);\r\n      res[i] = tmp[tree.LID[v]];\r\n    }\r\n    return res;\r\n  }\r\
+    \n\r\n  void apply_path(int u, int v, X x) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ v, edge);\r\n    for (auto &&[a, b] : pd) {\r\n      (a <= b ? seg.apply(a,\
+    \ b + 1, x) : seg.apply(b, a + 1, x));\r\n    }\r\n    return;\r\n  }\r\n\r\n\
+    \  void apply_subtree(int u, X x) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
+    \n    return seg.apply(l + edge, r, x);\r\n  }\r\n\r\n  void apply_outtree(int\
+    \ u, X a) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    seg.apply(0 +\
+    \ edge, l + edge, a);\r\n    seg.apply(r, N, a);\r\n  }\r\n};\r\n#line 1 \"alg/monoid/min.hpp\"\
+    \n// require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 1 \"alg/monoid/max.hpp\"\n// require: all values x satisfy x >= -infty<E>\n\
+    template <typename E>\nstruct Monoid_Max {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return max(x,\
+    \ y); }\n  static constexpr X id() { return -infty<E>; }\n  static constexpr bool\
     \ commute = true;\n};\n#line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n// return\
     \ : {T mst_cost, vc<bool> in_mst, Graph MST}\r\ntemplate <typename T, typename\
     \ GT>\r\ntuple<T, vc<bool>, GT> minimum_spanning_tree(GT& G) {\r\n  int N = G.N;\r\
@@ -1247,7 +1244,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/mst.test.cpp
   requiredBy: []
-  timestamp: '2026-09-13 14:30:38+09:00'
+  timestamp: '2026-09-13 15:10:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/mst.test.cpp

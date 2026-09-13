@@ -2676,6 +2676,9 @@ data:
       path: template/prefix_state_segtree.hpp
       title: template/prefix_state_segtree.hpp
     - icon: ':warning:'
+      path: template/rerooting_dp.hpp
+      title: template/rerooting_dp.hpp
+    - icon: ':warning:'
       path: template/rollback_dfs.hpp
       title: template/rollback_dfs.hpp
     - icon: ':warning:'
