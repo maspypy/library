@@ -43,7 +43,7 @@ void solve() {
     return x;
   };
   // e は v から出る有向辺
-  auto fve = [&](Data x, auto& e) -> Data { return x + 1; };
+  auto fve = [&](Data x, int, int) -> Data { return x + 1; };
   Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, id);
 
   // span される部分からの距離
