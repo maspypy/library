@@ -11,6 +11,7 @@ struct CartesianTree {
   int root;
 
   CartesianTree(vc<T>& A) : n(len(A)), A(A) {
+    assert(n > 0);
     range.assign(n, {-1, -1});
     lch.assign(n, -1);
     rch.assign(n, -1);
@@ -69,7 +70,7 @@ struct CartesianTree {
     ll res = 0;
     FOR(i, n) {
       auto [l, r, h] = maximum_rectangle(i);
-      ll x = (baseline ? h : h * (h + 1) / 2);
+      ll x = (baseline ? h : ll(h) * (h + 1) / 2);
       res += x * (i - l + 1) * (r - i);
     }
     return res;

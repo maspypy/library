@@ -11,7 +11,7 @@ struct Range_Max_Change {
   bool prepared;
   Range_Max_Change(vc<T>& A) : A(A), N(len(A)), pl(0), pr(0), prepared(0) {}
   template <typename F>
-  Range_Max_Change(int N, F f) : N(len(A)), pl(0), pr(0), prepared(0) {
+  Range_Max_Change(int N, F f) : N(N), pl(0), pr(0), prepared(0) {
     A.resize(N);
     FOR(i, N) A[i] = f(i);
   }

@@ -2,8 +2,8 @@
 #include <smmintrin.h>
 #include <wmmintrin.h>
 
-__attribute__((target("pclmul"))) inline __m128i myclmul(const __m128i &a,
-                                                         const __m128i &b) {
+__attribute__((target("pclmul"))) inline __m128i myclmul(
+    const __m128i &a, const __m128i &b) {
   return _mm_clmulepi64_si128(a, b, 0);
 }
 
@@ -12,11 +12,10 @@ template <int K>
 struct GF2 {
   // https://oeis.org/A344141
   // irreducible poly x^K + ...
-  static constexpr int POLY[65]
-      = {0,  0, 3,  3,   3,  5,   3,  3,  27,  3,  9,  5,   9, 27, 33, 3,   43,
-         9,  9, 39, 9,   5,  3,   33, 27, 9,   27, 39, 3,   5, 3,  9,  141, 75,
-         27, 5, 53, 63,  99, 17,  57, 9,  39,  89, 33, 27,  3, 33, 45, 113, 29,
-         75, 9, 71, 125, 71, 149, 17, 99, 123, 3,  39, 105, 3, 27};
+  static constexpr int POLY[65] = {0, 0, 3, 3, 3, 5, 3, 3, 27, 3, 9, 5, 9, 27,
+      33, 3, 43, 9, 9, 39, 9, 5, 3, 33, 27, 9, 27, 39, 3, 5, 3, 9, 141, 75, 27,
+      5, 53, 63, 99, 17, 57, 9, 39, 89, 33, 27, 3, 33, 45, 113, 29, 75, 9, 71,
+      125, 71, 149, 17, 99, 123, 3, 39, 105, 3, 27};
 
   static constexpr u64 mask() { return u64(-1) >> (64 - K); }
 
@@ -62,7 +61,7 @@ struct GF2 {
   constexpr GF2(const u64 val = 0) noexcept : val(val & mask()) {}
   bool operator<(const GF2 &other) const {
     return val < other.val;
-  } // To use std::map
+  }  // To use std::map
   GF2 &operator+=(const GF2 &p) {
     val ^= p.val;
     return *this;
@@ -80,7 +79,7 @@ struct GF2 {
     *this *= p.inverse();
     return *this;
   }
-  GF2 operator-() const { return GF2(-val); }
+  GF2 operator-() const { return *this; }
   GF2 operator+(const GF2 &p) const { return GF2(*this) += p; }
   GF2 operator-(const GF2 &p) const { return GF2(*this) -= p; }
   GF2 operator*(const GF2 &p) const { return GF2(*this) *= p; }
