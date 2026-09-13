@@ -18,7 +18,7 @@ struct Subtree_Hash {
 
     auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };
     auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };
-    auto f_ve = [&](T A, const auto& e) -> T {
+    auto f_ve = [&](T A, int r, int nxt_r) -> T {
       return {A.fi, A.se + hash_base(A.fi)};
     };
 

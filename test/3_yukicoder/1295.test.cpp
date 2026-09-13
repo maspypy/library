@@ -32,10 +32,9 @@ void solve() {
   };
   auto fev = [&](Data x, int v) -> Data { return x; };
 
-  // e は v に入る有向辺
-  auto fve = [&](Data x, auto& e) -> Data {
-    int p = e.frm;
-    int v = e.to;
+  auto fve = [&](Data x, int r, int nxt_r) -> Data {
+    int p = nxt_r;
+    int v = r;
     // print(p, v, ",", x.x0, x.x1, x.x2, x.mi, x.ma, x.x_mi, x.x_ma);
     bool ok = (x.x0 == 0 && x.x1 == 0) && (x.mi > p);
     bool ok_0 = (x.x0 == 0 && x.x1 == 0);

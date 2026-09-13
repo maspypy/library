@@ -87,7 +87,7 @@ struct Mo_on_Tree {
   template <typename F1, typename F2, typename F3, typename F4, typename F5,
       typename F6>
   void calc_edge(F1 init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {
-    const int N = tree.G.N;
+    const int N = tree.N;
     auto I = Mo::get_mo_order(LR);
 
     vc<int> FRM(2 * N), TO(2 * N), idx(2 * N);

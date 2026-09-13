@@ -27,8 +27,9 @@ void solve() {
     return {x.fi + mint(1), x.se + A[v]};
   };
   // e は v に入る有向辺
-  auto fve = [&](Data x, auto& e) -> Data {
-    x.se = B[e.id] * x.se + x.fi * C[e.id];
+  auto fve = [&](Data x, int r, int nxt_r) -> Data {
+    int eid = tree.get_eid(r, nxt_r);
+    x.se = B[eid] * x.se + x.fi * C[eid];
     return x;
   };
   Rerooting_DP<decltype(tree), Data> dp(tree, fee, fev, fve, id);

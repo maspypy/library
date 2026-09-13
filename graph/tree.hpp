@@ -149,7 +149,8 @@ struct Tree {
     static_assert(HLD);
     vc<int> res;
     for (int k = LID[v] + 1; k < RID[v];) {
-      if (head[V[k]] == V[k]) res.eb(V[k]), k = RID[V[k]];
+      if (head[V[k]] == V[k]) res.eb(V[k]);
+      k = RID[V[k]];
     }
     return res;
   }

@@ -1,3 +1,5 @@
+#include "graph/tree.hpp"
+
 template <typename TREE, typename Data>
 struct Rerooting_DP {
   TREE& tree;
