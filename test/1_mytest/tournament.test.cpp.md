@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tournament.hpp
     title: graph/tournament.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
