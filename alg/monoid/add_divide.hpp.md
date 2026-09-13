@@ -23,7 +23,7 @@ data:
     \    i128 t = b - a;\n    if (a <= infty<ll> / 2) return {a, infty<ll>, c};\n\
     \    if (t <= infty<ll> / 2) return {infty<ll> - t, infty<ll>, c};\n    return\
     \ {infty<ll> / 2, infty<ll>, c};\n  }\n  static X add(ll x) { return {x, 1, 0};\
-    \ }\n  static X divide(ll x) { return {0, 1, x}; }\n\n  static ll eval(X f, ll\
+    \ }\n  static X divide(ll x) { return {0, x, 0}; }\n\n  static ll eval(X f, ll\
     \ x) {\n    auto [a, b, c] = f;\n    return floor<ll>(x + a, b) + c;\n  }\n\n\
     \  static constexpr X id() { return {0, 1, 0}; }\n  static constexpr bool commute\
     \ = 0;\n};\n"
@@ -39,7 +39,7 @@ data:
     \ return {a, b, c};\n    i128 t = b - a;\n    if (a <= infty<ll> / 2) return {a,\
     \ infty<ll>, c};\n    if (t <= infty<ll> / 2) return {infty<ll> - t, infty<ll>,\
     \ c};\n    return {infty<ll> / 2, infty<ll>, c};\n  }\n  static X add(ll x) {\
-    \ return {x, 1, 0}; }\n  static X divide(ll x) { return {0, 1, x}; }\n\n  static\
+    \ return {x, 1, 0}; }\n  static X divide(ll x) { return {0, x, 0}; }\n\n  static\
     \ ll eval(X f, ll x) {\n    auto [a, b, c] = f;\n    return floor<ll>(x + a, b)\
     \ + c;\n  }\n\n  static constexpr X id() { return {0, 1, 0}; }\n  static constexpr\
     \ bool commute = 0;\n};"
@@ -47,7 +47,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/add_divide.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-09-13 12:02:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/add_divide.hpp

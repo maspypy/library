@@ -242,30 +242,31 @@ data:
     \u30BA\u30E0\u3067\u7DDA\u5F62\u6642\u9593\u69CB\u7BC9\u3002\n*/\ntemplate <typename\
     \ T, bool IS_MIN>\nstruct CartesianTree {\n  int n;\n  vc<T>& A;\n  vc<pair<int,\
     \ int>> range;\n  vc<int> lch, rch, par;\n  int root;\n\n  CartesianTree(vc<T>&\
-    \ A) : n(len(A)), A(A) {\n    range.assign(n, {-1, -1});\n    lch.assign(n, -1);\n\
-    \    rch.assign(n, -1);\n    par.assign(n, -1);\n    if (n == 1) {\n      range[0]\
-    \ = {0, 1};\n      root = 0;\n      return;\n    }\n    auto is_sm = [&](int i,\
-    \ int j) -> bool {\n      if (IS_MIN) return (A[i] < A[j]) || (A[i] == A[j] &&\
-    \ i < j);\n      return (A[i] > A[j]) || (A[i] == A[j] && i < j);\n    };\n  \
-    \  vc<int> st;\n    FOR(i, n) {\n      while (!st.empty() && is_sm(i, st.back()))\
-    \ {\n        lch[i] = st.back();\n        st.pop_back();\n      }\n      range[i].fi\
-    \ = (st.empty() ? 0 : st.back() + 1);\n      st.eb(i);\n    }\n    st.clear();\n\
-    \    FOR_R(i, n) {\n      while (!st.empty() && is_sm(i, st.back())) {\n     \
-    \   rch[i] = st.back();\n        st.pop_back();\n      }\n      range[i].se =\
-    \ (st.empty() ? n : st.back());\n      st.eb(i);\n    }\n    FOR(i, n) if (lch[i]\
-    \ != -1) par[lch[i]] = i;\n    FOR(i, n) if (rch[i] != -1) par[rch[i]] = i;\n\
-    \    FOR(i, n) if (par[i] == -1) root = i;\n  }\n\n  // (l, r, h)\n  tuple<int,\
-    \ int, T> maximum_rectangle(int i) {\n    auto [l, r] = range[i];\n    return\
-    \ {l, r, A[i]};\n  }\n\n  // (l, r, h)\n  T max_rectangle_area() {\n    assert(IS_MIN);\n\
-    \    T res = 0;\n    FOR(i, n) {\n      auto [l, r, h] = maximum_rectangle(i);\n\
-    \      chmax(res, (r - l) * h);\n    }\n    return res;\n  }\n\n  ll count_subrectangle(bool\
-    \ baseline) {\n    assert(IS_MIN);\n    ll res = 0;\n    FOR(i, n) {\n      auto\
-    \ [l, r, h] = maximum_rectangle(i);\n      ll x = (baseline ? h : h * (h + 1)\
-    \ / 2);\n      res += x * (i - l + 1) * (r - i);\n    }\n    return res;\n  }\n\
-    };\n#line 5 \"test/2_library_checker/tree/cartesian_tree.test.cpp\"\n\r\nvoid\
-    \ solve() {\r\n  LL(N);\r\n  VEC(int, A, N);\r\n  CartesianTree<int, 1> CT(A);\r\
-    \n  auto& ANS = CT.par;\r\n  FOR(i, N) if (ANS[i] == -1) ANS[i] = i;\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ A) : n(len(A)), A(A) {\n    assert(n > 0);\n    range.assign(n, {-1, -1});\n\
+    \    lch.assign(n, -1);\n    rch.assign(n, -1);\n    par.assign(n, -1);\n    if\
+    \ (n == 1) {\n      range[0] = {0, 1};\n      root = 0;\n      return;\n    }\n\
+    \    auto is_sm = [&](int i, int j) -> bool {\n      if (IS_MIN) return (A[i]\
+    \ < A[j]) || (A[i] == A[j] && i < j);\n      return (A[i] > A[j]) || (A[i] ==\
+    \ A[j] && i < j);\n    };\n    vc<int> st;\n    FOR(i, n) {\n      while (!st.empty()\
+    \ && is_sm(i, st.back())) {\n        lch[i] = st.back();\n        st.pop_back();\n\
+    \      }\n      range[i].fi = (st.empty() ? 0 : st.back() + 1);\n      st.eb(i);\n\
+    \    }\n    st.clear();\n    FOR_R(i, n) {\n      while (!st.empty() && is_sm(i,\
+    \ st.back())) {\n        rch[i] = st.back();\n        st.pop_back();\n      }\n\
+    \      range[i].se = (st.empty() ? n : st.back());\n      st.eb(i);\n    }\n \
+    \   FOR(i, n) if (lch[i] != -1) par[lch[i]] = i;\n    FOR(i, n) if (rch[i] !=\
+    \ -1) par[rch[i]] = i;\n    FOR(i, n) if (par[i] == -1) root = i;\n  }\n\n  //\
+    \ (l, r, h)\n  tuple<int, int, T> maximum_rectangle(int i) {\n    auto [l, r]\
+    \ = range[i];\n    return {l, r, A[i]};\n  }\n\n  // (l, r, h)\n  T max_rectangle_area()\
+    \ {\n    assert(IS_MIN);\n    T res = 0;\n    FOR(i, n) {\n      auto [l, r, h]\
+    \ = maximum_rectangle(i);\n      chmax(res, (r - l) * h);\n    }\n    return res;\n\
+    \  }\n\n  ll count_subrectangle(bool baseline) {\n    assert(IS_MIN);\n    ll\
+    \ res = 0;\n    FOR(i, n) {\n      auto [l, r, h] = maximum_rectangle(i);\n  \
+    \    ll x = (baseline ? h : ll(h) * (h + 1) / 2);\n      res += x * (i - l + 1)\
+    \ * (r - i);\n    }\n    return res;\n  }\n};\n#line 5 \"test/2_library_checker/tree/cartesian_tree.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(int, A, N);\r\n  CartesianTree<int,\
+    \ 1> CT(A);\r\n  auto& ANS = CT.par;\r\n  FOR(i, N) if (ANS[i] == -1) ANS[i] =\
+    \ i;\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\
+    \n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"seq/cartesian_tree.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(int, A, N);\r\n  CartesianTree<int,\
@@ -279,7 +280,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-09-13 12:02:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/cartesian_tree.test.cpp
