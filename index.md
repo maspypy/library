@@ -1442,7 +1442,7 @@ data:
     - icon: ':warning:'
       path: graph/tree_dp/subtree_diameter.hpp
       title: graph/tree_dp/subtree_diameter.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_dp/subtree_hash.hpp
       title: graph/tree_dp/subtree_hash.hpp
   - name: heuristic
@@ -1695,7 +1695,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':warning:'
@@ -2273,7 +2273,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -3727,7 +3727,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
       title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/graph/classify_tree.test.cpp
       title: test/2_library_checker/graph/classify_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4392,7 +4392,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1411.test.cpp
       title: test/3_yukicoder/1411.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1418.test.cpp
       title: test/3_yukicoder/1418.test.cpp
     - icon: ':heavy_check_mark:'

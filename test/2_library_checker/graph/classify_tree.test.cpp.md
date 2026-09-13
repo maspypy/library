@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -854,23 +854,24 @@ data:
     \ = f_ev(X, v);\n    }\n  }\n};\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\n\
     // \u8907\u6570\u306E\u6728\u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate\
     \ <typename TREE>\nstruct Subtree_Hash {\n  using mint = modint61;\n  TREE& tree;\n\
-    \  vc<u64> dp, dp_1, dp_2;\n\n  Subtree_Hash(TREE& tree) : tree(tree) {\n    int\
-    \ N = tree.N;\n    using T = pair<int, mint>;\n    T id = {0, mint(1)};\n\n  \
-    \  auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n\
-    \    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto\
-    \ f_ve = [&](T A, int r, int nxt_r) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
-    \    };\n\n    Rerooting_DP<TREE, T> DP(tree, f_ee, f_ev, f_ve, id);\n    dp.resize(N),\
-    \ dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n  \
-    \  FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
-    \  }\n\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  u64\
-    \ operator[](int v) { return dp[v]; }\n\n  // root \u3092\u6839\u3068\u3057\u305F\
-    \u3068\u304D\u306E\u90E8\u5206\u6728 v\n  u64 get(int v, int root) {\n    if (root\
-    \ == v) return dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n\
-    \    }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n\n  static\
-    \ mint hash_base(int k) {\n    static vc<mint> dat;\n    while (len(dat) <= k)\
-    \ dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n#line 7 \"test/2_library_checker/graph/classify_tree.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
-    \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  Subtree_Hash<decltype(tree)>\
+    \  vc<u64> dp, dp_subtree, dp_parent;\n\n  Subtree_Hash(TREE& tree) : tree(tree)\
+    \ {\n    int N = tree.N;\n    using T = pair<int, mint>;\n    T id = {0, mint(1)};\n\
+    \n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se};\
+    \ };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n   \
+    \ auto f_ve = [&](T A, int r, int nxt_r) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
+    \    };\n\n    Rerooting_DP<TREE, T> DP(tree, f_ee, f_ev, f_ve, id);\n\n    dp.resize(N),\
+    \ dp_subtree.resize(N), dp_parent.resize(N);\n    FOR(v, N) {\n      dp[v] = DP.dp[v].se.val;\n\
+    \      dp_subtree[v] = DP.dp_subtree[v].se.val;\n      dp_parent[v] = DP.dp_parent[v].se.val;\n\
+    \    }\n  }\n\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n\
+    \  u64 operator[](int v) const { return dp[v]; }\n\n  // root \u3092\u6839\u3068\
+    \u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  u64 get(int v, int root)\
+    \ const {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root, v))\
+    \ return dp_subtree[v];\n    int w = tree.jump(v, root, 1);\n    return dp_parent[w];\n\
+    \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
+    \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n\
+    #line 7 \"test/2_library_checker/graph/classify_tree.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(p,\
+    \ v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  Subtree_Hash<decltype(tree)>\
     \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(v, 0);\n  vi key = ANS;\n\
     \  UNIQUE(key);\n  for (auto&& x : ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
     \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
@@ -894,8 +895,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-09-13 16:24:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-13 16:51:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/classify_tree.test.cpp
 layout: document
