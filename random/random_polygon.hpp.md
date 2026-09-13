@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':heavy_check_mark:'
@@ -25,10 +25,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -538,28 +538,29 @@ data:
     \ assert(sum(k, k + 1) == 1);\n      dat[k / 64] &= ~(u64(1) << (k % 64));\n \
     \     bit.add(k / 64, -1);\n    }\n    else assert(0);\n  }\n  void multiply(int\
     \ k, int x) { add(k, x); }\n\n  void add(int k) { add(k, 1); }\n  void remove(int\
-    \ k) { add(k, -1); }\n\n  int kth(int k, int L = 0) {\n    assert(0 <= k && k\
-    \ < sum_all());\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n\
-    \    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool {\n    \
-    \  if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx = bit.max_right(check,\
-    \ L);\n    if (idx == n) return N;\n    k -= mid;\n    u64 x = dat[idx];\n   \
-    \ int p = popcnt(x);\n    if (p <= k) return N;\n    k = binary_search(\n    \
-    \    [&](int n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);\n  \
-    \  return 64 * idx + k;\n  }\n\n  int next(int k) {\n    assert(0 <= k && k <=\
-    \ N);\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1) <<\
-    \ k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
-    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
-    \  }\n\n  int prev(int k) {\n    assert(0 <= k && k <= N);\n    if (k == N) --k;\n\
-    \    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x\
-    \ &= (u64(1) << (k + 1)) - 1;\n    if (x) return 64 * idx + topbit(x);\n    idx\
-    \ = bit.min_left([&](auto e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx\
-    \ == -1) return -1;\n    return 64 * idx + topbit(dat[idx]);\n  }\n\n  string\
-    \ to_string() {\n    string out;\n    FOR(i, N) out += '0' + (dat[i / 64] >> (i\
-    \ & 63) & 1);\n    return out;\n  }\n};\n#line 6 \"geo/count_points_in_triangles.hpp\"\
-    \n\n// \u70B9\u7FA4 A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\
-    \u4E09\u89D2\u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\
-    \u8CA0\uFF09\u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(NMlogM)\u3001\u30AF\u30A8\
-    \u30EA O(1)\n// https://codeforces.com/contest/13/problem/D\n// https://codeforces.com/contest/852/problem/H\n\
+    \ k) { add(k, -1); }\n\n  int kth(int k, int L = 0) {\n    assert(0 <= L && L\
+    \ <= N);\n    assert(0 <= k && k < sum_all());\n    k += popcnt(dat[L / 64] &\
+    \ ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n    int mid = 0;\n    auto check\
+    \ = [&](auto e) -> bool {\n      if (e <= k) chmax(mid, e);\n      return e <=\
+    \ k;\n    };\n    int idx = bit.max_right(check, L);\n    if (idx == n) return\
+    \ N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p\
+    \ <= k) return N;\n    k = binary_search(\n        [&](int n) -> bool { return\
+    \ (p - popcnt(x >> n)) <= k; }, 0, 64, 0);\n    return 64 * idx + k;\n  }\n\n\
+    \  int next(int k) {\n    assert(0 <= k && k <= N);\n    int idx = k / 64;\n \
+    \   k %= 64;\n    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if (x) return\
+    \ 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx + 1);\n    if (idx == n || !dat[idx])\
+    \ return N;\n    return 64 * idx + lowbit(dat[idx]);\n  }\n\n  int prev(int k)\
+    \ {\n    assert(0 <= k && k <= N);\n    if (k == N) --k;\n    int idx = k / 64;\n\
+    \    k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1))\
+    \ - 1;\n    if (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto\
+    \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
+    \  return 64 * idx + topbit(dat[idx]);\n  }\n\n  string to_string() {\n    string\
+    \ out;\n    FOR(i, N) out += '0' + (dat[i / 64] >> (i & 63) & 1);\n    return\
+    \ out;\n  }\n};\n#line 6 \"geo/count_points_in_triangles.hpp\"\n\n// \u70B9\u7FA4\
+    \ A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\u4E09\u89D2\
+    \u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\u8CA0\uFF09\
+    \u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(NMlogM)\u3001\u30AF\u30A8\u30EA O(1)\n\
+    // https://codeforces.com/contest/13/problem/D\n// https://codeforces.com/contest/852/problem/H\n\
     struct Count_Points_in_Triangles {\n  using P = Point<ll>;\n  const int LIM =\
     \ 1'000'000'000 + 10;\n  vc<P> A, B;\n  vc<int> new_idx; // O \u304B\u3089\u898B\
     \u305F\u504F\u89D2\u30BD\u30FC\u30C8\u9806\u3092\u7BA1\u7406\n  vc<int> point;\
@@ -664,7 +665,7 @@ data:
   isVerificationFile: false
   path: random/random_polygon.hpp
   requiredBy: []
-  timestamp: '2026-09-13 10:50:58+09:00'
+  timestamp: '2026-09-13 11:46:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
