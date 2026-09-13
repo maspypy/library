@@ -39,6 +39,7 @@ struct FenwickTree_01 {
   int sum_all() { return bit.sum_all(); }
   int sum(int k) { return prefix_sum(k); }
   int prefix_sum(int k) {
+    assert(0 <= k && k <= N);
     int ans = bit.sum(k / 64);
     ans += popcnt(dat[k / 64] & ((u64(1) << (k % 64)) - 1));
     return ans;
@@ -78,7 +79,7 @@ struct FenwickTree_01 {
   void remove(int k) { add(k, -1); }
 
   int kth(int k, int L = 0) {
-    if (k >= sum_all()) return N;
+    assert(0 <= k && k < sum_all());
     k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));
     L /= 64;
     int mid = 0;
@@ -98,6 +99,7 @@ struct FenwickTree_01 {
   }
 
   int next(int k) {
+    assert(0 <= k && k <= N);
     int idx = k / 64;
     k %= 64;
     u64 x = dat[idx] & ~((u64(1) << k) - 1);
@@ -108,6 +110,7 @@ struct FenwickTree_01 {
   }
 
   int prev(int k) {
+    assert(0 <= k && k <= N);
     if (k == N) --k;
     int idx = k / 64;
     k %= 64;

@@ -13,9 +13,13 @@ class has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};
 
 template <typename mint>
 mint fact(int n) {
-  static const int mod = mint::get_mod();
-  assert(0 <= n && n < mod);
   static vector<mint> dat = {1, 1};
+  static int mod = 0;
+  if (mod != mint::get_mod()) {
+    mod = mint::get_mod();
+    dat = {1, 1};
+  }
+  assert(0 <= n && n < mod);
   if (len(dat) <= n) {
     int now = len(dat);
     int m = min(mod, 1 << (topbit(n) + 1));
@@ -27,9 +31,14 @@ mint fact(int n) {
 
 template <typename mint>
 mint fact_inv(int n) {
-  static const int mod = mint::get_mod();
-  static vector<mint> dat = {1, 1};
   if (n < 0) return mint(0);
+  static vector<mint> dat = {1, 1};
+  static int mod = 0;
+  if (mod != mint::get_mod()) {
+    mod = mint::get_mod();
+    dat = {1, 1};
+  }
+  assert(0 <= n && n < mod);
   if (len(dat) <= n) {
     int now = len(dat);
     int m = min(mod, 1 << (topbit(n) + 1));

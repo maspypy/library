@@ -169,6 +169,7 @@ struct Polygon {
     }
     if (a < 0) {
       reverse(all(point));
+      a = -a;
     }
   }
 };
