@@ -79,6 +79,7 @@ struct FenwickTree_01 {
   void remove(int k) { add(k, -1); }
 
   int kth(int k, int L = 0) {
+    assert(0 <= L && L <= N);
     assert(0 <= k && k < sum_all());
     k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));
     L /= 64;
