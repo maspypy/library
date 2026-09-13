@@ -16,8 +16,8 @@ struct Graph {
   vector<edge_type> edges;
   vector<int> indptr;
   vector<edge_type> csr_edges;
-  vc<int> vc_deg, vc_indeg, vc_outdeg;
-  HashMap<int> MP_FOR_EID;
+  mutable vc<int> vc_deg, vc_indeg, vc_outdeg;
+  mutable HashMap<int> MP_FOR_EID;
   bool prepared;
 
   class OutgoingEdges {
@@ -43,7 +43,7 @@ struct Graph {
     int l, r;
   };
 
-  bool is_prepared() { return prepared; }
+  bool is_prepared() const { return prepared; }
 
   Graph() : N(0), M(0), prepared(0) {}
   Graph(int N) : N(N), M(0), prepared(0) {}
@@ -114,27 +114,27 @@ struct Graph {
     return {this, indptr[v], indptr[v + 1]};
   }
 
-  vc<int> deg_array() {
+  vc<int> deg_array() const {
     if (vc_deg.empty()) calc_deg();
     return vc_deg;
   }
 
-  pair<vc<int>, vc<int>> deg_array_inout() {
+  pair<vc<int>, vc<int>> deg_array_inout() const {
     if (vc_indeg.empty()) calc_deg_inout();
     return {vc_indeg, vc_outdeg};
   }
 
-  int deg(int v) {
+  int deg(int v) const {
     if (vc_deg.empty()) calc_deg();
     return vc_deg[v];
   }
 
-  int in_deg(int v) {
+  int in_deg(int v) const {
     if (vc_indeg.empty()) calc_deg_inout();
     return vc_indeg[v];
   }
 
-  int out_deg(int v) {
+  int out_deg(int v) const {
     if (vc_outdeg.empty()) calc_deg_inout();
     return vc_outdeg[v];
   }
@@ -188,7 +188,7 @@ struct Graph {
     return G;
   }
 
-  Graph<T, true> to_directed_tree(int root = -1) {
+  Graph<T, true> to_directed_tree(int root = -1) const {
     if (root == -1) root = 0;
     assert(!is_directed && prepared && M == N - 1);
     Graph<T, true> G1(N);
@@ -210,7 +210,7 @@ struct Graph {
     return G1;
   }
 
-  int get_eid(u64 a, u64 b) {
+  int get_eid(u64 a, u64 b) const {
     if (len(MP_FOR_EID) == 0) {
       MP_FOR_EID.build(N - 1);
       for (auto& e : edges) {
@@ -222,7 +222,7 @@ struct Graph {
     return MP_FOR_EID.get(to_eid_key(a, b), -1);
   }
 
-  u64 to_eid_key(u64 a, u64 b) {
+  u64 to_eid_key(u64 a, u64 b) const {
     if (!directed && a > b) swap(a, b);
     return N * a + b;
   }

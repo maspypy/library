@@ -20,7 +20,7 @@ struct Tree {
     N = G.N;
     assert(G.is_prepared());
     assert(G.M == N - 1);
-    FOR(i, N - 1) assert(G.edges[i].eid == i);
+    FOR(i, N - 1) assert(G.edges[i].id == i);
     assert(0 <= r && r < N);
     if constexpr (!HLD)
       build_simple(G, r);
