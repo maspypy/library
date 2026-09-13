@@ -57,7 +57,7 @@ data:
     \ pow(u64 n) const {\n    GF2 ret(1), mul(val);\n    while (n > 0) {\n      if\
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
     \  }\n};\n\n#ifdef FASTIO\ntemplate <int K>\nvoid rd(GF2<K> &x) {\n  fastio::rd(x.val);\n\
-    \  x &= GF2<K>::mask;\n}\ntemplate <int K>\nvoid wt(GF2<K> x) {\n  fastio::wt(x.val);\n\
+    \  x.val &= GF2<K>::mask;\n}\ntemplate <int K>\nvoid wt(GF2<K> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n"
   code: "#include <emmintrin.h>\n#include <smmintrin.h>\n#include <wmmintrin.h>\n\n\
     __attribute__((target(\"pclmul\"))) inline __m128i myclmul(\n    const __m128i\
@@ -98,14 +98,14 @@ data:
     \ pow(u64 n) const {\n    GF2 ret(1), mul(val);\n    while (n > 0) {\n      if\
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
     \  }\n};\n\n#ifdef FASTIO\ntemplate <int K>\nvoid rd(GF2<K> &x) {\n  fastio::rd(x.val);\n\
-    \  x &= GF2<K>::mask;\n}\ntemplate <int K>\nvoid wt(GF2<K> x) {\n  fastio::wt(x.val);\n\
+    \  x.val &= GF2<K>::mask;\n}\ntemplate <int K>\nvoid wt(GF2<K> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: nt/GF2.hpp
   requiredBy:
   - graph/find_path_through_specified.hpp
-  timestamp: '2026-09-13 12:02:37+09:00'
+  timestamp: '2026-09-13 12:09:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1776.test.cpp

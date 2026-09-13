@@ -22,12 +22,12 @@ data:
     \ * base) + F(s[i]);\n    }\n    return hashed;\n  }\n\n  F query(const vector<F>\
     \ &s, int l, int r) {\n    expand(r - l);\n    return s[r] - s[l] * power[r -\
     \ l];\n  }\n\n  F combine(F h1, F h2, size_t h2len) {\n    expand(h2len);\n  \
-    \  return add(mul(h1, power[h2len]), h2);\n  }\n\n  int lcp(const vector<F> &a,\
-    \ int l1, int r1, const vector<F> &b, int l2,\n          int r2) {\n    int len\
-    \ = min(r1 - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high\
-    \ - low > 1) {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 +\
-    \ mid) == query(b, l2, l2 + mid))\n        low = mid;\n      else\n        high\
-    \ = mid;\n    }\n    return low;\n  }\n};\n"
+    \  return h1 * power[h2len] + h2;\n  }\n\n  int lcp(\n      const vector<F> &a,\
+    \ int l1, int r1, const vector<F> &b, int l2, int r2) {\n    int len = min(r1\
+    \ - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high - low > 1)\
+    \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
+    \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
+    \    return low;\n  }\n};\n"
   code: "// +, -, * \u304C\u5B9A\u7FA9\u3055\u308C\u305F\u69CB\u9020\u4F53\u3092\u6E21\
     \u3059\ntemplate <typename Field>\nstruct Rolling_Hash_Field {\n  using F = Field;\n\
     \  const F base;\n  vector<F> power;\n\n  static inline F generate_base() { return\
@@ -41,17 +41,17 @@ data:
     \ * base) + F(s[i]);\n    }\n    return hashed;\n  }\n\n  F query(const vector<F>\
     \ &s, int l, int r) {\n    expand(r - l);\n    return s[r] - s[l] * power[r -\
     \ l];\n  }\n\n  F combine(F h1, F h2, size_t h2len) {\n    expand(h2len);\n  \
-    \  return add(mul(h1, power[h2len]), h2);\n  }\n\n  int lcp(const vector<F> &a,\
-    \ int l1, int r1, const vector<F> &b, int l2,\n          int r2) {\n    int len\
-    \ = min(r1 - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high\
-    \ - low > 1) {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 +\
-    \ mid) == query(b, l2, l2 + mid))\n        low = mid;\n      else\n        high\
-    \ = mid;\n    }\n    return low;\n  }\n};"
+    \  return h1 * power[h2len] + h2;\n  }\n\n  int lcp(\n      const vector<F> &a,\
+    \ int l1, int r1, const vector<F> &b, int l2, int r2) {\n    int len = min(r1\
+    \ - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high - low > 1)\
+    \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
+    \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
+    \    return low;\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: string/rolling_hash_field.hpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
+  timestamp: '2026-09-13 12:09:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/rolling_hash_field.hpp

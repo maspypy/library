@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
@@ -23,52 +23,52 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/tree_abeliangroup.hpp
     title: graph/ds/tree_abeliangroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':warning:'
@@ -77,196 +77,196 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: graph/unicyclic_graph.hpp
     title: graph/unicyclic_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/ancestor_closed_set_knapsack.hpp
     title: knapsack/ancestor_closed_set_knapsack.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/independent_set_knapsack.hpp
     title: knapsack/independent_set_knapsack.hpp
   - icon: ':warning:'
     path: string/enumerate_occurrences.hpp
     title: string/enumerate_occurrences.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
     title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/connected_set_knapsack.test.cpp
     title: test/1_mytest/connected_set_knapsack.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/independent_set_knapsack.test.cpp
     title: test/1_mytest/independent_set_knapsack.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca.test.cpp
     title: test/2_library_checker/tree/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_directed.test.cpp
     title: test/2_library_checker/tree/lca_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
     title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1212.test.cpp
     title: test/3_yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1254.test.cpp
     title: test/3_yukicoder/1254.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1295.test.cpp
     title: test/3_yukicoder/1295.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1326.test.cpp
     title: test/3_yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1418.test.cpp
     title: test/3_yukicoder/1418.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1451.test.cpp
     title: test/3_yukicoder/1451.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1494.test.cpp
     title: test/3_yukicoder/1494.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1524.test.cpp
     title: test/3_yukicoder/1524.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1778.test.cpp
     title: test/3_yukicoder/1778.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1789.test.cpp
     title: test/3_yukicoder/1789.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1976.test.cpp
     title: test/3_yukicoder/1976.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2258.test.cpp
     title: test/3_yukicoder/2258.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2342.test.cpp
     title: test/3_yukicoder/2342.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2342_2.test.cpp
     title: test/3_yukicoder/2342_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/235.test.cpp
     title: test/3_yukicoder/235.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -373,130 +373,14 @@ data:
     \ {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n    }\n  }\n};\n#line 3 \"graph/tree.hpp\"\
     \n\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\n// HLD=false:\
     \ \u5165\u529B\u8FBA\u9806\u3067 preorder\ntemplate <typename GT, bool HLD = true>\n\
-    struct Tree {\n  using Graph_type = GT;\n  GT &G;\n  using WT = typename GT::cost_type;\n\
-    \  int N;\n  vector<int> LID, RID, head, V, parent, VtoE;\n  vc<int> depth;\n\
-    \  vc<WT> depth_weighted;\n  vc<int> memo_tail;\n\n  Tree(GT &G, int r = 0) :\
-    \ G(G) { build(r); }\n\n  void build(int r = 0) {\n    if (r == -1) return;  //\
-    \ build \u3092\u9045\u5EF6\u3057\u305F\u3044\u3068\u304D\n    if constexpr (!HLD)\n\
-    \      build_simple(r);\n    else\n      build_HLD(r);\n  }\n\n  vc<int> heavy_path_at(int\
-    \ v) const {\n    static_assert(HLD);\n    assert(head[v] == v);\n    int k =\
-    \ LID[v];\n    vc<int> P;\n    while (k < N && head[V[k]] == v) P.eb(V[k++]);\n\
-    \    return P;\n  }\n\n  int heavy_child(int v) const {\n    static_assert(HLD);\n\
-    \    if (RID[v] == LID[v] + 1) return -1;\n    return V[LID[v] + 1];\n  }\n\n\
-    \  int tail(int v) {\n    static_assert(HLD);\n    if (memo_tail.empty()) {\n\
-    \      memo_tail.assign(N, -1);\n      FOR_R(i, N) {\n        int v = V[i];\n\
-    \        int w = heavy_child(v);\n        memo_tail[v] = (w == -1 ? v : memo_tail[w]);\n\
-    \      }\n    }\n    return memo_tail[v];\n  }\n\n  int e_to_v(int eid) const\
-    \ {\n    auto e = G.edges[eid];\n    return (parent[e.frm] == e.to ? e.frm : e.to);\n\
-    \  }\n  int v_to_e(int v) const { return VtoE[v]; }\n  int get_eid(int u, int\
-    \ v) const {\n    if (parent[u] != v) swap(u, v);\n    assert(parent[u] == v);\n\
-    \    return VtoE[u];\n  }\n\n  int ELID(int v) const { return 2 * LID[v] - depth[v];\
-    \ }\n  int ERID(int v) const { return 2 * RID[v] - depth[v] - 1; }\n\n  // \u76EE\
-    \u6A19\u5730\u70B9\u3078\u9032\u3080\u500B\u6570\u304C k\n  int LA(int v, int\
-    \ k) const {\n    static_assert(HLD);\n    assert(k <= depth[v]);\n    while (1)\
-    \ {\n      int u = head[v];\n      if (LID[v] - k >= LID[u]) return V[LID[v] -\
-    \ k];\n      k -= LID[v] - LID[u] + 1;\n      v = parent[u];\n    }\n  }\n\n \
-    \ int LCA(int u, int v) const {\n    static_assert(HLD);\n    for (;; v = parent[head[v]])\
-    \ {\n      if (LID[u] > LID[v]) swap(u, v);\n      if (head[u] == head[v]) return\
-    \ u;\n    }\n  }\n\n  int meet(int a, int b, int c) const {\n    static_assert(HLD);\n\
-    \    return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c);\n  }\n\n  int subtree_size(int\
-    \ v) const { return RID[v] - LID[v]; }\n\n  int subtree_size(int v, int root)\
-    \ const {\n    static_assert(HLD);\n    if (v == root) return N;\n    int x =\
-    \ jump(v, root, 1);\n    if (in_subtree(v, x)) return RID[v] - LID[v];\n    return\
-    \ N - RID[x] + LID[x];\n  }\n\n  int dist(int a, int b) const {\n    static_assert(HLD);\n\
-    \    int c = LCA(a, b);\n    return depth[a] + depth[b] - 2 * depth[c];\n  }\n\
-    \n  WT dist_weighted(int a, int b) const {\n    static_assert(HLD);\n    int c\
-    \ = LCA(a, b);\n    return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\n\
-    \  }\n\n  // a is in b\n  bool in_subtree(int a, int b) const {\n    return LID[b]\
-    \ <= LID[a] && LID[a] < RID[b];\n  }\n\n  int jump(int a, int b, ll k) const {\n\
-    \    static_assert(HLD);\n    if (k == 1) {\n      if (a == b) return -1;\n  \
-    \    return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\n\
-    \    }\n    int c = LCA(a, b);\n    int d_ac = depth[a] - depth[c];\n    int d_bc\
-    \ = depth[b] - depth[c];\n    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac)\
-    \ return LA(a, k);\n    return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int\
-    \ v) const {\n    vc<int> res;\n    for (auto &&e : G[v])\n      if (e.to != parent[v])\
-    \ res.eb(e.to);\n    return res;\n  }\n\n  vc<int> collect_subtree(int v) const\
-    \ {\n    return {V.begin() + LID[v], V.begin() + RID[v]};\n  }\n\n  vc<int> collect_light(int\
-    \ v) const {\n    static_assert(HLD);\n    vc<int> res;\n    for (auto &&e : G[v])\
-    \ {\n      if (e.to != parent[v] && head[e.to] == e.to) res.eb(e.to);\n    }\n\
-    \    return res;\n  }\n\n  vc<pair<int, int>> get_path_decomposition(int u, int\
-    \ v, bool edge) const {\n    static_assert(HLD);\n    // [\u59CB\u70B9, \u7D42\
-    \u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\n    vc<pair<int, int>> up, down;\n\
-    \    while (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v])\
-    \ {\n        down.eb(LID[head[v]], LID[v]);\n        v = parent[head[v]];\n  \
-    \    } else {\n        up.eb(LID[u], LID[head[u]]);\n        u = parent[head[u]];\n\
-    \      }\n    }\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\n  \
-    \  elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n\
-    \    up.insert(up.end(), all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\
-    \u5217\u306E\u60C5\u5831 (frm,to,str)\n  // str = \"heavy_up\", \"heavy_down\"\
-    , \"light_up\", \"light_down\"\n  vc<tuple<int, int, string>> get_path_decomposition_detail(\n\
-    \      int u, int v) const {\n    static_assert(HLD);\n    vc<tuple<int, int,\
-    \ string>> up, down;\n    while (1) {\n      if (head[u] == head[v]) break;\n\
-    \      if (LID[u] < LID[v]) {\n        if (v != head[v]) down.eb(head[v], v, \"\
-    heavy_down\"), v = head[v];\n        down.eb(parent[v], v, \"light_down\"), v\
-    \ = parent[v];\n      } else {\n        if (u != head[u]) up.eb(u, head[u], \"\
-    heavy_up\"), u = head[u];\n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\n\
-    \      }\n    }\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\n   \
-    \ elif (LID[v] < LID[u]) up.eb(u, v, \"heavy_up\");\n    reverse(all(down));\n\
-    \    concat(up, down);\n    return up;\n  }\n\n  vc<int> restore_path(int u, int\
-    \ v) const {\n    vc<int> L, R;\n    while (depth[u] > depth[v]) L.eb(u), u =\
-    \ parent[u];\n    while (depth[u] < depth[v]) R.eb(v), v = parent[v];\n    while\
-    \ (u != v) L.eb(u), R.eb(v), u = parent[u], v = parent[v];\n    L.eb(u);\n   \
-    \ while (len(R)) L.eb(POP(R));\n    return L;\n  }\n\n  // path [a,b] \u3068 [c,d]\
-    \ \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
-    \  pair<int, int> path_intersection(int a, int b, int c, int d) const {\n    static_assert(HLD);\n\
-    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
-    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
-    \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
-    \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
-    \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
-    \ \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A check(v) \u304C ng \uFF09\
-    -1\n  template <class F>\n  int max_path(F check, int u, int v) const {\n    static_assert(HLD);\n\
-    \    if (!check(u)) return -1;\n    auto pd = get_path_decomposition(u, v, false);\n\
-    \    for (auto [a, b] : pd) {\n      if (!check(V[a])) return u;\n      if (check(V[b]))\
-    \ {\n        u = V[b];\n        continue;\n      }\n      int c =\n          binary_search([&](int\
-    \ c) -> bool { return check(V[c]); }, a, b, 0);\n      return V[c];\n    }\n \
-    \   return u;\n  }\n\n private:\n  void build_simple(int r = 0) {\n    N = G.N;\n\
-    \    LID.assign(N, 0), RID.assign(N, 0);\n    V.assign(N, -1), parent.assign(N,\
-    \ -1), VtoE.assign(N, -1);\n    depth.assign(N, 0), depth_weighted.assign(N, 0);\n\
-    \    assert(G.is_prepared());\n\n    // 1st dfs.\n    int k = 0;\n    vc<int>\
-    \ st;\n    st.reserve(N);\n    st.eb(r);\n    while (len(st)) {\n      int v =\
-    \ POP(st);\n      LID[v] = k, V[k] = v;\n      ++k;\n      for (int i = G.indptr[v\
-    \ + 1] - 1; i >= G.indptr[v]; --i) {\n        auto &e = G.csr_edges[i];\n    \
-    \    if (e.to == parent[v]) continue;\n        parent[e.to] = v;\n        depth[e.to]\
-    \ = depth[v] + 1;\n        depth_weighted[e.to] = depth_weighted[v] + e.cost;\n\
-    \        VtoE[e.to] = e.id;\n        st.eb(e.to);\n      }\n    }\n\n    FOR_R(i,\
-    \ N) {\n      int v = V[i];\n      chmax(RID[v], LID[v] + 1);\n      if (parent[v]\
-    \ != -1) chmax(RID[parent[v]], RID[v]);\n    }\n  }\n\n  void build_HLD(int r\
-    \ = 0) {\n    N = G.N;\n    LID.assign(N, 0), RID.assign(N, 0), head.assign(N,\
-    \ r);\n    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);\n    depth.assign(N,\
-    \ 0), depth_weighted.assign(N, 0);\n    memo_tail.clear();\n    assert(G.is_prepared());\n\
-    \n    // 1st dfs.\n    {\n      int k = 0;\n      vc<int> st;\n      st.reserve(N);\n\
-    \      st.eb(r);\n      while (len(st)) {\n        int v = POP(st);\n        V[k++]\
-    \ = v;\n        for (auto &e : G[v]) {\n          if (e.to == parent[v]) continue;\n\
-    \          parent[e.to] = v, st.eb(e.to), depth[e.to] = depth[v] + 1;\n      \
-    \    depth_weighted[e.to] = depth_weighted[v] + e.cost;\n          VtoE[e.to]\
-    \ = e.id;\n        }\n      }\n      // \u4E00\u6642\u7684\u306B RID[v] := sz[v]\n\
-    \      FOR_R(i, N) {\n        int v = V[i];\n        RID[v] += 1;\n        if\
-    \ (parent[v] != -1) RID[parent[v]] += RID[v];\n      }\n    }\n    // 2nd dfs.\n\
-    \    {\n      int k = 0;\n      vc<int> st;\n      st.reserve(N);\n      st.eb(r);\n\
-    \      while (len(st)) {\n        int v = POP(st);\n        V[k] = v, LID[v] =\
-    \ k;\n        RID[v] = k + RID[v];\n        ++k;\n        int max_sz = 0, max_ch\
-    \ = -1;\n        for (auto &e : G[v]) {\n          if (e.to == parent[v]) continue;\n\
-    \          if (chmax(max_sz, RID[e.to])) max_ch = e.to;\n        }\n        for\
-    \ (int i = G.indptr[v + 1] - 1; i >= G.indptr[v]; --i) {\n          auto &e =\
-    \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
-    \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
-    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n"
-  code: "\n#include \"graph/base.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\u3066\
-    \u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
-    template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
-    \  GT &G;\n  using WT = typename GT::cost_type;\n  int N;\n  vector<int> LID,\
-    \ RID, head, V, parent, VtoE;\n  vc<int> depth;\n  vc<WT> depth_weighted;\n  vc<int>\
-    \ memo_tail;\n\n  Tree(GT &G, int r = 0) : G(G) { build(r); }\n\n  void build(int\
-    \ r = 0) {\n    if (r == -1) return;  // build \u3092\u9045\u5EF6\u3057\u305F\u3044\
-    \u3068\u304D\n    if constexpr (!HLD)\n      build_simple(r);\n    else\n    \
-    \  build_HLD(r);\n  }\n\n  vc<int> heavy_path_at(int v) const {\n    static_assert(HLD);\n\
+    struct Tree {\n  using Graph_type = GT;\n  using WT = typename GT::cost_type;\n\
+    \  int N = 0;\n  vector<int> LID, RID, head, V, parent, VtoE, EtoV;\n  vc<int>\
+    \ depth;\n  vc<WT> depth_weighted;\n  vc<int> memo_tail;\n\n  Tree() = default;\n\
+    \  Tree(const GT &G, int r = 0) { build(G, r); }\n\n  void build(const GT &G,\
+    \ int r = 0) {\n    N = G.N;\n    assert(G.is_prepared());\n    assert(G.M ==\
+    \ N - 1);\n    FOR(i, N - 1) assert(G.edges[i].eid == i);\n    assert(0 <= r &&\
+    \ r < N);\n    if constexpr (!HLD)\n      build_simple(G, r);\n    else\n    \
+    \  build_HLD(G, r);\n  }\n\n  vc<int> heavy_path_at(int v) const {\n    static_assert(HLD);\n\
     \    assert(head[v] == v);\n    int k = LID[v];\n    vc<int> P;\n    while (k\
     \ < N && head[V[k]] == v) P.eb(V[k++]);\n    return P;\n  }\n\n  int heavy_child(int\
     \ v) const {\n    static_assert(HLD);\n    if (RID[v] == LID[v] + 1) return -1;\n\
@@ -504,13 +388,12 @@ data:
     \    if (memo_tail.empty()) {\n      memo_tail.assign(N, -1);\n      FOR_R(i,\
     \ N) {\n        int v = V[i];\n        int w = heavy_child(v);\n        memo_tail[v]\
     \ = (w == -1 ? v : memo_tail[w]);\n      }\n    }\n    return memo_tail[v];\n\
-    \  }\n\n  int e_to_v(int eid) const {\n    auto e = G.edges[eid];\n    return\
-    \ (parent[e.frm] == e.to ? e.frm : e.to);\n  }\n  int v_to_e(int v) const { return\
-    \ VtoE[v]; }\n  int get_eid(int u, int v) const {\n    if (parent[u] != v) swap(u,\
-    \ v);\n    assert(parent[u] == v);\n    return VtoE[u];\n  }\n\n  int ELID(int\
-    \ v) const { return 2 * LID[v] - depth[v]; }\n  int ERID(int v) const { return\
-    \ 2 * RID[v] - depth[v] - 1; }\n\n  // \u76EE\u6A19\u5730\u70B9\u3078\u9032\u3080\
-    \u500B\u6570\u304C k\n  int LA(int v, int k) const {\n    static_assert(HLD);\n\
+    \  }\n\n  int e_to_v(int eid) const { return EtoV[eid]; }\n  int v_to_e(int v)\
+    \ const { return VtoE[v]; }\n  int get_eid(int u, int v) const {\n    if (parent[u]\
+    \ != v) swap(u, v);\n    assert(parent[u] == v);\n    return VtoE[u];\n  }\n\n\
+    \  int ELID(int v) const { return 2 * LID[v] - depth[v]; }\n  int ERID(int v)\
+    \ const { return 2 * RID[v] - depth[v] - 1; }\n\n  // \u76EE\u6A19\u5730\u70B9\
+    \u3078\u9032\u3080\u500B\u6570\u304C k\n  int LA(int v, int k) const {\n    static_assert(HLD);\n\
     \    assert(k <= depth[v]);\n    while (1) {\n      int u = head[v];\n      if\
     \ (LID[v] - k >= LID[u]) return V[LID[v] - k];\n      k -= LID[v] - LID[u] + 1;\n\
     \      v = parent[u];\n    }\n  }\n\n  int LCA(int u, int v) const {\n    static_assert(HLD);\n\
@@ -532,17 +415,17 @@ data:
     \ d_ac = depth[a] - depth[c];\n    int d_bc = depth[b] - depth[c];\n    if (k\
     \ > d_ac + d_bc) return -1;\n    if (k <= d_ac) return LA(a, k);\n    return LA(b,\
     \ d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int v) const {\n    vc<int>\
-    \ res;\n    for (auto &&e : G[v])\n      if (e.to != parent[v]) res.eb(e.to);\n\
-    \    return res;\n  }\n\n  vc<int> collect_subtree(int v) const {\n    return\
-    \ {V.begin() + LID[v], V.begin() + RID[v]};\n  }\n\n  vc<int> collect_light(int\
-    \ v) const {\n    static_assert(HLD);\n    vc<int> res;\n    for (auto &&e : G[v])\
-    \ {\n      if (e.to != parent[v] && head[e.to] == e.to) res.eb(e.to);\n    }\n\
-    \    return res;\n  }\n\n  vc<pair<int, int>> get_path_decomposition(int u, int\
-    \ v, bool edge) const {\n    static_assert(HLD);\n    // [\u59CB\u70B9, \u7D42\
-    \u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\n    vc<pair<int, int>> up, down;\n\
-    \    while (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v])\
-    \ {\n        down.eb(LID[head[v]], LID[v]);\n        v = parent[head[v]];\n  \
-    \    } else {\n        up.eb(LID[u], LID[head[u]]);\n        u = parent[head[u]];\n\
+    \ res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n      res.eb(V[k]), k = RID[V[k]];\n\
+    \    }\n    return res;\n  }\n\n  vc<int> collect_subtree(int v) const {\n   \
+    \ return {V.begin() + LID[v], V.begin() + RID[v]};\n  }\n\n  vc<int> collect_light(int\
+    \ v) const {\n    static_assert(HLD);\n    vc<int> res;\n    for (int k = LID[v]\
+    \ + 1; k < RID[v];) {\n      if (head[V[k]] == V[k]) res.eb(V[k]), k = RID[V[k]];\n\
+    \    }\n    return res;\n  }\n\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) const {\n    static_assert(HLD);\n    // [\u59CB\u70B9\
+    , \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\n    vc<pair<int, int>>\
+    \ up, down;\n    while (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u]\
+    \ < LID[v]) {\n        down.eb(LID[head[v]], LID[v]);\n        v = parent[head[v]];\n\
+    \      } else {\n        up.eb(LID[u], LID[head[u]]);\n        u = parent[head[u]];\n\
     \      }\n    }\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\n  \
     \  elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n\
     \    up.insert(up.end(), all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\
@@ -574,31 +457,152 @@ data:
     \    for (auto [a, b] : pd) {\n      if (!check(V[a])) return u;\n      if (check(V[b]))\
     \ {\n        u = V[b];\n        continue;\n      }\n      int c =\n          binary_search([&](int\
     \ c) -> bool { return check(V[c]); }, a, b, 0);\n      return V[c];\n    }\n \
-    \   return u;\n  }\n\n private:\n  void build_simple(int r = 0) {\n    N = G.N;\n\
-    \    LID.assign(N, 0), RID.assign(N, 0);\n    V.assign(N, -1), parent.assign(N,\
-    \ -1), VtoE.assign(N, -1);\n    depth.assign(N, 0), depth_weighted.assign(N, 0);\n\
-    \    assert(G.is_prepared());\n\n    // 1st dfs.\n    int k = 0;\n    vc<int>\
+    \   return u;\n  }\n\n private:\n  void build_simple(const GT &G, int r = 0) {\n\
+    \    N = G.N;\n    LID.assign(N, 0), RID.assign(N, 0);\n    V.assign(N, -1), parent.assign(N,\
+    \ -1), VtoE.assign(N, -1),\n        EtoV.assign(N - 1, -1);\n    depth.assign(N,\
+    \ 0), depth_weighted.assign(N, 0);\n\n    // 1st dfs.\n    int k = 0;\n    vc<int>\
     \ st;\n    st.reserve(N);\n    st.eb(r);\n    while (len(st)) {\n      int v =\
     \ POP(st);\n      LID[v] = k, V[k] = v;\n      ++k;\n      for (int i = G.indptr[v\
     \ + 1] - 1; i >= G.indptr[v]; --i) {\n        auto &e = G.csr_edges[i];\n    \
     \    if (e.to == parent[v]) continue;\n        parent[e.to] = v;\n        depth[e.to]\
     \ = depth[v] + 1;\n        depth_weighted[e.to] = depth_weighted[v] + e.cost;\n\
-    \        VtoE[e.to] = e.id;\n        st.eb(e.to);\n      }\n    }\n\n    FOR_R(i,\
-    \ N) {\n      int v = V[i];\n      chmax(RID[v], LID[v] + 1);\n      if (parent[v]\
-    \ != -1) chmax(RID[parent[v]], RID[v]);\n    }\n  }\n\n  void build_HLD(int r\
-    \ = 0) {\n    N = G.N;\n    LID.assign(N, 0), RID.assign(N, 0), head.assign(N,\
-    \ r);\n    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);\n    depth.assign(N,\
-    \ 0), depth_weighted.assign(N, 0);\n    memo_tail.clear();\n    assert(G.is_prepared());\n\
-    \n    // 1st dfs.\n    {\n      int k = 0;\n      vc<int> st;\n      st.reserve(N);\n\
-    \      st.eb(r);\n      while (len(st)) {\n        int v = POP(st);\n        V[k++]\
-    \ = v;\n        for (auto &e : G[v]) {\n          if (e.to == parent[v]) continue;\n\
-    \          parent[e.to] = v, st.eb(e.to), depth[e.to] = depth[v] + 1;\n      \
-    \    depth_weighted[e.to] = depth_weighted[v] + e.cost;\n          VtoE[e.to]\
-    \ = e.id;\n        }\n      }\n      // \u4E00\u6642\u7684\u306B RID[v] := sz[v]\n\
-    \      FOR_R(i, N) {\n        int v = V[i];\n        RID[v] += 1;\n        if\
-    \ (parent[v] != -1) RID[parent[v]] += RID[v];\n      }\n    }\n    // 2nd dfs.\n\
+    \        VtoE[e.to] = e.id, EtoV[e.id] = e.to;\n        st.eb(e.to);\n      }\n\
+    \    }\n\n    FOR_R(i, N) {\n      int v = V[i];\n      chmax(RID[v], LID[v] +\
+    \ 1);\n      if (parent[v] != -1) chmax(RID[parent[v]], RID[v]);\n    }\n  }\n\
+    \n  void build_HLD(const GT &G, int r = 0) {\n    N = G.N;\n    LID.assign(N,\
+    \ 0), RID.assign(N, 0), head.assign(N, r);\n    V.assign(N, -1), parent.assign(N,\
+    \ -1), VtoE.assign(N, -1),\n        EtoV.assign(N - 1, -1);\n    depth.assign(N,\
+    \ 0), depth_weighted.assign(N, 0);\n    memo_tail.clear();\n\n    // 1st dfs.\n\
     \    {\n      int k = 0;\n      vc<int> st;\n      st.reserve(N);\n      st.eb(r);\n\
-    \      while (len(st)) {\n        int v = POP(st);\n        V[k] = v, LID[v] =\
+    \      while (len(st)) {\n        int v = POP(st);\n        V[k++] = v;\n    \
+    \    for (auto &e : G[v]) {\n          if (e.to == parent[v]) continue;\n    \
+    \      parent[e.to] = v, st.eb(e.to), depth[e.to] = depth[v] + 1;\n          depth_weighted[e.to]\
+    \ = depth_weighted[v] + e.cost;\n          VtoE[e.to] = e.id, EtoV[e.id] = e.to;\n\
+    \        }\n      }\n      // \u4E00\u6642\u7684\u306B RID[v] := sz[v]\n     \
+    \ FOR_R(i, N) {\n        int v = V[i];\n        RID[v] += 1;\n        if (parent[v]\
+    \ != -1) RID[parent[v]] += RID[v];\n      }\n    }\n    // 2nd dfs.\n    {\n \
+    \     int k = 0;\n      vc<int> st;\n      st.reserve(N);\n      st.eb(r);\n \
+    \     while (len(st)) {\n        int v = POP(st);\n        V[k] = v, LID[v] =\
+    \ k;\n        RID[v] = k + RID[v];\n        ++k;\n        int max_sz = 0, max_ch\
+    \ = -1;\n        for (auto &e : G[v]) {\n          if (e.to == parent[v]) continue;\n\
+    \          if (chmax(max_sz, RID[e.to])) max_ch = e.to;\n        }\n        for\
+    \ (int i = G.indptr[v + 1] - 1; i >= G.indptr[v]; --i) {\n          auto &e =\
+    \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
+    \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
+    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n"
+  code: "\n#include \"graph/base.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\u3066\
+    \u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
+    template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
+    \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
+    \ V, parent, VtoE, EtoV;\n  vc<int> depth;\n  vc<WT> depth_weighted;\n  vc<int>\
+    \ memo_tail;\n\n  Tree() = default;\n  Tree(const GT &G, int r = 0) { build(G,\
+    \ r); }\n\n  void build(const GT &G, int r = 0) {\n    N = G.N;\n    assert(G.is_prepared());\n\
+    \    assert(G.M == N - 1);\n    FOR(i, N - 1) assert(G.edges[i].eid == i);\n \
+    \   assert(0 <= r && r < N);\n    if constexpr (!HLD)\n      build_simple(G, r);\n\
+    \    else\n      build_HLD(G, r);\n  }\n\n  vc<int> heavy_path_at(int v) const\
+    \ {\n    static_assert(HLD);\n    assert(head[v] == v);\n    int k = LID[v];\n\
+    \    vc<int> P;\n    while (k < N && head[V[k]] == v) P.eb(V[k++]);\n    return\
+    \ P;\n  }\n\n  int heavy_child(int v) const {\n    static_assert(HLD);\n    if\
+    \ (RID[v] == LID[v] + 1) return -1;\n    return V[LID[v] + 1];\n  }\n\n  int tail(int\
+    \ v) {\n    static_assert(HLD);\n    if (memo_tail.empty()) {\n      memo_tail.assign(N,\
+    \ -1);\n      FOR_R(i, N) {\n        int v = V[i];\n        int w = heavy_child(v);\n\
+    \        memo_tail[v] = (w == -1 ? v : memo_tail[w]);\n      }\n    }\n    return\
+    \ memo_tail[v];\n  }\n\n  int e_to_v(int eid) const { return EtoV[eid]; }\n  int\
+    \ v_to_e(int v) const { return VtoE[v]; }\n  int get_eid(int u, int v) const {\n\
+    \    if (parent[u] != v) swap(u, v);\n    assert(parent[u] == v);\n    return\
+    \ VtoE[u];\n  }\n\n  int ELID(int v) const { return 2 * LID[v] - depth[v]; }\n\
+    \  int ERID(int v) const { return 2 * RID[v] - depth[v] - 1; }\n\n  // \u76EE\u6A19\
+    \u5730\u70B9\u3078\u9032\u3080\u500B\u6570\u304C k\n  int LA(int v, int k) const\
+    \ {\n    static_assert(HLD);\n    assert(k <= depth[v]);\n    while (1) {\n  \
+    \    int u = head[v];\n      if (LID[v] - k >= LID[u]) return V[LID[v] - k];\n\
+    \      k -= LID[v] - LID[u] + 1;\n      v = parent[u];\n    }\n  }\n\n  int LCA(int\
+    \ u, int v) const {\n    static_assert(HLD);\n    for (;; v = parent[head[v]])\
+    \ {\n      if (LID[u] > LID[v]) swap(u, v);\n      if (head[u] == head[v]) return\
+    \ u;\n    }\n  }\n\n  int meet(int a, int b, int c) const {\n    static_assert(HLD);\n\
+    \    return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c);\n  }\n\n  int subtree_size(int\
+    \ v) const { return RID[v] - LID[v]; }\n\n  int subtree_size(int v, int root)\
+    \ const {\n    static_assert(HLD);\n    if (v == root) return N;\n    int x =\
+    \ jump(v, root, 1);\n    if (in_subtree(v, x)) return RID[v] - LID[v];\n    return\
+    \ N - RID[x] + LID[x];\n  }\n\n  int dist(int a, int b) const {\n    static_assert(HLD);\n\
+    \    int c = LCA(a, b);\n    return depth[a] + depth[b] - 2 * depth[c];\n  }\n\
+    \n  WT dist_weighted(int a, int b) const {\n    static_assert(HLD);\n    int c\
+    \ = LCA(a, b);\n    return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\n\
+    \  }\n\n  // a is in b\n  bool in_subtree(int a, int b) const {\n    return LID[b]\
+    \ <= LID[a] && LID[a] < RID[b];\n  }\n\n  int jump(int a, int b, ll k) const {\n\
+    \    static_assert(HLD);\n    if (k == 1) {\n      if (a == b) return -1;\n  \
+    \    return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\n\
+    \    }\n    int c = LCA(a, b);\n    int d_ac = depth[a] - depth[c];\n    int d_bc\
+    \ = depth[b] - depth[c];\n    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac)\
+    \ return LA(a, k);\n    return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int\
+    \ v) const {\n    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n\
+    \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n\n  vc<int>\
+    \ collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin() +\
+    \ RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
+    \    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n      if (head[V[k]]\
+    \ == V[k]) res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n\n  vc<pair<int,\
+    \ int>> get_path_decomposition(int u, int v, bool edge) const {\n    static_assert(HLD);\n\
+    \    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\n\
+    \    vc<pair<int, int>> up, down;\n    while (1) {\n      if (head[u] == head[v])\
+    \ break;\n      if (LID[u] < LID[v]) {\n        down.eb(LID[head[v]], LID[v]);\n\
+    \        v = parent[head[v]];\n      } else {\n        up.eb(LID[u], LID[head[u]]);\n\
+    \        u = parent[head[u]];\n      }\n    }\n    if (LID[u] < LID[v]) down.eb(LID[u]\
+    \ + edge, LID[v]);\n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] +\
+    \ edge);\n    reverse(all(down));\n    up.insert(up.end(), all(down));\n    return\
+    \ up;\n  }\n\n  // \u8FBA\u306E\u5217\u306E\u60C5\u5831 (frm,to,str)\n  // str\
+    \ = \"heavy_up\", \"heavy_down\", \"light_up\", \"light_down\"\n  vc<tuple<int,\
+    \ int, string>> get_path_decomposition_detail(\n      int u, int v) const {\n\
+    \    static_assert(HLD);\n    vc<tuple<int, int, string>> up, down;\n    while\
+    \ (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v]) {\n\
+    \        if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\n\
+    \        down.eb(parent[v], v, \"light_down\"), v = parent[v];\n      } else {\n\
+    \        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\n   \
+    \     up.eb(u, parent[u], \"light_up\"), u = parent[u];\n      }\n    }\n    if\
+    \ (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\n    elif (LID[v] < LID[u])\
+    \ up.eb(u, v, \"heavy_up\");\n    reverse(all(down));\n    concat(up, down);\n\
+    \    return up;\n  }\n\n  vc<int> restore_path(int u, int v) const {\n    vc<int>\
+    \ L, R;\n    while (depth[u] > depth[v]) L.eb(u), u = parent[u];\n    while (depth[u]\
+    \ < depth[v]) R.eb(v), v = parent[v];\n    while (u != v) L.eb(u), R.eb(v), u\
+    \ = parent[u], v = parent[v];\n    L.eb(u);\n    while (len(R)) L.eb(POP(R));\n\
+    \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
+    \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
+    \  pair<int, int> path_intersection(int a, int b, int c, int d) const {\n    static_assert(HLD);\n\
+    \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
+    \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
+    \ bd;  // meet(a,b,c), meet(a,b,d)\n    if (x != y) return {x, y};\n    int z\
+    \ = ac ^ ad ^ cd;\n    if (x != z) x = -1;\n    return {x, x};\n  }\n\n  // uv\
+    \ path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E v\n  //\
+    \ \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A check(v) \u304C ng \uFF09\
+    -1\n  template <class F>\n  int max_path(F check, int u, int v) const {\n    static_assert(HLD);\n\
+    \    if (!check(u)) return -1;\n    auto pd = get_path_decomposition(u, v, false);\n\
+    \    for (auto [a, b] : pd) {\n      if (!check(V[a])) return u;\n      if (check(V[b]))\
+    \ {\n        u = V[b];\n        continue;\n      }\n      int c =\n          binary_search([&](int\
+    \ c) -> bool { return check(V[c]); }, a, b, 0);\n      return V[c];\n    }\n \
+    \   return u;\n  }\n\n private:\n  void build_simple(const GT &G, int r = 0) {\n\
+    \    N = G.N;\n    LID.assign(N, 0), RID.assign(N, 0);\n    V.assign(N, -1), parent.assign(N,\
+    \ -1), VtoE.assign(N, -1),\n        EtoV.assign(N - 1, -1);\n    depth.assign(N,\
+    \ 0), depth_weighted.assign(N, 0);\n\n    // 1st dfs.\n    int k = 0;\n    vc<int>\
+    \ st;\n    st.reserve(N);\n    st.eb(r);\n    while (len(st)) {\n      int v =\
+    \ POP(st);\n      LID[v] = k, V[k] = v;\n      ++k;\n      for (int i = G.indptr[v\
+    \ + 1] - 1; i >= G.indptr[v]; --i) {\n        auto &e = G.csr_edges[i];\n    \
+    \    if (e.to == parent[v]) continue;\n        parent[e.to] = v;\n        depth[e.to]\
+    \ = depth[v] + 1;\n        depth_weighted[e.to] = depth_weighted[v] + e.cost;\n\
+    \        VtoE[e.to] = e.id, EtoV[e.id] = e.to;\n        st.eb(e.to);\n      }\n\
+    \    }\n\n    FOR_R(i, N) {\n      int v = V[i];\n      chmax(RID[v], LID[v] +\
+    \ 1);\n      if (parent[v] != -1) chmax(RID[parent[v]], RID[v]);\n    }\n  }\n\
+    \n  void build_HLD(const GT &G, int r = 0) {\n    N = G.N;\n    LID.assign(N,\
+    \ 0), RID.assign(N, 0), head.assign(N, r);\n    V.assign(N, -1), parent.assign(N,\
+    \ -1), VtoE.assign(N, -1),\n        EtoV.assign(N - 1, -1);\n    depth.assign(N,\
+    \ 0), depth_weighted.assign(N, 0);\n    memo_tail.clear();\n\n    // 1st dfs.\n\
+    \    {\n      int k = 0;\n      vc<int> st;\n      st.reserve(N);\n      st.eb(r);\n\
+    \      while (len(st)) {\n        int v = POP(st);\n        V[k++] = v;\n    \
+    \    for (auto &e : G[v]) {\n          if (e.to == parent[v]) continue;\n    \
+    \      parent[e.to] = v, st.eb(e.to), depth[e.to] = depth[v] + 1;\n          depth_weighted[e.to]\
+    \ = depth_weighted[v] + e.cost;\n          VtoE[e.to] = e.id, EtoV[e.id] = e.to;\n\
+    \        }\n      }\n      // \u4E00\u6642\u7684\u306B RID[v] := sz[v]\n     \
+    \ FOR_R(i, N) {\n        int v = V[i];\n        RID[v] += 1;\n        if (parent[v]\
+    \ != -1) RID[parent[v]] += RID[v];\n      }\n    }\n    // 2nd dfs.\n    {\n \
+    \     int k = 0;\n      vc<int> st;\n      st.reserve(N);\n      st.eb(r);\n \
+    \     while (len(st)) {\n        int v = POP(st);\n        V[k] = v, LID[v] =\
     \ k;\n        RID[v] = k + RID[v];\n        ++k;\n        int max_sz = 0, max_ch\
     \ = -1;\n        for (auto &e : G[v]) {\n          if (e.to == parent[v]) continue;\n\
     \          if (chmax(max_sz, RID[e.to])) max_ch = e.to;\n        }\n        for\
@@ -641,8 +645,8 @@ data:
   - graph/ds/tree_wavelet_matrix.hpp
   - graph/count_matching_on_tree.hpp
   - graph/tree_walk_generating_function.hpp
-  timestamp: '2026-09-01 10:19:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-13 14:30:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
