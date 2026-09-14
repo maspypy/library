@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,74 +13,74 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -1436,15 +1436,15 @@ data:
     \u308B\r\n// O(klogk)\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2_n(int\
     \ n, int k_max) {\r\n  vc<mint> a = power_table_2<mint>(n, k_max + 1);\r\n  FOR(i,\
     \ k_max + 1) a[i] *= fact_inv<mint>(i);\r\n  vc<mint> b(k_max + 1);\r\n  FOR(i,\
-    \ k_max + 1) b[i] = fact_inv<mint>(i);\r\n  FOR(i, 1, k_max + 1, 2) b[i] = -b[i];\r\
-    \n  auto f = convolution(a, b);\r\n  f.resize(k_max + 1);\r\n  return f;\r\n}\r\
-    \n\r\n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7\
-    \ (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\n// label \u3092\u3064\u3051\
-    \u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\
-    \u5229\u7528\u3067\u304D\u308B\r\n// 1/k! (e^x-1)^k\r\n// O(nlogn)\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> stirling_number_2_k(int k, int n_max) {\r\n  if\
-    \ (k > n_max) {\r\n    return vc<mint>(n_max + 1);\r\n  }\r\n  int LIM = n_max\
-    \ - k;\r\n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i\
+    \ k_max + 1) b[i] = fact_inv<mint>(i);\r\n  for (int i = 1; i <= k_max; i += 2)\
+    \ b[i] = -b[i];\r\n  auto f = convolution(a, b);\r\n  f.resize(k_max + 1);\r\n\
+    \  return f;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\
+    \u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\n// label\
+    \ \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\u3048\
+    \u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\n// 1/k! (e^x-1)^k\r\n// O(nlogn)\r\
+    \ntemplate <typename mint>\r\nvc<mint> stirling_number_2_k(int k, int n_max) {\r\
+    \n  if (k > n_max) {\r\n    return vc<mint>(n_max + 1);\r\n  }\r\n  int LIM =\
+    \ n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i\
     \ + 1);\r\n  f = fps_pow(f, k);\r\n  mint cf = fact_inv<mint>(k);\r\n\r\n  vc<mint>\
     \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = fact<mint>(k + i) * f[i] *\
     \ cf;\r\n  return res;\r\n}\r\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x)\
@@ -2420,8 +2420,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/bell.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:31:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-15 07:27:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/bell.test.cpp
 layout: document

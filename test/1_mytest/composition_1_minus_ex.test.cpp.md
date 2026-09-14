@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,58 +13,58 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   - icon: ':question:'
@@ -72,9 +72,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -974,72 +974,73 @@ data:
     \      FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n      auto f = convolution(a.se,\
     \ b.fi);\n      FOR(i, len(f)) num[i] += f[i];\n    }\n    auto den = convolution(a.se,\
     \ b.se);\n    return {num, den};\n  };\n\n  while (len(dat) > 1) {\n    int n\
-    \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
-    \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
-    \  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\ntemplate <typename mint>\npair<vc<mint>,\
-    \ vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt) {\n  using poly = vc<mint>;\n\
-    \  if (!mint::can_ntt()) {\n    vc<pair<poly, poly>> rationals;\n    FOR(i, len(A))\
-    \ rationals.eb(poly({wt[i]}), poly({mint(1), -A[i]}));\n    return sum_of_rationals(rationals);\n\
-    \  }\n  int n = 1;\n  while (n < len(A)) n *= 2;\n  int k = topbit(n);\n  vc<mint>\
-    \ F(n), G(n);\n  vc<mint> nxt_F(n), nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i],\
-    \ G[i] = wt[i];\n  int D = 6;\n\n  FOR(d, k) {\n    int b = 1 << d;\n    if (d\
-    \ < D) {\n      fill(all(nxt_F), mint(0)), fill(all(nxt_G), mint(0));\n      for\
-    \ (int L = 0; L < n; L += 2 * b) {\n        FOR(i, b) FOR(j, b) nxt_F[L + i +\
-    \ j] += F[L + i] * F[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j]\
-    \ += F[L + i] * G[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] +=\
-    \ F[L + b + i] * G[L + j];\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L\
-    \ + b + i];\n        FOR(i, b) nxt_G[L + b + i] += G[L + i] + G[L + b + i];\n\
-    \      }\n    }\n    elif (d == D) {\n      for (int L = 0; L < n; L += 2 * b)\
-    \ {\n        poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 =\
-    \ {F.begin() + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() +\
-    \ L, G.begin() + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L\
-    \ + 2 * b};\n        f1.resize(2 * b), f2.resize(2 * b), g1.resize(2 * b), g2.resize(2\
-    \ * b);\n        ntt(f1, 0), ntt(f2, 0), ntt(g1, 0), ntt(g2, 0);\n        FOR(i,\
-    \ b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n\
-    \        FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b)\
-    \ nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n    }\n    else {\n\
-    \      for (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L,\
-    \ F.begin() + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2\
-    \ * b};\n        poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2\
-    \ = {G.begin() + L + b, G.begin() + L + 2 * b};\n        ntt_doubling(f1), ntt_doubling(f2),\
-    \ ntt_doubling(g1), ntt_doubling(g2);\n        FOR(i, b) f1[i] += 1, f2[i] +=\
-    \ 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b)\
-    \ nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i]\
-    \ * f2[i] + g2[i] * f1[i];\n      }\n    }\n    swap(F, nxt_F), swap(G, nxt_G);\n\
-    \  }\n  if (k - 1 >= D) ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)),\
-    \ reverse(all(G));\n  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G,\
-    \ F};\n}\n#line 1 \"poly/count_terms.hpp\"\ntemplate<typename mint>\nint count_terms(const\
-    \ vc<mint>& f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return\
-    \ t;\n}\n#line 1 \"mod/modint_common.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint\
-    \ popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return\
-    \ __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
-    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
-    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
-    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
-    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
-    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
-    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
-    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
-    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
-    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
-    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  assert(0 <= k && k < int(8\
-    \ * sizeof(T)));\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return x >> k &\
-    \ 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n\
-    \    bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
-    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ = len(dat);\n    for (int i = 1; i < n; i += 2) dat[i - 1] = add(dat[i - 1],\
+    \ dat[i]);\n    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n,\
+    \ 2));\n  }\n  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\ntemplate <typename\
+    \ mint>\npair<vc<mint>, vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt)\
+    \ {\n  using poly = vc<mint>;\n  if (!mint::can_ntt()) {\n    vc<pair<poly, poly>>\
+    \ rationals;\n    FOR(i, len(A)) rationals.eb(poly({wt[i]}), poly({mint(1), -A[i]}));\n\
+    \    return sum_of_rationals(rationals);\n  }\n  int n = 1;\n  while (n < len(A))\
+    \ n *= 2;\n  int k = topbit(n);\n  vc<mint> F(n), G(n);\n  vc<mint> nxt_F(n),\
+    \ nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i], G[i] = wt[i];\n  int D = 6;\n\n  FOR(d,\
+    \ k) {\n    int b = 1 << d;\n    if (d < D) {\n      fill(all(nxt_F), mint(0)),\
+    \ fill(all(nxt_G), mint(0));\n      for (int L = 0; L < n; L += 2 * b) {\n   \
+    \     FOR(i, b) FOR(j, b) nxt_F[L + i + j] += F[L + i] * F[L + b + j];\n     \
+    \   FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + i] * G[L + b + j];\n       \
+    \ FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + b + i] * G[L + j];\n        FOR(i,\
+    \ b) nxt_F[L + b + i] += F[L + i] + F[L + b + i];\n        FOR(i, b) nxt_G[L +\
+    \ b + i] += G[L + i] + G[L + b + i];\n      }\n    }\n    elif (d == D) {\n  \
+    \    for (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L, F.begin()\
+    \ + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\n \
+    \       poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2 = {G.begin()\
+    \ + L + b, G.begin() + L + 2 * b};\n        f1.resize(2 * b), f2.resize(2 * b),\
+    \ g1.resize(2 * b), g2.resize(2 * b);\n        ntt(f1, 0), ntt(f2, 0), ntt(g1,\
+    \ 0), ntt(g2, 0);\n        FOR(i, b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b,\
+    \ 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b) nxt_F[L + i] = f1[i] *\
+    \ f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n\
+    \      }\n    }\n    else {\n      for (int L = 0; L < n; L += 2 * b) {\n    \
+    \    poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 = {F.begin()\
+    \ + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() + L, G.begin()\
+    \ + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L + 2 * b};\n \
+    \       ntt_doubling(f1), ntt_doubling(f2), ntt_doubling(g1), ntt_doubling(g2);\n\
+    \        FOR(i, b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -=\
+    \ 1, f2[i] -= 1;\n        FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n  \
+    \      FOR(i, 2 * b) nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n\
+    \    }\n    swap(F, nxt_F), swap(G, nxt_G);\n  }\n  if (k - 1 >= D) ntt(F, 1),\
+    \ ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)), reverse(all(G));\n  F.resize(len(A)\
+    \ + 1);\n  G.resize(len(A));\n  return {G, F};\n}\n#line 1 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n\
+    \  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n}\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
+    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
+    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
+    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
+    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
+    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
+    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
+    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
+    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
+    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
+    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
+    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
+    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
+    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
+    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
+    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
+    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
+    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
+    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
+    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
+    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
+    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
+    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
+    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
     \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
     \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
     \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
@@ -2145,69 +2146,70 @@ data:
     \ bit reverse order\n    vc<int> btr(n);\n    int log = topbit(n);\n    FOR(i,\
     \ n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\n    int t = mint::ntt_info().fi;\n\
     \    mint r = mint::ntt_info().se;\n    mint dw = r.inverse().pow((1 << t) / (2\
-    \ * n));\n    mint w = 1;\n    for (auto& i: btr) { W[i] = w, w *= dw; }\n  }\n\
-    \n  auto rec = [&](auto& rec, int n, int k, vc<mint>& Q) -> vc<mint> {\n    if\
-    \ (n == 1) {\n      reverse(all(f));\n      transposed_ntt(f, 1);\n      mint\
-    \ c = mint(1) / mint(k);\n      for (auto& x: f) x *= c;\n      vc<mint> p(4 *\
-    \ k);\n      FOR(i, k) p[2 * i] = f[i];\n      return p;\n    }\n    auto doubling_y\
-    \ = [&](vc<mint>& A, int l, int r, bool t) -> void {\n      mint z = W[k / 2].inverse();\n\
-    \      vc<mint> f(k);\n      if (!t) {\n        FOR(i, l, r) {\n          FOR(j,\
-    \ k) f[j] = A[2 * n * j + i];\n          ntt(f, 1);\n          mint r = 1;\n \
-    \         FOR(j, 1, k) r *= z, f[j] *= r;\n          ntt(f, 0);\n          FOR(j,\
-    \ k) A[2 * n * (k + j) + i] = f[j];\n        }\n      } else {\n        FOR(i,\
-    \ l, r) {\n          FOR(j, k) f[j] = A[2 * n * (k + j) + i];\n          transposed_ntt(f,\
-    \ 0);\n          mint r = 1;\n          FOR(j, 1, k) r *= z, f[j] *= r;\n    \
-    \      transposed_ntt(f, 1);\n          FOR(j, k) A[2 * n * j + i] += f[j];\n\
-    \        }\n      }\n    };\n\n    auto FFT_x = [&](vc<mint>& A, int l, int r,\
-    \ bool t) -> void {\n      vc<mint> f(2 * n);\n      if (!t) {\n        FOR(j,\
-    \ l, r) {\n          move(A.begin() + 2 * n * j, A.begin() + 2 * n * (j + 1),\
-    \ f.begin());\n          ntt(f, 0);\n          move(all(f), A.begin() + 2 * n\
-    \ * j);\n        }\n      } else {\n        FOR(j, l, r) {\n          move(A.begin()\
-    \ + 2 * n * j, A.begin() + 2 * n * (j + 1), f.begin());\n          transposed_ntt(f,\
-    \ 0);\n          move(all(f), A.begin() + 2 * n * j);\n        }\n      }\n  \
-    \  };\n\n    if (n <= k) doubling_y(Q, 1, n, 0), FFT_x(Q, 0, 2 * k, 0);\n    if\
-    \ (n > k) FFT_x(Q, 0, k, 0), doubling_y(Q, 0, 2 * n, 0);\n\n    FOR(i, 2 * n *\
-    \ k) Q[i] += 1;\n    FOR(i, 2 * n * k, 4 * n * k) Q[i] -= 1;\n\n    vc<mint> nxt_Q(4\
-    \ * n * k);\n    vc<mint> F(2 * n), G(2 * n), f(n), g(n);\n    FOR(j, 2 * k) {\n\
-    \      move(Q.begin() + 2 * n * j, Q.begin() + 2 * n * j + 2 * n, G.begin());\n\
-    \      FOR(i, n) { g[i] = G[2 * i] * G[2 * i + 1]; }\n      ntt(g, 1);\n     \
-    \ move(g.begin(), g.begin() + n / 2, nxt_Q.begin() + n * j);\n    }\n    FOR(j,\
-    \ 4 * k) nxt_Q[n * j] = 0;\n\n    vc<mint> p = rec(rec, n / 2, k * 2, nxt_Q);\n\
-    \    FOR_R(j, 2 * k) {\n      move(p.begin() + n * j, p.begin() + n * j + n /\
-    \ 2, f.begin());\n      move(Q.begin() + 2 * n * j, Q.begin() + 2 * n * j + 2\
-    \ * n, G.begin());\n      fill(f.begin() + n / 2, f.end(), mint(0));\n      transposed_ntt(f,\
-    \ 1);\n      FOR(i, n) {\n        f[i] *= W[i];\n        F[2 * i] = G[2 * i +\
-    \ 1] * f[i], F[2 * i + 1] = -G[2 * i] * f[i];\n      }\n      move(F.begin(),\
-    \ F.end(), p.begin() + 2 * n * j);\n    }\n    if (n <= k) FFT_x(p, 0, 2 * k,\
-    \ 1), doubling_y(p, 0, n, 1);\n    if (n > k) doubling_y(p, 0, 2 * n, 1), FFT_x(p,\
-    \ 0, k, 1);\n    return p;\n  };\n\n  vc<mint> Q(4 * n);\n  FOR(i, n) Q[i] = -g[i];\n\
-    \n  vc<mint> p = rec(rec, n, 1, Q);\n  p.resize(n);\n  reverse(all(p));\n  p.resize(n0);\n\
-    \  return p;\n}\n\ntemplate <typename mint>\nvc<mint> composition_0_garner(vc<mint>\
-    \ f, vc<mint> g) {\n  constexpr u32 ps[] = {167772161, 469762049, 754974721};\n\
-    \  using mint0 = modint<ps[0]>;\n  using mint1 = modint<ps[1]>;\n  using mint2\
-    \ = modint<ps[2]>;\n\n  auto rec = [&](auto& rec, int n, int k, vc<mint> Q) ->\
-    \ vc<mint> {\n    if (n == 1) {\n      vc<mint> p(2 * k);\n      reverse(all(f));\n\
-    \      FOR(i, k) p[2 * i] = f[i];\n      return p;\n    }\n    vc<mint0> Q0(4\
-    \ * n * k), R0(4 * n * k), p0(4 * n * k);\n    vc<mint1> Q1(4 * n * k), R1(4 *\
-    \ n * k), p1(4 * n * k);\n    vc<mint2> Q2(4 * n * k), R2(4 * n * k), p2(4 * n\
-    \ * k);\n    FOR(i, 2 * n * k) {\n      Q0[i] = Q[i].val, R0[i] = (i % 2 == 0\
-    \ ? Q[i].val : (-Q[i]).val);\n      Q1[i] = Q[i].val, R1[i] = (i % 2 == 0 ? Q[i].val\
-    \ : (-Q[i]).val);\n      Q2[i] = Q[i].val, R2[i] = (i % 2 == 0 ? Q[i].val : (-Q[i]).val);\n\
-    \    }\n    ntt(Q0, 0), ntt(Q1, 0), ntt(Q2, 0), ntt(R0, 0), ntt(R1, 0), ntt(R2,\
-    \ 0);\n    FOR(i, 4 * n * k) Q0[i] *= R0[i], Q1[i] *= R1[i], Q2[i] *= R2[i];\n\
-    \    ntt(Q0, 1), ntt(Q1, 1), ntt(Q2, 1);\n    vc<mint> QQ(4 * n * k);\n    FOR(i,\
-    \ 4 * n * k) {\n      QQ[i] = CRT3<mint, ps[0], ps[1], ps[2]>(Q0[i].val, Q1[i].val,\
-    \ Q2[i].val);\n    }\n    FOR(i, 0, 2 * n * k, 2) { QQ[2 * n * k + i] += Q[i]\
-    \ + Q[i]; }\n    vc<mint> nxt_Q(2 * n * k);\n    FOR(j, 2 * k) FOR(i, n / 2) {\n\
-    \      nxt_Q[n * j + i] = QQ[(2 * n) * j + (2 * i + 0)];\n    }\n\n    vc<mint>\
-    \ nxt_p = rec(rec, n / 2, k * 2, nxt_Q);\n    vc<mint> pq(4 * n * k);\n    FOR(j,\
-    \ 2 * k) FOR(i, n / 2) {\n      pq[(2 * n) * j + (2 * i + 1)] += nxt_p[n * j +\
-    \ i];\n    }\n\n    vc<mint> p(2 * n * k);\n    FOR(i, 2 * n * k) { p[i] += pq[2\
-    \ * n * k + i]; }\n    FOR(i, 4 * n * k) {\n      p0[i] += pq[i].val, p1[i] +=\
-    \ pq[i].val, p2[i] += pq[i].val;\n    }\n    transposed_ntt(p0, 1), transposed_ntt(p1,\
-    \ 1), transposed_ntt(p2, 1);\n    FOR(i, 4 * n * k) p0[i] *= R0[i], p1[i] *= R1[i],\
-    \ p2[i] *= R2[i];\n    transposed_ntt(p0, 0), transposed_ntt(p1, 0), transposed_ntt(p2,\
-    \ 0);\n    FOR(i, 2 * n * k) {\n      p[i] += CRT3<mint, ps[0], ps[1], ps[2]>(p0[i].val,\
+    \ * n));\n    mint w = 1;\n    for (auto& i : btr) {\n      W[i] = w, w *= dw;\n\
+    \    }\n  }\n\n  auto rec = [&](auto& rec, int n, int k, vc<mint>& Q) -> vc<mint>\
+    \ {\n    if (n == 1) {\n      reverse(all(f));\n      transposed_ntt(f, 1);\n\
+    \      mint c = mint(1) / mint(k);\n      for (auto& x : f) x *= c;\n      vc<mint>\
+    \ p(4 * k);\n      FOR(i, k) p[2 * i] = f[i];\n      return p;\n    }\n    auto\
+    \ doubling_y = [&](vc<mint>& A, int l, int r, bool t) -> void {\n      mint z\
+    \ = W[k / 2].inverse();\n      vc<mint> f(k);\n      if (!t) {\n        FOR(i,\
+    \ l, r) {\n          FOR(j, k) f[j] = A[2 * n * j + i];\n          ntt(f, 1);\n\
+    \          mint r = 1;\n          FOR(j, 1, k) r *= z, f[j] *= r;\n          ntt(f,\
+    \ 0);\n          FOR(j, k) A[2 * n * (k + j) + i] = f[j];\n        }\n      }\
+    \ else {\n        FOR(i, l, r) {\n          FOR(j, k) f[j] = A[2 * n * (k + j)\
+    \ + i];\n          transposed_ntt(f, 0);\n          mint r = 1;\n          FOR(j,\
+    \ 1, k) r *= z, f[j] *= r;\n          transposed_ntt(f, 1);\n          FOR(j,\
+    \ k) A[2 * n * j + i] += f[j];\n        }\n      }\n    };\n\n    auto FFT_x =\
+    \ [&](vc<mint>& A, int l, int r, bool t) -> void {\n      vc<mint> f(2 * n);\n\
+    \      if (!t) {\n        FOR(j, l, r) {\n          move(A.begin() + 2 * n * j,\
+    \ A.begin() + 2 * n * (j + 1), f.begin());\n          ntt(f, 0);\n          move(all(f),\
+    \ A.begin() + 2 * n * j);\n        }\n      } else {\n        FOR(j, l, r) {\n\
+    \          move(A.begin() + 2 * n * j, A.begin() + 2 * n * (j + 1), f.begin());\n\
+    \          transposed_ntt(f, 0);\n          move(all(f), A.begin() + 2 * n * j);\n\
+    \        }\n      }\n    };\n\n    if (n <= k) doubling_y(Q, 1, n, 0), FFT_x(Q,\
+    \ 0, 2 * k, 0);\n    if (n > k) FFT_x(Q, 0, k, 0), doubling_y(Q, 0, 2 * n, 0);\n\
+    \n    FOR(i, 2 * n * k) Q[i] += 1;\n    FOR(i, 2 * n * k, 4 * n * k) Q[i] -= 1;\n\
+    \n    vc<mint> nxt_Q(4 * n * k);\n    vc<mint> F(2 * n), G(2 * n), f(n), g(n);\n\
+    \    FOR(j, 2 * k) {\n      move(Q.begin() + 2 * n * j, Q.begin() + 2 * n * j\
+    \ + 2 * n, G.begin());\n      FOR(i, n) { g[i] = G[2 * i] * G[2 * i + 1]; }\n\
+    \      ntt(g, 1);\n      move(g.begin(), g.begin() + n / 2, nxt_Q.begin() + n\
+    \ * j);\n    }\n    FOR(j, 4 * k) nxt_Q[n * j] = 0;\n\n    vc<mint> p = rec(rec,\
+    \ n / 2, k * 2, nxt_Q);\n    FOR_R(j, 2 * k) {\n      move(p.begin() + n * j,\
+    \ p.begin() + n * j + n / 2, f.begin());\n      move(Q.begin() + 2 * n * j, Q.begin()\
+    \ + 2 * n * j + 2 * n, G.begin());\n      fill(f.begin() + n / 2, f.end(), mint(0));\n\
+    \      transposed_ntt(f, 1);\n      FOR(i, n) {\n        f[i] *= W[i];\n     \
+    \   F[2 * i] = G[2 * i + 1] * f[i], F[2 * i + 1] = -G[2 * i] * f[i];\n      }\n\
+    \      move(F.begin(), F.end(), p.begin() + 2 * n * j);\n    }\n    if (n <= k)\
+    \ FFT_x(p, 0, 2 * k, 1), doubling_y(p, 0, n, 1);\n    if (n > k) doubling_y(p,\
+    \ 0, 2 * n, 1), FFT_x(p, 0, k, 1);\n    return p;\n  };\n\n  vc<mint> Q(4 * n);\n\
+    \  FOR(i, n) Q[i] = -g[i];\n\n  vc<mint> p = rec(rec, n, 1, Q);\n  p.resize(n);\n\
+    \  reverse(all(p));\n  p.resize(n0);\n  return p;\n}\n\ntemplate <typename mint>\n\
+    vc<mint> composition_0_garner(vc<mint> f, vc<mint> g) {\n  constexpr u32 ps[]\
+    \ = {167772161, 469762049, 754974721};\n  using mint0 = modint<ps[0]>;\n  using\
+    \ mint1 = modint<ps[1]>;\n  using mint2 = modint<ps[2]>;\n\n  auto rec = [&](auto&\
+    \ rec, int n, int k, vc<mint> Q) -> vc<mint> {\n    if (n == 1) {\n      vc<mint>\
+    \ p(2 * k);\n      reverse(all(f));\n      FOR(i, k) p[2 * i] = f[i];\n      return\
+    \ p;\n    }\n    vc<mint0> Q0(4 * n * k), R0(4 * n * k), p0(4 * n * k);\n    vc<mint1>\
+    \ Q1(4 * n * k), R1(4 * n * k), p1(4 * n * k);\n    vc<mint2> Q2(4 * n * k), R2(4\
+    \ * n * k), p2(4 * n * k);\n    FOR(i, 2 * n * k) {\n      Q0[i] = Q[i].val, R0[i]\
+    \ = (i % 2 == 0 ? Q[i].val : (-Q[i]).val);\n      Q1[i] = Q[i].val, R1[i] = (i\
+    \ % 2 == 0 ? Q[i].val : (-Q[i]).val);\n      Q2[i] = Q[i].val, R2[i] = (i % 2\
+    \ == 0 ? Q[i].val : (-Q[i]).val);\n    }\n    ntt(Q0, 0), ntt(Q1, 0), ntt(Q2,\
+    \ 0), ntt(R0, 0), ntt(R1, 0), ntt(R2, 0);\n    FOR(i, 4 * n * k) Q0[i] *= R0[i],\
+    \ Q1[i] *= R1[i], Q2[i] *= R2[i];\n    ntt(Q0, 1), ntt(Q1, 1), ntt(Q2, 1);\n \
+    \   vc<mint> QQ(4 * n * k);\n    FOR(i, 4 * n * k) {\n      QQ[i] = CRT3<mint,\
+    \ ps[0], ps[1], ps[2]>(Q0[i].val, Q1[i].val, Q2[i].val);\n    }\n    for (int\
+    \ i = 0; i < 2 * n * k; i += 2) QQ[2 * n * k + i] += Q[i] + Q[i];\n    vc<mint>\
+    \ nxt_Q(2 * n * k);\n    FOR(j, 2 * k) FOR(i, n / 2) {\n      nxt_Q[n * j + i]\
+    \ = QQ[(2 * n) * j + (2 * i + 0)];\n    }\n\n    vc<mint> nxt_p = rec(rec, n /\
+    \ 2, k * 2, nxt_Q);\n    vc<mint> pq(4 * n * k);\n    FOR(j, 2 * k) FOR(i, n /\
+    \ 2) {\n      pq[(2 * n) * j + (2 * i + 1)] += nxt_p[n * j + i];\n    }\n\n  \
+    \  vc<mint> p(2 * n * k);\n    FOR(i, 2 * n * k) { p[i] += pq[2 * n * k + i];\
+    \ }\n    FOR(i, 4 * n * k) {\n      p0[i] += pq[i].val, p1[i] += pq[i].val, p2[i]\
+    \ += pq[i].val;\n    }\n    transposed_ntt(p0, 1), transposed_ntt(p1, 1), transposed_ntt(p2,\
+    \ 1);\n    FOR(i, 4 * n * k) p0[i] *= R0[i], p1[i] *= R1[i], p2[i] *= R2[i];\n\
+    \    transposed_ntt(p0, 0), transposed_ntt(p1, 0), transposed_ntt(p2, 0);\n  \
+    \  FOR(i, 2 * n * k) {\n      p[i] += CRT3<mint, ps[0], ps[1], ps[2]>(p0[i].val,\
     \ p1[i].val, p2[i].val);\n    }\n    return p;\n  };\n  assert(len(f) == len(g));\n\
     \  int n = 1;\n  while (n < len(f)) n *= 2;\n  int out_len = len(f);\n  f.resize(n),\
     \ g.resize(n);\n  int k = 1;\n  vc<mint> Q(2 * n);\n  FOR(i, n) Q[i] = -g[i];\n\
@@ -2216,8 +2218,8 @@ data:
     }\n\ntemplate <typename mint>\nvc<mint> composition(vc<mint> f, vc<mint> g) {\n\
     \  assert(len(f) == len(g));\n  if (f.empty()) return {};\n  // [x^0]g=0 \u306B\
     \u5E30\u7740\u3057\u3066\u304A\u304F\n  if (g[0] != mint(0)) {\n    f = poly_taylor_shift<mint>(f,\
-    \ g[0]);\n    g[0] = 0;\n  }\n  if (mint::can_ntt()) { return composition_0_ntt(f,\
-    \ g); }\n  return composition_0_garner(f, g);\n}\n#line 1 \"mod/modint_common.hpp\"\
+    \ g[0]);\n    g[0] = 0;\n  }\n  if (mint::can_ntt()) {\n    return composition_0_ntt(f,\
+    \ g);\n  }\n  return composition_0_garner(f, g);\n}\n#line 1 \"mod/modint_common.hpp\"\
     \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
     \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
     \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
@@ -2381,8 +2383,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/composition_1_minus_ex.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:31:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-15 07:27:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/composition_1_minus_ex.test.cpp
 layout: document

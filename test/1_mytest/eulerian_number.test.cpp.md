@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,38 +13,38 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -611,7 +611,7 @@ data:
     \  A[d + 1][k] = mint(k) * A[d][k] + mint(d - k + 2) * A[d][k - 1];\n  }\n  return\
     \ A;\n}\n\ntemplate <typename mint>\nvc<mint> eulerian_number_n(int n) {\n  vc<mint>\
     \ f = power_table_2<mint>(n, n);\n  vc<mint> g(n + 1);\n  FOR(k, n + 1) g[k] =\
-    \ C<mint>(n + 1, k);\n  FOR(k, 1, n + 1, 2) g[k] = -g[k];\n  f = convolution(f,\
+    \ C<mint>(n + 1, k);\n  for (int k = 1; k <= n; k += 2) g[k] = -g[k];\n  f = convolution(f,\
     \ g);\n  f.resize(n + 1);\n  return f;\n}\n#line 5 \"test/1_mytest/eulerian_number.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  const int LIM = 100;\n  auto dp\
     \ = eulerian_number_2d<mint>(LIM, LIM);\n\n  FOR(N, LIM + 1) {\n    auto f = eulerian_number_n<mint>(N);\n\
@@ -642,8 +642,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/eulerian_number.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:31:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-15 07:22:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/eulerian_number.test.cpp
 layout: document

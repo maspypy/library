@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -16,77 +16,77 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_1_minus_ex.test.cpp
     title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1145.test.cpp
     title: test/3_yukicoder/1145.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1962.test.cpp
     title: test/3_yukicoder/1962.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2459.test.cpp
     title: test/3_yukicoder/2459.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/sum_of_rationals.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
@@ -537,41 +537,41 @@ data:
     \      FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n      auto f = convolution(a.se,\
     \ b.fi);\n      FOR(i, len(f)) num[i] += f[i];\n    }\n    auto den = convolution(a.se,\
     \ b.se);\n    return {num, den};\n  };\n\n  while (len(dat) > 1) {\n    int n\
-    \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
-    \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
-    \  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\ntemplate <typename mint>\npair<vc<mint>,\
-    \ vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt) {\n  using poly = vc<mint>;\n\
-    \  if (!mint::can_ntt()) {\n    vc<pair<poly, poly>> rationals;\n    FOR(i, len(A))\
-    \ rationals.eb(poly({wt[i]}), poly({mint(1), -A[i]}));\n    return sum_of_rationals(rationals);\n\
-    \  }\n  int n = 1;\n  while (n < len(A)) n *= 2;\n  int k = topbit(n);\n  vc<mint>\
-    \ F(n), G(n);\n  vc<mint> nxt_F(n), nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i],\
-    \ G[i] = wt[i];\n  int D = 6;\n\n  FOR(d, k) {\n    int b = 1 << d;\n    if (d\
-    \ < D) {\n      fill(all(nxt_F), mint(0)), fill(all(nxt_G), mint(0));\n      for\
-    \ (int L = 0; L < n; L += 2 * b) {\n        FOR(i, b) FOR(j, b) nxt_F[L + i +\
-    \ j] += F[L + i] * F[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j]\
-    \ += F[L + i] * G[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] +=\
-    \ F[L + b + i] * G[L + j];\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L\
-    \ + b + i];\n        FOR(i, b) nxt_G[L + b + i] += G[L + i] + G[L + b + i];\n\
-    \      }\n    }\n    elif (d == D) {\n      for (int L = 0; L < n; L += 2 * b)\
-    \ {\n        poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 =\
-    \ {F.begin() + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() +\
-    \ L, G.begin() + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L\
-    \ + 2 * b};\n        f1.resize(2 * b), f2.resize(2 * b), g1.resize(2 * b), g2.resize(2\
-    \ * b);\n        ntt(f1, 0), ntt(f2, 0), ntt(g1, 0), ntt(g2, 0);\n        FOR(i,\
-    \ b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n\
-    \        FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b)\
-    \ nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n    }\n    else {\n\
-    \      for (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L,\
-    \ F.begin() + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2\
-    \ * b};\n        poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2\
-    \ = {G.begin() + L + b, G.begin() + L + 2 * b};\n        ntt_doubling(f1), ntt_doubling(f2),\
-    \ ntt_doubling(g1), ntt_doubling(g2);\n        FOR(i, b) f1[i] += 1, f2[i] +=\
-    \ 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b)\
-    \ nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i]\
-    \ * f2[i] + g2[i] * f1[i];\n      }\n    }\n    swap(F, nxt_F), swap(G, nxt_G);\n\
-    \  }\n  if (k - 1 >= D) ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)),\
-    \ reverse(all(G));\n  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G,\
-    \ F};\n}\n"
+    \ = len(dat);\n    for (int i = 1; i < n; i += 2) dat[i - 1] = add(dat[i - 1],\
+    \ dat[i]);\n    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n,\
+    \ 2));\n  }\n  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\ntemplate <typename\
+    \ mint>\npair<vc<mint>, vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt)\
+    \ {\n  using poly = vc<mint>;\n  if (!mint::can_ntt()) {\n    vc<pair<poly, poly>>\
+    \ rationals;\n    FOR(i, len(A)) rationals.eb(poly({wt[i]}), poly({mint(1), -A[i]}));\n\
+    \    return sum_of_rationals(rationals);\n  }\n  int n = 1;\n  while (n < len(A))\
+    \ n *= 2;\n  int k = topbit(n);\n  vc<mint> F(n), G(n);\n  vc<mint> nxt_F(n),\
+    \ nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i], G[i] = wt[i];\n  int D = 6;\n\n  FOR(d,\
+    \ k) {\n    int b = 1 << d;\n    if (d < D) {\n      fill(all(nxt_F), mint(0)),\
+    \ fill(all(nxt_G), mint(0));\n      for (int L = 0; L < n; L += 2 * b) {\n   \
+    \     FOR(i, b) FOR(j, b) nxt_F[L + i + j] += F[L + i] * F[L + b + j];\n     \
+    \   FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + i] * G[L + b + j];\n       \
+    \ FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + b + i] * G[L + j];\n        FOR(i,\
+    \ b) nxt_F[L + b + i] += F[L + i] + F[L + b + i];\n        FOR(i, b) nxt_G[L +\
+    \ b + i] += G[L + i] + G[L + b + i];\n      }\n    }\n    elif (d == D) {\n  \
+    \    for (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L, F.begin()\
+    \ + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\n \
+    \       poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2 = {G.begin()\
+    \ + L + b, G.begin() + L + 2 * b};\n        f1.resize(2 * b), f2.resize(2 * b),\
+    \ g1.resize(2 * b), g2.resize(2 * b);\n        ntt(f1, 0), ntt(f2, 0), ntt(g1,\
+    \ 0), ntt(g2, 0);\n        FOR(i, b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b,\
+    \ 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b) nxt_F[L + i] = f1[i] *\
+    \ f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n\
+    \      }\n    }\n    else {\n      for (int L = 0; L < n; L += 2 * b) {\n    \
+    \    poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 = {F.begin()\
+    \ + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() + L, G.begin()\
+    \ + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L + 2 * b};\n \
+    \       ntt_doubling(f1), ntt_doubling(f2), ntt_doubling(g1), ntt_doubling(g2);\n\
+    \        FOR(i, b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -=\
+    \ 1, f2[i] -= 1;\n        FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n  \
+    \      FOR(i, 2 * b) nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n\
+    \    }\n    swap(F, nxt_F), swap(G, nxt_G);\n  }\n  if (k - 1 >= D) ntt(F, 1),\
+    \ ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)), reverse(all(G));\n  F.resize(len(A)\
+    \ + 1);\n  G.resize(len(A));\n  return {G, F};\n}\n"
   code: "\n#include \"poly/convolution.hpp\"\n#include \"poly/ntt_doubling.hpp\"\n\
     \n// \u6709\u7406\u5F0F\u306E\u548C\u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\
     \u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate\
@@ -584,41 +584,41 @@ data:
     \      FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n      auto f = convolution(a.se,\
     \ b.fi);\n      FOR(i, len(f)) num[i] += f[i];\n    }\n    auto den = convolution(a.se,\
     \ b.se);\n    return {num, den};\n  };\n\n  while (len(dat) > 1) {\n    int n\
-    \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
-    \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
-    \  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\ntemplate <typename mint>\npair<vc<mint>,\
-    \ vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt) {\n  using poly = vc<mint>;\n\
-    \  if (!mint::can_ntt()) {\n    vc<pair<poly, poly>> rationals;\n    FOR(i, len(A))\
-    \ rationals.eb(poly({wt[i]}), poly({mint(1), -A[i]}));\n    return sum_of_rationals(rationals);\n\
-    \  }\n  int n = 1;\n  while (n < len(A)) n *= 2;\n  int k = topbit(n);\n  vc<mint>\
-    \ F(n), G(n);\n  vc<mint> nxt_F(n), nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i],\
-    \ G[i] = wt[i];\n  int D = 6;\n\n  FOR(d, k) {\n    int b = 1 << d;\n    if (d\
-    \ < D) {\n      fill(all(nxt_F), mint(0)), fill(all(nxt_G), mint(0));\n      for\
-    \ (int L = 0; L < n; L += 2 * b) {\n        FOR(i, b) FOR(j, b) nxt_F[L + i +\
-    \ j] += F[L + i] * F[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j]\
-    \ += F[L + i] * G[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] +=\
-    \ F[L + b + i] * G[L + j];\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L\
-    \ + b + i];\n        FOR(i, b) nxt_G[L + b + i] += G[L + i] + G[L + b + i];\n\
-    \      }\n    }\n    elif (d == D) {\n      for (int L = 0; L < n; L += 2 * b)\
-    \ {\n        poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 =\
-    \ {F.begin() + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() +\
-    \ L, G.begin() + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L\
-    \ + 2 * b};\n        f1.resize(2 * b), f2.resize(2 * b), g1.resize(2 * b), g2.resize(2\
-    \ * b);\n        ntt(f1, 0), ntt(f2, 0), ntt(g1, 0), ntt(g2, 0);\n        FOR(i,\
-    \ b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n\
-    \        FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b)\
-    \ nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n    }\n    else {\n\
-    \      for (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L,\
-    \ F.begin() + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2\
-    \ * b};\n        poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2\
-    \ = {G.begin() + L + b, G.begin() + L + 2 * b};\n        ntt_doubling(f1), ntt_doubling(f2),\
-    \ ntt_doubling(g1), ntt_doubling(g2);\n        FOR(i, b) f1[i] += 1, f2[i] +=\
-    \ 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b)\
-    \ nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i]\
-    \ * f2[i] + g2[i] * f1[i];\n      }\n    }\n    swap(F, nxt_F), swap(G, nxt_G);\n\
-    \  }\n  if (k - 1 >= D) ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)),\
-    \ reverse(all(G));\n  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G,\
-    \ F};\n}\n"
+    \ = len(dat);\n    for (int i = 1; i < n; i += 2) dat[i - 1] = add(dat[i - 1],\
+    \ dat[i]);\n    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n,\
+    \ 2));\n  }\n  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\ntemplate <typename\
+    \ mint>\npair<vc<mint>, vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt)\
+    \ {\n  using poly = vc<mint>;\n  if (!mint::can_ntt()) {\n    vc<pair<poly, poly>>\
+    \ rationals;\n    FOR(i, len(A)) rationals.eb(poly({wt[i]}), poly({mint(1), -A[i]}));\n\
+    \    return sum_of_rationals(rationals);\n  }\n  int n = 1;\n  while (n < len(A))\
+    \ n *= 2;\n  int k = topbit(n);\n  vc<mint> F(n), G(n);\n  vc<mint> nxt_F(n),\
+    \ nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i], G[i] = wt[i];\n  int D = 6;\n\n  FOR(d,\
+    \ k) {\n    int b = 1 << d;\n    if (d < D) {\n      fill(all(nxt_F), mint(0)),\
+    \ fill(all(nxt_G), mint(0));\n      for (int L = 0; L < n; L += 2 * b) {\n   \
+    \     FOR(i, b) FOR(j, b) nxt_F[L + i + j] += F[L + i] * F[L + b + j];\n     \
+    \   FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + i] * G[L + b + j];\n       \
+    \ FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + b + i] * G[L + j];\n        FOR(i,\
+    \ b) nxt_F[L + b + i] += F[L + i] + F[L + b + i];\n        FOR(i, b) nxt_G[L +\
+    \ b + i] += G[L + i] + G[L + b + i];\n      }\n    }\n    elif (d == D) {\n  \
+    \    for (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L, F.begin()\
+    \ + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\n \
+    \       poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2 = {G.begin()\
+    \ + L + b, G.begin() + L + 2 * b};\n        f1.resize(2 * b), f2.resize(2 * b),\
+    \ g1.resize(2 * b), g2.resize(2 * b);\n        ntt(f1, 0), ntt(f2, 0), ntt(g1,\
+    \ 0), ntt(g2, 0);\n        FOR(i, b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b,\
+    \ 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b) nxt_F[L + i] = f1[i] *\
+    \ f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n\
+    \      }\n    }\n    else {\n      for (int L = 0; L < n; L += 2 * b) {\n    \
+    \    poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 = {F.begin()\
+    \ + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() + L, G.begin()\
+    \ + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L + 2 * b};\n \
+    \       ntt_doubling(f1), ntt_doubling(f2), ntt_doubling(g1), ntt_doubling(g2);\n\
+    \        FOR(i, b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -=\
+    \ 1, f2[i] -= 1;\n        FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n  \
+    \      FOR(i, 2 * b) nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n\
+    \    }\n    swap(F, nxt_F), swap(G, nxt_G);\n  }\n  if (k - 1 >= D) ntt(F, 1),\
+    \ ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)), reverse(all(G));\n  F.resize(len(A)\
+    \ + 1);\n  G.resize(len(A));\n  return {G, F};\n}\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -640,8 +640,8 @@ data:
   - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_ex_minus_1.hpp
   - poly/product_of_pow_of_linear.hpp
-  timestamp: '2026-09-15 06:31:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-09-15 07:27:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/vandermonde.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp

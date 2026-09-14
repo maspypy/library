@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_undirected.hpp
     title: graph/count/count_labeled_undirected.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -19,74 +19,74 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A013922
@@ -2964,69 +2964,70 @@ data:
     \ bit reverse order\n    vc<int> btr(n);\n    int log = topbit(n);\n    FOR(i,\
     \ n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\n    int t = mint::ntt_info().fi;\n\
     \    mint r = mint::ntt_info().se;\n    mint dw = r.inverse().pow((1 << t) / (2\
-    \ * n));\n    mint w = 1;\n    for (auto& i: btr) { W[i] = w, w *= dw; }\n  }\n\
-    \n  auto rec = [&](auto& rec, int n, int k, vc<mint>& Q) -> vc<mint> {\n    if\
-    \ (n == 1) {\n      reverse(all(f));\n      transposed_ntt(f, 1);\n      mint\
-    \ c = mint(1) / mint(k);\n      for (auto& x: f) x *= c;\n      vc<mint> p(4 *\
-    \ k);\n      FOR(i, k) p[2 * i] = f[i];\n      return p;\n    }\n    auto doubling_y\
-    \ = [&](vc<mint>& A, int l, int r, bool t) -> void {\n      mint z = W[k / 2].inverse();\n\
-    \      vc<mint> f(k);\n      if (!t) {\n        FOR(i, l, r) {\n          FOR(j,\
-    \ k) f[j] = A[2 * n * j + i];\n          ntt(f, 1);\n          mint r = 1;\n \
-    \         FOR(j, 1, k) r *= z, f[j] *= r;\n          ntt(f, 0);\n          FOR(j,\
-    \ k) A[2 * n * (k + j) + i] = f[j];\n        }\n      } else {\n        FOR(i,\
-    \ l, r) {\n          FOR(j, k) f[j] = A[2 * n * (k + j) + i];\n          transposed_ntt(f,\
-    \ 0);\n          mint r = 1;\n          FOR(j, 1, k) r *= z, f[j] *= r;\n    \
-    \      transposed_ntt(f, 1);\n          FOR(j, k) A[2 * n * j + i] += f[j];\n\
-    \        }\n      }\n    };\n\n    auto FFT_x = [&](vc<mint>& A, int l, int r,\
-    \ bool t) -> void {\n      vc<mint> f(2 * n);\n      if (!t) {\n        FOR(j,\
-    \ l, r) {\n          move(A.begin() + 2 * n * j, A.begin() + 2 * n * (j + 1),\
-    \ f.begin());\n          ntt(f, 0);\n          move(all(f), A.begin() + 2 * n\
-    \ * j);\n        }\n      } else {\n        FOR(j, l, r) {\n          move(A.begin()\
-    \ + 2 * n * j, A.begin() + 2 * n * (j + 1), f.begin());\n          transposed_ntt(f,\
-    \ 0);\n          move(all(f), A.begin() + 2 * n * j);\n        }\n      }\n  \
-    \  };\n\n    if (n <= k) doubling_y(Q, 1, n, 0), FFT_x(Q, 0, 2 * k, 0);\n    if\
-    \ (n > k) FFT_x(Q, 0, k, 0), doubling_y(Q, 0, 2 * n, 0);\n\n    FOR(i, 2 * n *\
-    \ k) Q[i] += 1;\n    FOR(i, 2 * n * k, 4 * n * k) Q[i] -= 1;\n\n    vc<mint> nxt_Q(4\
-    \ * n * k);\n    vc<mint> F(2 * n), G(2 * n), f(n), g(n);\n    FOR(j, 2 * k) {\n\
-    \      move(Q.begin() + 2 * n * j, Q.begin() + 2 * n * j + 2 * n, G.begin());\n\
-    \      FOR(i, n) { g[i] = G[2 * i] * G[2 * i + 1]; }\n      ntt(g, 1);\n     \
-    \ move(g.begin(), g.begin() + n / 2, nxt_Q.begin() + n * j);\n    }\n    FOR(j,\
-    \ 4 * k) nxt_Q[n * j] = 0;\n\n    vc<mint> p = rec(rec, n / 2, k * 2, nxt_Q);\n\
-    \    FOR_R(j, 2 * k) {\n      move(p.begin() + n * j, p.begin() + n * j + n /\
-    \ 2, f.begin());\n      move(Q.begin() + 2 * n * j, Q.begin() + 2 * n * j + 2\
-    \ * n, G.begin());\n      fill(f.begin() + n / 2, f.end(), mint(0));\n      transposed_ntt(f,\
-    \ 1);\n      FOR(i, n) {\n        f[i] *= W[i];\n        F[2 * i] = G[2 * i +\
-    \ 1] * f[i], F[2 * i + 1] = -G[2 * i] * f[i];\n      }\n      move(F.begin(),\
-    \ F.end(), p.begin() + 2 * n * j);\n    }\n    if (n <= k) FFT_x(p, 0, 2 * k,\
-    \ 1), doubling_y(p, 0, n, 1);\n    if (n > k) doubling_y(p, 0, 2 * n, 1), FFT_x(p,\
-    \ 0, k, 1);\n    return p;\n  };\n\n  vc<mint> Q(4 * n);\n  FOR(i, n) Q[i] = -g[i];\n\
-    \n  vc<mint> p = rec(rec, n, 1, Q);\n  p.resize(n);\n  reverse(all(p));\n  p.resize(n0);\n\
-    \  return p;\n}\n\ntemplate <typename mint>\nvc<mint> composition_0_garner(vc<mint>\
-    \ f, vc<mint> g) {\n  constexpr u32 ps[] = {167772161, 469762049, 754974721};\n\
-    \  using mint0 = modint<ps[0]>;\n  using mint1 = modint<ps[1]>;\n  using mint2\
-    \ = modint<ps[2]>;\n\n  auto rec = [&](auto& rec, int n, int k, vc<mint> Q) ->\
-    \ vc<mint> {\n    if (n == 1) {\n      vc<mint> p(2 * k);\n      reverse(all(f));\n\
-    \      FOR(i, k) p[2 * i] = f[i];\n      return p;\n    }\n    vc<mint0> Q0(4\
-    \ * n * k), R0(4 * n * k), p0(4 * n * k);\n    vc<mint1> Q1(4 * n * k), R1(4 *\
-    \ n * k), p1(4 * n * k);\n    vc<mint2> Q2(4 * n * k), R2(4 * n * k), p2(4 * n\
-    \ * k);\n    FOR(i, 2 * n * k) {\n      Q0[i] = Q[i].val, R0[i] = (i % 2 == 0\
-    \ ? Q[i].val : (-Q[i]).val);\n      Q1[i] = Q[i].val, R1[i] = (i % 2 == 0 ? Q[i].val\
-    \ : (-Q[i]).val);\n      Q2[i] = Q[i].val, R2[i] = (i % 2 == 0 ? Q[i].val : (-Q[i]).val);\n\
-    \    }\n    ntt(Q0, 0), ntt(Q1, 0), ntt(Q2, 0), ntt(R0, 0), ntt(R1, 0), ntt(R2,\
-    \ 0);\n    FOR(i, 4 * n * k) Q0[i] *= R0[i], Q1[i] *= R1[i], Q2[i] *= R2[i];\n\
-    \    ntt(Q0, 1), ntt(Q1, 1), ntt(Q2, 1);\n    vc<mint> QQ(4 * n * k);\n    FOR(i,\
-    \ 4 * n * k) {\n      QQ[i] = CRT3<mint, ps[0], ps[1], ps[2]>(Q0[i].val, Q1[i].val,\
-    \ Q2[i].val);\n    }\n    FOR(i, 0, 2 * n * k, 2) { QQ[2 * n * k + i] += Q[i]\
-    \ + Q[i]; }\n    vc<mint> nxt_Q(2 * n * k);\n    FOR(j, 2 * k) FOR(i, n / 2) {\n\
-    \      nxt_Q[n * j + i] = QQ[(2 * n) * j + (2 * i + 0)];\n    }\n\n    vc<mint>\
-    \ nxt_p = rec(rec, n / 2, k * 2, nxt_Q);\n    vc<mint> pq(4 * n * k);\n    FOR(j,\
-    \ 2 * k) FOR(i, n / 2) {\n      pq[(2 * n) * j + (2 * i + 1)] += nxt_p[n * j +\
-    \ i];\n    }\n\n    vc<mint> p(2 * n * k);\n    FOR(i, 2 * n * k) { p[i] += pq[2\
-    \ * n * k + i]; }\n    FOR(i, 4 * n * k) {\n      p0[i] += pq[i].val, p1[i] +=\
-    \ pq[i].val, p2[i] += pq[i].val;\n    }\n    transposed_ntt(p0, 1), transposed_ntt(p1,\
-    \ 1), transposed_ntt(p2, 1);\n    FOR(i, 4 * n * k) p0[i] *= R0[i], p1[i] *= R1[i],\
-    \ p2[i] *= R2[i];\n    transposed_ntt(p0, 0), transposed_ntt(p1, 0), transposed_ntt(p2,\
-    \ 0);\n    FOR(i, 2 * n * k) {\n      p[i] += CRT3<mint, ps[0], ps[1], ps[2]>(p0[i].val,\
+    \ * n));\n    mint w = 1;\n    for (auto& i : btr) {\n      W[i] = w, w *= dw;\n\
+    \    }\n  }\n\n  auto rec = [&](auto& rec, int n, int k, vc<mint>& Q) -> vc<mint>\
+    \ {\n    if (n == 1) {\n      reverse(all(f));\n      transposed_ntt(f, 1);\n\
+    \      mint c = mint(1) / mint(k);\n      for (auto& x : f) x *= c;\n      vc<mint>\
+    \ p(4 * k);\n      FOR(i, k) p[2 * i] = f[i];\n      return p;\n    }\n    auto\
+    \ doubling_y = [&](vc<mint>& A, int l, int r, bool t) -> void {\n      mint z\
+    \ = W[k / 2].inverse();\n      vc<mint> f(k);\n      if (!t) {\n        FOR(i,\
+    \ l, r) {\n          FOR(j, k) f[j] = A[2 * n * j + i];\n          ntt(f, 1);\n\
+    \          mint r = 1;\n          FOR(j, 1, k) r *= z, f[j] *= r;\n          ntt(f,\
+    \ 0);\n          FOR(j, k) A[2 * n * (k + j) + i] = f[j];\n        }\n      }\
+    \ else {\n        FOR(i, l, r) {\n          FOR(j, k) f[j] = A[2 * n * (k + j)\
+    \ + i];\n          transposed_ntt(f, 0);\n          mint r = 1;\n          FOR(j,\
+    \ 1, k) r *= z, f[j] *= r;\n          transposed_ntt(f, 1);\n          FOR(j,\
+    \ k) A[2 * n * j + i] += f[j];\n        }\n      }\n    };\n\n    auto FFT_x =\
+    \ [&](vc<mint>& A, int l, int r, bool t) -> void {\n      vc<mint> f(2 * n);\n\
+    \      if (!t) {\n        FOR(j, l, r) {\n          move(A.begin() + 2 * n * j,\
+    \ A.begin() + 2 * n * (j + 1), f.begin());\n          ntt(f, 0);\n          move(all(f),\
+    \ A.begin() + 2 * n * j);\n        }\n      } else {\n        FOR(j, l, r) {\n\
+    \          move(A.begin() + 2 * n * j, A.begin() + 2 * n * (j + 1), f.begin());\n\
+    \          transposed_ntt(f, 0);\n          move(all(f), A.begin() + 2 * n * j);\n\
+    \        }\n      }\n    };\n\n    if (n <= k) doubling_y(Q, 1, n, 0), FFT_x(Q,\
+    \ 0, 2 * k, 0);\n    if (n > k) FFT_x(Q, 0, k, 0), doubling_y(Q, 0, 2 * n, 0);\n\
+    \n    FOR(i, 2 * n * k) Q[i] += 1;\n    FOR(i, 2 * n * k, 4 * n * k) Q[i] -= 1;\n\
+    \n    vc<mint> nxt_Q(4 * n * k);\n    vc<mint> F(2 * n), G(2 * n), f(n), g(n);\n\
+    \    FOR(j, 2 * k) {\n      move(Q.begin() + 2 * n * j, Q.begin() + 2 * n * j\
+    \ + 2 * n, G.begin());\n      FOR(i, n) { g[i] = G[2 * i] * G[2 * i + 1]; }\n\
+    \      ntt(g, 1);\n      move(g.begin(), g.begin() + n / 2, nxt_Q.begin() + n\
+    \ * j);\n    }\n    FOR(j, 4 * k) nxt_Q[n * j] = 0;\n\n    vc<mint> p = rec(rec,\
+    \ n / 2, k * 2, nxt_Q);\n    FOR_R(j, 2 * k) {\n      move(p.begin() + n * j,\
+    \ p.begin() + n * j + n / 2, f.begin());\n      move(Q.begin() + 2 * n * j, Q.begin()\
+    \ + 2 * n * j + 2 * n, G.begin());\n      fill(f.begin() + n / 2, f.end(), mint(0));\n\
+    \      transposed_ntt(f, 1);\n      FOR(i, n) {\n        f[i] *= W[i];\n     \
+    \   F[2 * i] = G[2 * i + 1] * f[i], F[2 * i + 1] = -G[2 * i] * f[i];\n      }\n\
+    \      move(F.begin(), F.end(), p.begin() + 2 * n * j);\n    }\n    if (n <= k)\
+    \ FFT_x(p, 0, 2 * k, 1), doubling_y(p, 0, n, 1);\n    if (n > k) doubling_y(p,\
+    \ 0, 2 * n, 1), FFT_x(p, 0, k, 1);\n    return p;\n  };\n\n  vc<mint> Q(4 * n);\n\
+    \  FOR(i, n) Q[i] = -g[i];\n\n  vc<mint> p = rec(rec, n, 1, Q);\n  p.resize(n);\n\
+    \  reverse(all(p));\n  p.resize(n0);\n  return p;\n}\n\ntemplate <typename mint>\n\
+    vc<mint> composition_0_garner(vc<mint> f, vc<mint> g) {\n  constexpr u32 ps[]\
+    \ = {167772161, 469762049, 754974721};\n  using mint0 = modint<ps[0]>;\n  using\
+    \ mint1 = modint<ps[1]>;\n  using mint2 = modint<ps[2]>;\n\n  auto rec = [&](auto&\
+    \ rec, int n, int k, vc<mint> Q) -> vc<mint> {\n    if (n == 1) {\n      vc<mint>\
+    \ p(2 * k);\n      reverse(all(f));\n      FOR(i, k) p[2 * i] = f[i];\n      return\
+    \ p;\n    }\n    vc<mint0> Q0(4 * n * k), R0(4 * n * k), p0(4 * n * k);\n    vc<mint1>\
+    \ Q1(4 * n * k), R1(4 * n * k), p1(4 * n * k);\n    vc<mint2> Q2(4 * n * k), R2(4\
+    \ * n * k), p2(4 * n * k);\n    FOR(i, 2 * n * k) {\n      Q0[i] = Q[i].val, R0[i]\
+    \ = (i % 2 == 0 ? Q[i].val : (-Q[i]).val);\n      Q1[i] = Q[i].val, R1[i] = (i\
+    \ % 2 == 0 ? Q[i].val : (-Q[i]).val);\n      Q2[i] = Q[i].val, R2[i] = (i % 2\
+    \ == 0 ? Q[i].val : (-Q[i]).val);\n    }\n    ntt(Q0, 0), ntt(Q1, 0), ntt(Q2,\
+    \ 0), ntt(R0, 0), ntt(R1, 0), ntt(R2, 0);\n    FOR(i, 4 * n * k) Q0[i] *= R0[i],\
+    \ Q1[i] *= R1[i], Q2[i] *= R2[i];\n    ntt(Q0, 1), ntt(Q1, 1), ntt(Q2, 1);\n \
+    \   vc<mint> QQ(4 * n * k);\n    FOR(i, 4 * n * k) {\n      QQ[i] = CRT3<mint,\
+    \ ps[0], ps[1], ps[2]>(Q0[i].val, Q1[i].val, Q2[i].val);\n    }\n    for (int\
+    \ i = 0; i < 2 * n * k; i += 2) QQ[2 * n * k + i] += Q[i] + Q[i];\n    vc<mint>\
+    \ nxt_Q(2 * n * k);\n    FOR(j, 2 * k) FOR(i, n / 2) {\n      nxt_Q[n * j + i]\
+    \ = QQ[(2 * n) * j + (2 * i + 0)];\n    }\n\n    vc<mint> nxt_p = rec(rec, n /\
+    \ 2, k * 2, nxt_Q);\n    vc<mint> pq(4 * n * k);\n    FOR(j, 2 * k) FOR(i, n /\
+    \ 2) {\n      pq[(2 * n) * j + (2 * i + 1)] += nxt_p[n * j + i];\n    }\n\n  \
+    \  vc<mint> p(2 * n * k);\n    FOR(i, 2 * n * k) { p[i] += pq[2 * n * k + i];\
+    \ }\n    FOR(i, 4 * n * k) {\n      p0[i] += pq[i].val, p1[i] += pq[i].val, p2[i]\
+    \ += pq[i].val;\n    }\n    transposed_ntt(p0, 1), transposed_ntt(p1, 1), transposed_ntt(p2,\
+    \ 1);\n    FOR(i, 4 * n * k) p0[i] *= R0[i], p1[i] *= R1[i], p2[i] *= R2[i];\n\
+    \    transposed_ntt(p0, 0), transposed_ntt(p1, 0), transposed_ntt(p2, 0);\n  \
+    \  FOR(i, 2 * n * k) {\n      p[i] += CRT3<mint, ps[0], ps[1], ps[2]>(p0[i].val,\
     \ p1[i].val, p2[i].val);\n    }\n    return p;\n  };\n  assert(len(f) == len(g));\n\
     \  int n = 1;\n  while (n < len(f)) n *= 2;\n  int out_len = len(f);\n  f.resize(n),\
     \ g.resize(n);\n  int k = 1;\n  vc<mint> Q(2 * n);\n  FOR(i, n) Q[i] = -g[i];\n\
@@ -3035,8 +3036,8 @@ data:
     }\n\ntemplate <typename mint>\nvc<mint> composition(vc<mint> f, vc<mint> g) {\n\
     \  assert(len(f) == len(g));\n  if (f.empty()) return {};\n  // [x^0]g=0 \u306B\
     \u5E30\u7740\u3057\u3066\u304A\u304F\n  if (g[0] != mint(0)) {\n    f = poly_taylor_shift<mint>(f,\
-    \ g[0]);\n    g[0] = 0;\n  }\n  if (mint::can_ntt()) { return composition_0_ntt(f,\
-    \ g); }\n  return composition_0_garner(f, g);\n}\n#line 1 \"poly/integrate.hpp\"\
+    \ g[0]);\n    g[0] = 0;\n  }\n  if (mint::can_ntt()) {\n    return composition_0_ntt(f,\
+    \ g);\n  }\n  return composition_0_garner(f, g);\n}\n#line 1 \"poly/integrate.hpp\"\
     \n\n// \u4E0D\u5B9A\u7A4D\u5206\uFF1Aintegrate(f)\n// \u5B9A\u7A4D\u5206\uFF1A\
     integrate(f, L, R)\ntemplate <typename mint>\nvc<mint> integrate(const vc<mint>&\
     \ f) {\n  vc<mint> g(len(f) + 1);\n  FOR3(i, 1, len(g)) g[i] = f[i - 1] * inv<mint>(i);\n\
@@ -3891,8 +3892,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_biconnected.hpp
   requiredBy: []
-  timestamp: '2026-09-15 06:31:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-09-15 07:22:19+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_labeled_biconnected.test.cpp
 documentation_of: graph/count/count_labeled_biconnected.hpp
