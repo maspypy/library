@@ -29,7 +29,7 @@ pair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {
 
   while (len(dat) > 1) {
     int n = len(dat);
-    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }
+    for (int i = 1; i < n; i += 2) dat[i - 1] = add(dat[i - 1], dat[i]);
     FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];
     dat.resize(ceil(n, 2));
   }

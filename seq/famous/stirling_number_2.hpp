@@ -27,7 +27,7 @@ vc<mint> stirling_number_2_n(int n, int k_max) {
   FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);
   vc<mint> b(k_max + 1);
   FOR(i, k_max + 1) b[i] = fact_inv<mint>(i);
-  FOR(i, 1, k_max + 1, 2) b[i] = -b[i];
+  for (int i = 1; i <= k_max; i += 2) b[i] = -b[i];
   auto f = convolution(a, b);
   f.resize(k_max + 1);
   return f;
