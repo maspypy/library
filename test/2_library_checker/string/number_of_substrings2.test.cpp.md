@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
@@ -530,13 +530,13 @@ data:
     \ != -1 && nodes[p].nxt[c] == q) {\n      nodes[p].nxt[c] = clone;\n      p =\
     \ nodes[p].link;\n    }\n\n    nodes[q].link = clone;\n    nodes[cur].link = clone;\n\
     \n    return cur;\n  }\n};\n#line 5 \"test/2_library_checker/string/number_of_substrings2.test.cpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X(S);\n  int n = X.n_node;\n\
+    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X(S, 'a');\n  int n = X.n_node;\n\
     \  ll ANS = 0;\n  FOR(i, 1, n) {\n    auto [a, b] = X.len_range(i);\n    ANS +=\
     \ b - a;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/suffix_automaton.hpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X(S);\n  int n = X.n_node;\n\
+    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X(S, 'a');\n  int n = X.n_node;\n\
     \  ll ANS = 0;\n  FOR(i, 1, n) {\n    auto [a, b] = X.len_range(i);\n    ANS +=\
     \ b - a;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
     }\n"
@@ -550,8 +550,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 07:44:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-15 07:53:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/number_of_substrings2.test.cpp
 layout: document
