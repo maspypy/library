@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   - icon: ':question:'
@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_monge.hpp
     title: random/random_monge.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -264,14 +264,14 @@ data:
     \    for (auto&& y : Y) {\n      while (len(YY)) {\n        int py = YY.back(),\
     \ x = X[len(YY) - 1];\n        if (!better(x, py, y)) break;\n        YY.pop_back();\n\
     \      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n\n    vc<int> XX;\n  \
-    \  FOR(i, 1, len(X), 2) XX.eb(X[i]);\n\n    vc<int> II = dfs(dfs, XX, YY);\n \
-    \   vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n\n    int p = 0;\n\
-    \    FOR(i, 0, N, 2) {\n      int lim = (i + 1 == N ? Y.back() : I[i + 1]);\n\
-    \      int best = Y[p];\n      while (Y[p] < lim) {\n        ++p;\n        if\
-    \ (better(X[i], best, Y[p])) best = Y[p];\n      }\n      I[i] = best;\n    }\n\
-    \    return I;\n  };\n\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y),\
-    \ 0);\n  return dfs(dfs, X, Y);\n}\n#line 7 \"test/1_mytest/smawk.test.cpp\"\n\
-    \nvoid test() {\n  FOR(H, 0, 30) FOR(W, 1, 30) {\n    FOR(1000) {\n      auto\
+    \  for (int i = 1; i < len(X); i += 2) XX.eb(X[i]);\n\n    vc<int> II = dfs(dfs,\
+    \ XX, YY);\n    vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n\n \
+    \   int p = 0;\n    for (int i = 0; i < N; i += 2) {\n      int lim = (i + 1 ==\
+    \ N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p] < lim)\
+    \ {\n        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n      }\n\
+    \      I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n  iota(all(X),\
+    \ 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n#line 7 \"test/1_mytest/smawk.test.cpp\"\
+    \n\nvoid test() {\n  FOR(H, 0, 30) FOR(W, 1, 30) {\n    FOR(1000) {\n      auto\
     \ A = random_monge_matrix(H, W);\n\n      auto better = [&](int i, int j, int\
     \ k) -> bool {\n        return A[i][j] > A[i][k];\n      };\n\n      vc<int> got\
     \ = smawk(H, W, better);\n\n      vc<int> expected(H);\n      FOR(i, H) {\n  \
@@ -298,8 +298,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/smawk.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-15 07:44:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/smawk.test.cpp
 layout: document

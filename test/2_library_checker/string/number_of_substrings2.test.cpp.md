@@ -530,16 +530,16 @@ data:
     \ != -1 && nodes[p].nxt[c] == q) {\n      nodes[p].nxt[c] = clone;\n      p =\
     \ nodes[p].link;\n    }\n\n    nodes[q].link = clone;\n    nodes[cur].link = clone;\n\
     \n    return cur;\n  }\n};\n#line 5 \"test/2_library_checker/string/number_of_substrings2.test.cpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X;\n  for (auto&& s: S)\
-    \ X.add(s, 'a');\n  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X(S);\n  int n = X.n_node;\n\
+    \  ll ANS = 0;\n  FOR(i, 1, n) {\n    auto [a, b] = X.len_range(i);\n    ANS +=\
+    \ b - a;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/suffix_automaton.hpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X;\n  for (auto&& s: S)\
-    \ X.add(s, 'a');\n  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X(S);\n  int n = X.n_node;\n\
+    \  ll ANS = 0;\n  FOR(i, 1, n) {\n    auto [a, b] = X.len_range(i);\n    ANS +=\
+    \ b - a;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -550,7 +550,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
+  timestamp: '2026-09-15 07:44:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/number_of_substrings2.test.cpp

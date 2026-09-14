@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monge/monge_dp_update.hpp\"\n\n#line 1 \"convex/monotone_minima.hpp\"\
@@ -39,21 +39,21 @@ data:
     \  int N = len(X);\n    if (N == 0) return {};\n\n    vc<int> YY;\n    for (auto&&\
     \ y : Y) {\n      while (len(YY)) {\n        int py = YY.back(), x = X[len(YY)\
     \ - 1];\n        if (!better(x, py, y)) break;\n        YY.pop_back();\n     \
-    \ }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n\n    vc<int> XX;\n    FOR(i,\
-    \ 1, len(X), 2) XX.eb(X[i]);\n\n    vc<int> II = dfs(dfs, XX, YY);\n    vc<int>\
-    \ I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n\n    int p = 0;\n    FOR(i,\
-    \ 0, N, 2) {\n      int lim = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best\
-    \ = Y[p];\n      while (Y[p] < lim) {\n        ++p;\n        if (better(X[i],\
-    \ best, Y[p])) best = Y[p];\n      }\n      I[i] = best;\n    }\n    return I;\n\
-    \  };\n\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n  return\
-    \ dfs(dfs, X, Y);\n}\n#line 4 \"convex/monge/monge_dp_update.hpp\"\n\ntemplate\
-    \ <typename T, typename F>\nvc<T> monge_dp_update(int N, vc<T>& dp, F f) {\n \
-    \ assert(len(dp) == N + 1);\n\n  auto better = [&](int i, int j, int k) -> bool\
-    \ {\n    if (i <= k) return false;\n    if (i <= j) return true;\n    return dp[j]\
-    \ + f(j, i) > dp[k] + f(k, i);\n  };\n\n  vc<int> I = monotone_minima(N + 1, N\
-    \ + 1, better);\n  // vc<int> I = smawk(N + 1, N + 1, better);\n\n  vc<T> newdp(N\
-    \ + 1, infty<T>);\n  FOR(j, N + 1) {\n    int i = I[j];\n    if (i < j) newdp[j]\
-    \ = dp[i] + f(i, j);\n  }\n  return newdp;\n}\n"
+    \ }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n\n    vc<int> XX;\n    for\
+    \ (int i = 1; i < len(X); i += 2) XX.eb(X[i]);\n\n    vc<int> II = dfs(dfs, XX,\
+    \ YY);\n    vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n\n    int\
+    \ p = 0;\n    for (int i = 0; i < N; i += 2) {\n      int lim = (i + 1 == N ?\
+    \ Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p] < lim) {\n\
+    \        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n      }\n \
+    \     I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n  iota(all(X),\
+    \ 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n#line 4 \"convex/monge/monge_dp_update.hpp\"\
+    \n\ntemplate <typename T, typename F>\nvc<T> monge_dp_update(int N, vc<T>& dp,\
+    \ F f) {\n  assert(len(dp) == N + 1);\n\n  auto better = [&](int i, int j, int\
+    \ k) -> bool {\n    if (i <= k) return false;\n    if (i <= j) return true;\n\
+    \    return dp[j] + f(j, i) > dp[k] + f(k, i);\n  };\n\n  vc<int> I = monotone_minima(N\
+    \ + 1, N + 1, better);\n  // vc<int> I = smawk(N + 1, N + 1, better);\n\n  vc<T>\
+    \ newdp(N + 1, infty<T>);\n  FOR(j, N + 1) {\n    int i = I[j];\n    if (i < j)\
+    \ newdp[j] = dp[i] + f(i, j);\n  }\n  return newdp;\n}\n"
   code: "\n#include \"convex/monotone_minima.hpp\"\n#include \"convex/smawk.hpp\"\n\
     \ntemplate <typename T, typename F>\nvc<T> monge_dp_update(int N, vc<T>& dp, F\
     \ f) {\n  assert(len(dp) == N + 1);\n\n  auto better = [&](int i, int j, int k)\
@@ -68,8 +68,8 @@ data:
   isVerificationFile: false
   path: convex/monge/monge_dp_update.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-09-15 07:44:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/952.test.cpp
 documentation_of: convex/monge/monge_dp_update.hpp
