@@ -348,7 +348,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -757,7 +757,7 @@ data:
     - icon: ':warning:'
       path: expander.py
       title: expander.py
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -968,7 +968,7 @@ data:
     - icon: ':warning:'
       path: graph/annulus_walk_generating_function.hpp
       title: graph/annulus_walk_generating_function.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':warning:'
@@ -1157,7 +1157,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1943,7 +1943,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2545,6 +2545,9 @@ data:
       path: string/find_runs.hpp
       title: string/find_runs.hpp
     - icon: ':warning:'
+      path: string/generalized_suffix_automaton.hpp
+      title: string/generalized_suffix_automaton.hpp
+    - icon: ':warning:'
       path: string/inverse_manacher.hpp
       title: string/inverse_manacher.hpp
     - icon: ':warning:'
@@ -2598,6 +2601,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.hpp
       title: string/palindromic_tree.hpp
+    - icon: ':warning:'
+      path: string/periods.hpp
+      title: string/periods.hpp
     - icon: ':heavy_check_mark:'
       path: string/prefix_substring_LCS.hpp
       title: string/prefix_substring_LCS.hpp
@@ -2628,7 +2634,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/suffix_automaton.hpp
       title: string/suffix_automaton.hpp
     - icon: ':heavy_check_mark:'
@@ -4098,7 +4104,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/number_of_substrings.test.cpp
       title: test/2_library_checker/string/number_of_substrings.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/number_of_substrings2.test.cpp
       title: test/2_library_checker/string/number_of_substrings2.test.cpp
     - icon: ':heavy_check_mark:'

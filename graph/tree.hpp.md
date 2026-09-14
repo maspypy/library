@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -95,6 +95,12 @@ data:
   - icon: ':warning:'
     path: string/enumerate_occurrences.hpp
     title: string/enumerate_occurrences.hpp
+  - icon: ':warning:'
+    path: string/generalized_suffix_automaton.hpp
+    title: string/generalized_suffix_automaton.hpp
+  - icon: ':x:'
+    path: string/suffix_automaton.hpp
+    title: string/suffix_automaton.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
@@ -120,6 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/string/number_of_substrings2.test.cpp
+    title: test/2_library_checker/string/number_of_substrings2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca.test.cpp
     title: test/2_library_checker/tree/lca.test.cpp
@@ -264,9 +273,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -617,7 +626,9 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
+  - string/suffix_automaton.hpp
   - string/enumerate_occurrences.hpp
+  - string/generalized_suffix_automaton.hpp
   - knapsack/independent_set_knapsack.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   - graph/functional_graph.hpp
@@ -647,7 +658,7 @@ data:
   - graph/count_matching_on_tree.hpp
   - graph/tree_walk_generating_function.hpp
   timestamp: '2026-09-13 16:24:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
@@ -656,6 +667,7 @@ data:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
+  - test/2_library_checker/string/number_of_substrings2.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp

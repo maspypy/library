@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -308,7 +308,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -368,7 +368,10 @@ data:
   - icon: ':warning:'
     path: string/enumerate_occurrences.hpp
     title: string/enumerate_occurrences.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: string/generalized_suffix_automaton.hpp
+    title: string/generalized_suffix_automaton.hpp
+  - icon: ':x:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   - icon: ':heavy_check_mark:'
@@ -555,7 +558,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/twosat.test.cpp
     title: test/2_library_checker/other/twosat.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/number_of_substrings2.test.cpp
     title: test/2_library_checker/string/number_of_substrings2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -870,9 +873,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -1068,6 +1071,7 @@ data:
   - string/aho_corasick_for_general_trie.hpp
   - string/suffix_tree.hpp
   - string/enumerate_occurrences.hpp
+  - string/generalized_suffix_automaton.hpp
   - game/graph_game.hpp
   - game/graph_path_game.hpp
   - knapsack/independent_set_knapsack.hpp
@@ -1182,7 +1186,7 @@ data:
   - flow/rank_maximal_bipartite_matching.hpp
   - flow/maxflow.hpp
   timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp

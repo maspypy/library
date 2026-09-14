@@ -14,6 +14,9 @@ data:
   - icon: ':warning:'
     path: string/non_dominated_suffix.hpp
     title: string/non_dominated_suffix.hpp
+  - icon: ':warning:'
+    path: string/periods.hpp
+    title: string/periods.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/is_substring.test.cpp
@@ -62,6 +65,7 @@ data:
   - string/non_dominated_suffix.hpp
   - string/is_substring.hpp
   - string/find_runs.hpp
+  - string/periods.hpp
   timestamp: '2026-08-17 08:30:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

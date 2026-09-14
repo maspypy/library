@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: string/enumerate_occurrences.hpp
     title: string/enumerate_occurrences.hpp
+  - icon: ':warning:'
+    path: string/generalized_suffix_automaton.hpp
+    title: string/generalized_suffix_automaton.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1269.test.cpp
@@ -71,6 +74,7 @@ data:
   path: string/trie.hpp
   requiredBy:
   - string/enumerate_occurrences.hpp
+  - string/generalized_suffix_automaton.hpp
   timestamp: '2024-09-19 11:54:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
