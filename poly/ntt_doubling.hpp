@@ -5,9 +5,10 @@
 template <typename mint, bool transposed = false>
 void ntt_doubling(vector<mint>& a) {
   static array<mint, 30> root;
-  static bool prepared = 0;
-  if (!prepared) {
-    prepared = 1;
+  const u32 mod = mint::get_mod();
+  static u32 prepared_mod = 0;
+  if (prepared_mod != mod) {
+    prepared_mod = mod;
     const int rank2 = mint::ntt_info().fi;
     root[rank2] = mint::ntt_info().se;
     FOR_R(i, rank2) { root[i] = root[i + 1] * root[i + 1]; }

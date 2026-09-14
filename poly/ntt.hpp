@@ -11,8 +11,9 @@ void ntt(vector<mint>& a, bool inverse) {
 
   assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));
 
-  static bool prepared = 0;
-  if (!prepared) {
+  static u32 prepared_mod = 0;
+  if (prepared_mod != mod) {
+    prepared_mod = mod;
     prepared = 1;
     root[rank2] = mint::ntt_info().se;
     iroot[rank2] = mint(1) / root[rank2];

@@ -46,8 +46,10 @@ struct Subtree_Diameter {
     dp.resize(N), dp_1.resize(N), dp_2.resize(N);
     FOR(v, N) {
       dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};
-      dp_1[v] = {DP.dp_1[v].left, DP.dp_1[v].right, DP.dp_1[v].diam};
-      dp_2[v] = {DP.dp_2[v].left, DP.dp_2[v].right, DP.dp_2[v].diam};
+      dp_1[v] = {
+          DP.dp_subtree[v].left, DP.dp_subtree[v].right, DP.dp_subtree[v].diam};
+      dp_2[v] = {
+          DP.dp_parent[v].left, DP.dp_parent[v].right, DP.dp_parent[v].diam};
     }
   }
 

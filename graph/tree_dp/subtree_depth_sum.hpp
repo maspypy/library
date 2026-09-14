@@ -20,7 +20,7 @@ struct Subtree_Depth_Sum {
     };
 
     Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, id);
-    dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;
+    dp = DP.dp, dp_1 = DP.dp_subtree, dp_2 = DP.dp_parent;
   }
 
   // (cnt, sum)

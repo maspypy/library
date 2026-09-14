@@ -78,6 +78,12 @@ mint C_dense(int n, int k) {
   if (k < 0 || n < k) return 0;
   static vvc<mint> C;
   static int H = 0, W = 0;
+  static int mod = 0;
+  if (mod != mint::get_mod()) {
+    mod = mint::get_mod();
+    C.clear();
+    H = W = 0;
+  }
   auto calc = [&](int i, int j) -> mint {
     if (i == 0) return (j == 0 ? mint(1) : mint(0));
     return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);
