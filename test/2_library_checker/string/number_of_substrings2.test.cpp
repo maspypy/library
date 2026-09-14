@@ -5,7 +5,7 @@
 
 void solve() {
   STR(S);
-  Suffix_Automaton<26> X(S);
+  Suffix_Automaton<26> X(S, 'a');
   int n = X.n_node;
   ll ANS = 0;
   FOR(i, 1, n) {
