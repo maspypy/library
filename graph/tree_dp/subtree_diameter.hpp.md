@@ -283,15 +283,15 @@ data:
     \ A.path)) {\n        A.left = e.frm, A.right = A.end;\n      }\n      return\
     \ A;\n    };\n\n    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, id);\n\
     \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) {\n      dp[v]\
-    \ = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n      dp_1[v] = {DP.dp_1[v].left,\
-    \ DP.dp_1[v].right, DP.dp_1[v].diam};\n      dp_2[v] = {DP.dp_2[v].left, DP.dp_2[v].right,\
-    \ DP.dp_2[v].diam};\n    }\n  }\n\n  // (u, v, diam)\n  // v \u3092\u6839\u3068\
-    \u3057\u305F\u3068\u304D\u306E full tree\n  tuple<int, int, WT> operator[](int\
-    \ v) { return dp[v]; }\n\n  // (u, v, diam)\n  // root \u3092\u6839\u3068\u3057\
-    \u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  tuple<int, int, WT> get(int v,\
-    \ int root) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
-    \ v)) {\n      return dp_1[v];\n    }\n    int w = tree.jump(v, root, 1);\n  \
-    \  return dp_2[w];\n  }\n};\n"
+    \ = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n      dp_1[v] = {\n     \
+    \     DP.dp_subtree[v].left, DP.dp_subtree[v].right, DP.dp_subtree[v].diam};\n\
+    \      dp_2[v] = {\n          DP.dp_parent[v].left, DP.dp_parent[v].right, DP.dp_parent[v].diam};\n\
+    \    }\n  }\n\n  // (u, v, diam)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\
+    \u306E full tree\n  tuple<int, int, WT> operator[](int v) { return dp[v]; }\n\n\
+    \  // (u, v, diam)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\
+    \u90E8\u5206\u6728 v\n  tuple<int, int, WT> get(int v, int root) {\n    if (root\
+    \ == v) return dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n\
+    \    }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};\n"
   code: "#include \"graph/tree_dp/rerooting_dp.hpp\"\n\n// https://codeforces.com/problemset/problem/1725/J\n\
     template <typename TREE, typename WT>\nstruct Subtree_Diameter {\n  struct Data\
     \ {\n    // \u4ECA\u307E\u3067\u898B\u3064\u3051\u305F\u76F4\u5F84\u8DDD\u96E2\
@@ -311,14 +311,14 @@ data:
     \ = A.end;\n      }\n      return A;\n    };\n\n    Rerooting_DP<TREE, Data> DP(tree,\
     \ f_ee, f_ev, f_ve, id);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
     \    FOR(v, N) {\n      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n\
-    \      dp_1[v] = {DP.dp_1[v].left, DP.dp_1[v].right, DP.dp_1[v].diam};\n     \
-    \ dp_2[v] = {DP.dp_2[v].left, DP.dp_2[v].right, DP.dp_2[v].diam};\n    }\n  }\n\
-    \n  // (u, v, diam)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full\
-    \ tree\n  tuple<int, int, WT> operator[](int v) { return dp[v]; }\n\n  // (u,\
-    \ v, diam)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
-    \u6728 v\n  tuple<int, int, WT> get(int v, int root) {\n    if (root == v) return\
-    \ dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n    }\n\
-    \    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};"
+    \      dp_1[v] = {\n          DP.dp_subtree[v].left, DP.dp_subtree[v].right, DP.dp_subtree[v].diam};\n\
+    \      dp_2[v] = {\n          DP.dp_parent[v].left, DP.dp_parent[v].right, DP.dp_parent[v].diam};\n\
+    \    }\n  }\n\n  // (u, v, diam)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\
+    \u306E full tree\n  tuple<int, int, WT> operator[](int v) { return dp[v]; }\n\n\
+    \  // (u, v, diam)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\
+    \u90E8\u5206\u6728 v\n  tuple<int, int, WT> get(int v, int root) {\n    if (root\
+    \ == v) return dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n\
+    \    }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};"
   dependsOn:
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree.hpp
@@ -327,7 +327,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_diameter.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:24:01+09:00'
+  timestamp: '2026-09-15 06:24:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_diameter.hpp

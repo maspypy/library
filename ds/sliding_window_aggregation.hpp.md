@@ -5,10 +5,10 @@ data:
   - icon: ':x:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':x:'
@@ -24,7 +24,7 @@ data:
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/factorial_998.test.cpp
     title: test/1_mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
     title: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - icon: ':x:'
@@ -42,7 +42,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036_3.test.cpp
     title: test/3_yukicoder/1036_3.test.cpp
   - icon: ':x:'
@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1117.test.cpp
     title: test/3_yukicoder/1117.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1435_2.test.cpp
     title: test/3_yukicoder/1435_2.test.cpp
   - icon: ':heavy_check_mark:'

@@ -5,91 +5,91 @@ data:
     path: other/bit.hpp
     title: other/bit.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bigint/base.hpp
     title: bigint/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: bigint/binary.hpp
     title: bigint/binary.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_sum_polynomial.hpp
     title: convex/lattice_point_sum_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
   - icon: ':warning:'
     path: graph/annulus_walk_generating_function.hpp
     title: graph/annulus_walk_generating_function.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
   - icon: ':x:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   - icon: ':x:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_dag.hpp
     title: graph/count/count_labeled_dag.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_eulerian.hpp
     title: graph/count/count_labeled_eulerian.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_strong_digraph.hpp
     title: graph/count/count_labeled_strong_digraph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_strong_tournament.hpp
     title: graph/count/count_labeled_strong_tournament.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/blackbox/pascal.hpp
     title: linalg/blackbox/pascal.hpp
   - icon: ':x:'
@@ -98,13 +98,13 @@ data:
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':warning:'
@@ -113,22 +113,22 @@ data:
   - icon: ':warning:'
     path: poly/2d/compositional_inverse_2d.hpp
     title: poly/2d/compositional_inverse_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/2d/convolution2d.hpp
     title: poly/2d/convolution2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/2d/fps_exp_2d.hpp
     title: poly/2d/fps_exp_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/2d/fps_inv_2d.hpp
     title: poly/2d/fps_inv_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/2d/fps_log_2d.hpp
     title: poly/2d/fps_log_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/2d/fps_pow_1_2d.hpp
     title: poly/2d/fps_pow_1_2d.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -161,124 +161,124 @@ data:
   - icon: ':x:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':x:'
     path: poly/compositional_inverse_old.hpp
     title: poly/compositional_inverse_old.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':warning:'
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_u64.hpp
     title: poly/convolution_u64.hpp
   - icon: ':warning:'
     path: poly/egf_convolution.hpp
     title: poly/egf_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/find_roots_of_polynomial.hpp
     title: poly/find_roots_of_polynomial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':x:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multipoint_evaluation_for_prefix_product.hpp
     title: poly/multipoint_evaluation_for_prefix_product.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   - icon: ':warning:'
     path: poly/online/online_convolution_garner.hpp
     title: poly/online/online_convolution_garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   - icon: ':warning:'
     path: poly/online/online_exp_garner.hpp
     title: poly/online/online_exp_garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_inv.hpp
     title: poly/online/online_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_log.hpp
     title: poly/online/online_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/online/online_square.hpp
     title: poly/online/online_square.hpp
   - icon: ':x:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':x:'
@@ -287,10 +287,10 @@ data:
   - icon: ':x:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   - icon: ':x:'
@@ -299,7 +299,7 @@ data:
   - icon: ':x:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':x:'
@@ -317,40 +317,40 @@ data:
   - icon: ':x:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
     path: seq/count_grid_path.hpp
     title: seq/count_grid_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/bell_number.hpp
     title: seq/famous/bell_number.hpp
   - icon: ':x:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':x:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/faulhaber.hpp
     title: seq/famous/faulhaber.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':x:'
@@ -359,13 +359,13 @@ data:
   - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/geometric_sequence_sum_formula.hpp
     title: seq/geometric_sequence_sum_formula.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   - icon: ':x:'
@@ -377,7 +377,7 @@ data:
   - icon: ':x:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':x:'
@@ -387,25 +387,25 @@ data:
     path: test/2_library_checker/convolution/convolution_huge.test___.cpp
     title: test/2_library_checker/convolution/convolution_huge.test___.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/31bit_modint.test.cpp
     title: test/1_mytest/31bit_modint.test.cpp
   - icon: ':x:'
     path: test/1_mytest/bell.test.cpp
     title: test/1_mytest/bell.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/bell_number.test.cpp
     title: test/1_mytest/bell_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/bigint.test.cpp
     title: test/1_mytest/bigint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/catalan_convolution.test.cpp
     title: test/1_mytest/catalan_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/chirp_z.test.cpp
     title: test/1_mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/coef_of_rational.test.cpp
     title: test/1_mytest/coef_of_rational.test.cpp
   - icon: ':x:'
@@ -414,7 +414,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/composition_f_x_plus_1x.test.cpp
     title: test/1_mytest/composition_f_x_plus_1x.test.cpp
   - icon: ':x:'
@@ -423,22 +423,22 @@ data:
   - icon: ':x:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/conv2d.test.cpp
     title: test/1_mytest/conv2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/conv_leq.test.cpp
     title: test/1_mytest/conv_leq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/convolution_all_1.test.cpp
     title: test/1_mytest/convolution_all_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_clique.test.cpp
     title: test/1_mytest/count_clique.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
   - icon: ':x:'
@@ -447,217 +447,217 @@ data:
   - icon: ':x:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_labeled_connected.test.cpp
     title: test/1_mytest/count_labeled_connected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_labeled_dag.test.cpp
     title: test/1_mytest/count_labeled_dag.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_labeled_eulerian.test.cpp
     title: test/1_mytest/count_labeled_eulerian.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_labeled_forest.test.cpp
     title: test/1_mytest/count_labeled_forest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_labeled_strong.test.cpp
     title: test/1_mytest/count_labeled_strong.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_labeled_tournament.test.cpp
     title: test/1_mytest/count_labeled_tournament.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_unlabeled_tree.test.cpp
     title: test/1_mytest/count_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enum_partitions.test.cpp
     title: test/1_mytest/enum_partitions.test.cpp
   - icon: ':x:'
     path: test/1_mytest/eulerian_number.test.cpp
     title: test/1_mytest/eulerian_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/factorial_998.test.cpp
     title: test/1_mytest/factorial_998.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/faulhaber.test.cpp
     title: test/1_mytest/faulhaber.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/fps_exp_2d.test.cpp
     title: test/1_mytest/fps_exp_2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/fps_inv_2d.test.cpp
     title: test/1_mytest/fps_inv_2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
     title: test/1_mytest/geometric_sequence_sum_formula.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/online_division.test.cpp
     title: test/1_mytest/online_division.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/online_exp.test.cpp
     title: test/1_mytest/online_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/online_inv.test.cpp
     title: test/1_mytest/online_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/online_log.test.cpp
     title: test/1_mytest/online_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/online_pow.test.cpp
     title: test/1_mytest/online_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/online_square.test.cpp
     title: test/1_mytest/online_square.test.cpp
   - icon: ':x:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/pascal.test.cpp
     title: test/1_mytest/pascal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/power_projection.test.cpp
     title: test/1_mytest/power_projection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/reeds_sloane.test.cpp
     title: test/1_mytest/reeds_sloane.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/slice_rational_fps.test.cpp
     title: test/1_mytest/slice_rational_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/sparse_pow_2d.test.cpp
     title: test/1_mytest/sparse_pow_2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
   - icon: ':x:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
     title: test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
     title: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/convolution_mod.test.cpp
     title: test/2_library_checker/convolution/convolution_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/convolution_mod_107.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
     title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/multivariate_convolution.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/online_convolution.test.cpp
     title: test/2_library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
     title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/bernoulli.test.cpp
     title: test/2_library_checker/number_theory/bernoulli.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/other/find_linear_recurrence.test.cpp
     title: test/2_library_checker/other/find_linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
@@ -669,25 +669,25 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
   - icon: ':x:'
@@ -696,13 +696,13 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/log_of_fps.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps.test.cpp
   - icon: ':x:'
@@ -720,10 +720,10 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
     title: test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
     title: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/polynomial_division.test.cpp
     title: test/2_library_checker/polynomial/polynomial_division.test.cpp
   - icon: ':x:'
@@ -735,7 +735,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/pow_of_fps.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps.test.cpp
   - icon: ':x:'
@@ -744,37 +744,37 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/slice_rational.test.cpp
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/sample/aplusb128.test.cpp
     title: test/2_library_checker/sample/aplusb128.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
     title: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/powproj_sps.test.cpp
     title: test/2_library_checker/set_power_series/powproj_sps.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':x:'
@@ -804,13 +804,13 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1500.test.cpp
     title: test/3_yukicoder/1500.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1533.test.cpp
     title: test/3_yukicoder/1533.test.cpp
   - icon: ':x:'
@@ -834,13 +834,13 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1755.test.cpp
     title: test/3_yukicoder/1755.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1783.test.cpp
     title: test/3_yukicoder/1783.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1796.test.cpp
     title: test/3_yukicoder/1796.test.cpp
   - icon: ':x:'
@@ -849,7 +849,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1821.test.cpp
     title: test/3_yukicoder/1821.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
   - icon: ':x:'
@@ -888,13 +888,13 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2231.test.cpp
     title: test/3_yukicoder/2231.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2440.test.cpp
     title: test/3_yukicoder/2440.test.cpp
   - icon: ':x:'
@@ -939,7 +939,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2944.test.cpp
     title: test/3_yukicoder/2944.test.cpp
   - icon: ':x:'
@@ -957,7 +957,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
   - icon: ':x:'
@@ -977,7 +977,7 @@ data:
     title: test/4_aoj/NTL_2_C.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
@@ -1020,61 +1020,8 @@ data:
     \  const int rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n\
     \  static array<mint, 30> root, iroot;\n  static array<mint, 30> rate2, irate2;\n\
     \  static array<mint, 30> rate3, irate3;\n\n  assert(rank2 != -1 && len(a) <=\
-    \ (1 << max(0, rank2)));\n\n  static bool prepared = 0;\n  if (!prepared) {\n\
-    \    prepared = 1;\n    root[rank2] = mint::ntt_info().se;\n    iroot[rank2] =\
-    \ mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i] = root[i + 1] *\
-    \ root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n    }\n    mint\
-    \ prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++) {\n      rate2[i]\
-    \ = root[i + 2] * prod;\n      irate2[i] = iroot[i + 2] * iprod;\n      prod *=\
-    \ iroot[i + 2];\n      iprod *= root[i + 2];\n    }\n    prod = 1, iprod = 1;\n\
-    \    for (int i = 0; i <= rank2 - 3; i++) {\n      rate3[i] = root[i + 3] * prod;\n\
-    \      irate3[i] = iroot[i + 3] * iprod;\n      prod *= iroot[i + 3];\n      iprod\
-    \ *= root[i + 3];\n    }\n  }\n\n  int n = int(a.size());\n  int h = topbit(n);\n\
-    \  assert(n == 1 << h);\n  if (!inverse) {\n    int len = 0;\n    while (len <\
-    \ h) {\n      if (h - len == 1) {\n        int p = 1 << (h - len - 1);\n     \
-    \   mint rot = 1;\n        FOR(s, 1 << len) {\n          int offset = s << (h\
-    \ - len);\n          FOR(i, p) {\n            auto l = a[i + offset];\n      \
-    \      auto r = a[i + offset + p] * rot;\n            a[i + offset] = l + r;\n\
-    \            a[i + offset + p] = l - r;\n          }\n          rot *= rate2[topbit(~s\
-    \ & -~s)];\n        }\n        len++;\n      } else {\n        int p = 1 << (h\
-    \ - len - 2);\n        mint rot = 1, imag = root[2];\n        for (int s = 0;\
-    \ s < (1 << len); s++) {\n          mint rot2 = rot * rot;\n          mint rot3\
-    \ = rot2 * rot;\n          int offset = s << (h - len);\n          for (int i\
-    \ = 0; i < p; i++) {\n            u64 mod2 = u64(mod) * mod;\n            u64\
-    \ a0 = a[i + offset].val;\n            u64 a1 = u64(a[i + offset + p].val) * rot.val;\n\
-    \            u64 a2 = u64(a[i + offset + 2 * p].val) * rot2.val;\n           \
-    \ u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\n            u64 a1na3imag\
-    \ = (a1 + mod2 - a3) % mod * imag.val;\n            u64 na2 = mod2 - a2;\n   \
-    \         a[i + offset] = a0 + a2 + a1 + a3;\n            a[i + offset + 1 * p]\
-    \ = a0 + a2 + (2 * mod2 - (a1 + a3));\n            a[i + offset + 2 * p] = a0\
-    \ + na2 + a1na3imag;\n            a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\n\
-    \          }\n          rot *= rate3[topbit(~s & -~s)];\n        }\n        len\
-    \ += 2;\n      }\n    }\n  } else {\n    mint coef = mint(1) / mint(len(a));\n\
-    \    FOR(i, len(a)) a[i] *= coef;\n    int len = h;\n    while (len) {\n     \
-    \ if (len == 1) {\n        int p = 1 << (h - len);\n        mint irot = 1;\n \
-    \       FOR(s, 1 << (len - 1)) {\n          int offset = s << (h - len + 1);\n\
-    \          FOR(i, p) {\n            u64 l = a[i + offset].val;\n            u64\
-    \ r = a[i + offset + p].val;\n            a[i + offset] = l + r;\n           \
-    \ a[i + offset + p] = (mod + l - r) * irot.val;\n          }\n          irot *=\
-    \ irate2[topbit(~s & -~s)];\n        }\n        len--;\n      } else {\n     \
-    \   int p = 1 << (h - len);\n        mint irot = 1, iimag = iroot[2];\n      \
-    \  FOR(s, (1 << (len - 2))) {\n          mint irot2 = irot * irot;\n         \
-    \ mint irot3 = irot2 * irot;\n          int offset = s << (h - len + 2);\n   \
-    \       for (int i = 0; i < p; i++) {\n            u64 a0 = a[i + offset + 0 *\
-    \ p].val;\n            u64 a1 = a[i + offset + 1 * p].val;\n            u64 a2\
-    \ = a[i + offset + 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n\
-    \            u64 x = (mod + a2 - a3) * iimag.val % mod;\n            a[i + offset]\
-    \ = a0 + a1 + a2 + a3;\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x)\
-    \ * irot.val;\n            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3)\
-    \ * irot2.val;\n            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) *\
-    \ irot3.val;\n          }\n          irot *= irate3[topbit(~s & -~s)];\n     \
-    \   }\n        len -= 2;\n      }\n    }\n  }\n}\n"
-  code: "#include \"other/bit.hpp\"\n\ntemplate <class mint>\nvoid ntt(vector<mint>&\
-    \ a, bool inverse) {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n\
-    \  const u32 mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n \
-    \ static array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\
-    \n  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\n\n  static bool prepared\
-    \ = 0;\n  if (!prepared) {\n    prepared = 1;\n    root[rank2] = mint::ntt_info().se;\n\
+    \ (1 << max(0, rank2)));\n\n  static u32 prepared_mod = 0;\n  if (prepared_mod\
+    \ != mod) {\n    prepared_mod = mod;\n    root[rank2] = mint::ntt_info().se;\n\
     \    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i]\
     \ = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n\
     \    }\n    mint prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++)\
@@ -1122,6 +1069,60 @@ data:
     \ * irot2.val;\n            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) *\
     \ irot3.val;\n          }\n          irot *= irate3[topbit(~s & -~s)];\n     \
     \   }\n        len -= 2;\n      }\n    }\n  }\n}\n"
+  code: "#include \"other/bit.hpp\"\n\ntemplate <class mint>\nvoid ntt(vector<mint>&\
+    \ a, bool inverse) {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n\
+    \  const u32 mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n \
+    \ static array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\
+    \n  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\n\n  static u32 prepared_mod\
+    \ = 0;\n  if (prepared_mod != mod) {\n    prepared_mod = mod;\n    root[rank2]\
+    \ = mint::ntt_info().se;\n    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i,\
+    \ rank2) {\n      root[i] = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i\
+    \ + 1] * iroot[i + 1];\n    }\n    mint prod = 1, iprod = 1;\n    for (int i =\
+    \ 0; i <= rank2 - 2; i++) {\n      rate2[i] = root[i + 2] * prod;\n      irate2[i]\
+    \ = iroot[i + 2] * iprod;\n      prod *= iroot[i + 2];\n      iprod *= root[i\
+    \ + 2];\n    }\n    prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 3;\
+    \ i++) {\n      rate3[i] = root[i + 3] * prod;\n      irate3[i] = iroot[i + 3]\
+    \ * iprod;\n      prod *= iroot[i + 3];\n      iprod *= root[i + 3];\n    }\n\
+    \  }\n\n  int n = int(a.size());\n  int h = topbit(n);\n  assert(n == 1 << h);\n\
+    \  if (!inverse) {\n    int len = 0;\n    while (len < h) {\n      if (h - len\
+    \ == 1) {\n        int p = 1 << (h - len - 1);\n        mint rot = 1;\n      \
+    \  FOR(s, 1 << len) {\n          int offset = s << (h - len);\n          FOR(i,\
+    \ p) {\n            auto l = a[i + offset];\n            auto r = a[i + offset\
+    \ + p] * rot;\n            a[i + offset] = l + r;\n            a[i + offset +\
+    \ p] = l - r;\n          }\n          rot *= rate2[topbit(~s & -~s)];\n      \
+    \  }\n        len++;\n      } else {\n        int p = 1 << (h - len - 2);\n  \
+    \      mint rot = 1, imag = root[2];\n        for (int s = 0; s < (1 << len);\
+    \ s++) {\n          mint rot2 = rot * rot;\n          mint rot3 = rot2 * rot;\n\
+    \          int offset = s << (h - len);\n          for (int i = 0; i < p; i++)\
+    \ {\n            u64 mod2 = u64(mod) * mod;\n            u64 a0 = a[i + offset].val;\n\
+    \            u64 a1 = u64(a[i + offset + p].val) * rot.val;\n            u64 a2\
+    \ = u64(a[i + offset + 2 * p].val) * rot2.val;\n            u64 a3 = u64(a[i +\
+    \ offset + 3 * p].val) * rot3.val;\n            u64 a1na3imag = (a1 + mod2 - a3)\
+    \ % mod * imag.val;\n            u64 na2 = mod2 - a2;\n            a[i + offset]\
+    \ = a0 + a2 + a1 + a3;\n            a[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
+    \ - (a1 + a3));\n            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\n \
+    \           a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\n         \
+    \ }\n          rot *= rate3[topbit(~s & -~s)];\n        }\n        len += 2;\n\
+    \      }\n    }\n  } else {\n    mint coef = mint(1) / mint(len(a));\n    FOR(i,\
+    \ len(a)) a[i] *= coef;\n    int len = h;\n    while (len) {\n      if (len ==\
+    \ 1) {\n        int p = 1 << (h - len);\n        mint irot = 1;\n        FOR(s,\
+    \ 1 << (len - 1)) {\n          int offset = s << (h - len + 1);\n          FOR(i,\
+    \ p) {\n            u64 l = a[i + offset].val;\n            u64 r = a[i + offset\
+    \ + p].val;\n            a[i + offset] = l + r;\n            a[i + offset + p]\
+    \ = (mod + l - r) * irot.val;\n          }\n          irot *= irate2[topbit(~s\
+    \ & -~s)];\n        }\n        len--;\n      } else {\n        int p = 1 << (h\
+    \ - len);\n        mint irot = 1, iimag = iroot[2];\n        FOR(s, (1 << (len\
+    \ - 2))) {\n          mint irot2 = irot * irot;\n          mint irot3 = irot2\
+    \ * irot;\n          int offset = s << (h - len + 2);\n          for (int i =\
+    \ 0; i < p; i++) {\n            u64 a0 = a[i + offset + 0 * p].val;\n        \
+    \    u64 a1 = a[i + offset + 1 * p].val;\n            u64 a2 = a[i + offset +\
+    \ 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n            u64\
+    \ x = (mod + a2 - a3) * iimag.val % mod;\n            a[i + offset] = a0 + a1\
+    \ + a2 + a3;\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x) * irot.val;\n\
+    \            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\n\
+    \            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) * irot3.val;\n  \
+    \        }\n          irot *= irate3[topbit(~s & -~s)];\n        }\n        len\
+    \ -= 2;\n      }\n    }\n  }\n}\n"
   dependsOn:
   - other/bit.hpp
   isVerificationFile: false
@@ -1254,8 +1255,8 @@ data:
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
-  timestamp: '2026-08-29 09:24:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-09-15 06:31:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/eulerian_number.test.cpp
   - test/1_mytest/count_labeled_connected.test.cpp

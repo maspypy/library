@@ -16,31 +16,31 @@ data:
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
   - icon: ':question:'
@@ -48,12 +48,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/poly_divmod.hpp\"\n\n#line 1 \"poly/count_terms.hpp\"\
@@ -119,63 +119,64 @@ data:
     \ Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
     \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
-    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
-    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
-    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
-    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
-    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
-    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
-    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
-    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
-    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
-    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
-    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
-    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
-    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
-    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
-    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
-    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
-    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
-    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
-    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
-    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
-    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
-    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
-    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
-    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n\
-    \    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n    \
-    \  if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
-    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
-    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
-    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
-    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
-    \ (mod == 1012924417) return {21, 368093570};\n    if (mod == 1224736769) return\
-    \ {24, 1191450770};\n    if (mod == 2013265921) return {27, 244035102};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\
+    \ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
+    \  static_assert(0 < umod && umod < u32(1) << 31);\n  u32 val;\n\n  static modint\
+    \ raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
+    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
+    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    if (mod\
+    \ == 1224736769) return {24, 1191450770};\n    if (mod == 2013265921) return {27,\
+    \ 244035102};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
+    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 1 \"mod/mod_inv.hpp\"\n\n// long \u3067\u3082\u5927\u4E08\u592B\n// (val\
     \ * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
     \u308B\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\nll mod_inv(ll\
@@ -299,49 +300,49 @@ data:
     \  const int rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n\
     \  static array<mint, 30> root, iroot;\n  static array<mint, 30> rate2, irate2;\n\
     \  static array<mint, 30> rate3, irate3;\n\n  assert(rank2 != -1 && len(a) <=\
-    \ (1 << max(0, rank2)));\n\n  static bool prepared = 0;\n  if (!prepared) {\n\
-    \    prepared = 1;\n    root[rank2] = mint::ntt_info().se;\n    iroot[rank2] =\
-    \ mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i] = root[i + 1] *\
-    \ root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n    }\n    mint\
-    \ prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++) {\n      rate2[i]\
-    \ = root[i + 2] * prod;\n      irate2[i] = iroot[i + 2] * iprod;\n      prod *=\
-    \ iroot[i + 2];\n      iprod *= root[i + 2];\n    }\n    prod = 1, iprod = 1;\n\
-    \    for (int i = 0; i <= rank2 - 3; i++) {\n      rate3[i] = root[i + 3] * prod;\n\
-    \      irate3[i] = iroot[i + 3] * iprod;\n      prod *= iroot[i + 3];\n      iprod\
-    \ *= root[i + 3];\n    }\n  }\n\n  int n = int(a.size());\n  int h = topbit(n);\n\
-    \  assert(n == 1 << h);\n  if (!inverse) {\n    int len = 0;\n    while (len <\
-    \ h) {\n      if (h - len == 1) {\n        int p = 1 << (h - len - 1);\n     \
-    \   mint rot = 1;\n        FOR(s, 1 << len) {\n          int offset = s << (h\
-    \ - len);\n          FOR(i, p) {\n            auto l = a[i + offset];\n      \
-    \      auto r = a[i + offset + p] * rot;\n            a[i + offset] = l + r;\n\
-    \            a[i + offset + p] = l - r;\n          }\n          rot *= rate2[topbit(~s\
-    \ & -~s)];\n        }\n        len++;\n      } else {\n        int p = 1 << (h\
-    \ - len - 2);\n        mint rot = 1, imag = root[2];\n        for (int s = 0;\
-    \ s < (1 << len); s++) {\n          mint rot2 = rot * rot;\n          mint rot3\
-    \ = rot2 * rot;\n          int offset = s << (h - len);\n          for (int i\
-    \ = 0; i < p; i++) {\n            u64 mod2 = u64(mod) * mod;\n            u64\
-    \ a0 = a[i + offset].val;\n            u64 a1 = u64(a[i + offset + p].val) * rot.val;\n\
-    \            u64 a2 = u64(a[i + offset + 2 * p].val) * rot2.val;\n           \
-    \ u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\n            u64 a1na3imag\
-    \ = (a1 + mod2 - a3) % mod * imag.val;\n            u64 na2 = mod2 - a2;\n   \
-    \         a[i + offset] = a0 + a2 + a1 + a3;\n            a[i + offset + 1 * p]\
-    \ = a0 + a2 + (2 * mod2 - (a1 + a3));\n            a[i + offset + 2 * p] = a0\
-    \ + na2 + a1na3imag;\n            a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\n\
-    \          }\n          rot *= rate3[topbit(~s & -~s)];\n        }\n        len\
-    \ += 2;\n      }\n    }\n  } else {\n    mint coef = mint(1) / mint(len(a));\n\
-    \    FOR(i, len(a)) a[i] *= coef;\n    int len = h;\n    while (len) {\n     \
-    \ if (len == 1) {\n        int p = 1 << (h - len);\n        mint irot = 1;\n \
-    \       FOR(s, 1 << (len - 1)) {\n          int offset = s << (h - len + 1);\n\
-    \          FOR(i, p) {\n            u64 l = a[i + offset].val;\n            u64\
-    \ r = a[i + offset + p].val;\n            a[i + offset] = l + r;\n           \
-    \ a[i + offset + p] = (mod + l - r) * irot.val;\n          }\n          irot *=\
-    \ irate2[topbit(~s & -~s)];\n        }\n        len--;\n      } else {\n     \
-    \   int p = 1 << (h - len);\n        mint irot = 1, iimag = iroot[2];\n      \
-    \  FOR(s, (1 << (len - 2))) {\n          mint irot2 = irot * irot;\n         \
-    \ mint irot3 = irot2 * irot;\n          int offset = s << (h - len + 2);\n   \
-    \       for (int i = 0; i < p; i++) {\n            u64 a0 = a[i + offset + 0 *\
-    \ p].val;\n            u64 a1 = a[i + offset + 1 * p].val;\n            u64 a2\
-    \ = a[i + offset + 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n\
+    \ (1 << max(0, rank2)));\n\n  static u32 prepared_mod = 0;\n  if (prepared_mod\
+    \ != mod) {\n    prepared_mod = mod;\n    root[rank2] = mint::ntt_info().se;\n\
+    \    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i]\
+    \ = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n\
+    \    }\n    mint prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++)\
+    \ {\n      rate2[i] = root[i + 2] * prod;\n      irate2[i] = iroot[i + 2] * iprod;\n\
+    \      prod *= iroot[i + 2];\n      iprod *= root[i + 2];\n    }\n    prod = 1,\
+    \ iprod = 1;\n    for (int i = 0; i <= rank2 - 3; i++) {\n      rate3[i] = root[i\
+    \ + 3] * prod;\n      irate3[i] = iroot[i + 3] * iprod;\n      prod *= iroot[i\
+    \ + 3];\n      iprod *= root[i + 3];\n    }\n  }\n\n  int n = int(a.size());\n\
+    \  int h = topbit(n);\n  assert(n == 1 << h);\n  if (!inverse) {\n    int len\
+    \ = 0;\n    while (len < h) {\n      if (h - len == 1) {\n        int p = 1 <<\
+    \ (h - len - 1);\n        mint rot = 1;\n        FOR(s, 1 << len) {\n        \
+    \  int offset = s << (h - len);\n          FOR(i, p) {\n            auto l = a[i\
+    \ + offset];\n            auto r = a[i + offset + p] * rot;\n            a[i +\
+    \ offset] = l + r;\n            a[i + offset + p] = l - r;\n          }\n    \
+    \      rot *= rate2[topbit(~s & -~s)];\n        }\n        len++;\n      } else\
+    \ {\n        int p = 1 << (h - len - 2);\n        mint rot = 1, imag = root[2];\n\
+    \        for (int s = 0; s < (1 << len); s++) {\n          mint rot2 = rot * rot;\n\
+    \          mint rot3 = rot2 * rot;\n          int offset = s << (h - len);\n \
+    \         for (int i = 0; i < p; i++) {\n            u64 mod2 = u64(mod) * mod;\n\
+    \            u64 a0 = a[i + offset].val;\n            u64 a1 = u64(a[i + offset\
+    \ + p].val) * rot.val;\n            u64 a2 = u64(a[i + offset + 2 * p].val) *\
+    \ rot2.val;\n            u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\n\
+    \            u64 a1na3imag = (a1 + mod2 - a3) % mod * imag.val;\n            u64\
+    \ na2 = mod2 - a2;\n            a[i + offset] = a0 + a2 + a1 + a3;\n         \
+    \   a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\n            a[i\
+    \ + offset + 2 * p] = a0 + na2 + a1na3imag;\n            a[i + offset + 3 * p]\
+    \ = a0 + na2 + (mod2 - a1na3imag);\n          }\n          rot *= rate3[topbit(~s\
+    \ & -~s)];\n        }\n        len += 2;\n      }\n    }\n  } else {\n    mint\
+    \ coef = mint(1) / mint(len(a));\n    FOR(i, len(a)) a[i] *= coef;\n    int len\
+    \ = h;\n    while (len) {\n      if (len == 1) {\n        int p = 1 << (h - len);\n\
+    \        mint irot = 1;\n        FOR(s, 1 << (len - 1)) {\n          int offset\
+    \ = s << (h - len + 1);\n          FOR(i, p) {\n            u64 l = a[i + offset].val;\n\
+    \            u64 r = a[i + offset + p].val;\n            a[i + offset] = l + r;\n\
+    \            a[i + offset + p] = (mod + l - r) * irot.val;\n          }\n    \
+    \      irot *= irate2[topbit(~s & -~s)];\n        }\n        len--;\n      } else\
+    \ {\n        int p = 1 << (h - len);\n        mint irot = 1, iimag = iroot[2];\n\
+    \        FOR(s, (1 << (len - 2))) {\n          mint irot2 = irot * irot;\n   \
+    \       mint irot3 = irot2 * irot;\n          int offset = s << (h - len + 2);\n\
+    \          for (int i = 0; i < p; i++) {\n            u64 a0 = a[i + offset +\
+    \ 0 * p].val;\n            u64 a1 = a[i + offset + 1 * p].val;\n            u64\
+    \ a2 = a[i + offset + 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n\
     \            u64 x = (mod + a2 - a3) * iimag.val % mod;\n            a[i + offset]\
     \ = a0 + a1 + a2 + a3;\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x)\
     \ * irot.val;\n            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3)\
@@ -489,63 +490,64 @@ data:
     \ Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
     \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
-    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
-    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
-    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
-    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
-    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
-    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
-    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
-    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
-    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
-    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
-    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
-    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
-    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
-    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
-    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
-    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
-    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
-    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
-    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
-    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
-    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
-    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
-    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
-    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n\
-    \    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n    \
-    \  if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
-    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
-    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
-    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
-    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
-    \ (mod == 1012924417) return {21, 368093570};\n    if (mod == 1224736769) return\
-    \ {24, 1191450770};\n    if (mod == 2013265921) return {27, 244035102};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\
+    \ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
+    \  static_assert(0 < umod && umod < u32(1) << 31);\n  u32 val;\n\n  static modint\
+    \ raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
+    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
+    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    if (mod\
+    \ == 1224736769) return {24, 1191450770};\n    if (mod == 2013265921) return {27,\
+    \ 244035102};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
+    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 1 \"mod/mod_inv.hpp\"\n\n// long \u3067\u3082\u5927\u4E08\u592B\n// (val\
     \ * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
     \u308B\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\nll mod_inv(ll\
@@ -669,49 +671,49 @@ data:
     \  const int rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n\
     \  static array<mint, 30> root, iroot;\n  static array<mint, 30> rate2, irate2;\n\
     \  static array<mint, 30> rate3, irate3;\n\n  assert(rank2 != -1 && len(a) <=\
-    \ (1 << max(0, rank2)));\n\n  static bool prepared = 0;\n  if (!prepared) {\n\
-    \    prepared = 1;\n    root[rank2] = mint::ntt_info().se;\n    iroot[rank2] =\
-    \ mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i] = root[i + 1] *\
-    \ root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n    }\n    mint\
-    \ prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++) {\n      rate2[i]\
-    \ = root[i + 2] * prod;\n      irate2[i] = iroot[i + 2] * iprod;\n      prod *=\
-    \ iroot[i + 2];\n      iprod *= root[i + 2];\n    }\n    prod = 1, iprod = 1;\n\
-    \    for (int i = 0; i <= rank2 - 3; i++) {\n      rate3[i] = root[i + 3] * prod;\n\
-    \      irate3[i] = iroot[i + 3] * iprod;\n      prod *= iroot[i + 3];\n      iprod\
-    \ *= root[i + 3];\n    }\n  }\n\n  int n = int(a.size());\n  int h = topbit(n);\n\
-    \  assert(n == 1 << h);\n  if (!inverse) {\n    int len = 0;\n    while (len <\
-    \ h) {\n      if (h - len == 1) {\n        int p = 1 << (h - len - 1);\n     \
-    \   mint rot = 1;\n        FOR(s, 1 << len) {\n          int offset = s << (h\
-    \ - len);\n          FOR(i, p) {\n            auto l = a[i + offset];\n      \
-    \      auto r = a[i + offset + p] * rot;\n            a[i + offset] = l + r;\n\
-    \            a[i + offset + p] = l - r;\n          }\n          rot *= rate2[topbit(~s\
-    \ & -~s)];\n        }\n        len++;\n      } else {\n        int p = 1 << (h\
-    \ - len - 2);\n        mint rot = 1, imag = root[2];\n        for (int s = 0;\
-    \ s < (1 << len); s++) {\n          mint rot2 = rot * rot;\n          mint rot3\
-    \ = rot2 * rot;\n          int offset = s << (h - len);\n          for (int i\
-    \ = 0; i < p; i++) {\n            u64 mod2 = u64(mod) * mod;\n            u64\
-    \ a0 = a[i + offset].val;\n            u64 a1 = u64(a[i + offset + p].val) * rot.val;\n\
-    \            u64 a2 = u64(a[i + offset + 2 * p].val) * rot2.val;\n           \
-    \ u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\n            u64 a1na3imag\
-    \ = (a1 + mod2 - a3) % mod * imag.val;\n            u64 na2 = mod2 - a2;\n   \
-    \         a[i + offset] = a0 + a2 + a1 + a3;\n            a[i + offset + 1 * p]\
-    \ = a0 + a2 + (2 * mod2 - (a1 + a3));\n            a[i + offset + 2 * p] = a0\
-    \ + na2 + a1na3imag;\n            a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\n\
-    \          }\n          rot *= rate3[topbit(~s & -~s)];\n        }\n        len\
-    \ += 2;\n      }\n    }\n  } else {\n    mint coef = mint(1) / mint(len(a));\n\
-    \    FOR(i, len(a)) a[i] *= coef;\n    int len = h;\n    while (len) {\n     \
-    \ if (len == 1) {\n        int p = 1 << (h - len);\n        mint irot = 1;\n \
-    \       FOR(s, 1 << (len - 1)) {\n          int offset = s << (h - len + 1);\n\
-    \          FOR(i, p) {\n            u64 l = a[i + offset].val;\n            u64\
-    \ r = a[i + offset + p].val;\n            a[i + offset] = l + r;\n           \
-    \ a[i + offset + p] = (mod + l - r) * irot.val;\n          }\n          irot *=\
-    \ irate2[topbit(~s & -~s)];\n        }\n        len--;\n      } else {\n     \
-    \   int p = 1 << (h - len);\n        mint irot = 1, iimag = iroot[2];\n      \
-    \  FOR(s, (1 << (len - 2))) {\n          mint irot2 = irot * irot;\n         \
-    \ mint irot3 = irot2 * irot;\n          int offset = s << (h - len + 2);\n   \
-    \       for (int i = 0; i < p; i++) {\n            u64 a0 = a[i + offset + 0 *\
-    \ p].val;\n            u64 a1 = a[i + offset + 1 * p].val;\n            u64 a2\
-    \ = a[i + offset + 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n\
+    \ (1 << max(0, rank2)));\n\n  static u32 prepared_mod = 0;\n  if (prepared_mod\
+    \ != mod) {\n    prepared_mod = mod;\n    root[rank2] = mint::ntt_info().se;\n\
+    \    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i]\
+    \ = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n\
+    \    }\n    mint prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++)\
+    \ {\n      rate2[i] = root[i + 2] * prod;\n      irate2[i] = iroot[i + 2] * iprod;\n\
+    \      prod *= iroot[i + 2];\n      iprod *= root[i + 2];\n    }\n    prod = 1,\
+    \ iprod = 1;\n    for (int i = 0; i <= rank2 - 3; i++) {\n      rate3[i] = root[i\
+    \ + 3] * prod;\n      irate3[i] = iroot[i + 3] * iprod;\n      prod *= iroot[i\
+    \ + 3];\n      iprod *= root[i + 3];\n    }\n  }\n\n  int n = int(a.size());\n\
+    \  int h = topbit(n);\n  assert(n == 1 << h);\n  if (!inverse) {\n    int len\
+    \ = 0;\n    while (len < h) {\n      if (h - len == 1) {\n        int p = 1 <<\
+    \ (h - len - 1);\n        mint rot = 1;\n        FOR(s, 1 << len) {\n        \
+    \  int offset = s << (h - len);\n          FOR(i, p) {\n            auto l = a[i\
+    \ + offset];\n            auto r = a[i + offset + p] * rot;\n            a[i +\
+    \ offset] = l + r;\n            a[i + offset + p] = l - r;\n          }\n    \
+    \      rot *= rate2[topbit(~s & -~s)];\n        }\n        len++;\n      } else\
+    \ {\n        int p = 1 << (h - len - 2);\n        mint rot = 1, imag = root[2];\n\
+    \        for (int s = 0; s < (1 << len); s++) {\n          mint rot2 = rot * rot;\n\
+    \          mint rot3 = rot2 * rot;\n          int offset = s << (h - len);\n \
+    \         for (int i = 0; i < p; i++) {\n            u64 mod2 = u64(mod) * mod;\n\
+    \            u64 a0 = a[i + offset].val;\n            u64 a1 = u64(a[i + offset\
+    \ + p].val) * rot.val;\n            u64 a2 = u64(a[i + offset + 2 * p].val) *\
+    \ rot2.val;\n            u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\n\
+    \            u64 a1na3imag = (a1 + mod2 - a3) % mod * imag.val;\n            u64\
+    \ na2 = mod2 - a2;\n            a[i + offset] = a0 + a2 + a1 + a3;\n         \
+    \   a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\n            a[i\
+    \ + offset + 2 * p] = a0 + na2 + a1na3imag;\n            a[i + offset + 3 * p]\
+    \ = a0 + na2 + (mod2 - a1na3imag);\n          }\n          rot *= rate3[topbit(~s\
+    \ & -~s)];\n        }\n        len += 2;\n      }\n    }\n  } else {\n    mint\
+    \ coef = mint(1) / mint(len(a));\n    FOR(i, len(a)) a[i] *= coef;\n    int len\
+    \ = h;\n    while (len) {\n      if (len == 1) {\n        int p = 1 << (h - len);\n\
+    \        mint irot = 1;\n        FOR(s, 1 << (len - 1)) {\n          int offset\
+    \ = s << (h - len + 1);\n          FOR(i, p) {\n            u64 l = a[i + offset].val;\n\
+    \            u64 r = a[i + offset + p].val;\n            a[i + offset] = l + r;\n\
+    \            a[i + offset + p] = (mod + l - r) * irot.val;\n          }\n    \
+    \      irot *= irate2[topbit(~s & -~s)];\n        }\n        len--;\n      } else\
+    \ {\n        int p = 1 << (h - len);\n        mint irot = 1, iimag = iroot[2];\n\
+    \        FOR(s, (1 << (len - 2))) {\n          mint irot2 = irot * irot;\n   \
+    \       mint irot3 = irot2 * irot;\n          int offset = s << (h - len + 2);\n\
+    \          for (int i = 0; i < p; i++) {\n            u64 a0 = a[i + offset +\
+    \ 0 * p].val;\n            u64 a1 = a[i + offset + 1 * p].val;\n            u64\
+    \ a2 = a[i + offset + 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n\
     \            u64 x = (mod + a2 - a3) * iimag.val % mod;\n            a[i + offset]\
     \ = a0 + a1 + a2 + a3;\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x)\
     \ * irot.val;\n            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3)\
@@ -889,8 +891,8 @@ data:
   isVerificationFile: false
   path: poly/find_roots_of_polynomial.hpp
   requiredBy: []
-  timestamp: '2026-09-13 10:50:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-15 06:31:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/poly_root_finding.test.cpp
 documentation_of: poly/find_roots_of_polynomial.hpp

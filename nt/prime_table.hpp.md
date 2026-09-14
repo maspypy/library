@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_sum_polynomial.hpp
     title: convex/lattice_point_sum_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
   - icon: ':warning:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/count_by_factor_type.hpp
     title: nt/count_by_factor_type.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':warning:'
@@ -53,16 +53,16 @@ data:
   - icon: ':question:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/mertens.hpp
     title: nt/mertens.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_sum.hpp
     title: nt/prime_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -71,10 +71,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_sum_mod6.hpp
     title: nt/prime_sum_mod6.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':x:'
@@ -95,10 +95,10 @@ data:
   - icon: ':x:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':x:'
@@ -107,19 +107,19 @@ data:
   - icon: ':x:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':x:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/faulhaber.hpp
     title: seq/famous/faulhaber.hpp
   - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':x:'
@@ -138,7 +138,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/composition_f_x_plus_1x.test.cpp
     title: test/1_mytest/composition_f_x_plus_1x.test.cpp
   - icon: ':x:'
@@ -159,13 +159,13 @@ data:
   - icon: ':x:'
     path: test/1_mytest/eulerian_number.test.cpp
     title: test/1_mytest/eulerian_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/faulhaber.test.cpp
     title: test/1_mytest/faulhaber.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -183,7 +183,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/qoj5443.test.cpp
     title: test/1_mytest/qoj5443.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -192,16 +192,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/lcm_convolution.test.cpp
     title: test/2_library_checker/convolution/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/bernoulli.test.cpp
     title: test/2_library_checker/number_theory/bernoulli.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,10 +231,10 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1262.test.cpp
     title: test/3_yukicoder/1262.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
   - icon: ':x:'
@@ -249,19 +249,19 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1666.test.cpp
     title: test/3_yukicoder/1666.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1760.test.cpp
     title: test/3_yukicoder/1760.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1781.test.cpp
     title: test/3_yukicoder/1781.test.cpp
   - icon: ':x:'
@@ -270,7 +270,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
   - icon: ':x:'
@@ -282,10 +282,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2206_2.test.cpp
     title: test/3_yukicoder/2206_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
   - icon: ':x:'
@@ -306,7 +306,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
   _isVerificationFailed: true

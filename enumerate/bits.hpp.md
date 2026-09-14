@@ -8,10 +8,10 @@ data:
   - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_cycle.hpp
     title: graph/count/count_cycle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':heavy_check_mark:'
@@ -36,7 +36,7 @@ data:
     path: setfunc/online/online_subset_zeta.hpp
     title: setfunc/online/online_subset_zeta.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enum_partitions.test.cpp
     title: test/1_mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,19 +48,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/114.test.cpp
     title: test/3_yukicoder/114.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1263.test.cpp
     title: test/3_yukicoder/1263.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_2_A.test.cpp
     title: test/4_aoj/DPL_2_A.test.cpp
   _isVerificationFailed: true

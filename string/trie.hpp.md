@@ -9,12 +9,12 @@ data:
     path: string/generalized_suffix_automaton.hpp
     title: string/generalized_suffix_automaton.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1269.test.cpp
     title: test/3_yukicoder/1269.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d
@@ -76,7 +76,7 @@ data:
   - string/enumerate_occurrences.hpp
   - string/generalized_suffix_automaton.hpp
   timestamp: '2024-09-19 11:54:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1269.test.cpp
 documentation_of: string/trie.hpp

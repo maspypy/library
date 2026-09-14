@@ -9,12 +9,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/958/problem/A2
@@ -89,7 +89,7 @@ data:
   path: string/rolling_hash_2d.hpp
   requiredBy: []
   timestamp: '2026-08-30 21:41:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/ALDS1_14_C.test.cpp
 documentation_of: string/rolling_hash_2d.hpp

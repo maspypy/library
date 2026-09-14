@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/monge_shortest_path.test.cpp
     title: test/1_mytest/monge_shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/705.test.cpp
     title: test/3_yukicoder/705.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2023/02/18/005856
@@ -77,7 +77,7 @@ data:
   requiredBy:
   - convex/monge/monge_shortest_path_d_edge.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/monge_shortest_path.test.cpp
   - test/3_yukicoder/705.test.cpp

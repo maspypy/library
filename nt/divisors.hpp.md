@@ -21,12 +21,12 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_D_D.test.cpp
     title: test/4_aoj/ITP1_D_D.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64()\
@@ -153,7 +153,7 @@ data:
   path: nt/divisors.hpp
   requiredBy: []
   timestamp: '2026-09-04 09:44:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1575.test.cpp
   - test/4_aoj/ITP1_D_D.test.cpp

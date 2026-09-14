@@ -272,8 +272,8 @@ data:
     \ A, int v) -> Data { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](Data A,\
     \ const auto& e) -> Data {\n      return {A.fi, A.se + A.fi * e.cost};\n    };\n\
     \n    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, id);\n    dp = DP.dp,\
-    \ dp_1 = DP.dp_1, dp_2 = DP.dp_2;\n  }\n\n  // (cnt, sum)\n  // v \u3092\u6839\
-    \u3068\u3057\u305F\u3068\u304D\u306E full tree\n  pair<int, WT> operator[](int\
+    \ dp_1 = DP.dp_subtree, dp_2 = DP.dp_parent;\n  }\n\n  // (cnt, sum)\n  // v \u3092\
+    \u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  pair<int, WT> operator[](int\
     \ v) { return dp[v]; }\n\n  // (cnt, sum)\n  // root \u3092\u6839\u3068\u3057\u305F\
     \u3068\u304D\u306E\u90E8\u5206\u6728 v\n  pair<int, WT> get(int v, int root) {\n\
     \    if (root == v) return dp[v];\n    if (!tree.in_subtree(root, v)) {\n    \
@@ -287,13 +287,13 @@ data:
     \ + B.se};\n    };\n    auto f_ev = [&](Data A, int v) -> Data { return {A.fi\
     \ + 1, A.se}; };\n    auto f_ve = [&](Data A, const auto& e) -> Data {\n     \
     \ return {A.fi, A.se + A.fi * e.cost};\n    };\n\n    Rerooting_DP<TREE, Data>\
-    \ DP(tree, f_ee, f_ev, f_ve, id);\n    dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;\n\
-    \  }\n\n  // (cnt, sum)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\
-    \ full tree\n  pair<int, WT> operator[](int v) { return dp[v]; }\n\n  // (cnt,\
-    \ sum)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
-    \u6728 v\n  pair<int, WT> get(int v, int root) {\n    if (root == v) return dp[v];\n\
-    \    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n    }\n    int w\
-    \ = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};\n"
+    \ DP(tree, f_ee, f_ev, f_ve, id);\n    dp = DP.dp, dp_1 = DP.dp_subtree, dp_2\
+    \ = DP.dp_parent;\n  }\n\n  // (cnt, sum)\n  // v \u3092\u6839\u3068\u3057\u305F\
+    \u3068\u304D\u306E full tree\n  pair<int, WT> operator[](int v) { return dp[v];\
+    \ }\n\n  // (cnt, sum)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\
+    \u90E8\u5206\u6728 v\n  pair<int, WT> get(int v, int root) {\n    if (root ==\
+    \ v) return dp[v];\n    if (!tree.in_subtree(root, v)) {\n      return dp_1[v];\n\
+    \    }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};\n"
   dependsOn:
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree.hpp
@@ -302,7 +302,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_depth_sum.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:24:01+09:00'
+  timestamp: '2026-09-15 06:24:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_depth_sum.hpp

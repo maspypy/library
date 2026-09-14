@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':question:'

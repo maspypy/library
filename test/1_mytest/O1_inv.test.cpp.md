@@ -191,63 +191,64 @@ data:
     \ Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
     \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
-    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
-    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
-    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
-    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
-    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
-    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
-    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
-    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
-    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
-    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
-    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
-    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
-    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(0 < umod && umod\
-    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
-    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
-    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
-    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
-    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
-    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
-    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
-    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
-    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
-    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
-    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n\
-    \    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n    \
-    \  if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
-    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
-    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
-    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
-    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
-    \ (mod == 1012924417) return {21, 368093570};\n    if (mod == 1224736769) return\
-    \ {24, 1191450770};\n    if (mod == 2013265921) return {27, 244035102};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\
+    \ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
+    \  static_assert(0 < umod && umod < u32(1) << 31);\n  u32 val;\n\n  static modint\
+    \ raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
+    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
+    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    if (mod\
+    \ == 1224736769) return {24, 1191450770};\n    if (mod == 2013265921) return {27,\
+    \ 244035102};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
+    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 1 \"mod/dynamic_modint.hpp\"\n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
     \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
@@ -344,27 +345,29 @@ data:
     \ Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
     \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
-    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
-    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
-    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
-    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
-    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
-    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
-    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
-    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
-    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
-    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
-    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
-    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n\
-    \    return (d == 0 ? mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n\
-    \ + d - 1, d);\n}\n#line 1 \"mod/primitive_root.hpp\"\n\n#line 1 \"nt/factor.hpp\"\
-    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 1 \"mod/primitive_root.hpp\"\
+    \n\n#line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \             chrono::high_resolution_clock::now().time_since_epoch())\n     \
+    \                     .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
@@ -546,41 +549,41 @@ data:
     \ constexpr bool is_modint = true;\n  using mint = Dynamic_Modint;\n  u32 val;\n\
     \  static Barrett bt;\n  static u32 umod() { return bt.umod(); }\n\n  static int\
     \ get_mod() { return (int)(bt.umod()); }\n  static void set_mod(int m) {\n   \
-    \ assert(1 <= m);\n    bt = Barrett(m);\n  }\n\n  static Dynamic_Modint raw(u32\
-    \ v) {\n    Dynamic_Modint x;\n    x.val = v;\n    return x;\n  }\n  Dynamic_Modint()\
-    \ : val(0) {}\n  Dynamic_Modint(u32 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64\
-    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x) : val((x %= get_mod()) <\
-    \ 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0\
-    \ ? x + get_mod() : x) {}\n  Dynamic_Modint(i128 x) : val((x %= get_mod()) < 0\
-    \ ? x + get_mod() : x){};\n\n  bool operator<(const mint& other) const { return\
-    \ val < other.val; }\n  mint& operator+=(const mint& rhs) {\n    val = (val +=\
-    \ rhs.val) < umod() ? val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const\
-    \ mint& rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
-    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
-    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
-    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
-    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
-    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
-    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
-    \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
-    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
-    \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
-    \ mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint operator-(const\
-    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint\
-    \ operator*(const mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n\
-    \  }\n  friend mint operator/(const mint& lhs, const mint& rhs) {\n    return\
-    \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
-    \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
-    \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n  static\
-    \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
-    \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
-    \ = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod\
-    \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
-    \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
-    \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
-    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
-    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    \ assert(1 <= m);\n    bt = Barrett(m);\n    get_ntt() = {-1, -1};\n  }\n\n  static\
+    \ Dynamic_Modint raw(u32 v) {\n    Dynamic_Modint x;\n    x.val = v;\n    return\
+    \ x;\n  }\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32 x) : val(bt.modulo(x))\
+    \ {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x)\
+    \ : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) :\
+    \ val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(i128 x) :\
+    \ val((x %= get_mod()) < 0 ? x + get_mod() : x){};\n\n  bool operator<(const mint&\
+    \ other) const { return val < other.val; }\n  mint& operator+=(const mint& rhs)\
+    \ {\n    val = (val += rhs.val) < umod() ? val : val - umod();\n    return *this;\n\
+    \  }\n  mint& operator-=(const mint& rhs) {\n    val = (val += umod() - rhs.val)\
+    \ < umod() ? val : val - umod();\n    return *this;\n  }\n  mint& operator*=(const\
+    \ mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return *this;\n  }\n  mint&\
+    \ operator/=(const mint& rhs) { return *this = *this * rhs.inverse(); }\n  mint\
+    \ operator-() const { return mint() - *this; }\n  mint pow(ll n) const {\n   \
+    \ assert(0 <= n);\n    mint x = *this, r = 1;\n    while (n) {\n      if (n &\
+    \ 1) r *= x;\n      x *= x, n >>= 1;\n    }\n    return r;\n  }\n  mint inverse()\
+    \ const {\n    int x = val, mod = get_mod();\n    int a = x, b = mod, u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend\
+    \ mint operator+(const mint& lhs, const mint& rhs) {\n    return mint(lhs) +=\
+    \ rhs;\n  }\n  friend mint operator-(const mint& lhs, const mint& rhs) {\n   \
+    \ return mint(lhs) -= rhs;\n  }\n  friend mint operator*(const mint& lhs, const\
+    \ mint& rhs) {\n    return mint(lhs) *= rhs;\n  }\n  friend mint operator/(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool\
+    \ operator==(const mint& lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n\
+    \  }\n  friend bool operator!=(const mint& lhs, const mint& rhs) {\n    return\
+    \ lhs.val != rhs.val;\n  }\n  static pair<int, int>& get_ntt() {\n    static pair<int,\
+    \ int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info() {\n   \
+    \ int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
+    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
+    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
+    \ ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>&\
+    \ x) {\n  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate\
+    \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
     #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
@@ -653,7 +656,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/O1_inv.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
+  timestamp: '2026-09-15 06:24:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/O1_inv.test.cpp

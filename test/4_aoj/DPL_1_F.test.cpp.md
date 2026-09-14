@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: knapsack/knapsack01.hpp
     title: knapsack/knapsack01.hpp
   - icon: ':question:'

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   _extendedRequiredBy: []

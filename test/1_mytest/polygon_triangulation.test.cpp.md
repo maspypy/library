@@ -13,28 +13,28 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':heavy_check_mark:'
@@ -43,7 +43,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':question:'
