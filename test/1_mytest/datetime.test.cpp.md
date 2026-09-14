@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: datetime/datetime.hpp
     title: datetime/datetime.hpp
   - icon: ':question:'
@@ -45,84 +45,83 @@ data:
     \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
-    \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
-    \ a, b, c) for (ll i = a; i < ll(b); i += (c))\n#define FOR1_R(a) for (ll i =\
-    \ ll(a) - 1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = ll(a) - 1; i >=\
-    \ ll(0); --i)\n#define FOR3_R(i, a, b) for (ll i = ll(b) - 1; i >= ll(a); --i)\n\
-    #define overload4(a, b, c, d, e, ...) e\n#define overload3(a, b, c, d, ...) d\n\
-    #define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)\n\
-    #define FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\
-    \n#define all(x) (x).begin(), (x).end()\n#define len(x) ll(x.size())\n#define\
-    \ elif else if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
-    #define fi first\n#define se second\n\n#define stoi stoll\n\n// require y > 0\n\
-    template <typename T>\nT floor(T x, T y) {\n  return x / y - (x % y < 0);\n}\n\
-    \n// require y > 0\ntemplate <typename T>\nT ceil(T x, T y) {\n  return (x / y)\
-    \ + (x % y > 0);\n}\n\n// require y > 0\ntemplate <typename T>\nT bmod(T x, T\
-    \ y) {\n  T r = x % y;\n  return (r < 0 ? r + y : r);\n}\n\n// require y > 0\n\
-    template <typename T>\npair<T, T> divmod(T x, T y) {\n  T q = x / y, r = x % y;\n\
-    \  if (r < 0) --q, r += y;\n  return {q, r};\n}\n\nconstexpr auto TEN = [] {\n\
-    \  array<u64, 20> A{};\n  A[0] = 1;\n  for (int i = 1; i < 20; ++i) A[i] = 10\
-    \ * A[i - 1];\n  return A;\n}();\n\ntemplate <typename T, typename U>\nT SUM(const\
-    \ U &A) {\n  return std::accumulate(A.begin(), A.end(), T{});\n}\n\n#define MIN(v)\
-    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\ntemplate <class C,\
-    \ class T>\ninline long long LB(const C &c, const T &x) {\n  return lower_bound(c.begin(),\
-    \ c.end(), x) - c.begin();\n}\ntemplate <class C, class T>\ninline long long UB(const\
-    \ C &c, const T &x) {\n  return upper_bound(c.begin(), c.end(), x) - c.begin();\n\
-    }\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end())\n\ntemplate\
-    \ <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
-    \  return a;\n}\ntemplate <class T, class Container, class Compare>\nT POP(priority_queue<T,\
-    \ Container, Compare> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n\
-    }\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n  que.pop_back();\n\
-    \  return a;\n}\n\ntemplate <typename F>\ni128 binary_search(F check, i128 ok,\
-    \ i128 ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n  while\
-    \ (1) {\n    i128 x = (ok + ng) / 2;\n    if (x == ok || x == ng) break;\n   \
-    \ (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\n\ntemplate <typename F>\ndouble\
-    \ binary_search_real(F check, double ok, double ng, int iter = 100) {\n  FOR(iter)\
-    \ {\n    double x = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return\
-    \ (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const\
-    \ S &b) {\n  T c = max<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return\
-    \ changed;\n}\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b)\
-    \ {\n  T c = min<T>(a, b);\n  bool changed = (c != a);\n  a = c;\n  return changed;\n\
-    }\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int>\
-    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char :\
-    \ -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvc<T> cumsum(const\
-    \ vc<U> &A, int off = 1) {\n  int N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N)\
-    \ { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n\
-    }\n\n// stable sort\ntemplate <typename T>\nvc<int> argsort(const vc<T> &A) {\n\
-    \  vc<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n      [&](int\
-    \ i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n\
-    }\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T>\
-    \ &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
-    \ &first, const Vectors &...others) {\n  first.reserve(first.size() + (others.size()\
-    \ + ... + 0));\n  (first.insert(first.end(), others.begin(), others.end()), ...);\n\
-    }\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T, i128>, int> = 0>\nconstexpr\
-    \ i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\nconstexpr i128 gcd(i128 a, i128\
-    \ b) {\n  while (b != 0) {\n    i128 c = a % b;\n    a = b, b = c;\n  }\n  return\
-    \ abs(a);\n}\n#endif\n#line 1 \"datetime/datetime.hpp\"\n// https://codeforces.com/problemset/problem/698/E\n\
-    struct DateTime {\n  static constexpr int month_days[13] = {0, 31, 28, 31, 30,\
-    \ 31, 30, 31, 31, 30, 31, 30, 31};\n  ll year;\n  int month, day;\n  DateTime(ll\
-    \ y, int m, int d) : year(y), month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\
-    \u304C 0 \u3068\u306A\u308B\u3088\u3046\u306B\u5909\u63DB (return: long long)\n\
-    \  ll to_int() {\n    ll y = (month <= 2 ? year - 1 : year);\n    int m = (month\
-    \ <= 2 ? month + 12 : month);\n    int d = day;\n    return 365 * y + y / 4 -\
-    \ y / 100 + y / 400 + 306 * (m + 1) / 10 + d - 429;\n  }\n\n  // to_int() \u306E\
-    \u9006\u95A2\u6570\n  static DateTime from_int(ll x) {\n    ll y = x * 400 / 146097\
-    \ + 1;\n    int d = x - DateTime(y, 1, 1).to_int();\n    int m = 1;\n    while\
-    \ (d >= 28) {\n      int k = month_days[m] + (m == 2 && is_leap_year(y) ? 1 :\
-    \ 0);\n      if (d < k) break;\n      ++m;\n      d -= k;\n    }\n    if (m ==\
-    \ 13) {\n      ++y;\n      m = 1;\n    }\n    ++d;\n    return DateTime(y, m,\
-    \ d);\n  }\n\n  // \u65E5\u66DC\u65E5\u304C 0 \u3068\u3057\u3066\u3001\u66DC\u65E5\
-    \u3092 [0, 7) \u3067\u8FD4\u3059\n  int weekday() { return (to_int() + 1) % 7;\
-    \ }\n\n  DateTime& operator++() {\n    ++day;\n    int lim = month_days[month];\n\
-    \    if (is_leap_year(year) && month == 2) lim = 29;\n    if (day <= lim) return\
-    \ (*this);\n    day = 1;\n    ++month;\n    if (month == 13) {\n      ++year;\n\
-    \      month = 1;\n    }\n    return (*this);\n  }\n  DateTime operator++(int)\
-    \ {\n    DateTime tmp = *this;\n    ++*this;\n    return tmp;\n  }\n\n  bool operator==(DateTime\
-    \ const& rhs) const { return to_tuple() == rhs.to_tuple(); }\n  bool operator!=(DateTime\
-    \ const& rhs) const { return to_tuple() != rhs.to_tuple(); }\n  bool operator<(DateTime\
-    \ const& rhs) const { return to_tuple() < rhs.to_tuple(); }\n  bool operator<=(DateTime\
-    \ const& rhs) const { return to_tuple() <= rhs.to_tuple(); }\n  bool operator>(DateTime\
+    \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
+    \ for (ll i = ll(a) - 1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = ll(a)\
+    \ - 1; i >= ll(0); --i)\n#define FOR3_R(i, a, b) for (ll i = ll(b) - 1; i >= ll(a);\
+    \ --i)\n#define overload3(a, b, c, d, ...) d\n#define FOR(...) overload3(__VA_ARGS__,\
+    \ FOR3, FOR2, FOR1)(__VA_ARGS__)\n#define FOR_R(...) overload3(__VA_ARGS__, FOR3_R,\
+    \ FOR2_R, FOR1_R)(__VA_ARGS__)\n\n#define all(x) (x).begin(), (x).end()\n#define\
+    \ len(x) ll(x.size())\n#define elif else if\n\n#define eb emplace_back\n#define\
+    \ mp make_pair\n#define mt make_tuple\n#define fi first\n#define se second\n\n\
+    #define stoi stoll\n\n// require y > 0\ntemplate <typename T>\nT floor(T x, T\
+    \ y) {\n  return x / y - (x % y < 0);\n}\n\n// require y > 0\ntemplate <typename\
+    \ T>\nT ceil(T x, T y) {\n  return (x / y) + (x % y > 0);\n}\n\n// require y >\
+    \ 0\ntemplate <typename T>\nT bmod(T x, T y) {\n  T r = x % y;\n  return (r <\
+    \ 0 ? r + y : r);\n}\n\n// require y > 0\ntemplate <typename T>\npair<T, T> divmod(T\
+    \ x, T y) {\n  T q = x / y, r = x % y;\n  if (r < 0) --q, r += y;\n  return {q,\
+    \ r};\n}\n\nconstexpr auto TEN = [] {\n  array<u64, 20> A{};\n  A[0] = 1;\n  for\
+    \ (int i = 1; i < 20; ++i) A[i] = 10 * A[i - 1];\n  return A;\n}();\n\ntemplate\
+    \ <typename T, typename U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(),\
+    \ A.end(), T{});\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
+    template <class C, class T>\ninline long long LB(const C &c, const T &x) {\n \
+    \ return lower_bound(c.begin(), c.end(), x) - c.begin();\n}\ntemplate <class C,\
+    \ class T>\ninline long long UB(const C &c, const T &x) {\n  return upper_bound(c.begin(),\
+    \ c.end(), x) - c.begin();\n}\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
+    \ x.end())\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n\
+    \  que.pop_front();\n  return a;\n}\ntemplate <class T, class Container, class\
+    \ Compare>\nT POP(priority_queue<T, Container, Compare> &que) {\n  T a = que.top();\n\
+    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T\
+    \ a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\n\
+    i128 binary_search(F check, i128 ok, i128 ng, bool check_ok = true) {\n  if (check_ok)\
+    \ assert(check(ok));\n  while (1) {\n    i128 x = (ok + ng) / 2;\n    if (x ==\
+    \ ok || x == ng) break;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\n\
+    \ntemplate <typename F>\ndouble binary_search_real(F check, double ok, double\
+    \ ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x)\
+    \ ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class\
+    \ S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a, b);\n  bool changed\
+    \ = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class T, class S>\ninline\
+    \ bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n  bool changed = (c !=\
+    \ a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
+    \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
+    \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
+    \ <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int\
+    \ N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n\
+    \  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable sort\ntemplate\
+    \ <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids),\
+    \ 0);\n  sort(all(ids),\n      [&](int i, int j) { return (A[i] == A[j] ? i <\
+    \ j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
+    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n\
+    \  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\ntemplate <typename T, typename...\
+    \ Vectors>\nvoid concat(vc<T> &first, const Vectors &...others) {\n  first.reserve(first.size()\
+    \ + (others.size() + ... + 0));\n  (first.insert(first.end(), others.begin(),\
+    \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
+    \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
+    constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"datetime/datetime.hpp\"\
+    \n// https://codeforces.com/problemset/problem/698/E\nstruct DateTime {\n  static\
+    \ constexpr int month_days[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30,\
+    \ 31};\n  ll year;\n  int month, day;\n  DateTime(ll y, int m, int d) : year(y),\
+    \ month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\u304C 0 \u3068\u306A\u308B\
+    \u3088\u3046\u306B\u5909\u63DB (return: long long)\n  ll to_int() {\n    ll y\
+    \ = (month <= 2 ? year - 1 : year);\n    int m = (month <= 2 ? month + 12 : month);\n\
+    \    int d = day;\n    return 365 * y + y / 4 - y / 100 + y / 400 + 306 * (m +\
+    \ 1) / 10 + d - 429;\n  }\n\n  // to_int() \u306E\u9006\u95A2\u6570\n  static\
+    \ DateTime from_int(ll x) {\n    ll y = x * 400 / 146097 + 1;\n    int d = x -\
+    \ DateTime(y, 1, 1).to_int();\n    int m = 1;\n    while (d >= 28) {\n      int\
+    \ k = month_days[m] + (m == 2 && is_leap_year(y) ? 1 : 0);\n      if (d < k) break;\n\
+    \      ++m;\n      d -= k;\n    }\n    if (m == 13) {\n      ++y;\n      m = 1;\n\
+    \    }\n    ++d;\n    return DateTime(y, m, d);\n  }\n\n  // \u65E5\u66DC\u65E5\
+    \u304C 0 \u3068\u3057\u3066\u3001\u66DC\u65E5\u3092 [0, 7) \u3067\u8FD4\u3059\n\
+    \  int weekday() { return (to_int() + 1) % 7; }\n\n  DateTime& operator++() {\n\
+    \    ++day;\n    int lim = month_days[month];\n    if (is_leap_year(year) && month\
+    \ == 2) lim = 29;\n    if (day <= lim) return (*this);\n    day = 1;\n    ++month;\n\
+    \    if (month == 13) {\n      ++year;\n      month = 1;\n    }\n    return (*this);\n\
+    \  }\n  DateTime operator++(int) {\n    DateTime tmp = *this;\n    ++*this;\n\
+    \    return tmp;\n  }\n\n  bool operator==(DateTime const& rhs) const { return\
+    \ to_tuple() == rhs.to_tuple(); }\n  bool operator!=(DateTime const& rhs) const\
+    \ { return to_tuple() != rhs.to_tuple(); }\n  bool operator<(DateTime const& rhs)\
+    \ const { return to_tuple() < rhs.to_tuple(); }\n  bool operator<=(DateTime const&\
+    \ rhs) const { return to_tuple() <= rhs.to_tuple(); }\n  bool operator>(DateTime\
     \ const& rhs) const { return to_tuple() > rhs.to_tuple(); }\n  bool operator>=(DateTime\
     \ const& rhs) const { return to_tuple() >= rhs.to_tuple(); }\n\n  // yyyy[sep]mm[sep]dd\n\
     \  string to_string(string sep = \"-\") {\n    string y = std::to_string(year);\n\
@@ -157,7 +156,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/datetime.test.cpp
   requiredBy: []
-  timestamp: '2026-08-29 09:00:39+09:00'
+  timestamp: '2026-09-15 06:05:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/datetime.test.cpp
