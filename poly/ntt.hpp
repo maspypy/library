@@ -14,7 +14,6 @@ void ntt(vector<mint>& a, bool inverse) {
   static u32 prepared_mod = 0;
   if (prepared_mod != mod) {
     prepared_mod = mod;
-    prepared = 1;
     root[rank2] = mint::ntt_info().se;
     iroot[rank2] = mint(1) / root[rank2];
     FOR_R(i, rank2) {
