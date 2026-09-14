@@ -56,8 +56,6 @@ mint fact_invs(Ts... xs) {
 
 template <typename mint>
 mint inv(int n) {
-  static const int mod = mint::get_mod();
-  assert(1 <= n && n < mod);
   return fact<mint>(n - 1) * fact_inv<mint>(n);
 }
 
