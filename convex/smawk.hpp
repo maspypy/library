@@ -22,14 +22,14 @@ vc<int> smawk(int H, int W, F better) {
     }
 
     vc<int> XX;
-    FOR(i, 1, len(X), 2) XX.eb(X[i]);
+    for (int i = 1; i < len(X); i += 2) XX.eb(X[i]);
 
     vc<int> II = dfs(dfs, XX, YY);
     vc<int> I(N);
     FOR(i, len(II)) I[i + i + 1] = II[i];
 
     int p = 0;
-    FOR(i, 0, N, 2) {
+    for (int i = 0; i < N; i += 2) {
       int lim = (i + 1 == N ? Y.back() : I[i + 1]);
       int best = Y[p];
       while (Y[p] < lim) {

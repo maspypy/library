@@ -5,19 +5,18 @@
 
 void solve() {
   STR(S);
-  Suffix_Automaton<26> X;
-  for (auto&& s: S) X.add(s, 'a');
-  print(X.count_substring());
+  Suffix_Automaton<26> X(S);
+  int n = X.n_node;
+  ll ANS = 0;
+  FOR(i, 1, n) {
+    auto [a, b] = X.len_range(i);
+    ANS += b - a;
+  }
+  print(ANS);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
+  solve();
 
   return 0;
 }

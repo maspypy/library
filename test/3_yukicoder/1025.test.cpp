@@ -26,7 +26,7 @@ void solve() {
   }
 
   vc<int> S;
-  FOR(i, 0, p - 1, k) S.eb(EXP[i]);
+  for (int i = 0; i < p - 1; i += k) S.eb(EXP[i]);
   vc<int> B;
   FOR(v, p) if (root[v] == v) B.eb(v);
 
@@ -35,9 +35,9 @@ void solve() {
   FOR(n) {
     LL(a);
     vc<mint> newdp = dp;
-    for (auto&& s: S) {
+    for (auto&& s : S) {
       int t = s * a % p;
-      for (auto&& x: B) {
+      for (auto&& x : B) {
         int to = x + t;
         if (to >= p) to -= p;
         newdp[root[to]] += dp[x] * mint(k);
@@ -51,11 +51,7 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
+  solve();
 
   return 0;
 }
