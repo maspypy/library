@@ -61,7 +61,9 @@ vc<mint> composition_0_ntt(vc<mint> f, vc<mint> g) {
     mint r = mint::ntt_info().se;
     mint dw = r.inverse().pow((1 << t) / (2 * n));
     mint w = 1;
-    for (auto& i: btr) { W[i] = w, w *= dw; }
+    for (auto& i : btr) {
+      W[i] = w, w *= dw;
+    }
   }
 
   auto rec = [&](auto& rec, int n, int k, vc<mint>& Q) -> vc<mint> {
@@ -69,7 +71,7 @@ vc<mint> composition_0_ntt(vc<mint> f, vc<mint> g) {
       reverse(all(f));
       transposed_ntt(f, 1);
       mint c = mint(1) / mint(k);
-      for (auto& x: f) x *= c;
+      for (auto& x : f) x *= c;
       vc<mint> p(4 * k);
       FOR(i, k) p[2 * i] = f[i];
       return p;
@@ -187,7 +189,7 @@ vc<mint> composition_0_garner(vc<mint> f, vc<mint> g) {
     FOR(i, 4 * n * k) {
       QQ[i] = CRT3<mint, ps[0], ps[1], ps[2]>(Q0[i].val, Q1[i].val, Q2[i].val);
     }
-    FOR(i, 0, 2 * n * k, 2) { QQ[2 * n * k + i] += Q[i] + Q[i]; }
+    for (int i = 0; i < 2 * n * k; i += 2) QQ[2 * n * k + i] += Q[i] + Q[i];
     vc<mint> nxt_Q(2 * n * k);
     FOR(j, 2 * k) FOR(i, n / 2) {
       nxt_Q[n * j + i] = QQ[(2 * n) * j + (2 * i + 0)];
@@ -238,6 +240,8 @@ vc<mint> composition(vc<mint> f, vc<mint> g) {
     f = poly_taylor_shift<mint>(f, g[0]);
     g[0] = 0;
   }
-  if (mint::can_ntt()) { return composition_0_ntt(f, g); }
+  if (mint::can_ntt()) {
+    return composition_0_ntt(f, g);
+  }
   return composition_0_garner(f, g);
 }

@@ -20,7 +20,7 @@ vc<mint> eulerian_number_n(int n) {
   vc<mint> f = power_table_2<mint>(n, n);
   vc<mint> g(n + 1);
   FOR(k, n + 1) g[k] = C<mint>(n + 1, k);
-  FOR(k, 1, n + 1, 2) g[k] = -g[k];
+  for (int k = 1; k <= n; k += 2) g[k] = -g[k];
   f = convolution(f, g);
   f.resize(n + 1);
   return f;
