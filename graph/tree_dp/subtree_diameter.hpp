@@ -35,10 +35,9 @@ struct Subtree_Diameter {
       return A;
     };
     auto f_ve = [&](Data A, int r, int nxt_r) -> Data {
-      WT x = abs(tree.depth_weight[r] - tree.depth_weight[nxt_r]);
-      A.path += e.cost;
+      A.path += abs(tree.depth_weight[r] - tree.depth_weight[nxt_r]);
       if (chmax(A.diam, A.path)) {
-        A.left = e.frm, A.right = A.end;
+        A.left = nxt_r, A.right = A.end;
       }
       return A;
     };
