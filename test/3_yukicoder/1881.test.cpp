@@ -3,14 +3,14 @@
 #include "other/io.hpp"
 #include "random/hash_vector.hpp"
 #include "ds/hashmap.hpp"
-#include "nt/lpf_table.hpp"
+#include "nt/spf_table.hpp"
 #include "nt/factor.hpp"
 #include "enumerate/partition.hpp"
 
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  auto lpf = lpf_table(MAX(A));
+  auto spf = spf_table(MAX(A));
 
   // 指数の減少列とその遷移
   HashMap<int> MP1;
@@ -81,7 +81,7 @@ void solve() {
   ll g = 0;
   for (auto&& a: A) {
     map<int, vc<int>> G;
-    for (auto&& [p, e]: factor_by_lpf(a, lpf)) {
+    for (auto&& [p, e]: factor_by_spf(a, spf)) {
       if (p == 2) {
         if (e == 1) continue;
         G[2].eb(1);
@@ -89,7 +89,7 @@ void solve() {
       } else {
         // (p-1)p^{e-1}
         G[p].eb(e - 1);
-        for (auto&& [q, f]: factor_by_lpf(p - 1, lpf)) { G[q].eb(f); }
+        for (auto&& [q, f]: factor_by_spf(p - 1, spf)) { G[q].eb(f); }
       }
     }
     vc<int> B;

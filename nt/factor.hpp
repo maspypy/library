@@ -74,10 +74,10 @@ vc<pair<ll, int>> factor(ll n) {
   return pf;
 }
 
-vc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {
+vc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {
   vc<pair<ll, int>> res;
   while (n > 1) {
-    int p = lpf[n];
+    int p = spf[n];
     int e = 0;
     while (n % p == 0) {
       n /= p;

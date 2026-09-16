@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "nt/lpf_table.hpp"
+#include "nt/spf_table.hpp"
 #include "nt/factor.hpp"
 
 using mint = modint107;
@@ -11,7 +11,7 @@ using mint = modint107;
 void solve() {
   LL(N);
   const int LIM = 1'000'000;
-  auto lpf = lpf_table(LIM);
+  auto spf = spf_table(LIM);
 
   vvc<pair<ll, int>> F(N);
 
@@ -27,7 +27,7 @@ void solve() {
   VEC(int, A, N);
   FOR(i, N) {
     prod *= mint(A[i]);
-    F[i] = factor_by_lpf(A[i], lpf);
+    F[i] = factor_by_spf(A[i], spf);
     for (auto&& [p, e]: F[i]) { add(p, e); }
   }
 

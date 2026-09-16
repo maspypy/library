@@ -1,5 +1,5 @@
 #include "ds/bit_array.hpp"
-#include "nt/lpf_table.hpp"
+#include "nt/spf_table.hpp"
 #include "nt/factor.hpp"
 
 // A[i] と互いに素な A[j] を検出 / A[i] の削除
@@ -11,7 +11,7 @@ struct Find_Coprime_Pair {
   using BS = Bit_Array;
   int N;
   vc<int> A;
-  vc<int> lpf;
+  vc<int> spf;
   vc<int> S;
   vc<int> ptr;
   vc<int> bidx;
@@ -23,7 +23,7 @@ struct Find_Coprime_Pair {
   Find_Coprime_Pair(vc<int> A) : A(A) {
     N = len(A);
     int ma = MAX(A);
-    lpf = lpf_table(ma);
+    spf = spf_table(ma);
     vc<int> ptr1(ma + 1);
     vc<int> ids(N);
     for (auto& x : A) ptr1[x]++;
@@ -33,7 +33,7 @@ struct Find_Coprime_Pair {
 
     ptr.resize(ma + 2);
     FOR(p, 23, ma + 1) {
-      if (lpf[p] != p) continue;
+      if (spf[p] != p) continue;
       ptr[p] = len(S);
       for (int n = p; n <= ma; n += p) {
         FOR(k, ptr1[n], ptr1[n + 1]) S.eb(ids[k]);
@@ -62,7 +62,7 @@ struct Find_Coprime_Pair {
     }
 
     FOR(p, 23, ma + 1) {
-      if (lpf[p] != p) continue;
+      if (spf[p] != p) continue;
       int cnt = ptr[p + 1] - ptr[p];
       if (cnt < thresh) continue;
       BS bs(N, 1);
@@ -80,7 +80,7 @@ struct Find_Coprime_Pair {
   void enumerate_all(int i, F f) {
     int d = gcd(A[i], prod);
     BS x = remain & dat[bidx[d]];
-    for (auto& [p, e] : factor_by_lpf(A[i], lpf)) {
+    for (auto& [p, e] : factor_by_spf(A[i], spf)) {
       if (p < 20) continue;
       if (bidx[p] == -1) {
         FOR(k, ptr[p], ptr[p + 1]) { x[S[k]] = 0; }

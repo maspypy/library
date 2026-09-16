@@ -1,5 +1,5 @@
 #include "mod/primitive_root.hpp"
-#include "nt/lpf_table.hpp"
+#include "nt/spf_table.hpp"
 #include "ds/hashmap.hpp"
 
 template <int p>
@@ -78,7 +78,7 @@ struct ModFast {
   // 0.085 sec.
   void build_log() {
     const int LIM = 1 << 21;
-    auto lpf = lpf_table(LIM);
+    auto spf = spf_table(LIM);
 
     const int S = 1 << 17;
     HashMap<u32> MP(S);
@@ -101,8 +101,8 @@ struct ModFast {
 
     LOG[K + 1] = 0;
     FOR(i, 2, 1 + (1 << 21)) {
-      if (lpf[i] < i) {
-        LOG[K + i] = (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p - 1);
+      if (spf[i] < i) {
+        LOG[K + i] = (LOG[K + spf[i]] + LOG[K + i / spf[i]]) % (p - 1);
         continue;
       }
       if (i < 100) {
@@ -125,7 +125,7 @@ struct ModFast {
           while (x % q == 0) div(q);
         }
         if (x >= LIM) continue;
-        while (i < x && x < LIM && lpf[x] < i) div(lpf[x]);
+        while (i < x && x < LIM && spf[x] < i) div(spf[x]);
         if (1 < x && x < i) div(x);
         if (x == 1) {
           LOG[K + i] = ans % (p - 1);

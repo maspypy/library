@@ -21,7 +21,7 @@ vc<ll> divisors(ll N) {
 }
 
 // sort はしない
-vc<ll> divisors_by_lpf(ll N, vc<int>& lpf) {
-  auto pf = factor_by_lpf(N, lpf);
+vc<ll> divisors_by_spf(ll N, vc<int>& spf) {
+  auto pf = factor_by_spf(N, spf);
   return divisors_by_pf(pf);
 }

@@ -5,7 +5,7 @@
 #include "mod/modint.hpp"
 #include "seq/sum_of_powers.hpp"
 #include "poly/multipoint.hpp"
-#include "nt/lpf_table.hpp"
+#include "nt/spf_table.hpp"
 #include "nt/divisors.hpp"
 
 using mint = modint998;
@@ -40,10 +40,10 @@ void solve() {
   for (auto& a: A) CNT[a] += mint(1);
   FOR_R(i, LIM - 1) CNT[i] += CNT[i + 1];
 
-  auto lpf = lpf_table(LIM);
+  auto spf = spf_table(LIM);
   vc<mint> F(LIM);
   FOR(x, 1, LIM) {
-    for (auto& i: divisors_by_lpf(x, lpf)) { F[x] += Y[x / i] * CNT[i]; }
+    for (auto& i: divisors_by_spf(x, spf)) { F[x] += Y[x / i] * CNT[i]; }
     F[x] *= mint(x).pow(P);
   }
 
