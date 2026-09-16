@@ -27,6 +27,7 @@ struct Suffix_Array {
 
   template <typename STRING>
   Suffix_Array(const STRING& s) {
+    assert(!s.empty());
     build_seg = 0;
     auto a = to_compressed_vector(s);
     SA = SA_IS(a);

@@ -14,8 +14,8 @@ struct Subtree_Depth_Sum {
     auto f_ee = [&](Data A, Data B) -> Data {
       return {A.fi + B.fi, A.se + B.se};
     };
-    auto f_ev = [&](Data A, int v) -> Data { return {A.fi + 1, A.se}; };
-    auto f_ve = [&](Data A, const auto& e) -> Data {
+    auto f_ev = [&](Data A, int) -> Data { return {A.fi + 1, A.se}; };
+    auto f_ve = [&](Data A, int, int) -> Data {
       return {A.fi, A.se + A.fi * e.cost};
     };
 
