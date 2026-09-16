@@ -15,8 +15,9 @@ struct Subtree_Depth_Sum {
       return {A.fi + B.fi, A.se + B.se};
     };
     auto f_ev = [&](Data A, int) -> Data { return {A.fi + 1, A.se}; };
-    auto f_ve = [&](Data A, int, int) -> Data {
-      return {A.fi, A.se + A.fi * e.cost};
+    auto f_ve = [&](Data A, int r, int nxt_r) -> Data {
+      WT x = abs(tree.depth_weight[r] - tree.depth_weight[nxt_r]);
+      return {A.fi, A.se + A.fi * x};
     };
 
     Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, id);
