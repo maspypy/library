@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   _extendedRequiredBy: []
@@ -279,12 +279,12 @@ data:
     \ A.end = B.end;\n      return A;\n    };\n    auto f_ev = [&](Data A, int v)\
     \ -> Data {\n      if (A.diam == -1) {\n        A.diam = 0, A.left = v, A.right\
     \ = v, A.path = 0, A.end = v;\n      }\n      return A;\n    };\n    auto f_ve\
-    \ = [&](Data A, const auto& e) -> Data {\n      A.path += e.cost;\n      if (chmax(A.diam,\
-    \ A.path)) {\n        A.left = e.frm, A.right = A.end;\n      }\n      return\
-    \ A;\n    };\n\n    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, id);\n\
-    \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) {\n      dp[v]\
-    \ = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n      dp_1[v] = {\n     \
-    \     DP.dp_subtree[v].left, DP.dp_subtree[v].right, DP.dp_subtree[v].diam};\n\
+    \ = [&](Data A, int r, int nxt_r) -> Data {\n      A.path += abs(tree.depth_weight[r]\
+    \ - tree.depth_weight[nxt_r]);\n      if (chmax(A.diam, A.path)) {\n        A.left\
+    \ = nxt_r, A.right = A.end;\n      }\n      return A;\n    };\n\n    Rerooting_DP<TREE,\
+    \ Data> DP(tree, f_ee, f_ev, f_ve, id);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
+    \    FOR(v, N) {\n      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n\
+    \      dp_1[v] = {\n          DP.dp_subtree[v].left, DP.dp_subtree[v].right, DP.dp_subtree[v].diam};\n\
     \      dp_2[v] = {\n          DP.dp_parent[v].left, DP.dp_parent[v].right, DP.dp_parent[v].diam};\n\
     \    }\n  }\n\n  // (u, v, diam)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\
     \u306E full tree\n  tuple<int, int, WT> operator[](int v) { return dp[v]; }\n\n\
@@ -306,12 +306,13 @@ data:
     \   if (chmax(A.path, B.path)) A.end = B.end;\n      return A;\n    };\n    auto\
     \ f_ev = [&](Data A, int v) -> Data {\n      if (A.diam == -1) {\n        A.diam\
     \ = 0, A.left = v, A.right = v, A.path = 0, A.end = v;\n      }\n      return\
-    \ A;\n    };\n    auto f_ve = [&](Data A, const auto& e) -> Data {\n      A.path\
-    \ += e.cost;\n      if (chmax(A.diam, A.path)) {\n        A.left = e.frm, A.right\
-    \ = A.end;\n      }\n      return A;\n    };\n\n    Rerooting_DP<TREE, Data> DP(tree,\
-    \ f_ee, f_ev, f_ve, id);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
-    \    FOR(v, N) {\n      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n\
-    \      dp_1[v] = {\n          DP.dp_subtree[v].left, DP.dp_subtree[v].right, DP.dp_subtree[v].diam};\n\
+    \ A;\n    };\n    auto f_ve = [&](Data A, int r, int nxt_r) -> Data {\n      A.path\
+    \ += abs(tree.depth_weight[r] - tree.depth_weight[nxt_r]);\n      if (chmax(A.diam,\
+    \ A.path)) {\n        A.left = nxt_r, A.right = A.end;\n      }\n      return\
+    \ A;\n    };\n\n    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, id);\n\
+    \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) {\n      dp[v]\
+    \ = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n      dp_1[v] = {\n     \
+    \     DP.dp_subtree[v].left, DP.dp_subtree[v].right, DP.dp_subtree[v].diam};\n\
     \      dp_2[v] = {\n          DP.dp_parent[v].left, DP.dp_parent[v].right, DP.dp_parent[v].diam};\n\
     \    }\n  }\n\n  // (u, v, diam)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\
     \u306E full tree\n  tuple<int, int, WT> operator[](int v) { return dp[v]; }\n\n\
@@ -327,7 +328,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_diameter.hpp
   requiredBy: []
-  timestamp: '2026-09-15 06:24:08+09:00'
+  timestamp: '2026-09-16 20:13:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_diameter.hpp

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':question:'
@@ -34,7 +34,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':heavy_check_mark:'
@@ -465,8 +465,8 @@ data:
     \ == 0 || SEG_TYPE == 1 || SEG_TYPE == 2);\n  using SegType = conditional_t<SEG_TYPE\
     \ == 0, SEG0,\n      conditional_t<SEG_TYPE == 1, SEG1, SEG2> >;\n  SegType seg;\n\
     \  bool build_seg;\n\n  Suffix_Array() {}\n\n  template <typename STRING>\n  Suffix_Array(const\
-    \ STRING& s) {\n    build_seg = 0;\n    auto a = to_compressed_vector(s);\n  \
-    \  SA = SA_IS(a);\n    calc_LCP(a);\n  }\n\n  vc<int> to_compressed_vector(const\
+    \ STRING& s) {\n    assert(!s.empty());\n    build_seg = 0;\n    auto a = to_compressed_vector(s);\n\
+    \    SA = SA_IS(a);\n    calc_LCP(a);\n  }\n\n  vc<int> to_compressed_vector(const\
     \ string& s) {\n    vc<int> a(len(s));\n    FOR(i, len(s)) a[i] = (unsigned char)s[i];\n\
     \    Index_Compression<int, 1, 1> I;\n    return I.build(a);\n  }\n\n  vc<int>\
     \ to_compressed_vector(const vc<int>& s) {\n    Index_Compression<int, 1, 0> I;\n\
@@ -718,7 +718,7 @@ data:
   isVerificationFile: false
   path: string/basic_substring_structure.hpp
   requiredBy: []
-  timestamp: '2026-09-13 12:02:37+09:00'
+  timestamp: '2026-09-16 20:03:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/basic_substring_structure.hpp

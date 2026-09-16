@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':question:'
-    path: nt/lpf_table.hpp
-    title: nt/lpf_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: nt/spf_table.hpp
+    title: nt/spf_table.hpp
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':question:'
@@ -123,8 +123,8 @@ data:
     \      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1)\
     \ {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n      n /= p,\
     \ e += 1;\n    } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
-    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
+    \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
     \ return res;\n}\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\n\
     vc<T> prime_table(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
@@ -137,21 +137,23 @@ data:
     \ S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i = idx; i <\
     \ S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
     \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM);\n  return\
-    \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/lpf_table.hpp\"\n\n//\
-    \ [0, LIM], 0, 1 \u306B\u306F -1 \u304C\u5165\u308B\u3002\nvc<int> lpf_table(ll\
-    \ LIM) {\n  auto primes = prime_table(LIM);\n  vc<int> res(LIM + 1, -1);\n  FOR_R(i,\
-    \ len(primes)) {\n    auto p = primes[i];\n    FOR3(j, 1, LIM / p + 1) res[p *\
-    \ j] = p;\n  }\n  return res;\n}\n#line 3 \"nt/all_lcm.hpp\"\n\ntemplate <typename\
-    \ mint>\nmint all_lcm(vc<int> A, bool use_lpf) {\n  if (A.empty()) return 1;\n\
-    \  map<int, int> MP;\n  int mx = MAX(A);\n  vc<int> lpf;\n  if (use_lpf) lpf =\
-    \ lpf_table(mx);\n  for (auto&& n: A) {\n    auto pfs = (use_lpf ? factor_by_lpf(n,\
-    \ lpf) : factor(n));\n    for (auto&& [p, e]: pfs) chmax(MP[p], e);\n  }\n  mint\
-    \ x = 1;\n  for (auto&& [p, e]: MP) { x *= mint(p).pow(e); }\n  return x;\n}\n"
-  code: "#include \"nt/factor.hpp\"\n#include \"nt/lpf_table.hpp\"\n\ntemplate <typename\
-    \ mint>\nmint all_lcm(vc<int> A, bool use_lpf) {\n  if (A.empty()) return 1;\n\
-    \  map<int, int> MP;\n  int mx = MAX(A);\n  vc<int> lpf;\n  if (use_lpf) lpf =\
-    \ lpf_table(mx);\n  for (auto&& n: A) {\n    auto pfs = (use_lpf ? factor_by_lpf(n,\
-    \ lpf) : factor(n));\n    for (auto&& [p, e]: pfs) chmax(MP[p], e);\n  }\n  mint\
+    \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/spf_table.hpp\"\n\n//\
+    \ [0, LIM], 0, 1 \u306B\u306F -1 \u304C\u5165\u308B\u3002\nvc<int> spf_table(int\
+    \ LIM) {\n  auto primes = prime_table(LIM);\n  vc<int> spf(LIM + 1, -1);\n  int\
+    \ sq = sqrt(LIM);\n  for (int i = 2; i <= LIM; i += 2) spf[i] = 2;\n  FOR_R(i,\
+    \ len(primes)) {\n    auto p = primes[i];\n    spf[p] = p;\n    if (sq < p) continue;\n\
+    \    for (int k = p * p; k <= LIM; k += 2 * p) spf[k] = p;\n  }\n  return spf;\n\
+    }\n#line 3 \"nt/all_lcm.hpp\"\n\ntemplate <typename mint>\nmint all_lcm(vc<int>\
+    \ A, bool use_spf) {\n  if (A.empty()) return 1;\n  map<int, int> MP;\n  int mx\
+    \ = MAX(A);\n  vc<int> spf;\n  if (use_spf) spf = spf_table(mx);\n  for (auto&&\
+    \ n: A) {\n    auto pfs = (use_spf ? factor_by_spf(n, spf) : factor(n));\n   \
+    \ for (auto&& [p, e]: pfs) chmax(MP[p], e);\n  }\n  mint x = 1;\n  for (auto&&\
+    \ [p, e]: MP) { x *= mint(p).pow(e); }\n  return x;\n}\n"
+  code: "#include \"nt/factor.hpp\"\n#include \"nt/spf_table.hpp\"\n\ntemplate <typename\
+    \ mint>\nmint all_lcm(vc<int> A, bool use_spf) {\n  if (A.empty()) return 1;\n\
+    \  map<int, int> MP;\n  int mx = MAX(A);\n  vc<int> spf;\n  if (use_spf) spf =\
+    \ spf_table(mx);\n  for (auto&& n: A) {\n    auto pfs = (use_spf ? factor_by_spf(n,\
+    \ spf) : factor(n));\n    for (auto&& [p, e]: pfs) chmax(MP[p], e);\n  }\n  mint\
     \ x = 1;\n  for (auto&& [p, e]: MP) { x *= mint(p).pow(e); }\n  return x;\n}\n"
   dependsOn:
   - nt/factor.hpp
@@ -159,12 +161,12 @@ data:
   - nt/is_prime.hpp
   - other/bit.hpp
   - mod/montgomery_modint.hpp
-  - nt/lpf_table.hpp
+  - nt/spf_table.hpp
   - nt/prime_table.hpp
   isVerificationFile: false
   path: nt/all_lcm.hpp
   requiredBy: []
-  timestamp: '2026-09-04 09:44:55+09:00'
+  timestamp: '2026-09-16 20:09:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: nt/all_lcm.hpp

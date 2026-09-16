@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':question:'
-    path: nt/lpf_table.hpp
-    title: nt/lpf_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: nt/spf_table.hpp
+    title: nt/spf_table.hpp
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':question:'
@@ -456,18 +456,19 @@ data:
     \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
     \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
     \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
-    }\n#line 2 \"nt/lpf_table.hpp\"\n\n// [0, LIM], 0, 1 \u306B\u306F -1 \u304C\u5165\
-    \u308B\u3002\nvc<int> lpf_table(ll LIM) {\n  auto primes = prime_table(LIM);\n\
-    \  vc<int> res(LIM + 1, -1);\n  FOR_R(i, len(primes)) {\n    auto p = primes[i];\n\
-    \    FOR3(j, 1, LIM / p + 1) res[p * j] = p;\n  }\n  return res;\n}\n#line 1 \"\
-    nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64\
-    \ x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n                     \
-    \ chrono::high_resolution_clock::now().time_since_epoch())\n                 \
-    \         .count()) *\n                  10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim > 0);\n\
-    \  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n  return\
-    \ l + RNG_64() % (r - l);\n}\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) {\
-    \ return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    }\n#line 2 \"nt/spf_table.hpp\"\n\n// [0, LIM], 0, 1 \u306B\u306F -1 \u304C\u5165\
+    \u308B\u3002\nvc<int> spf_table(int LIM) {\n  auto primes = prime_table(LIM);\n\
+    \  vc<int> spf(LIM + 1, -1);\n  int sq = sqrt(LIM);\n  for (int i = 2; i <= LIM;\
+    \ i += 2) spf[i] = 2;\n  FOR_R(i, len(primes)) {\n    auto p = primes[i];\n  \
+    \  spf[p] = p;\n    if (sq < p) continue;\n    for (int k = p * p; k <= LIM; k\
+    \ += 2 * p) spf[k] = p;\n  }\n  return spf;\n}\n#line 1 \"nt/factor.hpp\"\n\n\
+    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
+    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
@@ -554,22 +555,22 @@ data:
     \      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1)\
     \ {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n      n /= p,\
     \ e += 1;\n    } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
-    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
+    \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
     \ return res;\n}\n#line 4 \"nt/find_coprime_pair.hpp\"\n\n// A[i] \u3068\u4E92\
     \u3044\u306B\u7D20\u306A A[j] \u3092\u691C\u51FA / A[i] \u306E\u524A\u9664\n//\
     \ N=1e5,A=1e7 \u9023\u7D50\u6210\u5206\u5206\u89E3 1030ms\n// https://codeforces.com/contest/1148/problem/G\n\
     template <int thresh = 200>\nstruct Find_Coprime_Pair {\n  // thresh \u4EE5\u4E0A\
     \u3042\u308B\u7D20\u6570\u3092 bitset \u7BA1\u7406\n  using BS = Bit_Array;\n\
-    \  int N;\n  vc<int> A;\n  vc<int> lpf;\n  vc<int> S;\n  vc<int> ptr;\n  vc<int>\
+    \  int N;\n  vc<int> A;\n  vc<int> spf;\n  vc<int> S;\n  vc<int> ptr;\n  vc<int>\
     \ bidx;\n  vc<BS> dat;\n  BS remain;\n  // 20 \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\
     \u7A4D\n  const int prod = 9699690;\n\n  Find_Coprime_Pair(vc<int> A) : A(A) {\n\
-    \    N = len(A);\n    int ma = MAX(A);\n    lpf = lpf_table(ma);\n    vc<int>\
+    \    N = len(A);\n    int ma = MAX(A);\n    spf = spf_table(ma);\n    vc<int>\
     \ ptr1(ma + 1);\n    vc<int> ids(N);\n    for (auto& x : A) ptr1[x]++;\n    ptr1\
     \ = cumsum<int>(ptr1);\n    FOR(i, N) { ids[ptr1[A[i]]++] = i; }\n    FOR_R(i,\
     \ len(ptr1) - 1) ptr1[i + 1] = ptr1[i];\n\n    ptr.resize(ma + 2);\n    FOR(p,\
-    \ 23, ma + 1) {\n      if (lpf[p] != p) continue;\n      ptr[p] = len(S);\n  \
+    \ 23, ma + 1) {\n      if (spf[p] != p) continue;\n      ptr[p] = len(S);\n  \
     \    for (int n = p; n <= ma; n += p) {\n        FOR(k, ptr1[n], ptr1[n + 1])\
     \ S.eb(ids[k]);\n      }\n      ptr[p + 1] = len(S);\n    }\n\n    bidx.assign(ma\
     \ + 1, -1);\n    {\n      vc<int> prime = {2, 3, 5, 7, 11, 13, 17, 19};\n    \
@@ -578,31 +579,31 @@ data:
     \ 1 << i) tmp[s | 1 << i] = tmp[s] & bs;\n      }\n      FOR(s, 1 << 8) {\n  \
     \      int prd = 1;\n        FOR(i, 8) if (s >> i & 1) prd *= prime[i];\n    \
     \    if (prd <= ma) {\n          bidx[prd] = len(dat);\n          dat.eb(tmp[s]);\n\
-    \        }\n      }\n    }\n\n    FOR(p, 23, ma + 1) {\n      if (lpf[p] != p)\
+    \        }\n      }\n    }\n\n    FOR(p, 23, ma + 1) {\n      if (spf[p] != p)\
     \ continue;\n      int cnt = ptr[p + 1] - ptr[p];\n      if (cnt < thresh) continue;\n\
     \      BS bs(N, 1);\n      FOR(i, ptr[p], ptr[p + 1]) bs[S[i]] = 0;\n      bidx[p]\
     \ = len(dat);\n      dat.eb(bs);\n    }\n    remain = BS(N, 1);\n  }\n\n  void\
     \ remove(int i) { remain[i] = 0; }\n\n  // \u81EA\u5206\u81EA\u8EAB\u306F\u9664\
     \u3044\u3066\n  template <typename F>\n  void enumerate_all(int i, F f) {\n  \
     \  int d = gcd(A[i], prod);\n    BS x = remain & dat[bidx[d]];\n    for (auto&\
-    \ [p, e] : factor_by_lpf(A[i], lpf)) {\n      if (p < 20) continue;\n      if\
+    \ [p, e] : factor_by_spf(A[i], spf)) {\n      if (p < 20) continue;\n      if\
     \ (bidx[p] == -1) {\n        FOR(k, ptr[p], ptr[p + 1]) { x[S[k]] = 0; }\n   \
     \   } else {\n        x &= dat[bidx[p]];\n      }\n    }\n    x.enumerate(0, N,\
     \ f);\n  }\n};\n"
-  code: "#include \"ds/bit_array.hpp\"\n#include \"nt/lpf_table.hpp\"\n#include \"\
+  code: "#include \"ds/bit_array.hpp\"\n#include \"nt/spf_table.hpp\"\n#include \"\
     nt/factor.hpp\"\n\n// A[i] \u3068\u4E92\u3044\u306B\u7D20\u306A A[j] \u3092\u691C\
     \u51FA / A[i] \u306E\u524A\u9664\n// N=1e5,A=1e7 \u9023\u7D50\u6210\u5206\u5206\
     \u89E3 1030ms\n// https://codeforces.com/contest/1148/problem/G\ntemplate <int\
     \ thresh = 200>\nstruct Find_Coprime_Pair {\n  // thresh \u4EE5\u4E0A\u3042\u308B\
     \u7D20\u6570\u3092 bitset \u7BA1\u7406\n  using BS = Bit_Array;\n  int N;\n  vc<int>\
-    \ A;\n  vc<int> lpf;\n  vc<int> S;\n  vc<int> ptr;\n  vc<int> bidx;\n  vc<BS>\
+    \ A;\n  vc<int> spf;\n  vc<int> S;\n  vc<int> ptr;\n  vc<int> bidx;\n  vc<BS>\
     \ dat;\n  BS remain;\n  // 20 \u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u7A4D\n  const\
     \ int prod = 9699690;\n\n  Find_Coprime_Pair(vc<int> A) : A(A) {\n    N = len(A);\n\
-    \    int ma = MAX(A);\n    lpf = lpf_table(ma);\n    vc<int> ptr1(ma + 1);\n \
+    \    int ma = MAX(A);\n    spf = spf_table(ma);\n    vc<int> ptr1(ma + 1);\n \
     \   vc<int> ids(N);\n    for (auto& x : A) ptr1[x]++;\n    ptr1 = cumsum<int>(ptr1);\n\
     \    FOR(i, N) { ids[ptr1[A[i]]++] = i; }\n    FOR_R(i, len(ptr1) - 1) ptr1[i\
     \ + 1] = ptr1[i];\n\n    ptr.resize(ma + 2);\n    FOR(p, 23, ma + 1) {\n     \
-    \ if (lpf[p] != p) continue;\n      ptr[p] = len(S);\n      for (int n = p; n\
+    \ if (spf[p] != p) continue;\n      ptr[p] = len(S);\n      for (int n = p; n\
     \ <= ma; n += p) {\n        FOR(k, ptr1[n], ptr1[n + 1]) S.eb(ids[k]);\n     \
     \ }\n      ptr[p + 1] = len(S);\n    }\n\n    bidx.assign(ma + 1, -1);\n    {\n\
     \      vc<int> prime = {2, 3, 5, 7, 11, 13, 17, 19};\n      vc<BS> tmp(1 << 8);\n\
@@ -611,14 +612,14 @@ data:
     \ i] = tmp[s] & bs;\n      }\n      FOR(s, 1 << 8) {\n        int prd = 1;\n \
     \       FOR(i, 8) if (s >> i & 1) prd *= prime[i];\n        if (prd <= ma) {\n\
     \          bidx[prd] = len(dat);\n          dat.eb(tmp[s]);\n        }\n     \
-    \ }\n    }\n\n    FOR(p, 23, ma + 1) {\n      if (lpf[p] != p) continue;\n   \
+    \ }\n    }\n\n    FOR(p, 23, ma + 1) {\n      if (spf[p] != p) continue;\n   \
     \   int cnt = ptr[p + 1] - ptr[p];\n      if (cnt < thresh) continue;\n      BS\
     \ bs(N, 1);\n      FOR(i, ptr[p], ptr[p + 1]) bs[S[i]] = 0;\n      bidx[p] = len(dat);\n\
     \      dat.eb(bs);\n    }\n    remain = BS(N, 1);\n  }\n\n  void remove(int i)\
     \ { remain[i] = 0; }\n\n  // \u81EA\u5206\u81EA\u8EAB\u306F\u9664\u3044\u3066\n\
     \  template <typename F>\n  void enumerate_all(int i, F f) {\n    int d = gcd(A[i],\
-    \ prod);\n    BS x = remain & dat[bidx[d]];\n    for (auto& [p, e] : factor_by_lpf(A[i],\
-    \ lpf)) {\n      if (p < 20) continue;\n      if (bidx[p] == -1) {\n        FOR(k,\
+    \ prod);\n    BS x = remain & dat[bidx[d]];\n    for (auto& [p, e] : factor_by_spf(A[i],\
+    \ spf)) {\n      if (p < 20) continue;\n      if (bidx[p] == -1) {\n        FOR(k,\
     \ ptr[p], ptr[p + 1]) { x[S[k]] = 0; }\n      } else {\n        x &= dat[bidx[p]];\n\
     \      }\n    }\n    x.enumerate(0, N, f);\n  }\n};\n"
   dependsOn:
@@ -626,7 +627,7 @@ data:
   - my_template.hpp
   - other/io.hpp
   - other/bit.hpp
-  - nt/lpf_table.hpp
+  - nt/spf_table.hpp
   - nt/prime_table.hpp
   - nt/factor.hpp
   - random/base.hpp
@@ -635,7 +636,7 @@ data:
   isVerificationFile: false
   path: nt/find_coprime_pair.hpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
+  timestamp: '2026-09-16 20:09:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: nt/find_coprime_pair.hpp

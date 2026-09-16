@@ -4,31 +4,31 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':question:'
-    path: nt/lpf_table.hpp
-    title: nt/lpf_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: nt/spf_table.hpp
+    title: nt/spf_table.hpp
+  - icon: ':heavy_check_mark:'
     path: other/bit.hpp
     title: other/bit.hpp
   - icon: ':question:'
@@ -138,8 +138,8 @@ data:
     \      } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1)\
     \ {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do {\n      n /= p,\
     \ e += 1;\n    } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
-    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
-    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
+    \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
     \ return res;\n}\n#line 1 \"mod/mod_pow.hpp\"\n\n#line 1 \"mod/montgomery_modint.hpp\"\
     \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
@@ -219,29 +219,31 @@ data:
     \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
     \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
     \    }\n  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 2 \"nt/lpf_table.hpp\"\n\n// [0, LIM], 0, 1 \u306B\u306F -1\
-    \ \u304C\u5165\u308B\u3002\nvc<int> lpf_table(ll LIM) {\n  auto primes = prime_table(LIM);\n\
-    \  vc<int> res(LIM + 1, -1);\n  FOR_R(i, len(primes)) {\n    auto p = primes[i];\n\
-    \    FOR3(j, 1, LIM / p + 1) res[p * j] = p;\n  }\n  return res;\n}\n#line 1 \"\
-    ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n\
-    \  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n\
-    \  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n \
-    \   while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ + k};\n}\n#line 2 \"nt/spf_table.hpp\"\n\n// [0, LIM], 0, 1 \u306B\u306F -1\
+    \ \u304C\u5165\u308B\u3002\nvc<int> spf_table(int LIM) {\n  auto primes = prime_table(LIM);\n\
+    \  vc<int> spf(LIM + 1, -1);\n  int sq = sqrt(LIM);\n  for (int i = 2; i <= LIM;\
+    \ i += 2) spf[i] = 2;\n  FOR_R(i, len(primes)) {\n    auto p = primes[i];\n  \
+    \  spf[p] = p;\n    if (sq < p) continue;\n    for (int k = p * p; k <= LIM; k\
+    \ += 2 * p) spf[k] = p;\n  }\n  return spf;\n}\n#line 1 \"ds/hashmap.hpp\"\n\n\
+    // u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
+    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
+    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
+    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
@@ -271,15 +273,15 @@ data:
     \  void build_pow() {\n    POW[0][0] = POW[1][0] = 1;\n    FOR(i, (1 << 15)) POW[0][i\
     \ + 1] = POW[0][i] * u64(root) % p;\n    FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i]\
     \ * u64(POW[0][1 << 15]) % p;\n  }\n\n  // 0.085 sec.\n  void build_log() {\n\
-    \    const int LIM = 1 << 21;\n    auto lpf = lpf_table(LIM);\n\n    const int\
+    \    const int LIM = 1 << 21;\n    auto spf = spf_table(LIM);\n\n    const int\
     \ S = 1 << 17;\n    HashMap<u32> MP(S);\n    u32 pw = 1;\n    for (int k = 0;\
     \ k < S; ++k, pw = u64(root) * pw % p) {\n      MP[pw] = k;\n    }\n    u32 q\
     \ = pow_r_32(p - 1 - S);\n    auto BSGS = [&](u32 s) -> u32 {\n      u32 ans =\
     \ 0;\n      while (1) {\n        u32 v = MP.get(s, -1);\n        if (v != u32(-1))\
     \ {\n          return ans + v;\n        }\n        ans += S, s = u64(s) * q %\
     \ p;\n      }\n      return 0;\n    };\n\n    LOG[K + 1] = 0;\n    FOR(i, 2, 1\
-    \ + (1 << 21)) {\n      if (lpf[i] < i) {\n        LOG[K + i] = (LOG[K + lpf[i]]\
-    \ + LOG[K + i / lpf[i]]) % (p - 1);\n        continue;\n      }\n      if (i <\
+    \ + (1 << 21)) {\n      if (spf[i] < i) {\n        LOG[K + i] = (LOG[K + spf[i]]\
+    \ + LOG[K + i / spf[i]]) % (p - 1);\n        continue;\n      }\n      if (i <\
     \ 100) {\n        LOG[K + i] = BSGS(i);\n        continue;\n      }\n      if\
     \ (i * i > p) {\n        auto [j, k] = divmod<int>(p, i);\n        // i = (-k)/j\n\
     \        LOG[K + i] =\n            (LOG[K + k] + (p - 1) / 2 + (p - 1) - LOG[K\
@@ -288,7 +290,7 @@ data:
     \ % p;\n        auto div = [&](u32 q) -> void { x /= q, ans += LOG[K + q]; };\n\
     \        for (u32 q : {2, 3, 5, 7, 11, 13, 17, 19}) {\n          while (x % q\
     \ == 0) div(q);\n        }\n        if (x >= LIM) continue;\n        while (i\
-    \ < x && x < LIM && lpf[x] < i) div(lpf[x]);\n        if (1 < x && x < i) div(x);\n\
+    \ < x && x < LIM && spf[x] < i) div(spf[x]);\n        if (1 < x && x < i) div(x);\n\
     \        if (x == 1) {\n          LOG[K + i] = ans % (p - 1);\n          break;\n\
     \        }\n      }\n    }\n    FOR(i, 1, 1 + (1 << 21)) {\n      LOG[K - i] =\
     \ (LOG[K + i] + (p - 1) / 2) % (p - 1);\n    }\n  }\n\n  void build_frac() {\n\
@@ -298,7 +300,7 @@ data:
     \      u32 s = (u64(a) * p) / (1024 * b);\n      u32 t = (u64(c) * p) / (1024\
     \ * d);\n      FRAC[s] = {a, b}, FRAC[t] = {c, d};\n      a = min(a, c), b = min(b,\
     \ d);\n      FOR(i, s + 1, t) FRAC[i] = {a, b};\n    }\n  }\n};\n"
-  code: "#include \"mod/primitive_root.hpp\"\n#include \"nt/lpf_table.hpp\"\n#include\
+  code: "#include \"mod/primitive_root.hpp\"\n#include \"nt/spf_table.hpp\"\n#include\
     \ \"ds/hashmap.hpp\"\n\ntemplate <int p>\nstruct ModFast {\n  static_assert(p\
     \ < (1 << 30));\n\n  u32 root;\n  array<u32, 65537> POW[2];\n  array<pair<u16,\
     \ u16>, 1 + (1 << 20)> FRAC;\n\n  static constexpr int K = 1 << 21;\n  array<u32,\
@@ -323,15 +325,15 @@ data:
     \ POW[0][0] = POW[1][0] = 1;\n    FOR(i, (1 << 15)) POW[0][i + 1] = POW[0][i]\
     \ * u64(root) % p;\n    FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1\
     \ << 15]) % p;\n  }\n\n  // 0.085 sec.\n  void build_log() {\n    const int LIM\
-    \ = 1 << 21;\n    auto lpf = lpf_table(LIM);\n\n    const int S = 1 << 17;\n \
+    \ = 1 << 21;\n    auto spf = spf_table(LIM);\n\n    const int S = 1 << 17;\n \
     \   HashMap<u32> MP(S);\n    u32 pw = 1;\n    for (int k = 0; k < S; ++k, pw =\
     \ u64(root) * pw % p) {\n      MP[pw] = k;\n    }\n    u32 q = pow_r_32(p - 1\
     \ - S);\n    auto BSGS = [&](u32 s) -> u32 {\n      u32 ans = 0;\n      while\
     \ (1) {\n        u32 v = MP.get(s, -1);\n        if (v != u32(-1)) {\n       \
     \   return ans + v;\n        }\n        ans += S, s = u64(s) * q % p;\n      }\n\
     \      return 0;\n    };\n\n    LOG[K + 1] = 0;\n    FOR(i, 2, 1 + (1 << 21))\
-    \ {\n      if (lpf[i] < i) {\n        LOG[K + i] = (LOG[K + lpf[i]] + LOG[K +\
-    \ i / lpf[i]]) % (p - 1);\n        continue;\n      }\n      if (i < 100) {\n\
+    \ {\n      if (spf[i] < i) {\n        LOG[K + i] = (LOG[K + spf[i]] + LOG[K +\
+    \ i / spf[i]]) % (p - 1);\n        continue;\n      }\n      if (i < 100) {\n\
     \        LOG[K + i] = BSGS(i);\n        continue;\n      }\n      if (i * i >\
     \ p) {\n        auto [j, k] = divmod<int>(p, i);\n        // i = (-k)/j\n    \
     \    LOG[K + i] =\n            (LOG[K + k] + (p - 1) / 2 + (p - 1) - LOG[K + j])\
@@ -340,7 +342,7 @@ data:
     \ % p;\n        auto div = [&](u32 q) -> void { x /= q, ans += LOG[K + q]; };\n\
     \        for (u32 q : {2, 3, 5, 7, 11, 13, 17, 19}) {\n          while (x % q\
     \ == 0) div(q);\n        }\n        if (x >= LIM) continue;\n        while (i\
-    \ < x && x < LIM && lpf[x] < i) div(lpf[x]);\n        if (1 < x && x < i) div(x);\n\
+    \ < x && x < LIM && spf[x] < i) div(spf[x]);\n        if (1 < x && x < i) div(x);\n\
     \        if (x == 1) {\n          LOG[K + i] = ans % (p - 1);\n          break;\n\
     \        }\n      }\n    }\n    FOR(i, 1, 1 + (1 << 21)) {\n      LOG[K - i] =\
     \ (LOG[K + i] + (p - 1) / 2) % (p - 1);\n    }\n  }\n\n  void build_frac() {\n\
@@ -359,13 +361,13 @@ data:
   - mod/montgomery_modint.hpp
   - mod/mod_pow.hpp
   - mod/barrett.hpp
-  - nt/lpf_table.hpp
+  - nt/spf_table.hpp
   - nt/prime_table.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
   path: mod/modfast.hpp
   requiredBy: []
-  timestamp: '2026-09-04 09:44:55+09:00'
+  timestamp: '2026-09-16 20:09:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/modfast.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/unlabeled_tree.hpp
     title: enumerate/unlabeled_tree.hpp
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -737,8 +737,8 @@ data:
     \  vc<u64> dp, dp_subtree, dp_parent;\n\n  Subtree_Hash(TREE& tree) : tree(tree)\
     \ {\n    int N = tree.N;\n    using T = pair<int, mint>;\n    T id = {0, mint(1)};\n\
     \n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se};\
-    \ };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n   \
-    \ auto f_ve = [&](T A, int r, int nxt_r) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
+    \ };\n    auto f_ev = [&](T A, int) -> T { return {A.fi + 1, A.se}; };\n    auto\
+    \ f_ve = [&](T A, int, int) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
     \    };\n\n    Rerooting_DP<TREE, T> DP(tree, f_ee, f_ev, f_ve, id);\n\n    dp.resize(N),\
     \ dp_subtree.resize(N), dp_parent.resize(N);\n    FOR(v, N) {\n      dp[v] = DP.dp[v].se.val;\n\
     \      dp_subtree[v] = DP.dp_subtree[v].se.val;\n      dp_parent[v] = DP.dp_parent[v].se.val;\n\
@@ -837,8 +837,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-16 20:13:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_unlabeled_tree.test.cpp
 layout: document

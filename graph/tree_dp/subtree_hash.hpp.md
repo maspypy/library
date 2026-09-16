@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':question:'
@@ -21,15 +21,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/modint61.hpp\"\n\nstruct modint61 {\n  static constexpr\
@@ -635,8 +635,8 @@ data:
     \  vc<u64> dp, dp_subtree, dp_parent;\n\n  Subtree_Hash(TREE& tree) : tree(tree)\
     \ {\n    int N = tree.N;\n    using T = pair<int, mint>;\n    T id = {0, mint(1)};\n\
     \n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se};\
-    \ };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n   \
-    \ auto f_ve = [&](T A, int r, int nxt_r) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
+    \ };\n    auto f_ev = [&](T A, int) -> T { return {A.fi + 1, A.se}; };\n    auto\
+    \ f_ve = [&](T A, int, int) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
     \    };\n\n    Rerooting_DP<TREE, T> DP(tree, f_ee, f_ev, f_ve, id);\n\n    dp.resize(N),\
     \ dp_subtree.resize(N), dp_parent.resize(N);\n    FOR(v, N) {\n      dp[v] = DP.dp[v].se.val;\n\
     \      dp_subtree[v] = DP.dp_subtree[v].se.val;\n      dp_parent[v] = DP.dp_parent[v].se.val;\n\
@@ -654,8 +654,8 @@ data:
     \  vc<u64> dp, dp_subtree, dp_parent;\n\n  Subtree_Hash(TREE& tree) : tree(tree)\
     \ {\n    int N = tree.N;\n    using T = pair<int, mint>;\n    T id = {0, mint(1)};\n\
     \n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se};\
-    \ };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n   \
-    \ auto f_ve = [&](T A, int r, int nxt_r) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
+    \ };\n    auto f_ev = [&](T A, int) -> T { return {A.fi + 1, A.se}; };\n    auto\
+    \ f_ve = [&](T A, int, int) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
     \    };\n\n    Rerooting_DP<TREE, T> DP(tree, f_ee, f_ev, f_ve, id);\n\n    dp.resize(N),\
     \ dp_subtree.resize(N), dp_parent.resize(N);\n    FOR(v, N) {\n      dp[v] = DP.dp[v].se.val;\n\
     \      dp_subtree[v] = DP.dp_subtree[v].se.val;\n      dp_parent[v] = DP.dp_parent[v].se.val;\n\
@@ -676,8 +676,8 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_hash.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:51:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-16 20:13:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp
