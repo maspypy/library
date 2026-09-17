@@ -101,7 +101,7 @@ struct Tree_Monoid {
 
   X prod_subtree(int u, int root = -1) {
     if (root == u) return prod_all();
-    if (root == -1 || tree.in_subtree(u, root)) {
+    if (root == -1 || !tree.in_subtree(root, u)) {
       int l = tree.LID[u], r = tree.RID[u];
       return seg.prod(l + edge, r);
     }
