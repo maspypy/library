@@ -337,7 +337,7 @@ data:
     \    if constexpr (edge) i = tree.e_to_v(i);\n    i = tree.LID[i];\n    seg.set(i,\
     \ x);\n    if constexpr (!MX::commute) seg_r.set(i, x);\n  }\n\n  void multiply(int\
     \ i, X x) {\n    if constexpr (edge) i = tree.e_to_v(i);\n    i = tree.LID[i];\n\
-    \    seg.multiply(i, x);\n    if constexpr (!MX::commute) seg_r.multiply(i, x);\n\
+    \    seg.multiply(i, x);\n    if constexpr (!MX::commute) seg_r.set(i, seg.get(i));\n\
     \  }\n\n  X prod_path(int u, int v) {\n    auto pd = tree.get_path_decomposition(u,\
     \ v, edge);\n    X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      val\
     \ = MX::op(val, _get_prod(a, b));\n    }\n    return val;\n  }\n\n  // uv path\
@@ -398,21 +398,21 @@ data:
     \    i = tree.LID[i];\n    seg.set(i, x);\n    if constexpr (!MX::commute) seg_r.set(i,\
     \ x);\n  }\n\n  void multiply(int i, X x) {\n    if constexpr (edge) i = tree.e_to_v(i);\n\
     \    i = tree.LID[i];\n    seg.multiply(i, x);\n    if constexpr (!MX::commute)\
-    \ seg_r.multiply(i, x);\n  }\n\n  X prod_path(int u, int v) {\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\n    X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      val\
-    \ = MX::op(val, _get_prod(a, b));\n    }\n    return val;\n  }\n\n  // uv path\
-    \ \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\u305F\u3059\u6700\u5F8C\
-    \u306E x\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A path(u,u) \u304C\
-    \ ng \uFF09-1\n  template <class F>\n  int max_path(F check, int u, int v) {\n\
-    \    if constexpr (edge) return max_path_edge(check, u, v);\n    if (!check(prod_path(u,\
-    \ u))) return -1;\n    auto pd = tree.get_path_decomposition(u, v, edge);\n  \
-    \  X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      X x = _get_prod(a,\
-    \ b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val, x);\n   \
-    \     u = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp = [&](X\
-    \ x) -> bool { return check(MX::op(val, x)); };\n      if (a <= b) {\n       \
-    \ // \u4E0B\u308A\n        auto i = seg.max_right(check_tmp, a);\n        return\
-    \ (i == a ? u : tree.V[i - 1]);\n      } else {\n        // \u4E0A\u308A\n   \
-    \     int i = 0;\n        if constexpr (MX::commute) i = seg.min_left(check_tmp,\
+    \ seg_r.set(i, seg.get(i));\n  }\n\n  X prod_path(int u, int v) {\n    auto pd\
+    \ = tree.get_path_decomposition(u, v, edge);\n    X val = MX::id();\n    for (auto\
+    \ &&[a, b] : pd) {\n      val = MX::op(val, _get_prod(a, b));\n    }\n    return\
+    \ val;\n  }\n\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
+    \u305F\u3059\u6700\u5F8C\u306E x\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\
+    \u308A path(u,u) \u304C ng \uFF09-1\n  template <class F>\n  int max_path(F check,\
+    \ int u, int v) {\n    if constexpr (edge) return max_path_edge(check, u, v);\n\
+    \    if (!check(prod_path(u, u))) return -1;\n    auto pd = tree.get_path_decomposition(u,\
+    \ v, edge);\n    X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      X x\
+    \ = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
+    \ x);\n        u = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp\
+    \ = [&](X x) -> bool { return check(MX::op(val, x)); };\n      if (a <= b) {\n\
+    \        // \u4E0B\u308A\n        auto i = seg.max_right(check_tmp, a);\n    \
+    \    return (i == a ? u : tree.V[i - 1]);\n      } else {\n        // \u4E0A\u308A\
+    \n        int i = 0;\n        if constexpr (MX::commute) i = seg.min_left(check_tmp,\
     \ a + 1);\n        if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a\
     \ + 1);\n        if (i == a + 1) return u;\n        return tree.V[i];\n      }\n\
     \    }\n    return v;\n  }\n\n  X prod_subtree(int u, int root = -1) {\n    if\
@@ -450,7 +450,7 @@ data:
   path: graph/ds/tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2026-09-17 11:49:38+09:00'
+  timestamp: '2026-09-17 12:03:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/mo_on_tree.test.cpp

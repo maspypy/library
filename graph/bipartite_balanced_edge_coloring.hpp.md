@@ -609,9 +609,9 @@ data:
     \    if (color == 1) A1.eb(A[i]);\n        dfs(dfs, to, 1 ^ color);\n      }\n\
     \    };\n    FOR(v, N) dfs(dfs, v, 0);\n    return {A0, A1};\n  }\n};\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> bipartite_edge_coloring(GT& G) {\n  if (G.M\
-    \ == 0) {\n    return {0, {}};\n  }\n  auto vcolor = bipartite_vertex_coloring<GT>(G);\n\
-    \  auto deg = G.deg_array();\n  int D = MAX(deg);\n\n  UnionFind uf(G.N);\n  FOR(c,\
-    \ 2) {\n    pq_min<pair<int, int>> que;\n    FOR(v, G.N) {\n      if (vcolor[v]\
+    \ == 0) {\n    return {0, {}};\n  }\n  auto vcolor = bipartite_vertex_coloring<GT>(G,\
+    \ true);\n  auto deg = G.deg_array();\n  int D = MAX(deg);\n\n  UnionFind uf(G.N);\n\
+    \  FOR(c, 2) {\n    pq_min<pair<int, int>> que;\n    FOR(v, G.N) {\n      if (vcolor[v]\
     \ == c) que.emplace(deg[v], v);\n    }\n    while (len(que) > 1) {\n      auto\
     \ [d1, v1] = POP(que);\n      auto [d2, v2] = POP(que);\n      if (d1 + d2 > D)\
     \ break;\n      uf.merge(v1, v2);\n      int r = uf[v1];\n      que.emplace(d1\
@@ -619,24 +619,25 @@ data:
     \    if (vcolor[v] == 0) LV.eb(v);\n    if (vcolor[v] == 1) RV.eb(v);\n  }\n \
     \ int X = max(len(LV), len(RV));\n  vc<int> degL(X), degR(X);\n\n  vc<pair<int,\
     \ int>> edges;\n  for (auto&& e : G.edges) {\n    int a = e.frm, b = e.to;\n \
-    \   a = uf[a], b = uf[b];\n    a = LB(LV, a);\n    b = LB(RV, b);\n    degL[a]++,\
-    \ degR[b]++;\n    edges.eb(a, X + b);\n  }\n  int p = 0, q = 0;\n  while (p <\
-    \ X && q < X) {\n    if (degL[p] == D) {\n      ++p;\n      continue;\n    }\n\
-    \    if (degR[q] == D) {\n      ++q;\n      continue;\n    }\n    edges.eb(p,\
-    \ X + q);\n    degL[p]++, degR[q]++;\n  }\n  Regular_Bipartite_Coloring RBC;\n\
-    \  vvc<int> res = RBC.solve(X, D, edges);\n  vc<int> ecolor(len(edges));\n  FOR(i,\
-    \ len(res)) {\n    for (auto&& j : res[i]) ecolor[j] = i;\n  }\n  ecolor.resize(G.M);\n\
-    \  return {D, ecolor};\n}\n#line 2 \"graph/bipartite_balanced_edge_coloring.hpp\"\
-    \n\n// \u8FBA\u3092 K \u8272\u3067\u5857\u308B. \u5404\u70B9\u306E\u307E\u308F\
-    \u308A\u3067\u8272\u304C\u5747\u7B49\uFF08max-min <= 1\uFF09\u306B\u305B\u3088\
-    .\n// return : color[eid].\n// https://codeforces.com/contest/212/problem/A\n\
-    vc<int> bipartite_balanced_edge_coloring(Graph<int, 0> G, int K) {\n  int N =\
-    \ G.N, M = G.M;\n  vc<int> A, B;\n  vc<int> cnt(N);\n  vc<int> now(N);\n  int\
-    \ nxt = 0;\n\n  auto get = [&](int v) -> int {\n    if (cnt[v] % K == 0) { now[v]\
-    \ = nxt++; }\n    cnt[v]++;\n    return now[v];\n  };\n  for (auto& e: G.edges)\
-    \ {\n    int a = e.frm, b = e.to;\n    a = get(a), b = get(b);\n    A.eb(a), B.eb(b);\n\
-    \  }\n  Graph<int, 0> H(nxt);\n  FOR(i, M) H.add(A[i], B[i]);\n  H.build();\n\
-    \  return bipartite_edge_coloring(H).se;\n}\n"
+    \   if (vcolor[a] == 1) swap(a, b);\n    a = uf[a], b = uf[b];\n    a = LB(LV,\
+    \ a);\n    b = LB(RV, b);\n    degL[a]++, degR[b]++;\n    edges.eb(a, X + b);\n\
+    \  }\n  int p = 0, q = 0;\n  while (p < X && q < X) {\n    if (degL[p] == D) {\n\
+    \      ++p;\n      continue;\n    }\n    if (degR[q] == D) {\n      ++q;\n   \
+    \   continue;\n    }\n    edges.eb(p, X + q);\n    degL[p]++, degR[q]++;\n  }\n\
+    \  Regular_Bipartite_Coloring RBC;\n  vvc<int> res = RBC.solve(X, D, edges);\n\
+    \  vc<int> ecolor(len(edges));\n  FOR(i, len(res)) {\n    for (auto&& j : res[i])\
+    \ ecolor[j] = i;\n  }\n  ecolor.resize(G.M);\n  return {D, ecolor};\n}\n#line\
+    \ 2 \"graph/bipartite_balanced_edge_coloring.hpp\"\n\n// \u8FBA\u3092 K \u8272\
+    \u3067\u5857\u308B. \u5404\u70B9\u306E\u307E\u308F\u308A\u3067\u8272\u304C\u5747\
+    \u7B49\uFF08max-min <= 1\uFF09\u306B\u305B\u3088.\n// return : color[eid].\n//\
+    \ https://codeforces.com/contest/212/problem/A\nvc<int> bipartite_balanced_edge_coloring(Graph<int,\
+    \ 0> G, int K) {\n  int N = G.N, M = G.M;\n  vc<int> A, B;\n  vc<int> cnt(N);\n\
+    \  vc<int> now(N);\n  int nxt = 0;\n\n  auto get = [&](int v) -> int {\n    if\
+    \ (cnt[v] % K == 0) { now[v] = nxt++; }\n    cnt[v]++;\n    return now[v];\n \
+    \ };\n  for (auto& e: G.edges) {\n    int a = e.frm, b = e.to;\n    a = get(a),\
+    \ b = get(b);\n    A.eb(a), B.eb(b);\n  }\n  Graph<int, 0> H(nxt);\n  FOR(i, M)\
+    \ H.add(A[i], B[i]);\n  H.build();\n  return bipartite_edge_coloring(H).se;\n\
+    }\n"
   code: "#include \"graph/bipartite_edge_coloring.hpp\"\n\n// \u8FBA\u3092 K \u8272\
     \u3067\u5857\u308B. \u5404\u70B9\u306E\u307E\u308F\u308A\u3067\u8272\u304C\u5747\
     \u7B49\uFF08max-min <= 1\uFF09\u306B\u305B\u3088.\n// return : color[eid].\n//\
@@ -659,7 +660,7 @@ data:
   isVerificationFile: false
   path: graph/bipartite_balanced_edge_coloring.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-09-17 12:03:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bipartite_balanced_edge_coloring.hpp

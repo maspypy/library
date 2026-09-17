@@ -611,9 +611,9 @@ data:
     \    if (color == 1) A1.eb(A[i]);\n        dfs(dfs, to, 1 ^ color);\n      }\n\
     \    };\n    FOR(v, N) dfs(dfs, v, 0);\n    return {A0, A1};\n  }\n};\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> bipartite_edge_coloring(GT& G) {\n  if (G.M\
-    \ == 0) {\n    return {0, {}};\n  }\n  auto vcolor = bipartite_vertex_coloring<GT>(G);\n\
-    \  auto deg = G.deg_array();\n  int D = MAX(deg);\n\n  UnionFind uf(G.N);\n  FOR(c,\
-    \ 2) {\n    pq_min<pair<int, int>> que;\n    FOR(v, G.N) {\n      if (vcolor[v]\
+    \ == 0) {\n    return {0, {}};\n  }\n  auto vcolor = bipartite_vertex_coloring<GT>(G,\
+    \ true);\n  auto deg = G.deg_array();\n  int D = MAX(deg);\n\n  UnionFind uf(G.N);\n\
+    \  FOR(c, 2) {\n    pq_min<pair<int, int>> que;\n    FOR(v, G.N) {\n      if (vcolor[v]\
     \ == c) que.emplace(deg[v], v);\n    }\n    while (len(que) > 1) {\n      auto\
     \ [d1, v1] = POP(que);\n      auto [d2, v2] = POP(que);\n      if (d1 + d2 > D)\
     \ break;\n      uf.merge(v1, v2);\n      int r = uf[v1];\n      que.emplace(d1\
@@ -621,14 +621,14 @@ data:
     \    if (vcolor[v] == 0) LV.eb(v);\n    if (vcolor[v] == 1) RV.eb(v);\n  }\n \
     \ int X = max(len(LV), len(RV));\n  vc<int> degL(X), degR(X);\n\n  vc<pair<int,\
     \ int>> edges;\n  for (auto&& e : G.edges) {\n    int a = e.frm, b = e.to;\n \
-    \   a = uf[a], b = uf[b];\n    a = LB(LV, a);\n    b = LB(RV, b);\n    degL[a]++,\
-    \ degR[b]++;\n    edges.eb(a, X + b);\n  }\n  int p = 0, q = 0;\n  while (p <\
-    \ X && q < X) {\n    if (degL[p] == D) {\n      ++p;\n      continue;\n    }\n\
-    \    if (degR[q] == D) {\n      ++q;\n      continue;\n    }\n    edges.eb(p,\
-    \ X + q);\n    degL[p]++, degR[q]++;\n  }\n  Regular_Bipartite_Coloring RBC;\n\
-    \  vvc<int> res = RBC.solve(X, D, edges);\n  vc<int> ecolor(len(edges));\n  FOR(i,\
-    \ len(res)) {\n    for (auto&& j : res[i]) ecolor[j] = i;\n  }\n  ecolor.resize(G.M);\n\
-    \  return {D, ecolor};\n}\n"
+    \   if (vcolor[a] == 1) swap(a, b);\n    a = uf[a], b = uf[b];\n    a = LB(LV,\
+    \ a);\n    b = LB(RV, b);\n    degL[a]++, degR[b]++;\n    edges.eb(a, X + b);\n\
+    \  }\n  int p = 0, q = 0;\n  while (p < X && q < X) {\n    if (degL[p] == D) {\n\
+    \      ++p;\n      continue;\n    }\n    if (degR[q] == D) {\n      ++q;\n   \
+    \   continue;\n    }\n    edges.eb(p, X + q);\n    degL[p]++, degR[q]++;\n  }\n\
+    \  Regular_Bipartite_Coloring RBC;\n  vvc<int> res = RBC.solve(X, D, edges);\n\
+    \  vc<int> ecolor(len(edges));\n  FOR(i, len(res)) {\n    for (auto&& j : res[i])\
+    \ ecolor[j] = i;\n  }\n  ecolor.resize(G.M);\n  return {D, ecolor};\n}\n"
   code: "#include \"graph/bipartite_vertex_coloring.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\
     \n#include \"flow/bipartite_matching.hpp\"\n\nstruct Regular_Bipartite_Coloring\
     \ {\n  using P = pair<int, int>;\n  int N, M;\n  vc<P> edges;\n\n  vvc<int> solve(int\
@@ -667,9 +667,9 @@ data:
     \    if (color == 1) A1.eb(A[i]);\n        dfs(dfs, to, 1 ^ color);\n      }\n\
     \    };\n    FOR(v, N) dfs(dfs, v, 0);\n    return {A0, A1};\n  }\n};\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> bipartite_edge_coloring(GT& G) {\n  if (G.M\
-    \ == 0) {\n    return {0, {}};\n  }\n  auto vcolor = bipartite_vertex_coloring<GT>(G);\n\
-    \  auto deg = G.deg_array();\n  int D = MAX(deg);\n\n  UnionFind uf(G.N);\n  FOR(c,\
-    \ 2) {\n    pq_min<pair<int, int>> que;\n    FOR(v, G.N) {\n      if (vcolor[v]\
+    \ == 0) {\n    return {0, {}};\n  }\n  auto vcolor = bipartite_vertex_coloring<GT>(G,\
+    \ true);\n  auto deg = G.deg_array();\n  int D = MAX(deg);\n\n  UnionFind uf(G.N);\n\
+    \  FOR(c, 2) {\n    pq_min<pair<int, int>> que;\n    FOR(v, G.N) {\n      if (vcolor[v]\
     \ == c) que.emplace(deg[v], v);\n    }\n    while (len(que) > 1) {\n      auto\
     \ [d1, v1] = POP(que);\n      auto [d2, v2] = POP(que);\n      if (d1 + d2 > D)\
     \ break;\n      uf.merge(v1, v2);\n      int r = uf[v1];\n      que.emplace(d1\
@@ -677,14 +677,14 @@ data:
     \    if (vcolor[v] == 0) LV.eb(v);\n    if (vcolor[v] == 1) RV.eb(v);\n  }\n \
     \ int X = max(len(LV), len(RV));\n  vc<int> degL(X), degR(X);\n\n  vc<pair<int,\
     \ int>> edges;\n  for (auto&& e : G.edges) {\n    int a = e.frm, b = e.to;\n \
-    \   a = uf[a], b = uf[b];\n    a = LB(LV, a);\n    b = LB(RV, b);\n    degL[a]++,\
-    \ degR[b]++;\n    edges.eb(a, X + b);\n  }\n  int p = 0, q = 0;\n  while (p <\
-    \ X && q < X) {\n    if (degL[p] == D) {\n      ++p;\n      continue;\n    }\n\
-    \    if (degR[q] == D) {\n      ++q;\n      continue;\n    }\n    edges.eb(p,\
-    \ X + q);\n    degL[p]++, degR[q]++;\n  }\n  Regular_Bipartite_Coloring RBC;\n\
-    \  vvc<int> res = RBC.solve(X, D, edges);\n  vc<int> ecolor(len(edges));\n  FOR(i,\
-    \ len(res)) {\n    for (auto&& j : res[i]) ecolor[j] = i;\n  }\n  ecolor.resize(G.M);\n\
-    \  return {D, ecolor};\n}"
+    \   if (vcolor[a] == 1) swap(a, b);\n    a = uf[a], b = uf[b];\n    a = LB(LV,\
+    \ a);\n    b = LB(RV, b);\n    degL[a]++, degR[b]++;\n    edges.eb(a, X + b);\n\
+    \  }\n  int p = 0, q = 0;\n  while (p < X && q < X) {\n    if (degL[p] == D) {\n\
+    \      ++p;\n      continue;\n    }\n    if (degR[q] == D) {\n      ++q;\n   \
+    \   continue;\n    }\n    edges.eb(p, X + q);\n    degL[p]++, degR[q]++;\n  }\n\
+    \  Regular_Bipartite_Coloring RBC;\n  vvc<int> res = RBC.solve(X, D, edges);\n\
+    \  vc<int> ecolor(len(edges));\n  FOR(i, len(res)) {\n    for (auto&& j : res[i])\
+    \ ecolor[j] = i;\n  }\n  ecolor.resize(G.M);\n  return {D, ecolor};\n}"
   dependsOn:
   - graph/bipartite_vertex_coloring.hpp
   - graph/base.hpp
@@ -696,7 +696,7 @@ data:
   path: graph/bipartite_edge_coloring.hpp
   requiredBy:
   - graph/bipartite_balanced_edge_coloring.hpp
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-09-17 12:03:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp

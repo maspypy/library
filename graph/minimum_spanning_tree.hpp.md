@@ -666,7 +666,7 @@ data:
     \    if constexpr (edge) i = tree.e_to_v(i);\n    i = tree.LID[i];\n    seg.set(i,\
     \ x);\n    if constexpr (!MX::commute) seg_r.set(i, x);\n  }\n\n  void multiply(int\
     \ i, X x) {\n    if constexpr (edge) i = tree.e_to_v(i);\n    i = tree.LID[i];\n\
-    \    seg.multiply(i, x);\n    if constexpr (!MX::commute) seg_r.multiply(i, x);\n\
+    \    seg.multiply(i, x);\n    if constexpr (!MX::commute) seg_r.set(i, seg.get(i));\n\
     \  }\n\n  X prod_path(int u, int v) {\n    auto pd = tree.get_path_decomposition(u,\
     \ v, edge);\n    X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      val\
     \ = MX::op(val, _get_prod(a, b));\n    }\n    return val;\n  }\n\n  // uv path\
@@ -1041,7 +1041,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2026-09-17 11:49:38+09:00'
+  timestamp: '2026-09-17 12:03:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/mst.test.cpp
