@@ -55,7 +55,7 @@ struct Tree_Monoid {
     if constexpr (edge) i = tree.e_to_v(i);
     i = tree.LID[i];
     seg.multiply(i, x);
-    if constexpr (!MX::commute) seg_r.multiply(i, x);
+    if constexpr (!MX::commute) seg_r.set(i, seg.get(i));
   }
 
   X prod_path(int u, int v) {

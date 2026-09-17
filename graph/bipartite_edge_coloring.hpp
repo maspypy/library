@@ -125,7 +125,7 @@ pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
   if (G.M == 0) {
     return {0, {}};
   }
-  auto vcolor = bipartite_vertex_coloring<GT>(G);
+  auto vcolor = bipartite_vertex_coloring<GT>(G, true);
   auto deg = G.deg_array();
   int D = MAX(deg);
 
@@ -156,6 +156,7 @@ pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
   vc<pair<int, int>> edges;
   for (auto&& e : G.edges) {
     int a = e.frm, b = e.to;
+    if (vcolor[a] == 1) swap(a, b);
     a = uf[a], b = uf[b];
     a = LB(LV, a);
     b = LB(RV, b);
