@@ -43,7 +43,7 @@ struct Beats_Multiset_Chmin {
   }
   template <typename F>
   void build(int m, F f) {
-    n = m, log = 1;
+    n = m, log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     dat.resize(size << 1, {-infty<T>, -infty<T>, 0, 0, infty<T>});
@@ -97,7 +97,7 @@ struct Beats_Multiset_Chmin {
   void push(int i) {
     assert(i < size);
     T x = dat[i].lazy;
-    for (int j: {2 * i + 0, 2 * i + 1}) {
+    for (int j : {2 * i + 0, 2 * i + 1}) {
       ::chmin(dat[j].max, x);
       ::chmin(dat[j].lazy, x);
     }

@@ -19,7 +19,7 @@ struct Dual_SegTree {
   template <typename F>
   void build(int m, F f) {
     n = m;
-    log = 1;
+    log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     laz.assign(size << 1, MA::id());

@@ -36,7 +36,7 @@ struct Lower_Convex_Hull_SegTree {
     build(n, f);
   }
   void build(int m) {
-    n = m, log = 1;
+    n = m, log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     point.assign(m, P(0, 0));
@@ -44,7 +44,7 @@ struct Lower_Convex_Hull_SegTree {
   }
   template <typename F>
   void build(int m, F f) {
-    n = m, log = 1;
+    n = m, log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     point.assign(m, P(0, 0));

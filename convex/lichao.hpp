@@ -31,7 +31,7 @@ struct LiChao_Tree {
     for (auto&& x : pts) X.eb(x);
     UNIQUE(X);
     if (X.empty()) X.eb(0);
-    n = len(X), log = 1;
+    n = len(X), log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     dat.assign(size << 1, default_fn);
@@ -39,7 +39,7 @@ struct LiChao_Tree {
 
   LiChao_Tree(ll lo, ll hi, FUNC default_fn) : lo(lo), hi(hi) {
     static_assert(!COMPRESS);
-    n = hi - lo, log = 1;
+    n = hi - lo, log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     dat.assign(size << 1, default_fn);

@@ -15,7 +15,7 @@ struct Prefix_Max_SegTree {
   int n, size, log;
   struct Data {
     KEY max;
-    X prod, rprod; // rprod はこの区間だけで計算したときの右側
+    X prod, rprod;  // rprod はこの区間だけで計算したときの右側
   };
 
   vc<Data> dat;
@@ -33,7 +33,7 @@ struct Prefix_Max_SegTree {
   }
   template <typename F>
   void build(int m, F f) {
-    n = m, log = 1;
+    n = m, log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     dat.assign(size << 1, {-infty<int>, MX::id(), MX::id()});
@@ -59,12 +59,18 @@ struct Prefix_Max_SegTree {
     L += size, R += size;
     X prod = MX::id();
     while (L < R) {
-      if (L & 1) { prod = MX::op(prod, dfs(L, k)), chmax(k, dat[L].max), ++L; }
-      if (R & 1) { suff.eb(--R); }
+      if (L & 1) {
+        prod = MX::op(prod, dfs(L, k)), chmax(k, dat[L].max), ++L;
+      }
+      if (R & 1) {
+        suff.eb(--R);
+      }
       L /= 2, R /= 2;
     }
     reverse(all(suff));
-    for (auto& v: suff) { prod = MX::op(prod, dfs(v, k)), chmax(k, dat[v].max); }
+    for (auto& v : suff) {
+      prod = MX::op(prod, dfs(v, k)), chmax(k, dat[v].max);
+    }
     return prod;
   }
 
@@ -76,7 +82,7 @@ struct Prefix_Max_SegTree {
     return {key, x};
   }
 
-private:
+ private:
   void update(int i) {
     assert(0 <= i && i < size);
     dat[i].max = max(dat[2 * i + 0].max, dat[2 * i + 1].max);
@@ -86,8 +92,12 @@ private:
 
   X dfs(int v, KEY k) {
     // prefix に k を置いた場合の subtree(v) での値
-    if (size <= v) { return (k <= dat[v].max ? dat[v].prod : MX::id()); }
-    if (k <= dat[2 * v + 0].max) { return MX::op(dfs(2 * v + 0, k), dat[v].rprod); }
+    if (size <= v) {
+      return (k <= dat[v].max ? dat[v].prod : MX::id());
+    }
+    if (k <= dat[2 * v + 0].max) {
+      return MX::op(dfs(2 * v + 0, k), dat[v].rprod);
+    }
     return dfs(2 * v + 1, k);
   }
 };

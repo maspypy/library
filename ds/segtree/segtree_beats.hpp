@@ -27,7 +27,7 @@ struct SegTree_Beats {
   }
   template <typename F>
   void build(int m, F f) {
-    n = m, log = 1;
+    n = m, log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     dat.assign(size << 1, MX::id());

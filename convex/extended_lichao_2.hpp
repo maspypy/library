@@ -19,7 +19,7 @@ struct Extended_LiChao_Tree_2 {
 
   Extended_LiChao_Tree_2(vi X_) : X(X_) {
     UNIQUE(X);
-    n = len(X), log = 1;
+    n = len(X), log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     dat.assign(size << 1, F(0, infty<ll>));
@@ -71,7 +71,7 @@ struct Extended_LiChao_Tree_2 {
     return (MINIMIZE ? ans : -ans);
   }
 
-private:
+ private:
   void push(int i) {
     dat[2 * i + 0].add(lazy[i]), lazy[2 * i + 0] += lazy[i];
     dat[2 * i + 1].add(lazy[i]), lazy[2 * i + 1] += lazy[i];
@@ -103,12 +103,16 @@ private:
       dat[i] = f;
       return;
     }
-    if (fl >= gl && fr >= gr) { return; }
+    if (fl >= gl && fr >= gr) {
+      return;
+    }
     ll node_m = (node_l + node_r) / 2;
     ll fm = f(X[node_m]), gm = g(X[node_m]);
     push(i);
-    if (fm < gm && fl < gl) dat[i] = f, chmin_line_rec(2 * i + 1, g, node_m, node_r);
-    elif (fm < gm && fl >= gl) dat[i] = f, chmin_line_rec(2 * i + 0, g, node_l, node_m);
+    if (fm < gm && fl < gl)
+      dat[i] = f, chmin_line_rec(2 * i + 1, g, node_m, node_r);
+    elif (fm < gm && fl >= gl) dat[i] = f,
+                               chmin_line_rec(2 * i + 0, g, node_l, node_m);
     elif (fm >= gm && gl < fl) chmin_line_rec(2 * i + 1, f, node_m, node_r);
     elif (fm >= gm && gl >= fl) chmin_line_rec(2 * i + 0, f, node_l, node_m);
   }
@@ -139,7 +143,8 @@ private:
     if (node_l < L || R < node_r) {
       ll node_m = (node_l + node_r) / 2;
       ll ans = infty<ll>;
-      if (dat[i].b != infty<ll>) chmin(ans, min(dat[i](X[L]), dat[i](X[R - 1])) + laz);
+      if (dat[i].b != infty<ll>)
+        chmin(ans, min(dat[i](X[L]), dat[i](X[R - 1])) + laz);
       laz += lazy[i];
       chmin(ans, query_rec(2 * i + 0, L, R, node_l, node_m, laz));
       chmin(ans, query_rec(2 * i + 1, L, R, node_m, node_r, laz));

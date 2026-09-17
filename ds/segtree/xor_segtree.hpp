@@ -8,7 +8,7 @@ struct Xor_SegTree {
   using value_type = X;
   vvc<X> dat;
   int n, log, size;
-  int H; // 幅 2^H のところまで作る
+  int H;  // 幅 2^H のところまで作る
 
   Xor_SegTree() {}
   Xor_SegTree(int n) { build(n); }
@@ -26,7 +26,7 @@ struct Xor_SegTree {
   }
   template <typename F>
   void build(int m, F f) {
-    n = m, log = 1;
+    n = m, log = 0;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     assert(n == size);
