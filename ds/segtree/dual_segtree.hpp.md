@@ -53,7 +53,7 @@ data:
     \ Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A {\
     \ return MA::id(); });\n  }\n  template <typename F>\n  Dual_SegTree(int n, F\
     \ f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m;\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
+    \ F f) {\n    n = m;\n    log = 0;\n    while ((1 << log) < n) ++log;\n    size\
     \ = 1 << log;\n    laz.assign(size << 1, MA::id());\n    FOR(i, n) laz[size +\
     \ i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void build(int n) {\n \
     \   build(n, [&](int i) -> A { return MA::id(); });\n  }\n\n  A get(int p) {\n\
@@ -76,7 +76,7 @@ data:
     \ has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n\
     \    build(n, [&](int i) -> A { return MA::id(); });\n  }\n  template <typename\
     \ F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template <typename\
-    \ F>\n  void build(int m, F f) {\n    n = m;\n    log = 1;\n    while ((1 << log)\
+    \ F>\n  void build(int m, F f) {\n    n = m;\n    log = 0;\n    while ((1 << log)\
     \ < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::id());\n  \
     \  FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void\
     \ build(int n) {\n    build(n, [&](int i) -> A { return MA::id(); });\n  }\n\n\
@@ -103,7 +103,7 @@ data:
   - graph/ds/dual_tree_monoid.hpp
   - ds/segtree/range_add_make_increasing.hpp
   - ds/segtree/range_add_make_decreasing.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-09-17 11:49:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_closest_pair.test.cpp

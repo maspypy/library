@@ -185,7 +185,7 @@ data:
     \ Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A {\
     \ return MA::id(); });\n  }\n  template <typename F>\n  Dual_SegTree(int n, F\
     \ f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m;\n    log = 1;\n    while ((1 << log) < n) ++log;\n    size\
+    \ F f) {\n    n = m;\n    log = 0;\n    while ((1 << log) < n) ++log;\n    size\
     \ = 1 << log;\n    laz.assign(size << 1, MA::id());\n    FOR(i, n) laz[size +\
     \ i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void build(int n) {\n \
     \   build(n, [&](int i) -> A { return MA::id(); });\n  }\n\n  A get(int p) {\n\
@@ -312,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
+  timestamp: '2026-09-17 11:49:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_closest_pair.test.cpp

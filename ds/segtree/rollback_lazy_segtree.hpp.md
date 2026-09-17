@@ -71,7 +71,7 @@ data:
     \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
     \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
     \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat\
+    \ m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat\
     \ = Rollback_Array<X>(vc<X>(size << 1, MX::id()));\n    laz = Rollback_Array<A>(vc<A>(size,\
     \ MA::id()));\n    FOR(i, n) dat.set(size + i, f(i));\n    FOR_R(i, 1, size) update(i);\n\
     \  }\n\n  void update(int k) { dat.set(k, MX::op(dat.get(2 * k), dat.get(2 * k\
@@ -132,7 +132,7 @@ data:
     \ f);\n  }\n  Rollback_Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
     \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n    while ((1\
     \ << log) < n) ++log;\n    size = 1 << log;\n    dat = Rollback_Array<X>(vc<X>(size\
     \ << 1, MX::id()));\n    laz = Rollback_Array<A>(vc<A>(size, MA::id()));\n   \
     \ FOR(i, n) dat.set(size + i, f(i));\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
@@ -189,7 +189,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/rollback_lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-09-17 11:49:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/rollback_lazy_segtree.hpp

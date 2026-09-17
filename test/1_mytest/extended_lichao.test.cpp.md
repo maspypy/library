@@ -114,7 +114,7 @@ data:
     \ other.b == infty<ll>) {\n        a = 0, b = infty<ll>;\n      } else {\n   \
     \     a += other.a, b += other.b;\n      }\n    }\n  };\n\n  vi X;\n  vc<F> dat,\
     \ lazy;\n  int n, log, size;\n\n  Extended_LiChao_Tree_1(vi X_) : X(X_) {\n  \
-    \  UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log) < n) ++log;\n \
+    \  UNIQUE(X);\n    n = len(X), log = 0;\n    while ((1 << log) < n) ++log;\n \
     \   size = 1 << log;\n    dat.assign(size << 1, F(0, infty<ll>));\n    lazy.assign(size\
     \ << 1, F(0, 0));\n  }\n\n  // O(logN). f(x) := min(f(x), ax+b).\n  void chmin_line(ll\
     \ a, ll b) {\n    static_assert(MINIMIZE);\n    chmin_line_rec(1, F(a, b), 0,\
@@ -134,8 +134,8 @@ data:
     \ a = -a, b = -b;\n    add_segment_rec(1, LB(X, L), LB(X, R), F(a, b), 0, n);\n\
     \  }\n\n  ll query(ll x) {\n    int idx = LB(X, x);\n    assert(0 <= idx && idx\
     \ < n && X[idx] == x);\n    ll ans = query_rec(1, idx, 0, n, F(0, 0));\n    return\
-    \ MINIMIZE ? ans : -ans;\n  }\n\nprivate:\n  void push(int i) {\n    dat[2 * i\
-    \ + 0].add(lazy[i]), lazy[2 * i + 0].add(lazy[i]);\n    dat[2 * i + 1].add(lazy[i]),\
+    \ MINIMIZE ? ans : -ans;\n  }\n\n private:\n  void push(int i) {\n    dat[2 *\
+    \ i + 0].add(lazy[i]), lazy[2 * i + 0].add(lazy[i]);\n    dat[2 * i + 1].add(lazy[i]),\
     \ lazy[2 * i + 1].add(lazy[i]);\n    lazy[i] = F(0, 0);\n  }\n\n  void chmin_segment_rec(int\
     \ i, ll xl, ll xr, F f, ll node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr,\
     \ node_r);\n    if (xl >= xr) return;\n    if (node_l < xl || xr < node_r) {\n\
@@ -145,16 +145,17 @@ data:
     \ node_r);\n  }\n\n  void chmin_line_rec(int i, F f, ll node_l, ll node_r) {\n\
     \    F g = dat[i];\n    ll fl = f(X[node_l]), fr = f(X[node_r - 1]);\n    ll gl\
     \ = g(X[node_l]), gr = g(X[node_r - 1]);\n    if (fl <= gl && fr <= gr) {\n  \
-    \    dat[i] = f;\n      return;\n    }\n    if (fl >= gl && fr >= gr) { return;\
-    \ }\n    ll node_m = (node_l + node_r) / 2;\n    ll fm = f(X[node_m]), gm = g(X[node_m]);\n\
-    \    push(i);\n    if (fm < gm && fl < gl) dat[i] = f, chmin_line_rec(2 * i +\
-    \ 1, g, node_m, node_r);\n    elif (fm < gm && fl >= gl) dat[i] = f, chmin_line_rec(2\
-    \ * i + 0, g, node_l, node_m);\n    elif (fm >= gm && gl < fl) chmin_line_rec(2\
-    \ * i + 1, f, node_m, node_r);\n    elif (fm >= gm && gl >= fl) chmin_line_rec(2\
-    \ * i + 0, f, node_l, node_m);\n  }\n\n  void add_segment_rec(int i, ll xl, ll\
-    \ xr, F f, ll node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr, node_r);\n\
-    \    if (xl >= xr) return;\n    if (node_l < xl || xr < node_r) {\n      ll node_m\
-    \ = (node_l + node_r) / 2;\n      push(i);\n      chmin_line_rec(2 * i + 0, dat[i],\
+    \    dat[i] = f;\n      return;\n    }\n    if (fl >= gl && fr >= gr) {\n    \
+    \  return;\n    }\n    ll node_m = (node_l + node_r) / 2;\n    ll fm = f(X[node_m]),\
+    \ gm = g(X[node_m]);\n    push(i);\n    if (fm < gm && fl < gl)\n      dat[i]\
+    \ = f, chmin_line_rec(2 * i + 1, g, node_m, node_r);\n    elif (fm < gm && fl\
+    \ >= gl) dat[i] = f,\n                               chmin_line_rec(2 * i + 0,\
+    \ g, node_l, node_m);\n    elif (fm >= gm && gl < fl) chmin_line_rec(2 * i + 1,\
+    \ f, node_m, node_r);\n    elif (fm >= gm && gl >= fl) chmin_line_rec(2 * i +\
+    \ 0, f, node_l, node_m);\n  }\n\n  void add_segment_rec(int i, ll xl, ll xr, F\
+    \ f, ll node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr, node_r);\n    if\
+    \ (xl >= xr) return;\n    if (node_l < xl || xr < node_r) {\n      ll node_m =\
+    \ (node_l + node_r) / 2;\n      push(i);\n      chmin_line_rec(2 * i + 0, dat[i],\
     \ node_l, node_m);\n      chmin_line_rec(2 * i + 1, dat[i], node_m, node_r);\n\
     \      dat[i] = F(0, infty<ll>);\n      add_segment_rec(2 * i + 0, xl, xr, f,\
     \ node_l, node_m);\n      add_segment_rec(2 * i + 1, xl, xr, f, node_m, node_r);\n\
@@ -162,18 +163,18 @@ data:
     \ i, ll x, ll node_l, ll node_r, F laz) {\n    ll res = dat[i](X[x]);\n    if\
     \ (res < infty<ll>) res += laz(X[x]);\n    ll node_m = (node_l + node_r) / 2;\n\
     \    laz.add(lazy[i]);\n    if (node_r == node_l + 1) return res;\n    if (x <\
-    \ node_m) { chmin(res, query_rec(2 * i + 0, x, node_l, node_m, laz)); }\n    if\
-    \ (x >= node_m) { chmin(res, query_rec(2 * i + 1, x, node_m, node_r, laz)); }\n\
-    \    return res;\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n                 \
-    \     chrono::high_resolution_clock::now().time_since_epoch())\n             \
-    \             .count()) *\n                  10150724397891781847ULL;\n  x_ ^=\
-    \ x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim > 0);\n\
-    \  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n  return\
-    \ l + RNG_64() % (r - l);\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
-    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \             chrono::high_resolution_clock::now().time_since_epoch())\n     \
-    \                     .count()) *\n                  10150724397891781847ULL;\n\
+    \ node_m) {\n      chmin(res, query_rec(2 * i + 0, x, node_l, node_m, laz));\n\
+    \    }\n    if (x >= node_m) {\n      chmin(res, query_rec(2 * i + 1, x, node_m,\
+    \ node_r, laz));\n    }\n    return res;\n  }\n};\n#line 1 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n     \
+    \                 chrono::high_resolution_clock::now().time_since_epoch())\n \
+    \                         .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 2 \"random/shuffle.hpp\"\n\ntemplate\
@@ -245,7 +246,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/extended_lichao.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
+  timestamp: '2026-09-17 11:49:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/extended_lichao.test.cpp

@@ -93,7 +93,7 @@ data:
     \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
     \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
     \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
     \ << 1, MX::id());\n    laz.assign(size, MA::id());\n    has_laz.assign(size,\
     \ false);\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n\
     \  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n\
@@ -281,7 +281,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_connected_intervals.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-09-17 11:49:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count/count_connected_intervals.hpp

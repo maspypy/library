@@ -23,9 +23,9 @@ data:
     \  };\n  int n, log, size;\n  vc<P> point;\n  vc<Data> dat;\n\n  Lower_Convex_Hull_SegTree()\
     \ {}\n  Lower_Convex_Hull_SegTree(int n) { build(n); }\n  template <typename F>\n\
     \  Lower_Convex_Hull_SegTree(int n, F f) {\n    build(n, f);\n  }\n  void build(int\
-    \ m) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
+    \ m) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
     \ log;\n    point.assign(m, P(0, 0));\n    dat.assign(2 * size, Data(-1, -1, 0));\n\
-    \  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n\
+    \  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n\
     \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    point.assign(m,\
     \ P(0, 0));\n    dat.assign(2 * size, Data(-1, -1, 0));\n    FOR(i, m) {\n   \
     \   auto [exist, x, y] = f(i);\n      point[i] = P(x, y);\n      dat[size + i]\
@@ -97,10 +97,10 @@ data:
     \ L != -1; };\n  };\n  int n, log, size;\n  vc<P> point;\n  vc<Data> dat;\n\n\
     \  Lower_Convex_Hull_SegTree() {}\n  Lower_Convex_Hull_SegTree(int n) { build(n);\
     \ }\n  template <typename F>\n  Lower_Convex_Hull_SegTree(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  void build(int m) {\n    n = m, log = 1;\n    while ((1 << log)\
+    \ f);\n  }\n  void build(int m) {\n    n = m, log = 0;\n    while ((1 << log)\
     \ < n) ++log;\n    size = 1 << log;\n    point.assign(m, P(0, 0));\n    dat.assign(2\
     \ * size, Data(-1, -1, 0));\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1\
     \ << log;\n    point.assign(m, P(0, 0));\n    dat.assign(2 * size, Data(-1, -1,\
     \ 0));\n    FOR(i, m) {\n      auto [exist, x, y] = f(i);\n      point[i] = P(x,\
     \ y);\n      dat[size + i] = (exist ? Data(i, i, x) : Data(-1, -1, x));\n    }\n\
@@ -161,7 +161,7 @@ data:
   isVerificationFile: false
   path: geo/lower_convex_hull_segtree.hpp
   requiredBy: []
-  timestamp: '2026-08-17 11:03:23+09:00'
+  timestamp: '2026-09-17 11:49:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/lower_convex_hull_segtree.hpp

@@ -246,10 +246,10 @@ data:
     \ {\n    if constexpr (COMPRESS) {\n      return LB(X, x);\n    }\n    assert(lo\
     \ <= x && x <= hi);\n    return x - lo;\n  }\n\n  LiChao_Tree(const vc<ll>& pts,\
     \ FUNC default_fn) {\n    static_assert(COMPRESS);\n    for (auto&& x : pts) X.eb(x);\n\
-    \    UNIQUE(X);\n    if (X.empty()) X.eb(0);\n    n = len(X), log = 1;\n    while\
+    \    UNIQUE(X);\n    if (X.empty()) X.eb(0);\n    n = len(X), log = 0;\n    while\
     \ ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, default_fn);\n\
     \  }\n\n  LiChao_Tree(ll lo, ll hi, FUNC default_fn) : lo(lo), hi(hi) {\n    static_assert(!COMPRESS);\n\
-    \    n = hi - lo, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
+    \    n = hi - lo, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
     \ log;\n    dat.assign(size << 1, default_fn);\n  }\n\n  void chmin_line(FUNC\
     \ f) {\n    static_assert(MINIMIZE);\n    return add_line_at(1, f);\n  }\n  void\
     \ chmax_line(FUNC f) {\n    static_assert(!MINIMIZE);\n    return add_line_at(1,\
@@ -307,7 +307,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
+  timestamp: '2026-09-17 11:49:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
