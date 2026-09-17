@@ -396,7 +396,7 @@ data:
     \ v, edge);\r\n    X val = MX::id();\r\n    for (auto &&[a, b] : pd) {\r\n   \
     \   val = MX::op(val, get_prod(a, b));\r\n    }\r\n    return val;\r\n  }\r\n\r\
     \n  X prod_subtree(int u, int root = -1) {\r\n    if (root == u) return prod_all();\r\
-    \n    if (root == -1 || tree.in_subtree(u, root)) {\r\n      int l = tree.LID[u],\
+    \n    if (root == -1 || !tree.in_subtree(root, u)) {\r\n      int l = tree.LID[u],\
     \ r = tree.RID[u];\r\n      return seg.prod(l + edge, r);\r\n    }\r\n    assert(!edge);\
     \  // \u3055\u307C\u308A\r\n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u],\
     \ R = tree.RID[u];\r\n    return MX::op(seg.prod(0, L), seg.prod(R, N));\r\n \
@@ -477,7 +477,7 @@ data:
     \ v, edge);\r\n    X val = MX::id();\r\n    for (auto &&[a, b] : pd) {\r\n   \
     \   val = MX::op(val, get_prod(a, b));\r\n    }\r\n    return val;\r\n  }\r\n\r\
     \n  X prod_subtree(int u, int root = -1) {\r\n    if (root == u) return prod_all();\r\
-    \n    if (root == -1 || tree.in_subtree(u, root)) {\r\n      int l = tree.LID[u],\
+    \n    if (root == -1 || !tree.in_subtree(root, u)) {\r\n      int l = tree.LID[u],\
     \ r = tree.RID[u];\r\n      return seg.prod(l + edge, r);\r\n    }\r\n    assert(!edge);\
     \  // \u3055\u307C\u308A\r\n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u],\
     \ R = tree.RID[u];\r\n    return MX::op(seg.prod(0, L), seg.prod(R, N));\r\n \
@@ -536,7 +536,7 @@ data:
   isVerificationFile: false
   path: graph/ds/lazy_tree_monoid.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:24:01+09:00'
+  timestamp: '2026-09-17 11:40:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1790.test.cpp

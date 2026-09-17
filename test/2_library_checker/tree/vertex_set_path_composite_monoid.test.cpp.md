@@ -693,9 +693,9 @@ data:
     \ a + 1);\n        if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a\
     \ + 1);\n        if (i == a + 1) return u;\n        return tree.V[i];\n      }\n\
     \    }\n    return v;\n  }\n\n  X prod_subtree(int u, int root = -1) {\n    if\
-    \ (root == u) return prod_all();\n    if (root == -1 || tree.in_subtree(u, root))\
-    \ {\n      int l = tree.LID[u], r = tree.RID[u];\n      return seg.prod(l + edge,\
-    \ r);\n    }\n    assert(!edge);  // \u3055\u307C\u308A\n    u = tree.jump(u,\
+    \ (root == u) return prod_all();\n    if (root == -1 || !tree.in_subtree(root,\
+    \ u)) {\n      int l = tree.LID[u], r = tree.RID[u];\n      return seg.prod(l\
+    \ + edge, r);\n    }\n    assert(!edge);  // \u3055\u307C\u308A\n    u = tree.jump(u,\
     \ root, 1);\n    int L = tree.LID[u], R = tree.RID[u];\n    return MX::op(seg.prod(0,\
     \ L), seg.prod(R, N));\n  }\n\n  X prod_all() { return prod_subtree(tree.V[0]);\
     \ }\n\n  inline X _get_prod(int a, int b) {\n    if constexpr (MX::commute) {\n\
@@ -755,7 +755,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 08:25:53+09:00'
+  timestamp: '2026-09-17 11:40:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
