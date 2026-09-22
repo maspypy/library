@@ -25,7 +25,7 @@ tuple<T, T, T> cross_point_exact(const Line<T> L1, const Line<T> L2) {
 // 浮動小数点数はエラー
 // 0: 交点なし
 // 1: 一意な交点
-// 2：2 つ以上の交点（整数型を利用して厳密にやる）
+// infty<int>：2 つ以上の交点（整数型を利用して厳密にやる）
 template <typename T>
 int count_cross(Segment<T> S1, Segment<T> S2, bool include_ends) {
   static_assert(!std::is_floating_point<T>::value);
