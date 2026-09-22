@@ -6,7 +6,7 @@
 これは revS[N-1-k:N-1-k+N] とも言える.
 https://qoj.ac/contest/1576/problem/8512
 */
-template <int id>
+template <int id_>
 struct Dihedral {
   using value_type = pair<int, int>;
   using X = value_type;
