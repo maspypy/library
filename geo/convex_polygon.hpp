@@ -1,8 +1,8 @@
 #include "geo/base.hpp"
 #include "geo/convex_hull.hpp"
 
-// strict: n>=3 の反時計回り狭義凸多角形
-// non-strict: n=1 の点、n=2 の線分、または n>=3 の反時計回り凸多角形
+// strict: n>=3 の反時計回り狭義凸多角形。
+// non-strict: n=1 の点、n=2 の線分、または n>=3 の反時計回り凸多角形。
 template <typename T, bool is_strict = true>
 struct Convex_Polygon {
   using P = Point<T>;
@@ -79,7 +79,7 @@ struct Convex_Polygon {
     return 0;
   }
 
-  // return {min, i, j}. i==j は頂点, i!=j は最適辺 i -> j.
+  // return {min, i, j}. i==j は頂点, i!=j は最適辺 i -> j。
   tuple<T, int, int> min_dot(P p) const {
     static_assert(is_strict);
     assert(p != P(0, 0));
@@ -92,7 +92,7 @@ struct Convex_Polygon {
     return {val, idx, idx};
   }
 
-  // return {max, i, j}. i==j は頂点, i!=j は最適辺 i -> j.
+  // return {max, i, j}. i==j は頂点, i!=j は最適辺 i -> j。
   tuple<T, int, int> max_dot(P p) const {
     static_assert(is_strict);
     assert(p != P(0, 0));
@@ -125,6 +125,80 @@ struct Convex_Polygon {
       if ((point[b] - A).det(B - A) <= 0) return false;
     }
     return true;
+  }
+
+  // 0: 共通点なし, 1: 一意な共通点, 2: 異なる共通点が2個,
+  // infty<int>: 境界辺と正の長さで重なる.
+  int count_boundary_cross_line(P A, P B) const {
+    static_assert(is_strict);
+    assert(A != B);
+    P D = B - A;
+    P normal(-D.y, D.x);
+    auto [min_value, min_i, min_j] = min_dot(normal);
+    auto [max_value, max_i, max_j] = max_dot(normal);
+    T lo = min_value - normal.dot(A);
+    T hi = max_value - normal.dot(A);
+    if (lo > T(0) || hi < T(0)) return 0;
+    if (lo == T(0) && min_i != min_j) return infty<int>;
+    if (hi == T(0) && max_i != max_j) return infty<int>;
+    if (lo == T(0) || hi == T(0)) return 1;
+    return 2;
+  }
+
+  // return {t, eid, s} in increasing t order.
+  // A+t*(B-A) = point[eid]*(1-s)+point[nxt_idx(eid)]*s, 0<=s<1.
+  // 辺と重なる場合は、その辺の両端点を返す.
+  template <typename REAL>
+  vc<tuple<REAL, int, REAL>> boundary_cross_line(P A, P B) const {
+    static_assert(is_strict);
+    assert(A != B);
+    int cnt = count_boundary_cross_line(A, B);
+    if (cnt == 0) return {};
+
+    P D = B - A;
+    P normal(-D.y, D.x);
+    auto [min_value, min_i, min_j] = min_dot(normal);
+    auto [max_value, max_i, max_j] = max_dot(normal);
+    T lo = min_value - normal.dot(A);
+
+    auto vertex_data = [&](int i) -> tuple<REAL, int, REAL> {
+      REAL t = (D.x != T(0) ? REAL(point[i].x - A.x) / REAL(D.x)
+                            : REAL(point[i].y - A.y) / REAL(D.y));
+      return {t, i, REAL(0)};
+    };
+    if (cnt == infty<int>) {
+      int i = (lo == T(0) ? min_i : max_i);
+      int j = (lo == T(0) ? min_j : max_j);
+      assert(j == nxt_idx(i));
+      vc<tuple<REAL, int, REAL>> ans = {vertex_data(i), vertex_data(j)};
+      if (get<0>(ans[1]) < get<0>(ans[0])) swap(ans[0], ans[1]);
+      return ans;
+    }
+    if (cnt == 1) return {lo == T(0) ? vertex_data(min_i) : vertex_data(max_i)};
+
+    auto eval = [&](int i) -> T {
+      return normal.dot(point[i % n]) - normal.dot(A);
+    };
+    int a = min_i, b = max_i;
+    if (b < a) b += n;
+    int p = binary_search([&](int i) { return eval(i) < T(0); }, a, b);
+    int q = binary_search([&](int i) { return eval(i) > T(0); }, b, a + n);
+    auto edge_data = [&](int eid) -> tuple<REAL, int, REAL> {
+      int j = nxt_idx(eid);
+      T x = eval(eid), y = eval(eid + 1);
+      if (x == T(0)) return vertex_data(eid);
+      if (y == T(0)) return vertex_data(j);
+      assert((x < T(0) && T(0) < y) || (y < T(0) && T(0) < x));
+      REAL s = REAL(x) / (REAL(x) - REAL(y));
+      REAL t0 = (D.x != T(0) ? REAL(point[eid].x - A.x) / REAL(D.x)
+                             : REAL(point[eid].y - A.y) / REAL(D.y));
+      REAL t1 = (D.x != T(0) ? REAL(point[j].x - A.x) / REAL(D.x)
+                             : REAL(point[j].y - A.y) / REAL(D.y));
+      return {t0 * (REAL(1) - s) + t1 * s, eid, s};
+    };
+    vc<tuple<REAL, int, REAL>> ans = {edge_data(p % n), edge_data(q % n)};
+    if (get<0>(ans[1]) < get<0>(ans[0])) swap(ans[0], ans[1]);
+    return ans;
   }
 
   T area_between(int i, int j) const {
