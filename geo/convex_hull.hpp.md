@@ -26,9 +26,21 @@ data:
   - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
+  - icon: ':x:'
+    path: geo/cross_point.hpp
+    title: geo/cross_point.hpp
+  - icon: ':x:'
+    path: geo/distance.hpp
+    title: geo/distance.hpp
   - icon: ':heavy_check_mark:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
+  - icon: ':warning:'
+    path: geo/minimum_three_distance_sum.hpp
+    title: geo/minimum_three_distance_sum.hpp
+  - icon: ':warning:'
+    path: geo/polygon.hpp
+    title: geo/polygon.hpp
   - icon: ':x:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
@@ -60,6 +72,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/CGL_2_B.test.cpp
+    title: test/4_aoj/CGL_2_B.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/CGL_2_C.test.cpp
+    title: test/4_aoj/CGL_2_C.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/CGL_2_D.test.cpp
+    title: test/4_aoj/CGL_2_D.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/CGL_7_B.test.cpp
+    title: test/4_aoj/CGL_7_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -168,6 +192,10 @@ data:
   path: geo/convex_hull.hpp
   requiredBy:
   - random/random_polygon.hpp
+  - geo/cross_point.hpp
+  - geo/polygon.hpp
+  - geo/distance.hpp
+  - geo/minimum_three_distance_sum.hpp
   - geo/furthest_pair.hpp
   - geo/convex_polygon.hpp
   - convex/lattice_point_count.hpp
@@ -188,6 +216,10 @@ data:
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
   - test/2_library_checker/geometry/furthest_pair.test.cpp
+  - test/4_aoj/CGL_2_D.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
+  - test/4_aoj/CGL_2_C.test.cpp
+  - test/4_aoj/CGL_2_B.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:

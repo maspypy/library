@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
+  - icon: ':question:'
+    path: geo/convex_hull.hpp
+    title: geo/convex_hull.hpp
   - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
@@ -239,114 +242,251 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
     \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"geo/cross_point.hpp\"\n\n#line\
-    \ 1 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point()\
-    \ : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A x, B y) :\
-    \ x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B> p)\
-    \ : x(p.fi), y(p.se) {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x),\
-    \ y(p.y) {\n    static_assert(!is_integral_v<T> || is_integral_v<U>);\n  }\n\n\
-    \  Point operator+=(const Point p) {\n    x += p.x, y += p.y;\n    return *this;\n\
-    \  }\n  Point operator-=(const Point p) {\n    x -= p.x, y -= p.y;\n    return\
-    \ *this;\n  }\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n\
-    \  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
-    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
-    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
-    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
-    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
-    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(const Point&\
-    \ other) const { return x * other.x + y * other.y; }\n  T det(const Point& other)\
-    \ const { return x * other.y - y * other.x; }\n\n  double norm() { return sqrtl(x\
-    \ * x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double\
-    \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
-    \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n  Point\
-    \ rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y, -x}); }\n};\n\n#ifdef\
-    \ FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n\
-    }\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n  fastio::wt('\
-    \ ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\u3080\u3068\
-    \u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 +1\u3001\u53F3\
-    \u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename T>\nint ccw(Point<T>\
-    \ A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n  if (x > 0) return\
-    \ 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename REAL, typename\
-    \ T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx = REAL(A.x) -\
-    \ REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx * dx + dy *\
-    \ dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n\
-    \  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n\
-    \    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1,\
-    \ T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template\
-    \ <typename U>\n  U eval(Point<U> P) {\n    return U(a) * P.x + U(b) * P.y + U(c);\n\
-    \  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return a * x + b *\
-    \ y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\
-    \u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\u308B\n  void normalize() {\n\
-    \    static_assert(is_same_v<T, int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a),\
-    \ abs(b)), abs(c));\n    a /= g, b /= g, c /= g;\n    if (b < 0) {\n      a =\
-    \ -a, b = -b, c = -c;\n    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b,\
-    \ c = -c;\n    }\n  }\n\n  bool is_parallel(Line other) { return a * other.b -\
-    \ b * other.a == 0; }\n  bool is_orthogonal(Line other) { return a * other.a +\
-    \ b * other.b == 0; }\n  bool is_same(Line other) {\n    if (a * other.b != b\
-    \ * other.a) return 0;\n    if (a * other.c != c * other.a) return 0;\n    if\
-    \ (b * other.c != c * other.b) return 0;\n    return 1;\n  }\n};\n\ntemplate <typename\
-    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
-    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C -\
-    \ A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >=\
-    \ 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B);\
-    \ }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL\
-    \ r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
-    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
-    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n#line 3 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\
-    \u306A\u3044\u3053\u3068\u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename\
-    \ T>\nPoint<REAL> cross_point(const Line<T> L1, const Line<T> L2) {\n  T det =\
-    \ L1.a * L2.b - L1.b * L2.a;\n  assert(det != 0);\n  REAL x = -REAL(L1.c) * L2.b\
-    \ + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a) * L2.c + REAL(L1.c) * L2.a;\n \
-    \ return Point<REAL>(x / det, y / det);\n}\n\n// return: x,y,D. point=(x/D,y/D)\n\
-    template <typename T>\ntuple<T, T, T> cross_point_exact(const Line<T> L1, const\
-    \ Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det != 0);\n \
-    \ T x = -L1.c * L2.b + L1.b * L2.c;\n  T y = -L1.a * L2.c + L1.c * L2.a;\n  if\
-    \ (det < 0) x = -x, y = -y, det = -det;\n  return {x, y, det};\n}\n\n// \u6D6E\
-    \u52D5\u5C0F\u6570\u70B9\u6570\u306F\u30A8\u30E9\u30FC\n// 0: \u4EA4\u70B9\u306A\
-    \u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// infty<int>\uFF1A2 \u3064\u4EE5\
-    \u4E0A\u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\
-    \u53B3\u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T>\nint count_cross(Segment<T>\
-    \ S1, Segment<T> S2, bool include_ends) {\n  static_assert(!std::is_floating_point<T>::value);\n\
-    \  Line<T> L1 = S1.to_line();\n  Line<T> L2 = S2.to_line();\n  if (L1.is_parallel(L2))\
-    \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
-    \u76F4\u7DDA\u4E0A\u306B\u3042\u308B\n    T a1 = S1.A.x, b1 = S1.B.x;\n    T a2\
-    \ = S2.A.x, b2 = S2.B.x;\n    if (a1 == b1) {\n      a1 = S1.A.y, b1 = S1.B.y;\n\
-    \      a2 = S2.A.y, b2 = S2.B.y;\n    }\n    if (a1 > b1) swap(a1, b1);\n    if\
-    \ (a2 > b2) swap(a2, b2);\n    T a = max(a1, a2);\n    T b = min(b1, b2);\n  \
-    \  if (a < b) return 2;\n    if (a > b) return 0;\n    return (include_ends ?\
-    \ 1 : 0);\n  }\n  // \u5E73\u884C\u3067\u306A\u3044\u5834\u5408\n  T a1 = L2.eval(S1.A),\
-    \ b1 = L2.eval(S1.B);\n  T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  if (a1 >\
-    \ b1) swap(a1, b1);\n  if (a2 > b2) swap(a2, b2);\n  bool ok1 = 0, ok2 = 0;\n\n\
-    \  if (include_ends) {\n    ok1 = (a1 <= T(0)) && (T(0) <= b1);\n    ok2 = (a2\
-    \ <= T(0)) && (T(0) <= b2);\n  } else {\n    ok1 = (a1 < T(0)) && (T(0) < b1);\n\
-    \    ok2 = (a2 < T(0)) && (T(0) < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n\
-    }\n\n// 4 \u6B21\u5F0F\u307E\u3067\u767B\u5834\u3057\u3066\u3044\u308B\u3001\u30AA\
-    \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u6CE8\u610F\uFF01\n// https://codeforces.com/contest/607/problem/E\n\
-    template <typename REAL, typename T>\nvc<Point<REAL>> cross_point(const Circle<T>\
-    \ C, const Line<T> L) {\n  T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y)\
-    \ + L.c;\n  T r = C.r;\n  bool SW = 0;\n  T abs_a = (a < 0 ? -a : a);\n  T abs_b\
-    \ = (b < 0 ? -b : b);\n  if (abs_a < abs_b) {\n    swap(a, b);\n    SW = 1;\n\
-    \  }\n  // ax+by+c=0, x^2+y^2=r^2\n  T D = 4 * c * c * b * b - 4 * (a * a + b\
-    \ * b) * (c * c - a * a * r * r);\n  if (D < 0) return {};\n  REAL sqD = sqrtl(D);\n\
-    \  REAL y1 = (-2 * b * c + sqD) / (2 * (a * a + b * b));\n  REAL y2 = (-2 * b\
-    \ * c - sqD) / (2 * (a * a + b * b));\n  REAL x1 = (-b * y1 - c) / a;\n  REAL\
-    \ x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2, y2);\n  x1 += C.O.x,\
-    \ x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1,\
-    \ y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
-    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
-    \ C1, Circle<T> C2) {\n  using P = Point<T>;\n  P O{0, 0};\n  P A = C1.O, B =\
-    \ C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
-    \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
-    \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
-    \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
-    \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
-    }\n#line 8 \"test/4_aoj/CGL_2_C.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n    Segment<ll>\
-    \ S2(e, f, g, h);\n    Point<double> pt = cross_point<double>(S1.to_line(), S2.to_line());\n\
-    \    print(pt.x, pt.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"geo/base.hpp\"\ntemplate <typename\
+    \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
+    \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
+    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
+    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
+    \ || is_integral_v<U>);\n  }\n\n  Point operator+=(const Point p) {\n    x +=\
+    \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
+    \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
+    \ { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x\
+    \ - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x == p.x && y\
+    \ == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n\
+    \  Point operator-() const { return {-x, -y}; }\n  Point operator*(T t) const\
+    \ { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x / t, y\
+    \ / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
+    \    return y < p.y;\n  }\n  T dot(const Point& other) const { return x * other.x\
+    \ + y * other.y; }\n  T det(const Point& other) const { return x * other.y - y\
+    \ * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double angle()\
+    \ { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
+    \ * x + c * y};\n  }\n  Point rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y,\
+    \ -x}); }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n\
+    \  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
+    \ p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
+    \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
+    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
+    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
+    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
+    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL dist(Point<T>\
+    \ A, Point<U> B) {\n  REAL dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y)\
+    \ - REAL(B.y);\n  return sqrt(dx * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename\
+    \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
+    \ {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c =\
+    \ A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return U(a) * P.x + U(b) * P.y + U(c);\n  }\n\n  template <typename U>\n\
+    \  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\
+    \u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\
+    \u3046\u306B\u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T,\
+    \ int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n\
+    \    a /= g, b /= g, c /= g;\n    if (b < 0) {\n      a = -a, b = -b, c = -c;\n\
+    \    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b, c = -c;\n    }\n  }\n\
+    \n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\
+    \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
+    \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
+    \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
+    \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
+    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
+    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
+    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
+    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 1 \"geo/convex_hull.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate <typename T>\n\
+    struct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
+    \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
+    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
+    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
+    \ || is_integral_v<U>);\n  }\n\n  Point operator+=(const Point p) {\n    x +=\
+    \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
+    \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
+    \ { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x\
+    \ - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x == p.x && y\
+    \ == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n\
+    \  Point operator-() const { return {-x, -y}; }\n  Point operator*(T t) const\
+    \ { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x / t, y\
+    \ / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
+    \    return y < p.y;\n  }\n  T dot(const Point& other) const { return x * other.x\
+    \ + y * other.y; }\n  T det(const Point& other) const { return x * other.y - y\
+    \ * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double angle()\
+    \ { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
+    \ * x + c * y};\n  }\n  Point rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y,\
+    \ -x}); }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n\
+    \  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
+    \ p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
+    \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
+    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
+    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
+    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
+    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL dist(Point<T>\
+    \ A, Point<U> B) {\n  REAL dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y)\
+    \ - REAL(B.y);\n  return sqrt(dx * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename\
+    \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
+    \ {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c =\
+    \ A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return U(a) * P.x + U(b) * P.y + U(c);\n  }\n\n  template <typename U>\n\
+    \  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\
+    \u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\
+    \u3046\u306B\u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T,\
+    \ int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n\
+    \    a /= g, b /= g, c /= g;\n    if (b < 0) {\n      a = -a, b = -b, c = -c;\n\
+    \    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b, c = -c;\n    }\n  }\n\
+    \n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\
+    \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
+    \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
+    \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
+    \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
+    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
+    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
+    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
+    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 3 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\
+    \u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\n// full \u306A\u3089 I[0]\
+    \ \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate <typename T, bool allow_180\
+    \ = false>\nvector<int> convex_hull(vector<Point<T>>& XY, string mode = \"full\"\
+    ,\n                        bool sorted = false) {\n  assert(mode == \"full\" ||\
+    \ mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N == 1)\
+    \ return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n    if\
+    \ (XY[1] < XY[0]) return {1, 0};\n    return {0};\n  }\n  vc<int> I(N);\n  if\
+    \ (sorted) {\n    FOR(i, N) I[i] = i;\n  } else {\n    I = argsort(XY);\n  }\n\
+    \  if constexpr (allow_180) {\n    FOR(i, N - 1) assert(XY[i] != XY[i + 1]);\n\
+    \  }\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    T det = (XY[j] - XY[i]).det(XY[k]\
+    \ - XY[i]);\n    if constexpr (allow_180) return det >= 0;\n    return det > T(0);\n\
+    \  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&& k : I) {\n\
+    \      while (P.size() > 1) {\n        auto i = P[P.size() - 2];\n        auto\
+    \ j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n        P.pop_back();\n\
+    \      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode\
+    \ == \"full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(),\
+    \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
+    \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
+    \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >=\
+    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 3 \"geo/cross_point.hpp\"\
+    \n\n// strict: n>=3 \u306E\u53CD\u6642\u8A08\u56DE\u308A\u72ED\u7FA9\u51F8\u591A\
+    \u89D2\u5F62\n// non-strict: n=1 \u306E\u70B9, n=2 \u306E\u7DDA\u5206, n>=3 \u306E\
+    \u53CD\u6642\u8A08\u56DE\u308A\u51F8\u591A\u89D2\u5F62\ntemplate <typename T,\
+    \ bool is_strict = true>\nstruct Convex_Polygon {\n  using P = Point<T>;\n  int\
+    \ n;\n  vc<P> point;\n  T area2;\n\n  Convex_Polygon(vc<P> point_) : n(len(point_)),\
+    \ point(point_) {\n    assert(n >= 1);\n    if constexpr (is_strict) assert(n\
+    \ >= 3);\n    area2 = 0;\n    FOR(i, n) {\n      int j = nxt_idx(i);\n      if\
+    \ (n >= 2) assert(point[i] != point[j]);\n      area2 += point[i].det(point[j]);\n\
+    \    }\n    assert(area2 >= T(0));\n    if (n >= 3) assert(area2 > T(0));\n  \
+    \  if (n >= 3) FOR(i, n) {\n        int j = nxt_idx(i), k = nxt_idx(j);\n    \
+    \    T det = (point[j] - point[i]).det(point[k] - point[i]);\n        if constexpr\
+    \ (is_strict)\n          assert(det > T(0));\n        else\n          assert(det\
+    \ >= T(0));\n      }\n  }\n\n  template <typename F>\n  int periodic_min_comp(F\
+    \ comp) const {\n    static_assert(is_strict);\n    int L = 0, M = n, R = n +\
+    \ n;\n    while (R - L != 2) {\n      int L1 = (L + M) / 2, R1 = (M + R + 1) /\
+    \ 2;\n      if (comp(L1 % n, M % n)) R = M, M = L1;\n      elif (comp(R1 % n,\
+    \ M % n)) L = M, M = R1;\n      else L = L1, R = R1;\n    }\n    return M % n;\n\
+    \  }\n\n  int nxt_idx(int i) const { return (i + 1 == n ? 0 : i + 1); }\n  int\
+    \ prev_idx(int i) const { return (i == 0 ? n - 1 : i - 1); }\n\n  // \u4E2D\uFF1A\
+    1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1.\n  int side(P p) const {\n    if (n ==\
+    \ 1) return (p == point[0] ? 0 : -1);\n    if (n == 2) {\n      P A = point[0],\
+    \ B = point[1];\n      if ((B - A).det(p - A) == 0 && (B - A).dot(p - A) >= 0\
+    \ &&\n          (A - B).dot(p - B) >= 0)\n        return 0;\n      return -1;\n\
+    \    }\n    int L = 1, R = n - 1;\n    T a = (point[L] - point[0]).det(p - point[0]);\n\
+    \    T b = (point[R] - point[0]).det(p - point[0]);\n    if (a < 0 || b > 0) return\
+    \ -1;\n    while (R - L >= 2) {\n      int M = (L + R) / 2;\n      T c = (point[M]\
+    \ - point[0]).det(p - point[0]);\n      if (c < 0)\n        R = M, b = c;\n  \
+    \    else\n        L = M, a = c;\n    }\n    T c = (point[R] - point[L]).det(p\
+    \ - point[L]);\n    T x = min({a, -b, c});\n    if (x < 0) return -1;\n    if\
+    \ (x > 0) return 1;\n    if (p == point[0]) return 0;\n    if (c != 0 && a ==\
+    \ 0 && L != 1) return 1;\n    if (c != 0 && b == 0 && R != n - 1) return 1;\n\
+    \    return 0;\n  }\n\n  // return {min, i, j}. i==j \u306F\u9802\u70B9, i!=j\
+    \ \u306F\u6700\u9069\u8FBA i -> j.\n  tuple<T, int, int> min_dot(P p) const {\n\
+    \    static_assert(is_strict);\n    assert(p != P(0, 0));\n    int idx = periodic_min_comp(\n\
+    \        [&](int i, int j) { return point[i].dot(p) < point[j].dot(p); });\n \
+    \   T val = point[idx].dot(p);\n    int prv = prev_idx(idx), nxt = nxt_idx(idx);\n\
+    \    if (point[prv].dot(p) == val) return {val, prv, idx};\n    if (point[nxt].dot(p)\
+    \ == val) return {val, idx, nxt};\n    return {val, idx, idx};\n  }\n\n  // return\
+    \ {max, i, j}. i==j \u306F\u9802\u70B9, i!=j \u306F\u6700\u9069\u8FBA i -> j.\n\
+    \  tuple<T, int, int> max_dot(P p) const {\n    static_assert(is_strict);\n  \
+    \  assert(p != P(0, 0));\n    int idx = periodic_min_comp(\n        [&](int i,\
+    \ int j) { return point[i].dot(p) > point[j].dot(p); });\n    T val = point[idx].dot(p);\n\
+    \    int prv = prev_idx(idx), nxt = nxt_idx(idx);\n    if (point[prv].dot(p) ==\
+    \ val) return {val, prv, idx};\n    if (point[nxt].dot(p) == val) return {val,\
+    \ idx, nxt};\n    return {val, idx, idx};\n  }\n\n  pair<int, int> visible_range(P\
+    \ p) const {\n    static_assert(is_strict);\n    int a = periodic_min_comp(\n\
+    \        [&](int i, int j) { return (point[i] - p).det(point[j] - p) < 0; });\n\
+    \    int b = periodic_min_comp(\n        [&](int i, int j) { return (point[i]\
+    \ - p).det(point[j] - p) > 0; });\n    if ((p - point[a]).det(p - point[prev_idx(a)])\
+    \ == T(0)) a = prev_idx(a);\n    if ((p - point[b]).det(p - point[nxt_idx(b)])\
+    \ == T(0)) b = nxt_idx(b);\n    return {a, b};\n  }\n\n  bool check_cross(P A,\
+    \ P B) const {\n    static_assert(is_strict);\n    FOR(2) {\n      swap(A, B);\n\
+    \      auto [a, b] = visible_range(A);\n      if ((point[a] - A).det(B - A) >=\
+    \ 0) return false;\n      if ((point[b] - A).det(B - A) <= 0) return false;\n\
+    \    }\n    return true;\n  }\n\n  // 0: \u5171\u901A\u70B9\u306A\u3057, 1: \u4E00\
+    \u610F\u306A\u5171\u901A\u70B9, 2: \u7570\u306A\u308B\u5171\u901A\u70B9\u304C\
+    2\u500B,\n  // infty<int>: \u5883\u754C\u8FBA\u3068\u6B63\u306E\u9577\u3055\u3067\
+    \u91CD\u306A\u308B.\n  int count_boundary_cross_line(P A, P B) const {\n    static_assert(is_strict);\n\
+    \    assert(A != B);\n    P D = B - A;\n    P normal(-D.y, D.x);\n    auto [min_value,\
+    \ min_i, min_j] = min_dot(normal);\n    auto [max_value, max_i, max_j] = max_dot(normal);\n\
+    \    T lo = min_value - normal.dot(A);\n    T hi = max_value - normal.dot(A);\n\
+    \    if (lo > T(0) || hi < T(0)) return 0;\n    if (lo == T(0) && min_i != min_j)\
+    \ return infty<int>;\n    if (hi == T(0) && max_i != max_j) return infty<int>;\n\
+    \    if (lo == T(0) || hi == T(0)) return 1;\n    return 2;\n  }\n\n  // return\
+    \ {t, eid, s} in increasing t order.\n  // A+t*(B-A) = point[eid]*(1-s)+point[nxt_idx(eid)]*s,\
+    \ 0<=s<1.\n  // \u8FBA\u3068\u306E\u6B63\u306E\u9577\u3055\u306E\u91CD\u306A\u308A\
+    \u306F assert \u3067\u62D2\u5426\u3059\u308B.\n  template <typename REAL>\n  vc<tuple<REAL,\
+    \ int, REAL>> boundary_cross_line(P A, P B) const {\n    static_assert(is_strict);\n\
+    \    assert(A != B);\n    int cnt = count_boundary_cross_line(A, B);\n    assert(cnt\
+    \ != infty<int>);\n    if (cnt == 0) return {};\n\n    P D = B - A;\n    P normal(-D.y,\
+    \ D.x);\n    auto [min_value, min_i, min_j] = min_dot(normal);\n    auto [max_value,\
+    \ max_i, max_j] = max_dot(normal);\n    T lo = min_value - normal.dot(A);\n\n\
+    \    auto vertex_data = [&](int i) -> tuple<REAL, int, REAL> {\n      REAL t =\
+    \ (D.x != T(0) ? REAL(point[i].x - A.x) / REAL(D.x)\n                        \
+    \    : REAL(point[i].y - A.y) / REAL(D.y));\n      return {t, i, REAL(0)};\n \
+    \   };\n    if (cnt == 1) return {lo == T(0) ? vertex_data(min_i) : vertex_data(max_i)};\n\
+    \n    auto eval = [&](int i) -> T {\n      return normal.dot(point[i % n]) - normal.dot(A);\n\
+    \    };\n    int a = min_i, b = max_i;\n    if (b < a) b += n;\n    int p = binary_search([&](int\
+    \ i) { return eval(i) < T(0); }, a, b);\n    int q = binary_search([&](int i)\
+    \ { return eval(i) > T(0); }, b, a + n);\n    auto edge_data = [&](int eid) ->\
+    \ tuple<REAL, int, REAL> {\n      int j = nxt_idx(eid);\n      T x = eval(eid),\
+    \ y = eval(eid + 1);\n      if (x == T(0)) return vertex_data(eid);\n      if\
+    \ (y == T(0)) return vertex_data(j);\n      assert((x < T(0) && T(0) < y) || (y\
+    \ < T(0) && T(0) < x));\n      REAL s = REAL(x) / (REAL(x) - REAL(y));\n     \
+    \ REAL t0 = (D.x != T(0) ? REAL(point[eid].x - A.x) / REAL(D.x)\n            \
+    \                 : REAL(point[eid].y - A.y) / REAL(D.y));\n      REAL t1 = (D.x\
+    \ != T(0) ? REAL(point[j].x - A.x) / REAL(D.x)\n                             :\
+    \ REAL(point[j].y - A.y) / REAL(D.y));\n      return {t0 * (REAL(1) - s) + t1\
+    \ * s, eid, s};\n    };\n    vc<tuple<REAL, int, REAL>> ans = {edge_data(p % n),\
+    \ edge_data(q % n)};\n    if (get<0>(ans[1]) < get<0>(ans[0])) swap(ans[0], ans[1]);\n\
+    \    return ans;\n  }\n\n  T area_between(int i, int j) const {\n    assert(i\
+    \ <= j && j <= i + n);\n    if (j == i + n) return area2;\n    i %= n, j %= n;\n\
+    \    if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n    return AREA[j]\
+    \ - AREA[i] + point[j % n].det(point[i]);\n  }\n\n  T left_area(Line<T> L) const\
+    \ {\n    static_assert(is_strict);\n    static_assert(is_same<T, double>::value\
+    \ || is_same<T, long double>::value);\n    Point<T> normal(L.a, L.b);\n    auto\
+    \ [min_value, a, min_j] = min_dot(normal);\n    auto [max_value, b, max_j] = max_dot(normal);\n\
+    \    if (b < a) b += n;\n    assert(L.eval(point[a % n]) < 0 && L.eval(point[b\
+    \ % n]) > 0);\n    int p =\n        binary_search([&](int i) { return L.eval(point[i\
+    \ % n]) < 0; }, a, b);\n    int q = binary_search(\n        [&](int i) { return\
+    \ L.eval(point[i % n]) > 0; }, b, a + n);\n    T s = L.eval(point[p % n]) /\n\
+    \          (L.eval(point[p % n]) - L.eval(point[(p + 1) % n]));\n    T t = L.eval(point[q\
+    \ % n]) /\n          (L.eval(point[q % n]) - L.eval(point[(q + 1) % n]));\n  \
+    \  P A = point[p % n], B = point[(p + 1) % n];\n    P C = point[q % n], D = point[(q\
+    \ + 1) % n];\n    P X = B * s + A * (1 - s), Y = D * t + C * (1 - t);\n    T ans\
+    \ = area_between(p, q);\n    ans -= (A - C).det(X - C);\n    ans += (Y - C).det(X\
+    \ - C);\n    return ans;\n  }\n\n private:\n  mutable vc<T> AREA;\n\n  void build_AREA()\
+    \ const {\n    AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
+    \    AREA = cumsum<T>(AREA);\n  }\n};\n#line 8 \"test/4_aoj/CGL_2_C.test.cpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n  \
+    \  Segment<ll> S1(a, b, c, d);\n    Segment<ll> S2(e, f, g, h);\n    Point<double>\
+    \ pt = cross_point<double>(S1.to_line(), S2.to_line());\n    print(pt.x, pt.y);\n\
+    \  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
     \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
     \n#include \"geo/cross_point.hpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n \
@@ -359,10 +499,11 @@ data:
   - other/io.hpp
   - geo/cross_point.hpp
   - geo/base.hpp
+  - geo/convex_hull.hpp
   isVerificationFile: true
   path: test/4_aoj/CGL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2026-09-22 16:13:54+09:00'
+  timestamp: '2026-09-22 16:20:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_C.test.cpp
