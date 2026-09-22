@@ -15,7 +15,7 @@ data:
     \ \u306B\u5909\u5316.\n(-1,k): i \u6587\u5B57\u76EE\u304C -i+k \u6587\u5B57\u76EE\
     \u306B\u79FB\u52D5. S \u306F S[k:k-N).\n\u3053\u308C\u306F revS[N-1-k:N-1-k+N]\
     \ \u3068\u3082\u8A00\u3048\u308B.\nhttps://qoj.ac/contest/1576/problem/8512\n\
-    */\ntemplate <int id>\nstruct Dihedral {\n  using value_type = pair<int, int>;\n\
+    */\ntemplate <int id_>\nstruct Dihedral {\n  using value_type = pair<int, int>;\n\
     \  using X = value_type;\n\n  static inline int n = 0;\n  static void set_n(int\
     \ m) { n = m; }\n\n  static X op(X x, X y) {\n    // x \u3092\u3084\u3063\u305F\
     \u3042\u3068 y\n    auto [t1, k1] = x;\n    auto [t2, k2] = y;\n    int t = t1\
@@ -34,7 +34,7 @@ data:
     \u76EE\u306B\u79FB\u52D5. S \u306F S[-k:N-k) \u306B\u5909\u5316.\n(-1,k): i \u6587\
     \u5B57\u76EE\u304C -i+k \u6587\u5B57\u76EE\u306B\u79FB\u52D5. S \u306F S[k:k-N).\n\
     \u3053\u308C\u306F revS[N-1-k:N-1-k+N] \u3068\u3082\u8A00\u3048\u308B.\nhttps://qoj.ac/contest/1576/problem/8512\n\
-    */\ntemplate <int id>\nstruct Dihedral {\n  using value_type = pair<int, int>;\n\
+    */\ntemplate <int id_>\nstruct Dihedral {\n  using value_type = pair<int, int>;\n\
     \  using X = value_type;\n\n  static inline int n = 0;\n  static void set_n(int\
     \ m) { n = m; }\n\n  static X op(X x, X y) {\n    // x \u3092\u3084\u3063\u305F\
     \u3042\u3068 y\n    auto [t1, k1] = x;\n    auto [t2, k2] = y;\n    int t = t1\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/dihedral.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-09-22 16:12:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/dihedral.hpp
