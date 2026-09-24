@@ -457,31 +457,30 @@ data:
     \ n);\n    auto edge_data = [&](int eid) -> tuple<REAL, int, REAL> {\n      int\
     \ j = nxt_idx(eid);\n      T x = eval(eid), y = eval(eid + 1);\n      if (x ==\
     \ T(0)) return vertex_data(eid);\n      if (y == T(0)) return vertex_data(j);\n\
-    \      assert((x < T(0) && T(0) < y) || (y < T(0) && T(0) < x));\n      REAL s\
-    \ = REAL(x) / (REAL(x) - REAL(y));\n      REAL t0 = (D.x != T(0) ? REAL(point[eid].x\
-    \ - A.x) / REAL(D.x)\n                             : REAL(point[eid].y - A.y)\
-    \ / REAL(D.y));\n      REAL t1 = (D.x != T(0) ? REAL(point[j].x - A.x) / REAL(D.x)\n\
-    \                             : REAL(point[j].y - A.y) / REAL(D.y));\n      return\
-    \ {t0 * (REAL(1) - s) + t1 * s, eid, s};\n    };\n    vc<tuple<REAL, int, REAL>>\
-    \ ans = {edge_data(p % n), edge_data(q % n)};\n    if (get<0>(ans[1]) < get<0>(ans[0]))\
-    \ swap(ans[0], ans[1]);\n    return ans;\n  }\n\n  T area_between(int i, int j)\
-    \ const {\n    assert(i <= j && j <= i + n);\n    if (j == i + n) return area2;\n\
-    \    i %= n, j %= n;\n    if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n\
-    \    return AREA[j] - AREA[i] + point[j % n].det(point[i]);\n  }\n\n  T left_area(Line<T>\
-    \ L) const {\n    static_assert(is_strict);\n    static_assert(is_same<T, double>::value\
-    \ || is_same<T, long double>::value);\n    Point<T> normal(L.a, L.b);\n    auto\
-    \ [min_value, a, min_j] = min_dot(normal);\n    auto [max_value, b, max_j] = max_dot(normal);\n\
-    \    if (b < a) b += n;\n    assert(L.eval(point[a % n]) < 0 && L.eval(point[b\
-    \ % n]) > 0);\n    int p =\n        binary_search([&](int i) { return L.eval(point[i\
-    \ % n]) < 0; }, a, b);\n    int q = binary_search(\n        [&](int i) { return\
-    \ L.eval(point[i % n]) > 0; }, b, a + n);\n    T s = L.eval(point[p % n]) /\n\
-    \          (L.eval(point[p % n]) - L.eval(point[(p + 1) % n]));\n    T t = L.eval(point[q\
-    \ % n]) /\n          (L.eval(point[q % n]) - L.eval(point[(q + 1) % n]));\n  \
-    \  P A = point[p % n], B = point[(p + 1) % n];\n    P C = point[q % n], D = point[(q\
-    \ + 1) % n];\n    P X = B * s + A * (1 - s), Y = D * t + C * (1 - t);\n    T ans\
-    \ = area_between(p, q);\n    ans -= (A - C).det(X - C);\n    ans += (Y - C).det(X\
-    \ - C);\n    return ans;\n  }\n\n private:\n  mutable vc<T> AREA;\n\n  void build_AREA()\
-    \ const {\n    AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
+    \      assert((x < T(0) && T(0) < y) || (y < T(0) && T(0) < x));\n\n      P E\
+    \ = point[eid];\n      P F = point[j] - E;\n      T den = D.det(F);\n      assert(den\
+    \ != T(0));\n\n      REAL t = REAL((E - A).det(F)) / REAL(den);\n      REAL s\
+    \ = REAL((E - A).det(D)) / REAL(den);\n\n      return {t, eid, s};\n    };\n \
+    \   vc<tuple<REAL, int, REAL>> ans = {edge_data(p % n), edge_data(q % n)};\n \
+    \   if (get<0>(ans[1]) < get<0>(ans[0])) swap(ans[0], ans[1]);\n    return ans;\n\
+    \  }\n\n  T area_between(int i, int j) const {\n    assert(i <= j && j <= i +\
+    \ n);\n    if (j == i + n) return area2;\n    i %= n, j %= n;\n    if (i > j)\
+    \ j += n;\n    if (AREA.empty()) build_AREA();\n    return AREA[j] - AREA[i] +\
+    \ point[j % n].det(point[i]);\n  }\n\n  T left_area(Line<T> L) const {\n    static_assert(is_strict);\n\
+    \    static_assert(is_same<T, double>::value || is_same<T, long double>::value);\n\
+    \    Point<T> normal(L.a, L.b);\n    auto [min_value, a, min_j] = min_dot(normal);\n\
+    \    auto [max_value, b, max_j] = max_dot(normal);\n    if (b < a) b += n;\n \
+    \   assert(L.eval(point[a % n]) < 0 && L.eval(point[b % n]) > 0);\n    int p =\n\
+    \        binary_search([&](int i) { return L.eval(point[i % n]) < 0; }, a, b);\n\
+    \    int q = binary_search(\n        [&](int i) { return L.eval(point[i % n])\
+    \ > 0; }, b, a + n);\n    T s = L.eval(point[p % n]) /\n          (L.eval(point[p\
+    \ % n]) - L.eval(point[(p + 1) % n]));\n    T t = L.eval(point[q % n]) /\n   \
+    \       (L.eval(point[q % n]) - L.eval(point[(q + 1) % n]));\n    P A = point[p\
+    \ % n], B = point[(p + 1) % n];\n    P C = point[q % n], D = point[(q + 1) % n];\n\
+    \    P X = B * s + A * (1 - s), Y = D * t + C * (1 - t);\n    T ans = area_between(p,\
+    \ q);\n    ans -= (A - C).det(X - C);\n    ans += (Y - C).det(X - C);\n    return\
+    \ ans;\n  }\n\n private:\n  mutable vc<T> AREA;\n\n  void build_AREA() const {\n\
+    \    AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
     \    AREA = cumsum<T>(AREA);\n  }\n};\n#line 1 \"geo/base.hpp\"\ntemplate <typename\
     \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
     \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
@@ -632,7 +631,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/max_dot.test.cpp
   requiredBy: []
-  timestamp: '2026-09-22 16:34:18+09:00'
+  timestamp: '2026-09-24 22:17:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/max_dot.test.cpp
