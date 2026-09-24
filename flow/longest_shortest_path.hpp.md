@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/min_cost_flow.hpp
     title: flow/min_cost_flow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []

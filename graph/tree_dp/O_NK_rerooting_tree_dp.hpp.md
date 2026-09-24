@@ -7,7 +7,7 @@ data:
   - icon: ':warning:'
     path: ds/offset_vector.hpp
     title: ds/offset_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
