@@ -39,7 +39,7 @@ struct SubproductTree {
     return vals;
   }
 
-  vc<mint> interpolation(vc<mint>& y) {
+  vc<mint> interpolation(const vc<mint>& y) {
     assert(len(y) == m);
     vc<mint> a(m);
     FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);
@@ -59,7 +59,7 @@ struct SubproductTree {
 };
 
 template <typename mint>
-vc<mint> multipoint_evaluation_ntt(vc<mint> f, vc<mint> point) {
+vc<mint> multipoint_evaluation_ntt(vc<mint> f, const vc<mint>& point) {
   using poly = vc<mint>;
   int n = 1, k = 0;
   while (n < len(point)) n *= 2, ++k;
@@ -101,7 +101,7 @@ vc<mint> multipoint_evaluation_ntt(vc<mint> f, vc<mint> point) {
 }
 
 template <typename mint>
-vc<mint> multipoint_eval(vc<mint>& f, vc<mint>& x) {
+vc<mint> multipoint_eval(const vc<mint>& f, const vc<mint>& x) {
   if (x.empty()) return {};
   if (mint::can_ntt()) return multipoint_evaluation_ntt(f, x);
   SubproductTree<mint> F(x);
@@ -109,7 +109,7 @@ vc<mint> multipoint_eval(vc<mint>& f, vc<mint>& x) {
 }
 
 template <typename mint>
-vc<mint> multipoint_interpolate(vc<mint>& x, vc<mint>& y) {
+vc<mint> multipoint_interpolate(const vc<mint>& x, const vc<mint>& y) {
   if (x.empty()) return {};
   SubproductTree<mint> F(x);
   return F.interpolation(y);

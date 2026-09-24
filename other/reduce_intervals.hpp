@@ -4,36 +4,32 @@
 // 残す区間のインデックスを区間の順序についてソートして返す
 // 完全に同じ区間は任意に選んだひとつだけ残す
 template <typename T>
-vc<int> reduce_intervals(vc<T> L, vc<T> R, bool rm_included) {
+vc<int> reduce_intervals(const vc<T> &L, const vc<T> &R, bool rm_included) {
   int N = len(L);
   vc<int> ANS;
   vc<int> I(N);
   FOR(i, N) I[i] = i;
   if (rm_included) {
     sort(all(I), [&](auto &a, auto &b) -> bool {
-      if (L[a] != L[b])
-        return L[a] < L[b];
+      if (L[a] != L[b]) return L[a] < L[b];
       return R[a] > R[b];
     });
     for (auto &j : I) {
       if (!ANS.empty()) {
         int i = ANS.back();
-        if (R[j] <= R[i])
-          continue;
+        if (R[j] <= R[i]) continue;
       }
       ANS.eb(j);
     }
   } else {
     sort(all(I), [&](auto &a, auto &b) -> bool {
-      if (R[a] != R[b])
-        return R[a] < R[b];
+      if (R[a] != R[b]) return R[a] < R[b];
       return L[a] > L[b];
     });
     for (auto &j : I) {
       if (!ANS.empty()) {
         int i = ANS.back();
-        if (L[j] <= L[i])
-          continue;
+        if (L[j] <= L[i]) continue;
       }
       ANS.eb(j);
     }

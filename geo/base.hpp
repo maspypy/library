@@ -72,7 +72,7 @@ int ccw(Point<T> A, Point<T> B, Point<T> C) {
 }
 
 template <typename REAL, typename T, typename U>
-REAL dist(Point<T> A, Point<U> B) {
+REAL distance(Point<T> A, Point<U> B) {
   REAL dx = REAL(A.x) - REAL(B.x);
   REAL dy = REAL(A.y) - REAL(B.y);
   return sqrt(dx * dx + dy * dy);
