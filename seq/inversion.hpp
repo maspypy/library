@@ -17,6 +17,7 @@ ll inversion(const vc<T>& A) {
 // i 番目：A_i が先頭になるように rotate したときの転倒数
 template <typename T, bool SMALL = false>
 vi inversion_rotate(vc<T>& A) {
+  if (A.empty()) return {};
   const int N = len(A);
   if (!SMALL) {
     auto key = A;

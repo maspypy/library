@@ -12,9 +12,13 @@ struct Dihedral {
   using X = value_type;
 
   static inline int n = 0;
-  static void set_n(int m) { n = m; }
+  static void set_n(int m) {
+    assert(m > 0);
+    n = m;
+  }
 
   static X op(X x, X y) {
+    assert(n > 0);
     // x をやったあと y
     auto [t1, k1] = x;
     auto [t2, k2] = y;
@@ -23,6 +27,7 @@ struct Dihedral {
     return {t, k};
   }
   static X inverse(X x) {
+    assert(n > 0);
     if (x.fi == 1) x.se = bmod<int>(n - x.se, n);
     return x;
   }
@@ -31,13 +36,17 @@ struct Dihedral {
 
   static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k); }
   static X cyclic_shift_right(ll k) {
+    assert(n > 0);
     k = bmod<ll>(k, n);
     return {1, k};
   }
-  static X reverse() { return {-1, n - 1}; }
+  static X reverse() {
+    assert(n > 0);
+    return {-1, n - 1};
+  }
   template <typename STRING>
   static STRING apply(X f, STRING A) {
-    assert(len(A) == n);
+    assert(n > 0 && len(A) == n);
     auto [t, x] = f;
     if (t == 1) {
       rotate(A.begin(), A.begin() + n - x, A.end());
