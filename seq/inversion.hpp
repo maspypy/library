@@ -1,7 +1,7 @@
 #include "ds/fenwicktree/fenwicktree_01.hpp"
 
 template <typename T>
-ll inversion(vc<T> A) {
+ll inversion(const vc<T>& A) {
   int N = len(A);
   if (A.empty()) return 0;
   ll ANS = 0;
@@ -52,7 +52,7 @@ vvc<int> all_range_inversion(const vc<T>& A) {
 }
 
 template <typename T>
-ll inversion_between(vc<T> A, vc<T> B) {
+ll inversion_between(const vc<T>& A, const vc<T>& B) {
   int N = len(A);
   map<T, vc<int>> MP;
   FOR(i, N) MP[B[i]].eb(i);

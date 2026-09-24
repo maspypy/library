@@ -189,12 +189,16 @@ struct Convex_Polygon {
       if (x == T(0)) return vertex_data(eid);
       if (y == T(0)) return vertex_data(j);
       assert((x < T(0) && T(0) < y) || (y < T(0) && T(0) < x));
-      REAL s = REAL(x) / (REAL(x) - REAL(y));
-      REAL t0 = (D.x != T(0) ? REAL(point[eid].x - A.x) / REAL(D.x)
-                             : REAL(point[eid].y - A.y) / REAL(D.y));
-      REAL t1 = (D.x != T(0) ? REAL(point[j].x - A.x) / REAL(D.x)
-                             : REAL(point[j].y - A.y) / REAL(D.y));
-      return {t0 * (REAL(1) - s) + t1 * s, eid, s};
+
+      P E = point[eid];
+      P F = point[j] - E;
+      T den = D.det(F);
+      assert(den != T(0));
+
+      REAL t = REAL((E - A).det(F)) / REAL(den);
+      REAL s = REAL((E - A).det(D)) / REAL(den);
+
+      return {t, eid, s};
     };
     vc<tuple<REAL, int, REAL>> ans = {edge_data(p % n), edge_data(q % n)};
     if (get<0>(ans[1]) < get<0>(ans[0])) swap(ans[0], ans[1]);
