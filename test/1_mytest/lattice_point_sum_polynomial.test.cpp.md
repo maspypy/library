@@ -1,89 +1,89 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_for_floor_sum.hpp
     title: alg/monoid/monoid_for_floor_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_sum_polynomial.hpp
     title: convex/lattice_point_sum_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/faulhaber.hpp
     title: seq/famous/faulhaber.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -204,7 +204,7 @@ data:
     \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
     \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
     \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
-    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL dist(Point<T>\
+    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL distance(Point<T>\
     \ A, Point<U> B) {\n  REAL dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y)\
     \ - REAL(B.y);\n  return sqrt(dx * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename\
     \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
@@ -1044,8 +1044,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 08:25:53+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/lattice_point_sum_polynomial.test.cpp
 layout: document

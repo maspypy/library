@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'

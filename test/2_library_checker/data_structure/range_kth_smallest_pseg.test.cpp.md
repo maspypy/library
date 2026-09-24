@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'

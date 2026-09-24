@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -14,31 +14,31 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/domninator_tree.test.cpp
     title: test/2_library_checker/graph/domninator_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1601.test.cpp
     title: test/3_yukicoder/1601.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -142,13 +142,13 @@ data:
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
     \   }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
-    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
-    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
+    \nGT reverse_graph(const GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT\
+    \ G1(G.N);\r\n  for (auto&& e : G.edges) {\r\n    G1.add(e.to, e.frm, e.cost,\
+    \ e.id);\r\n  }\r\n  G1.build();\r\n  return G1;\r\n}\r\n"
+  code: "#include \"graph/base.hpp\"\r\n\r\ntemplate <typename GT>\r\nGT reverse_graph(const\
+    \ GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\n  for (auto&&\
+    \ e : G.edges) {\r\n    G1.add(e.to, e.frm, e.cost, e.id);\r\n  }\r\n  G1.build();\r\
     \n  return G1;\r\n}\r\n"
-  code: "#include \"graph/base.hpp\"\r\n\r\ntemplate <typename GT>\r\nGT reverse_graph(GT&\
-    \ G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\n  for (auto&&\
-    \ e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return\
-    \ G1;\r\n}\r\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -160,8 +160,8 @@ data:
   - graph/dominator_tree.hpp
   - game/graph_path_game.hpp
   - game/graph_game.hpp
-  timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1601.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp

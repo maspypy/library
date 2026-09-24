@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedVerifiedWith:
@@ -84,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_f_x_plus_1x.test.cpp
     title: test/1_mytest/composition_f_x_plus_1x.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,9 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/poly_taylor_shift.hpp\"\n\n#line 1 \"nt/prime_table.hpp\"\
@@ -539,7 +539,7 @@ data:
   - poly/composition_f_a_plus_bx.hpp
   - seq/famous/stirling_number_1.hpp
   timestamp: '2026-09-15 08:25:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp

@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs_01.hpp
     title: graph/shortest_path/bfs_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Bipolar_orientation
@@ -391,9 +391,9 @@ data:
     \ = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n      \
     \  else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
     \ par, root};\n}\n#line 1 \"graph/shortest_path/restore_path.hpp\"\nvector<int>\
-    \ restore_path(vector<int> par, int t){\r\n  vector<int> pth = {t};\r\n  while\
-    \ (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n\
-    \  return pth;\r\n}\n#line 7 \"graph/st_numbering.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
+    \ restore_path(const vector<int>& par, int t) {\r\n  vector<int> pth = {t};\r\n\
+    \  while (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\
+    \n  return pth;\r\n}\n#line 7 \"graph/st_numbering.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
     // \u9806\u5217 p \u3092\u6C42\u3081\u308B. p[s]=0,p[t]=n-1.\n// p[u]<p[v] \u3068\
     \u306A\u308B\u5411\u304D\u306B\u8FBA\u3092\u5411\u304D\u4ED8\u3051\u308B\u3068\
     \u4EFB\u610F\u306E v \u306B\u5BFE\u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728\
@@ -465,8 +465,8 @@ data:
   isVerificationFile: false
   path: graph/st_numbering.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/graph/st_numbering.test.cpp
 documentation_of: graph/st_numbering.hpp

@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
@@ -285,8 +285,8 @@ data:
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
     \ T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n\
     \  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx\
-    \ = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
+    \ REAL, typename T, typename U>\nREAL distance(Point<T> A, Point<U> B) {\n  REAL\
+    \ dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
     \ * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T\
     \ a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A,\
     \ Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n\
@@ -354,8 +354,8 @@ data:
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
     \ T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n\
     \  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx\
-    \ = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
+    \ REAL, typename T, typename U>\nREAL distance(Point<T> A, Point<U> B) {\n  REAL\
+    \ dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
     \ * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T\
     \ a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A,\
     \ Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n\
@@ -599,8 +599,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
 layout: document

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/fibonacci_search.hpp
     title: other/fibonacci_search.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -116,10 +116,10 @@ data:
     \ = get(c);\n    }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n\
     \  if (chmin(y, yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return\
     \ {y, x};\n  return {-y, x};\n}\n#line 1 \"enumerate/product.hpp\"\n\n// [0, A0)\
-    \ x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(vc<int> A, F\
-    \ query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void\
-    \ {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n]) {\n\
-    \      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int>\
+    \ x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(const vc<int>&\
+    \ A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) ->\
+    \ void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n])\
+    \ {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int>\
     \ p;\n  dfs(dfs, p);\n}\n#line 5 \"test/1_mytest/fibonacci_search.test.cpp\"\n\
     \nvoid test() {\n  // permutation\n  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A),\
     \ 0);\n    do {\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
@@ -162,8 +162,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fibonacci_search.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/fibonacci_search.test.cpp
 layout: document

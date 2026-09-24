@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
@@ -23,22 +23,22 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_points_in_triangles.test.cpp
     title: test/1_mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/13/problem/D
@@ -71,8 +71,8 @@ data:
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
     \ T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n\
     \  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx\
-    \ = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
+    \ REAL, typename T, typename U>\nREAL distance(Point<T> A, Point<U> B) {\n  REAL\
+    \ dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
     \ * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T\
     \ a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A,\
     \ Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n\
@@ -140,8 +140,8 @@ data:
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
     \ T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n\
     \  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx\
-    \ = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
+    \ REAL, typename T, typename U>\nREAL distance(Point<T> A, Point<U> B) {\n  REAL\
+    \ dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
     \ * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T\
     \ a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A,\
     \ Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n\
@@ -416,8 +416,8 @@ data:
   path: geo/count_points_in_triangles.hpp
   requiredBy:
   - random/random_polygon.hpp
-  timestamp: '2026-09-13 11:46:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/count_points_in_triangles.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp

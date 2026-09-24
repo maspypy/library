@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/spf_table.hpp
     title: nt/spf_table.hpp
   - icon: ':question:'

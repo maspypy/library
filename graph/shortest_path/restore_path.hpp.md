@@ -2,36 +2,37 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   - icon: ':warning:'
     path: graph/tree_center.hpp
     title: graph/tree_center.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/shortest_path.test.cpp
     title: test/2_library_checker/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/tree_diameter.test.cpp
     title: test/2_library_checker/tree/tree_diameter.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/shortest_path/restore_path.hpp\"\nvector<int> restore_path(vector<int>\
-    \ par, int t){\r\n  vector<int> pth = {t};\r\n  while (par[pth.back()] != -1)\
-    \ pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n  return pth;\r\n}\n"
-  code: "vector<int> restore_path(vector<int> par, int t){\r\n  vector<int> pth =\
-    \ {t};\r\n  while (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\
-    \n  return pth;\r\n}"
+  bundledCode: "#line 1 \"graph/shortest_path/restore_path.hpp\"\nvector<int> restore_path(const\
+    \ vector<int>& par, int t) {\r\n  vector<int> pth = {t};\r\n  while (par[pth.back()]\
+    \ != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n  return pth;\r\n\
+    }\n"
+  code: "vector<int> restore_path(const vector<int>& par, int t) {\r\n  vector<int>\
+    \ pth = {t};\r\n  while (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n \
+    \ reverse(all(pth));\r\n  return pth;\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: graph/shortest_path/restore_path.hpp
@@ -39,8 +40,8 @@ data:
   - graph/tree_diameter.hpp
   - graph/tree_center.hpp
   - graph/st_numbering.hpp
-  timestamp: '2022-10-21 18:11:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/graph/st_numbering.test.cpp
   - test/2_library_checker/graph/shortest_path.test.cpp

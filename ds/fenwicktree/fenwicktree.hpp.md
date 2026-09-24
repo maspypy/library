@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -44,17 +44,17 @@ data:
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   - icon: ':heavy_check_mark:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_points_in_triangles.test.cpp
     title: test/1_mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick_raq.test.cpp
     title: test/1_mytest/fenwick_raq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,7 +144,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
   - icon: ':heavy_check_mark:'
@@ -159,16 +159,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2338.test.cpp
     title: test/3_yukicoder/2338.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'

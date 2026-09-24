@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':warning:'
@@ -14,28 +14,28 @@ data:
   - icon: ':warning:'
     path: geo/polygon.hpp
     title: geo/polygon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_2_B.test.cpp
     title: test/4_aoj/CGL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_2_C.test.cpp
     title: test/4_aoj/CGL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/2/problem/C
@@ -67,7 +67,7 @@ data:
     \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
     \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
     \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
-    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL dist(Point<T>\
+    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL distance(Point<T>\
     \ A, Point<U> B) {\n  REAL dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y)\
     \ - REAL(B.y);\n  return sqrt(dx * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename\
     \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
@@ -200,8 +200,8 @@ data:
   - geo/minimum_three_distance_sum.hpp
   - geo/distance.hpp
   - random/random_polygon.hpp
-  timestamp: '2026-09-24 22:27:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/4_aoj/CGL_2_B.test.cpp

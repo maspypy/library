@@ -1,73 +1,73 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   - icon: ':question:'
     path: other/bit.hpp
     title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   - icon: ':question:'
@@ -75,12 +75,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/multipoint.hpp\"\n\n#line 1 \"poly/middle_product.hpp\"\
@@ -887,20 +887,20 @@ data:
     \ g[1]);\n    g[1].resize(sz);\n\n    FOR3(i, 1, sz) {\n      g[2 * i] = middle_product(g[i],\
     \ T[2 * i + 1]);\n      g[2 * i + 1] = middle_product(g[i], T[2 * i]);\n    }\n\
     \    vc<mint> vals(m);\n    FOR(i, m) vals[i] = g[sz + i][0];\n    return vals;\n\
-    \  }\n\n  vc<mint> interpolation(vc<mint>& y) {\n    assert(len(y) == m);\n  \
-    \  vc<mint> a(m);\n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\n\n    a =\
-    \ evaluation(a);\n    vc<vc<mint>> t(2 * sz);\n    FOR(i, sz) t[sz + i] = {(i\
+    \  }\n\n  vc<mint> interpolation(const vc<mint>& y) {\n    assert(len(y) == m);\n\
+    \    vc<mint> a(m);\n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\n\n    a\
+    \ = evaluation(a);\n    vc<vc<mint>> t(2 * sz);\n    FOR(i, sz) t[sz + i] = {(i\
     \ < m ? y[i] / a[i] : 0)};\n    FOR3_R(i, 1, sz) {\n      t[i] = convolution(t[2\
     \ * i], T[2 * i + 1]);\n      auto tt = convolution(t[2 * i + 1], T[2 * i]);\n\
     \      FOR(k, len(t[i])) t[i][k] += tt[k];\n    }\n    t[1].resize(m);\n    reverse(all(t[1]));\n\
     \    return t[1];\n  }\n};\n\ntemplate <typename mint>\nvc<mint> multipoint_evaluation_ntt(vc<mint>\
-    \ f, vc<mint> point) {\n  using poly = vc<mint>;\n  int n = 1, k = 0;\n  while\
-    \ (n < len(point)) n *= 2, ++k;\n  vv(mint, F, k + 1, 2 * n);\n  FOR(i, len(point))\
-    \ F[0][2 * i] = -point[i];\n\n  FOR(d, k) {\n    int b = 1 << d;\n    for (int\
-    \ L = 0; L < 2 * n; L += 4 * b) {\n      poly f1 = {F[d].begin() + L, F[d].begin()\
-    \ + L + b};\n      poly f2 = {F[d].begin() + L + 2 * b, F[d].begin() + L + 3 *\
-    \ b};\n      ntt_doubling(f1), ntt_doubling(f2);\n      FOR(i, b) f1[i] += 1,\
-    \ f2[i] += 1;\n      FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n      copy(all(f1),\
+    \ f, const vc<mint>& point) {\n  using poly = vc<mint>;\n  int n = 1, k = 0;\n\
+    \  while (n < len(point)) n *= 2, ++k;\n  vv(mint, F, k + 1, 2 * n);\n  FOR(i,\
+    \ len(point)) F[0][2 * i] = -point[i];\n\n  FOR(d, k) {\n    int b = 1 << d;\n\
+    \    for (int L = 0; L < 2 * n; L += 4 * b) {\n      poly f1 = {F[d].begin() +\
+    \ L, F[d].begin() + L + b};\n      poly f2 = {F[d].begin() + L + 2 * b, F[d].begin()\
+    \ + L + 3 * b};\n      ntt_doubling(f1), ntt_doubling(f2);\n      FOR(i, b) f1[i]\
+    \ += 1, f2[i] += 1;\n      FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n      copy(all(f1),\
     \ F[d].begin() + L);\n      copy(all(f2), F[d].begin() + L + 2 * b);\n      FOR(i,\
     \ 2 * b) { F[d + 1][L + i] = f1[i] * f2[i] - 1; }\n    }\n  }\n  vc<mint> P =\
     \ {F[k].begin(), F[k].begin() + n};\n  ntt(P, 1), P.eb(1), reverse(all(P)), P.resize(len(f)),\
@@ -912,11 +912,11 @@ data:
     \ i] * F[d][2 * L + i]; }\n      ntt_doubling<mint, true>(g1), ntt_doubling<mint,\
     \ true>(g2);\n      FOR(i, b) { nxt_G[L + i] = g1[i], nxt_G[L + b + i] = g2[i];\
     \ }\n    }\n    swap(G, nxt_G);\n  }\n  G.resize(len(point));\n  return G;\n}\n\
-    \ntemplate <typename mint>\nvc<mint> multipoint_eval(vc<mint>& f, vc<mint>& x)\
-    \ {\n  if (x.empty()) return {};\n  if (mint::can_ntt()) return multipoint_evaluation_ntt(f,\
+    \ntemplate <typename mint>\nvc<mint> multipoint_eval(const vc<mint>& f, const\
+    \ vc<mint>& x) {\n  if (x.empty()) return {};\n  if (mint::can_ntt()) return multipoint_evaluation_ntt(f,\
     \ x);\n  SubproductTree<mint> F(x);\n  return F.evaluation(f);\n}\n\ntemplate\
-    \ <typename mint>\nvc<mint> multipoint_interpolate(vc<mint>& x, vc<mint>& y) {\n\
-    \  if (x.empty()) return {};\n  SubproductTree<mint> F(x);\n  return F.interpolation(y);\n\
+    \ <typename mint>\nvc<mint> multipoint_interpolate(const vc<mint>& x, const vc<mint>&\
+    \ y) {\n  if (x.empty()) return {};\n  SubproductTree<mint> F(x);\n  return F.interpolation(y);\n\
     }\n\n// calculate f(ar^k) for 0 <= k < m\ntemplate <typename mint>\nvc<mint> multipoint_eval_on_geom_seq(vc<mint>\
     \ f, mint a, mint r, int m) {\n  const int n = len(f);\n  if (m == 0) return {};\n\
     \n  auto eval = [&](mint x) -> mint {\n    mint fx = 0;\n    mint pow = 1;\n \
@@ -1192,8 +1192,8 @@ data:
   isVerificationFile: false
   path: poly/multivar_convolution_cyclic.hpp
   requiredBy: []
-  timestamp: '2026-09-16 20:09:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
 documentation_of: poly/multivar_convolution_cyclic.hpp

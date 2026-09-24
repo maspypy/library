@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_labeled_tree.test.cpp
     title: test/1_mytest/enumerate_labeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/prufer.test.cpp
     title: test/1_mytest/prufer.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -166,7 +166,7 @@ data:
   requiredBy:
   - enumerate/labeled_tree.hpp
   timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/enumerate_labeled_tree.test.cpp
   - test/1_mytest/prufer.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/shortest_path
@@ -371,9 +371,9 @@ data:
     \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
     \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
     \ {dist, par, root};\n}\n#line 1 \"graph/shortest_path/restore_path.hpp\"\nvector<int>\
-    \ restore_path(vector<int> par, int t){\r\n  vector<int> pth = {t};\r\n  while\
-    \ (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n\
-    \  return pth;\r\n}\n#line 8 \"test/2_library_checker/graph/shortest_path.test.cpp\"\
+    \ restore_path(const vector<int>& par, int t) {\r\n  vector<int> pth = {t};\r\n\
+    \  while (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\
+    \n  return pth;\r\n}\n#line 8 \"test/2_library_checker/graph/shortest_path.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, M, s, t);\r\n  Graph<ll, true> G(N);\r\n  G.read_graph(M,\
     \ 1, 0);\r\n\r\n  auto [dist, par] = dijkstra<ll>(G, s);\r\n  if (dist[t] == infty<ll>)\
     \ return print(-1);\r\n\r\n  vector<int> pth = restore_path(par, t);\r\n  print(dist[t],\
@@ -397,8 +397,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/shortest_path.test.cpp
 layout: document

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -221,17 +221,17 @@ data:
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
     \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 1 \"enumerate/product.hpp\"\
-    \n\n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(vc<int>\
-    \ A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) ->\
-    \ void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n])\
-    \ {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int>\
-    \ p;\n  dfs(dfs, p);\n}\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate\
-    \ <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\
-    \u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void\
-    \ build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k /\
-    \ 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\
-    \n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\
-    \u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used),\
+    \n\n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(const\
+    \ vc<int>& A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>&\
+    \ p) -> void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x,\
+    \ A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n\
+    \  vc<int> p;\n  dfs(dfs, p);\n}\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\n\
+    template <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\
+    \u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n\
+    \  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap\
+    \ = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k, 0);\n\
+    \  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\
+    \u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used),\
     \ 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap;\
     \ }\n\n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i]\
     \ && key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
@@ -378,8 +378,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prufer.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/prufer.test.cpp
 layout: document

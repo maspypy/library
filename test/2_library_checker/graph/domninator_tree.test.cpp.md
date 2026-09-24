@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dominatortree
@@ -346,10 +346,10 @@ data:
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
     \   }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
-    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
-    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
-    \n  return G1;\r\n}\r\n#line 2 \"graph/dominator_tree.hpp\"\n\n// parent (idom)\
-    \ \u306E\u5217\u3092\u8FD4\u3059. -1 if unreachable.\n// https://codeforces.com/contest/757/problem/F\n\
+    \nGT reverse_graph(const GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT\
+    \ G1(G.N);\r\n  for (auto&& e : G.edges) {\r\n    G1.add(e.to, e.frm, e.cost,\
+    \ e.id);\r\n  }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 2 \"graph/dominator_tree.hpp\"\
+    \n\n// parent (idom) \u306E\u5217\u3092\u8FD4\u3059. -1 if unreachable.\n// https://codeforces.com/contest/757/problem/F\n\
     template <typename GT>\nvc<int> dominator_tree(GT& G, int root) {\n  static_assert(GT::is_directed);\n\
     \  const int N = G.N;\n\n  vc<int> par(N, -1), ord(N, -1), V;\n  V.reserve(N);\n\
     \  auto dfs = [&](auto& dfs, int v) -> void {\n    ord[v] = len(V);\n    V.eb(v);\n\
@@ -385,8 +385,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/domninator_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/domninator_tree.test.cpp
 layout: document

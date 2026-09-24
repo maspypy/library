@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
@@ -18,12 +18,12 @@ data:
     title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/2041/problem/K
@@ -280,27 +280,28 @@ data:
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
     \   }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
-    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
-    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
-    \n  return G1;\r\n}\r\n#line 4 \"graph/reachability.hpp\"\n\n// \u6709\u5411\u30B0\
-    \u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\u3002O((N+M)Q/w)\u3002\
-    \ntemplate <typename GT, typename P>\nvc<int> reachability(GT& G, vc<P> query)\
-    \ {\n  using U = u64;\n  constexpr int W = 64;\n\n  auto [C, comp] = strongly_connected_component(G);\n\
-    \n  vc<pair<int, int>> edges;\n  for (auto&& e : G.edges) {\n    auto a = comp[e.frm],\
-    \ b = comp[e.to];\n    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n\
-    \  UNIQUE(edges);\n  for (auto& [a, b] : query) a = comp[a], b = comp[b];\n\n\
-    \  int Q = len(query);\n  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n\
-    \  FOR(q, Q) {\n    auto [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] =\
-    \ (a == b);\n      continue;\n    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n\
-    \  UNIQUE(S);\n  vc<U> dp(C);\n  int p = 0;\n  for (int l = 0; l < len(S); l +=\
-    \ W) {\n    int r = min<int>(l + W, len(S));\n    fill(dp.begin() + S[l], dp.end(),\
-    \ U(0));\n    FOR(i, r - l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges)\
-    \ && edges[p].fi < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |=\
-    \ dp[edges[i].fi]; }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for\
-    \ (auto& qid : QID[s]) {\n        int t = query[qid].se;\n        ANS[qid] = dp[t]\
-    \ >> i & 1;\n      }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable\
-    \ from v).\n// (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\
-    \u69CB\u5B9F\u884C\u6642\u9593\u304C\u3076\u308C\u308B.\n// https://codeforces.com/contest/2041/problem/K\n\
+    \nGT reverse_graph(const GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT\
+    \ G1(G.N);\r\n  for (auto&& e : G.edges) {\r\n    G1.add(e.to, e.frm, e.cost,\
+    \ e.id);\r\n  }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/reachability.hpp\"\
+    \n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\
+    \u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int>\
+    \ reachability(GT& G, vc<P> query) {\n  using U = u64;\n  constexpr int W = 64;\n\
+    \n  auto [C, comp] = strongly_connected_component(G);\n\n  vc<pair<int, int>>\
+    \ edges;\n  for (auto&& e : G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n\
+    \    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n  UNIQUE(edges);\n\
+    \  for (auto& [a, b] : query) a = comp[a], b = comp[b];\n\n  int Q = len(query);\n\
+    \  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n  FOR(q, Q) {\n    auto\
+    \ [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] = (a == b);\n      continue;\n\
+    \    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n  UNIQUE(S);\n  vc<U> dp(C);\n\
+    \  int p = 0;\n  for (int l = 0; l < len(S); l += W) {\n    int r = min<int>(l\
+    \ + W, len(S));\n    fill(dp.begin() + S[l], dp.end(), U(0));\n    FOR(i, r -\
+    \ l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges) && edges[p].fi\
+    \ < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |= dp[edges[i].fi];\
+    \ }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for (auto& qid : QID[s])\
+    \ {\n        int t = query[qid].se;\n        ANS[qid] = dp[t] >> i & 1;\n    \
+    \  }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable from v).\n\
+    // (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\u69CB\u5B9F\
+    \u884C\u6642\u9593\u304C\u3076\u308C\u308B.\n// https://codeforces.com/contest/2041/problem/K\n\
     vc<int> count_reachable(Graph<int, 1> G) {\n  G = reverse_graph(G);\n  int N =\
     \ G.N;\n  auto [nc, comp] = strongly_connected_component(G);\n  vc<int> sz(nc);\n\
     \  FOR(v, N) sz[comp[v]]++;\n\n  // sorted pairs\n  vc<pair<int, int>> E;\n  for\
@@ -356,8 +357,8 @@ data:
   isVerificationFile: false
   path: graph/reachability.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/0275.test.cpp
 documentation_of: graph/reachability.hpp

@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -115,9 +115,9 @@ data:
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/enumerate_labeled_tree.test.cpp\"\
     \n\n#line 1 \"enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\ntemplate\
-    \ <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n\
-    \  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if\
-    \ (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
+    \ <typename F>\nvoid enumerate_product(const vc<int>& A, F query) {\n  int N =\
+    \ len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n\
+    \    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
     \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
     \ 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap\
     \ {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067\
@@ -282,8 +282,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_labeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_labeled_tree.test.cpp
 layout: document

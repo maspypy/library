@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'

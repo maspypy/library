@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -59,8 +59,8 @@ data:
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
     \ T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n\
     \  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx\
-    \ = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
+    \ REAL, typename T, typename U>\nREAL distance(Point<T> A, Point<U> B) {\n  REAL\
+    \ dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
     \ * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T\
     \ a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A,\
     \ Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n\
@@ -252,7 +252,7 @@ data:
   isVerificationFile: false
   path: geo/delaunay_triangulation_of_convex_polygon.hpp
   requiredBy: []
-  timestamp: '2026-09-04 09:44:55+09:00'
+  timestamp: '2026-09-24 22:40:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/delaunay_triangulation_of_convex_polygon.hpp

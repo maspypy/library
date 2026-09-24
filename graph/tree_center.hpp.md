@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs_01.hpp
     title: graph/shortest_path/bfs_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
   _extendedRequiredBy: []
@@ -140,9 +140,9 @@ data:
     \ = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n      \
     \  else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
     \ par, root};\n}\n#line 1 \"graph/shortest_path/restore_path.hpp\"\nvector<int>\
-    \ restore_path(vector<int> par, int t){\r\n  vector<int> pth = {t};\r\n  while\
-    \ (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n\
-    \  return pth;\r\n}\n#line 3 \"graph/tree_center.hpp\"\n\n// verify \u3057\u3066\
+    \ restore_path(const vector<int>& par, int t) {\r\n  vector<int> pth = {t};\r\n\
+    \  while (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\
+    \n  return pth;\r\n}\n#line 3 \"graph/tree_center.hpp\"\n\n// verify \u3057\u3066\
     \u306A\u3044\n// {a, b, d}\uFF1Aa \u304B\u3089 b \u306B d \u9032\u3080 / {a, a,\
     \ 0}\n// \u76F4\u5F84\u306E\u9577\u3055\u304C\u5076\u6570\u3067\u3042\u308B\u3053\
     \u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF08\u5FC5\u8981\u306A\u3089\
@@ -177,7 +177,7 @@ data:
   isVerificationFile: false
   path: graph/tree_center.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-09-24 22:40:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_center.hpp

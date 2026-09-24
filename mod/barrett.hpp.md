@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -68,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -123,7 +123,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
     title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -249,7 +249,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,9 +258,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp
@@ -329,7 +329,7 @@ data:
   - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   - icon: ':question:'
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
     title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,12 +147,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/1190/problem/F
@@ -355,7 +355,7 @@ data:
   - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2026-09-16 20:09:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/modfast.test.cpp

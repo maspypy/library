@@ -5,7 +5,7 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':warning:'
@@ -99,18 +99,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
     title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
@@ -136,7 +136,7 @@ data:
   - random/random_graph.hpp
   - random/random_bracket.hpp
   timestamp: '2026-08-30 21:41:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/extended_lichao.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp

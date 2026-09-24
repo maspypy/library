@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/meldable_heap.hpp\"\n\n#line 1 \"ds/node_pool.hpp\"\n\
@@ -332,12 +332,12 @@ data:
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
     \   }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
-    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
-    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
-    \n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\n\n\
-    // infty<T> \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\
-    \u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename GT>\n\
-    vc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
+    \nGT reverse_graph(const GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT\
+    \ G1(G.N);\r\n  for (auto&& e : G.edges) {\r\n    G1.add(e.to, e.frm, e.cost,\
+    \ e.id);\r\n  }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
+    \n\n// infty<T> \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\
+    \u305F\u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename\
+    \ GT>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T,\
     \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) {\n    return vc<T>(K, infty<T>);\n\
     \  }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X;\n  using\
@@ -395,8 +395,8 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/K_shortest_walk.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: graph/shortest_path/K_shortest_walk.hpp

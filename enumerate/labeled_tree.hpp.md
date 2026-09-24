@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_labeled_tree.test.cpp
     title: test/1_mytest/enumerate_labeled_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/611/problem/H
   bundledCode: "#line 1 \"enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\n\
-    template <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N =\
-    \ len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n\
-    \    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
-    \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
-    \ 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap\
-    \ {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067\
-    \ ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n\
-    \    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    template <typename F>\nvoid enumerate_product(const vc<int>& A, F query) {\n \
+    \ int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int\
+    \ n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n\
+    \      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs,\
+    \ p);\n}\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
+    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
+    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
+    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
+    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
+    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
+    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
+    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
+    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
+    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
+    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
+    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
+    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
+    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
+    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
     \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
     \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
     \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
@@ -168,8 +168,8 @@ data:
   isVerificationFile: false
   path: enumerate/labeled_tree.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/enumerate_labeled_tree.test.cpp
 documentation_of: enumerate/labeled_tree.hpp

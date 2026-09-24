@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   - icon: ':question:'

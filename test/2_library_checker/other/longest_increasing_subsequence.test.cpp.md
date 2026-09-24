@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
@@ -238,18 +238,18 @@ data:
     void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/other/longest_increasing_subsequence.test.cpp\"\
     \n\n#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i] := \u7B2C i \u9805\
     \u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\uFF08[1, LIS]\uFF09\
-    \ntemplate <typename T, bool strong = true>\npair<int, vc<int>> longest_increasing_subsequence_dp(vector<T>\
-    \ A) {\n  const int N = A.size();\n  vc<T> dp(N, infty<T>);\n  int lis = 0;\n\
-    \  vc<int> lis_rank(N);\n  FOR(i, N) {\n    int j = (strong ? LB(dp, A[i]) : UB(dp,\
-    \ A[i]));\n    dp[j] = A[i];\n    lis_rank[i] = j + 1;\n    chmax(lis, j + 1);\n\
-    \  }\n  return {lis, lis_rank};\n}\n\ntemplate <typename T, bool strong = true>\n\
-    vc<int> longest_increasing_subsequence(vector<T> A) {\n  const int N = A.size();\n\
-    \  auto [lis, dp] = longest_increasing_subsequence_dp<T, strong>(A);\n  vc<int>\
-    \ I;\n  FOR(i, N) if (dp[i] == lis) {\n    I.eb(i);\n    break;\n  }\n  FOR(lis\
-    \ - 1) {\n    int i = I.back();\n    FOR_R(j, i) {\n      bool ok = (dp[j] ==\
-    \ dp[i] - 1) && (strong ? (A[j] < A[i]) : (A[j] <= A[i]));\n      if (ok) {\n\
-    \        I.eb(j);\n        break;\n      }\n    }\n  }\n  assert(len(I) == lis);\n\
-    \  reverse(all(I));\n  return I;\n}\n#line 6 \"test/2_library_checker/other/longest_increasing_subsequence.test.cpp\"\
+    \ntemplate <typename T, bool strong = true>\npair<int, vc<int>> longest_increasing_subsequence_dp(const\
+    \ vector<T>& A) {\n  const int N = A.size();\n  vc<T> dp(N, infty<T>);\n  int\
+    \ lis = 0;\n  vc<int> lis_rank(N);\n  FOR(i, N) {\n    int j = (strong ? LB(dp,\
+    \ A[i]) : UB(dp, A[i]));\n    dp[j] = A[i];\n    lis_rank[i] = j + 1;\n    chmax(lis,\
+    \ j + 1);\n  }\n  return {lis, lis_rank};\n}\n\ntemplate <typename T, bool strong\
+    \ = true>\nvc<int> longest_increasing_subsequence(const vector<T>& A) {\n  const\
+    \ int N = A.size();\n  auto [lis, dp] = longest_increasing_subsequence_dp<T, strong>(A);\n\
+    \  vc<int> I;\n  FOR(i, N) if (dp[i] == lis) {\n    I.eb(i);\n    break;\n  }\n\
+    \  FOR(lis - 1) {\n    int i = I.back();\n    FOR_R(j, i) {\n      bool ok =\n\
+    \          (dp[j] == dp[i] - 1) && (strong ? (A[j] < A[i]) : (A[j] <= A[i]));\n\
+    \      if (ok) {\n        I.eb(j);\n        break;\n      }\n    }\n  }\n  assert(len(I)\
+    \ == lis);\n  reverse(all(I));\n  return I;\n}\n#line 6 \"test/2_library_checker/other/longest_increasing_subsequence.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  vc<int> I = longest_increasing_subsequence(A);\n\
     \  print(len(I));\n  print(I);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
     }\n"
@@ -265,8 +265,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-24 22:40:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
 layout: document

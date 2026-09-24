@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lattice_point_count.hpp
     title: convex/lattice_point_count.hpp
   - icon: ':heavy_check_mark:'
@@ -15,7 +15,7 @@ data:
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2440.test.cpp
     title: test/3_yukicoder/2440.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax\
@@ -80,7 +80,7 @@ data:
   - mod/range_freq_of_linear.hpp
   - mod/mod_sum_of_linear.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/mod_sum_of_linear.test.cpp
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
