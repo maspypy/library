@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy:
@@ -160,9 +160,9 @@ data:
   timestamp: '2026-08-31 12:03:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/K_shortest_walk.test.cpp
-  - test/3_yukicoder/1752.test.cpp
   - test/3_yukicoder/1154.test.cpp
+  - test/3_yukicoder/1752.test.cpp
+  - test/2_library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: ds/meldable_heap.hpp
 layout: document
 redirect_from:

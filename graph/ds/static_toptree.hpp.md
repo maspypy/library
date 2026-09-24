@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -378,19 +378,19 @@ data:
   requiredBy:
   - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - graph/ds/dynamic_tree_dp.hpp
-  - graph/ds/distance_sum.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
-  - graph/count_matching_on_tree.hpp
+  - graph/ds/distance_sum.hpp
   - graph/tree_walk_generating_function.hpp
+  - graph/count_matching_on_tree.hpp
   timestamp: '2026-09-13 16:24:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/tree_walk_gf.test.cpp
-  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - test/3_yukicoder/2258.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/2587.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
 redirect_from:

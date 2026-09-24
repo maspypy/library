@@ -73,8 +73,8 @@ data:
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/3_yukicoder/1142.test.cpp
+  - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
 documentation_of: setfunc/xor_convolution.hpp
 layout: document
 redirect_from:

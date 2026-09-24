@@ -943,8 +943,8 @@ data:
   isVerificationFile: false
   path: poly/composition_f_ex.hpp
   requiredBy:
-  - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_1_minus_ex.hpp
   timestamp: '2026-09-15 08:25:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

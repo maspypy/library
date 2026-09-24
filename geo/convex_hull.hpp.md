@@ -26,22 +26,10 @@ data:
   - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':x:'
-    path: geo/cross_point.hpp
-    title: geo/cross_point.hpp
-  - icon: ':x:'
-    path: geo/distance.hpp
-    title: geo/distance.hpp
   - icon: ':heavy_check_mark:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
-  - icon: ':warning:'
-    path: geo/minimum_three_distance_sum.hpp
-    title: geo/minimum_three_distance_sum.hpp
-  - icon: ':warning:'
-    path: geo/polygon.hpp
-    title: geo/polygon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedVerifiedWith:
@@ -63,7 +51,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,18 +60,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
-  - icon: ':x:'
-    path: test/4_aoj/CGL_2_B.test.cpp
-    title: test/4_aoj/CGL_2_B.test.cpp
-  - icon: ':x:'
-    path: test/4_aoj/CGL_2_C.test.cpp
-    title: test/4_aoj/CGL_2_C.test.cpp
-  - icon: ':x:'
-    path: test/4_aoj/CGL_2_D.test.cpp
-    title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':x:'
-    path: test/4_aoj/CGL_7_B.test.cpp
-    title: test/4_aoj/CGL_7_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -191,35 +167,27 @@ data:
   isVerificationFile: false
   path: geo/convex_hull.hpp
   requiredBy:
-  - random/random_polygon.hpp
-  - geo/cross_point.hpp
-  - geo/polygon.hpp
-  - geo/distance.hpp
-  - geo/minimum_three_distance_sum.hpp
-  - geo/furthest_pair.hpp
-  - geo/convex_polygon.hpp
-  - convex/lattice_point_count.hpp
   - convex/lattice_point_sum_polynomial.hpp
-  - convex/lower_integer_hull.hpp
-  - convex/fenchel.hpp
   - convex/line_min_function.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/fenchel.hpp
+  - convex/lattice_point_count.hpp
+  - convex/lower_integer_hull.hpp
+  - geo/furthest_pair.hpp
+  - geo/convex_polygon.hpp
+  - random/random_polygon.hpp
   timestamp: '2026-08-19 20:31:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
+  - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
-  - test/1_mytest/max_dot.test.cpp
-  - test/1_mytest/convex_polygon_visible_range.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
   - test/2_library_checker/geometry/furthest_pair.test.cpp
-  - test/4_aoj/CGL_2_D.test.cpp
-  - test/4_aoj/CGL_7_B.test.cpp
-  - test/4_aoj/CGL_2_C.test.cpp
-  - test/4_aoj/CGL_2_B.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:

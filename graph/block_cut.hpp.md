@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -199,9 +199,9 @@ data:
   timestamp: '2026-09-13 16:05:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1326.test.cpp
   - test/2_library_checker/graph/st_numbering.test.cpp
   - test/2_library_checker/graph/biconnected_component.test.cpp
-  - test/3_yukicoder/1326.test.cpp
   - test/4_aoj/GRL_3_A.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document

@@ -18,21 +18,21 @@ data:
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 1 \"other/bit.hpp\"\
@@ -186,29 +186,8 @@ data:
     \ ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n  return ANS;\n\
     }\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\
     \u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename\
-    \ T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n  const int N = len(A);\n\
-    \  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x : A)\
-    \ x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
-    \ bit(K);\n  for (auto&& x : A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
-    \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n\
-    \    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n\
-    }\n\n// inv[i][j] = inversion A[i:j) \u3067\u3042\u308B\u3088\u3046\u306A (N+1,\
-    \ N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int> all_range_inversion(const\
-    \ vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N +\
-    \ 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L\
-    \ + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n\n\
-    template <typename T>\nll inversion_between(const vc<T>& A, const vc<T>& B) {\n\
-    \  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int>\
-    \ TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n    if (I.empty()) return\
-    \ -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n}\n"
-  code: "#include \"ds/fenwicktree/fenwicktree_01.hpp\"\n\ntemplate <typename T>\n\
-    ll inversion(const vc<T>& A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n\
-    \  ll ANS = 0;\n  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto&\
-    \ i : I) {\n    ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n\
-    \  return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\
-    \u308B\u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\
-    \ntemplate <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n\
-    \  const int N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
+    \ T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n  if (A.empty()) return\
+    \ {};\n  const int N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
     \    for (auto&& x : A) x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS =\
     \ 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x : A) {\n    ANS\
     \ += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n\
@@ -222,7 +201,29 @@ data:
     \ A, const vc<T>& B) {\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N)\
     \ MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n\
     \    if (I.empty()) return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n\
-    }"
+    }\n"
+  code: "#include \"ds/fenwicktree/fenwicktree_01.hpp\"\n\ntemplate <typename T>\n\
+    ll inversion(const vc<T>& A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n\
+    \  ll ANS = 0;\n  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto&\
+    \ i : I) {\n    ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n\
+    \  return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\
+    \u308B\u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\
+    \ntemplate <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n\
+    \  if (A.empty()) return {};\n  const int N = len(A);\n  if (!SMALL) {\n    auto\
+    \ key = A;\n    UNIQUE(key);\n    for (auto&& x : A) x = LB(key, x);\n  }\n  ll\
+    \ K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for\
+    \ (auto&& x : A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n \
+    \ vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS\
+    \ + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n}\n\n// inv[i][j]\
+    \ = inversion A[i:j) \u3067\u3042\u308B\u3088\u3046\u306A (N+1, N+1) \u30C6\u30FC\
+    \u30D6\u30EB\ntemplate <typename T>\nvvc<int> all_range_inversion(const vc<T>&\
+    \ A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N + 1) FOR(R,\
+    \ L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L + 1][R -\
+    \ 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n\ntemplate\
+    \ <typename T>\nll inversion_between(const vc<T>& A, const vc<T>& B) {\n  int\
+    \ N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n\
+    \  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n   \
+    \ TO[i] = POP(I);\n  }\n  return inversion(TO);\n}"
   dependsOn:
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree.hpp
@@ -232,13 +233,13 @@ data:
   path: seq/inversion.hpp
   requiredBy:
   - other/sliding_puzzle_solver.hpp
-  timestamp: '2026-09-24 22:17:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-24 22:29:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/3_yukicoder/694.test.cpp
   - test/3_yukicoder/1838.test.cpp
-  - test/4_aoj/ALDS1_5.test.cpp
+  - test/3_yukicoder/694.test.cpp
   - test/4_aoj/ALDS1_2_A.test.cpp
+  - test/4_aoj/ALDS1_5.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:

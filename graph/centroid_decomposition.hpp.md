@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -317,19 +317,19 @@ data:
   isVerificationFile: false
   path: graph/centroid_decomposition.hpp
   requiredBy:
-  - graph/ds/contour_query_range.hpp
   - graph/tree_all_distances.hpp
+  - graph/ds/contour_query_range.hpp
   timestamp: '2026-09-13 16:05:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/3_yukicoder/1038.test.cpp
-  - test/3_yukicoder/2892.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
+  - test/3_yukicoder/2892.test.cpp
+  - test/3_yukicoder/1038.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
 documentation_of: graph/centroid_decomposition.hpp
 layout: document
 redirect_from:

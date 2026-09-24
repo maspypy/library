@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -479,8 +479,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1211.test.cpp
-  - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/1242.test.cpp
 documentation_of: graph/functional_graph.hpp
 layout: document
 redirect_from:

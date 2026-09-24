@@ -66,8 +66,8 @@ data:
   timestamp: '2026-09-13 17:20:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/powerquery.test.cpp
   - test/1_mytest/count_bipartite.test.cpp
+  - test/1_mytest/powerquery.test.cpp
 documentation_of: ds/power_query.hpp
 layout: document
 redirect_from:

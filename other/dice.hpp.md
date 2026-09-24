@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -195,10 +195,10 @@ data:
   timestamp: '2026-09-13 16:05:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/ITP1_11_D.test.cpp
   - test/4_aoj/ITP1_11_B.test.cpp
-  - test/4_aoj/ITP1_11_A.test.cpp
+  - test/4_aoj/ITP1_11_D.test.cpp
   - test/4_aoj/ITP1_11_C.test.cpp
+  - test/4_aoj/ITP1_11_A.test.cpp
 documentation_of: other/dice.hpp
 layout: document
 redirect_from:

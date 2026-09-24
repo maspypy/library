@@ -180,11 +180,11 @@ data:
   timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_bit2d.test.cpp
   - test/3_yukicoder/1216_2.test.cpp
   - test/3_yukicoder/1919.test.cpp
   - test/3_yukicoder/1216.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_bit2d.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_2d.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
@@ -319,12 +319,12 @@ data:
   timestamp: '2026-08-31 12:03:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/ARC30D.test.cpp
   - test/1_mytest/rbst_am_persistent.test.cpp
-  - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/rbst_am_2.test.cpp
-  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/3_yukicoder/686.test.cpp
+  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 documentation_of: ds/randomized_bst/rbst_acted_monoid.hpp
 layout: document
 redirect_from:

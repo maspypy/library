@@ -3084,8 +3084,8 @@ data:
   timestamp: '2026-09-15 08:25:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/3621.test.cpp
+  - test/3_yukicoder/3619.test.cpp
 documentation_of: poly/schroder.hpp
 layout: document
 redirect_from:

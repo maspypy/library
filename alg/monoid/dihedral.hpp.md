@@ -17,18 +17,20 @@ data:
     \ \u3068\u3082\u8A00\u3048\u308B.\nhttps://qoj.ac/contest/1576/problem/8512\n\
     */\ntemplate <int id_>\nstruct Dihedral {\n  using value_type = pair<int, int>;\n\
     \  using X = value_type;\n\n  static inline int n = 0;\n  static void set_n(int\
-    \ m) { n = m; }\n\n  static X op(X x, X y) {\n    // x \u3092\u3084\u3063\u305F\
-    \u3042\u3068 y\n    auto [t1, k1] = x;\n    auto [t2, k2] = y;\n    int t = t1\
-    \ * t2;\n    int k = bmod<int>(t2 * k1 + k2, n);\n    return {t, k};\n  }\n  static\
-    \ X inverse(X x) {\n    if (x.fi == 1) x.se = bmod<int>(n - x.se, n);\n    return\
-    \ x;\n  }\n  static constexpr X id() { return {1, 0}; }\n  static constexpr bool\
-    \ commute = 0;\n\n  static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k);\
-    \ }\n  static X cyclic_shift_right(ll k) {\n    k = bmod<ll>(k, n);\n    return\
-    \ {1, k};\n  }\n  static X reverse() { return {-1, n - 1}; }\n  template <typename\
-    \ STRING>\n  static STRING apply(X f, STRING A) {\n    assert(len(A) == n);\n\
-    \    auto [t, x] = f;\n    if (t == 1) {\n      rotate(A.begin(), A.begin() +\
-    \ n - x, A.end());\n      return A;\n    }\n    std::reverse(all(A));\n    rotate(A.begin(),\
-    \ A.begin() + (n - 1 - x), A.end());\n    return A;\n  }\n};\n"
+    \ m) {\n    assert(m > 0);\n    n = m;\n  }\n\n  static X op(X x, X y) {\n   \
+    \ assert(n > 0);\n    // x \u3092\u3084\u3063\u305F\u3042\u3068 y\n    auto [t1,\
+    \ k1] = x;\n    auto [t2, k2] = y;\n    int t = t1 * t2;\n    int k = bmod<int>(t2\
+    \ * k1 + k2, n);\n    return {t, k};\n  }\n  static X inverse(X x) {\n    assert(n\
+    \ > 0);\n    if (x.fi == 1) x.se = bmod<int>(n - x.se, n);\n    return x;\n  }\n\
+    \  static constexpr X id() { return {1, 0}; }\n  static constexpr bool commute\
+    \ = 0;\n\n  static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k);\
+    \ }\n  static X cyclic_shift_right(ll k) {\n    assert(n > 0);\n    k = bmod<ll>(k,\
+    \ n);\n    return {1, k};\n  }\n  static X reverse() {\n    assert(n > 0);\n \
+    \   return {-1, n - 1};\n  }\n  template <typename STRING>\n  static STRING apply(X\
+    \ f, STRING A) {\n    assert(n > 0 && len(A) == n);\n    auto [t, x] = f;\n  \
+    \  if (t == 1) {\n      rotate(A.begin(), A.begin() + n - x, A.end());\n     \
+    \ return A;\n    }\n    std::reverse(all(A));\n    rotate(A.begin(), A.begin()\
+    \ + (n - 1 - x), A.end());\n    return A;\n  }\n};\n"
   code: "\n/*\n2 \u9762\u4F53\u7FA4. \u9577\u3055 n \u306E\u6587\u5B57\u5217\u306B\
     \u4F5C\u7528\u3059\u308B.\n(+1,k): i \u6587\u5B57\u76EE\u304C +i+k \u6587\u5B57\
     \u76EE\u306B\u79FB\u52D5. S \u306F S[-k:N-k) \u306B\u5909\u5316.\n(-1,k): i \u6587\
@@ -36,23 +38,25 @@ data:
     \u3053\u308C\u306F revS[N-1-k:N-1-k+N] \u3068\u3082\u8A00\u3048\u308B.\nhttps://qoj.ac/contest/1576/problem/8512\n\
     */\ntemplate <int id_>\nstruct Dihedral {\n  using value_type = pair<int, int>;\n\
     \  using X = value_type;\n\n  static inline int n = 0;\n  static void set_n(int\
-    \ m) { n = m; }\n\n  static X op(X x, X y) {\n    // x \u3092\u3084\u3063\u305F\
-    \u3042\u3068 y\n    auto [t1, k1] = x;\n    auto [t2, k2] = y;\n    int t = t1\
-    \ * t2;\n    int k = bmod<int>(t2 * k1 + k2, n);\n    return {t, k};\n  }\n  static\
-    \ X inverse(X x) {\n    if (x.fi == 1) x.se = bmod<int>(n - x.se, n);\n    return\
-    \ x;\n  }\n  static constexpr X id() { return {1, 0}; }\n  static constexpr bool\
-    \ commute = 0;\n\n  static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k);\
-    \ }\n  static X cyclic_shift_right(ll k) {\n    k = bmod<ll>(k, n);\n    return\
-    \ {1, k};\n  }\n  static X reverse() { return {-1, n - 1}; }\n  template <typename\
-    \ STRING>\n  static STRING apply(X f, STRING A) {\n    assert(len(A) == n);\n\
-    \    auto [t, x] = f;\n    if (t == 1) {\n      rotate(A.begin(), A.begin() +\
-    \ n - x, A.end());\n      return A;\n    }\n    std::reverse(all(A));\n    rotate(A.begin(),\
-    \ A.begin() + (n - 1 - x), A.end());\n    return A;\n  }\n};\n"
+    \ m) {\n    assert(m > 0);\n    n = m;\n  }\n\n  static X op(X x, X y) {\n   \
+    \ assert(n > 0);\n    // x \u3092\u3084\u3063\u305F\u3042\u3068 y\n    auto [t1,\
+    \ k1] = x;\n    auto [t2, k2] = y;\n    int t = t1 * t2;\n    int k = bmod<int>(t2\
+    \ * k1 + k2, n);\n    return {t, k};\n  }\n  static X inverse(X x) {\n    assert(n\
+    \ > 0);\n    if (x.fi == 1) x.se = bmod<int>(n - x.se, n);\n    return x;\n  }\n\
+    \  static constexpr X id() { return {1, 0}; }\n  static constexpr bool commute\
+    \ = 0;\n\n  static X cyclic_shift_left(ll k) { return cyclic_shift_right(-k);\
+    \ }\n  static X cyclic_shift_right(ll k) {\n    assert(n > 0);\n    k = bmod<ll>(k,\
+    \ n);\n    return {1, k};\n  }\n  static X reverse() {\n    assert(n > 0);\n \
+    \   return {-1, n - 1};\n  }\n  template <typename STRING>\n  static STRING apply(X\
+    \ f, STRING A) {\n    assert(n > 0 && len(A) == n);\n    auto [t, x] = f;\n  \
+    \  if (t == 1) {\n      rotate(A.begin(), A.begin() + n - x, A.end());\n     \
+    \ return A;\n    }\n    std::reverse(all(A));\n    rotate(A.begin(), A.begin()\
+    \ + (n - 1 - x), A.end());\n    return A;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/dihedral.hpp
   requiredBy: []
-  timestamp: '2026-09-22 16:12:29+09:00'
+  timestamp: '2026-09-24 22:29:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/dihedral.hpp

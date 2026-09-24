@@ -197,8 +197,8 @@ data:
   timestamp: '2026-09-01 06:26:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
   - test/3_yukicoder/2161.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
 documentation_of: ds/offline_query/point_add_rectangle_sum.hpp
 layout: document
 redirect_from:

@@ -108,8 +108,8 @@ data:
   timestamp: '2026-09-13 16:24:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1776.test.cpp
   - test/3_yukicoder/1775.test.cpp
+  - test/3_yukicoder/1776.test.cpp
 documentation_of: nt/GF2.hpp
 layout: document
 redirect_from:

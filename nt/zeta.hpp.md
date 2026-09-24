@@ -96,22 +96,22 @@ data:
   path: nt/zeta.hpp
   requiredBy:
   - nt/range_rational_count.hpp
-  - nt/mertens.hpp
   - nt/mobius_table.hpp
-  - nt/gcd_convolution.hpp
+  - nt/mertens.hpp
   - nt/lcm_convolution.hpp
   - nt/euler_phi.hpp
+  - nt/gcd_convolution.hpp
   - mod/tetration.hpp
   timestamp: '2026-08-31 13:26:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/convolution/lcm_convolution.test.cpp
-  - test/2_library_checker/convolution/gcd_convolution.test.cpp
-  - test/2_library_checker/number_theory/tetration.test.cpp
   - test/3_yukicoder/1262.test.cpp
-  - test/3_yukicoder/2266.test.cpp
   - test/3_yukicoder/1666.test.cpp
   - test/3_yukicoder/1760.test.cpp
+  - test/3_yukicoder/2266.test.cpp
+  - test/2_library_checker/convolution/gcd_convolution.test.cpp
+  - test/2_library_checker/convolution/lcm_convolution.test.cpp
+  - test/2_library_checker/number_theory/tetration.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp
 documentation_of: nt/zeta.hpp
 layout: document

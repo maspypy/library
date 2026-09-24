@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -441,9 +441,9 @@ data:
   timestamp: '2026-09-13 16:24:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - test/3_yukicoder/1326.test.cpp
   - test/3_yukicoder/1641.test.cpp
+  - test/3_yukicoder/1326.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
   - test/4_aoj/2636.test.cpp
 documentation_of: graph/ds/tree_abeliangroup.hpp
 layout: document

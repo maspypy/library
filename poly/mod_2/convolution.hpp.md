@@ -508,8 +508,8 @@ data:
   isVerificationFile: false
   path: poly/mod_2/convolution.hpp
   requiredBy:
-  - poly/mod_2/power_projection.hpp
   - poly/mod_2/fps_inv.hpp
+  - poly/mod_2/power_projection.hpp
   timestamp: '2026-09-15 06:05:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -58,8 +58,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/static_range_sum.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
 documentation_of: ds/prefix_sum.hpp
 layout: document
 redirect_from:

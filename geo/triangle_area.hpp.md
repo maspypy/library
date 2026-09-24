@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: geo/delaunay_triangulation_of_convex_polygon.hpp
     title: geo/delaunay_triangulation_of_convex_polygon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
   - icon: ':warning:'
@@ -21,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3005.test.cpp
     title: test/3_yukicoder/3005.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL, typename\
@@ -41,17 +41,17 @@ data:
   isVerificationFile: false
   path: geo/triangle_area.hpp
   requiredBy:
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/incircle.hpp
   - geo/outcircle.hpp
   - geo/minimum_enclosing_circle.hpp
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
   timestamp: '2022-08-20 20:06:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/3005.test.cpp
   - test/3_yukicoder/2602.test.cpp
-  - test/4_aoj/CGL_7_B.test.cpp
+  - test/3_yukicoder/3005.test.cpp
   - test/4_aoj/CGL_7_C.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
 documentation_of: geo/triangle_area.hpp
 layout: document
 redirect_from:

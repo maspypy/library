@@ -70,8 +70,8 @@ data:
   isVerificationFile: false
   path: setfunc/zeta.hpp
   requiredBy:
-  - setfunc/and_convolution.hpp
   - setfunc/or_convolution.hpp
+  - setfunc/and_convolution.hpp
   timestamp: '2026-08-16 04:03:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

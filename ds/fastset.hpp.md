@@ -212,37 +212,37 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - other/cuboid_union_volume.hpp
-  - bigint/redundant_binary_number.hpp
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
-  - string/suffix_tree.hpp
-  - string/enumerate_occurrences.hpp
-  - graph/toposort.hpp
-  - graph/compress_tree.hpp
   - graph/all_cycle_common_vertices.hpp
+  - graph/compress_tree.hpp
   - graph/ds/incremental_centroid.hpp
+  - graph/toposort.hpp
+  - ds/intervals.hpp
   - ds/sortable_array.hpp
+  - ds/incremental_rectangle_union.hpp
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/range_add_make_increasing.hpp
   - ds/segtree/range_add_make_decreasing.hpp
   - ds/segtree/sortable_segtree.hpp
-  - ds/incremental_rectangle_union.hpp
-  - ds/intervals.hpp
+  - other/cuboid_union_volume.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
+  - string/suffix_tree.hpp
+  - string/enumerate_occurrences.hpp
+  - bigint/redundant_binary_number.hpp
   timestamp: '2026-09-04 09:44:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/sortable_array.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp
+  - test/1_mytest/sortable_array.test.cpp
   - test/1_mytest/range_assign.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - test/2_library_checker/data_structure/predecessor_problem.test.cpp
   - test/3_yukicoder/2809.test.cpp
   - test/3_yukicoder/2361.test.cpp
-  - test/4_aoj/2636.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/data_structure/predecessor_problem.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/4_aoj/2251_1.test.cpp
+  - test/4_aoj/2636.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:

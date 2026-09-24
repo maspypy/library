@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -356,8 +356,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_connected_subgraph.hpp
   requiredBy:
-  - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_bridgeless_subgraph.hpp
+  - graph/count/count_biconnected_subgraph.hpp
   timestamp: '2026-09-15 08:25:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

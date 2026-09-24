@@ -40,8 +40,8 @@ data:
   timestamp: '2026-08-17 12:32:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/string/number_of_subsequences.test.cpp
   - test/3_yukicoder/1493.test.cpp
+  - test/2_library_checker/string/number_of_subsequences.test.cpp
 documentation_of: string/count_subsequence.hpp
 layout: document
 redirect_from:

@@ -73,8 +73,8 @@ data:
   isVerificationFile: false
   path: string/trie.hpp
   requiredBy:
-  - string/enumerate_occurrences.hpp
   - string/generalized_suffix_automaton.hpp
+  - string/enumerate_occurrences.hpp
   timestamp: '2024-09-19 11:54:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

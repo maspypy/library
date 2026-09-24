@@ -36,8 +36,8 @@ data:
   timestamp: '2026-08-17 16:26:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/3_yukicoder/1339.test.cpp
+  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
 documentation_of: alg/acted_set/from_monoid.hpp
 layout: document
 redirect_from:
