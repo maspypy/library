@@ -513,8 +513,8 @@ data:
     \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 3 \"linalg/hafnian.hpp\"\
     \n\r\n// \u96A3\u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\u30C3\
     \u30C1\u30F3\u30B0\u3092\u6570\u3048\u308B\u3002\r\ntemplate <typename mint, int\
-    \ LIM = 20>\r\nmint hafnian(vc<vc<mint>>& mat) {\r\n  int N = len(mat);\r\n  int\
-    \ n = N / 2;\r\n  assert(n <= LIM);\r\n  vc<mint> cyc(1 << n);\r\n\r\n  FOR(i,\
+    \ LIM = 20>\r\nmint hafnian(const vvc<mint>& mat) {\r\n  int N = len(mat);\r\n\
+    \  int n = N / 2;\r\n  assert(n <= LIM);\r\n  vc<mint> cyc(1 << n);\r\n\r\n  FOR(i,\
     \ N / 2) {\r\n    int A = 2 * i + 0, B = 2 * i + 1;\r\n    int K = 2 * i;\r\n\
     \    cyc[1 << i] += mat[A][B];\r\n    vc<mint> dp(K << i);\r\n    for (int j =\
     \ 0; j < i; ++j) {\r\n      int j0 = 2 * j + 0, j1 = 2 * j + 1;\r\n      dp[(K\
@@ -552,7 +552,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 08:25:53+09:00'
+  timestamp: '2026-09-25 19:09:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp

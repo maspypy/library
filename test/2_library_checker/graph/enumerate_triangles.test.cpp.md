@@ -342,24 +342,25 @@ data:
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
     \   }\n  }\n};\n#line 2 \"enumerate/triangle.hpp\"\n\r\ntemplate <typename Gr,\
-    \ typename F>\r\nvoid enumerate_triangle(Gr& G, F query) {\r\n  int N = G.N;\r\
-    \n  Graph<int, 1> H(N);\r\n  set<pair<int, int>> done;\r\n  auto add = [&](int\
-    \ a, int b) -> void {\r\n    pair<int, int> p = {a, b};\r\n    if (done.count(p))\
+    \ typename F>\r\nvoid enumerate_triangle(const Gr& G, F query) {\r\n  int N =\
+    \ G.N;\r\n  Graph<int, 1> H(N);\r\n  set<pair<int, int>> done;\r\n  auto add =\
+    \ [&](int a, int b) -> void {\r\n    pair<int, int> p = {a, b};\r\n    if (done.count(p))\
     \ return;\r\n    done.insert(p);\r\n    H.add(a, b);\r\n  };\r\n  for (auto&&\
-    \ e: G.edges) {\r\n    // \u6CE8\u610F\uFF1A\u6B21\u6570\u6BD4\u8F03\u3060\u3051\
+    \ e : G.edges) {\r\n    // \u6CE8\u610F\uFF1A\u6B21\u6570\u6BD4\u8F03\u3060\u3051\
     \u3060\u3068 DAG \u306B\u306A\u3089\u305A\u3001\u30B5\u30A4\u30AF\u30EB\u304C\u3067\
     \u304D\u3066\u3057\u307E\u3046\r\n    if (mp(G.deg(e.frm), e.frm) < mp(G.deg(e.to),\
     \ e.to))\r\n      add(e.frm, e.to);\r\n    else\r\n      add(e.to, e.frm);\r\n\
     \  }\r\n  H.build();\r\n\r\n  vc<bool> table(N);\r\n  FOR(a, N) {\r\n    for (auto&&\
-    \ e: H[a]) { table[e.to] = 1; }\r\n    for (auto&& e: H[a]) {\r\n      int b =\
-    \ e.to;\r\n      for (auto&& f: H[b]) {\r\n        int c = f.to;\r\n        if\
-    \ (table[c]) query(a, b, c);\r\n      }\r\n    }\r\n    for (auto&& e: H[a]) {\
-    \ table[e.to] = 0; }\r\n  }\r\n}\r\n#line 5 \"test/2_library_checker/graph/enumerate_triangles.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(int, A, N);\r\n  Graph G(N);\r\n\
-    \  G.read_graph(M, 0, 0);\r\n  i128 sum = 0;\r\n  auto query\r\n      = [&](int\
-    \ a, int b, int c) -> void { sum += i128(A[a]) * A[b] * A[c]; };\r\n  enumerate_triangle(G,\
-    \ query);\r\n  int ANS = sum % 998244353;\r\n  print(ANS);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ e : H[a]) {\r\n      table[e.to] = 1;\r\n    }\r\n    for (auto&& e : H[a])\
+    \ {\r\n      int b = e.to;\r\n      for (auto&& f : H[b]) {\r\n        int c =\
+    \ f.to;\r\n        if (table[c]) query(a, b, c);\r\n      }\r\n    }\r\n    for\
+    \ (auto&& e : H[a]) {\r\n      table[e.to] = 0;\r\n    }\r\n  }\r\n}\r\n#line\
+    \ 5 \"test/2_library_checker/graph/enumerate_triangles.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  LL(N, M);\r\n  VEC(int, A, N);\r\n  Graph G(N);\r\n  G.read_graph(M,\
+    \ 0, 0);\r\n  i128 sum = 0;\r\n  auto query\r\n      = [&](int a, int b, int c)\
+    \ -> void { sum += i128(A[a]) * A[b] * A[c]; };\r\n  enumerate_triangle(G, query);\r\
+    \n  int ANS = sum % 998244353;\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n\
+    \  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_triangles\"\r\
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"enumerate/triangle.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(int, A, N);\r\n  Graph G(N);\r\n\
@@ -376,7 +377,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/enumerate_triangles.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
+  timestamp: '2026-09-25 19:09:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/enumerate_triangles.test.cpp
