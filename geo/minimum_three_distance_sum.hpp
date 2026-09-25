@@ -6,11 +6,13 @@ template <typename Re>
 Re minimum_three_distance_sum(Point<Re> A, Point<Re> B, Point<Re> C) {
   using P = Point<Re>;
   const Re PI = acos(-1);
-  if (ccw(A, B, C) == -1) { swap(B, C); }
+  if (ccw(A, B, C) == -1) {
+    swap(B, C);
+  }
   Re ANS = infty<Re>;
-  Re AB = dist<Re>(A, B);
-  Re AC = dist<Re>(A, C);
-  Re BC = dist<Re>(B, C);
+  Re AB = distance<Re>(A, B);
+  Re AC = distance<Re>(A, C);
+  Re BC = distance<Re>(B, C);
   chmin(ANS, AB + AC);
   chmin(ANS, AB + BC);
   chmin(ANS, AC + BC);
@@ -25,9 +27,9 @@ Re minimum_three_distance_sum(Point<Re> A, Point<Re> B, Point<Re> C) {
 
   Circle<Re> C1 = get(A, B), C2 = get(B, C);
   auto [ok, p1, p2] = cross_point_circle<Re, Re>(C1, C2);
-  for (auto& p: {p1, p2}) {
+  for (auto& p : {p1, p2}) {
     Re d = 0;
-    for (P q: {A, B, C}) d += dist<Re>(p, q);
+    for (P q : {A, B, C}) d += distance<Re>(p, q);
     chmin(ANS, d);
   }
   return ANS;

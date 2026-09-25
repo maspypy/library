@@ -11,7 +11,7 @@ void solve() {
   using P = Point<Re>;
   VEC(P, points, N);
   auto [i, j] = closest_pair(points);
-  Re ANS = dist<Re>(points[i], points[j]);
+  Re ANS = distance<Re>(points[i], points[j]);
   print(ANS);
 }
 

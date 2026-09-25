@@ -54,6 +54,7 @@ vvc<int> all_range_inversion(const vc<T>& A) {
 
 template <typename T>
 ll inversion_between(const vc<T>& A, const vc<T>& B) {
+  assert(len(A) == len(B));
   int N = len(A);
   map<T, vc<int>> MP;
   FOR(i, N) MP[B[i]].eb(i);
