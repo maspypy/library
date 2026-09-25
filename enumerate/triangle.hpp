@@ -1,7 +1,7 @@
 #include "graph/base.hpp"
 
 template <typename Gr, typename F>
-void enumerate_triangle(Gr& G, F query) {
+void enumerate_triangle(const Gr& G, F query) {
   int N = G.N;
   Graph<int, 1> H(N);
   set<pair<int, int>> done;
@@ -11,7 +11,7 @@ void enumerate_triangle(Gr& G, F query) {
     done.insert(p);
     H.add(a, b);
   };
-  for (auto&& e: G.edges) {
+  for (auto&& e : G.edges) {
     // 注意：次数比較だけだと DAG にならず、サイクルができてしまう
     if (mp(G.deg(e.frm), e.frm) < mp(G.deg(e.to), e.to))
       add(e.frm, e.to);
@@ -22,14 +22,18 @@ void enumerate_triangle(Gr& G, F query) {
 
   vc<bool> table(N);
   FOR(a, N) {
-    for (auto&& e: H[a]) { table[e.to] = 1; }
-    for (auto&& e: H[a]) {
+    for (auto&& e : H[a]) {
+      table[e.to] = 1;
+    }
+    for (auto&& e : H[a]) {
       int b = e.to;
-      for (auto&& f: H[b]) {
+      for (auto&& f : H[b]) {
         int c = f.to;
         if (table[c]) query(a, b, c);
       }
     }
-    for (auto&& e: H[a]) { table[e.to] = 0; }
+    for (auto&& e : H[a]) {
+      table[e.to] = 0;
+    }
   }
 }

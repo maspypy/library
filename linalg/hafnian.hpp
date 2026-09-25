@@ -3,7 +3,7 @@
 
 // 隣接行列に対して完全マッチングを数える。
 template <typename mint, int LIM = 20>
-mint hafnian(vc<vc<mint>>& mat) {
+mint hafnian(const vvc<mint>& mat) {
   int N = len(mat);
   int n = N / 2;
   assert(n <= LIM);
