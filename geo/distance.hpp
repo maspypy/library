@@ -1,13 +1,6 @@
 #include "geo/cross_point.hpp"
 
 template <typename REAL, typename T, typename U>
-REAL distance(Point<T> S, Point<U> P) {
-  REAL dx = P.x - S.x;
-  REAL dy = P.y - S.y;
-  return sqrt(dx * dx + dy * dy);
-}
-
-template <typename REAL, typename T, typename U>
 REAL distance(Segment<T> S, Point<U> P) {
   Point<T> A = S.A, B = S.B;
   bool b1 = (B - A).dot(P - A) >= 0;
