@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':question:'
@@ -19,17 +19,17 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
@@ -389,13 +389,13 @@ data:
     \    }\n    return I;\n  };\n  dfs(dfs, 0, N);\n  return best_pair;\n}\n#line\
     \ 7 \"test/4_aoj/CGL_5_A.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  using Re =\
     \ double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [i, j] = closest_pair(points);\n\
-    \  Re ANS = dist<Re>(points[i], points[j]);\n  print(ANS);\n}\n\nsigned main()\
+    \  Re ANS = distance<Re>(points[i], points[j]);\n  print(ANS);\n}\n\nsigned main()\
     \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A\"\
     \n#define ERROR 0.000001\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
     \n#include \"geo/closest_pair.hpp\"\n\nvoid solve() {\n  LL(N);\n  using Re =\
     \ double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [i, j] = closest_pair(points);\n\
-    \  Re ANS = dist<Re>(points[i], points[j]);\n  print(ANS);\n}\n\nsigned main()\
+    \  Re ANS = distance<Re>(points[i], points[j]);\n  print(ANS);\n}\n\nsigned main()\
     \ {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
@@ -409,8 +409,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-25 18:55:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_5_A.test.cpp
 layout: document

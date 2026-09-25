@@ -193,51 +193,52 @@ data:
     \ 1, N + 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R\
     \ - 1] + dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n\
     \  }\n  return dp;\n}\n\ntemplate <typename T>\nll inversion_between(const vc<T>&\
-    \ A, const vc<T>& B) {\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N)\
-    \ MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n\
-    \    if (I.empty()) return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n\
-    }\n#line 3 \"other/sliding_puzzle_solver.hpp\"\n\n/*\nO(HW(H+W))\n\u7A7A\u30DE\
-    \u30B9\u306F -1 (unique)\n\u540C\u3058\u5024\u304C\u8907\u6570\u3042\u3063\u3066\
-    \u3082\u3088\u3044\n\u64CD\u4F5C\u56DE\u6570\u3092 K \u3068\u3057\u3066\u3001\u9577\
-    \u3055 K+1 \u306E\u7A7A\u30DE\u30B9\u306E\u5EA7\u6A19\u5217\u3092\u304B\u3048\u3059\
-    \n*/\nstruct Sliding_Puzzle_Solver {\n  using P = pair<int, int>;\n  vc<P> solve(vvc<int>\
-    \ A, vvc<int> B) {\n    int H = len(A), W = len(A[0]);\n    auto find = [&](vvc<int>&\
-    \ A, int k) -> P {\n      FOR(x, H) FOR(y, W) if (A[x][y] == k) return {x, y};\n\
-    \      assert(0);\n      return {0, 0};\n    };\n    auto [ax, ay] = find(A, -1);\n\
-    \    auto [bx, by] = find(B, -1);\n    vc<P> ANS_1, ANS_2;\n    while (ax > 0)\
-    \ {\n      ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax - 1][ay]), --ax;\n    }\n  \
-    \  while (ay > 0) {\n      ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax][ay - 1]), --ay;\n\
-    \    }\n    while (bx > 0) {\n      ANS_2.eb(bx, by), swap(B[bx][by], B[bx - 1][by]),\
-    \ --bx;\n    }\n    while (by > 0) {\n      ANS_2.eb(bx, by), swap(B[bx][by],\
-    \ B[bx][by - 1]), --by;\n    }\n    vc<P> ANS = solve_00(A, B);\n    if (ANS.empty())\
-    \ return {};\n    reverse(all(ANS_2));\n    return concat(ANS_1, ANS, ANS_2);\n\
-    \  }\n\n private:\n  vc<P> solve_00(vvc<int> A, vvc<int> B) {\n    assert(A[0][0]\
-    \ == -1 && B[0][0] == -1);\n    int H = len(A), W = len(A[0]);\n    if (H == 1\
-    \ || W == 1) {\n      if (A != B) return {};\n      vc<P> ANS;\n      ANS.eb(0,\
-    \ 0);\n      return ANS;\n    }\n    vc<P> XYA, XYB;\n    FOR(x, H) FOR(y, W)\
-    \ XYA.eb(x, y), XYB.eb(x, y);\n    sort(all(XYA), [&](auto& a, auto& b) -> bool\
-    \ {\n      return A[a.fi][a.se] < A[b.fi][b.se];\n    });\n    sort(all(XYB),\
-    \ [&](auto& a, auto& b) -> bool {\n      return B[a.fi][a.se] < B[b.fi][b.se];\n\
-    \    });\n    auto check = [&]() -> bool {\n      vc<int> S, T;\n      FOR(i,\
-    \ H * W) {\n        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYB[i];\n\
-    \        if (A[x1][y1] != B[x2][y2]) return 0;\n        S.eb(W * x1 + y1);\n \
-    \       T.eb(W * x2 + y2);\n      }\n      ll x = inversion_between(S, T);\n \
-    \     return x % 2 == 0;\n    };\n    if (!check()) {\n      FOR(i, H * W - 1)\
-    \ {\n        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYA[i + 1];\n  \
-    \      if (A[x1][y1] != A[x2][y2]) continue;\n        swap(XYA[i], XYA[i + 1]);\n\
-    \        break;\n      }\n      if (!check()) return {};\n    }\n    vv(P, X,\
-    \ H, W);\n    FOR(i, H * W) {\n      auto [x1, y1] = XYA[i];\n      auto [x2,\
-    \ y2] = XYB[i];\n      X[x1][y1] = {x2, y2};\n    }\n    vc<P> ANS;\n    ANS.eb(0,\
-    \ 0);\n    solve_sort(X, ANS, false);\n    return ANS;\n  }\n\n  // \u79FB\u52D5\
-    \u5148\u306E\u5EA7\u6A19\u306E\u5217\u3092\u4E26\u3079\u305F\u30B0\u30EA\u30C3\
-    \u30C9\u3092\u4E0E\u3048\u308B.\n  // (0,0) \u304C\u7A7A\u30DE\u30B9\n  void solve_sort(vvc<pair<int,\
-    \ int>>& A, vc<P>& ANS, bool tr) {\n    int H = len(A), W = len(A[0]);\n    vv(P,\
-    \ pos, H, W);\n    FOR(x, H) FOR(y, W) {\n      P p = A[x][y];\n      pos[p.fi][p.se]\
-    \ = {x, y};\n    }\n\n    auto [px, py] = pos[0][0];\n\n    auto ope = [&](int\
-    \ x, int y) -> void {\n      assert(abs(px - x) + abs(py - y) == 1);\n      swap(A[px][py],\
-    \ A[x][y]);\n      if (!tr) ANS.eb(x, y);\n      if (tr) ANS.eb(y, x);\n     \
-    \ pos[A[px][py].fi][A[px][py].se] = {px, py};\n      px = x, py = y;\n      pos[A[px][py].fi][A[px][py].se]\
-    \ = {px, py};\n    };\n    if (H == 2 && W == 2) {\n      auto check = [&]() ->\
+    \ A, const vc<T>& B) {\n  assert(len(A) == len(B));\n  int N = len(A);\n  map<T,\
+    \ vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n\
+    \    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n    TO[i] = POP(I);\n\
+    \  }\n  return inversion(TO);\n}\n#line 3 \"other/sliding_puzzle_solver.hpp\"\n\
+    \n/*\nO(HW(H+W))\n\u7A7A\u30DE\u30B9\u306F -1 (unique)\n\u540C\u3058\u5024\u304C\
+    \u8907\u6570\u3042\u3063\u3066\u3082\u3088\u3044\n\u64CD\u4F5C\u56DE\u6570\u3092\
+    \ K \u3068\u3057\u3066\u3001\u9577\u3055 K+1 \u306E\u7A7A\u30DE\u30B9\u306E\u5EA7\
+    \u6A19\u5217\u3092\u304B\u3048\u3059\n*/\nstruct Sliding_Puzzle_Solver {\n  using\
+    \ P = pair<int, int>;\n  vc<P> solve(vvc<int> A, vvc<int> B) {\n    int H = len(A),\
+    \ W = len(A[0]);\n    auto find = [&](vvc<int>& A, int k) -> P {\n      FOR(x,\
+    \ H) FOR(y, W) if (A[x][y] == k) return {x, y};\n      assert(0);\n      return\
+    \ {0, 0};\n    };\n    auto [ax, ay] = find(A, -1);\n    auto [bx, by] = find(B,\
+    \ -1);\n    vc<P> ANS_1, ANS_2;\n    while (ax > 0) {\n      ANS_1.eb(ax, ay),\
+    \ swap(A[ax][ay], A[ax - 1][ay]), --ax;\n    }\n    while (ay > 0) {\n      ANS_1.eb(ax,\
+    \ ay), swap(A[ax][ay], A[ax][ay - 1]), --ay;\n    }\n    while (bx > 0) {\n  \
+    \    ANS_2.eb(bx, by), swap(B[bx][by], B[bx - 1][by]), --bx;\n    }\n    while\
+    \ (by > 0) {\n      ANS_2.eb(bx, by), swap(B[bx][by], B[bx][by - 1]), --by;\n\
+    \    }\n    vc<P> ANS = solve_00(A, B);\n    if (ANS.empty()) return {};\n   \
+    \ reverse(all(ANS_2));\n    return concat(ANS_1, ANS, ANS_2);\n  }\n\n private:\n\
+    \  vc<P> solve_00(vvc<int> A, vvc<int> B) {\n    assert(A[0][0] == -1 && B[0][0]\
+    \ == -1);\n    int H = len(A), W = len(A[0]);\n    if (H == 1 || W == 1) {\n \
+    \     if (A != B) return {};\n      vc<P> ANS;\n      ANS.eb(0, 0);\n      return\
+    \ ANS;\n    }\n    vc<P> XYA, XYB;\n    FOR(x, H) FOR(y, W) XYA.eb(x, y), XYB.eb(x,\
+    \ y);\n    sort(all(XYA), [&](auto& a, auto& b) -> bool {\n      return A[a.fi][a.se]\
+    \ < A[b.fi][b.se];\n    });\n    sort(all(XYB), [&](auto& a, auto& b) -> bool\
+    \ {\n      return B[a.fi][a.se] < B[b.fi][b.se];\n    });\n    auto check = [&]()\
+    \ -> bool {\n      vc<int> S, T;\n      FOR(i, H * W) {\n        auto [x1, y1]\
+    \ = XYA[i];\n        auto [x2, y2] = XYB[i];\n        if (A[x1][y1] != B[x2][y2])\
+    \ return 0;\n        S.eb(W * x1 + y1);\n        T.eb(W * x2 + y2);\n      }\n\
+    \      ll x = inversion_between(S, T);\n      return x % 2 == 0;\n    };\n   \
+    \ if (!check()) {\n      FOR(i, H * W - 1) {\n        auto [x1, y1] = XYA[i];\n\
+    \        auto [x2, y2] = XYA[i + 1];\n        if (A[x1][y1] != A[x2][y2]) continue;\n\
+    \        swap(XYA[i], XYA[i + 1]);\n        break;\n      }\n      if (!check())\
+    \ return {};\n    }\n    vv(P, X, H, W);\n    FOR(i, H * W) {\n      auto [x1,\
+    \ y1] = XYA[i];\n      auto [x2, y2] = XYB[i];\n      X[x1][y1] = {x2, y2};\n\
+    \    }\n    vc<P> ANS;\n    ANS.eb(0, 0);\n    solve_sort(X, ANS, false);\n  \
+    \  return ANS;\n  }\n\n  // \u79FB\u52D5\u5148\u306E\u5EA7\u6A19\u306E\u5217\u3092\
+    \u4E26\u3079\u305F\u30B0\u30EA\u30C3\u30C9\u3092\u4E0E\u3048\u308B.\n  // (0,0)\
+    \ \u304C\u7A7A\u30DE\u30B9\n  void solve_sort(vvc<pair<int, int>>& A, vc<P>& ANS,\
+    \ bool tr) {\n    int H = len(A), W = len(A[0]);\n    vv(P, pos, H, W);\n    FOR(x,\
+    \ H) FOR(y, W) {\n      P p = A[x][y];\n      pos[p.fi][p.se] = {x, y};\n    }\n\
+    \n    auto [px, py] = pos[0][0];\n\n    auto ope = [&](int x, int y) -> void {\n\
+    \      assert(abs(px - x) + abs(py - y) == 1);\n      swap(A[px][py], A[x][y]);\n\
+    \      if (!tr) ANS.eb(x, y);\n      if (tr) ANS.eb(y, x);\n      pos[A[px][py].fi][A[px][py].se]\
+    \ = {px, py};\n      px = x, py = y;\n      pos[A[px][py].fi][A[px][py].se] =\
+    \ {px, py};\n    };\n    if (H == 2 && W == 2) {\n      auto check = [&]() ->\
     \ bool {\n        FOR(x, H) FOR(y, W) if (A[x][y].fi != x || A[x][y].se != y)\
     \ return 0;\n        return 1;\n      };\n      while (!check()) {\n        if\
     \ (px == 0 && py == 0) ope(1, 0);\n        if (px == 1 && py == 0) ope(1, 1);\n\
@@ -368,7 +369,7 @@ data:
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:29:43+09:00'
+  timestamp: '2026-09-25 18:55:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp

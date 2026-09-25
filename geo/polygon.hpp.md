@@ -169,8 +169,8 @@ data:
     \ x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1,\
     \ y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
     template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
-    \ C1, Circle<T> C2) {\n  using P = Point<T>;\n  P O{0, 0};\n  P A = C1.O, B =\
-    \ C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
+    \ C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n  P A = C1.O, B\
+    \ = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
     \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
     \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
     \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
@@ -311,7 +311,7 @@ data:
   isVerificationFile: false
   path: geo/polygon.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-09-25 18:55:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/polygon.hpp

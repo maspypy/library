@@ -70,20 +70,20 @@ data:
     \n// https://codeforces.com/contest/2/problem/C\ntemplate <typename REAL, typename\
     \ T>\nCircle<REAL> apollonian_circle(Point<T> A, Point<T> B, T a, T b) {\n  assert(a\
     \ != b);\n  Point<REAL> X = (A * b + B * a) / (a + b);\n  Point<REAL> Y = (A *\
-    \ b - B * a) / (b - a);\n  Point<REAL> O = (X + Y) / 2.0;\n  REAL r = dist<REAL>(X,\
+    \ b - B * a) / (b - a);\n  Point<REAL> O = (X + Y) / 2.0;\n  REAL r = distance<REAL>(X,\
     \ O);\n  return Circle<REAL>(O.x, O.y, r);\n}\n"
   code: "#include \"geo/base.hpp\"\n\n// https://codeforces.com/contest/2/problem/C\n\
     template <typename REAL, typename T>\nCircle<REAL> apollonian_circle(Point<T>\
     \ A, Point<T> B, T a, T b) {\n  assert(a != b);\n  Point<REAL> X = (A * b + B\
     \ * a) / (a + b);\n  Point<REAL> Y = (A * b - B * a) / (b - a);\n  Point<REAL>\
-    \ O = (X + Y) / 2.0;\n  REAL r = dist<REAL>(X, O);\n  return Circle<REAL>(O.x,\
+    \ O = (X + Y) / 2.0;\n  REAL r = distance<REAL>(X, O);\n  return Circle<REAL>(O.x,\
     \ O.y, r);\n}"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
   path: geo/apollonian_circle.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-09-25 18:55:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/apollonian_circle.hpp

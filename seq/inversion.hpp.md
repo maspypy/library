@@ -198,10 +198,10 @@ data:
     \ 1, N + 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R\
     \ - 1] + dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n\
     \  }\n  return dp;\n}\n\ntemplate <typename T>\nll inversion_between(const vc<T>&\
-    \ A, const vc<T>& B) {\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N)\
-    \ MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n\
-    \    if (I.empty()) return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n\
-    }\n"
+    \ A, const vc<T>& B) {\n  assert(len(A) == len(B));\n  int N = len(A);\n  map<T,\
+    \ vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n\
+    \    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n    TO[i] = POP(I);\n\
+    \  }\n  return inversion(TO);\n}\n"
   code: "#include \"ds/fenwicktree/fenwicktree_01.hpp\"\n\ntemplate <typename T>\n\
     ll inversion(const vc<T>& A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n\
     \  ll ANS = 0;\n  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto&\
@@ -220,10 +220,10 @@ data:
     \ A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N + 1) FOR(R,\
     \ L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L + 1][R -\
     \ 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n\ntemplate\
-    \ <typename T>\nll inversion_between(const vc<T>& A, const vc<T>& B) {\n  int\
-    \ N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n\
-    \  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n   \
-    \ TO[i] = POP(I);\n  }\n  return inversion(TO);\n}"
+    \ <typename T>\nll inversion_between(const vc<T>& A, const vc<T>& B) {\n  assert(len(A)\
+    \ == len(B));\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n\
+    \  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n    if (I.empty())\
+    \ return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n}"
   dependsOn:
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree.hpp
@@ -233,7 +233,7 @@ data:
   path: seq/inversion.hpp
   requiredBy:
   - other/sliding_puzzle_solver.hpp
-  timestamp: '2026-09-24 22:29:43+09:00'
+  timestamp: '2026-09-25 18:55:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1838.test.cpp
