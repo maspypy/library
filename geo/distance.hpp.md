@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"geo/cross_point.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
@@ -123,59 +123,53 @@ data:
     \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
     \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
     }\n#line 2 \"geo/distance.hpp\"\n\ntemplate <typename REAL, typename T, typename\
-    \ U>\nREAL distance(Point<T> S, Point<U> P) {\n  REAL dx = P.x - S.x;\n  REAL\
-    \ dy = P.y - S.y;\n  return sqrt(dx * dx + dy * dy);\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL distance(Segment<T> S, Point<U> P) {\n \
-    \ Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2\
-    \ = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) {\n    return distance<REAL, T,\
-    \ T>(B, P);\n  }\n  if (!b1 && b2) {\n    return distance<REAL, T, T>(A, P);\n\
-    \  }\n  Line<T> L = S.to_line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\
-    \n  return REAL(abs(L.eval(P))) / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);\n}\n\
-    \ntemplate <typename REAL, typename T>\nREAL distance(Segment<T> S1, Segment<T>\
-    \ S2) {\n  if (count_cross<T>(S1, S2, true)) return REAL(0);\n  REAL res = distance<REAL,\
-    \ T, T>(S1, S2.A);\n  chmin(res, distance<REAL, T, T>(S1, S2.B));\n  chmin(res,\
-    \ distance<REAL, T, T>(S2, S1.A));\n  chmin(res, distance<REAL, T, T>(S2, S1.B));\n\
-    \  return res;\n}\n\ntemplate <typename REAL, typename T>\nREAL distance(Point<T>\
-    \ P, Line<T> L) {\n  return abs(L.a * P.x + L.b * P.y + L.c) / sqrt(L.a * L.a\
-    \ + L.b * L.b);\n}\n\n// return: {a, b}. where dist=sqrt(a/b)\n// a,b:\u5EA7\u6A19\
-    \u306E 4 \u4E57\ntemplate <typename T>\npi distance_exact(Segment<T> S, Point<T>\
-    \ P) {\n  Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n \
-    \ bool b2 = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) {\n    T d = (B - P).dot(B\
-    \ - P);\n    return {d, 1};\n  }\n  if (!b1 && b2) {\n    T d = (A - P).dot(A\
-    \ - P);\n    return {d, 1};\n  }\n  Line<T> L = S.to_line();\n  T a = L.eval(P);\n\
-    \  if (a < 0) a = -a;\n  T b = L.a * L.a + L.b * L.b;\n  return {a * a, b};\n\
-    }\n"
+    \ U>\nREAL distance(Segment<T> S, Point<U> P) {\n  Point<T> A = S.A, B = S.B;\n\
+    \  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2 = (A - B).dot(P - B) >= 0;\n\
+    \  if (b1 && !b2) {\n    return distance<REAL, T, T>(B, P);\n  }\n  if (!b1 &&\
+    \ b2) {\n    return distance<REAL, T, T>(A, P);\n  }\n  Line<T> L = S.to_line();\n\
+    \  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\n  return REAL(abs(L.eval(P)))\
+    \ / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);\n}\n\ntemplate <typename REAL, typename\
+    \ T>\nREAL distance(Segment<T> S1, Segment<T> S2) {\n  if (count_cross<T>(S1,\
+    \ S2, true)) return REAL(0);\n  REAL res = distance<REAL, T, T>(S1, S2.A);\n \
+    \ chmin(res, distance<REAL, T, T>(S1, S2.B));\n  chmin(res, distance<REAL, T,\
+    \ T>(S2, S1.A));\n  chmin(res, distance<REAL, T, T>(S2, S1.B));\n  return res;\n\
+    }\n\ntemplate <typename REAL, typename T>\nREAL distance(Point<T> P, Line<T> L)\
+    \ {\n  return abs(L.a * P.x + L.b * P.y + L.c) / sqrt(L.a * L.a + L.b * L.b);\n\
+    }\n\n// return: {a, b}. where dist=sqrt(a/b)\n// a,b:\u5EA7\u6A19\u306E 4 \u4E57\
+    \ntemplate <typename T>\npi distance_exact(Segment<T> S, Point<T> P) {\n  Point<T>\
+    \ A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2 = (A - B).dot(P\
+    \ - B) >= 0;\n  if (b1 && !b2) {\n    T d = (B - P).dot(B - P);\n    return {d,\
+    \ 1};\n  }\n  if (!b1 && b2) {\n    T d = (A - P).dot(A - P);\n    return {d,\
+    \ 1};\n  }\n  Line<T> L = S.to_line();\n  T a = L.eval(P);\n  if (a < 0) a = -a;\n\
+    \  T b = L.a * L.a + L.b * L.b;\n  return {a * a, b};\n}\n"
   code: "#include \"geo/cross_point.hpp\"\n\ntemplate <typename REAL, typename T,\
-    \ typename U>\nREAL distance(Point<T> S, Point<U> P) {\n  REAL dx = P.x - S.x;\n\
-    \  REAL dy = P.y - S.y;\n  return sqrt(dx * dx + dy * dy);\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL distance(Segment<T> S, Point<U> P) {\n \
-    \ Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2\
-    \ = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) {\n    return distance<REAL, T,\
-    \ T>(B, P);\n  }\n  if (!b1 && b2) {\n    return distance<REAL, T, T>(A, P);\n\
-    \  }\n  Line<T> L = S.to_line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\
-    \n  return REAL(abs(L.eval(P))) / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);\n}\n\
-    \ntemplate <typename REAL, typename T>\nREAL distance(Segment<T> S1, Segment<T>\
-    \ S2) {\n  if (count_cross<T>(S1, S2, true)) return REAL(0);\n  REAL res = distance<REAL,\
-    \ T, T>(S1, S2.A);\n  chmin(res, distance<REAL, T, T>(S1, S2.B));\n  chmin(res,\
-    \ distance<REAL, T, T>(S2, S1.A));\n  chmin(res, distance<REAL, T, T>(S2, S1.B));\n\
-    \  return res;\n}\n\ntemplate <typename REAL, typename T>\nREAL distance(Point<T>\
-    \ P, Line<T> L) {\n  return abs(L.a * P.x + L.b * P.y + L.c) / sqrt(L.a * L.a\
-    \ + L.b * L.b);\n}\n\n// return: {a, b}. where dist=sqrt(a/b)\n// a,b:\u5EA7\u6A19\
-    \u306E 4 \u4E57\ntemplate <typename T>\npi distance_exact(Segment<T> S, Point<T>\
-    \ P) {\n  Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n \
-    \ bool b2 = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) {\n    T d = (B - P).dot(B\
-    \ - P);\n    return {d, 1};\n  }\n  if (!b1 && b2) {\n    T d = (A - P).dot(A\
-    \ - P);\n    return {d, 1};\n  }\n  Line<T> L = S.to_line();\n  T a = L.eval(P);\n\
-    \  if (a < 0) a = -a;\n  T b = L.a * L.a + L.b * L.b;\n  return {a * a, b};\n\
-    }\n"
+    \ typename U>\nREAL distance(Segment<T> S, Point<U> P) {\n  Point<T> A = S.A,\
+    \ B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2 = (A - B).dot(P -\
+    \ B) >= 0;\n  if (b1 && !b2) {\n    return distance<REAL, T, T>(B, P);\n  }\n\
+    \  if (!b1 && b2) {\n    return distance<REAL, T, T>(A, P);\n  }\n  Line<T> L\
+    \ = S.to_line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\n  return REAL(abs(L.eval(P)))\
+    \ / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);\n}\n\ntemplate <typename REAL, typename\
+    \ T>\nREAL distance(Segment<T> S1, Segment<T> S2) {\n  if (count_cross<T>(S1,\
+    \ S2, true)) return REAL(0);\n  REAL res = distance<REAL, T, T>(S1, S2.A);\n \
+    \ chmin(res, distance<REAL, T, T>(S1, S2.B));\n  chmin(res, distance<REAL, T,\
+    \ T>(S2, S1.A));\n  chmin(res, distance<REAL, T, T>(S2, S1.B));\n  return res;\n\
+    }\n\ntemplate <typename REAL, typename T>\nREAL distance(Point<T> P, Line<T> L)\
+    \ {\n  return abs(L.a * P.x + L.b * P.y + L.c) / sqrt(L.a * L.a + L.b * L.b);\n\
+    }\n\n// return: {a, b}. where dist=sqrt(a/b)\n// a,b:\u5EA7\u6A19\u306E 4 \u4E57\
+    \ntemplate <typename T>\npi distance_exact(Segment<T> S, Point<T> P) {\n  Point<T>\
+    \ A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2 = (A - B).dot(P\
+    \ - B) >= 0;\n  if (b1 && !b2) {\n    T d = (B - P).dot(B - P);\n    return {d,\
+    \ 1};\n  }\n  if (!b1 && b2) {\n    T d = (A - P).dot(A - P);\n    return {d,\
+    \ 1};\n  }\n  Line<T> L = S.to_line();\n  T a = L.eval(P);\n  if (a < 0) a = -a;\n\
+    \  T b = L.a * L.a + L.b * L.b;\n  return {a * a, b};\n}\n"
   dependsOn:
   - geo/cross_point.hpp
   - geo/base.hpp
   isVerificationFile: false
   path: geo/distance.hpp
   requiredBy: []
-  timestamp: '2026-09-25 18:55:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-09-25 20:35:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/CGL_2_D.test.cpp
   - test/4_aoj/CGL_7_B.test.cpp
