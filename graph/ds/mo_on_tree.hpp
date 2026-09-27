@@ -16,13 +16,14 @@ struct Mo_on_Tree {
     LR.eb(tree.ELID(u) + 1, tree.ELID(v) + 1);
   }
 
-  // init(): root だけからなる path
+  // init_root_path(): root だけからなる path
   // add_l(v), add_r(v)：パスの先頭 / 末尾に v を追加
   // rm_l(v), rm_r(v)：パスの先頭 / 末尾から v を削除
   // query(qid)
   template <typename F1, typename F2, typename F3, typename F4, typename F5,
       typename F6>
-  void calc_vertex(F1 init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {
+  void calc_vertex(
+      F1 init_root_path, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {
     const int N = tree.N;
     auto I = Mo::get_mo_order(LR);
 
@@ -59,7 +60,7 @@ struct Mo_on_Tree {
       cnt[c] ^= 1;
     };
 
-    init();
+    init_root_path();
 
     int l = 1, r = 1;
     for (auto idx : I) {
@@ -80,13 +81,14 @@ struct Mo_on_Tree {
     }
   }
 
-  // init(): root だけからなる path
+  // init_root_path(): root だけからなる path
   // add_l(frm, to), add_r(frm, to)：パスの先頭 / 末尾に (frm,to) を追加
   // rm_l(frm, to), rm_r(frm, to)：パスの先頭 / 末尾に (frm,to) を追加
   // query(qid)
   template <typename F1, typename F2, typename F3, typename F4, typename F5,
       typename F6>
-  void calc_edge(F1 init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {
+  void calc_edge(
+      F1 init_root_path, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {
     const int N = tree.N;
     auto I = Mo::get_mo_order(LR);
 
@@ -123,7 +125,7 @@ struct Mo_on_Tree {
       cnt[c] ^= 1;
     };
 
-    init();
+    init_root_path();
 
     int l = 1, r = 1;
     for (auto idx : I) {
