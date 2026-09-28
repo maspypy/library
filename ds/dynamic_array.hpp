@@ -12,7 +12,7 @@ struct Dynamic_Array {
   using np = Node*;
   const T x0;
 
-  Dynamic_Array(int NODES, T default_value) : x0(default_value) {}
+  Dynamic_Array(T default_value) : x0(default_value) {}
   np new_root() {
     np c = pool.create();
     c->x = x0;

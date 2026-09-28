@@ -80,9 +80,10 @@ struct Convex_Polygon {
   }
 
   // return {min, i, j}. i==j は頂点, i!=j は最適辺 i -> j。
+  // p==(0,0): return {0,0,0}
   tuple<T, int, int> min_dot(P p) const {
     static_assert(is_strict);
-    assert(p != P(0, 0));
+    if (p == P(0, 0)) return {0, 0, 0};
     int idx = periodic_min_comp(
         [&](int i, int j) { return point[i].dot(p) < point[j].dot(p); });
     T val = point[idx].dot(p);
@@ -93,9 +94,10 @@ struct Convex_Polygon {
   }
 
   // return {max, i, j}. i==j は頂点, i!=j は最適辺 i -> j。
+  // p==(0,0): return {0,0,0}
   tuple<T, int, int> max_dot(P p) const {
     static_assert(is_strict);
-    assert(p != P(0, 0));
+    if (p == P(0, 0)) return {0, 0, 0};
     int idx = periodic_min_comp(
         [&](int i, int j) { return point[i].dot(p) > point[j].dot(p); });
     T val = point[idx].dot(p);
