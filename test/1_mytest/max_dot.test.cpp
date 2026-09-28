@@ -26,8 +26,8 @@ void test() {
     pair<int, int> ans = {infty<int>, -infty<int>};
     FOR(i, N) { chmin(ans.fi, p.dot(point[i])); }
     FOR(i, N) { chmax(ans.se, p.dot(point[i])); }
-    auto [mi, i] = X.min_dot(p);
-    auto [ma, j] = X.max_dot(p);
+    auto [mi, i, ii] = X.min_dot(p);
+    auto [ma, j, jj] = X.max_dot(p);
     assert(ans.fi == mi && ans.se == ma);
     assert(mi == p.dot(point[i]));
     assert(ma == p.dot(point[j]));
