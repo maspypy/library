@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_kinetic.hpp
     title: ds/segtree/beats_kinetic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_summax_chmin.hpp
     title: ds/segtree/beats_summax_chmin.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_summin_chmax.hpp
     title: ds/segtree/beats_summin_chmax.hpp
   - icon: ':heavy_check_mark:'
@@ -24,15 +24,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1526.test.cpp
     title: test/3_yukicoder/1526.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1526_2.test.cpp
     title: test/3_yukicoder/1526_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3314.test.cpp
     title: test/3_yukicoder/3314.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -127,7 +127,7 @@ data:
   - ds/segtree/beats_kinetic.hpp
   - ds/segtree/beats_summax_chmin.hpp
   timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/kinetic.test.cpp
   - test/3_yukicoder/1526_2.test.cpp
