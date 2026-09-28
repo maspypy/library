@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_sum_mod4.hpp
     title: nt/prime_sum_mod4.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

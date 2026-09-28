@@ -637,11 +637,11 @@ data:
     \  Convex_Polygon<ll> X(point);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P\
     \ p(x, y);\n    pair<int, int> ans = {infty<int>, -infty<int>};\n    FOR(i, N)\
     \ { chmin(ans.fi, p.dot(point[i])); }\n    FOR(i, N) { chmax(ans.se, p.dot(point[i]));\
-    \ }\n    auto [mi, i] = X.min_dot(p);\n    auto [ma, j] = X.max_dot(p);\n    assert(ans.fi\
-    \ == mi && ans.se == ma);\n    assert(mi == p.dot(point[i]));\n    assert(ma ==\
-    \ p.dot(point[j]));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10000) test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ }\n    auto [mi, i, ii] = X.min_dot(p);\n    auto [ma, j, jj] = X.max_dot(p);\n\
+    \    assert(ans.fi == mi && ans.se == ma);\n    assert(mi == p.dot(point[i]));\n\
+    \    assert(ma == p.dot(point[j]));\n  }\n}\n\nvoid solve() {\n  int a, b;\n \
+    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10000)\
+    \ test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\n#include \"geo/convex_polygon.hpp\"\
     \n#include \"geo/incremental_convex_hull.hpp\"\n#include \"random/base.hpp\"\n\
@@ -651,11 +651,11 @@ data:
     \  Convex_Polygon<ll> X(point);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P\
     \ p(x, y);\n    pair<int, int> ans = {infty<int>, -infty<int>};\n    FOR(i, N)\
     \ { chmin(ans.fi, p.dot(point[i])); }\n    FOR(i, N) { chmax(ans.se, p.dot(point[i]));\
-    \ }\n    auto [mi, i] = X.min_dot(p);\n    auto [ma, j] = X.max_dot(p);\n    assert(ans.fi\
-    \ == mi && ans.se == ma);\n    assert(mi == p.dot(point[i]));\n    assert(ma ==\
-    \ p.dot(point[j]));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10000) test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ }\n    auto [mi, i, ii] = X.min_dot(p);\n    auto [ma, j, jj] = X.max_dot(p);\n\
+    \    assert(ans.fi == mi && ans.se == ma);\n    assert(mi == p.dot(point[i]));\n\
+    \    assert(ma == p.dot(point[j]));\n  }\n}\n\nvoid solve() {\n  int a, b;\n \
+    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10000)\
+    \ test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - geo/base.hpp
@@ -666,7 +666,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/max_dot.test.cpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-09-28 15:34:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/max_dot.test.cpp

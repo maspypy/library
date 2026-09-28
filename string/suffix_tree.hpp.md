@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -25,10 +25,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
   - icon: ':heavy_check_mark:'

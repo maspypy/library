@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   - icon: ':question:'
@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2181.test.cpp
     title: test/3_yukicoder/2181.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/primitive_root.hpp\"\n\n#line 1 \"nt/factor.hpp\"\n\n\
@@ -278,7 +278,7 @@ data:
   path: mod/binomial.hpp
   requiredBy: []
   timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/2120.test.cpp

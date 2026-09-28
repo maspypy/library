@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
   - icon: ':heavy_check_mark:'
@@ -83,10 +83,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -98,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -291,7 +291,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -309,9 +309,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -385,7 +385,7 @@ data:
   - seq/famous/bernoulli.hpp
   - seq/famous/stirling_number_1.hpp
   timestamp: '2026-08-31 13:26:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/prime_sum.test.cpp

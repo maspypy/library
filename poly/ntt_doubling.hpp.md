@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -165,7 +165,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1857.test.cpp
     title: test/3_yukicoder/1857.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,9 +210,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/ntt_doubling.hpp\"\n\n#line 1 \"poly/ntt.hpp\"\n\n\
@@ -324,7 +324,7 @@ data:
   - seq/famous/bell_number_large.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp

@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
   - icon: ':heavy_check_mark:'
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -29,10 +29,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':warning:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   - icon: ':heavy_check_mark:'
@@ -276,7 +276,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
   - icon: ':heavy_check_mark:'
@@ -297,9 +297,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/montgomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\
@@ -382,7 +382,7 @@ data:
   - seq/famous/stirling_number_query.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2026-08-17 10:49:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/O1_inv.test.cpp

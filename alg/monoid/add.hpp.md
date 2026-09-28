@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
   - icon: ':heavy_check_mark:'
@@ -56,16 +56,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree_2d.hpp
     title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d_dense.hpp
     title: ds/fenwicktree/fenwicktree_2d_dense.hpp
   - icon: ':heavy_check_mark:'
@@ -83,13 +83,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - icon: ':warning:'
+    path: ds/point_set_range_sum_sqrt.hpp
+    title: ds/point_set_range_sum_sqrt.hpp
   - icon: ':heavy_check_mark:'
     path: ds/prefix_sum.hpp
     title: ds/prefix_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
   - icon: ':warning:'
@@ -131,7 +134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':warning:'
@@ -387,7 +390,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1874.test.cpp
     title: test/3_yukicoder/1874.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919.test.cpp
     title: test/3_yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'
@@ -453,16 +456,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842.test.cpp
     title: test/4_aoj/2842.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842_2.test.cpp
     title: test/4_aoj/2842_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
@@ -480,15 +483,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_I.test.cpp
     title: test/4_aoj/DSL_2_I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_4_A.test.cpp
     title: test/4_aoj/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
@@ -535,6 +538,7 @@ data:
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
   - ds/segtree/range_add_make_increasing.hpp
   - ds/segtree/range_add_make_decreasing.hpp
+  - ds/point_set_range_sum_sqrt.hpp
   - ds/cumsum_2d.hpp
   - ds/rectangle_union.hpp
   - ds/prefix_sum.hpp
@@ -553,7 +557,7 @@ data:
   - seq/common_interval_decomposition.hpp
   - seq/factorial_digit_system.hpp
   timestamp: '2026-08-30 21:09:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/maxidx_add.test.cpp

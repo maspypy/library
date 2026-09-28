@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -38,10 +38,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/find_roots_of_polynomial.hpp
     title: poly/find_roots_of_polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   - icon: ':heavy_check_mark:'
@@ -147,7 +147,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -159,7 +159,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,9 +171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/poly_divmod.hpp\"\n\n#line 1 \"poly/count_terms.hpp\"\
@@ -505,7 +505,7 @@ data:
   - seq/famous/bell_number_large.hpp
   - seq/find_linear_rec.hpp
   timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/min_poly.test.cpp
   - test/1_mytest/slice_rational_fps.test.cpp
