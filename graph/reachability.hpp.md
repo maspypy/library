@@ -1,87 +1,48 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/bit.hpp
-    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/2041/problem/K
-  bundledCode: "#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
-    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
-    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
-    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
-    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
-    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
-    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
-    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
-    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
-    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 1 \"ds/hashmap.hpp\"\n\n\
-    // u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
-    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
-    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
-    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
-    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
-    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
-    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
-    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
-    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
-    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
-    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
-    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
+    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
+    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
+    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
+    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
+    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
+    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
+    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
+    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
+    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
+    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
+    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
+    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
+    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
+    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
+    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
+    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
+    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
@@ -282,7 +243,7 @@ data:
     \   }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
     \nGT reverse_graph(const GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT\
     \ G1(G.N);\r\n  for (auto&& e : G.edges) {\r\n    G1.add(e.to, e.frm, e.cost,\
-    \ e.id);\r\n  }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/reachability.hpp\"\
+    \ e.id);\r\n  }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 3 \"graph/reachability.hpp\"\
     \n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\
     \u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int>\
     \ reachability(GT& G, vc<P> query) {\n  using U = u64;\n  constexpr int W = 64;\n\
@@ -315,26 +276,26 @@ data:
     \ && E[idx].fi < s) ++idx;\n    FOR(i, idx, len(E)) { dp[E[i].se] |= dp[E[i].fi];\
     \ }\n    FOR(v, s, nc) { ANS[v] += popcnt(u64(dp[v] >> 64)) + popcnt(u64(dp[v]));\
     \ }\n  }\n  ANS = rearrange(ANS, comp);\n  return ANS;\n}\n"
-  code: "#include \"other/bit.hpp\"\n#include \"graph/strongly_connected_component.hpp\"\
-    \n#include \"graph/reverse_graph.hpp\"\n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\
-    \u5230\u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate\
-    \ <typename GT, typename P>\nvc<int> reachability(GT& G, vc<P> query) {\n  using\
-    \ U = u64;\n  constexpr int W = 64;\n\n  auto [C, comp] = strongly_connected_component(G);\n\
-    \n  vc<pair<int, int>> edges;\n  for (auto&& e : G.edges) {\n    auto a = comp[e.frm],\
-    \ b = comp[e.to];\n    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n\
-    \  UNIQUE(edges);\n  for (auto& [a, b] : query) a = comp[a], b = comp[b];\n\n\
-    \  int Q = len(query);\n  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n\
-    \  FOR(q, Q) {\n    auto [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] =\
-    \ (a == b);\n      continue;\n    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n\
-    \  UNIQUE(S);\n  vc<U> dp(C);\n  int p = 0;\n  for (int l = 0; l < len(S); l +=\
-    \ W) {\n    int r = min<int>(l + W, len(S));\n    fill(dp.begin() + S[l], dp.end(),\
-    \ U(0));\n    FOR(i, r - l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges)\
-    \ && edges[p].fi < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |=\
-    \ dp[edges[i].fi]; }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for\
-    \ (auto& qid : QID[s]) {\n        int t = query[qid].se;\n        ANS[qid] = dp[t]\
-    \ >> i & 1;\n      }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable\
-    \ from v).\n// (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\
-    \u69CB\u5B9F\u884C\u6642\u9593\u304C\u3076\u308C\u308B.\n// https://codeforces.com/contest/2041/problem/K\n\
+  code: "#include \"graph/strongly_connected_component.hpp\"\n#include \"graph/reverse_graph.hpp\"\
+    \n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\
+    \u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int>\
+    \ reachability(GT& G, vc<P> query) {\n  using U = u64;\n  constexpr int W = 64;\n\
+    \n  auto [C, comp] = strongly_connected_component(G);\n\n  vc<pair<int, int>>\
+    \ edges;\n  for (auto&& e : G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n\
+    \    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n  UNIQUE(edges);\n\
+    \  for (auto& [a, b] : query) a = comp[a], b = comp[b];\n\n  int Q = len(query);\n\
+    \  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n  FOR(q, Q) {\n    auto\
+    \ [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] = (a == b);\n      continue;\n\
+    \    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n  UNIQUE(S);\n  vc<U> dp(C);\n\
+    \  int p = 0;\n  for (int l = 0; l < len(S); l += W) {\n    int r = min<int>(l\
+    \ + W, len(S));\n    fill(dp.begin() + S[l], dp.end(), U(0));\n    FOR(i, r -\
+    \ l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges) && edges[p].fi\
+    \ < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |= dp[edges[i].fi];\
+    \ }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for (auto& qid : QID[s])\
+    \ {\n        int t = query[qid].se;\n        ANS[qid] = dp[t] >> i & 1;\n    \
+    \  }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable from v).\n\
+    // (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\u69CB\u5B9F\
+    \u884C\u6642\u9593\u304C\u3076\u308C\u308B.\n// https://codeforces.com/contest/2041/problem/K\n\
     vc<int> count_reachable(Graph<int, 1> G) {\n  G = reverse_graph(G);\n  int N =\
     \ G.N;\n  auto [nc, comp] = strongly_connected_component(G);\n  vc<int> sz(nc);\n\
     \  FOR(v, N) sz[comp[v]]++;\n\n  // sorted pairs\n  vc<pair<int, int>> E;\n  for\
@@ -349,7 +310,6 @@ data:
     \ }\n    FOR(v, s, nc) { ANS[v] += popcnt(u64(dp[v] >> 64)) + popcnt(u64(dp[v]));\
     \ }\n  }\n  ANS = rearrange(ANS, comp);\n  return ANS;\n}\n"
   dependsOn:
-  - other/bit.hpp
   - graph/strongly_connected_component.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -357,8 +317,8 @@ data:
   isVerificationFile: false
   path: graph/reachability.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-28 10:13:21+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/0275.test.cpp
 documentation_of: graph/reachability.hpp

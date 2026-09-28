@@ -1,33 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   - icon: ':heavy_check_mark:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/bit.hpp
-    title: other/bit.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
@@ -106,98 +103,8 @@ data:
     \ S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a, b);\n  bool changed\
     \ = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class T, class S>\ninline\
     \ bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n  bool changed = (c !=\
-    \ a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
-    \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
-    \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
-    \ <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int\
-    \ N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n\
-    \  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable sort\ntemplate\
-    \ <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids),\
-    \ 0);\n  sort(all(ids),\n      [&](int i, int j) { return (A[i] == A[j] ? i <\
-    \ j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
-    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n\
-    \  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\ntemplate <typename T, typename...\
-    \ Vectors>\nvoid concat(vc<T> &first, const Vectors &...others) {\n  first.reserve(first.size()\
-    \ + (others.size() + ... + 0));\n  (first.insert(first.end(), others.begin(),\
-    \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
-    \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
-    constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
-    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/three_square.test.cpp\"\
-    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
-    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
-    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
-    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
-    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
-    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
-    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
-    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
-    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
-    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 1 \"mod/montgomery_modint.hpp\"\
-    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
-    \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
-    \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
-    \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
-    \ & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n   \
-    \ FOR(6) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n  }\n  static\
-    \ U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Montgomery_modint()\
-    \ : x(0) {}\n  Montgomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val()\
-    \ const {\n    U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint\
-    \ &operator+=(mint y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n\
-    \  }\n  mint &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n   \
-    \ return *this;\n  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n\
-    \    return *this;\n  }\n  mint operator+(mint y) const { return mint(*this) +=\
-    \ y; }\n  mint operator-(mint y) const { return mint(*this) -= y; }\n  mint operator*(mint\
-    \ y) const { return mint(*this) *= y; }\n  bool operator==(mint y) const {\n \
-    \   return (x >= m ? x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint\
-    \ y) const { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n\
-    \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
-    \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
-    \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
-    \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
-    \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
-    \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
-    \ - 1);\n\n  using mint = Montgomery_modint_64<202311020>;\n\n  mint::set_mod(x);\n\
-    \  const mint one(u64(1)), minus_one(x - 1);\n  auto ok = [&](u64 a) -> bool {\n\
-    \    auto y = mint(a).pow(d);\n    u64 t = d;\n    while (y != one && y != minus_one\
-    \ && t != x - 1) y *= y, t <<= 1;\n    if (y != minus_one && t % 2 == 0) return\
-    \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
-    \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
-    \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 1 \"nt/factor.hpp\"\n\n#line 1\
-    \ \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                          .count()) *\n                  10150724397891781847ULL;\n\
-    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
-    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
-    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ a);\n  a = c;\n  return changed;\n}\n\n// bit operations\nint popcnt(int x)\
+    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
     \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
@@ -214,14 +121,14 @@ data:
     T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
     \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
     \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
-    \ UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
-    \ s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*()\
+    \ T>\nstruct all_bit {\n  static_assert(is_integral<T>::value);\n  T s;\n  all_bit(T\
+    \ s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s;\n    int operator*()\
     \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
     \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
     \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
-    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
-    \ s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool\
-    \ done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
+    \ T>\nstruct all_subset {\n  static_assert(is_integral<T>::value);\n  T s;\n \
+    \ all_subset(T s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s, t;\n \
+    \   bool done = false;\n    T operator*() const { return t; }\n    void operator++()\
     \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
     \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
     \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
@@ -231,8 +138,63 @@ data:
     \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
     \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
     \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 1 \"mod/montgomery_modint.hpp\"\
-    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
+    \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
+    \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
+    \ <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int\
+    \ N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n\
+    \  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable sort\ntemplate\
+    \ <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids),\
+    \ 0);\n  sort(all(ids),\n      [&](int i, int j) { return (A[i] == A[j] ? i <\
+    \ j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
+    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n\
+    \  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\ntemplate <typename T, typename...\
+    \ Vectors>\nvoid concat(vc<T> &first, const Vectors &...others) {\n  first.reserve(first.size()\
+    \ + (others.size() + ... + 0));\n  (first.insert(first.end(), others.begin(),\
+    \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
+    \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
+    constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/three_square.test.cpp\"\
+    \n\n#line 1 \"mod/montgomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\u308F\
+    \u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename U2>\n\
+    struct Montgomery_modint {\n  using mint = Montgomery_modint;\n  inline static\
+    \ U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static\
+    \ void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n  \
+    \  m = mod, n2 = -U2(m) % m, r = m;\n    FOR(6) r *= 2 - m * r;\n    r = -r;\n\
+    \    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b)\
+    \ * r) * m) >> W; }\n\n  U1 x;\n  Montgomery_modint() : x(0) {}\n  Montgomery_modint(U1\
+    \ x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n    U1 y = reduce(x);\n \
+    \   return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint y) {\n    x = ((x\
+    \ += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint &operator-=(mint\
+    \ y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint\
+    \ y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint\
+    \ y) const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
+    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
+    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
+    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
+    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
+    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32 = Montgomery_modint<id,\
+    \ u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64 = Montgomery_modint<id,\
+    \ u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const u64 x) {\n \
+    \ assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
+    \ true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;\n\
+    \  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x - 1);\n\n \
+    \ using mint = Montgomery_modint_64<202311020>;\n\n  mint::set_mod(x);\n  const\
+    \ mint one(u64(1)), minus_one(x - 1);\n  auto ok = [&](u64 a) -> bool {\n    auto\
+    \ y = mint(a).pow(d);\n    u64 t = d;\n    while (y != one && y != minus_one &&\
+    \ t != x - 1) y *= y, t <<= 1;\n    if (y != minus_one && t % 2 == 0) return false;\n\
+    \    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a : {2, 7,\
+    \ 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a : {2, 325,\
+    \ 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return false;\n\
+    \    }\n  }\n  return true;\n}\n#line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
+    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -252,7 +214,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -448,7 +410,6 @@ data:
   - my_template.hpp
   - nt/three_square.hpp
   - nt/is_prime.hpp
-  - other/bit.hpp
   - mod/montgomery_modint.hpp
   - nt/gaussian_integers.hpp
   - nt/factor.hpp
@@ -458,7 +419,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/three_square.test.cpp
   requiredBy: []
-  timestamp: '2026-09-16 20:09:04+09:00'
+  timestamp: '2026-09-28 10:13:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/three_square.test.cpp

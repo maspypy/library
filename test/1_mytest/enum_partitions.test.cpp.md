@@ -1,52 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/bit.hpp
-    title: other/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   _extendedRequiredBy: []
@@ -124,7 +121,42 @@ data:
     \ S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a, b);\n  bool changed\
     \ = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class T, class S>\ninline\
     \ bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n  bool changed = (c !=\
-    \ a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
+    \ a);\n  a = c;\n  return changed;\n}\n\n// bit operations\nint popcnt(int x)\
+    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
+    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
+    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
+    \ T>\nstruct all_bit {\n  static_assert(is_integral<T>::value);\n  T s;\n  all_bit(T\
+    \ s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s;\n    int operator*()\
+    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
+    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
+    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
+    \ T>\nstruct all_subset {\n  static_assert(is_integral<T>::value);\n  T s;\n \
+    \ all_subset(T s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s, t;\n \
+    \   bool done = false;\n    T operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
+    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
+    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
+    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
+    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
+    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
     \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
     \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
     \ <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int\
@@ -147,117 +179,46 @@ data:
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 4 \"test/1_mytest/enum_partitions.test.cpp\"\
-    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
-    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
-    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
-    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
-    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
-    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
-    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
-    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
-    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
-    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 2 \"enumerate/bits.hpp\"\n\
-    template <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int\
-    \ R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
-    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
-    \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
-    \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
-    \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
-    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 2 \"enumerate/partition.hpp\"\
-    \n\n/*\npartition \u306F\u3001\u300C\u6E1B\u5C11\u5217\u300D\u3068\u3057\u3066\
-    \u8F9E\u66F8\u5F0F\u306E\u964D\u9806\u306B\u5217\u6319\u3059\u308B\u3002\nN=10,20,30,40\uFF1A\
-    42, 527, 5604, 37338\nN = 50\uFF08204226\uFF09\uFF1A12 ms\nN = 60\uFF08966467\uFF09\
-    \uFF1A60 ms\nN = 70\uFF084087968\uFF09\uFF1A270 ms\nN = 80\uFF0815796476\uFF09\
-    \uFF1A1100 ms\nN = 90\uFF0856634173\uFF09\uFF1A4800 ms\nN = 100 (190569292) :\
-    \ 15600 ms\n*/\ntemplate <typename F>\nvoid enumerate_partition(int N, F query,\
-    \ int LIM_len = -1, int LIM_val = -1) {\n  assert(N >= 0);\n  auto dfs = [&](auto\
-    \ self, vc<int> &p, int sum) -> void {\n    if (sum == N) {\n      query(p);\n\
-    \      return;\n    }\n    if (LIM_len != -1 && len(p) == LIM_len) return;\n \
-    \   int nxt = (len(p) == 0 ? N : p.back());\n    if (LIM_val != -1) chmin(nxt,\
-    \ LIM_val);\n    chmin(nxt, N - sum);\n    p.eb(0);\n    FOR3_R(x, 1, nxt + 1)\
-    \ {\n      p.back() = x;\n      self(self, p, sum + x);\n    }\n    p.pop_back();\n\
-    \  };\n  vc<int> p;\n  dfs(dfs, p, 0);\n}\n\n// N \u5143\u96C6\u5408\u306E\u5206\
-    \u5272\u306E\u5217\u6319 (Bell number)\n// f({s0,s1,...}), f(vc<int>)\n// https://atcoder.jp/contests/abc390/tasks/abc390_d\n\
-    // N = 11\uFF08678570\uFF09\uFF1A29 ms\n// N = 12\uFF084213597\uFF09\uFF1A208\
-    \ ms\n// N = 13\uFF0827644437\uFF09\uFF1A2084 ms\ntemplate <typename F>\nvoid\
-    \ enumerate_set_partition(int N, F f) {\n  vc<u32> S;\n  auto dfs = [&](auto &dfs,\
-    \ u32 rest) -> void {\n    if (rest == 0) {\n      return f(S);\n    }\n    int\
-    \ a = lowbit(rest);\n    rest -= u32(1) << a;\n    enumerate_all_subset<u32, true>(rest,\
-    \ [&](u32 s) -> void {\n      S.eb(s | 1 << a);\n      dfs(dfs, rest - s);\n \
-    \     POP(S);\n    });\n  };\n  dfs(dfs, (u32(1) << N) - 1);\n}\n#line 1 \"poly/count_terms.hpp\"\
+    \n\n#line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
+    \ b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L :\
+    \ b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n\
+    \  }\n}\n\ntemplate <typename UINT, typename F>\ninline void enumerate_all_bit(UINT\
+    \ s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  while (s) {\n   \
+    \ f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename UINT, bool inc_empty,\
+    \ typename F>\ninline void enumerate_all_subset(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  for (UINT t = s; t; t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n\
+    }\n#line 2 \"enumerate/partition.hpp\"\n\n/*\npartition \u306F\u3001\u300C\u6E1B\
+    \u5C11\u5217\u300D\u3068\u3057\u3066\u8F9E\u66F8\u5F0F\u306E\u964D\u9806\u306B\
+    \u5217\u6319\u3059\u308B\u3002\nN=10,20,30,40\uFF1A42, 527, 5604, 37338\nN = 50\uFF08\
+    204226\uFF09\uFF1A12 ms\nN = 60\uFF08966467\uFF09\uFF1A60 ms\nN = 70\uFF084087968\uFF09\
+    \uFF1A270 ms\nN = 80\uFF0815796476\uFF09\uFF1A1100 ms\nN = 90\uFF0856634173\uFF09\
+    \uFF1A4800 ms\nN = 100 (190569292) : 15600 ms\n*/\ntemplate <typename F>\nvoid\
+    \ enumerate_partition(int N, F query, int LIM_len = -1, int LIM_val = -1) {\n\
+    \  assert(N >= 0);\n  auto dfs = [&](auto self, vc<int> &p, int sum) -> void {\n\
+    \    if (sum == N) {\n      query(p);\n      return;\n    }\n    if (LIM_len !=\
+    \ -1 && len(p) == LIM_len) return;\n    int nxt = (len(p) == 0 ? N : p.back());\n\
+    \    if (LIM_val != -1) chmin(nxt, LIM_val);\n    chmin(nxt, N - sum);\n    p.eb(0);\n\
+    \    FOR3_R(x, 1, nxt + 1) {\n      p.back() = x;\n      self(self, p, sum + x);\n\
+    \    }\n    p.pop_back();\n  };\n  vc<int> p;\n  dfs(dfs, p, 0);\n}\n\n// N \u5143\
+    \u96C6\u5408\u306E\u5206\u5272\u306E\u5217\u6319 (Bell number)\n// f({s0,s1,...}),\
+    \ f(vc<int>)\n// https://atcoder.jp/contests/abc390/tasks/abc390_d\n// N = 11\uFF08\
+    678570\uFF09\uFF1A29 ms\n// N = 12\uFF084213597\uFF09\uFF1A208 ms\n// N = 13\uFF08\
+    27644437\uFF09\uFF1A2084 ms\ntemplate <typename F>\nvoid enumerate_set_partition(int\
+    \ N, F f) {\n  vc<u32> S;\n  auto dfs = [&](auto &dfs, u32 rest) -> void {\n \
+    \   if (rest == 0) {\n      return f(S);\n    }\n    int a = lowbit(rest);\n \
+    \   rest -= u32(1) << a;\n    enumerate_all_subset<u32, true>(rest, [&](u32 s)\
+    \ -> void {\n      S.eb(s | 1 << a);\n      dfs(dfs, rest - s);\n      POP(S);\n\
+    \    });\n  };\n  dfs(dfs, (u32(1) << N) - 1);\n}\n#line 1 \"poly/count_terms.hpp\"\
     \ntemplate<typename mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n\
     \  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n}\n#line 1 \"mod/modint_common.hpp\"\
-    \n\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
-    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
-    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
-    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
-    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
-    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
-    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
-    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
-    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
-    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 3 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n  static int\
-    \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
-    \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
-    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \n\n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x)\
+    \ -> decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static\
+    \ auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod\
+    \ : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate\
+    \ <typename mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n \
+    \ static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n\
+    \    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
     \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
     }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
     \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
@@ -414,43 +375,8 @@ data:
     \ F(len(f) + len(g) - 1);\n  assert(2 * m + len(b) <= len(F));\n  FOR(i, len(a))\
     \ F[i] += a[i], c[i] -= a[i];\n  FOR(i, len(b)) F[2 * m + i] += b[i], c[i] -=\
     \ b[i];\n  if (c.back() == T(0)) c.pop_back();\n  FOR(i, len(c)) if (c[i] != T(0))\
-    \ F[m + i] += c[i];\n  return F;\n}\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int\
-    \ x) { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
-    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
-    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
-    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
-    \ UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
-    \ s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*()\
-    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
-    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
-    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
-    \ UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n  UINT\
-    \ s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool\
-    \ done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
-    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
-    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
-    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
-    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
-    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
-    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 2 \"poly/ntt.hpp\"\n\ntemplate\
-    \ <class mint>\nvoid ntt(vector<mint>& a, bool inverse) {\n  assert(mint::can_ntt());\n\
+    \ F[m + i] += c[i];\n  return F;\n}\n#line 1 \"poly/ntt.hpp\"\n\ntemplate <class\
+    \ mint>\nvoid ntt(vector<mint>& a, bool inverse) {\n  assert(mint::can_ntt());\n\
     \  const int rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n\
     \  static array<mint, 30> root, iroot;\n  static array<mint, 30> rate2, irate2;\n\
     \  static array<mint, 30> rate3, irate3;\n\n  assert(rank2 != -1 && len(a) <=\
@@ -613,7 +539,6 @@ data:
   - random/base.hpp
   - enumerate/partition.hpp
   - enumerate/bits.hpp
-  - other/bit.hpp
   - seq/famous/partition_number.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
@@ -628,7 +553,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enum_partitions.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 08:25:53+09:00'
+  timestamp: '2026-09-28 10:13:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enum_partitions.test.cpp

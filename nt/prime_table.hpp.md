@@ -17,13 +17,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/count_by_factor_type.hpp
     title: nt/count_by_factor_type.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':warning:'
@@ -50,16 +50,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/mertens.hpp
     title: nt/mertens.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_sum.hpp
     title: nt/prime_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -68,25 +68,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/prime_sum_mod6.hpp
     title: nt/prime_sum_mod6.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/spf_table.hpp
     title: nt/spf_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -98,31 +98,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/faulhaber.hpp
     title: seq/famous/faulhaber.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -228,90 +228,90 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
     title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1262.test.cpp
     title: test/3_yukicoder/1262.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1321.test.cpp
     title: test/3_yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1357.test.cpp
     title: test/3_yukicoder/1357.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1666.test.cpp
     title: test/3_yukicoder/1666.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1760.test.cpp
     title: test/3_yukicoder/1760.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1781.test.cpp
     title: test/3_yukicoder/1781.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1821.test.cpp
     title: test/3_yukicoder/1821.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1907.test.cpp
     title: test/3_yukicoder/1907.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2005.test.cpp
     title: test/3_yukicoder/2005.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2206_2.test.cpp
     title: test/3_yukicoder/2206_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3619.test.cpp
     title: test/3_yukicoder/3619.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -385,7 +385,7 @@ data:
   - seq/famous/bernoulli.hpp
   - seq/famous/stirling_number_1.hpp
   timestamp: '2026-08-31 13:26:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/prime_sum.test.cpp

@@ -1,33 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: graph/all_cycle_common_vertices.hpp
     title: graph/all_cycle_common_vertices.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/bit.hpp
-    title: other/bit.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
@@ -106,7 +103,42 @@ data:
     \ S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a, b);\n  bool changed\
     \ = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class T, class S>\ninline\
     \ bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n  bool changed = (c !=\
-    \ a);\n  a = c;\n  return changed;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
+    \ a);\n  a = c;\n  return changed;\n}\n\n// bit operations\nint popcnt(int x)\
+    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
+    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
+    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
+    \ T>\nstruct all_bit {\n  static_assert(is_integral<T>::value);\n  T s;\n  all_bit(T\
+    \ s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s;\n    int operator*()\
+    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
+    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
+    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
+    \ T>\nstruct all_subset {\n  static_assert(is_integral<T>::value);\n  T s;\n \
+    \ all_subset(T s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s, t;\n \
+    \   bool done = false;\n    T operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
+    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
+    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
+    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
+    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
+    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
     \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
     \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
     \ <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int\
@@ -439,86 +471,50 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
-    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
-    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
-    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
-    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
-    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
-    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
-    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
-    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
-    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 2 \"ds/fastset.hpp\"\n\n\
-    // 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32\
-    \ B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
-    \ n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int\
-    \ cur = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n\
-    \      FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur\
-    \ = (cur + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int n,\
-    \ F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n \
-    \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
-    \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
-    \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
-    \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
-    \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
-    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
-    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
-    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] |=\
-    \ u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n \
-    \ void erase(int i) {\n    assert(0 <= i && i < n);\n    u64 x = 0;\n    for (int\
-    \ h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1) << (i % B));\n     \
-    \ seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i / B]);\n      i /= B;\n\
-    \    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int\
-    \ i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++)\
-    \ {\n      if (i / B == seg[h].size()) break;\n      u64 d = seg[h][i / B] >>\
-    \ (i % B);\n      if (!d) {\n        i = i / B + 1;\n        continue;\n     \
-    \ }\n      i += lowbit(d);\n      for (int g = h - 1; g >= 0; g--) {\n       \
-    \ i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n      return i;\n   \
-    \ }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int i) {\n    assert(i\
-    \ >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0; h < log; h++) {\n \
-    \     if (i == -1) break;\n      u64 d = seg[h][i / B] << (63 - i % B);\n    \
-    \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
-    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
-    \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
-    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    return next(l) < r;\n\
-    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F\
-    \ f) {\n    assert(0 <= l && l <= r && r <= n);\n    for (int x = next(l); x <\
-    \ r; x = next(x + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int\
-    \ i) -> void { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n\
-    \    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return\
-    \ s;\n  }\n};\n#line 3 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\
-    \u306E toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\nvc<int> toposort(GT&\
-    \ G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  const\
-    \ int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
-    \  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while (1) {\n\
-    \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
-    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \   }\n  }\n};\n#line 1 \"ds/fastset.hpp\"\n\n// 64-ary tree\n// space: (N/63)\
+    \ * u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log =\
+    \ 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int\
+    \ size() { return n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto&\
+    \ vs : seg) {\n      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n\
+    \      if (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n    }\n \
+    \ }\n\n  template <typename F>\n  FastSet(int n, F f) {\n    build(n, f);\n  }\n\
+    \n  void build(int m) {\n    seg.clear();\n    n = m;\n    do {\n      seg.push_back(vc<u64>((m\
+    \ + B - 1) / B));\n      m = (m + B - 1) / B;\n    } while (m > 1);\n    log =\
+    \ len(seg);\n  }\n  template <typename F>\n  void build(int n, F f) {\n    build(n);\n\
+    \    FOR(i, n) { seg[0][i / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log\
+    \ - 1) {\n      FOR(i, len(seg[h])) {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
+    \ << (i % B);\n      }\n    }\n  }\n\n  bool operator[](int i) const {\n    assert(0\
+    \ <= i && i < n);\n    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int\
+    \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
+    \    seg[h][i / B] |= u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i)\
+    \ { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n    u64\
+    \ x = 0;\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1)\
+    \ << (i % B));\n      seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i\
+    \ / B]);\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  //\
+    \ min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n\
+    \    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n\
+    \      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B +\
+    \ 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int g = h\
+    \ - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
+    \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
+    \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
+    \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
+    \ / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n\
+    \      }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--)\
+    \ {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return\
+    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <=\
+    \ l && l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r)\n  template\
+    \ <typename F>\n  void enumerate(int l, int r, F f) {\n    assert(0 <= l && l\
+    \ <= r && r <= n);\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
+    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
+    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 3 \"\
+    graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u306E toposort \u3092\
+    \u8FD4\u3059\ntemplate <typename GT>\nvc<int> toposort(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n\
+    \  FastSet que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n\
+    \  while (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v),\
+    \ V.eb(v);\n    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n\n// inv_perm=true: inv\
     \ perm \u304C\u8F9E\u66F8\u6700\u5C0F\uFF08\u5404\u30A4\u30F3\u30C7\u30C3\u30AF\
     \u30B9\u306E\u73FE\u308C\u308B\u5834\u6240\u306E\u5217\u304C\u6700\u5C0F\uFF09\
@@ -741,13 +737,12 @@ data:
   - graph/strongly_connected_component.hpp
   - graph/toposort.hpp
   - ds/fastset.hpp
-  - other/bit.hpp
   - graph/find_cycle.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/1_mytest/all_cycle_common_vertex.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 06:05:07+09:00'
+  timestamp: '2026-09-28 10:13:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/all_cycle_common_vertex.test.cpp

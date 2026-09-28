@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/csr.hpp
     title: ds/csr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   _extendedRequiredBy: []

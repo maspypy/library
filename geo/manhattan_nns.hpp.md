@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/minidx.hpp
     title: alg/monoid/minidx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/manhattan_nns.test.cpp
     title: test/1_mytest/manhattan_nns.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2897.test.cpp
     title: test/3_yukicoder/2897.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -120,7 +120,7 @@ data:
   path: geo/manhattan_nns.hpp
   requiredBy: []
   timestamp: '2026-09-17 11:49:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/manhattan_nns.test.cpp
   - test/3_yukicoder/2897.test.cpp

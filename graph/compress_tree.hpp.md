@@ -1,30 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/bit.hpp
-    title: other/bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -253,49 +250,14 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
-    other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x); }\nint popcnt(u32\
-    \ x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt(u64 x) { return __builtin_popcountll(x); }\nint popcnt_sgn(int\
-    \ x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 : 1); }\nint popcnt_sgn(u32\
-    \ x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\nint popcnt_sgn(ll x) { return\
-    \ (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x)\
-    \ & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x)\
-    \ { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return\
-    \ (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0\
-    \ ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64 x) { return (x == 0 ? -1\
-    \ : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int\
-    \ x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(u32 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll x) { return (x == 0 ? -1\
-    \ : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x));\
-    \ }\n\ntemplate <typename T>\nT kth_bit(int k) {\n  assert(0 <= k && k < int(8\
-    \ * sizeof(T)));\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
-    \ x, int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return x >> k &\
-    \ 1;\n}\n\ntemplate <typename UINT>\nstruct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  UINT s;\n  all_bit(UINT s) : s(s) {}\n  struct iter {\n    UINT s;\n    int\
-    \ operator*() const { return lowbit(s); }\n    void operator++() { s &= s - 1;\
-    \ }\n    bool operator!=(nullptr_t) const { return s; }\n  };\n  iter begin()\
-    \ const { return {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate\
-    \ <typename UINT>\nstruct all_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  UINT s;\n  all_subset(UINT s) : s(s) {}\n  struct iter {\n    UINT s, t;\n\
-    \    bool done = false;\n    UINT operator*() const { return t; }\n    void operator++()\
-    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
-    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
-    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
-    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
-    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
-    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
-    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
-    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 2 \"ds/fastset.hpp\"\n\n\
-    // 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32\
-    \ B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
-    \ n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int\
-    \ cur = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n\
-    \      FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur\
-    \ = (cur + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int n,\
-    \ F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n \
-    \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
+    ds/fastset.hpp\"\n\n// 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n\
+    \  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet()\
+    \ {}\n  FastSet(int n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one()\
+    \ {\n    int cur = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q =\
+    \ cur % B;\n      FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n\
+    \      cur = (cur + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int\
+    \ n, F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n\
+    \    n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
     \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
     \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
     \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
@@ -550,53 +512,18 @@ data:
     \ <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n\
     \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
     \ }\n  static constexpr X id() { return infty<E>; }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 1 \"other/bit.hpp\"\n\nint popcnt(int x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(u32 x) { return __builtin_popcount(x); }\nint popcnt(ll x) { return\
-    \ __builtin_popcountll(x); }\nint popcnt(u64 x) { return __builtin_popcountll(x);\
-    \ }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x)) & 1 ? -1 :\
-    \ 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n\
-    int popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\nint popcnt_sgn(u64\
-    \ x) { return (__builtin_parityll(x) & 1 ? -1 : 1); }\n// (0, 1, 2, 3, 4) -> (-1,\
-    \ 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x));\
-    \ }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }\nint\
-    \ topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\nint topbit(u64\
-    \ x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n// (0, 1, 2, 3, 4) ->\
-    \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT kth_bit(int\
-    \ k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1) << k;\n}\n\
-    template <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0 <= k && k <\
-    \ int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename UINT>\n\
-    struct all_bit {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_bit(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s;\n    int operator*() const { return\
-    \ lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool operator!=(nullptr_t)\
-    \ const { return s; }\n  };\n  iter begin() const { return {s}; }\n  nullptr_t\
-    \ end() const { return nullptr; }\n};\n\ntemplate <typename UINT>\nstruct all_subset\
-    \ {\n  static_assert(is_unsigned<UINT>::value);\n  UINT s;\n  all_subset(UINT\
-    \ s) : s(s) {}\n  struct iter {\n    UINT s, t;\n    bool done = false;\n    UINT\
-    \ operator*() const { return t; }\n    void operator++() {\n      done = (t ==\
-    \ 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t) const { return\
-    \ !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t end() const\
-    \ { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0 <= n\
-    \ && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
-    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
-    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
-    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
-    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
-    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
-    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n#line 2 \"ds/sparse_table/sparse_table.hpp\"\
-    \n\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\
-    \u3092\u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\
-    \ntemplate <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using\
-    \ X = typename MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table()\
-    \ {}\n  Sparse_Table(int n) { build(n); }\n  template <typename F>\n  Sparse_Table(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
-    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n\
-    \    FOR(i, n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
+    \ = true;\n};\n#line 1 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\
+    \u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
+    \u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class\
+    \ Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) {\
+    \ build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int m)\
+    \ {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
+    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
+    \ n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
     \ - (1 << i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j]\
     \ = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int\
     \ L, int R) const {\n    if (L == R) return MX::id();\n    if (R == L + 1) return\
@@ -686,14 +613,13 @@ data:
   - graph/base.hpp
   - ds/hashmap.hpp
   - ds/fastset.hpp
-  - other/bit.hpp
   - graph/fast_lca.hpp
   - alg/monoid/min.hpp
   - ds/sparse_table/sparse_table.hpp
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:24:01+09:00'
+  timestamp: '2026-09-28 10:13:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp

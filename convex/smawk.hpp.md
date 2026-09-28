@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/monge/monge_dp_update.hpp
     title: convex/monge/monge_dp_update.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/smawk.test.cpp
     title: test/1_mytest/smawk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/smawk.hpp\"\n\n// \u5404\u884C\u306E\u6700\u9069\u5217\
@@ -56,7 +56,7 @@ data:
   requiredBy:
   - convex/monge/monge_dp_update.hpp
   timestamp: '2026-09-15 07:44:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/smawk.test.cpp
   - test/3_yukicoder/952.test.cpp

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/sum_mul.hpp
     title: alg/acted_monoid/sum_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -17,16 +17,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
   - icon: ':warning:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   _extendedVerifiedWith:
@@ -57,33 +57,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2005.test.cpp
     title: test/3_yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct Monoid_Mul\
@@ -113,7 +113,7 @@ data:
   - seq/p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2026-08-30 21:09:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/factorial_998.test.cpp
