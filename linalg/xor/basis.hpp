@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 
 /*
 使い分け方針

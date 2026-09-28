@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 #include "poly/fps_div.hpp"
 #include "poly/ntt_doubling.hpp"
 #include "poly/poly_divmod.hpp"

@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 
 // a+b/2^M の形で持つ
 template <typename INTEGER>

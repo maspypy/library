@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 #include "random/base.hpp"
 #include "mod/modint61.hpp"
 

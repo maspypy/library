@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 #include "ds/sparse_table/sparse_table.hpp"
 
 // 構築 O(N), クエリ O(1)

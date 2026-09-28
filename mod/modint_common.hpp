@@ -1,5 +1,4 @@
 
-#include "other/bit.hpp"
 
 struct has_mod_impl {
   template <class T>

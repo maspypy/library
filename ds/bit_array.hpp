@@ -1,7 +1,6 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "other/bit.hpp"
 
 /*
 01 列を管理する．内部では 64 bit ごとにまとめて保持する．主な用途として，

@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 #include "mod/modint.hpp"
 
 // [0, LIM)^N のうちで、xor = X となるものの個数

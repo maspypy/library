@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 
 // a <= b xor (submask S) となる中で右辺の最小
 // なければ UINT(-1)

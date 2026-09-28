@@ -1,5 +1,4 @@
 
-#include "other/bit.hpp"
 
 namespace poker {
 

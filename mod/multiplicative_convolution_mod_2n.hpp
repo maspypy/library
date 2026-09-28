@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 #include "poly/convolution.hpp"
 
 template <typename mint>

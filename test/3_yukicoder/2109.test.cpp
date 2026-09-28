@@ -1,7 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2109"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/bit.hpp"
 #include "datetime/datetime.hpp"
 
 void solve() {

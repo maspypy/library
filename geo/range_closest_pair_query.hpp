@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 #include "ds/hashmap.hpp"
 #include "ds/segtree/dual_segtree.hpp"
 #include "alg/monoid/min.hpp"

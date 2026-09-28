@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 
 // f(q, Lprod, Rprod)
 // f 以外で呼ばれるものはすべて単項追加

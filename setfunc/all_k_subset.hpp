@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 
 #ifdef _MSC_VER
 #include <intrin.h>

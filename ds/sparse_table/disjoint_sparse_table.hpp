@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 
 template <class Monoid>
 struct Disjoint_Sparse_Table {

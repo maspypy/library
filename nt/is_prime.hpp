@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 #include "mod/montgomery_modint.hpp"
 
 bool is_prime(const u64 x) {

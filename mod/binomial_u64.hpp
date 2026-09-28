@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 
 struct Binomial_u64 {
   int LIM;

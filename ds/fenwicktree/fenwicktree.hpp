@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 #include "alg/monoid/add.hpp"
 
 template <typename Monoid>

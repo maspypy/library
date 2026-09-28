@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 #include "string/run_length.hpp"
 
 // 部分文字列の種類数が最大であるような 01 文字列の構成

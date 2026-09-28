@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/bit.hpp"
 
 #include "random/random_graph.hpp"
 #include "graph/count/count_P3_P4_P5.hpp"

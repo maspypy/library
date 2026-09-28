@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 
 template <typename ActedMonoid>
 struct SegTree_Beats {

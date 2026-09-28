@@ -1,7 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1777"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "other/bit.hpp"
 #include "graph/planar_graph.hpp"
 
 /*

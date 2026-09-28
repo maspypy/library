@@ -1,4 +1,3 @@
-#include "other/bit.hpp"
 
 // https://codeforces.com/blog/entry/153948?#comment-1367191
 // O(n 2^n)
