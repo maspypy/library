@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'
@@ -54,33 +54,33 @@ data:
     \ PERSISTENT>\nstruct Dynamic_Array {\n  static constexpr int LOG = 4;\n  static\
     \ constexpr int MASK = (1 << LOG) - 1;\n  struct Node {\n    T x;\n    Node* ch[1\
     \ << LOG] = {};\n  };\n  Node_Pool<Node> pool;\n  using np = Node*;\n  const T\
-    \ x0;\n\n  Dynamic_Array(int NODES, T default_value) : x0(default_value) {}\n\
-    \  np new_root() {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch,\
-    \ c->ch + (1 << LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat)\
-    \ {\n    np root = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
-    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return\
-    \ x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx\
-    \ - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n\
-    \    c = (c ? clone(c, make_copy) : new_root());\n    if (idx == 0) {\n      c->x\
-    \ = x;\n      return c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK],\
-    \ (idx - 1) >> LOG, x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool\
-    \ make_copy) {\n    if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n\
-    \  }\n};\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
+    \ x0;\n\n  Dynamic_Array(T default_value) : x0(default_value) {}\n  np new_root()\
+    \ {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch, c->ch + (1 <<\
+    \ LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat) {\n    np root\
+    \ = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i], false);\n  \
+    \  return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return x0;\n   \
+    \ if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx - 1) >> LOG);\n\
+    \  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n    c = (c ? clone(c,\
+    \ make_copy) : new_root());\n    if (idx == 0) {\n      c->x = x;\n      return\
+    \ c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG,\
+    \ x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool make_copy) {\n \
+    \   if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
+    };\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct\
+    \ HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\
+    \u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32\
+    \ k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
+    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
+    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
+    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
+    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
+    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
+    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
+    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
+    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
+    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
+    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
+    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
+    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
     \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
     \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
     \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
@@ -228,7 +228,7 @@ data:
   isVerificationFile: false
   path: string/aho_corasick_for_general_trie.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-09-28 16:02:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/aho_corasick_for_general_trie.hpp

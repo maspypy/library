@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -307,18 +307,18 @@ data:
     \ PERSISTENT>\nstruct Dynamic_Array {\n  static constexpr int LOG = 4;\n  static\
     \ constexpr int MASK = (1 << LOG) - 1;\n  struct Node {\n    T x;\n    Node* ch[1\
     \ << LOG] = {};\n  };\n  Node_Pool<Node> pool;\n  using np = Node*;\n  const T\
-    \ x0;\n\n  Dynamic_Array(int NODES, T default_value) : x0(default_value) {}\n\
-    \  np new_root() {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch,\
-    \ c->ch + (1 << LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat)\
-    \ {\n    np root = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
-    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return\
-    \ x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx\
-    \ - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n\
-    \    c = (c ? clone(c, make_copy) : new_root());\n    if (idx == 0) {\n      c->x\
-    \ = x;\n      return c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK],\
-    \ (idx - 1) >> LOG, x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool\
-    \ make_copy) {\n    if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n\
-    \  }\n};\n#line 2 \"ds/unionfind/dynamic_unionfind.hpp\"\n\r\ntemplate <bool PERSISTENT>\r\
+    \ x0;\n\n  Dynamic_Array(T default_value) : x0(default_value) {}\n  np new_root()\
+    \ {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch, c->ch + (1 <<\
+    \ LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat) {\n    np root\
+    \ = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i], false);\n  \
+    \  return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return x0;\n   \
+    \ if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx - 1) >> LOG);\n\
+    \  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n    c = (c ? clone(c,\
+    \ make_copy) : new_root());\n    if (idx == 0) {\n      c->x = x;\n      return\
+    \ c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG,\
+    \ x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool make_copy) {\n \
+    \   if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
+    };\n#line 2 \"ds/unionfind/dynamic_unionfind.hpp\"\n\r\ntemplate <bool PERSISTENT>\r\
     \nstruct Dynamic_UnionFind {\r\n  // \u7D4C\u8DEF\u5727\u7E2E\u306A\u3057\r\n\
     \  Dynamic_Array<int, PERSISTENT> PA;\r\n  using np = typename decltype(PA)::np;\r\
     \n\r\n  Dynamic_UnionFind(int N) : PA(15 * N, -1) {}\r\n\r\n  np new_root() {\
@@ -356,8 +356,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-28 16:02:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
 layout: document

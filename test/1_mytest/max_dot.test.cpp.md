@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/incremental_convex_hull.hpp
     title: geo/incremental_convex_hull.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -438,23 +438,24 @@ data:
     \ (x > 0) return 1;\n    if (p == point[0]) return 0;\n    if (c != 0 && a ==\
     \ 0 && L != 1) return 1;\n    if (c != 0 && b == 0 && R != n - 1) return 1;\n\
     \    return 0;\n  }\n\n  // return {min, i, j}. i==j \u306F\u9802\u70B9, i!=j\
-    \ \u306F\u6700\u9069\u8FBA i -> j\u3002\n  tuple<T, int, int> min_dot(P p) const\
-    \ {\n    static_assert(is_strict);\n    assert(p != P(0, 0));\n    int idx = periodic_min_comp(\n\
-    \        [&](int i, int j) { return point[i].dot(p) < point[j].dot(p); });\n \
-    \   T val = point[idx].dot(p);\n    int prv = prev_idx(idx), nxt = nxt_idx(idx);\n\
-    \    if (point[prv].dot(p) == val) return {val, prv, idx};\n    if (point[nxt].dot(p)\
-    \ == val) return {val, idx, nxt};\n    return {val, idx, idx};\n  }\n\n  // return\
-    \ {max, i, j}. i==j \u306F\u9802\u70B9, i!=j \u306F\u6700\u9069\u8FBA i -> j\u3002\
-    \n  tuple<T, int, int> max_dot(P p) const {\n    static_assert(is_strict);\n \
-    \   assert(p != P(0, 0));\n    int idx = periodic_min_comp(\n        [&](int i,\
-    \ int j) { return point[i].dot(p) > point[j].dot(p); });\n    T val = point[idx].dot(p);\n\
+    \ \u306F\u6700\u9069\u8FBA i -> j\u3002\n  // p==(0,0): return {0,0,0}\n  tuple<T,\
+    \ int, int> min_dot(P p) const {\n    static_assert(is_strict);\n    if (p ==\
+    \ P(0, 0)) return {0, 0, 0};\n    int idx = periodic_min_comp(\n        [&](int\
+    \ i, int j) { return point[i].dot(p) < point[j].dot(p); });\n    T val = point[idx].dot(p);\n\
     \    int prv = prev_idx(idx), nxt = nxt_idx(idx);\n    if (point[prv].dot(p) ==\
     \ val) return {val, prv, idx};\n    if (point[nxt].dot(p) == val) return {val,\
-    \ idx, nxt};\n    return {val, idx, idx};\n  }\n\n  pair<int, int> visible_range(P\
-    \ p) const {\n    static_assert(is_strict);\n    int a = periodic_min_comp(\n\
-    \        [&](int i, int j) { return (point[i] - p).det(point[j] - p) < 0; });\n\
-    \    int b = periodic_min_comp(\n        [&](int i, int j) { return (point[i]\
-    \ - p).det(point[j] - p) > 0; });\n    if ((p - point[a]).det(p - point[prev_idx(a)])\
+    \ idx, nxt};\n    return {val, idx, idx};\n  }\n\n  // return {max, i, j}. i==j\
+    \ \u306F\u9802\u70B9, i!=j \u306F\u6700\u9069\u8FBA i -> j\u3002\n  // p==(0,0):\
+    \ return {0,0,0}\n  tuple<T, int, int> max_dot(P p) const {\n    static_assert(is_strict);\n\
+    \    if (p == P(0, 0)) return {0, 0, 0};\n    int idx = periodic_min_comp(\n \
+    \       [&](int i, int j) { return point[i].dot(p) > point[j].dot(p); });\n  \
+    \  T val = point[idx].dot(p);\n    int prv = prev_idx(idx), nxt = nxt_idx(idx);\n\
+    \    if (point[prv].dot(p) == val) return {val, prv, idx};\n    if (point[nxt].dot(p)\
+    \ == val) return {val, idx, nxt};\n    return {val, idx, idx};\n  }\n\n  pair<int,\
+    \ int> visible_range(P p) const {\n    static_assert(is_strict);\n    int a =\
+    \ periodic_min_comp(\n        [&](int i, int j) { return (point[i] - p).det(point[j]\
+    \ - p) < 0; });\n    int b = periodic_min_comp(\n        [&](int i, int j) { return\
+    \ (point[i] - p).det(point[j] - p) > 0; });\n    if ((p - point[a]).det(p - point[prev_idx(a)])\
     \ == T(0)) a = prev_idx(a);\n    if ((p - point[b]).det(p - point[nxt_idx(b)])\
     \ == T(0)) b = nxt_idx(b);\n    return {a, b};\n  }\n\n  bool check_cross(P A,\
     \ P B) const {\n    static_assert(is_strict);\n    FOR(2) {\n      swap(A, B);\n\
@@ -666,8 +667,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/max_dot.test.cpp
   requiredBy: []
-  timestamp: '2026-09-28 15:34:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-28 16:02:05+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/max_dot.test.cpp
 layout: document
