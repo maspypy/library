@@ -4,8 +4,9 @@
 #if defined(__GNUC__)
 #include <bits/allocator.h>
 #pragma GCC optimize("Ofast,unroll-loops")
-// 環境によってはコンパイル成功かつ実行時エラー
+#if !defined(MASPY_NON_AVX2)
 #pragma GCC target("avx2,popcnt")
+#endif
 #endif
 #include <bits/stdc++.h>
 #include <cassert>

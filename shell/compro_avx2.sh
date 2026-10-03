@@ -1,0 +1,98 @@
+# shellcheck shell=bash
+
+COMPRO_SHELL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export COMPRO_LIBRARY_DIR="$(cd "$COMPRO_SHELL_DIR/.." && pwd)"
+
+copy_temp_cpp() {
+  if command -v clip.exe >/dev/null 2>&1; then
+    iconv -f UTF-8 -t UTF-16LE < temp.cpp | clip.exe
+  elif command -v wl-copy >/dev/null 2>&1; then
+    wl-copy < temp.cpp
+  elif command -v xclip >/dev/null 2>&1; then
+    xclip -selection clipboard < temp.cpp
+  elif command -v xsel >/dev/null 2>&1; then
+    xsel --clipboard --input < temp.cpp
+  elif command -v pbcopy >/dev/null 2>&1; then
+    pbcopy < temp.cpp
+  else
+    echo "Warning: clipboard command not found; skipping copy." >&2
+  fi
+  return 0
+}
+
+expand_main() {
+  python3 "$COMPRO_LIBRARY_DIR/expander.py" main.cpp > temp.cpp
+}
+
+compile_debug() {
+  expand_main || return
+  copy_temp_cpp
+  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DUSE_PCH -std=c++2a -O2 -Wall \
+    -Wfatal-errors -D_GLIBCXX_DEBUG -mavx2 -mpopcnt temp.cpp
+}
+
+compile_sanitize() {
+  expand_main || return
+  copy_temp_cpp
+  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DUSE_PCH -mavx2 -mpopcnt \
+    -std=c++2a -O2 -fsanitize=address -fno-omit-frame-pointer -g \
+    -fsanitize=undefined temp.cpp
+}
+
+compile_fast() {
+  expand_main || return
+  g++ -I "$COMPRO_LIBRARY_DIR" -DUSE_PCH -std=c++2a -O2 -mavx2 -mpopcnt temp.cpp
+}
+
+compile_fast_no_pch() {
+  expand_main || return
+  g++ -I "$COMPRO_LIBRARY_DIR" -std=c++2a -O2 -mavx2 -mpopcnt temp.cpp
+}
+
+test_samples() {
+  copy_temp_cpp
+  bash "$COMPRO_SHELL_DIR/sampletest.sh"
+  rm -f a.out
+}
+
+shrink_temp() {
+  python3 "$COMPRO_LIBRARY_DIR/shrink.py" --report temp.cpp > submit.cpp
+}
+
+precompile() {
+  (
+    cd "$COMPRO_LIBRARY_DIR" || return
+    local pch_src="my_template_compiled.hpp"
+    local out_dir="my_template_compiled.hpp.gch"
+    awk '
+      NR <= 3 { next }
+      { lines[++n] = $0 }
+      END { for (i = 1; i < n; i++) print lines[i] }
+    ' my_template.hpp > "$pch_src"
+    rm -rf "$out_dir"
+    mkdir -p "$out_dir"
+
+    g++ -o "$out_dir/debug.gch" -I . -DLOCAL -DUSE_PCH -std=c++2a -O2 \
+      -Wall -Wfatal-errors -D_GLIBCXX_DEBUG -mavx2 -mpopcnt -x c++-header \
+      "$pch_src" || return
+    g++ -o "$out_dir/sanitize.gch" -I . -DLOCAL -DUSE_PCH -std=c++2a -O2 \
+      -fsanitize=address -fno-omit-frame-pointer -g -fsanitize=undefined \
+      -mavx2 -mpopcnt -x c++-header "$pch_src" || return
+    g++ -o "$out_dir/fast.gch" -I . -DUSE_PCH -std=c++2a -O2 -mavx2 -mpopcnt \
+      -x c++-header "$pch_src" || return
+    echo "PCH built: AVX2"
+  )
+}
+
+source "$COMPRO_SHELL_DIR/randomtest.sh"
+
+alias python="python3"
+ulimit -s unlimited
+alias aa="./a.out"
+alias cc="compile_debug"
+alias cc2="compile_sanitize"
+alias ccf="compile_fast"
+alias ccf_no_pch="compile_fast_no_pch"
+alias tt="test_samples"
+alias rt="randomtest"
+echo "compro: AVX2 mode"

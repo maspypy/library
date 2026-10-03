@@ -3,7 +3,7 @@
 
 namespace SLOPE_TRICK_SUPER {
 /*
-傾きと座標が全部 T.
+傾きと座標が全部 T. domain は closed.
 (x0,y0,a0) / 傾き変化を splay tree で持つ.
 末尾には必ず infty が入っているようにする.
 (0,10),(1,6),(3,4),(6,7)
@@ -86,6 +86,7 @@ struct Slope_Trick_Super {
 
   // (L,R,a,b) : [L,R] で y=ax+b
   FUNC segment_func(T L, T R, T a, T b) {
+    assert(L <= R);
     return {nullptr, L, R, a, a * L + b};
   }
   FUNC from_points(vc<pair<T, T>> &point) {
@@ -96,6 +97,7 @@ struct Slope_Trick_Super {
   FUNC from_points(int N, F f) {
     vc<T> X(N), Y(N);
     FOR(i, N) tie(X[i], Y[i]) = f(i);
+    FOR(i, N - 1) assert(X[i] < X[i + 1]);
     if (N == 1) return segment_func(X[0], X[0], 0, Y[0]);
     T a0 = (Y[1] - Y[0]) / (X[1] - X[0]);
     T x0 = X[0], x1 = X.back();
@@ -111,7 +113,7 @@ struct Slope_Trick_Super {
   pair<T, T> domain(FUNC &f) { return {f.x0, f.x1}; }
   T eval(FUNC &f, T x) {
     auto [x0, x1] = domain(f);
-    if (!(x0 <= x && x <= x1)) return infty<T>;
+    assert(x0 <= x && x <= x1);
     auto [l, r] = ST.split_max_right(
         f.root, [&](auto dat) -> bool { return dat.fi <= x; });
     auto [a_sum, xa_sum] = ST.prod(l);
@@ -119,6 +121,7 @@ struct Slope_Trick_Super {
     return f.y0 + f.a0 * (x - x0) + a_sum * x - xa_sum;
   }
   FUNC restrict_domain(FUNC &f, T L, T R) {
+    assert(L <= R);
     auto [x0, x1] = domain(f);
     chmax(L, x0), chmin(R, x1);
     if (L > R) {
@@ -142,10 +145,8 @@ struct Slope_Trick_Super {
     return f;
   }
   FUNC add(FUNC &f, FUNC &g) {
-    T x0 = max(f.x0, g.x0);
-    T x1 = min(f.x1, g.x1);
-    restrict_domain(f, x0, x1), restrict_domain(g, x0, x1);
-    if (x0 > x1) return f;
+    assert(f.x0 == g.x0 && f.x1 == g.x1);
+    T x0 = f.x0, x1 = f.x1;
     T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;
 
     if (len(f) < len(g)) swap(f, g);
@@ -188,14 +189,7 @@ struct Slope_Trick_Super {
   FUNC sum_all(vc<FUNC> &funcs) {
     assert(len(funcs) >= 1);
     T x0 = funcs[0].x0, x1 = funcs[0].x1;
-    for (auto &g : funcs) chmax(x0, g.x0), chmin(x1, g.x1);
-    if (x0 > x1) {
-      for (auto &f : funcs) {
-        ST.free_subtree(f.root);
-      }
-      return {nullptr, infty<T>, -infty<T>, 0, 0};
-    }
-    for (auto &f : funcs) f = restrict_domain(f, x0, x1);
+    for (auto &g : funcs) assert(x0 == g.x0 && x1 == g.x1);
     int idx = 0;
     FOR(i, 1, len(funcs)) if (len(funcs[idx]) < len(funcs[i])) idx = i;
     swap(funcs[idx], funcs.back());
