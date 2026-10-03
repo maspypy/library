@@ -9,7 +9,7 @@ data:
     title: geo/cross_point.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/4_aoj/CGL_7_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"geo/cross_point.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
@@ -169,7 +169,7 @@ data:
   path: geo/distance.hpp
   requiredBy: []
   timestamp: '2026-09-25 20:35:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/CGL_2_D.test.cpp
   - test/4_aoj/CGL_7_B.test.cpp
