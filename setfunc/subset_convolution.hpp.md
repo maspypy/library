@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   _extendedRequiredBy:
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   _extendedVerifiedWith:
@@ -45,18 +45,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/powproj_sps.test.cpp
     title: test/2_library_checker/set_power_series/powproj_sps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/sps_exp.test.cpp
     title: test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/subset_convolution.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"setfunc/ranked_zeta.hpp\"\n\n#line 1 \"setfunc/bitwise_transform.hpp\"\
@@ -132,7 +132,7 @@ data:
   - setfunc/sps_exp.hpp
   - setfunc/power_projection_of_sps.hpp
   timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct\
@@ -332,7 +332,7 @@ data:
   path: string/longest_common_substring.hpp
   requiredBy: []
   timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/longest_common_substr.test.cpp
   - test/2_library_checker/string/longest_common_substring.test.cpp

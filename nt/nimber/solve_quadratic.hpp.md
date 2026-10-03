@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/basis.hpp
     title: linalg/xor/basis.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/nimber/base.hpp
     title: nt/nimber/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
   _extendedRequiredBy: []

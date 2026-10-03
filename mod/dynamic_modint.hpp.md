@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -63,10 +63,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_dmint.test.cpp
     title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,16 +75,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,15 +93,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1667.test.cpp
     title: test/3_yukicoder/1667.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/dynamic_modint.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
@@ -388,7 +388,7 @@ data:
   - mod/mod_log.hpp
   - seq/reeds_sloane.hpp
   timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/reeds_sloane.test.cpp

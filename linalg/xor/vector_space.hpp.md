@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
     title: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/184.test.cpp
     title: test/3_yukicoder/184.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\u5217\u306E\
@@ -144,7 +144,7 @@ data:
   path: linalg/xor/vector_space.hpp
   requiredBy: []
   timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/184.test.cpp
   - test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp

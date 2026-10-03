@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':warning:'
@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':warning:'
@@ -27,24 +27,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1541.test.cpp
     title: test/3_yukicoder/1541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/177.test.cpp
     title: test/3_yukicoder/177.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2320.test.cpp
     title: test/3_yukicoder/2320.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2835.test.cpp
     title: test/4_aoj/2835.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_6_A.test.cpp
     title: test/4_aoj/GRL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
@@ -345,7 +345,7 @@ data:
   - flow/binary_optimization.hpp
   - game/graph_path_game.hpp
   timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/177.test.cpp
   - test/3_yukicoder/2320.test.cpp
