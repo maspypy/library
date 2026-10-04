@@ -553,16 +553,15 @@ data:
     \ {\n  FastSet FS;\n  TREE& tree;\n  Compress_Tree(TREE& tree) : tree(tree) {}\n\
     \n  using GT = typename TREE::Graph_type;\n  using WT = typename GT::cost_type;\n\
     \n  pair<vc<int>, GT> compress(vc<int>& V, bool sorted = false) {\n    return\
-    \ compress_impl(V, sorted,\n                         [&](int a, int b) -> int\
-    \ { return tree.LCA(a, b); });\n  }\n\n  pair<vc<int>, GT> compress_fast(vc<int>&\
-    \ V, Fast_LCA<TREE>& LCA,\n                                  bool sorted = false)\
-    \ {\n    return compress_impl(V, sorted,\n                         [&](int a,\
-    \ int b) -> int { return LCA.LCA(a, b); });\n  }\n\n  void sort_vertices(vc<int>&\
+    \ compress_impl(\n        V, sorted, [&](int a, int b) -> int { return tree.LCA(a,\
+    \ b); });\n  }\n\n  pair<vc<int>, GT> compress_fast(\n      vc<int>& V, Fast_LCA<TREE>&\
+    \ LCA, bool sorted = false) {\n    return compress_impl(\n        V, sorted, [&](int\
+    \ a, int b) -> int { return LCA.LCA(a, b); });\n  }\n\n  void sort_vertices(vc<int>&\
     \ V) {\n    int N = tree.N;\n    if (len(FS) == 0) FS.build(N);\n    for (int\
     \ v : V) FS.insert(tree.LID[v]);\n    int k = 0;\n    FS.enumerate(0, N, [&](int\
-    \ i) -> void {\n      FS.erase(i);\n      V[k++] = tree.V[i];\n    });\n  }\n\n\
-    \  template <typename F>\n  pair<vc<int>, GT> compress_impl(vc<int> V, bool sorted,\
-    \ F&& get_lca) {\n    assert(!V.empty());\n    if (!sorted) sort_vertices(V);\n\
+    \ i) -> void {\n      FS.erase(i);\n      V[k++] = tree.V[i];\n    });\n    V.resize(k);\n\
+    \  }\n\n  template <typename F>\n  pair<vc<int>, GT> compress_impl(vc<int> V,\
+    \ bool sorted, F&& get_lca) {\n    assert(!V.empty());\n    if (!sorted) sort_vertices(V);\n\
     \    int n = len(V);\n    int root = get_lca(V[0], V.back());\n    vc<int> key\
     \ = move(V);\n    V.clear();\n    V.reserve(2 * n);\n\n    // \u5727\u7E2E\u6728\
     \u4E0A\u306E\u89AA\u756A\u53F7\n    vc<int> par;\n    par.reserve(2 * n);\n\n\
@@ -582,15 +581,14 @@ data:
     \n\ntemplate <typename TREE>\nstruct Compress_Tree {\n  FastSet FS;\n  TREE& tree;\n\
     \  Compress_Tree(TREE& tree) : tree(tree) {}\n\n  using GT = typename TREE::Graph_type;\n\
     \  using WT = typename GT::cost_type;\n\n  pair<vc<int>, GT> compress(vc<int>&\
-    \ V, bool sorted = false) {\n    return compress_impl(V, sorted,\n           \
-    \              [&](int a, int b) -> int { return tree.LCA(a, b); });\n  }\n\n\
-    \  pair<vc<int>, GT> compress_fast(vc<int>& V, Fast_LCA<TREE>& LCA,\n        \
-    \                          bool sorted = false) {\n    return compress_impl(V,\
-    \ sorted,\n                         [&](int a, int b) -> int { return LCA.LCA(a,\
-    \ b); });\n  }\n\n  void sort_vertices(vc<int>& V) {\n    int N = tree.N;\n  \
-    \  if (len(FS) == 0) FS.build(N);\n    for (int v : V) FS.insert(tree.LID[v]);\n\
-    \    int k = 0;\n    FS.enumerate(0, N, [&](int i) -> void {\n      FS.erase(i);\n\
-    \      V[k++] = tree.V[i];\n    });\n  }\n\n  template <typename F>\n  pair<vc<int>,\
+    \ V, bool sorted = false) {\n    return compress_impl(\n        V, sorted, [&](int\
+    \ a, int b) -> int { return tree.LCA(a, b); });\n  }\n\n  pair<vc<int>, GT> compress_fast(\n\
+    \      vc<int>& V, Fast_LCA<TREE>& LCA, bool sorted = false) {\n    return compress_impl(\n\
+    \        V, sorted, [&](int a, int b) -> int { return LCA.LCA(a, b); });\n  }\n\
+    \n  void sort_vertices(vc<int>& V) {\n    int N = tree.N;\n    if (len(FS) ==\
+    \ 0) FS.build(N);\n    for (int v : V) FS.insert(tree.LID[v]);\n    int k = 0;\n\
+    \    FS.enumerate(0, N, [&](int i) -> void {\n      FS.erase(i);\n      V[k++]\
+    \ = tree.V[i];\n    });\n    V.resize(k);\n  }\n\n  template <typename F>\n  pair<vc<int>,\
     \ GT> compress_impl(vc<int> V, bool sorted, F&& get_lca) {\n    assert(!V.empty());\n\
     \    if (!sorted) sort_vertices(V);\n    int n = len(V);\n    int root = get_lca(V[0],\
     \ V.back());\n    vc<int> key = move(V);\n    V.clear();\n    V.reserve(2 * n);\n\
@@ -619,7 +617,7 @@ data:
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-04 20:10:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp

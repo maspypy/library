@@ -30,7 +30,7 @@ data:
     \ (int k = 0; k < K; ++k)\n      for (int j = p - (1 << k); j < p; ++j) A[j] -=\
     \ A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume a[i], return zeta(a)[i].\
     \ not increment the pointer.\n  T assume(int i, T ai) {\n    assert(p == i);\n\
-    \    T ans = ai;\n    enumerate_all_bit<u32>(i, [&](int j) -> vood { ans -= A[i\
+    \    T ans = ai;\n    enumerate_all_bit<u32>(i, [&](int j) -> void { ans -= A[i\
     \ - (1 << j)]; });\n    return ans;\n  }\n};\n"
   code: "#include \"enumerate/bits.hpp\"\n\ntemplate <typename T>\nstruct Online_Subset_Mobius\
     \ {\n  int n;\n  int p = 0;\n  vc<T> A;\n  Online_Subset_Mobius(int LOG) : n(LOG),\
@@ -40,14 +40,14 @@ data:
     \ k); j < p; ++j) A[j] -= A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume\
     \ a[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int i, T ai)\
     \ {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(i, [&](int\
-    \ j) -> vood { ans -= A[i - (1 << j)]; });\n    return ans;\n  }\n};\n"
+    \ j) -> void { ans -= A[i - (1 << j)]; });\n    return ans;\n  }\n};\n"
   dependsOn:
   - enumerate/bits.hpp
   isVerificationFile: false
   path: setfunc/online/online_subset_mobius.hpp
   requiredBy:
   - setfunc/online/online_or_convolution.hpp
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-04 20:10:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/online/online_subset_mobius.hpp

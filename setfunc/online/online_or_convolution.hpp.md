@@ -54,7 +54,7 @@ data:
     \ j = p - (1 << k); j < p; ++j) A[j] -= A[j - (1 << k)];\n    return ans;\n  }\n\
     \n  // assume a[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int\
     \ i, T ai) {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(i,\
-    \ [&](int j) -> vood { ans -= A[i - (1 << j)]; });\n    return ans;\n  }\n};\n\
+    \ [&](int j) -> void { ans -= A[i - (1 << j)]; });\n    return ans;\n  }\n};\n\
     #line 3 \"setfunc/online/online_or_convolution.hpp\"\n\ntemplate <typename T>\n\
     struct Online_Or_Convolution {\n  Online_Subset_Zeta<T> X1, X2;\n  Online_Subset_Mobius<T>\
     \ Y;\n  Online_Or_Convolution(int LOG) : X1(LOG), X2(LOG), Y(LOG) {}\n  // set\
@@ -77,7 +77,7 @@ data:
   isVerificationFile: false
   path: setfunc/online/online_or_convolution.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-04 20:10:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/online/online_or_convolution.hpp
