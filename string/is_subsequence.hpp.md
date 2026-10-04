@@ -12,18 +12,18 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"string/is_subsequence.hpp\"\ntemplate <typename STRING>\r\
-    \nbool is_subsequence(STRING& S, STRING& T) {\r\n  ll p = 0;\r\n  for (auto&&\
-    \ s : S) {\r\n    while (p < len(T) && T[p] != s) ++p;\r\n    if (p == len(T))\
-    \ return false;\r\n    ++p;\r\n  }\r\n  return true;\r\n}\n"
-  code: "template <typename STRING>\r\nbool is_subsequence(STRING& S, STRING& T) {\r\
-    \n  ll p = 0;\r\n  for (auto&& s : S) {\r\n    while (p < len(T) && T[p] != s)\
-    \ ++p;\r\n    if (p == len(T)) return false;\r\n    ++p;\r\n  }\r\n  return true;\r\
-    \n}"
+    \nbool is_subsequence(const STRING& S, const STRING& T) {\r\n  ll p = 0;\r\n \
+    \ for (auto&& s : S) {\r\n    while (p < len(T) && T[p] != s) ++p;\r\n    if (p\
+    \ == len(T)) return false;\r\n    ++p;\r\n  }\r\n  return true;\r\n}\n"
+  code: "template <typename STRING>\r\nbool is_subsequence(const STRING& S, const\
+    \ STRING& T) {\r\n  ll p = 0;\r\n  for (auto&& s : S) {\r\n    while (p < len(T)\
+    \ && T[p] != s) ++p;\r\n    if (p == len(T)) return false;\r\n    ++p;\r\n  }\r\
+    \n  return true;\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: string/is_subsequence.hpp
   requiredBy: []
-  timestamp: '2026-08-17 12:32:26+09:00'
+  timestamp: '2026-10-04 20:03:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1643.test.cpp
