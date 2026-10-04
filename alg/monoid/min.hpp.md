@@ -24,9 +24,6 @@ data:
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
   - icon: ':warning:'
-    path: graph/compress_tree.hpp
-    title: graph/compress_tree.hpp
-  - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
   - icon: ':heavy_check_mark:'
@@ -62,9 +59,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffix_tree.hpp
-    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_segtree_sparse.test.cpp
@@ -166,9 +160,6 @@ data:
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2361.test.cpp
-    title: test/3_yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
   - icon: ':heavy_check_mark:'
@@ -207,7 +198,6 @@ data:
   isVerificationFile: false
   path: alg/monoid/min.hpp
   requiredBy:
-  - graph/compress_tree.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/fast_lca.hpp
   - graph/ds/range_edge_connected_component_query.hpp
@@ -225,7 +215,6 @@ data:
   - string/many_string_compare.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
   - string/substring_shortest_border.hpp
-  - string/suffix_tree.hpp
   - string/suffix_lcp_change.hpp
   - seq/common_interval_decomposition.hpp
   timestamp: '2026-08-30 21:27:49+09:00'
@@ -248,7 +237,6 @@ data:
   - test/3_yukicoder/2935.test.cpp
   - test/3_yukicoder/913.test.cpp
   - test/3_yukicoder/1720.test.cpp
-  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1212.test.cpp
   - test/3_yukicoder/1234.test.cpp
   - test/3_yukicoder/1600.test.cpp

@@ -9,9 +9,6 @@ data:
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':warning:'
-    path: geo/delaunay_triangulation_of_convex_polygon.hpp
-    title: geo/delaunay_triangulation_of_convex_polygon.hpp
-  - icon: ':warning:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':warning:'
@@ -42,9 +39,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/decremental_fastset.test.cpp
-    title: test/1_mytest/decremental_fastset.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/extended_lichao.test.cpp
     title: test/1_mytest/extended_lichao.test.cpp
@@ -129,7 +123,6 @@ data:
   isVerificationFile: false
   path: random/shuffle.hpp
   requiredBy:
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/minimum_enclosing_circle.hpp
   - geo/closest_pair.hpp
   - setfunc/boolean_range_add_point_get.hpp
@@ -151,7 +144,6 @@ data:
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
-  - test/1_mytest/decremental_fastset.test.cpp
   - test/1_mytest/find_even_cycle.test.cpp
   - test/1_mytest/count_K4.test.cpp
   - test/1_mytest/count_P3P4P5.test.cpp

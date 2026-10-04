@@ -16,10 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/ds/incremental_centroid.hpp
-    title: graph/ds/incremental_centroid.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
@@ -30,9 +27,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/4_aoj/2636.test.cpp
-    title: test/4_aoj/2636.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -396,15 +390,13 @@ data:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/ds/tree_abeliangroup.hpp
-  requiredBy:
-  - graph/ds/incremental_centroid.hpp
+  requiredBy: []
   timestamp: '2026-09-28 10:13:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/1326.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - test/4_aoj/2636.test.cpp
 documentation_of: graph/ds/tree_abeliangroup.hpp
 layout: document
 redirect_from:

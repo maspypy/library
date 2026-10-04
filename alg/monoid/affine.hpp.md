@@ -55,15 +55,6 @@ data:
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-    title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/sort_segtree.test.cpp
-    title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-    title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -136,13 +127,10 @@ data:
   - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
 documentation_of: alg/monoid/affine.hpp

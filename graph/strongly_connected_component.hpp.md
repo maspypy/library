@@ -11,9 +11,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching.hpp
     title: flow/bipartite_matching.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/all_cycle_common_vertices.hpp
-    title: graph/all_cycle_common_vertices.hpp
   - icon: ':warning:'
     path: graph/bipartite_balanced_edge_coloring.hpp
     title: graph/bipartite_balanced_edge_coloring.hpp
@@ -36,9 +33,6 @@ data:
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/all_cycle_common_vertex.test.cpp
-    title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_odd_cycle.test.cpp
     title: test/1_mytest/find_odd_cycle.test.cpp
@@ -239,7 +233,6 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_component.hpp
   requiredBy:
-  - graph/all_cycle_common_vertices.hpp
   - graph/reachability.hpp
   - graph/incremental_scc.hpp
   - graph/twosat.hpp
@@ -254,7 +247,6 @@ data:
   - test/1_mytest/scc_tournament.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp
   - test/1_mytest/incremental_scc.test.cpp
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/3_yukicoder/1744.test.cpp

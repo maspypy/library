@@ -5,16 +5,10 @@ data:
   - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffix_tree.hpp
-    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/cartesian_tree.test.cpp
     title: test/2_library_checker/tree/cartesian_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2361.test.cpp
-    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2574.test.cpp
     title: test/3_yukicoder/2574.test.cpp
@@ -87,11 +81,9 @@ data:
   path: seq/cartesian_tree.hpp
   requiredBy:
   - string/basic_substring_structure.hpp
-  - string/suffix_tree.hpp
   timestamp: '2026-09-13 12:02:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2574.test.cpp
   - test/2_library_checker/tree/cartesian_tree.test.cpp
   - test/4_aoj/DPL_3_C.test.cpp

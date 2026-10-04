@@ -12,9 +12,6 @@ data:
     path: ds/segtree/greedy_subtract_segtree.hpp
     title: ds/segtree/greedy_subtract_segtree.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/segtree/range_assignment_segtree.hpp
-    title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -39,12 +36,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/range_assign.test.cpp
-    title: test/1_mytest/range_assign.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-    title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
@@ -102,7 +93,6 @@ data:
   - graph/functional_graph.hpp
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
-  - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/greedy_subtract_segtree.hpp
   - mod/floor_monoid_product.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
@@ -114,12 +104,10 @@ data:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
-  - test/1_mytest/range_assign.test.cpp
   - test/3_yukicoder/1211.test.cpp
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/2362.test.cpp
   - test/3_yukicoder/1242.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
 documentation_of: alg/monoid_pow.hpp
 layout: document

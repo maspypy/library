@@ -10,9 +10,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/range_assign.test.cpp
-    title: test/1_mytest/range_assign.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +50,6 @@ data:
   timestamp: '2026-08-30 21:09:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/range_assign.test.cpp
   - test/3_yukicoder/2292.test.cpp
   - test/4_aoj/DSL_2_I.test.cpp
 documentation_of: alg/acted_monoid/sum_assign.hpp

@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: geo/delaunay_triangulation_of_convex_polygon.hpp
-    title: geo/delaunay_triangulation_of_convex_polygon.hpp
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
@@ -41,7 +38,6 @@ data:
   isVerificationFile: false
   path: geo/triangle_area.hpp
   requiredBy:
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/incircle.hpp
   - geo/outcircle.hpp
   - geo/minimum_enclosing_circle.hpp

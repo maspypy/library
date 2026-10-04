@@ -12,9 +12,6 @@ data:
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
-    path: graph/compress_tree.hpp
-    title: graph/compress_tree.hpp
-  - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
   - icon: ':warning:'
@@ -29,9 +26,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/ds/incremental_centroid.hpp
-    title: graph/ds/incremental_centroid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
@@ -92,9 +86,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: knapsack/independent_set_knapsack.hpp
     title: knapsack/independent_set_knapsack.hpp
-  - icon: ':warning:'
-    path: string/enumerate_occurrences.hpp
-    title: string/enumerate_occurrences.hpp
   - icon: ':warning:'
     path: string/generalized_suffix_automaton.hpp
     title: string/generalized_suffix_automaton.hpp
@@ -261,9 +252,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/4_aoj/2636.test.cpp
-    title: test/4_aoj/2636.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
@@ -626,7 +614,6 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
-  - graph/compress_tree.hpp
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_hash.hpp
@@ -645,7 +632,6 @@ data:
   - graph/ds/static_tree_monoid.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/static_toptree.hpp
-  - graph/ds/incremental_centroid.hpp
   - graph/ds/distance_sum.hpp
   - graph/ds/tree_abeliangroup.hpp
   - graph/functional_graph.hpp
@@ -654,7 +640,6 @@ data:
   - graph/count_matching_on_tree.hpp
   - string/generalized_suffix_automaton.hpp
   - string/suffix_automaton.hpp
-  - string/enumerate_occurrences.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   - knapsack/independent_set_knapsack.hpp
   timestamp: '2026-09-13 16:24:01+09:00'
@@ -716,7 +701,6 @@ data:
   - test/4_aoj/2677.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
-  - test/4_aoj/2636.test.cpp
 documentation_of: graph/tree.hpp
 layout: document
 redirect_from:

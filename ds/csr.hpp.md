@@ -11,9 +11,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/EGZ.hpp
     title: nt/EGZ.hpp
-  - icon: ':warning:'
-    path: string/enumerate_occurrences.hpp
-    title: string/enumerate_occurrences.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/EGZ.test.cpp
@@ -58,7 +55,6 @@ data:
   - nt/EGZ.hpp
   - graph/degree_sequence.hpp
   - ds/offline_query/offline_set_intersection.hpp
-  - string/enumerate_occurrences.hpp
   timestamp: '2026-08-01 03:11:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

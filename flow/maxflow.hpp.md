@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':warning:'
@@ -33,9 +33,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2320.test.cpp
     title: test/3_yukicoder/2320.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/4_aoj/2251_1.test.cpp
-    title: test/4_aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2835.test.cpp
     title: test/4_aoj/2835.test.cpp
@@ -350,7 +347,6 @@ data:
   - test/3_yukicoder/177.test.cpp
   - test/3_yukicoder/2320.test.cpp
   - test/3_yukicoder/1541.test.cpp
-  - test/4_aoj/2251_1.test.cpp
   - test/4_aoj/GRL_6_A.test.cpp
   - test/4_aoj/2835.test.cpp
 documentation_of: flow/maxflow.hpp

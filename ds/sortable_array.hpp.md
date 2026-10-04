@@ -1,153 +1,27 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/fastset.hpp
-    title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/node_pool.hpp
-    title: ds/node_pool.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/sortable_array.test.cpp
-    title: test/1_mytest/sortable_array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2809.test.cpp
-    title: test/3_yukicoder/2809.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\n// space: (N/63) * u64\n\
-    struct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n  vvc<u64>\
-    \ seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int size() { return\
-    \ n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto& vs : seg) {\n\
-    \      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n      if\
-    \ (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n    }\n  }\n\n  template\
-    \ <typename F>\n  FastSet(int n, F f) {\n    build(n, f);\n  }\n\n  void build(int\
-    \ m) {\n    seg.clear();\n    n = m;\n    do {\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\n      m = (m + B - 1) / B;\n    } while (m > 1);\n    log =\
-    \ len(seg);\n  }\n  template <typename F>\n  void build(int n, F f) {\n    build(n);\n\
-    \    FOR(i, n) { seg[0][i / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log\
-    \ - 1) {\n      FOR(i, len(seg[h])) {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
-    \ << (i % B);\n      }\n    }\n  }\n\n  bool operator[](int i) const {\n    assert(0\
-    \ <= i && i < n);\n    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int\
-    \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
-    \    u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      if (x\
-    \ & mask) return;\n      x |= mask;\n      i /= B;\n    }\n  }\n  void add(int\
-    \ i) { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n   \
-    \ for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask\
-    \ = u64(1) << (i % B);\n      if (!(x & mask)) return;\n      x ^= mask;\n   \
-    \   if (x) return;\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i);\
-    \ }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i,\
-    \ 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size())\
-    \ break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i\
-    \ = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int\
-    \ g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
-    \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
-    \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
-    \ / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n\
-    \      }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--)\
-    \ {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return\
-    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <=\
-    \ l && l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r)\n  template\
-    \ <typename F>\n  void enumerate(int l, int r, F f) {\n    assert(0 <= l && l\
-    \ <= r && r <= n);\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
-    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
-    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
-    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 1 \"\
-    ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\
-    \u3082\u78BA\u4FDD\u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate\
-    \ <class Node>\nstruct Node_Pool {\n  union Slot {\n    Node node;\n    Slot*\
-    \ next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static\
-    \ constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int\
-    \ chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\n  ~Node_Pool()\
-    \ {\n    auto& cache = chunk_cache();\n    for (auto& p : chunks) cache.eb(std::move(p));\n\
-    \  }\n\n  template <class... Args>\n  np create(Args&&... args) {\n    Slot* s\
-    \ = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n \
-    \ }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n \
-    \   return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if (!x)\
-    \ return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n    s->next\
-    \ = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\u52B9\
-    \u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\
-    \u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\
-    \u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n    pos\
-    \ = 0;\n  }\n\n  int used() const { return chunk_id * CHUNK_SIZE + pos; }\n\n\
-    \ private:\n  static vc<unique_ptr<Slot[]>>& chunk_cache() {\n    // static Node_Pool\
-    \ \u306E destructor \u3088\u308A\u5148\u306B\u7834\u68C4\u3055\u308C\u306A\u3044\
-    \u3088\u3046\u306B\u3059\u308B\u3002\n    static auto* cache = new vc<unique_ptr<Slot[]>>();\n\
-    \    return *cache;\n  }\n\n  void alloc_chunk() {\n    auto& cache = chunk_cache();\n\
-    \    if (cache.empty()) {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n\
-    \    } else {\n      chunks.eb(std::move(cache.back()));\n      cache.pop_back();\n\
-    \    }\n  }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
-    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
-    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
-    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
-    \ s;\n  }\n};\n#line 3 \"ds/sortable_array.hpp\"\n\n// int \u5217\u3092\u6271\u3046\
-    . key \u306E\u91CD\u8907\u53EF.\nstruct Sortable_Array {\n  const int N, KEY_MAX;\n\
-    \n  struct Node {\n    int size;\n    Node *l, *r;\n  };\n  Node_Pool<Node> pool;\n\
-    \  using np = Node*;\n\n  FastSet ss;       // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\
-    \u4F53\u3092\u8868\u3059 fastset\n  vector<np> root;  // \u533A\u9593\u306E\u5DE6\
-    \u7AEF\u306B\u3001dynamic segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool>\
-    \ rev;\n\n  Sortable_Array(int NODES, int KEY_MAX, vector<int> key)\n      : N(key.size()),\
-    \ KEY_MAX(KEY_MAX), ss(key.size()) {\n    init(key);\n  }\n\n  void set(int i,\
-    \ int key) {\n    assert(0 <= key && key < KEY_MAX);\n    split_at(i), split_at(i\
-    \ + 1);\n    rev[i] = 0, root[i] = new_node(0);\n    set_rec(root[i], 0, KEY_MAX,\
-    \ key);\n  }\n\n  void sort_inc(int l, int r) {\n    if (l == r) return;\n   \
-    \ split_at(l), split_at(r);\n    while (1) {\n      np c = root[l];\n      int\
-    \ i = ss.next(l + 1);\n      if (i == r) break;\n      root[l] = merge(0, KEY_MAX,\
-    \ c, root[i]);\n      ss.erase(i);\n    }\n    rev[l] = 0;\n  };\n\n  void sort_dec(int\
-    \ l, int r) {\n    if (l == r) return;\n    sort_inc(l, r), rev[l] = 1;\n  };\n\
-    \n  vc<int> get_all() {\n    vector<int> key;\n    key.reserve(N);\n    auto dfs\
-    \ = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n      if (!n || !n->size)\
-    \ return;\n      if (r == l + 1) {\n        FOR(n->size) key.eb(l);\n        return;\n\
-    \      }\n      int m = (l + r) / 2;\n      if (!rev) {\n        dfs(dfs, n->l,\
-    \ l, m, rev), dfs(dfs, n->r, m, r, rev);\n      }\n      if (rev) {\n        dfs(dfs,\
-    \ n->r, m, r, rev), dfs(dfs, n->l, l, m, rev);\n      }\n    };\n    for (int\
-    \ i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n\
-    \    }\n    return key;\n  }\n\n  int get(int idx) {\n    auto dfs = [&](auto&\
-    \ dfs, np n, int l, int r, int k) -> int {\n      if (r == l + 1) {\n        return\
-    \ l;\n      }\n      int m = (l + r) / 2;\n      int s = (n->l ? n->l->size :\
-    \ 0);\n      if (k < s) return dfs(dfs, n->l, l, m, k);\n      return dfs(dfs,\
-    \ n->r, m, r, k - s);\n    };\n    int i = ss.prev(idx);\n    int k = idx - i;\n\
-    \    int s = root[i]->size;\n    if (rev[i]) k = s - 1 - k;\n    return dfs(dfs,\
-    \ root[i], 0, KEY_MAX, k);\n  }\n\n private:\n  void init(vector<int>& key) {\n\
-    \    rev.assign(N, 0), root.clear(), root.reserve(N);\n    ss.build(N, [&](int\
-    \ i) -> int { return 1; });\n    for (int i = 0; i < N; ++i) {\n      root.eb(new_node(0));\n\
-    \      assert(key[i] < KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i]);\n\
-    \    }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  void split_at(int x) {\n    if (x == N || ss[x]) return;\n    int a\
-    \ = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n    if (!rev[a]) {\n \
-    \     auto [nl, nr] = split(root[a], 0, KEY_MAX, x - a);\n      root[a] = nl,\
-    \ root[x] = nr;\n      rev[a] = rev[x] = 0;\n    } else {\n      auto [nl, nr]\
-    \ = split(root[a], 0, KEY_MAX, b - x);\n      root[a] = nr, root[x] = nl;\n  \
-    \    rev[a] = rev[x] = 1;\n    }\n  }\n\n  void rebuild() {\n    auto key = get_all();\n\
-    \    pool.reset();\n    init(key);\n  }\n\n  np new_node(int size) {\n    np c\
-    \ = pool.create();\n    c->l = c->r = nullptr, c->size = size;\n    return c;\n\
-    \  }\n\n  pair<np, np> split(np n, int l, int r, int k) {\n    if (k == 0) {\n\
-    \      return {nullptr, n};\n    }\n    if (k == n->size) {\n      return {n,\
-    \ nullptr};\n    }\n    if (r == l + 1) {\n      int s = n->size;\n      n->size\
-    \ = k;\n      Node* b = new_node(s - k);\n      return {n, b};\n    }\n    int\
-    \ s = (n->l ? n->l->size : 0);\n    Node* b = new_node(0);\n    int m = (l + r)\
-    \ / 2;\n    if (k <= s) {\n      auto [nl, nr] = split(n->l, l, m, k);\n     \
-    \ b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n    }\n    if (k > s) {\n\
-    \      auto [nl, nr] = split(n->r, m, r, k - s);\n      n->l = n->l, n->r = nl,\
-    \ b->l = nullptr, b->r = nr;\n    }\n    update(n), update(b);\n    return {n,\
-    \ b};\n  }\n\n  np merge(int l, int r, np a, np b) {\n    if (!a) return b;\n\
-    \    if (!b) return a;\n    if (r == l + 1) {\n      a->size += b->size;\n   \
-    \   return a;\n    }\n    int m = (l + r) / 2;\n    a->l = merge(l, m, a->l, b->l),\
-    \ a->r = merge(m, r, a->r, b->r);\n    update(a);\n    return a;\n  }\n\n  void\
-    \ update(np n) {\n    if (!(n->l) && !(n->r)) {\n      return;\n    }\n    if\
-    \ (!(n->l)) {\n      n->size = n->r->size;\n      return;\n    }\n    if (!(n->r))\
-    \ {\n      n->size = n->l->size;\n      return;\n    }\n    n->size = n->l->size\
-    \ + n->r->size;\n  }\n\n  void set_rec(np n, int l, int r, int k) {\n    if (r\
-    \ == l + 1) {\n      n->size = 1;\n      return;\n    }\n    int m = (l + r) /\
-    \ 2;\n    if (k < m) {\n      if (!(n->l)) n->l = new_node(0);\n      set_rec(n->l,\
-    \ l, m, k);\n    }\n    if (m <= k) {\n      if (!(n->r)) n->r = new_node(0);\n\
-    \      set_rec(n->r, m, r, k);\n    }\n    update(n);\n  }\n};\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: other/bit.hpp:\
+    \ line -1: no such header\n"
   code: "#include \"ds/fastset.hpp\"\n#include \"ds/node_pool.hpp\"\n\n// int \u5217\
     \u3092\u6271\u3046. key \u306E\u91CD\u8907\u53EF.\nstruct Sortable_Array {\n \
     \ const int N, KEY_MAX;\n\n  struct Node {\n    int size;\n    Node *l, *r;\n\
@@ -211,17 +85,13 @@ data:
     \ 2;\n    if (k < m) {\n      if (!(n->l)) n->l = new_node(0);\n      set_rec(n->l,\
     \ l, m, k);\n    }\n    if (m <= k) {\n      if (!(n->r)) n->r = new_node(0);\n\
     \      set_rec(n->r, m, r, k);\n    }\n    update(n);\n  }\n};\n"
-  dependsOn:
-  - ds/fastset.hpp
-  - ds/node_pool.hpp
+  dependsOn: []
   isVerificationFile: false
   path: ds/sortable_array.hpp
   requiredBy: []
-  timestamp: '2026-10-04 23:53:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/1_mytest/sortable_array.test.cpp
-  - test/3_yukicoder/2809.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/sortable_array.hpp
 layout: document
 redirect_from:

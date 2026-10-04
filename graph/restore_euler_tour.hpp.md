@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: ds/decremental_fastset.hpp
     title: ds/decremental_fastset.hpp
   - icon: ':heavy_check_mark:'

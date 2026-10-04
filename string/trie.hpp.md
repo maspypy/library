@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: string/enumerate_occurrences.hpp
-    title: string/enumerate_occurrences.hpp
-  - icon: ':warning:'
     path: string/generalized_suffix_automaton.hpp
     title: string/generalized_suffix_automaton.hpp
   _extendedVerifiedWith:
@@ -74,7 +71,6 @@ data:
   path: string/trie.hpp
   requiredBy:
   - string/generalized_suffix_automaton.hpp
-  - string/enumerate_occurrences.hpp
   timestamp: '2024-09-19 11:54:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
