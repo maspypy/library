@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919.test.cpp
     title: test/3_yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2627.test.cpp
     title: test/3_yukicoder/2627.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/749.test.cpp
     title: test/3_yukicoder/749.test.cpp
   _isVerificationFailed: true

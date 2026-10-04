@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842_2.test.cpp
     title: test/4_aoj/2842_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_2d_dense.hpp\"\n\ntemplate <class Monoid>\n\
@@ -65,7 +65,7 @@ data:
   path: ds/segtree/segtree_2d_dense.hpp
   requiredBy: []
   timestamp: '2026-08-30 21:09:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2842_2.test.cpp
 documentation_of: ds/segtree/segtree_2d_dense.hpp
