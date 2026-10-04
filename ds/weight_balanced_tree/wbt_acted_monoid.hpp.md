@@ -136,20 +136,29 @@ data:
     \ if (!q) return;\n      f(f, z ? q->r : q->l, z ^ q->rev, MA::op(q->lazy, b));\n\
     \      a.eb(ActedMonoid::act(q->x, b, 1));\n      f(f, z ? q->l : q->r, z ^ q->rev,\
     \ MA::op(q->lazy, b));\n    };\n    f(f, t, 0, MA::id());\n    return a;\n  }\n\
-    \  template <class F>\n  pair<np, np> split_max_right(np t, const F &f) {\n  \
-    \  assert(f(MX::id()));\n    X x = MX::id();\n    u32 k = 0;\n    for (auto &&y\
-    \ : get_all(t)) {\n      if (!f(MX::op(x, y))) break;\n      x = MX::op(x, y);\n\
-    \      ++k;\n    }\n    return this->split(t, k);\n  }\n  template <class F>\n\
-    \  pair<np, np> split_max_right_prod(np t, const F &f) {\n    return split_max_right(t,\
-    \ f);\n  }\n  void free_subtree(np t) {\n    if (!t) return;\n    free_subtree(t->l);\n\
-    \    free_subtree(t->r);\n    pool.destroy(t);\n  }\n\n private:\n  X prod_rec(np\
-    \ t, u32 l, u32 r, bool z, A a) {\n    if (l == 0 && r == t->size)\n      return\
-    \ ActedMonoid::act(z ? t->rev_prod : t->prod, a, t->size);\n    np q = z ? t->r\
-    \ : t->l, w = z ? t->l : t->r;\n    u32 s = q ? q->size : 0;\n    A b = MA::op(t->lazy,\
-    \ a);\n    X x = MX::id();\n    if (l < s) x = MX::op(x, prod_rec(q, l, min(r,\
-    \ s), z ^ t->rev, b));\n    if (l <= s && s < r) x = MX::op(x, ActedMonoid::act(t->x,\
-    \ a, 1));\n    if (s + 1 < r)\n      x = MX::op(\n          x, prod_rec(w, max(l,\
-    \ s + 1) - s - 1, r - s - 1, z ^ t->rev, b));\n    return x;\n  }\n};\n"
+    \  template <class F>\n  pair<np, np> split_max_right(np t, const F &check) {\n\
+    \    assert(check(MX::id()));\n    X x = MX::id();\n    return split_max_right_rec(t,\
+    \ check, x);\n  }\n\n  template <class F>\n  pair<np, np> split_max_right_prod(np\
+    \ t, const F &f) {\n    return split_max_right(t, f);\n  }\n  void free_subtree(np\
+    \ t) {\n    if (!t) return;\n    free_subtree(t->l);\n    free_subtree(t->r);\n\
+    \    pool.destroy(t);\n  }\n\n private:\n  X prod_rec(np t, u32 l, u32 r, bool\
+    \ z, A a) {\n    if (l == 0 && r == t->size)\n      return ActedMonoid::act(z\
+    \ ? t->rev_prod : t->prod, a, t->size);\n    np q = z ? t->r : t->l, w = z ? t->l\
+    \ : t->r;\n    u32 s = q ? q->size : 0;\n    A b = MA::op(t->lazy, a);\n    X\
+    \ x = MX::id();\n    if (l < s) x = MX::op(x, prod_rec(q, l, min(r, s), z ^ t->rev,\
+    \ b));\n    if (l <= s && s < r) x = MX::op(x, ActedMonoid::act(t->x, a, 1));\n\
+    \    if (s + 1 < r)\n      x = MX::op(\n          x, prod_rec(w, max(l, s + 1)\
+    \ - s - 1, r - s - 1, z ^ t->rev, b));\n    return x;\n  }\n\n  template <class\
+    \ F>\n  pair<np, np> split_max_right_rec(np t, const F &check, X &x) {\n    if\
+    \ (!t) return {nullptr, nullptr};\n    X y = MX::op(x, t->prod);\n    if (check(y))\
+    \ {\n      x = y;\n      return {t, nullptr};\n    }\n    t = clone(t);  // Must\
+    \ precede push() when PERSISTENT=true.\n    push(t);\n    np l = t->l, r = t->r;\n\
+    \    if (l) {\n      y = MX::op(x, l->prod);\n      if (!check(y)) {\n       \
+    \ auto [a, b] = split_max_right_rec(l, check, x);\n        t->l = b;\n       \
+    \ pull(t);\n        return {a, t};\n      }\n      x = y;\n    }\n    y = MX::op(x,\
+    \ t->x);\n    if (!check(y)) {\n      t->l = nullptr;\n      pull(t);\n      return\
+    \ {l, t};\n    }\n    x = y;\n    auto [a, b] = split_max_right_rec(r, check,\
+    \ x);\n    t->r = a;\n    pull(t);\n    return {t, b};\n  }\n};\n"
   code: "#pragma once\n#include \"ds/node_pool.hpp\"\n#include \"ds/weight_balanced_tree/wbt_base.hpp\"\
     \ntemplate <class X, class A>\nstruct WBT_Acted_Node {\n  WBT_Acted_Node *l, *r;\n\
     \  X x, prod, rev_prod;\n  A lazy;\n  u32 size;\n  bool rev;\n};\ntemplate <class\
@@ -202,27 +211,36 @@ data:
     \ if (!q) return;\n      f(f, z ? q->r : q->l, z ^ q->rev, MA::op(q->lazy, b));\n\
     \      a.eb(ActedMonoid::act(q->x, b, 1));\n      f(f, z ? q->l : q->r, z ^ q->rev,\
     \ MA::op(q->lazy, b));\n    };\n    f(f, t, 0, MA::id());\n    return a;\n  }\n\
-    \  template <class F>\n  pair<np, np> split_max_right(np t, const F &f) {\n  \
-    \  assert(f(MX::id()));\n    X x = MX::id();\n    u32 k = 0;\n    for (auto &&y\
-    \ : get_all(t)) {\n      if (!f(MX::op(x, y))) break;\n      x = MX::op(x, y);\n\
-    \      ++k;\n    }\n    return this->split(t, k);\n  }\n  template <class F>\n\
-    \  pair<np, np> split_max_right_prod(np t, const F &f) {\n    return split_max_right(t,\
-    \ f);\n  }\n  void free_subtree(np t) {\n    if (!t) return;\n    free_subtree(t->l);\n\
-    \    free_subtree(t->r);\n    pool.destroy(t);\n  }\n\n private:\n  X prod_rec(np\
-    \ t, u32 l, u32 r, bool z, A a) {\n    if (l == 0 && r == t->size)\n      return\
-    \ ActedMonoid::act(z ? t->rev_prod : t->prod, a, t->size);\n    np q = z ? t->r\
-    \ : t->l, w = z ? t->l : t->r;\n    u32 s = q ? q->size : 0;\n    A b = MA::op(t->lazy,\
-    \ a);\n    X x = MX::id();\n    if (l < s) x = MX::op(x, prod_rec(q, l, min(r,\
-    \ s), z ^ t->rev, b));\n    if (l <= s && s < r) x = MX::op(x, ActedMonoid::act(t->x,\
-    \ a, 1));\n    if (s + 1 < r)\n      x = MX::op(\n          x, prod_rec(w, max(l,\
-    \ s + 1) - s - 1, r - s - 1, z ^ t->rev, b));\n    return x;\n  }\n};\n"
+    \  template <class F>\n  pair<np, np> split_max_right(np t, const F &check) {\n\
+    \    assert(check(MX::id()));\n    X x = MX::id();\n    return split_max_right_rec(t,\
+    \ check, x);\n  }\n\n  template <class F>\n  pair<np, np> split_max_right_prod(np\
+    \ t, const F &f) {\n    return split_max_right(t, f);\n  }\n  void free_subtree(np\
+    \ t) {\n    if (!t) return;\n    free_subtree(t->l);\n    free_subtree(t->r);\n\
+    \    pool.destroy(t);\n  }\n\n private:\n  X prod_rec(np t, u32 l, u32 r, bool\
+    \ z, A a) {\n    if (l == 0 && r == t->size)\n      return ActedMonoid::act(z\
+    \ ? t->rev_prod : t->prod, a, t->size);\n    np q = z ? t->r : t->l, w = z ? t->l\
+    \ : t->r;\n    u32 s = q ? q->size : 0;\n    A b = MA::op(t->lazy, a);\n    X\
+    \ x = MX::id();\n    if (l < s) x = MX::op(x, prod_rec(q, l, min(r, s), z ^ t->rev,\
+    \ b));\n    if (l <= s && s < r) x = MX::op(x, ActedMonoid::act(t->x, a, 1));\n\
+    \    if (s + 1 < r)\n      x = MX::op(\n          x, prod_rec(w, max(l, s + 1)\
+    \ - s - 1, r - s - 1, z ^ t->rev, b));\n    return x;\n  }\n\n  template <class\
+    \ F>\n  pair<np, np> split_max_right_rec(np t, const F &check, X &x) {\n    if\
+    \ (!t) return {nullptr, nullptr};\n    X y = MX::op(x, t->prod);\n    if (check(y))\
+    \ {\n      x = y;\n      return {t, nullptr};\n    }\n    t = clone(t);  // Must\
+    \ precede push() when PERSISTENT=true.\n    push(t);\n    np l = t->l, r = t->r;\n\
+    \    if (l) {\n      y = MX::op(x, l->prod);\n      if (!check(y)) {\n       \
+    \ auto [a, b] = split_max_right_rec(l, check, x);\n        t->l = b;\n       \
+    \ pull(t);\n        return {a, t};\n      }\n      x = y;\n    }\n    y = MX::op(x,\
+    \ t->x);\n    if (!check(y)) {\n      t->l = nullptr;\n      pull(t);\n      return\
+    \ {l, t};\n    }\n    x = y;\n    auto [a, b] = split_max_right_rec(r, check,\
+    \ x);\n    t->r = a;\n    pull(t);\n    return {t, b};\n  }\n};\n"
   dependsOn:
   - ds/node_pool.hpp
   - ds/weight_balanced_tree/wbt_base.hpp
   isVerificationFile: false
   path: ds/weight_balanced_tree/wbt_acted_monoid.hpp
   requiredBy: []
-  timestamp: '2026-10-04 10:39:32+09:00'
+  timestamp: '2026-10-04 11:19:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/weight_balanced_tree/wbt_acted_monoid.hpp
