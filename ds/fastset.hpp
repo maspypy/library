@@ -1,3 +1,5 @@
+#include "other/bit.hpp"
+
 // 64-ary tree
 // space: (N/63) * u64
 struct FastSet {
@@ -55,7 +57,11 @@ struct FastSet {
       u64& x = seg[h][i / B];
       u64 mask = u64(1) << (i % B);
       if (x & mask) return;
-      x |= mask;
+      if (x) {
+        x |= mask;
+        return;
+      }
+      x = mask;
       i /= B;
     }
   }
@@ -128,7 +134,20 @@ struct FastSet {
   }
 
   void reset() {
-    enumerate(0, n, [&](int i) -> void { erase(i); });
+    int x = next(0);
+    while (x < n) {
+      int w = x / B;
+      int i = w;
+      seg[0][w] = 0;
+      for (int h = 1; h < log; ++h) {
+        u64& y = seg[h][i / B];
+        u64 mask = u64(1) << (i % B);
+        y ^= mask;
+        if (y) break;
+        i /= B;
+      }
+      x = next(min(n, (w + 1) * int(B)));
+    }
   }
 
   string to_string() {
