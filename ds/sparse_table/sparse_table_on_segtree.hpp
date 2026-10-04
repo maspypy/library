@@ -16,7 +16,7 @@ struct Sparse_Table_on_SegTree {
   vc<ST> dat;
 
   Sparse_Table_on_SegTree() {}
-  Sparse_Table_on_SegTree(vvc<X> &v) {
+  Sparse_Table_on_SegTree(const vvc<X> &v) {
     H = len(v), W = (H == 0 ? 0 : len(v[0]));
     dat.resize(2 * H);
     FOR(i, H) { dat[H + i] = ST(v[i]); }
@@ -29,7 +29,7 @@ struct Sparse_Table_on_SegTree {
     }
   }
 
-  X prod(int xl, int xr, int yl, int yr) {
+  X prod(int xl, int xr, int yl, int yr) const {
     assert(0 <= xl && xl <= xr && xr <= H);
     assert(0 <= yl && yl <= yr && yr <= W);
     X res = MX::id();
