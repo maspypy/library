@@ -137,4 +137,36 @@ struct SegTree {
     }
     return x;
   }
+
+  // f(i), i in I
+  // 近いインデックスを大量に同時更新したいときに効率が良くなるという狙い
+  template <typename F>
+  void set_many_sorted(vc<int> I, F f) {
+    if (I.empty()) return;
+
+    FOR(k, len(I)) {
+      assert(0 <= I[k] && I[k] < n);
+      if (k) assert(I[k - 1] < I[k]);
+    }
+
+    FOR(k, len(I)) {
+      int i = I[k];
+      dat[size + i] = f(i);
+      I[k] += size;
+    }
+
+    int m = len(I);
+    while (I[0] > 1) {
+      int nxt = 0;
+      int last = -1;
+      FOR(k, m) {
+        int p = I[k] >> 1;
+        if (p == last) continue;
+        update(p);
+        I[nxt++] = p;
+        last = p;
+      }
+      m = nxt;
+    }
+  }
 };

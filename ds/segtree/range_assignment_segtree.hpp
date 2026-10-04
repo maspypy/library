@@ -28,15 +28,18 @@ struct Range_Assignment_SegTree {
   template <typename F>
   void build(int m, F f) {
     n = m;
-    seg.build(m, f), cut.build(n, [&](int i) -> int { return 1; });
-    dat = seg.get_all();
+    cut.build(n);
+    cut.fill_one();
+    dat.resize(m);
+    seg.build(m, [&](int i) { return dat[i] = f(i); });
   }
 
   X prod(int l, int r) {
-    int a = cut.prev(l), b = cut.next(l), c = cut.prev(r);
+    int a = cut.prev(l), c = cut.prev(r);
     if (a == c) {
       return monoid_pow<MX>(dat[a], r - l);
     };
+    int b = cut.next(l);
     assert(b <= c);
     X x = monoid_pow<MX>(dat[a], b - l);
     X y = seg.prod(b, c);
@@ -48,14 +51,44 @@ struct Range_Assignment_SegTree {
 
   void assign(int l, int r, X x) {
     if (l == r) return;
-    int a = cut.prev(l), b = cut.next(r);
-    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));
-    if (r < b) {
-      X y = dat[cut.prev(r)];
-      dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y, b - r));
+
+    int a = cut.prev(l);
+    int b = cut.next(r);
+
+    bool has_left = (a < l);
+    bool has_right = (r < b);
+
+    X left, right;
+    if (has_left) {
+      left = monoid_pow<MX>(dat[a], l - a);
     }
-    cut.enumerate(l + 1, r, [&](int i) -> void { seg.set(i, MX::id()); }, true);
-    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));
+
+    if (has_right) {
+      X y = dat[cut.prev(r)];
+      dat[r] = y;
+      right = monoid_pow<MX>(y, b - r);
+    }
+
+    X mid = monoid_pow<MX>(x, r - l);
+
+    vc<int> I;
+    if (has_left) I.eb(a);
+    I.eb(l);
+    cut.enumerate(l + 1, r, [&](int i) { I.eb(i); }, true);
+
+    if (has_right) I.eb(r);
+
+    // ここで I は strictly increasing
+    dat[l] = x;
+    cut.insert(l);
+    if (has_right) cut.insert(r);
+
+    seg.set_many_sorted(move(I), [&](int i) -> X {
+      if (has_left && i == a) return left;
+      if (i == l) return mid;
+      if (has_right && i == r) return right;
+      return MX::id();
+    });
   }
 
   vc<X> get_all() {
