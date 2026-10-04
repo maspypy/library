@@ -349,7 +349,7 @@ data:
     \ bit_subtree.prod(l + edge, r);\r\n    assert(!edge);  // \u3055\u307C\u308A\r\
     \n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u], R = tree.RID[u];\r\
     \n    return MX::op(bit_subtree.prod(0, L), bit_subtree.prod(R, N));\r\n  }\r\n\
-    };\r\n#line 1 \"ds/fastset.hpp\"\n\n// 64-ary tree\n// space: (N/63) * u64\nstruct\
+    };\r\n#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\n// space: (N/63) * u64\nstruct\
     \ FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n  vvc<u64>\
     \ seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int size() { return\
     \ n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto& vs : seg) {\n\
@@ -364,16 +364,17 @@ data:
     \ << (i % B);\n      }\n    }\n  }\n\n  bool operator[](int i) const {\n    assert(0\
     \ <= i && i < n);\n    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int\
     \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
-    \    seg[h][i / B] |= u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i)\
-    \ { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n    u64\
-    \ x = 0;\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1)\
-    \ << (i % B));\n      seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i\
-    \ / B]);\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  //\
-    \ min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n\
-    \    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n\
-    \      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B +\
-    \ 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int g = h\
-    \ - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
+    \    u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      if (x\
+    \ & mask) return;\n      x |= mask;\n      i /= B;\n    }\n  }\n  void add(int\
+    \ i) { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n   \
+    \ for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask\
+    \ = u64(1) << (i % B);\n      if (!(x & mask)) return;\n      x ^= mask;\n   \
+    \   if (x) return;\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i);\
+    \ }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i,\
+    \ 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size())\
+    \ break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i\
+    \ = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int\
+    \ g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
     \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
     \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
     \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
@@ -450,7 +451,7 @@ data:
   isVerificationFile: false
   path: graph/ds/incremental_centroid.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-04 23:53:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2636.test.cpp

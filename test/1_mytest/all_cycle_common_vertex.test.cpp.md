@@ -470,11 +470,11 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"ds/fastset.hpp\"\n\n// 64-ary tree\n// space: (N/63)\
-    \ * u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log =\
-    \ 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int\
-    \ size() { return n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto&\
-    \ vs : seg) {\n      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n\
+    \   }\n  }\n};\n#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\n// space: (N/63) *\
+    \ u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n\
+    \  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int size()\
+    \ { return n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto& vs :\
+    \ seg) {\n      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n\
     \      if (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n    }\n \
     \ }\n\n  template <typename F>\n  FastSet(int n, F f) {\n    build(n, f);\n  }\n\
     \n  void build(int m) {\n    seg.clear();\n    n = m;\n    do {\n      seg.push_back(vc<u64>((m\
@@ -485,16 +485,17 @@ data:
     \ << (i % B);\n      }\n    }\n  }\n\n  bool operator[](int i) const {\n    assert(0\
     \ <= i && i < n);\n    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int\
     \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
-    \    seg[h][i / B] |= u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i)\
-    \ { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n    u64\
-    \ x = 0;\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1)\
-    \ << (i % B));\n      seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i\
-    \ / B]);\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  //\
-    \ min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n\
-    \    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n\
-    \      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B +\
-    \ 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int g = h\
-    \ - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
+    \    u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      if (x\
+    \ & mask) return;\n      x |= mask;\n      i /= B;\n    }\n  }\n  void add(int\
+    \ i) { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n   \
+    \ for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask\
+    \ = u64(1) << (i % B);\n      if (!(x & mask)) return;\n      x ^= mask;\n   \
+    \   if (x) return;\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i);\
+    \ }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i,\
+    \ 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size())\
+    \ break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i\
+    \ = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int\
+    \ g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
     \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
     \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
     \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
@@ -741,7 +742,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/all_cycle_common_vertex.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 07:11:14+09:00'
+  timestamp: '2026-10-04 23:53:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/all_cycle_common_vertex.test.cpp

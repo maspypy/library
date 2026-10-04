@@ -103,7 +103,7 @@ data:
     \ det = 0;\n  det += mat[0][0] * (mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1]);\n\
     \  det += mat[0][1] * (mat[1][2] * mat[2][0] - mat[1][0] * mat[2][2]);\n  det\
     \ += mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]);\n  if (det ==\
-    \ 0) return 0;\n  return (det > 0 ? 1 : -1);\n}\n#line 1 \"ds/fastset.hpp\"\n\n\
+    \ 0) return 0;\n  return (det > 0 ? 1 : -1);\n}\n#line 1 \"ds/fastset.hpp\"\n\
     // 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32\
     \ B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
     \ n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int\
@@ -118,31 +118,33 @@ data:
     \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
     \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
     \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
-    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      seg[h][i / B] |=\
-    \ u64(1) << (i % B), i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n \
-    \ void erase(int i) {\n    assert(0 <= i && i < n);\n    u64 x = 0;\n    for (int\
-    \ h = 0; h < log; h++) {\n      seg[h][i / B] &= ~(u64(1) << (i % B));\n     \
-    \ seg[h][i / B] |= x << (i % B);\n      x = bool(seg[h][i / B]);\n      i /= B;\n\
-    \    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n) or n\n  int next(int\
-    \ i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int h = 0; h < log; h++)\
-    \ {\n      if (i / B == seg[h].size()) break;\n      u64 d = seg[h][i / B] >>\
-    \ (i % B);\n      if (!d) {\n        i = i / B + 1;\n        continue;\n     \
-    \ }\n      i += lowbit(d);\n      for (int g = h - 1; g >= 0; g--) {\n       \
-    \ i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n      return i;\n   \
-    \ }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int i) {\n    assert(i\
-    \ >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0; h < log; h++) {\n \
-    \     if (i == -1) break;\n      u64 d = seg[h][i / B] << (63 - i % B);\n    \
-    \  if (!d) {\n        i = i / B - 1;\n        continue;\n      }\n      i -= __builtin_clzll(d);\n\
-    \      for (int g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += topbit(seg[g][i\
-    \ / B]);\n      }\n      return i;\n    }\n    return -1;\n  }\n\n  bool any(int\
-    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    return next(l) < r;\n\
-    \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F\
-    \ f) {\n    assert(0 <= l && l <= r && r <= n);\n    for (int x = next(l); x <\
-    \ r; x = next(x + 1)) f(x);\n  }\n\n  void reset() {\n    enumerate(0, n, [&](int\
-    \ i) -> void { erase(i); });\n  }\n\n  string to_string() {\n    string s(n, '?');\n\
-    \    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return\
-    \ s;\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_\
-    \ = u64(chrono::duration_cast<chrono::nanoseconds>(\n                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i\
+    \ / B];\n      u64 mask = u64(1) << (i % B);\n      if (x & mask) return;\n  \
+    \    x |= mask;\n      i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n\
+    \  void erase(int i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h <\
+    \ log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i %\
+    \ B);\n      if (!(x & mask)) return;\n      x ^= mask;\n      if (x) return;\n\
+    \      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n)\
+    \ or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int\
+    \ h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n      u64\
+    \ d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B + 1;\n   \
+    \     continue;\n      }\n      i += lowbit(d);\n      for (int g = h - 1; g >=\
+    \ 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n \
+    \     return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int\
+    \ i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0;\
+    \ h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i / B] << (63\
+    \ - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n    \
+    \  }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--) {\n\
+    \        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return i;\n\
+    \    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r)\n  template\
+    \ <typename F>\n  void enumerate(int l, int r, F f) {\n    assert(0 <= l && l\
+    \ <= r && r <= n);\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \  }\n\n  void reset() {\n    enumerate(0, n, [&](int i) -> void { erase(i); });\n\
+    \  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i = 0; i <\
+    \ n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n};\n#line 1 \"\
+    random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
@@ -213,7 +215,7 @@ data:
   isVerificationFile: false
   path: geo/delaunay_triangulation_of_convex_polygon.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-04 23:53:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/delaunay_triangulation_of_convex_polygon.hpp
