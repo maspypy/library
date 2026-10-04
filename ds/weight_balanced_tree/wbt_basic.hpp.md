@@ -115,11 +115,17 @@ data:
     \  }\n  vc<S> get_all(np t) {\n    vc<S> a;\n    auto f = [&](auto&& f, np x,\
     \ bool z) -> void {\n      if (!x) return;\n      f(f, z ? x->r : x->l, z ^ x->rev);\n\
     \      a.eb(x->s);\n      f(f, z ? x->l : x->r, z ^ x->rev);\n    };\n    f(f,\
-    \ t, 0);\n    return a;\n  }\n  template <class F>\n  pair<np, np> split_max_right(np\
-    \ t, const F& check) {\n    vc<S> a = get_all(t);\n    u32 k = 0;\n    while (k\
-    \ < a.size() && check(a[k])) ++k;\n    return this->split(t, k);\n  }\n  void\
+    \ t, 0);\n    return a;\n  }\n\n  template <class F>\n  pair<np, np> split_max_right(np\
+    \ t, const F& check) {\n    return split_max_right_rec(t, check);\n  }\n\n  void\
     \ free_subtree(np t) {\n    if (!t) return;\n    free_subtree(t->l);\n    free_subtree(t->r);\n\
-    \    pool.destroy(t);\n  }\n};\n"
+    \    pool.destroy(t);\n  }\n\n private:\n  template <class F>\n  pair<np, np>\
+    \ split_max_right_rec(np t, const F& check) {\n    if (!t) return {nullptr, nullptr};\n\
+    \    t = clone(t);  // Must precede push() when PERSISTENT=true.\n    push(t);\n\
+    \    np l = t->l, r = t->r;\n    t->l = t->r = nullptr;\n    pull(t);  // t is\
+    \ the singleton x required by join().\n    if (check(t->s)) {\n      auto [a,\
+    \ b] = split_max_right_rec(r, check);\n      return {this->join(l, t, a), b};\n\
+    \    }\n    auto [a, b] = split_max_right_rec(l, check);\n    return {a, this->join(b,\
+    \ t, r)};\n  }\n};\n"
   code: "#pragma once\n#include \"ds/node_pool.hpp\"\n#include \"ds/weight_balanced_tree/wbt_base.hpp\"\
     \n\ntemplate <typename S>\nstruct WBT_Basic_Node {\n  WBT_Basic_Node *l, *r;\n\
     \  S s;\n  u32 size;\n  bool rev;\n};\n\ntemplate <typename S, bool PERSISTENT>\n\
@@ -151,18 +157,24 @@ data:
     \  }\n  vc<S> get_all(np t) {\n    vc<S> a;\n    auto f = [&](auto&& f, np x,\
     \ bool z) -> void {\n      if (!x) return;\n      f(f, z ? x->r : x->l, z ^ x->rev);\n\
     \      a.eb(x->s);\n      f(f, z ? x->l : x->r, z ^ x->rev);\n    };\n    f(f,\
-    \ t, 0);\n    return a;\n  }\n  template <class F>\n  pair<np, np> split_max_right(np\
-    \ t, const F& check) {\n    vc<S> a = get_all(t);\n    u32 k = 0;\n    while (k\
-    \ < a.size() && check(a[k])) ++k;\n    return this->split(t, k);\n  }\n  void\
+    \ t, 0);\n    return a;\n  }\n\n  template <class F>\n  pair<np, np> split_max_right(np\
+    \ t, const F& check) {\n    return split_max_right_rec(t, check);\n  }\n\n  void\
     \ free_subtree(np t) {\n    if (!t) return;\n    free_subtree(t->l);\n    free_subtree(t->r);\n\
-    \    pool.destroy(t);\n  }\n};\n"
+    \    pool.destroy(t);\n  }\n\n private:\n  template <class F>\n  pair<np, np>\
+    \ split_max_right_rec(np t, const F& check) {\n    if (!t) return {nullptr, nullptr};\n\
+    \    t = clone(t);  // Must precede push() when PERSISTENT=true.\n    push(t);\n\
+    \    np l = t->l, r = t->r;\n    t->l = t->r = nullptr;\n    pull(t);  // t is\
+    \ the singleton x required by join().\n    if (check(t->s)) {\n      auto [a,\
+    \ b] = split_max_right_rec(r, check);\n      return {this->join(l, t, a), b};\n\
+    \    }\n    auto [a, b] = split_max_right_rec(l, check);\n    return {a, this->join(b,\
+    \ t, r)};\n  }\n};\n"
   dependsOn:
   - ds/node_pool.hpp
   - ds/weight_balanced_tree/wbt_base.hpp
   isVerificationFile: false
   path: ds/weight_balanced_tree/wbt_basic.hpp
   requiredBy: []
-  timestamp: '2026-10-04 10:39:32+09:00'
+  timestamp: '2026-10-04 11:30:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/weight_balanced_tree/wbt_basic.hpp
