@@ -50,6 +50,8 @@ struct Node_Pool {
     pos = 0;
   }
 
+  int used() const { return chunk_id * CHUNK_SIZE + pos; }
+
  private:
   static vc<unique_ptr<Slot[]>>& chunk_cache() {
     // static Node_Pool の destructor より先に破棄されないようにする。
