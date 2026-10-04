@@ -1,4 +1,3 @@
-
 // 64-ary tree
 // space: (N/63) * u64
 struct FastSet {
@@ -53,17 +52,22 @@ struct FastSet {
   void insert(int i) {
     assert(0 <= i && i < n);
     for (int h = 0; h < log; h++) {
-      seg[h][i / B] |= u64(1) << (i % B), i /= B;
+      u64& x = seg[h][i / B];
+      u64 mask = u64(1) << (i % B);
+      if (x & mask) return;
+      x |= mask;
+      i /= B;
     }
   }
   void add(int i) { insert(i); }
   void erase(int i) {
     assert(0 <= i && i < n);
-    u64 x = 0;
     for (int h = 0; h < log; h++) {
-      seg[h][i / B] &= ~(u64(1) << (i % B));
-      seg[h][i / B] |= x << (i % B);
-      x = bool(seg[h][i / B]);
+      u64& x = seg[h][i / B];
+      u64 mask = u64(1) << (i % B);
+      if (!(x & mask)) return;
+      x ^= mask;
+      if (x) return;
       i /= B;
     }
   }
