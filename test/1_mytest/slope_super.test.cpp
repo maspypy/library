@@ -46,7 +46,10 @@ void test(int N, bool from_zero, int add_prob) {
       if (L[i] > R[i]) continue;
       dp[i].assign(R[i] + 1, infty<ll>);
       FOR(x, L[i], R[i] + 1) dp[i][x] = dp[a][x] + dp[b][x];
-      func[i] = ST.add(func[a], func[b]);
+      F f = func[a], g = func[b];
+      ST.restrict_domain(f, L[i], R[i]);
+      ST.restrict_domain(g, L[i], R[i]);
+      func[i] = ST.add(f, g);
     }
     if (t == 1) {
       // conv
