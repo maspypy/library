@@ -170,11 +170,12 @@ data:
     \u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\
     \u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\u308B\
     \u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n    pos\
-    \ = 0;\n  }\n\n private:\n  static vc<unique_ptr<Slot[]>>& chunk_cache() {\n \
-    \   // static Node_Pool \u306E destructor \u3088\u308A\u5148\u306B\u7834\u68C4\
-    \u3055\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\n    static auto*\
-    \ cache = new vc<unique_ptr<Slot[]>>();\n    return *cache;\n  }\n\n  void alloc_chunk()\
-    \ {\n    auto& cache = chunk_cache();\n    if (cache.empty()) {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n\
+    \ = 0;\n  }\n\n  int used() const { return chunk_id * CHUNK_SIZE + pos; }\n\n\
+    \ private:\n  static vc<unique_ptr<Slot[]>>& chunk_cache() {\n    // static Node_Pool\
+    \ \u306E destructor \u3088\u308A\u5148\u306B\u7834\u68C4\u3055\u308C\u306A\u3044\
+    \u3088\u3046\u306B\u3059\u308B\u3002\n    static auto* cache = new vc<unique_ptr<Slot[]>>();\n\
+    \    return *cache;\n  }\n\n  void alloc_chunk() {\n    auto& cache = chunk_cache();\n\
+    \    if (cache.empty()) {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n\
     \    } else {\n      chunks.eb(std::move(cache.back()));\n      cache.pop_back();\n\
     \    }\n  }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
     \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
@@ -370,7 +371,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_am_2.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 07:11:14+09:00'
+  timestamp: '2026-10-04 10:39:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_am_2.test.cpp

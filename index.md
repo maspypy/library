@@ -714,6 +714,20 @@ data:
     - icon: ':warning:'
       path: ds/wavelet_matrix/wavelet_matrix_old.hpp
       title: ds/wavelet_matrix/wavelet_matrix_old.hpp
+  - name: ds/weight_balanced_tree
+    pages:
+    - icon: ':warning:'
+      path: ds/weight_balanced_tree/wbt_acted_monoid.hpp
+      title: ds/weight_balanced_tree/wbt_acted_monoid.hpp
+    - icon: ':warning:'
+      path: ds/weight_balanced_tree/wbt_base.hpp
+      title: ds/weight_balanced_tree/wbt_base.hpp
+    - icon: ':warning:'
+      path: ds/weight_balanced_tree/wbt_basic.hpp
+      title: ds/weight_balanced_tree/wbt_basic.hpp
+    - icon: ':warning:'
+      path: ds/weight_balanced_tree/wbt_monoid.hpp
+      title: ds/weight_balanced_tree/wbt_monoid.hpp
   - name: enumerate
     pages:
     - icon: ':warning:'
