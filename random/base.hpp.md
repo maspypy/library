@@ -12,6 +12,9 @@ data:
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':warning:'
+    path: geo/delaunay_triangulation_of_convex_polygon.hpp
+    title: geo/delaunay_triangulation_of_convex_polygon.hpp
+  - icon: ':warning:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':heavy_check_mark:'
@@ -205,6 +208,9 @@ data:
     path: test/1_mytest/add_chmin_chmax.test.cpp
     title: test/1_mytest/add_chmin_chmax.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/all_cycle_common_vertex.test.cpp
+    title: test/1_mytest/all_cycle_common_vertex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_inverse.test.cpp
     title: test/1_mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -291,6 +297,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_points_in_triangles.test.cpp
     title: test/1_mytest/count_points_in_triangles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/decremental_fastset.test.cpp
+    title: test/1_mytest/decremental_fastset.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/digit_sum.test.cpp
     title: test/1_mytest/digit_sum.test.cpp
@@ -547,6 +556,9 @@ data:
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_assign.test.cpp
+    title: test/1_mytest/range_assign.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -615,6 +627,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/smawk.test.cpp
     title: test/1_mytest/smawk.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/sortable_array.test.cpp
+    title: test/1_mytest/sortable_array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay.test.cpp
     title: test/1_mytest/splay.test.cpp
@@ -1003,6 +1018,7 @@ data:
   - poly/find_roots_of_polynomial.hpp
   - poly/fps_sqrt.hpp
   - geo/count_points_in_triangles.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/minimum_enclosing_circle.hpp
   - geo/closest_pair.hpp
   - mod/multiplicative_convolution_mod_p.hpp
@@ -1093,6 +1109,7 @@ data:
   - test/1_mytest/summax_assign.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/fenwick_max_right.test.cpp
   - test/1_mytest/seg2d.test.cpp
   - test/1_mytest/minplus_convex.test.cpp
@@ -1138,6 +1155,7 @@ data:
   - test/1_mytest/three_square.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/dynamic_segtree_sparse.test.cpp
+  - test/1_mytest/decremental_fastset.test.cpp
   - test/1_mytest/rbst.test.cpp
   - test/1_mytest/mybitset.test.cpp
   - test/1_mytest/matching.test.cpp
@@ -1160,6 +1178,7 @@ data:
   - test/1_mytest/tournament.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
+  - test/1_mytest/sortable_array.test.cpp
   - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/max_min.test.cpp
   - test/1_mytest/nimber.test.cpp
@@ -1187,6 +1206,7 @@ data:
   - test/1_mytest/EGZ.test.cpp
   - test/1_mytest/online_inv.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/monotone_minima.test.cpp

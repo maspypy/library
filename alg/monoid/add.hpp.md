@@ -95,6 +95,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
+  - icon: ':warning:'
+    path: ds/segtree/range_add_make_decreasing.hpp
+    title: ds/segtree/range_add_make_decreasing.hpp
+  - icon: ':warning:'
+    path: ds/segtree/range_add_make_increasing.hpp
+    title: ds/segtree/range_add_make_increasing.hpp
   - icon: ':heavy_check_mark:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
@@ -104,6 +110,9 @@ data:
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
@@ -174,6 +183,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_assign.test.cpp
+    title: test/1_mytest/range_assign.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_am_2.test.cpp
     title: test/1_mytest/rbst_am_2.test.cpp
@@ -442,6 +454,9 @@ data:
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842.test.cpp
     title: test/4_aoj/2842.test.cpp
   - icon: ':heavy_check_mark:'
@@ -497,6 +512,7 @@ data:
   requiredBy:
   - graph/count/count_connected_intervals.hpp
   - graph/ds/range_edge_connected_component_query.hpp
+  - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_abeliangroup.hpp
   - graph/functional_graph.hpp
   - convex/slope_trick/slope_trick_1.hpp
@@ -520,6 +536,8 @@ data:
   - ds/fenwicktree/dual_fenwicktree_2d.hpp
   - ds/fenwicktree/fenwicktree_2d.hpp
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
+  - ds/segtree/range_add_make_increasing.hpp
+  - ds/segtree/range_add_make_decreasing.hpp
   - ds/point_set_range_sum_sqrt.hpp
   - ds/cumsum_2d.hpp
   - ds/rectangle_union.hpp
@@ -560,6 +578,7 @@ data:
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/rbst_am_2.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
@@ -652,6 +671,7 @@ data:
   - test/4_aoj/DSL_4_A.test.cpp
   - test/4_aoj/ALDS1_5.test.cpp
   - test/4_aoj/2842.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/4_aoj/DSL_1_B.test.cpp
   - test/4_aoj/DSL_2_I.test.cpp
   - test/4_aoj/DSL_2_H.test.cpp

@@ -31,6 +31,9 @@ data:
     path: test/1_mytest/max_assign.test.cpp
     title: test/1_mytest/max_assign.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_assign.test.cpp
+    title: test/1_mytest/range_assign.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_am.test.cpp
     title: test/1_mytest/rbst_am.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,6 +105,7 @@ data:
   - test/1_mytest/max_assign.test.cpp
   - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/3_yukicoder/1548.test.cpp
   - test/3_yukicoder/2292.test.cpp
   - test/4_aoj/DSL_2_D.test.cpp

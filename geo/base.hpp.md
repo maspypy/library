@@ -56,6 +56,9 @@ data:
   - icon: ':warning:'
     path: geo/delaunay_triangulation.hpp
     title: geo/delaunay_triangulation.hpp
+  - icon: ':warning:'
+    path: geo/delaunay_triangulation_of_convex_polygon.hpp
+    title: geo/delaunay_triangulation_of_convex_polygon.hpp
   - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
@@ -345,6 +348,7 @@ data:
   - geo/polygon_triangulation.hpp
   - geo/convex_layers.hpp
   - geo/furthest_pair.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/incircle.hpp
   - geo/outcircle.hpp
   - geo/convex_polygon.hpp

@@ -18,6 +18,12 @@ data:
     path: ds/rmq/range_add_range_minidx.hpp
     title: ds/rmq/range_add_range_minidx.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/segtree/range_assignment_segtree.hpp
+    title: ds/segtree/range_assignment_segtree.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/segtree/sortable_segtree.hpp
+    title: ds/segtree/sortable_segtree.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   - icon: ':heavy_check_mark:'
@@ -53,6 +59,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
@@ -73,6 +82,9 @@ data:
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_assign.test.cpp
+    title: test/1_mytest/range_assign.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/segtree_xor_prod.test.cpp
     title: test/1_mytest/segtree_xor_prod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,6 +99,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+    title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/sort_segtree.test.cpp
+    title: test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+    title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
@@ -132,6 +153,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
@@ -261,6 +285,8 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/optimal_product_on_tree.hpp
   - graph/ds/tree_monoid.hpp
+  - ds/segtree/range_assignment_segtree.hpp
+  - ds/segtree/sortable_segtree.hpp
   - ds/rmq/range_add_range_min.hpp
   - ds/rmq/range_add_range_maxidx.hpp
   - ds/rmq/range_add_range_max.hpp
@@ -274,6 +300,7 @@ data:
   - string/many_string_compare.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
   - string/substring_shortest_border.hpp
+  - string/suffix_tree.hpp
   - string/suffix_lcp_change.hpp
   timestamp: '2026-09-17 11:49:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -284,11 +311,13 @@ data:
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
   - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/1549.test.cpp
   - test/3_yukicoder/426.test.cpp
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1212.test.cpp
   - test/3_yukicoder/3148.test.cpp
   - test/3_yukicoder/1625_2.test.cpp
@@ -299,9 +328,12 @@ data:
   - test/3_yukicoder/2890.test.cpp
   - test/3_yukicoder/2595.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
   - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/2_library_checker/string/suffix_array.test.cpp

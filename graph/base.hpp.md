@@ -41,6 +41,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/all_cycle_common_vertices.hpp
+    title: graph/all_cycle_common_vertices.hpp
   - icon: ':warning:'
     path: graph/bipartite_balanced_edge_coloring.hpp
     title: graph/bipartite_balanced_edge_coloring.hpp
@@ -77,6 +80,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
+  - icon: ':warning:'
+    path: graph/compress_tree.hpp
+    title: graph/compress_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
@@ -116,7 +122,7 @@ data:
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':heavy_check_mark:'
@@ -143,6 +149,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
@@ -297,6 +306,9 @@ data:
     path: graph/to_directed_tree.hpp
     title: graph/to_directed_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/toposort.hpp
+    title: graph/toposort.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -354,12 +366,21 @@ data:
     path: string/aho_corasick_for_general_trie.hpp
     title: string/aho_corasick_for_general_trie.hpp
   - icon: ':warning:'
+    path: string/enumerate_occurrences.hpp
+    title: string/enumerate_occurrences.hpp
+  - icon: ':warning:'
     path: string/generalized_suffix_automaton.hpp
     title: string/generalized_suffix_automaton.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/all_cycle_common_vertex.test.cpp
+    title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
     title: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
@@ -763,6 +784,9 @@ data:
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
   - icon: ':heavy_check_mark:'
@@ -796,8 +820,14 @@ data:
     path: test/4_aoj/1566.test.cpp
     title: test/4_aoj/1566.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2251_1.test.cpp
+    title: test/4_aoj/2251_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_2.test.cpp
     title: test/4_aoj/2251_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
@@ -1032,8 +1062,10 @@ data:
   path: graph/base.hpp
   requiredBy:
   - graph/tree.hpp
+  - graph/all_cycle_common_vertices.hpp
   - graph/find_centroid.hpp
   - graph/reverse_graph.hpp
+  - graph/compress_tree.hpp
   - graph/euler_walk.hpp
   - graph/two_edge_component.hpp
   - graph/planar_graph.hpp
@@ -1085,6 +1117,7 @@ data:
   - graph/ds/static_tree_monoid.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/static_toptree.hpp
+  - graph/ds/incremental_centroid.hpp
   - graph/ds/distance_sum.hpp
   - graph/ds/tree_abeliangroup.hpp
   - graph/ds/remove_one_vertex_connectivity.hpp
@@ -1123,6 +1156,7 @@ data:
   - graph/unicyclic_graph.hpp
   - graph/find_odd_cycle.hpp
   - graph/tree_center.hpp
+  - graph/toposort.hpp
   - graph/prufer_code.hpp
   - graph/count_matching_on_tree.hpp
   - graph/find_cycle.hpp
@@ -1142,6 +1176,8 @@ data:
   - string/generalized_suffix_automaton.hpp
   - string/suffix_automaton.hpp
   - string/aho_corasick_for_general_trie.hpp
+  - string/suffix_tree.hpp
+  - string/enumerate_occurrences.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   - knapsack/independent_set_knapsack.hpp
   - random/random_graph.hpp
@@ -1161,6 +1197,7 @@ data:
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/find_C4.test.cpp
   - test/1_mytest/incremental_scc.test.cpp
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/tutte.test.cpp
@@ -1208,6 +1245,7 @@ data:
   - test/3_yukicoder/1790.test.cpp
   - test/3_yukicoder/1170.test.cpp
   - test/3_yukicoder/1813.test.cpp
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1212.test.cpp
   - test/3_yukicoder/3148.test.cpp
   - test/3_yukicoder/1777.test.cpp
@@ -1296,6 +1334,7 @@ data:
   - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/4_aoj/GRL_3_A.test.cpp
+  - test/4_aoj/2251_1.test.cpp
   - test/4_aoj/2677.test.cpp
   - test/4_aoj/GRL_1_B.test.cpp
   - test/4_aoj/GRL_6_A.test.cpp
@@ -1312,6 +1351,7 @@ data:
   - test/4_aoj/1566.test.cpp
   - test/4_aoj/ALDS1_12_B.test.cpp
   - test/4_aoj/GRL_3_B.test.cpp
+  - test/4_aoj/2636.test.cpp
   - test/4_aoj/0275.test.cpp
 documentation_of: graph/base.hpp
 layout: document

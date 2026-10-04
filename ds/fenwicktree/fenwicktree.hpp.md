@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
@@ -156,6 +159,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
@@ -308,6 +314,7 @@ data:
   path: ds/fenwicktree/fenwicktree.hpp
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
+  - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_abeliangroup.hpp
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree_range_add.hpp
@@ -364,6 +371,7 @@ data:
   - test/4_aoj/ALDS1_2_A.test.cpp
   - test/4_aoj/DSL_2_G.test.cpp
   - test/4_aoj/ALDS1_5.test.cpp
+  - test/4_aoj/2636.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document
 redirect_from:

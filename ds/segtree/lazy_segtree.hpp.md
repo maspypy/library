@@ -49,6 +49,9 @@ data:
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_assign.test.cpp
+    title: test/1_mytest/range_assign.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/summax_add.test.cpp
     title: test/1_mytest/summax_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -278,6 +281,7 @@ data:
   - test/1_mytest/summax_add.test.cpp
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/max_min.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
   - test/3_yukicoder/1548.test.cpp

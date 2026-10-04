@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
+  - icon: ':warning:'
+    path: graph/compress_tree.hpp
+    title: graph/compress_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
@@ -38,6 +41,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
@@ -78,6 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/866.test.cpp
     title: test/3_yukicoder/866.test.cpp
@@ -141,6 +150,7 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/sparse_table.hpp
   requiredBy:
+  - graph/compress_tree.hpp
   - graph/fast_lca.hpp
   - ds/rmq/static_rmq.hpp
   - ds/sparse_table/sparse_table_on_segtree.hpp
@@ -152,6 +162,7 @@ data:
   - string/many_string_compare.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
   - string/substring_shortest_border.hpp
+  - string/suffix_tree.hpp
   - string/suffix_lcp_change.hpp
   timestamp: '2026-09-28 10:13:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -161,6 +172,7 @@ data:
   - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/3_yukicoder/1036_4.test.cpp
   - test/3_yukicoder/866.test.cpp
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
   - test/2_library_checker/data_structure/staticrmq_x.test.cpp
   - test/2_library_checker/data_structure/staticrmq.test.cpp

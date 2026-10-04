@@ -34,6 +34,9 @@ data:
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/4_aoj/2251_1.test.cpp
+    title: test/4_aoj/2251_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_2.test.cpp
     title: test/4_aoj/2251_2.test.cpp
   _isVerificationFailed: false
@@ -208,6 +211,7 @@ data:
   - test/3_yukicoder/1602.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
   - test/2_library_checker/graph/shortest_path.test.cpp
+  - test/4_aoj/2251_1.test.cpp
   - test/4_aoj/2251_2.test.cpp
   - test/4_aoj/0275.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp

@@ -7,8 +7,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/all_cycle_common_vertices.hpp
+    title: graph/all_cycle_common_vertices.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/all_cycle_common_vertex.test.cpp
+    title: test/1_mytest/all_cycle_common_vertex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_cycle_minimum.test.cpp
     title: test/1_mytest/find_cycle_minimum.test.cpp
@@ -200,11 +206,13 @@ data:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/find_cycle.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/all_cycle_common_vertices.hpp
   timestamp: '2026-09-13 16:05:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/find_cycle_minimum.test.cpp
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
   - test/2_library_checker/graph/cycle_detection_undirected.test.cpp
   - test/2_library_checker/graph/cycle_detection.test.cpp
 documentation_of: graph/find_cycle.hpp

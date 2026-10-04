@@ -16,7 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/compress_tree.hpp
+    title: graph/compress_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
@@ -309,7 +312,8 @@ data:
   - ds/sparse_table/sparse_table.hpp
   isVerificationFile: false
   path: graph/fast_lca.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/compress_tree.hpp
   timestamp: '2026-09-28 10:13:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

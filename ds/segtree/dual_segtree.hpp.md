@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/segtree/range_add_make_decreasing.hpp
+    title: ds/segtree/range_add_make_decreasing.hpp
+  - icon: ':warning:'
+    path: ds/segtree/range_add_make_increasing.hpp
+    title: ds/segtree/range_add_make_increasing.hpp
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
@@ -94,6 +100,8 @@ data:
   requiredBy:
   - graph/minimum_spanning_tree.hpp
   - graph/ds/dual_tree_monoid.hpp
+  - ds/segtree/range_add_make_increasing.hpp
+  - ds/segtree/range_add_make_decreasing.hpp
   - geo/range_closest_pair_query.hpp
   timestamp: '2026-09-17 11:49:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
