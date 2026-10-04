@@ -232,7 +232,17 @@ data:
     \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
     \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n"
+    \ /= 2;\n    }\n    return x;\n  }\n\n  // f(i), i in I\n  // \u8FD1\u3044\u30A4\
+    \u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u5927\u91CF\u306B\u540C\u6642\u66F4\u65B0\
+    \u3057\u305F\u3044\u3068\u304D\u306B\u52B9\u7387\u304C\u826F\u304F\u306A\u308B\
+    \u3068\u3044\u3046\u72D9\u3044\n  template <typename F>\n  void set_many_sorted(vc<int>\
+    \ I, F f) {\n    if (I.empty()) return;\n\n    FOR(k, len(I)) {\n      assert(0\
+    \ <= I[k] && I[k] < n);\n      if (k) assert(I[k - 1] < I[k]);\n    }\n\n    FOR(k,\
+    \ len(I)) {\n      int i = I[k];\n      dat[size + i] = f(i);\n      I[k] += size;\n\
+    \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
+    \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
+    \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n"
   code: "\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using\
     \ X = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
     \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
@@ -277,7 +287,17 @@ data:
     \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
     \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n"
+    \ /= 2;\n    }\n    return x;\n  }\n\n  // f(i), i in I\n  // \u8FD1\u3044\u30A4\
+    \u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u5927\u91CF\u306B\u540C\u6642\u66F4\u65B0\
+    \u3057\u305F\u3044\u3068\u304D\u306B\u52B9\u7387\u304C\u826F\u304F\u306A\u308B\
+    \u3068\u3044\u3046\u72D9\u3044\n  template <typename F>\n  void set_many_sorted(vc<int>\
+    \ I, F f) {\n    if (I.empty()) return;\n\n    FOR(k, len(I)) {\n      assert(0\
+    \ <= I[k] && I[k] < n);\n      if (k) assert(I[k - 1] < I[k]);\n    }\n\n    FOR(k,\
+    \ len(I)) {\n      int i = I[k];\n      dat[size + i] = f(i);\n      I[k] += size;\n\
+    \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
+    \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
+    \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/segtree.hpp
@@ -302,7 +322,7 @@ data:
   - string/substring_shortest_border.hpp
   - string/suffix_tree.hpp
   - string/suffix_lcp_change.hpp
-  timestamp: '2026-09-17 11:49:38+09:00'
+  timestamp: '2026-10-05 00:45:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/longest_common_substr.test.cpp

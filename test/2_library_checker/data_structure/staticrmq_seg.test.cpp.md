@@ -316,15 +316,25 @@ data:
     \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
     \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n// require:\
-    \ all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
-    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 6 \"\
-    test/2_library_checker/data_structure/staticrmq_seg.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  using Mono = Monoid_Min<int>;\r\n  SegTree<Mono> seg(N,\
-    \ [&](int i) -> int {\r\n    INT(x);\r\n    return x;\r\n  });\r\n  FOR(Q) {\r\
-    \n    LL(L, R);\r\n    print(seg.prod(L, R));\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ /= 2;\n    }\n    return x;\n  }\n\n  // f(i), i in I\n  // \u8FD1\u3044\u30A4\
+    \u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u5927\u91CF\u306B\u540C\u6642\u66F4\u65B0\
+    \u3057\u305F\u3044\u3068\u304D\u306B\u52B9\u7387\u304C\u826F\u304F\u306A\u308B\
+    \u3068\u3044\u3046\u72D9\u3044\n  template <typename F>\n  void set_many_sorted(vc<int>\
+    \ I, F f) {\n    if (I.empty()) return;\n\n    FOR(k, len(I)) {\n      assert(0\
+    \ <= I[k] && I[k] < n);\n      if (k) assert(I[k - 1] < I[k]);\n    }\n\n    FOR(k,\
+    \ len(I)) {\n      int i = I[k];\n      dat[size + i] = f(i);\n      I[k] += size;\n\
+    \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
+    \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
+    \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\
+    \n// require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 6 \"test/2_library_checker/data_structure/staticrmq_seg.test.cpp\"\n\r\nvoid\
+    \ solve() {\r\n  LL(N, Q);\r\n  using Mono = Monoid_Min<int>;\r\n  SegTree<Mono>\
+    \ seg(N, [&](int i) -> int {\r\n    INT(x);\r\n    return x;\r\n  });\r\n  FOR(Q)\
+    \ {\r\n    LL(L, R);\r\n    print(seg.prod(L, R));\r\n  }\r\n}\r\n\r\nsigned main()\
     \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/segtree.hpp\"\
@@ -341,7 +351,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 07:11:14+09:00'
+  timestamp: '2026-10-05 00:45:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_seg.test.cpp

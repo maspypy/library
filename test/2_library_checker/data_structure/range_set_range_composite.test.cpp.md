@@ -422,8 +422,18 @@ data:
     \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
     \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"alg/monoid_pow.hpp\"\n\n// chat\
-    \ gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
+    \ /= 2;\n    }\n    return x;\n  }\n\n  // f(i), i in I\n  // \u8FD1\u3044\u30A4\
+    \u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u5927\u91CF\u306B\u540C\u6642\u66F4\u65B0\
+    \u3057\u305F\u3044\u3068\u304D\u306B\u52B9\u7387\u304C\u826F\u304F\u306A\u308B\
+    \u3068\u3044\u3046\u72D9\u3044\n  template <typename F>\n  void set_many_sorted(vc<int>\
+    \ I, F f) {\n    if (I.empty()) return;\n\n    FOR(k, len(I)) {\n      assert(0\
+    \ <= I[k] && I[k] < n);\n      if (k) assert(I[k - 1] < I[k]);\n    }\n\n    FOR(k,\
+    \ len(I)) {\n      int i = I[k];\n      dat[size + i] = f(i);\n      I[k] += size;\n\
+    \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
+    \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
+    \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"alg/monoid_pow.hpp\"\
+    \n\n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
     \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
     \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
     \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
@@ -498,21 +508,27 @@ data:
     \ build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id();\
     \ });\n  }\n  void build(const vc<X> &v) {\n    build(len(v), [&](int i) -> X\
     \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    n = m;\n    seg.build(m, f), cut.build(n, [&](int i) -> int { return 1; });\n\
-    \    dat = seg.get_all();\n  }\n\n  X prod(int l, int r) {\n    int a = cut.prev(l),\
-    \ b = cut.next(l), c = cut.prev(r);\n    if (a == c) {\n      return monoid_pow<MX>(dat[a],\
-    \ r - l);\n    };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b - l);\n\
-    \    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n    return\
-    \ MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all(); }\n\
-    \n  void assign(int l, int r, X x) {\n    if (l == r) return;\n    int a = cut.prev(l),\
-    \ b = cut.next(r);\n    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));\n\
-    \    if (r < b) {\n      X y = dat[cut.prev(r)];\n      dat[r] = y, cut.insert(r),\
-    \ seg.set(r, monoid_pow<MX>(y, b - r));\n    }\n    cut.enumerate(l + 1, r, [&](int\
-    \ i) -> void { seg.set(i, MX::id()); }, true);\n    dat[l] = x, cut.insert(l),\
-    \ seg.set(l, monoid_pow<MX>(x, r - l));\n  }\n\n  vc<X> get_all() {\n    vc<X>\
-    \ ANS(n);\n    int p = 0;\n    while (p < n) {\n      int q = cut.next(p + 1);\n\
-    \      FOR(i, p, q) ANS[i] = dat[p];\n      p = q;\n    }\n    return ANS;\n \
-    \ }\n};\n#line 9 \"test/2_library_checker/data_structure/range_set_range_composite.test.cpp\"\
+    \    n = m;\n    cut.build(n);\n    cut.fill_one();\n    dat.resize(m);\n    seg.build(m,\
+    \ [&](int i) { return dat[i] = f(i); });\n  }\n\n  X prod(int l, int r) {\n  \
+    \  int a = cut.prev(l), c = cut.prev(r);\n    if (a == c) {\n      return monoid_pow<MX>(dat[a],\
+    \ r - l);\n    };\n    int b = cut.next(l);\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a],\
+    \ b - l);\n    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n\
+    \    return MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all();\
+    \ }\n\n  void assign(int l, int r, X x) {\n    if (l == r) return;\n\n    int\
+    \ a = cut.prev(l);\n    int b = cut.next(r);\n\n    bool has_left = (a < l);\n\
+    \    bool has_right = (r < b);\n\n    X left, right;\n    if (has_left) {\n  \
+    \    left = monoid_pow<MX>(dat[a], l - a);\n    }\n\n    if (has_right) {\n  \
+    \    X y = dat[cut.prev(r)];\n      dat[r] = y;\n      right = monoid_pow<MX>(y,\
+    \ b - r);\n    }\n\n    X mid = monoid_pow<MX>(x, r - l);\n\n    vc<int> I;\n\
+    \    if (has_left) I.eb(a);\n    I.eb(l);\n    cut.enumerate(l + 1, r, [&](int\
+    \ i) { I.eb(i); }, true);\n\n    if (has_right) I.eb(r);\n\n    // \u3053\u3053\
+    \u3067 I \u306F strictly increasing\n    dat[l] = x;\n    cut.insert(l);\n   \
+    \ if (has_right) cut.insert(r);\n\n    seg.set_many_sorted(move(I), [&](int i)\
+    \ -> X {\n      if (has_left && i == a) return left;\n      if (i == l) return\
+    \ mid;\n      if (has_right && i == r) return right;\n      return MX::id();\n\
+    \    });\n  }\n\n  vc<X> get_all() {\n    vc<X> ANS(n);\n    int p = 0;\n    while\
+    \ (p < n) {\n      int q = cut.next(p + 1);\n      FOR(i, p, q) ANS[i] = dat[p];\n\
+    \      p = q;\n    }\n    return ANS;\n  }\n};\n#line 9 \"test/2_library_checker/data_structure/range_set_range_composite.test.cpp\"\
     \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\nusing AFF = typename\
     \ Mono::value_type;\n\nvoid solve() {\n  INT(N, Q);\n\n  Range_Assignment_SegTree<Mono>\
     \ seg(N, [&](int i) -> AFF {\n    INT(a, b);\n    return {mint(a), mint(b)};\n\
@@ -545,7 +561,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-10-05 00:23:18+09:00'
+  timestamp: '2026-10-05 00:45:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_set_range_composite.test.cpp

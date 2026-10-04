@@ -385,11 +385,21 @@ data:
     \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
     \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\
-    \u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\u6E08\
-    \u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\nstruct\
-    \ Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot() {}\n\
-    \    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
+    \ /= 2;\n    }\n    return x;\n  }\n\n  // f(i), i in I\n  // \u8FD1\u3044\u30A4\
+    \u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u5927\u91CF\u306B\u540C\u6642\u66F4\u65B0\
+    \u3057\u305F\u3044\u3068\u304D\u306B\u52B9\u7387\u304C\u826F\u304F\u306A\u308B\
+    \u3068\u3044\u3046\u72D9\u3044\n  template <typename F>\n  void set_many_sorted(vc<int>\
+    \ I, F f) {\n    if (I.empty()) return;\n\n    FOR(k, len(I)) {\n      assert(0\
+    \ <= I[k] && I[k] < n);\n      if (k) assert(I[k - 1] < I[k]);\n    }\n\n    FOR(k,\
+    \ len(I)) {\n      int i = I[k];\n      dat[size + i] = f(i);\n      I[k] += size;\n\
+    \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
+    \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
+    \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"ds/node_pool.hpp\"\n\
+    // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
+    \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
+    struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
+    \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
     \ = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos\
     \ = 0;\n  Slot* free_head = nullptr;\n\n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n\
     \    for (auto& p : chunks) cache.eb(std::move(p));\n  }\n\n  template <class...\
@@ -615,7 +625,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2026-10-05 00:23:18+09:00'
+  timestamp: '2026-10-05 00:45:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/sort_segtree_1.test.cpp

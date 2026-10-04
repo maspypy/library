@@ -62,18 +62,28 @@ data:
     \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
     \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
     \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
-    \ /= 2;\n    }\n    return x;\n  }\n};\n#line 3 \"ds/range_mex_change.hpp\"\n\n\
-    // i, A[i] \u3092\u8FFD\u52A0 -> mex(A[j],...,A[i+1]) \u304C\u66F4\u65B0\n// \u3053\
-    \u306E\u3068\u304D\u306E\u66F4\u65B0\u898F\u5247\u3092\u5F97\u308B\nstruct Range_Mex_Change\
-    \ {\n  int N;\n  vc<int> last;\n  SegTree<Monoid_Min<int>> seg;\n  int nxt_i;\n\
-    \  Range_Mex_Change(int N) : N(N), last(N + 1, -1), seg(last), nxt_i(0) {}\n\n\
-    \  // F(l,r,x,y): [l,...,r) \u90E8\u5206\u304C x->y \u306B\u5909\u66F4\n  template\
-    \ <typename F>\n  void add(int i, int x, F change) {\n    assert(i == nxt_i);\n\
-    \    ++nxt_i;\n    chmin(x, N);\n    int p = last[x];\n    int R = (x == 0 ? i\
-    \ + 1 : seg.prod(0, x) + 1);\n\n    last[x] = i;\n    seg.set(x, i);\n    while\
-    \ (p + 1 < R) {\n      int y = seg.max_right([&](int v) -> bool { return v >=\
-    \ R - 1; }, x + 1);\n      int L = max(p + 1, last[y] + 1);\n      change(L, R,\
-    \ x, y);\n      R = L;\n    }\n  }\n};\n"
+    \ /= 2;\n    }\n    return x;\n  }\n\n  // f(i), i in I\n  // \u8FD1\u3044\u30A4\
+    \u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u5927\u91CF\u306B\u540C\u6642\u66F4\u65B0\
+    \u3057\u305F\u3044\u3068\u304D\u306B\u52B9\u7387\u304C\u826F\u304F\u306A\u308B\
+    \u3068\u3044\u3046\u72D9\u3044\n  template <typename F>\n  void set_many_sorted(vc<int>\
+    \ I, F f) {\n    if (I.empty()) return;\n\n    FOR(k, len(I)) {\n      assert(0\
+    \ <= I[k] && I[k] < n);\n      if (k) assert(I[k - 1] < I[k]);\n    }\n\n    FOR(k,\
+    \ len(I)) {\n      int i = I[k];\n      dat[size + i] = f(i);\n      I[k] += size;\n\
+    \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
+    \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
+    \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 3 \"ds/range_mex_change.hpp\"\
+    \n\n// i, A[i] \u3092\u8FFD\u52A0 -> mex(A[j],...,A[i+1]) \u304C\u66F4\u65B0\n\
+    // \u3053\u306E\u3068\u304D\u306E\u66F4\u65B0\u898F\u5247\u3092\u5F97\u308B\n\
+    struct Range_Mex_Change {\n  int N;\n  vc<int> last;\n  SegTree<Monoid_Min<int>>\
+    \ seg;\n  int nxt_i;\n  Range_Mex_Change(int N) : N(N), last(N + 1, -1), seg(last),\
+    \ nxt_i(0) {}\n\n  // F(l,r,x,y): [l,...,r) \u90E8\u5206\u304C x->y \u306B\u5909\
+    \u66F4\n  template <typename F>\n  void add(int i, int x, F change) {\n    assert(i\
+    \ == nxt_i);\n    ++nxt_i;\n    chmin(x, N);\n    int p = last[x];\n    int R\
+    \ = (x == 0 ? i + 1 : seg.prod(0, x) + 1);\n\n    last[x] = i;\n    seg.set(x,\
+    \ i);\n    while (p + 1 < R) {\n      int y = seg.max_right([&](int v) -> bool\
+    \ { return v >= R - 1; }, x + 1);\n      int L = max(p + 1, last[y] + 1);\n  \
+    \    change(L, R, x, y);\n      R = L;\n    }\n  }\n};\n"
   code: "#include \"alg/monoid/min.hpp\"\n#include \"ds/segtree/segtree.hpp\"\n\n\
     // i, A[i] \u3092\u8FFD\u52A0 -> mex(A[j],...,A[i+1]) \u304C\u66F4\u65B0\n// \u3053\
     \u306E\u3068\u304D\u306E\u66F4\u65B0\u898F\u5247\u3092\u5F97\u308B\nstruct Range_Mex_Change\
@@ -92,7 +102,7 @@ data:
   isVerificationFile: false
   path: ds/range_mex_change.hpp
   requiredBy: []
-  timestamp: '2026-09-17 11:49:38+09:00'
+  timestamp: '2026-10-05 00:45:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/range_mex_change.hpp
