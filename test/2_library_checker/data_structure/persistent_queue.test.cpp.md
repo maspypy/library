@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_queue
@@ -317,23 +317,23 @@ data:
     \   if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
     };\n#line 6 \"test/2_library_checker/data_structure/persistent_queue.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(Q);\r\n  vc<int> L, R;\r\n\r\n  Dynamic_Array<int,\
-    \ true> X(2000000, 0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np> roots;\r\
-    \n\r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q) {\r\n \
-    \   LL(t, k);\r\n    ++k;\r\n    np root = roots[k];\r\n    int l = L[k], r =\
-    \ R[k];\r\n\r\n    if (t == 0) {\r\n      INT(x);\r\n      root = X.set(root,\
-    \ r++, x);\r\n    }\r\n    if (t == 1) {\r\n      print(X.get(root, l++));\r\n\
-    \    }\r\n    roots.eb(root);\r\n    L.eb(l), R.eb(r);\r\n  }\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ true> X(0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np> roots;\r\n\
+    \r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q) {\r\n   \
+    \ LL(t, k);\r\n    ++k;\r\n    np root = roots[k];\r\n    int l = L[k], r = R[k];\r\
+    \n\r\n    if (t == 0) {\r\n      INT(x);\r\n      root = X.set(root, r++, x);\r\
+    \n    }\r\n    if (t == 1) {\r\n      print(X.get(root, l++));\r\n    }\r\n  \
+    \  roots.eb(root);\r\n    L.eb(l), R.eb(r);\r\n  }\r\n}\r\n\r\nsigned main() {\r\
+    \n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_queue\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"ds/dynamic_array.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  vc<int> L, R;\r\n\r\n  Dynamic_Array<int,\
-    \ true> X(2000000, 0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np> roots;\r\
-    \n\r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q) {\r\n \
-    \   LL(t, k);\r\n    ++k;\r\n    np root = roots[k];\r\n    int l = L[k], r =\
-    \ R[k];\r\n\r\n    if (t == 0) {\r\n      INT(x);\r\n      root = X.set(root,\
-    \ r++, x);\r\n    }\r\n    if (t == 1) {\r\n      print(X.get(root, l++));\r\n\
-    \    }\r\n    roots.eb(root);\r\n    L.eb(l), R.eb(r);\r\n  }\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ true> X(0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np> roots;\r\n\
+    \r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q) {\r\n   \
+    \ LL(t, k);\r\n    ++k;\r\n    np root = roots[k];\r\n    int l = L[k], r = R[k];\r\
+    \n\r\n    if (t == 0) {\r\n      INT(x);\r\n      root = X.set(root, r++, x);\r\
+    \n    }\r\n    if (t == 1) {\r\n      print(X.get(root, l++));\r\n    }\r\n  \
+    \  roots.eb(root);\r\n    L.eb(l), R.eb(r);\r\n  }\r\n}\r\n\r\nsigned main() {\r\
+    \n  solve();\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -342,8 +342,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/persistent_queue.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 10:39:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-10-04 20:37:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/persistent_queue.test.cpp
 layout: document

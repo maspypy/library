@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_super.hpp
     title: convex/slope_trick/slope_trick_super.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -498,19 +498,20 @@ data:
     \ continue;\n    if (t == 0) {\n      // ADD\n      L[i] = max(L[a], L[b]);\n\
     \      R[i] = min(R[a], R[b]);\n      if (L[i] > R[i]) continue;\n      dp[i].assign(R[i]\
     \ + 1, infty<ll>);\n      FOR(x, L[i], R[i] + 1) dp[i][x] = dp[a][x] + dp[b][x];\n\
-    \      func[i] = ST.add(func[a], func[b]);\n    }\n    if (t == 1) {\n      //\
-    \ conv\n      L[i] = L[a] + L[b];\n      R[i] = R[a] + R[b];\n      dp[i].assign(R[i]\
-    \ + 1, infty<ll>);\n      FOR(x1, L[a], R[a] + 1) {\n        FOR(x2, L[b], R[b]\
-    \ + 1) {\n          chmin(dp[i][x1 + x2], dp[a][x1] + dp[b][x2]);\n        }\n\
-    \      }\n      func[i] = ST.convolve(func[a], func[b]);\n    }\n    vi X(R[i]\
-    \ + 1, infty<ll>);\n    FOR(x, L[i], R[i] + 1) X[x] = ST.eval(func[i], x);\n \
-    \   assert(func[i].x0 == L[i]);\n    assert(func[i].x1 == R[i]);\n    assert(X\
-    \ == dp[i]);\n    auto [fx, x] = ST.get_min(func[i]);\n    assert(L[i] <= x &&\
-    \ x <= R[i]);\n    assert(MIN(X) == fx && X[x] == fx);\n  }\n  int i = 2 * N -\
-    \ 2;\n  if (dp[i].empty()) return;\n  int t = RNG(0, 2);\n  if (t == 0) {\n  \
-    \  // clear right\n    FOR(x, L[i] + 1, R[i] + 1) chmin(dp[i][x], dp[i][x - 1]);\n\
-    \    ST.clear_right(func[i]);\n  }\n  if (t == 2) {\n    // clear left\n    FOR_R(x,\
-    \ L[i] + 1, R[i] + 1) chmin(dp[i][x - 1], dp[i][x]);\n    ST.clear_left(func[i]);\n\
+    \      F f = func[a], g = func[b];\n      ST.restrict_domain(f, L[i], R[i]);\n\
+    \      ST.restrict_domain(g, L[i], R[i]);\n      func[i] = ST.add(f, g);\n   \
+    \ }\n    if (t == 1) {\n      // conv\n      L[i] = L[a] + L[b];\n      R[i] =\
+    \ R[a] + R[b];\n      dp[i].assign(R[i] + 1, infty<ll>);\n      FOR(x1, L[a],\
+    \ R[a] + 1) {\n        FOR(x2, L[b], R[b] + 1) {\n          chmin(dp[i][x1 + x2],\
+    \ dp[a][x1] + dp[b][x2]);\n        }\n      }\n      func[i] = ST.convolve(func[a],\
+    \ func[b]);\n    }\n    vi X(R[i] + 1, infty<ll>);\n    FOR(x, L[i], R[i] + 1)\
+    \ X[x] = ST.eval(func[i], x);\n    assert(func[i].x0 == L[i]);\n    assert(func[i].x1\
+    \ == R[i]);\n    assert(X == dp[i]);\n    auto [fx, x] = ST.get_min(func[i]);\n\
+    \    assert(L[i] <= x && x <= R[i]);\n    assert(MIN(X) == fx && X[x] == fx);\n\
+    \  }\n  int i = 2 * N - 2;\n  if (dp[i].empty()) return;\n  int t = RNG(0, 2);\n\
+    \  if (t == 0) {\n    // clear right\n    FOR(x, L[i] + 1, R[i] + 1) chmin(dp[i][x],\
+    \ dp[i][x - 1]);\n    ST.clear_right(func[i]);\n  }\n  if (t == 2) {\n    // clear\
+    \ left\n    FOR_R(x, L[i] + 1, R[i] + 1) chmin(dp[i][x - 1], dp[i][x]);\n    ST.clear_left(func[i]);\n\
     \  }\n  vi X(R[i] + 1, infty<ll>);\n  FOR(x, L[i], R[i] + 1) X[x] = ST.eval(func[i],\
     \ x);\n  assert(func[i].x0 == L[i]);\n  assert(func[i].x1 == R[i]);\n  assert(X\
     \ == dp[i]);\n}\n\nvoid solve() {\n  int x, y;\n  cin >> x >> y;\n  cout << x\
@@ -535,19 +536,20 @@ data:
     \ continue;\n    if (t == 0) {\n      // ADD\n      L[i] = max(L[a], L[b]);\n\
     \      R[i] = min(R[a], R[b]);\n      if (L[i] > R[i]) continue;\n      dp[i].assign(R[i]\
     \ + 1, infty<ll>);\n      FOR(x, L[i], R[i] + 1) dp[i][x] = dp[a][x] + dp[b][x];\n\
-    \      func[i] = ST.add(func[a], func[b]);\n    }\n    if (t == 1) {\n      //\
-    \ conv\n      L[i] = L[a] + L[b];\n      R[i] = R[a] + R[b];\n      dp[i].assign(R[i]\
-    \ + 1, infty<ll>);\n      FOR(x1, L[a], R[a] + 1) {\n        FOR(x2, L[b], R[b]\
-    \ + 1) {\n          chmin(dp[i][x1 + x2], dp[a][x1] + dp[b][x2]);\n        }\n\
-    \      }\n      func[i] = ST.convolve(func[a], func[b]);\n    }\n    vi X(R[i]\
-    \ + 1, infty<ll>);\n    FOR(x, L[i], R[i] + 1) X[x] = ST.eval(func[i], x);\n \
-    \   assert(func[i].x0 == L[i]);\n    assert(func[i].x1 == R[i]);\n    assert(X\
-    \ == dp[i]);\n    auto [fx, x] = ST.get_min(func[i]);\n    assert(L[i] <= x &&\
-    \ x <= R[i]);\n    assert(MIN(X) == fx && X[x] == fx);\n  }\n  int i = 2 * N -\
-    \ 2;\n  if (dp[i].empty()) return;\n  int t = RNG(0, 2);\n  if (t == 0) {\n  \
-    \  // clear right\n    FOR(x, L[i] + 1, R[i] + 1) chmin(dp[i][x], dp[i][x - 1]);\n\
-    \    ST.clear_right(func[i]);\n  }\n  if (t == 2) {\n    // clear left\n    FOR_R(x,\
-    \ L[i] + 1, R[i] + 1) chmin(dp[i][x - 1], dp[i][x]);\n    ST.clear_left(func[i]);\n\
+    \      F f = func[a], g = func[b];\n      ST.restrict_domain(f, L[i], R[i]);\n\
+    \      ST.restrict_domain(g, L[i], R[i]);\n      func[i] = ST.add(f, g);\n   \
+    \ }\n    if (t == 1) {\n      // conv\n      L[i] = L[a] + L[b];\n      R[i] =\
+    \ R[a] + R[b];\n      dp[i].assign(R[i] + 1, infty<ll>);\n      FOR(x1, L[a],\
+    \ R[a] + 1) {\n        FOR(x2, L[b], R[b] + 1) {\n          chmin(dp[i][x1 + x2],\
+    \ dp[a][x1] + dp[b][x2]);\n        }\n      }\n      func[i] = ST.convolve(func[a],\
+    \ func[b]);\n    }\n    vi X(R[i] + 1, infty<ll>);\n    FOR(x, L[i], R[i] + 1)\
+    \ X[x] = ST.eval(func[i], x);\n    assert(func[i].x0 == L[i]);\n    assert(func[i].x1\
+    \ == R[i]);\n    assert(X == dp[i]);\n    auto [fx, x] = ST.get_min(func[i]);\n\
+    \    assert(L[i] <= x && x <= R[i]);\n    assert(MIN(X) == fx && X[x] == fx);\n\
+    \  }\n  int i = 2 * N - 2;\n  if (dp[i].empty()) return;\n  int t = RNG(0, 2);\n\
+    \  if (t == 0) {\n    // clear right\n    FOR(x, L[i] + 1, R[i] + 1) chmin(dp[i][x],\
+    \ dp[i][x - 1]);\n    ST.clear_right(func[i]);\n  }\n  if (t == 2) {\n    // clear\
+    \ left\n    FOR_R(x, L[i] + 1, R[i] + 1) chmin(dp[i][x - 1], dp[i][x]);\n    ST.clear_left(func[i]);\n\
     \  }\n  vi X(R[i] + 1, infty<ll>);\n  FOR(x, L[i], R[i] + 1) X[x] = ST.eval(func[i],\
     \ x);\n  assert(func[i].x0 == L[i]);\n  assert(func[i].x1 == R[i]);\n  assert(X\
     \ == dp[i]);\n}\n\nvoid solve() {\n  int x, y;\n  cin >> x >> y;\n  cout << x\
@@ -566,8 +568,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/slope_super.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 10:39:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-10-04 20:37:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/slope_super.test.cpp
 layout: document
