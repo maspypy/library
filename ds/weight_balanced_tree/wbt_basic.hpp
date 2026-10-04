@@ -95,53 +95,6 @@ struct WBT_Basic : WBT_Sequence_Base<WBT_Basic<S, PERSISTENT>,
     f(f, t, 0);
     return a;
   }
-  // Replace split_max_right in WBT_Monoid with this body.
-  template <class F>
-  pair<np, np> split_max_right(np t, const F& check) {
-    assert(check(Monoid::id()));
-    X x = Monoid::id();
-    return split_max_right_rec(t, check, x);
-  }
-
-  // Add under private: in WBT_Monoid.
-  template <class F>
-  pair<np, np> split_max_right_rec(np t, const F& check, X& x) {
-    if (!t) return {nullptr, nullptr};
-    X y = Monoid::op(x, t->prod);
-    if (check(y)) {
-      x = y;
-      return {t, nullptr};
-    }
-    t = clone(t);  // Must precede push() when PERSISTENT=true.
-    push(t);
-    np l = t->l, r = t->r;
-    if (l) {
-      y = Monoid::op(x, l->prod);
-      if (!check(y)) {
-        auto [a, b] = split_max_right_rec(l, check, x);
-        t->l = b;
-        pull(t);
-        return {a, t};
-      }
-      x = y;
-    }
-    y = Monoid::op(x, t->x);
-    if (!check(y)) {
-      t->l = nullptr;
-      pull(t);
-      return {l, t};
-    }
-    x = y;
-    auto [a, b] = split_max_right_rec(r, check, x);
-    t->r = a;
-    pull(t);
-    return {t, b};
-  }
-
-  // In WBT_ActedMonoid, use the same implementation with:
-  //   Monoid::id -> MX::id
-  //   Monoid::op -> MX::op
-  //   check      -> f
 
   template <class F>
   pair<np, np> split_max_right(np t, const F& check) {
