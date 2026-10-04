@@ -12,14 +12,14 @@ struct Compress_Tree {
   using WT = typename GT::cost_type;
 
   pair<vc<int>, GT> compress(vc<int>& V, bool sorted = false) {
-    return compress_impl(V, sorted,
-                         [&](int a, int b) -> int { return tree.LCA(a, b); });
+    return compress_impl(
+        V, sorted, [&](int a, int b) -> int { return tree.LCA(a, b); });
   }
 
-  pair<vc<int>, GT> compress_fast(vc<int>& V, Fast_LCA<TREE>& LCA,
-                                  bool sorted = false) {
-    return compress_impl(V, sorted,
-                         [&](int a, int b) -> int { return LCA.LCA(a, b); });
+  pair<vc<int>, GT> compress_fast(
+      vc<int>& V, Fast_LCA<TREE>& LCA, bool sorted = false) {
+    return compress_impl(
+        V, sorted, [&](int a, int b) -> int { return LCA.LCA(a, b); });
   }
 
   void sort_vertices(vc<int>& V) {
@@ -31,6 +31,7 @@ struct Compress_Tree {
       FS.erase(i);
       V[k++] = tree.V[i];
     });
+    V.resize(k);
   }
 
   template <typename F>

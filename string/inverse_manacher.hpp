@@ -4,7 +4,7 @@
 // 各点を中心とする極大回文の長さ (in [1,3,5,...])
 // 辞書最小 OR empty
 vc<int> inverse_manacher(vc<int> R) {
-  for (auto& x: R) assert(x & 1), x = (x + 1) / 2;
+  for (auto& x : R) assert(x & 1), x = (x + 1) / 2;
   ll N = len(R);
   UnionFind uf(N);
   vvc<int> DIFF(N);
@@ -13,7 +13,9 @@ vc<int> inverse_manacher(vc<int> R) {
   while (i < N) {
     while (i >= j && i + j < N) {
       if (R[i] != j) {
-        if (j) { uf.merge(i + j, i - j); }
+        if (j) {
+          uf.merge(i + j, i - j);
+        }
         j += 1;
       } else {
         DIFF[i + j].eb(i - j);
@@ -30,6 +32,11 @@ vc<int> inverse_manacher(vc<int> R) {
     i += k;
     j -= k;
   }
+  FOR(v, N) {
+    for (int w : DIFF[v]) {
+      if (uf[v] == uf[w]) return {};
+    }
+  }
   vvc<int> vs(N);
   FOR(v, N) vs[uf[v]].eb(v);
   vc<int> ANS(N, -1);
@@ -37,13 +44,13 @@ vc<int> inverse_manacher(vc<int> R) {
     int r = uf[v];
     if (ANS[r] != -1) continue;
     vc<int> tmp;
-    for (auto& w: vs[r]) {
-      for (auto& to: DIFF[w]) {
+    for (auto& w : vs[r]) {
+      for (auto& to : DIFF[w]) {
         if (ANS[to] != -1) tmp.eb(ANS[to]);
       }
     }
     int x = mex(tmp);
-    for (auto& w: vs[r]) ANS[w] = x;
+    for (auto& w : vs[r]) ANS[w] = x;
   }
   return ANS;
 }

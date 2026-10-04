@@ -22,7 +22,7 @@ struct Online_Subset_Mobius {
   T assume(int i, T ai) {
     assert(p == i);
     T ans = ai;
-    enumerate_all_bit<u32>(i, [&](int j) -> vood { ans -= A[i - (1 << j)]; });
+    enumerate_all_bit<u32>(i, [&](int j) -> void { ans -= A[i - (1 << j)]; });
     return ans;
   }
 };
