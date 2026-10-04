@@ -117,17 +117,14 @@ struct WBT_Monoid
   template <class F>
   pair<np, np> split_max_right(np t, const F& check) {
     assert(check(Monoid::id()));
-    vc<X> a = get_all(t);
     X x = Monoid::id();
-    u32 k = 0;
-    while (k < a.size() && check(Monoid::op(x, a[k])))
-      x = Monoid::op(x, a[k++]);
-    return this->split(t, k);
+    return split_max_right_rec(t, check, x);
   }
   template <class F>
   pair<np, np> split_max_right_prod(np t, const F& f) {
     return split_max_right(t, f);
   }
+
   void free_subtree(np t) {
     if (!t) return;
     free_subtree(t->l);
@@ -147,5 +144,40 @@ struct WBT_Monoid
       x = Monoid::op(
           x, prod_rec(b, max(l, s + 1) - s - 1, r - s - 1, z ^ t->rev));
     return x;
+  }
+
+  // Add under private: in WBT_Monoid.
+  template <class F>
+  pair<np, np> split_max_right_rec(np t, const F& check, X& x) {
+    if (!t) return {nullptr, nullptr};
+    X y = Monoid::op(x, t->prod);
+    if (check(y)) {
+      x = y;
+      return {t, nullptr};
+    }
+    t = clone(t);  // Must precede push() when PERSISTENT=true.
+    push(t);
+    np l = t->l, r = t->r;
+    if (l) {
+      y = Monoid::op(x, l->prod);
+      if (!check(y)) {
+        auto [a, b] = split_max_right_rec(l, check, x);
+        t->l = b;
+        pull(t);
+        return {a, t};
+      }
+      x = y;
+    }
+    y = Monoid::op(x, t->x);
+    if (!check(y)) {
+      t->l = nullptr;
+      pull(t);
+      return {l, t};
+    }
+    x = y;
+    auto [a, b] = split_max_right_rec(r, check, x);
+    t->r = a;
+    pull(t);
+    return {t, b};
   }
 };

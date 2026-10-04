@@ -147,17 +147,12 @@ struct WBT_ActedMonoid
     return a;
   }
   template <class F>
-  pair<np, np> split_max_right(np t, const F &f) {
-    assert(f(MX::id()));
+  pair<np, np> split_max_right(np t, const F &check) {
+    assert(check(MX::id()));
     X x = MX::id();
-    u32 k = 0;
-    for (auto &&y : get_all(t)) {
-      if (!f(MX::op(x, y))) break;
-      x = MX::op(x, y);
-      ++k;
-    }
-    return this->split(t, k);
+    return split_max_right_rec(t, check, x);
   }
+
   template <class F>
   pair<np, np> split_max_right_prod(np t, const F &f) {
     return split_max_right(t, f);
@@ -183,5 +178,39 @@ struct WBT_ActedMonoid
       x = MX::op(
           x, prod_rec(w, max(l, s + 1) - s - 1, r - s - 1, z ^ t->rev, b));
     return x;
+  }
+
+  template <class F>
+  pair<np, np> split_max_right_rec(np t, const F &check, X &x) {
+    if (!t) return {nullptr, nullptr};
+    X y = MX::op(x, t->prod);
+    if (check(y)) {
+      x = y;
+      return {t, nullptr};
+    }
+    t = clone(t);  // Must precede push() when PERSISTENT=true.
+    push(t);
+    np l = t->l, r = t->r;
+    if (l) {
+      y = MX::op(x, l->prod);
+      if (!check(y)) {
+        auto [a, b] = split_max_right_rec(l, check, x);
+        t->l = b;
+        pull(t);
+        return {a, t};
+      }
+      x = y;
+    }
+    y = MX::op(x, t->x);
+    if (!check(y)) {
+      t->l = nullptr;
+      pull(t);
+      return {l, t};
+    }
+    x = y;
+    auto [a, b] = split_max_right_rec(r, check, x);
+    t->r = a;
+    pull(t);
+    return {t, b};
   }
 };
