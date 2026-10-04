@@ -63,7 +63,7 @@ struct Range_Add_Make_Monotonic_Increasing {
   void range_assign(int L, int R, ll x) {
     split(L), split(R);
     DEC.insert(L), DEC.insert(R);
-    S.enumerate(L, R, [&](int i) -> void { S.erase(i); });
+    S.enumerate(L, R, [&](int i) -> void {}, true);
     S.insert(L);
     seg.set(L, x);
   }

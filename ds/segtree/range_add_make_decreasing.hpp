@@ -33,7 +33,8 @@ struct Range_Add_Make_Monotonic_Decreasing {
   }
   void build(const vi& v) {
     n = len(v);
-    seg.build(n, [&](int i) -> ll { return v[i]; }), S.build(n), INC.build(n + 1);
+    seg.build(n, [&](int i) -> ll { return v[i]; }), S.build(n),
+        INC.build(n + 1);
     FOR(i, n) S.insert(i);
     FOR(i, 1, n) if (v[i - 1] < v[i]) INC.insert(i);
   }
@@ -62,7 +63,7 @@ struct Range_Add_Make_Monotonic_Decreasing {
   void range_assign(int L, int R, ll x) {
     split(L), split(R);
     INC.insert(L), INC.insert(R);
-    S.enumerate(L, R, [&](int i) -> void { S.erase(i); });
+    S.enumerate(L, R, [&](int i) -> void {}, true);
     S.insert(L);
     seg.set(L, x);
   }
@@ -80,7 +81,7 @@ struct Range_Add_Make_Monotonic_Decreasing {
     });
   }
 
-private:
+ private:
   void split(int p) {
     if (p == 0 || p == n || S[p]) return;
     seg.set(p, get(p));

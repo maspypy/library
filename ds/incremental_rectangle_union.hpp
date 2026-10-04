@@ -6,7 +6,7 @@ template <typename XY, typename AREA, bool SMALL_XY>
 struct Incremental_Rectangle_Union {
   FastSet ss;
   vc<XY> ht;
-  map<XY, XY> MP; // right end -> height
+  map<XY, XY> MP;  // right end -> height
   AREA area;
 
   Incremental_Rectangle_Union() : area(AREA(0)) {
@@ -30,14 +30,14 @@ struct Incremental_Rectangle_Union {
     area = 0;
     if constexpr (SMALL_XY) {
       int LIM = len(ss) - 1;
-      ss.enumerate(0, LIM + 1, [&](int i) -> void { ss.erase(i); });
+      ss.enumerate(0, LIM + 1, [&](int i) -> void {}, true);
       ht[0] = infty<XY>, ht[LIM] = 0, ss.insert(0), ss.insert(LIM);
     } else {
       MP.clear(), MP[0] = infty<XY>, MP[infty<XY>] = 0;
     }
   }
 
-private:
+ private:
   void add_MP(XY x, XY y) {
     if (x == 0 || y == 0) return;
     auto it = MP.lower_bound(x);

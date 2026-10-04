@@ -54,8 +54,7 @@ struct Range_Assignment_SegTree {
       X y = dat[cut.prev(r)];
       dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y, b - r));
     }
-    cut.enumerate(l + 1, r,
-                  [&](int i) -> void { seg.set(i, MX::id()), cut.erase(i); });
+    cut.enumerate(l + 1, r, [&](int i) -> void { seg.set(i, MX::id()); }, true);
     dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));
   }
 

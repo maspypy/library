@@ -1,5 +1,3 @@
-#include "other/bit.hpp"
-
 // 64-ary tree
 // space: (N/63) * u64
 struct FastSet {
@@ -57,11 +55,7 @@ struct FastSet {
       u64& x = seg[h][i / B];
       u64 mask = u64(1) << (i % B);
       if (x & mask) return;
-      if (x) {
-        x |= mask;
-        return;
-      }
-      x = mask;
+      x |= mask;
       i /= B;
     }
   }
@@ -126,26 +120,37 @@ struct FastSet {
     return next(l) < r;
   }
 
-  // [l, r)
+  // [l, r). erase=true のとき、callback 内から this を変更してはいけない。
   template <typename F>
-  void enumerate(int l, int r, F f) {
+  void enumerate(int l, int r, F f, bool erase = false) {
     assert(0 <= l && l <= r && r <= n);
-    for (int x = next(l); x < r; x = next(x + 1)) f(x);
+    if (!erase) {
+      for (int x = next(l); x < r; x = next(x + 1)) f(x);
+      return;
+    }
+    for (int x = next(l); x < r;) {
+      int w = x / B;
+      int lo = max(l, w * int(B)) - w * int(B);
+      int hi = min(r, (w + 1) * int(B)) - w * int(B);
+      u64 erase_bits = seg[0][w] & (full_mask(hi) & ~full_mask(lo));
+      u64 bits = erase_bits;
+      while (bits) {
+        int k = lowbit(bits);
+        f(w * int(B) + k);
+        bits ^= u64(1) << k;
+      }
+      seg[0][w] ^= erase_bits;
+      if (!seg[0][w]) propagate_empty_word(w);
+      x = next(min(r, (w + 1) * int(B)));
+    }
   }
 
   void reset() {
     int x = next(0);
     while (x < n) {
       int w = x / B;
-      int i = w;
       seg[0][w] = 0;
-      for (int h = 1; h < log; ++h) {
-        u64& y = seg[h][i / B];
-        u64 mask = u64(1) << (i % B);
-        y ^= mask;
-        if (y) break;
-        i /= B;
-      }
+      propagate_empty_word(w);
       x = next(min(n, (w + 1) * int(B)));
     }
   }
@@ -154,5 +159,17 @@ struct FastSet {
     string s(n, '?');
     for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');
     return s;
+  }
+
+ private:
+  // seg[0][w] が 0 になった後に呼ぶ。
+  void propagate_empty_word(int i) {
+    for (int h = 1; h < log; ++h) {
+      u64& y = seg[h][i / B];
+      u64 mask = u64(1) << (i % B);
+      y ^= mask;
+      if (y) break;
+      i /= B;
+    }
   }
 };
