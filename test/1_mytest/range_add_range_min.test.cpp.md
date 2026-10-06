@@ -322,8 +322,17 @@ data:
     \ {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\n  void set(int i, T x)\
     \ {\n    T now = prod(i, i + 1);\n    apply(i, i + 1, x - now);\n  }\n\n  void\
     \ multiply(int i, T x) {\n    T now = prod(i, i + 1);\n    if (now > x) apply(i,\
-    \ i + 1, x - now);\n  }\n};\n#line 8 \"test/1_mytest/range_add_range_min.test.cpp\"\
-    \n\nvi sol_0(int N, int Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Lazy_SegTree<ActedMonoid_Min_Add<ll>>\
+    \ i + 1, x - now);\n  }\n\n  template <class F>\n  int max_right(F check, int\
+    \ L) const {\n    assert(0 <= L && L <= n && check(infty<T>));\n    if (L == n)\
+    \ return n;\n\n    T pre = lazy + seg.prod(0, L).fi;\n\n    auto f = [&](pair<T,\
+    \ T> x) -> bool {\n      if (x == Mono::id()) return true;\n      return check(pre\
+    \ + x.se);\n    };\n    return seg.max_right(f, L);\n  }\n\n  template <class\
+    \ F>\n  int min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(infty<T>));\n\
+    \    if (R == 0) return 0;\n\n    T suf = lazy + seg.prod(0, R).fi;  // A[R-1]\n\
+    \n    auto f = [&](pair<T, T> x) -> bool {\n      if (x == Mono::id()) return\
+    \ true;\n      return check(suf - x.fi + x.se);\n    };\n    return seg.min_left(f,\
+    \ R);\n  }\n};\n#line 8 \"test/1_mytest/range_add_range_min.test.cpp\"\n\nvi sol_0(int\
+    \ N, int Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Lazy_SegTree<ActedMonoid_Min_Add<ll>>\
     \ seg(A);\n  vi ANS;\n  for (auto [t, l, r, x]: query) {\n    if (t == 0) { ANS.eb(seg.prod(l,\
     \ r)); }\n    if (t == 1) { seg.apply(l, r, x); }\n  }\n  return ANS;\n}\n\nvi\
     \ sol_1(int N, int Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Range_Add_Range_Min<ll>\
@@ -388,7 +397,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_min.test.cpp
   requiredBy: []
-  timestamp: '2026-10-05 00:45:05+09:00'
+  timestamp: '2026-10-06 19:21:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_min.test.cpp

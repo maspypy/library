@@ -97,7 +97,16 @@ data:
     \ {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\n  void set(int i, T x)\
     \ {\n    T now = prod(i, i + 1);\n    apply(i, i + 1, x - now);\n  }\n\n  void\
     \ multiply(int i, T x) {\n    T now = prod(i, i + 1);\n    if (now > x) apply(i,\
-    \ i + 1, x - now);\n  }\n};\n"
+    \ i + 1, x - now);\n  }\n\n  template <class F>\n  int max_right(F check, int\
+    \ L) const {\n    assert(0 <= L && L <= n && check(infty<T>));\n    if (L == n)\
+    \ return n;\n\n    T pre = lazy + seg.prod(0, L).fi;\n\n    auto f = [&](pair<T,\
+    \ T> x) -> bool {\n      if (x == Mono::id()) return true;\n      return check(pre\
+    \ + x.se);\n    };\n    return seg.max_right(f, L);\n  }\n\n  template <class\
+    \ F>\n  int min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(infty<T>));\n\
+    \    if (R == 0) return 0;\n\n    T suf = lazy + seg.prod(0, R).fi;  // A[R-1]\n\
+    \n    auto f = [&](pair<T, T> x) -> bool {\n      if (x == Mono::id()) return\
+    \ true;\n      return check(suf - x.fi + x.se);\n    };\n    return seg.min_left(f,\
+    \ R);\n  }\n};\n"
   code: "#include \"ds/segtree/segtree.hpp\"\n\n// INF+x==INF \u307F\u305F\u3044\u306A\
     \u51E6\u7406\u306F\u5165\u308C\u3066\u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree\
     \ \u3088\u308A 20,30% \u7A0B\u5EA6\u9AD8\u901F\u306A\u5834\u5408\u304C\u3042\u308B\
@@ -126,13 +135,22 @@ data:
     \ + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n\n\
     \  void set(int i, T x) {\n    T now = prod(i, i + 1);\n    apply(i, i + 1, x\
     \ - now);\n  }\n\n  void multiply(int i, T x) {\n    T now = prod(i, i + 1);\n\
-    \    if (now > x) apply(i, i + 1, x - now);\n  }\n};"
+    \    if (now > x) apply(i, i + 1, x - now);\n  }\n\n  template <class F>\n  int\
+    \ max_right(F check, int L) const {\n    assert(0 <= L && L <= n && check(infty<T>));\n\
+    \    if (L == n) return n;\n\n    T pre = lazy + seg.prod(0, L).fi;\n\n    auto\
+    \ f = [&](pair<T, T> x) -> bool {\n      if (x == Mono::id()) return true;\n \
+    \     return check(pre + x.se);\n    };\n    return seg.max_right(f, L);\n  }\n\
+    \n  template <class F>\n  int min_left(F check, int R) const {\n    assert(0 <=\
+    \ R && R <= n && check(infty<T>));\n    if (R == 0) return 0;\n\n    T suf = lazy\
+    \ + seg.prod(0, R).fi;  // A[R-1]\n\n    auto f = [&](pair<T, T> x) -> bool {\n\
+    \      if (x == Mono::id()) return true;\n      return check(suf - x.fi + x.se);\n\
+    \    };\n    return seg.min_left(f, R);\n  }\n};"
   dependsOn:
   - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: ds/rmq/range_add_range_min.hpp
   requiredBy: []
-  timestamp: '2026-10-05 00:45:05+09:00'
+  timestamp: '2026-10-06 19:21:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_min.test.cpp
