@@ -30,7 +30,7 @@ struct Link_Cut_Tree {
   int get_root(int c) { return get_root(&nodes[c])->idx; }
 
   // parent(c)==p となるように link. p の根は変わらない.
-  void link(Node *c, Node *p) {
+  void link(Node *p, Node *c) {
     evert(c);
     expose(p);
     p->push();
@@ -43,7 +43,7 @@ struct Link_Cut_Tree {
   }
 
   // parent(c)==p となるように link. p の根は変わらない.
-  void link(int c, int p) { return link(&nodes[c], &nodes[p]); }
+  void link(int p, int c) { return link(&nodes[p], &nodes[c]); }
 
   // a,b が根に変更される
   void cut(Node *a, Node *b) {
@@ -83,10 +83,10 @@ struct Link_Cut_Tree {
   // 根は変えない
   int LCA(int u, int v) { return LCA(&nodes[u], &nodes[v])->idx; }
 
-  // 辺の個数. 根を変える.
+  // 辺の個数. 根は変えない.
   int dist(int u, int v) {
-    evert(u), expose(v);
-    return ((*this)[v]->size) - 1;
+    int w = LCA(u, v);
+    return depth(u) + depth(v) - 2 * depth(w);
   }
 
   // 根を変えない.
@@ -227,7 +227,7 @@ struct Link_Cut_Tree {
     auto f = [&](np c) -> int { return (c ? c->idx : -1); };
     FOR(i, len(nodes)) {
       print(i, ",", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),
-            (*this)[i]->rev);
+          (*this)[i]->rev);
     }
     FOR(i, len(nodes)) {
       np c = (*this)[i];
