@@ -85,4 +85,32 @@ struct Range_Add_Range_Min {
     T now = prod(i, i + 1);
     if (now > x) apply(i, i + 1, x - now);
   }
+
+  template <class F>
+  int max_right(F check, int L) const {
+    assert(0 <= L && L <= n && check(infty<T>));
+    if (L == n) return n;
+
+    T pre = lazy + seg.prod(0, L).fi;
+
+    auto f = [&](pair<T, T> x) -> bool {
+      if (x == Mono::id()) return true;
+      return check(pre + x.se);
+    };
+    return seg.max_right(f, L);
+  }
+
+  template <class F>
+  int min_left(F check, int R) const {
+    assert(0 <= R && R <= n && check(infty<T>));
+    if (R == 0) return 0;
+
+    T suf = lazy + seg.prod(0, R).fi;  // A[R-1]
+
+    auto f = [&](pair<T, T> x) -> bool {
+      if (x == Mono::id()) return true;
+      return check(suf - x.fi + x.se);
+    };
+    return seg.min_left(f, R);
+  }
 };
