@@ -797,6 +797,9 @@ data:
     - icon: ':warning:'
       path: flow/dual_mcf.hpp
       title: flow/dual_mcf.hpp
+    - icon: ':warning:'
+      path: flow/dynamic_mcf_on_line.hpp
+      title: flow/dynamic_mcf_on_line.hpp
     - icon: ':heavy_check_mark:'
       path: flow/hungarian.hpp
       title: flow/hungarian.hpp

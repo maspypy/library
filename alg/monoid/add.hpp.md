@@ -104,6 +104,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
+  - icon: ':warning:'
+    path: flow/dynamic_mcf_on_line.hpp
+    title: flow/dynamic_mcf_on_line.hpp
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
@@ -552,6 +555,7 @@ data:
   - other/sliding_puzzle_solver.hpp
   - geo/count_points_in_triangles.hpp
   - setfunc/boolean_range_add_point_get.hpp
+  - flow/dynamic_mcf_on_line.hpp
   - random/random_polygon.hpp
   - seq/inversion.hpp
   - seq/common_interval_decomposition.hpp
