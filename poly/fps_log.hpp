@@ -4,6 +4,7 @@
 
 template <typename mint>
 vc<mint> fps_log_dense(const vc<mint>& f) {
+  if (f.empty()) return {};
   assert(f[0] == mint(1));
   ll N = len(f);
   vc<mint> df = f;
@@ -19,6 +20,7 @@ vc<mint> fps_log_dense(const vc<mint>& f) {
 
 template <typename mint>
 vc<mint> fps_log_sparse(const vc<mint>& f) {
+  if (f.empty()) return {};
   int N = f.size();
   vc<pair<int, mint>> dat;
   FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);
@@ -38,6 +40,7 @@ vc<mint> fps_log_sparse(const vc<mint>& f) {
 
 template <typename mint>
 vc<mint> fps_log(const vc<mint>& f) {
+  if (f.empty()) return {};
   assert(f[0] == mint(1));
   int n = count_terms(f);
   int t = (mint::can_ntt() ? 200 : 1200);

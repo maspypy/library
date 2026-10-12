@@ -17,7 +17,9 @@ struct Binary_Optimization {
   // xi を 0, 1 にするときにかかるコストを追加する。
   void add_1(int i, T x0, T x1) {
     assert(0 <= i && i < n);
-    if (!MINIMIZE) { x0 = -x0, x1 = -x1; }
+    if (!MINIMIZE) {
+      x0 = -x0, x1 = -x1;
+    }
     _add_1(i, x0, x1);
   }
 
@@ -39,7 +41,7 @@ struct Binary_Optimization {
   // とするときにかかるコストを追加する。劣モになっている必要がある。
   // 特に、000 や 111 に利得を与えることができる。
   void add_3(int i, int j, int k, T x000, T x001, T x010, T x011, T x100,
-             T x101, T x110, T x111) {
+      T x101, T x110, T x111) {
     assert(i != j && i != k && j != k);
     assert(0 <= i && i < n);
     assert(0 <= j && j < n);
@@ -56,7 +58,7 @@ struct Binary_Optimization {
   // 最小値および、01 列を返す
   pair<T, vc<int>> calc() {
     MaxFlow<T> G(nxt, source, sink);
-    for (auto&& [key, cap]: edges) {
+    for (auto&& [key, cap] : edges) {
       auto [frm, to] = key;
       G.add(frm, to, cap);
     }
@@ -72,10 +74,10 @@ struct Binary_Optimization {
   void debug() {
     print("base_cost", base_cost);
     print("source=", source, "sink=", sink);
-    for (auto&& [key, cap]: edges) print(key, cap);
+    for (auto&& [key, cap] : edges) print(key, cap);
   }
 
-private:
+ private:
   void add_base(T t) {
     base_cost += t;
     assert(-infty<T> < base_cost && base_cost < infty<T>);
@@ -106,7 +108,7 @@ private:
   }
 
   void _add_3(int i, int j, int k, T x000, T x001, T x010, T x011, T x100,
-              T x101, T x110, T x111) {
+      T x101, T x110, T x111) {
     T p = x000 - x100 - x010 - x001 + x110 + x101 + x011 - x111;
     if (p > 0) {
       add_base(x000);
@@ -128,8 +130,8 @@ private:
       p = -p;
       add_base(x111);
       _add_1(i, x011 - x111, 0);
-      _add_1(i, x101 - x111, 0);
-      _add_1(i, x110 - x111, 0);
+      _add_1(j, x101 - x111, 0);
+      _add_1(k, x110 - x111, 0);
       _add_2(i, j, x111 + x001 - x011 - x101, 0, 0, 0);
       _add_2(i, k, x111 + x010 - x011 - x110, 0, 0, 0);
       _add_2(j, k, x111 + x100 - x101 - x110, 0, 0, 0);

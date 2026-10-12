@@ -197,7 +197,7 @@ struct Dynamic_SegTree_Sparse {
   template <typename F>
   ll min_left_rec(int c, const F &check, ll l, ll r, ll qr, X &x) {
     if (c == NIL || qr <= l) return L0;
-    if (check(MX::op(node[c].prod, x))) {
+    if (r <= qr && check(MX::op(node[c].prod, x))) {
       x = MX::op(node[c].prod, x);
       return L0;
     }

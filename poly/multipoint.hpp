@@ -60,6 +60,7 @@ struct SubproductTree {
 
 template <typename mint>
 vc<mint> multipoint_evaluation_ntt(vc<mint> f, const vc<mint>& point) {
+  if (f.empty()) return vc<mint>(len(point), 0);
   using poly = vc<mint>;
   int n = 1, k = 0;
   while (n < len(point)) n *= 2, ++k;
@@ -120,6 +121,7 @@ template <typename mint>
 vc<mint> multipoint_eval_on_geom_seq(vc<mint> f, mint a, mint r, int m) {
   const int n = len(f);
   if (m == 0) return {};
+  if (n == 0) return vc<mint>(m, 0);
 
   auto eval = [&](mint x) -> mint {
     mint fx = 0;

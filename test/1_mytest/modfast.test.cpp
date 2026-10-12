@@ -10,7 +10,7 @@ using mint = modint998;
 template <typename mint>
 void test() {
   constexpr u32 mod = mint::get_mod();
-  ModFast<mod> fast;
+  ModFast<mint> fast;
 
   FOR(1 << 20) {
     mint x = RNG(1, mod);

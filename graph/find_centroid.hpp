@@ -7,7 +7,7 @@ pair<int, int> find_centroids(GT& G, vi weight = {}) {
   if (weight.empty()) weight.assign(N, 1);
   vc<int> par(N, -1);
   vc<int> V(N);
-  vc<int> sz(N);
+  vc<ll> sz(N);
   int l = 0, r = 0;
   V[r++] = 0;
   while (l < r) {

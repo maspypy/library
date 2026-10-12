@@ -2,8 +2,10 @@
 
 template <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>
 vc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,
-                     int N2 = -1, int N3 = -1) {
-  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }
+    int N2 = -1, int N3 = -1) {
+  if (N1 == -1) {
+    N1 = len(A), N2 = len(B), N3 = len(B[0]);
+  }
   vv(u32, b, N3, N2);
   FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j].val;
   vv(T, C, N1, N3);
@@ -26,9 +28,11 @@ vc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,
 
 template <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>
 vc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,
-                     int N2 = -1, int N3 = -1) {
-  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }
-  vv(T, b, N2, N3);
+    int N2 = -1, int N3 = -1) {
+  if (N1 == -1) {
+    N1 = len(A), N2 = len(B), N3 = len(B[0]);
+  }
+  vv(T, b, N3, N2);
   FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];
   vv(T, C, N1, N3);
   FOR(n, N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];
@@ -37,9 +41,9 @@ vc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,
 
 // square-matrix defined as array
 template <class T, int N,
-          typename enable_if<has_mod<T>::value>::type* = nullptr>
-array<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,
-                                 const array<array<T, N>, N>& B) {
+    typename enable_if<has_mod<T>::value>::type* = nullptr>
+array<array<T, N>, N> matrix_mul(
+    const array<array<T, N>, N>& A, const array<array<T, N>, N>& B) {
   array<array<T, N>, N> C{};
 
   if ((T::get_mod() < (1 << 30)) && N <= 16) {
@@ -60,9 +64,9 @@ array<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,
 
 // square-matrix defined as array
 template <class T, int N,
-          typename enable_if<!has_mod<T>::value>::type* = nullptr>
-array<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,
-                                 const array<array<T, N>, N>& B) {
+    typename enable_if<!has_mod<T>::value>::type* = nullptr>
+array<array<T, N>, N> matrix_mul(
+    const array<array<T, N>, N>& A, const array<array<T, N>, N>& B) {
   array<array<T, N>, N> C{};
   FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j] * B[j][k];
   return C;

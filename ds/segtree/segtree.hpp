@@ -36,13 +36,13 @@ struct SegTree {
 
   void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }
   void set(int i, const X& x) {
-    assert(i < n);
+    assert(0 <= i && i < n);
     dat[i += size] = x;
     while (i >>= 1) update(i);
   }
 
   void multiply(int i, const X& x) {
-    assert(i < n);
+    assert(0 <= i && i < n);
     i += size;
     dat[i] = Monoid::op(dat[i], x);
     while (i >>= 1) update(i);

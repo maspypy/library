@@ -8,6 +8,7 @@
 // ・sparse な場合： O(NK)
 template <typename mint>
 vc<mint> fps_pow(const vc<mint>& f, ll k) {
+  if (f.empty()) return {};
   assert(0 <= k);
   int n = len(f);
   if (k == 0) {
@@ -36,8 +37,9 @@ vc<mint> fps_pow(const vc<mint>& f, ll k) {
 
 template <typename mint>
 vc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {
+  if (f.empty()) return {};
   int N = len(f);
-  assert(N == 0 || f[0] == mint(1));
+  assert(f[0] == mint(1));
   vc<pair<int, mint>> dat;
   FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);
   vc<mint> g(N);
@@ -56,6 +58,7 @@ vc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {
 
 template <typename mint>
 vc<mint> fps_pow_1_dense(const vc<mint>& f, mint K) {
+  if (f.empty()) return {};
   assert(f[0] == mint(1));
   auto log_f = fps_log(f);
   FOR(i, len(f)) log_f[i] *= K;

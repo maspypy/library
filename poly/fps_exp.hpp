@@ -5,7 +5,7 @@
 
 template <typename mint>
 vc<mint> fps_exp_sparse(vc<mint>& f) {
-  if (len(f) == 0) return {mint(1)};
+  if (len(f) == 0) return {};
   assert(f[0] == 0);
   int N = len(f);
   // df を持たせる
@@ -15,7 +15,7 @@ vc<mint> fps_exp_sparse(vc<mint>& f) {
   F[0] = 1;
   FOR(n, 1, N) {
     mint rhs = 0;
-    for (auto&& [k, fk]: dat) {
+    for (auto&& [k, fk] : dat) {
       if (k > n - 1) break;
       rhs += fk * F[n - 1 - k];
     }
@@ -26,8 +26,9 @@ vc<mint> fps_exp_sparse(vc<mint>& f) {
 
 template <typename mint>
 vc<mint> fps_exp_dense(vc<mint>& h) {
+  if (h.empty()) return {};
   const int n = len(h);
-  assert(n > 0 && h[0] == mint(0));
+  assert(h[0] == mint(0));
   if (mint::can_ntt()) {
     vc<mint>& f = h;
     vc<mint> b = {1, (1 < n ? f[1] : 0)};
