@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -46,7 +46,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_log.hpp
     title: poly/online/online_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -552,110 +552,110 @@ data:
     poly/count_terms.hpp\"\ntemplate<typename mint>\nint count_terms(const vc<mint>&\
     \ f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n\
     }\n#line 4 \"poly/fps_log.hpp\"\n\ntemplate <typename mint>\nvc<mint> fps_log_dense(const\
-    \ vc<mint>& f) {\n  assert(f[0] == mint(1));\n  ll N = len(f);\n  vc<mint> df\
-    \ = f;\n  FOR(i, N) df[i] *= mint(i);\n  df.erase(df.begin());\n  auto f_inv =\
-    \ fps_inv(f);\n  auto g = convolution(df, f_inv);\n  g.resize(N - 1);\n  g.insert(g.begin(),\
-    \ 0);\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\n  return g;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> fps_log_sparse(const vc<mint>& f) {\n  int N = f.size();\n \
-    \ vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n\
-    \  vc<mint> F(N);\n  vc<mint> g(N - 1);\n  for (int n = 0; n < N - 1; ++n) {\n\
-    \    mint rhs = mint(n + 1) * f[n + 1];\n    for (auto&& [i, fi] : dat) {\n  \
-    \    if (i > n) break;\n      rhs -= fi * g[n - i];\n    }\n    g[n] = rhs;\n\
-    \    F[n + 1] = rhs * inv<mint>(n + 1);\n  }\n  return F;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> fps_log(const vc<mint>& f) {\n  assert(f[0] == mint(1));\n \
-    \ int n = count_terms(f);\n  int t = (mint::can_ntt() ? 200 : 1200);\n  return\
-    \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\n}\n#line 1 \"\
-    poly/ntt.hpp\"\n\ntemplate <class mint>\nvoid ntt(vector<mint>& a, bool inverse)\
-    \ {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n  const\
-    \ u32 mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n  static\
-    \ array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\n\
-    \  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\n\n  static u32 prepared_mod\
-    \ = 0;\n  if (prepared_mod != mod) {\n    prepared_mod = mod;\n    root[rank2]\
-    \ = mint::ntt_info().se;\n    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i,\
-    \ rank2) {\n      root[i] = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i\
-    \ + 1] * iroot[i + 1];\n    }\n    mint prod = 1, iprod = 1;\n    for (int i =\
-    \ 0; i <= rank2 - 2; i++) {\n      rate2[i] = root[i + 2] * prod;\n      irate2[i]\
-    \ = iroot[i + 2] * iprod;\n      prod *= iroot[i + 2];\n      iprod *= root[i\
-    \ + 2];\n    }\n    prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 3;\
-    \ i++) {\n      rate3[i] = root[i + 3] * prod;\n      irate3[i] = iroot[i + 3]\
-    \ * iprod;\n      prod *= iroot[i + 3];\n      iprod *= root[i + 3];\n    }\n\
-    \  }\n\n  int n = int(a.size());\n  int h = topbit(n);\n  assert(n == 1 << h);\n\
-    \  if (!inverse) {\n    int len = 0;\n    while (len < h) {\n      if (h - len\
-    \ == 1) {\n        int p = 1 << (h - len - 1);\n        mint rot = 1;\n      \
-    \  FOR(s, 1 << len) {\n          int offset = s << (h - len);\n          FOR(i,\
-    \ p) {\n            auto l = a[i + offset];\n            auto r = a[i + offset\
-    \ + p] * rot;\n            a[i + offset] = l + r;\n            a[i + offset +\
-    \ p] = l - r;\n          }\n          rot *= rate2[topbit(~s & -~s)];\n      \
-    \  }\n        len++;\n      } else {\n        int p = 1 << (h - len - 2);\n  \
-    \      mint rot = 1, imag = root[2];\n        for (int s = 0; s < (1 << len);\
-    \ s++) {\n          mint rot2 = rot * rot;\n          mint rot3 = rot2 * rot;\n\
-    \          int offset = s << (h - len);\n          for (int i = 0; i < p; i++)\
-    \ {\n            u64 mod2 = u64(mod) * mod;\n            u64 a0 = a[i + offset].val;\n\
-    \            u64 a1 = u64(a[i + offset + p].val) * rot.val;\n            u64 a2\
-    \ = u64(a[i + offset + 2 * p].val) * rot2.val;\n            u64 a3 = u64(a[i +\
-    \ offset + 3 * p].val) * rot3.val;\n            u64 a1na3imag = (a1 + mod2 - a3)\
-    \ % mod * imag.val;\n            u64 na2 = mod2 - a2;\n            a[i + offset]\
-    \ = a0 + a2 + a1 + a3;\n            a[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
-    \ - (a1 + a3));\n            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\n \
-    \           a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\n         \
-    \ }\n          rot *= rate3[topbit(~s & -~s)];\n        }\n        len += 2;\n\
-    \      }\n    }\n  } else {\n    mint coef = mint(1) / mint(len(a));\n    FOR(i,\
-    \ len(a)) a[i] *= coef;\n    int len = h;\n    while (len) {\n      if (len ==\
-    \ 1) {\n        int p = 1 << (h - len);\n        mint irot = 1;\n        FOR(s,\
-    \ 1 << (len - 1)) {\n          int offset = s << (h - len + 1);\n          FOR(i,\
-    \ p) {\n            u64 l = a[i + offset].val;\n            u64 r = a[i + offset\
-    \ + p].val;\n            a[i + offset] = l + r;\n            a[i + offset + p]\
-    \ = (mod + l - r) * irot.val;\n          }\n          irot *= irate2[topbit(~s\
-    \ & -~s)];\n        }\n        len--;\n      } else {\n        int p = 1 << (h\
-    \ - len);\n        mint irot = 1, iimag = iroot[2];\n        FOR(s, (1 << (len\
-    \ - 2))) {\n          mint irot2 = irot * irot;\n          mint irot3 = irot2\
-    \ * irot;\n          int offset = s << (h - len + 2);\n          for (int i =\
-    \ 0; i < p; i++) {\n            u64 a0 = a[i + offset + 0 * p].val;\n        \
-    \    u64 a1 = a[i + offset + 1 * p].val;\n            u64 a2 = a[i + offset +\
-    \ 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n            u64\
-    \ x = (mod + a2 - a3) * iimag.val % mod;\n            a[i + offset] = a0 + a1\
-    \ + a2 + a3;\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x) * irot.val;\n\
-    \            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\n\
-    \            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) * irot3.val;\n  \
-    \        }\n          irot *= irate3[topbit(~s & -~s)];\n        }\n        len\
-    \ -= 2;\n      }\n    }\n  }\n}\n#line 1 \"mod/modint_common.hpp\"\n\n\nstruct\
-    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod =\
-    \ mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if\
-    \ (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n)\
-    \ + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n\
-    \  if (n < 0) return mint(0);\n  static vector<mint> dat = {1, 1};\n  static int\
-    \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
-    \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
-    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
-    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
-    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
-    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) *\
-    \ fact_inv<mint>(n);\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
-    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  static int mod = 0;\n\
-    \  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    C.clear();\n\
-    \    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint {\n    if (i ==\
-    \ 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i -\
-    \ 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
-    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
-    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
-    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
-    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
-    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
-    \ n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr\
-    \ (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint\
-    \ x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\n\
-    template <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  assert(f[0] == mint(1));\n  ll\
+    \ N = len(f);\n  vc<mint> df = f;\n  FOR(i, N) df[i] *= mint(i);\n  df.erase(df.begin());\n\
+    \  auto f_inv = fps_inv(f);\n  auto g = convolution(df, f_inv);\n  g.resize(N\
+    \ - 1);\n  g.insert(g.begin(), 0);\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\n  return\
+    \ g;\n}\n\ntemplate <typename mint>\nvc<mint> fps_log_sparse(const vc<mint>& f)\
+    \ {\n  if (f.empty()) return {};\n  int N = f.size();\n  vc<pair<int, mint>> dat;\n\
+    \  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint> F(N);\n  vc<mint>\
+    \ g(N - 1);\n  for (int n = 0; n < N - 1; ++n) {\n    mint rhs = mint(n + 1) *\
+    \ f[n + 1];\n    for (auto&& [i, fi] : dat) {\n      if (i > n) break;\n     \
+    \ rhs -= fi * g[n - i];\n    }\n    g[n] = rhs;\n    F[n + 1] = rhs * inv<mint>(n\
+    \ + 1);\n  }\n  return F;\n}\n\ntemplate <typename mint>\nvc<mint> fps_log(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  assert(f[0] == mint(1));\n  int\
+    \ n = count_terms(f);\n  int t = (mint::can_ntt() ? 200 : 1200);\n  return (n\
+    \ <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\n}\n#line 1 \"poly/ntt.hpp\"\
+    \n\ntemplate <class mint>\nvoid ntt(vector<mint>& a, bool inverse) {\n  assert(mint::can_ntt());\n\
+    \  const int rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n\
+    \  static array<mint, 30> root, iroot;\n  static array<mint, 30> rate2, irate2;\n\
+    \  static array<mint, 30> rate3, irate3;\n\n  assert(rank2 != -1 && len(a) <=\
+    \ (1 << max(0, rank2)));\n\n  static u32 prepared_mod = 0;\n  if (prepared_mod\
+    \ != mod) {\n    prepared_mod = mod;\n    root[rank2] = mint::ntt_info().se;\n\
+    \    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i]\
+    \ = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n\
+    \    }\n    mint prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++)\
+    \ {\n      rate2[i] = root[i + 2] * prod;\n      irate2[i] = iroot[i + 2] * iprod;\n\
+    \      prod *= iroot[i + 2];\n      iprod *= root[i + 2];\n    }\n    prod = 1,\
+    \ iprod = 1;\n    for (int i = 0; i <= rank2 - 3; i++) {\n      rate3[i] = root[i\
+    \ + 3] * prod;\n      irate3[i] = iroot[i + 3] * iprod;\n      prod *= iroot[i\
+    \ + 3];\n      iprod *= root[i + 3];\n    }\n  }\n\n  int n = int(a.size());\n\
+    \  int h = topbit(n);\n  assert(n == 1 << h);\n  if (!inverse) {\n    int len\
+    \ = 0;\n    while (len < h) {\n      if (h - len == 1) {\n        int p = 1 <<\
+    \ (h - len - 1);\n        mint rot = 1;\n        FOR(s, 1 << len) {\n        \
+    \  int offset = s << (h - len);\n          FOR(i, p) {\n            auto l = a[i\
+    \ + offset];\n            auto r = a[i + offset + p] * rot;\n            a[i +\
+    \ offset] = l + r;\n            a[i + offset + p] = l - r;\n          }\n    \
+    \      rot *= rate2[topbit(~s & -~s)];\n        }\n        len++;\n      } else\
+    \ {\n        int p = 1 << (h - len - 2);\n        mint rot = 1, imag = root[2];\n\
+    \        for (int s = 0; s < (1 << len); s++) {\n          mint rot2 = rot * rot;\n\
+    \          mint rot3 = rot2 * rot;\n          int offset = s << (h - len);\n \
+    \         for (int i = 0; i < p; i++) {\n            u64 mod2 = u64(mod) * mod;\n\
+    \            u64 a0 = a[i + offset].val;\n            u64 a1 = u64(a[i + offset\
+    \ + p].val) * rot.val;\n            u64 a2 = u64(a[i + offset + 2 * p].val) *\
+    \ rot2.val;\n            u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\n\
+    \            u64 a1na3imag = (a1 + mod2 - a3) % mod * imag.val;\n            u64\
+    \ na2 = mod2 - a2;\n            a[i + offset] = a0 + a2 + a1 + a3;\n         \
+    \   a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\n            a[i\
+    \ + offset + 2 * p] = a0 + na2 + a1na3imag;\n            a[i + offset + 3 * p]\
+    \ = a0 + na2 + (mod2 - a1na3imag);\n          }\n          rot *= rate3[topbit(~s\
+    \ & -~s)];\n        }\n        len += 2;\n      }\n    }\n  } else {\n    mint\
+    \ coef = mint(1) / mint(len(a));\n    FOR(i, len(a)) a[i] *= coef;\n    int len\
+    \ = h;\n    while (len) {\n      if (len == 1) {\n        int p = 1 << (h - len);\n\
+    \        mint irot = 1;\n        FOR(s, 1 << (len - 1)) {\n          int offset\
+    \ = s << (h - len + 1);\n          FOR(i, p) {\n            u64 l = a[i + offset].val;\n\
+    \            u64 r = a[i + offset + p].val;\n            a[i + offset] = l + r;\n\
+    \            a[i + offset + p] = (mod + l - r) * irot.val;\n          }\n    \
+    \      irot *= irate2[topbit(~s & -~s)];\n        }\n        len--;\n      } else\
+    \ {\n        int p = 1 << (h - len);\n        mint irot = 1, iimag = iroot[2];\n\
+    \        FOR(s, (1 << (len - 2))) {\n          mint irot2 = irot * irot;\n   \
+    \       mint irot3 = irot2 * irot;\n          int offset = s << (h - len + 2);\n\
+    \          for (int i = 0; i < p; i++) {\n            u64 a0 = a[i + offset +\
+    \ 0 * p].val;\n            u64 a1 = a[i + offset + 1 * p].val;\n            u64\
+    \ a2 = a[i + offset + 2 * p].val;\n            u64 a3 = a[i + offset + 3 * p].val;\n\
+    \            u64 x = (mod + a2 - a3) * iimag.val % mod;\n            a[i + offset]\
+    \ = a0 + a1 + a2 + a3;\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x)\
+    \ * irot.val;\n            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3)\
+    \ * irot2.val;\n            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) *\
+    \ irot3.val;\n          }\n          irot *= irate3[topbit(~s & -~s)];\n     \
+    \   }\n        len -= 2;\n      }\n    }\n  }\n}\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x)\
+    \ -> decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static\
+    \ auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod\
+    \ : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate\
+    \ <typename mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n \
+    \ static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n\
+    \    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
+    }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
+    \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
+    \ {\n    mod = mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n\
+    \ < mod);\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1] = fact<mint>(m -\
+    \ 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1] * mint::raw(i +\
+    \ 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
@@ -763,7 +763,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/online_log.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 07:11:14+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/online_log.test.cpp

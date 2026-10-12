@@ -25,10 +25,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -55,7 +55,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -416,69 +416,68 @@ data:
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"linalg/matrix_mul.hpp\"\n\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(u32, b, N3, N2);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod()\
-    \ < (1 << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n\
-    \      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n   \
-    \ }\n  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m,\
-    \ N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(u32, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod() < (1\
+    \ << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n   \
+    \   FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n    }\n\
+    \  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m, N2)\
+    \ sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
     \    }\n  }\n  return C;\n}\n\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(T, b, N2, N3);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m,\
-    \ N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix\
-    \ defined as array\ntemplate <class T, int N,\n          typename enable_if<has_mod<T>::value>::type*\
-    \ = nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n\n  if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N)\
-    \ FOR(k, N) {\n      u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n\
-    \      C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128\
-    \ sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(T, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m, N2) FOR(k,\
+    \ N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix defined\
+    \ as array\ntemplate <class T, int N,\n    typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\narray<array<T, N>, N> matrix_mul(\n    const array<array<T, N>,\
+    \ N>& A, const array<array<T, N>, N>& B) {\n  array<array<T, N>, N> C{};\n\n \
+    \ if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N) FOR(k, N) {\n  \
+    \    u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n  \
+    \    C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128 sm\
+    \ = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
     \ = sm;\n    }\n  }\n  return C;\n}\n\n// square-matrix defined as array\ntemplate\
-    \ <class T, int N,\n          typename enable_if<!has_mod<T>::value>::type* =\
-    \ nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j] * B[j][k];\n\
-    \  return C;\n}\n#line 1 \"mod/modint_common.hpp\"\n\n\nstruct has_mod_impl {\n\
-    \  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod =\
-    \ mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if\
-    \ (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n)\
-    \ + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n\
-    \  if (n < 0) return mint(0);\n  static vector<mint> dat = {1, 1};\n  static int\
-    \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
-    \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
-    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
-    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
-    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
-    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) *\
-    \ fact_inv<mint>(n);\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
-    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  static int mod = 0;\n\
-    \  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    C.clear();\n\
-    \    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint {\n    if (i ==\
-    \ 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i -\
-    \ 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
-    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
-    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
-    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
-    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
-    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
-    \ n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr\
-    \ (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint\
-    \ x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\n\
-    template <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ <class T, int N,\n    typename enable_if<!has_mod<T>::value>::type* = nullptr>\n\
+    array<array<T, N>, N> matrix_mul(\n    const array<array<T, N>, N>& A, const array<array<T,\
+    \ N>, N>& B) {\n  array<array<T, N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N)\
+    \ C[i][k] += A[i][j] * B[j][k];\n  return C;\n}\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x)\
+    \ -> decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static\
+    \ auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod\
+    \ : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate\
+    \ <typename mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n \
+    \ static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n\
+    \    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
+    }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
+    \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
+    \ {\n    mod = mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n\
+    \ < mod);\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1] = fact<mint>(m -\
+    \ 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1] * mint::raw(i +\
+    \ 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
@@ -1339,69 +1338,68 @@ data:
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"linalg/matrix_mul.hpp\"\n\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(u32, b, N3, N2);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod()\
-    \ < (1 << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n\
-    \      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n   \
-    \ }\n  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m,\
-    \ N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(u32, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod() < (1\
+    \ << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n   \
+    \   FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n    }\n\
+    \  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m, N2)\
+    \ sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
     \    }\n  }\n  return C;\n}\n\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(T, b, N2, N3);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m,\
-    \ N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix\
-    \ defined as array\ntemplate <class T, int N,\n          typename enable_if<has_mod<T>::value>::type*\
-    \ = nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n\n  if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N)\
-    \ FOR(k, N) {\n      u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n\
-    \      C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128\
-    \ sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(T, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m, N2) FOR(k,\
+    \ N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix defined\
+    \ as array\ntemplate <class T, int N,\n    typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\narray<array<T, N>, N> matrix_mul(\n    const array<array<T, N>,\
+    \ N>& A, const array<array<T, N>, N>& B) {\n  array<array<T, N>, N> C{};\n\n \
+    \ if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N) FOR(k, N) {\n  \
+    \    u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n  \
+    \    C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128 sm\
+    \ = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
     \ = sm;\n    }\n  }\n  return C;\n}\n\n// square-matrix defined as array\ntemplate\
-    \ <class T, int N,\n          typename enable_if<!has_mod<T>::value>::type* =\
-    \ nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j] * B[j][k];\n\
-    \  return C;\n}\n#line 1 \"mod/modint_common.hpp\"\n\n\nstruct has_mod_impl {\n\
-    \  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod =\
-    \ mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if\
-    \ (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n)\
-    \ + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n\
-    \  if (n < 0) return mint(0);\n  static vector<mint> dat = {1, 1};\n  static int\
-    \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
-    \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
-    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
-    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
-    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
-    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) *\
-    \ fact_inv<mint>(n);\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
-    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  static int mod = 0;\n\
-    \  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    C.clear();\n\
-    \    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint {\n    if (i ==\
-    \ 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i -\
-    \ 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
-    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
-    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
-    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
-    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
-    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
-    \ n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr\
-    \ (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint\
-    \ x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\n\
-    template <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ <class T, int N,\n    typename enable_if<!has_mod<T>::value>::type* = nullptr>\n\
+    array<array<T, N>, N> matrix_mul(\n    const array<array<T, N>, N>& A, const array<array<T,\
+    \ N>, N>& B) {\n  array<array<T, N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N)\
+    \ C[i][k] += A[i][j] * B[j][k];\n  return C;\n}\n#line 1 \"mod/modint_common.hpp\"\
+    \n\n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x)\
+    \ -> decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static\
+    \ auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod\
+    \ : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate\
+    \ <typename mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n \
+    \ static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n\
+    \    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
+    }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
+    \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
+    \ {\n    mod = mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n\
+    \ < mod);\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1] = fact<mint>(m -\
+    \ 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1] * mint::raw(i +\
+    \ 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
@@ -2093,7 +2091,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 07:11:14+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp

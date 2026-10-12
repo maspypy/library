@@ -22,10 +22,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -150,51 +150,51 @@ data:
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"linalg/matrix_mul.hpp\"\n\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(u32, b, N3, N2);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod()\
-    \ < (1 << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n\
-    \      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n   \
-    \ }\n  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m,\
-    \ N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(u32, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod() < (1\
+    \ << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n   \
+    \   FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n    }\n\
+    \  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m, N2)\
+    \ sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
     \    }\n  }\n  return C;\n}\n\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(T, b, N2, N3);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m,\
-    \ N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix\
-    \ defined as array\ntemplate <class T, int N,\n          typename enable_if<has_mod<T>::value>::type*\
-    \ = nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n\n  if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N)\
-    \ FOR(k, N) {\n      u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n\
-    \      C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128\
-    \ sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(T, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m, N2) FOR(k,\
+    \ N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix defined\
+    \ as array\ntemplate <class T, int N,\n    typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\narray<array<T, N>, N> matrix_mul(\n    const array<array<T, N>,\
+    \ N>& A, const array<array<T, N>, N>& B) {\n  array<array<T, N>, N> C{};\n\n \
+    \ if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N) FOR(k, N) {\n  \
+    \    u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n  \
+    \    C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128 sm\
+    \ = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
     \ = sm;\n    }\n  }\n  return C;\n}\n\n// square-matrix defined as array\ntemplate\
-    \ <class T, int N,\n          typename enable_if<!has_mod<T>::value>::type* =\
-    \ nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j] * B[j][k];\n\
-    \  return C;\n}\n#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct\
-    \ Monoid_Mul {\n  using value_type = T;\n  using X = T;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return x * y; }\n  static constexpr X\
-    \ inverse(const X &x) noexcept { return X(1) / x; }\n  static constexpr X id()\
-    \ { return X(1); }\n  static constexpr bool commute = true;\n};\n#line 1 \"ds/sliding_window_aggregation.hpp\"\
-    \ntemplate <class Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename\
-    \ Monoid::value_type;\n  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n\
-    \  vc<X> cum_l;\n  X cum_r;\n\n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::id()}),\
-    \ cum_r(Monoid::id()) {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n\
-    \    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop()\
-    \ {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l\
-    \ = {Monoid::id()};\n      cum_r = Monoid::id();\n      while (len(dat) > 1) {\n\
-    \        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n        dat.pop_back();\n\
-    \      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod() { return cum_l.back();\
-    \ }\n  X rprod() { return cum_r; }\n\n  X prod() { return Monoid::op(cum_l.back(),\
-    \ cum_r); }\n};\n\n// \u5B9A\u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\u9045\
-    \u304F\u306A\u308B\u306E\u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\u306F\
-    \u4F7F\u308F\u306A\u3044\ntemplate <class Monoid>\nstruct Sliding_Window_Aggregation_Deque\
-    \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  int\
-    \ sz;\n  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  Sliding_Window_Aggregation_Deque()\n\
+    \ <class T, int N,\n    typename enable_if<!has_mod<T>::value>::type* = nullptr>\n\
+    array<array<T, N>, N> matrix_mul(\n    const array<array<T, N>, N>& A, const array<array<T,\
+    \ N>, N>& B) {\n  array<array<T, N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N)\
+    \ C[i][k] += A[i][j] * B[j][k];\n  return C;\n}\n#line 1 \"alg/monoid/mul.hpp\"\
+    \n\ntemplate <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using\
+    \ X = T;\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ * y; }\n  static constexpr X inverse(const X &x) noexcept { return X(1) / x;\
+    \ }\n  static constexpr X id() { return X(1); }\n  static constexpr bool commute\
+    \ = true;\n};\n#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class\
+    \ Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
+    \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
+    \n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::id()}), cum_r(Monoid::id())\
+    \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
+    \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
+    \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::id()};\n\
+    \      cum_r = Monoid::id();\n      while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(),\
+    \ cum_l.back()));\n        dat.pop_back();\n      }\n      dat.pop_back();\n \
+    \   }\n  }\n\n  X lprod() { return cum_l.back(); }\n  X rprod() { return cum_r;\
+    \ }\n\n  X prod() { return Monoid::op(cum_l.back(), cum_r); }\n};\n\n// \u5B9A\
+    \u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\u9045\u304F\u306A\u308B\u306E\
+    \u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\u306F\u4F7F\u308F\u306A\u3044\
+    \ntemplate <class Monoid>\nstruct Sliding_Window_Aggregation_Deque {\n  using\
+    \ X = typename Monoid::value_type;\n  using value_type = X;\n  int sz;\n  vc<X>\
+    \ dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  Sliding_Window_Aggregation_Deque()\n\
     \      : sz(0), cum_l({Monoid::id()}), cum_r({Monoid::id()}) {}\n\n  int size()\
     \ { return sz; }\n\n  void push_back(X x) {\n    ++sz;\n    dat_r.eb(x);\n   \
     \ cum_r.eb(Monoid::op(cum_r.back(), x));\n  }\n\n  void push_front(X x) {\n  \
@@ -653,7 +653,7 @@ data:
   path: poly/from_log_differentiation.hpp
   requiredBy:
   - poly/sparse_exp_of_div.hpp
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2166.test.cpp

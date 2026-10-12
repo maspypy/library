@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -336,31 +336,31 @@ data:
     poly/count_terms.hpp\"\ntemplate<typename mint>\nint count_terms(const vc<mint>&\
     \ f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n\
     }\n#line 4 \"poly/fps_log.hpp\"\n\ntemplate <typename mint>\nvc<mint> fps_log_dense(const\
-    \ vc<mint>& f) {\n  assert(f[0] == mint(1));\n  ll N = len(f);\n  vc<mint> df\
-    \ = f;\n  FOR(i, N) df[i] *= mint(i);\n  df.erase(df.begin());\n  auto f_inv =\
-    \ fps_inv(f);\n  auto g = convolution(df, f_inv);\n  g.resize(N - 1);\n  g.insert(g.begin(),\
-    \ 0);\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\n  return g;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> fps_log_sparse(const vc<mint>& f) {\n  int N = f.size();\n \
-    \ vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n\
-    \  vc<mint> F(N);\n  vc<mint> g(N - 1);\n  for (int n = 0; n < N - 1; ++n) {\n\
-    \    mint rhs = mint(n + 1) * f[n + 1];\n    for (auto&& [i, fi] : dat) {\n  \
-    \    if (i > n) break;\n      rhs -= fi * g[n - i];\n    }\n    g[n] = rhs;\n\
-    \    F[n + 1] = rhs * inv<mint>(n + 1);\n  }\n  return F;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> fps_log(const vc<mint>& f) {\n  assert(f[0] == mint(1));\n \
-    \ int n = count_terms(f);\n  int t = (mint::can_ntt() ? 200 : 1200);\n  return\
-    \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\n}\n#line 2 \"\
-    graph/count/count_labeled_unicyclic.hpp\"\n\n// https://oeis.org/A057500\ntemplate\
-    \ <typename mint>\nvc<mint> count_labeled_unicyclic(ll nmax) {\n  // \u30B5\u30A4\
-    \u30AF\u30EB\u306E\u5927\u304D\u3055\u304C k \u3067\u3042\u308B\u3082\u306E\uFF1A\
-    \u9577\u3055 k \u306E\u6839\u4ED8\u304D\u6728\u306E\u5217\u3092 (2k) \u3067\u5272\
-    \u308B\n  // sum f^{k} / (2k) \u306E\u5F62\u306B\u306A\u308B\u306E\u3067\u3001\
-    log \u3067\u6570\u3048\u3089\u308C\u308B\n  vc<mint> f(nmax + 1);\n  FOR(n, 1,\
-    \ nmax) {\n    f[n] = mint(n).pow(n - 1) * fact_inv<mint>(n); // rooted\n  }\n\
-    \  vc<mint> F(nmax + 1);\n  F[0] = 1;\n  FOR(i, 1, nmax + 1) F[i] = -f[i];\n \
-    \ F = fps_log(F);\n  FOR(i, nmax + 1) F[i] = -F[i];\n  // k = 1\n  FOR(i, nmax\
-    \ + 1) F[i] -= f[i];\n  // k = 2\n  f = convolution(f, f);\n  FOR(i, nmax + 1)\
-    \ F[i] -= f[i] * inv<mint>(2);\n  FOR(i, nmax + 1) F[i] *= fact<mint>(i) * inv<mint>(2);\n\
-    \  return F;\n}\n"
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  assert(f[0] == mint(1));\n  ll\
+    \ N = len(f);\n  vc<mint> df = f;\n  FOR(i, N) df[i] *= mint(i);\n  df.erase(df.begin());\n\
+    \  auto f_inv = fps_inv(f);\n  auto g = convolution(df, f_inv);\n  g.resize(N\
+    \ - 1);\n  g.insert(g.begin(), 0);\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\n  return\
+    \ g;\n}\n\ntemplate <typename mint>\nvc<mint> fps_log_sparse(const vc<mint>& f)\
+    \ {\n  if (f.empty()) return {};\n  int N = f.size();\n  vc<pair<int, mint>> dat;\n\
+    \  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint> F(N);\n  vc<mint>\
+    \ g(N - 1);\n  for (int n = 0; n < N - 1; ++n) {\n    mint rhs = mint(n + 1) *\
+    \ f[n + 1];\n    for (auto&& [i, fi] : dat) {\n      if (i > n) break;\n     \
+    \ rhs -= fi * g[n - i];\n    }\n    g[n] = rhs;\n    F[n + 1] = rhs * inv<mint>(n\
+    \ + 1);\n  }\n  return F;\n}\n\ntemplate <typename mint>\nvc<mint> fps_log(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  assert(f[0] == mint(1));\n  int\
+    \ n = count_terms(f);\n  int t = (mint::can_ntt() ? 200 : 1200);\n  return (n\
+    \ <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\n}\n#line 2 \"graph/count/count_labeled_unicyclic.hpp\"\
+    \n\n// https://oeis.org/A057500\ntemplate <typename mint>\nvc<mint> count_labeled_unicyclic(ll\
+    \ nmax) {\n  // \u30B5\u30A4\u30AF\u30EB\u306E\u5927\u304D\u3055\u304C k \u3067\
+    \u3042\u308B\u3082\u306E\uFF1A\u9577\u3055 k \u306E\u6839\u4ED8\u304D\u6728\u306E\
+    \u5217\u3092 (2k) \u3067\u5272\u308B\n  // sum f^{k} / (2k) \u306E\u5F62\u306B\
+    \u306A\u308B\u306E\u3067\u3001log \u3067\u6570\u3048\u3089\u308C\u308B\n  vc<mint>\
+    \ f(nmax + 1);\n  FOR(n, 1, nmax) {\n    f[n] = mint(n).pow(n - 1) * fact_inv<mint>(n);\
+    \ // rooted\n  }\n  vc<mint> F(nmax + 1);\n  F[0] = 1;\n  FOR(i, 1, nmax + 1)\
+    \ F[i] = -f[i];\n  F = fps_log(F);\n  FOR(i, nmax + 1) F[i] = -F[i];\n  // k =\
+    \ 1\n  FOR(i, nmax + 1) F[i] -= f[i];\n  // k = 2\n  f = convolution(f, f);\n\
+    \  FOR(i, nmax + 1) F[i] -= f[i] * inv<mint>(2);\n  FOR(i, nmax + 1) F[i] *= fact<mint>(i)\
+    \ * inv<mint>(2);\n  return F;\n}\n"
   code: "#include \"poly/fps_log.hpp\"\n\n// https://oeis.org/A057500\ntemplate <typename\
     \ mint>\nvc<mint> count_labeled_unicyclic(ll nmax) {\n  // \u30B5\u30A4\u30AF\u30EB\
     \u306E\u5927\u304D\u3055\u304C k \u3067\u3042\u308B\u3082\u306E\uFF1A\u9577\u3055\
@@ -387,7 +387,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_unicyclic.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/graph_count.test.cpp

@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':heavy_check_mark:'
@@ -67,9 +67,9 @@ data:
     \   FOR3_R(x, 1, N / p + 1) A[x] += A[p * x];\n  }\n}\n\ntemplate <typename T>\n\
     void multiple_mobius(vc<T>& A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n\
     \  auto P = prime_table(N);\n  for (auto&& p : P) {\n    FOR3(x, 1, N / p + 1)\
-    \ A[x] -= A[p * x];\n  }\n}\n#line 2 \"nt/mobius_table.hpp\"\n\r\ntemplate<typename\
-    \ T>\r\nvc<T> mobius_table(int N){\r\n  vc<T> mu(N + 1);\r\n  mu[1] = T(1);\r\n\
-    \  divisor_mobius(mu);\r\n  return mu;\r\n}\n#line 1 \"enumerate/floor_range.hpp\"\
+    \ A[x] -= A[p * x];\n  }\n}\n#line 2 \"nt/mobius_table.hpp\"\n\r\ntemplate <typename\
+    \ T>\r\nvc<T> mobius_table(int N) {\r\n  vc<T> mu(N + 1);\r\n  if (1 <= N) mu[1]\
+    \ = T(1);\r\n  divisor_mobius(mu);\r\n  return mu;\r\n}\n#line 1 \"enumerate/floor_range.hpp\"\
     \n// \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\
     \u6607\u9806\r\ntemplate <typename F>\r\nvoid floor_range(u64 N, F f, bool Q_ASC\
     \ = true, bool INCLUDE_Q_IS_0 = false) {\r\n  u64 sq = sqrtl(N);\r\n  u32 n =\
@@ -159,7 +159,7 @@ data:
   isVerificationFile: false
   path: nt/range_rational_count.hpp
   requiredBy: []
-  timestamp: '2026-09-02 05:55:18+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp

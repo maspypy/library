@@ -88,7 +88,7 @@ data:
     \    x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n   \
     \ }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n  template\
     \ <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r, ll qr, X\
-    \ &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (check(MX::op(node[c].prod,\
+    \ &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (r <= qr && check(MX::op(node[c].prod,\
     \ x))) {\n      x = MX::op(node[c].prod, x);\n      return L0;\n    }\n    ll\
     \ m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);\n\
     \    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
@@ -136,7 +136,7 @@ data:
   isVerificationFile: false
   path: ds/my_multiset.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/my_multiset.hpp

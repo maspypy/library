@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -949,56 +949,57 @@ data:
     \ * i], T[2 * i + 1]);\n      auto tt = convolution(t[2 * i + 1], T[2 * i]);\n\
     \      FOR(k, len(t[i])) t[i][k] += tt[k];\n    }\n    t[1].resize(m);\n    reverse(all(t[1]));\n\
     \    return t[1];\n  }\n};\n\ntemplate <typename mint>\nvc<mint> multipoint_evaluation_ntt(vc<mint>\
-    \ f, const vc<mint>& point) {\n  using poly = vc<mint>;\n  int n = 1, k = 0;\n\
-    \  while (n < len(point)) n *= 2, ++k;\n  vv(mint, F, k + 1, 2 * n);\n  FOR(i,\
-    \ len(point)) F[0][2 * i] = -point[i];\n\n  FOR(d, k) {\n    int b = 1 << d;\n\
-    \    for (int L = 0; L < 2 * n; L += 4 * b) {\n      poly f1 = {F[d].begin() +\
-    \ L, F[d].begin() + L + b};\n      poly f2 = {F[d].begin() + L + 2 * b, F[d].begin()\
-    \ + L + 3 * b};\n      ntt_doubling(f1), ntt_doubling(f2);\n      FOR(i, b) f1[i]\
-    \ += 1, f2[i] += 1;\n      FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n      copy(all(f1),\
-    \ F[d].begin() + L);\n      copy(all(f2), F[d].begin() + L + 2 * b);\n      FOR(i,\
-    \ 2 * b) { F[d + 1][L + i] = f1[i] * f2[i] - 1; }\n    }\n  }\n  vc<mint> P =\
-    \ {F[k].begin(), F[k].begin() + n};\n  ntt(P, 1), P.eb(1), reverse(all(P)), P.resize(len(f)),\
-    \ P = fps_inv<mint>(P);\n  f.resize(n + len(P) - 1), f = middle_product<mint>(f,\
-    \ P), reverse(all(f));\n  transposed_ntt(f, 1);\n  vc<mint>& G = f;\n  FOR_R(d,\
-    \ k) {\n    vc<mint> nxt_G(n);\n    int b = 1 << d;\n    for (int L = 0; L < n;\
-    \ L += 2 * b) {\n      vc<mint> g1(2 * b), g2(2 * b);\n      FOR(i, 2 * b) { g1[i]\
-    \ = G[L + i] * F[d][2 * L + 2 * b + i]; }\n      FOR(i, 2 * b) { g2[i] = G[L +\
-    \ i] * F[d][2 * L + i]; }\n      ntt_doubling<mint, true>(g1), ntt_doubling<mint,\
-    \ true>(g2);\n      FOR(i, b) { nxt_G[L + i] = g1[i], nxt_G[L + b + i] = g2[i];\
-    \ }\n    }\n    swap(G, nxt_G);\n  }\n  G.resize(len(point));\n  return G;\n}\n\
-    \ntemplate <typename mint>\nvc<mint> multipoint_eval(const vc<mint>& f, const\
-    \ vc<mint>& x) {\n  if (x.empty()) return {};\n  if (mint::can_ntt()) return multipoint_evaluation_ntt(f,\
-    \ x);\n  SubproductTree<mint> F(x);\n  return F.evaluation(f);\n}\n\ntemplate\
-    \ <typename mint>\nvc<mint> multipoint_interpolate(const vc<mint>& x, const vc<mint>&\
-    \ y) {\n  if (x.empty()) return {};\n  SubproductTree<mint> F(x);\n  return F.interpolation(y);\n\
-    }\n\n// calculate f(ar^k) for 0 <= k < m\ntemplate <typename mint>\nvc<mint> multipoint_eval_on_geom_seq(vc<mint>\
-    \ f, mint a, mint r, int m) {\n  const int n = len(f);\n  if (m == 0) return {};\n\
-    \n  auto eval = [&](mint x) -> mint {\n    mint fx = 0;\n    mint pow = 1;\n \
-    \   FOR(i, n) fx += f[i] * pow, pow *= x;\n    return fx;\n  };\n\n  if (r ==\
-    \ mint(0)) {\n    vc<mint> res(m);\n    FOR(i, 1, m) res[i] = f[0];\n    res[0]\
-    \ = eval(a);\n    return res;\n  }\n  if (n < 60 || m < 60) {\n    vc<mint> res(m);\n\
-    \    FOR(i, m) res[i] = eval(a), a *= r;\n    return res;\n  }\n  assert(r !=\
-    \ mint(0));\n  // a == 1 \u306B\u5E30\u7740\n  mint pow_a = 1;\n  FOR(i, n) f[i]\
-    \ *= pow_a, pow_a *= a;\n\n  auto calc = [&](mint r, int m) -> vc<mint> {\n  \
-    \  // r^{t_i} \u306E\u8A08\u7B97\n    vc<mint> res(m);\n    mint pow = 1;\n  \
-    \  res[0] = 1;\n    FOR(i, m - 1) {\n      res[i + 1] = res[i] * pow;\n      pow\
-    \ *= r;\n    }\n    return res;\n  };\n\n  vc<mint> A = calc(r, n + m - 1), B\
-    \ = calc(r.inverse(), max(n, m));\n  FOR(i, n) f[i] *= B[i];\n  f = middle_product(A,\
-    \ f);\n  FOR(i, m) f[i] *= B[i];\n  return f;\n}\n\n// Y[i] = f(ar^i)\ntemplate\
-    \ <typename mint>\nvc<mint> multipoint_interpolate_on_geom_seq(vc<mint> Y, mint\
-    \ a, mint r) {\n  const int n = len(Y);\n  if (n == 0) return {};\n  if (n ==\
-    \ 1) return {Y[0]};\n  assert(r != mint(0));\n  mint ir = r.inverse();\n\n  vc<mint>\
-    \ POW(n + n - 1), tPOW(n + n - 1);\n  POW[0] = tPOW[0] = mint(1);\n  FOR(i, n\
-    \ + n - 2) POW[i + 1] = POW[i] * r, tPOW[i + 1] = tPOW[i] * POW[i];\n\n  vc<mint>\
-    \ iPOW(n + n - 1), itPOW(n + n - 1);\n  iPOW[0] = itPOW[0] = mint(1);\n  FOR(i,\
-    \ n) iPOW[i + 1] = iPOW[i] * ir, itPOW[i + 1] = itPOW[i] * iPOW[i];\n\n  // prod_[1,i]\
-    \ 1-r^k\n  vc<mint> S(n);\n  S[0] = mint(1);\n  FOR(i, 1, n) S[i] = S[i - 1] *\
-    \ (mint(1) - POW[i]);\n  vc<mint> iS = all_inverse<mint>(S);\n  mint sn = S[n\
-    \ - 1] * (mint(1) - POW[n]);\n\n  FOR(i, n) {\n    Y[i] = Y[i] * tPOW[n - 1 -\
-    \ i] * itPOW[n - 1] * iS[i] * iS[n - 1 - i];\n    if (i % 2 == 1) Y[i] = -Y[i];\n\
-    \  }\n\n  // sum_i Y[i] / 1-r^ix\n  FOR(i, n) Y[i] *= itPOW[i];\n  vc<mint> f\
-    \ = middle_product(tPOW, Y);\n  FOR(i, n) f[i] *= itPOW[i];\n\n  // prod 1-r^ix\n\
+    \ f, const vc<mint>& point) {\n  if (f.empty()) return vc<mint>(len(point), 0);\n\
+    \  using poly = vc<mint>;\n  int n = 1, k = 0;\n  while (n < len(point)) n *=\
+    \ 2, ++k;\n  vv(mint, F, k + 1, 2 * n);\n  FOR(i, len(point)) F[0][2 * i] = -point[i];\n\
+    \n  FOR(d, k) {\n    int b = 1 << d;\n    for (int L = 0; L < 2 * n; L += 4 *\
+    \ b) {\n      poly f1 = {F[d].begin() + L, F[d].begin() + L + b};\n      poly\
+    \ f2 = {F[d].begin() + L + 2 * b, F[d].begin() + L + 3 * b};\n      ntt_doubling(f1),\
+    \ ntt_doubling(f2);\n      FOR(i, b) f1[i] += 1, f2[i] += 1;\n      FOR(i, b,\
+    \ 2 * b) f1[i] -= 1, f2[i] -= 1;\n      copy(all(f1), F[d].begin() + L);\n   \
+    \   copy(all(f2), F[d].begin() + L + 2 * b);\n      FOR(i, 2 * b) { F[d + 1][L\
+    \ + i] = f1[i] * f2[i] - 1; }\n    }\n  }\n  vc<mint> P = {F[k].begin(), F[k].begin()\
+    \ + n};\n  ntt(P, 1), P.eb(1), reverse(all(P)), P.resize(len(f)), P = fps_inv<mint>(P);\n\
+    \  f.resize(n + len(P) - 1), f = middle_product<mint>(f, P), reverse(all(f));\n\
+    \  transposed_ntt(f, 1);\n  vc<mint>& G = f;\n  FOR_R(d, k) {\n    vc<mint> nxt_G(n);\n\
+    \    int b = 1 << d;\n    for (int L = 0; L < n; L += 2 * b) {\n      vc<mint>\
+    \ g1(2 * b), g2(2 * b);\n      FOR(i, 2 * b) { g1[i] = G[L + i] * F[d][2 * L +\
+    \ 2 * b + i]; }\n      FOR(i, 2 * b) { g2[i] = G[L + i] * F[d][2 * L + i]; }\n\
+    \      ntt_doubling<mint, true>(g1), ntt_doubling<mint, true>(g2);\n      FOR(i,\
+    \ b) { nxt_G[L + i] = g1[i], nxt_G[L + b + i] = g2[i]; }\n    }\n    swap(G, nxt_G);\n\
+    \  }\n  G.resize(len(point));\n  return G;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ multipoint_eval(const vc<mint>& f, const vc<mint>& x) {\n  if (x.empty()) return\
+    \ {};\n  if (mint::can_ntt()) return multipoint_evaluation_ntt(f, x);\n  SubproductTree<mint>\
+    \ F(x);\n  return F.evaluation(f);\n}\n\ntemplate <typename mint>\nvc<mint> multipoint_interpolate(const\
+    \ vc<mint>& x, const vc<mint>& y) {\n  if (x.empty()) return {};\n  SubproductTree<mint>\
+    \ F(x);\n  return F.interpolation(y);\n}\n\n// calculate f(ar^k) for 0 <= k <\
+    \ m\ntemplate <typename mint>\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
+    \ mint a, mint r, int m) {\n  const int n = len(f);\n  if (m == 0) return {};\n\
+    \  if (n == 0) return vc<mint>(m, 0);\n\n  auto eval = [&](mint x) -> mint {\n\
+    \    mint fx = 0;\n    mint pow = 1;\n    FOR(i, n) fx += f[i] * pow, pow *= x;\n\
+    \    return fx;\n  };\n\n  if (r == mint(0)) {\n    vc<mint> res(m);\n    FOR(i,\
+    \ 1, m) res[i] = f[0];\n    res[0] = eval(a);\n    return res;\n  }\n  if (n <\
+    \ 60 || m < 60) {\n    vc<mint> res(m);\n    FOR(i, m) res[i] = eval(a), a *=\
+    \ r;\n    return res;\n  }\n  assert(r != mint(0));\n  // a == 1 \u306B\u5E30\u7740\
+    \n  mint pow_a = 1;\n  FOR(i, n) f[i] *= pow_a, pow_a *= a;\n\n  auto calc = [&](mint\
+    \ r, int m) -> vc<mint> {\n    // r^{t_i} \u306E\u8A08\u7B97\n    vc<mint> res(m);\n\
+    \    mint pow = 1;\n    res[0] = 1;\n    FOR(i, m - 1) {\n      res[i + 1] = res[i]\
+    \ * pow;\n      pow *= r;\n    }\n    return res;\n  };\n\n  vc<mint> A = calc(r,\
+    \ n + m - 1), B = calc(r.inverse(), max(n, m));\n  FOR(i, n) f[i] *= B[i];\n \
+    \ f = middle_product(A, f);\n  FOR(i, m) f[i] *= B[i];\n  return f;\n}\n\n// Y[i]\
+    \ = f(ar^i)\ntemplate <typename mint>\nvc<mint> multipoint_interpolate_on_geom_seq(vc<mint>\
+    \ Y, mint a, mint r) {\n  const int n = len(Y);\n  if (n == 0) return {};\n  if\
+    \ (n == 1) return {Y[0]};\n  assert(r != mint(0));\n  mint ir = r.inverse();\n\
+    \n  vc<mint> POW(n + n - 1), tPOW(n + n - 1);\n  POW[0] = tPOW[0] = mint(1);\n\
+    \  FOR(i, n + n - 2) POW[i + 1] = POW[i] * r, tPOW[i + 1] = tPOW[i] * POW[i];\n\
+    \n  vc<mint> iPOW(n + n - 1), itPOW(n + n - 1);\n  iPOW[0] = itPOW[0] = mint(1);\n\
+    \  FOR(i, n) iPOW[i + 1] = iPOW[i] * ir, itPOW[i + 1] = itPOW[i] * iPOW[i];\n\n\
+    \  // prod_[1,i] 1-r^k\n  vc<mint> S(n);\n  S[0] = mint(1);\n  FOR(i, 1, n) S[i]\
+    \ = S[i - 1] * (mint(1) - POW[i]);\n  vc<mint> iS = all_inverse<mint>(S);\n  mint\
+    \ sn = S[n - 1] * (mint(1) - POW[n]);\n\n  FOR(i, n) {\n    Y[i] = Y[i] * tPOW[n\
+    \ - 1 - i] * itPOW[n - 1] * iS[i] * iS[n - 1 - i];\n    if (i % 2 == 1) Y[i] =\
+    \ -Y[i];\n  }\n\n  // sum_i Y[i] / 1-r^ix\n  FOR(i, n) Y[i] *= itPOW[i];\n  vc<mint>\
+    \ f = middle_product(tPOW, Y);\n  FOR(i, n) f[i] *= itPOW[i];\n\n  // prod 1-r^ix\n\
     \  vc<mint> g(n);\n  g[0] = mint(1);\n  FOR(i, 1, n) {\n    g[i] = tPOW[i] * sn\
     \ * iS[i] * iS[n - i];\n    if (i % 2 == 1) g[i] = -g[i];\n  }\n  f = convolution<mint>(f,\
     \ g);\n  f.resize(n);\n\n  reverse(all(f));\n  mint ia = a.inverse();\n  mint\
@@ -1119,7 +1120,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 07:11:14+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp

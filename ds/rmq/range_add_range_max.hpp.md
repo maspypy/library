@@ -95,7 +95,7 @@ data:
     \    x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n   \
     \ }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n  template\
     \ <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r, ll qr, X\
-    \ &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (check(MX::op(node[c].prod,\
+    \ &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (r <= qr && check(MX::op(node[c].prod,\
     \ x))) {\n      x = MX::op(node[c].prod, x);\n      return L0;\n    }\n    ll\
     \ m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);\n\
     \    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
@@ -113,28 +113,29 @@ data:
     \ update(i);\n  }\n\n  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all()\
     \ const { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
     \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
-    \ X& x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
-    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
-    \  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n   \
-    \ X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
-    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
-    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L &&\
-    \ L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L\
-    \ >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return\
-    \ I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class F>\n\
-    \  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n\
-    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n\
-    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
-    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
-    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
-    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
-    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
-    \ min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n\
-    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n\
-    \      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ X& x) {\n    assert(0 <= i && i < n);\n    dat[i += size] = x;\n    while (i\
+    \ >>= 1) update(i);\n  }\n\n  void multiply(int i, const X& x) {\n    assert(0\
+    \ <= i && i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i], x);\n    while\
+    \ (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) const {\n    assert(0 <=\
+    \ L && L <= R && R <= n);\n    X vl = Monoid::id(), vr = Monoid::id();\n    L\
+    \ += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
+    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
+    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  vc<int> prod_ids(int\
+    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    vc<int> I, J;\n\
+    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) I.eb(L++);\n\
+    \      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n\
+    \    concat(I, J);\n    return I;\n  }\n\n  X prod_all() const { return dat[1];\
+    \ }\n\n  template <class F>\n  int max_right(F check, int L) const {\n    assert(0\
+    \ <= L && L <= n && check(Monoid::id()));\n    if (L == n) return n;\n    L +=\
+    \ size;\n    X sm = Monoid::id();\n    do {\n      while (L % 2 == 0) L >>= 1;\n\
+    \      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n   \
+    \       L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) {\n         \
+    \   sm = Monoid::op(sm, dat[L++]);\n          }\n        }\n        return L -\
+    \ size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L)\
+    \ != L);\n    return n;\n  }\n\n  template <class F>\n  int min_left(F check,\
+    \ int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n    if\
+    \ (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n   \
+    \   --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
     \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
     \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
     \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
@@ -250,7 +251,7 @@ data:
   isVerificationFile: false
   path: ds/rmq/range_add_range_max.hpp
   requiredBy: []
-  timestamp: '2026-10-05 00:45:05+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp

@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -711,27 +711,28 @@ data:
     poly/count_terms.hpp\"\ntemplate<typename mint>\nint count_terms(const vc<mint>&\
     \ f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n\
     }\n#line 4 \"poly/fps_log.hpp\"\n\ntemplate <typename mint>\nvc<mint> fps_log_dense(const\
-    \ vc<mint>& f) {\n  assert(f[0] == mint(1));\n  ll N = len(f);\n  vc<mint> df\
-    \ = f;\n  FOR(i, N) df[i] *= mint(i);\n  df.erase(df.begin());\n  auto f_inv =\
-    \ fps_inv(f);\n  auto g = convolution(df, f_inv);\n  g.resize(N - 1);\n  g.insert(g.begin(),\
-    \ 0);\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\n  return g;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> fps_log_sparse(const vc<mint>& f) {\n  int N = f.size();\n \
-    \ vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n\
-    \  vc<mint> F(N);\n  vc<mint> g(N - 1);\n  for (int n = 0; n < N - 1; ++n) {\n\
-    \    mint rhs = mint(n + 1) * f[n + 1];\n    for (auto&& [i, fi] : dat) {\n  \
-    \    if (i > n) break;\n      rhs -= fi * g[n - i];\n    }\n    g[n] = rhs;\n\
-    \    F[n + 1] = rhs * inv<mint>(n + 1);\n  }\n  return F;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> fps_log(const vc<mint>& f) {\n  assert(f[0] == mint(1));\n \
-    \ int n = count_terms(f);\n  int t = (mint::can_ntt() ? 200 : 1200);\n  return\
-    \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\n}\n#line 1 \"\
-    poly/fps_div.hpp\"\n\n#line 1 \"poly/count_terms.hpp\"\ntemplate<typename mint>\n\
-    int count_terms(const vc<mint>& f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i] !=\
-    \ mint(0)) ++t;\n  return t;\n}\n#line 1 \"poly/count_terms.hpp\"\ntemplate<typename\
-    \ mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i]\
-    \ != mint(0)) ++t;\n  return t;\n}\n#line 1 \"mod/modint_common.hpp\"\n\n\nstruct\
-    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  assert(f[0] == mint(1));\n  ll\
+    \ N = len(f);\n  vc<mint> df = f;\n  FOR(i, N) df[i] *= mint(i);\n  df.erase(df.begin());\n\
+    \  auto f_inv = fps_inv(f);\n  auto g = convolution(df, f_inv);\n  g.resize(N\
+    \ - 1);\n  g.insert(g.begin(), 0);\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\n  return\
+    \ g;\n}\n\ntemplate <typename mint>\nvc<mint> fps_log_sparse(const vc<mint>& f)\
+    \ {\n  if (f.empty()) return {};\n  int N = f.size();\n  vc<pair<int, mint>> dat;\n\
+    \  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint> F(N);\n  vc<mint>\
+    \ g(N - 1);\n  for (int n = 0; n < N - 1; ++n) {\n    mint rhs = mint(n + 1) *\
+    \ f[n + 1];\n    for (auto&& [i, fi] : dat) {\n      if (i > n) break;\n     \
+    \ rhs -= fi * g[n - i];\n    }\n    g[n] = rhs;\n    F[n + 1] = rhs * inv<mint>(n\
+    \ + 1);\n  }\n  return F;\n}\n\ntemplate <typename mint>\nvc<mint> fps_log(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  assert(f[0] == mint(1));\n  int\
+    \ n = count_terms(f);\n  int t = (mint::can_ntt() ? 200 : 1200);\n  return (n\
+    \ <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\n}\n#line 1 \"poly/fps_div.hpp\"\
+    \n\n#line 1 \"poly/count_terms.hpp\"\ntemplate<typename mint>\nint count_terms(const\
+    \ vc<mint>& f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return\
+    \ t;\n}\n#line 1 \"poly/count_terms.hpp\"\ntemplate<typename mint>\nint count_terms(const\
+    \ vc<mint>& f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return\
+    \ t;\n}\n#line 1 \"mod/modint_common.hpp\"\n\n\nstruct has_mod_impl {\n  template\
+    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static vector<mint> dat\
     \ = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod =\
     \ mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if\
@@ -1448,7 +1449,7 @@ data:
   isVerificationFile: false
   path: seq/sum_of_powers.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2459.test.cpp

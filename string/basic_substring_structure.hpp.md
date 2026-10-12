@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -231,11 +231,11 @@ data:
     \  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all() const { return\
     \ {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i]\
     \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n\
-    \    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
-    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
-    \  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n   \
-    \ X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
+    \    assert(0 <= i && i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
+    \  }\n\n  void multiply(int i, const X& x) {\n    assert(0 <= i && i < n);\n \
+    \   i += size;\n    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n\
+    \  }\n\n  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n\
+    \    X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
     \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
     \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
     \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L &&\
@@ -619,7 +619,7 @@ data:
   isVerificationFile: false
   path: string/basic_substring_structure.hpp
   requiredBy: []
-  timestamp: '2026-10-05 00:45:05+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/basic_substring_structure.hpp

@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -148,39 +148,38 @@ data:
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"linalg/matrix_mul.hpp\"\n\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(u32, b, N3, N2);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod()\
-    \ < (1 << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n\
-    \      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n   \
-    \ }\n  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m,\
-    \ N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(u32, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod() < (1\
+    \ << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n   \
+    \   FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n    }\n\
+    \  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m, N2)\
+    \ sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
     \    }\n  }\n  return C;\n}\n\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(T, b, N2, N3);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m,\
-    \ N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix\
-    \ defined as array\ntemplate <class T, int N,\n          typename enable_if<has_mod<T>::value>::type*\
-    \ = nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n\n  if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N)\
-    \ FOR(k, N) {\n      u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n\
-    \      C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128\
-    \ sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(T, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m, N2) FOR(k,\
+    \ N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix defined\
+    \ as array\ntemplate <class T, int N,\n    typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\narray<array<T, N>, N> matrix_mul(\n    const array<array<T, N>,\
+    \ N>& A, const array<array<T, N>, N>& B) {\n  array<array<T, N>, N> C{};\n\n \
+    \ if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N) FOR(k, N) {\n  \
+    \    u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n  \
+    \    C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128 sm\
+    \ = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
     \ = sm;\n    }\n  }\n  return C;\n}\n\n// square-matrix defined as array\ntemplate\
-    \ <class T, int N,\n          typename enable_if<!has_mod<T>::value>::type* =\
-    \ nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j] * B[j][k];\n\
-    \  return C;\n}\n#line 5 \"random/random_matrix.hpp\"\n\ntemplate <typename mint>\n\
-    vvc<mint> random_matrix(int n, int m, int rk) {\n  if (n == m && m == rk) {\n\
-    \    while (1) {\n      vv(mint, A, n, n);\n      FOR(i, n) FOR(j, n) A[i][j]\
-    \ = RNG(0, mint::get_mod());\n      if (det(A) == mint(0)) continue;\n      return\
-    \ A;\n    }\n  }\n  vvc<mint> L = random_matrix<mint>(n, n, n);\n  vvc<mint> R\
-    \ = random_matrix<mint>(m, m, m);\n  vv(mint, A, n, m);\n  FOR(i, rk) A[i][i]\
-    \ = 1;\n  A = matrix_mul<mint>(L, A, n, n, m);\n  A = matrix_mul<mint>(A, R, n,\
-    \ m, m);\n  return A;\n}\n"
+    \ <class T, int N,\n    typename enable_if<!has_mod<T>::value>::type* = nullptr>\n\
+    array<array<T, N>, N> matrix_mul(\n    const array<array<T, N>, N>& A, const array<array<T,\
+    \ N>, N>& B) {\n  array<array<T, N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N)\
+    \ C[i][k] += A[i][j] * B[j][k];\n  return C;\n}\n#line 5 \"random/random_matrix.hpp\"\
+    \n\ntemplate <typename mint>\nvvc<mint> random_matrix(int n, int m, int rk) {\n\
+    \  if (n == m && m == rk) {\n    while (1) {\n      vv(mint, A, n, n);\n     \
+    \ FOR(i, n) FOR(j, n) A[i][j] = RNG(0, mint::get_mod());\n      if (det(A) ==\
+    \ mint(0)) continue;\n      return A;\n    }\n  }\n  vvc<mint> L = random_matrix<mint>(n,\
+    \ n, n);\n  vvc<mint> R = random_matrix<mint>(m, m, m);\n  vv(mint, A, n, m);\n\
+    \  FOR(i, rk) A[i][i] = 1;\n  A = matrix_mul<mint>(L, A, n, n, m);\n  A = matrix_mul<mint>(A,\
+    \ R, n, m, m);\n  return A;\n}\n"
   code: "\n#include \"random/base.hpp\"\n#include \"linalg/det.hpp\"\n#include \"\
     linalg/matrix_mul.hpp\"\n\ntemplate <typename mint>\nvvc<mint> random_matrix(int\
     \ n, int m, int rk) {\n  if (n == m && m == rk) {\n    while (1) {\n      vv(mint,\
@@ -199,7 +198,7 @@ data:
   isVerificationFile: false
   path: random/random_matrix.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/blackbox_solve_linear.test.cpp

@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -546,24 +546,25 @@ data:
     poly/count_terms.hpp\"\ntemplate<typename mint>\nint count_terms(const vc<mint>&\
     \ f){\n  int t = 0;\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n\
     }\n#line 4 \"poly/fps_log.hpp\"\n\ntemplate <typename mint>\nvc<mint> fps_log_dense(const\
-    \ vc<mint>& f) {\n  assert(f[0] == mint(1));\n  ll N = len(f);\n  vc<mint> df\
-    \ = f;\n  FOR(i, N) df[i] *= mint(i);\n  df.erase(df.begin());\n  auto f_inv =\
-    \ fps_inv(f);\n  auto g = convolution(df, f_inv);\n  g.resize(N - 1);\n  g.insert(g.begin(),\
-    \ 0);\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\n  return g;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> fps_log_sparse(const vc<mint>& f) {\n  int N = f.size();\n \
-    \ vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n\
-    \  vc<mint> F(N);\n  vc<mint> g(N - 1);\n  for (int n = 0; n < N - 1; ++n) {\n\
-    \    mint rhs = mint(n + 1) * f[n + 1];\n    for (auto&& [i, fi] : dat) {\n  \
-    \    if (i > n) break;\n      rhs -= fi * g[n - i];\n    }\n    g[n] = rhs;\n\
-    \    F[n + 1] = rhs * inv<mint>(n + 1);\n  }\n  return F;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> fps_log(const vc<mint>& f) {\n  assert(f[0] == mint(1));\n \
-    \ int n = count_terms(f);\n  int t = (mint::can_ntt() ? 200 : 1200);\n  return\
-    \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\n}\n#line 3 \"\
-    graph/count/count_labeled_connected.hpp\"\n\n// https://oeis.org/A001187\ntemplate\
-    \ <typename mint>\nvc<mint> count_labeled_connected(int N) {\n  vc<mint> F = count_labeled_undirected<mint>(N);\n\
-    \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_log(F);\n  FOR(i, N + 1)\
-    \ F[i] *= fact<mint>(i);\n  return F;\n}\n#line 7 \"test/1_mytest/count_labeled_connected.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> F = count_labeled_connected<mint>(10);\n\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  assert(f[0] == mint(1));\n  ll\
+    \ N = len(f);\n  vc<mint> df = f;\n  FOR(i, N) df[i] *= mint(i);\n  df.erase(df.begin());\n\
+    \  auto f_inv = fps_inv(f);\n  auto g = convolution(df, f_inv);\n  g.resize(N\
+    \ - 1);\n  g.insert(g.begin(), 0);\n  FOR(i, 1, N) g[i] *= inv<mint>(i);\n  return\
+    \ g;\n}\n\ntemplate <typename mint>\nvc<mint> fps_log_sparse(const vc<mint>& f)\
+    \ {\n  if (f.empty()) return {};\n  int N = f.size();\n  vc<pair<int, mint>> dat;\n\
+    \  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\n  vc<mint> F(N);\n  vc<mint>\
+    \ g(N - 1);\n  for (int n = 0; n < N - 1; ++n) {\n    mint rhs = mint(n + 1) *\
+    \ f[n + 1];\n    for (auto&& [i, fi] : dat) {\n      if (i > n) break;\n     \
+    \ rhs -= fi * g[n - i];\n    }\n    g[n] = rhs;\n    F[n + 1] = rhs * inv<mint>(n\
+    \ + 1);\n  }\n  return F;\n}\n\ntemplate <typename mint>\nvc<mint> fps_log(const\
+    \ vc<mint>& f) {\n  if (f.empty()) return {};\n  assert(f[0] == mint(1));\n  int\
+    \ n = count_terms(f);\n  int t = (mint::can_ntt() ? 200 : 1200);\n  return (n\
+    \ <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\n}\n#line 3 \"graph/count/count_labeled_connected.hpp\"\
+    \n\n// https://oeis.org/A001187\ntemplate <typename mint>\nvc<mint> count_labeled_connected(int\
+    \ N) {\n  vc<mint> F = count_labeled_undirected<mint>(N);\n  FOR(i, N + 1) F[i]\
+    \ *= fact_inv<mint>(i);\n  F = fps_log(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
+    \  return F;\n}\n#line 7 \"test/1_mytest/count_labeled_connected.test.cpp\"\n\n\
+    using mint = modint998;\n\nvoid test() {\n  vc<mint> F = count_labeled_connected<mint>(10);\n\
     \  vi ANS = {0,\n            1,\n            1,\n            4,\n            38,\n\
     \            728,\n            26704,\n            1866256,\n            251548592,\n\
     \            66296291072,\n            34496488594816};\n  FOR(n, 11) { assert(F[n]\
@@ -597,7 +598,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_labeled_connected.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 07:11:14+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_labeled_connected.test.cpp

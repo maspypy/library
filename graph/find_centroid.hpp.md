@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -123,7 +123,7 @@ data:
     \   }\n  }\n};\n#line 2 \"graph/find_centroid.hpp\"\n\r\n// (v,w) or (v,-1)\r\n\
     template <typename GT>\r\npair<int, int> find_centroids(GT& G, vi weight = {})\
     \ {\r\n  int N = G.N;\r\n  if (weight.empty()) weight.assign(N, 1);\r\n  vc<int>\
-    \ par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\n  int l = 0, r = 0;\r\n\
+    \ par(N, -1);\r\n  vc<int> V(N);\r\n  vc<ll> sz(N);\r\n  int l = 0, r = 0;\r\n\
     \  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\n    for (auto&&\
     \ e : G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to] = v;\r\n     \
     \   V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int v = V[i];\r\
@@ -137,7 +137,7 @@ data:
   code: "#include \"graph/base.hpp\"\r\n\r\n// (v,w) or (v,-1)\r\ntemplate <typename\
     \ GT>\r\npair<int, int> find_centroids(GT& G, vi weight = {}) {\r\n  int N = G.N;\r\
     \n  if (weight.empty()) weight.assign(N, 1);\r\n  vc<int> par(N, -1);\r\n  vc<int>\
-    \ V(N);\r\n  vc<int> sz(N);\r\n  int l = 0, r = 0;\r\n  V[r++] = 0;\r\n  while\
+    \ V(N);\r\n  vc<ll> sz(N);\r\n  int l = 0, r = 0;\r\n  V[r++] = 0;\r\n  while\
     \ (l < r) {\r\n    int v = V[l++];\r\n    for (auto&& e : G[v])\r\n      if (e.to\
     \ != par[v]) {\r\n        par[e.to] = v;\r\n        V[r++] = e.to;\r\n      }\r\
     \n  }\r\n  FOR_R(i, N) {\r\n    int v = V[i];\r\n    sz[v] += weight[v];\r\n \
@@ -155,7 +155,7 @@ data:
   path: graph/find_centroid.hpp
   requiredBy:
   - graph/centroid_decomposition_old.hpp
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1796.test.cpp

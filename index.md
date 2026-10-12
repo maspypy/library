@@ -348,7 +348,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -1637,7 +1637,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
     - icon: ':heavy_check_mark:'
@@ -1700,7 +1700,7 @@ data:
     - icon: ':warning:'
       path: mod/mod_log_u64.hpp
       title: mod/mod_log_u64.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
     - icon: ':warning:'
@@ -1712,10 +1712,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/modfast.hpp
       title: mod/modfast.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1724,13 +1724,13 @@ data:
     - icon: ':warning:'
       path: mod/modint_64bit.hpp
       title: mod/modint_64bit.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint_common.hpp
       title: mod/modint_common.hpp
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/montgomery_modint.hpp
       title: mod/montgomery_modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1745,7 +1745,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/prefix_sum_of_binom.hpp
       title: mod/prefix_sum_of_binom.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/primitive_root.hpp
       title: mod/primitive_root.hpp
     - icon: ':heavy_check_mark:'
@@ -1815,7 +1815,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/ext_gcd.hpp
       title: nt/ext_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':warning:'
@@ -1839,7 +1839,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/integer_kth_root.hpp
       title: nt/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/is_prime.hpp
       title: nt/is_prime.hpp
     - icon: ':heavy_check_mark:'
@@ -1866,7 +1866,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/prime_sum_mod6.hpp
       title: nt/prime_sum_mod6.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/prime_table.hpp
       title: nt/prime_table.hpp
     - icon: ':heavy_check_mark:'
@@ -1884,7 +1884,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/sigma_0_sum.hpp
       title: nt/sigma_0_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/spf_table.hpp
       title: nt/spf_table.hpp
     - icon: ':heavy_check_mark:'
@@ -2293,7 +2293,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -3114,7 +3114,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/mod_sum_of_linear.test.cpp
       title: test/1_mytest/mod_sum_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/modfast.test.cpp
       title: test/1_mytest/modfast.test.cpp
     - icon: ':heavy_check_mark:'

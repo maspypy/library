@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'

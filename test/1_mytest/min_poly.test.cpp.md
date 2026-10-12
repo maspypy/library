@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -46,7 +46,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -710,61 +710,60 @@ data:
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"linalg/matrix_mul.hpp\"\n\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(u32, b, N3, N2);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod()\
-    \ < (1 << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n\
-    \      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n   \
-    \ }\n  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m,\
-    \ N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(u32, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j].val;\n  vv(T, C, N1, N3);\n\n  if ((T::get_mod() < (1\
+    \ << 30)) && N2 <= 16) {\n    FOR(i, N1) FOR(j, N3) {\n      u64 sm = 0;\n   \
+    \   FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = sm;\n    }\n\
+    \  } else {\n    FOR(i, N1) FOR(j, N3) {\n      u128 sm = 0;\n      FOR(m, N2)\
+    \ sm += u64(A[i][m].val) * b[j][m];\n      C[i][j] = T::raw(sm % (T::get_mod()));\n\
     \    }\n  }\n  return C;\n}\n\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\n                     int N2 = -1, int N3 = -1) {\n  if (N1 == -1)\
-    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vv(T, b, N2, N3);\n  FOR(i,\
-    \ N2) FOR(j, N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m,\
-    \ N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix\
-    \ defined as array\ntemplate <class T, int N,\n          typename enable_if<has_mod<T>::value>::type*\
-    \ = nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n\n  if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N)\
-    \ FOR(k, N) {\n      u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n\
-    \      C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128\
-    \ sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
+    \ N1 = -1,\n    int N2 = -1, int N3 = -1) {\n  if (N1 == -1) {\n    N1 = len(A),\
+    \ N2 = len(B), N3 = len(B[0]);\n  }\n  vv(T, b, N3, N2);\n  FOR(i, N2) FOR(j,\
+    \ N3) b[j][i] = B[i][j];\n  vv(T, C, N1, N3);\n  FOR(n, N1) FOR(m, N2) FOR(k,\
+    \ N3) C[n][k] += A[n][m] * b[k][m];\n  return C;\n}\n\n// square-matrix defined\
+    \ as array\ntemplate <class T, int N,\n    typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\narray<array<T, N>, N> matrix_mul(\n    const array<array<T, N>,\
+    \ N>& A, const array<array<T, N>, N>& B) {\n  array<array<T, N>, N> C{};\n\n \
+    \ if ((T::get_mod() < (1 << 30)) && N <= 16) {\n    FOR(i, N) FOR(k, N) {\n  \
+    \    u64 sm = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n  \
+    \    C[i][k] = sm;\n    }\n  } else {\n    FOR(i, N) FOR(k, N) {\n      u128 sm\
+    \ = 0;\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\n      C[i][k]\
     \ = sm;\n    }\n  }\n  return C;\n}\n\n// square-matrix defined as array\ntemplate\
-    \ <class T, int N,\n          typename enable_if<!has_mod<T>::value>::type* =\
-    \ nullptr>\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,\n\
-    \                                 const array<array<T, N>, N>& B) {\n  array<array<T,\
-    \ N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j] * B[j][k];\n\
-    \  return C;\n}\n#line 7 \"test/1_mytest/min_poly.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  vc<tuple<int, int, mint>> A;\n  A.eb(0, 0, 1);\n  A.eb(0, 1,\
-    \ 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint> f = blackbox_min_poly<mint>(2,\
-    \ [&](vc<mint> f) -> vc<mint> {\n    vc<mint> g(2);\n    for (auto& [a, b, c]:\
-    \ A) g[b] += f[a] * c;\n    return g;\n  });\n  assert(f == vc<mint>({mint(-2),\
-    \ mint(-5), mint(1)}));\n\n  A.clear();\n  A.eb(0, 1, 1);\n  f = blackbox_min_poly<mint>(2,\
-    \ [&](vc<mint> f) -> vc<mint> {\n    vc<mint> g(2);\n    for (auto& [a, b, c]:\
+    \ <class T, int N,\n    typename enable_if<!has_mod<T>::value>::type* = nullptr>\n\
+    array<array<T, N>, N> matrix_mul(\n    const array<array<T, N>, N>& A, const array<array<T,\
+    \ N>, N>& B) {\n  array<array<T, N>, N> C{};\n  FOR(i, N) FOR(j, N) FOR(k, N)\
+    \ C[i][k] += A[i][j] * B[j][k];\n  return C;\n}\n#line 7 \"test/1_mytest/min_poly.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int, int, mint>> A;\n\
+    \  A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint>\
+    \ f = blackbox_min_poly<mint>(2, [&](vc<mint> f) -> vc<mint> {\n    vc<mint> g(2);\n\
+    \    for (auto& [a, b, c]: A) g[b] += f[a] * c;\n    return g;\n  });\n  assert(f\
+    \ == vc<mint>({mint(-2), mint(-5), mint(1)}));\n\n  A.clear();\n  A.eb(0, 1, 1);\n\
+    \  f = blackbox_min_poly<mint>(2, [&](vc<mint> f) -> vc<mint> {\n    vc<mint>\
+    \ g(2);\n    for (auto& [a, b, c]: A) g[b] += f[a] * c;\n    return g;\n  });\n\
+    \  assert(f == vc<mint>({mint(0), mint(0), mint(1)}));\n\n  A.clear();\n  f =\
+    \ blackbox_min_poly<mint>(2, [&](vc<mint> f) -> vc<mint> {\n    vc<mint> g(2);\n\
+    \    for (auto& [a, b, c]: A) g[b] += f[a] * c;\n    return g;\n  });\n  assert(f\
+    \ == vc<mint>({mint(0), mint(1)}));\n\n  A.clear();\n  f = blackbox_min_poly<mint>(0,\
+    \ [&](vc<mint> f) -> vc<mint> {\n    vc<mint> g(0);\n    for (auto& [a, b, c]:\
+    \ A) g[b] += f[a] * c;\n    return g;\n  });\n  assert(f == vc<mint>({mint(1)}));\n\
+    \n  A.clear();\n  A.eb(0, 1, 1);\n  A.eb(0, 2, 1);\n  A.eb(1, 2, 1);\n  f = blackbox_min_poly<mint>(3,\
+    \ [&](vc<mint> f) -> vc<mint> {\n    vc<mint> g(3);\n    for (auto& [a, b, c]:\
     \ A) g[b] += f[a] * c;\n    return g;\n  });\n  assert(f == vc<mint>({mint(0),\
-    \ mint(0), mint(1)}));\n\n  A.clear();\n  f = blackbox_min_poly<mint>(2, [&](vc<mint>\
-    \ f) -> vc<mint> {\n    vc<mint> g(2);\n    for (auto& [a, b, c]: A) g[b] += f[a]\
-    \ * c;\n    return g;\n  });\n  assert(f == vc<mint>({mint(0), mint(1)}));\n\n\
-    \  A.clear();\n  f = blackbox_min_poly<mint>(0, [&](vc<mint> f) -> vc<mint> {\n\
-    \    vc<mint> g(0);\n    for (auto& [a, b, c]: A) g[b] += f[a] * c;\n    return\
-    \ g;\n  });\n  assert(f == vc<mint>({mint(1)}));\n\n  A.clear();\n  A.eb(0, 1,\
-    \ 1);\n  A.eb(0, 2, 1);\n  A.eb(1, 2, 1);\n  f = blackbox_min_poly<mint>(3, [&](vc<mint>\
-    \ f) -> vc<mint> {\n    vc<mint> g(3);\n    for (auto& [a, b, c]: A) g[b] += f[a]\
-    \ * c;\n    return g;\n  });\n  assert(f == vc<mint>({mint(0), mint(0), mint(0),\
-    \ mint(1)}));\n\n  A.clear();\n  f = blackbox_min_poly<mint>(3, [&](vc<mint> a)\
-    \ -> vc<mint> {\n    vc<mint> b(3);\n    for (auto&& [i, j, x]: A) b[j] += a[i]\
-    \ * x;\n    return b;\n  });\n  assert(f == vc<mint>({mint(0), mint(1)}));\n\n\
-    \  // random matrix\n  FOR(N, 1, 20) {\n    vv(mint, mat, N, N);\n    FOR(i, N)\
-    \ FOR(j, N) mat[i][j] = RNG(0, 998244353);\n    A.clear();\n    FOR(i, N) FOR(j,\
-    \ N) A.eb(i, j, mat[i][j]);\n    f = blackbox_min_poly<mint>(N, [&](vc<mint> a)\
-    \ -> vc<mint> {\n      vc<mint> b(N);\n      for (auto&& [i, j, x]: A) b[j] +=\
-    \ a[i] * x;\n      return b;\n    });\n    vv(mint, B, N, N);\n    FOR(i, N) B[i][i]\
-    \ = 1;\n    vv(mint, C, N, N);\n    FOR(d, len(f)) {\n      FOR(i, N) FOR(j, N)\
-    \ C[i][j] += f[d] * B[i][j];\n      B = matrix_mul(mat, B);\n    }\n    FOR(i,\
-    \ N) FOR(j, N) assert(C[i][j] == mint(0));\n  }\n}\n\nvoid solve() {\n  int a,\
-    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \ mint(0), mint(0), mint(1)}));\n\n  A.clear();\n  f = blackbox_min_poly<mint>(3,\
+    \ [&](vc<mint> a) -> vc<mint> {\n    vc<mint> b(3);\n    for (auto&& [i, j, x]:\
+    \ A) b[j] += a[i] * x;\n    return b;\n  });\n  assert(f == vc<mint>({mint(0),\
+    \ mint(1)}));\n\n  // random matrix\n  FOR(N, 1, 20) {\n    vv(mint, mat, N, N);\n\
+    \    FOR(i, N) FOR(j, N) mat[i][j] = RNG(0, 998244353);\n    A.clear();\n    FOR(i,\
+    \ N) FOR(j, N) A.eb(i, j, mat[i][j]);\n    f = blackbox_min_poly<mint>(N, [&](vc<mint>\
+    \ a) -> vc<mint> {\n      vc<mint> b(N);\n      for (auto&& [i, j, x]: A) b[j]\
+    \ += a[i] * x;\n      return b;\n    });\n    vv(mint, B, N, N);\n    FOR(i, N)\
+    \ B[i][i] = 1;\n    vv(mint, C, N, N);\n    FOR(d, len(f)) {\n      FOR(i, N)\
+    \ FOR(j, N) C[i][j] += f[d] * B[i][j];\n      B = matrix_mul(mat, B);\n    }\n\
+    \    FOR(i, N) FOR(j, N) assert(C[i][j] == mint(0));\n  }\n}\n\nvoid solve() {\n\
+    \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"linalg/blackbox/min_poly.hpp\"\n#include\
     \ \"linalg/matrix_mul.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int,\
@@ -817,7 +816,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/min_poly.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 07:11:14+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/min_poly.test.cpp

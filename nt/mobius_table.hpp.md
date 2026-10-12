@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':heavy_check_mark:'
@@ -48,12 +48,12 @@ data:
     \   FOR3_R(x, 1, N / p + 1) A[x] += A[p * x];\n  }\n}\n\ntemplate <typename T>\n\
     void multiple_mobius(vc<T>& A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n\
     \  auto P = prime_table(N);\n  for (auto&& p : P) {\n    FOR3(x, 1, N / p + 1)\
-    \ A[x] -= A[p * x];\n  }\n}\n#line 2 \"nt/mobius_table.hpp\"\n\r\ntemplate<typename\
-    \ T>\r\nvc<T> mobius_table(int N){\r\n  vc<T> mu(N + 1);\r\n  mu[1] = T(1);\r\n\
-    \  divisor_mobius(mu);\r\n  return mu;\r\n}\n"
-  code: "#include \"nt/zeta.hpp\"\r\n\r\ntemplate<typename T>\r\nvc<T> mobius_table(int\
-    \ N){\r\n  vc<T> mu(N + 1);\r\n  mu[1] = T(1);\r\n  divisor_mobius(mu);\r\n  return\
-    \ mu;\r\n}"
+    \ A[x] -= A[p * x];\n  }\n}\n#line 2 \"nt/mobius_table.hpp\"\n\r\ntemplate <typename\
+    \ T>\r\nvc<T> mobius_table(int N) {\r\n  vc<T> mu(N + 1);\r\n  if (1 <= N) mu[1]\
+    \ = T(1);\r\n  divisor_mobius(mu);\r\n  return mu;\r\n}\n"
+  code: "#include \"nt/zeta.hpp\"\r\n\r\ntemplate <typename T>\r\nvc<T> mobius_table(int\
+    \ N) {\r\n  vc<T> mu(N + 1);\r\n  if (1 <= N) mu[1] = T(1);\r\n  divisor_mobius(mu);\r\
+    \n  return mu;\r\n}"
   dependsOn:
   - nt/zeta.hpp
   - nt/prime_table.hpp
@@ -62,7 +62,7 @@ data:
   requiredBy:
   - nt/range_rational_count.hpp
   - nt/mertens.hpp
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-10-13 08:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1760.test.cpp

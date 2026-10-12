@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/spf_table.hpp
     title: nt/spf_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -585,7 +585,7 @@ data:
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 7 \"test/1_mytest/modfast.test.cpp\"\n\nusing mint = modint998;\n\ntemplate\
-    \ <typename mint>\nvoid test() {\n  constexpr u32 mod = mint::get_mod();\n  ModFast<mod>\
+    \ <typename mint>\nvoid test() {\n  constexpr u32 mod = mint::get_mod();\n  ModFast<mint>\
     \ fast;\n\n  FOR(1 << 20) {\n    mint x = RNG(1, mod);\n    mint y = fast.inverse(x.val);\n\
     \    assert(x * y == 1);\n  }\n\n  FOR(1 << 20) {\n    mint x = RNG(1, mod);\n\
     \    int exp = RNG(0, mod);\n    mint y = fast.pow(x.val, exp);\n    assert(x.pow(exp)\
@@ -595,7 +595,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modfast.hpp\"\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\
     \n\nusing mint = modint998;\n\ntemplate <typename mint>\nvoid test() {\n  constexpr\
-    \ u32 mod = mint::get_mod();\n  ModFast<mod> fast;\n\n  FOR(1 << 20) {\n    mint\
+    \ u32 mod = mint::get_mod();\n  ModFast<mint> fast;\n\n  FOR(1 << 20) {\n    mint\
     \ x = RNG(1, mod);\n    mint y = fast.inverse(x.val);\n    assert(x * y == 1);\n\
     \  }\n\n  FOR(1 << 20) {\n    mint x = RNG(1, mod);\n    int exp = RNG(0, mod);\n\
     \    mint y = fast.pow(x.val, exp);\n    assert(x.pow(exp) == y);\n  }\n}\n\n\
@@ -619,8 +619,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/modfast.test.cpp
   requiredBy: []
-  timestamp: '2026-10-06 15:40:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-10-13 08:18:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/modfast.test.cpp
 layout: document
