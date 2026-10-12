@@ -1,8 +1,6 @@
 
 #include "ds/node_pool.hpp"
 
-// Lazy だけでもいいような気がしたが,
-// 加算が定義されていない型で使うかもしれないから残してある
 template <typename VAL, bool PERSISTENT, bool TOP_IS_MIN>
 struct Meldable_Heap {
   struct Node {
