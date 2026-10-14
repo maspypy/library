@@ -143,9 +143,15 @@ struct Slope_Trick_Super {
     T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;
 
     if (len(f) < len(g)) swap(f, g);
+    auto tmp = ST.get_all(g.root);
+    ST.free_subtree(g.root);
+
     f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;
-    f.root = unite(f.root, g.root);
-    g.root = nullptr;
+    for (auto &x : tmp) {
+      auto [l, r] = ST.split_max_right(
+          f.root, [&](auto v) -> bool { return v.fi <= x.fi; });
+      root = ST.merge3(l, ST.new_node(x), r);
+    }
     return f;
   }
   FUNC sum_all(vc<FUNC> &funcs) {
@@ -156,48 +162,31 @@ struct Slope_Trick_Super {
     FOR(i, 1, len(funcs)) if (len(funcs[idx]) < len(funcs[i])) idx = i;
     swap(funcs[idx], funcs.back());
     FUNC f = POP(funcs);
+    vc<pair<T, T>> dat;
     for (auto &g : funcs) {
       f.y0 += g.y0, f.a0 += g.a0;
-      f.root = unite(f.root, g.root);
-      g.root = nullptr;
+      auto tmp = ST.get_all(g.root);
+      concat(dat, tmp);
+      ST.free_subtree(g.root);
+    }
+    sort(all(dat));
+    for (auto &x : dat) {
+      auto [l, r] = ST.split_max_right(
+          f.root, [&](auto v) -> bool { return v.fi <= x.fi; });
+      root = ST.merge3(l, ST.new_node(x), r);
     }
     return f;
   }
 
-  // 座標順の 2 本の木を破壊的に併合する。
-  // 木は各座標を高々 1 ノードで持つ正規形を保つ。小さい方の中央値を
-  // pivot に選ぶことで、union の再帰を small-to-large にする。
-  np unite(np a, np b) {
-    if (!a) return b;
-    if (!b) return a;
-    if (a->size < b->size) swap(a, b);
-    T x = ST.get(b, b->size / 2).fi;
-
-    auto [al, at] =
-        ST.split_max_right(a, [&](auto dat) -> bool { return dat.fi < x; });
-    auto [ae, ar] =
-        ST.split_max_right(at, [&](auto dat) -> bool { return dat.fi <= x; });
-    auto [bl, bt] =
-        ST.split_max_right(b, [&](auto dat) -> bool { return dat.fi < x; });
-    auto [be, br] =
-        ST.split_max_right(bt, [&](auto dat) -> bool { return dat.fi <= x; });
-
-    np l = unite(al, bl);
-    np r = unite(ar, br);
-    assert(!ae || ae->size == 1);
-    assert(!be || be->size == 1);
-    np mid = (ae ? ae : be);
-    if (ae && be) {
-      T da = ae->get().se + be->get().se;
-      ST.free_subtree(be);
-      if (da == 0) {
-        ST.free_subtree(ae);
-        mid = nullptr;
-      } else {
-        ae->set({x, da});
-      }
+  // 各挿入で split が境界を splay するので、木を直接たどって接続しない。
+  np insert_all(np root, vc<pair<T, T>> &dat) {
+    if (!root) return ST.new_node(dat);
+    for (auto &x : dat) {
+      auto [l, r] = ST.split_max_right(
+          root, [&](auto v) -> bool { return v.fi <= x.fi; });
+      root = ST.merge3(l, ST.new_node(x), r);
     }
-    return ST.merge3(l, mid, r);
+    return root;
   }
 
   FUNC shift(FUNC &f, T add_x, T add_y) {
