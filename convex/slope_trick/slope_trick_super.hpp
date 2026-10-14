@@ -121,15 +121,8 @@ struct Slope_Trick_Super {
     return f.y0 + f.a0 * (x - x0) + a_sum * x - xa_sum;
   }
   FUNC restrict_domain(FUNC &f, T L, T R) {
-    assert(L <= R);
     auto [x0, x1] = domain(f);
-    chmax(L, x0), chmin(R, x1);
-    if (L > R) {
-      ST.free_subtree(f.root), f.root = nullptr;
-      f.root = nullptr;
-      f.x0 = infty<T>, f.x1 = -infty<T>;
-      return f;
-    }
+    assert(x0 <= L && L <= R && R <= x1);
     // まずは右側をちぢめる. R 以上の傾き変化を消してしまえばよい
     auto [l, r] = ST.split_max_right(
         f.root, [&](auto dat) -> bool { return dat.fi < R; });
@@ -150,40 +143,9 @@ struct Slope_Trick_Super {
     T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;
 
     if (len(f) < len(g)) swap(f, g);
-    auto tmp = ST.get_all(g.root);
-    ST.free_subtree(g.root);
     f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;
-    if (!f.root) {
-      f.root = ST.new_node(tmp);
-      return f;
-    }
-    // あとは単に tmp を挿入していけばいい
-    auto dfs = [&](auto &dfs, np root, int l, int r) -> void {
-      if (l == r) return;
-      root->push();
-      T x = root->x.fi;
-      // [l,m),[m,r)
-      int m = binary_search(
-          [&](int i) -> bool { return tmp[i].fi >= x; }, r, l - 1, 0);
-      if (l < m) {
-        if (!root->l) {
-          root->l = ST.new_node({tmp.begin() + l, tmp.begin() + m});
-        } else {
-          dfs(dfs, root->l, l, m);
-        }
-        root->l->p = root;
-      }
-      if (m < r) {
-        if (!root->r) {
-          root->r = ST.new_node({tmp.begin() + m, tmp.begin() + r});
-        } else {
-          dfs(dfs, root->r, m, r);
-        }
-        root->r->p = root;
-      }
-      root->update();
-    };
-    dfs(dfs, f.root, 0, len(tmp));
+    f.root = unite(f.root, g.root);
+    g.root = nullptr;
     return f;
   }
   FUNC sum_all(vc<FUNC> &funcs) {
@@ -194,46 +156,48 @@ struct Slope_Trick_Super {
     FOR(i, 1, len(funcs)) if (len(funcs[idx]) < len(funcs[i])) idx = i;
     swap(funcs[idx], funcs.back());
     FUNC f = POP(funcs);
-    vc<pair<T, T>> dat;
     for (auto &g : funcs) {
       f.y0 += g.y0, f.a0 += g.a0;
-      auto tmp = ST.get_all(g.root);
-      concat(dat, tmp);
-      ST.free_subtree(g.root);
+      f.root = unite(f.root, g.root);
+      g.root = nullptr;
     }
-    sort(all(dat));
-    // あとは単に dat を挿入していけばいい
-    if (!f.root) {
-      f.root = ST.new_node(dat);
-      return f;
-    }
-    auto dfs = [&](auto &dfs, np root, int l, int r) -> void {
-      if (l == r) return;
-      root->push();
-      T x = root->x.fi;
-      // [l,m),[m,r)
-      int m = binary_search(
-          [&](int i) -> bool { return dat[i].fi >= x; }, r, l - 1, 0);
-      if (l < m) {
-        if (!root->l) {
-          root->l = ST.new_node({dat.begin() + l, dat.begin() + m});
-        } else {
-          dfs(dfs, root->l, l, m);
-        }
-        root->l->p = root;
-      }
-      if (m < r) {
-        if (!root->r) {
-          root->r = ST.new_node({dat.begin() + m, dat.begin() + r});
-        } else {
-          dfs(dfs, root->r, m, r);
-        }
-        root->r->p = root;
-      }
-      root->update();
-    };
-    dfs(dfs, f.root, 0, len(dat));
     return f;
+  }
+
+  // 座標順の 2 本の木を破壊的に併合する。
+  // 木は各座標を高々 1 ノードで持つ正規形を保つ。小さい方の中央値を
+  // pivot に選ぶことで、union の再帰を small-to-large にする。
+  np unite(np a, np b) {
+    if (!a) return b;
+    if (!b) return a;
+    if (a->size < b->size) swap(a, b);
+    T x = ST.get(b, b->size / 2).fi;
+
+    auto [al, at] =
+        ST.split_max_right(a, [&](auto dat) -> bool { return dat.fi < x; });
+    auto [ae, ar] =
+        ST.split_max_right(at, [&](auto dat) -> bool { return dat.fi <= x; });
+    auto [bl, bt] =
+        ST.split_max_right(b, [&](auto dat) -> bool { return dat.fi < x; });
+    auto [be, br] =
+        ST.split_max_right(bt, [&](auto dat) -> bool { return dat.fi <= x; });
+
+    np l = unite(al, bl);
+    np r = unite(ar, br);
+    assert(!ae || ae->size == 1);
+    assert(!be || be->size == 1);
+    np mid = (ae ? ae : be);
+    if (ae && be) {
+      T da = ae->get().se + be->get().se;
+      ST.free_subtree(be);
+      if (da == 0) {
+        ST.free_subtree(ae);
+        mid = nullptr;
+      } else {
+        ae->set({x, da});
+      }
+    }
+    return ST.merge3(l, mid, r);
   }
 
   FUNC shift(FUNC &f, T add_x, T add_y) {
