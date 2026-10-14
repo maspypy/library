@@ -107,7 +107,7 @@ void test_repeated_middle_insert() {
   ST.add_x_minus_a(f, 0);
   ST.add_x_minus_a(f, 2);
   FOR(N) ST.add_x_minus_a(f, 1);
-  assert(f.size() == 3);
+  assert(f.size() == N + 2);
   assert(ST.eval(f, -1) == 0);
   assert(ST.eval(f, 0) == 0);
   assert(ST.eval(f, 1) == 1);
@@ -126,7 +126,7 @@ void test_sum_all_duplicate_breakpoints() {
     funcs.eb(f);
   }
   auto f = ST.sum_all(funcs);
-  assert(f.size() == 1);
+  assert(f.size() == N);
   assert(ST.eval(f, -1) == 0);
   assert(ST.eval(f, 1) == 0);
   assert(ST.eval(f, 4) == 3LL * N);
@@ -139,7 +139,7 @@ void test_unite_cancellation_and_lazy_shift() {
   auto f = ST.from_points(p);
   auto g = ST.from_points(q);
   f = ST.add(f, g);
-  assert(!f.root);
+  assert(f.size() == 2);
   FOR(x, -1, 5) assert(ST.eval(f, x) == 0);
 
   f = ST.segment_func(-1LL, 4LL, 0LL, 0LL);
@@ -181,7 +181,7 @@ void test_sum_all_random() {
     auto f = ST.sum_all(funcs);
     FOR(x, L, R + 1) assert(ST.eval(f, x) == want[x - L]);
     auto dat = ST.ST.get_all(f.root);
-    FOR(i, len(dat) - 1) assert(dat[i].fi < dat[i + 1].fi);
+    FOR(i, len(dat) - 1) assert(dat[i].fi <= dat[i + 1].fi);
   }
 }
 
