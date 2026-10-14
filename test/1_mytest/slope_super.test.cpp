@@ -98,6 +98,93 @@ void solve() {
   cout << x + y << "\n";
 }
 
+void test_repeated_middle_insert() {
+  // (x-0)+, (x-2)+ の間に (x-1)+ を繰り返し加える。
+  // DFS で直接差し込む実装ではここで木が片寄る。
+  constexpr int N = 20000;
+  Slope_Trick_Super<ll> ST;
+  auto f = ST.segment_func(-1LL, 4LL, 0LL, 0LL);
+  ST.add_x_minus_a(f, 0);
+  ST.add_x_minus_a(f, 2);
+  FOR(N) ST.add_x_minus_a(f, 1);
+  assert(f.size() == 3);
+  assert(ST.eval(f, -1) == 0);
+  assert(ST.eval(f, 0) == 0);
+  assert(ST.eval(f, 1) == 1);
+  assert(ST.eval(f, 2) == N + 2);
+  assert(ST.eval(f, 4) == 3LL * N + 6);
+}
+
+void test_sum_all_duplicate_breakpoints() {
+  constexpr int N = 1000;
+  Slope_Trick_Super<ll> ST;
+  using F = typename decltype(ST)::FUNC;
+  vc<F> funcs;
+  FOR(N) {
+    auto f = ST.segment_func(-1LL, 4LL, 0LL, 0LL);
+    ST.add_x_minus_a(f, 1);
+    funcs.eb(f);
+  }
+  auto f = ST.sum_all(funcs);
+  assert(f.size() == 1);
+  assert(ST.eval(f, -1) == 0);
+  assert(ST.eval(f, 1) == 0);
+  assert(ST.eval(f, 4) == 3LL * N);
+}
+
+void test_unite_cancellation_and_lazy_shift() {
+  Slope_Trick_Super<ll> ST;
+  vc<pair<ll, ll>> p = {{-1, 0}, {1, 0}, {4, 3}};
+  vc<pair<ll, ll>> q = {{-1, 0}, {1, 0}, {4, -3}};
+  auto f = ST.from_points(p);
+  auto g = ST.from_points(q);
+  f = ST.add(f, g);
+  assert(!f.root);
+  FOR(x, -1, 5) assert(ST.eval(f, x) == 0);
+
+  f = ST.segment_func(-1LL, 4LL, 0LL, 0LL);
+  ST.add_x_minus_a(f, 0);
+  ST.add_x_minus_a(f, 2);
+  ST.shift(f, 5, 7);
+  g = ST.segment_func(4LL, 9LL, 0LL, 0LL);
+  ST.add_x_minus_a(g, 6);
+  f = ST.add(f, g);
+  assert(ST.eval(f, 4) == 7);
+  assert(ST.eval(f, 5) == 7);
+  assert(ST.eval(f, 6) == 8);
+  assert(ST.eval(f, 7) == 10);
+  assert(ST.eval(f, 9) == 16);
+}
+
+void test_sum_all_random() {
+  Slope_Trick_Super<ll> ST;
+  using F = typename decltype(ST)::FUNC;
+  FOR(100) {
+    constexpr int L = -3, R = 4;
+    vc<F> funcs;
+    vc<ll> want(R - L + 1);
+    int N = RNG(1, 30);
+    FOR(N) {
+      ll a = RNG(-3, 4), b = RNG(-3, 4);
+      auto f = ST.segment_func(L, R, a, b);
+      FOR(x, L, R + 1) want[x - L] += a * x + b;
+      int p = RNG(L + 1, R);
+      if (RNG(0, 2)) {
+        ST.add_x_minus_a(f, p);
+        FOR(x, L, R + 1) want[x - L] += max(0LL, x - p);
+      } else {
+        ST.add_a_minus_x(f, p);
+        FOR(x, L, R + 1) want[x - L] += max(0LL, p - x);
+      }
+      funcs.eb(f);
+    }
+    auto f = ST.sum_all(funcs);
+    FOR(x, L, R + 1) assert(ST.eval(f, x) == want[x - L]);
+    auto dat = ST.ST.get_all(f.root);
+    FOR(i, len(dat) - 1) assert(dat[i].fi < dat[i + 1].fi);
+  }
+}
+
 signed main() {
   vc<int> ns = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1000};
   vc<int> ps = {50, 100, 0, 95, 5};
@@ -109,6 +196,10 @@ signed main() {
       }
     }
   }
+  test_repeated_middle_insert();
+  test_sum_all_duplicate_breakpoints();
+  test_unite_cancellation_and_lazy_shift();
+  test_sum_all_random();
 
   solve();
   return 0;
