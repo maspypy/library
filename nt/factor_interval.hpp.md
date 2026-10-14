@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy: []

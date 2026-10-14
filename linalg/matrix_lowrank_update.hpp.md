@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1774.test.cpp
     title: test/3_yukicoder/1774.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Woodbury_matrix_identity
@@ -120,7 +120,7 @@ data:
   path: linalg/matrix_lowrank_update.hpp
   requiredBy: []
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1774.test.cpp
 documentation_of: linalg/matrix_lowrank_update.hpp

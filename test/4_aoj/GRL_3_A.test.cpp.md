@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
@@ -28,19 +28,19 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
   bundledCode: "#line 1 \"test/4_aoj/GRL_3_A.test.cpp\"\n#define PROBLEM \\\n  \"\
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\n#line 1 \"\
-    my_template.hpp\"\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
-    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
-    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
-    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
-    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
-    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
-    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
-    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
-    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
-    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
-    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n\
+    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -422,8 +422,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_3_A.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 07:11:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-14 18:35:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_3_A.test.cpp
 layout: document

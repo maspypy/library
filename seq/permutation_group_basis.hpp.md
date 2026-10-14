@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
     title: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/npcapc_2024/tasks/npcapc_2024_j
@@ -101,7 +101,7 @@ data:
   path: seq/permutation_group_basis.hpp
   requiredBy: []
   timestamp: '2024-10-07 20:17:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
 documentation_of: seq/permutation_group_basis.hpp

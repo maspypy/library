@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/zeta.hpp
     title: setfunc/zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"setfunc/zeta.hpp\"\n\n#line 1 \"setfunc/bitwise_transform.hpp\"\
@@ -65,7 +65,7 @@ data:
   path: setfunc/and_convolution.hpp
   requiredBy: []
   timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
 documentation_of: setfunc/and_convolution.hpp
