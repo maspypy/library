@@ -65,7 +65,7 @@ precompile() {
     local pch_src="my_template_compiled.hpp"
     local out_dir="my_template_compiled.hpp.gch"
     awk '
-      NR <= 3 { next }
+      NR <= 6 { next }
       { lines[++n] = $0 }
       END { for (i = 1; i < n; i++) print lines[i] }
     ' my_template.hpp > "$pch_src"

@@ -1,7 +1,6 @@
 /*
 library: https://github.com/maspypy/library
 */
-
 #if defined(USE_PCH)
 #include <my_template_compiled.hpp>
 #else
