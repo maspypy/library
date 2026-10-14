@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/slope_super.test.cpp
     title: test/1_mytest/slope_super.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
@@ -247,39 +247,33 @@ data:
     \ = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n    return f;\n  }\n\
     \  FUNC add(FUNC &f, FUNC &g) {\n    assert(f.x0 == g.x0 && f.x1 == g.x1);\n \
     \   T x0 = f.x0, x1 = f.x1;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n   \
-    \ if (len(f) < len(g)) swap(f, g);\n    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0\
-    \ = y0;\n    f.root = unite(f.root, g.root);\n    g.root = nullptr;\n    return\
-    \ f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n    assert(len(funcs) >= 1);\n \
-    \   T x0 = funcs[0].x0, x1 = funcs[0].x1;\n    for (auto &g : funcs) assert(x0\
-    \ == g.x0 && x1 == g.x1);\n    int idx = 0;\n    FOR(i, 1, len(funcs)) if (len(funcs[idx])\
-    \ < len(funcs[i])) idx = i;\n    swap(funcs[idx], funcs.back());\n    FUNC f =\
-    \ POP(funcs);\n    for (auto &g : funcs) {\n      f.y0 += g.y0, f.a0 += g.a0;\n\
-    \      f.root = unite(f.root, g.root);\n      g.root = nullptr;\n    }\n    return\
-    \ f;\n  }\n\n  // \u5EA7\u6A19\u9806\u306E 2 \u672C\u306E\u6728\u3092\u7834\u58CA\
-    \u7684\u306B\u4F75\u5408\u3059\u308B\u3002\n  // \u6728\u306F\u5404\u5EA7\u6A19\
-    \u3092\u9AD8\u3005 1 \u30CE\u30FC\u30C9\u3067\u6301\u3064\u6B63\u898F\u5F62\u3092\
-    \u4FDD\u3064\u3002\u5C0F\u3055\u3044\u65B9\u306E\u4E2D\u592E\u5024\u3092\n  //\
-    \ pivot \u306B\u9078\u3076\u3053\u3068\u3067\u3001union \u306E\u518D\u5E30\u3092\
-    \ small-to-large \u306B\u3059\u308B\u3002\n  np unite(np a, np b) {\n    if (!a)\
-    \ return b;\n    if (!b) return a;\n    if (a->size < b->size) swap(a, b);\n \
-    \   T x = ST.get(b, b->size / 2).fi;\n\n    auto [al, at] =\n        ST.split_max_right(a,\
-    \ [&](auto dat) -> bool { return dat.fi < x; });\n    auto [ae, ar] =\n      \
-    \  ST.split_max_right(at, [&](auto dat) -> bool { return dat.fi <= x; });\n  \
-    \  auto [bl, bt] =\n        ST.split_max_right(b, [&](auto dat) -> bool { return\
-    \ dat.fi < x; });\n    auto [be, br] =\n        ST.split_max_right(bt, [&](auto\
-    \ dat) -> bool { return dat.fi <= x; });\n\n    np l = unite(al, bl);\n    np\
-    \ r = unite(ar, br);\n    assert(!ae || ae->size == 1);\n    assert(!be || be->size\
-    \ == 1);\n    np mid = (ae ? ae : be);\n    if (ae && be) {\n      T da = ae->get().se\
-    \ + be->get().se;\n      ST.free_subtree(be);\n      if (da == 0) {\n        ST.free_subtree(ae);\n\
-    \        mid = nullptr;\n      } else {\n        ae->set({x, da});\n      }\n\
-    \    }\n    return ST.merge3(l, mid, r);\n  }\n\n  FUNC shift(FUNC &f, T add_x,\
-    \ T add_y) {\n    ST.apply(f.root, add_x);\n    f.x0 += add_x, f.x1 += add_x,\
-    \ f.y0 += add_y;\n    return f;\n  }\n\n  // h[z]=min(x+y==z)f(x)+g(y)\n  FUNC\
-    \ convolve(FUNC &f, FUNC &g) {\n    if (f.x0 > f.x1 || g.x0 > g.x1) {\n      return\
-    \ {nullptr, infty<T>, -infty<T>, 0, 0};\n    }\n    if (len(f) < len(g)) swap(f,\
-    \ g);\n    shift(f, g.x0, g.y0), shift(g, -g.x0, -g.y0);\n    if (len(g) == 0)\
-    \ {\n      return convolve_segment(f, 0, g.x1, g.a0, 0);\n    }\n    auto tmp\
-    \ = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n    f = convolve_segment(f,\
+    \ if (len(f) < len(g)) swap(f, g);\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n\
+    \n    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;\n    for (auto &x : tmp) {\n\
+    \      auto [l, r] = ST.split_max_right(\n          f.root, [&](auto v) -> bool\
+    \ { return v.fi <= x.fi; });\n      root = ST.merge3(l, ST.new_node(x), r);\n\
+    \    }\n    return f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n    assert(len(funcs)\
+    \ >= 1);\n    T x0 = funcs[0].x0, x1 = funcs[0].x1;\n    for (auto &g : funcs)\
+    \ assert(x0 == g.x0 && x1 == g.x1);\n    int idx = 0;\n    FOR(i, 1, len(funcs))\
+    \ if (len(funcs[idx]) < len(funcs[i])) idx = i;\n    swap(funcs[idx], funcs.back());\n\
+    \    FUNC f = POP(funcs);\n    vc<pair<T, T>> dat;\n    for (auto &g : funcs)\
+    \ {\n      f.y0 += g.y0, f.a0 += g.a0;\n      auto tmp = ST.get_all(g.root);\n\
+    \      concat(dat, tmp);\n      ST.free_subtree(g.root);\n    }\n    sort(all(dat));\n\
+    \    for (auto &x : dat) {\n      auto [l, r] = ST.split_max_right(\n        \
+    \  f.root, [&](auto v) -> bool { return v.fi <= x.fi; });\n      root = ST.merge3(l,\
+    \ ST.new_node(x), r);\n    }\n    return f;\n  }\n\n  // \u5404\u633F\u5165\u3067\
+    \ split \u304C\u5883\u754C\u3092 splay \u3059\u308B\u306E\u3067\u3001\u6728\u3092\
+    \u76F4\u63A5\u305F\u3069\u3063\u3066\u63A5\u7D9A\u3057\u306A\u3044\u3002\n  np\
+    \ insert_all(np root, vc<pair<T, T>> &dat) {\n    if (!root) return ST.new_node(dat);\n\
+    \    for (auto &x : dat) {\n      auto [l, r] = ST.split_max_right(\n        \
+    \  root, [&](auto v) -> bool { return v.fi <= x.fi; });\n      root = ST.merge3(l,\
+    \ ST.new_node(x), r);\n    }\n    return root;\n  }\n\n  FUNC shift(FUNC &f, T\
+    \ add_x, T add_y) {\n    ST.apply(f.root, add_x);\n    f.x0 += add_x, f.x1 +=\
+    \ add_x, f.y0 += add_y;\n    return f;\n  }\n\n  // h[z]=min(x+y==z)f(x)+g(y)\n\
+    \  FUNC convolve(FUNC &f, FUNC &g) {\n    if (f.x0 > f.x1 || g.x0 > g.x1) {\n\
+    \      return {nullptr, infty<T>, -infty<T>, 0, 0};\n    }\n    if (len(f) < len(g))\
+    \ swap(f, g);\n    shift(f, g.x0, g.y0), shift(g, -g.x0, -g.y0);\n    if (len(g)\
+    \ == 0) {\n      return convolve_segment(f, 0, g.x1, g.a0, 0);\n    }\n    auto\
+    \ tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n    f = convolve_segment(f,\
     \ 0, tmp[0].fi, g.a0, 0);\n    T a = g.a0;\n    FOR(i, len(tmp)) {\n      T nx\
     \ = (i + 1 < len(tmp) ? tmp[i + 1].fi : g.x1);\n      a += tmp[i].se;\n      f\
     \ = convolve_segment(f, 0, nx - tmp[i].fi, a, 0);\n      // for (auto &[x, a]\
@@ -399,39 +393,33 @@ data:
     \ = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n    return f;\n  }\n\
     \  FUNC add(FUNC &f, FUNC &g) {\n    assert(f.x0 == g.x0 && f.x1 == g.x1);\n \
     \   T x0 = f.x0, x1 = f.x1;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n   \
-    \ if (len(f) < len(g)) swap(f, g);\n    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0\
-    \ = y0;\n    f.root = unite(f.root, g.root);\n    g.root = nullptr;\n    return\
-    \ f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n    assert(len(funcs) >= 1);\n \
-    \   T x0 = funcs[0].x0, x1 = funcs[0].x1;\n    for (auto &g : funcs) assert(x0\
-    \ == g.x0 && x1 == g.x1);\n    int idx = 0;\n    FOR(i, 1, len(funcs)) if (len(funcs[idx])\
-    \ < len(funcs[i])) idx = i;\n    swap(funcs[idx], funcs.back());\n    FUNC f =\
-    \ POP(funcs);\n    for (auto &g : funcs) {\n      f.y0 += g.y0, f.a0 += g.a0;\n\
-    \      f.root = unite(f.root, g.root);\n      g.root = nullptr;\n    }\n    return\
-    \ f;\n  }\n\n  // \u5EA7\u6A19\u9806\u306E 2 \u672C\u306E\u6728\u3092\u7834\u58CA\
-    \u7684\u306B\u4F75\u5408\u3059\u308B\u3002\n  // \u6728\u306F\u5404\u5EA7\u6A19\
-    \u3092\u9AD8\u3005 1 \u30CE\u30FC\u30C9\u3067\u6301\u3064\u6B63\u898F\u5F62\u3092\
-    \u4FDD\u3064\u3002\u5C0F\u3055\u3044\u65B9\u306E\u4E2D\u592E\u5024\u3092\n  //\
-    \ pivot \u306B\u9078\u3076\u3053\u3068\u3067\u3001union \u306E\u518D\u5E30\u3092\
-    \ small-to-large \u306B\u3059\u308B\u3002\n  np unite(np a, np b) {\n    if (!a)\
-    \ return b;\n    if (!b) return a;\n    if (a->size < b->size) swap(a, b);\n \
-    \   T x = ST.get(b, b->size / 2).fi;\n\n    auto [al, at] =\n        ST.split_max_right(a,\
-    \ [&](auto dat) -> bool { return dat.fi < x; });\n    auto [ae, ar] =\n      \
-    \  ST.split_max_right(at, [&](auto dat) -> bool { return dat.fi <= x; });\n  \
-    \  auto [bl, bt] =\n        ST.split_max_right(b, [&](auto dat) -> bool { return\
-    \ dat.fi < x; });\n    auto [be, br] =\n        ST.split_max_right(bt, [&](auto\
-    \ dat) -> bool { return dat.fi <= x; });\n\n    np l = unite(al, bl);\n    np\
-    \ r = unite(ar, br);\n    assert(!ae || ae->size == 1);\n    assert(!be || be->size\
-    \ == 1);\n    np mid = (ae ? ae : be);\n    if (ae && be) {\n      T da = ae->get().se\
-    \ + be->get().se;\n      ST.free_subtree(be);\n      if (da == 0) {\n        ST.free_subtree(ae);\n\
-    \        mid = nullptr;\n      } else {\n        ae->set({x, da});\n      }\n\
-    \    }\n    return ST.merge3(l, mid, r);\n  }\n\n  FUNC shift(FUNC &f, T add_x,\
-    \ T add_y) {\n    ST.apply(f.root, add_x);\n    f.x0 += add_x, f.x1 += add_x,\
-    \ f.y0 += add_y;\n    return f;\n  }\n\n  // h[z]=min(x+y==z)f(x)+g(y)\n  FUNC\
-    \ convolve(FUNC &f, FUNC &g) {\n    if (f.x0 > f.x1 || g.x0 > g.x1) {\n      return\
-    \ {nullptr, infty<T>, -infty<T>, 0, 0};\n    }\n    if (len(f) < len(g)) swap(f,\
-    \ g);\n    shift(f, g.x0, g.y0), shift(g, -g.x0, -g.y0);\n    if (len(g) == 0)\
-    \ {\n      return convolve_segment(f, 0, g.x1, g.a0, 0);\n    }\n    auto tmp\
-    \ = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n    f = convolve_segment(f,\
+    \ if (len(f) < len(g)) swap(f, g);\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n\
+    \n    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;\n    for (auto &x : tmp) {\n\
+    \      auto [l, r] = ST.split_max_right(\n          f.root, [&](auto v) -> bool\
+    \ { return v.fi <= x.fi; });\n      root = ST.merge3(l, ST.new_node(x), r);\n\
+    \    }\n    return f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n    assert(len(funcs)\
+    \ >= 1);\n    T x0 = funcs[0].x0, x1 = funcs[0].x1;\n    for (auto &g : funcs)\
+    \ assert(x0 == g.x0 && x1 == g.x1);\n    int idx = 0;\n    FOR(i, 1, len(funcs))\
+    \ if (len(funcs[idx]) < len(funcs[i])) idx = i;\n    swap(funcs[idx], funcs.back());\n\
+    \    FUNC f = POP(funcs);\n    vc<pair<T, T>> dat;\n    for (auto &g : funcs)\
+    \ {\n      f.y0 += g.y0, f.a0 += g.a0;\n      auto tmp = ST.get_all(g.root);\n\
+    \      concat(dat, tmp);\n      ST.free_subtree(g.root);\n    }\n    sort(all(dat));\n\
+    \    for (auto &x : dat) {\n      auto [l, r] = ST.split_max_right(\n        \
+    \  f.root, [&](auto v) -> bool { return v.fi <= x.fi; });\n      root = ST.merge3(l,\
+    \ ST.new_node(x), r);\n    }\n    return f;\n  }\n\n  // \u5404\u633F\u5165\u3067\
+    \ split \u304C\u5883\u754C\u3092 splay \u3059\u308B\u306E\u3067\u3001\u6728\u3092\
+    \u76F4\u63A5\u305F\u3069\u3063\u3066\u63A5\u7D9A\u3057\u306A\u3044\u3002\n  np\
+    \ insert_all(np root, vc<pair<T, T>> &dat) {\n    if (!root) return ST.new_node(dat);\n\
+    \    for (auto &x : dat) {\n      auto [l, r] = ST.split_max_right(\n        \
+    \  root, [&](auto v) -> bool { return v.fi <= x.fi; });\n      root = ST.merge3(l,\
+    \ ST.new_node(x), r);\n    }\n    return root;\n  }\n\n  FUNC shift(FUNC &f, T\
+    \ add_x, T add_y) {\n    ST.apply(f.root, add_x);\n    f.x0 += add_x, f.x1 +=\
+    \ add_x, f.y0 += add_y;\n    return f;\n  }\n\n  // h[z]=min(x+y==z)f(x)+g(y)\n\
+    \  FUNC convolve(FUNC &f, FUNC &g) {\n    if (f.x0 > f.x1 || g.x0 > g.x1) {\n\
+    \      return {nullptr, infty<T>, -infty<T>, 0, 0};\n    }\n    if (len(f) < len(g))\
+    \ swap(f, g);\n    shift(f, g.x0, g.y0), shift(g, -g.x0, -g.y0);\n    if (len(g)\
+    \ == 0) {\n      return convolve_segment(f, 0, g.x1, g.a0, 0);\n    }\n    auto\
+    \ tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n    f = convolve_segment(f,\
     \ 0, tmp[0].fi, g.a0, 0);\n    T a = g.a0;\n    FOR(i, len(tmp)) {\n      T nx\
     \ = (i + 1 < len(tmp) ? tmp[i + 1].fi : g.x1);\n      a += tmp[i].se;\n      f\
     \ = convolve_segment(f, 0, nx - tmp[i].fi, a, 0);\n      // for (auto &[x, a]\
@@ -498,8 +486,8 @@ data:
   isVerificationFile: false
   path: convex/slope_trick/slope_trick_super.hpp
   requiredBy: []
-  timestamp: '2026-10-14 15:08:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-14 15:38:44+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/slope_super.test.cpp
 documentation_of: convex/slope_trick/slope_trick_super.hpp
