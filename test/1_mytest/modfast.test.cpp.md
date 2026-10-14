@@ -40,7 +40,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/spf_table.hpp
     title: nt/spf_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

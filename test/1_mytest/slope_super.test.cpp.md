@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_super.hpp
     title: convex/slope_trick/slope_trick_super.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -369,54 +369,44 @@ data:
     \  auto [l, r] = ST.split_max_right(\n        f.root, [&](auto dat) -> bool {\
     \ return dat.fi <= x; });\n    auto [a_sum, xa_sum] = ST.prod(l);\n    f.root\
     \ = ST.merge(l, r);\n    return f.y0 + f.a0 * (x - x0) + a_sum * x - xa_sum;\n\
-    \  }\n  FUNC restrict_domain(FUNC &f, T L, T R) {\n    assert(L <= R);\n    auto\
-    \ [x0, x1] = domain(f);\n    chmax(L, x0), chmin(R, x1);\n    if (L > R) {\n \
-    \     ST.free_subtree(f.root), f.root = nullptr;\n      f.root = nullptr;\n  \
-    \    f.x0 = infty<T>, f.x1 = -infty<T>;\n      return f;\n    }\n    // \u307E\
-    \u305A\u306F\u53F3\u5074\u3092\u3061\u3062\u3081\u308B. R \u4EE5\u4E0A\u306E\u50BE\
-    \u304D\u5909\u5316\u3092\u6D88\u3057\u3066\u3057\u307E\u3048\u3070\u3088\u3044\
-    \n    auto [l, r] = ST.split_max_right(\n        f.root, [&](auto dat) -> bool\
-    \ { return dat.fi < R; });\n    ST.free_subtree(r);\n    // \u5DE6\u5074\u3092\
-    \u3061\u3062\u3081\u308B.\n    tie(l, r) =\n        ST.split_max_right(l, [&](auto\
-    \ dat) -> bool { return dat.fi <= L; });\n    auto [a_sum, xa_sum] = ST.prod(l);\n\
-    \    T new_a0 = f.a0 + a_sum;\n    T new_y0 = f.y0 + f.a0 * (L - x0) + a_sum *\
-    \ L - xa_sum;\n    ST.free_subtree(l);\n    f.root = r, f.x0 = L, f.x1 = R, f.a0\
-    \ = new_a0, f.y0 = new_y0;\n    return f;\n  }\n  FUNC add(FUNC &f, FUNC &g) {\n\
-    \    assert(f.x0 == g.x0 && f.x1 == g.x1);\n    T x0 = f.x0, x1 = f.x1;\n    T\
-    \ y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n    if (len(f) < len(g)) swap(f, g);\n\
-    \    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n    f.x0 =\
-    \ x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;\n    if (!f.root) {\n      f.root = ST.new_node(tmp);\n\
-    \      return f;\n    }\n    // \u3042\u3068\u306F\u5358\u306B tmp \u3092\u633F\
-    \u5165\u3057\u3066\u3044\u3051\u3070\u3044\u3044\n    auto dfs = [&](auto &dfs,\
-    \ np root, int l, int r) -> void {\n      if (l == r) return;\n      root->push();\n\
-    \      T x = root->x.fi;\n      // [l,m),[m,r)\n      int m = binary_search(\n\
-    \          [&](int i) -> bool { return tmp[i].fi >= x; }, r, l - 1, 0);\n    \
-    \  if (l < m) {\n        if (!root->l) {\n          root->l = ST.new_node({tmp.begin()\
-    \ + l, tmp.begin() + m});\n        } else {\n          dfs(dfs, root->l, l, m);\n\
-    \        }\n        root->l->p = root;\n      }\n      if (m < r) {\n        if\
-    \ (!root->r) {\n          root->r = ST.new_node({tmp.begin() + m, tmp.begin()\
-    \ + r});\n        } else {\n          dfs(dfs, root->r, m, r);\n        }\n  \
-    \      root->r->p = root;\n      }\n      root->update();\n    };\n    dfs(dfs,\
-    \ f.root, 0, len(tmp));\n    return f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n\
-    \    assert(len(funcs) >= 1);\n    T x0 = funcs[0].x0, x1 = funcs[0].x1;\n   \
-    \ for (auto &g : funcs) assert(x0 == g.x0 && x1 == g.x1);\n    int idx = 0;\n\
-    \    FOR(i, 1, len(funcs)) if (len(funcs[idx]) < len(funcs[i])) idx = i;\n   \
-    \ swap(funcs[idx], funcs.back());\n    FUNC f = POP(funcs);\n    vc<pair<T, T>>\
-    \ dat;\n    for (auto &g : funcs) {\n      f.y0 += g.y0, f.a0 += g.a0;\n     \
-    \ auto tmp = ST.get_all(g.root);\n      concat(dat, tmp);\n      ST.free_subtree(g.root);\n\
-    \    }\n    sort(all(dat));\n    // \u3042\u3068\u306F\u5358\u306B dat \u3092\u633F\
-    \u5165\u3057\u3066\u3044\u3051\u3070\u3044\u3044\n    if (!f.root) {\n      f.root\
-    \ = ST.new_node(dat);\n      return f;\n    }\n    auto dfs = [&](auto &dfs, np\
-    \ root, int l, int r) -> void {\n      if (l == r) return;\n      root->push();\n\
-    \      T x = root->x.fi;\n      // [l,m),[m,r)\n      int m = binary_search(\n\
-    \          [&](int i) -> bool { return dat[i].fi >= x; }, r, l - 1, 0);\n    \
-    \  if (l < m) {\n        if (!root->l) {\n          root->l = ST.new_node({dat.begin()\
-    \ + l, dat.begin() + m});\n        } else {\n          dfs(dfs, root->l, l, m);\n\
-    \        }\n        root->l->p = root;\n      }\n      if (m < r) {\n        if\
-    \ (!root->r) {\n          root->r = ST.new_node({dat.begin() + m, dat.begin()\
-    \ + r});\n        } else {\n          dfs(dfs, root->r, m, r);\n        }\n  \
-    \      root->r->p = root;\n      }\n      root->update();\n    };\n    dfs(dfs,\
-    \ f.root, 0, len(dat));\n    return f;\n  }\n\n  FUNC shift(FUNC &f, T add_x,\
+    \  }\n  FUNC restrict_domain(FUNC &f, T L, T R) {\n    auto [x0, x1] = domain(f);\n\
+    \    assert(x0 <= L && L <= R && R <= x1);\n    // \u307E\u305A\u306F\u53F3\u5074\
+    \u3092\u3061\u3062\u3081\u308B. R \u4EE5\u4E0A\u306E\u50BE\u304D\u5909\u5316\u3092\
+    \u6D88\u3057\u3066\u3057\u307E\u3048\u3070\u3088\u3044\n    auto [l, r] = ST.split_max_right(\n\
+    \        f.root, [&](auto dat) -> bool { return dat.fi < R; });\n    ST.free_subtree(r);\n\
+    \    // \u5DE6\u5074\u3092\u3061\u3062\u3081\u308B.\n    tie(l, r) =\n       \
+    \ ST.split_max_right(l, [&](auto dat) -> bool { return dat.fi <= L; });\n    auto\
+    \ [a_sum, xa_sum] = ST.prod(l);\n    T new_a0 = f.a0 + a_sum;\n    T new_y0 =\
+    \ f.y0 + f.a0 * (L - x0) + a_sum * L - xa_sum;\n    ST.free_subtree(l);\n    f.root\
+    \ = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n    return f;\n  }\n\
+    \  FUNC add(FUNC &f, FUNC &g) {\n    assert(f.x0 == g.x0 && f.x1 == g.x1);\n \
+    \   T x0 = f.x0, x1 = f.x1;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n   \
+    \ if (len(f) < len(g)) swap(f, g);\n    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0\
+    \ = y0;\n    f.root = unite(f.root, g.root);\n    g.root = nullptr;\n    return\
+    \ f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n    assert(len(funcs) >= 1);\n \
+    \   T x0 = funcs[0].x0, x1 = funcs[0].x1;\n    for (auto &g : funcs) assert(x0\
+    \ == g.x0 && x1 == g.x1);\n    int idx = 0;\n    FOR(i, 1, len(funcs)) if (len(funcs[idx])\
+    \ < len(funcs[i])) idx = i;\n    swap(funcs[idx], funcs.back());\n    FUNC f =\
+    \ POP(funcs);\n    for (auto &g : funcs) {\n      f.y0 += g.y0, f.a0 += g.a0;\n\
+    \      f.root = unite(f.root, g.root);\n      g.root = nullptr;\n    }\n    return\
+    \ f;\n  }\n\n  // \u5EA7\u6A19\u9806\u306E 2 \u672C\u306E\u6728\u3092\u7834\u58CA\
+    \u7684\u306B\u4F75\u5408\u3059\u308B\u3002\n  // \u6728\u306F\u5404\u5EA7\u6A19\
+    \u3092\u9AD8\u3005 1 \u30CE\u30FC\u30C9\u3067\u6301\u3064\u6B63\u898F\u5F62\u3092\
+    \u4FDD\u3064\u3002\u5C0F\u3055\u3044\u65B9\u306E\u4E2D\u592E\u5024\u3092\n  //\
+    \ pivot \u306B\u9078\u3076\u3053\u3068\u3067\u3001union \u306E\u518D\u5E30\u3092\
+    \ small-to-large \u306B\u3059\u308B\u3002\n  np unite(np a, np b) {\n    if (!a)\
+    \ return b;\n    if (!b) return a;\n    if (a->size < b->size) swap(a, b);\n \
+    \   T x = ST.get(b, b->size / 2).fi;\n\n    auto [al, at] =\n        ST.split_max_right(a,\
+    \ [&](auto dat) -> bool { return dat.fi < x; });\n    auto [ae, ar] =\n      \
+    \  ST.split_max_right(at, [&](auto dat) -> bool { return dat.fi <= x; });\n  \
+    \  auto [bl, bt] =\n        ST.split_max_right(b, [&](auto dat) -> bool { return\
+    \ dat.fi < x; });\n    auto [be, br] =\n        ST.split_max_right(bt, [&](auto\
+    \ dat) -> bool { return dat.fi <= x; });\n\n    np l = unite(al, bl);\n    np\
+    \ r = unite(ar, br);\n    assert(!ae || ae->size == 1);\n    assert(!be || be->size\
+    \ == 1);\n    np mid = (ae ? ae : be);\n    if (ae && be) {\n      T da = ae->get().se\
+    \ + be->get().se;\n      ST.free_subtree(be);\n      if (da == 0) {\n        ST.free_subtree(ae);\n\
+    \        mid = nullptr;\n      } else {\n        ae->set({x, da});\n      }\n\
+    \    }\n    return ST.merge3(l, mid, r);\n  }\n\n  FUNC shift(FUNC &f, T add_x,\
     \ T add_y) {\n    ST.apply(f.root, add_x);\n    f.x0 += add_x, f.x1 += add_x,\
     \ f.y0 += add_y;\n    return f;\n  }\n\n  // h[z]=min(x+y==z)f(x)+g(y)\n  FUNC\
     \ convolve(FUNC &f, FUNC &g) {\n    if (f.x0 > f.x1 || g.x0 > g.x1) {\n      return\
@@ -638,8 +628,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/slope_super.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 14:46:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-10-14 15:08:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/slope_super.test.cpp
 layout: document
