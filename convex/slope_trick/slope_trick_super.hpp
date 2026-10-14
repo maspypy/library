@@ -150,7 +150,7 @@ struct Slope_Trick_Super {
     for (auto &x : tmp) {
       auto [l, r] = ST.split_max_right(
           f.root, [&](auto v) -> bool { return v.fi <= x.fi; });
-      root = ST.merge3(l, ST.new_node(x), r);
+      f.root = ST.merge3(l, ST.new_node(x), r);
     }
     return f;
   }
@@ -173,7 +173,7 @@ struct Slope_Trick_Super {
     for (auto &x : dat) {
       auto [l, r] = ST.split_max_right(
           f.root, [&](auto v) -> bool { return v.fi <= x.fi; });
-      root = ST.merge3(l, ST.new_node(x), r);
+      f.root = ST.merge3(l, ST.new_node(x), r);
     }
     return f;
   }
