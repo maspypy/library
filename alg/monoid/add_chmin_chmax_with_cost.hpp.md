@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2890.test.cpp
     title: test/3_yukicoder/2890.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/monoid/add_chmin_chmax_with_cost.hpp\"\n// (L,R,a,b,c)\n\
@@ -55,7 +55,7 @@ data:
   path: alg/monoid/add_chmin_chmax_with_cost.hpp
   requiredBy: []
   timestamp: '2026-10-14 16:39:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2890.test.cpp
 documentation_of: alg/monoid/add_chmin_chmax_with_cost.hpp
