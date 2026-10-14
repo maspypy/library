@@ -8,19 +8,19 @@ data:
   - icon: ':warning:'
     path: graph/degree_sequence.hpp
     title: graph/degree_sequence.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/EGZ.hpp
     title: nt/EGZ.hpp
   - icon: ':warning:'
     path: string/enumerate_occurrences.hpp
     title: string/enumerate_occurrences.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/EGZ.test.cpp
     title: test/1_mytest/EGZ.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/csr.hpp\"\n\ntemplate <typename T>\nstruct CSR {\n  int\
@@ -60,7 +60,7 @@ data:
   - ds/offline_query/offline_set_intersection.hpp
   - string/enumerate_occurrences.hpp
   timestamp: '2026-08-01 03:11:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/EGZ.test.cpp
 documentation_of: ds/csr.hpp

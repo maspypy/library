@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':x:'
     path: other/io2.hpp
     title: other/io2.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []
