@@ -1,42 +1,45 @@
-
-/*
-position:
-x<=L: L+a
-L<=x<=R:x+a
-R<=x: R+a
-
-cost:
-x<=L: b-(L-x)
-L<=x<=R: b
-R<=x: b-(x-R)
-*/
-
+// (L,R,a,b,c)
+// position = clamp(x,L,R) + a
+// chmax_cost = b + max(L - x, 0)
+// chmin_cost = c + max(x - R, 0)
+template <typename T>
 struct Monoid_Add_Chmin_Chmax_with_Cost {
   struct S {
-    ll L, R, a, b;
+    T L, R, a, b, c;
   };
   using value_type = S;
   using X = value_type;
+
+  // Return {position, chmax_cost, chmin_cost}
+  static tuple<T, T, T> eval(const X& f, T x) {
+    auto [L, R, a, b, c] = f;
+    T chmax_cost = b + max<T>(L - x, 0);
+    T chmin_cost = c + max<T>(x - R, 0);
+    return {clamp(x, L, R) + a, chmax_cost, chmin_cost};
+  }
+
+  // g(f(x))
   static X op(const X& f, const X& g) {
-    // g(f(x))
-    ll l = clamp(g.L - f.a, f.L, f.R);
-    ll r = clamp(g.R - f.a, f.L, f.R);
-    ll y = clamp(l + f.a, g.L, g.R);
-    ll a = y + g.a - l;
-    ll b = f.b + g.b - abs(l + f.a - y);
-    return {l, r, a, b};
+    auto [Lf, Rf, af, bf, cf] = f;
+    auto [Lg, Rg, ag, bg, cg] = g;
+    T L = clamp(Lg - af, Lf, Rf);
+    T R = clamp(Rg - af, Lf, Rf);
+    T y_at_L = get<0>(eval(f, L));
+    T y_at_R = get<0>(eval(f, R));
+    T b = bf + max<T>(Lf - L, 0) + bg + max<T>(Lg - y_at_L, 0);
+    T c = cf + max<T>(R - Rf, 0) + cg + max<T>(y_at_R - Rg, 0);
+    T a = clamp(y_at_L, Lg, Rg) + ag - L;
+    return {L, R, a, b, c};
   }
-  static constexpr X id() { return {-infty<ll>, infty<ll>, 0, 0}; }
-  static constexpr bool commute = 0;
-  // return: {position, cost}
-  static pair<ll, ll> eval(const S& f, ll x) {
-    auto [L, R, a, b] = f;
-    if (x <= L) {
-      return {L + a, b - (L - x)};
-    }
-    elif (x <= R) { return {x + a, b}; }
-    else {
-      return {R + a, b - (x - R)};
-    }
+
+  // x -> clamp(x + add, low, high)
+  static constexpr X add_clamp(T add, T low, T high) {
+    return {low - add, high - add, add, 0, 0};
   }
+  // x -> clamp(x, low, high) + add
+  static constexpr X clamp_add(T add, T low, T high) {
+    return add_clamp(add, low + add, high + add);
+  }
+  static constexpr X id() { return {-infty<T>, infty<T>, 0, 0, 0}; }
+  static constexpr bool commute = false;
 };
