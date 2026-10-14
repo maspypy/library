@@ -111,7 +111,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/add_divide.hpp
       title: alg/monoid/add_divide.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
     - icon: ':heavy_check_mark:'
@@ -302,7 +302,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/slope_trick/slope_trick_1.hpp
       title: convex/slope_trick/slope_trick_1.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convex/slope_trick/slope_trick_super.hpp
       title: convex/slope_trick/slope_trick_super.hpp
   - name: datetime
@@ -369,7 +369,7 @@ data:
     - icon: ':warning:'
       path: ds/my_multiset.hpp
       title: ds/my_multiset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/node_pool.hpp
       title: ds/node_pool.hpp
     - icon: ':warning:'
@@ -662,7 +662,7 @@ data:
       title: ds/sparse_table/xor_disjoint_sparse_table.hpp
   - name: ds/splaytree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree.hpp
       title: ds/splaytree/splaytree.hpp
     - icon: ':heavy_check_mark:'
@@ -2293,7 +2293,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2320,7 +2320,7 @@ data:
     - icon: ':warning:'
       path: random/random_real.hpp
       title: random/random_real.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
   - name: seq
@@ -3309,7 +3309,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/slice_rational_fps.test.cpp
       title: test/1_mytest/slice_rational_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/slope_super.test.cpp
       title: test/1_mytest/slope_super.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_super.hpp
     title: convex/slope_trick/slope_trick_super.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -384,7 +384,7 @@ data:
     \ if (len(f) < len(g)) swap(f, g);\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n\
     \n    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;\n    for (auto &x : tmp) {\n\
     \      auto [l, r] = ST.split_max_right(\n          f.root, [&](auto v) -> bool\
-    \ { return v.fi <= x.fi; });\n      root = ST.merge3(l, ST.new_node(x), r);\n\
+    \ { return v.fi <= x.fi; });\n      f.root = ST.merge3(l, ST.new_node(x), r);\n\
     \    }\n    return f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n    assert(len(funcs)\
     \ >= 1);\n    T x0 = funcs[0].x0, x1 = funcs[0].x1;\n    for (auto &g : funcs)\
     \ assert(x0 == g.x0 && x1 == g.x1);\n    int idx = 0;\n    FOR(i, 1, len(funcs))\
@@ -393,7 +393,7 @@ data:
     \ {\n      f.y0 += g.y0, f.a0 += g.a0;\n      auto tmp = ST.get_all(g.root);\n\
     \      concat(dat, tmp);\n      ST.free_subtree(g.root);\n    }\n    sort(all(dat));\n\
     \    for (auto &x : dat) {\n      auto [l, r] = ST.split_max_right(\n        \
-    \  f.root, [&](auto v) -> bool { return v.fi <= x.fi; });\n      root = ST.merge3(l,\
+    \  f.root, [&](auto v) -> bool { return v.fi <= x.fi; });\n      f.root = ST.merge3(l,\
     \ ST.new_node(x), r);\n    }\n    return f;\n  }\n\n  // \u5404\u633F\u5165\u3067\
     \ split \u304C\u5883\u754C\u3092 splay \u3059\u308B\u306E\u3067\u3001\u6728\u3092\
     \u76F4\u63A5\u305F\u3069\u3063\u3066\u63A5\u7D9A\u3057\u306A\u3044\u3002\n  np\
@@ -622,8 +622,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/slope_super.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 15:48:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-10-14 15:53:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/slope_super.test.cpp
 layout: document

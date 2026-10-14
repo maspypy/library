@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_super.hpp
     title: convex/slope_trick/slope_trick_super.hpp
   - icon: ':warning:'
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/slope_super.test.cpp
     title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,9 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
@@ -397,7 +397,7 @@ data:
   - geo/polygon_triangulation.hpp
   - seq/cycle_decomposition.hpp
   timestamp: '2026-10-04 10:39:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/splay_monoid.test.cpp
   - test/1_mytest/splay_cm.test.cpp
