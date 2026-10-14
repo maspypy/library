@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/slope_trick/slope_trick_super.hpp
     title: convex/slope_trick/slope_trick_super.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -515,10 +515,45 @@ data:
     \  }\n  vi X(R[i] + 1, infty<ll>);\n  FOR(x, L[i], R[i] + 1) X[x] = ST.eval(func[i],\
     \ x);\n  assert(func[i].x0 == L[i]);\n  assert(func[i].x1 == R[i]);\n  assert(X\
     \ == dp[i]);\n}\n\nvoid solve() {\n  int x, y;\n  cin >> x >> y;\n  cout << x\
-    \ + y << \"\\n\";\n}\n\nsigned main() {\n  vc<int> ns = {1, 2, 3, 4, 5, 6, 7,\
-    \ 8, 9, 10, 1000};\n  vc<int> ps = {50, 100, 0, 95, 5};\n  for (auto& n : ns)\
-    \ {\n    for (auto& p : ps) {\n      FOR(20) {\n        test(n, false, p);\n \
-    \       test(n, true, p);\n      }\n    }\n  }\n\n  solve();\n  return 0;\n}\n"
+    \ + y << \"\\n\";\n}\n\nvoid test_repeated_middle_insert() {\n  // (x-0)+, (x-2)+\
+    \ \u306E\u9593\u306B (x-1)+ \u3092\u7E70\u308A\u8FD4\u3057\u52A0\u3048\u308B\u3002\
+    \n  // DFS \u3067\u76F4\u63A5\u5DEE\u3057\u8FBC\u3080\u5B9F\u88C5\u3067\u306F\u3053\
+    \u3053\u3067\u6728\u304C\u7247\u5BC4\u308B\u3002\n  constexpr int N = 20000;\n\
+    \  Slope_Trick_Super<ll> ST;\n  auto f = ST.segment_func(-1LL, 4LL, 0LL, 0LL);\n\
+    \  ST.add_x_minus_a(f, 0);\n  ST.add_x_minus_a(f, 2);\n  FOR(N) ST.add_x_minus_a(f,\
+    \ 1);\n  assert(f.size() == 3);\n  assert(ST.eval(f, -1) == 0);\n  assert(ST.eval(f,\
+    \ 0) == 0);\n  assert(ST.eval(f, 1) == 1);\n  assert(ST.eval(f, 2) == N + 2);\n\
+    \  assert(ST.eval(f, 4) == 3LL * N + 6);\n}\n\nvoid test_sum_all_duplicate_breakpoints()\
+    \ {\n  constexpr int N = 1000;\n  Slope_Trick_Super<ll> ST;\n  using F = typename\
+    \ decltype(ST)::FUNC;\n  vc<F> funcs;\n  FOR(N) {\n    auto f = ST.segment_func(-1LL,\
+    \ 4LL, 0LL, 0LL);\n    ST.add_x_minus_a(f, 1);\n    funcs.eb(f);\n  }\n  auto\
+    \ f = ST.sum_all(funcs);\n  assert(f.size() == 1);\n  assert(ST.eval(f, -1) ==\
+    \ 0);\n  assert(ST.eval(f, 1) == 0);\n  assert(ST.eval(f, 4) == 3LL * N);\n}\n\
+    \nvoid test_unite_cancellation_and_lazy_shift() {\n  Slope_Trick_Super<ll> ST;\n\
+    \  vc<pair<ll, ll>> p = {{-1, 0}, {1, 0}, {4, 3}};\n  vc<pair<ll, ll>> q = {{-1,\
+    \ 0}, {1, 0}, {4, -3}};\n  auto f = ST.from_points(p);\n  auto g = ST.from_points(q);\n\
+    \  f = ST.add(f, g);\n  assert(!f.root);\n  FOR(x, -1, 5) assert(ST.eval(f, x)\
+    \ == 0);\n\n  f = ST.segment_func(-1LL, 4LL, 0LL, 0LL);\n  ST.add_x_minus_a(f,\
+    \ 0);\n  ST.add_x_minus_a(f, 2);\n  ST.shift(f, 5, 7);\n  g = ST.segment_func(4LL,\
+    \ 9LL, 0LL, 0LL);\n  ST.add_x_minus_a(g, 6);\n  f = ST.add(f, g);\n  assert(ST.eval(f,\
+    \ 4) == 7);\n  assert(ST.eval(f, 5) == 7);\n  assert(ST.eval(f, 6) == 8);\n  assert(ST.eval(f,\
+    \ 7) == 10);\n  assert(ST.eval(f, 9) == 16);\n}\n\nvoid test_sum_all_random()\
+    \ {\n  Slope_Trick_Super<ll> ST;\n  using F = typename decltype(ST)::FUNC;\n \
+    \ FOR(100) {\n    constexpr int L = -3, R = 4;\n    vc<F> funcs;\n    vc<ll> want(R\
+    \ - L + 1);\n    int N = RNG(1, 30);\n    FOR(N) {\n      ll a = RNG(-3, 4), b\
+    \ = RNG(-3, 4);\n      auto f = ST.segment_func(L, R, a, b);\n      FOR(x, L,\
+    \ R + 1) want[x - L] += a * x + b;\n      int p = RNG(L + 1, R);\n      if (RNG(0,\
+    \ 2)) {\n        ST.add_x_minus_a(f, p);\n        FOR(x, L, R + 1) want[x - L]\
+    \ += max(0LL, x - p);\n      } else {\n        ST.add_a_minus_x(f, p);\n     \
+    \   FOR(x, L, R + 1) want[x - L] += max(0LL, p - x);\n      }\n      funcs.eb(f);\n\
+    \    }\n    auto f = ST.sum_all(funcs);\n    FOR(x, L, R + 1) assert(ST.eval(f,\
+    \ x) == want[x - L]);\n    auto dat = ST.ST.get_all(f.root);\n    FOR(i, len(dat)\
+    \ - 1) assert(dat[i].fi < dat[i + 1].fi);\n  }\n}\n\nsigned main() {\n  vc<int>\
+    \ ns = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1000};\n  vc<int> ps = {50, 100, 0, 95,\
+    \ 5};\n  for (auto& n : ns) {\n    for (auto& p : ps) {\n      FOR(20) {\n   \
+    \     test(n, false, p);\n        test(n, true, p);\n      }\n    }\n  }\n  test_repeated_middle_insert();\n\
+    \  test_sum_all_duplicate_breakpoints();\n  test_unite_cancellation_and_lazy_shift();\n\
+    \  test_sum_all_random();\n\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/shuffle.hpp\"\n#include \"convex/slope_trick/slope_trick_super.hpp\"\
     \n\nvoid test(int N, bool from_zero, int add_prob) {\n  Slope_Trick_Super<ll>\
@@ -553,10 +588,45 @@ data:
     \  }\n  vi X(R[i] + 1, infty<ll>);\n  FOR(x, L[i], R[i] + 1) X[x] = ST.eval(func[i],\
     \ x);\n  assert(func[i].x0 == L[i]);\n  assert(func[i].x1 == R[i]);\n  assert(X\
     \ == dp[i]);\n}\n\nvoid solve() {\n  int x, y;\n  cin >> x >> y;\n  cout << x\
-    \ + y << \"\\n\";\n}\n\nsigned main() {\n  vc<int> ns = {1, 2, 3, 4, 5, 6, 7,\
-    \ 8, 9, 10, 1000};\n  vc<int> ps = {50, 100, 0, 95, 5};\n  for (auto& n : ns)\
-    \ {\n    for (auto& p : ps) {\n      FOR(20) {\n        test(n, false, p);\n \
-    \       test(n, true, p);\n      }\n    }\n  }\n\n  solve();\n  return 0;\n}"
+    \ + y << \"\\n\";\n}\n\nvoid test_repeated_middle_insert() {\n  // (x-0)+, (x-2)+\
+    \ \u306E\u9593\u306B (x-1)+ \u3092\u7E70\u308A\u8FD4\u3057\u52A0\u3048\u308B\u3002\
+    \n  // DFS \u3067\u76F4\u63A5\u5DEE\u3057\u8FBC\u3080\u5B9F\u88C5\u3067\u306F\u3053\
+    \u3053\u3067\u6728\u304C\u7247\u5BC4\u308B\u3002\n  constexpr int N = 20000;\n\
+    \  Slope_Trick_Super<ll> ST;\n  auto f = ST.segment_func(-1LL, 4LL, 0LL, 0LL);\n\
+    \  ST.add_x_minus_a(f, 0);\n  ST.add_x_minus_a(f, 2);\n  FOR(N) ST.add_x_minus_a(f,\
+    \ 1);\n  assert(f.size() == 3);\n  assert(ST.eval(f, -1) == 0);\n  assert(ST.eval(f,\
+    \ 0) == 0);\n  assert(ST.eval(f, 1) == 1);\n  assert(ST.eval(f, 2) == N + 2);\n\
+    \  assert(ST.eval(f, 4) == 3LL * N + 6);\n}\n\nvoid test_sum_all_duplicate_breakpoints()\
+    \ {\n  constexpr int N = 1000;\n  Slope_Trick_Super<ll> ST;\n  using F = typename\
+    \ decltype(ST)::FUNC;\n  vc<F> funcs;\n  FOR(N) {\n    auto f = ST.segment_func(-1LL,\
+    \ 4LL, 0LL, 0LL);\n    ST.add_x_minus_a(f, 1);\n    funcs.eb(f);\n  }\n  auto\
+    \ f = ST.sum_all(funcs);\n  assert(f.size() == 1);\n  assert(ST.eval(f, -1) ==\
+    \ 0);\n  assert(ST.eval(f, 1) == 0);\n  assert(ST.eval(f, 4) == 3LL * N);\n}\n\
+    \nvoid test_unite_cancellation_and_lazy_shift() {\n  Slope_Trick_Super<ll> ST;\n\
+    \  vc<pair<ll, ll>> p = {{-1, 0}, {1, 0}, {4, 3}};\n  vc<pair<ll, ll>> q = {{-1,\
+    \ 0}, {1, 0}, {4, -3}};\n  auto f = ST.from_points(p);\n  auto g = ST.from_points(q);\n\
+    \  f = ST.add(f, g);\n  assert(!f.root);\n  FOR(x, -1, 5) assert(ST.eval(f, x)\
+    \ == 0);\n\n  f = ST.segment_func(-1LL, 4LL, 0LL, 0LL);\n  ST.add_x_minus_a(f,\
+    \ 0);\n  ST.add_x_minus_a(f, 2);\n  ST.shift(f, 5, 7);\n  g = ST.segment_func(4LL,\
+    \ 9LL, 0LL, 0LL);\n  ST.add_x_minus_a(g, 6);\n  f = ST.add(f, g);\n  assert(ST.eval(f,\
+    \ 4) == 7);\n  assert(ST.eval(f, 5) == 7);\n  assert(ST.eval(f, 6) == 8);\n  assert(ST.eval(f,\
+    \ 7) == 10);\n  assert(ST.eval(f, 9) == 16);\n}\n\nvoid test_sum_all_random()\
+    \ {\n  Slope_Trick_Super<ll> ST;\n  using F = typename decltype(ST)::FUNC;\n \
+    \ FOR(100) {\n    constexpr int L = -3, R = 4;\n    vc<F> funcs;\n    vc<ll> want(R\
+    \ - L + 1);\n    int N = RNG(1, 30);\n    FOR(N) {\n      ll a = RNG(-3, 4), b\
+    \ = RNG(-3, 4);\n      auto f = ST.segment_func(L, R, a, b);\n      FOR(x, L,\
+    \ R + 1) want[x - L] += a * x + b;\n      int p = RNG(L + 1, R);\n      if (RNG(0,\
+    \ 2)) {\n        ST.add_x_minus_a(f, p);\n        FOR(x, L, R + 1) want[x - L]\
+    \ += max(0LL, x - p);\n      } else {\n        ST.add_a_minus_x(f, p);\n     \
+    \   FOR(x, L, R + 1) want[x - L] += max(0LL, p - x);\n      }\n      funcs.eb(f);\n\
+    \    }\n    auto f = ST.sum_all(funcs);\n    FOR(x, L, R + 1) assert(ST.eval(f,\
+    \ x) == want[x - L]);\n    auto dat = ST.ST.get_all(f.root);\n    FOR(i, len(dat)\
+    \ - 1) assert(dat[i].fi < dat[i + 1].fi);\n  }\n}\n\nsigned main() {\n  vc<int>\
+    \ ns = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1000};\n  vc<int> ps = {50, 100, 0, 95,\
+    \ 5};\n  for (auto& n : ns) {\n    for (auto& p : ps) {\n      FOR(20) {\n   \
+    \     test(n, false, p);\n        test(n, true, p);\n      }\n    }\n  }\n  test_repeated_middle_insert();\n\
+    \  test_sum_all_duplicate_breakpoints();\n  test_unite_cancellation_and_lazy_shift();\n\
+    \  test_sum_all_random();\n\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/shuffle.hpp
@@ -568,8 +638,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/slope_super.test.cpp
   requiredBy: []
-  timestamp: '2026-10-04 20:37:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-14 14:46:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/slope_super.test.cpp
 layout: document
