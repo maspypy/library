@@ -18,11 +18,17 @@ visited = set()
 keep_source_url = os.environ.get('MASPY_KEEP_SOURCE_URL') == '1'
 
 
-def resolve_include(header):
+def resolve_include(header, including_file):
     for path in INCLUDE_PATHS:
         full_path = os.path.join(path, header)
         if os.path.isfile(full_path):
             return os.path.abspath(full_path)
+
+    # Fall back to the directory of the file containing the #include.
+    # Search INCLUDE_PATHS first to preserve existing behavior.
+    full_path = os.path.join(os.path.dirname(including_file), header)
+    if os.path.isfile(full_path):
+        return os.path.abspath(full_path)
     return None
 
 
@@ -50,7 +56,7 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
             m = re.match(r'#\s*include\s*"([^"]+)"', line)
             if m:
                 header = m.group(1)
-                resolved = resolve_include(header)
+                resolved = resolve_include(header, abs_path)
                 if resolved:
                     if resolved not in visited:
                         expand_file(resolved, header, display_name, i + 1)
