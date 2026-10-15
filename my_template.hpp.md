@@ -2259,7 +2259,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2801.test.cpp
     title: test/3_yukicoder/2801.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2298,7 +2298,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2909.test.cpp
     title: test/3_yukicoder/2909.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2334,13 +2334,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/421_2.test.cpp
     title: test/3_yukicoder/421_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/465.test.cpp
     title: test/3_yukicoder/465.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4954.test.cpp
     title: test/3_yukicoder/4954.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2412,7 +2412,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/902.test.cpp
     title: test/3_yukicoder/902.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2424,7 +2424,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/952.test.cpp
     title: test/3_yukicoder/952.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2433,7 +2433,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/0343.test.cpp
     title: test/4_aoj/0343.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/0350.test.cpp
     title: test/4_aoj/0350.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2457,16 +2457,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2835.test.cpp
     title: test/4_aoj/2835.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842.test.cpp
     title: test/4_aoj/2842.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842_2.test.cpp
     title: test/4_aoj/2842_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_10_C.test.cpp
     title: test/4_aoj/ALDS1_10_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2490,7 +2490,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_1_B.test.cpp
     title: test/4_aoj/CGL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_A.test.cpp
     title: test/4_aoj/CGL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2508,10 +2508,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_1_B.test.cpp
     title: test/4_aoj/DPL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2526,10 +2526,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_2_A.test.cpp
     title: test/4_aoj/DPL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_3_B.test.cpp
     title: test/4_aoj/DPL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_3_C.test.cpp
     title: test/4_aoj/DPL_3_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2544,13 +2544,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_C.test.cpp
     title: test/4_aoj/DSL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_D.test.cpp
     title: test/4_aoj/DSL_2_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_E.test.cpp
     title: test/4_aoj/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_F.test.cpp
     title: test/4_aoj/DSL_2_F.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2565,13 +2565,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_4_A.test.cpp
     title: test/4_aoj/DSL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_1_B.test.cpp
     title: test/4_aoj/GRL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_1_C.test.cpp
     title: test/4_aoj/GRL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2595,7 +2595,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_B.test.cpp
     title: test/4_aoj/ITP1_11_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_C.test.cpp
     title: test/4_aoj/ITP1_11_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2610,24 +2610,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_11_D.test.cpp
     title: test/4_aoj/ITP2_11_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_3_B.test.cpp
     title: test/4_aoj/ITP2_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_A.test.cpp
     title: test/4_aoj/NTL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_B.test.cpp
     title: test/4_aoj/NTL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library
@@ -2890,7 +2890,7 @@ data:
   - flow/bipartite_matching_dense.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/extended_lichao.test.cpp
   - test/1_mytest/kinetic.test.cpp

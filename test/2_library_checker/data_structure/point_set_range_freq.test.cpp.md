@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

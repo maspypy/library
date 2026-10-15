@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -40,13 +40,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

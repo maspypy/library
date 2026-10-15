@@ -86,7 +86,7 @@ data:
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':warning:'
@@ -183,7 +183,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_1_B.test.cpp
     title: test/4_aoj/CGL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_A.test.cpp
     title: test/4_aoj/CGL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -201,12 +201,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/geo/base.hpp
@@ -362,7 +362,7 @@ data:
   - geo/convex_polygon_dp_order.hpp
   - random/random_polygon.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
