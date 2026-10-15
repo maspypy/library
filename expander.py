@@ -36,16 +36,15 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
         display_name = os.path.basename(path)
 
     print(f'// BEGIN: {display_name}')
-    print(f'#line 1 "{display_name}"')
+    next_output_line = None
 
     with open(path) as f:
         for i, line in enumerate(f, start=1):
             if line.strip() == "#pragma once":
                 continue
             if not keep_source_url and line.startswith('// Source: '):
-                # The source URL was physical line i.  Reset the location for
-                # the following line so diagnostics still match the original.
-                print(f'#line {i + 1} "{display_name}"')
+                # The source URL was physical line i.  The location directive
+                # for the next emitted line is produced lazily below.
                 continue
 
             m = re.match(r'#\s*include\s*"([^"]+)"', line)
@@ -55,13 +54,22 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
                 if resolved:
                     if resolved not in visited:
                         expand_file(resolved, header, display_name, i + 1)
-                    print(f'#line {i + 1} "{display_name}"')
+                    next_output_line = None
                 else:
+                    if next_output_line != i:
+                        print(f'#line {i} "{display_name}"')
                     print(f'// [warning] include not found: {header}')
+                    next_output_line = i + 1
             elif re.match(r'#\s*include\s*<[^>]+>', line):
+                if next_output_line != i:
+                    print(f'#line {i} "{display_name}"')
                 print(line, end='')
+                next_output_line = i + 1
             else:
+                if next_output_line != i:
+                    print(f'#line {i} "{display_name}"')
                 print(line, end='')
+                next_output_line = i + 1
 
     print(f'// END: {display_name}')
 
